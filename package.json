@@ -78,6 +78,7 @@
         "vue-text-mask": "^6.1.2"
     },
     "peerDependencies": {
+        "@vue/composition-api": "^0.5.0",
         "axios": "^0.18",
         "lodash": "^4.17.4",
         "moment": "^2.24.0",
