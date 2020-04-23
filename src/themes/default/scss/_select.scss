@@ -1,0 +1,188 @@
+.native-select-placeholder {
+  color: $lf-input-placeholder-color;
+  font-size: $lf-input-font-size;
+  position: absolute;
+  top: $lf-padding-base-vertical;
+  left: calc((#{$lf-gutter} / 2) + #{$lf-padding-base-horizontal});
+  user-select: none;
+  pointer-events: none;
+}
+
+.has-value {
+  .native-select-placeholder {
+    display: none;
+  }
+}
+
+.multiselect {
+  &.multiselect--active {
+    z-index: 10;
+
+    .multiselect__tags {
+      @include lf-input-focus
+    }
+  }
+
+  &.multiselect--disabled {
+    .multiselect__tags {
+      background-color: $lf-input-bg-disabled;
+    }
+  }
+
+  .multiselect__spinner {
+    right: 6px;
+    top: calc(#{$lf-input-height} - 34px);
+    width: 30px;
+    height: 30px;
+    z-index: 1;
+
+    &:before {
+      border-color: $lf-primary-color transparent transparent;
+    }
+
+    &:after {
+      border-color: $lf-primary-color transparent transparent;
+    }
+  }
+
+  .multiselect__placeholder {
+    padding-top: 0;
+  }
+
+  .multiselect__select {
+    height: calc(#{$lf-input-height} - 2px);
+  }
+
+  // Borrowed from bootstrap-sass 
+  .multiselect__tags {
+    min-height: 0;
+    display: block;
+    width: 100%;
+    min-height: $lf-input-height; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+    padding: $lf-padding-base-vertical $lf-padding-base-horizontal 0 $lf-padding-base-horizontal;
+    font-size: $lf-font-size;
+    line-height: $lf-line-height;
+    color: $lf-input-color;
+    background-color: $lf-input-bg;
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid $lf-input-border;
+    border-radius: $lf-input-border-radius; // Note: This has no effect on <select>s in some browsers, due to the limited stylability of <select>s in CSS.
+    box-shadow: $lf-input-box-shadow;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
+    &::-moz-placeholder {
+      color: $lf-input-placeholder-color;
+      opacity: 1;
+    }
+
+    &:-ms-input-placeholder { color: $lf-input-placeholder-color; }
+    &::-webkit-input-placeholder  { color: $lf-input-placeholder-color; }
+
+    &::-ms-expand {
+      background-color: transparent;
+      border: 0;
+    }
+
+    &[disabled],
+    &[readonly],
+    fieldset[disabled] & {
+      background-color: $lf-input-bg-disabled;
+      opacity: 1; // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655
+    }
+
+    &[disabled],
+    fieldset[disabled] & {
+      cursor: $lf-cursor-disabled;
+    }
+
+    .multiselect__single {
+      font-size: $lf-font-size;
+      line-height: $lf-line-height;
+      padding-left: 0;
+      // @todo: check
+      width: auto;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+  }
+
+  .multiselect__content-wrapper {
+    z-index: 20;
+  }
+
+  .multiselect__option {
+    font-size: $lf-font-size;
+    line-height: $lf-line-height;
+    padding: $lf-padding-base-vertical $lf-padding-base-horizontal;
+    min-height: 0;
+    line-height: inherit;
+
+    &:after {
+      line-height: $lf-line-height;
+      padding-top: $lf-padding-base-vertical;
+      padding-right: $lf-padding-base-horizontal;
+      font-size: $lf-font-size;
+    }
+  }
+
+  .multiselect__option--highlight {
+    background-color: $lf-primary-color;
+
+    &:after {
+      background-color: $lf-primary-color;
+    }
+  }
+
+  .multiselect__option--selected {
+    background-color: $lf-input-bg-disabled;
+    font-weight: 300;
+
+    &.multiselect__option--highlight {
+      background-color: $lf-primary-color;
+
+      &:after {
+        background-color: $lf-primary-color;
+      }
+    }
+  }
+
+  .multiselect__tag {
+    background: $lf-primary-color;
+    margin-right: 6px;
+    margin-bottom: 0;
+  }
+
+  .multiselect__tag-icon {
+    &:after {
+      color: darken($lf-primary-color, 15%);
+    }
+
+    &:hover {
+      background: darken($lf-primary-color, 10%);
+
+      &:after {
+        color: #ffffff;
+      }
+    }
+  }
+
+  .multiselect__input {
+    font-size: $lf-font-size;
+    padding-left: 0;
+    position: absolute;
+    left: 12px;
+    width: initial;
+    top: 6px;
+    height: 28px;
+  }
+
+  .multiselect__tags {
+    .multiselect__input {
+      position: relative;
+      width: auto;
+      left: 0px;
+      top: 0px;
+      height: initial;
+    }
+  }
+}

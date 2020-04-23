@@ -1,0 +1,19 @@
+.vue-js-switch {
+  .v-switch-core {
+    // !!
+    background: $lf-passive-background;
+  }
+
+  &.toggled {
+    .v-switch-core {
+      background: $lf-primary-color;
+    }
+  }
+}
+
+.toggle-text {
+  display: inline-block;
+  margin: 0px 0 0 5px;
+  position: relative;
+  top: -3px;
+}

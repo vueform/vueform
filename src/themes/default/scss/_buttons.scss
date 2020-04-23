@@ -1,0 +1,9 @@
+.buttons-container {
+  .btn {
+    margin-right: 10px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}

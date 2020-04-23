@@ -1,0 +1,13 @@
+.flatpickr-wrapper {
+  width: 100%;
+}
+
+.flatpickr-input {
+  &[readonly] {
+    background-color: $lf-input-bg;
+  }
+}
+
+.flatpickr-prev-month svg, .flatpickr-next-month svg {
+  pointer-events: none;
+}

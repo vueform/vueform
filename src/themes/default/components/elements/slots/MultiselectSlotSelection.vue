@@ -1,0 +1,16 @@
+<template>
+  <span
+    class="multiselect__single"
+    v-if="values.length"
+  >
+    {{ __('elements.multiselect.selection', {options: values.length}) }}
+  </span>
+</template>
+
+<script>
+  import MultiselectSlotSelection from './../../../../../components/elements/slots/MultiselectSlotSelection'
+
+  export default {
+    mixins: [MultiselectSlotSelection],
+}
+</script>

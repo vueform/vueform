@@ -1,0 +1,130 @@
+//== Genaral
+//
+//## Font sizes, colors, backgrounds and more.
+
+$lf-primary-color: #24ACF8 !default;
+$lf-danger-color: #bf5329 !default;
+$lf-black-color: #000000 !default;
+$lf-disabled-color: #9BB2BF !default;
+
+$lf-text-color: #333333 !default;
+$lf-font-size: 14px !default;
+$lf-line-height: 1.6 !default;
+
+$lf-gutter: 30px !default;
+$lf-padding-base-horizontal: 12px !default;
+$lf-padding-base-vertical: 6px !default;
+$lf-form-group-margin-bottom: 15px !default;
+$lf-border-radius: 4px !default;
+
+$lf-passive-background: #d6e4ec !default;
+$lf-passive-background-lighter: #e9eef1 !default;
+
+$lf-input-font-size: 14px !default;
+$lf-input-color: #555555 !default;
+$lf-input-placeholder-color: #999999 !default;
+$lf-input-bg: #ffffff !default;
+$lf-input-bg-disabled: #eeeeee !default;
+$lf-input-border: #cccccc !default;
+$lf-input-border-focus: #66afe9 !default;
+$lf-input-border-radius: $lf-border-radius !default;
+$lf-input-height: 36px !default;
+$lf-input-box-shadow: 0px !default;
+$lf-input-focus-box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.25) !default;
+
+$lf-button-color: #636b6f !default;
+
+$lf-cursor-disabled: not-allowed !default;
+$lf-enable-shadows: 1 !default;
+
+//== Date, datetime calendar
+//
+//## Width, radius, height
+
+$lf-calendar-width: 307.875px !default;
+$lf-calendar-date-radius: 50% !default;
+$lf-calendar-date-height: 39px !default;
+
+
+//== Uploader
+//
+//## Drag n drop, previews, icons
+
+//** Drag 'n drop
+
+$lf-dnd-background: #fafafa !default;
+$lf-dnd-padding: 30px 30px !default;
+
+$lf-dnd-border: 1px dashed #e7e7e7 !default;
+$lf-dnd-border-hover: 1px dashed $lf-primary-color !default;
+$lf-dnd-border-over: 2px dashed $lf-primary-color !default;
+$lf-dnd-border-radius: 6px !default;
+
+$lf-dnd-font-size: $lf-font-size !default;
+$lf-dnd-font-size-title: $lf-font-size !default;
+$lf-dnd-text-color: $lf-text-color !default;
+$lf-dnd-text-color-title: $lf-text-color !default;
+
+$lf-dnd-icon-color: #{str-replace(#{$lf-primary-color}, '#', '%23')} !default;
+
+//** Preview
+
+$lf-preview-margin-top: 15px !default;
+$lf-preview-gallery-margin-right: 10px !default;
+
+$lf-preview-ghost-background: #f1f1f1 !default;
+$lf-preview-ghost-border-radius: $lf-border-radius !default;
+
+$lf-preview-image-background: #fafafa !default;
+
+$lf-preview-list-image-width: 64px !default;
+$lf-preview-list-image-height: 64px !default;
+$lf-preview-list-border: 1px solid #cccccc !default;
+$lf-preview-list-border-radius: 5px !default;
+$lf-preview-list-padding: 12px 12px !default;
+
+$lf-preview-gallery-image-width: 80px !default;
+$lf-preview-gallery-image-height: 80px !default;
+$lf-preview-gallery-border: 1px solid #cccccc !default;
+$lf-preview-gallery-border-radius: 5px !default;
+$lf-preview-gallery-padding: 8px !default;
+$lf-preview-gallery-width: 98px !default;
+
+$lf-preview-avatar-silhouette-color: '%23CBE3F5' !default;
+$lf-preview-avatar-placeholder-background-color: #EEF8FF !default;
+
+//** Icons
+
+$lf-file-remove-icon-color: #{str-replace(#{$lf-primary-color}, '#', '%23')} !default;
+$lf-file-remove-icon-background-color: transparent !default;
+$lf-file-remove-icon-background-color-hover: lighten($lf-primary-color, 40%) !default;
+$lf-file-remove-icon-border-radius: 3px !default;
+
+$lf-list-image-remove-icon-color: #{str-replace(#{$lf-input-color}, '#', '%23')} !default;
+$lf-list-image-remove-icon-background-color: transparent !default;
+$lf-list-image-remove-icon-background-color-hover: #f1f1f1 !default;
+$lf-list-image-remove-icon-border-radius: 3px !default;
+
+$lf-gallery-image-remove-icon-color: '%23ffffff' !default;
+$lf-gallery-image-remove-icon-background-color: rgba(0,0,0,0.45) !default;
+$lf-gallery-image-remove-icon-background-color-hover: rgba(0,0,0,0.7) !default;
+$lf-gallery-image-remove-icon-border-radius: 0 4px 0 3px !default;
+
+$lf-avatar-image-remove-icon-color: '%23ffffff' !default;
+$lf-avatar-image-remove-icon-background-color: rgba(0,0,0,0.45) !default;
+$lf-avatar-image-remove-icon-background-color-hover: rgba(0,0,0,0.7) !default;
+$lf-avatar-image-remove-icon-border-radius: 4px !default;
+
+$lf-upload-icon-color: #{str-replace(#{$lf-button-color}, '#', '%23')} !default;
+$lf-clip-icon-color: #{str-replace(#{$lf-black-color}, '#', '%23')} !default;
+
+
+//== Wizard
+//
+//## Padding, margins, backgrounds
+
+$lf-wizard-margin: 0 0 30px 0 !default;
+$lf-wizard-padding: 30px 0 !default;
+$lf-wizard-border-bottom: 1px solid #e7e7e7 !default;
+
+$lf-wizard-active-step-circle-background: #ffffff !default;

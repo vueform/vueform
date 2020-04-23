@@ -1,0 +1,25 @@
+.form-check {
+  .form-check-label {
+    input[disabled] + span {
+      opacity: 0.7;
+    }
+  }
+}
+
+.control-label {
+  font-weight: normal;
+}
+
+.element-loader {
+  top: 9px;
+}
+
+&.form-horizontal {
+  .checkbox-element, .checkboxgroup-element, .component-element,
+  .html-element, .toggle-element, .radio-element, .radiogroup-element,
+  .slider-element {
+    .control-label {
+      padding: 0;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@mixin lf-input-focus() {
+  color: $lf-input-color-focus;
+  background-color: $lf-input-bg-focus;
+  border-color: $lf-input-border-focus;
+  outline: 0;
+
+  // Avoid using mixin so we can pass custom focus shadow properly
+  @if $lf-enable-shadows {
+    box-shadow: $lf-input-box-shadow, $lf-input-focus-box-shadow;
+  } @else {
+    box-shadow: $lf-input-focus-box-shadow;
+  }
+}

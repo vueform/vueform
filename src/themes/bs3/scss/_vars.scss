@@ -1,0 +1,37 @@
+//== Genaral
+//
+//## Font sizes, colors, backgrounds and more.
+
+$lf-primary-color: $brand-primary !default;
+$lf-danger-color: $brand-danger !default;
+$lf-black-color: $gray-base !default;
+$lf-disabled-color: #9BB2BF !default;
+
+$lf-text-color: $text-color !default;
+$lf-font-size: $font-size-base !default;
+$lf-line-height: $line-height-base !default;
+
+$lf-gutter: $grid-gutter-width !default;
+$lf-padding-base-horizontal: $padding-base-horizontal !default;
+$lf-padding-base-vertical: $padding-base-vertical !default;
+$lf-form-group-margin-bottom: $form-group-margin-bottom !default;
+$lf-border-radius: $border-radius-base !default;
+
+$lf-passive-background: #d6e4ec !default;
+$lf-passive-background-lighter: #e9eef1 !default;
+
+$lf-input-font-size: $font-size-base !default;
+$lf-input-color: $input-color !default;
+$lf-input-placeholder-color: $input-color-placeholder !default;
+$lf-input-bg: $input-bg !default;
+$lf-input-bg-disabled: $input-bg-disabled !default;
+$lf-input-border: $input-border !default;
+$lf-input-border-focus: $input-border-focus !default;
+$lf-input-border-radius: $input-border-radius !default;
+$lf-input-height: $input-height-base !default;
+
+$lf-button-color: $btn-default-color !default;
+
+$lf-cursor-disabled: $cursor-disabled !default;
+
+@import './../../default/scss/vars';

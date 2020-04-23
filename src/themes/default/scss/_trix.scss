@@ -1,0 +1,63 @@
+trix-toolbar {
+  min-height: 36px;
+  background: #fff;
+  border: 1px solid $lf-input-border;
+  margin: 0;
+  padding: 8px 6px;
+  border-radius: 0;
+  border-bottom: 0;
+  border-radius: $lf-input-border-radius $lf-input-border-radius 0 0;
+
+  .trix-button-row {
+    overflow-x: auto;
+  }
+
+  .trix-button-group {
+    border: 0 !important;
+    margin: 0 !important;
+
+    button {
+      border: 0 !important;
+
+      &:not(.trix-active):hover {
+        background-color: #f9f9f9;
+      }
+    }
+  }
+
+  .trix-button {
+    border-radius: 4px;
+    
+    &.trix-active {
+      background-color: rgba(red($lf-primary-color), green($lf-primary-color), blue($lf-primary-color), .3)
+    }
+  }
+}
+
+trix-editor {
+  padding: $lf-padding-base-vertical $lf-padding-base-horizontal;
+  font-size: $lf-font-size;
+  line-height: $lf-line-height;
+  color: $lf-input-color;
+  background-color: $lf-input-bg;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid $lf-input-border;
+  border-radius: 0 0 $lf-input-border-radius $lf-input-border-radius; // Note: This has no effect on <select>s in some browsers, due to the limited stylability of <select>s in CSS.
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
+  &:focus {
+    @include lf-input-focus
+  }
+
+  blockquote {
+    font-size: $lf-font-size;
+    line-height: $lf-line-height;
+  }
+}
+
+.trix-disabled {
+  trix-toolbar .trix-button-group button {
+    pointer-events: none;
+  }
+}

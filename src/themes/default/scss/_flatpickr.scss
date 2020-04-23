@@ -1,0 +1,151 @@
+.lf-flatpickr {
+  &.flatpickr-calendar {
+    width: $lf-calendar-width;
+  }
+
+  .flatpickr-current-months {
+    padding-top: 5px;
+  }
+
+  .flatpickr-current-month {
+    span {
+      &.cur-month {
+        font-size: 14px;
+      }
+    }
+
+    .numInputWrapper {
+      font-size: 15px;
+    }
+  }
+
+  .flatpickr-months {
+    .flatpickr-month {
+      background: $lf-passive-background-lighter;
+    }
+
+    .flatpickr-prev-month,.flatpickr-next-month {
+      &:hover svg {
+        fill: $lf-primary-color;
+      }
+    }
+  }
+
+  .flatpickr-weekdays {
+    background: $lf-passive-background-lighter;
+  }
+
+  span.flatpickr-weekday {
+    background: $lf-passive-background-lighter;
+  }
+
+  .flatpickr-days {
+    width: $lf-calendar-width;
+  }
+
+  .dayContainer {
+    width: $lf-calendar-width;
+    max-width: $lf-calendar-width;
+    min-width: $lf-calendar-width;
+  }
+
+  .flatpickr-day {
+    border-radius: $lf-calendar-date-radius;
+    color: $lf-input-color;
+    height: $lf-calendar-date-height;
+    line-height: $lf-calendar-date-height;
+
+    &.disabled {
+      opacity: 0.5;
+    }
+
+    &.today {
+      background: $lf-passive-background-lighter;
+      border: 0;
+
+      &:hover {
+        background: $lf-passive-background;
+        color: $lf-input-color;
+      }
+    }
+
+    &:hover {
+      border-color: $lf-passive-background-lighter;
+      background: $lf-passive-background-lighter;
+    }
+
+    &.selected {
+      border-radius: $lf-calendar-date-radius;
+      background-color: $lf-primary-color;
+      border-color: $lf-primary-color;
+      color: #ffffff;
+
+      &:hover {
+        background-color: $lf-primary-color;
+        border-color: $lf-primary-color;
+        color: #ffffff;
+      }
+
+      &:focus {
+        background-color: $lf-primary-color;
+        border-color: $lf-primary-color;
+        color: #ffffff;
+      }
+    }
+
+    &.selected, &.startRange {
+      &.startRange {
+        border-radius: $lf-calendar-date-radius 0 0 $lf-calendar-date-radius;
+        background-color: $lf-primary-color;
+        border-color: $lf-primary-color;
+        color: #ffffff;
+      }
+    }
+
+    &.selected.startRange + .endRange:not(:nth-child(7n+1)),
+    &.startRange.startRange + .endRange:not(:nth-child(7n+1)),
+    &.endRange.startRange + .endRange:not(:nth-child(7n+1)) {
+      -webkit-box-shadow: -10px 0 0 $lf-primary-color;
+              box-shadow: -10px 0 0 $lf-primary-color;
+    }
+    
+    &.inRange, &.prevMonthDay.inRange, &.nextMonthDay.inRange, &.today.inRange {
+      box-shadow: -5px 0 0 $lf-passive-background-lighter, 5px 0 0 $lf-passive-background-lighter;
+      background: $lf-passive-background-lighter;
+      border-color: $lf-passive-background-lighter;
+      border-radius: 0;
+    }
+
+    &.selected.startRange.endRange, &.startRange.startRange.endRange, &.endRange.startRange.endRange {
+      border-radius: $lf-calendar-date-radius;
+    }
+
+    &.selected, &.endRange {
+      &.endRange {
+        border-radius: 0 $lf-calendar-date-radius $lf-calendar-date-radius 0;
+        background-color: $lf-primary-color;
+        border-color: $lf-primary-color;
+        color: #ffffff;
+        box-shadow: none;
+      }
+    }
+
+    &.week.selected {
+      border-radius: 0;
+      -webkit-box-shadow: -5px 0 0 $lf-primary-color, 5px 0 0 $lf-primary-color;
+              box-shadow: -5px 0 0 $lf-primary-color, 5px 0 0 $lf-primary-color;
+    }
+  }
+
+  .flatpickr-time {
+    input {
+      &:focus {
+        background: $lf-passive-background-lighter;
+      }
+
+      &:hover {
+        background: $lf-passive-background;
+      }
+    }
+  }
+}

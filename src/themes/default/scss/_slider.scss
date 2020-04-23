@@ -1,0 +1,22 @@
+.slider-element {
+  .row {
+    & > div:last-of-type {
+      margin-top: 5px;
+    }
+  }
+}
+
+.vue-slider-component {
+  .vue-slider {
+    background-color: $lf-passive-background;
+  }
+
+  .vue-slider-tooltip {
+    border-color: $lf-primary-color;
+    background-color: $lf-primary-color;
+  }
+
+  .vue-slider-process {
+    background-color: $lf-primary-color;
+  } 
+}

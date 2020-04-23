@@ -1,0 +1,46 @@
+//== Genaral
+//
+//## Font sizes, colors, backgrounds and more.
+
+$lf-primary-color: $primary !default;
+$lf-danger-color: $danger !default;
+$lf-black-color: $black !default;
+$lf-disabled-color: $gray-500 !default;
+
+$lf-text-color: $body-color !default;
+$lf-font-size: $font-size-base !default;
+$lf-line-height: $line-height-base !default;
+
+$lf-gutter: $grid-gutter-width !default;
+$lf-padding-base-horizontal: $input-padding-x !default;
+$lf-padding-base-vertical: $input-padding-y !default;
+$lf-form-group-margin-bottom: $form-group-margin-bottom !default;
+$lf-border-radius: $border-radius !default;
+
+$lf-passive-background: $gray-300 !default;
+$lf-passive-background-lighter: $gray-200 !default;
+
+$lf-input-font-size: $input-font-size !default;
+$lf-input-padding-x: $input-padding-x !default;
+$lf-input-padding-y: $input-padding-y !default;
+$lf-input-line-height: $input-line-height !default;
+$lf-input-color: $input-color !default;
+$lf-input-color-focus: $input-focus-color !default;
+$lf-input-placeholder-color: $input-placeholder-color !default;
+$lf-input-bg: $input-bg !default;
+$lf-input-bg-focus: $input-focus-bg !default;
+$lf-input-bg-disabled: $input-disabled-bg !default;
+$lf-input-border: $input-border-color !default;
+$lf-input-border-focus: $input-focus-border-color !default;
+$lf-input-border-radius: $lf-border-radius !default;
+$lf-input-border-width: $input-border-width !default;
+$lf-input-height: $input-height !default;
+$lf-input-box-shadow: $input-box-shadow !default;
+$lf-input-focus-box-shadow: $input-focus-box-shadow !default;
+
+$lf-button-color: $input-color !default;
+
+$lf-cursor-disabled: not-allowed !default;
+$lf-enable-shadows: $enable-shadows !default;
+
+@import './../../default/scss/vars';

@@ -1,0 +1,10 @@
+&.form-horizontal {
+  .control-label {
+    // Borrowed from Bootstrap
+    padding-top: calc(#{$lf-input-padding-y} + #{$lf-input-border-width});
+    padding-bottom: calc(#{$lf-input-padding-y} + #{$lf-input-border-width});
+    margin-bottom: 0; // Override the `<label>/<legend>` default
+    font-size: inherit; // Override the `<legend>` default
+    line-height: $lf-input-line-height;
+  }
+}
