@@ -72,6 +72,9 @@
     },
     created() {
       this.assignSlots()
-    }
+    },
+    updated() {
+      this.assignSlots()
+    },
   }
 </script>

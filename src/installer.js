@@ -51,6 +51,24 @@ export default function (config) {
       this.options.themes[name] = theme
     }
 
+    config(config) {
+      // replace
+      _.each([
+        'theme',
+      ], (attr) => {
+          if (config[attr] !== undefined) {
+            this.options.config[attr] = config[attr]
+          }
+      })
+
+      // merge
+      _.each([], (attr) => {
+          if (config[attr] !== undefined) {
+            this.options.config[attr] = _.merge({}, this.options.config[attr], config[attr])
+          }
+      })
+    }
+
     install(Vue) {
       Vue.prototype.$laraform = this.options
 

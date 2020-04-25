@@ -9,7 +9,7 @@ import TextareaElement from './components/elements/TextareaElement'
 
 export default {
   classes: {
-    form: 'lf-form',
+    form: 'vuetify-form',
     label: 'lf-label',
     element: 'lf-element',
 
@@ -24,7 +24,7 @@ export default {
     },
   },
   preset: {
-    primary: '--brand-primary',
+    primary: '--brand-primary-v',
   },
   components: {
     Laraform,

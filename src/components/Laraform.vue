@@ -1,28 +1,25 @@
-<template>
-  <form>
-    <FormElements
-      :schema="schema"
-      @updateSchema="updateSchema"
-      ref="elements$"
-    />
-
-    <ExportConsole />
-  </form>
-</template>
-
 <script>
   import ref from './../directives/ref'
 
   export default {
     name: 'Laraform',
+    render() {
+      return this.extendedTheme.components.Laraform.render.apply(this)
+    },
     directives: {
       ref,
     },
     provide() {
+      const _this = this
+    
       return {
-        form$: this.form$,
+        get form$ () {
+          return _this.form$
+        },
 
-        theme: this.extendedTheme,
+        get theme () {
+          return _this.extendedTheme
+        }
       }
     },
     props: {
@@ -118,18 +115,18 @@
         plugin.install(this)
       })
     },
-    beforeMount() {
-      let components = Object.assign({}, this.extendedTheme.components, this.components)
+    // beforeMount() {
+    //   let components = Object.assign({}, this.extendedTheme.components, this.components)
 
-      _.each(components, (component, name) => {
-        this.$options.components[name] = component
-      })
+    //   _.each(components, (component, name) => {
+    //     this.$options.components[name] = component
+    //   })
 
-      let elements = Object.assign({}, this.extendedTheme.elements, this.elements)
+    //   let elements = Object.assign({}, this.extendedTheme.elements, this.elements)
 
-      _.each(elements, (component, name) => {
-        this.$options.components[name] = component
-      })
-    },
+    //   _.each(elements, (component, name) => {
+    //     this.$options.components[name] = component
+    //   })
+    // },
   }
 </script>

@@ -9,7 +9,7 @@
       ref,
     },
     mixins: [ManagesElements, HasElements],
-    inject: ['form$'],
+    inject: ['form$', 'theme'],
     props: {
       schema: {
         type: Object,
@@ -32,6 +32,11 @@
         })
 
         return components
+      }
+    },
+    methods: {
+      component(type) {
+        return this.theme.elements[`${_.upperFirst(type)}Element`]
       }
     }
   }
