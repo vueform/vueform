@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import axios from 'axios'
 import moment from 'moment'
+import Vue from 'vue'
 
 import LaraformComponent from './components/Laraform'
 
@@ -20,16 +21,34 @@ if (!window.moment) {
     window.moment = moment
 }
 
-export default function () {
+if (!window.Vue) {
+    window.Vue = Vue
+}
+
+export default function (config) {
   const Laraform = class {
     constructor() {
       this.options = {}
 
-      this.options.plugins = []
+      this.options.config = config
+
+      this.options.plugins = config.plugins
+
+      this.options.themes = config.themes
+    }
+
+    plugins(plugins) {
+      _.each(plugins, (plugin) => {
+        this.options.plugins.push(plugin)
+      })
     }
 
     plugin(plugin) {
       this.options.plugins.push(plugin)
+    }
+
+    theme(name, theme) {
+      this.options.themes[name] = theme
     }
 
     install(Vue) {

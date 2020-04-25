@@ -1,4 +1,4 @@
-import sortable from '../directives/sortable'
+import sortable from './../directives/sortable'
 
 export default {
   directives: {
@@ -16,10 +16,14 @@ export default {
     add() {
       var count = _.keys(this.schema).length
 
-      this.insertAfter(count - 1, `text${count+1}`, {
+      var schema = Object.assign({}, this.schema)
+
+      schema[`text${count+1}`] = {
         type: 'text',
         label: `Text${count+1}`
-      })
+      }
+
+      this.updateSchema(schema)
     },
     remove(name) {
       var schema = Object.assign({}, this.schema)
@@ -28,49 +32,21 @@ export default {
 
       this.updateSchema(schema)
     },
-    insertAfter(after, elementName, element) {
-      let schema = {}
-      let afterName = this.getNameByIndex(after)
-
-      _.each(this.schema, (item, itemName) => {
-        schema[itemName] = item
-
-        if (afterName == itemName) {
-          schema[elementName] = element
-        }
-      })
-      
-      this.updateSchema(schema)
-    },
-    insertBefore(before, elementName, element) {
-      let schema = {}
-      let beforeName = this.elementName(before)
-
-      _.each(this.schema, (item, itemName) => {
-        if (beforeName == itemName) {
-          schema[elementName] = element
-        }
-
-        schema[itemName] = item
-      })
-
-      this.updateSchema(schema)
-    },
     handleSort(indexes) {
       let oldIndex = indexes.oldIndex
       let newIndex = indexes.newIndex
 
-      let elementName = this.elementName(oldIndex)
-      let element = this.element(oldIndex)
+      let keys = _.keys(this.schema)
 
-      this.remove(elementName)
+      keys.splice(newIndex, 0, keys.splice(oldIndex, 1)[0])
 
-      if (newIndex == _.keys(this.editableSchema).length) {
-        this.insertAfter(newIndex - 1, elementName, element)
-      }
-      else {
-        this.insertBefore(newIndex, elementName, element)
-      }
+      let schema = {}
+
+      _.each(keys, (key) => {
+        schema[key] = this.schema[key]
+      })
+
+      this.updateSchema(schema)
     },
     elementName(index) {
       return _.keys(this.schema)[index]

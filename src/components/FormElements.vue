@@ -1,30 +1,14 @@
-<template>
-  <div class="form-elements" v-sortable="sortable">
-    <template v-for="(element, name) in schema">
-      <component
-        :is="`${element.type}-element`"
-        :schema="element"
-        :name="name"
-        :key="name"
-      />
-    </template>
-
-    <button @click.prevent="add">Add</button>
-  </div>
-</template>
-
 <script>
-  import TextElement from './TextElement'
-  import TextareaElement from './TextareaElement'
+  import HasElements from './../mixins/HasElements'
   import ManagesElements from './../mixins/ManagesElements'
+  import ref from './../directives/ref'
 
   export default {
     name: 'FormElements',
-    mixins: [ManagesElements],
-    components: {
-      TextElement,
-      TextareaElement,
+    directives: {
+      ref,
     },
+    mixins: [ManagesElements, HasElements],
     inject: ['form$'],
     props: {
       schema: {
@@ -32,5 +16,23 @@
         required: true
       }
     },
+    computed: {
+      elements_() {
+        return _.map(_.keys(_.keyBy(this.schema, 'type')), (item) => {
+          return item.replace('-', '')
+        })
+      },
+      components_() {
+        let components = []
+
+        _.each(this.schema, (element) => {
+          if (element.component && typeof element.component == 'string') {
+            components.push(element.component)
+          }
+        })
+
+        return components
+      }
+    }
   }
 </script>
