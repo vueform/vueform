@@ -34,7 +34,7 @@ export default function (config) {
 
       this.options.plugins = config.plugins
 
-      this.options.themes = config.themes
+      this.options.environments = config.environments
     }
 
     plugins(plugins) {

@@ -1,8 +1,9 @@
 <template>
   <component :is="theme.components.BaseElementLayout">
     <template slot="field">
-      <v-text-field
-      />
+      <div>
+        <input :class="theme.classes.elements.text.input" />
+      </div>
     </template>
 
     <slot name="label" slot="label" :el$="el$"></slot>
@@ -16,9 +17,3 @@
     mixins: [TextElement],
   }
 </script>
-
-<style lang="scss">
-  label {
-    color: var(--lf-brand-primary);
-  }
-</style>

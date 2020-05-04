@@ -6,25 +6,19 @@
     directives: {
       htmlIf,
     },
-    inject: ['el$'],
+    inject: ['el$', 'theme'],
     computed: {
       name() {
         return this.el$.name
       },
       label() {
-        if (this.isComponent) {
-          return this.el$.schema.label
-        }
-
         return this.el$.schema.label
-
-        // return this.isFunction ? this.el$.schema.label(this.el$) : this.el$.schema.label
       },
       isFunction() {
-        return typeof this.el$.schema.label === 'function'
+        return typeof this.label === 'function'
       },
       isComponent() {
-        return typeof this.el$.schema.label === 'object'
+        return typeof this.label === 'object'
       },
     }
   }

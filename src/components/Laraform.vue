@@ -115,18 +115,18 @@
         plugin.install(this)
       })
     },
-    // beforeMount() {
-    //   let components = Object.assign({}, this.extendedTheme.components, this.components)
+    beforeMount() {
+      let components = Object.assign({}, this.extendedTheme.components, this.components)
 
-    //   _.each(components, (component, name) => {
-    //     this.$options.components[name] = component
-    //   })
+      _.each(components, (component, name) => {
+        this.$options.components[name] = component
+      })
 
-    //   let elements = Object.assign({}, this.extendedTheme.elements, this.elements)
+      let elements = Object.assign({}, this.extendedTheme.elements, this.elements)
 
-    //   _.each(elements, (component, name) => {
-    //     this.$options.components[name] = component
-    //   })
-    // },
+      _.each(elements, (component, name) => {
+        this.$options.components[name] = component
+      })
+    },
   }
 </script>

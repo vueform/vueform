@@ -1,7 +1,9 @@
 <template>
   <component :is="theme.components.BaseElementLayout">
     <template slot="field">
-      <input />
+      <div>
+        <input :class="theme.classes.elements.text.input" /> <a href="" @click.prevent="remove">Remove</a>
+      </div>
     </template>
 
     <slot name="label" slot="label" :el$="el$"></slot>
@@ -15,9 +17,3 @@
     mixins: [TextElement],
   }
 </script>
-
-<style lang="scss">
-  label {
-    color: var(--lf-brand-primary);
-  }
-</style>

@@ -10,21 +10,37 @@ import TextareaElement from './components/elements/TextareaElement'
 export default {
   classes: {
     form: 'lf-form',
-    label: 'lf-label',
-    element: 'lf-element',
 
     formElements: {
-      container: 'lf-elements',
+      container: 'lf-row',
     },
 
     baseElementLayout: {
-      container: 'row',
-      labelWrapper: 'col-lg-3',
-      fieldWrapper: 'col-lg-9',
+      container: 'lf-col-lg-12 lf-element',
+      outerWrapper: 'lf-form-group',
+      innerWrapper: 'lf-row',
+      labelWrapper: 'lf-col-lg-12',
+      fieldWrapper: 'lf-col-lg-12',
     },
+
+    label: 'lf-label',
+
+    elements: {
+      text: {
+        container: 'lf-text',
+        input: 'lf-input'
+      },
+      textarea: {
+        container: 'lf-textarea',
+        input: 'lf-input'
+      },
+    }
   },
   preset: {
-    primary: '--brand-primary',
+    gutters: {
+      x: 30,
+      y: 0
+    },
   },
   components: {
     Laraform,

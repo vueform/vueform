@@ -9,22 +9,30 @@ import TextareaElement from './components/elements/TextareaElement'
 
 export default {
   classes: {
-    form: 'vuetify-form',
-    label: 'lf-label',
-    element: 'lf-element',
+    form: 'laraform-bs4',
 
     formElements: {
-      container: 'lf-elements',
+      container: 'row',
     },
 
     baseElementLayout: {
-      container: 'row',
-      labelWrapper: 'col-lg-3',
-      fieldWrapper: 'col-lg-9',
+      container: 'col-lg-12',
+      outerWrapper: 'form-group',
+      innerWrapper: 'row',
+      labelWrapper: 'col-lg-12',
+      fieldWrapper: 'col-lg-12',
     },
-  },
-  preset: {
-    primary: '--brand-primary-v',
+
+    label: 'control-label',
+
+    elements: {
+      text: {
+        input: 'form-control'
+      },
+      textarea: {
+        input: 'form-control'
+      },
+    }
   },
   components: {
     Laraform,

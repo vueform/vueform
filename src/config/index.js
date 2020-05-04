@@ -1,9 +1,9 @@
-import themes from './../themes'
+import environments from './../environments'
 
 export default {
   plugins: [],
   
-  themes: themes,
+  environments: environments,
 
   theme: 'default',
 }

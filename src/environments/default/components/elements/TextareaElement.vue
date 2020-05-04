@@ -1,7 +1,7 @@
 <template>
   <component :is="theme.components.BaseElementLayout">
     <template slot="field">
-      <textarea />
+      <textarea :class="theme.classes.elements.textarea.input" />
     </template>
   </component>
 </template>

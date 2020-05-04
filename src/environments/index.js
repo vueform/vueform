@@ -1,7 +1,7 @@
 import default_ from './default'
-import vuetify from './vuetify'
+import bootstrap4 from './bootstrap4'
 
 export default {
   default: default_,
-  vuetify,
+  bootstrap4,
 }

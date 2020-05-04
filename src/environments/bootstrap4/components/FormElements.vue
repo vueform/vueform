@@ -1,5 +1,5 @@
 <template>
-  <div class="form-elements">
+  <div :class="theme.classes.formElements.container">
     <div v-sortable="sortable">
       <template v-for="(element, name) in schema">
         <component
@@ -11,7 +11,8 @@
         />
       </template>
     </div>
-    <button @click.prevent="add">Add</button>
+
+    <a href="" @click.prevent="add">Add</a>
   </div>
 </template>
 
