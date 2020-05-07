@@ -4,18 +4,20 @@ import BaseElementLayout from './components/BaseElementLayout'
 import ElementLabel from './components/ElementLabel'
 import ExportConsole from './components/ExportConsole'
 
-import TextElement from './components/elements/TextElement'
-import TextareaElement from './components/elements/TextareaElement'
-
 export default {
+  presets: {
+    input: 'form-control'
+  },
   classes: {
-    form: 'laraform-bs4',
+    Laraform: {
+      form: 'laraform-bs4',
+    },
 
-    formElements: {
+    FormElements: {
       container: 'row',
     },
 
-    baseElementLayout: {
+    BaseElementLayout: {
       container: 'col-lg-12',
       outerWrapper: 'form-group',
       innerWrapper: 'row',
@@ -23,16 +25,14 @@ export default {
       fieldWrapper: 'col-lg-12',
     },
 
-    label: 'control-label',
+    ElementLabel: {
+      label: 'control-label',
+    },
 
-    elements: {
-      text: {
-        input: 'form-control'
-      },
-      textarea: {
-        input: 'form-control'
-      },
-    }
+    TextElement: {
+      input: this.presets.input,
+    },
+
   },
   components: {
     Laraform,
@@ -42,7 +42,8 @@ export default {
     ExportConsole,
   },
   elements: {
-    TextElement,
-    TextareaElement,
   },
+  breakpoints: [
+    'xl', 'lg', 'md', 'sm', 'xs'
+  ],
 }

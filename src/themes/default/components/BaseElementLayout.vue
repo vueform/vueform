@@ -1,15 +1,15 @@
 <template>
-  <div :class="theme.classes.baseElementLayout.container">
-    <div :class="theme.classes.baseElementLayout.outerWrapper">
-      <div :class="theme.classes.baseElementLayout.innerWrapper">
+  <div :class="theme.classes.BaseElementLayout.container">
+    <div :class="theme.classes.BaseElementLayout.outerWrapper">
+      <div :class="theme.classes.BaseElementLayout.innerWrapper">
 
-        <div :class="theme.classes.baseElementLayout.labelWrapper">
+        <div :class="theme.classes.BaseElementLayout.labelWrapper">
           <slot name="label">
             <component :is="theme.components.ElementLabel" />
           </slot>
         </div>
 
-        <div :class="theme.classes.baseElementLayout.fieldWrapper">
+        <div :class="theme.classes.BaseElementLayout.fieldWrapper">
           <slot name="field"></slot>
         </div>
 

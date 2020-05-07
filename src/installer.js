@@ -34,7 +34,9 @@ export default function (config) {
 
       this.options.plugins = config.plugins
 
-      this.options.environments = config.environments
+      this.options.themes = config.themes
+
+      this.options.elements = config.elements
     }
 
     plugins(plugins) {
@@ -49,6 +51,14 @@ export default function (config) {
 
     theme(name, theme) {
       this.options.themes[name] = theme
+    }
+
+    elements(elements) {
+      this.options.elements = Object.assign({}, this.options.elements, elements)
+    }
+
+    element(name, element) {
+      this.options.elements[_.upperFirst(_.camelCase(name+'-element'))] = element
     }
 
     config(config) {

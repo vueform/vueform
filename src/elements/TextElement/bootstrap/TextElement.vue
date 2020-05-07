@@ -2,7 +2,7 @@
   <component :is="theme.components.BaseElementLayout">
     <template slot="field">
       <div>
-        <input :class="theme.classes.elements.text.input" /> <a href="" @click.prevent="remove">Remove</a>
+        <input v-model="model" class="form-control" />
       </div>
     </template>
 
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import TextElement from './../../../../components/elements/TextElement'
+  import TextElement from './../index'
 
   export default {
     mixins: [TextElement],

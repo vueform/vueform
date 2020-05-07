@@ -15,7 +15,7 @@ export default {
       container: 'lf-row',
     },
 
-    baseElementLayout: {
+    BaseElementLayout: {
       container: 'lf-col-lg-12 lf-element',
       outerWrapper: 'lf-form-group',
       innerWrapper: 'lf-row',
@@ -36,7 +36,7 @@ export default {
       },
     }
   },
-  preset: {
+  theme: {
     gutters: {
       x: 30,
       y: 0
