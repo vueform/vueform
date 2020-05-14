@@ -44,7 +44,7 @@ export default {
         : (this.form.theme || this.$laraform.config.theme)
 
       return Vue.observable(Object.assign({}, this.$laraform.themes[theme], {
-        elements: this.$laraform.elements
+        elements: Object.assign({},this.$laraform.themes[theme].elements, this.$laraform.elements)
       }))
     },
 
