@@ -22,7 +22,8 @@
         "build:full": "cross-env BUNDLE=full node_modules/webpack/bin/webpack.js --progress --config build/webpack.build.config.js",
         "build:essentials": "cross-env BUNDLE=essentials node_modules/webpack/bin/webpack.js --progress --config build/webpack.build.config.js",
         "build:core": "cross-env BUNDLE=core node_modules/webpack/bin/webpack.js --progress --config build/webpack.build.config.js",
-        "build": "npm run build:full; npm run build:essentials; npm run build:core"
+        "build": "npm run build:full; npm run build:essentials; npm run build:core",
+        "test": "jest"
     },
     "jest": {
         "moduleFileExtensions": [
@@ -37,7 +38,7 @@
         "moduleNameMapper": {
             "^@/(.*)$": "<rootDir>/src/$1"
         },
-        "collectCoverage": true,
+        "collectCoverage": false,
         "collectCoverageFrom": [
             "**/*.{js,vue}",
             "!**/node_modules/**"
@@ -53,14 +54,21 @@
         "@babel/plugin-transform-runtime": "^7.2.0",
         "@babel/preset-env": "^7.3.1",
         "@babel/runtime": "^7.3.1",
+        "@vue/test-utils": "^1.0.2",
+        "babel-core": "^6.26.3",
+        "babel-jest": "^26.0.1",
         "babel-loader": "^8.0.5",
+        "babel-preset-env": "^1.7.0",
         "cross-env": "^5.2.0",
         "css-loader": "^2.1.0",
+        "jest": "^26.0.1",
         "json-loader": "^0.5.7",
         "node-sass": "^4.11.0",
         "sass-loader": "^7.1.0",
+        "vue": "^2.6.11",
+        "vue-jest": "^3.0.5",
         "vue-loader": "^15.5.1",
-        "vue-template-compiler": "^2.6.10",
+        "vue-template-compiler": "^2.6.11",
         "webpack": "^4.28.4",
         "webpack-cli": "^3.2.1",
         "webpack-notifier": "^1.7.0"

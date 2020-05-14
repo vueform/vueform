@@ -1,7 +1,7 @@
 import _ from 'lodash'
-import axios from 'axios'
-import moment from 'moment'
-import Vue from 'vue'
+// import axios from 'axios'
+// import moment from 'moment'
+// import Vue from 'vue'
 
 import LaraformComponent from './components/Laraform'
 
@@ -13,17 +13,17 @@ if (!window._) {
     window._ = _
 }
 
-if (!window.axios) {
-    window.axios = axios
-}
+// if (!window.axios) {
+//     window.axios = axios
+// }
 
-if (!window.moment) {
-    window.moment = moment
-}
+// if (!window.moment) {
+//     window.moment = moment
+// }
 
-if (!window.Vue) {
-    window.Vue = Vue
-}
+// if (!window.Vue) {
+//     window.Vue = Vue
+// }
 
 export default function (config) {
   const Laraform = class {
@@ -80,7 +80,13 @@ export default function (config) {
     }
 
     install(Vue) {
-      Vue.prototype.$laraform = this.options
+      let options = this.options
+
+      Vue.mixin({
+        beforeCreate() {
+          this.$laraform = Vue.observable(options)
+        }
+      })
 
       Vue.component('Laraform', LaraformComponent)
     }

@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import ref from './../../directives/ref'
 
 export default {
