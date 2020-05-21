@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export default {
   bind: function (el, binding, vnode) {
     let key = _.keys(binding.value)[0]

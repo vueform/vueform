@@ -40,19 +40,7 @@ export default {
       return this.schema.label
     },
     classes() {
-      let classes = this.schema.classes || {}
-
-      _.each(this.addClasses, (classes_, component) => {
-        _.each(classes_, (class_, key) => {
-          if (classes[component] === undefined) {
-            classes[component] = {}
-          }
-
-          classes[component][key] = [classes[component][key], class_]
-        })
-      })
-
-      return classes
+      return this.schema.classes || {}
     },
     addClasses() {
       return this.schema.addClasses || {}
