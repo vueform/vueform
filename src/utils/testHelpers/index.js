@@ -17,6 +17,10 @@ const installLaraform = function(options = {}) {
 
   LaraformInstaller.theme(theme, themes[theme])
 
+  if (options.elements !== undefined) {
+    LaraformInstaller.elements(options.elements)
+  }
+
   const LocalVue = createLocalVue()
 
   LocalVue.use(LaraformInstaller)

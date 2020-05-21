@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import ref from './../../directives/ref'
 import _ from 'lodash'
-import mergeClasses from './../../utils/mergeClasses'
+import { mergeClass } from './../../utils/mergeClasses'
 
 export default {
   name: 'Laraform',
@@ -51,9 +51,28 @@ export default {
       classes: {},
 
       addClasses: {},
+
+      class: null,
     }
   },
   computed: {
+    extendedClasses() {
+      let defaultClasses = this.extendedTheme.components.Laraform.data().defaultClasses
+
+      let classes = Object.assign({},
+        defaultClasses,
+        this.extendedTheme.classes.Laraform
+      )
+
+      let mainClass = _.keys(defaultClasses)[0]
+
+      if (this.class !== null || this.form.class) {
+        classes[mainClass] = mergeClass(classes[mainClass], this.class || this.form.class)
+      }
+
+      return classes
+    },
+
     selectedTheme() {
       let theme = !_.isEmpty(this.theme) ? this.theme : (this.form.theme || this.$laraform.config.theme)
 
@@ -72,15 +91,15 @@ export default {
 
     elements$() {
       let elements$ = {}
-      let components$ =  this.$refs.elements$
+      let elementsRef$ =  this.$refs.elements$
 
       // Retrieving elements from FormElements component
-      if (!_.isArray(components$)) {
-        components$ = components$.$refs.elements$
+      if (!_.isArray(elementsRef$)) {
+        elementsRef$ = elementsRef$.$refs.elements$
       }
 
-      _.each(components$, (component$) => {
-        elements$[component$.name] = component$
+      _.each(elementsRef$, (element$) => {
+        elements$[element$.name] = element$
       })
 
       return elements$
@@ -89,6 +108,19 @@ export default {
     form$() {
       return this
     },
+  },
+  watch: {
+    'form.schema': {
+      handler(schema) {
+        if (_.isEmpty(schema)) {
+          return
+        }
+
+        this.schema = schema
+      },
+      deep: true,
+      immediate: true
+    }
   },
   methods: {
 
@@ -138,11 +170,6 @@ export default {
     _.each(this.$laraform.plugins, (plugin) => {
       plugin.install(this)
     })
-  },
-  created() {
-    if (this.form.schema) {
-      this.schema = this.form.schema
-    }
   },
   beforeMount() {
     let components = Object.assign({}, this.extendedTheme.components, this.components)

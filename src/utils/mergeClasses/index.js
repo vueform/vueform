@@ -14,13 +14,13 @@ const mergeComponentClasses = function (base, add) {
   let classes = base
 
   _.each(add, (classes_, key) => {
-    classes[key] = merge(base[key] || null, classes_)
+    classes[key] = mergeClass(base[key] || null, classes_)
   })
 
   return classes
 }
 
-const merge = function (base, add) {
+const mergeClass = function (base, add) {
   if (add === null) {
     return base
   }
@@ -71,5 +71,6 @@ const merge = function (base, add) {
 export default mergeClasses
 
 export {
+  mergeClass,
   mergeComponentClasses,
 }

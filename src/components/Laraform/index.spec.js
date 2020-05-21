@@ -1,9 +1,10 @@
 import { createForm } from './../../utils/testHelpers'
 import { mergeComponentClasses } from './../../utils/mergeClasses'
 import defaultTheme from './../../themes/default'
+import bootstrapTheme from './../../themes/bootstrap'
 
 describe('Laraform component', () => {
-  it('should render text element', () => {
+  it('should render element from schema', () => {
     let form = createForm({
       schema: {
         name: {
@@ -14,10 +15,69 @@ describe('Laraform component', () => {
 
     expect(form.findComponent({ name: 'TextElement' }).exists()).toBe(true)
   })
+
+  it('should set class from `class` data', () => {
+    let form = createForm({
+      class: 'a'
+    }, {
+      config: {
+        themes: {
+          bootstrap: bootstrapTheme,
+        },
+        theme: 'bootstrap'
+      }
+    })
+
+    let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
+
+    expect(form.classes()).toMatchObject([LaraformClasses.form, 'a'])
+  })
+
+  it('should set class from `class` form prop', () => {
+    let form = createForm({}, {
+      config: {
+        themes: {
+          bootstrap: bootstrapTheme,
+        },
+        theme: 'bootstrap'
+      },
+      propsData: {
+        form: {
+          class: 'a'
+        }
+      }
+    })
+
+    let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
+
+    expect(form.classes()).toMatchObject([LaraformClasses.form, 'a'])
+  })
+
+  it('should set class from `class` data even if form prop is present', () => {
+    let form = createForm({
+      class: 'a'
+    }, {
+      config: {
+        themes: {
+          bootstrap: bootstrapTheme,
+        },
+        theme: 'bootstrap'
+      },
+      propsData: {
+        form: {
+          class: 'b'
+        }
+      }
+    })
+
+    let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
+
+    expect(form.classes()).toMatchObject([LaraformClasses.form, 'a'])
+  })
 })
 
-describe('selectedTheme', () => {
-  it('should return what is defined at config', () => {
+describe('Selecting theme', () => {
+  it('should select what is defined in config', () => {
     let form = createForm({}, {
       config: {
         themes: {
@@ -27,43 +87,39 @@ describe('selectedTheme', () => {
       }
     })
 
-    expect(form.vm.selectedTheme).toMatchObject(defaultTheme)
+    let LaraformClasses = defaultTheme.components.Laraform.data().defaultClasses
+
+    expect(form.classes()).toMatchObject([LaraformClasses.form])
   })
 
-  it('should return what is defined at form prop', () => {
-    let customTheme = Object.assign({}, defaultTheme, {
-      a: 'b'
-    })
-
+  it('should select what is defined in form prop', () => {
     let form = createForm({}, {
       config: {
         themes: {
-          custom: customTheme,
+          bootstrap: bootstrapTheme,
           default: defaultTheme,
         },
         theme: 'default'
       },
       propsData: {
         form: {
-          theme: 'custom'
+          theme: 'bootstrap'
         }
       }
     })
 
-    expect(form.vm.selectedTheme).toMatchObject(customTheme)
+    let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
+
+    expect(form.classes()).toMatchObject([LaraformClasses.form])
   })
 
-  it('should return what is defined at form data', () => {
-    let customTheme = Object.assign({}, defaultTheme, {
-      a: 'b'
-    })
-
+  it('should select what is defined in form data', () => {
     let form = createForm({
-      theme: 'custom'
+      theme: 'bootstrap'
     }, {
       config: {
         themes: {
-          custom: customTheme,
+          bootstrap: bootstrapTheme,
           default: defaultTheme,
         },
         theme: 'default'
@@ -76,7 +132,9 @@ describe('selectedTheme', () => {
       }
     })
 
-    expect(form.vm.selectedTheme).toMatchObject(customTheme)
+    let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
+
+    expect(form.classes()).toMatchObject([LaraformClasses.form])
   })
 })
 
