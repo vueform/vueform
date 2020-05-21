@@ -1,29 +1,4 @@
 import _ from 'lodash'
-// import axios from 'axios'
-// import moment from 'moment'
-// import Vue from 'vue'
-
-import LaraformComponent from './components/Laraform'
-
-if (!window.Laraform) {
-    window.Laraform = LaraformComponent
-}
-
-if (!window._) {
-    window._ = _
-}
-
-// if (!window.axios) {
-//     window.axios = axios
-// }
-
-// if (!window.moment) {
-//     window.moment = moment
-// }
-
-// if (!window.Vue) {
-//     window.Vue = Vue
-// }
 
 export default function (config) {
   const Laraform = class {
@@ -88,7 +63,7 @@ export default function (config) {
         }
       })
 
-      Vue.component('Laraform', LaraformComponent)
+      Vue.component('Laraform', Laraform)
     }
   }
 

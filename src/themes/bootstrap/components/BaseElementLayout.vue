@@ -1,15 +1,15 @@
 <template>
-  <div class="col-lg-12">
-    <div class="form-group">
-      <div class="row">
+  <div :class="classes.container">
+    <div :class="classes.outerWrapper">
+      <div  :class="classes.innerWrapper">
 
-        <div class="col-lg-12">
+        <div :class="classes.labelWrapper">
           <slot name="label">
             <component :is="theme.components.ElementLabel" />
           </slot>
         </div>
 
-        <div class="col-lg-12">
+        <div :class="classes.fieldWrapper">
           <slot name="field"></slot>
         </div>
 
@@ -23,5 +23,16 @@
 
   export default {
     mixins: [BaseElementLayout],
+    data() {
+      return {
+        defaultClasses: {
+          container: 'col-lg-12',
+          outerWrapper: 'form-group',
+          innerWrapper: 'row',	
+          labelWrapper: 'col-lg-12',	
+          fieldWrapper: 'col-lg-12',
+        }
+      }
+    }
   }
 </script>

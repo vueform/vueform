@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import TextElement from './../index'
+  import TextElement from './../../../../elements/TextElement'
 
   export default {
     mixins: [TextElement],

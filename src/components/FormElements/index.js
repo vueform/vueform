@@ -1,5 +1,6 @@
 import ManagesElements from './../../mixins/ManagesElements'
 import ref from './../../directives/ref'
+import _ from 'lodash'
 
 export default {
   name: 'FormElements',
@@ -16,7 +17,15 @@ export default {
   },
   methods: {
     component(type) {
-      return this.theme.elements[`${_.upperFirst(type)}Element`]
+      let name = `${_.upperFirst(type)}Element`
+
+      let component = this.theme.elements[name]
+
+      if (component === undefined) {
+        throw new TypeError('Unknown element type: ' + type)
+      }
+
+      return component
     }
   }
 }

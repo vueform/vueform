@@ -1,9 +1,15 @@
+import _ from 'lodash'
+
 export default {
   name: 'BaseElement',
   inject: ['theme'],
   provide() {
+    const _this = this
+  
     return {
-      el$: this.el$,
+      get el$ () {
+        return _this.el$
+      },
     }
   },
   props: {
@@ -32,6 +38,24 @@ export default {
     },
     label() {
       return this.schema.label
+    },
+    classes() {
+      let classes = this.schema.classes || {}
+
+      _.each(this.addClasses, (classes_, component) => {
+        _.each(classes_, (class_, key) => {
+          if (classes[component] === undefined) {
+            classes[component] = {}
+          }
+
+          classes[component][key] = [classes[component][key], class_]
+        })
+      })
+
+      return classes
+    },
+    addClasses() {
+      return this.schema.addClasses || {}
     },
     slots() {
       let slots = {}

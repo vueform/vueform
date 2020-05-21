@@ -1,4 +1,5 @@
 import sortable from './../directives/sortable'
+import _ from 'lodash'
 
 export default {
   directives: {

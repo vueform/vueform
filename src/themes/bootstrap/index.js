@@ -3,7 +3,7 @@ import FormElements from './components/FormElements'
 import BaseElementLayout from './components/BaseElementLayout'
 import ElementLabel from './components/ElementLabel'
 
-import TextElement from './../../elements/TextElement/bootstrap/TextElement'
+import TextElement from './components/elements/TextElement'
 
 export default {
   components: {
@@ -15,6 +15,9 @@ export default {
   elements: {
     TextElement,
   },
+  classes: {
+    
+  }
 }
 
 export const bootstrap = {
@@ -25,6 +28,9 @@ export const bootstrap = {
     ElementLabel,
   },
   elements: {
+    
+  },
+  classes: {
     
   }
 }

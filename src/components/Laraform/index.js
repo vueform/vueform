@@ -1,8 +1,18 @@
 import Vue from 'vue'
 import ref from './../../directives/ref'
+import _ from 'lodash'
 
 export default {
   name: 'Laraform',
+  setup(props, { root }) {
+    let setup = {}
+
+    _.each(root.$laraform.plugins, (plugin) => {
+      setup = Object.assign({}, setup, plugin.setup())
+    })
+
+    return setup
+  },
   render() {
     return this.extendedTheme.components.Laraform.render.apply(this)
   },
@@ -36,6 +46,10 @@ export default {
       theme: null,
 
       components: {},
+
+      classes: {},
+
+      addClasses: {},
     }
   },
   computed: {
@@ -44,8 +58,23 @@ export default {
         ? this.theme
         : (this.form.theme || this.$laraform.config.theme)
 
+      let elements = Object.assign({},this.$laraform.themes[theme].elements, this.$laraform.elements)
+
+      let classes = _.merge({}, this.$laraform.themes[theme].classes, this.classes)
+
+      _.each(this.addClasses, (classes_, component) => {
+        _.each(classes_, (class_, key) => {
+          if (classes[component] === undefined) {
+            classes[component] = {}
+          }
+
+          classes[component][key] = [classes[component][key], class_]
+        })
+      })
+
       return Vue.observable(Object.assign({}, this.$laraform.themes[theme], {
-        elements: Object.assign({},this.$laraform.themes[theme].elements, this.$laraform.elements)
+        elements: elements,
+        classes: classes
       }))
     },
 
@@ -117,6 +146,11 @@ export default {
     _.each(this.$laraform.plugins, (plugin) => {
       plugin.install(this)
     })
+  },
+  created() {
+    if (this.form.schema) {
+      this.schema = this.form.schema
+    }
   },
   beforeMount() {
     let components = Object.assign({}, this.extendedTheme.components, this.components)
