@@ -1,5 +1,5 @@
 <template>
-  <form :class="extendedTheme.classes.form">
+  <form class="laraform-bs4">
     <component :is="extendedTheme.components.FormElements"
       :schema="schema"
       @updateSchema="updateSchema"

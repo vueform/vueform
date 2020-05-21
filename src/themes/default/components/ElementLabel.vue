@@ -1,6 +1,6 @@
 <template>
   <label
-    :class="theme.classes.label"
+    class="control-label"
     :for="name"
     v-html-if="{label: !isComponent}"
   >

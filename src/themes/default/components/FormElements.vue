@@ -1,14 +1,17 @@
 <template>
-  <div :class="theme.classes.formElements.container" v-sortable="sortable">
-    <template v-for="(element, name) in schema">
-      <component
-        :is="component(element.type)"
-        :schema="element"
-        :name="name"
-        :key="name"
-        @remove="remove"
-      />
-    </template>
+  <div class="row">
+    <div v-sortable="sortable">
+      <template v-for="(element, name) in schema">
+        <component
+          :is="component(element.type)"
+          :schema="element"
+          :name="name"
+          :key="name"
+          @remove="remove"
+          v-ref:elements$
+        />
+      </template>
+    </div>
   </div>
 </template>
 

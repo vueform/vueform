@@ -54,17 +54,19 @@ export default {
     }
   },
   computed: {
-    extendedTheme() {
-      let theme = !_.isEmpty(this.theme)
-        ? this.theme
-        : (this.form.theme || this.$laraform.config.theme)
+    selectedTheme() {
+      let theme = !_.isEmpty(this.theme) ? this.theme : (this.form.theme || this.$laraform.config.theme)
 
-      return Vue.observable(Object.assign({}, this.$laraform.themes[theme], {
+      return this.$laraform.themes[theme]
+    },
+
+    extendedTheme() {
+      return Vue.observable(Object.assign({}, this.selectedTheme, {
         // Add registered elements to theme elements (or overwrite)
-        elements: Object.assign({},this.$laraform.themes[theme].elements, this.$laraform.elements),
+        elements: Object.assign({}, this.selectedTheme.elements, this.$laraform.elements),
         
         // Ovewrite theme classes with form's classes definition
-        classes: _.merge({}, this.$laraform.themes[theme].classes, this.classes)
+        classes: _.merge({}, this.selectedTheme.classes, this.classes)
       }))
     },
 

@@ -1,3 +1,4 @@
+import ElementComponent from './../../mixins/ElementComponent'
 import htmlIf from './../../directives/html-if'
 
 export default {
@@ -5,7 +6,7 @@ export default {
   directives: {
     htmlIf,
   },
-  inject: ['el$', 'theme'],
+  mixins: [ElementComponent],
   computed: {
     name() {
       return this.el$.name

@@ -1,4 +1,4 @@
-import { createLocalVue, mount } from '@vue/test-utils'
+import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import { Laraform } from './../../index'
 import installer from './../../installer'
 import bootstrap from './../../themes/bootstrap'
@@ -35,9 +35,11 @@ const createForm = function(data, options = {}) {
   })
 
   return mount(form, {
-    LocalVue
+    LocalVue,
+    propsData: options.propsData || {}
   })
 }
+
 
 export {
   installLaraform,

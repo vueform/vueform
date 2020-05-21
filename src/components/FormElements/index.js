@@ -1,4 +1,5 @@
 import ManagesElements from './../../mixins/ManagesElements'
+import BaseComponent from './../../mixins/BaseComponent'
 import ref from './../../directives/ref'
 import _ from 'lodash'
 
@@ -7,8 +8,7 @@ export default {
   directives: {
     ref,
   },
-  mixins: [ManagesElements],
-  inject: ['form$', 'theme'],
+  mixins: [ManagesElements, BaseComponent],
   props: {
     schema: {
       type: Object,
