@@ -1,8 +1,8 @@
 <template>
-  <component :is="theme.components.BaseElementLayout">
+  <component :is="components.BaseElementLayout">
     <template slot="field">
       <div>
-        <input v-model="model" class="form-control" />
+        <input v-model="model" :class="classes.input" />
       </div>
     </template>
 
@@ -15,5 +15,12 @@
 
   export default {
     mixins: [TextElement],
+    data() {
+      return {
+        defaultClasses: {
+          input: 'form-control'
+        }
+      }
+    }
   }
 </script>

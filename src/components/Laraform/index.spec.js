@@ -19,28 +19,13 @@ describe('Laraform component', () => {
   it('should set class from `class` data', () => {
     let form = createForm({
       class: 'a'
-    }, {
-      config: {
-        themes: {
-          bootstrap: bootstrapTheme,
-        },
-        theme: 'bootstrap'
-      }
     })
-
-    let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
-
-    expect(form.classes()).toMatchObject([LaraformClasses.form, 'a'])
+    
+    expect(form.classes()).toContain('a')
   })
 
   it('should set class from `class` form prop', () => {
     let form = createForm({}, {
-      config: {
-        themes: {
-          bootstrap: bootstrapTheme,
-        },
-        theme: 'bootstrap'
-      },
       propsData: {
         form: {
           class: 'a'
@@ -48,21 +33,13 @@ describe('Laraform component', () => {
       }
     })
 
-    let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
-
-    expect(form.classes()).toMatchObject([LaraformClasses.form, 'a'])
+    expect(form.classes()).toContain('a')
   })
 
   it('should set class from `class` data even if form prop is present', () => {
     let form = createForm({
       class: 'a'
     }, {
-      config: {
-        themes: {
-          bootstrap: bootstrapTheme,
-        },
-        theme: 'bootstrap'
-      },
       propsData: {
         form: {
           class: 'b'
@@ -70,9 +47,8 @@ describe('Laraform component', () => {
       }
     })
 
-    let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
-
-    expect(form.classes()).toMatchObject([LaraformClasses.form, 'a'])
+    expect(form.classes()).toContain('a')
+    expect(form.classes()).not.toContain('b')
   })
 })
 

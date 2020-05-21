@@ -56,18 +56,22 @@ export default {
     }
   },
   computed: {
-    extendedClasses() {
-      let defaultClasses = this.extendedTheme.components.Laraform.data().defaultClasses
+    mainClass() {
+      return _.keys(this.defaultClasses)[0]
+    },
 
+    defaultClasses() {
+      return this.extendedTheme.components.Laraform.data().defaultClasses
+    },
+
+    extendedClasses() {
       let classes = Object.assign({},
-        defaultClasses,
+        this.defaultClasses,
         this.extendedTheme.classes.Laraform
       )
 
-      let mainClass = _.keys(defaultClasses)[0]
-
       if (this.class !== null || this.form.class) {
-        classes[mainClass] = mergeClass(classes[mainClass], this.class || this.form.class)
+        classes[this.mainClass] = mergeClass(classes[this.mainClass], this.class || this.form.class)
       }
 
       return classes

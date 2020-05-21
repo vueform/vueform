@@ -1,22 +1,14 @@
-import _ from 'lodash'
-import { mergeComponentClasses } from './../utils/mergeClasses'
+import MergesThemeClasses from './MergesThemeClasses'
 
 export default {
   inject: ['form$', 'theme'],
+  mixins: [MergesThemeClasses],
   computed: {
     classes() {
-      let classes = _.merge({},
-        // Default component classes
-        this.defaultClasses,
-
-        // Theme / form level overwrites
-        this.theme.classes[this.$options.name] || {}
-      )
-
-      // Add form's addClasses
-      classes = mergeComponentClasses(classes, this.form$.addClasses[this.$options.name] || null)
-
-      return classes
+      return this.mergedClasses
+    },
+    components() {
+      return this.theme.components
     },
   }
 }

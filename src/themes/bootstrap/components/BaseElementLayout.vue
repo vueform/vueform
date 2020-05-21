@@ -5,7 +5,7 @@
 
         <div :class="classes.labelWrapper">
           <slot name="label">
-            <component :is="theme.components.ElementLabel" />
+            <component :is="components.ElementLabel" />
           </slot>
         </div>
 

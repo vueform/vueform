@@ -1,8 +1,10 @@
 import _ from 'lodash'
+import MergesElementClasses from './../../mixins/MergesElementClasses'
 
 export default {
   name: 'BaseElement',
-  inject: ['theme'],
+  mixins: [MergesElementClasses],
+  inject: ['theme', 'form$'],
   provide() {
     const _this = this
   
@@ -39,11 +41,17 @@ export default {
     label() {
       return this.schema.label
     },
+    class() {
+      return this.schema.class || null
+    },
     classes() {
-      return this.schema.classes || {}
+      return this.mergedClasses
     },
     addClasses() {
       return this.schema.addClasses || {}
+    },
+    components() {
+      return this.theme.components
     },
     slots() {
       let slots = {}
@@ -64,7 +72,7 @@ export default {
     },
     el$() {
       return this
-    }
+    },
   },
   watch: {
     schema: {
