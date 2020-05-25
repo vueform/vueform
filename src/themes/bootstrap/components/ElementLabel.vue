@@ -4,9 +4,7 @@
     :for="name"
     v-html-if="{label: !isComponent}"
   >
-    <slot>
-      <component v-if="isComponent" :is="label" />
-    </slot>
+    <component v-if="isComponent" :is="label" :el$="el$" />
   </label>
 </template>
 

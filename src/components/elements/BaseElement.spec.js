@@ -229,9 +229,9 @@ describe('Element classes', () => {
 })
 
 describe('Element slots', () => {
-  const LocalVue = createLocalVue()
-
   it('can assign from element schema', (done) => {
+    const LocalVue = createLocalVue()
+
     LocalVue.config.errorHandler = done
 
     let form = createForm({
@@ -294,5 +294,40 @@ describe('Element slots', () => {
     })
 
     expect(form.findComponent({name: 'TextElement'}).html()).toContain('Name from slot')
+  })
+
+  it('gets rerendered when schema changes', (done) => {
+    const LocalVue = createLocalVue()
+    
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          label: 'Name',
+          slots: {
+            label: LocalVue.extend({
+              props: ['el$'],
+              render(h) {
+                return h('div', this.el$.label + ' from slot')
+              }
+            })
+          }
+        }
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.findComponent({name: 'TextElement'}).html()).toContain('Name from slot')
+
+      form.vm.schema.name.label = 'Name2'
+
+      LocalVue.nextTick(() => {
+        expect(form.findComponent({name: 'TextElement'}).html()).toContain('Name2 from slot')
+
+        done()
+      })
+    })
   })
 })

@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import ref from './../../directives/ref'
+import ref from './../directives/ref'
 import _ from 'lodash'
-import { mergeClass, mergeComponentClasses } from './../../utils/mergeClasses'
+import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'Laraform',

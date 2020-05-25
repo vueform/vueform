@@ -1,6 +1,6 @@
-import ManagesElements from './../../mixins/ManagesElements'
-import BaseComponent from './../../mixins/BaseComponent'
-import ref from './../../directives/ref'
+import ManagesElements from './../mixins/ManagesElements'
+import BaseComponent from './../mixins/BaseComponent'
+import ref from './../directives/ref'
 import _ from 'lodash'
 
 export default {

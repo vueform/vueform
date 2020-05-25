@@ -8,5 +8,11 @@ export default {
     if (condition === true) {
       el.innerHTML = vnode.context[key]
     }
+
+    vnode.context.$watch(() => { return vnode.context[key] }, () => {
+      if (condition === true) {
+        el.innerHTML = vnode.context[key]
+      }
+    }, { deep: true })
   }
 }

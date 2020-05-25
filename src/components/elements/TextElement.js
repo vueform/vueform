@@ -1,4 +1,4 @@
-import BaseElement from './../BaseElement'
+import BaseElement from './BaseElement'
 
 export default {
   name: 'TextElement',

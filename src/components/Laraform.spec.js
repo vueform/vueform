@@ -1,8 +1,8 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../../utils/testHelpers'
-import { mergeComponentClasses } from './../../utils/mergeClasses'
-import defaultTheme from './../../themes/default'
-import bootstrapTheme from './../../themes/bootstrap'
+import { createForm } from './../utils/testHelpers'
+import { mergeComponentClasses } from './../utils/mergeClasses'
+import defaultTheme from './../themes/default'
+import bootstrapTheme from './../themes/bootstrap'
 
 describe('Laraform component', () => {
   it('should render element from schema', () => {

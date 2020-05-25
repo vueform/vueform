@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import ElementComponent from './../../mixins/ElementComponent'
-import { mergeComponentClasses } from './../../utils/mergeClasses'
+import ElementComponent from './../mixins/ElementComponent'
+import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'BaseElementLayout',
