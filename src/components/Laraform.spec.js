@@ -51,6 +51,48 @@ describe('Laraform component', () => {
     expect(form.classes()).toContain('a')
     expect(form.classes()).not.toContain('b')
   })
+
+  it('should retrieve element VMs in elements$ once the form is rendered', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          label: 'A'
+        }
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.elements$.a.label).toBe('A')
+
+      done()
+    })
+  })
+
+  it('should retrieve an element based on path using el$ method', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          label: 'A'
+        }
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.el$('a').label).toBe('A')
+
+      done()
+    })
+  })
 })
 
 describe('Selecting theme', () => {

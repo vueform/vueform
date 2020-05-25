@@ -228,6 +228,32 @@ describe('Element classes', () => {
   })
 })
 
+
+describe('Element components', () => {
+  it('should overwrite existing component', () => {
+    const LocalVue = createLocalVue()
+
+    const form = createForm({
+      schema: {
+        custom: {
+          type: 'text',
+          label: 'a',
+          components: {
+            BaseElementLayout: LocalVue.extend({
+              name: 'BaseElementLayout',
+              render(h) {
+                return h('div', 'Base Layout')
+              }
+            })
+          }
+        },
+      },
+    })
+
+    expect(form.findComponent({name: 'TextElement'}).html()).toContain('Base Layout')
+  })
+})
+
 describe('Element slots', () => {
   it('can assign from element schema', (done) => {
     const LocalVue = createLocalVue()

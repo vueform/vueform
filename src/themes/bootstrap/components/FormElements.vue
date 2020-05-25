@@ -1,9 +1,9 @@
 <template>
   <div :class="classes.container">
-    <div :class="classes.wrapper" v-sortable="sortable">
+    <div :class="classes.wrapper">
       <template v-for="(element, name) in schema">
         <component
-          :is="component(element.type)"
+          :is="component(element)"
           :schema="element"
           :name="name"
           :key="name"

@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import Vue from 'vue'
 import MergesElementClasses from './../../mixins/MergesElementClasses'
 
 export default {
@@ -51,7 +52,7 @@ export default {
       return this.schema.addClasses || {}
     },
     components() {
-      return this.theme.components
+      return Vue.observable(_.merge({}, this.theme.components, this.schema.components || {}))
     },
     el$() {
       return this
@@ -68,9 +69,6 @@ export default {
     }
   },
   methods: {
-    remove() {
-      this.$emit('remove', this.name)
-    },
     assignSlots() {
       _.each(this.schema.slots, (slot, name) => {
         let instance = new slot({
