@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import ref from './../../directives/ref'
 import _ from 'lodash'
-import { mergeClass } from './../../utils/mergeClasses'
+import { mergeClass, mergeComponentClasses } from './../../utils/mergeClasses'
 
 export default {
   name: 'Laraform',
@@ -53,6 +53,8 @@ export default {
       addClasses: {},
 
       class: null,
+
+      elements: {},
     }
   },
   computed: {
@@ -70,6 +72,8 @@ export default {
         this.extendedTheme.classes.Laraform
       )
 
+      classes = mergeComponentClasses(classes, this.addClasses.Laraform || null)
+
       if (this.class !== null || this.form.class) {
         classes[this.mainClass] = mergeClass(classes[this.mainClass], this.class || this.form.class)
       }
@@ -86,10 +90,24 @@ export default {
     extendedTheme() {
       return Vue.observable(Object.assign({}, this.selectedTheme, {
         // Add registered elements to theme elements (or overwrite)
-        elements: Object.assign({}, this.selectedTheme.elements, this.$laraform.elements),
+        elements: Object.assign({},
+          this.selectedTheme.elements,
+          this.$laraform.elements,
+          this.elements,
+        ),
+
+        // Add registered component to theme (or overwrite)
+        components: _.merge({},
+          this.selectedTheme.components,
+          this.$laraform.components,
+          this.components,
+        ),
         
         // Ovewrite theme classes with form's classes definition
-        classes: _.merge({}, this.selectedTheme.classes, this.classes)
+        classes: _.merge({},
+          this.selectedTheme.classes,
+          this.classes
+        ),
       }))
     },
 

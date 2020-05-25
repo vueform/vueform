@@ -1,6 +1,6 @@
 <template>
   <label
-    class="control-label"
+    :class="classes.label"
     :for="name"
     v-html-if="{label: !isComponent}"
   >
@@ -15,5 +15,12 @@
 
   export default {
     mixins: [ElementLabel],
+    data() {
+      return {
+        defaultClasses: {
+          label: 'control-label',
+        }
+      }
+    }
   }
 </script>

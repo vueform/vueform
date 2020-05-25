@@ -53,23 +53,6 @@ export default {
     components() {
       return this.theme.components
     },
-    slots() {
-      let slots = {}
-
-      _.each(this.schema.slots, (slot, name) => {
-        let instance = new slot({
-          propsData: {
-            el$: this.el$
-          }
-        })
-
-        instance.$mount()
-
-        slots[name] = instance._vnode
-      })
-
-      return slots
-    },
     el$() {
       return this
     },
@@ -102,7 +85,7 @@ export default {
       })
     }
   },
-  created() {
+  mounted() {
     this.assignSlots()
   },
   updated() {

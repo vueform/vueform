@@ -24,9 +24,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  .form-control {
-    background: red;
-  }
-</style>

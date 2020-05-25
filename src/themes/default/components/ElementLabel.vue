@@ -15,5 +15,12 @@
 
   export default {
     mixins: [ElementLabel],
+    data() {
+      return {
+        defaultClasses: {
+          label: 'control-label',
+        }
+      }
+    }
   }
 </script>

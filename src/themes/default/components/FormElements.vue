@@ -20,5 +20,13 @@
 
   export default {
     mixins: [FormElements],
+    data() {
+      return {
+        defaultClasses: {
+          container: 'row',
+          wrapper: 'form-elements',
+        }
+      }
+    }
   }
 </script>

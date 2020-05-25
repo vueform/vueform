@@ -1,3 +1,4 @@
+import { createLocalVue } from '@vue/test-utils'
 import { createForm } from './../../utils/testHelpers'
 import { mergeComponentClasses } from './../../utils/mergeClasses'
 import defaultTheme from './../../themes/default'
@@ -114,6 +115,101 @@ describe('Selecting theme', () => {
   })
 })
 
+describe('Theme elements', () => {
+  it('should register new element', () => {
+    const LocalVue = createLocalVue()
+
+    let CustomElement = LocalVue.extend({
+      name: 'CustomElement',
+      render(h) {
+        return h('div', 'Custom Element')
+      }
+    })
+
+    const form = createForm({
+      schema: {
+        custom: {
+          type: 'custom',
+        }
+      },
+      elements: {
+        CustomElement,
+      }
+    })
+
+    expect(form.findComponent({name: 'CustomElement'}).html()).toContain('Custom Element')
+  })
+
+  it('should overwrite existing element', () => {
+    const LocalVue = createLocalVue()
+
+    let TextElement = LocalVue.extend({
+      name: 'TextElement',
+      render(h) {
+        return h('div', 'Text Element')
+      }
+    })
+
+    const form = createForm({
+      schema: {
+        custom: {
+          type: 'text',
+        }
+      },
+      elements: {
+        TextElement,
+      }
+    })
+
+    expect(form.findComponent({name: 'TextElement'}).html()).toContain('Text Element')
+  })
+})
+
+describe('Theme components', () => {
+  it('should add new component', () => {
+    let CustomComponent = {
+      name: 'CustomComponent'
+    }
+
+    const form = createForm({
+      schema: {
+        custom: {
+          type: 'text',
+        }
+      },
+      components: {
+        CustomComponent,
+      }
+    })
+
+    expect(form.vm.extendedTheme.components.CustomComponent).toMatchObject(CustomComponent)
+  })
+
+  it('should overwrite existing component', () => {
+    const LocalVue = createLocalVue()
+
+    let BaseElementLayout = LocalVue.extend({
+      name: 'BaseElementLayout',
+      render(h) {
+        return h('div', 'Base Layout')
+      }
+    })
+
+    const form = createForm({
+      schema: {
+        custom: {
+          type: 'text',
+        }
+      },
+      components: {
+        BaseElementLayout,
+      }
+    })
+
+    expect(form.findComponent({name: 'TextElement'}).html()).toContain('Base Layout')
+  })
+})
+
 describe('Theme classes', () => {
   it('should use defaults if otherwise set', () => {
     let form = createForm({
@@ -124,9 +220,22 @@ describe('Theme classes', () => {
       }
     })
 
+    // Custom logic
+    let Laraform = form
+
+    // Custom logic
     let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
 
+    // Uses ElementComponent mixin
+    let ElementLabel = form.findComponent({ name: 'ElementLabel' })
+
+    // Uses ThemeComponent mixin
+    let FormElements = form.findComponent({ name: 'FormElements' })
+
+    expect(Laraform.vm.extendedClasses).toMatchObject(Laraform.vm.extendedTheme.components.Laraform.data().defaultClasses)
     expect(BaseElementLayout.vm.classes).toMatchObject(BaseElementLayout.vm.defaultClasses)
+    expect(ElementLabel.vm.classes).toMatchObject(ElementLabel.vm.defaultClasses)
+    expect(FormElements.vm.classes).toMatchObject(FormElements.vm.defaultClasses)
   })
 
   it('should overwrite if `classes` defined on form level', () => {
@@ -137,15 +246,37 @@ describe('Theme classes', () => {
         }
       },
       classes: {
+        Laraform: {
+          form: 'a'
+        },
         BaseElementLayout: {
-          container: 'a'
-        }
+          container: 'b'
+        },
+        FormElements: {
+          container: 'c'
+        },
+        ElementLabel: {
+          label: 'd'
+        },
       }
     })
 
+    // Custom logic
+    let Laraform = form
+
+    // Custom logic
     let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
 
-    expect(BaseElementLayout.vm.classes.container).toBe('a')
+    // Uses ElementComponent mixin
+    let ElementLabel = form.findComponent({ name: 'ElementLabel' })
+
+    // Uses ThemeComponent mixin
+    let FormElements = form.findComponent({ name: 'FormElements' })
+
+    expect(Laraform.vm.extendedClasses.form).toBe('a')
+    expect(BaseElementLayout.vm.classes.container).toBe('b')
+    expect(FormElements.vm.classes.container).toBe('c')
+    expect(ElementLabel.vm.classes.label).toBe('d')
   })
 
   it('should add if `addClasses` defined on form level', () => {
@@ -195,213 +326,5 @@ describe('Theme classes', () => {
     let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
     
     expect(BaseElementLayout.vm.classes.container).toBe('a b')
-  })
-
-  it('should overwrite if `classes` defined on element level', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          classes: {
-            BaseElementLayout: {
-              container: 'a'
-            }
-          }
-        }
-      },
-    })
-
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-
-    expect(BaseElementLayout.vm.classes.container).toBe('a')
-  })
-
-  it('should add if `addClasses` defined on element level', () => {
-    let addClasses = {
-      container: 'a',
-      b: 'c'
-    }
-
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          addClasses: {
-            BaseElementLayout: addClasses
-          }
-        }
-      }
-    })
-
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-    
-    expect(BaseElementLayout.vm.classes).toMatchObject(mergeComponentClasses(
-      BaseElementLayout.vm.defaultClasses,
-      addClasses,
-    ))
-  })
-
-  it('should overwrite and add if `classes` and `addClasses` defined on element level', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          classes: {
-            BaseElementLayout: {
-              container: 'a'
-            }
-          },
-          addClasses: {
-            BaseElementLayout: {
-              container: 'b',
-            }
-          }
-        },
-      },
-    })
-
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-    
-    expect(BaseElementLayout.vm.classes.container).toBe('a b')
-  })
-
-  it('should overwrite with element\'s `classes` if defined on form and element level', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          classes: {
-            BaseElementLayout: {
-              container: 'b'
-            }
-          }
-        }
-      },
-      classes: {
-        BaseElementLayout: {
-          container: 'a'
-        }
-      }
-    })
-
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-
-    expect(BaseElementLayout.vm.classes.container).toBe('b')
-  })
-
-  it('should not add if `classes` defined on both level and `addClasses` defined on form level', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          classes: {
-            BaseElementLayout: {
-              container: 'b'
-            }
-          }
-        }
-      },
-      classes: {
-        BaseElementLayout: {
-          container: 'a'
-        }
-      },
-      addClasses: {
-        BaseElementLayout: {
-          container: 'c'
-        }
-      },
-    })
-
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-
-    expect(BaseElementLayout.vm.classes.container).toBe('b')
-  })
-
-  it('should add if `classes` defined on both level and `addClasses` defined on element level', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          classes: {
-            BaseElementLayout: {
-              container: 'b'
-            }
-          },
-          addClasses: {
-            BaseElementLayout: {
-              container: 'c'
-            }
-          },
-        }
-      },
-      classes: {
-        BaseElementLayout: {
-          container: 'a'
-        }
-      },
-    })
-
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-
-    expect(BaseElementLayout.vm.classes.container).toBe('b c')
-  })
-
-  it('should add if `addClasses` defined on both level', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          addClasses: {
-            BaseElementLayout: {
-              container: 'b'
-            }
-          },
-        }
-      },
-      addClasses: {
-        BaseElementLayout: {
-          container: 'a'
-        }
-      },
-    })
-
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-
-    expect(BaseElementLayout.vm.classes.container).toBe(BaseElementLayout.vm.defaultClasses.container + ' a b')
-  })
-
-  it('should add only element\'s classes if `classes` and `addClasses` defined on both level', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          classes: {
-            BaseElementLayout: {
-              container: 'b'
-            }
-          },
-          addClasses: {
-            BaseElementLayout: {
-              container: 'd'
-            }
-          },
-        }
-      },
-      classes: {
-        BaseElementLayout: {
-          container: 'a'
-        }
-      },
-      addClasses: {
-        BaseElementLayout: {
-          container: 'c'
-        }
-      },
-    })
-
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-
-    expect(BaseElementLayout.vm.classes.container).toBe('b d')
   })
 })

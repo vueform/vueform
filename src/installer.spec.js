@@ -2,7 +2,6 @@ import { createLocalVue } from '@vue/test-utils'
 import { createForm } from './utils/testHelpers'
 import config from './config'
 
-
 describe('Installer', () => {
   it('should install Laraform', () => {
     const form = createForm({}, {
@@ -74,5 +73,50 @@ describe('Installer', () => {
     })
 
     expect(form.findComponent({name: 'TextElement'}).html()).toContain('Text Element')
+  })
+
+  it('should add new component', () => {
+    let CustomComponent = {
+      name: 'CustomComponent'
+    }
+
+    const form = createForm({
+      schema: {
+        custom: {
+          type: 'text',
+        }
+      }
+    }, {
+      components: {
+        CustomComponent,
+      }
+    })
+
+    expect(form.vm.$laraform.components.CustomComponent).toMatchObject(CustomComponent)
+  })
+
+  it('should overwrite existing component', () => {
+    const LocalVue = createLocalVue()
+
+    let BaseElementLayout = LocalVue.extend({
+      name: 'BaseElementLayout',
+      render(h) {
+        return h('div', 'Base Layout')
+      }
+    })
+
+    const form = createForm({
+      schema: {
+        custom: {
+          type: 'text',
+        }
+      }
+    }, {
+      components: {
+        BaseElementLayout,
+      }
+    })
+
+    expect(form.findComponent({name: 'TextElement'}).html()).toContain('Base Layout')
   })
 })

@@ -6,4 +6,6 @@ export default {
   theme: 'default',
 
   elements: {},
+  
+  components: {},
 }

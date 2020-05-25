@@ -1,6 +1,6 @@
 <template>
-  <div class="row">
-    <div v-sortable="sortable">
+  <div :class="classes.container">
+    <div :class="classes.wrapper" v-sortable="sortable">
       <template v-for="(element, name) in schema">
         <component
           :is="component(element.type)"
@@ -20,5 +20,13 @@
 
   export default {
     mixins: [FormElements],
+    data() {
+      return {
+        defaultClasses: {
+          container: 'row',
+          wrapper: 'form-elements',
+        }
+      }
+    }
   }
 </script>

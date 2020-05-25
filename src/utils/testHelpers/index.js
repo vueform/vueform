@@ -24,6 +24,10 @@ const installLaraform = function(options = {}) {
     LaraformInstaller.elements(options.elements)
   }
 
+  if (options.components !== undefined) {
+    LaraformInstaller.components(options.components)
+  }
+
   if (options.themes !== undefined) {
     _.each(options.themes, (optionTheme, name) => {
       LaraformInstaller.theme(name, optionTheme)
