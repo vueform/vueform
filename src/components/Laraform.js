@@ -2,21 +2,14 @@ import Vue from 'vue'
 import ref from './../directives/ref'
 import _ from 'lodash'
 import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
+import UsesPlugins from './../mixins/UsesPlugins'
 
 export default {
   name: 'Laraform',
-  setup(props, { root }) {
-    // let setup = {}
-
-    // _.each(root.$laraform.plugins, (plugin) => {
-    //   setup = Object.assign({}, setup, plugin.setup())
-    // })
-
-    // return setup
-  },
   render() {
     return this.extendedTheme.components.Laraform.render.apply(this)
   },
+  mixins: [UsesPlugins],
   directives: {
     ref,
   },
@@ -189,11 +182,6 @@ export default {
     updateSchema(schema) {
       this.$set(this, 'schema', schema)
     }
-  },
-  beforeCreate() {
-    _.each(this.$laraform.plugins, (plugin) => {
-      plugin.install(this)
-    })
   },
   beforeMount() {
     let components = Object.assign({}, this.extendedTheme.components, this.components)

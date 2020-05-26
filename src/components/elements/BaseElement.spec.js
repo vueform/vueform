@@ -296,7 +296,7 @@ describe('Element slots', () => {
   })
 
   it('can assign from form template', () => {
-    let LocalVue = installLaraform({})
+    let { LocalVue } = installLaraform({})
 
     let component = LocalVue.extend({
       mixins: [Laraform],
@@ -328,7 +328,12 @@ describe('Element slots', () => {
     })
 
     let form = mount(component, {
-      LocalVue
+      LocalVue,
+      mocks: {
+        $laraform: {
+          config: {}
+        }
+      }
     })
 
     expect(form.findComponent({name: 'TextElement'}).html()).toContain('Name from slot')

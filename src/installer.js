@@ -14,6 +14,8 @@ export default function (config) {
       this.options.elements = config.elements
 
       this.options.components = config.components
+
+      this.options.services = {}
     }
 
     plugins(plugins) {
@@ -66,6 +68,14 @@ export default function (config) {
 
     install(Vue) {
       let options = this.options
+
+      _.each(this.options.plugins, (plugin) => {
+        let installedOptions = plugin.install(options)
+
+        if (installedOptions) {
+          options = installedOptions
+        }
+      })
 
       Vue.mixin({
         beforeCreate() {

@@ -1,9 +1,9 @@
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
-import { Laraform } from './../../index'
-import installer from './../../installer'
-import bootstrap from './../../themes/bootstrap'
-import defaultTheme from './../../themes/default'
-import config from './../../config'
+import { Laraform } from './../index'
+import installer from './../installer'
+import bootstrap from './../themes/bootstrap'
+import defaultTheme from './../themes/default'
+import config from './../config'
 import _ from 'lodash'
 
 const themes = {
@@ -14,9 +14,11 @@ const themes = {
 const installLaraform = function(options = {}) {
   const theme = options.theme || config.theme
   
-  const LaraformInstaller = installer(Object.assign({}, config, {
+  let finalConfig = Object.assign({}, config, {
     theme: theme
-  }, options.config || {}))
+  }, options.config || {})
+
+  const LaraformInstaller = installer(finalConfig)
 
   LaraformInstaller.theme(theme, themes[theme])
 
@@ -34,15 +36,22 @@ const installLaraform = function(options = {}) {
     })
   }
 
+  if (options.plugins !== undefined) {
+    LaraformInstaller.plugins(options.plugins)
+  }
+
   const LocalVue = createLocalVue()
 
   LocalVue.use(LaraformInstaller)
   
-  return LocalVue
+  return {
+    LocalVue,
+    config: finalConfig
+  }
 }
 
 const createForm = function(data, options = {}) {
-  let LocalVue = installLaraform(options)
+  let { LocalVue, config } = installLaraform(options)
 
   let form = LocalVue.extend({
     mixins: [Laraform],
@@ -53,7 +62,12 @@ const createForm = function(data, options = {}) {
 
   return mount(form, {
     LocalVue,
-    propsData: options.propsData || {}
+    propsData: options.propsData || {},
+    mocks: {
+      $laraform: {
+        config: config
+      }
+    }
   })
 }
 

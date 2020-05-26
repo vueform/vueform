@@ -1,10 +1,11 @@
 import _ from 'lodash'
 import Vue from 'vue'
 import MergesElementClasses from './../../mixins/MergesElementClasses'
+import UsesPlugins from './../../mixins/UsesPlugins'
 
 export default {
   name: 'BaseElement',
-  mixins: [MergesElementClasses],
+  mixins: [UsesPlugins, MergesElementClasses],
   inject: ['theme', 'form$'],
   provide() {
     const _this = this
@@ -24,6 +25,16 @@ export default {
       type: String,
       required: true
     },
+    
+    /**
+     * The element's parent.
+     * 
+     * @ignore
+     */
+    parent: {
+      type: Object,
+      required: false
+    },
   },
   data() {
     return {
@@ -31,6 +42,9 @@ export default {
     }
   },
   computed: {
+    available() {
+      return true
+    },
     value: {
       get() {
         return this.model
@@ -58,7 +72,7 @@ export default {
       return this.theme.utils.columns(this)
     },
     hasLabel() {
-      return this.form$.$laraform.config.labels || this.label
+      return this.$laraform.config.labels || this.label
     },
     el$() {
       return this

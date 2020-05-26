@@ -1,5 +1,4 @@
-import mergeClasses from './index'
-import { mergeComponentClasses } from './index'
+import mergeClasses, { mergeComponentClasses } from './mergeClasses'
 
 describe('mergeClasses', () => {
   it('should add component with classes', () => {
