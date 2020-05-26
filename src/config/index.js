@@ -10,4 +10,10 @@ export default {
   components: {},
 
   labels: false,
+
+  columns: {
+    element: 12,
+    label: 12,
+    field: 12,
+  } 
 }

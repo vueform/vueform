@@ -9,12 +9,12 @@ describe('Element', () => {
       schema: {
         name: {
           type: 'text',
-          class: 'a'
+          class: 'class-a'
         }
       }
     })
 
-    expect(form.findComponent({ name: 'TextElement' }).classes()).toContain('a')
+    expect(form.findComponent({ name: 'TextElement' }).classes()).toContain('class-a')
   })
 })
 
@@ -26,7 +26,7 @@ describe('Element classes', () => {
           type: 'text',
           classes: {
             BaseElementLayout: {
-              container: 'a'
+              container: 'class-a'
             }
           }
         }
@@ -35,13 +35,13 @@ describe('Element classes', () => {
 
     let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
 
-    expect(BaseElementLayout.vm.classes.container).toBe('a')
+    expect(BaseElementLayout.classes()).toContain('class-a')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
   })
 
   it('should add if `addClasses` defined on element level', () => {
     let addClasses = {
-      container: 'a',
-      b: 'c'
+      container: 'class-a',
     }
 
     let form = createForm({
@@ -57,10 +57,7 @@ describe('Element classes', () => {
 
     let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
     
-    expect(BaseElementLayout.vm.classes).toMatchObject(mergeComponentClasses(
-      BaseElementLayout.vm.defaultClasses,
-      addClasses,
-    ))
+    expect(BaseElementLayout.classes()).toContain('class-a')
   })
 
   it('should overwrite and add if `classes` and `addClasses` defined on element level', () => {
@@ -70,12 +67,12 @@ describe('Element classes', () => {
           type: 'text',
           classes: {
             BaseElementLayout: {
-              container: 'a'
+              container: 'class-a'
             }
           },
           addClasses: {
             BaseElementLayout: {
-              container: 'b',
+              container: 'class-b',
             }
           }
         },
@@ -84,7 +81,9 @@ describe('Element classes', () => {
 
     let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
     
-    expect(BaseElementLayout.vm.classes.container).toBe('a b')
+    expect(BaseElementLayout.classes()).toContain('class-a')
+    expect(BaseElementLayout.classes()).toContain('class-b')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
   })
 
   it('should overwrite with element\'s `classes` if defined on form and element level', () => {
@@ -94,21 +93,23 @@ describe('Element classes', () => {
           type: 'text',
           classes: {
             BaseElementLayout: {
-              container: 'b'
+              container: 'class-b'
             }
           }
         }
       },
       classes: {
         BaseElementLayout: {
-          container: 'a'
+          container: 'class-a'
         }
       }
     })
 
     let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
 
-    expect(BaseElementLayout.vm.classes.container).toBe('b')
+    expect(BaseElementLayout.classes()).toContain('class-b')
+    expect(BaseElementLayout.classes()).not.toContain('class-a')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
   })
 
   it('should not add if `classes` defined on both level and `addClasses` defined on form level', () => {
@@ -118,26 +119,29 @@ describe('Element classes', () => {
           type: 'text',
           classes: {
             BaseElementLayout: {
-              container: 'b'
+              container: 'class-b'
             }
           }
         }
       },
       classes: {
         BaseElementLayout: {
-          container: 'a'
+          container: 'class-a'
         }
       },
       addClasses: {
         BaseElementLayout: {
-          container: 'c'
+          container: 'class-c'
         }
       },
     })
 
     let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
 
-    expect(BaseElementLayout.vm.classes.container).toBe('b')
+    expect(BaseElementLayout.classes()).toContain('class-b')
+    expect(BaseElementLayout.classes()).not.toContain('class-a')
+    expect(BaseElementLayout.classes()).not.toContain('class-c')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
   })
 
   it('should add if `classes` defined on both level and `addClasses` defined on element level', () => {
@@ -147,26 +151,29 @@ describe('Element classes', () => {
           type: 'text',
           classes: {
             BaseElementLayout: {
-              container: 'b'
+              container: 'class-b'
             }
           },
           addClasses: {
             BaseElementLayout: {
-              container: 'c'
+              container: 'class-c'
             }
           },
         }
       },
       classes: {
         BaseElementLayout: {
-          container: 'a'
+          container: 'class-a'
         }
       },
     })
 
     let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
 
-    expect(BaseElementLayout.vm.classes.container).toBe('b c')
+    expect(BaseElementLayout.classes()).toContain('class-b')
+    expect(BaseElementLayout.classes()).toContain('class-c')
+    expect(BaseElementLayout.classes()).not.toContain('class-a')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
   })
 
   it('should add if `addClasses` defined on both level', () => {
@@ -176,21 +183,22 @@ describe('Element classes', () => {
           type: 'text',
           addClasses: {
             BaseElementLayout: {
-              container: 'b'
+              container: 'class-b'
             }
           },
         }
       },
       addClasses: {
         BaseElementLayout: {
-          container: 'a'
+          container: 'class-a'
         }
       },
     })
 
     let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
 
-    expect(BaseElementLayout.vm.classes.container).toBe(BaseElementLayout.vm.defaultClasses.container + ' a b')
+    expect(BaseElementLayout.classes()).toContain('class-a')
+    expect(BaseElementLayout.classes()).toContain('class-b')
   })
 
   it('should add only element\'s classes if `classes` and `addClasses` defined on both level', () => {
@@ -200,31 +208,35 @@ describe('Element classes', () => {
           type: 'text',
           classes: {
             BaseElementLayout: {
-              container: 'b'
+              container: 'class-b'
             }
           },
           addClasses: {
             BaseElementLayout: {
-              container: 'd'
+              container: 'class-d'
             }
           },
         }
       },
       classes: {
         BaseElementLayout: {
-          container: 'a'
+          container: 'class-a'
         }
       },
       addClasses: {
         BaseElementLayout: {
-          container: 'c'
+          container: 'class-c'
         }
       },
     })
 
     let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
 
-    expect(BaseElementLayout.vm.classes.container).toBe('b d')
+    expect(BaseElementLayout.classes()).toContain('class-b')
+    expect(BaseElementLayout.classes()).toContain('class-d')
+    expect(BaseElementLayout.classes()).not.toContain('class-a')
+    expect(BaseElementLayout.classes()).not.toContain('class-c')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
   })
 })
 

@@ -26,11 +26,16 @@
     data() {
       return {
         defaultClasses: {
-          container: 'col-lg-12',
+          container: 'lf-element',
           outerWrapper: 'form-group',
           innerWrapper: 'row',	
-          labelWrapper: 'col-lg-12',	
-          fieldWrapper: 'col-lg-12',
+          labelWrapper: 'lf-label-container',	
+          fieldWrapper: 'lf-field-container',
+        },
+        containers: {
+          element: 'container',
+          label: 'labelWrapper',
+          field: 'fieldWrapper',
         }
       }
     }

@@ -55,6 +55,8 @@ export default {
       class: null,
 
       elements: {},
+
+      columns: {},
     }
   },
   computed: {

@@ -275,8 +275,8 @@ describe('Theme classes', () => {
     // Uses ThemeComponent mixin
     let FormElements = form.findComponent({ name: 'FormElements' })
 
-    expect(Laraform.vm.extendedClasses).toMatchObject(Laraform.vm.extendedTheme.components.Laraform.data().defaultClasses)
-    expect(BaseElementLayout.vm.classes).toMatchObject(BaseElementLayout.vm.defaultClasses)
+    expect(Laraform.vm.extendedClasses).toMatchObject(Laraform.vm.defaultClasses)
+    expect(BaseElementLayout.classes()).toContain(BaseElementLayout.vm.defaultClasses.container)
     expect(ElementLabel.vm.classes).toMatchObject(ElementLabel.vm.defaultClasses)
     expect(FormElements.vm.classes).toMatchObject(FormElements.vm.defaultClasses)
   })
@@ -291,16 +291,16 @@ describe('Theme classes', () => {
       },
       classes: {
         Laraform: {
-          form: 'a'
+          form: 'class-a'
         },
         BaseElementLayout: {
-          container: 'b'
+          container: 'class-b'
         },
         FormElements: {
-          container: 'c'
+          container: 'class-c'
         },
         ElementLabel: {
-          label: 'd'
+          label: 'class-d'
         },
       }
     })
@@ -317,16 +317,19 @@ describe('Theme classes', () => {
     // Uses ThemeComponent mixin
     let FormElements = form.findComponent({ name: 'FormElements' })
 
-    expect(Laraform.vm.extendedClasses.form).toBe('a')
-    expect(BaseElementLayout.vm.classes.container).toBe('b')
-    expect(FormElements.vm.classes.container).toBe('c')
-    expect(ElementLabel.vm.classes.label).toBe('d')
+    expect(Laraform.vm.extendedClasses.form).toContain('class-a')
+    expect(Laraform.vm.extendedClasses.form).not.toContain(Laraform.vm.defaultClasses.form)
+    expect(BaseElementLayout.vm.classes.container).toContain('class-b')
+    expect(BaseElementLayout.vm.classes.container).not.toContain(BaseElementLayout.vm.defaultClasses.container)
+    expect(FormElements.vm.classes.container).toContain('class-c')
+    expect(FormElements.vm.classes.container).not.toContain(FormElements.vm.defaultClasses.container)
+    expect(ElementLabel.vm.classes.label).toContain('class-d')
+    expect(ElementLabel.vm.classes.label).not.toContain(ElementLabel.vm.defaultClasses.label)
   })
 
   it('should add if `addClasses` defined on form level', () => {
     let addClasses = {
-      container: 'a',
-      b: 'c'
+      container: 'class-a',
     }
 
     let form = createForm({
@@ -342,10 +345,8 @@ describe('Theme classes', () => {
 
     let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
     
-    expect(BaseElementLayout.vm.classes).toMatchObject(mergeComponentClasses(
-      BaseElementLayout.vm.defaultClasses,
-      addClasses,
-    ))
+    expect(BaseElementLayout.classes()).toContain('class-a')
+    expect(BaseElementLayout.classes()).toContain(BaseElementLayout.vm.defaultClasses.container)
   })
 
   it('should overwrite and add if `classes` and `addClasses` defined on form level', () => {
@@ -357,18 +358,20 @@ describe('Theme classes', () => {
       },
       classes: {
         BaseElementLayout: {
-          container: 'a'
+          container: 'class-a'
         }
       },
       addClasses: {
         BaseElementLayout: {
-          container: 'b',
+          container: 'class-b',
         }
       }
     })
 
     let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
     
-    expect(BaseElementLayout.vm.classes.container).toBe('a b')
+    expect(BaseElementLayout.classes()).toContain('class-a')
+    expect(BaseElementLayout.classes()).toContain('class-b')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
   })
 })

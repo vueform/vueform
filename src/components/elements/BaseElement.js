@@ -54,6 +54,12 @@ export default {
     components() {
       return Vue.observable(_.merge({}, this.theme.components, this.schema.components || {}))
     },
+    columns() {
+      return this.theme.utils.columns(this)
+    },
+    hasLabel() {
+      return this.form$.$laraform.config.labels || this.label
+    },
     el$() {
       return this
     },

@@ -7,10 +7,16 @@ export default {
   mixins: [ElementComponent],
   computed: {
     hasLabel() {
-      return this.form$.$laraform.config.labels || this.el$.label
+      return this.el$.hasLabel
     },
     classes() {
       let classes = this.mergedClasses
+
+      classes = mergeComponentClasses(classes, {
+        [this.containers.element]: this.el$.columns.classes.element || '',
+        [this.containers.label]: this.el$.columns.classes.label || '',
+        [this.containers.field]: this.el$.columns.classes.field || '',
+      })
 
       // Add element's class to main class
       if (this.el$.class !== null) {

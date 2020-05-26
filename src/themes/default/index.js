@@ -5,6 +5,8 @@ import ElementLabel from './components/ElementLabel'
 
 import TextElement from './components/elements/TextElement'
 
+import columns from './utils/columns'
+
 export default {
   components: {
     Laraform,
@@ -17,7 +19,10 @@ export default {
   },
   classes: {
     
-  }
+  },
+  utils: {
+    columns,
+  },
 }
 
 export const default_ = {
