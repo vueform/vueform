@@ -3,7 +3,7 @@
     <div :class="classes.outerWrapper">
       <div  :class="classes.innerWrapper">
 
-        <div :class="classes.labelWrapper">
+        <div v-if="hasLabel" :class="classes.labelWrapper">
           <slot name="label">
             <component :is="components.ElementLabel" />
           </slot>

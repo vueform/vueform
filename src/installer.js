@@ -49,7 +49,7 @@ export default function (config) {
     config(config) {
       // replace
       _.each([
-        'theme',
+        'theme', 'labels',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = config[attr]

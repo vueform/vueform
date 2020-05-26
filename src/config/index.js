@@ -8,4 +8,6 @@ export default {
   elements: {},
   
   components: {},
+
+  labels: false,
 }

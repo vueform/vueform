@@ -257,7 +257,8 @@ describe('Theme classes', () => {
     let form = createForm({
       schema: {
         name: {
-          type: 'text'
+          type: 'text',
+          label: 'Name'
         }
       }
     })
@@ -284,7 +285,8 @@ describe('Theme classes', () => {
     let form = createForm({
       schema: {
         name: {
-          type: 'text'
+          type: 'text',
+          label: 'Name'
         }
       },
       classes: {

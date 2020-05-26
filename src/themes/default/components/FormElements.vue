@@ -7,7 +7,6 @@
           :schema="element"
           :name="name"
           :key="name"
-          @remove="remove"
           v-ref:elements$
         />
       </template>

@@ -6,6 +6,9 @@ export default {
   name: 'BaseElementLayout',
   mixins: [ElementComponent],
   computed: {
+    hasLabel() {
+      return this.form$.$laraform.config.labels || this.el$.label
+    },
     classes() {
       let classes = this.mergedClasses
 

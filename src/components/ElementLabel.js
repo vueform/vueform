@@ -14,7 +14,7 @@ export default {
     label() {
       return this.isFunction
         ? this.el$.schema.label(this.el$)
-        : this.el$.schema.label
+        : this.el$.schema.label || null
     },
     isFunction() {
       return typeof this.el$.schema.label === 'function' && 
