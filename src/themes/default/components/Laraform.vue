@@ -1,9 +1,16 @@
 <template>
-  <form :class="extendedClasses.form">
-    <component :is="extendedTheme.components.FormElements"
+  <form
+    :class="extendedClasses.form"
+    @submit.prevent="handleSubmit"
+  >
+    <component :is="extendedComponents.FormElements"
       :schema="schema"
       @updateSchema="updateSchema"
       ref="elements$"
+    />
+    <component :is="extendedComponents.FormButtons"
+      :buttons="buttons"
+      ref="buttons$"
     />
   </form>
 </template>

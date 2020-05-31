@@ -11,6 +11,10 @@
 
         <div :class="classes.fieldWrapper">
           <slot name="field"></slot>
+
+          <slot name="error">
+            <component :is="components.ElementError" />
+          </slot>
         </div>
 
       </div>

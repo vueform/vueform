@@ -3,6 +3,7 @@ import ref from './../directives/ref'
 import _ from 'lodash'
 import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
 import UsesPlugins from './../mixins/UsesPlugins'
+import formData from './../utils/formData'
 
 export default {
   name: 'Laraform',
@@ -37,6 +38,8 @@ export default {
     return {
       schema: {},
 
+      buttons: [], 
+
       theme: null,
 
       components: {},
@@ -50,9 +53,202 @@ export default {
       elements: {},
 
       columns: {},
+        
+      /**
+       * Whether label DOM should be displayed for elements without label option defined.
+       * 
+       * @type {boolean}
+       * @default config.labels
+       */
+      labels: null,
+        
+      /**
+       * Whether errors should be displayed above form.
+       * 
+       * @type {boolean}
+       * @default config.formErrors
+       */
+      formErrors: null,
+        
+      /**
+       * List of events separated by `|` when validation should occur. Possible values: `change`, `submit`, `step`.
+       * 
+       * @type {string}
+       * @default config.validateOn
+       */
+      validateOn: null,
+
+      
+      /**
+       * Determine if the form should validate.
+       * 
+       * @type {boolean}
+       * @default true
+       */
+      validation: true,
+
+      /**
+       * Form key to be sent when submitting data.
+       * 
+       * @type {string}
+       * @default null
+       */
+      key: null,
+
+      /**
+       * Method how the form should submit.
+       * 
+       * @type {string}
+       * @default config.method
+       */
+      method: null,
+        
+      /**
+       * Endpoint to submit the form.
+       * 
+       * @type {string}
+       * @default config.endpoints.process
+       */
+      endpoint: null,
+
+      /**
+       * Determine if the form is currently submitting.
+       * 
+       * @type {boolean}
+       * @default false
+       */
+      submitting: false,
+
+      /**
+       * Determine if the form's data is currently being updated for external model.
+       * 
+       * @private
+       * @type {boolean}
+       * @default false
+       */
+      updating: false,
     }
   },
   computed: {
+    /**
+     * The form's data.
+     * 
+     * @type {object}
+     */
+    data() {
+      var data = {}
+
+      _.each(this.elements$, (element$) => {
+        data = Object.assign({}, data, element$.data)
+      })
+
+      return data
+    },
+
+    /**
+     * The form's data excluding elements with unmet conditions and the ones which should not submit.
+     * 
+     * @type {object}
+     */
+    filtered() {
+      var filtered = {}
+
+      _.each(this.elements$, (element$) => {
+        filtered = Object.assign({}, filtered, element$.filtered)
+      })
+
+      return filtered
+    },
+
+    formData() {
+      return formData({
+        key: this.key,
+        data: this.filtered,
+      })
+    },
+
+    /**
+     * Whether the form has any dirty element.
+     * 
+     * @type {boolean}
+     */
+    dirty() {
+      return _.some(this.elements$, { available: true, dirty: true })
+    },
+
+    /**
+     * Whether the form has any invalid element.
+     * 
+     * @type {boolean}
+     */
+    invalid() {
+      return _.some(this.elements$, { available: true, invalid: true })
+    },
+
+    /**
+     * Whether the form has any debouncing element.
+     * 
+     * @type {boolean}
+     */
+    debouncing() {
+      return _.some(this.elements$, { available: true, debouncing: true })
+    },
+
+    /**
+     * Whether the form has any pending element.
+     * 
+     * @type {boolean}
+     */
+    pending() {
+      return _.some(this.elements$, { available: true, pending: true })
+    },
+
+    /**
+     * Whether each element of the form has been validated.
+     * 
+     * @type {boolean}
+     */
+    validated() {
+      return !_.some(this.elements$, { available: true, validated: false })
+    },
+
+    /**
+     * Whether the form has any busy element.
+     * 
+     * @type {boolean}
+     */
+    busy() {
+      return this.debouncing || this.pending
+    },
+
+    /**
+     * List of all errors within the form.
+     * 
+     * @type {array}
+     */
+    errors() {
+      var errors = []
+
+      _.each(_.filter(this.elements$, { available: true }), (element$) => {
+        _.each(element$.errors, (error) => {
+          errors.push(error)
+        })
+      })
+
+      return errors
+    },
+
+    /**
+     * Whether the form is disabled.
+     * 
+     * @type {boolean}
+     */
+    disabled() {
+      return (this.invalid && this.$_shouldValidateOn('change')) ||
+            this.busy ||
+            this.submitting
+    },
+
     mainClass() {
       return _.keys(this.defaultClasses)[0]
     },
@@ -74,6 +270,10 @@ export default {
       }
 
       return classes
+    },
+
+    extendedComponents() {
+      return this.extendedTheme.components
     },
 
     selectedTheme() {
@@ -122,6 +322,18 @@ export default {
       return elements$
     },
 
+    wizard$() {
+      return this.$refs.wizard$ || {}
+    },
+
+    tabs$() {
+      return this.$refs.tabs$ || {}
+    },
+
+    buttons$() {
+      return this.$refs.buttons$ || {}
+    },
+
     form$() {
       return this
     },
@@ -140,6 +352,192 @@ export default {
     }
   },
   methods: {
+    fire() {
+
+    },
+    /**
+     * Starts the submission process.
+     * 
+     * @public
+     * @returns {void}
+     */
+    submit() {
+      if (this.disabled) {
+        return
+      }
+
+      if (this.fire('submit') === false) {
+        return
+      }
+
+      if (this.$_shouldValidateOn('submit')) {
+        this.validate()
+      }
+
+      this.proceed(() => {
+        this.send()
+      })
+    },
+
+    /**
+     * Validates each elements within the form.
+     * 
+     * @public
+     * @returns {void}
+     */
+    validate() {
+      if (!this.invalid && this.validated) {
+        return
+      }
+
+      _.each(_.filter(this.elements$, { available: true, validated: false }), (element$) => {
+        element$.validate()
+      })
+    },
+    
+      /**
+       * Loads data and clears any element if the element's key is not found in the `data` object.
+       * 
+       * @public
+       * @param {object} data data to load
+       * @returns {void}
+       */
+      load(data) {
+        if (!_.isEmpty(this.wizard$)) {
+          this.wizard$.enableAllSteps()
+        }
+
+        _.each(this.elements$, (element$) => {
+          element$.load(data)
+        })
+      },
+
+      /**
+       * Updates the element values which are contained in the data.
+       * 
+       * @public
+       * @param {object} data data to update with
+       * @returns {void}
+       */
+      update(data) {
+        _.each(data, (value, key) => {
+          this.elements$[key].update(value)
+        })
+      },
+
+      /**
+       * Resets the form to its default state.
+       * 
+       * @public
+       * @returns {void}
+       */
+      reset() {
+        _.each(this.elements$, (element$) => {
+          element$.reset()
+        })
+
+        if (!_.isEmpty(this.wizard$)) {
+          this.wizard$.reset()
+        }
+
+        if (!_.isEmpty(this.tabs$)) {
+          this.tabs$.reset()
+        }
+
+        this.fire('reset')
+      },
+
+    /**
+     * Fires a callback only if all async processes finished and
+     * no invalid elements were found.
+     * 
+     * @public
+     * @param {function} callback the function to call
+     * @returns {void}
+     */
+    proceed(callback) {
+      if (this.busy) {
+        this.$_waitForAsync(callback)
+      }
+      else if (this.invalid) {
+        return
+      }
+      else {
+        callback()
+      }
+    },
+
+    /**
+     * Transforms form data to [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object and sends it to the endpoint.
+     * 
+     * @public
+     * @returns {void}
+     */
+    send() {
+      this.submitting = true
+
+      axios[this.method](this.endpoint, this.formData)
+        .then((response) => {
+          this.submitting = false
+
+          if (response.data.payload && response.data.payload.updates) {
+            this.update(response.data.payload.updates)
+          }
+          
+          this.fire('response', response)
+        })
+        .catch((error) => {
+          this.submitting = false
+
+          console.error(error)
+        })
+    },
+
+    /**
+     * Transforms form data into [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+     * 
+     * @public
+     * @param {object} data data to transform
+     * @returns {void}
+     */
+    createFormData(data) {
+      return formData(data)
+    },
+
+    /**
+     * Disabled validation.
+     * 
+     * @public
+     * @returns {void}
+     */
+    disableValidation() {
+      this.validation = false
+    },
+
+    /**
+     * Enables validation.
+     * 
+     * @public
+     * @returns {void}
+     */
+    enableValidation() {
+      this.validation = true
+    },
+
+    updateSchema(schema) {
+      this.$set(this, 'schema', schema)
+    },
+
+    /**
+     * Triggered when the form is submitted. Can prevent further execution (element validation) if returns `false`.
+     *
+     * @public
+     * @prevents 
+     * @event submit
+     */
+    handleSubmit(){
+      this.submit()
+    },
 
     /**
      * Returns an element by its path.
@@ -179,29 +577,95 @@ export default {
       return null
     },
 
-    updateSchema(schema) {
-      this.$set(this, 'schema', schema)
-    }
-  },
-  beforeMount() {
-    let components = Object.assign({}, this.extendedTheme.components, this.components)
-
-    _.each(components, (component, name) => {
-      if (this.$options.components[name] !== undefined) {
-        return
-      }
-
-      this.$options.components[name] = component
-    })
-
-    let elements = Object.assign({}, this.extendedTheme.elements, this.elements)
-
-    _.each(elements, (component, name) => {
-      if (this.$options.components[name] !== undefined) {
-        return
+    /**
+     * Returns the siblings of an element.
+     * 
+     * @public
+     * @param {string} path path of the element
+     * @returns {void}
+     */
+    siblings$(path) {
+      if (!/\.+/.test(path)) {
+        return this.elements$
       }
       
-      this.$options.components[name] = component
+      return this.el$(path.match(/.*(?=\.)/)[0]).children$
+    },
+
+    /**
+     * Determines if validation should occur on a specific event.
+     * 
+     * @private
+     * @param {string} event event to examine
+     * @returns {boolean}
+     */
+    $_shouldValidateOn(event) {
+      return this.validateOn.split('|').indexOf(event) !== -1
+    },
+
+    /**
+     * Waits for all async processes to finish, then invokes a callback.
+     * 
+     * @private
+     * @param {function} callback the function to invoke
+     * @returns {void}
+     */
+    $_waitForAsync(callback) {
+      var unwatch = this.$watch('busy', () => {
+        unwatch()
+        this.proceed(callback)
+      })
+    },
+
+    $_registerComponents() {
+      let components = Object.assign({},
+        this.extendedTheme.components,
+        this.components,
+        this.extendedTheme.elements,
+        this.elements
+      )
+
+      _.each(components, (component, name) => {
+        if (this.$options.components[name] !== undefined) {
+          return
+        }
+
+        this.$options.components[name] = component
+      })
+    }
+  },
+  created() {
+    if (this.key === null) {
+      this.key = this.form.key || null
+    }
+
+    if (this.class === null) {
+      this.class = this.form.class || null
+    }
+    
+    if (this.form['buttons'] && this.form.buttons.length > 0) {
+      this.buttons = _.merge(this.form.buttons || [], this.buttons)
+    }
+
+    if (this.endpoint === null) {
+      this.endpoint = this.form.endpoint || this.$laraform.config.endpoints.process
+    }
+
+    // if the component does not have a data value
+    // and receives as a form prop, set it from that
+    // otherwise get the default value from config
+    _.each([
+      'theme', 'columns', 'validateOn', 'labels',
+      'formErrors', 'method',
+    ], (property) => {
+      if (this[property] === null) {
+        this[property] = this.form[property] !== undefined
+          ? this.form[property]
+          : this.$laraform.config[property]
+      }
     })
+  },
+  beforeMount() {
+    this.$_registerComponents()
   },
 }

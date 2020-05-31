@@ -38,21 +38,111 @@ export default {
   },
   data() {
     return {
-      model: null,
+      /**
+       * Helper property used to store the element states.
+       * 
+       * @private
+       * @type {object}
+       * @default {}
+       */
+      memory: null,
+
+      a: 'fdsa'
     }
   },
   computed: {
+    /**
+     * The value of the element.
+     * 
+     * @type {any}
+     */
+    value: {
+      // need to be a setter/getter variable
+      // because in some cases it must behave
+      // in a custom way, but it needs a store
+      // which is memory
+      get() {
+        return this.memory
+      },
+      set(value) {
+        this.memory = value
+      }
+    },
+
+    /**
+     * Helper property used for tracking the field's value.
+     * 
+     * @type {any}
+     * @ignore
+     */
+    model: {
+      // this is what provided to the input field
+      // by default it's basically the same as
+      // value, however in some cases (like
+      // when translating) can be custom
+      get() {
+        return this.value
+      },
+      set(value) {
+        this.value = value
+      }
+    },
+
+    /**
+     * An object containing the element `name` as a key and its `value` as value.
+     * 
+     * @type {object}
+     */
+    data() {
+      return {
+        [this.name]: this.value
+      }
+    },
+
+    /**
+     * An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.
+     * 
+     * @type {object}
+     */
+    filtered() {
+      if (!this.available || !this.submit) {
+        return {}
+      }
+
+      return this.data
+    },
+
+    /**
+     * Helper property used to determine the element's 'null' value.
+     * 
+     * @type {any}
+     * @ignore
+     */
+    null() {
+      return null
+    },
+
+    /**
+     * The path of the element using dot `.` syntax.
+     * 
+     * @type {string} 
+     */
+    path() {
+      return this.parent && this.parent.path
+        ? this.parent.path + '.' + this.name
+        : this.name
+    },
+
     available() {
       return true
     },
-    value: {
-      get() {
-        return this.model
-      },
-      set(value) {
-        this.model = value
-      }
+
+    submit() {
+      return this.schema.submit !== undefined
+        ? this.schema.submit
+        : true
     },
+
     label() {
       return this.schema.label
     },
@@ -66,7 +156,7 @@ export default {
       return this.schema.addClasses || {}
     },
     components() {
-      return Vue.observable(_.merge({}, this.theme.components, this.schema.components || {}))
+      return Vue.observable(Object.assign({}, this.theme.components, this.schema.components || {}))
     },
     columns() {
       return this.theme.utils.columns(this)

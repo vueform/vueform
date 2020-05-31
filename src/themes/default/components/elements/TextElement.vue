@@ -2,11 +2,15 @@
   <component :is="components.BaseElementLayout">
     <template slot="field">
       <div>
-        <input v-model="model" :class="classes.input" />
+        <input
+          v-model="model"
+          :class="classes.input"
+        />
       </div>
     </template>
 
     <slot name="label" slot="label" :el$="el$"></slot>
+    <slot slot="error" name="error" :el$="el$"></slot>
   </component>
 </template>
 

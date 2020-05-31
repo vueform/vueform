@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import Validation from './services/validation'
 
 export default function (config) {
   const Laraform = class {
@@ -15,7 +16,9 @@ export default function (config) {
 
       this.options.components = config.components
 
-      this.options.services = {}
+      this.options.services = {
+        validation: Validation
+      }
     }
 
     plugins(plugins) {

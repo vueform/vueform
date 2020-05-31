@@ -25,7 +25,7 @@ export default {
   },
 }
 
-export const bootstrap = {
+export const core = {
   components: {
     Laraform,
     FormElements,
