@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import BaseComponent from './../mixins/BaseComponent'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
