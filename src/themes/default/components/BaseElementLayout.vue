@@ -1,7 +1,7 @@
 <template>
   <div :class="classes.container">
     <div :class="classes.outerWrapper">
-      <div  :class="classes.innerWrapper">
+      <div :class="classes.innerWrapper">
 
         <div v-if="hasLabel" :class="classes.labelWrapper">
           <slot name="label">

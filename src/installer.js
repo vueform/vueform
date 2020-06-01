@@ -85,8 +85,6 @@ export default function (config) {
           this.$laraform = Vue.observable(options)
         }
       })
-
-      Vue.component('Laraform', Laraform)
     }
   }
 

@@ -1,4 +1,4 @@
-import BaseElement from './BaseElement'
+import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
 
 export default {

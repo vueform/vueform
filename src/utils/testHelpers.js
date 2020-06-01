@@ -11,7 +11,7 @@ const themes = {
   default: defaultTheme,
 }
 
-const installLaraform = function(options = {}) {
+const createLaraformInstaller = function(options = {}) {
   const theme = options.theme || config.theme
   
   let finalConfig = Object.assign({}, config, {
@@ -40,13 +40,22 @@ const installLaraform = function(options = {}) {
     LaraformInstaller.plugins(options.plugins)
   }
 
+  return {
+    LaraformInstaller,
+    config: finalConfig,
+  }
+}
+
+const installLaraform = function(options = {}) {
+  const { LaraformInstaller, config } = createLaraformInstaller(options)
+
   const LocalVue = createLocalVue()
 
   LocalVue.use(LaraformInstaller)
   
   return {
     LocalVue,
-    config: finalConfig
+    config,
   }
 }
 
@@ -75,4 +84,5 @@ const createForm = function(data, options = {}) {
 export {
   installLaraform,
   createForm,
+  createLaraformInstaller,
 }

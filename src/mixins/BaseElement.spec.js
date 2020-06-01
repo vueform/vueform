@@ -1,7 +1,7 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform } from './../../utils/testHelpers'
-import { mergeComponentClasses } from './../../utils/mergeClasses'
-import { Laraform } from './../../index'
+import { createForm, installLaraform } from './../utils/testHelpers'
+import { mergeComponentClasses } from './../utils/mergeClasses'
+import { Laraform } from './../index'
 
 describe('Element', () => {
   it('should add `class` option to main class list', () => {
@@ -15,6 +15,18 @@ describe('Element', () => {
     })
 
     expect(form.findComponent({ name: 'TextElement' }).classes()).toContain('class-a')
+  })
+
+  it('should display path properly without parent', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        }
+      }
+    })
+
+    expect(form.findComponent({ name: 'TextElement' }).vm.path).toBe('name')
   })
 })
 

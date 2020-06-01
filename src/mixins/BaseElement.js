@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import Vue from 'vue'
-import MergesElementClasses from './../../mixins/MergesElementClasses'
-import UsesPlugins from './../../mixins/UsesPlugins'
+import MergesElementClasses from './MergesElementClasses'
+import UsesPlugins from './UsesPlugins'
 
 export default {
   name: 'BaseElement',
@@ -46,8 +46,6 @@ export default {
        * @default {}
        */
       memory: null,
-
-      a: 'fdsa'
     }
   },
   computed: {
@@ -112,6 +110,12 @@ export default {
       return this.data
     },
 
+    defaultValue() {
+      return this.schema.default !== undefined
+        ? this.schema.default
+        : this.null
+    },
+
     /**
      * Helper property used to determine the element's 'null' value.
      * 
@@ -159,7 +163,14 @@ export default {
       return Vue.observable(Object.assign({}, this.theme.components, this.schema.components || {}))
     },
     columns() {
-      return this.theme.utils.columns(this)
+      return {
+        classes: {
+          element: 'col-lg-12',
+          label: 'col-lg-12',
+          field: 'col-lg-12',
+        }
+      }
+      // return this.theme.utils.columns(this)
     },
     hasLabel() {
       return this.$laraform.config.labels || this.label
@@ -171,7 +182,7 @@ export default {
   watch: {
     schema: {
       handler() {
-        this.assignSlots()
+        this.$_assignSlots()
         this.$forceUpdate()
       },
       deep: true,
@@ -179,7 +190,61 @@ export default {
     }
   },
   methods: {
-    assignSlots() {
+    /**
+     * Loads data for element or clears the element if the element's key is not found in the `data` object.
+     *
+     * @public
+     * @param {object} data an object containing data for the element using its **name as key**
+     * @returns {void}
+     */
+    load(data) {
+      if (this.available && data && data[this.name] !== undefined) {
+        this.value = data[this.name]
+        return
+      }
+
+      this.clear()
+      this.resetValidators()
+    },
+
+    /**
+     * Updates the element's value.
+     *
+     * @public
+     * @param {any} value the value to be set for the element
+     * @returns {void}
+     */
+    update(value) {
+      this.value = value
+    },
+
+    /**
+     * Resets the element to it's default state.
+     *
+     * @public
+     * @returns {void}
+     */
+    reset() {
+      this.value = _.clone(this.defaultValue)
+
+      this.resetValidators()
+    },
+
+    /**
+     * Clears the value of the element.
+     *
+     * @public
+     * @returns {void}
+     */
+    clear() {
+      this.value = _.clone(this.null)
+    },
+
+    $_initElement() {
+      this.value = _.clone(this.defaultValue)
+    },
+
+    $_assignSlots() {
       _.each(this.schema.slots, (slot, name) => {
         let instance = new slot({
           propsData: {
@@ -193,10 +258,13 @@ export default {
       })
     }
   },
+  created() {
+    this.$_initElement()
+  },
   mounted() {
-    this.assignSlots()
+    this.$_assignSlots()
   },
   updated() {
-    this.assignSlots()
+    this.$_assignSlots()
   },
 }
