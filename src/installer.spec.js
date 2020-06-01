@@ -9,7 +9,7 @@ describe('Installer', () => {
       config: config
     })
 
-    expect(form.vm.$laraform.config).toMatchObject(config)
+    expect(form.vm.$laraform.config).toStrictEqual(config)
   })
 
   it('should register new theme', () => {
@@ -23,7 +23,7 @@ describe('Installer', () => {
       }
     })
 
-    expect(form.vm.$laraform.themes.custom).toMatchObject(customTheme)
+    expect(form.vm.$laraform.themes.custom).toStrictEqual(customTheme)
   })
 
   it('should register new element', () => {
@@ -156,7 +156,7 @@ describe('Installer', () => {
       }
     })
 
-    expect(form.vm.$laraform.components.CustomComponent).toMatchObject(CustomComponent)
+    expect(form.vm.$laraform.components.CustomComponent).toStrictEqual(CustomComponent)
   })
 
   it('should add components', () => {
@@ -176,7 +176,7 @@ describe('Installer', () => {
       }
     })
 
-    expect(form.vm.$laraform.components.CustomComponent).toMatchObject(CustomComponent)
+    expect(form.vm.$laraform.components.CustomComponent).toStrictEqual(CustomComponent)
   })
 
   it('should overwrite existing component', () => {

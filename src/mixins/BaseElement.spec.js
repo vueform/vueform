@@ -1,7 +1,8 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform } from './../utils/testHelpers'
+import { createForm, installLaraform, createLaraformInstaller } from './../utils/testHelpers'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 import { Laraform } from './../index'
+import defaultTheme from './../themes/default'
 
 describe('Element', () => {
   it('should add `class` option to main class list', () => {
@@ -27,6 +28,245 @@ describe('Element', () => {
     })
 
     expect(form.findComponent({ name: 'TextElement' }).vm.path).toBe('name')
+  })
+
+  it('should update model on value change', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        }
+      }
+    })
+
+    let name = form.findComponent({ name: 'TextElement' })
+
+    name.get('input').setValue('aaa')
+
+    expect(name.vm.model).toBe('aaa')
+  })
+
+  it('should have data as name / value', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        }
+      }
+    })
+
+    let name = form.findComponent({ name: 'TextElement' })
+
+    name.get('input').setValue('aaa')
+
+    expect(name.vm.data).toStrictEqual({name: 'aaa'})
+  })
+
+  it('should have empty filtered when `submit` is false', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          submit: false
+        }
+      }
+    })
+
+    let name = form.findComponent({ name: 'TextElement' })
+
+    name.get('input').setValue('aaa')
+
+    expect(name.vm.filtered).toStrictEqual({})
+  })
+
+  it('should have empty filtered when `submit` is true && `available` is true', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          submit: true
+        }
+      }
+    })
+
+    let name = form.findComponent({ name: 'TextElement' })
+
+    name.get('input').setValue('aaa')
+
+    expect(name.vm.available).toBe(true)
+    expect(name.vm.filtered).toStrictEqual({name: 'aaa'})
+  })
+
+  it('should update value', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+        }
+      }
+    })
+
+    let name = form.findComponent({ name: 'TextElement' })
+
+    name.vm.update('aaa')
+
+    expect(name.vm.value).toBe('aaa')
+  })
+
+  it('should have a defaultValue equal to null if otherwise defined', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        }
+      }
+    })
+
+    let name = form.findComponent({ name: 'TextElement' })
+
+    expect(name.vm.defaultValue).toBe(name.vm.null)
+  })
+
+  it('should have a defaultValue defined as `default`', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          default: 'aaa'
+        }
+      }
+    })
+
+    let name = form.findComponent({ name: 'TextElement' })
+
+    expect(name.vm.defaultValue).toBe('aaa')
+  })
+
+  it('should reset value to default when calling `reset()`', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          default: 'aaa'
+        }
+      }
+    })
+
+    let name = form.findComponent({ name: 'TextElement' })
+
+    name.get('input').setValue('bbb')
+
+    expect(name.vm.value).toBe('bbb')
+
+    name.vm.reset()
+
+    expect(name.vm.value).toBe('aaa')
+  })
+
+  it('should reset value to `null` when calling `clear()`', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          default: 'aaa'
+        }
+      }
+    })
+
+    let name = form.findComponent({ name: 'TextElement' })
+
+    name.get('input').setValue('bbb')
+
+    expect(name.vm.value).toBe('bbb')
+
+    name.vm.clear()
+
+    expect(name.vm.value).toBe(name.vm.null)
+  })
+
+  it('should load value when available', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        }
+      }
+    })
+
+    let name = form.findComponent({ name: 'TextElement' })
+
+    name.vm.load({
+      name: 'aaa'
+    })
+
+    expect(name.vm.available).toBe(true)
+    expect(name.vm.value).toBe('aaa')
+  })
+
+  it('should clear value when `available` false and being loaded', () => {
+    const LocalVue = createLocalVue()
+
+    const { LaraformInstaller, config } = createLaraformInstaller()
+
+    let availableMock = jest.fn(() => {
+      return false
+    })
+
+    defaultTheme.elements.TextElement.mixins[0].mixins[0].computed.available = availableMock
+
+    LaraformInstaller.theme('default', defaultTheme)
+
+    LocalVue.use(LaraformInstaller)
+
+    let formComponent = LocalVue.extend({
+      mixins: [Laraform],
+      data() {
+        return {
+          schema: {
+            name: {
+              type: 'text'
+            }
+          }
+        }
+      }
+    })
+
+    let form = mount(formComponent, {
+      LocalVue,
+      mocks: {
+        $laraform: {
+          config: config
+        }
+      }
+    })
+    
+    let name = form.findComponent({ name: 'TextElement' })
+
+    expect(name.vm.available).toBe(false)
+    
+    name.vm.load({
+      name: 'aaa'
+    })
+
+    expect(name.vm.value).toBe(name.vm.null)
+  })
+
+  it('should clear value when the element\'s name is not presented in loaded data', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        }
+      }
+    })
+
+    let name = form.findComponent({ name: 'TextElement' })
+
+    name.vm.load({
+      email: 'aaa'
+    })
+
+    expect(name.vm.value).toBe(name.vm.null)
   })
 })
 

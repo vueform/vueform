@@ -15,7 +15,7 @@ describe('mergeClasses', () => {
 
     let classes = mergeClasses(base, add)
 
-    expect(classes).toMatchObject({
+    expect(classes).toStrictEqual({
       BaseLayout: {
         container: 'a'
       },
@@ -42,7 +42,7 @@ describe('mergeClasses', () => {
 
     let classes = mergeClasses(base, add)
 
-    expect(classes).toMatchObject({
+    expect(classes).toStrictEqual({
       BaseLayout: {
         container: 'a'
       },
@@ -67,7 +67,7 @@ describe('mergeClasses', () => {
 
     let classes = mergeClasses(base, add)
 
-    expect(classes).toMatchObject({
+    expect(classes).toStrictEqual({
       BaseElement: {
         container: {
           a: true,
@@ -91,7 +91,7 @@ describe('mergeClasses', () => {
 
     let classes = mergeClasses(base, add)
 
-    expect(classes).toMatchObject({
+    expect(classes).toStrictEqual({
       BaseElement: {
         container: [
           {a: true},
@@ -116,7 +116,7 @@ describe('mergeClasses', () => {
 
     let classes = mergeClasses(base, add)
 
-    expect(classes).toMatchObject({
+    expect(classes).toStrictEqual({
       BaseElement: {
         container: {
           a: true,
@@ -140,7 +140,7 @@ describe('mergeClasses', () => {
 
     let classes = mergeClasses(base, add)
 
-    expect(classes).toMatchObject({
+    expect(classes).toStrictEqual({
       BaseElement: {
         container: [
           'a',
@@ -165,7 +165,7 @@ describe('mergeClasses', () => {
 
     let classes = mergeClasses(base, add)
 
-    expect(classes).toMatchObject({
+    expect(classes).toStrictEqual({
       BaseElement: {
         container: [
           'a',
@@ -191,7 +191,7 @@ describe('mergeClasses', () => {
 
     let classes = mergeClasses(base, add)
 
-    expect(classes).toMatchObject({
+    expect(classes).toStrictEqual({
       BaseElement: {
         container: [
           'a',
@@ -216,7 +216,7 @@ describe('mergeClasses', () => {
 
     let classes = mergeClasses(base, add)
 
-    expect(classes).toMatchObject({
+    expect(classes).toStrictEqual({
       BaseElement: {
         container: {
           'a b': true,
@@ -240,7 +240,7 @@ describe('mergeClasses', () => {
 
     let classes = mergeClasses(base, add)
 
-    expect(classes).toMatchObject({
+    expect(classes).toStrictEqual({
       BaseElement: {
         container: [
           'a b',
@@ -265,7 +265,7 @@ describe('mergeClasses', () => {
 
     let classes = mergeClasses(base, add)
 
-    expect(classes).toMatchObject({
+    expect(classes).toStrictEqual({
       BaseElement: {
         container: 'a b c d'
       }
@@ -282,7 +282,7 @@ describe('mergeClasses', () => {
 
     let classes = mergeComponentClasses(base, add)
 
-    expect(classes).toMatchObject({
+    expect(classes).toStrictEqual({
       container: 'a b c d'
     })
   })

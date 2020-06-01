@@ -1,5 +1,6 @@
-import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../utils/testHelpers'
+import { createLocalVue, mount } from '@vue/test-utils'
+import { createForm, installLaraform } from './../utils/testHelpers'
+import { Laraform } from './../index'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 import defaultTheme from './../themes/default'
 import bootstrapTheme from './../themes/bootstrap'
@@ -93,6 +94,170 @@ describe('Laraform component', () => {
       done()
     })
   })
+
+  it('should return `data`', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        },
+        email: {
+          type: 'text'
+        },
+      }
+    })
+
+    form.vm.update({
+      name: 'a',
+      email: 'b'
+    })
+
+    expect(form.vm.data).toStrictEqual({
+      name: 'a',
+      email: 'b'
+    })
+  })
+
+  it('should return `filtered`', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        },
+        email: {
+          type: 'text',
+          submit: false
+        },
+      }
+    })
+
+    form.vm.update({
+      name: 'a',
+      email: 'b'
+    })
+
+    expect(form.vm.filtered).toStrictEqual({
+      name: 'a'
+    })
+  })
+
+  it('should return `formData`', () => {
+    let form = createForm({
+      key: 'c',
+      schema: {
+        name: {
+          type: 'text'
+        },
+        email: {
+          type: 'text',
+          submit: false
+        },
+      }
+    })
+
+    form.vm.update({
+      name: 'a',
+      email: 'b'
+    })
+
+    expect(form.vm.formData instanceof FormData).toBe(true)
+  })
+
+  it('should update schema when form.schema changes', () => {
+    let form = createForm({}, {
+      propsData: {
+        form: {
+          schema: {
+            name: {
+              type: 'text',
+              label: 'a'
+            }
+          }
+        }
+      }
+    })
+
+    expect(form.findComponent({ name: 'TextElement' }).vm.label).toBe('a')
+
+    form.vm.form.schema.name.label = 'b'
+
+    expect(form.findComponent({ name: 'TextElement' }).vm.label).toBe('b')
+  })
+
+  it('should call send on submit', () => {
+    const { LocalVue, config } = installLaraform()
+
+    let sendMock = jest.fn(() => {})
+
+    let formComponent = LocalVue.extend({
+      mixins: [Laraform],
+      data() {
+        return {
+          schema: {
+            name: {
+              type: 'text'
+            }
+          }
+        }
+      },
+      methods: {
+        send: sendMock
+      }
+    })
+
+    let form = mount(formComponent, {
+      LocalVue,
+      mocks: {
+        $laraform: {
+          config: config
+        }
+      }
+    })
+    
+    form.vm.submit()
+
+    expect(sendMock.mock.calls.length).toBe(1)
+  })
+
+  it('should prevent submit if disabled', () => {
+    const { LocalVue, config } = installLaraform()
+
+    let proceedMock = jest.fn(() => {})
+
+    let formComponent = LocalVue.extend({
+      mixins: [Laraform],
+      data() {
+        return {
+          schema: {
+            name: {
+              type: 'text'
+            }
+          }
+        }
+      },
+      computed: {
+        disabled() {
+          return true
+        }
+      },
+      methods: {
+        proceed: proceedMock
+      }
+    })
+
+    let form = mount(formComponent, {
+      LocalVue,
+      mocks: {
+        $laraform: {
+          config: config
+        }
+      }
+    })
+    
+    form.vm.submit()
+
+    expect(proceedMock.mock.calls.length).toBe(0)
+  })
 })
 
 describe('Selecting theme', () => {
@@ -108,7 +273,7 @@ describe('Selecting theme', () => {
 
     let LaraformClasses = defaultTheme.components.Laraform.data().defaultClasses
 
-    expect(form.classes()).toMatchObject([LaraformClasses.form])
+    expect(form.classes()).toStrictEqual([LaraformClasses.form])
   })
 
   it('should select what is defined in form prop', () => {
@@ -129,7 +294,7 @@ describe('Selecting theme', () => {
 
     let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
 
-    expect(form.classes()).toMatchObject([LaraformClasses.form])
+    expect(form.classes()).toStrictEqual([LaraformClasses.form])
   })
 
   it('should select what is defined in form data', () => {
@@ -153,7 +318,7 @@ describe('Selecting theme', () => {
 
     let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
 
-    expect(form.classes()).toMatchObject([LaraformClasses.form])
+    expect(form.classes()).toStrictEqual([LaraformClasses.form])
   })
 })
 
@@ -224,7 +389,7 @@ describe('Theme components', () => {
       }
     })
 
-    expect(form.vm.extendedTheme.components.CustomComponent).toMatchObject(CustomComponent)
+    expect(form.vm.extendedTheme.components.CustomComponent).toStrictEqual(CustomComponent)
   })
 
   it('should overwrite existing component', () => {
@@ -275,10 +440,10 @@ describe('Theme classes', () => {
     // Uses ThemeComponent mixin
     let FormElements = form.findComponent({ name: 'FormElements' })
 
-    expect(Laraform.vm.extendedClasses).toMatchObject(Laraform.vm.defaultClasses)
+    expect(Laraform.vm.extendedClasses).toStrictEqual(Laraform.vm.defaultClasses)
     expect(BaseElementLayout.classes()).toContain(BaseElementLayout.vm.defaultClasses.container)
-    expect(ElementLabel.vm.classes).toMatchObject(ElementLabel.vm.defaultClasses)
-    expect(FormElements.vm.classes).toMatchObject(FormElements.vm.defaultClasses)
+    expect(ElementLabel.vm.classes).toStrictEqual(ElementLabel.vm.defaultClasses)
+    expect(FormElements.vm.classes).toStrictEqual(FormElements.vm.defaultClasses)
   })
 
   it('should overwrite if `classes` defined on form level', () => {

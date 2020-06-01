@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 let getFormData = function (data, formData, namespace) {
   if (formData === undefined) {
       formData = new FormData()

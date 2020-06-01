@@ -86,3 +86,75 @@ export {
   createForm,
   createLaraformInstaller,
 }
+
+
+// const { LocalVue, config } = installLaraform()
+
+// let formComponent = LocalVue.extend({
+//   mixins: [Laraform],
+//   data() {
+//     return {
+//       schema: {
+//         name: {
+//           type: 'text'
+//         }
+//       }
+//     }
+//   }
+// })
+
+// let form = mount(formComponent, {
+//   LocalVue,
+//   mocks: {
+//     $laraform: {
+//       config: config
+//     }
+//   }
+// })
+
+// let name = form.findComponent({ name: 'TextElement' })
+
+// expect(name.vm.available).toBe(false)
+
+
+
+
+// const LocalVue = createLocalVue()
+
+// const { LaraformInstaller, config } = createLaraformInstaller()
+
+// let availableMock = jest.fn(() => {
+//   return false
+// })
+
+// defaultTheme.elements.TextElement.mixins[0].mixins[0].computed.available = availableMock
+
+// LaraformInstaller.theme('default', defaultTheme)
+
+// LocalVue.use(LaraformInstaller)
+
+// let formComponent = LocalVue.extend({
+//   mixins: [Laraform],
+//   data() {
+//     return {
+//       schema: {
+//         name: {
+//           type: 'text'
+//         }
+//       }
+//     }
+//   }
+// })
+
+// let form = mount(formComponent, {
+//   LocalVue,
+//   mocks: {
+//     $laraform: {
+//       config: config
+//     }
+//   }
+// })
+
+// let name = form.findComponent({ name: 'TextElement' })
+
+// expect(name.vm.available).toBe(false)
