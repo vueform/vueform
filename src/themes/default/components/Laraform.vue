@@ -6,11 +6,11 @@
     <component :is="extendedComponents.FormElements"
       :schema="schema"
       @updateSchema="updateSchema"
-      ref="elements$"
+      v-ref:elements$
     />
     <component :is="extendedComponents.FormButtons"
       :buttons="buttons"
-      ref="buttons$"
+      v-ref:buttons$
     />
   </form>
 </template>

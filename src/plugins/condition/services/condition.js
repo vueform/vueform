@@ -1,4 +1,6 @@
 import normalize from './../../../utils/normalize'
+import replaceWildcards from './../../../utils/replaceWildcards'
+import compare from './../../../utils/compare'
 
 const check = (condition, path, form$) => {
   let checkGlobal = () => {
@@ -23,15 +25,15 @@ const check = (condition, path, form$) => {
 
   let details = () => {
     return {
-      path: path ? utils.replaceWildcards(condition[0], path) : condition[0],
+      path: path ? replaceWildcards(condition[0], path) : condition[0],
       operator: condition.length == 3 ? condition[1] : '=',
       expected: condition.length == 3 ? condition[2] : condition[1],
     }
   }
 
   let compare = (actual, expected, operator) => {
-    actual = utils.normalize(actual)
-    expected = utils.normalize(expected)
+    actual = normalize(actual)
+    expected = normalize(expected)
 
     if (_.isArray(expected)) {
       if (operator === '!=') {
@@ -42,7 +44,7 @@ const check = (condition, path, form$) => {
         return false
       }
     } else {
-      return utils.compare(actual, expected, operator)
+      return compare(actual, expected, operator)
     }
 
     return true

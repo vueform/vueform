@@ -33,7 +33,8 @@ export default {
      */
     parent: {
       type: Object,
-      required: false
+      required: false,
+      default: () => ({})
     },
   },
   data() {
@@ -46,9 +47,26 @@ export default {
        * @default {}
        */
       memory: null,
+
+      /**
+       * Whether the element was hidden programmatically with `.show()` / `.hide()` methods.
+       * 
+       * @type {boolean} 
+       * @default false
+       */
+      hidden: false,
+
+      /**
+       * Whether the element is hidden internally by other components, like tabs or wizard steps.
+       * 
+       * @type {boolean} 
+       * @default true
+       */
+      active: true,
     }
   },
   computed: {
+    
     /**
      * The value of the element.
      * 
@@ -137,8 +155,13 @@ export default {
         : this.name
     },
 
-    available() {
-      return true
+    /**
+     * Whether the element is visible. It's `false` if `available` or `active` is `false` or `hidden` is `true`.
+     * 
+     * @type {boolean} 
+     */
+    visible() {
+      return this.available && !this.hidden && this.active
     },
 
     submit() {

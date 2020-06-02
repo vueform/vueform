@@ -1,12 +1,12 @@
 import BaseComponent from './../mixins/BaseComponent'
 import HasElements from './../mixins/HasElements'
-import ref from './../directives/ref'
+import mref from './../directives/mref'
 import _ from 'lodash'
 
 export default {
   name: 'FormElements',
   directives: {
-    ref,
+    mref,
   },
   mixins: [BaseComponent, HasElements],
   props: {

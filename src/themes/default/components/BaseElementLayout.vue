@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes.container">
+  <div :class="classes.container" v-show="el$.visible">
     <div :class="classes.outerWrapper">
       <div :class="classes.innerWrapper">
 

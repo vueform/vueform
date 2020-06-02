@@ -17,7 +17,7 @@ export default function (config) {
       this.options.components = config.components
 
       this.options.services = {
-        validation: Validation
+        validation: Validation,
       }
     }
 
@@ -73,7 +73,7 @@ export default function (config) {
       let options = this.options
 
       _.each(this.options.plugins, (plugin) => {
-        let installedOptions = plugin.install(options)
+        let installedOptions = plugin.install(Vue, options)
 
         if (installedOptions) {
           options = installedOptions

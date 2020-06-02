@@ -9,7 +9,7 @@
           :name="name"
           :parent="el$"
           :key="name"
-          ref="children$"
+          v-mref:children$
         />
       </template>
     </div>

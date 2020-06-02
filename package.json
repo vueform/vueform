@@ -90,7 +90,6 @@
         "vue-js-toggle-button": "^1.3.0",
         "vue-multiselect": "^2.1.3",
         "vue-reactive-provide": "^0.3.0",
-        "vue-reactive-refs": "0.0.2",
         "vue-slider-component": "^2.8.2",
         "vue-text-mask": "^6.1.2"
     },

@@ -1,8 +1,12 @@
 import BaseElement from './BaseElement'
 import HasElements from './HasElements'
+import mref from './../directives/mref'
 
 export default {
   mixins: [BaseElement, HasElements],
+  directives: {
+    mref,
+  },
   data() {
     return {
       /**

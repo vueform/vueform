@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import ref from './../directives/ref'
+import mref from './../directives/mref'
 import _ from 'lodash'
 import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
 import UsesPlugins from './../mixins/UsesPlugins'
@@ -13,6 +14,7 @@ export default {
   mixins: [UsesPlugins],
   directives: {
     ref,
+    mref,
   },
   provide() {
     const _this = this
@@ -308,7 +310,7 @@ export default {
 
     elements$() {
       let elements$ = {}
-      let elementsRef$ =  this.$refs.elements$
+      let elementsRef$ =  this.$refs.elements$ || {}
 
       // Retrieving elements from FormElements component
       if (!_.isArray(elementsRef$)) {
@@ -331,7 +333,19 @@ export default {
     },
 
     buttons$() {
-      return this.$refs.buttons$ || {}
+      let buttons$ = {}
+      let buttonsRef$ =  this.$refs.buttons$ || {}
+
+      // Retrieving buttons from FormButtons component
+      if (!_.isArray(buttonsRef$)) {
+        buttonsRef$ = buttonsRef$.$refs.buttons$
+      }
+
+      _.each(buttonsRef$, (button$) => {
+        buttons$[button$.name] = button$
+      })
+
+      return buttons$
     },
 
     form$() {

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import normalize from './../../utils/normalize'
 
 const parse = (string) => {
@@ -24,10 +25,10 @@ const parse = (string) => {
       var attrParts = attribute.split('=')
 
       if (attrParts.length <= 1) {
-        attributes[index] = utils.normalize(attribute)
+        attributes[index] = normalize(attribute)
       }
       else {
-        attributes[attrParts[0]] = utils.normalize(attrParts[1])
+        attributes[attrParts[0]] = normalize(attrParts[1])
       }
     })
 
