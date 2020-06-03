@@ -1,11 +1,10 @@
 import _ from 'lodash'
-import Vue from 'vue'
 import MergesElementClasses from './MergesElementClasses'
-import UsesPlugins from './UsesPlugins'
+import Localized from './Localized'
 
 export default {
   name: 'BaseElement',
-  mixins: [UsesPlugins, MergesElementClasses],
+  mixins: [MergesElementClasses, Localized],
   inject: ['theme', 'form$'],
   provide() {
     const _this = this

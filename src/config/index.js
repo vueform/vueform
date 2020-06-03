@@ -9,6 +9,8 @@ export default {
 
   theme: 'default',
 
+  locale: 'en',
+
   elements: {},
   
   components: {},

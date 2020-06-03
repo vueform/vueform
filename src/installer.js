@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import Validation from './services/validation'
+import applyPlugins from './utils/applyPlugins'
 
 export default function (config) {
   const Laraform = class {
@@ -15,6 +16,8 @@ export default function (config) {
       this.options.elements = config.elements
 
       this.options.components = config.components
+
+      this.options.locales = {}
 
       this.options.services = {
         validation: Validation,
@@ -33,6 +36,10 @@ export default function (config) {
 
     theme(name, theme) {
       this.options.themes[name] = theme
+    }
+
+    locale(locale, messages) {
+      this.options.locales[locale] = messages
     }
 
     elements(elements) {
@@ -73,11 +80,21 @@ export default function (config) {
       let options = this.options
 
       _.each(this.options.plugins, (plugin) => {
+        if (plugin.install === undefined) {
+          return
+        }
+
         let installedOptions = plugin.install(Vue, options)
 
         if (installedOptions) {
           options = installedOptions
         }
+      })
+
+      _.each(this.options.themes, (theme) => {
+        _.each(Object.assign({}, theme.components, theme.elements), (component, name) => {
+          applyPlugins(component, name, this.options.plugins)
+        })
       })
 
       Vue.mixin({

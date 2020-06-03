@@ -3,15 +3,15 @@ import ref from './../directives/ref'
 import mref from './../directives/mref'
 import _ from 'lodash'
 import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
-import UsesPlugins from './../mixins/UsesPlugins'
 import formData from './../utils/formData'
+import isVueI18nInstalled from './../utils/isVueI18nInstalled'
+import translator from './../utils/translator'
 
 export default {
   name: 'Laraform',
   render() {
     return this.extendedTheme.components.Laraform.render.apply(this)
   },
-  mixins: [UsesPlugins],
   directives: {
     ref,
     mref,
@@ -26,6 +26,10 @@ export default {
 
       get theme () {
         return _this.extendedTheme
+      },
+
+      get locale () {
+        return _this.selectedLocale
       }
     }
   },
@@ -43,6 +47,8 @@ export default {
       buttons: [], 
 
       theme: null,
+
+      locale: null,
 
       components: {},
 
@@ -132,6 +138,7 @@ export default {
     }
   },
   computed: {
+
     /**
      * The form's data.
      * 
@@ -249,6 +256,26 @@ export default {
       return (this.invalid && this.$_shouldValidateOn('change')) ||
             this.busy ||
             this.submitting
+    },
+
+    /**
+     * The locale object of the selected locale.
+     * 
+     * @ignore
+     * @type {object}
+     */
+    selectedLocale() {
+      if (this.$_isVueI18nInstalled()) {
+        return this.$i18n.locale
+      }
+
+      // calculating locale manually as it is
+      // not available at the time of `provide` 
+      var locale = !_.isEmpty(this.locale)
+        ? this.locale
+        : (this.form.locale || laraform.config.locale)
+
+      return locale
     },
 
     mainClass() {
@@ -606,6 +633,10 @@ export default {
       return this.el$(path.match(/.*(?=\.)/)[0]).children$
     },
 
+    $_isVueI18nInstalled: isVueI18nInstalled,
+
+    __: translator,
+
     /**
      * Determines if validation should occur on a specific event.
      * 
@@ -670,7 +701,7 @@ export default {
     // otherwise get the default value from config
     _.each([
       'theme', 'columns', 'validateOn', 'labels',
-      'formErrors', 'method',
+      'formErrors', 'method', 'locale',
     ], (property) => {
       if (this[property] === null) {
         this[property] = this.form[property] !== undefined

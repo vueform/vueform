@@ -21,7 +21,7 @@
               v-if="!disabled"
               :class="classes.listRemove"
               @click.prevent="remove(index)"
-              v-html="'Remove'"
+              v-html="__('laraform.elements.list.remove')"
             ></a>
           </template>
         </component>
@@ -34,7 +34,7 @@
         v-if="!disabled"
         :class="classes.listAdd"
         @click.prevent="add()"
-        v-html="'Add'"
+        v-html="__('laraform.elements.list.add')"
       ></a>
     </template>
 
