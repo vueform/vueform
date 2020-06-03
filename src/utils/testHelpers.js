@@ -4,6 +4,7 @@ import installer from './../installer'
 import bootstrap from './../themes/bootstrap'
 import defaultTheme from './../themes/default'
 import config from './../config'
+import condition from './../plugins/condition/services/condition'
 import _ from 'lodash'
 
 const themes = {
@@ -69,15 +70,25 @@ const createForm = function(data, options = {}) {
     }
   })
 
-  return mount(form, {
+  let mountOptions = {
     LocalVue,
     propsData: options.propsData || {},
     mocks: {
       $laraform: {
-        config: config
+        config: config,
+        plugins: config.plugins,
+        services: {
+          condition,
+        },
       }
     }
-  })
+  }
+
+  if (options.attach) {
+    mountOptions.attachTo = document.querySelector('body')
+  }
+
+  return mount(form, mountOptions)
 }
 
 

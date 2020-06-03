@@ -1,26 +1,30 @@
 import normalize from './../../../utils/normalize'
 import replaceWildcards from './../../../utils/replaceWildcards'
 import compare from './../../../utils/compare'
+import _ from 'lodash'
 
-const check = (condition, path, form$) => {
+const check = (condition, el$) => {
+  let form$ = el$.form$
+  let path = el$.path
+
   let checkGlobal = () => {
-    return form$.conditions[condition].call(form$)
+    return form$.conditions[condition](form$)
   }
 
   let checkFunction = () => {
-    return condition.call(form$)
+    return condition(form$)
   }
 
   let checkArray = () => {
-    var { path, operator, expected } = details()
+    let { path, operator, expected } = details()
 
-    var element$ = form$.el$(path)
+    let element$ = form$.el$(path)
 
     if (!element$ || !element$.available) {
       return false
     }
 
-    return compare(element$.value, expected, operator)
+    return compareValues(element$.value, expected, operator)
   }
 
   let details = () => {
@@ -31,7 +35,7 @@ const check = (condition, path, form$) => {
     }
   }
 
-  let compare = (actual, expected, operator) => {
+  let compareValues = (actual, expected, operator) => {
     actual = normalize(actual)
     expected = normalize(expected)
 
@@ -63,12 +67,15 @@ const check = (condition, path, form$) => {
   switch (getType(condition)) {
     case 'string':
       return checkGlobal(condition)
+      break
 
     case 'function':
       return checkFunction(condition)
+      break
 
     case 'array':
       return checkArray(condition)
+      break
 
     default:
       throw new Error('Condition must be a string, a function or an object')

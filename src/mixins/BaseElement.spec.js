@@ -113,7 +113,7 @@ describe('Element', () => {
     expect(name.vm.value).toBe('aaa')
   })
 
-  it('should have a defaultValue equal to null if otherwise defined', () => {
+  it('should have a `default` equal to null if otherwise defined', () => {
     let form = createForm({
       schema: {
         name: {
@@ -124,10 +124,10 @@ describe('Element', () => {
 
     let name = form.findComponent({ name: 'TextElement' })
 
-    expect(name.vm.defaultValue).toBe(name.vm.null)
+    expect(name.vm.default).toBe(name.vm.null)
   })
 
-  it('should have a defaultValue defined as `default`', () => {
+  it('should have a `default` defined as `default`', () => {
     let form = createForm({
       schema: {
         name: {
@@ -139,7 +139,7 @@ describe('Element', () => {
 
     let name = form.findComponent({ name: 'TextElement' })
 
-    expect(name.vm.defaultValue).toBe('aaa')
+    expect(name.vm.default).toBe('aaa')
   })
 
   it('should reset value to default when calling `reset()`', () => {

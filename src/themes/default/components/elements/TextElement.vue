@@ -1,12 +1,18 @@
 <template>
   <component :is="components.BaseElementLayout">
     <template slot="field">
+
+      <slot name="prefix"></slot>
+
       <div>
         <input
           v-model="model"
           :class="classes.input"
         />
       </div>
+
+      <slot name="suffix"></slot>
+      
     </template>
 
     <slot name="label" slot="label" :el$="el$"></slot>

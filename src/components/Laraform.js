@@ -313,7 +313,7 @@ export default {
       let elementsRef$ =  this.$refs.elements$ || {}
 
       // Retrieving elements from FormElements component
-      if (!_.isArray(elementsRef$)) {
+      if (!_.isArray(elementsRef$) && elementsRef$.$refs !== undefined) {
         elementsRef$ = elementsRef$.$refs.elements$
       }
 

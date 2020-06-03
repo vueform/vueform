@@ -9,6 +9,8 @@ import ElementError from './components/ElementError'
 
 import TextElement from './components/elements/TextElement'
 import ObjectElement from './components/elements/ObjectElement'
+import GroupElement from './components/elements/GroupElement'
+import ListElement from './components/elements/ListElement'
 
 import columns from './utils/columns'
 
@@ -26,6 +28,8 @@ export default {
   elements: {
     TextElement,
     ObjectElement,
+    GroupElement,
+    ListElement,
   },
   classes: {
     

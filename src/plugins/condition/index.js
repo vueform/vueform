@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import Condition from './services/condition'
 
 export default {
@@ -24,7 +25,7 @@ export default {
       }
 
       return !_.some(this.conditions, (condition) => {
-        return !this.$laraform.services.condition.check(condition, this.path || null, this.form$)
+        return !this.$laraform.services.condition.check(condition, this)
       })
     }
   }

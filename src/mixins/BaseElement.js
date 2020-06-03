@@ -22,7 +22,7 @@ export default {
       required: true
     },
     name: {
-      type: String,
+      type: [Number, String],
       required: true
     },
     
@@ -128,10 +128,15 @@ export default {
       return this.data
     },
 
-    defaultValue() {
-      return this.schema.default !== undefined
-        ? this.schema.default
-        : this.null
+    default: {
+      get() {
+        return this.schema.default !== undefined
+          ? this.schema.default
+          : this.null
+      },
+      set(value) {
+        this.$set(this.schema, 'default', value)
+      },
     },
 
     /**
@@ -164,36 +169,70 @@ export default {
       return this.available && !this.hidden && this.active
     },
 
-    submit() {
-      return this.schema.submit !== undefined
-        ? this.schema.submit
-        : true
+    available() {
+      return true
     },
 
-    label() {
-      return this.schema.label
+    submit: {
+      get() {
+        return this.schema.submit !== undefined
+          ? this.schema.submit
+          : true
+      },
+      set(value) {
+        this.$set(this.schema, 'submit', value)
+      }
     },
-    class() {
-      return this.schema.class || null
+
+    label: {
+      get() {
+        return this.schema.label
+      },
+      set(value) {
+        this.$set(this.schema, 'label', value)
+      }
     },
-    classes() {
-      return this.mergedClasses
+    class: {
+      get() {
+        return this.schema.class || null
+      },
+      set(value) {
+        this.$set(this.schema, 'class', value)
+      }
     },
-    addClasses() {
-      return this.schema.addClasses || {}
+    classes: {
+      get() {
+        return this.mergedClasses
+      },
+      set(value) {
+        this.$set(this.schema, 'classes', value)
+      }
+    },
+    addClasses: {
+      get() {
+        return this.schema.addClasses || {}
+      },
+      set(value) {
+        this.$set(this.schema, 'addClasses', value)
+      }
     },
     components() {
       return Vue.observable(Object.assign({}, this.theme.components, this.schema.components || {}))
     },
-    columns() {
-      return {
-        classes: {
-          element: 'col-lg-12',
-          label: 'col-lg-12',
-          field: 'col-lg-12',
+    columns: {
+      get() {
+        return {
+          classes: {
+            element: 'col-lg-12',
+            label: 'col-lg-12',
+            field: 'col-lg-12',
+          }
         }
+        // return this.theme.utils.columns(this)
+      },
+      set(value) {
+        this.$set(this.schema, 'columns', value)
       }
-      // return this.theme.utils.columns(this)
     },
     hasLabel() {
       return this.$laraform.config.labels || this.label
@@ -213,6 +252,9 @@ export default {
     }
   },
   methods: {
+    fire() {
+
+    },
     /**
      * Loads data for element or clears the element if the element's key is not found in the `data` object.
      *
@@ -248,7 +290,7 @@ export default {
      * @returns {void}
      */
     reset() {
-      this.value = _.clone(this.defaultValue)
+      this.value = _.clone(this.default)
 
       this.resetValidators()
     },
@@ -264,7 +306,7 @@ export default {
     },
 
     $_initElement() {
-      this.value = _.clone(this.defaultValue)
+      this.value = _.clone(this.default)
     },
 
     $_assignSlots() {
