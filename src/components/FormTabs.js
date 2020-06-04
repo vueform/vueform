@@ -1,13 +1,9 @@
 import BaseComponent from './../mixins/BaseComponent'
 import HasEvents from './../mixins/HasEvents'
 import Localized from './../mixins/Localized'
-import FormTab from './FormTab'
 
 export default {
   name: 'FormTabs',
-  components: {
-    FormTab,
-  },
   mixins: [BaseComponent, HasEvents, Localized],
   props: {
     /**

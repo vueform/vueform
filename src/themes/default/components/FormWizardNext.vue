@@ -2,7 +2,7 @@
   <button
     v-if="visible"
   	:disabled="disabled"
-    :class="theme.classes.formWizardControlNext"
+    :class="classes.button"
   	@click.prevent="next"
   >{{ label }}</button>
 </template>
@@ -12,5 +12,12 @@
 
   export default {
     mixins: [FormWizardNext],
+    data() {
+      return {
+        defaultClasses: {
+          button: 'btn btn-primary',
+        }
+      }
+    }
   }
 </script>

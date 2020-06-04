@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import _ from 'lodash'
 import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
 import formData from './../utils/formData'
@@ -815,12 +814,18 @@ export default {
       this.class = this.form.class || null
     }
     
-    if (this.form['buttons'] && this.form.buttons.length > 0) {
+    if (this.form.buttons && this.form.buttons.length > 0) {
       this.buttons = _.merge(this.form.buttons || [], this.buttons)
     }
 
     if (this.endpoint === null) {
       this.endpoint = this.form.endpoint || this.$laraform.config.endpoints.process
+    }
+
+    if (this.form.wizardControls !== undefined && this.wizardControls === null) {
+      this.wizardControls = this.form.wizardControls
+    } else if (this.wizardControls === null) {
+      this.wizardControls = true
     }
 
     // if the component does not have a data value

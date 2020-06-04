@@ -10,11 +10,24 @@
       :elements$="elements$"
       ref="tabs$"
     />
+    <component
+      :is="extendedComponents.FormWizard"
+      v-if="hasWizard"
+      :steps="wizard"
+      :elements$="elements$"
+      @submit="handleSubmit"
+      ref="wizard$"
+    />
     
     <component :is="extendedComponents.FormElements"
       :schema="schema"
       @updateSchema="updateSchema"
       ref="elements$"
+    />
+
+    <component :is="extendedComponents.FormWizardControls"
+      v-if="hasWizard && wizardControls"
+      :wizard$="wizard$"
     />
 
     <component :is="extendedComponents.FormButtons"

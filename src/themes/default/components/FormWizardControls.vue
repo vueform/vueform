@@ -1,16 +1,16 @@
 <template>
   <div
-    :class="theme.classes.formWizardControls"
+    :class="classes.formWizardControls"
   >
-    <component :is="theme.components.FormWizardPrevious"
+    <component :is="components.FormWizardPrevious"
       :wizard$="wizard$"
     />
 
-    <component :is="theme.components.FormWizardNext"
+    <component :is="components.FormWizardNext"
       :wizard$="wizard$"
     />
 
-    <component :is="theme.components.FormWizardFinish"
+    <component :is="components.FormWizardFinish"
       :wizard$="wizard$"
     />
   </div>
@@ -21,5 +21,12 @@
 
   export default {
     mixins: [FormWizardControls],
+    data() {
+      return {
+        defaultClasses: {
+          container: 'form-wizard-controls'
+        }
+      }
+    }
   }
 </script>

@@ -2,7 +2,7 @@ import _ from 'lodash'
 import Condition from './services/condition'
 
 export default {
-  apply: [/.*Element$/, /Tab/],
+  apply: [/.*Element$/, /^FormTab$/, /^FormWizardStep$/],
 
   install(Vue, options) {
     options.services.condition = Condition

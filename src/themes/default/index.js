@@ -1,6 +1,12 @@
 import Laraform from './components/Laraform'
 import FormTabs from './components/FormTabs'
 import FormTab from './components/FormTab'
+import FormWizard from './components/FormWizard'
+import FormWizardControls from './components/FormWizardControls'
+import FormWizardFinish from './components/FormWizardFinish'
+import FormWizardNext from './components/FormWizardNext'
+import FormWizardPrevious from './components/FormWizardPrevious'
+import FormWizardStep from './components/FormWizardStep'
 import FormElements from './components/FormElements'
 import FormButtons from './components/FormButtons'
 import FormButton from './components/FormButton'
@@ -21,6 +27,12 @@ export default {
     Laraform,
     FormTabs,
     FormTab,
+    FormWizard,
+    FormWizardControls,
+    FormWizardFinish,
+    FormWizardNext,
+    FormWizardPrevious,
+    FormWizardStep,
     FormElements,
     FormButtons,
     FormButton,
@@ -48,6 +60,12 @@ export const core = {
     Laraform,
     FormTabs,
     FormTab,
+    FormWizard,
+    FormWizardControls,
+    FormWizardFinish,
+    FormWizardNext,
+    FormWizardPrevious,
+    FormWizardStep,
     FormElements,
     FormButtons,
     FormButton,

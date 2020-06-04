@@ -2,7 +2,7 @@
   <button
     v-if="visible"
   	:disabled="disabled"
-    :class="theme.classes.formWizardControlPrevious"
+    :class="classes.button"
   	@click.prevent="previous"
   >{{ label }}</button>
 </template>
@@ -12,5 +12,12 @@
 
   export default {
     mixins: [FormWizardPrevious],
+    data() {
+      return {
+        defaultClasses: {
+          button: 'btn btn-secondary',
+        }
+      }
+    }
   }
 </script>

@@ -1,11 +1,8 @@
 <template>
-  <li
-    v-if="visible"
-    :class="classes"
-  >
+  <li :class="classes.container" v-if="visible">
     <a
       href="#"
-      :class="theme.classes.formWizardStepLink"
+      :class="classes.wrapper"
       @click.prevent="select"
     >
       {{ label }}
@@ -18,21 +15,25 @@
 
   export default {
     mixins: [FormWizardStep],
-    computed: {
-      classes() {
-        return [
-          this.theme.classes.formWizardStep,
-
-          this.active
-            ? this.theme.classes.formWizardStepActive
-            : this.theme.classes.formWizardStepInactive,
-
-          this.invalid ? this.theme.classes.formWizardStepInvalid : '',
-          this.disabled ? this.theme.classes.formWizardStepDisabled : '',
-          this.completed ? this.theme.classes.formWizardStepCompleted : '',
-          this.pending ? this.theme.classes.formWizardStepPending : '',
-        ]
-      },
+    data() {
+      return {
+        defaultClasses: {
+          container: 'wizard-step',
+          wrapper: '',
+          active: 'wizard-step-active',
+          inactive: '',
+          invalid: 'wizard-step-errors',
+          valid: '',
+          disabled: 'wizard-step-disabled',
+          enabled: '',
+          completed: 'wizard-step-completed',
+          incompleted: '',
+          pending: 'wizard-step-pending',
+        },
+        containers: {
+          state: 'container'
+        }
+      }
     }
   }
 </script>

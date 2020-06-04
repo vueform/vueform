@@ -1,9 +1,9 @@
 <template>
   <ul
-    :class="theme.classes.formWizard"
+    :class="classes.container"
   >
     <template v-for="(step, name, key) in steps">
-      <component :is="theme.components.FormWizardStep"
+      <component :is="components.FormWizardStep"
         :step="step"
         :name="name"
         :elements$="elements$"
@@ -21,5 +21,12 @@
 
   export default {
     mixins: [FormWizard],
+    data() {
+      return {
+        defaultClasses: {
+          container: 'form-wizard',
+        }
+      }
+    }
   }
 </script>
