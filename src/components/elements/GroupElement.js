@@ -17,6 +17,17 @@ export default {
       required: true
     },
   },
+  data() {
+    return {
+      /**
+       * Child components.
+       * 
+       * @type {object}
+       * @default {}
+       */
+      children$: {},
+    }
+  },
   computed: {
     /**
      * The value of the element.
@@ -85,22 +96,6 @@ export default {
     children() {
       return this.schema.schema
     },
-
-    /**
-     * Child components.
-     * 
-     * @type {object}
-     * @default {}
-     */
-    children$() {
-      let children$ = {}
-
-      _.each(this.$refs.children$, (element$) => {
-        children$[element$.name] = element$
-      })
-
-      return children$
-    },
   },
   methods: {
     
@@ -116,5 +111,18 @@ export default {
         element$.load(data)
       })
     },
+
+    $_setChildren$() {
+      let children$ = {}
+
+      _.each(this.$refs.children$, (element$) => {
+        children$[element$.name] = element$
+      })
+
+      this.children$ = children$
+    }
+  },
+  mounted() {
+    this.$_setChildren$()
   },
 }

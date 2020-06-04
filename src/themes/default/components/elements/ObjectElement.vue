@@ -11,7 +11,7 @@
           :name="name"
           :parent="el$"
           :key="name"
-          v-mref:children$
+          ref="children$"
         />
       </template>
     </div>

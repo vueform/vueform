@@ -17,6 +17,17 @@ export default {
       required: true
     },
   },
+  data() {
+    return {
+      /**
+       * Child components.
+       * 
+       * @type {object}
+       * @default {}
+       */
+      children$: {},
+    }
+  },
   computed: {
 
     /**
@@ -38,22 +49,6 @@ export default {
     },
 
     /**
-     * Child components.
-     * 
-     * @type {object}
-     * @default {}
-     */
-    children$() {
-      let children$ = {}
-
-      _.each(this.$refs.children$, (element$) => {
-        children$[element$.name] = element$
-      })
-
-      return children$
-    },
-
-    /**
      * Helper property used to determine the element's 'null' value.
      * 
      * @type {object}
@@ -71,5 +66,19 @@ export default {
     error() {
       return null
     },
+  },
+  methods: {
+    $_setChildren$() {
+      let children$ = {}
+
+      _.each(this.$refs.children$, (element$) => {
+        children$[element$.name] = element$
+      })
+
+      this.children$ = children$
+    }
+  },
+  mounted() {
+    this.$_setChildren$()
   },
 }

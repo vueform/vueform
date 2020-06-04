@@ -4,7 +4,7 @@
       <component :is="components.FormButton"
         :button="button"
         :key="index"
-        v-mref:buttons$
+        ref="buttons$"
       />
     </template>
   </div>

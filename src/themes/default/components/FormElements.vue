@@ -1,13 +1,13 @@
 <template>
   <div :class="classes.container">
     <div :class="classes.wrapper">
-      <template v-for="(element, name) in schema">
+      <template v-for="(element, name) in elements">
         <component
           :is="component(element)"
           :schema="element"
           :name="name"
           :key="name"
-          v-mref:elements$
+          ref="elements$"
         />
       </template>
     </div>

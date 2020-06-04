@@ -1,20 +1,16 @@
 import Vue from 'vue'
-import ref from './../directives/ref'
-import mref from './../directives/mref'
 import _ from 'lodash'
 import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
 import formData from './../utils/formData'
 import isVueI18nInstalled from './../utils/isVueI18nInstalled'
 import translator from './../utils/translator'
+import HasEvents from './../mixins/HasEvents'
 
 export default {
   name: 'Laraform',
+  mixins: [HasEvents],
   render() {
     return this.extendedTheme.components.Laraform.render.apply(this)
-  },
-  directives: {
-    ref,
-    mref,
   },
   provide() {
     const _this = this
@@ -44,22 +40,82 @@ export default {
     return {
       schema: {},
 
+      /**
+       * Form buttons.
+       * 
+       * @type {array}
+       * @default []
+       */
       buttons: [], 
 
-      theme: null,
+      /**
+       * Form tabs definition.
+       * 
+       * @type {object}
+       * @default {}
+       */
+      tabs: {},
 
+      /**
+       * Form wizard definition.
+       * 
+       * @type {object}
+       * @default {}
+       */
+      wizard: {},
+
+      /**
+       * Whether wizard controls should appear when using wizard.
+       * 
+       * @type {boolean}
+       * @default true
+       */
+      wizardControls: null,
+
+      /**
+       * Theme of the form.
+       * 
+       * @type {string}
+       * @default config.theme
+       */
+      theme: null,
+ 
+      /**
+       * Locale of the form.
+       * 
+       * @type {string}
+       * @default config.locale
+       */
       locale: null,
 
-      components: {},
-
+      /**
+       * Override of [theme](style-and-theme#classes-property) classes.
+       * 
+       * @type {object}
+       * @default {}
+       */
       classes: {},
 
       addClasses: {},
 
+      /**
+       * Form's CSS class.
+       * 
+       * @type {string}
+       * @default null
+       */
       class: null,
 
-      elements: {},
+      components: {},
 
+      elements: {},
+        
+      /**
+       * Default column sizes for elements.
+       * 
+       * @type {object}
+       * @default config.columns
+       */
       columns: {},
         
       /**
@@ -135,7 +191,80 @@ export default {
        * @default false
        */
       updating: false,
+
+      /**
+       * Form element components.
+       * 
+       * @type {object}
+       * @default -
+       */
+      elements$: {},
+
+      /**
+       * Form button components.
+       * 
+       * @type {object}
+       * @default -
+       */
+      buttons$: {},
+
+      /**
+       * Form wizard component.
+       * 
+       * @type {object}
+       * @default -
+       */
+      wizard$: {},
+
+      /**
+       * Form tabs component.
+       * 
+       * @type {object}
+       * @default -
+       */
+      tabs$: {},
     }
+  },
+  watch: {
+    'form.schema': {
+      handler(schema) {
+        if (_.isEmpty(schema)) {
+          return
+        }
+
+        this.schema = schema
+      },
+      deep: true,
+      immediate: true
+    },
+    schema: {
+      handler() {
+        this.$_setElements$()
+      },
+      deep: true,
+      immediate: false,
+    },
+    buttons: {
+      handler() {
+        this.$_setButtons$()
+      },
+      deep: true,
+      immediate: false,
+    },
+    wizard: {
+      handler() {
+        this.$_setWizard$()
+      },
+      deep: true,
+      immediate: false,
+    },
+    tabs: {
+      handler() {
+        this.$_setTabs$()
+      },
+      deep: true,
+      immediate: false,
+    },
   },
   computed: {
 
@@ -278,6 +407,26 @@ export default {
       return locale
     },
 
+    /**
+     * Whether the form has wizard.
+     * 
+     * @ignore
+     * @type {boolean}
+     */
+    hasWizard() {
+      return !_.isEmpty(this.wizard)
+    },
+
+    /**
+     * Whether the form has tabs.
+     * 
+     * @ignore
+     * @type {boolean}
+     */
+    hasTabs() {
+      return !_.isEmpty(this.tabs)
+    },
+
     mainClass() {
       return _.keys(this.defaultClasses)[0]
     },
@@ -312,7 +461,7 @@ export default {
     },
 
     extendedTheme() {
-      return Vue.observable(Object.assign({}, this.selectedTheme, {
+      return Object.assign({}, this.selectedTheme, {
         // Add registered elements to theme elements (or overwrite)
         elements: Object.assign({},
           this.selectedTheme.elements,
@@ -321,7 +470,7 @@ export default {
         ),
 
         // Add registered component to theme (or overwrite)
-        components: _.merge({},
+        components: Object.assign({},
           this.selectedTheme.components,
           this.$laraform.components,
           this.components,
@@ -332,70 +481,14 @@ export default {
           this.selectedTheme.classes,
           this.classes
         ),
-      }))
-    },
-
-    elements$() {
-      let elements$ = {}
-      let elementsRef$ =  this.$refs.elements$ || {}
-
-      // Retrieving elements from FormElements component
-      if (!_.isArray(elementsRef$) && elementsRef$.$refs !== undefined) {
-        elementsRef$ = elementsRef$.$refs.elements$
-      }
-
-      _.each(elementsRef$, (element$) => {
-        elements$[element$.name] = element$
       })
-
-      return elements$
-    },
-
-    wizard$() {
-      return this.$refs.wizard$ || {}
-    },
-
-    tabs$() {
-      return this.$refs.tabs$ || {}
-    },
-
-    buttons$() {
-      let buttons$ = {}
-      let buttonsRef$ =  this.$refs.buttons$ || {}
-
-      // Retrieving buttons from FormButtons component
-      if (!_.isArray(buttonsRef$)) {
-        buttonsRef$ = buttonsRef$.$refs.buttons$
-      }
-
-      _.each(buttonsRef$, (button$) => {
-        buttons$[button$.name] = button$
-      })
-
-      return buttons$
     },
 
     form$() {
       return this
     },
   },
-  watch: {
-    'form.schema': {
-      handler(schema) {
-        if (_.isEmpty(schema)) {
-          return
-        }
-
-        this.schema = schema
-      },
-      deep: true,
-      immediate: true
-    }
-  },
   methods: {
-    fire() {
-
-    },
     /**
      * Starts the submission process.
      * 
@@ -633,9 +726,39 @@ export default {
       return this.el$(path.match(/.*(?=\.)/)[0]).children$
     },
 
-    $_isVueI18nInstalled: isVueI18nInstalled,
+    $_setElements$() {
+      let elements$ = {}
+      let elementRefs$ = _.isArray(this.$refs.elements$)
+        ? this.$refs.elements$
+        : this.$refs.elements$.$refs.elements$
 
-    __: translator,
+      _.each(elementRefs$, (element$) => {
+        elements$[element$.name] = element$
+      })
+
+      this.$set(this, 'elements$', elements$)
+    },
+
+    $_setButtons$() {
+      let buttons$ = {}
+      let buttonsRefs$ = _.isArray(this.$refs.buttons$)
+        ? this.$refs.buttons$
+        : this.$refs.buttons$.$refs.buttons$
+
+      _.each(buttonsRefs$, (button$) => {
+        buttons$[button$.name] = button$
+      })
+
+      this.$set(this, 'buttons$', buttons$)
+    },
+
+    $_setWizard$() {
+      this.$set(this, 'wizard$', this.$refs.wizard$)
+    },
+
+    $_setTabs$() {
+      this.$set(this, 'tabs$', this.$refs.tabs$)
+    },
 
     /**
      * Determines if validation should occur on a specific event.
@@ -677,7 +800,11 @@ export default {
 
         this.$options.components[name] = component
       })
-    }
+    },
+
+    $_isVueI18nInstalled: isVueI18nInstalled,
+
+    __: translator,
   },
   created() {
     if (this.key === null) {
@@ -713,4 +840,10 @@ export default {
   beforeMount() {
     this.$_registerComponents()
   },
+  mounted() {
+    this.$_setElements$()
+    this.$_setButtons$()
+    this.$_setWizard$()
+    this.$_setTabs$()
+  }
 }

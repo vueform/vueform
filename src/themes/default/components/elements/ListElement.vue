@@ -13,7 +13,7 @@
           :name="index"
           :parent="el$"
           :key="element.key"
-          v-mref:children$
+          ref="children$"
         >
           <template slot="prefix">
             <a

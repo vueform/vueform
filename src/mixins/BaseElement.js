@@ -1,10 +1,11 @@
 import _ from 'lodash'
 import MergesElementClasses from './MergesElementClasses'
 import Localized from './Localized'
+import HasEvents from './HasEvents'
 
 export default {
   name: 'BaseElement',
-  mixins: [MergesElementClasses, Localized],
+  mixins: [MergesElementClasses, HasEvents, Localized],
   inject: ['theme', 'form$'],
   provide() {
     const _this = this
@@ -63,6 +64,16 @@ export default {
        */
       active: true,
     }
+  },
+  watch: {
+    schema: {
+      handler() {
+        this.$_assignSlots()
+        this.$forceUpdate()
+      },
+      deep: true,
+      immediate: false
+    },
   },
   computed: {
     
@@ -168,6 +179,15 @@ export default {
       return this.available && !this.hidden && this.active
     },
 
+    conditions() {
+      return this.schema.conditions || []
+    },
+
+    /**
+     * Whether the element has any unmet conditions.
+     * 
+     * @type boolean
+     */
     available() {
       return true
     },
@@ -216,7 +236,7 @@ export default {
       }
     },
     components() {
-      return Vue.observable(Object.assign({}, this.theme.components, this.schema.components || {}))
+      return Object.assign({}, this.theme.components, this.schema.components || {})
     },
     columns: {
       get() {
@@ -240,20 +260,7 @@ export default {
       return this
     },
   },
-  watch: {
-    schema: {
-      handler() {
-        this.$_assignSlots()
-        this.$forceUpdate()
-      },
-      deep: true,
-      immediate: false
-    }
-  },
   methods: {
-    fire() {
-
-    },
     /**
      * Loads data for element or clears the element if the element's key is not found in the `data` object.
      *
@@ -302,6 +309,48 @@ export default {
      */
     clear() {
       this.value = _.clone(this.null)
+    },
+
+    /**
+     * Sets the `hidden` property of the element to `false`.
+     *
+     * @public
+     * @returns {void}
+     */
+    hide() {
+      this.hidden = true
+    },
+
+    /**
+     * Sets the `hidden` property of the element to `true`.
+     *
+     * @public
+     * @returns {void}
+     */
+    show() {
+      this.hidden = false
+    },
+
+    // @private
+    
+    /**
+     * Sets the `active` property of the element to `true`.
+     *
+     * @private
+     * @returns {void}
+     */
+    activate() {
+      this.active = true
+    },
+
+    /**
+     * Sets the `active` property of the element to `false`.
+     *
+     * @private
+     * @returns {void}
+     */
+    deactivate() {
+      this.active = false
     },
 
     $_initElement() {

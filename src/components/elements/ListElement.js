@@ -43,6 +43,14 @@ export default {
       instances: [],
 
       /**
+      * Child components.
+      * 
+      * @type {object} 
+      * @default {}
+      */
+      children$: [],
+
+      /**
        * Helper property used to store available events for the element.
        * 
        * @private
@@ -243,16 +251,6 @@ export default {
     null() {
       return []
     },
-
-    /**
-     * Child components.
-     * 
-     * @type {array}
-     * @default []
-     */
-    children$() {
-      return this.$refs.children$ || []
-    },
   },
   methods: {
 
@@ -418,17 +416,17 @@ export default {
 
       this.instances.push(schema)
 
-      // if (!this.initial) {
-      //   // nextTick is required because once a new
-      //   // children is added, first the DOM needs 
-      //   // to be rendered to be contained in $refs
-      //   this.$nextTick(() => {
-      //     // if the initial was 0 the children$ variable
-      //     // must be initalized on adding the first child
-      //     // otherwise it would be `undefined`
-      //     this.$_initChildren()
-      //   })
-      // }
+      if (!this.initial) {
+        // nextTick is required because once a new
+        // children is added, first the DOM needs 
+        // to be rendered to be contained in $refs
+        this.$nextTick(() => {
+          // if the initial was 0 the children$ variable
+          // must be initalized on adding the first child
+          // otherwise it would be `undefined`
+          this.$_setChildren$()
+        })
+      }
 
       var index = this.instances.length - 1
 
@@ -529,6 +527,16 @@ export default {
         })
       }
     },
+
+    /**
+     * Inits the element.
+     * 
+     * @private 
+     * @returns {void}
+     */
+    $_initElement() {
+      this.$_setInitialInstances()
+    },
     
     /**
      * Sets initial instances when the element is initalized.
@@ -543,15 +551,20 @@ export default {
         }
       }
     },
-
+      
     /**
-     * Inits the element.
+     * Sets `children$` property from rendered child components.
      * 
      * @private 
      * @returns {void}
      */
-    $_initElement() {
-      this.$_setInitialInstances()
+    $_setChildren$() {
+      if (this.$refs.children$ !== undefined && _.isEmpty(this.children$)) {
+        this.children$ = this.$refs.children$
+      }
     },
+  },
+  mounted() {
+    this.$_setChildren$()
   },
 }

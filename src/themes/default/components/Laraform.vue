@@ -3,14 +3,23 @@
     :class="extendedClasses.form"
     @submit.prevent="handleSubmit"
   >
+    <component
+      :is="extendedComponents.FormTabs"
+      v-if="hasTabs"
+      :tabs="tabs"
+      :elements$="elements$"
+      ref="tabs$"
+    />
+    
     <component :is="extendedComponents.FormElements"
       :schema="schema"
       @updateSchema="updateSchema"
-      v-ref:elements$
+      ref="elements$"
     />
+
     <component :is="extendedComponents.FormButtons"
       :buttons="buttons"
-      v-ref:buttons$
+      ref="buttons$"
     />
   </form>
 </template>

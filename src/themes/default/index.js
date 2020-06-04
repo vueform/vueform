@@ -1,4 +1,6 @@
 import Laraform from './components/Laraform'
+import FormTabs from './components/FormTabs'
+import FormTab from './components/FormTab'
 import FormElements from './components/FormElements'
 import FormButtons from './components/FormButtons'
 import FormButton from './components/FormButton'
@@ -17,6 +19,8 @@ import columns from './utils/columns'
 export default {
   components: {
     Laraform,
+    FormTabs,
+    FormTab,
     FormElements,
     FormButtons,
     FormButton,
@@ -42,10 +46,13 @@ export default {
 export const core = {
   components: {
     Laraform,
+    FormTabs,
+    FormTab,
     FormElements,
     FormButtons,
     FormButton,
     BaseElementLayout,
+    NestedElementLayout,
     ElementLabel,
     ElementError,
   },

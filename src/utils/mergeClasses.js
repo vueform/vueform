@@ -47,8 +47,14 @@ const mergeClass = function (base, add) {
     if (_.isPlainObject(add)) {
       classes = _.concat(base, [add])
     }
-    else if (_.isArray(add)) {
-      classes = _.concat(base, add)
+    else if (_.isArray(add) ) {
+      classes = base
+
+      _.each(add, (a) => {
+        if (classes.indexOf(a) === -1) {
+          classes = _.concat(base, [a])
+        }
+      })
     } else {
       classes = _.concat(base, [add])
     }
