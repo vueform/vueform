@@ -161,11 +161,9 @@ export default {
        * @type {array}
        * @default []
        */
-      events: {
-        change: {
-          value: 'Value after change'
-        }
-      },
+      events: [
+        'change',
+      ],
     }
   },
   watch: {

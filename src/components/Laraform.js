@@ -37,6 +37,12 @@ export default {
   },
   data() {
     return {
+      /**
+       * The schema of element contained within the form.
+       * 
+       * @type {object}
+       * @default {}
+       */
       schema: {},
 
       /**
@@ -86,6 +92,38 @@ export default {
        * @default config.locale
        */
       locale: null,
+        
+      /**
+       * Endpoint to submit the form.
+       * 
+       * @type {string}
+       * @default config.endpoints.process
+       */
+      endpoint: null,
+
+      /**
+       * Method how the form should submit.
+       * 
+       * @type {string}
+       * @default config.method
+       */
+      method: null,
+
+      /**
+       * Form key to be sent when submitting data.
+       * 
+       * @type {string}
+       * @default null
+       */
+      key: null,
+
+      /**
+       * Form's CSS class.
+       * 
+       * @type {string}
+       * @default null
+       */
+      class: null,
 
       /**
        * Override of [theme](style-and-theme#classes-property) classes.
@@ -96,18 +134,6 @@ export default {
       classes: {},
 
       addClasses: {},
-
-      /**
-       * Form's CSS class.
-       * 
-       * @type {string}
-       * @default null
-       */
-      class: null,
-
-      components: {},
-
-      elements: {},
         
       /**
        * Default column sizes for elements.
@@ -124,6 +150,42 @@ export default {
        * @default config.labels
        */
       labels: null,
+
+      components: {},
+
+      elements: {},
+        
+      /**
+       * Custom error messages.
+       * 
+       * @type {object}
+       * @default {}
+       */
+      messages: {},
+      
+      /**
+       * Whether the form is multilingual.
+       * 
+       * @type {boolean}
+       * @default false
+       */
+      multilingual: null,
+      
+      /**
+       * Available languages for mulitlingual form.
+       * 
+       * @type {object}
+       * @default config.languages
+       */
+      languages: null,
+      
+      /**
+       * The default language of a multilingual form.
+       * 
+       * @type {string}
+       * @default config.language
+       */
+      language: null,
         
       /**
        * Whether errors should be displayed above form.
@@ -149,30 +211,6 @@ export default {
        * @default true
        */
       validation: true,
-
-      /**
-       * Form key to be sent when submitting data.
-       * 
-       * @type {string}
-       * @default null
-       */
-      key: null,
-
-      /**
-       * Method how the form should submit.
-       * 
-       * @type {string}
-       * @default config.method
-       */
-      method: null,
-        
-      /**
-       * Endpoint to submit the form.
-       * 
-       * @type {string}
-       * @default config.endpoints.process
-       */
-      endpoint: null,
 
       /**
        * Determine if the form is currently submitting.
@@ -222,6 +260,18 @@ export default {
        * @default -
        */
       tabs$: {},
+        
+      /**
+       * Helper property used to store available events for the element.
+       * 
+       * @ignore
+       * @type {array}
+       * @default []
+       */
+      events: [
+        'change', 'submit', 'response', 'success',
+        'fail', 'error', 'language', 'reset',
+      ],
     }
   },
   watch: {
@@ -264,6 +314,33 @@ export default {
       deep: true,
       immediate: false,
     },
+    store: {
+      handler(value) {
+        if (_.isEqual(value, this.filtered)) {
+          return
+        }
+        
+        this.update(this.store)
+      }, 
+      deep: true
+    },
+    data: {
+      handler(value) {
+        this.$emit('change', this.filtered)
+        this.fire('change', this.filtered)
+
+        if (this.storePath === null) {
+          return
+        }
+        
+        if (_.isEqual(value, this.store)) {
+          return
+        }
+        
+        this.store = this.filtered
+      },
+      deep: true
+    }
   },
   computed: {
 
@@ -453,12 +530,24 @@ export default {
       return this.extendedTheme.components
     },
 
+    /**
+     * The locale object of the selected theme.
+     * 
+     * @ignore
+     * @type {object}
+     */
     selectedTheme() {
       let theme = !_.isEmpty(this.theme) ? this.theme : (this.form.theme || this.$laraform.config.theme)
 
       return this.$laraform.themes[theme]
     },
 
+    /**
+     * The selected theme's file with local extensions.
+     * 
+     * @ignore
+     * @type {object}
+     */
     extendedTheme() {
       return Object.assign({}, this.selectedTheme, {
         // Add registered elements to theme elements (or overwrite)
@@ -481,6 +570,39 @@ export default {
           this.classes
         ),
       })
+    },
+
+    /**
+     * The value of external Vuex store state.
+     * 
+     * @type {object}
+     */
+    store: {
+      get() {
+        if (this.storePath === null || !this.$store) {
+          return null
+        }
+        
+        return _.get(this.$store.state, this.storePath)
+      },
+      set(value) {
+        if (!this.$store) {
+          return
+        }
+        
+        // If store is not registered with Laraform.store()
+        if (!this.$store._mutations['laraform/LARAFORM_UPDATE_STORE']) {
+          _.set(this.$store.state, this.storePath, value)
+        } 
+
+        // If store is registered properly call a mutation
+        else {
+          this.$store.commit('laraform/LARAFORM_UPDATE_STORE', {
+            path: this.storePath,
+            value: value
+          })
+        }
+      }
     },
 
     form$() {
@@ -657,9 +779,31 @@ export default {
       this.validation = true
     },
 
+    /**
+     * Set the language of a multilingual form.
+     * 
+     * @public
+     * @param {string} code code of language to set
+     * @returns {void}
+     */
+    setLanguage(code) {
+      this.language = code
+
+      this.fire('language', code)
+    },
+
     updateSchema(schema) {
       this.$set(this, 'schema', schema)
     },
+
+    /**
+     * Triggered when form's data is changed.
+     *
+     * @public
+     * @param {object} data data of the form (filtered)
+     * @event change
+     */
+    handleChange(data){},
 
     /**
      * Triggered when the form is submitted. Can prevent further execution (element validation) if returns `false`.
@@ -671,6 +815,58 @@ export default {
     handleSubmit(){
       this.submit()
     },
+        
+    /**
+     * Triggered when receives a response from the server upon submitting the form.
+     *
+     * @public
+     * @param {object} response response object
+     * @event response
+     */
+    handleResponse(){},
+        
+    /**
+     * Triggered when receives a success response from the server upon submitting the form.
+     *
+     * @public
+     * @param {object} response response object
+     * @event success
+     */
+    handleSuccess(){},
+        
+    /**
+     * Triggered when receives a fail response from the server upon submitting the form.
+     *
+     * @public
+     * @param {object} response response object
+     * @event fail
+     */
+    handleFail(){},
+        
+    /**
+     * Triggered when receives an error from the server upon submitting the form.
+     *
+     * @public
+     * @param {object} error error object
+     * @event error
+     */
+    handleError(){},
+        
+    /**
+     * Triggered when user selects a language in a multilingual form.
+     *
+     * @public
+     * @event language
+     */
+    handleLanguage(){},
+        
+    /**
+     * Triggered when the form is resetted.
+     *
+     * @public
+     * @event reset
+     */
+    handleReset(){},
 
     /**
      * Returns an element by its path.
