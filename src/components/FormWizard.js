@@ -212,7 +212,7 @@ export default {
      * @returns {void}
      */
     next() {
-      if (this.fire('next') === false) {
+      if (this.fire('next', this.$next) === false) {
         return
       }
 
@@ -227,7 +227,7 @@ export default {
      * @returns {void}
      */
     previous() {
-      if (this.fire('previous') === false) {
+      if (this.fire('previous', this.$previous) === false) {
         return
       }
 
@@ -327,18 +327,20 @@ export default {
      *
      * @public
      * @prevents 
+     * @param {object} step$ the next step component
      * @event next
      */
-    handleNext(){},
+    handleNext(step$){},
         
     /**
      * Triggered when moves to previous step. Can prevent further execution if returns `false`.
      *
      * @public
      * @prevents 
+     * @param {object} step$ the previous step component
      * @event previous
      */
-    handlePrevious(){},
+    handlePrevious(step$){},
         
     /**
      * Triggered when finishes. Can prevent further execution if returns `false`.
@@ -353,9 +355,10 @@ export default {
      * Triggered when a step is selected.
      *
      * @public
+     * @param {object} step$ the selected step component
      * @event select
      */
-    handleSelect() {
+    handleSelect(step$) {
       _.each(this.elements$, (element$) => {
         element$.deactivate()
       })
@@ -364,7 +367,7 @@ export default {
         step$.deactivate()
       })
 
-      this.fire('select')
+      this.fire('select', step$)
     },
 
     /**

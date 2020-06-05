@@ -385,7 +385,7 @@ export default {
         return
       }
 
-      this.$emit('select', this.name)
+      this.$emit('select', this)
 
       _.each(this.children$, (element$) => {
         element$.activate()

@@ -683,9 +683,10 @@ export default {
      * Handles the keyup event of the input field if the field has free text input.
      * 
      * @private 
+     * @param {string|number} value the value after change
      * @returns {void}
      */
-    handleKeyup() {
+    handleKeyup(value) {
       if (this.readonly) {
         return
       }
@@ -704,9 +705,10 @@ export default {
      *
      * @public
      * @prevents 
+     * @param {string|number} value the value after change
      * @event change
      */
-    handleChange() {
+    handleChange(value) {
       if (this.fire('change', this.value) === false) {
         return
       }

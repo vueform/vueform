@@ -1,10 +1,11 @@
 import _ from 'lodash'
 import BaseComponent from './../mixins/BaseComponent'
 import { mergeComponentClasses } from './../utils/mergeClasses'
+import HasHooks from './../mixins/HasHooks'
 
 export default {
   name: 'FormButton',
-  mixins: [BaseComponent],
+  mixins: [BaseComponent, HasHooks],
   props: {
     /**
      * Button options.
@@ -30,6 +31,10 @@ export default {
     },
   },
   computed: {
+    descriptor() {
+      return this.button
+    },
+
     /**
      * Button label.
      * 
@@ -86,39 +91,9 @@ export default {
       }
     }
   },
-  created() {
-    if (this.button.created) {
-      this.button.created.call(this)
-    }
-  },
-  beforeMount() {
-    if (this.button.beforeMount) {
-      this.button.beforeMount.call(this)
-    }
-  },
-  mounted() {
-    if (this.button.mounted) {
-      this.button.mounted.call(this)
-    }
-  },
-  beforeUpdate() {
-    if (this.button.beforeUpdate) {
-      this.button.beforeUpdate.call(this)
-    }
-  },
-  updated() {
-    if (this.button.updated) {
-      this.button.updated.call(this)
-    }
-  },
-  beforeDestroy() {
-    if (this.button.beforeDestroy) {
-      this.button.beforeDestroy.call(this)
-    }
-  },
-  destroyed() {
-    if (this.button.destroyed) {
-      this.button.destroyed.call(this)
+  beforeCreate() {
+    if (this.$options.propsData.button.beforeCreate) {
+      this.$options.propsData.button.beforeCreate.call(this)
     }
   },
 }

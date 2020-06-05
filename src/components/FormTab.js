@@ -153,7 +153,7 @@ export default {
      * @returns {void}
      */
     select() {
-      this.$emit('select', this.name)
+      this.$emit('select', this)
 
       _.each(this.children$, (element$) => {
         element$.activate()

@@ -823,7 +823,7 @@ export default {
      * @param {object} response response object
      * @event response
      */
-    handleResponse(){},
+    handleResponse(response){},
         
     /**
      * Triggered when receives a success response from the server upon submitting the form.
@@ -832,7 +832,7 @@ export default {
      * @param {object} response response object
      * @event success
      */
-    handleSuccess(){},
+    handleSuccess(response){},
         
     /**
      * Triggered when receives a fail response from the server upon submitting the form.
@@ -841,7 +841,7 @@ export default {
      * @param {object} response response object
      * @event fail
      */
-    handleFail(){},
+    handleFail(response){},
         
     /**
      * Triggered when receives an error from the server upon submitting the form.
@@ -850,15 +850,16 @@ export default {
      * @param {object} error error object
      * @event error
      */
-    handleError(){},
+    handleError(errro){},
         
     /**
      * Triggered when user selects a language in a multilingual form.
      *
      * @public
+     * @param {string} language the selected language's code
      * @event language
      */
-    handleLanguage(){},
+    handleLanguage(language){},
         
     /**
      * Triggered when the form is resetted.

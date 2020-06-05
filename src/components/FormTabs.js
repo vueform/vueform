@@ -87,10 +87,10 @@ export default {
      * Selects a tab.
      *
      * @public
-     * @param {object} tab key of tab in [tabs](reference/frontend-form#prop-tabs) object
+     * @param {object} tab$ selected tab component
      * @returns {void}
      */
-    select(tab) {
+    select(tab$) {
       _.each(this.elements$, (element$) => {
         element$.deactivate()
       })
@@ -99,7 +99,7 @@ export default {
         tab$.deactivate()
       })
 
-      this.fire('change')
+      this.handleChange(tab$)
     },
 
     /**
@@ -127,9 +127,12 @@ export default {
      * Triggered the tab changes using [select](#method-select) method.
      *
      * @public
+     * @param {object} tab$ selected tab component
      * @event change
      */
-    handleChange() {},
+    handleChange(tab$) {
+      this.fire('change', tab$)
+    },
 
     $_setTabs() {
       let tabs$ = {}
