@@ -251,6 +251,16 @@ export default {
     null() {
       return []
     },
+
+    /**
+     * Determines if the element's value is an array.
+     *
+     * @private
+     * @returns {boolean}
+     */
+    isArrayType() {
+      return true
+    },
   },
   methods: {
 
@@ -431,16 +441,6 @@ export default {
       var index = this.instances.length - 1
 
       return index
-    },
-
-    /**
-     * Determines if the element's value is an array.
-     *
-     * @private
-     * @returns {boolean}
-     */
-    isArrayType() {
-      return true
     },
 
     /**

@@ -2,10 +2,11 @@ import _ from 'lodash'
 import MergesElementClasses from './MergesElementClasses'
 import Localized from './Localized'
 import HasEvents from './HasEvents'
+import HasHooks from './HasHooks'
 
 export default {
   name: 'BaseElement',
-  mixins: [MergesElementClasses, HasEvents, Localized],
+  mixins: [MergesElementClasses, HasEvents, HasHooks, Localized],
   inject: ['theme', 'form$'],
   provide() {
     const _this = this
@@ -17,10 +18,46 @@ export default {
     }
   },
   props: {
+
+    /**
+     * The element schema containing it's options.
+     * 
+     * @default {
+     *  "id": { "type": "string", "description": "The 'id' attribute of the field." },
+     *  "label": { "type": "string", "description": "Label of the element." },
+     *  "description": { "type": "string", "description": "Description of the element." },
+     *  "class": { "type": "str|arr|obj", "description": "HTML class of the element. Can use [Vue syntaxes](https://vuejs.org/v2/guide/class-and-style.html#ad)." },
+     *  "classes": { "type": "object", "description": "Override theme [classes](style-and-theme#classes-property) for this element." },
+     *  "rules": { "type": "str|arr", "description": "Validation [rules](validation#rule-definition) to be applied for the element." },
+     *  "messages": { "type": "object", "description": "Override default validation rule [messages](validation#custom-messages)." },
+     *  "conditions": { "type": "array", "description": "[Conditions](conditions) to be applied for the element." },
+     *  "columns": { "type": "num|object", "description": "Definition of [column sizes](rendering#defining-column-sizes)." },
+     *  "error": { "type": "boolean", "description": "Whether the element should display it's first error, if any." },
+     *  "submit": { "type": "boolean", "description": "Whether the element's value should be submitted." },
+     *  "component": { "type": "object", "description": "The Vue Component to be used for the element." },
+     *  "before": { "type": "string", "description": "Text or HTML to be placed before the field. If `before` slot is provided this will not appear." },
+     *  "between": { "type": "string", "description": "Text or HTML to be placed between the field and it's description (if any). If `between` slot is provided this will not appear." },
+     *  "after": { "type": "string", "description": "Text or HTML to be placed after the field's error message (if any). If `after` slot is provided this will not appear." },
+     *  "slots": { "type": "object", "description": "[Slots](rendering#element-slots) for the element." },
+     *  "onChanged": { "type": "function", "description": "Triggered when the element's value is changed by the user. It is not triggered if the value is changed programmatically." },
+     *  "beforeCreate": { "type": "function", "description": "Triggered in the element's `beforeCreate` lifecycle hook." },
+     *  "created": { "type": "function", "description": "Triggered in the element's `created` lifecycle hook." },
+     *  "beforeMount": { "type": "function", "description": "Triggered in the element's `beforeMount` lifecycle hook." },
+     *  "mounted": { "type": "function", "description": "Triggered in the element's `mounted` lifecycle hook." },
+     *  "beforeUpdate": { "type": "function", "description": "Triggered in the element's `beforeUpdate` lifecycle hook." },
+     *  "updated": { "type": "function", "description": "Triggered in the element's `updated` lifecycle hook." },
+     *  "beforeDestroy": { "type": "function", "description": "Triggered in the element's `beforeDestroy` lifecycle hook." },
+     *  "destroyed": { "type": "function", "description": "Triggered in the element's `destroyed` lifecycle hook." }
+     * }
+     */
     schema: {
       type: Object,
       required: true
     },
+
+    /**
+     * The *name* of the input field.
+     */
     name: {
       type: [Number, String],
       required: true
@@ -63,6 +100,72 @@ export default {
        * @default true
        */
       active: true,
+
+      /**
+       * Element slots.
+       * 
+       * @type {object}
+       * @default {
+       *  "label": {
+       *    "description": "Contains the label of the element.",
+       *    "attributes": {
+       *      "el$": {"type": "object", "description": "The element component."}
+       *    }
+       *  },
+       *  "before": {
+       *    "description": "Vue component to be rendered before the field.",
+       *    "attributes": {
+       *      "el$": {"type": "object", "description": "The element component."}
+       *    }
+       *  },
+       *  "between": {
+       *    "description": "Vue component to be rendered between the field and it's description, if any.",
+       *    "attributes": {
+       *      "el$": {"type": "object", "description": "The element component."}
+       *    }
+       *  },
+       *  "after": {
+       *    "description": "Vue component to be rendered after the field's error message, if any.",
+       *    "attributes": {
+       *      "el$": {"type": "object", "description": "The element component."}
+       *    }
+       *  },
+       *  "description": {
+       *    "description": "Contains the description of the element.",
+       *    "attributes": {
+       *      "el$": {"type": "object", "description": "The element component."}
+       *    }
+       *  },
+       *  "error": {
+       *    "description": "Contains the error of the element.",
+       *    "attributes": {
+       *      "el$": {"type": "object", "description": "The element component."}
+       *    }
+       *  }
+       * }
+       */
+      slots: {
+        info: null,
+        label: null,
+        before: null,
+        between: null,
+        after: null,
+        description: null,
+        error: null,
+      },
+
+      /**
+       * Helper property used to store available events for the element.
+       * 
+       * @private
+       * @type {array}
+       * @default []
+       */
+      events: {
+        change: {
+          value: 'Value after change'
+        }
+      },
     }
   },
   watch: {
@@ -76,7 +179,7 @@ export default {
     },
   },
   computed: {
-    
+
     /**
      * The value of the element.
      * 
@@ -171,16 +274,28 @@ export default {
     },
 
     /**
+     * Helper property used to determine a generic name for the element.
+     * 
+     * @type {object}
+     * @ignore
+     */
+    attribute() {
+      if (this.label) {
+        return this.label
+      } else if (this.placeholder) {
+        return this.placeholder
+      } else {
+        return this.name
+      }
+    },
+
+    /**
      * Whether the element is visible. It's `false` if `available` or `active` is `false` or `hidden` is `true`.
      * 
      * @type {boolean} 
      */
     visible() {
       return this.available && !this.hidden && this.active
-    },
-
-    conditions() {
-      return this.schema.conditions || []
     },
 
     /**
@@ -192,6 +307,42 @@ export default {
       return true
     },
 
+    components() {
+      return Object.assign({}, this.theme.components, this.schema.components || {})
+    },
+
+    /**
+     * Helper property used to determine internally if a label should be
+     * rendered for the element.
+     * 
+     * @type {object}
+     * @ignore
+     */
+    hasLabel() {
+      return this.$laraform.config.labels || this.label
+    },
+
+    /**
+    * The 'id' attribute of the field.
+    * 
+    * @type {string} 
+    * @default null
+    */
+    id: {
+      get() {
+        return this.schema.id || this.name
+      },
+      set(value) {
+        this.$set(this.schema, 'id', value)
+      }
+    },
+
+    /**
+    * Whether the element's value should be submitted.
+    * 
+    * @type {boolean} 
+    * @default true
+    */
     submit: {
       get() {
         return this.schema.submit !== undefined
@@ -203,14 +354,105 @@ export default {
       }
     },
 
+    /**
+     * Whether the element should display it's first error, if any.
+     * 
+     * @type {boolean} 
+     * @default true
+     */
+    displayError: {
+      get() {
+        return this.schema.error !== undefined
+          ? this.schema.error
+          : true
+      },
+      set(value) {
+        this.$set(this.schema, 'displayError', value)
+      }
+    },
+
+    /**
+     * Label of the element.
+     * 
+     * @type {string} 
+     * @default ''
+     */
     label: {
       get() {
-        return this.schema.label
+        return this.schema.label || null
       },
       set(value) {
         this.$set(this.schema, 'label', value)
       }
     },
+
+    /**
+     * Description of the element.
+     * 
+     * @type {string} 
+     * @default null
+     */
+    description: {
+      get() {
+        return this.schema.description || null
+      },
+      set(value) {
+        this.$set(this.schema, 'description', value)
+      }
+    },
+
+    /**
+     * Info icon appears next to the element's label.
+     * 
+     * @type {string} 
+     * @default null
+     * @ignore
+     */
+    info: {
+      get() {
+        return this.schema.info || null
+      },
+      set(value) {
+        this.$set(this.schema, 'info', value)
+      }
+    },
+
+    /**
+     * Overrides default validation rule [messages](validation#custom-messages).
+     * 
+     * @type {object} 
+     * @default null
+     */
+    messages: {
+      get() {
+        return this.schema.messages || {}
+      },
+      set(value) {
+        this.$set(this.schema, 'messages', value)
+      }
+    },
+
+    /**
+     * [Conditions](conditions) to be applied for the element.
+     * 
+     * @type {array} 
+     * @default []
+     */
+    conditions: {
+      get() {
+        return this.schema.conditions || []
+      },
+      set(value) {
+        this.$set(this.schema, 'conditions', value)
+      }
+    },
+
+    /**
+    * HTML class of the element. Can use [Vue syntaxes](https://vuejs.org/v2/guide/class-and-style.html#ad).
+    * 
+    * @type {string} 
+    * @default null
+    */
     class: {
       get() {
         return this.schema.class || null
@@ -219,6 +461,7 @@ export default {
         this.$set(this.schema, 'class', value)
       }
     },
+
     classes: {
       get() {
         return this.mergedClasses
@@ -227,6 +470,7 @@ export default {
         this.$set(this.schema, 'classes', value)
       }
     },
+
     addClasses: {
       get() {
         return this.schema.addClasses || {}
@@ -235,9 +479,13 @@ export default {
         this.$set(this.schema, 'addClasses', value)
       }
     },
-    components() {
-      return Object.assign({}, this.theme.components, this.schema.components || {})
-    },
+
+    /**
+     * Calulated column sizes and classes for the element.
+     * 
+     * @type {object} 
+     * @default {}
+     */
     columns: {
       get() {
         return {
@@ -253,9 +501,89 @@ export default {
         this.$set(this.schema, 'columns', value)
       }
     },
-    hasLabel() {
-      return this.$laraform.config.labels || this.label
+
+    /**
+     * Text or HTML to be placed before the field. If `before` slot is provided this will not appear.
+     * 
+     * @type {string}
+     */
+    before: {
+      get() {
+        return this.schema.before || null
+      },
+      set(value) {
+        this.$set(this.schema, 'before', value)
+      }
     },
+
+    /**
+     * Text or HTML to be placed between the field and it's description (if any). If `between` slot is provided this will not appear.
+     * 
+     * @type {string}
+     */
+    between: {
+      get() {
+        return this.schema.between || null
+      },
+      set(value) {
+        this.$set(this.schema, 'between', value)
+      }
+    },
+
+    /**
+     * Text or HTML to be placed after the field's error message (if any). If `after` slot is provided this will not appear.
+     * 
+     * @type {string}
+     */
+    after: {
+      get() {
+        return this.schema.after || null
+      },
+      set(value) {
+        this.$set(this.schema, 'after', value)
+      }
+    },
+
+    /**
+     * Determines if the element's value is a file.
+     *
+     * @private
+     * @returns {boolean}
+     */
+    isFileType() {
+      return false
+    },
+
+    /**
+     * Determines if the element's value is an image.
+     *
+     * @private
+     * @returns {boolean}
+     */
+    isImageType() {
+      return false
+    },
+
+    /**
+     * Determines if the element's value is an array.
+     *
+     * @private
+     * @returns {boolean}
+     */
+    isArrayType() {
+      return false
+    },
+
+    /**
+     * Determines if the element is multilingual
+     *
+     * @private
+     * @returns {boolean}
+     */
+    isMultilingual() {
+      return false
+    },
+
     el$() {
       return this
     },
@@ -352,7 +680,66 @@ export default {
     deactivate() {
       this.active = false
     },
+      
+    /**
+     * Handles the keyup event of the input field if the field has free text input.
+     * 
+     * @private 
+     * @returns {void}
+     */
+    handleKeyup() {
+      if (this.readonly) {
+        return
+      }
 
+      if (this.fire('change', this.value) === false) {
+        return
+      }
+
+      if (this.form$.$_shouldValidateOn('change')) {
+        this.validate()
+      }
+    },
+
+    /**
+     * Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed. Can prevent further execution (element validation) if returns `false`.
+     *
+     * @public
+     * @prevents 
+     * @event change
+     */
+    handleChange() {
+      if (this.fire('change', this.value) === false) {
+        return
+      }
+
+      if (this.form$.$_shouldValidateOn('change')) {
+        this.validate()
+      }
+    },
+
+    /**
+     * Inits the element's events.
+     * 
+     * @private 
+     * @returns {void}
+     */
+    $_initEvents() {
+      _.each(this.events, (event) => {
+        var listener = this.schema['on' + _.upperFirst(event)]
+
+        if (listener !== undefined) {
+          this.on(event, listener)
+        }
+      })
+    },
+
+    /**
+     * Inits the element.
+     * 
+     * @private 
+     * @returns {void}
+     */
     $_initElement() {
       this.value = _.clone(this.default)
     },
@@ -371,8 +758,14 @@ export default {
       })
     }
   },
+  beforeCreate() {
+    if (this.$options.propsData.schema.beforeCreate) {
+      this.$options.propsData.schema.beforeCreate.call(this)
+    }
+  },
   created() {
     this.$_initElement()
+    this.$_initEvents()
   },
   mounted() {
     this.$_assignSlots()

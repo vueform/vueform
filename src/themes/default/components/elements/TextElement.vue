@@ -8,6 +8,7 @@
         <input
           v-model="model"
           :class="classes.input"
+          @keyup="handleKeyup"
         />
       </div>
 
