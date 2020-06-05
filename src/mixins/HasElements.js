@@ -7,7 +7,7 @@ export default {
         return element.component
       }
 
-      let name = `${_.upperFirst(element.type)}Element`
+      let name = `${_.upperFirst(_.camelCase(element.type))}Element`
 
       let component = this.theme.elements[name]
 

@@ -11,6 +11,15 @@ export default {
 
   locale: 'en',
 
+  languages: {
+    en: {
+      label: 'English',
+      code: 'en'
+    }
+  },
+
+  language: 'en',
+
   elements: {},
   
   components: {},

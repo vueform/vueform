@@ -1,4 +1,6 @@
 import Laraform from './components/Laraform'
+import FormLanguageSelector from './components/FormLanguageSelector'
+import FormLanguageSelectorTab from './components/FormLanguageSelectorTab'
 import FormTabs from './components/FormTabs'
 import FormTab from './components/FormTab'
 import FormWizard from './components/FormWizard'
@@ -15,16 +17,19 @@ import NestedElementLayout from './components/NestedElementLayout'
 import ElementLabel from './components/ElementLabel'
 import ElementError from './components/ElementError'
 
-import TextElement from './components/elements/TextElement'
-import ObjectElement from './components/elements/ObjectElement'
 import GroupElement from './components/elements/GroupElement'
 import ListElement from './components/elements/ListElement'
+import ObjectElement from './components/elements/ObjectElement'
+import TextElement from './components/elements/TextElement'
+import TTextElement from './components/elements/TTextElement'
 
 import columns from './utils/columns'
 
 export default {
   components: {
     Laraform,
+    FormLanguageSelector,
+    FormLanguageSelectorTab,
     FormTabs,
     FormTab,
     FormWizard,
@@ -42,10 +47,11 @@ export default {
     ElementError,
   },
   elements: {
-    TextElement,
-    ObjectElement,
     GroupElement,
     ListElement,
+    ObjectElement,
+    TextElement,
+    TTextElement,
   },
   classes: {
     
@@ -58,6 +64,8 @@ export default {
 export const core = {
   components: {
     Laraform,
+    FormLanguageSelector,
+    FormLanguageSelectorTab,
     FormTabs,
     FormTab,
     FormWizard,

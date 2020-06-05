@@ -4,6 +4,12 @@
     @submit.prevent="handleSubmit"
   >
     <component
+      :is="extendedComponents.FormLanguageSelector"
+      v-if="multilingual"
+      @changeLanguage="setLanguage"
+    />
+
+    <component
       :is="extendedComponents.FormTabs"
       v-if="hasTabs"
       :tabs="tabs"

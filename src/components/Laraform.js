@@ -1010,6 +1010,10 @@ export default {
     if (this.class === null) {
       this.class = this.form.class || null
     }
+
+    if (this.multilingual === null) {
+      this.multilingual = this.form.multilingual !== undefined ? this.form.multilingual : false
+    }
     
     if (this.form.buttons && this.form.buttons.length > 0) {
       this.buttons = _.merge(this.form.buttons || [], this.buttons)
@@ -1030,12 +1034,24 @@ export default {
     // otherwise get the default value from config
     _.each([
       'theme', 'columns', 'validateOn', 'labels',
-      'formErrors', 'method', 'locale',
+      'formErrors', 'method', 'locale', 'languages',
+      'language',
     ], (property) => {
       if (this[property] === null) {
         this[property] = this.form[property] !== undefined
           ? this.form[property]
           : this.$laraform.config[property]
+      }
+    })
+
+    // if the form has a property, merge it
+    // with the component's existing data
+    _.each(['schema', 'tabs', 'wizard', 'messages'], (property) => {
+      if (this.form[property]) {
+        this[property] = _.merge({}, 
+          _.cloneDeep(this.form[property]), 
+          _.cloneDeep(this[property])
+        )
       }
     })
   },
