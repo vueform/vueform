@@ -52,7 +52,7 @@ const mergeClass = function (base, add) {
 
       _.each(add, (a) => {
         if (classes.indexOf(a) === -1) {
-          classes = _.concat(base, [a])
+          classes = _.concat(classes, [a])
         }
       })
     } else {

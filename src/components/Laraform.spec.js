@@ -163,27 +163,6 @@ describe('Laraform component', () => {
     expect(form.vm.formData instanceof FormData).toBe(true)
   })
 
-  it('should update schema when form.schema changes', () => {
-    let form = createForm({}, {
-      propsData: {
-        form: {
-          schema: {
-            name: {
-              type: 'text',
-              label: 'a'
-            }
-          }
-        }
-      }
-    })
-
-    expect(form.findComponent({ name: 'TextElement' }).vm.label).toBe('a')
-
-    form.vm.form.schema.name.label = 'b'
-
-    expect(form.findComponent({ name: 'TextElement' }).vm.label).toBe('b')
-  })
-
   it('should call send on submit', () => {
     const { LocalVue, config } = installLaraform()
 

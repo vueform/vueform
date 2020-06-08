@@ -4,9 +4,13 @@ import formData from './../utils/formData'
 import isVueI18nInstalled from './../utils/isVueI18nInstalled'
 import translator from './../utils/translator'
 import HasEvents from './../mixins/HasEvents'
+import ref from './../directives/ref'
 
 export default {
   name: 'Laraform',
+  directives: {
+    ref
+  },
   mixins: [HasEvents],
   render() {
     return this.extendedTheme.components.Laraform.render.apply(this)
@@ -280,6 +284,8 @@ export default {
         if (_.isEmpty(schema)) {
           return
         }
+
+        console.log(schema)
 
         this.schema = schema
       },
@@ -923,10 +929,14 @@ export default {
     },
 
     $_setElements$() {
+      if (!this.$refs.elements$) {
+        throw new Error('elements$ ref must be defined')
+      }
+
       let elements$ = {}
       let elementRefs$ = _.isArray(this.$refs.elements$)
         ? this.$refs.elements$
-        : this.$refs.elements$.$refs.elements$
+        : this.$refs.elements$.$refs.elements$ || []
 
       _.each(elementRefs$, (element$) => {
         elements$[element$.name] = element$
@@ -937,9 +947,15 @@ export default {
 
     $_setButtons$() {
       let buttons$ = {}
-      let buttonsRefs$ = _.isArray(this.$refs.buttons$)
-        ? this.$refs.buttons$
-        : this.$refs.buttons$.$refs.buttons$
+      let buttonsRefs$ = this.$refs.buttons$
+
+      if (!buttonsRefs$) {
+        return
+      }
+
+      if (!_.isArray(buttonsRefs$)) {
+        buttonsRefs$ = this.$refs.buttons$.$refs.buttons$
+      }
 
       _.each(buttonsRefs$, (button$) => {
         buttons$[button$.name] = button$

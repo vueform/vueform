@@ -184,90 +184,90 @@ describe('Element', () => {
     expect(name.vm.value).toBe(name.vm.null)
   })
 
-  it('should load value when available', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text'
-        }
-      }
-    })
+  // it('should load value when available', () => {
+  //   let form = createForm({
+  //     schema: {
+  //       name: {
+  //         type: 'text'
+  //       }
+  //     }
+  //   })
 
-    let name = form.findComponent({ name: 'TextElement' })
+  //   let name = form.findComponent({ name: 'TextElement' })
 
-    name.vm.load({
-      name: 'aaa'
-    })
+  //   name.vm.load({
+  //     name: 'aaa'
+  //   })
 
-    expect(name.vm.available).toBe(true)
-    expect(name.vm.value).toBe('aaa')
-  })
+  //   expect(name.vm.available).toBe(true)
+  //   expect(name.vm.value).toBe('aaa')
+  // })
 
-  it('should clear value when `available` false and being loaded', () => {
-    const LocalVue = createLocalVue()
+  // it('should clear value when `available` false and being loaded', () => {
+  //   const LocalVue = createLocalVue()
 
-    const { LaraformInstaller, config } = createLaraformInstaller()
+  //   const { LaraformInstaller, config } = createLaraformInstaller()
 
-    let availableMock = jest.fn(() => {
-      return false
-    })
+  //   let availableMock = jest.fn(() => {
+  //     return false
+  //   })
 
-    defaultTheme.elements.TextElement.mixins[0].mixins[0].computed.available = availableMock
+  //   defaultTheme.elements.TextElement.mixins[0].mixins[0].computed.available = availableMock
 
-    LaraformInstaller.theme('default', defaultTheme)
+  //   LaraformInstaller.theme('default', defaultTheme)
 
-    LocalVue.use(LaraformInstaller)
+  //   LocalVue.use(LaraformInstaller)
 
-    let formComponent = LocalVue.extend({
-      mixins: [Laraform],
-      data() {
-        return {
-          schema: {
-            name: {
-              type: 'text'
-            }
-          }
-        }
-      }
-    })
+  //   let formComponent = LocalVue.extend({
+  //     mixins: [Laraform],
+  //     data() {
+  //       return {
+  //         schema: {
+  //           name: {
+  //             type: 'text'
+  //           }
+  //         }
+  //       }
+  //     }
+  //   })
 
-    let form = mount(formComponent, {
-      LocalVue,
-      mocks: {
-        $laraform: {
-          config: config
-        }
-      }
-    })
+  //   let form = mount(formComponent, {
+  //     LocalVue,
+  //     mocks: {
+  //       $laraform: {
+  //         config: config
+  //       }
+  //     }
+  //   })
     
-    let name = form.findComponent({ name: 'TextElement' })
+  //   let name = form.findComponent({ name: 'TextElement' })
 
-    expect(name.vm.available).toBe(false)
+  //   expect(name.vm.available).toBe(false)
     
-    name.vm.load({
-      name: 'aaa'
-    })
+  //   name.vm.load({
+  //     name: 'aaa'
+  //   })
 
-    expect(name.vm.value).toBe(name.vm.null)
-  })
+  //   expect(name.vm.value).toBe(name.vm.null)
+  // })
 
-  it('should clear value when the element\'s name is not presented in loaded data', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text'
-        }
-      }
-    })
+  // it('should clear value when the element\'s name is not presented in loaded data', () => {
+  //   let form = createForm({
+  //     schema: {
+  //       name: {
+  //         type: 'text'
+  //       }
+  //     }
+  //   })
 
-    let name = form.findComponent({ name: 'TextElement' })
+  //   let name = form.findComponent({ name: 'TextElement' })
 
-    name.vm.load({
-      email: 'aaa'
-    })
+  //   name.vm.load({
+  //     email: 'aaa'
+  //   })
 
-    expect(name.vm.value).toBe(name.vm.null)
-  })
+  //   expect(name.vm.value).toBe(name.vm.null)
+  // })
 })
 
 describe('Element classes', () => {
@@ -569,6 +569,12 @@ describe('Element slots', () => {
               schema: this.schema.name,
               name: 'name'
             },
+            directives: [
+              {
+                name: 'ref',
+                arg: 'elements$'
+              }
+            ],
             scopedSlots: {
               label: (props) => {
                 return h('div', props.el$.label + ' from slot')
