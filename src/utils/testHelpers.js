@@ -5,7 +5,9 @@ import bootstrap from './../themes/bootstrap'
 import defaultTheme from './../themes/default'
 import config from './../config'
 import condition from './../plugins/condition/services/condition'
+import en from './../locales/en'
 import _ from 'lodash'
+window._ = _
 
 const themes = {
   bootstrap,
@@ -39,6 +41,14 @@ const createLaraformInstaller = function(options = {}) {
 
   if (options.plugins !== undefined) {
     LaraformInstaller.plugins(options.plugins)
+  }
+
+  if (options.locales !== undefined) {
+    _.each(options.locales, (locale, name) => {
+      LaraformInstaller.locale(name, locale)
+    })
+  } else {
+    LaraformInstaller.locale('en', en)
   }
 
   return {
@@ -80,6 +90,9 @@ const createForm = function(data, options = {}) {
         services: {
           condition,
         },
+        locales: options.locales || {
+          en: en
+        }
       }
     }
   }

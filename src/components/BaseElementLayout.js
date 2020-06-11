@@ -27,8 +27,5 @@ export default {
 
       return classes
     },
-    mainClass() {
-      return _.keys(this.defaultClasses)[0]
-    }
   }
 }

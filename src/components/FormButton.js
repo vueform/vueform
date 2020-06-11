@@ -57,10 +57,6 @@ export default {
       return classes
     },
 
-    mainClass() {
-      return _.keys(this.defaultClasses)[0]
-    },
-
     /**
      * Determines if the button is disabled.
      * 

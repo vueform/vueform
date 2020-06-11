@@ -1,9 +1,8 @@
 import _ from 'lodash'
 import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
 import formData from './../utils/formData'
-import isVueI18nInstalled from './../utils/isVueI18nInstalled'
-import translator from './../utils/translator'
 import HasEvents from './../mixins/HasEvents'
+import HasTranslator from './../mixins/HasTranslator'
 import ref from './../directives/ref'
 
 export default {
@@ -11,7 +10,7 @@ export default {
   directives: {
     ref
   },
-  mixins: [HasEvents],
+  mixins: [HasEvents, HasTranslator],
   render() {
     return this.extendedTheme.components.Laraform.render.apply(this)
   },
@@ -1013,10 +1012,6 @@ export default {
         this.$options.components[name] = component
       })
     },
-
-    $_isVueI18nInstalled: isVueI18nInstalled,
-
-    __: translator,
   },
   created() {
     if (this.key === null) {

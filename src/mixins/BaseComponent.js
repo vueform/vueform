@@ -10,5 +10,8 @@ export default {
     components() {
       return this.theme.components
     },
+    mainClass() {
+      return _.keys(this.defaultClasses)[0]
+    }
   }
 }

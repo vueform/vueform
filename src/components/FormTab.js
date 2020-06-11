@@ -153,6 +153,10 @@ export default {
      * @returns {void}
      */
     select() {
+      if (this.active) {
+        return
+      }
+
       this.$emit('select', this)
 
       _.each(this.children$, (element$) => {
@@ -175,7 +179,7 @@ export default {
 
       this.active = true
 
-      this.fire('active')
+      this.handleActive()
     },
 
     /**
@@ -191,26 +195,28 @@ export default {
 
       this.active = false
 
-      this.fire('inactive')
+      this.handleInactive()
     },
         
     /**
      * Triggered when the tab becomes active using [activate](#method-activate) or [select](#method-select) method.
      *
      * @public
-     * @prevents 
      * @event active
      */
-    handleActive(){},
+    handleActive(){
+      this.fire('active')
+    },
         
     /**
      * Triggered when the tab becomes active using [inactivate](#method-activate) on the current or [select](#method-select) method for an other tab.
      *
      * @public
-     * @prevents 
      * @event inactive
      */
-    handleInactive(){},
+    handleInactive(){
+      this.fire('inactive')
+    },
 
     /**
      * Apply conditions of the step to the elements within.
@@ -237,9 +243,11 @@ export default {
      * @returns {void}
      */
     $_initEvents() {
-      _.each(this.events, (func, event) => {
-        if (this.tab[event] !== undefined) {
-          this.$set(this.events, event, this.tab[event])
+      _.each(this.events, (event) => {
+        var listener = this.tab['on' + _.upperFirst(event)]
+
+        if (listener !== undefined) {
+          this.on(event, listener)
         }
       })
     },

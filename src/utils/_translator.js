@@ -7,7 +7,7 @@ export default function(expr, data) {
     data = {}
   }
 
-  locale = this.selectedLocale !== undefined ? this.selectedLocale : this.locale
+  let locale = this.selectedLocale !== undefined ? this.selectedLocale : this.locale
 
   var tag = _.get(this.$laraform.locales[this[locale]], expr)
 
