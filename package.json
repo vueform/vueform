@@ -82,8 +82,10 @@
     },
     "dependencies": {
         "autosize": "^4.0.2",
+        "axios": "^0.19.2",
         "bootstrap": "^4.4.1",
         "flatpickr": "^4.5.2",
+        "moxios": "^0.4.0",
         "places.js": "^1.14.0",
         "sortablejs": "^1.7.0",
         "sprintf-js": "^1.1.2",

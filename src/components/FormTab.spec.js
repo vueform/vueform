@@ -5,6 +5,32 @@ import { toBeVisible } from '@testing-library/jest-dom/matchers'
 expect.extend({toBeVisible})
 
 describe('Form Tab', () => {
+  it('should render step label', () => {
+    let form = createForm({
+      tabs: {
+        first: {
+          label: 'First',
+          elements: ['a']
+        },
+        second: {
+          label: 'Second',
+          elements: ['b']
+        },
+      },
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(form.findAllComponents({ name: 'FormTab' }).at(0).html()).toContain('First')
+    expect(form.findAllComponents({ name: 'FormTab' }).at(1).html()).toContain('Second')
+  })
+
   it('should add class defined in schema to classes list', () => {
     let form = createForm({
       tabs: {

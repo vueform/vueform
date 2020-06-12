@@ -1,6 +1,11 @@
 import _ from 'lodash'
+import axios from './services/axios'
 import Validation from './services/validation'
 import applyPlugins from './utils/applyPlugins'
+
+if (window._ === undefined) {
+  window._ = _
+}
 
 export default function (config) {
   const Laraform = class {
@@ -21,6 +26,7 @@ export default function (config) {
 
       this.options.services = {
         validation: Validation,
+        axios,
       }
     }
 

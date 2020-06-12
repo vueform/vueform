@@ -24,7 +24,7 @@ const rules = {
     }
 
     async validate(value) {
-      var res = await axios.post(laraform.config.endpoints.validators.active_url, {
+      var res = await this.form$.$laraform.services.axios.post(laraform.config.endpoints.validators.active_url, {
         url: value
       })
 
@@ -390,7 +390,7 @@ const rules = {
     async validate(value) {
       var name = this.element$.name
 
-      var res = await axios.post(laraform.config.endpoints.validators.exists, {
+      var res = await this.form$.$laraform.services.axios.post(laraform.config.endpoints.validators.exists, {
         params: this.requestParams,
         [name]: value,
         laraformFieldName: name
@@ -804,7 +804,7 @@ const rules = {
     }
     
     async validate(value) {
-      var res = await axios.post(laraform.config.endpoints.validators.unique, {
+      var res = await this.form$.$laraform.services.axios.post(this.form$.$laraform.config.endpoints.validators.unique, {
         params: this.requestParams,
         value: value
       })

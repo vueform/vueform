@@ -284,8 +284,6 @@ export default {
           return
         }
 
-        console.log(schema)
-
         this.schema = schema
       },
       deep: true,
@@ -736,7 +734,7 @@ export default {
     send() {
       this.submitting = true
 
-      axios[this.method](this.endpoint, this.formData)
+      this.$laraform.services.axios[this.method](this.endpoint, this.formData)
         .then((response) => {
           this.submitting = false
 

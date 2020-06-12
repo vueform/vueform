@@ -302,7 +302,7 @@ export default {
 
       this.active = true
 
-      this.fire('active')
+      this.handleActive()
     },
 
     /**
@@ -318,7 +318,7 @@ export default {
 
       this.active = false
 
-      this.fire('inactive')
+      this.handleInactive()
     },
 
     /**
@@ -334,7 +334,7 @@ export default {
 
       this.disabled = false
 
-      this.fire('enable')
+      this.handleEnable()
     },
 
     /**
@@ -344,9 +344,13 @@ export default {
      * @returns {void}
      */
     disable() {
+      if (this.disabled) {
+        return
+      }
+      
       this.disabled = true
 
-      this.fire('disable')
+      this.handleDisable()
     },
 
     /**
@@ -362,7 +366,7 @@ export default {
 
       this.completed = true
 
-      this.fire('complete')
+      this.handleComplete()
     },
 
     /**
@@ -399,46 +403,51 @@ export default {
       * Triggered when the step becomes active using [activate](#method-activate) method.
       *
       * @public
-      * @prevents 
       * @event active
       */
-    handleActive(){},
+    handleActive(){
+      this.fire('active')
+    },
         
     /**
       * Triggered when the step becomes inactive using [deactivate](#method-deactivate) method.
       *
       * @public
-      * @prevents 
       * @event inactive
       */
-    handleInactive(){},
+    handleInactive(){
+      this.fire('inactive')
+    },
         
     /**
       * Triggered when the step becomes commpleted using [complete](#method-complete) method.
       *
       * @public
-      * @prevents 
       * @event complete
       */
-    handleComplete(){},
+    handleComplete(){
+      this.fire('complete')
+    },
         
     /**
       * Triggered when the step becomes enabled using [enable](#method-enable) method.
       *
       * @public
-      * @prevents 
       * @event enable
       */
-    handleEnable(){},
+    handleEnable(){
+      this.fire('enable')
+    },
         
     /**
       * Triggered when the step becomes disabled using [disable](#method-disable) method.
       *
       * @public
-      * @prevents 
       * @event disable
       */
-    handleDisable(){},
+    handleDisable(){
+      this.fire('disable')
+    },
 
     /**
       * Apply conditions of the step to the elements within.
@@ -459,6 +468,22 @@ export default {
     },
 
     /**
+     * Set event listeners based on the step schema's {eventName} property.
+     * 
+     * @private
+     * @returns {void}
+     */
+    $_initEvents() {
+      _.each(this.events, (event) => {
+        var listener = this.step['on' + _.upperFirst(event)]
+
+        if (listener !== undefined) {
+          this.on(event, listener)
+        }
+      })
+    },
+
+    /**
       * Waits for all async processes to finish, then invokes a callback.
       * 
       * @private
@@ -473,6 +498,8 @@ export default {
     },
   },
   mounted() {
+    this.$_initEvents()
+
     // nextTick is required because elements$
     // only available after form is mounted,
     // which is later than the wizard mount

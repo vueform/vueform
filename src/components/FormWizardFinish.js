@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     finish() {
-      if (this.wizard$.fire('finish') === false) {
+      if (this.wizard$.handleFinish() === false) {
         return
       }
 

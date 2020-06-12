@@ -213,7 +213,7 @@ export default {
      * @returns {void}
      */
     next() {
-      if (this.fire('next', this.$next) === false) {
+      if (this.handleNext(this.$next) === false) {
         return
       }
 
@@ -228,7 +228,7 @@ export default {
      * @returns {void}
      */
     previous() {
-      if (this.fire('previous', this.$previous) === false) {
+      if (this.handlePrevious(this.$previous) === false) {
         return
       }
 
@@ -254,10 +254,11 @@ export default {
 
       this.complete()
 
-      if (!this.done) {
-        this.firstNonDone$.select()
-        return
-      }
+      // This will never be called
+      // if (!this.done) {
+      //   this.firstNonDone$.select()
+      //   return
+      // }
 
       callback()
     },
@@ -331,7 +332,9 @@ export default {
      * @param {object} step$ the next step component
      * @event next
      */
-    handleNext(step$){},
+    handleNext(step$){
+      return this.fire('next', step$)
+    },
         
     /**
      * Triggered when moves to previous step. Can prevent further execution if returns `false`.
@@ -341,7 +344,9 @@ export default {
      * @param {object} step$ the previous step component
      * @event previous
      */
-    handlePrevious(step$){},
+    handlePrevious(step$){
+      return this.fire('previous', step$)
+    },
         
     /**
      * Triggered when finishes. Can prevent further execution if returns `false`.
@@ -350,7 +355,9 @@ export default {
      * @prevents 
      * @event finish
      */
-    handleFinish(){},
+    handleFinish(){
+      return this.fire('finish')
+    },
 
     /**
      * Triggered when a step is selected.
@@ -447,7 +454,6 @@ export default {
       }
       
       this.$_enableUntilCurrent()
-
       // if new steps are shown because of
       // changing conditions the ones before
       // the last active should be enabled

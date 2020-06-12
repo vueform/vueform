@@ -5,8 +5,10 @@ import bootstrap from './../themes/bootstrap'
 import defaultTheme from './../themes/default'
 import config from './../config'
 import condition from './../plugins/condition/services/condition'
+import validation from './../services/validation'
 import en from './../locales/en'
 import _ from 'lodash'
+import axios from 'axios'
 window._ = _
 
 const themes = {
@@ -89,6 +91,8 @@ const createForm = function(data, options = {}) {
         plugins: config.plugins,
         services: {
           condition,
+          validation,
+          axios,
         },
         locales: options.locales || {
           en: en

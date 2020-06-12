@@ -609,10 +609,19 @@ export default {
      *
      * @public
      * @param {any} value the value to be set for the element
+     * @param {boolean} validate whether the element should be validated (default: `false`)
      * @returns {void}
      */
-    update(value) {
+    update(value, validate) {
+      if (validate === undefined) {
+        let validate = false
+      }
+
       this.value = value
+
+      if (validate) {
+        this.validate()
+      }
     },
 
     /**
