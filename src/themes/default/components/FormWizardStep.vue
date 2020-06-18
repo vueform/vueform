@@ -37,3 +37,12 @@
     }
   }
 </script>
+
+<style>
+.wizard-step-active {
+  font-weight: bold;
+}
+.wizard-step-disabled {
+  opacity: 0.3;
+}
+</style>

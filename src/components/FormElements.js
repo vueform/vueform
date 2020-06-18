@@ -12,35 +12,4 @@ export default {
       required: true
     },
   },
-  computed: {
-    elements() {
-      var blocks
-
-      if (!_.isEmpty(this.form$.wizard$)) {
-        blocks = this.form$.wizard$.steps$
-      }
-
-      if (!_.isEmpty(this.form$.tabs$)) {
-        blocks = this.form$.tabs$.tabs$
-      }
-
-      if (blocks) {
-        var schema = {}
-
-        _.each(blocks, (block) => {
-          var elements = block.step !== undefined
-            ? block.step.elements
-            : block.tab.elements
-
-          _.each(elements, (element) => {
-            schema[element] = this.schema[element]
-          })
-        })
-
-        return schema
-      }
-
-      return this.schema
-    },
-  }
 }

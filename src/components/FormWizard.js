@@ -45,6 +45,36 @@ export default {
       ]
     }
   },
+  watch: {
+    elements$: {
+      handler(newValue, oldValue) {
+        let newElements$ = _.difference(_.keys(newValue), _.keys(oldValue))
+
+        _.each(newElements$, (newElement$) => {
+          this.elements$[newElement$].deactivate()
+        })
+      },
+      deep: false,
+      immediate: false
+    },
+    steps: {
+      handler() {
+        this.$nextTick(() => {
+          this.$_setSteps$()
+
+          if (_.isEmpty(this.lastEnabled$)) {
+            this.first$.enable()
+          }
+
+          if (_.isEmpty(this.current$)) {
+            this.first$.select()
+          }
+        })
+      },
+      deep: true,
+      immediate: false,
+    }
+  },
   computed: {
     /**
      * Determines whether the wizard has any pending elements.
@@ -197,13 +227,24 @@ export default {
      *
      * @public
      * @param {object} step key of step in [wizard](reference/frontend-form#prop-wizard)
+     * @param {boolean} enableUntil whether steps should be enabled before destination step (default: false)
      * @returns {void}
      */
-    goTo(step) {
+    goTo(step, enableUntil) {
+      if (enableUntil === undefined) {
+        let enableUntil = false
+      }
+
       var step = this.visible$[step]
       
       step.enable()
       step.select()
+
+      if (enableUntil) {
+        this.$nextTick(() => {
+          this.$_enableUntilLastEnabled()
+        })
+      }
     },
 
     /**

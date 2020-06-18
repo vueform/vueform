@@ -1,5 +1,6 @@
 import { createForm } from './../utils/testHelpers'
 import { createLocalVue } from '@vue/test-utils'
+import { dynamicsTesting } from './FormWizard.spec.js'
 
 describe('Form Tabs', () => {
   it('should render tabs', () => {
@@ -161,4 +162,17 @@ describe('Form Tabs', () => {
 
     expect(onChangeMock.mock.calls.length).toBe(1)
   })
+})
+
+dynamicsTesting({
+  suiteName: 'Form Tabs Dynamics',
+  existingBlocks: 'existingTabs',
+  addedBlocks: 'addedTabs',
+  blocks: 'tabs',
+  block: 'tab',
+  blocksKeyword: 'tabs',
+  blockKeyword: 'tab',
+  blocksSelector: 'FormTabs',
+  blockSelector: 'FormTab',
+  controlSelectors: false
 })

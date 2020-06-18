@@ -44,6 +44,34 @@ export default {
       ],
     }
   },
+  watch: {
+    elements$: {
+      handler(newValue, oldValue) {
+        let newElements$ = _.difference(_.keys(newValue), _.keys(oldValue))
+
+        _.each(newElements$, (newElement$) => {
+          this.elements$[newElement$].deactivate()
+        })
+      },
+      deep: false,
+      immediate: false
+    },
+    tabs: {
+      handler() {
+        this.$nextTick(() => {
+          this.$_setTabs$()
+
+          this.$nextTick(() => {
+            if (_.isEmpty(this.current$)) {
+              this.first$.select()
+            }
+          })
+        })
+      },
+      deep: true,
+      immediate: false,
+    }
+  },
   computed: {
     /**
      * Returns the visible [tab$](reference/frontend-tab) components.
@@ -81,12 +109,43 @@ export default {
     first$() {
       return this.visible$[_.head(_.keys(this.visible$))]
     },
+
+    /**
+     * Returns the next [tab$](reference/frontend-tab) component.
+     * 
+     * @type {tab$}
+     */
+    next$() {
+      return this.visible$[_.keys(this.visible$)[this.current$.index + 1]]
+    },
+
+    /**
+     * Returns the previous [tabs$](reference/frontend-tab) component.
+     * 
+     * @type {tab$}
+     */
+    previous$() {
+      return this.visible$[_.keys(this.visible$)[this.current$.index - 1]]
+    },
   },
   methods: {
     /**
-     * Selects a tab.
+     * Moves to a tab.
      *
      * @public
+     * @param {object} tab key of tab in [tabs](reference/frontend-form#prop-tabs)
+     * @returns {void}
+     */
+    goTo(tab) {
+      let tab$ = this.visible$[tab]
+      
+      tab$.select()
+    },
+
+    /**
+     * Selects a tab.
+     *
+     * @private
      * @param {object} tab$ selected tab component
      * @returns {void}
      */
@@ -134,7 +193,7 @@ export default {
       this.fire('change', tab$)
     },
 
-    $_setTabs() {
+    $_setTabs$() {
       let tabs$ = {}
 
       _.each(this.$refs.tabs$, (tab$) => {
@@ -149,7 +208,7 @@ export default {
       return
     }
 
-    this.$_setTabs()
+    this.$_setTabs$()
 
     // nextTick is required because elements$
     // only available after form is mounted,

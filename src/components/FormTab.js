@@ -32,6 +32,14 @@ export default {
       type: Object,
       required: false,
     },
+
+    /**
+     * The [visible$](reference/frontend-tabs#prop-visible) step of formWizard$.
+     */
+    visible$: {
+      type: Object,
+      required: false,
+    },
   },
   data() {
     return {
@@ -53,6 +61,21 @@ export default {
       events: [
         'active', 'inactive',
       ],
+    }
+  },
+  watch: {
+    children$: {
+      handler() {
+        if (!this.active) {
+          return
+        } 
+
+        _.each(this.children$, (element$) => {
+          element$.activate()
+        })
+      },
+      deep: false,
+      immediate: false,
     }
   },
   computed: {
@@ -142,6 +165,15 @@ export default {
      */
     conditions() {
       return this.tab.conditions || []
+    },
+
+    /**
+      * Returns the index of tab.
+      * 
+      * @type {integer}
+      */
+    index() {
+      return _.keys(this.visible$).indexOf(this.name)
     },
   },
   methods: {

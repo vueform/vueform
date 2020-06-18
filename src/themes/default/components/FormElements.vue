@@ -1,7 +1,7 @@
 <template>
   <div :class="classes.container">
     <div :class="classes.wrapper">
-      <template v-for="(element, name) in elements">
+      <template v-for="(element, name) in schema">
         <component
           :is="component(element)"
           :schema="element"

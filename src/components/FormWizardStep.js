@@ -33,7 +33,7 @@ export default {
     },
 
     /**
-     * The [visible$](reference/frontend-wizard#prop-viisible) step of formWizard$.
+     * The [visible$](reference/frontend-wizard#prop-visible) step of formWizard$.
      */
     visible$: {
       type: Object,
@@ -76,6 +76,28 @@ export default {
       events: [
         'active', 'inactive', 'complete', 'enable', 'disable',
       ]
+    }
+  },
+  watch: {
+    visible(visible) {
+      // if a revealed step is earlier than the
+      // current step, it should be enabled
+      if (visible && this.index < this.form$.wizard$.current$.index) {
+        this.enable()
+      }
+    },
+    children$: {
+      handler() {
+        if (!this.active) {
+          return
+        } 
+
+        _.each(this.children$, (element$) => {
+          element$.activate()
+        })
+      },
+      deep: false,
+      immediate: false,
     }
   },
   computed: {
@@ -237,15 +259,6 @@ export default {
     index() {
       return _.keys(this.visible$).indexOf(this.name)
     },
-  },
-  watch: {
-    visible(visible) {
-      // if a revealed step is earlier than the
-      // current step, it should be enabled
-      if (visible && this.index < this.form$.wizard$.current$.index) {
-        this.enable()
-      }
-    }
   },
   methods: {
     /**

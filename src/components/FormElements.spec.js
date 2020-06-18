@@ -33,7 +33,11 @@ describe('Form elements', () => {
     expect(form.findComponent({name: 'CustomElement'}).exists()).toBe(true)
   })
 
-  it('should render elements in order of wizard `elements`', () => {
+  it('should render elements in order of wizard `elements`', (done) => {
+    let LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
     let form = createForm({
       wizard: {
         first: {
@@ -56,10 +60,17 @@ describe('Form elements', () => {
       }
     })
 
-    expect(_.keys(form.findComponent({ name: 'FormElements' }).vm.elements)).toStrictEqual(['a', 'b', 'c'])
+    LocalVue.nextTick(() => {
+      expect(_.keys(form.findComponent({ name: 'FormElements' }).vm.schema)).toStrictEqual(['a', 'b', 'c'])
+      done()
+    })
   })
 
-  it('should render elements in order of tabs `elements`', () => {
+  it('should render elements in order of tabs `elements`', (done) => {
+    let LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
     let form = createForm({
       tabs: {
         first: {
@@ -82,6 +93,9 @@ describe('Form elements', () => {
       }
     })
 
-    expect(_.keys(form.findComponent({ name: 'FormElements' }).vm.elements)).toStrictEqual(['a', 'b', 'c'])
+    LocalVue.nextTick(() => {
+      expect(_.keys(form.findComponent({ name: 'FormElements' }).vm.schema)).toStrictEqual(['a', 'b', 'c'])
+      done()
+    })
   })
 })

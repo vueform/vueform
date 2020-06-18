@@ -291,7 +291,9 @@ export default {
     },
     schema: {
       handler() {
-        this.$_setElements$()
+        this.$nextTick(() => {
+          this.$_setElements$()
+        })
       },
       deep: true,
       immediate: false,
@@ -305,14 +307,22 @@ export default {
     },
     wizard: {
       handler() {
-        this.$_setWizard$()
+        this.$_resortSchema()
+
+        this.$nextTick(() => {
+          this.$_setWizard$()
+        })
       },
       deep: true,
       immediate: false,
     },
     tabs: {
       handler() {
-        this.$_setTabs$()
+        this.$_resortSchema()
+
+        this.$nextTick(() => {
+          this.$_setTabs$()
+        })
       },
       deep: true,
       immediate: false,
@@ -962,11 +972,42 @@ export default {
     },
 
     $_setWizard$() {
-      this.$set(this, 'wizard$', this.$refs.wizard$)
+      this.$set(this, 'wizard$', this.$refs.wizard$ || {})
     },
 
     $_setTabs$() {
-      this.$set(this, 'tabs$', this.$refs.tabs$)
+      this.$set(this, 'tabs$', this.$refs.tabs$ || {})
+    },
+
+    $_resortSchema() {
+      let all = _.keys(this.schema)
+      let blocks
+
+      if (!_.isEmpty(this.wizard)) {
+        blocks = this.wizard
+      }
+
+      if (!_.isEmpty(this.tabs)) {
+        blocks = this.tabs
+      }
+
+      if (blocks) {
+        let schema = {}
+
+        _.each(blocks, (block) => {
+          _.each(block.elements, (element) => {
+            schema[element] = this.schema[element]
+          })
+        })
+
+        _.each(all, (element) => {
+          if (schema[element] === undefined) {
+            schema[element] = this.schema[element]
+          }
+        })
+
+        this.updateSchema(schema)
+      }
     },
 
     /**
@@ -1063,6 +1104,8 @@ export default {
         )
       }
     })
+
+    this.$_resortSchema()
   },
   beforeMount() {
     this.$_registerComponents()

@@ -1,12 +1,13 @@
 <template>
   <ul :class="classes.container">
 
-    <template v-for="(tab, name, key) in tabs">
+    <template v-for="(tab, name) in tabs">
       <component :is="components.FormTab"
         :tab="tab"
         :name="name"
         :elements$="elements$"
-        :key="key"
+        :visible$="visible$"
+        :key="name"
         ref="tabs$"
         @select="select"
       />

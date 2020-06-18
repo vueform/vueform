@@ -237,6 +237,41 @@ describe('Laraform component', () => {
 
     expect(proceedMock.mock.calls.length).toBe(0)
   })
+
+  it('should update elements$ when schema changes', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+    
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        }
+      }
+    })
+
+    expect(_.keys(form.vm.elements$).length).toBe(1)
+
+    form.setData({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    LocalVue.nextTick(() => {
+    LocalVue.nextTick(() => {
+      expect(_.keys(form.vm.elements$).length).toBe(2)
+      
+      done()
+    })
+    })
+  })
 })
 
 describe('Selecting theme', () => {
