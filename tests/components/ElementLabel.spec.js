@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../utils/testHelpers'
+import { createForm } from './../../src/utils/testHelpers'
 
 describe('Element Label Rendering', () => {
   it('should render as a string', () => {

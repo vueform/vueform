@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../utils/testHelpers'
+import { createForm } from './../../src/utils/testHelpers'
 
 describe('Form Element Rendering', () => {
   it('should render element based on type', () => {

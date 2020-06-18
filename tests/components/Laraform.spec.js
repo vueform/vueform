@@ -1,9 +1,9 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform } from './../utils/testHelpers'
-import { Laraform } from './../index'
-import { mergeComponentClasses } from './../utils/mergeClasses'
-import defaultTheme from './../themes/default'
-import bootstrapTheme from './../themes/bootstrap'
+import { createForm, installLaraform } from './../../src/utils/testHelpers'
+import { Laraform } from './../../src/index'
+import { mergeComponentClasses } from './../../src/utils/mergeClasses'
+import defaultTheme from './../../src/themes/default'
+import bootstrapTheme from './../../src/themes/bootstrap'
 
 describe('Laraform Rendering', () => {
   it('should render element from schema', () => {

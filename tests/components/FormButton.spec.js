@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { mount, createLocalVue } from '@vue/test-utils'
-import { createForm, installLaraform } from './../utils/testHelpers'
-import { Laraform } from './../index'
+import { createForm, installLaraform } from './../../src/utils/testHelpers'
+import { Laraform } from './../../src/index'
 
 describe('Form Button', () => {
   it('should display label', () => {

@@ -1,4 +1,4 @@
-import { createForm } from './../utils/testHelpers'
+import { createForm } from './../../src/utils/testHelpers'
 
 describe('Element Validation', () => {
   it('should be pending if an async validation is in progress', () => {

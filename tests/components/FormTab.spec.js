@@ -1,4 +1,4 @@
-import { createForm } from './../utils/testHelpers'
+import { createForm } from './../../src/utils/testHelpers'
 import { createLocalVue } from '@vue/test-utils'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 

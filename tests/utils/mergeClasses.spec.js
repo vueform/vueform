@@ -1,4 +1,4 @@
-import mergeClasses, { mergeComponentClasses } from './mergeClasses'
+import mergeClasses, { mergeComponentClasses } from './../../src/utils/mergeClasses'
 
 describe('mergeClasses', () => {
   it('should add component with classes', () => {

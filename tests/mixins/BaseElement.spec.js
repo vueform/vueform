@@ -1,8 +1,8 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform, createLaraformInstaller } from './../utils/testHelpers'
-import { mergeComponentClasses } from './../utils/mergeClasses'
-import { Laraform } from './../index'
-import defaultTheme from './../themes/default'
+import { createForm, installLaraform, createLaraformInstaller } from './../../src/utils/testHelpers'
+import { mergeComponentClasses } from './../../src/utils/mergeClasses'
+import { Laraform } from './../../src/index'
+import defaultTheme from './../../src/themes/default'
 
 describe('Element Props & Data', () => {
   it('should add `class` option to main class list', () => {

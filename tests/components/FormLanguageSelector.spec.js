@@ -1,4 +1,4 @@
-import { createForm } from './../utils/testHelpers'
+import { createForm } from './../../src/utils/testHelpers'
 
 describe('Form Language Selector', () => {  
   it('should select form language by clicking tab', () => {

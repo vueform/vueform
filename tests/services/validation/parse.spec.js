@@ -1,4 +1,4 @@
-import parse from './parse'
+import parse from './../../../src/services/validation/parse'
 
 describe('Validation Parse', () => {
   it('should parse rule name', () => {
