@@ -1,6 +1,6 @@
 import { createForm } from './../utils/testHelpers'
 
-describe('Base Validation', () => {
+describe('Element Validation', () => {
   it('should be pending if an async validation is in progress', () => {
     let form = createForm({
       schema: {

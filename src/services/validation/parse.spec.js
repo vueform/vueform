@@ -1,6 +1,6 @@
 import parse from './parse'
 
-describe('Validation parse', () => {
+describe('Validation Parse', () => {
   it('should parse rule name', () => {
     let { rule, attributes } = parse('required')
 

@@ -5,7 +5,7 @@ import { mergeComponentClasses } from './../utils/mergeClasses'
 import defaultTheme from './../themes/default'
 import bootstrapTheme from './../themes/bootstrap'
 
-describe('Laraform component', () => {
+describe('Laraform Rendering', () => {
   it('should render element from schema', () => {
     let form = createForm({
       schema: {
@@ -17,7 +17,9 @@ describe('Laraform component', () => {
 
     expect(form.findComponent({ name: 'TextElement' }).exists()).toBe(true)
   })
+})
 
+describe('Laraform Props & Data', () => {
   it('should set class from `class` data', () => {
     let form = createForm({
       class: 'a'
@@ -74,27 +76,190 @@ describe('Laraform component', () => {
     })
   })
 
-  it('should retrieve an element based on path using el$ method', (done) => {
-    const LocalVue = createLocalVue()
+  it('should select theme what is defined in config', () => {
+    let form = createForm({}, {
+      config: {
+        themes: {
+          default: defaultTheme,
+        },
+        theme: 'default'
+      }
+    })
 
-    LocalVue.config.errorHandler = done
+    let LaraformClasses = defaultTheme.components.Laraform.data().defaultClasses
 
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'text',
-          label: 'A'
+    expect(form.classes()).toStrictEqual([LaraformClasses.form])
+  })
+
+  it('should select theme what is defined in form prop', () => {
+    let form = createForm({}, {
+      config: {
+        themes: {
+          bootstrap: bootstrapTheme,
+          default: defaultTheme,
+        },
+        theme: 'default'
+      },
+      propsData: {
+        form: {
+          theme: 'bootstrap'
         }
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.el$('a').label).toBe('A')
+    let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
 
-      done()
-    })
+    expect(form.classes()).toStrictEqual([LaraformClasses.form])
   })
 
+  it('should select theme what is defined in form data', () => {
+    let form = createForm({
+      theme: 'bootstrap'
+    }, {
+      config: {
+        themes: {
+          bootstrap: bootstrapTheme,
+          default: defaultTheme,
+        },
+        theme: 'default'
+      }
+    }, {
+      propsData: {
+        form: {
+          theme: 'default'
+        }
+      }
+    })
+
+    let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
+
+    expect(form.classes()).toStrictEqual([LaraformClasses.form])
+  })
+
+  it('should use defaults classes if otherwise set', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          label: 'Name'
+        }
+      }
+    })
+
+    // Custom logic
+    let Laraform = form
+
+    // Custom logic
+    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
+
+    // Uses ElementComponent mixin
+    let ElementLabel = form.findComponent({ name: 'ElementLabel' })
+
+    // Uses ThemeComponent mixin
+    let FormElements = form.findComponent({ name: 'FormElements' })
+
+    expect(Laraform.vm.extendedClasses).toStrictEqual(Laraform.vm.defaultClasses)
+    expect(BaseElementLayout.classes()).toContain(BaseElementLayout.vm.defaultClasses.container)
+    expect(ElementLabel.vm.classes).toStrictEqual(ElementLabel.vm.defaultClasses)
+    expect(FormElements.vm.classes).toStrictEqual(FormElements.vm.defaultClasses)
+  })
+
+  it('should overwrite classes if `classes` defined on form level', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          label: 'Name'
+        }
+      },
+      classes: {
+        Laraform: {
+          form: 'class-a'
+        },
+        BaseElementLayout: {
+          container: 'class-b'
+        },
+        FormElements: {
+          container: 'class-c'
+        },
+        ElementLabel: {
+          label: 'class-d'
+        },
+      }
+    })
+
+    // Custom logic
+    let Laraform = form
+
+    // Custom logic
+    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
+
+    // Uses ElementComponent mixin
+    let ElementLabel = form.findComponent({ name: 'ElementLabel' })
+
+    // Uses ThemeComponent mixin
+    let FormElements = form.findComponent({ name: 'FormElements' })
+
+    expect(Laraform.vm.extendedClasses.form).toContain('class-a')
+    expect(Laraform.vm.extendedClasses.form).not.toContain(Laraform.vm.defaultClasses.form)
+    expect(BaseElementLayout.vm.classes.container).toContain('class-b')
+    expect(BaseElementLayout.vm.classes.container).not.toContain(BaseElementLayout.vm.defaultClasses.container)
+    expect(FormElements.vm.classes.container).toContain('class-c')
+    expect(FormElements.vm.classes.container).not.toContain(FormElements.vm.defaultClasses.container)
+    expect(ElementLabel.vm.classes.label).toContain('class-d')
+    expect(ElementLabel.vm.classes.label).not.toContain(ElementLabel.vm.defaultClasses.label)
+  })
+
+  it('should add classes if `addClasses` defined on form level', () => {
+    let addClasses = {
+      container: 'class-a',
+    }
+
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        }
+      },
+      addClasses: {
+        BaseElementLayout: addClasses
+      }
+    })
+
+    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
+    
+    expect(BaseElementLayout.classes()).toContain('class-a')
+    expect(BaseElementLayout.classes()).toContain(BaseElementLayout.vm.defaultClasses.container)
+  })
+
+  it('should overwrite and add classes if `classes` and `addClasses` defined on form level', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        }
+      },
+      classes: {
+        BaseElementLayout: {
+          container: 'class-a'
+        }
+      },
+      addClasses: {
+        BaseElementLayout: {
+          container: 'class-b',
+        }
+      }
+    })
+
+    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
+    
+    expect(BaseElementLayout.classes()).toContain('class-a')
+    expect(BaseElementLayout.classes()).toContain('class-b')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
+  })
+})
+
+describe('Laraform Computed', () => {
   it('should return `data`', () => {
     let form = createForm({
       schema: {
@@ -161,6 +326,29 @@ describe('Laraform component', () => {
     })
 
     expect(form.vm.formData instanceof FormData).toBe(true)
+  })
+})
+
+describe('Laraform Methods', () => {
+  it('should retrieve an element based on path using el$ method', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          label: 'A'
+        }
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.el$('a').label).toBe('A')
+
+      done()
+    })
   })
 
   it('should call send on submit', () => {
@@ -237,106 +425,125 @@ describe('Laraform component', () => {
 
     expect(proceedMock.mock.calls.length).toBe(0)
   })
+})
 
-  it('should update elements$ when schema changes', (done) => {
+describe('Laraform Vuex', () => {
+  it('should update Vuex store data when form data changes', () => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = done
-    
     let form = createForm({
+      storePath: 'form',
       schema: {
         a: {
-          type: 'text'
-        }
-      }
-    })
-
-    expect(_.keys(form.vm.elements$).length).toBe(1)
-
-    form.setData({
-      schema: {
-        a: {
-          type: 'text'
+          type: 'text',
+          default: 1
         },
         b: {
-          type: 'text'
+          type: 'object',
+          schema: {
+            c: {
+              type: 'text',
+              default: 2,
+            },
+            d: {
+              type: 'text',
+              default: 3,
+            }
+          }
         },
-      }
-    })
-
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
-      expect(_.keys(form.vm.elements$).length).toBe(2)
-      
-      done()
-    })
-    })
-  })
-})
-
-describe('Selecting theme', () => {
-  it('should select what is defined in config', () => {
-    let form = createForm({}, {
-      config: {
-        themes: {
-          default: defaultTheme,
-        },
-        theme: 'default'
-      }
-    })
-
-    let LaraformClasses = defaultTheme.components.Laraform.data().defaultClasses
-
-    expect(form.classes()).toStrictEqual([LaraformClasses.form])
-  })
-
-  it('should select what is defined in form prop', () => {
-    let form = createForm({}, {
-      config: {
-        themes: {
-          bootstrap: bootstrapTheme,
-          default: defaultTheme,
-        },
-        theme: 'default'
       },
-      propsData: {
-        form: {
-          theme: 'bootstrap'
-        }
+      storePath: 'form'
+    }, {
+      vuex: {
+        form: {}
       }
     })
 
-    let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
+    LocalVue.nextTick(() => {
+      expect(form.vm.$store.state.form.a).toBe(1)
+      expect(form.vm.$store.state.form.b.c).toBe(2)
+      expect(form.vm.$store.state.form.b.d).toBe(3)
 
-    expect(form.classes()).toStrictEqual([LaraformClasses.form])
+      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+      expect(a.vm.name).toBe('a')
+
+      let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+      expect(c.vm.name).toBe('c')
+
+      let d = form.findAllComponents({ name: 'TextElement' }).at(2)
+      expect(d.vm.name).toBe('d')
+
+      a.get('input').setValue('aaa')
+      c.get('input').setValue('ccc')
+      d.get('input').setValue('ddd')
+
+      LocalVue.nextTick(() => {
+        expect(form.vm.$store.state.form.a).toBe('aaa')
+        expect(form.vm.$store.state.form.b.c).toBe('ccc')
+        expect(form.vm.$store.state.form.b.d).toBe('ddd')
+      })
+    })
   })
 
-  it('should select what is defined in form data', () => {
+  it('should update form data when Vuex store data changes', () => {
+    const LocalVue = createLocalVue()
+
     let form = createForm({
-      theme: 'bootstrap'
-    }, {
-      config: {
-        themes: {
-          bootstrap: bootstrapTheme,
-          default: defaultTheme,
+      storePath: 'form',
+      schema: {
+        a: {
+          type: 'text',
+          default: 1
         },
-        theme: 'default'
-      }
+        b: {
+          type: 'object',
+          schema: {
+            c: {
+              type: 'text',
+              default: 2,
+            },
+            d: {
+              type: 'text',
+              default: 3,
+            }
+          }
+        },
+      },
+      storePath: 'form'
     }, {
-      propsData: {
-        form: {
-          theme: 'default'
-        }
+      vuex: {
+        form: {}
       }
     })
 
-    let LaraformClasses = bootstrapTheme.components.Laraform.data().defaultClasses
+    LocalVue.nextTick(() => {
+      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+      expect(a.vm.name).toBe('a')
 
-    expect(form.classes()).toStrictEqual([LaraformClasses.form])
+      let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+      expect(c.vm.name).toBe('c')
+
+      let d = form.findAllComponents({ name: 'TextElement' }).at(2)
+      expect(d.vm.name).toBe('d')
+
+      expect(a.vm.value).toBe(1)
+      expect(c.vm.value).toBe(2)
+      expect(d.vm.value).toBe(3)
+
+      form.vm.$store.state.form.a = 'aaa'
+      form.vm.$store.state.form.b.c = 'ccc'
+      form.vm.$store.state.form.b.d = 'ddd'
+
+      LocalVue.nextTick(() => {
+        expect(a.vm.value).toBe('aaa')
+        expect(c.vm.value).toBe('ccc')
+        expect(d.vm.value).toBe('ddd')
+      })
+    })
   })
 })
 
-describe('Theme elements', () => {
+describe('Laraform Elements', () => {
   it('should register new element', () => {
     const LocalVue = createLocalVue()
 
@@ -386,7 +593,7 @@ describe('Theme elements', () => {
   })
 })
 
-describe('Theme components', () => {
+describe('Laraform Components', () => {
   it('should add new component', () => {
     let CustomComponent = {
       name: 'CustomComponent'
@@ -431,126 +638,39 @@ describe('Theme components', () => {
   })
 })
 
-describe('Theme classes', () => {
-  it('should use defaults if otherwise set', () => {
+describe('Laraform Dynamics', () => {
+  it('should update elements$ when schema changes', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+    
     let form = createForm({
       schema: {
-        name: {
-          type: 'text',
-          label: 'Name'
-        }
-      }
-    })
-
-    // Custom logic
-    let Laraform = form
-
-    // Custom logic
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-
-    // Uses ElementComponent mixin
-    let ElementLabel = form.findComponent({ name: 'ElementLabel' })
-
-    // Uses ThemeComponent mixin
-    let FormElements = form.findComponent({ name: 'FormElements' })
-
-    expect(Laraform.vm.extendedClasses).toStrictEqual(Laraform.vm.defaultClasses)
-    expect(BaseElementLayout.classes()).toContain(BaseElementLayout.vm.defaultClasses.container)
-    expect(ElementLabel.vm.classes).toStrictEqual(ElementLabel.vm.defaultClasses)
-    expect(FormElements.vm.classes).toStrictEqual(FormElements.vm.defaultClasses)
-  })
-
-  it('should overwrite if `classes` defined on form level', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          label: 'Name'
-        }
-      },
-      classes: {
-        Laraform: {
-          form: 'class-a'
-        },
-        BaseElementLayout: {
-          container: 'class-b'
-        },
-        FormElements: {
-          container: 'class-c'
-        },
-        ElementLabel: {
-          label: 'class-d'
-        },
-      }
-    })
-
-    // Custom logic
-    let Laraform = form
-
-    // Custom logic
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-
-    // Uses ElementComponent mixin
-    let ElementLabel = form.findComponent({ name: 'ElementLabel' })
-
-    // Uses ThemeComponent mixin
-    let FormElements = form.findComponent({ name: 'FormElements' })
-
-    expect(Laraform.vm.extendedClasses.form).toContain('class-a')
-    expect(Laraform.vm.extendedClasses.form).not.toContain(Laraform.vm.defaultClasses.form)
-    expect(BaseElementLayout.vm.classes.container).toContain('class-b')
-    expect(BaseElementLayout.vm.classes.container).not.toContain(BaseElementLayout.vm.defaultClasses.container)
-    expect(FormElements.vm.classes.container).toContain('class-c')
-    expect(FormElements.vm.classes.container).not.toContain(FormElements.vm.defaultClasses.container)
-    expect(ElementLabel.vm.classes.label).toContain('class-d')
-    expect(ElementLabel.vm.classes.label).not.toContain(ElementLabel.vm.defaultClasses.label)
-  })
-
-  it('should add if `addClasses` defined on form level', () => {
-    let addClasses = {
-      container: 'class-a',
-    }
-
-    let form = createForm({
-      schema: {
-        name: {
+        a: {
           type: 'text'
         }
-      },
-      addClasses: {
-        BaseElementLayout: addClasses
       }
     })
 
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-    
-    expect(BaseElementLayout.classes()).toContain('class-a')
-    expect(BaseElementLayout.classes()).toContain(BaseElementLayout.vm.defaultClasses.container)
-  })
+    expect(_.keys(form.vm.elements$).length).toBe(1)
 
-  it('should overwrite and add if `classes` and `addClasses` defined on form level', () => {
-    let form = createForm({
+    form.setData({
       schema: {
-        name: {
+        a: {
           type: 'text'
-        }
-      },
-      classes: {
-        BaseElementLayout: {
-          container: 'class-a'
-        }
-      },
-      addClasses: {
-        BaseElementLayout: {
-          container: 'class-b',
-        }
+        },
+        b: {
+          type: 'text'
+        },
       }
     })
 
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-    
-    expect(BaseElementLayout.classes()).toContain('class-a')
-    expect(BaseElementLayout.classes()).toContain('class-b')
-    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
+    LocalVue.nextTick(() => {
+    LocalVue.nextTick(() => {
+      expect(_.keys(form.vm.elements$).length).toBe(2)
+      
+      done()
+    })
+    })
   })
 })

@@ -3,7 +3,7 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import { createForm, installLaraform } from './../utils/testHelpers'
 import { Laraform } from './../index'
 
-describe('FormButton', () => {
+describe('Form Button', () => {
   it('should display label', () => {
     let form = createForm({
       buttons: [{

@@ -1,7 +1,7 @@
 import { createLocalVue } from '@vue/test-utils'
 import { createForm } from './../utils/testHelpers'
 
-describe('Base element layout', () => {
+describe('Base Element Layout Render', () => {
   it('should render label if config.labels is false, but element has label', () => {
     let form = createForm({
       schema: {

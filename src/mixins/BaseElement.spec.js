@@ -4,7 +4,7 @@ import { mergeComponentClasses } from './../utils/mergeClasses'
 import { Laraform } from './../index'
 import defaultTheme from './../themes/default'
 
-describe('Element', () => {
+describe('Element Props & Data', () => {
   it('should add `class` option to main class list', () => {
     let form = createForm({
       schema: {
@@ -17,8 +17,10 @@ describe('Element', () => {
 
     expect(form.findComponent({ name: 'TextElement' }).classes()).toContain('class-a')
   })
+})
 
-  it('should display path properly without parent', () => {
+describe('Element Computed', () => {
+  it('should display `path` properly without parent', () => {
     let form = createForm({
       schema: {
         name: {
@@ -30,7 +32,7 @@ describe('Element', () => {
     expect(form.findComponent({ name: 'TextElement' }).vm.path).toBe('name')
   })
 
-  it('should update model on value change', () => {
+  it('should update `model` on value change', () => {
     let form = createForm({
       schema: {
         name: {
@@ -46,7 +48,7 @@ describe('Element', () => {
     expect(name.vm.model).toBe('aaa')
   })
 
-  it('should have data as name / value', () => {
+  it('should have `data` as name => value', () => {
     let form = createForm({
       schema: {
         name: {
@@ -62,7 +64,7 @@ describe('Element', () => {
     expect(name.vm.data).toStrictEqual({name: 'aaa'})
   })
 
-  it('should have empty filtered when `submit` is false', () => {
+  it('should have empty `filtered` when `submit` is false', () => {
     let form = createForm({
       schema: {
         name: {
@@ -79,7 +81,7 @@ describe('Element', () => {
     expect(name.vm.filtered).toStrictEqual({})
   })
 
-  it('should have empty filtered when `submit` is true && `available` is true', () => {
+  it('should have empty `filtered` when `submit` is true && `available` is true', () => {
     let form = createForm({
       schema: {
         name: {
@@ -95,22 +97,6 @@ describe('Element', () => {
 
     expect(name.vm.available).toBe(true)
     expect(name.vm.filtered).toStrictEqual({name: 'aaa'})
-  })
-
-  it('should update value', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-        }
-      }
-    })
-
-    let name = form.findComponent({ name: 'TextElement' })
-
-    name.vm.update('aaa')
-
-    expect(name.vm.value).toBe('aaa')
   })
 
   it('should have a `default` equal to null if otherwise defined', () => {
@@ -140,6 +126,244 @@ describe('Element', () => {
     let name = form.findComponent({ name: 'TextElement' })
 
     expect(name.vm.default).toBe('aaa')
+  })
+
+  it('should overwrite classes if `classes` defined on element level', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          classes: {
+            BaseElementLayout: {
+              container: 'class-a'
+            }
+          }
+        }
+      },
+    })
+
+    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
+
+    expect(BaseElementLayout.classes()).toContain('class-a')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
+  })
+
+  it('should add classes if `addClasses` defined on element level', () => {
+    let addClasses = {
+      container: 'class-a',
+    }
+
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          addClasses: {
+            BaseElementLayout: addClasses
+          }
+        }
+      }
+    })
+
+    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
+    
+    expect(BaseElementLayout.classes()).toContain('class-a')
+  })
+
+  it('should overwrite and add classes if `classes` and `addClasses` defined on element level', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          classes: {
+            BaseElementLayout: {
+              container: 'class-a'
+            }
+          },
+          addClasses: {
+            BaseElementLayout: {
+              container: 'class-b',
+            }
+          }
+        },
+      },
+    })
+
+    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
+    
+    expect(BaseElementLayout.classes()).toContain('class-a')
+    expect(BaseElementLayout.classes()).toContain('class-b')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
+  })
+
+  it('should overwrite classes with element\'s `classes` if defined on form and element level', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          classes: {
+            BaseElementLayout: {
+              container: 'class-b'
+            }
+          }
+        }
+      },
+      classes: {
+        BaseElementLayout: {
+          container: 'class-a'
+        }
+      }
+    })
+
+    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
+
+    expect(BaseElementLayout.classes()).toContain('class-b')
+    expect(BaseElementLayout.classes()).not.toContain('class-a')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
+  })
+
+  it('should not add classes if `classes` defined on both level and `addClasses` defined on form level', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          classes: {
+            BaseElementLayout: {
+              container: 'class-b'
+            }
+          }
+        }
+      },
+      classes: {
+        BaseElementLayout: {
+          container: 'class-a'
+        }
+      },
+      addClasses: {
+        BaseElementLayout: {
+          container: 'class-c'
+        }
+      },
+    })
+
+    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
+
+    expect(BaseElementLayout.classes()).toContain('class-b')
+    expect(BaseElementLayout.classes()).not.toContain('class-a')
+    expect(BaseElementLayout.classes()).not.toContain('class-c')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
+  })
+
+  it('should add classes if `classes` defined on both level and `addClasses` defined on element level', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          classes: {
+            BaseElementLayout: {
+              container: 'class-b'
+            }
+          },
+          addClasses: {
+            BaseElementLayout: {
+              container: 'class-c'
+            }
+          },
+        }
+      },
+      classes: {
+        BaseElementLayout: {
+          container: 'class-a'
+        }
+      },
+    })
+
+    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
+
+    expect(BaseElementLayout.classes()).toContain('class-b')
+    expect(BaseElementLayout.classes()).toContain('class-c')
+    expect(BaseElementLayout.classes()).not.toContain('class-a')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
+  })
+
+  it('should add classes if `addClasses` defined on both level', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          addClasses: {
+            BaseElementLayout: {
+              container: 'class-b'
+            }
+          },
+        }
+      },
+      addClasses: {
+        BaseElementLayout: {
+          container: 'class-a'
+        }
+      },
+    })
+
+    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
+
+    expect(BaseElementLayout.classes()).toContain('class-a')
+    expect(BaseElementLayout.classes()).toContain('class-b')
+  })
+
+  it('should add only element\'s classes to if `classes` and `addClasses` defined on both level', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+          classes: {
+            BaseElementLayout: {
+              container: 'class-b'
+            }
+          },
+          addClasses: {
+            BaseElementLayout: {
+              container: 'class-d'
+            }
+          },
+        }
+      },
+      classes: {
+        BaseElementLayout: {
+          container: 'class-a'
+        }
+      },
+      addClasses: {
+        BaseElementLayout: {
+          container: 'class-c'
+        }
+      },
+    })
+
+    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
+
+    expect(BaseElementLayout.classes()).toContain('class-b')
+    expect(BaseElementLayout.classes()).toContain('class-d')
+    expect(BaseElementLayout.classes()).not.toContain('class-a')
+    expect(BaseElementLayout.classes()).not.toContain('class-c')
+    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
+  })
+})
+
+describe('Element Methods', () => {
+  it('should update value', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text',
+        }
+      }
+    })
+
+    let name = form.findComponent({ name: 'TextElement' })
+
+    name.vm.update('aaa')
+
+    expect(name.vm.value).toBe('aaa')
   })
 
   it('should reset value to default when calling `reset()`', () => {
@@ -184,316 +408,72 @@ describe('Element', () => {
     expect(name.vm.value).toBe(name.vm.null)
   })
 
-  // it('should load value when available', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       name: {
-  //         type: 'text'
-  //       }
-  //     }
-  //   })
-
-  //   let name = form.findComponent({ name: 'TextElement' })
-
-  //   name.vm.load({
-  //     name: 'aaa'
-  //   })
-
-  //   expect(name.vm.available).toBe(true)
-  //   expect(name.vm.value).toBe('aaa')
-  // })
-
-  // it('should clear value when `available` false and being loaded', () => {
-  //   const LocalVue = createLocalVue()
-
-  //   const { LaraformInstaller, config } = createLaraformInstaller()
-
-  //   let availableMock = jest.fn(() => {
-  //     return false
-  //   })
-
-  //   defaultTheme.elements.TextElement.mixins[0].mixins[0].computed.available = availableMock
-
-  //   LaraformInstaller.theme('default', defaultTheme)
-
-  //   LocalVue.use(LaraformInstaller)
-
-  //   let formComponent = LocalVue.extend({
-  //     mixins: [Laraform],
-  //     data() {
-  //       return {
-  //         schema: {
-  //           name: {
-  //             type: 'text'
-  //           }
-  //         }
-  //       }
-  //     }
-  //   })
-
-  //   let form = mount(formComponent, {
-  //     LocalVue,
-  //     mocks: {
-  //       $laraform: {
-  //         config: config
-  //       }
-  //     }
-  //   })
-    
-  //   let name = form.findComponent({ name: 'TextElement' })
-
-  //   expect(name.vm.available).toBe(false)
-    
-  //   name.vm.load({
-  //     name: 'aaa'
-  //   })
-
-  //   expect(name.vm.value).toBe(name.vm.null)
-  // })
-
-  // it('should clear value when the element\'s name is not presented in loaded data', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       name: {
-  //         type: 'text'
-  //       }
-  //     }
-  //   })
-
-  //   let name = form.findComponent({ name: 'TextElement' })
-
-  //   name.vm.load({
-  //     email: 'aaa'
-  //   })
-
-  //   expect(name.vm.value).toBe(name.vm.null)
-  // })
-})
-
-describe('Element classes', () => {
-  it('should overwrite if `classes` defined on element level', () => {
+  it('should load value when available', () => {
     let form = createForm({
       schema: {
         name: {
-          type: 'text',
-          classes: {
-            BaseElementLayout: {
-              container: 'class-a'
-            }
-          }
-        }
-      },
-    })
-
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-
-    expect(BaseElementLayout.classes()).toContain('class-a')
-    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
-  })
-
-  it('should add if `addClasses` defined on element level', () => {
-    let addClasses = {
-      container: 'class-a',
-    }
-
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          addClasses: {
-            BaseElementLayout: addClasses
-          }
+          type: 'text'
         }
       }
     })
 
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-    
-    expect(BaseElementLayout.classes()).toContain('class-a')
+    let name = form.findComponent({ name: 'TextElement' })
+
+    name.vm.load({
+      name: 'aaa'
+    })
+
+    expect(name.vm.available).toBe(true)
+    expect(name.vm.value).toBe('aaa')
   })
 
-  it('should overwrite and add if `classes` and `addClasses` defined on element level', () => {
+  it('should clear value when `available` false and being loaded', () => {
     let form = createForm({
       schema: {
         name: {
           type: 'text',
-          classes: {
-            BaseElementLayout: {
-              container: 'class-a'
-            }
-          },
-          addClasses: {
-            BaseElementLayout: {
-              container: 'class-b',
-            }
-          }
+          conditions: [
+            ['condition', 1]
+          ]
         },
-      },
+        condition: {
+          type: 'text'
+        },
+      }
+    })
+    
+    let name = form.findComponent({ name: 'TextElement' })
+
+    expect(name.vm.available).toBe(false)
+    
+    name.vm.load({
+      name: 'aaa'
     })
 
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-    
-    expect(BaseElementLayout.classes()).toContain('class-a')
-    expect(BaseElementLayout.classes()).toContain('class-b')
-    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
+    expect(name.vm.value).toBe(name.vm.null)
   })
 
-  it('should overwrite with element\'s `classes` if defined on form and element level', () => {
+  it('should clear value when the element\'s name is not presented in loaded data', () => {
     let form = createForm({
       schema: {
         name: {
-          type: 'text',
-          classes: {
-            BaseElementLayout: {
-              container: 'class-b'
-            }
-          }
-        }
-      },
-      classes: {
-        BaseElementLayout: {
-          container: 'class-a'
+          type: 'text'
         }
       }
     })
 
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
+    let name = form.findComponent({ name: 'TextElement' })
 
-    expect(BaseElementLayout.classes()).toContain('class-b')
-    expect(BaseElementLayout.classes()).not.toContain('class-a')
-    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
-  })
-
-  it('should not add if `classes` defined on both level and `addClasses` defined on form level', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          classes: {
-            BaseElementLayout: {
-              container: 'class-b'
-            }
-          }
-        }
-      },
-      classes: {
-        BaseElementLayout: {
-          container: 'class-a'
-        }
-      },
-      addClasses: {
-        BaseElementLayout: {
-          container: 'class-c'
-        }
-      },
+    name.vm.load({
+      email: 'aaa'
     })
 
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-
-    expect(BaseElementLayout.classes()).toContain('class-b')
-    expect(BaseElementLayout.classes()).not.toContain('class-a')
-    expect(BaseElementLayout.classes()).not.toContain('class-c')
-    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
-  })
-
-  it('should add if `classes` defined on both level and `addClasses` defined on element level', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          classes: {
-            BaseElementLayout: {
-              container: 'class-b'
-            }
-          },
-          addClasses: {
-            BaseElementLayout: {
-              container: 'class-c'
-            }
-          },
-        }
-      },
-      classes: {
-        BaseElementLayout: {
-          container: 'class-a'
-        }
-      },
-    })
-
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-
-    expect(BaseElementLayout.classes()).toContain('class-b')
-    expect(BaseElementLayout.classes()).toContain('class-c')
-    expect(BaseElementLayout.classes()).not.toContain('class-a')
-    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
-  })
-
-  it('should add if `addClasses` defined on both level', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          addClasses: {
-            BaseElementLayout: {
-              container: 'class-b'
-            }
-          },
-        }
-      },
-      addClasses: {
-        BaseElementLayout: {
-          container: 'class-a'
-        }
-      },
-    })
-
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-
-    expect(BaseElementLayout.classes()).toContain('class-a')
-    expect(BaseElementLayout.classes()).toContain('class-b')
-  })
-
-  it('should add only element\'s classes if `classes` and `addClasses` defined on both level', () => {
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text',
-          classes: {
-            BaseElementLayout: {
-              container: 'class-b'
-            }
-          },
-          addClasses: {
-            BaseElementLayout: {
-              container: 'class-d'
-            }
-          },
-        }
-      },
-      classes: {
-        BaseElementLayout: {
-          container: 'class-a'
-        }
-      },
-      addClasses: {
-        BaseElementLayout: {
-          container: 'class-c'
-        }
-      },
-    })
-
-    let BaseElementLayout = form.findComponent({ name: 'BaseElementLayout' })
-
-    expect(BaseElementLayout.classes()).toContain('class-b')
-    expect(BaseElementLayout.classes()).toContain('class-d')
-    expect(BaseElementLayout.classes()).not.toContain('class-a')
-    expect(BaseElementLayout.classes()).not.toContain('class-c')
-    expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
+    expect(name.vm.value).toBe(name.vm.null)
   })
 })
 
 
-describe('Element components', () => {
+describe('Element Components', () => {
   it('should overwrite existing component', () => {
     const LocalVue = createLocalVue()
 
@@ -518,7 +498,7 @@ describe('Element components', () => {
   })
 })
 
-describe('Element slots', () => {
+describe('Element Slots', () => {
   it('can assign from element schema', (done) => {
     const LocalVue = createLocalVue()
 

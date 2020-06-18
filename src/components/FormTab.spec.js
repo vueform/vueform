@@ -162,7 +162,9 @@ describe('Form Tab', () => {
     })
     })
   })
+})
 
+describe('Form Tab Conditions', () => {
   it('should forward conditions to child elements', (done) => {
     const LocalVue = createLocalVue()
 
@@ -298,7 +300,9 @@ describe('Form Tab', () => {
       done()
     })
   })
+})
 
+describe('Form Tab Events', () => {
   it('should trigger `active` event when selected', () => {
     let onActiveMock = jest.fn(() => {})
 

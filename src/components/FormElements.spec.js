@@ -1,7 +1,7 @@
 import { createLocalVue } from '@vue/test-utils'
 import { createForm } from './../utils/testHelpers'
 
-describe('Form elements', () => {
+describe('Form Element Rendering', () => {
   it('should render element based on type', () => {
     let form = createForm({
       schema: {

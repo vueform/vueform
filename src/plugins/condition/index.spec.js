@@ -1,7 +1,7 @@
 import { createLocalVue } from '@vue/test-utils'
 import { createForm } from './../../utils/testHelpers'
 
-describe('Element condition', () => {
+describe('Element Condition', () => {
   it('should not be available if conditions aren\'t met', () => {
     let form = createForm({
       schema: {

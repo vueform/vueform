@@ -2,6 +2,7 @@ import _ from 'lodash'
 import axios from './services/axios'
 import Validation from './services/validation'
 import applyPlugins from './utils/applyPlugins'
+import store from './store'
 
 if (window._ === undefined) {
   window._ = _
@@ -62,6 +63,10 @@ export default function (config) {
 
     component(name, component) {
       this.options.components[name] = component
+    }
+
+    store(Store) {
+      Store.registerModule('laraform', store)
     }
 
     config(config) {

@@ -9,6 +9,7 @@ import validation from './../services/validation'
 import en from './../locales/en'
 import _ from 'lodash'
 import axios from 'axios'
+import Vuex from 'vuex'
 window._ = _
 
 const themes = {
@@ -64,16 +65,29 @@ const installLaraform = function(options = {}) {
 
   const LocalVue = createLocalVue()
 
+  let store = null
+
+  if (options.vuex) {
+    LocalVue.use(Vuex)
+
+    store = new Vuex.Store({
+      state: options.vuex,
+    })
+
+    LaraformInstaller.store(store)
+  }
+
   LocalVue.use(LaraformInstaller)
   
   return {
     LocalVue,
     config,
+    store
   }
 }
 
 const createForm = function(data, options = {}) {
-  let { LocalVue, config } = installLaraform(options)
+  let { LocalVue, config, store } = installLaraform(options)
 
   let form = LocalVue.extend({
     mixins: [Laraform],
@@ -84,6 +98,7 @@ const createForm = function(data, options = {}) {
 
   let mountOptions = {
     LocalVue,
+    store,
     propsData: options.propsData || {},
     mocks: {
       $laraform: {

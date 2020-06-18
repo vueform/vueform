@@ -1,7 +1,7 @@
 import { createForm, testDynamics } from './../utils/testHelpers'
 import { createLocalVue } from '@vue/test-utils'
 
-describe('Form Wizard', () => {
+describe('Form Wizard Rendering', () => {
   it('should render steps', () => {
     let form = createForm({
       wizard: {
@@ -27,6 +27,223 @@ describe('Form Wizard', () => {
     expect(form.html()).toContain('First')
     expect(form.html()).toContain('Second')
     expect(form.findAllComponents({ name: 'FormWizardStep' }).length).toBe(2)
+  })
+})
+
+describe('Form Wizard Computed', () => {
+  it('should be pending if has any pending elements', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      validateOn: 'change|step|submit',
+      wizard: {
+        first: {
+          label: 'First',
+          elements: ['a'],
+        },
+        second: {
+          label: 'Second',
+          elements: ['b'],
+        },
+      },
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'unique'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    let wizard = form.findComponent({ name: 'FormWizard' })
+
+    LocalVue.nextTick(() => {
+      wizard.vm.goTo('second')
+
+      LocalVue.nextTick(() => {
+        let finish = form.findComponent({ name: 'FormWizardFinish' })
+
+        expect(wizard.vm.pending).toBe(false)
+        
+        finish.get('button').trigger('click')
+
+        LocalVue.nextTick(() => {
+          expect(wizard.vm.pending).toBe(true)
+
+          done()
+        })
+      })
+    })
+  })
+
+  it('should be invalid if has any invalid elements', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      validateOn: 'change|step|submit',
+      wizard: {
+        first: {
+          label: 'First',
+          elements: ['a'],
+        },
+        second: {
+          label: 'Second',
+          elements: ['b'],
+        },
+      },
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'required'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    let wizard = form.findComponent({ name: 'FormWizard' })
+
+    LocalVue.nextTick(() => {
+      wizard.vm.goTo('second')
+
+      LocalVue.nextTick(() => {
+        let finish = form.findComponent({ name: 'FormWizardFinish' })
+
+        expect(wizard.vm.invalid).toBe(false)
+        
+        finish.get('button').trigger('click')
+
+        LocalVue.nextTick(() => {
+          expect(wizard.vm.invalid).toBe(true)
+
+          done()
+        })
+      })
+    })
+  })
+
+  it('should be debouncing if has any debouncing elements', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      validateOn: 'change|step|submit',
+      wizard: {
+        first: {
+          label: 'First',
+          elements: ['a'],
+        },
+        second: {
+          label: 'Second',
+          elements: ['b'],
+        },
+      },
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'required:debounce=3000'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    let wizard = form.findComponent({ name: 'FormWizard' })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    expect(a.vm.name).toBe('a')
+
+    LocalVue.nextTick(() => {
+      a.get('input').trigger('keyup')
+
+      expect(a.vm.debouncing).toBe(true)
+      expect(wizard.vm.debouncing).toBe(true)
+
+      done()
+    })
+  })
+
+  it('should not be done if has any steps which are not done', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      validateOn: 'change|step|submit',
+      wizard: {
+        first: {
+          label: 'First',
+          elements: ['a'],
+        },
+        second: {
+          label: 'Second',
+          elements: ['b'],
+        },
+      },
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    let wizard = form.findComponent({ name: 'FormWizard' })
+
+    expect(wizard.vm.done).toBe(false)
+
+    done()
+  })
+
+  it('should be done if all steps are done', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      validateOn: 'change|step|submit',
+      wizard: {
+        first: {
+          label: 'First',
+          elements: ['a'],
+        },
+        second: {
+          label: 'Second',
+          elements: ['b'],
+        },
+      },
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    let wizard = form.findComponent({ name: 'FormWizard' })
+
+    let first = form.findAllComponents({ name: 'FormWizardStep' }).at(0)
+    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
+
+    first.vm.complete()
+    second.vm.complete()
+
+    expect(wizard.vm.done).toBe(true)
+
+    done()
   })
 
   it('should return current step for current$', (done) => {
@@ -347,7 +564,67 @@ describe('Form Wizard', () => {
     })
   })
 
-  it('should disabled previous button on first step', (done) => {
+  it('should enable step when becomes available but already passed', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      wizard: {
+        first: {
+          label: 'First',
+          elements: ['a'],
+        },
+        second: {
+          label: 'Second',
+          elements: ['b'],
+          conditions: [
+            ['a', 1]
+          ]
+        },
+        third: {
+          label: 'Third',
+          elements: ['c'],
+        },
+      },
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text',
+        },
+        c: {
+          type: 'text'
+        },
+      }
+    })
+
+    let wizard = form.findComponent({ name: 'FormWizard' })
+
+    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
+    expect(second.vm.name).toBe('second')
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    expect(a.vm.name).toBe('a')
+
+    expect(second.vm.disabled).toBe(true)
+
+    wizard.vm.goTo('third')
+
+    LocalVue.nextTick(() => {
+      a.vm.update(1)
+
+      LocalVue.nextTick(() => {
+        expect(second.vm.disabled).toBe(false)
+        done()
+      })
+    })
+  })
+})
+
+describe('Form Wizard Buttons', () => {
+  it('should disable previous button on first step', (done) => {
     const LocalVue = createLocalVue()
 
     LocalVue.config.errorHandler = done
@@ -428,47 +705,6 @@ describe('Form Wizard', () => {
         done()
       })
     })
-  })
-
-  it('goTo should go to a step', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      wizard: {
-        first: {
-          label: 'First',
-          elements: ['a'],
-        },
-        second: {
-          label: 'Second',
-          elements: ['b'],
-        },
-        third: {
-          label: 'Third',
-          elements: ['b'],
-        },
-      },
-      schema: {
-        a: {
-          type: 'text',
-        },
-        b: {
-          type: 'text',
-        },
-        c: {
-          type: 'text',
-        },
-      }
-    })
-
-    let wizard = form.findComponent({ name: 'FormWizard' })
-
-    wizard.vm.goTo('second')
-
-    expect(wizard.vm.current$.name).toBe('second')
-    done()
   })
 
   it('should enable and move to next step on clicking next button', (done) => {
@@ -652,6 +888,151 @@ describe('Form Wizard', () => {
     })
   })
 
+  it('should call wizard submit on finish', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let submitMock = jest.fn(() => {  })
+
+    let form = createForm({
+      wizard: {
+        first: {
+          label: 'First',
+          elements: ['a'],
+        },
+        second: {
+          label: 'Second',
+          elements: ['b'],
+        },
+      },
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    let wizard = form.findComponent({ name: 'FormWizard' })
+    wizard.vm.submit = submitMock
+
+    expect(submitMock.mock.calls.length).toBe(0)
+
+    LocalVue.nextTick(() => {
+      wizard.vm.goTo('second')
+
+      LocalVue.nextTick(() => {
+        let finish = form.findComponent({ name: 'FormWizardFinish' })
+        
+        finish.get('button').trigger('click')
+
+        LocalVue.nextTick(() => {
+          expect(submitMock.mock.calls.length).toBe(1)
+
+          done()
+        })
+      })
+    })
+  })
+
+  it('should prevent submission if has invalid fields', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let submitMock = jest.fn(() => {  })
+
+    let form = createForm({
+      wizard: {
+        first: {
+          label: 'First',
+          elements: ['a'],
+        },
+        second: {
+          label: 'Second',
+          elements: ['b'],
+        },
+      },
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'required'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    let wizard = form.findComponent({ name: 'FormWizard' })
+    wizard.vm.submit = submitMock
+
+    expect(submitMock.mock.calls.length).toBe(0)
+
+    LocalVue.nextTick(() => {
+      wizard.vm.goTo('second')
+
+      LocalVue.nextTick(() => {
+        let finish = form.findComponent({ name: 'FormWizardFinish' })
+        
+        finish.get('button').trigger('click')
+
+        LocalVue.nextTick(() => {
+          expect(submitMock.mock.calls.length).toBe(0)
+          expect(form.vm.invalid)
+
+          done()
+        })
+      })
+    })
+  })
+})
+
+describe('Form Wizard Methods', () => {
+  it('goTo should go to a step', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      wizard: {
+        first: {
+          label: 'First',
+          elements: ['a'],
+        },
+        second: {
+          label: 'Second',
+          elements: ['b'],
+        },
+        third: {
+          label: 'Third',
+          elements: ['b'],
+        },
+      },
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+        },
+        c: {
+          type: 'text',
+        },
+      }
+    })
+
+    let wizard = form.findComponent({ name: 'FormWizard' })
+
+    wizard.vm.goTo('second')
+
+    expect(wizard.vm.current$.name).toBe('second')
+    done()
+  })
+
   it('should complete all steps with complete() method', (done) => {
     const LocalVue = createLocalVue()
 
@@ -804,65 +1185,9 @@ describe('Form Wizard', () => {
       done()
     })
   })
+})
 
-  it('should enable step when becomes available but already passed', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      wizard: {
-        first: {
-          label: 'First',
-          elements: ['a'],
-        },
-        second: {
-          label: 'Second',
-          elements: ['b'],
-          conditions: [
-            ['a', 1]
-          ]
-        },
-        third: {
-          label: 'Third',
-          elements: ['c'],
-        },
-      },
-      schema: {
-        a: {
-          type: 'text'
-        },
-        b: {
-          type: 'text',
-        },
-        c: {
-          type: 'text'
-        },
-      }
-    })
-
-    let wizard = form.findComponent({ name: 'FormWizard' })
-
-    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
-    expect(second.vm.name).toBe('second')
-
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    expect(a.vm.name).toBe('a')
-
-    expect(second.vm.disabled).toBe(true)
-
-    wizard.vm.goTo('third')
-
-    LocalVue.nextTick(() => {
-      a.vm.update(1)
-
-      LocalVue.nextTick(() => {
-        expect(second.vm.disabled).toBe(false)
-        done()
-      })
-    })
-  })
-
+describe('Form Wizard Events', () => {
   it('should trigger `next` event when next button is clicked', (done) => {
     const LocalVue = createLocalVue()
 
@@ -1187,323 +1512,6 @@ describe('Form Wizard', () => {
         })
       })
     })
-  })
-
-  it('should call wizard submit on finish', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let submitMock = jest.fn(() => {  })
-
-    let form = createForm({
-      wizard: {
-        first: {
-          label: 'First',
-          elements: ['a'],
-        },
-        second: {
-          label: 'Second',
-          elements: ['b'],
-        },
-      },
-      schema: {
-        a: {
-          type: 'text'
-        },
-        b: {
-          type: 'text'
-        },
-      }
-    })
-
-    let wizard = form.findComponent({ name: 'FormWizard' })
-    wizard.vm.submit = submitMock
-
-    expect(submitMock.mock.calls.length).toBe(0)
-
-    LocalVue.nextTick(() => {
-      wizard.vm.goTo('second')
-
-      LocalVue.nextTick(() => {
-        let finish = form.findComponent({ name: 'FormWizardFinish' })
-        
-        finish.get('button').trigger('click')
-
-        LocalVue.nextTick(() => {
-          expect(submitMock.mock.calls.length).toBe(1)
-
-          done()
-        })
-      })
-    })
-  })
-
-  it('should prevent submission if has invalid fields', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let submitMock = jest.fn(() => {  })
-
-    let form = createForm({
-      wizard: {
-        first: {
-          label: 'First',
-          elements: ['a'],
-        },
-        second: {
-          label: 'Second',
-          elements: ['b'],
-        },
-      },
-      schema: {
-        a: {
-          type: 'text',
-          rules: 'required'
-        },
-        b: {
-          type: 'text'
-        },
-      }
-    })
-
-    let wizard = form.findComponent({ name: 'FormWizard' })
-    wizard.vm.submit = submitMock
-
-    expect(submitMock.mock.calls.length).toBe(0)
-
-    LocalVue.nextTick(() => {
-      wizard.vm.goTo('second')
-
-      LocalVue.nextTick(() => {
-        let finish = form.findComponent({ name: 'FormWizardFinish' })
-        
-        finish.get('button').trigger('click')
-
-        LocalVue.nextTick(() => {
-          expect(submitMock.mock.calls.length).toBe(0)
-          expect(form.vm.invalid)
-
-          done()
-        })
-      })
-    })
-  })
-
-  it('should be pending if has any pending elements', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      validateOn: 'change|step|submit',
-      wizard: {
-        first: {
-          label: 'First',
-          elements: ['a'],
-        },
-        second: {
-          label: 'Second',
-          elements: ['b'],
-        },
-      },
-      schema: {
-        a: {
-          type: 'text',
-          rules: 'unique'
-        },
-        b: {
-          type: 'text'
-        },
-      }
-    })
-
-    let wizard = form.findComponent({ name: 'FormWizard' })
-
-    LocalVue.nextTick(() => {
-      wizard.vm.goTo('second')
-
-      LocalVue.nextTick(() => {
-        let finish = form.findComponent({ name: 'FormWizardFinish' })
-
-        expect(wizard.vm.pending).toBe(false)
-        
-        finish.get('button').trigger('click')
-
-        LocalVue.nextTick(() => {
-          expect(wizard.vm.pending).toBe(true)
-
-          done()
-        })
-      })
-    })
-  })
-
-  it('should be invalid if has any invalid elements', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      validateOn: 'change|step|submit',
-      wizard: {
-        first: {
-          label: 'First',
-          elements: ['a'],
-        },
-        second: {
-          label: 'Second',
-          elements: ['b'],
-        },
-      },
-      schema: {
-        a: {
-          type: 'text',
-          rules: 'required'
-        },
-        b: {
-          type: 'text'
-        },
-      }
-    })
-
-    let wizard = form.findComponent({ name: 'FormWizard' })
-
-    LocalVue.nextTick(() => {
-      wizard.vm.goTo('second')
-
-      LocalVue.nextTick(() => {
-        let finish = form.findComponent({ name: 'FormWizardFinish' })
-
-        expect(wizard.vm.invalid).toBe(false)
-        
-        finish.get('button').trigger('click')
-
-        LocalVue.nextTick(() => {
-          expect(wizard.vm.invalid).toBe(true)
-
-          done()
-        })
-      })
-    })
-  })
-
-  it('should be debouncing if has any debouncing elements', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      validateOn: 'change|step|submit',
-      wizard: {
-        first: {
-          label: 'First',
-          elements: ['a'],
-        },
-        second: {
-          label: 'Second',
-          elements: ['b'],
-        },
-      },
-      schema: {
-        a: {
-          type: 'text',
-          rules: 'required:debounce=3000'
-        },
-        b: {
-          type: 'text'
-        },
-      }
-    })
-
-    let wizard = form.findComponent({ name: 'FormWizard' })
-
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    expect(a.vm.name).toBe('a')
-
-    LocalVue.nextTick(() => {
-      a.get('input').trigger('keyup')
-
-      expect(a.vm.debouncing).toBe(true)
-      expect(wizard.vm.debouncing).toBe(true)
-
-      done()
-    })
-  })
-
-  it('should not be done if has any steps which are not done', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      validateOn: 'change|step|submit',
-      wizard: {
-        first: {
-          label: 'First',
-          elements: ['a'],
-        },
-        second: {
-          label: 'Second',
-          elements: ['b'],
-        },
-      },
-      schema: {
-        a: {
-          type: 'text',
-        },
-        b: {
-          type: 'text'
-        },
-      }
-    })
-
-    let wizard = form.findComponent({ name: 'FormWizard' })
-
-    expect(wizard.vm.done).toBe(false)
-
-    done()
-  })
-
-  it('should be done if all steps are done', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      validateOn: 'change|step|submit',
-      wizard: {
-        first: {
-          label: 'First',
-          elements: ['a'],
-        },
-        second: {
-          label: 'Second',
-          elements: ['b'],
-        },
-      },
-      schema: {
-        a: {
-          type: 'text',
-        },
-        b: {
-          type: 'text'
-        },
-      }
-    })
-
-    let wizard = form.findComponent({ name: 'FormWizard' })
-
-    let first = form.findAllComponents({ name: 'FormWizardStep' }).at(0)
-    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
-
-    first.vm.complete()
-    second.vm.complete()
-
-    expect(wizard.vm.done).toBe(true)
-
-    done()
   })
 })
 

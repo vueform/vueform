@@ -5,6 +5,32 @@ import { toBeVisible } from '@testing-library/jest-dom/matchers'
 expect.extend({toBeVisible})
 
 describe('Form Wizard Step', () => {
+  it('should render step', () => {
+    let form = createForm({
+      wizard: {
+        first: {
+          label: 'First',
+          elements: ['a']
+        },
+        second: {
+          label: 'Second',
+          elements: ['b']
+        },
+      },
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(form.findAllComponents({ name: 'FormWizardStep' }).at(0).html()).toContain('First')
+    expect(form.findAllComponents({ name: 'FormWizardStep' }).at(1).html()).toContain('Second')
+  })
+  
   it('should add class defined in schema to classes list', () => {
     let form = createForm({
       wizard: {
@@ -29,32 +55,6 @@ describe('Form Wizard Step', () => {
     })
 
     expect(form.findAllComponents({ name: 'FormWizardStep' }).at(0).classes()).toContain('class-a')
-  })
-
-  it('should render step label', () => {
-    let form = createForm({
-      wizard: {
-        first: {
-          label: 'First',
-          elements: ['a']
-        },
-        second: {
-          label: 'Second',
-          elements: ['b']
-        },
-      },
-      schema: {
-        a: {
-          type: 'text'
-        },
-        b: {
-          type: 'text'
-        },
-      }
-    })
-
-    expect(form.findAllComponents({ name: 'FormWizardStep' }).at(0).html()).toContain('First')
-    expect(form.findAllComponents({ name: 'FormWizardStep' }).at(1).html()).toContain('Second')
   })
 
   it('should render step labels for buttons', (done) => {
@@ -483,9 +483,9 @@ describe('Form Wizard Step', () => {
       done()
     })
   })
+})
 
-  // it('should should be pending if ha
-
+describe('Form Wizard Step Conditions', () => {
   it('should forward conditions to child elements', (done) => {
     const LocalVue = createLocalVue()
 
@@ -621,7 +621,9 @@ describe('Form Wizard Step', () => {
       done()
     })
   })
+})
 
+describe('Form Wizard Step Events', () => {
   it('should trigger `active` event when selected', (done) => {
     const LocalVue = createLocalVue()
 

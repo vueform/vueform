@@ -1,7 +1,7 @@
 import { createLocalVue } from '@vue/test-utils'
 import { createForm } from './../utils/testHelpers'
 
-describe('Element label', () => {
+describe('Element Label Rendering', () => {
   it('should render as a string', () => {
     let form = createForm({
       schema: {
