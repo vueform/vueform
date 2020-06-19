@@ -416,7 +416,7 @@ describe('Laraform Computed', () => {
     })
   })
 
-  it('should be `pending` & `busy` if any element is pending', (done) => {
+  it('should be `pending`, `busy` & `disabled` if any element is pending', (done) => {
     const LocalVue = createLocalVue()
 
     LocalVue.config.errorHandler = done
@@ -435,6 +435,7 @@ describe('Laraform Computed', () => {
 
     expect(form.vm.pending).toBe(false)
     expect(form.vm.busy).toBe(false)
+    expect(form.vm.disabled).toBe(false)
 
     LocalVue.nextTick(() => {
       form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
@@ -442,6 +443,7 @@ describe('Laraform Computed', () => {
       LocalVue.nextTick(() => {
         expect(form.vm.pending).toBe(true)
         expect(form.vm.busy).toBe(true)
+        expect(form.vm.disabled).toBe(true)
         done()
       })
     })
@@ -476,6 +478,301 @@ describe('Laraform Computed', () => {
         expect(form.vm.validated).toBe(true)
         done()
       })
+    })
+  })
+
+  it('should be `pending`, `busy` & `disabled` if any element is pending', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'unique'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(form.vm.pending).toBe(false)
+    expect(form.vm.busy).toBe(false)
+    expect(form.vm.disabled).toBe(false)
+
+    LocalVue.nextTick(() => {
+      form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+      
+      LocalVue.nextTick(() => {
+        expect(form.vm.pending).toBe(true)
+        expect(form.vm.busy).toBe(true)
+        expect(form.vm.disabled).toBe(true)
+        done()
+      })
+    })
+  })
+
+  it('should collect element errors in `errors`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'required'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(form.vm.errors.length).toBe(0)
+
+    LocalVue.nextTick(() => {
+      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+      a.vm.validate()
+      
+      LocalVue.nextTick(() => {
+        expect(form.vm.errors.length).toBe(1)
+        done()
+      })
+    })
+  })
+
+  it('should collect element errors in `errors`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'required'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(form.vm.errors.length).toBe(0)
+
+    LocalVue.nextTick(() => {
+      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+      a.vm.validate()
+      
+      LocalVue.nextTick(() => {
+        expect(form.vm.errors.length).toBe(1)
+        done()
+      })
+    })
+  })
+
+  it('should be `disabled` when submitting', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(form.vm.disabled).toBe(false)
+
+    LocalVue.nextTick(() => {
+      form.vm.handleSubmit()
+      
+      expect(form.vm.disabled).toBe(true)
+      done()
+    })
+  })
+
+  it('should be `disabled` if invalid & validateOn change is included', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      validateOn: 'change|submit',
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'required',
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(form.vm.disabled).toBe(false)
+
+    LocalVue.nextTick(() => {
+      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+      a.vm.validate()
+      
+      expect(form.vm.disabled).toBe(true)
+      done()
+    })
+  })
+
+  it('should be not `disabled` if invalid & validateOn change is excluded', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      validateOn: 'submit',
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'required',
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(form.vm.disabled).toBe(false)
+
+    LocalVue.nextTick(() => {
+      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+      a.vm.validate()
+      
+      expect(form.vm.disabled).toBe(false)
+      done()
+    })
+  })
+
+  it('should have `selectedLocale` equal to vue-i18n\'s locale if installed', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    }, {
+      vueI18n: true,
+      vueI18nLocale: 'rr',
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.selectedLocale).toBe('rr')
+      done()
+    })
+  })
+
+  it('should have `selectedLocale` equal to `locale` if defined', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      locale: 'c',
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    }, {
+      config: {
+        locale: 'a'
+      },
+      propsData: {
+        form: {
+          locale: 'b'
+        }
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.selectedLocale).toBe('c')
+      done()
+    })
+  })
+
+  it('should have `selectedLocale` equal to form prop\'s `locale` if defined', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    }, {
+      config: {
+        locale: 'a'
+      },
+      propsData: {
+        form: {
+          locale: 'b'
+        }
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.selectedLocale).toBe('b')
+      done()
+    })
+  })
+
+  it('should have `selectedLocale` equal to config `locale` if nothing else defined', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    }, {
+      config: {
+        locale: 'a'
+      },
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.selectedLocale).toBe('a')
+      done()
     })
   })
 })
@@ -527,7 +824,10 @@ describe('Laraform Methods', () => {
       LocalVue,
       mocks: {
         $laraform: {
-          config: config
+          config: config,
+          services: {
+            messageBag: jest.fn()
+          }
         }
       }
     })
@@ -567,7 +867,10 @@ describe('Laraform Methods', () => {
       LocalVue,
       mocks: {
         $laraform: {
-          config: config
+          config: config,
+          services: {
+            messageBag: jest.fn()
+          }
         }
       }
     })
@@ -608,6 +911,63 @@ describe('Laraform Vuex', () => {
       vuex: {
         form: {}
       }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.$store.state.form.a).toBe(1)
+      expect(form.vm.$store.state.form.b.c).toBe(2)
+      expect(form.vm.$store.state.form.b.d).toBe(3)
+
+      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+      expect(a.vm.name).toBe('a')
+
+      let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+      expect(c.vm.name).toBe('c')
+
+      let d = form.findAllComponents({ name: 'TextElement' }).at(2)
+      expect(d.vm.name).toBe('d')
+
+      a.get('input').setValue('aaa')
+      c.get('input').setValue('ccc')
+      d.get('input').setValue('ddd')
+
+      LocalVue.nextTick(() => {
+        expect(form.vm.$store.state.form.a).toBe('aaa')
+        expect(form.vm.$store.state.form.b.c).toBe('ccc')
+        expect(form.vm.$store.state.form.b.d).toBe('ddd')
+      })
+    })
+  })
+  it('should update Vuex store data natively when form data changes & store is not registered to Laraform', () => {
+    const LocalVue = createLocalVue()
+
+    let form = createForm({
+      storePath: 'form',
+      schema: {
+        a: {
+          type: 'text',
+          default: 1
+        },
+        b: {
+          type: 'object',
+          schema: {
+            c: {
+              type: 'text',
+              default: 2,
+            },
+            d: {
+              type: 'text',
+              default: 3,
+            }
+          }
+        },
+      },
+      storePath: 'form'
+    }, {
+      vuex: {
+        form: {}
+      },
+      laraformStore: false
     })
 
     LocalVue.nextTick(() => {

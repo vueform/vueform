@@ -1,7 +1,7 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, createLaraformInstaller } from './utils/testHelpers'
-import { Laraform } from './index'
-import config from './config'
+import { createForm, createLaraformInstaller } from './../src/utils/testHelpers'
+import { Laraform } from './../src/index'
+import config from './../src/config'
 
 describe('Installer', () => {
   it('should install Laraform', () => {
@@ -61,7 +61,10 @@ describe('Installer', () => {
       LocalVue,
       mocks: {
         $laraform: {
-          config: config
+          config: config,
+          services: {
+            messageBag: jest.fn()
+          }
         }
       }
     })
@@ -151,7 +154,10 @@ describe('Installer', () => {
       LocalVue,
       mocks: {
         $laraform: {
-          config: config
+          config: config,
+          services: {
+            messageBag: jest.fn()
+          }
         }
       }
     })

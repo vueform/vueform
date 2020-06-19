@@ -6,10 +6,12 @@ import defaultTheme from './../themes/default'
 import config from './../config'
 import condition from './../plugins/condition/services/condition'
 import validation from './../services/validation'
+import messageBag from './../services/messageBag'
 import en from './../locales/en'
 import _ from 'lodash'
 import axios from 'axios'
 import Vuex from 'vuex'
+import VueI18n from 'vue-i18n'
 window._ = _
 
 const themes = {
@@ -74,7 +76,13 @@ const installLaraform = function(options = {}) {
       state: options.vuex,
     })
 
-    LaraformInstaller.store(store)
+    if (options.laraformStore !== false) {
+      LaraformInstaller.store(store)
+    }
+  }
+
+  if (options.vueI18n) {
+    LocalVue.use(VueI18n)
   }
 
   LocalVue.use(LaraformInstaller)
@@ -96,9 +104,19 @@ const createForm = function(data, options = {}) {
     }
   })
 
+  let i18n = null
+
+  if (options.vueI18n) {
+    i18n = new VueI18n({
+      locale: options.vueI18nLocale || 'en', // set locale
+      messges: options.vueI18nMessages || { hello: 'world' }, // set locale messages
+    })
+  }
+
   let mountOptions = {
     LocalVue,
     store,
+    i18n,
     propsData: options.propsData || {},
     mocks: {
       $laraform: {
@@ -108,11 +126,14 @@ const createForm = function(data, options = {}) {
           condition,
           validation,
           axios,
+          messageBag,
         },
         locales: options.locales || {
           en: en
         }
-      }
+      },
+      $i18n: options.vueI18n ? new class VueI18n { get locale() { return options.vueI18nLocale || 'en' } } : null,
+      $t: options.vueI18n ? (str) => { return str } : null,
     }
   }
 

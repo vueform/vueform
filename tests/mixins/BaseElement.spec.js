@@ -569,7 +569,10 @@ describe('Element Slots', () => {
       LocalVue,
       mocks: {
         $laraform: {
-          config: {}
+          config: {},
+          services: {
+            messageBag: jest.fn()
+          }
         }
       }
     })

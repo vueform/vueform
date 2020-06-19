@@ -464,7 +464,7 @@ export default {
       var errors = []
 
       _.each(_.filter(this.elements$, { available: true }), (element$) => {
-        _.each(element$.errors, (error) => {
+        _.each(element$.messageBag.errors || [], (error) => {
           errors.push(error)
         })
       })
