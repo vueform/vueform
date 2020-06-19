@@ -5,7 +5,7 @@ export default {
   name: 'ElementError',
   computed: {
     error() {
-      return this.el$.error
+      return this.el$.errorBag.error
     }
   }
 }

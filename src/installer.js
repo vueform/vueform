@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import axios from './services/axios'
-import Validation from './services/validation'
+import validation from './services/validation'
+import errorBag from './services/errorBag'
 import applyPlugins from './utils/applyPlugins'
 import store from './store'
 
@@ -26,8 +27,9 @@ export default function (config) {
       this.options.locales = {}
 
       this.options.services = {
-        validation: Validation,
+        validation,
         axios,
+        errorBag,
       }
     }
 

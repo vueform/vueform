@@ -1,4 +1,5 @@
 import Laraform from './components/Laraform'
+import FormErrors from './components/FormErrors'
 import FormLanguageSelector from './components/FormLanguageSelector'
 import FormLanguageSelectorTab from './components/FormLanguageSelectorTab'
 import FormTabs from './components/FormTabs'
@@ -28,6 +29,7 @@ import columns from './utils/columns'
 export default {
   components: {
     Laraform,
+    FormErrors,
     FormLanguageSelector,
     FormLanguageSelectorTab,
     FormTabs,

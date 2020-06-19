@@ -4,6 +4,11 @@
     @submit.prevent="handleSubmit"
   >
     <component
+      :is="extendedComponents.FormErrors"
+      v-if="hasErrors"
+    />
+
+    <component
       :is="extendedComponents.FormLanguageSelector"
       v-if="multilingual"
       @changeLanguage="setLanguage"

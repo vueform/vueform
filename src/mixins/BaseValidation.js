@@ -22,6 +22,14 @@ export default {
        * @default []
        */
       Validators: [],
+
+      /**
+       * Error bag that contains computed & custom errors.
+       * 
+       * @type {ErrorBag}
+       * @default {ErrorBag}
+       */
+      errorBag: {},
     }
   },
   computed: {
@@ -95,15 +103,6 @@ export default {
 
       return errors
     },
-
-    /**
-     * The element's error.
-     * 
-     * @type {string}
-     */
-    error() {
-      return _.head(this.errors)
-    }
   },
   methods: {
     
@@ -169,7 +168,14 @@ export default {
       _.each(factory.makeValidators(this.schema.rules), (Validator) => {
         this.Validators.push(Validator)
       })
+    },
+
+    $_initErrorBag() {
+      this.errorBag = new this.$laraform.services.errorBag(this)
     }
+  },
+  created() {
+    this.$_initErrorBag()
   },
   mounted() {
     this.$_initValidation()

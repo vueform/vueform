@@ -205,7 +205,6 @@ export default {
        * @default config.validateOn
        */
       validateOn: null,
-
       
       /**
        * Determine if the form should validate.
@@ -214,6 +213,14 @@ export default {
        * @default true
        */
       validation: true,
+
+      /**
+       * Error bag that contains computed & custom errors.
+       * 
+       * @type {ErrorBag}
+       * @default {ErrorBag}
+       */
+      errorBag: {},
 
       /**
        * Determine if the form is currently submitting.
@@ -514,6 +521,16 @@ export default {
      */
     hasTabs() {
       return !_.isEmpty(this.tabs)
+    },
+
+    /**
+     * Whether the form has errors.
+     * 
+     * @ignore
+     * @type {boolean}
+     */
+    hasErrors() {
+      return this.errorBag.errors && this.errorBag.errors.length > 0
     },
 
     mainClass() {
@@ -1051,6 +1068,10 @@ export default {
         this.$options.components[name] = component
       })
     },
+
+    $_initErrorBag() {
+      this.errorBag = new this.$laraform.services.errorBag(this)
+    }
   },
   created() {
     if (this.key === null) {
@@ -1106,6 +1127,7 @@ export default {
     })
 
     this.$_resortSchema()
+    this.$_initErrorBag()
   },
   beforeMount() {
     this.$_registerComponents()
