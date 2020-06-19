@@ -3,10 +3,10 @@ import Localized from './../mixins/Localized'
 
 export default {
   mixins: [BaseComponent, Localized],
-  name: 'FormErrors',
+  name: 'FormMessages',
   computed: {
-    errors() {
-      return this.form$.messageBag.errors
+    messages() {
+      return this.form$.messageBag.messages
     }
   },
 }

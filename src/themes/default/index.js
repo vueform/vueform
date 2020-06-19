@@ -1,5 +1,6 @@
 import Laraform from './components/Laraform'
 import FormErrors from './components/FormErrors'
+import FormMessages from './components/FormMessages'
 import FormLanguageSelector from './components/FormLanguageSelector'
 import FormLanguageSelectorTab from './components/FormLanguageSelectorTab'
 import FormTabs from './components/FormTabs'
@@ -17,6 +18,7 @@ import BaseElementLayout from './components/BaseElementLayout'
 import NestedElementLayout from './components/NestedElementLayout'
 import ElementLabel from './components/ElementLabel'
 import ElementError from './components/ElementError'
+import ElementMessage from './components/ElementMessage'
 
 import GroupElement from './components/elements/GroupElement'
 import ListElement from './components/elements/ListElement'
@@ -30,6 +32,7 @@ export default {
   components: {
     Laraform,
     FormErrors,
+    FormMessages,
     FormLanguageSelector,
     FormLanguageSelectorTab,
     FormTabs,
@@ -47,6 +50,7 @@ export default {
     NestedElementLayout,
     ElementLabel,
     ElementError,
+    ElementMessage,
   },
   elements: {
     GroupElement,

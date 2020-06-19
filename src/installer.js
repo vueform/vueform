@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import axios from './services/axios'
 import validation from './services/validation'
-import errorBag from './services/errorBag'
+import messageBag from './services/messageBag'
 import applyPlugins from './utils/applyPlugins'
 import store from './store'
 
@@ -29,7 +29,7 @@ export default function (config) {
       this.options.services = {
         validation,
         axios,
-        errorBag,
+        messageBag,
       }
     }
 

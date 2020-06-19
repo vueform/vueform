@@ -24,12 +24,12 @@ export default {
       Validators: [],
 
       /**
-       * Error bag that contains computed & custom errors.
+       * Message bag that contains computed & custom errors & messages.
        * 
-       * @type {ErrorBag}
-       * @default {ErrorBag}
+       * @type {MessageBag}
+       * @default {MessageBag}
        */
-      errorBag: {},
+      messageBag: {},
     }
   },
   computed: {
@@ -170,12 +170,12 @@ export default {
       })
     },
 
-    $_initErrorBag() {
-      this.errorBag = new this.$laraform.services.errorBag(this)
+    $_initMessageBag() {
+      this.messageBag = new this.$laraform.services.messageBag(this)
     }
   },
   created() {
-    this.$_initErrorBag()
+    this.$_initMessageBag()
   },
   mounted() {
     this.$_initValidation()

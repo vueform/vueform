@@ -4,6 +4,11 @@
     @submit.prevent="handleSubmit"
   >
     <component
+      :is="extendedComponents.FormMessages"
+      v-if="hasMessages"
+    />
+
+    <component
       :is="extendedComponents.FormErrors"
       v-if="hasErrors"
     />

@@ -215,12 +215,12 @@ export default {
       validation: true,
 
       /**
-       * Error bag that contains computed & custom errors.
+       * Message bag that contains computed & custom errors & messages.
        * 
-       * @type {ErrorBag}
-       * @default {ErrorBag}
+       * @type {MessageBag}
+       * @default {MessageBag}
        */
-      errorBag: {},
+      messageBag: {},
 
       /**
        * Determine if the form is currently submitting.
@@ -530,7 +530,17 @@ export default {
      * @type {boolean}
      */
     hasErrors() {
-      return this.errorBag.errors && this.errorBag.errors.length > 0
+      return this.messageBag.errors && this.messageBag.errors.length > 0
+    },
+
+    /**
+     * Whether the form has messages.
+     * 
+     * @ignore
+     * @type {boolean}
+     */
+    hasMessages() {
+      return this.messageBag.messages && this.messageBag.messages.length > 0
     },
 
     mainClass() {
@@ -1069,8 +1079,8 @@ export default {
       })
     },
 
-    $_initErrorBag() {
-      this.errorBag = new this.$laraform.services.errorBag(this)
+    $_initMessageBag() {
+      this.messageBag = new this.$laraform.services.messageBag(this)
     }
   },
   created() {
@@ -1127,7 +1137,7 @@ export default {
     })
 
     this.$_resortSchema()
-    this.$_initErrorBag()
+    this.$_initMessageBag()
   },
   beforeMount() {
     this.$_registerComponents()

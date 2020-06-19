@@ -152,6 +152,7 @@ export default {
         after: null,
         description: null,
         error: null,
+        message: null,
       },
 
       /**

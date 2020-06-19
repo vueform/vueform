@@ -24,6 +24,10 @@
         <slot name="error">
           <component :is="components.ElementError" />
         </slot>
+
+          <slot name="message">
+            <component :is="components.ElementMessage" />
+          </slot>
       </div>
 
     </div>

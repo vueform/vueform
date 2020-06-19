@@ -2,10 +2,10 @@ import ElementComponent from './../mixins/ElementComponent'
 
 export default {
   mixins: [ElementComponent],
-  name: 'ElementError',
+  name: 'ElementMessage',
   computed: {
-    error() {
-      return this.el$.messageBag.error
+    message() {
+      return this.el$.messageBag.message
     }
   }
 }
