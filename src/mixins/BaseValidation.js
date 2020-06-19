@@ -113,6 +113,10 @@ export default {
      * @returns {void}
      */
     validate() {
+      if (this.form$.validation === false) {
+        return
+      }
+
       if (!this.schema.rules) {
         return
       }

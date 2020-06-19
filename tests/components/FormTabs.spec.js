@@ -2,7 +2,7 @@ import { createForm } from './../../src/utils/testHelpers'
 import { createLocalVue } from '@vue/test-utils'
 import { dynamicsTesting } from './FormBlocks.spec.js' 
 
-describe('Form Tabs', () => {
+describe('Form Tabs Rendering', () => {
   it('should render tabs', () => {
     let form = createForm({
       tabs: {
@@ -29,7 +29,9 @@ describe('Form Tabs', () => {
     expect(form.html()).toContain('Second')
     expect(form.findAllComponents({ name: 'FormTab' }).length).toBe(2)
   })
+})
 
+describe('Form Tabs Computed', () => {
   it('return current element for current$', () => {
     let form = createForm({
       tabs: {
@@ -61,7 +63,9 @@ describe('Form Tabs', () => {
 
     expect(tabs.vm.current$.name).toBe('second')
   })
+})
 
+describe('Form Tabs Methods', () => {
   it('should find tab by name', () => {
     let form = createForm({
       tabs: {
@@ -89,7 +93,11 @@ describe('Form Tabs', () => {
     expect(tabs.vm.tab$('second').name).toBe('second')
   })
 
-  it('should switch to first tab on reset', () => {
+  it('should go to first tab when form is resetted', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
     let form = createForm({
       tabs: {
         first: {
@@ -100,31 +108,95 @@ describe('Form Tabs', () => {
           label: 'Second',
           elements: ['b'],
         },
+        third: {
+          label: 'Third',
+          elements: ['c'],
+        },
       },
       schema: {
         a: {
-          type: 'text'
+          type: 'text',
         },
         b: {
-          type: 'text'
+          type: 'text',
+        },
+        c: {
+          type: 'text',
         },
       }
     })
 
     let tabs = form.findComponent({ name: 'FormTabs' })
-    let second = form.findAllComponents({ name: 'FormTab' }).at(1)
 
-    expect(second.vm.name).toBe('second')
+    LocalVue.nextTick(() => {
+      tabs.vm.goTo('third', true)
 
-    second.get('a').trigger('click')
+      LocalVue.nextTick(() => {
+        expect(tabs.vm.current$.name).toBe('third')
 
-    expect(tabs.vm.current$.name).toBe('second')
-
-    tabs.vm.reset()
-
-    expect(tabs.vm.current$.name).toBe('first')
+        form.vm.reset()
+        
+        LocalVue.nextTick(() => {
+          expect(tabs.vm.current$.name).toBe('first')
+          done()
+        })
+      })
+    })
   })
 
+  it('should go to first tab when form is cleared', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      tabs: {
+        first: {
+          label: 'First',
+          elements: ['a'],
+        },
+        second: {
+          label: 'Second',
+          elements: ['b'],
+        },
+        third: {
+          label: 'Third',
+          elements: ['c'],
+        },
+      },
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+        },
+        c: {
+          type: 'text',
+        },
+      }
+    })
+
+    let tabs = form.findComponent({ name: 'FormTabs' })
+
+    LocalVue.nextTick(() => {
+      tabs.vm.goTo('third', true)
+
+      LocalVue.nextTick(() => {
+        expect(tabs.vm.current$.name).toBe('third')
+
+        form.vm.clear()
+        
+        LocalVue.nextTick(() => {
+          expect(tabs.vm.current$.name).toBe('first')
+          done()
+        })
+      })
+    })
+  })
+})
+
+describe('Form Tabs Events', () => {
   it('should trigger `change` event when tab is changed', () => {
     let onChangeMock = jest.fn(() => {})
 

@@ -141,10 +141,10 @@ export default {
       /**
        * Default column sizes for elements.
        * 
-       * @type {object}
+       * @type {object|number}
        * @default config.columns
        */
-      columns: {},
+      columns: null,
         
       /**
        * Whether label DOM should be displayed for elements without label option defined.
@@ -279,8 +279,8 @@ export default {
        * @default []
        */
       events: [
-        'change', 'submit', 'response', 'success',
-        'fail', 'error', 'language', 'reset',
+        'change', 'submit', 'success', 'error',
+        'language', 'reset', 'clear',
       ],
     }
   },
@@ -294,7 +294,7 @@ export default {
         this.schema = schema
       },
       deep: true,
-      immediate: true
+      immediate: false
     },
     schema: {
       handler() {
@@ -347,7 +347,7 @@ export default {
     data: {
       handler(value) {
         this.$emit('change', this.filtered)
-        this.fire('change', this.filtered)
+        this.handleChange(this.filtered)
 
         if (this.storePath === null) {
           return
@@ -661,7 +661,7 @@ export default {
         return
       }
 
-      if (this.fire('submit') === false) {
+      if (this.handleSubmit() === false) {
         return
       }
 
@@ -739,7 +739,29 @@ export default {
           this.tabs$.reset()
         }
 
-        this.fire('reset')
+        this.handleReset()
+      },
+
+      /**
+       * Resets the form to null values.
+       * 
+       * @public
+       * @returns {void}
+       */
+      clear() {
+        _.each(this.elements$, (element$) => {
+          element$.clear()
+        })
+
+        if (!_.isEmpty(this.wizard$)) {
+          this.wizard$.reset()
+        }
+
+        if (!_.isEmpty(this.tabs$)) {
+          this.tabs$.reset()
+        }
+
+        this.handleClear()
       },
 
     /**
@@ -778,13 +800,13 @@ export default {
           if (response.data.payload && response.data.payload.updates) {
             this.update(response.data.payload.updates)
           }
-          
-          this.fire('response', response)
+
+          this.handleSuccess(response)
         })
         .catch((error) => {
           this.submitting = false
 
-          console.error(error)
+          this.handleError(error.response, error)
         })
     },
 
@@ -829,7 +851,7 @@ export default {
     setLanguage(code) {
       this.language = code
 
-      this.fire('language', code)
+      this.handleLanguage(code)
     },
 
     updateSchema(schema) {
@@ -843,7 +865,9 @@ export default {
      * @param {object} data data of the form (filtered)
      * @event change
      */
-    handleChange(data){},
+    handleChange(data){
+      this.fire('change', data)
+    },
 
     /**
      * Triggered when the form is submitted. Can prevent further execution (element validation) if returns `false`.
@@ -853,17 +877,8 @@ export default {
      * @event submit
      */
     handleSubmit(){
-      this.submit()
+      return this.fire('submit')
     },
-        
-    /**
-     * Triggered when receives a response from the server upon submitting the form.
-     *
-     * @public
-     * @param {object} response response object
-     * @event response
-     */
-    handleResponse(response){},
         
     /**
      * Triggered when receives a success response from the server upon submitting the form.
@@ -872,25 +887,20 @@ export default {
      * @param {object} response response object
      * @event success
      */
-    handleSuccess(response){},
+    handleSuccess(response){
+      this.fire('success', response)
+    },
         
     /**
-     * Triggered when receives a fail response from the server upon submitting the form.
+     * Triggered when receives a failed response from the server upon submitting the form.
      *
      * @public
      * @param {object} response response object
-     * @event fail
-     */
-    handleFail(response){},
-        
-    /**
-     * Triggered when receives an error from the server upon submitting the form.
-     *
-     * @public
-     * @param {object} error error object
      * @event error
      */
-    handleError(errro){},
+    handleError(response, error){
+      this.fire('error', response, error)
+    },
         
     /**
      * Triggered when user selects a language in a multilingual form.
@@ -899,7 +909,9 @@ export default {
      * @param {string} language the selected language's code
      * @event language
      */
-    handleLanguage(language){},
+    handleLanguage(language){
+      this.fire('language', language)
+    },
         
     /**
      * Triggered when the form is resetted.
@@ -907,7 +919,19 @@ export default {
      * @public
      * @event reset
      */
-    handleReset(){},
+    handleReset(){
+      this.fire('reset')
+    },
+        
+    /**
+     * Triggered when the form is cleared.
+     *
+     * @public
+     * @event clear
+     */
+    handleClear(){
+      this.fire('clear')
+    },
 
     /**
      * Returns an element by its path.
@@ -980,7 +1004,7 @@ export default {
     },
 
     $_setButtons$() {
-      let buttons$ = {}
+      let buttons$ = []
       let buttonsRefs$ = this.$refs.buttons$
 
       if (!buttonsRefs$) {
@@ -992,7 +1016,7 @@ export default {
       }
 
       _.each(buttonsRefs$, (button$) => {
-        buttons$[button$.name] = button$
+        buttons$.push(button$)
       })
 
       this.$set(this, 'buttons$', buttons$)

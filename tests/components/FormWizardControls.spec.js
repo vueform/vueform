@@ -1,6 +1,11 @@
 import { createForm } from './../../src/utils/testHelpers'
 import { createLocalVue } from '@vue/test-utils'
 
+jest.mock("axios", () => ({
+  get: () => Promise.resolve({ data: 'value' }),
+  post: () => Promise.resolve({ data: 'value' }),
+}))
+
 describe('Form Wizard Controls', () => {
   it('should disable previous button on first step', (done) => {
     const LocalVue = createLocalVue()

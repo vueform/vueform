@@ -5,6 +5,14 @@ import { mergeComponentClasses } from './../../src/utils/mergeClasses'
 import defaultTheme from './../../src/themes/default'
 import bootstrapTheme from './../../src/themes/bootstrap'
 
+jest.mock("axios", () => ({
+  get: () => Promise.resolve({ data: 'value' }),
+  post: () => Promise.resolve({ data: 'value' }),
+  success: () => Promise.resolve({ data: 'value' }),
+  error: () => Promise.reject({ data: 'value' }),
+  update: () => Promise.resolve({ data: { payload: { updates: { a: 'aaa' } } } })
+}))
+
 describe('Laraform Rendering', () => {
   it('should render element from schema', () => {
     let form = createForm({
@@ -71,6 +79,29 @@ describe('Laraform Props & Data', () => {
 
     LocalVue.nextTick(() => {
       expect(form.vm.elements$.a.label).toBe('A')
+
+      done()
+    })
+  })
+
+  it('should retrieve button VMs in buttons$ once the form is rendered', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        }
+      },
+      buttons: [{
+        label: 'Submit'
+      }]
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.buttons$[0].label).toBe('Submit')
 
       done()
     })
@@ -256,6 +287,372 @@ describe('Laraform Props & Data', () => {
     expect(BaseElementLayout.classes()).toContain('class-a')
     expect(BaseElementLayout.classes()).toContain('class-b')
     expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
+  })
+
+  it('should set default values from config', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        }
+      }
+    }, {
+      config: {
+        theme: 'default',
+        columns: 11,
+        validateOn: 'other',
+        labels: 2,
+        formErrors: 2,
+        method: 'patch',
+        locale: 'ru',
+        languages: {
+          ru: {
+            label: 'Russian',
+            code: 'ru'
+          }
+        },
+        language: 'ru',
+        endpoints: {
+          process: 'bbb'
+        }
+      }
+    })
+
+    expect(form.vm.theme).toBe('default')
+    expect(form.vm.columns).toBe(11)
+    expect(form.vm.validateOn).toBe('other')
+    expect(form.vm.labels).toBe(2)
+    expect(form.vm.formErrors).toBe(2)
+    expect(form.vm.method).toBe('patch')
+    expect(form.vm.locale).toBe('ru')
+    expect(form.vm.languages).toStrictEqual({ru: {label: 'Russian',code: 'ru'}})
+    expect(form.vm.language).toBe('ru')
+    expect(form.vm.endpoint).toBe('bbb')
+  })
+
+  it('should overwrite default values with form data values', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        }
+      },
+      theme: 'default',
+      columns: 10,
+      validateOn: 'submit',
+      labels: 3,
+      formErrors: 3,
+      method: 'put',
+      locale: 'de',
+      languages: {
+        de: {
+          label: 'German',
+          code: 'de'
+        }
+      },
+      language: 'de',
+      endpoint: 'ccc'
+    }, {
+      config: {
+        theme: 'bootstrap',
+        columns: 11,
+        validateOn: 'other',
+        labels: 2,
+        formErrors: 2,
+        method: 'patch',
+        locale: 'ru',
+        languages: {
+          ru: {
+            label: 'Russian',
+            code: 'ru'
+          }
+        },
+        language: 'ru',
+        endpoint: {
+          process: 'bbb'
+        }
+      }
+    })
+
+    expect(form.vm.theme).toBe('default')
+    expect(form.vm.columns).toBe(10)
+    expect(form.vm.validateOn).toBe('submit')
+    expect(form.vm.labels).toBe(3)
+    expect(form.vm.formErrors).toBe(3)
+    expect(form.vm.method).toBe('put')
+    expect(form.vm.locale).toBe('de')
+    expect(form.vm.languages).toStrictEqual({de: {label: 'German',code: 'de'}})
+    expect(form.vm.language).toBe('de')
+    expect(form.vm.endpoint).toBe('ccc')
+  })
+
+  it('should set `form` prop values as data', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        },
+      },
+    }, {
+      propsData: {
+        form: {
+          key: 'aaa',
+          class: 'form-class',
+          multilingual: 2,
+          endpoint: 'bbb',
+          wizardControls: 2,
+          theme: 'default',
+          columns: 11,
+          validateOn: 'other',
+          labels: 2,
+          formErrors: 2,
+          method: 'patch',
+          locale: 'ru',
+          languages: {
+            ru: {
+              label: 'Russian',
+              code: 'ru'
+            }
+          },
+          language: 'ru'
+        }
+      }
+    })
+
+    expect(form.vm.key).toBe('aaa')
+    expect(form.vm.class).toBe('form-class')
+    expect(form.vm.multilingual).toBe(2)
+    expect(form.vm.endpoint).toBe('bbb')
+    expect(form.vm.wizardControls).toBe(2)
+    expect(form.vm.theme).toBe('default')
+    expect(form.vm.columns).toBe(11)
+    expect(form.vm.validateOn).toBe('other')
+    expect(form.vm.labels).toBe(2)
+    expect(form.vm.formErrors).toBe(2)
+    expect(form.vm.method).toBe('patch')
+    expect(form.vm.locale).toBe('ru')
+    expect(form.vm.languages).toStrictEqual({ru: {label: 'Russian',code: 'ru'}})
+    expect(form.vm.language).toBe('ru')
+    expect(form.vm.endpoint).toBe('bbb')
+  })
+
+  it('should keep form data values even if `form` prop is set', () => {
+    let form = createForm({
+      schema: {
+        name: {
+          type: 'text'
+        }
+      },
+      key: 'bbb',
+      class: 'form-class-2',
+      multilingual: 3,
+      endpoint: 'ccc',
+      wizardControls: 3,
+      theme: 'default',
+      columns: 10,
+      validateOn: 'submit',
+      labels: 3,
+      formErrors: 3,
+      method: 'put',
+      locale: 'de',
+      languages: {
+        de: {
+          label: 'German',
+          code: 'de'
+        }
+      },
+      language: 'de',
+    }, {
+      propsData: {
+        form: {
+          key: 'aaa',
+          class: 'form-class',
+          multilingual: 2,
+          endpoint: 'bbb',
+          wizardControls: 2,
+          theme: 'bootstrap',
+          columns: 11,
+          validateOn: 'other',
+          labels: 2,
+          formErrors: 2,
+          method: 'patch',
+          locale: 'ru',
+          languages: {
+            ru: {
+              label: 'Russian',
+              code: 'ru'
+            }
+          },
+          language: 'ru'
+        }
+      }
+    })
+
+    expect(form.vm.key).toBe('bbb')
+    expect(form.vm.class).toBe('form-class-2')
+    expect(form.vm.multilingual).toBe(3)
+    expect(form.vm.endpoint).toBe('ccc')
+    expect(form.vm.wizardControls).toBe(3)
+    expect(form.vm.theme).toBe('default')
+    expect(form.vm.columns).toBe(10)
+    expect(form.vm.validateOn).toBe('submit')
+    expect(form.vm.labels).toBe(3)
+    expect(form.vm.formErrors).toBe(3)
+    expect(form.vm.method).toBe('put')
+    expect(form.vm.locale).toBe('de')
+    expect(form.vm.languages).toStrictEqual({de: {label: 'German',code: 'de'}})
+    expect(form.vm.language).toBe('de')
+  })
+
+  it('should merge `form` prop properties with data', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          label: 'a',
+          a: {
+            b: 2
+          }
+        },
+        d: {
+          type: 'text'
+        }
+      },
+      buttons: [
+        {
+          prevent: true
+        },
+        {
+          label: 'b'
+        }
+      ],
+      wizard: {
+        first: {
+          label: 'First',
+        },
+        second: {
+          label: 'Second',
+          elements: ['c']
+        }
+      },
+      tabs: {
+        first: {
+          label: 'First',
+        },
+        second: {
+          label: 'Second',
+          elements: ['c']
+        }
+      },
+      messages: {
+        min: {
+          array: 'ccc',
+          number: 'ddd',
+        },
+        max: {
+          string: 'eee'
+        }
+      }
+    }, {
+      propsData: {
+        form: {
+          schema: {
+            a: {
+              type: 'text',
+              a: {
+                b: 1
+              }
+            },
+            b: {
+              type: 'text'
+            },
+            c: {
+              type: 'text'
+            },
+          },
+          buttons: [{
+            label: 'a'
+          }],
+          wizard: {
+            first: {
+              elements: ['a']
+            }
+          },
+          tabs: {
+            first: {
+              elements: ['a']
+            }
+          },
+          messages: {
+            min: {
+              array: 'aaa',
+              string: 'bbb',
+            }
+          }
+        }
+      }
+    })
+
+    expect(form.vm.schema).toStrictEqual({
+      a: {
+        type: 'text',
+        label: 'a',
+        a: {
+          b: 2
+        }
+      },
+      b: {
+        type: 'text'
+      },
+      c: {
+        type: 'text'
+      },
+      d: {
+        type: 'text'
+      },
+    })
+
+    expect(form.vm.buttons).toStrictEqual([
+      {
+        label: 'a',
+        prevent: true
+      },
+      {
+        label: 'b'
+      }
+    ])
+
+    expect(form.vm.wizard).toStrictEqual({
+      first: {
+        label: 'First',
+        elements: ['a'],
+      },
+      second: {
+        label: 'Second',
+        elements: ['c']
+      }
+    })
+
+    expect(form.vm.tabs).toStrictEqual({
+      first: {
+        label: 'First',
+        elements: ['a'],
+      },
+      second: {
+        label: 'Second',
+        elements: ['c']
+      }
+    })
+
+    expect(form.vm.messages).toStrictEqual({
+      min: {
+        array: 'ccc',
+        string: 'bbb',
+        number: 'ddd',
+      },
+      max: {
+        string: 'eee'
+      }
+    })
   })
 })
 
@@ -595,8 +992,8 @@ describe('Laraform Computed', () => {
     expect(form.vm.disabled).toBe(false)
 
     LocalVue.nextTick(() => {
-      form.vm.handleSubmit()
-      
+      form.vm.submit()
+
       expect(form.vm.disabled).toBe(true)
       done()
     })
@@ -778,65 +1175,6 @@ describe('Laraform Computed', () => {
 })
 
 describe('Laraform Methods', () => {
-  it('should retrieve an element based on path using el$ method', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'text',
-          label: 'A'
-        }
-      }
-    })
-
-    LocalVue.nextTick(() => {
-      expect(form.vm.el$('a').label).toBe('A')
-
-      done()
-    })
-  })
-
-  it('should call send on submit', () => {
-    const { LocalVue, config } = installLaraform()
-
-    let sendMock = jest.fn(() => {})
-
-    let formComponent = LocalVue.extend({
-      mixins: [Laraform],
-      data() {
-        return {
-          schema: {
-            name: {
-              type: 'text'
-            }
-          }
-        }
-      },
-      methods: {
-        send: sendMock
-      }
-    })
-
-    let form = mount(formComponent, {
-      LocalVue,
-      mocks: {
-        $laraform: {
-          config: config,
-          services: {
-            messageBag: jest.fn()
-          }
-        }
-      }
-    })
-    
-    form.vm.submit()
-
-    expect(sendMock.mock.calls.length).toBe(1)
-  })
-
   it('should prevent submit if disabled', () => {
     const { LocalVue, config } = installLaraform()
 
@@ -878,6 +1216,622 @@ describe('Laraform Methods', () => {
     form.vm.submit()
 
     expect(proceedMock.mock.calls.length).toBe(0)
+  })
+
+  it('should validate elements on submit if validateOn submit is included', () => {
+    let form = createForm({
+      validateOn: 'submit',
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'required'
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    expect(a.vm.validated).toBe(false)
+
+    form.vm.submit()
+
+    expect(a.vm.validated).toBe(true)
+  })
+
+  it('should not validate elements on submit if validateOn submit is excluded', () => {
+    let form = createForm({
+      validateOn: 'change',
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'required'
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    expect(a.vm.validated).toBe(false)
+
+    form.vm.submit()
+
+    expect(a.vm.validated).toBe(false)
+  })
+
+  it('should call send on submit', () => {
+    const { LocalVue, config } = installLaraform()
+
+    let sendMock = jest.fn(() => {})
+
+    let formComponent = LocalVue.extend({
+      mixins: [Laraform],
+      data() {
+        return {
+          schema: {
+            name: {
+              type: 'text'
+            }
+          }
+        }
+      },
+      methods: {
+        send: sendMock
+      }
+    })
+
+    let form = mount(formComponent, {
+      LocalVue,
+      mocks: {
+        $laraform: {
+          config: config,
+          services: {
+            messageBag: jest.fn()
+          }
+        }
+      }
+    })
+    
+    form.vm.submit()
+
+    expect(sendMock.mock.calls.length).toBe(1)
+  })
+
+  it('should `load` data to elements', () => {
+    let form = createForm({
+      validateOn: 'change',
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+          default: 1
+        },
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+
+    expect(a.vm.value).toBe(a.vm.null)
+    expect(b.vm.value).toBe(1)
+
+    form.vm.load({
+      a: 'aaa'
+    })
+
+    expect(a.vm.value).toBe('aaa')
+    expect(b.vm.value).toBe(b.vm.null)
+  })
+
+  it('should `update` element data', () => {
+    let form = createForm({
+      validateOn: 'change',
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+          default: 1
+        },
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+
+    expect(a.vm.value).toBe(a.vm.null)
+    expect(b.vm.value).toBe(1)
+
+    form.vm.update({
+      a: 'aaa'
+    })
+
+    expect(a.vm.value).toBe('aaa')
+    expect(b.vm.value).toBe(1)
+  })
+
+  it('should `reset` elements', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+          default: 1
+        },
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+
+    expect(a.vm.value).toBe(a.vm.null)
+    expect(b.vm.value).toBe(1)
+
+    form.vm.update({
+      a: 'aaa',
+      b: 'bbb'
+    })
+
+    expect(a.vm.value).toBe('aaa')
+    expect(b.vm.value).toBe('bbb')
+
+    form.vm.reset()
+
+    expect(a.vm.value).toBe(a.vm.default)
+    expect(b.vm.value).toBe(b.vm.default)
+  })
+
+  it('should `clear` elements', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+          default: 1
+        },
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+
+    expect(a.vm.value).toBe(a.vm.null)
+    expect(b.vm.value).toBe(1)
+
+    form.vm.update({
+      a: 'aaa',
+      b: 'bbb'
+    })
+
+    expect(a.vm.value).toBe('aaa')
+    expect(b.vm.value).toBe('bbb')
+
+    form.vm.clear()
+
+    expect(a.vm.value).toBe(a.vm.null)
+    expect(b.vm.value).toBe(b.vm.null)
+  })
+
+  it('should `createFormData`', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          default: 1
+        },
+        b: {
+          type: 'text',
+          default: 2
+        },
+      }
+    })
+
+    expect(form.vm.createFormData(form.vm.data) instanceof FormData).toBe(true)
+  })
+
+  it('should `disableValidation`', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+      }
+    })
+
+    expect(form.vm.validation).toBe(true)
+
+    form.vm.disableValidation()
+
+    expect(form.vm.validation).toBe(false)
+  })
+
+  it('should `enableValidation`', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+      }
+    })
+
+    expect(form.vm.validation).toBe(true)
+
+    form.vm.disableValidation()
+
+    expect(form.vm.validation).toBe(false)
+
+    form.vm.enableValidation()
+
+    expect(form.vm.validation).toBe(true)
+  })
+
+  it('should not validate elements when validation is disabled', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'required'
+        },
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+    expect(a.vm.validated).toBe(false)
+
+    form.vm.disableValidation()
+
+    a.vm.validate()
+
+    expect(a.vm.validated).toBe(false)
+  })
+
+  it('should return element with `el$`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.el$('a').name).toBe('a')
+      done()
+    })
+  })
+
+  it('should return element in object with `el$`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'object',
+          schema: {
+            b: {
+              type: 'text'
+            }
+          }
+        },
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.el$('a.b').name).toBe('b')
+      done()
+    })
+  })
+
+  it('should return element in group with `el$`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'group',
+          schema: {
+            b: {
+              type: 'text'
+            }
+          }
+        },
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.el$('a.b').name).toBe('b')
+      done()
+    })
+  })
+
+  it('should return element in element list with `el$`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 1,
+          element: {
+            type: 'text',
+            label: 'b'
+          }
+        },
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.el$('a.0').label).toBe('b')
+      done()
+    })
+  })
+
+  it('should return element in object list with `el$`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 1,
+          object: {
+            schema: {
+              b: {
+                type: 'text',
+              }
+            } 
+          }
+        },
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.el$('a.0.b').name).toBe('b')
+      done()
+    })
+  })
+
+  it('should return null for `el$` if element can\'t be found', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.el$('b')).toBe(null)
+      expect(form.vm.el$('a.b')).toBe(null)
+      done()
+    })
+  })
+
+  it('should return return `siblings$` of element', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text'
+        },
+        c: {
+          type: 'text'
+        },
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(_.keys(form.vm.siblings$('b'))).toStrictEqual(['a', 'b', 'c'])
+      done()
+    })
+  })
+
+  it('should return return `siblings$` of element in object', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'object',
+          schema: {
+            b: {
+              type: 'text'
+            },
+            c: {
+              type: 'text'
+            },
+            d: {
+              type: 'text'
+            },
+          }
+        },
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(_.keys(form.vm.siblings$('a.c'))).toStrictEqual(['b', 'c', 'd'])
+      done()
+    })
+  })
+
+  it('should return return `siblings$` of element in group', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'group',
+          schema: {
+            b: {
+              type: 'text'
+            },
+            c: {
+              type: 'text'
+            },
+            d: {
+              type: 'text'
+            },
+          }
+        },
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(_.keys(form.vm.siblings$('a.c'))).toStrictEqual(['b', 'c', 'd'])
+      done()
+    })
+  })
+
+  it('should return return `siblings$` of element in element list', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 3,
+          element: {
+            type: 'text',
+          }
+        },
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(_.keys(form.vm.siblings$('a.1'))).toStrictEqual(['0','1','2'])
+      done()
+    })
+  })
+
+  it('should return return `siblings$` of element in object list', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 3,
+          object: {
+            schema: {
+              b: {
+                type: 'text',
+              },
+              c: {
+                type: 'text',
+              },
+              d: {
+                type: 'text',
+              },
+            } 
+          }
+        },
+      }
+    })
+
+    LocalVue.nextTick(() => {
+      expect(_.keys(form.vm.siblings$('a.1'))).toStrictEqual(['0','1','2'])
+      expect(_.keys(form.vm.siblings$('a.1.c'))).toStrictEqual(['b', 'c', 'd'])
+      done()
+    })
+  })
+
+  it('should update data if payload contains updates', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+    
+    let form = createForm({
+      method: 'update', // fake axios method for testing
+      schema: {
+        a: {
+          type: 'text'
+        }
+      }
+    })
+
+    form.vm.submit()
+
+    LocalVue.nextTick(() => {
+    LocalVue.nextTick(() => {
+      expect(form.findComponent({ name: 'TextElement' }).vm.value).toBe('aaa')
+      done()
+    })
+    })
+  })
+
+  it('should proceed with callback once form exits busy state', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'unique'
+        },
+      }
+    })
+
+    let proceedCallbackMock = jest.fn(() => {})
+
+    expect(form.vm.busy).toBe(false)
+
+    LocalVue.nextTick(() => {
+      form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+      expect(form.vm.busy).toBe(true)
+
+      form.vm.proceed(proceedCallbackMock)
+      expect(proceedCallbackMock.mock.calls.length).toBe(0)
+      
+      LocalVue.nextTick(() => {
+      LocalVue.nextTick(() => {
+      LocalVue.nextTick(() => {
+        expect(form.vm.busy).toBe(false)
+        expect(proceedCallbackMock.mock.calls.length).toBe(1)
+
+        done()
+      })
+      })
+      })
+    })
   })
 })
 
@@ -1149,6 +2103,220 @@ describe('Laraform Components', () => {
   })
 })
 
+describe('Laraform Events', () => {
+  it('should trigger `change` event when data changes', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+    
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        }
+      }
+    })
+
+    let changeMock = jest.fn(() => {})
+
+    form.vm.on('change', changeMock)
+
+    expect(changeMock.mock.calls.length).toBe(0)
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+    a.get('input').setValue('aaa')
+
+    LocalVue.nextTick(() => {
+      expect(changeMock.mock.calls.length).toBe(1)
+      done()
+    })
+  })
+
+  it('should trigger `submit` event when submitted', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+    
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        }
+      }
+    })
+
+    let submitMock = jest.fn(() => {})
+
+    form.vm.on('submit', submitMock)
+
+    expect(submitMock.mock.calls.length).toBe(0)
+
+    form.vm.submit()
+
+    LocalVue.nextTick(() => {
+      expect(submitMock.mock.calls.length).toBe(1)
+      done()
+    })
+  })
+
+  it('should trigger `success` event on successful response', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+    
+    let form = createForm({
+      method: 'success', // fake axios method for testing
+      schema: {
+        a: {
+          type: 'text'
+        }
+      }
+    })
+
+    let successMock = jest.fn(() => {})
+
+    form.vm.on('success', successMock)
+
+    expect(successMock.mock.calls.length).toBe(0)
+
+    form.vm.submit()
+
+    LocalVue.nextTick(() => {
+    LocalVue.nextTick(() => {
+      expect(successMock.mock.calls.length).toBe(1)
+      done()
+    })
+    })
+  })
+
+  it('should trigger `error` event on failed response', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+    
+    let form = createForm({
+      method: 'error', // fake axios method for testing
+      schema: {
+        a: {
+          type: 'text'
+        }
+      }
+    })
+
+    let errorMock = jest.fn(() => {})
+
+    form.vm.on('error', errorMock)
+
+    expect(errorMock.mock.calls.length).toBe(0)
+
+    form.vm.submit()
+
+    LocalVue.nextTick(() => {
+    LocalVue.nextTick(() => {
+    LocalVue.nextTick(() => {
+      expect(errorMock.mock.calls.length).toBe(1)
+      done()
+    })
+    })
+    })
+  })
+
+  it('should trigger `language` when language is changed', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+    
+    let form = createForm({
+      multilingual: true,
+      language: 'en',
+      languages: {
+        en: {
+          label: 'English',
+          code: 'en'
+        },
+        de: {
+          label: 'German',
+          code: 'de'
+        },
+      },
+      schema: {
+        a: {
+          type: 'text'
+        }
+      }
+    })
+
+    let languageMock = jest.fn(() => {})
+
+    form.vm.on('language', languageMock)
+
+    expect(languageMock.mock.calls.length).toBe(0)
+
+    expect(form.vm.language).toBe('en')
+
+    form.findAllComponents({ name: 'FormLanguageSelectorTab' }).at(1).get('a').trigger('click')
+
+    expect(form.vm.language).toBe('de')
+    
+    expect(languageMock.mock.calls.length).toBe(1)
+
+    done()
+  })
+
+  it('should trigger `reset` when form is resetted', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+    
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        }
+      }
+    })
+
+    let resetMock = jest.fn(() => {})
+
+    form.vm.on('reset', resetMock)
+
+    expect(resetMock.mock.calls.length).toBe(0)
+
+    form.vm.reset()
+    
+    expect(resetMock.mock.calls.length).toBe(1)
+
+    done()
+  })
+
+  it('should trigger `clear` when form is cleared', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+    
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        }
+      }
+    })
+
+    let clearMock = jest.fn(() => {})
+
+    form.vm.on('clear', clearMock)
+
+    expect(clearMock.mock.calls.length).toBe(0)
+
+    form.vm.clear()
+    
+    expect(clearMock.mock.calls.length).toBe(1)
+
+    done()
+  })
+})
+
 describe('Laraform Dynamics', () => {
   it('should update elements$ when schema changes', (done) => {
     const LocalVue = createLocalVue()
@@ -1165,15 +2333,13 @@ describe('Laraform Dynamics', () => {
 
     expect(_.keys(form.vm.elements$).length).toBe(1)
 
-    form.setData({
-      schema: {
-        a: {
-          type: 'text'
-        },
-        b: {
-          type: 'text'
-        },
-      }
+    form.vm.updateSchema({
+      a: {
+        type: 'text'
+      },
+      b: {
+        type: 'text'
+      },
     })
 
     LocalVue.nextTick(() => {

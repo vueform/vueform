@@ -746,6 +746,176 @@ describe('Form Wizard Methods', () => {
     })
   })
 
+  it('should enable all steps when data is loaded', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      wizard: {
+        first: {
+          label: 'First',
+          elements: ['a'],
+        },
+        second: {
+          label: 'Second',
+          elements: ['b'],
+        },
+      },
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+        },
+      }
+    })
+
+    let first = form.findAllComponents({ name: 'FormWizardStep' }).at(0)
+    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
+
+    form.vm.load({
+      a: 1,
+      b: 2
+    })
+
+    LocalVue.nextTick(() => {
+      expect(first.vm.disabled).toBe(false)
+      expect(second.vm.disabled).toBe(false)
+
+      done()
+    })
+  })
+
+  it('should go to first step and disable all others when form is resetted', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      wizard: {
+        first: {
+          label: 'First',
+          elements: ['a'],
+        },
+        second: {
+          label: 'Second',
+          elements: ['b'],
+        },
+        third: {
+          label: 'Third',
+          elements: ['c'],
+        },
+      },
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+        },
+        c: {
+          type: 'text',
+        },
+      }
+    })
+
+    let wizard = form.findComponent({ name: 'FormWizard' })
+    let first = form.findAllComponents({ name: 'FormWizardStep' }).at(0)
+    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
+    let third = form.findAllComponents({ name: 'FormWizardStep' }).at(2)
+
+    LocalVue.nextTick(() => {
+      expect(first.vm.disabled).toBe(false)
+      expect(second.vm.disabled).toBe(true)
+      expect(third.vm.disabled).toBe(true)
+
+      wizard.vm.goTo('third', true)
+
+      LocalVue.nextTick(() => {
+        expect(wizard.vm.current$.name).toBe('third')
+        expect(first.vm.disabled).toBe(false)
+        expect(second.vm.disabled).toBe(false)
+        expect(third.vm.disabled).toBe(false)
+
+        form.vm.reset()
+        
+        LocalVue.nextTick(() => {
+          expect(wizard.vm.current$.name).toBe('first')
+          expect(first.vm.disabled).toBe(false)
+          expect(second.vm.disabled).toBe(true)
+          expect(third.vm.disabled).toBe(true)
+          done()
+        })
+      })
+    })
+  })
+
+  it('should go to first step and disable all others when form is cleared', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      wizard: {
+        first: {
+          label: 'First',
+          elements: ['a'],
+        },
+        second: {
+          label: 'Second',
+          elements: ['b'],
+        },
+        third: {
+          label: 'Third',
+          elements: ['c'],
+        },
+      },
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+        },
+        c: {
+          type: 'text',
+        },
+      }
+    })
+
+    let wizard = form.findComponent({ name: 'FormWizard' })
+    let first = form.findAllComponents({ name: 'FormWizardStep' }).at(0)
+    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
+    let third = form.findAllComponents({ name: 'FormWizardStep' }).at(2)
+
+    LocalVue.nextTick(() => {
+      expect(first.vm.disabled).toBe(false)
+      expect(second.vm.disabled).toBe(true)
+      expect(third.vm.disabled).toBe(true)
+
+      wizard.vm.goTo('third', true)
+
+      LocalVue.nextTick(() => {
+        expect(wizard.vm.current$.name).toBe('third')
+        expect(first.vm.disabled).toBe(false)
+        expect(second.vm.disabled).toBe(false)
+        expect(third.vm.disabled).toBe(false)
+
+        form.vm.clear()
+        
+        LocalVue.nextTick(() => {
+          expect(wizard.vm.current$.name).toBe('first')
+          expect(first.vm.disabled).toBe(false)
+          expect(second.vm.disabled).toBe(true)
+          expect(third.vm.disabled).toBe(true)
+          done()
+        })
+      })
+    })
+  })
+
   it('should find step by name', () => {
     let form = createForm({
       wizard: {

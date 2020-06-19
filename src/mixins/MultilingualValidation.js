@@ -192,6 +192,10 @@ export default {
      * @returns {void}
      */
     validateLanguage(language) {
+      if (this.form$.validation === false) {
+        return
+      }
+      
       if (language === undefined) {
         language = this.language
       }

@@ -1,7 +1,7 @@
 <template>
   <form
     :class="extendedClasses.form"
-    @submit.prevent="handleSubmit"
+    @submit.prevent="submit"
   >
     <component
       :is="extendedComponents.FormMessages"

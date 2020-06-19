@@ -125,7 +125,7 @@ export default {
     */
     initial: {
       get() {
-        if (this.default && this.default.length > this.schema.initial || 1) {
+        if (this.default && this.default.length > (this.schema.initial || 1)) {
           return this.default.length
         }
 
