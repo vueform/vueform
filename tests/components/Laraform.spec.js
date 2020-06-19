@@ -327,6 +327,157 @@ describe('Laraform Computed', () => {
 
     expect(form.vm.formData instanceof FormData).toBe(true)
   })
+
+  it('should be `dirty` if any element is dirty', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text',
+        },
+      }
+    })
+
+    expect(form.vm.dirty).toBe(false)
+
+    LocalVue.nextTick(() => {
+      form.findAllComponents({ name: 'TextElement' }).at(0).get('input').setValue('aaa')
+      
+      LocalVue.nextTick(() => {
+        expect(form.vm.dirty).toBe(true)
+        done()
+      })
+    })
+  })
+
+  it('should be `invalid` if any element is invalid', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'required'
+        },
+        b: {
+          type: 'text',
+        },
+      }
+    })
+
+    expect(form.vm.invalid).toBe(false)
+
+    LocalVue.nextTick(() => {
+      form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+      
+      LocalVue.nextTick(() => {
+        expect(form.vm.invalid).toBe(true)
+        done()
+      })
+    })
+  })
+
+  it('should be `debouncing` & `busy` if any element is debouncing', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'required:debounce=3000'
+        },
+        b: {
+          type: 'text',
+        },
+      }
+    })
+
+    expect(form.vm.debouncing).toBe(false)
+    expect(form.vm.busy).toBe(false)
+
+    LocalVue.nextTick(() => {
+      form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+      
+      LocalVue.nextTick(() => {
+        expect(form.vm.debouncing).toBe(true)
+        expect(form.vm.busy).toBe(true)
+        done()
+      })
+    })
+  })
+
+  it('should be `pending` & `busy` if any element is pending', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'unique'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(form.vm.pending).toBe(false)
+    expect(form.vm.busy).toBe(false)
+
+    LocalVue.nextTick(() => {
+      form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+      
+      LocalVue.nextTick(() => {
+        expect(form.vm.pending).toBe(true)
+        expect(form.vm.busy).toBe(true)
+        done()
+      })
+    })
+  })
+
+  it('should be `validated` only if all elements are validated', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'required'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(form.vm.validated).toBe(false)
+
+    LocalVue.nextTick(() => {
+      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+      a.get('input').setValue('aaa')
+      a.vm.validate()
+      
+      LocalVue.nextTick(() => {
+        expect(form.vm.validated).toBe(true)
+        done()
+      })
+    })
+  })
 })
 
 describe('Laraform Methods', () => {
