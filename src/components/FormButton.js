@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import BaseComponent from './../mixins/BaseComponent'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 import HasHooks from './../mixins/HasHooks'
@@ -13,8 +12,9 @@ export default {
      * @default {
      *  "label": { "type": "string", "description": "Button label;" },
      *  "class": { "type": "string", "description": "Button class." },
+     *  "onClick": { "type": "function", "description": "Handling submit button click. Receives `form$` as first param." },
      *  "disabled": { "type": "function", "description": "A method to determine when the button should be disabled." },
-     *  "onClick": { "type": "function", "description": "Handling button click Receives button component with `this`." },
+     *  "loading": { "type": "function", "description": "A method to determine when the button should be in loading state (`loading` class added)." },
      *  "beforeCreate": { "type": "function", "description": "Triggered in the button's `beforeCreate` lifecycle hook." },
      *  "created": { "type": "function", "description": "Triggered in the button's `created` lifecycle hook." },
      *  "beforeMount": { "type": "function", "description": "Triggered in the button's `beforeMount` lifecycle hook." },
@@ -50,7 +50,9 @@ export default {
       // Add buttons's class to main class
       if (this.button.class) {
         classes = mergeComponentClasses(classes, {
-          [this.mainClass]: this.button.class
+          [this.mainClass]: this.button.class,
+          [classes.loading]: this.button.loading,
+          [classes.disabled]: this.button.disabled,
         })
       }
 
@@ -63,11 +65,24 @@ export default {
      * @type {boolean}
      */
     disabled() {
-      if (this.button.disabled === undefined) {
-        return
+      if (this.button.disabled !== undefined) {
+        return this.button.disabled(this.form$)
       }
 
-      return this.button.disabled.call(this)
+      return this.form$.disabled
+    },
+
+    /**
+     * Determines if the button should be in loading state.
+     * 
+     * @type {boolean}
+     */
+    loading() {
+      if (this.button.loading !== undefined) {
+        return this.button.loading(this.form$)
+      }
+
+      return this.form$.submitting
     }
   },
   methods: {
@@ -77,13 +92,13 @@ export default {
      * @private 
      * @returns {void}
      */
-    handleClick(event) {
-      if (this.button.prevent === true) {
-        event.preventDefault()
+    handleClick() {
+      if (this.disabled || this.loading) {
+        return
       }
 
       if (this.button.onClick !== undefined) {
-        this.button.onClick.call(this)
+        this.button.onClick(this.form$)
       }
     }
   },

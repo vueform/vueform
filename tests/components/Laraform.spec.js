@@ -83,30 +83,7 @@ describe('Laraform Props & Data', () => {
       done()
     })
   })
-
-  it('should retrieve button VMs in buttons$ once the form is rendered', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'text',
-        }
-      },
-      buttons: [{
-        label: 'Submit'
-      }]
-    })
-
-    LocalVue.nextTick(() => {
-      expect(form.vm.buttons$[0].label).toBe('Submit')
-
-      done()
-    })
-  })
-
+  
   it('should select theme what is defined in config', () => {
     let form = createForm({}, {
       config: {
@@ -517,14 +494,6 @@ describe('Laraform Props & Data', () => {
           type: 'text'
         }
       },
-      buttons: [
-        {
-          prevent: true
-        },
-        {
-          label: 'b'
-        }
-      ],
       wizard: {
         first: {
           label: 'First',
@@ -569,9 +538,6 @@ describe('Laraform Props & Data', () => {
               type: 'text'
             },
           },
-          buttons: [{
-            label: 'a'
-          }],
           wizard: {
             first: {
               elements: ['a']
@@ -610,16 +576,6 @@ describe('Laraform Props & Data', () => {
         type: 'text'
       },
     })
-
-    expect(form.vm.buttons).toStrictEqual([
-      {
-        label: 'a',
-        prevent: true
-      },
-      {
-        label: 'b'
-      }
-    ])
 
     expect(form.vm.wizard).toStrictEqual({
       first: {

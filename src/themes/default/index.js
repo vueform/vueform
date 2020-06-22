@@ -12,17 +12,20 @@ import FormWizardNext from './components/FormWizardNext'
 import FormWizardPrevious from './components/FormWizardPrevious'
 import FormWizardStep from './components/FormWizardStep'
 import FormElements from './components/FormElements'
-import FormButtons from './components/FormButtons'
 import FormButton from './components/FormButton'
+import FormButtonAnchor from './components/FormButtonAnchor'
+import FormButtonSubmit from './components/FormButtonSubmit'
 import BaseElementLayout from './components/BaseElementLayout'
 import NestedElementLayout from './components/NestedElementLayout'
 import ElementLabel from './components/ElementLabel'
 import ElementError from './components/ElementError'
 import ElementMessage from './components/ElementMessage'
 
+import ButtonsElement from './components/elements/ButtonsElement'
 import GroupElement from './components/elements/GroupElement'
 import ListElement from './components/elements/ListElement'
 import ObjectElement from './components/elements/ObjectElement'
+import StaticElement from './components/elements/StaticElement'
 import TextElement from './components/elements/TextElement'
 import TTextElement from './components/elements/TTextElement'
 
@@ -44,8 +47,9 @@ export default {
     FormWizardPrevious,
     FormWizardStep,
     FormElements,
-    FormButtons,
     FormButton,
+    FormButtonAnchor,
+    FormButtonSubmit,
     BaseElementLayout,
     NestedElementLayout,
     ElementLabel,
@@ -53,9 +57,11 @@ export default {
     ElementMessage,
   },
   elements: {
+    ButtonsElement,
     GroupElement,
     ListElement,
     ObjectElement,
+    StaticElement,
     TextElement,
     TTextElement,
   },
@@ -81,8 +87,9 @@ export const core = {
     FormWizardPrevious,
     FormWizardStep,
     FormElements,
-    FormButtons,
     FormButton,
+    FormButtonAnchor,
+    FormButtonSubmit,
     BaseElementLayout,
     NestedElementLayout,
     ElementLabel,

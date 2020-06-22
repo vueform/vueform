@@ -45,11 +45,6 @@
       v-if="hasWizard && wizardControls"
       :wizard$="wizard$"
     />
-
-    <component :is="extendedComponents.FormButtons"
-      :buttons="buttons"
-      ref="buttons$"
-    />
   </form>
 </template>
 

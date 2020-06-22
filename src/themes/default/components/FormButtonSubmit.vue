@@ -7,10 +7,10 @@
 </template>
 
 <script>
-  import FormButton from './../../../components/FormButton'
+  import FormButtonSubmit from './../../../components/FormButtonSubmit'
 
   export default {
-    mixins: [FormButton],
+    mixins: [FormButtonSubmit],
     data() {
       return {
         defaultClasses: {

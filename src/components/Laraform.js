@@ -48,13 +48,6 @@ export default {
        */
       schema: {},
 
-      /**
-       * Form buttons.
-       * 
-       * @type {array}
-       * @default []
-       */
-      buttons: [], 
 
       /**
        * Form tabs definition.
@@ -248,14 +241,6 @@ export default {
       elements$: {},
 
       /**
-       * Form button components.
-       * 
-       * @type {object}
-       * @default -
-       */
-      buttons$: {},
-
-      /**
        * Form wizard component.
        * 
        * @type {object}
@@ -301,13 +286,6 @@ export default {
         this.$nextTick(() => {
           this.$_setElements$()
         })
-      },
-      deep: true,
-      immediate: false,
-    },
-    buttons: {
-      handler() {
-        this.$_setButtons$()
       },
       deep: true,
       immediate: false,
@@ -1003,25 +981,6 @@ export default {
       this.$set(this, 'elements$', elements$)
     },
 
-    $_setButtons$() {
-      let buttons$ = []
-      let buttonsRefs$ = this.$refs.buttons$
-
-      if (!buttonsRefs$) {
-        return
-      }
-
-      if (!_.isArray(buttonsRefs$)) {
-        buttonsRefs$ = this.$refs.buttons$.$refs.buttons$
-      }
-
-      _.each(buttonsRefs$, (button$) => {
-        buttons$.push(button$)
-      })
-
-      this.$set(this, 'buttons$', buttons$)
-    },
-
     $_setWizard$() {
       this.$set(this, 'wizard$', this.$refs.wizard$ || {})
     },
@@ -1119,10 +1078,6 @@ export default {
     if (this.multilingual === null) {
       this.multilingual = this.form.multilingual !== undefined ? this.form.multilingual : false
     }
-    
-    if (this.form.buttons && this.form.buttons.length > 0) {
-      this.buttons = _.merge(this.form.buttons || [], this.buttons)
-    }
 
     if (this.endpoint === null) {
       this.endpoint = this.form.endpoint || this.$laraform.config.endpoints.process
@@ -1168,7 +1123,6 @@ export default {
   },
   mounted() {
     this.$_setElements$()
-    this.$_setButtons$()
     this.$_setWizard$()
     this.$_setTabs$()
   }
