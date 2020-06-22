@@ -3,7 +3,10 @@
     :class="classes.button"
     :href="href"
     :target="target"
-  >{{ label }}</a>
+    v-html-if="{label: !isLabelComponent}"
+  >
+    <component v-if="isLabelComponent" :is="label" :button="button" />
+  </a>
 </template>
 
 <script>

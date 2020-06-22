@@ -1,10 +1,11 @@
 import BaseComponent from './../mixins/BaseComponent'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 import HasHooks from './../mixins/HasHooks'
+import HasLabel from './../mixins/HasLabel'
 
 export default {
   name: 'FormButton',
-  mixins: [BaseComponent, HasHooks],
+  mixins: [BaseComponent, HasHooks, HasLabel],
   props: {
     /**
      * Button options.
@@ -33,15 +34,6 @@ export default {
   computed: {
     descriptor() {
       return this.button
-    },
-
-    /**
-     * Button label.
-     * 
-     * @type {string}
-     */
-    label() {
-      return this.button.label
     },
 
     classes() {

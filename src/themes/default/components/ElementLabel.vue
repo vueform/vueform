@@ -2,9 +2,9 @@
   <label
     :class="classes.label"
     :for="name"
-    v-html-if="{label: !isComponent}"
+    v-html-if="{label: !isLabelComponent}"
   >
-    <component v-if="isComponent" :is="label" :el$="el$" />
+    <component v-if="isLabelComponent" :is="label" :el$="el$" />
   </label>
 </template>
 

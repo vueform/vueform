@@ -3,7 +3,10 @@
     :class="classes.button"
     :disabled="disabled"
     @click.prevent="handleClick"
-  >{{ label }}</button>
+    v-html-if="{label: !isLabelComponent}"
+  >
+    <component v-if="isLabelComponent" :is="label" :button="button" />
+  </button>
 </template>
 
 <script>
