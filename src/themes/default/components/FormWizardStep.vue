@@ -4,8 +4,9 @@
       href="#"
       :class="classes.wrapper"
       @click.prevent="select"
+      v-html-if="{label: !isLabelComponent}"
     >
-      {{ label }}
+      <component v-if="isLabelComponent" :is="label" :step$="step$" />
     </a>
   </li>
 </template>

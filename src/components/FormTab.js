@@ -3,10 +3,11 @@
 import HasEvents from './../mixins/HasEvents'
 import Localized from './../mixins/Localized'
 import BaseComponent from './../mixins/BaseComponent'
+import HasLabel from './../mixins/HasLabel'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
-  mixins: [BaseComponent, HasEvents, Localized],
+  mixins: [BaseComponent, HasEvents, HasLabel, Localized],
   name: 'FormTab',
   props: {
     /**
@@ -129,11 +130,12 @@ export default {
     },
 
     /**
-     * Label of tab.
+     * Base label of tab.
      * 
+     * @private
      * @type {string}
      */
-    label() {
+    baseLabel() {
       return this.tab.label
     },
 
@@ -175,6 +177,10 @@ export default {
     index() {
       return _.keys(this.visible$).indexOf(this.name)
     },
+
+    tab$() {
+      return this
+    }
   },
   methods: {
 

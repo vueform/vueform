@@ -4,7 +4,10 @@
   	:disabled="disabled"
     :class="classes.button"
   	@click.prevent="finish"
-  >{{ label }}</button>
+    v-html-if="{label: !isLabelComponent}"
+  >
+    <component v-if="isLabelComponent" :is="label" :wizard$="wizard$" />
+  </button>
 </template>
 
 <script>

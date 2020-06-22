@@ -1,7 +1,12 @@
 <template>
   <li v-if="visible" :class="classes.container">
-    <a href="#" :class="classes.wrapper" @click.prevent="select">
-      {{ label }}
+    <a
+      href="#"
+      :class="classes.wrapper"
+      @click.prevent="select"
+      v-html-if="{label: !isLabelComponent}"
+    >
+      <component v-if="isLabelComponent" :is="label" :tab$="tab$" />
     </a>
   </li>
 </template>

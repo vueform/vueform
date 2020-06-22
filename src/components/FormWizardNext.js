@@ -1,9 +1,10 @@
 import BaseComponent from './../mixins/BaseComponent'
 import Localized from './../mixins/Localized'
+import HasLabel from './../mixins/HasLabel'
 
 export default {
   name: 'FormWizardNext',
-  mixins: [BaseComponent, Localized],
+  mixins: [BaseComponent, HasLabel, Localized],
   props: {
     wizard$: {
       type: Object,
@@ -34,7 +35,7 @@ export default {
           this.current$.busy
         )
     },
-    label() {
+    baseLabel() {
       if (this.current$ && this.current$.labels && this.current$.labels.next) {
         return this.current$.labels.next
       }

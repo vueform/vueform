@@ -2,11 +2,12 @@ import _ from 'lodash'
 import BaseComponent from './../mixins/BaseComponent'
 import HasEvents from './../mixins/HasEvents'
 import Localized from './../mixins/Localized'
+import HasLabel from './../mixins/HasLabel'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'FormWizardStep',
-  mixins: [BaseComponent, HasEvents, Localized],
+  mixins: [BaseComponent, HasEvents, HasLabel, Localized],
   props: {
     /**
      * Name of step within [steps](reference/frontend-form#prop-steps) object.
@@ -147,11 +148,12 @@ export default {
     },
 
     /**
-     * Label of step.
+     * Base label of step.
      * 
+     * @private
      * @type {string}
      */
-    label() {
+    baseLabel() {
       return this.step.label
     },
 
@@ -259,6 +261,10 @@ export default {
     index() {
       return _.keys(this.visible$).indexOf(this.name)
     },
+
+    step$() {
+      return this
+    }
   },
   methods: {
     /**

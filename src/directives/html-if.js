@@ -8,11 +8,24 @@ export default {
     if (condition === true) {
       el.innerHTML = vnode.context[key]
     }
+  },
+  update: function (el, binding, vnode) {
+    let key = _.keys(binding.value)[0]
+    let condition = binding.value[key]
 
-    vnode.context.$watch(() => { return vnode.context[key] }, () => {
-      if (condition === true) {
-        el.innerHTML = vnode.context[key]
-      }
-    }, { deep: true })
-  }
+    if (condition === true) {
+      el.innerHTML = vnode.context[key]
+    }
+    else {
+      vnode.context.$nextTick(() => {
+        let html = ''
+
+        _.each(vnode.context.$children, (child) => {
+          html += child.$el.outerHTML
+        })
+
+        el.innerHTML = html
+      })
+    }
+  },
 }

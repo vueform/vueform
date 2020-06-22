@@ -1,9 +1,10 @@
 import BaseComponent from './../mixins/BaseComponent'
 import Localized from './../mixins/Localized'
+import HasLabel from './../mixins/HasLabel'
 
 export default {
   name: 'FormWizardFinish',
-  mixins: [BaseComponent, Localized],
+  mixins: [BaseComponent, HasLabel, Localized],
   props: {
     wizard$: {
       type: Object,
@@ -23,7 +24,7 @@ export default {
       return (this.wizard$.invalid && this.form$.$_shouldValidateOn('change')) ||
             this.wizard$.busy || this.form$.submitting || this.form$.disabled
     },
-    label() {
+    baseLabel() {
       if (this.current$ && this.current$.labels && this.current$.labels.finish) {
         return this.current$.labels.finish
       }
