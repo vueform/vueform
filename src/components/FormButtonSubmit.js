@@ -28,6 +28,33 @@ export default {
       required: true
     },
   },
+  computed: {
+    /**
+     * Determines if the button is disabled.
+     * 
+     * @type {boolean}
+     */
+    disabled() {
+      if (this.button.disabled !== undefined) {
+        return this.button.disabled(this.form$)
+      }
+
+      return this.form$.disabled
+    },
+
+    /**
+     * Determines if the button should be in loading state.
+     * 
+     * @type {boolean}
+     */
+    loading() {
+      if (this.button.loading !== undefined) {
+        return this.button.loading(this.form$)
+      }
+
+      return this.form$.submitting
+    }
+  },
   methods: {
     /**
      * Handles button click

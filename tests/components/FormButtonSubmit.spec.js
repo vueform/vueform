@@ -2,36 +2,57 @@ import _ from 'lodash'
 import { createLocalVue } from '@vue/test-utils'
 import { createForm } from './../../src/utils/testHelpers'
 
-describe('Form Button', () => {
+jest.mock("axios", () => ({
+  get: () => Promise.resolve({ data: 'value' }),
+  post: () => Promise.resolve({ data: 'value' }),
+}))
+
+describe('Form Button Submit', () => {
   it('should display label', () => {
     let form = createForm({
       schema: {
         buttons: {
           type: 'buttons',
           buttons: [{
+            type: 'submit',
             label: 'Reset'
           }]
         }
       }
     })
 
-    expect(form.findComponent({ name: 'FormButton' }).html()).toContain('Reset')
+    expect(form.findComponent({ name: 'FormButtonSubmit' }).html()).toContain('Reset')
   })
 
-  it('should add class to container', () => {
+  it('should return disabled true if `disabled` is not defined but form is disabled', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
     let form = createForm({
       schema: {
+        a: {
+          type: 'text',
+          rules: 'required:debounce=300'
+        },
         buttons: {
           type: 'buttons',
           buttons: [{
+            type: 'submit',
             label: 'Reset',
-            class: 'btn-primary'
           }]
         }
       }
     })
 
-    expect(form.findComponent({ name: 'FormButton' }).classes()).toContain('btn-primary')
+    form.findComponent({ name: 'TextElement' }).vm.validate()
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.disabled).toBe(true)
+
+      expect(form.findComponent({ name: 'FormButtonSubmit' }).vm.disabled).toBe(true)
+      done()
+    })
   })
 
   it('should have `disabled` attribute && class when disabled returns `true`', (done) => {
@@ -48,6 +69,7 @@ describe('Form Button', () => {
         buttons: {
           type: 'buttons',
           buttons: [{
+            type: 'submit',
             label: 'Reset',
             disabled(form$) {
               return form$.canReset == false
@@ -60,11 +82,41 @@ describe('Form Button', () => {
     form.vm.$set(form.vm, 'canReset', false)
 
     LocalVue.nextTick(() => {
-      expect(form.findComponent({ name: 'FormButton' }).attributes('disabled')).toBe('disabled')
+      expect(form.findComponent({ name: 'FormButtonSubmit' }).attributes('disabled')).toBe('disabled')
 
-      let disabledClass = form.vm.selectedTheme.components.FormButton.data().defaultClasses.disabled
+      let disabledClass = form.vm.selectedTheme.components.FormButtonSubmit.data().defaultClasses.disabled
 
-      expect(form.findComponent({ name: 'FormButton' }).classes()).toContain(disabledClass)
+      expect(form.findComponent({ name: 'FormButtonSubmit' }).classes()).toContain(disabledClass)
+      done()
+    })
+  })
+
+  it('should return loading true if `loading` is not defined but form is submitting', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+        buttons: {
+          type: 'buttons',
+          buttons: [{
+            type: 'submit',
+            label: 'Reset',
+          }]
+        }
+      }
+    })
+
+    form.vm.submit()
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.submitting).toBe(true)
+
+      expect(form.findComponent({ name: 'FormButtonSubmit' }).vm.loading).toBe(true)
       done()
     })
   })
@@ -83,6 +135,7 @@ describe('Form Button', () => {
         buttons: {
           type: 'buttons',
           buttons: [{
+            type: 'submit',
             label: 'Reset',
             loading(form$) {
               return form$.isLoading
@@ -95,9 +148,9 @@ describe('Form Button', () => {
     form.vm.$set(form.vm, 'isLoading', true)
 
     LocalVue.nextTick(() => {
-      let loadingClass = form.vm.selectedTheme.components.FormButton.data().defaultClasses.loading
+      let loadingClass = form.vm.selectedTheme.components.FormButtonSubmit.data().defaultClasses.loading
 
-      expect(form.findComponent({ name: 'FormButton' }).classes()).toContain(loadingClass)
+      expect(form.findComponent({ name: 'FormButtonSubmit' }).classes()).toContain(loadingClass)
       done()
     })
   })
@@ -117,6 +170,7 @@ describe('Form Button', () => {
         buttons: {
           type: 'buttons',
           buttons: [{
+            type: 'submit',
             label: 'Reset',
             onClick: onClickMock,
           }]
@@ -126,13 +180,44 @@ describe('Form Button', () => {
 
     expect(onClickMock.mock.calls.length).toBe(0)
 
-    form.findComponent({ name: 'FormButton' }).get('button').trigger('click')
+    form.findComponent({ name: 'FormButtonSubmit' }).get('button').trigger('click')
 
     expect(onClickMock.mock.calls.length).toBe(1)
 
     expect(onClickMock.mock.calls[0][0].$options.name).toBe('Laraform')
 
-    done()
+    LocalVue.nextTick(() => {
+      expect(form.vm.submitting).toBe(false)
+      done()
+    })
+  })
+
+  it('should submit form on click if `onClick` is not defined', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+        buttons: {
+          type: 'buttons',
+          buttons: [{
+            type: 'submit',
+            label: 'Reset',
+          }]
+        }
+      }
+    })
+
+    form.findComponent({ name: 'FormButtonSubmit' }).get('button').trigger('click')
+
+    LocalVue.nextTick(() => {
+      expect(form.vm.submitting).toBe(true)
+      done()
+    })
   })
 
   it('should not call `onClick` callback on click if disabled', (done) => {
@@ -151,6 +236,7 @@ describe('Form Button', () => {
         buttons: {
           type: 'buttons',
           buttons: [{
+            type: 'submit',
             label: 'Reset',
             onClick: onClickMock,
             disabled(form$) {
@@ -163,7 +249,7 @@ describe('Form Button', () => {
 
     expect(onClickMock.mock.calls.length).toBe(0)
 
-    form.findComponent({ name: 'FormButton' }).get('button').trigger('click')
+    form.findComponent({ name: 'FormButtonSubmit' }).get('button').trigger('click')
 
     expect(onClickMock.mock.calls.length).toBe(0)
 
@@ -186,6 +272,7 @@ describe('Form Button', () => {
         buttons: {
           type: 'buttons',
           buttons: [{
+            type: 'submit',
             label: 'Reset',
             onClick: onClickMock,
             loading(form$) {
@@ -198,73 +285,10 @@ describe('Form Button', () => {
 
     expect(onClickMock.mock.calls.length).toBe(0)
 
-    form.findComponent({ name: 'FormButton' }).get('button').trigger('click')
+    form.findComponent({ name: 'FormButtonSubmit' }).get('button').trigger('click')
 
     expect(onClickMock.mock.calls.length).toBe(0)
 
     done()
-  })
-
-  it('should call all lifecycle hooks', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let beforeCreateMock = jest.fn(() => {})
-    let createdMock = jest.fn(() => {})
-    let beforeMountMock = jest.fn(() => {})
-    let mountedMock = jest.fn(() => {})
-    let beforeUpdateMock = jest.fn(() => {})
-    let updatedMock = jest.fn(() => {})
-    let beforeDestroyMock = jest.fn(() => {})
-    let destroyedMock = jest.fn(() => {})
-
-    let form = createForm({
-      isLoading: true,
-      schema: {
-        buttons: {
-          type: 'buttons',
-          buttons: [{
-            label: 'Reset',
-            beforeCreate: beforeCreateMock,
-            created: createdMock,
-            beforeMount: beforeMountMock,
-            mounted: mountedMock,
-            beforeUpdate: beforeUpdateMock,
-            updated: updatedMock,
-            beforeDestroy: beforeDestroyMock,
-            destroyed: destroyedMock,
-          }]
-        }
-      }
-    })
-
-    expect(beforeCreateMock.mock.calls.length).toBe(1)
-    expect(createdMock.mock.calls.length).toBe(1)
-    expect(beforeMountMock.mock.calls.length).toBe(1)
-    expect(mountedMock.mock.calls.length).toBe(1)
-
-    expect(beforeUpdateMock.mock.calls.length).toBe(0)
-    expect(updatedMock.mock.calls.length).toBe(0)
-    expect(beforeDestroyMock.mock.calls.length).toBe(0)
-    expect(destroyedMock.mock.calls.length).toBe(0)
-
-    let button = form.findComponent({ name: 'FormButton' })
-
-    button.vm.button.label = 'Reset2'
-
-    LocalVue.nextTick(() => {
-      expect(beforeUpdateMock.mock.calls.length).toBe(1)
-      expect(updatedMock.mock.calls.length).toBe(1)
-
-      button.vm.$destroy()
-
-      LocalVue.nextTick(() => {
-        expect(beforeDestroyMock.mock.calls.length).toBe(1)
-        expect(destroyedMock.mock.calls.length).toBe(1)
-
-        done()
-      })
-    })
   })
 })

@@ -39,12 +39,17 @@ export default {
     classes() {
       let classes = this.mergedClasses
 
+      classes = mergeComponentClasses(classes, {
+        [this.mainClass]: {
+          [classes.loading]: this.loading,
+          [classes.disabled]: this.disabled,
+        }
+      })
+
       // Add buttons's class to main class
       if (this.button.class) {
         classes = mergeComponentClasses(classes, {
           [this.mainClass]: this.button.class,
-          [classes.loading]: this.button.loading,
-          [classes.disabled]: this.button.disabled,
         })
       }
 
@@ -61,7 +66,7 @@ export default {
         return this.button.disabled(this.form$)
       }
 
-      return this.form$.disabled
+      return false
     },
 
     /**
@@ -74,7 +79,7 @@ export default {
         return this.button.loading(this.form$)
       }
 
-      return this.form$.submitting
+      return false
     }
   },
   methods: {
