@@ -478,6 +478,10 @@ export default {
         this.$set(this.schema, 'addClasses', value)
       }
     },
+    
+    mainClass() {
+      return _.keys(this.defaultClasses)[0]
+    },
 
     /**
      * Calulated column sizes and classes for the element.
@@ -696,7 +700,7 @@ export default {
      * @param {string|number} value the value after change
      * @returns {void}
      */
-    handleKeyup(value) {
+    handleKeyup() {
       if (this.readonly) {
         return
       }
@@ -718,7 +722,7 @@ export default {
      * @param {string|number} value the value after change
      * @event change
      */
-    handleChange(value) {
+    handleChange() {
       if (this.fire('change', this.value) === false) {
         return
       }

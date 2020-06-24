@@ -19,13 +19,12 @@ export default {
       switch(type) {
         case 'button':
           return this.components.FormButton
-          break
 
         default:
           let component = this.components['FormButton' + _.upperFirst(type)]
 
           if (!component) {
-            throw new Error('Button component not found: "FormButton' + _.upperFirst(type) + '"')
+            throw new TypeError('Button component not found: "FormButton' + _.upperFirst(type) + '"')
           }
 
           return component

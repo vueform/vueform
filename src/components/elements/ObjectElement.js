@@ -28,6 +28,17 @@ export default {
       children$: {},
     }
   },
+  watch: {
+    schema: {
+      handler() {
+        this.$nextTick(() => {
+          this.$_setChildren$()
+        })
+      },
+      deep: true,
+      immediate: false,
+    },
+  },
   computed: {
 
     /**
@@ -39,8 +50,8 @@ export default {
     children() {
       var children = _.cloneDeep(this.schema.schema)
       
-      if (!_.isEmpty(this.defaultValue)) {
-        _.each(this.defaultValue, (value, name) => {
+      if (!_.isEmpty(this.default)) {
+        _.each(this.default, (value, name) => {
           children[name].default = value
         })
       }

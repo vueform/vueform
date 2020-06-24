@@ -28,6 +28,17 @@ export default {
       children$: {},
     }
   },
+  watch: {
+    schema: {
+      handler() {
+        this.$nextTick(() => {
+          this.$_setChildren$()
+        })
+      },
+      deep: true,
+      immediate: false,
+    },
+  },
   computed: {
     /**
      * The value of the element.

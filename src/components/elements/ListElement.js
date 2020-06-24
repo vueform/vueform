@@ -49,6 +49,8 @@ export default {
       * @default {}
       */
       children$: [],
+      
+      sortableInstance: null,
 
       /**
        * Helper property used to store available events for the element.
@@ -60,6 +62,21 @@ export default {
       events: [
         'change', 'add', 'remove', 'sort'
       ],
+    }
+  },
+  watch: {
+    prototype: {
+      handler() {
+        let value = this.value
+
+        this.clear()
+
+        _.each(value, (one) => {
+          this.insert(one)
+        })
+      },
+      deep: true,
+      immediate: false
     }
   },
   computed: {
@@ -94,7 +111,11 @@ export default {
       var filtered = []
 
       _.each(this.children$, (element$) => {
-        filtered.push(element$.filtered[element$.name])
+        let value = element$.filtered[element$.name]
+
+        if (value) {
+          filtered.push(value)
+        }
       })
 
       return {
@@ -107,7 +128,9 @@ export default {
         let classes = this.mergedClasses
 
         classes = mergeComponentClasses(classes, {
-          [this.mainClass]: { [classes.sortable]: this.sort },
+          [this.mainClass]: {
+            [classes.sortable]: this.sort
+          },
         })
 
         return classes
@@ -129,7 +152,7 @@ export default {
           return this.default.length
         }
 
-        return this.schema.initial || 1
+        return this.schema.initial !== undefined ? this.schema.initial : 1
       },
       set(value) {
         this.$set(this.schema, 'initial', value)
@@ -174,7 +197,7 @@ export default {
     */
     order: {
       get() {
-        return this.storeOrder && !this.orderBy ? this.storeOrder : this.schema.order || null
+        return this.schema.order || 'ASC'
       },
       set(value) {
         this.$set(this.schema, 'order', value)
@@ -189,7 +212,7 @@ export default {
     */
     orderBy: {
       get() {
-        return this.schema.orderBy || null
+        return this.schema.orderBy || this.storeOrder || null
       },
       set(value) {
         this.$set(this.schema, 'orderBy', value)
@@ -365,9 +388,13 @@ export default {
 
       var index = this.insert(data)
 
-      this.fire('add', index)
+      this.$nextTick(() => {
+        let child$ = this.children$[index]
 
-      this.handleChange()
+        this.handleAdd(child$, index)
+      })
+
+      this.handleChange(null, null, 'add')
 
       return index
     },
@@ -384,14 +411,14 @@ export default {
         return
       }
 
-      this.fire('remove', index)
+      this.handleRemove(index)
 
       this.instances.splice(index, 1)
 
       // refreshes children's order store value
       this.$_refreshOrderStore()
 
-      this.handleChange()
+      this.handleChange(null, null, 'remove')
     },
 
     /**
@@ -448,31 +475,48 @@ export default {
      *
      * @public
      * @prevents 
+     * @param {any} oldValue old value of the element.
+     * @param {any} newValue new value of the element.
+     * @param {any} event event that occured (add|remove|sort)
      * @event change
      */
-    handleChange() {
-      if (this.fire('change') === false) {
-        return
+    handleChange(oldValue, newValue, event) {
+      if (!oldValue) {
+        var oldValue = this.value
       }
 
-      if (this.form$.$_shouldValidateOn('change')) {
-        // nextTick is required because the `value`
-        // comes from children$ which only refreshes
-        // once DOM is reloaded
-        this.$nextTick(() => {
-          this.validateValidators()
-        })
-      }
+      this.$nextTick(() => {
+        if (!newValue) {
+          var newValue = this.value
+        }
+
+        if (this.fire('change', oldValue, newValue, event) === false) {
+          return
+        }
+
+        if (this.form$.$_shouldValidateOn('change')) {
+          // nextTick is required because the `value`
+          // comes from children$ which only refreshes
+          // once DOM is reloaded
+          this.$nextTick(() => {
+            this.validateValidators()
+          })
+        }
+      })
+
     },
 
     /**
      * Triggered when the user adds a new list item or `.add()` method is invoked.
      *
      * @public
-     * @param {array} indexes index(es) of added list items.
+     * @param {object} child$ the child element's component that has been added.
+     * @param {array} index index of added list item.
      * @event add
      */
-    handleAdd() { /* Used only for docs */ },
+    handleAdd(child$, index) {
+      this.fire('add', child$, index)
+    },
 
     /**
      * Triggered when the user removes a list item or `.remove()` method is invoked.
@@ -481,7 +525,9 @@ export default {
      * @param {number} index index of child to be removed.
      * @event remove
      */
-    handleRemove() { /* Used only for docs */ },
+    handleRemove(index) {
+      this.fire('remove', index)
+    },
 
     /**
      * Triggered when the user changes the order of the list items.
@@ -491,8 +537,10 @@ export default {
      * @event sort
      */
     handleSort(indexes) {
-      var oldIndex = indexes.oldIndex
-      var newIndex = indexes.newIndex
+      let oldIndex = indexes.oldIndex
+      let newIndex = indexes.newIndex
+
+      let oldValue = this.value
 
       if (this.disabled) {
         return
@@ -505,6 +553,10 @@ export default {
       this.$_refreshOrderStore()
 
       this.fire('sort', {newIndex, oldIndex})
+
+      let newValue = this.value
+
+      this.handleChange(oldValue, newValue, 'sort')
     },
 
     /**
