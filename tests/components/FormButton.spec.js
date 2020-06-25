@@ -220,7 +220,6 @@ describe('Form Button', () => {
     let destroyedMock = jest.fn(() => {})
 
     let form = createForm({
-      isLoading: true,
       schema: {
         buttons: {
           type: 'buttons',

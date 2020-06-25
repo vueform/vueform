@@ -10,7 +10,7 @@
             :is="component(button)"
             :button="button"
             :key="name"
-          />&nbsp;
+          />
         </template>
       </div>
 

@@ -1,12 +1,27 @@
 <template>
   <component :is="components.BaseElementLayout">
     <template slot="field">
-      <div>
-        <input v-model="model" :class="classes.input" />
-      </div>
-    </template>
 
-    <slot name="label" slot="label" :el$="el$"></slot>
+      <slot name="prefix"></slot>
+
+      <div>
+        <input
+          v-model="model"
+          :class="classes.input"
+          @keyup="handleKeyup"
+        />
+      </div>
+
+      <slot name="suffix"></slot>
+      
+    </template>
+    
+    <slot slot="label" name="label" :el$="el$"></slot>
+    <slot slot="info" name="info" :el$="el$"></slot>
+    <slot slot="before" name="before" :el$="el$"></slot>
+    <slot slot="between" name="between" :el$="el$"></slot>
+    <slot slot="error" name="error" :el$="el$"></slot>
+    <slot slot="after" name="after" :el$="el$"></slot>
   </component>
 </template>
 
@@ -24,7 +39,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  @import 'variables';
-</style>

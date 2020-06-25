@@ -284,7 +284,7 @@ export default {
       } else if (this.placeholder) {
         return this.placeholder
       } else {
-        return this.name
+        return _.upperFirst(this.name)
       }
     },
 
@@ -366,7 +366,22 @@ export default {
           : true
       },
       set(value) {
-        this.$set(this.schema, 'displayError', value)
+        this.$set(this.schema, 'error', value)
+      }
+    },
+
+    /**
+     * Whether the element should be readonly.
+     * 
+     * @type {boolean} 
+     * @default false
+     */
+    readonly: {
+      get() {
+        return this.schema.readonly !== undefined ? this.schema.readonly : false
+      },
+      set(value) {
+        this.$set(this.schema, 'readonly', value)
       }
     },
 
@@ -700,18 +715,12 @@ export default {
      * @param {string|number} value the value after change
      * @returns {void}
      */
-    handleKeyup() {
+    handleKeyup(value) {
       if (this.readonly) {
         return
       }
 
-      if (this.fire('change', this.value) === false) {
-        return
-      }
-
-      if (this.form$.$_shouldValidateOn('change')) {
-        this.validate()
-      }
+      this.handleChange()
     },
 
     /**
@@ -722,7 +731,7 @@ export default {
      * @param {string|number} value the value after change
      * @event change
      */
-    handleChange() {
+    handleChange(value) {
       if (this.fire('change', this.value) === false) {
         return
       }
@@ -782,14 +791,6 @@ export default {
     this.$_initEvents()
   },
   mounted() {
-    // nextTick is need  because value changes are
-    // possible on default settings and loading
-    this.$nextTick(() => {
-      this.$watch('value', () => {
-        this.dirt()
-      }, { deep: true })
-    })
-
     this.$_assignSlots()
   },
   updated() {

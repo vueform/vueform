@@ -182,6 +182,14 @@ export default {
     this.$_initMessageBag()
   },
   mounted() {
+    // nextTick is need  because value changes are
+    // possible on default settings and loading
+    this.$nextTick(() => {
+      this.$watch('value', () => {
+        this.dirt()
+      }, { deep: true })
+    })
+    
     this.$_initValidation()
   }
 }
