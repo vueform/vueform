@@ -68,15 +68,6 @@ export default {
     null() {
       return {}
     },
-
-    /**
-     * The element's error.
-     * 
-     * @type {string}
-     */
-    error() {
-      return null
-    },
   },
   methods: {
     $_setChildren$() {

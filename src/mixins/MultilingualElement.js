@@ -6,13 +6,22 @@ export default {
     return {
 
       /**
+       * Helper property used to store the elements previous value.
+       * 
+       * @private
+       * @type {object}
+       * @default {}
+       */
+      previousValue: {},
+
+      /**
        * Helper property used to store the elements value.
        * 
        * @private
        * @type {object}
        * @default {}
        */
-      memory: {},
+      currentValue: {},
     }
   },
   computed: {

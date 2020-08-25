@@ -133,7 +133,7 @@ const createForm = function(data, options = {}) {
         }
       },
       $i18n: options.vueI18n ? new class VueI18n { get locale() { return options.vueI18nLocale || 'en' } } : null,
-      $t: options.vueI18n ? (str) => { return str } : null,
+      $t: options.vueI18n ? (str) => { return str + ' vue-i18n' } : null,
     }
   }
 

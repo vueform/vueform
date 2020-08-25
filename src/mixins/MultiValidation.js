@@ -9,7 +9,7 @@ export default {
      * @type {boolean}
      */
     dirty() {
-      return _.some(this.children$, { available: true, validated: true })
+      return _.some(this.children$, { available: true, dirty: true })
         || this.state.dirty
     },
 

@@ -19,7 +19,7 @@ export default {
 
       let locale = this.selectedLocale !== undefined ? this.selectedLocale : this.locale
 
-      var tag = _.get(this.$laraform.locales[this[locale]], expr)
+      var tag = _.get(this.$laraform.locales[locale], expr)
 
       _.each(data, (value, key) => {
         tag = tag.replace(':' + key, value)

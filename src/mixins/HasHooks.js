@@ -15,9 +15,6 @@ export default {
       get() {
         return this.descriptor.created || null
       },
-      set(value) {
-        this.$set(this.descriptor, 'created', value)
-      }
     },
     
     /**
@@ -28,11 +25,8 @@ export default {
      */
     beforeMount: {
       get() {
-        return this.schema.beforeMount || null
+        return this.descriptor.beforeMount || null
       },
-      set(value) {
-        this.$set(this.schema, 'beforeMount', value)
-      }
     },
     
     /**
@@ -43,11 +37,8 @@ export default {
      */
     mounted: {
       get() {
-        return this.schema.mounted || null
+        return this.descriptor.mounted || null
       },
-      set(value) {
-        this.$set(this.schema, 'mounted', value)
-      }
     },
     
     /**
@@ -58,7 +49,7 @@ export default {
      */
     beforeUpdate: {
       get() {
-        return this.schema.beforeUpdate || null
+        return this.descriptor.beforeUpdate || null
       },
       set(value) {
         this.$set(this.schema, 'beforeUpdate', value)
@@ -73,7 +64,7 @@ export default {
      */
     updated: {
       get() {
-        return this.schema.updated || null
+        return this.descriptor.updated || null
       },
       set(value) {
         this.$set(this.schema, 'updated', value)
@@ -88,10 +79,10 @@ export default {
      */
     beforeDestroy: {
       get() {
-        return this.schema.beforeDestroy || null
+        return this.descriptor.beforeDestroy || null
       },
       set(value) {
-        this.$set(this.schema, 'beforeDestroy', value)
+        this.$set(this.descriptor, 'beforeDestroy', value)
       }
     },
     
@@ -103,46 +94,46 @@ export default {
      */
     destroyed: {
       get() {
-        return this.schema.destroyed || null
+        return this.descriptor.destroyed || null
       },
       set(value) {
-        this.$set(this.schema, 'destroyed', value)
+        this.$set(this.descriptor, 'destroyed', value)
       }
     },
   },
   created() {
-    if (this.descriptor.created) {
-      this.descriptor.created()
+    if (this.created) {
+      this.created()
     }
   },
   beforeMount() {
-    if (this.descriptor.beforeMount) {
-      this.descriptor.beforeMount()
+    if (this.beforeMount) {
+      this.beforeMount()
     }
   },
   mounted() {
-    if (this.descriptor.mounted) {
-      this.descriptor.mounted()
+    if (this.mounted) {
+      this.mounted()
     }
   },
   beforeUpdate() {
-    if (this.descriptor.beforeUpdate) {
-      this.descriptor.beforeUpdate()
+    if (this.beforeUpdate) {
+      this.beforeUpdate()
     }
   },
   updated() {
-    if (this.descriptor.updated) {
-      this.descriptor.updated()
+    if (this.updated) {
+      this.updated()
     }
   },
   beforeDestroy() {
-    if (this.descriptor.beforeDestroy) {
-      this.descriptor.beforeDestroy()
+    if (this.beforeDestroy) {
+      this.beforeDestroy()
     }
   },
   destroyed() {
-    if (this.descriptor.destroyed) {
-      this.descriptor.destroyed()
+    if (this.destroyed) {
+      this.destroyed()
     }
   },
 }
