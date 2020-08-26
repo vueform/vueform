@@ -2,6 +2,439 @@ import { createLocalVue } from '@vue/test-utils'
 import { createForm } from './../../src/utils/testHelpers'
 
 describe('Element Validation Computed', () => {
+  it('should not be `dirty` by default', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    LocalVue.nextTick(() => {
+    LocalVue.nextTick(() => {
+      expect(a.vm.dirty).toBe(false)
+      expect(a.vm.previousValue).toBe(null)
+      expect(a.vm.currentValue).toBe(null)
+
+      done()
+    })
+    })
+  })
+
+  it('should not be `dirty` when element has default value', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          default: 'aaa'
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    LocalVue.nextTick(() => {
+    LocalVue.nextTick(() => {
+      expect(a.vm.value).toBe('aaa')
+      expect(a.vm.dirty).toBe(false)
+      expect(a.vm.previousValue).toBe(null)
+      expect(a.vm.currentValue).toBe('aaa')
+
+      done()
+    })
+    })
+  })
+
+  it('should not be `dirty` when data is loaded', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        }
+      }
+    }, {
+      propsData: {
+        form: {
+          data: {
+            a: 'aaa'
+          }
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    LocalVue.nextTick(() => {
+    LocalVue.nextTick(() => {
+      expect(a.vm.value).toBe('aaa')
+      expect(a.vm.dirty).toBe(false)
+      expect(a.vm.previousValue).toBe(null)
+      expect(a.vm.currentValue).toBe('aaa')
+
+      done()
+    })
+    })
+  })
+
+  it('should be `dirty` if the element value is changed by user input', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe(null)
+
+    LocalVue.nextTick(() => {
+      a.get('input').setValue('aaa')
+      a.get('input').trigger('keyup')
+
+      LocalVue.nextTick(() => {
+        expect(a.vm.dirty).toBe(true)
+        expect(a.vm.previousValue).toBe(null)
+        expect(a.vm.currentValue).toBe('aaa')
+
+        done()
+      })
+    })
+  })
+
+  it('should not be `dirty` if the element keyup occurs without value change', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe(null)
+
+    LocalVue.nextTick(() => {
+      a.get('input').trigger('keyup')
+
+      LocalVue.nextTick(() => {
+        expect(a.vm.dirty).toBe(false)
+        expect(a.vm.previousValue).toBe(null)
+        expect(a.vm.currentValue).toBe(null)
+
+        done()
+      })
+    })
+  })
+
+  it('should be `dirty` if the element value is changed by update method', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe(null)
+
+    LocalVue.nextTick(() => {
+      a.vm.update('aaa')
+
+      LocalVue.nextTick(() => {
+        expect(a.vm.dirty).toBe(true)
+        expect(a.vm.previousValue).toBe(null)
+        expect(a.vm.currentValue).toBe('aaa')
+
+        done()
+      })
+    })
+  })
+
+  it('should not be `dirty` if the element had no value and resetted', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe(null)
+
+    LocalVue.nextTick(() => {
+      a.vm.reset()
+
+      LocalVue.nextTick(() => {
+        expect(a.vm.dirty).toBe(false)
+        expect(a.vm.previousValue).toBe(null)
+        expect(a.vm.currentValue).toBe(null)
+
+        done()
+      })
+    })
+  })
+
+  it('should not be `dirty` if the element had default value and resetted', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          default: 'aaa'
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    expect(a.vm.value).toBe('aaa')
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe('aaa')
+
+    LocalVue.nextTick(() => {
+      a.vm.reset()
+
+      LocalVue.nextTick(() => {
+        expect(a.vm.value).toBe('aaa')
+        expect(a.vm.dirty).toBe(false)
+        expect(a.vm.previousValue).toBe('aaa')
+        expect(a.vm.currentValue).toBe('aaa')
+
+        done()
+      })
+    })
+  })
+
+  it('should be `dirty` if the element had default value, changed then resetted', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          default: 'aaa'
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    expect(a.vm.value).toBe('aaa')
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe('aaa')
+
+    a.vm.update('bbb')
+
+    expect(a.vm.value).toBe('bbb')
+    expect(a.vm.dirty).toBe(true)
+    expect(a.vm.previousValue).toBe('aaa')
+    expect(a.vm.currentValue).toBe('bbb')
+
+    LocalVue.nextTick(() => {
+      a.vm.reset()
+
+      LocalVue.nextTick(() => {
+        expect(a.vm.value).toBe('aaa')
+        expect(a.vm.dirty).toBe(true)
+        expect(a.vm.previousValue).toBe('bbb')
+        expect(a.vm.currentValue).toBe('aaa')
+
+        done()
+      })
+    })
+  })
+
+  it('should be `dirty` if the element had value and resetted', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe(null)
+
+    a.vm.value = 'aaa'
+
+    LocalVue.nextTick(() => {
+      a.vm.reset()
+
+      LocalVue.nextTick(() => {
+        expect(a.vm.value).toBe(a.vm.null)
+        expect(a.vm.dirty).toBe(true)
+        expect(a.vm.previousValue).toBe('aaa')
+        expect(a.vm.currentValue).toBe(null)
+
+        done()
+      })
+    })
+  })
+
+
+  it('should not be `dirty` if the element had no value and cleared', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe(null)
+
+    LocalVue.nextTick(() => {
+      a.vm.clear()
+
+      LocalVue.nextTick(() => {
+        expect(a.vm.dirty).toBe(false)
+        expect(a.vm.previousValue).toBe(null)
+        expect(a.vm.currentValue).toBe(null)
+
+        done()
+      })
+    })
+  })
+
+  it('should be `dirty` if the element had default value and cleared', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          default: 'aaa'
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    expect(a.vm.value).toBe('aaa')
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe('aaa')
+
+    LocalVue.nextTick(() => {
+      a.vm.clear()
+
+      LocalVue.nextTick(() => {
+        expect(a.vm.value).toBe(a.vm.null)
+        expect(a.vm.dirty).toBe(true)
+        expect(a.vm.previousValue).toBe('aaa')
+        expect(a.vm.currentValue).toBe(null)
+
+        done()
+      })
+    })
+  })
+
+  it('should be `dirty` if the element had value and cleared', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        }
+      }
+    })
+
+    let a = form.findComponent({ name: 'TextElement' })
+
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe(null)
+
+    a.vm.value = 'aaa'
+
+    LocalVue.nextTick(() => {
+      a.vm.clear()
+
+      LocalVue.nextTick(() => {
+        expect(a.vm.value).toBe(a.vm.null)
+        expect(a.vm.dirty).toBe(true)
+        expect(a.vm.previousValue).toBe('aaa')
+        expect(a.vm.currentValue).toBe(null)
+
+        done()
+      })
+    })
+  })
+
   it('should be `pending` and `busy` if an async validation is in progress', () => {
     let form = createForm({
       schema: {
@@ -252,33 +685,5 @@ describe('Element Validation Methods', () => {
     expect(name.vm.validated).toBe(false)
 
     done()
-  })
-
-  it('should call `dirt` when value changes', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        name: {
-          type: 'text'
-        }
-      }
-    })
-
-    let name = form.findComponent({ name: 'TextElement' })
-
-    expect(name.vm.dirty).toBe(false)
-
-    LocalVue.nextTick(() => {
-      name.get('input').setValue('aaa')
-
-      LocalVue.nextTick(() => {
-        expect(name.vm.dirty).toBe(true)
-
-        done()
-      })
-    })
   })
 })

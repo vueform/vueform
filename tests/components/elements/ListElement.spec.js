@@ -63,6 +63,73 @@ describe('List Element Rendering', () => {
 })
 
 describe('List Element Computed', () => {
+  it('should not be `dirty` with more initial', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 3,
+          element: {
+            type: 'text'
+          }
+        }
+      }
+    })
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    expect(list.vm.dirty).toBe(false)
+
+    LocalVue.nextTick(() => {
+    LocalVue.nextTick(() => {
+      expect(list.vm.dirty).toBe(false)
+      done()
+    })
+    })
+  })
+
+  it('should not be `dirty` if data is loaded', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 3,
+          element: {
+            type: 'text'
+          }
+        }
+      }
+    }, {
+      propsData: {
+        form: {
+          data: {
+            a: [1,2,3],
+          }
+        }
+      }
+    })
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    expect(list.vm.dirty).toBe(false)
+
+    LocalVue.nextTick(() => {
+    LocalVue.nextTick(() => {
+      expect(list.vm.value).toStrictEqual([1,2,3])
+      expect(list.vm.dirty).toBe(false)
+      done()
+    })
+    })
+  })
+
   it('should return `data` of its children (object)', (done) => {
     const LocalVue = createLocalVue()
 
@@ -343,9 +410,11 @@ describe('List Element Computed', () => {
     })
 
     expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(2)
-    expect(form.vm.data).toStrictEqual({a: ['a', 'b']})
 
-    done()
+    LocalVue.nextTick(() => {
+      expect(form.vm.data).toStrictEqual({a: ['a', 'b']})
+      done()
+    })
   })
 
   it('should set `initial` value in schema', (done) => {
@@ -1263,21 +1332,23 @@ describe('List Element Methods', () => {
 
     let list = form.findComponent({ name: 'ListElement' })
 
-    list.vm.remove(1)
-
     LocalVue.nextTick(() => {
-      let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+      list.vm.remove(1)
 
-      expect(el0.vm.value).toBe(1)
-      expect(el1.vm.value).toBe(2)
-      expect(el2.vm.value).toBe(5)
-      expect(el3.vm.value).toBe(6)
+      LocalVue.nextTick(() => {
+        let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
+        let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+        let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
+        let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
 
-      expect(_.keys(list.vm.children$)).toStrictEqual(['0','1'])
-      done()
+        expect(el0.vm.value).toBe(1)
+        expect(el1.vm.value).toBe(2)
+        expect(el2.vm.value).toBe(5)
+        expect(el3.vm.value).toBe(6)
+
+        expect(_.keys(list.vm.children$)).toStrictEqual(['0','1'])
+        done()
+      })
     })
   })
 
@@ -1343,7 +1414,7 @@ describe('List Element Methods', () => {
     })
   })
 
-  it('should `remove` with refreshing orfer', (done) => {
+  it('should `remove` with refreshing order', (done) => {
     const LocalVue = createLocalVue()
 
     LocalVue.config.errorHandler = done
@@ -1387,28 +1458,30 @@ describe('List Element Methods', () => {
     let el4 = form.findAllComponents({ name: 'TextElement' }).at(4)
     let el5 = form.findAllComponents({ name: 'TextElement' }).at(5)
 
-    expect(el0.vm.value).toBe(1)
-    expect(el1.vm.value).toBe(2)
-    expect(el2.vm.value).toBe(2)
-    expect(el3.vm.value).toBe(4)
-    expect(el4.vm.value).toBe(3)
-    expect(el5.vm.value).toBe(6)
-
-    list.vm.remove(1)
-
     LocalVue.nextTick(() => {
-      let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
-
       expect(el0.vm.value).toBe(1)
       expect(el1.vm.value).toBe(2)
       expect(el2.vm.value).toBe(2)
-      expect(el3.vm.value).toBe(6)
+      expect(el3.vm.value).toBe(4)
+      expect(el4.vm.value).toBe(3)
+      expect(el5.vm.value).toBe(6)
 
-      expect(_.keys(list.vm.children$)).toStrictEqual(['0','1'])
-      done()
+      list.vm.remove(1)
+
+      LocalVue.nextTick(() => {
+        let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
+        let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+        let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
+        let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+
+        expect(el0.vm.value).toBe(1)
+        expect(el1.vm.value).toBe(2)
+        expect(el2.vm.value).toBe(2)
+        expect(el3.vm.value).toBe(6)
+
+        expect(_.keys(list.vm.children$)).toStrictEqual(['0','1'])
+        done()
+      })
     })
   })
 
@@ -1456,35 +1529,37 @@ describe('List Element Methods', () => {
     let el4 = form.findAllComponents({ name: 'TextElement' }).at(4)
     let el5 = form.findAllComponents({ name: 'TextElement' }).at(5)
 
-    expect(el0.vm.value).toBe(1)
-    expect(el1.vm.value).toBe(2)
-    expect(el2.vm.value).toBe(2)
-    expect(el3.vm.value).toBe(4)
-    expect(el4.vm.value).toBe(3)
-    expect(el5.vm.value).toBe(6)
-
-    list.vm.handleSort({
-      oldIndex: 2,
-      newIndex: 0
-    })
-
     LocalVue.nextTick(() => {
-      let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
-      let el4 = form.findAllComponents({ name: 'TextElement' }).at(4)
-      let el5 = form.findAllComponents({ name: 'TextElement' }).at(5)
-
       expect(el0.vm.value).toBe(1)
-      expect(el1.vm.value).toBe(6)
+      expect(el1.vm.value).toBe(2)
       expect(el2.vm.value).toBe(2)
-      expect(el3.vm.value).toBe(2)
+      expect(el3.vm.value).toBe(4)
       expect(el4.vm.value).toBe(3)
-      expect(el5.vm.value).toBe(4)
+      expect(el5.vm.value).toBe(6)
 
-      expect(_.keys(list.vm.children$)).toStrictEqual(['0','1','2'])
-      done()
+      list.vm.handleSort({
+        oldIndex: 2,
+        newIndex: 0
+      })
+
+      LocalVue.nextTick(() => {
+        let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
+        let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+        let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
+        let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+        let el4 = form.findAllComponents({ name: 'TextElement' }).at(4)
+        let el5 = form.findAllComponents({ name: 'TextElement' }).at(5)
+
+        expect(el0.vm.value).toBe(1)
+        expect(el1.vm.value).toBe(6)
+        expect(el2.vm.value).toBe(2)
+        expect(el3.vm.value).toBe(2)
+        expect(el4.vm.value).toBe(3)
+        expect(el5.vm.value).toBe(4)
+
+        expect(_.keys(list.vm.children$)).toStrictEqual(['0','1','2'])
+        done()
+      })
     })
   })
 
@@ -1532,36 +1607,38 @@ describe('List Element Methods', () => {
     let el4 = form.findAllComponents({ name: 'TextElement' }).at(4)
     let el5 = form.findAllComponents({ name: 'TextElement' }).at(5)
 
-    expect(el0.vm.value).toBe(1)
-    expect(el1.vm.value).toBe(2)
-    expect(el2.vm.value).toBe(2)
-    expect(el3.vm.value).toBe(4)
-    expect(el4.vm.value).toBe(3)
-    expect(el5.vm.value).toBe(6)
-
-    list.vm.disable()
-    list.vm.handleSort({
-      oldIndex: 2,
-      newIndex: 0
-    })
-
     LocalVue.nextTick(() => {
-      let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
-      let el4 = form.findAllComponents({ name: 'TextElement' }).at(4)
-      let el5 = form.findAllComponents({ name: 'TextElement' }).at(5)
-
       expect(el0.vm.value).toBe(1)
       expect(el1.vm.value).toBe(2)
       expect(el2.vm.value).toBe(2)
       expect(el3.vm.value).toBe(4)
       expect(el4.vm.value).toBe(3)
       expect(el5.vm.value).toBe(6)
-      
-      expect(_.keys(list.vm.children$)).toStrictEqual(['0','1','2'])
-      done()
+
+      list.vm.disable()
+      list.vm.handleSort({
+        oldIndex: 2,
+        newIndex: 0
+      })
+
+      LocalVue.nextTick(() => {
+        let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
+        let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+        let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
+        let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+        let el4 = form.findAllComponents({ name: 'TextElement' }).at(4)
+        let el5 = form.findAllComponents({ name: 'TextElement' }).at(5)
+
+        expect(el0.vm.value).toBe(1)
+        expect(el1.vm.value).toBe(2)
+        expect(el2.vm.value).toBe(2)
+        expect(el3.vm.value).toBe(4)
+        expect(el4.vm.value).toBe(3)
+        expect(el5.vm.value).toBe(6)
+        
+        expect(_.keys(list.vm.children$)).toStrictEqual(['0','1','2'])
+        done()
+      })
     })
   })
 })
@@ -1628,15 +1705,17 @@ describe('List Element Events', () => {
 
     let list = form.findComponent({ name: 'ListElement' })
 
-    list.vm.remove(1)
-
     LocalVue.nextTick(() => {
-      expect(changeMock.mock.calls.length).toBe(1)
+      list.vm.remove(1)
 
-      expect(changeMock.mock.calls[0][0]).toStrictEqual([1,2,3])
-      expect(changeMock.mock.calls[0][1]).toStrictEqual([1,3])
-      expect(changeMock.mock.calls[0][2]).toStrictEqual('remove')
-      done()
+      LocalVue.nextTick(() => {
+        expect(changeMock.mock.calls.length).toBe(1)
+
+        expect(changeMock.mock.calls[0][0]).toStrictEqual([1,2,3])
+        expect(changeMock.mock.calls[0][1]).toStrictEqual([1,3])
+        expect(changeMock.mock.calls[0][2]).toStrictEqual('remove')
+        done()
+      })
     })
   })
 
@@ -1667,18 +1746,20 @@ describe('List Element Events', () => {
 
     let list = form.findComponent({ name: 'ListElement' })
 
-    list.vm.handleSort({
-      oldIndex: 2,
-      newIndex: 0
-    })
-
     LocalVue.nextTick(() => {
-      expect(changeMock.mock.calls.length).toBe(1)
+      list.vm.handleSort({
+        oldIndex: 2,
+        newIndex: 0
+      })
 
-      expect(changeMock.mock.calls[0][0]).toStrictEqual([1,2,3])
-      expect(changeMock.mock.calls[0][1]).toStrictEqual([3,1,2])
-      expect(changeMock.mock.calls[0][2]).toStrictEqual('sort')
-      done()
+      LocalVue.nextTick(() => {
+        expect(changeMock.mock.calls.length).toBe(1)
+
+        expect(changeMock.mock.calls[0][0]).toStrictEqual([1,2,3])
+        expect(changeMock.mock.calls[0][1]).toStrictEqual([3,1,2])
+        expect(changeMock.mock.calls[0][2]).toStrictEqual('sort')
+        done()
+      })
     })
   })
 

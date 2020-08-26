@@ -304,6 +304,8 @@ export default {
       for (var i = 0; i < length; i++) {
         this.insert()
       }
+
+      this.clean()
       
       // nextTick is required because children$ reflects
       // $refs, which only refreshed after DOM rerender
@@ -433,22 +435,26 @@ export default {
         data = null
       }
 
-      var key = this.next
+      var index = this.next
 
       var schema = Object.assign({}, _.cloneDeep(this.prototype), {
-        key: key,
+        key: index,
       })
-
-      // passing over default values to children
-      if (data !== null) {
-        schema = Object.assign({}, schema, {
-          default: data,
-        })
-      }
 
       // adding order data if it should be stored
       if (this.isObject && this.storeOrder) {
-        schema.schema[this.storeOrder].default = this.instances.length + 1
+        let order = this.instances.length + 1
+
+        // should load to data otherwise `order` would
+        // be nulled because of `load` method
+        if (data !== null) {
+          data[this.storeOrder] = order
+        } else {
+        
+        // if we don't have date just set it as a
+        // default to not null other values
+          schema.schema[this.storeOrder].default = order
+        }
       }
 
       this.instances.push(schema)
@@ -464,8 +470,16 @@ export default {
           this.$_setChildren$()
         })
       }
+      
+      if (data !== null) {
+        this.$nextTick(() => {
+          var child$ = this.children$[index]
 
-      var index = this.instances.length - 1
+          child$.load({
+            [child$.name]: data
+          })
+        })
+      }
 
       return index
     },
@@ -503,7 +517,6 @@ export default {
           })
         }
       })
-
     },
 
     /**
@@ -597,10 +610,10 @@ export default {
      * @returns {void}
      */
     $_setInitialInstances() {
-      if (this.initial > 0) {
-        for (var i = 0; i < this.initial; i++) {
-          this.insert(this.default && this.default[i] ? this.default[i] : null)
-        }
+      let count = this.default.length > this.initial ? this.default.length : this.initial
+
+      for (let i = 0; i < count; i++) {
+        this.insert(this.default && this.default[i] ? this.default[i] : null)
       }
     },
       
@@ -615,6 +628,8 @@ export default {
         this.children$ = this.$refs.children$
       }
     },
+
+    $_initDirting() {},
   },
   mounted() {
     this.$_setChildren$()

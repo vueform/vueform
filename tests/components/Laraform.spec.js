@@ -898,37 +898,6 @@ describe('Laraform Computed', () => {
     })
   })
 
-  it('should collect element errors in `errors`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'text',
-          rules: 'required'
-        },
-        b: {
-          type: 'text'
-        },
-      }
-    })
-
-    expect(form.vm.errors.length).toBe(0)
-
-    LocalVue.nextTick(() => {
-      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-
-      a.vm.validate()
-      
-      LocalVue.nextTick(() => {
-        expect(form.vm.errors.length).toBe(1)
-        done()
-      })
-    })
-  })
-
   it('should be `disabled` when submitting', (done) => {
     const LocalVue = createLocalVue()
 

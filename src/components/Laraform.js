@@ -668,79 +668,91 @@ export default {
       })
     },
     
-      /**
-       * Loads data and clears any element if the element's key is not found in the `data` object.
-       * 
-       * @public
-       * @param {object} data data to load
-       * @returns {void}
-       */
-      load(data) {
-        if (!_.isEmpty(this.wizard$)) {
-          this.wizard$.enableAllSteps()
-        }
+    /**
+     * Loads data and clears any element if the element's key is not found in the `data` object. Sets all elements' `dirty` to `false`.
+     * 
+     * @public
+     * @param {object} data data to load
+     * @returns {void}
+     */
+    load(data) {
+      if (!_.isEmpty(this.wizard$)) {
+        this.wizard$.enableAllSteps()
+      }
 
-        _.each(this.elements$, (element$) => {
-          element$.load(data)
-        })
-      },
+      _.each(this.elements$, (element$) => {
+        element$.load(data)
+      })
+    },
+    
+    /**
+     * Sets all elements' `dirty` to `false`.
+     * 
+     * @public
+     * @returns {void}
+     */
+    clean() {
+      _.each(this.elements$, (element$) => {
+        element$.clean()
+      })
+    },
 
-      /**
-       * Updates the element values which are contained in the data.
-       * 
-       * @public
-       * @param {object} data data to update with
-       * @returns {void}
-       */
-      update(data) {
-        _.each(data, (value, key) => {
-          this.elements$[key].update(value)
-        })
-      },
+    /**
+     * Updates the element values which are contained in the data.
+     * 
+     * @public
+     * @param {object} data data to update with
+     * @returns {void}
+     */
+    update(data) {
+      _.each(data, (value, key) => {
+        this.elements$[key].update(value)
+      })
+    },
 
-      /**
-       * Resets the form to its default state.
-       * 
-       * @public
-       * @returns {void}
-       */
-      reset() {
-        _.each(this.elements$, (element$) => {
-          element$.reset()
-        })
+    /**
+     * Resets the form to its default state.
+     * 
+     * @public
+     * @returns {void}
+     */
+    reset() {
+      _.each(this.elements$, (element$) => {
+        element$.reset()
+      })
 
-        if (!_.isEmpty(this.wizard$)) {
-          this.wizard$.reset()
-        }
+      if (!_.isEmpty(this.wizard$)) {
+        this.wizard$.reset()
+      }
 
-        if (!_.isEmpty(this.tabs$)) {
-          this.tabs$.reset()
-        }
+      if (!_.isEmpty(this.tabs$)) {
+        this.tabs$.reset()
+      }
 
-        this.handleReset()
-      },
+      this.handleReset()
+    },
 
-      /**
-       * Resets the form to null values.
-       * 
-       * @public
-       * @returns {void}
-       */
-      clear() {
-        _.each(this.elements$, (element$) => {
-          element$.clear()
-        })
+    /**
+     * Resets the form to null values.
+     * 
+     * @public
+     * @returns {void}
+     */
+    clear() {
+      _.each(this.elements$, (element$) => {
+        element$.clear()
+      })
 
-        if (!_.isEmpty(this.wizard$)) {
-          this.wizard$.reset()
-        }
+      if (!_.isEmpty(this.wizard$)) {
+        this.wizard$.reset()
+      }
 
-        if (!_.isEmpty(this.tabs$)) {
-          this.tabs$.reset()
-        }
+      if (!_.isEmpty(this.tabs$)) {
+        this.tabs$.reset()
+      }
 
-        this.handleClear()
-      },
+      this.handleClear()
+    },
 
     /**
      * Fires a callback only if all async processes finished and
@@ -1125,5 +1137,9 @@ export default {
     this.$_setElements$()
     this.$_setWizard$()
     this.$_setTabs$()
+
+    if (!_.isEmpty(this.form.data)) {
+      this.load(this.form.data)
+    }
   }
 }

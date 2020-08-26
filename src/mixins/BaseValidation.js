@@ -139,6 +139,16 @@ export default {
     },
 
     /**
+     * Flag the element as non dirty.
+     * 
+     * @public
+     * @returns {void}
+     */
+    clean() {
+      this.state.dirty = false
+    },
+
+    /**
      * Set the validated state to false.
      * 
      * @public
@@ -182,14 +192,6 @@ export default {
     this.$_initMessageBag()
   },
   mounted() {
-    // nextTick is need  because value changes are
-    // possible on default settings and loading
-    this.$nextTick(() => {
-      this.$watch('value', () => {
-        this.dirt()
-      }, { deep: true })
-    })
-    
     this.$_initValidation()
   }
 }

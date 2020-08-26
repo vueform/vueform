@@ -77,13 +77,22 @@ export default {
   data() {
     return {
       /**
-       * Helper property used to store the element states.
+       * Helper property used to store the element value.
        * 
        * @private
        * @type {object}
        * @default {}
        */
-      memory: null,
+      currentValue: null,
+
+      /**
+       * Helper property used to store the element previous value.
+       * 
+       * @private
+       * @type {object}
+       * @default {}
+       */
+      previousValue: null,
 
       /**
        * Whether the element was hidden programmatically with `.show()` / `.hide()` methods.
@@ -188,12 +197,14 @@ export default {
       // need to be a setter/getter variable
       // because in some cases it must behave
       // in a custom way, but it needs a store
-      // which is memory
+      // which is currentValue
       get() {
-        return this.memory
+        return this.currentValue
       },
       set(value) {
-        this.memory = value
+        this.previousValue = _.clone(this.currentValue)
+
+        this.currentValue = value
       }
     },
 
@@ -608,7 +619,7 @@ export default {
   },
   methods: {
     /**
-     * Loads data for element or clears the element if the element's key is not found in the `data` object.
+     * Loads data for element or clears the element if the element's key is not found in the `data` object.  Sets `dirty` to `false`.
      *
      * @public
      * @param {object} data an object containing data for the element using its **name as key**
@@ -617,11 +628,19 @@ export default {
     load(data) {
       if (this.available && data && data[this.name] !== undefined) {
         this.value = data[this.name]
+
+        this.$nextTick(() => {
+          this.clean()
+        })
         return
       }
 
       this.clear()
       this.resetValidators()
+        
+      this.$nextTick(() => {
+        this.clean()
+      })
     },
 
     /**
@@ -712,10 +731,11 @@ export default {
      * Handles the keyup event of the input field if the field has free text input.
      * 
      * @private 
-     * @param {string|number} value the value after change
+     * @param {string|number} oldValue the value before change
+     * @param {string|number} newValue the value after change
      * @returns {void}
      */
-    handleKeyup(value) {
+    handleKeyup(oldValue, newValue) {
       if (this.readonly) {
         return
       }
@@ -728,11 +748,12 @@ export default {
      *
      * @public
      * @prevents 
-     * @param {string|number} value the value after change
+     * @param {string|number} oldValue the value before change
+     * @param {string|number} newValue the value after change
      * @event change
      */
-    handleChange(value) {
-      if (this.fire('change', this.value) === false) {
+    handleChange(oldValue, newValue) {
+      if (this.fire('change', this.previousValue, this.value) === false) {
         return
       }
 
@@ -779,7 +800,14 @@ export default {
 
         this.$set(this.$slots, name, [instance._vnode])
       })
-    }
+    },
+    $_initDirting() {
+      this.$nextTick(() => {
+        this.$watch('value', () => {
+          this.dirt()
+        }, { deep: true })
+      })
+    },
   },
   beforeCreate() {
     if (this.$options.propsData.schema.beforeCreate) {
@@ -792,6 +820,7 @@ export default {
   },
   mounted() {
     this.$_assignSlots()
+    this.$_initDirting()
   },
   updated() {
     this.$_assignSlots()
