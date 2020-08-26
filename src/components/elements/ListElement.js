@@ -517,6 +517,8 @@ export default {
           })
         }
       })
+
+      this.dirt()
     },
 
     /**
