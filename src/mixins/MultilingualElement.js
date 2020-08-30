@@ -113,6 +113,11 @@ export default {
     load(data) {
       if (!this.available || data[this.name] === undefined) {
         this.value = _.clone(this.null)
+
+        this.$nextTick(() => {
+          this.clean()
+        })
+
         return
       }
 
@@ -121,6 +126,10 @@ export default {
       }
 
       this.value = Object.assign({}, _.clone(this.null), data[this.name])
+
+      this.$nextTick(() => {
+        this.clean()
+      })
     },
 
     /**
@@ -141,7 +150,7 @@ export default {
      * @returns {void}
      */
     reset() {
-      this.value = _.clone(this.defaultValue)
+      this.value = _.clone(this.default)
 
       this.resetValidators()
     },
@@ -168,13 +177,7 @@ export default {
         return
       }
 
-      if (this.fire('change', this.value) === false) {
-        return
-      }
-
-      if (this.form$.$_shouldValidateOn('change')) {
-        this.validateLanguage()
-      }
+      this.handleChange()
     },
 
     /**
@@ -182,11 +185,12 @@ export default {
      *
      * @public
      * @prevents 
-     * @param {string|number} value the value after change
+     * @param {string|number} oldValue the value before change
+     * @param {string|number} newValue the value after change
      * @event change
      */
-    handleChange(value) {
-      if (this.fire('change', this.value) === false) {
+    handleChange(oldValue, newValue) {
+      if (this.fire('change', this.previousValue, this.value) === false) {
         return
       }
 
@@ -195,4 +199,7 @@ export default {
       }
     },
   },
+  created() {
+    this.previousValue = _.clone(this.null)
+  }
 }

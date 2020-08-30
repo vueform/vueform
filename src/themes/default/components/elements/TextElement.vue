@@ -6,7 +6,8 @@
 
       <div>
         <input
-          v-model="model"
+          v-$model="model"
+          :value="model"
           :class="classes.input"
           :disabled="disabled"
           :id="id"

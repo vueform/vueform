@@ -222,6 +222,16 @@ export default {
     },
 
     /**
+     * Flag the element as non dirty.
+     * 
+     * @public
+     * @returns {void}
+     */
+    clean() {
+      this.state.dirty[this.language] = false
+    },
+
+    /**
      * Set the validated state to false.
      * 
      * @public
