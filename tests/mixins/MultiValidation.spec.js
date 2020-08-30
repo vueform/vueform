@@ -1,6 +1,11 @@
 import { createLocalVue } from '@vue/test-utils'
 import { createForm } from './../../src/utils/testHelpers'
 
+jest.mock("axios", () => ({
+  get: () => Promise.resolve({ data: 'value' }),
+  post: () => Promise.resolve({ data: 'value' }),
+}))
+
 describe('Multi Validation Mixin', () => {
   it('should be `dirty` if any child is dirty', (done) => {
     const LocalVue = createLocalVue()
@@ -33,7 +38,7 @@ describe('Multi Validation Mixin', () => {
     })
   })
 
-  it('should be `dirty` if number of elements changes', (done) => {
+  it('should be `dirty` if the element\'s value is changed', (done) => {
     const LocalVue = createLocalVue()
 
     LocalVue.config.errorHandler = done
@@ -64,41 +69,441 @@ describe('Multi Validation Mixin', () => {
     })
   })
 
-  // it('should be `invalid` if any element is invalid', (done) => {
-  //   const LocalVue = createLocalVue()
+  it('should not be `validated` if children are but element is not validated', (done) => {
+    const LocalVue = createLocalVue()
 
-  //   LocalVue.config.errorHandler = done
+    LocalVue.config.errorHandler = done
 
-  //   let form = createForm({
-  //     schema: {
-  //       a: {
-  //         type: 'object',
-  //         schema: {
-  //           b: {
-  //             type: 'text',
-  //             rules: 'required'
-  //           },
-  //           c: {
-  //             type: 'text',
-  //           },
-  //         }
-  //       }
-  //     }
-  //   })
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 2,
+          rules: 'required',
+          element: {
+            type: 'text',
+            rules: 'required',
+          }
+        }
+      }
+    })
 
-  //   let object = form.findComponent({ name: 'ObjectElement' })
+    let text0 = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let text1 = form.findAllComponents({ name: 'TextElement' }).at(1)
 
-  //   expect(object.vm.invalid).toBe(false)
+    let list = form.findComponent({ name: 'ListElement' })
 
-  //   LocalVue.nextTick(() => {
-  //     form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
-      
-  //     LocalVue.nextTick(() => {
-  //       expect(object.vm.invalid).toBe(true)
-  //       done()
-  //     })
-  //   })
-  // })
+    expect(list.vm.validated).toBe(false)
+    expect(text0.vm.validated).toBe(false)
+    expect(text1.vm.validated).toBe(false)
+
+    LocalVue.nextTick(() => {
+      text0.vm.validate()
+      text1.vm.validate()
+
+      expect(list.vm.validated).toBe(false)
+      expect(text0.vm.validated).toBe(true)
+      expect(text1.vm.validated).toBe(true)
+
+      done()
+    })
+  })
+
+  it('should not be `validated` if children and element are all validated', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 2,
+          rules: 'required',
+          element: {
+            type: 'text',
+            rules: 'required',
+          }
+        }
+      }
+    })
+
+    let text0 = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let text1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    expect(list.vm.validated).toBe(false)
+    expect(text0.vm.validated).toBe(false)
+    expect(text1.vm.validated).toBe(false)
+
+    LocalVue.nextTick(() => {
+      list.vm.validate()
+      text0.vm.validate()
+      text1.vm.validate()
+
+      expect(list.vm.validated).toBe(true)
+      expect(text0.vm.validated).toBe(true)
+      expect(text1.vm.validated).toBe(true)
+
+      done()
+    })
+  })
+
+  it('should be `invalid` if any child is invalid', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 2,
+          element: {
+            type: 'text',
+            rules: 'required',
+          }
+        }
+      }
+    })
+
+    let text0 = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let text1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    expect(list.vm.invalid).toBe(false)
+
+    LocalVue.nextTick(() => {
+      text1.vm.validate()
+
+      expect(list.vm.invalid).toBe(true)
+
+      done()
+    })
+  })
+
+  it('should be `invalid` if element has failed validation rules', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 0,
+          rules: 'required',
+          element: {
+            type: 'text',
+          }
+        }
+      }
+    })
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    expect(list.vm.invalid).toBe(false)
+
+    LocalVue.nextTick(() => {
+      list.vm.validate()
+
+      expect(list.vm.invalid).toBe(true)
+
+      done()
+    })
+  })
+
+  it('should be `pending` if any child is pending', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 2,
+          element: {
+            type: 'text',
+            rules: 'unique',
+          }
+        }
+      }
+    })
+
+    let text1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    expect(list.vm.pending).toBe(false)
+
+    LocalVue.nextTick(() => {
+      text1.vm.validate()
+
+      expect(list.vm.pending).toBe(true)
+
+      done()
+    })
+  })
+
+  it('should be `pending` if the element is pending', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 2,
+          rules: 'unique',
+          element: {
+            type: 'text',
+          }
+        }
+      }
+    })
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    expect(list.vm.pending).toBe(false)
+
+    LocalVue.nextTick(() => {
+      list.vm.validate()
+
+      expect(list.vm.pending).toBe(true)
+
+      done()
+    })
+  })
+
+  it('should be `debouncing` if any child is debouncing', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 2,
+          element: {
+            type: 'text',
+            rules: 'required:debounce=300',
+          }
+        }
+      }
+    })
+
+    let text1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    expect(list.vm.debouncing).toBe(false)
+
+    LocalVue.nextTick(() => {
+      text1.vm.validate()
+
+      expect(list.vm.debouncing).toBe(true)
+
+      done()
+    })
+  })
+
+  it('should be `debouncing` if the element is debouncing', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 2,
+          rules: 'required:debounce=300',
+          element: {
+            type: 'text',
+          }
+        }
+      }
+    })
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    expect(list.vm.debouncing).toBe(false)
+
+    LocalVue.nextTick(() => {
+      list.vm.validate()
+
+      expect(list.vm.debouncing).toBe(true)
+
+      done()
+    })
+  })
+
+  it('should be `busy` if pending', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 2,
+          rules: 'unique',
+          element: {
+            type: 'text',
+          }
+        }
+      }
+    })
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    expect(list.vm.pending).toBe(false)
+
+    LocalVue.nextTick(() => {
+      list.vm.validate()
+
+      expect(list.vm.pending).toBe(true)
+
+      done()
+    })
+  })
+
+  it('should be `busy` if debouncing', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 2,
+          rules: 'required:debounce=300',
+          element: {
+            type: 'text',
+          }
+        }
+      }
+    })
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    expect(list.vm.busy).toBe(false)
+
+    LocalVue.nextTick(() => {
+      list.vm.validate()
+
+      expect(list.vm.busy).toBe(true)
+
+      done()
+    })
+  })
+
+  it('should merge `errors` with children\'s', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 2,
+          rules: 'max:1',
+          element: {
+            type: 'text',
+            rules: 'required',
+          }
+        }
+      }
+    })
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    expect(list.vm.errors.length).toBe(0)
+
+    LocalVue.nextTick(() => {
+      list.vm.validate()
+
+      expect(list.vm.errors.length).toBe(3)
+
+      done()
+    })
+  })
+
+  it('should skip child `errors` if they are unavailable', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 2,
+          rules: 'max:1',
+          element: {
+            type: 'text',
+            rules: 'required',
+            conditions: [
+              ['b', 'bbb']
+            ]
+          }
+        },
+        b: {
+          type: 'text'
+        }
+      }
+    })
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    expect(list.vm.errors.length).toBe(0)
+
+    LocalVue.nextTick(() => {
+      list.vm.validate()
+
+      expect(list.vm.errors.length).toBe(1)
+
+      done()
+    })
+  })
+
+  it('`error` should be the first message of `errors`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'list',
+          initial: 2,
+          rules: 'max:1',
+          element: {
+            type: 'text',
+            rules: 'required',
+          }
+        },
+      }
+    })
+
+    let list = form.findComponent({ name: 'ListElement' })
+
+    LocalVue.nextTick(() => {
+      list.vm.validate()
+
+      expect(list.vm.error).toBe(list.vm.errors[0])
+
+      done()
+    })
+  })
 
   // it('should be `debouncing` & `busy` if any element is debouncing', (done) => {
   //   const LocalVue = createLocalVue()

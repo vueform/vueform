@@ -11,7 +11,10 @@ const Rule = class {
     this.attributes = Validator.attributes
 
     this.messages = {
-      required: 'Please fill in'
+      required: 'Please fill in',
+      max: {
+        array: 'Too many'
+      }
     }
 
     this.init()
@@ -66,15 +69,15 @@ const Rule = class {
   }
 
   isFile() {
-    return this.element$.isFileType()
+    return this.element$.isFileType
   }
 
   isImage() {
-    return this.element$.isImageType()
+    return this.element$.isImageType
   }
 
   isArray() {
-    return this.element$.isArrayType()
+    return this.element$.isArrayType
   }
 
   isNullable() {

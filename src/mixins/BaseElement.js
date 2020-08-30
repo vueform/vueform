@@ -802,11 +802,9 @@ export default {
       })
     },
     $_initDirting() {
-      this.$nextTick(() => {
-        this.$watch('value', () => {
-          this.dirt()
-        }, { deep: true })
-      })
+      this.$watch('value', () => {
+        this.dirt()
+      }, { deep: true })
     },
   },
   beforeCreate() {

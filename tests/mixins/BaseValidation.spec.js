@@ -276,24 +276,22 @@ describe('Element Validation Computed', () => {
     expect(a.vm.previousValue).toBe(null)
     expect(a.vm.currentValue).toBe('aaa')
 
-    a.vm.update('bbb')
-
-    expect(a.vm.value).toBe('bbb')
-    expect(a.vm.dirty).toBe(true)
-    expect(a.vm.previousValue).toBe('aaa')
-    expect(a.vm.currentValue).toBe('bbb')
+    a.get('input').setValue('bbb')
 
     LocalVue.nextTick(() => {
+      expect(a.vm.value).toBe('bbb')
+      expect(a.vm.dirty).toBe(true)
+      expect(a.vm.previousValue).toBe('aaa')
+      expect(a.vm.currentValue).toBe('bbb')
+
       a.vm.reset()
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.value).toBe('aaa')
-        expect(a.vm.dirty).toBe(true)
-        expect(a.vm.previousValue).toBe('bbb')
-        expect(a.vm.currentValue).toBe('aaa')
+      expect(a.vm.value).toBe('aaa')
+      expect(a.vm.dirty).toBe(true)
+      expect(a.vm.previousValue).toBe('bbb')
+      expect(a.vm.currentValue).toBe('aaa')
 
-        done()
-      })
+      done()
     })
   })
 
