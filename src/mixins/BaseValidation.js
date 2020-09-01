@@ -103,6 +103,15 @@ export default {
 
       return errors
     },
+
+    /**
+     * The first error that should be displayed under the element.
+     * 
+     * @type {string}
+     */
+    error() {
+      return this.messageBag.error
+    },
   },
   methods: {
     

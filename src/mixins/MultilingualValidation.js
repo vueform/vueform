@@ -167,7 +167,15 @@ export default {
         }
       })
 
-      return error
+      let errors = this.messageBag.prepends.errors
+
+      if (error !== null) {
+        errors = _.concat(errors, [error])
+      }
+
+      errors = _.concat(errors, this.messageBag.appends.errors)
+
+      return _.head(errors)
     }
   },
   methods: {
@@ -241,6 +249,10 @@ export default {
       _.each(this.languages, (language) => {
         _.each(this.Validators[language], (Validator) => {
           Validator.reset()
+        })
+
+        _.each(this.rules, (rules, language) => {
+          this.state.validated[language] = rules.length > 0 ? false : true
         })
       })
     },
