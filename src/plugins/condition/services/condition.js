@@ -20,7 +20,17 @@ const check = (condition, el$) => {
 
     let element$ = form$.el$(path)
 
-    if (!element$ || !element$.available) {
+    let hasCircularCondition = false
+
+    if (element$) {
+      _.each(element$.conditions, (condition) => {
+        if (condition[0] == el$.path) {
+          hasCircularCondition = true
+        }
+      })
+    }
+
+    if (!element$ || (!hasCircularCondition && !element$.available)) {
       return false
     }
 
@@ -67,15 +77,12 @@ const check = (condition, el$) => {
   switch (getType(condition)) {
     case 'string':
       return checkGlobal(condition)
-      break
 
     case 'function':
       return checkFunction(condition)
-      break
 
     case 'array':
       return checkArray(condition)
-      break
 
     default:
       throw new Error('Condition must be a string, a function or an object')

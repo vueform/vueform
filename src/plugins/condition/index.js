@@ -16,7 +16,7 @@ export default {
         return false
       }
 
-      if (!this.conditions) {
+      if (!this.conditions || !this.conditions.length) {
         return true
       }
 
