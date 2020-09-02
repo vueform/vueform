@@ -12,6 +12,7 @@ const Rule = class {
 
     this.messages = {
       required: 'Please fill in',
+      email: 'Please fill in an email',
       max: {
         array: 'Too many'
       }
