@@ -37,7 +37,7 @@ describe('Buttons Element', () => {
 
     const originalConsoleError = console.error
 
-    console.error = () => {};
+    console.error = () => {}
 
     expect(() => {
       createForm({

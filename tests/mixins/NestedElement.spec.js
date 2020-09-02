@@ -21,7 +21,7 @@ describe('Nested Element Mixin', () => {
 
     const originalConsoleError = console.error
 
-    console.error = () => {};
+    console.error = () => {}
 
     expect(() => {
       object.vm.value = 'sadf'

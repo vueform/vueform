@@ -9,7 +9,7 @@ describe('Has Elements Mixin', () => {
 
     const originalConsoleError = console.error
 
-    console.error = () => {};
+    console.error = () => {}
 
     expect(() => {
       let form = createForm({

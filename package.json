@@ -45,7 +45,8 @@
             "!**/build/**",
             "!**/coverage/**",
             "!**/config/**",
-            "!**/dist/**"
+            "!**/dist/**",
+            "!**/ignore/**"
         ],
         "coverageReporters": [
             "html",

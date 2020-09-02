@@ -7,7 +7,7 @@
           :schema="element"
           :name="name"
           :key="name"
-          v-ref:elements$
+          ref="elements$"
         />
       </template>
     </div>

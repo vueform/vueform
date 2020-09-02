@@ -144,6 +144,46 @@ const createForm = function(data, options = {}) {
   return mount(form, mountOptions)
 }
 
+const testThemeComponents = (name, expect) => {
+  let components = _.keys(defaultTheme.components)
+
+  const originalConsoleError = console.error
+
+  console.error = () => {}
+
+  expect(() => {
+    _.each(components, (component) => {
+      let comp = require(`./../themes/${name}/components/${component}.vue`).default
+
+      if (comp.data) {
+        expect(_.keys(comp.data().defaultClasses)).toBeTruthy()
+      }
+    })
+  }).not.toThrowError()
+  
+  console.error = originalConsoleError
+}
+
+const testThemeElements = (name, expect) => {
+  let components = _.keys(defaultTheme.elements)
+
+  const originalConsoleError = console.error
+
+  console.error = () => {}
+
+  expect(() => {
+    _.each(components, (component) => {
+      let comp = require(`./../themes/${name}/components/elements/${component}.vue`).default
+
+      if (comp.data) {
+        expect(_.keys(comp.data().defaultClasses)).toBeTruthy()
+      }
+    })
+  }).not.toThrowError()
+  
+  console.error = originalConsoleError
+}
+
 const testDynamics = (done, options, type) => {
   let LocalVue = createLocalVue()
 
@@ -327,6 +367,8 @@ export {
   createForm,
   createLaraformInstaller,
   testDynamics,
+  testThemeComponents,
+  testThemeElements,
 }
 
 

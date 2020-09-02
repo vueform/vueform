@@ -1,6 +1,23 @@
 import mergeClasses, { mergeComponentClasses } from './../../src/utils/mergeClasses'
 
 describe('mergeClasses', () => {
+  it('should return base when add is null', () => {
+    let base = {
+      BaseLayout: {
+        container: 'a'
+      }
+    }
+    let add = {
+      BaseElement: {
+        container: null
+      }
+    }
+
+    let classes = mergeClasses(base, add)
+
+    expect(classes).toStrictEqual(base)
+  })
+
   it('should add component with classes', () => {
     let base = {
       BaseLayout: {
