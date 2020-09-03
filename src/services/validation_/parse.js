@@ -36,7 +36,7 @@ const parse = (string) => {
   }
 
   return {
-    name: parseRule(),
+    rule: parseRule(),
     attributes: parseAttributes(),
   }
 }

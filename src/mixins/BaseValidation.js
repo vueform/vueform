@@ -186,9 +186,9 @@ export default {
       // qualify as validated by default
       this.state.validated = false
 
-      var factory = new this.$laraform.services.validation.validator.make(this, this.form$)
+      let factory = new this.$laraform.services.validation.factory(this)
 
-      _.each(factory.makeValidators(this.schema.rules), (Validator) => {
+      _.each(factory.makeAll(), (Validator) => {
         this.Validators.push(Validator)
       })
     },

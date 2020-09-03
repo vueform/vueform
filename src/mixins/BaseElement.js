@@ -284,19 +284,13 @@ export default {
     },
 
     /**
-     * Helper property used to determine a generic name for the element.
+     * Returns element rules
      * 
-     * @type {object}
+     * @type {array|string|object}
      * @ignore
      */
-    attribute() {
-      if (this.label) {
-        return this.label
-      } else if (this.placeholder) {
-        return this.placeholder
-      } else {
-        return _.upperFirst(this.name)
-      }
+    rules() {
+      return this.schema.rules
     },
 
     /**
