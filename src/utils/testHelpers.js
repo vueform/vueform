@@ -44,6 +44,12 @@ const createLaraformInstaller = function(options = {}) {
     })
   }
 
+  if (options.rules !== undefined) {
+    _.each(options.rules, (rule, name) => {
+      LaraformInstaller.rule(name, rule)
+    })
+  }
+
   if (options.plugins !== undefined) {
     LaraformInstaller.plugins(options.plugins)
   }

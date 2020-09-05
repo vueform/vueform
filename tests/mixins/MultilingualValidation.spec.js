@@ -12,7 +12,6 @@ let setLanguage = function(code, form) {
       tab$.get('a').trigger('click')
     }
   })
-
 }
 
 describe('Multilingual Validation Mixin', () => {

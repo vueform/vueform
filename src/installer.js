@@ -25,6 +25,8 @@ export default function (config) {
       this.options.components = config.components
 
       this.options.locales = {}
+      
+      this.options.rules = {}
 
       this.options.services = {
         validation,
@@ -65,6 +67,10 @@ export default function (config) {
 
     component(name, component) {
       this.options.components[name] = component
+    }
+
+    rule(name, rule) {
+      this.options.rules[name] = rule
     }
 
     store(Store) {

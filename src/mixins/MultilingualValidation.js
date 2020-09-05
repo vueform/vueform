@@ -298,14 +298,14 @@ export default {
         this.state.validated[language] = rules.length > 0 ? false : true
       })
 
-      var factory = new this.$laraform.services.validation.validator.make(this, this.form$)
+      var factory = new this.$laraform.services.validation.factory(this)
 
       _.each(this.rules, (rules, language) => {
         if (!this.Validators[language]) {
           this.$set(this.Validators, language, [])
         }
 
-        _.each(factory.makeValidators(rules), (Validator) => {
+        _.each(factory.makeAll(rules), (Validator) => {
           this.Validators[language].push(Validator)
         })
       }) 

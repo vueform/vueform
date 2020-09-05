@@ -18,5 +18,15 @@ export default {
     placeholder() {
       return this.schema.placeholder || null
     },
+
+    /**
+    * If provided each validators execution will be delayed by this amount of `milliseconds`. If `null` no debounce will occur.
+    * 
+    * @type {number}
+    * @default null
+    */
+    debounce() {
+      return this.schema.debounce || null
+    },
   }
 }

@@ -188,7 +188,7 @@ export default {
 
       let factory = new this.$laraform.services.validation.factory(this)
 
-      _.each(factory.makeAll(), (Validator) => {
+      _.each(factory.makeAll(this.rules), (Validator) => {
         this.Validators.push(Validator)
       })
     },

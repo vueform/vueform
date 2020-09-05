@@ -294,6 +294,22 @@ export default {
     },
 
     /**
+     * Helper property used to determine a generic name for the element.
+     * 
+     * @type {object}
+     * @ignore
+     */
+    genericName() {
+      if (this.label) {
+        return this.label
+      } else if (this.placeholder) {
+        return this.placeholder
+      } else {
+        return _.upperFirst(this.name)
+      }
+    },
+
+    /**
      * Whether the element is visible. It's `false` if `available` or `active` is `false` or `hidden` is `true`.
      * 
      * @type {boolean} 
