@@ -59,6 +59,9 @@ describe('Numeric Rule', () => {
     change(a, '%%!+')
     expect(a.vm.invalid).toBe(true)
 
+    change(a, '0x1D306')
+    expect(a.vm.invalid).toBe(true)
+
     done()
   })
 })

@@ -663,7 +663,7 @@ export default {
         return
       }
 
-      _.each(_.filter(this.elements$, { available: true, validated: false }), (element$) => {
+      _.each(_.filter(this.elements$, (el$) => { return el$.available && (!el$.validated || !el$.rules) }), (element$) => {
         element$.validate()
       })
     },
