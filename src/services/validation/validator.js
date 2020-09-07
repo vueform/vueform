@@ -132,7 +132,7 @@ const Validator = class {
   }
 
   get isArray() {
-    return this.element$.isArray
+    return this.element$.isArrayType
   }
 
   get isAsync() {

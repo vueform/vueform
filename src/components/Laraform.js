@@ -940,7 +940,7 @@ export default {
         return null
       }
       
-      var matches = path.match(/^[^.]+\./)
+      var matches = String(path).match(/^[^.]+\./)
 
       if (matches) {
         var current = matches[0].replace('.', '')

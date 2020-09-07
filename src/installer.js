@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import moment from 'moment'
 import axios from './services/axios'
 import validation from './services/validation'
 import messageBag from './services/messageBag'
@@ -7,6 +8,10 @@ import store from './store'
 
 if (window._ === undefined) {
   window._ = _
+}
+
+if (window.moment === undefined) {
+  window.moment = moment
 }
 
 export default function (config) {
@@ -88,7 +93,9 @@ export default function (config) {
       })
 
       // merge
-      _.each([], (attr) => {
+      _.each([
+        'endpoints'
+      ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = _.merge({}, this.options.config[attr], config[attr])
           }

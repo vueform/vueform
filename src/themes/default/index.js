@@ -22,6 +22,7 @@ import ElementError from './components/ElementError'
 import ElementMessage from './components/ElementMessage'
 
 import ButtonsElement from './components/elements/ButtonsElement'
+import CheckboxElement from './components/elements/CheckboxElement'
 import GroupElement from './components/elements/GroupElement'
 import ListElement from './components/elements/ListElement'
 import ObjectElement from './components/elements/ObjectElement'
@@ -58,6 +59,7 @@ export default {
   },
   elements: {
     ButtonsElement,
+    CheckboxElement,
     GroupElement,
     ListElement,
     ObjectElement,

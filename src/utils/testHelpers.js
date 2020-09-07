@@ -367,6 +367,36 @@ const testDynamics = (done, options, type) => {
   })
 }
 
+const change = function(el, value, type = 'input') {
+  switch (type) {
+    case 'checkbox':
+      el.get('input').setChecked(value)
+      el.get('input').trigger('change')
+      break
+
+    default:
+      el.get('input').setValue(value)
+      el.get('input').trigger('keyup')
+  }
+}
+
+const check = function(el) {
+  el.get('input').setChecked(true)
+  el.get('input').trigger('change')
+}
+
+const uncheck = function(el) {
+  el.get('input').setChecked(false)
+  el.get('input').trigger('change')
+}
+
+const setInstances = function(el, count) {
+  el.vm.clear()
+
+  for (var i = 0; i < count; i++) {
+    el.vm.insert()
+  }
+}
 
 export {
   installLaraform,
@@ -375,6 +405,10 @@ export {
   testDynamics,
   testThemeComponents,
   testThemeElements,
+  change,
+  check,
+  uncheck,
+  setInstances,
 }
 
 

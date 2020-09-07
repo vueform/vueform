@@ -4,7 +4,7 @@ export default function (value) {
   }
 
   // is number
-  if (value.match(/^\d+$/)) {
+  if (value.match(/^-*\d+$/)) {
     return parseInt(value, 10)
 
     // is float

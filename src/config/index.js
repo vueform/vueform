@@ -39,6 +39,7 @@ export default {
   endpoints: {
     process: '/laraform/process',
     validators: {
+      active_url: '/active_url',
       unique: '/',
       exists: '/',
     }
