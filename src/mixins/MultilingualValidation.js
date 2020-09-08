@@ -123,7 +123,7 @@ export default {
 
       _.each(this.languages, (language) => {
         rules[language] = _.isPlainObject(this.schema.rules)
-          ? (this.schema.rules[language] || '')
+          ? (this.schema.rules[language] || null)
           : this.schema.rules
       })
 
@@ -295,12 +295,16 @@ export default {
       // If the element has rules it does not
       // qualify as validated by default
       _.each(this.rules, (rules, language) => {
-        this.state.validated[language] = rules.length > 0 ? false : true
+        this.state.validated[language] = rules !== null && rules.length > 0 ? false : true
       })
 
       var factory = new this.$laraform.services.validation.factory(this)
 
       _.each(this.rules, (rules, language) => {
+        if (rules === null) {
+          return
+        }
+
         if (!this.Validators[language]) {
           this.$set(this.Validators, language, [])
         }

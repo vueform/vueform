@@ -122,6 +122,10 @@ export default {
      * @returns {void}
      */
     validate() {
+      if (!this.rules) {
+        return
+      }
+
       if (this.form$.validation === false) {
         return
       }

@@ -166,7 +166,7 @@ describe('Element Computed', () => {
     expect(name.vm.path).toBe('name.a')
   })
 
-  it('should return `attribute` when label is defined', () => {
+  it('should return `genericName` when label is defined', () => {
     let form = createForm({
       schema: {
         name: {
@@ -178,10 +178,10 @@ describe('Element Computed', () => {
 
     let name = form.findComponent({ name: 'TextElement' })
 
-    expect(name.vm.attribute).toBe('Name element')
+    expect(name.vm.genericName).toBe('Name element')
   })
 
-  it('should return `attribute` when placeholder is defined', () => {
+  it('should return `genericName` when placeholder is defined', () => {
     let form = createForm({
       schema: {
         name: {
@@ -193,10 +193,10 @@ describe('Element Computed', () => {
 
     let name = form.findComponent({ name: 'TextElement' })
 
-    expect(name.vm.attribute).toBe('Name element')
+    expect(name.vm.genericName).toBe('Name element')
   })
 
-  it('should return `attribute` when no placeholder nor label is defined', () => {
+  it('should return `genericName` when no placeholder nor label is defined', () => {
     let form = createForm({
       schema: {
         name: {
@@ -207,7 +207,7 @@ describe('Element Computed', () => {
 
     let name = form.findComponent({ name: 'TextElement' })
 
-    expect(name.vm.attribute).toBe('Name')
+    expect(name.vm.genericName).toBe('Name')
   })
 
   it('should return `id` when set in schema', () => {

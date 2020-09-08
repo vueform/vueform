@@ -22,7 +22,7 @@ export default class unique extends Validator {
       var el = this.form$.el$(requestParam)
 
       // set the element value or the param name itself
-      params[_.keys(params).length] = el ? el.value : requestParam
+      params[_.keys(params).length] = el && key != 0 ? el.value : requestParam
     })
 
     return params

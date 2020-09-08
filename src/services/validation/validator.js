@@ -103,6 +103,20 @@ const Validator = class {
     return this.element$.genericName
   }
 
+  get type() {
+    if (this.isNumeric) {
+      return 'numeric'
+    }
+    else if (this.isFile) {
+      return 'file'
+    }
+    else if (this.isArray) {
+      return 'array'
+    }
+    
+    return 'string'
+  }
+
   get isNumeric() {
     return _.some(this.element$.Validators, { name: 'numeric' })
         || _.some(this.element$.Validators, { name: 'integer' })
@@ -181,6 +195,10 @@ const Validator = class {
     }
   }
 
+  reset() {
+    this.invalid = false
+  }
+
   watch(variable, callback) {
     var exists = false
 
@@ -212,6 +230,12 @@ const Validator = class {
     }
     else if (this.isArray) {
       return value.length
+    } else if (value === null) {
+      return 0
+    } else if (value === undefined) {
+      return 0
+    } else if (value === '') {
+      return 0
     }
 
     return String(value).length

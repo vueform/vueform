@@ -565,11 +565,11 @@ describe('Multilingual Validation Mixin', () => {
     let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
 
     expect(text.vm.Validators.en.length).toBe(1)
-    expect(text.vm.Validators.en[0].rule).toBe('required')
+    expect(text.vm.Validators.en[0].name).toBe('required')
     expect(text.vm.Validators.fr.length).toBe(1)
-    expect(text.vm.Validators.fr[0].rule).toBe('required')
+    expect(text.vm.Validators.fr[0].name).toBe('required')
     expect(text.vm.Validators.es.length).toBe(1)
-    expect(text.vm.Validators.es[0].rule).toBe('required')
+    expect(text.vm.Validators.es[0].name).toBe('required')
 
     done()
   })
@@ -610,11 +610,11 @@ describe('Multilingual Validation Mixin', () => {
     let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
 
     expect(text.vm.Validators.en.length).toBe(1)
-    expect(text.vm.Validators.en[0].rule).toBe('required')
+    expect(text.vm.Validators.en[0].name).toBe('required')
     expect(text.vm.Validators.fr.length).toBe(1)
-    expect(text.vm.Validators.fr[0].rule).toBe('email')
+    expect(text.vm.Validators.fr[0].name).toBe('email')
     expect(text.vm.Validators.es.length).toBe(1)
-    expect(text.vm.Validators.es[0].rule).toBe('max')
+    expect(text.vm.Validators.es[0].name).toBe('max')
 
     done()
   })
@@ -653,9 +653,9 @@ describe('Multilingual Validation Mixin', () => {
     let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
 
     expect(text.vm.Validators.en.length).toBe(1)
-    expect(text.vm.Validators.en[0].rule).toBe('required')
-    expect(text.vm.Validators.fr.length).toBe(0)
-    expect(text.vm.Validators.es.length).toBe(0)
+    expect(text.vm.Validators.en[0].name).toBe('required')
+    expect(text.vm.Validators.fr).toBeFalsy()
+    expect(text.vm.Validators.es).toBeFalsy()
 
     done()
   })
