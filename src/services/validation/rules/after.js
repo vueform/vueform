@@ -4,55 +4,103 @@ export default class after extends Validator {
   get messageParams() {
     return {
       attribute: this.attributeName,
-      date: this.date,
+      date: this.date.format(this.format),
     }
   }
 
-  get date() {
+  get param() {
     return this.attributes[0]
   }
 
+  get format() {
+    if (this.element$.dataFormat) {
+      return this.element$.dataFormat
+    }
+
+    if (this.element$.hasTime) {
+      return this.element$.__('laraform.elements.datetime.secondsDataFormat')
+    }
+
+    return this.element$.__('laraform.elements.date.dataFormat')
+  }
+
+  get otherFormat() {
+    if (this.dateType != 'element') {
+      return this.format
+    }
+
+    if (this.other$.dataFormat) {
+      return this.other$.dataFormat
+    }
+
+    return this.format
+  }
+
+  get otherPath() {
+    if (this.dateType != 'element') {
+      return null
+    }
+
+    return this.param
+  } 
+
+  get other$() {
+    if (this.dateType != 'element') {
+      return {}
+    }
+
+    return this.form$.el$(this.param)
+  } 
+
+  get date() {
+    let date = ''
+
+     switch (this.dateType) {
+      case 'relative':
+        if (this.param === 'today') {
+          date = moment().startOf('day')
+        }
+
+        if (this.param === 'tomorrow') {
+          date = moment().startOf('day').add(1, 'days')
+        }
+
+        if (this.param === 'yesterday') {
+          date = moment().startOf('day').subtract(1, 'days')
+        }
+        break
+
+      case 'element':
+        date = moment(this.other$.value, this.otherFormat)
+        break
+
+      case 'absolute':
+        date = moment(this.param, this.format)
+        break
+    }
+
+    return date
+  }
+
   get dateType() {
-    if (['today', 'tomorrow', 'yesterday'].indexOf(this.date) !== -1) {
+    if (['today', 'tomorrow', 'yesterday'].indexOf(this.param) !== -1) {
       return 'relative'
-    } else if (this.form$.el$(this.date)) {
+    } else if (this.form$.el$(this.param)) {
       return 'element'
     } else {
       return 'absolute'
     }
   }
 
-  check(value) {
-    let date = ''
-
-    switch (this.dateType) {
-      case 'relative':
-        if (this.date === 'today') {
-          date = moment().startOf('day')
-        }
-
-        if (this.date === 'tomorrow') {
-          date = moment().startOf('day').add(1, 'days')
-        }
-
-        if (this.date === 'yesterday') {
-          date = moment().startOf('day').substract(1, 'days')
-        }
-        break
-
-      case 'element':
-        date = this.form$.el$(this.date).value
-        break
-
-      case 'absolute':
-        date = this.date
-        break
-    }
-
-    return this.checkDate(value, date)
+  init() {
+    this.form$.$nextTick(() => {
+      if (this.dateType == 'element') {
+        this.watchOther()
+      }
+    })
   }
 
-  checkDate(actual, expected) {
-    return moment(actual).format('X') > moment(expected).format('X')
+  check(value) {
+    return moment(value, this.format).isAfter(moment(this.date, this.otherFormat))
   }
 }

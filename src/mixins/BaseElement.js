@@ -289,8 +289,14 @@ export default {
      * @type {array|string|object}
      * @ignore
      */
-    rules() {
-      return this.schema.rules
+    rules: {
+      get() {
+        return this.schema.rules
+      },
+      set(value) {
+        this.$set(this.schema, 'rules', value)
+      }
+      
     },
 
     /**

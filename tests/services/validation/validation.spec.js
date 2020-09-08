@@ -148,6 +148,26 @@ describe('Validation Service', () => {
     done()
   })
 
+  it('should add validator with a single param which contains :', (done) => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'date_format:YYYY-MM-DD HH:mm:ss'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+    a.get('input').setValue('2020-12-30 23:59:59')
+    a.vm.validate()
+
+    expect(a.vm.invalid).toBe(false)
+
+    done()
+  })
+
   it('should add validator with a multiple params', (done) => {
     let form = createForm({
       schema: {

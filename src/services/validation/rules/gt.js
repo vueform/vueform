@@ -24,8 +24,6 @@ export default class gt extends Validator {
   check(value) {
     let otherValue = this.other$.value
 
-    this.requireSameType(value, otherValue)
-
     return this.compare(value, otherValue)
   }
 
@@ -33,11 +31,5 @@ export default class gt extends Validator {
     let otherSize = this.size(otherValue)
 
     return otherSize == 0 || this.size(value) > otherSize
-  }
-
-  requireSameType(value, otherValue) {
-    if (typeof value !== typeof otherValue && this.filled(value) && this.filled(otherValue)) {
-      throw new Error('The values under comparison must be of the same type')
-    }
   }
 }

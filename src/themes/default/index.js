@@ -23,11 +23,14 @@ import ElementMessage from './components/ElementMessage'
 
 import ButtonsElement from './components/elements/ButtonsElement'
 import CheckboxElement from './components/elements/CheckboxElement'
+import DateElement from './components/elements/DateElement'
+import DatetimeElement from './components/elements/DatetimeElement'
 import GroupElement from './components/elements/GroupElement'
 import ListElement from './components/elements/ListElement'
 import ObjectElement from './components/elements/ObjectElement'
 import StaticElement from './components/elements/StaticElement'
 import TextElement from './components/elements/TextElement'
+import TimeElement from './components/elements/TimeElement'
 import TTextElement from './components/elements/TTextElement'
 
 import columns from './utils/columns'
@@ -60,11 +63,14 @@ export default {
   elements: {
     ButtonsElement,
     CheckboxElement,
+    DateElement,
+    DatetimeElement,
     GroupElement,
     ListElement,
     ObjectElement,
     StaticElement,
     TextElement,
+    TimeElement,
     TTextElement,
   },
   classes: {

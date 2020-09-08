@@ -213,36 +213,4 @@ describe('Greater Than Rule', () => {
       done()
     })
   })
-
-  it('should throw error if element types are not the same', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'text',
-          rules: 'gt:b'
-        },
-        b: {
-          type: 'text',
-          rules: 'numeric'
-        },
-      }
-    })
-
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
-
-    const originalConsoleError = console.error
-
-    console.error = () => {}
-
-    expect(() => {
-      a.vm.validate()
-    }).toThrowError()
-    
-    console.error = originalConsoleError
-  })
 })

@@ -7,21 +7,26 @@ const parse = (string) => {
   }
 
   let parseAttributes = () => {
-    var parts = string.split(':')
+   let parts = string.split(':')
 
     if (parts.length <= 1) {
       return null
     }
 
-    var attributes = {}
+    let attributes = {}
 
-    if (['regex', 'not_regex'].indexOf(parts[0]) !== -1) {
-      attributes[0] = parts[1]
+    let rule = parts[0]
+
+    parts.shift()
+    let params = parts.join(':')
+
+    if (['regex', 'not_regex'].indexOf(rule) !== -1) {
+      attributes[0] = params
 
       return attributes
     }
 
-    _.each(parts[1].split(','), (attribute, index) => {
+    _.each(params.split(','), (attribute, index) => {
       var attrParts = attribute.split('=')
 
       if (attrParts.length <= 1) {
