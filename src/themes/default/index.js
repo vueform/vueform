@@ -17,9 +17,12 @@ import FormButtonAnchor from './components/FormButtonAnchor'
 import FormButtonSubmit from './components/FormButtonSubmit'
 import BaseElementLayout from './components/BaseElementLayout'
 import NestedElementLayout from './components/NestedElementLayout'
+import ElementLabelFloating from './components/ElementLabelFloating'
 import ElementLabel from './components/ElementLabel'
 import ElementError from './components/ElementError'
 import ElementMessage from './components/ElementMessage'
+
+import Flatpickr from './components/wrappers/Flatpickr'
 
 import ButtonsElement from './components/elements/ButtonsElement'
 import CheckboxElement from './components/elements/CheckboxElement'
@@ -56,9 +59,12 @@ export default {
     FormButtonSubmit,
     BaseElementLayout,
     NestedElementLayout,
+    ElementLabelFloating,
     ElementLabel,
     ElementError,
     ElementMessage,
+
+    Flatpickr,
   },
   elements: {
     ButtonsElement,
@@ -100,8 +106,11 @@ export const core = {
     FormButtonSubmit,
     BaseElementLayout,
     NestedElementLayout,
+    ElementLabelFloating,
     ElementLabel,
     ElementError,
+    
+    Flatpickr,
   },
   elements: {
     

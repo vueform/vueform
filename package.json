@@ -36,9 +36,9 @@
             "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
         },
         "moduleNameMapper": {
-            "^@/(.*)$": "<rootDir>/src/$1"
+            "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
         },
-        "collectCoverage": true,
+        "collectCoverage": false,
         "collectCoverageFrom": [
             "**/*.{js,vue}",
             "!**/node_modules/**",
@@ -70,6 +70,7 @@
         "cross-env": "^5.2.0",
         "css-loader": "^2.1.0",
         "jest": "^26.0.1",
+        "jest-transform-stub": "^2.0.0",
         "json-loader": "^0.5.7",
         "node-sass": "^4.11.0",
         "sass-loader": "^7.1.0",

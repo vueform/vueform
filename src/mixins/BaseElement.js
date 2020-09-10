@@ -262,6 +262,10 @@ export default {
       },
     },
 
+    defaultValue() {
+      return this.default
+    },
+
     /**
      * Helper property used to determine the element's 'null' value.
      * 
