@@ -2,6 +2,8 @@
   <input
     type="text"
     :class="classes.flatpickr"
+    :id="id"
+    :placeholder="placeholder"
     ref="input"
   />
 </template>
@@ -14,7 +16,8 @@
     data() {
       return {
         defaultClasses: {
-          flatpickr: 'laraform-flatpickr'
+          flatpickr: 'laraform-flatpickr',
+          calendarContainer: 'lf-flatpickr'
         }
       }
     }

@@ -2,15 +2,15 @@ export default {
   laraform: {
     elements: {
       date: {
-        displayFormat: 'Y-m-d',
+        displayFormat: 'YYYY-MM-DD',
       },
       time: {
-        displayFormat: 'H:i',
-        secondsDisplayFormat: 'H:i:S',
+        displayFormat: 'HH:mm',
+        secondsDisplayFormat: 'HH:mm:ss',
       },
       datetime: {
-        displayFormat: 'Y-m-d H:i',
-        secondsDisplayFormat: 'Y-m-d H:i:S',
+        displayFormat: 'YYYY-MM-DD HH:mm',
+        secondsDisplayFormat: 'YYYY-MM-DD HH:mm:ss',
       },
       address: {
         addressLabel: 'Address',

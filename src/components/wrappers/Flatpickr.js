@@ -8,9 +8,27 @@ export default {
   mixins: [ElementComponent],
   inject: ['form$'],
   props: {
-    model: null,
+    options: {
+      type: [Object],
+      required: true
+    },
+    model: {
+      required: true,
+    },
+    id: {
+      type: [Number, String],
+      required: true
+    },
+    placeholder: {
+      type: [Number, String],
+      required: false
+    },
     dateFormat: {
-      type: String,
+      type: [String],
+      required: false
+    },
+    mode: {
+      type: [String],
       required: false
     },
   },
@@ -22,23 +40,35 @@ export default {
   watch: {
     model(value) {
       this.flatpickr$.setDate(value, false)
+    },
+    id: {
+      handler(value) {
+        this.$_setFlatpickrId()
+      },
+      immediate: false
+    },
+    options: {
+      handler() {
+        _.each(this.config, (value, option) => {
+          this.flatpickr$.set(option, value)
+        })
+      },
+      deep: true
     }
   },
   computed: {
     config() {
       var config = {}
 
-      _.each(this.$props, (value, prop) => {
+      _.each(this.options, (value, option) => {
         if (value !== null && value !== undefined) {
-          config[prop] = value
+          config[option] = value
         }
       })
 
-      // append the form to main form
-      // instead of end of the body
-      // Update: Experimental removal, because enter was
-      // disabled when appended to form
-      // config.appendTo = this.form$.$refs.form$
+      // Append the form to main form instead of end of the body
+      // Update: Experimental removal, because enter was disabled
+      // when appended to form config.appendTo = this.form$.$refs.form$
 
       // according to:
       // https://github.com/flatpickr/flatpickr/issues/1019
@@ -49,10 +79,13 @@ export default {
   },
   methods: {
     update(value) {
-      this.$emit('input', value[0])
+      value = this.mode == 'single' ? (value[0] || null) : value
+
+      this.$emit('input', value)
+      this.$emit('change', value)
     },
-    $_shouldUpdate(value) {
-      return !(value instanceof Date && this.model instanceof Date && value.getTime() === this.model.getTime())
+    $_setFlatpickrId() {
+      this.flatpickr$.input.parentElement.id = 'flatpickr-' + this.id
     }
   },
   mounted() {
@@ -61,8 +94,31 @@ export default {
         this.update(value)
       },
       onClose: (value) => {
+        value = this.mode == 'range' && value.length < 2 ? [] : value
+
         this.update(value)
+      },
+      parseDate: (dateStr, format) => {
+        return moment(dateStr, format, true).toDate();
+      },
+      formatDate: (date, format, locale) => {
+        return moment(date).format(format);
       }
     }))
+
+    if (this.flatpickr$.calendarContainer) {
+      this.flatpickr$.calendarContainer.classList.add(this.classes.calendarContainer)
+    }
+
+    this.$_setFlatpickrId()
+    // // Required because if static == true the picker does
+    // // not close properly when clicking outside of it.
+    // document.addEventListener('click', () => {
+    //   if(clickedOutsideElement('flatpickr-' + this.id)) {
+    //     if (this.flatpickr$.isOpen) {
+    //       this.flatpickr$.close()
+    //     }
+    //   }
+    // })
   },
 }

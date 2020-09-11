@@ -2,12 +2,22 @@
   <component :is="components.BaseElementLayout">
     <template slot="field">
       <slot name="prefix"></slot>
+
+      <component
+        :is="components.ElementLabelFloating"
+        v-if="floating"
+        :visible="!empty"
+      >{{ floating }}</component>
       
       <component
         :is="components.Flatpickr"
         :model="model"
-        :class="classes.input"
+        :options="options"
+        :mode="mode"
         :dateFormat="displayFormat"
+        :id="id"
+        :class="classes.input"
+        :placeholder="placeholder"
         @input="handleInput"
         @change="handleChange"
         ref="datepicker$"
