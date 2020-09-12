@@ -127,6 +127,21 @@ export default {
     },
 
     /**
+    * Whether the field is *readonly*.
+    * 
+    * @type {boolean} 
+    * @default false
+    */
+    readonly: {
+      get() {
+        return this.schema.readonly !== undefined ? this.schema.readonly : false
+      },
+      set(value) {
+        this.$set(this.schema, 'readonly', value)
+      }
+    },
+
+    /**
      * Defines how date should be formatted in the input field.
      * 
     * @type {string|false} 
@@ -248,10 +263,12 @@ export default {
     options: {
       get() {
         return Object.assign({}, {
+          mode: this.mode,
           dateFormat: this.displayFormat,
           minDate: this.min,
           maxDate: this.max,
           disable: this.disables,
+          clickOpens: !this.disabled && !this.readonly,
         }, this.schema.options || {})
       },
       set(value) {
@@ -278,6 +295,10 @@ export default {
      * @returns {void}
      */
     handleInput(value) {
+      if (this.disabled || this.readonly) {
+        return
+      }
+
       this.model = value
     }
   },

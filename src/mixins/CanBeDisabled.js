@@ -1,13 +1,18 @@
 export default {
-  data() {
-    return {
-      /**
-       * Whether the field is *disabled*.
-       * 
-       * @type {boolean} 
-       * @default false
-       */
-      disabled: false,
+  computed: {
+    /**
+     * Whether the field should be *disabled* for user input (API updates are possible).
+     * 
+     * @type {boolean} 
+     * @default false
+     */
+    disabled: {
+      get() {
+        return this.schema.disabled !== undefined ? this.schema.disabled : false
+      },
+      set(value) {
+        this.$set(this.schema, 'disabled', value)
+      }
     }
   },
   methods: {

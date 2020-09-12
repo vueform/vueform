@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './../../../../src/utils/testHelpers'
+import { createForm, change, setDate } from './../../../../src/utils/testHelpers'
 
 describe('After Rule', () => {
   it('should work with `yesterday`', (done) => {
@@ -91,12 +91,16 @@ describe('After Rule', () => {
   })
 
   it('should work with different formats', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
     let form = createForm({
       schema: {
         a: {
           type: 'date',
           rules: 'after:today',
-          dataFormat: 'DD YYYY MM'
+          loadFormat: 'DD YYYY MM',
         }
       }
     })
@@ -107,13 +111,13 @@ describe('After Rule', () => {
     let today = moment().format('DD YYYY MM')
     let tomorrow = moment().add(1, 'days').format('DD YYYY MM')
 
-    change(a, yesterday)
+    setDate(a, yesterday)
     expect(a.vm.invalid).toBe(true)
 
-    change(a, today)
+    setDate(a, today)
     expect(a.vm.invalid).toBe(true)
 
-    change(a, tomorrow)
+    setDate(a, tomorrow)
     expect(a.vm.invalid).toBe(false)
 
     done()
@@ -125,20 +129,21 @@ describe('After Rule', () => {
         a: {
           type: 'date',
           rules: 'after:25/12/2020',
-          dataFormat: 'DD/MM/YYYY'
+          valueFormat: 'DD/MM/YYYY',
+          loadFormat: 'DD/MM/YYYY',
         }
       }
     })
 
     let a = form.findAllComponents({ name: 'DateElement' }).at(0)
 
-    change(a, '24/12/2020')
+    setDate(a, '24/12/2020')
     expect(a.vm.invalid).toBe(true)
 
-    change(a, '25/12/2020')
+    setDate(a, '25/12/2020')
     expect(a.vm.invalid).toBe(true)
 
-    change(a, '26/12/2020')
+    setDate(a, '26/12/2020')
     expect(a.vm.invalid).toBe(false)
 
     done()
@@ -160,16 +165,16 @@ describe('After Rule', () => {
     let from = form.findAllComponents({ name: 'DateElement' }).at(0)
     let to = form.findAllComponents({ name: 'DateElement' }).at(1)
 
-    change(from, '2020-12-25')
-    change(to, '2020-12-24')
+    setDate(from, '2020-12-25')
+    setDate(to, '2020-12-24')
     expect(to.vm.invalid).toBe(true)
 
-    change(from, '2020-12-25')
-    change(to, '2020-12-25')
+    setDate(from, '2020-12-25')
+    setDate(to, '2020-12-25')
     expect(to.vm.invalid).toBe(true)
 
-    change(from, '2020-12-25')
-    change(to, '2020-12-26')
+    setDate(from, '2020-12-25')
+    setDate(to, '2020-12-26')
     expect(to.vm.invalid).toBe(false)
 
     done()
@@ -196,18 +201,18 @@ describe('After Rule', () => {
     let to = form.findAllComponents({ name: 'DateElement' }).at(1)
 
     LocalVue.nextTick(() => {
-      change(to, '2020-12-24')
-      change(from, '2020-12-25')
+      setDate(to, '2020-12-24')
+      from.vm.value = '2020-12-25'
 
       LocalVue.nextTick(() => {
         expect(to.vm.invalid).toBe(true)
 
-        change(from, '2020-12-24')
+        from.vm.value = '2020-12-24'
 
         LocalVue.nextTick(() => {
           expect(to.vm.invalid).toBe(true)
 
-          change(from, '2020-12-23')
+          from.vm.value = '2020-12-23'
           LocalVue.nextTick(() => {
             expect(to.vm.invalid).toBe(false)
 
@@ -236,7 +241,7 @@ describe('After Rule', () => {
 
     let yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD')
 
-    change(a, yesterday)
+    setDate(a, yesterday)
     expect(a.vm.error).toContain(yesterday)
 
     done()
@@ -258,7 +263,7 @@ describe('After Rule', () => {
 
     let a = form.findAllComponents({ name: 'DateElement' }).at(0)
 
-    change(a, '2020-12-24')
+    setDate(a, '2020-12-24')
     expect(a.vm.error).toContain('2020-12-25')
 
     done()
@@ -285,14 +290,40 @@ describe('After Rule', () => {
     let to = form.findAllComponents({ name: 'DateElement' }).at(1)
 
     LocalVue.nextTick(() => {
-      change(to, '2020-12-24')
-      change(from, '2020-12-25')
+      setDate(to, '2020-12-24')
+      from.vm.value = '2020-12-25'
 
       LocalVue.nextTick(() => {
         expect(to.vm.error).toContain('2020-12-25')
         done()
       })
     })
+  })
+
+  it('should work with multiple dates', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+          mode: 'multiple',
+          rules: 'after:2020-12-26'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    setDate(a, ['2020-12-24', '2020-12-26'])
+    expect(a.vm.invalid).toBe(true)
+
+    setDate(a, ['2020-12-28', '2020-12-30'])
+    expect(a.vm.invalid).toBe(false)
+
+    done()
   })
   
 })

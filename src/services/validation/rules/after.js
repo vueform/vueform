@@ -13,15 +13,11 @@ export default class after extends Validator {
   }
 
   get format() {
-    if (this.element$.dataFormat) {
-      return this.element$.dataFormat
+    if (this.element$.valueFormat) {
+      return this.element$.valueFormat
     }
 
-    if (this.element$.hasTime) {
-      return this.element$.__('laraform.elements.datetime.secondsDataFormat')
-    }
-
-    return this.element$.__('laraform.elements.date.dataFormat')
+    return 'YYYY-MM-DD'
   }
 
   get otherFormat() {
@@ -29,8 +25,8 @@ export default class after extends Validator {
       return this.format
     }
 
-    if (this.other$.dataFormat) {
-      return this.other$.dataFormat
+    if (this.other$.valueFormat) {
+      return this.other$.valueFormat
     }
 
     return this.format
@@ -101,6 +97,22 @@ export default class after extends Validator {
   }
 
   check(value) {
+    if (_.isArray(value)) {
+      let valid = true
+
+      _.each(value, (date) => {
+        if (!this.checkDate(date)) {
+          valid = false
+        }
+      })
+
+      return valid
+    }
+
+    return this.checkDate(value)
+  }
+
+  checkDate(value) {
     return moment(value, this.format).isAfter(moment(this.date, this.otherFormat))
   }
 }

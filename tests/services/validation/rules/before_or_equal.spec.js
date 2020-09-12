@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './../../../../src/utils/testHelpers'
+import { createForm, change, setDate } from './../../../../src/utils/testHelpers'
 
 describe('Before Or Equal Rule', () => {
   it('should work with `yesterday`', (done) => {
@@ -96,20 +96,21 @@ describe('Before Or Equal Rule', () => {
         a: {
           type: 'date',
           rules: 'before_or_equal:25/12/2020',
-          dataFormat: 'DD/MM/YYYY'
+          loadFormat: 'DD/MM/YYYY',
+          valueFormat: 'DD/MM/YYYY',
         }
       }
     })
 
     let a = form.findAllComponents({ name: 'DateElement' }).at(0)
 
-    change(a, '24/12/2020')
+    setDate(a, '24/12/2020')
     expect(a.vm.invalid).toBe(false)
 
-    change(a, '25/12/2020')
+    setDate(a, '25/12/2020')
     expect(a.vm.invalid).toBe(false)
 
-    change(a, '26/12/2020')
+    setDate(a, '26/12/2020')
     expect(a.vm.invalid).toBe(true)
 
     done()
@@ -131,17 +132,43 @@ describe('Before Or Equal Rule', () => {
     let from = form.findAllComponents({ name: 'DateElement' }).at(0)
     let to = form.findAllComponents({ name: 'DateElement' }).at(1)
 
-    change(from, '2020-12-25')
-    change(to, '2020-12-24')
+    setDate(from, '2020-12-25')
+    setDate(to, '2020-12-24')
     expect(to.vm.invalid).toBe(false)
 
-    change(from, '2020-12-25')
-    change(to, '2020-12-25')
+    setDate(from, '2020-12-25')
+    setDate(to, '2020-12-25')
     expect(to.vm.invalid).toBe(false)
 
-    change(from, '2020-12-25')
-    change(to, '2020-12-26')
+    setDate(from, '2020-12-25')
+    setDate(to, '2020-12-26')
     expect(to.vm.invalid).toBe(true)
+
+    done()
+  })
+  
+  it('should work with multiple dates', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+          mode: 'multiple',
+          rules: 'before_or_equal:2020-12-26'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    setDate(a, ['2020-12-24', '2020-12-30'])
+    expect(a.vm.invalid).toBe(true)
+
+    setDate(a, ['2020-12-25', '2020-12-26'])
+    expect(a.vm.invalid).toBe(false)
 
     done()
   })

@@ -159,7 +159,13 @@ const testThemeComponents = (name, expect) => {
 
   expect(() => {
     _.each(components, (component) => {
-      let comp = require(`./../themes/${name}/components/${component}.vue`).default
+      let comp
+
+      try {
+        comp = require(`./../themes/${name}/components/${component}.vue`).default
+      } catch (e) {
+        comp = require(`./../themes/${name}/components/wrappers/${component}.vue`).default
+      }
 
       if (comp.data) {
         expect(_.keys(comp.data().defaultClasses)).toBeTruthy()
@@ -367,17 +373,13 @@ const testDynamics = (done, options, type) => {
   })
 }
 
-const change = function(el, value, type = 'input') {
-  switch (type) {
-    case 'checkbox':
-      el.get('input').setChecked(value)
-      el.get('input').trigger('change')
-      break
+const change = function(el, value, event = 'keyup') {
+  el.get('input').setValue(value)
+  el.get('input').trigger(event)
+}
 
-    default:
-      el.get('input').setValue(value)
-      el.get('input').trigger('keyup')
-  }
+const setDate = function(el, value) {
+  el.vm.update(value, true)
 }
 
 const check = function(el) {
@@ -409,6 +411,7 @@ export {
   check,
   uncheck,
   setInstances,
+  setDate,
 }
 
 

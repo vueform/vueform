@@ -18,6 +18,8 @@
         :id="id"
         :class="classes.input"
         :placeholder="placeholder"
+        :disabled="disabled"
+        :readonly="readonly"
         @input="handleInput"
         @change="handleChange"
         ref="datepicker$"

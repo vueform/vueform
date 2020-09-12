@@ -274,6 +274,78 @@ describe('Date Element Model Single Mode', () => {
     
     done()
   })
+
+  it('should set a `default` value', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+          loadFormat: 'YYYY-MM-DD',
+          default: "2020-12-30"
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.value).toBe('2020-12-30')
+    
+    done()
+  })
+
+  it('should not update model if `disabled`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+          disabled: true
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let flatpickr$ = Flatpickr.vm.flatpickr$
+
+    flatpickr$.setDate('2020-12-30', true, 'YYYY-MM-DD')
+
+    expect(a.vm.value).toBe(null)
+    
+    done()
+  })
+
+  it('should not update model if `readonly`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+          readonly: true
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let flatpickr$ = Flatpickr.vm.flatpickr$
+
+    flatpickr$.setDate('2020-12-30', true, 'YYYY-MM-DD')
+
+    expect(a.vm.value).toBe(null)
+    
+    done()
+  })
 })
 
 describe('Date Element Model Range Mode', () => {
@@ -477,6 +549,30 @@ describe('Date Element Model Range Mode', () => {
     
     done()
   })
+
+  it('should set `default` value in `range` mode', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+          loadFormat: 'YYYY-MM-DD',
+          default: ['2020-12-25', '2020-12-30'],
+          mode: 'range'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.value).toStrictEqual(['2020-12-25', '2020-12-30'])
+    expect(a.vm.dirty).toBe(false)
+    
+    done()
+  })
 })
 
 describe('Date Element Model Multiple Mode', () => {
@@ -647,6 +743,30 @@ describe('Date Element Model Multiple Mode', () => {
     a.vm.value = ['24/12/2020', '30/12/2020']
 
     expect(a.vm.value).toStrictEqual(['2020-12-24', '2020-12-30'])
+    
+    done()
+  })
+
+  it('should set `default` value in `multiple` mode', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+          loadFormat: 'YYYY-MM-DD',
+          default: ['2020-12-25', '2020-12-30'],
+          mode: 'multiple'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.value).toStrictEqual(['2020-12-25', '2020-12-30'])
+    expect(a.vm.dirty).toBe(false)
     
     done()
   })
