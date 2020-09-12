@@ -773,6 +773,266 @@ describe('Date Element Model Multiple Mode', () => {
 })
 
 describe('Date Element Props', () => {
+  it('should have `displayFormat` as in config if not defined', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.displayFormat).toBe(a.vm.__('laraform.elements.date.displayFormat'))
+
+    done()
+  })
+
+  it('should have `displayFormat` as defined in schema', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+          displayFormat: 'DD/MM/YYYY'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.displayFormat).toBe('DD/MM/YYYY')
+
+    done()
+  })
+
+  it('should set `displayFormat`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.displayFormat).toBe(a.vm.__('laraform.elements.date.displayFormat'))
+
+    a.vm.displayFormat = 'DD/MM/YYYY'
+
+    expect(a.vm.displayFormat).toBe('DD/MM/YYYY')
+
+    done()
+  })
+
+  it('should have default "YYYY-MM-DD" `valueFormat`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.valueFormat).toBe('YYYY-MM-DD')
+
+    done()
+  })
+
+  it('should have `valueFormat` as defined in schema', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+          valueFormat: 'DD/MM/YYYY'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.valueFormat).toBe('DD/MM/YYYY')
+
+    done()
+  })
+
+  it('should set `valueFormat`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.valueFormat).toBe('YYYY-MM-DD')
+
+    a.vm.valueFormat = 'DD/MM/YYYY'
+
+    expect(a.vm.valueFormat).toBe('DD/MM/YYYY')
+
+    done()
+  })
+
+  it('should have default "YYYY-MM-DD" `loadFormat`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.loadFormat).toBe('YYYY-MM-DD')
+
+    done()
+  })
+
+  it('should have `loadFormat` as defined in schema', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+          loadFormat: 'DD/MM/YYYY'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.loadFormat).toBe('DD/MM/YYYY')
+
+    done()
+  })
+
+  it('should set `loadFormat`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.loadFormat).toBe('YYYY-MM-DD')
+
+    a.vm.loadFormat = 'DD/MM/YYYY'
+
+    expect(a.vm.loadFormat).toBe('DD/MM/YYYY')
+
+    done()
+  })
+
+  it('should have "single" as default `mode`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.mode).toBe('single')
+
+    done()
+  })
+
+  it('should have `mode` as defined in schema', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+          mode: 'range'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.mode).toBe('range')
+
+    done()
+  })
+
+  it('should set `mode`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+
+    expect(a.vm.mode).toBe('single')
+
+    a.vm.mode = 'range'
+
+    expect(a.vm.mode).toBe('range')
+
+    done()
+  })
+
   it('should render `placeholder`', (done) => {
     const LocalVue = createLocalVue()
 
@@ -912,6 +1172,46 @@ describe('Date Element Props', () => {
 
       done()
     })
+  })
+
+  it('should `hasDate` to be `true`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    
+    expect(a.vm.hasDate).toBe(true)
+
+    done()
+  })
+
+  it('should `hasTime` to be `false`', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'date',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    
+    expect(a.vm.hasTime).toBe(false)
+
+    done()
   })
 })
 

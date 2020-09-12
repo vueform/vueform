@@ -255,6 +255,24 @@ export default {
     },
 
     /**
+    * Default options for flatpickr.
+    * 
+    * @type {object} 
+    * @default {}
+    * @ignore
+    */
+    defaultOptions() {
+      return {
+        mode: this.mode,
+        dateFormat: this.displayFormat,
+        minDate: this.min,
+        maxDate: this.max,
+        disable: this.disables,
+        clickOpens: !this.disabled && !this.readonly,
+      }
+    },
+
+    /**
     * Additional [options](https://flatpickr.js.org/options/) for flatpickr.
     * 
     * @type {object} 
@@ -262,14 +280,7 @@ export default {
     */
     options: {
       get() {
-        return Object.assign({}, {
-          mode: this.mode,
-          dateFormat: this.displayFormat,
-          minDate: this.min,
-          maxDate: this.max,
-          disable: this.disables,
-          clickOpens: !this.disabled && !this.readonly,
-        }, this.schema.options || {})
+        return Object.assign({}, this.defaultOptions, this.schema.options || {})
       },
       set(value) {
         this.$set(this.schema, 'options', value)
@@ -284,6 +295,26 @@ export default {
      */
     null() {
       return ['range', 'multiple'].indexOf(this.mode) !== -1 ? [] : null
+    },
+
+    /**
+     * Helper property used to determine the element has date.
+     * 
+     * @type {boolean}
+     * @ignore
+     */
+    hasDate() {
+      return true
+    },
+
+    /**
+     * Helper property used to determine the element has time.
+     * 
+     * @type {boolean}
+     * @ignore
+     */
+    hasTime() {
+      return false
     },
   },
   methods: {
