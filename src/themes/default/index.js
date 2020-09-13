@@ -31,6 +31,7 @@ import DatetimeElement from './components/elements/DatetimeElement'
 import GroupElement from './components/elements/GroupElement'
 import ListElement from './components/elements/ListElement'
 import ObjectElement from './components/elements/ObjectElement'
+import RadioElement from './components/elements/RadioElement'
 import StaticElement from './components/elements/StaticElement'
 import TextElement from './components/elements/TextElement'
 import TimeElement from './components/elements/TimeElement'
@@ -74,6 +75,7 @@ export default {
     GroupElement,
     ListElement,
     ObjectElement,
+    RadioElement,
     StaticElement,
     TextElement,
     TimeElement,
