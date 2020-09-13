@@ -30,8 +30,13 @@ export default {
      * @type {string}
      * @default null
      */
-    text() {
-      return this.schema.text || ''
+    text: {
+      get() {
+        return this.schema.text || ''
+      },
+      set(value) {
+        this.$set(this.schema, 'text', value)
+      }
     },
 
     /**
@@ -40,8 +45,13 @@ export default {
      * @type {str|num|bool}
      * @default true
      */
-    trueValue() {
-      return this.schema.trueValue !== undefined ? this.schema.trueValue : true
+    trueValue: {
+      get() {
+        return this.schema.trueValue !== undefined ? this.schema.trueValue : true
+      },
+      set(value) {
+        this.$set(this.schema, 'trueValue', value)
+      }
     },
 
     /**
@@ -50,8 +60,13 @@ export default {
      * @type {str|num|bool}
      * @default false
      */
-    falseValue() {
-      return this.schema.falseValue !== undefined ? this.schema.falseValue : false
+    falseValue: {
+      get() {
+        return this.schema.falseValue !== undefined ? this.schema.falseValue : false
+      },
+      set(value) {
+        this.$set(this.schema, 'falseValue', value)
+      }
     },
 
     /**
@@ -70,20 +85,22 @@ export default {
      * Checks the checkbox.
      *
      * @public
+     * @param {boolean} triggerChange whether the element should trigger `change` event
      * @returns {void}
      */
-    check() {
-      this.update(this.trueValue)
+    check(triggerChange) {
+      this.update(this.trueValue, triggerChange)
     },
 
     /**
      * Unhecks the checkbox.
      *
      * @public
+     * @param {boolean} triggerChange whether the element should trigger `change` event
      * @returns {void}
      */
-    uncheck() {
-      this.update(this.falseValue)
+    uncheck(triggerChange) {
+      this.update(this.falseValue, triggerChange)
     },
   },
 }

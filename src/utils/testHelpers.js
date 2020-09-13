@@ -384,12 +384,12 @@ const setDate = function(el, value) {
 
 const check = function(el) {
   el.get('input').setChecked(true)
-  el.get('input').trigger('change')
+  // el.get('input').trigger('change')
 }
 
 const uncheck = function(el) {
   el.get('input').setChecked(false)
-  el.get('input').trigger('change')
+  // el.get('input').trigger('change')
 }
 
 const setInstances = function(el, count) {

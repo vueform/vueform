@@ -668,15 +668,24 @@ export default {
      *
      * @public
      * @param {any} value the value to be set for the element
+     * @param {boolean} triggerChange whether the element should trigger `change` event
      * @param {boolean} validate whether the element should be validated (default: `false`)
      * @returns {void}
      */
-    update(value, validate) {
+    update(value, triggerChange, validate) {
+      if (triggerChange === undefined) {
+        let validate = false
+      }
+
       if (validate === undefined) {
         let validate = false
       }
 
       this.value = value
+
+      if (triggerChange) {
+        this.handleChange()
+      }
 
       if (validate) {
         this.validate()
