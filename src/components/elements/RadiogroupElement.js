@@ -2,8 +2,8 @@ import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
 
 export default {
+  name: 'RadiogroupElement',
   mixins: [BaseElement, BaseValidation],
-  name: 'CheckboxgroupElement',
   props: {
     /**
      * The element schema containing it's options.
@@ -12,7 +12,7 @@ export default {
      *  "items": { "type": "object", "description": "List of checkbox options." },
      *  "disables": { "type": "array", "description": "List of option keys to be disabled." },
      *  "disabled": { "type": "boolean", "description": "Whether the field is *disabled*." },
-     *  "default": { "type": "array", "description": "Value of element when the form is initially loaded or reseted." }
+     *  "default": { "type": "str|num", "description": "Value of element when the form is initially loaded or reseted." }
      * }
      */
     schema: {
@@ -22,17 +22,18 @@ export default {
   },
   data() {
     return {
+
       /**
        * Element slots.
        * 
        * @type {object}
        * @default {
-       *  "checkbox": {
-       *    "description": "Contains the checkbox field.",
+       *  "radio": {
+       *    "description": "Contains the radio field.",
        *    "attributes": {
        *      "el$": {"type": "object", "description": "The element component."},
-       *      "item": {"type": "object", "description": "The checkbox item's object."},
-       *      "value": {"type": "str|num|bool", "description": "The checkbox item's value."}
+       *      "item": {"type": "object", "description": "The radio item's object."},
+       *      "value": {"type": "str|num|bool", "description": "The radio item's value."}
        *    }
        *  }
        * }
@@ -45,14 +46,14 @@ export default {
         description: null,
         error: null,
         after: null,
-        checkbox: this.theme.components.CheckboxgroupSlotCheckbox,
+        radio: this.theme.components.RadiogroupSlotRadio,
       },
     }
   },
   computed: {
 
     /**
-     * List of checkbox options.
+     * List of radio options.
      * 
      * @type {object} 
      * @default {}
@@ -82,7 +83,7 @@ export default {
     },
 
     /**
-     * Whether all the checkboxes are *disabled*.
+     * Whether all the radios are *disabled*.
      * 
      * @type {boolean} 
      * @default false
@@ -95,51 +96,11 @@ export default {
         this.$set(this.schema, 'disabled', value)
       },
     },
-
-    /**
-     * Helper property used to determine the element's 'null' value.
-     * 
-     * @type {array}
-     * @ignore
-     */
-    null() {
-      return []
-    },
-
-    /**
-     * Determines if the element's value is an array.
-     *
-     * @private
-     * @returns {boolean}
-     */
-    isArrayType() {
-      return true
-    },
   },
   methods: {
 
     /**
-     * Checks all checkboxes.
-     *
-     * @public
-     * @returns {void}
-     */
-    checkAll() {
-      this.check(_.keys(this.items))
-    },
-
-    /**
-     * Checks all checkboxes.
-     *
-     * @public
-     * @returns {void}
-     */
-    uncheckAll() {
-      this.uncheck(_.keys(this.items))
-    },
-
-    /**
-     * Disabled all checkboxes.
+     * Disabled all radios.
      *
      * @public
      * @returns {void}
@@ -149,7 +110,7 @@ export default {
     },
 
     /**
-     * Enables all checkboxes.
+     * Enables all radios.
      *
      * @public
      * @returns {void}
@@ -159,32 +120,10 @@ export default {
     },
 
     /**
-     * Checks a checkbox or checkboxes.
+     * Disables a radio or more radio buttons.
      *
      * @public
-     * @param {arr|str|num} options key of one or more checkboxes to check.
-     * @returns {void}
-     */
-    check(options) {
-      this.$_addOptionsTo(this.value, options)
-    },
-
-    /**
-     * Unchecks a checkbox or checkboxes.
-     *
-     * @public
-     * @param {arr|str|num} options key of one or more checkboxes to uncheck.
-     * @returns {void}
-     */
-    uncheck(options) {
-      this.$_removeOptionsFrom(this.value, options)
-    },
-
-    /**
-     * Disables a checkbox or checkboxes.
-     *
-     * @public
-     * @param {arr|str|num} options key of one or more checkboxes to disable.
+     * @param {arr|str|num} options key of one or more radio buttons to disable.
      * @returns {void}
      */
     disable(options) {
@@ -194,12 +133,12 @@ export default {
 
       this.$_addOptionsTo(this.disables, options)
     },
-
+    
     /**
-     * Enables a checkbox or checkboxes.
+     * Enables a radio or more radio buttons.
      *
      * @public
-     * @param {arr|str|num} options key of one or more checkboxes to enable.
+     * @param {arr|str|num} options key of one or more radio buttons to enable.
      * @returns {void}
      */
     enable(options) {
@@ -207,11 +146,11 @@ export default {
     },
 
     /**
-     * Helper method to change checked or disabled items.
+     * Helper method to change selected or disabled items.
      *
-     * @public
+     * @private
      * @param {array} to array which needs to be altered.
-     * @param {arr|str|num} options key of one or more checkboxes to alter.
+     * @param {arr|str|num} options key of one or more radio buttons to alter.
      * @returns {void}
      */
     $_addOptionsTo(to, options) {
@@ -231,7 +170,7 @@ export default {
      *
      * @private
      * @param {array} from array which needs to be altered.
-     * @param {arr|str|num} options key of one or more checkboxes to alter.
+     * @param {arr|str|num} options key of one or more radio buttons to alter.
      * @returns {void}
      */
     $_removeOptionsFrom(from, options) {
@@ -249,8 +188,8 @@ export default {
     },
   },
   created() {
-    if (this.schema.slots && this.schema.slots.checkbox) {
-      this.$set(this.slots, 'checkbox', this.schema.slots.checkbox)
+    if (this.schema.slots && this.schema.slots.radio) {
+      this.$set(this.slots, 'radio', this.schema.slots.radio)
     }
   }
 }

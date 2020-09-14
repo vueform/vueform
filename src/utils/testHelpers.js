@@ -396,6 +396,16 @@ const uncheck = function(el) {
   // el.get('input').trigger('change')
 }
 
+const select = function(el) {
+  el.get('input').setSelected(true)
+  // el.get('input').trigger('change')
+}
+
+const unselect = function(el) {
+  el.get('input').setSelected(false)
+  // el.get('input').trigger('change')
+}
+
 const setInstances = function(el, count) {
   el.vm.clear()
 
@@ -412,6 +422,8 @@ export {
   testThemeComponents,
   testThemeElements,
   change,
+  select,
+  unselect,
   check,
   uncheck,
   setInstances,

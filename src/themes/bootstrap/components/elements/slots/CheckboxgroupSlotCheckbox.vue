@@ -2,15 +2,15 @@
   <div :class="el$.classes.checkboxContainer">
     <label 
       :class="el$.classes.checkboxLabel"
-      :for="`${el$.id}-${value}`"
+      :for="`${el$.id}-${el$.value}`"
     >
       <input
         type="checkbox"
         v-model="el$.model"
         :value="value"
         :class="el$.classes.checkbox"
-        :name="`${el$.name}-${value}`"
-        :id="`${el$.id}-${value}`"
+        :name="`${el$.name}-${el$.value}`"
+        :id="`${el$.id}-${el$.value}`"
         :disabled="el$.disabled || el$.disables.indexOf(value) !== -1"
         @change="el$.handleChange"
       />

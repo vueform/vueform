@@ -1,15 +1,15 @@
 <template>
-  <div :class="el$.classes.checkboxContainer">
+  <div :class="el$.classes.radioContainer">
     <label 
-      :class="el$.classes.checkboxLabel"
+      :class="el$.classes.radioLabel"
       :for="`${el$.id}-${value}`"
     >
       <input
-        type="checkbox"
+        type="radio"
         v-model="el$.model"
         :value="value"
-        :class="el$.classes.checkbox"
-        :name="`${el$.name}-${value}`"
+        :class="el$.classes.radio"
+        :name="el$.name"
         :id="`${el$.id}-${value}`"
         :disabled="el$.disabled || el$.disables.indexOf(value) !== -1"
         @change="el$.handleChange"
@@ -21,16 +21,16 @@
 </template>
 
 <script>
-  import CheckboxgroupSlotCheckbox from './../../../../../components/elements/slots/CheckboxgroupSlotCheckbox'
+  import RadiogroupSlotRadio from './../../../../../components/elements/slots/RadiogroupSlotRadio'
 
   export default {
-    mixins: [CheckboxgroupSlotCheckbox],
+    mixins: [RadiogroupSlotRadio],
     data() {
       return {
         defaultClasses: {
-          checkboxContainer: 'checkbox',
-          checkboxLabel: '',
-          checkbox: '',
+          radioContainer: 'radio',
+          radio: '',
+          radioLabel: '',
         }
       }
     }

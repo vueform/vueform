@@ -266,7 +266,7 @@ describe('Radio Element Model', () => {
   it('should be unchecked if other than `trueValue` is set as value', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -296,7 +296,7 @@ describe('Radio Element Model', () => {
   it('should have two different elements with mutual exclisivity if `fieldName` is the same', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {

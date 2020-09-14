@@ -351,7 +351,7 @@ describe('Checkbox Element Model', () => {
   it('should be unchecked if other than `trueValue` is set as value', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -382,7 +382,7 @@ describe('Checkbox Element Model', () => {
   it('should be able to have `null` as `falseValue`', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -412,7 +412,7 @@ describe('Checkbox Element Model', () => {
   it('should not be checked if loaded data is not a strict match', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -440,7 +440,7 @@ describe('Checkbox Element Model', () => {
   it('should be checked if loaded data is a strict match', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {

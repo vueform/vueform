@@ -6,7 +6,7 @@ describe('Checkbox Element Rendering', () => {
   it('should render checkboxes', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -34,7 +34,7 @@ describe('Checkbox Element Rendering', () => {
   it('should be able to use custom slot for checkbox', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -126,7 +126,7 @@ describe('Checkbox Element Rendering', () => {
   it('should disable checkboxes defined in `disables`', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -158,7 +158,7 @@ describe('Checkbox Element Rendering', () => {
   it('should disable all checkboxes `disabled` is true', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -192,7 +192,7 @@ describe('Checkbox Element Props', () => {
   it('should have an empty object for `items` by default', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -212,7 +212,7 @@ describe('Checkbox Element Props', () => {
   it('should set `items` from schema', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -239,7 +239,7 @@ describe('Checkbox Element Props', () => {
   it('should set `items` to schema', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -269,7 +269,7 @@ describe('Checkbox Element Props', () => {
   it('should have an empty array for `disables` by default', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -289,7 +289,7 @@ describe('Checkbox Element Props', () => {
   it('should set `disables` from schema', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -315,7 +315,7 @@ describe('Checkbox Element Props', () => {
   it('should set `disables` to schema', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -339,7 +339,7 @@ describe('Checkbox Element Props', () => {
   it('should have false for `disabled` by default', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -359,7 +359,7 @@ describe('Checkbox Element Props', () => {
   it('should set `disabled` from schema', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -385,7 +385,7 @@ describe('Checkbox Element Props', () => {
   it('should set `disabled` to schema', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -409,7 +409,7 @@ describe('Checkbox Element Props', () => {
   it('should have an empty array as `null`', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -429,7 +429,7 @@ describe('Checkbox Element Props', () => {
   it('should have true for `isArrayType`', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -451,7 +451,7 @@ describe('Checkbox Element Methods', () => {
   it('should `checkAll`', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -480,7 +480,7 @@ describe('Checkbox Element Methods', () => {
   it('should `uncheckAll`', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -513,7 +513,7 @@ describe('Checkbox Element Methods', () => {
   it('should `disableAll`', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -552,7 +552,7 @@ describe('Checkbox Element Methods', () => {
   it('should `enableAll`', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -599,7 +599,7 @@ describe('Checkbox Element Methods', () => {
   it('should `check` an option', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -628,7 +628,7 @@ describe('Checkbox Element Methods', () => {
   it('should `check` multiple options', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -657,7 +657,7 @@ describe('Checkbox Element Methods', () => {
   it('should `uncheck` an option', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -690,7 +690,7 @@ describe('Checkbox Element Methods', () => {
   it('should `uncheck` multiple options', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -723,7 +723,7 @@ describe('Checkbox Element Methods', () => {
   it('should `disable` one option', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -762,7 +762,7 @@ describe('Checkbox Element Methods', () => {
   it('should `disable` multiple options', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -801,7 +801,7 @@ describe('Checkbox Element Methods', () => {
   it('should `disable` one option', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -841,7 +841,7 @@ describe('Checkbox Element Methods', () => {
   it('should `disable` multiple options', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -877,63 +877,13 @@ describe('Checkbox Element Methods', () => {
       done()
     })
   })
-
-  it('should return a `checkboxName` in `fieldName-checkboxName` format', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = DocumentType
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'checkboxgroup',
-          items: {
-            aaaa: 'aaa',
-            bbbb: 'bbb',
-            cccc: 'ccc',
-          }
-        }
-      }
-    })
-
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
-
-    expect(a.vm.checkboxName('aaaa')).toBe('a-aaaa')
-
-    done()
-  })
-
-  it('should return a `checkboxIn` in `fieldId-checkboxId` format', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = DocumentType
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'checkboxgroup',
-          items: {
-            aaaa: 'aaa',
-            bbbb: 'bbb',
-            cccc: 'ccc',
-          }
-        }
-      }
-    })
-
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
-
-    expect(a.vm.checkboxId('aaaa')).toBe('a-aaaa')
-
-    done()
-  })
 })
 
 describe('Checkbox Element Model', () => {
   it('should have selected values in `value`', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -965,7 +915,7 @@ describe('Checkbox Element Model', () => {
   it('should set `default` values', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -997,7 +947,7 @@ describe('Checkbox Element Model', () => {
   it('should set `value`', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -1032,7 +982,7 @@ describe('Checkbox Element Model', () => {
   it('should `update` value', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -1067,7 +1017,7 @@ describe('Checkbox Element Model', () => {
   it('should `load` value', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let form = createForm({
       schema: {
@@ -1106,7 +1056,7 @@ describe('Checkbox Element Events', () => {
   it('should trigger `change` event is an element gets checked', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let onChangeMock = jest.fn(() => {})
 
@@ -1142,7 +1092,7 @@ describe('Checkbox Element Events', () => {
   it('should trigger `change` event is an element gets unchecked', (done) => {
     const LocalVue = createLocalVue()
 
-    LocalVue.config.errorHandler = DocumentType
+    LocalVue.config.errorHandler = done
 
     let onChangeMock = jest.fn(() => {})
 

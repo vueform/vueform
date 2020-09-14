@@ -33,12 +33,14 @@ import GroupElement from './components/elements/GroupElement'
 import ListElement from './components/elements/ListElement'
 import ObjectElement from './components/elements/ObjectElement'
 import RadioElement from './components/elements/RadioElement'
+import RadiogroupElement from './components/elements/RadiogroupElement'
 import StaticElement from './components/elements/StaticElement'
 import TextElement from './components/elements/TextElement'
 import TimeElement from './components/elements/TimeElement'
 import TTextElement from './components/elements/TTextElement'
 
 import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
+import RadiogroupSlotRadio from './components/elements/slots/RadiogroupSlotRadio'
 
 import columns from './utils/columns'
 
@@ -73,6 +75,7 @@ export default {
 
     // Element slots
     CheckboxgroupSlotCheckbox,
+    RadiogroupSlotRadio,
   },
   elements: {
     ButtonsElement,
@@ -84,6 +87,7 @@ export default {
     ListElement,
     ObjectElement,
     RadioElement,
+    RadiogroupElement,
     StaticElement,
     TextElement,
     TimeElement,
@@ -125,6 +129,7 @@ export const core = {
 
     // Element slots
     CheckboxgroupSlotCheckbox,
+    RadiogroupSlotRadio,
   },
   elements: {
     
