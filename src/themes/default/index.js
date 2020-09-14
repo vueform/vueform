@@ -34,6 +34,7 @@ import ListElement from './components/elements/ListElement'
 import ObjectElement from './components/elements/ObjectElement'
 import RadioElement from './components/elements/RadioElement'
 import RadiogroupElement from './components/elements/RadiogroupElement'
+import SliderElement from './components/elements/SliderElement'
 import StaticElement from './components/elements/StaticElement'
 import TextElement from './components/elements/TextElement'
 import TimeElement from './components/elements/TimeElement'
@@ -89,6 +90,7 @@ export default {
     ObjectElement,
     RadioElement,
     RadiogroupElement,
+    SliderElement,
     StaticElement,
     TextElement,
     TimeElement,

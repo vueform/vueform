@@ -29,3 +29,10 @@
     }
   }
 </script>
+
+<style lang="scss">
+  // required because of SliderElement
+  .form-elements {
+    width: 100%;
+  }
+</style>
