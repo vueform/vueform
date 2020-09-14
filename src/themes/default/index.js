@@ -37,6 +37,7 @@ import RadiogroupElement from './components/elements/RadiogroupElement'
 import StaticElement from './components/elements/StaticElement'
 import TextElement from './components/elements/TextElement'
 import TimeElement from './components/elements/TimeElement'
+import ToggleElement from './components/elements/ToggleElement'
 import TTextElement from './components/elements/TTextElement'
 
 import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
@@ -91,6 +92,7 @@ export default {
     StaticElement,
     TextElement,
     TimeElement,
+    ToggleElement,
     TTextElement,
   },
   classes: {

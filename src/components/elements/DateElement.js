@@ -337,5 +337,8 @@ export default {
     if (['range', 'multiple'].indexOf(this.mode) !== -1) {
       this.previousValue = []
     }
-  }
+  },
+  mounted() {
+    this.flatpickr$ = this.$refs.flatpickr$
+  },
 }

@@ -782,7 +782,7 @@ export default {
      * @event change
      */
     handleChange(oldValue, newValue) {
-      if (this.fire('change', this.previousValue, this.value) === false) {
+      if (this.fire('change', this.previousValue, this.currentValue) === false) {
         return
       }
 
