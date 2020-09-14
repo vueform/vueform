@@ -164,7 +164,11 @@ const testThemeComponents = (name, expect) => {
       try {
         comp = require(`./../themes/${name}/components/${component}.vue`).default
       } catch (e) {
-        comp = require(`./../themes/${name}/components/wrappers/${component}.vue`).default
+          try {
+          comp = require(`./../themes/${name}/components/wrappers/${component}.vue`).default
+        } catch (e) {
+          comp = require(`./../themes/${name}/components/elements/slots/${component}.vue`).default
+        }
       }
 
       if (comp.data) {

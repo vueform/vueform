@@ -26,6 +26,7 @@ import Flatpickr from './components/wrappers/Flatpickr'
 
 import ButtonsElement from './components/elements/ButtonsElement'
 import CheckboxElement from './components/elements/CheckboxElement'
+import CheckboxgroupElement from './components/elements/CheckboxgroupElement'
 import DateElement from './components/elements/DateElement'
 import DatetimeElement from './components/elements/DatetimeElement'
 import GroupElement from './components/elements/GroupElement'
@@ -36,6 +37,8 @@ import StaticElement from './components/elements/StaticElement'
 import TextElement from './components/elements/TextElement'
 import TimeElement from './components/elements/TimeElement'
 import TTextElement from './components/elements/TTextElement'
+
+import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
 
 import columns from './utils/columns'
 
@@ -65,11 +68,16 @@ export default {
     ElementError,
     ElementMessage,
 
+    // Wrappers
     Flatpickr,
+
+    // Element slots
+    CheckboxgroupSlotCheckbox,
   },
   elements: {
     ButtonsElement,
     CheckboxElement,
+    CheckboxgroupElement,
     DateElement,
     DatetimeElement,
     GroupElement,
@@ -111,8 +119,12 @@ export const core = {
     ElementLabelFloating,
     ElementLabel,
     ElementError,
-    
+
+    // Wrappers
     Flatpickr,
+
+    // Element slots
+    CheckboxgroupSlotCheckbox,
   },
   elements: {
     

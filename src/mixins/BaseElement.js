@@ -821,7 +821,7 @@ export default {
       _.each(this.schema.slots, (slot, name) => {
         let instance = new slot({
           propsData: {
-            el$: this.el$
+            el$: this.el$,
           }
         })
 

@@ -76,13 +76,17 @@ const Factory = class {
 
     // simplified condition
     if (_.isArray(condition)) {
-      parsed.dependent = replaceWildcards(condition[0], this.element$.path)
-      parsed.condition = this.createConditionFromArray(condition)
+      parsed = Object.assign({}, parsed, {
+        dependent: replaceWildcards(condition[0], this.element$.path),
+        condition: this.createConditionFromArray(condition),
+      })
 
     // custom condition callback
     } else {
-      parsed.dependent = null
-      parsed.condition = condition
+      parsed = Object.assign({}, parsed, {
+        dependent: null,
+        condition: condition,
+      })
     }
 
     return parsed
