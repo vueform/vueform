@@ -1,8 +1,10 @@
 <template>
-  <span
+  <label
     :class="[this.type == 'before' ? classes.addonBefore : classes.addonAfter]"
-    v-html="addon"
-  ></span>
+    v-html-if="{addon: !isAddonComponent}"
+  >
+    <component v-if="isAddonComponent" :is="addon" :el$="el$" />
+  </label>
 </template>
 
 <script>

@@ -1,6 +1,7 @@
 import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
 import CanBeDisabled from './../../mixins/CanBeDisabled'
+import HasAddons from './../../mixins/HasAddons'
 import $model from './../../directives/$model'
 
 export default {
@@ -8,8 +9,23 @@ export default {
   directives: {
     $model,
   },
-  mixins: [BaseElement, BaseValidation, CanBeDisabled],
+  mixins: [BaseElement, BaseValidation, HasAddons, CanBeDisabled],
   computed: {
+    /**
+     * The HTML type of input field (like type="text").
+     * 
+     * @type {string}
+     * @default 'text'
+     */
+    inputType: {
+      get() {
+        return this.schema.inputType || 'text'
+      },
+      set(value) {
+        this.$set(this.schema, 'inputType', value)
+      }
+    },
+
     /**
     * The placeholder of the element.
     * 
@@ -62,7 +78,7 @@ export default {
      */
     autocomplete: {
       get() {
-        return this.schema.autocomplete !== undefined ? autocomplete : false
+        return this.schema.autocomplete !== undefined ? this.schema.autocomplete : false
       },
       set(value) {
         this.$set(this.schema, 'autocomplete', value)
@@ -92,7 +108,7 @@ export default {
      */
     mask: {
       get() {
-        return this.schema.mask !== undefined ? mask : false
+        return this.schema.mask !== undefined ? this.schema.mask : false
       },
       set(value) {
         this.$set(this.schema, 'mask', value)
@@ -107,7 +123,7 @@ export default {
      */
     guide: {
       get() {
-        return this.schema.guide !== undefined ? guide : true
+        return this.schema.guide !== undefined ? this.schema.guide : true
       },
       set(value) {
         this.$set(this.schema, 'guide', value)
@@ -122,7 +138,7 @@ export default {
      */
     placeholderChar: {
       get() {
-        return this.schema.placeholderChar !== undefined ? placeholderChar : '_'
+        return this.schema.placeholderChar !== undefined ? this.schema.placeholderChar : '_'
       },
       set(value) {
         this.$set(this.schema, 'placeholderChar', value)
@@ -137,7 +153,7 @@ export default {
      */
     keepCharPositions: {
       get() {
-        return this.schema.keepCharPositions !== undefined ? keepCharPositions : false
+        return this.schema.keepCharPositions !== undefined ? this.schema.keepCharPositions : false
       },
       set(value) {
         this.$set(this.schema, 'keepCharPositions', value)
@@ -152,7 +168,7 @@ export default {
      */
     pipe: {
       get() {
-        return this.schema.pipe !== undefined ? pipe : null
+        return this.schema.pipe !== undefined ? this.schema.pipe : null
       },
       set(value) {
         this.$set(this.schema, 'pipe', value)
@@ -167,11 +183,63 @@ export default {
      */
     showMask: {
       get() {
-        return this.schema.showMask !== undefined ? showMask : true
+        return this.schema.showMask !== undefined ? this.schema.showMask : !this.placeholder
       },
       set(value) {
         this.$set(this.schema, 'showMask', value)
       }
     },
+
+    /**
+     * Determines if the element is masked.
+     * 
+     * @type {boolean}
+     */
+    masked() {
+      return this.mask !== false
+    },
+  },
+  methods: {
+    /**
+     * Updates the element's value.
+     *
+     * @public
+     * @param {any} value the value to be set for the element
+     * @param {boolean} triggerChange whether the element should trigger `change` event
+     * @param {boolean} validate whether the element should be validated (default: `false`)
+     * @returns {void}
+     */
+    update(value, triggerChange, validate) {
+      if (triggerChange === undefined) {
+        let validate = false
+      }
+
+      if (validate === undefined) {
+        let validate = false
+      }
+
+      this.value = value
+
+      if (triggerChange) {
+        this.handleChange()
+      }
+
+      if (validate) {
+        this.validate()
+      }
+
+      if (this.masked) {
+        this.$nextTick(() => {
+          this.$refs.input.initMask()
+        })
+      }
+    },
+  },
+  mounted() {
+    if (this.masked) {
+      this.$nextTick(() => {
+        this.$refs.input.initMask()
+      })
+    }
   }
 }

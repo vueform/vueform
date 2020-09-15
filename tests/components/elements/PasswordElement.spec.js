@@ -23,7 +23,7 @@ describe('Password Element Rendering', () => {
     done()
   })
 
-  it('should render component attrubutes', (done) => {
+  it('should render component attributes', (done) => {
     const LocalVue = createLocalVue()
 
     LocalVue.config.errorHandler = done
