@@ -3,6 +3,7 @@ import moment from 'moment'
 import axios from './services/axios'
 import validation from './services/validation'
 import messageBag from './services/messageBag'
+import autosize from './services/autosize'
 import applyPlugins from './utils/applyPlugins'
 import store from './store'
 
@@ -37,6 +38,7 @@ export default function (config) {
         validation,
         axios,
         messageBag,
+        autosize,
       }
     }
 

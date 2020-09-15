@@ -41,6 +41,7 @@ import RadioElement from './components/elements/RadioElement'
 import RadiogroupElement from './components/elements/RadiogroupElement'
 import SliderElement from './components/elements/SliderElement'
 import StaticElement from './components/elements/StaticElement'
+import TextareaElement from './components/elements/TextareaElement'
 import TextElement from './components/elements/TextElement'
 import TimeElement from './components/elements/TimeElement'
 import ToggleElement from './components/elements/ToggleElement'
@@ -103,6 +104,7 @@ export default {
     RadiogroupElement,
     SliderElement,
     StaticElement,
+    TextareaElement,
     TextElement,
     TimeElement,
     ToggleElement,
