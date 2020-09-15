@@ -92,7 +92,7 @@ const installLaraform = function(options = {}) {
   }
 
   LocalVue.use(LaraformInstaller)
-  
+
   return {
     LocalVue,
     config,

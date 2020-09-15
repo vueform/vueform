@@ -42,6 +42,11 @@ export default {
       active_url: '/active_url',
       unique: '/',
       exists: '/',
+    },
+    elements: {
+      trix: {
+        attachment: '/trix/attachment'
+      }
     }
   },
 }

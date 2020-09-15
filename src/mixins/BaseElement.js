@@ -647,7 +647,7 @@ export default {
      */
     load(data) {
       if (this.available && data && data[this.name] !== undefined) {
-        this.value = data[this.name]
+        this.update(data[this.name])
 
         this.$nextTick(() => {
           this.clean()

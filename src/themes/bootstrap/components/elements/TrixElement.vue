@@ -1,27 +1,26 @@
 <template>
   <component :is="components.BaseElementLayout">
     <template slot="field">
-
       <slot name="prefix"></slot>
 
-      <div>
-        <input
-          v-$model="model"
-          :value="model"
-          :class="classes.input"
-          :disabled="disabled"
-          :id="id"
-          @keyup="handleKeyup"
-          @select="handleKeyup"
-        />
-      </div>
+      <Trix
+        v-model="model"
+        :placeholder="placeholder"
+        :id="id"
+        :accept="accept"
+        :accept-mimes="acceptMimes"
+        :endpoint="endpoint"
+        :disabled="disabled"
+        :class="{[classes.trixDisabled]: disabled}"
+        @change="handleChange"
+        @alert="handleAlert"
+        ref="trix$"
+      />
 
       <slot name="suffix"></slot>
-      
     </template>
-    
+
     <slot slot="label" name="label" :el$="el$"></slot>
-    <slot slot="info" name="info" :el$="el$"></slot>
     <slot slot="before" name="before" :el$="el$"></slot>
     <slot slot="between" name="between" :el$="el$"></slot>
     <slot slot="error" name="error" :el$="el$"></slot>
@@ -30,15 +29,18 @@
 </template>
 
 <script>
-  import TextElement from './../../../../components/elements/TextElement'
+  import TrixElement from './../../../../components/elements/TrixElement'
+
+  import Trix from './../wrappers/Trix'
 
   export default {
-    mixins: [TextElement],
+    mixins: [TrixElement],
+    components: {
+      Trix,
+    },
     data() {
       return {
-        defaultClasses: {
-          input: 'form-control'
-        }
+        trixDisabled: 'trix-disabled',
       }
     }
   }

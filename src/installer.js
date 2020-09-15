@@ -103,6 +103,8 @@ export default function (config) {
     }
 
     install(Vue) {
+      Vue.config.ignoredElements = ['trix-editor']
+
       let options = this.options
 
       _.each(this.options.plugins, (plugin) => {
