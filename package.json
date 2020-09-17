@@ -36,12 +36,16 @@
             "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
         },
         "transformIgnorePatterns": [
-          "/node_modules/(?!vue-js-toggle-button)"
+            "/node_modules/(?!vue-js-toggle-button)"
         ],
         "moduleNameMapper": {
             "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
         },
-        "collectCoverage": false,
+        "setupFilesAfterEnv": [
+            "<rootDir>/jest.setup.js"
+        ],
+        "testEnvironment": "jest-environment-jsdom-sixteen",
+        "collectCoverage": true,
         "collectCoverageFrom": [
             "**/*.{js,vue}",
             "!**/node_modules/**",
@@ -73,8 +77,10 @@
         "cross-env": "^5.2.0",
         "css-loader": "^2.1.0",
         "jest": "^26.0.1",
+        "jest-environment-jsdom-sixteen": "^1.0.3",
         "jest-transform-stub": "^2.0.0",
         "json-loader": "^0.5.7",
+        "mutationobserver-shim": "^0.3.7",
         "node-sass": "^4.11.0",
         "sass-loader": "^7.1.0",
         "vue": "^2.6.11",

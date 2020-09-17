@@ -1,9 +1,10 @@
-import Trix from 'trix'
+import Localized from './../../mixins/Localized'
 import 'trix/dist/trix.css'
 
 // https://github.com/basecamp/trix#styling-formatted-content
 export default {
   name: 'Trix',
+  mixins: [Localized],
   props: {
     value: {
       default: null
@@ -45,7 +46,7 @@ export default {
   methods: {
     update(value) {
       if (typeof value == 'number') {
-        throw new Error('Cannot update Trix value with number')
+        value = String(value)
       }
 
       this.$refs.trix$.value = value
@@ -57,9 +58,6 @@ export default {
       this.$emit('input', this.$refs.trix$.value)
       this.$emit('change', this.$refs.trix$.value)
     },
-    handleBlur() {
-      this.$emit('blur', this.$refs.trix$.value)
-    },
     handleFileAccept(e) {
       if (this.disabled) {
         e.preventDefault()
@@ -67,13 +65,14 @@ export default {
       }
 
       if (!e.file) {
+        e.preventDefault()
         return
       }
 
       if (this.acceptMimes.length && this.acceptMimes.indexOf(e.file.type) === -1) {
         e.preventDefault()
 
-        this.$emit('alert', this.__('trix.acceptedMimes', {
+        this.$emit('alert', this.__('laraform.trix.acceptedMimes', {
           mimes:this.acceptMimes.join(', ')})
         )
       }
@@ -83,7 +82,7 @@ export default {
       if (this.accept.length && this.accept.indexOf(extension) === -1) {
         e.preventDefault()
 
-        this.$emit('alert', this.__('trix.acceptedExtensions', {
+        this.$emit('alert', this.__('laraform.trix.acceptedExtensions', {
           extensions:this.accept.join(', ')})
         )
       }
@@ -102,7 +101,7 @@ export default {
       data.append('Content-Type', e.attachment.file.type)
       data.append('file', e.attachment.file)
 
-      axios.post(this.endpoint, data, {
+      this.$laraform.services.axios.post(this.endpoint, data, {
         onUploadProgress: (progress) => {
           e.attachment.setUploadProgress(
             Math.round((progress.loaded * 100) / progress.total)
@@ -116,6 +115,25 @@ export default {
         })
       })
     },
+
+    /**
+     * Related to:
+     * https://stackoverflow.com/questions/55907211/why-wont-trix-editor-mount-in-vue-component-when-running-tests-with-jest
+     */
+
+    // handleInit(e) {
+    //   let el = e.target
+    //   // HACK: change the URL field in the link dialog to allow non-urls
+    //   let toolbar = el.toolbarElement
+    //   toolbar.querySelector('[type=url]').type = 'text'
+    //   // insert content
+    //   el.value = this.value
+    // },
+    // handleChange(e) {
+    //   this.$emit('input', this.$refs.trix$.value)
+    //   this.$emit('change', this.$refs.trix$.value)
+    //   // this.$emit('input', e.target.innerHTML)
+    // },
   },
   mounted() {
     if (this.disabled) {

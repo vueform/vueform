@@ -1,24 +1,30 @@
 <template>
   <component :is="components.BaseElementLayout">
     <template slot="field">
+
       <slot name="prefix"></slot>
 
-      <component
-        :is="components.Trix"
-        v-model="model"
-        :placeholder="placeholder"
-        :id="id"
-        :accept="accept"
-        :accept-mimes="acceptMimes"
-        :endpoint="endpoint"
-        :disabled="disabled"
-        :class="{[classes.trixDisabled]: disabled}"
-        @change="handleChange"
-        @alert="handleAlert"
-        ref="trix$"
-      />
+      <component :is="components.ElementLabelFloating"
+        v-if="floating"
+        :visible="!empty"
+      >{{ floating }}</component>
 
+      <textarea
+        v-$model="model"
+        :value="model"
+        :name="name"
+        :id="id"
+        :class="classes.textarea"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :readonly="readonly"
+        :rows="rows"
+        @keyup="handleKeyup"
+        ref="textarea"
+      />
+      
       <slot name="suffix"></slot>
+
     </template>
 
     <slot slot="label" name="label" :el$="el$"></slot>
@@ -30,17 +36,15 @@
 </template>
 
 <script>
-  import TrixElement from './../../../../components/elements/TrixElement'
-  import Trix from './../wrappers/Trix'
-  
+  import TextareaElement from './../../../../components/elements/TextareaElement'
+
   export default {
-    mixins: [TrixElement],
-    components: {
-      Trix,
-    },
+    mixins: [TextareaElement],
     data() {
       return {
-        trixDisabled: 'trix-disabled',
+        defaultClasses: {
+          textarea: 'form-control',
+        }
       }
     }
   }

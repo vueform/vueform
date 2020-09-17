@@ -24,6 +24,7 @@ import ElementMessage from './components/ElementMessage'
 import InputAddon from './components/InputAddon'
 
 import Flatpickr from './components/wrappers/Flatpickr'
+import Trix from './components/wrappers/Trix'
 
 import ButtonsElement from './components/elements/ButtonsElement'
 import CheckboxElement from './components/elements/CheckboxElement'
@@ -83,6 +84,7 @@ export default {
 
     // Wrappers
     Flatpickr,
+    Trix,
 
     // Element slots
     CheckboxgroupSlotCheckbox,
@@ -147,6 +149,7 @@ export const core = {
 
     // Wrappers
     Flatpickr,
+    Trix,
 
     // Element slots
     CheckboxgroupSlotCheckbox,
