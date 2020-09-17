@@ -112,7 +112,7 @@ export default {
      */
     load(data) {
       if (!this.available || data[this.name] === undefined) {
-        this.value = _.clone(this.null)
+        this.clear()
 
         this.$nextTick(() => {
           this.clean()

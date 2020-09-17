@@ -40,7 +40,9 @@
     },
     data() {
       return {
-        trixDisabled: 'trix-disabled',
+        defaultClasses: {
+          trixDisabled: 'trix-disabled',
+        }
       }
     }
   }

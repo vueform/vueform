@@ -1,17 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm } from './../../../src/utils/testHelpers'
-
-const createTrix = (details) => {
-  const originalConsoleError = console.error
-
-  console.error = (e) => { if (!e.toString().includes('Unknown custom element: <trix-editor>')) throw new Error(e) }
-
-  let form = createForm(details)
-  
-  console.error = originalConsoleError
-
-  return form
-}
+import { createForm, createTrix } from './../../../src/utils/testHelpers'
 
 describe('Trix Element Rendering', () => {
   it('should render Trix', (done) => {
