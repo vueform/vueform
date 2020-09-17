@@ -1,7 +1,7 @@
 import { createLocalVue } from '@vue/test-utils'
 import { createForm, createTrix } from './../../../src/utils/testHelpers'
 
-describe('Multilingual Element Mixin', () => {
+describe('TTrix Element Mixin', () => {
   it('should `load` value and keep it clean', (done) => {
     const LocalVue = createLocalVue()
 
