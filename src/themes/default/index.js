@@ -36,6 +36,7 @@ import HiddenElement from './components/elements/HiddenElement'
 import KeyElement from './components/elements/KeyElement'
 import ListElement from './components/elements/ListElement'
 import MetaElement from './components/elements/MetaElement'
+import MultiselectElement from './components/elements/MultiselectElement'
 import ObjectElement from './components/elements/ObjectElement'
 import PasswordElement from './components/elements/PasswordElement'
 import RadioElement from './components/elements/RadioElement'
@@ -115,6 +116,7 @@ export default {
     KeyElement,
     ListElement,
     MetaElement,
+    MultiselectElement,
     ObjectElement,
     PasswordElement,
     RadioElement,

@@ -9,17 +9,14 @@ export default {
      * @returns {string}
      */
     __(expr, data) {
-      if (this.$_isVueI18nInstalled()) {
-        return this.$t(expr, data)
-      }
+      let tag
+      let locale = this.selectedLocale !== undefined ? this.selectedLocale : this.locale
+
+      tag = this.$_isVueI18nInstalled() ? this.$t(expr, data) : _.get(this.$laraform.locales[locale], expr)
       
       if (data === undefined) {
         data = {}
       }
-
-      let locale = this.selectedLocale !== undefined ? this.selectedLocale : this.locale
-
-      var tag = _.get(this.$laraform.locales[locale], expr)
 
       _.each(data, (value, key) => {
         tag = tag.replace(':' + key, value)
