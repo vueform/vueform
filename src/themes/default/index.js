@@ -53,6 +53,12 @@ import TTextElement from './components/elements/TTextElement'
 import TTrixElement from './components/elements/TTrixElement'
 
 import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
+import MultiselectSlotNoOptions from './components/elements/slots/MultiselectSlotNoOptions'
+import MultiselectSlotNoResult from './components/elements/slots/MultiselectSlotNoResult'
+import MultiselectSlotOption from './components/elements/slots/MultiselectSlotOption'
+import MultiselectSlotSelection from './components/elements/slots/MultiselectSlotSelection'
+import MultiselectSlotTag from './components/elements/slots/MultiselectSlotTag'
+import MultiselectSlotTagsSelection from './components/elements/slots/MultiselectSlotTagsSelection'
 import RadiogroupSlotRadio from './components/elements/slots/RadiogroupSlotRadio'
 
 import columns from './utils/columns'
@@ -90,6 +96,12 @@ export default {
 
     // Element slots
     CheckboxgroupSlotCheckbox,
+    MultiselectSlotNoOptions,
+    MultiselectSlotNoResult,
+    MultiselectSlotOption,
+    MultiselectSlotSelection,
+    MultiselectSlotTag,
+    MultiselectSlotTagsSelection,
     RadiogroupSlotRadio,
   },
   elements: {
@@ -157,6 +169,12 @@ export const core = {
 
     // Element slots
     CheckboxgroupSlotCheckbox,
+    MultiselectSlotNoOptions,
+    MultiselectSlotNoResult,
+    MultiselectSlotOption,
+    MultiselectSlotSelection,
+    MultiselectSlotTag,
+    MultiselectSlotTagsSelection,
     RadiogroupSlotRadio,
   },
   elements: {

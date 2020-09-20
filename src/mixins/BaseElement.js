@@ -165,6 +165,15 @@ export default {
       },
 
       /**
+       * Slots that should not be added to $slots object once found in schema.
+       * 
+       * @private
+       * @type {array}
+       * @default []
+       */
+      skipSlots: [],
+
+      /**
        * Helper property used to store available events for the element.
        * 
        * @private
@@ -760,11 +769,11 @@ export default {
      * Handles the keyup event of the input field if the field has free text input.
      * 
      * @private 
-     * @param {string|number} oldValue the value before change
      * @param {string|number} newValue the value after change
+     * @param {string|number} oldValue the value before change
      * @returns {void}
      */
-    handleKeyup(oldValue, newValue) {
+    handleKeyup(newValue, oldValue) {
       if (this.readonly) {
         return
       }
@@ -782,7 +791,7 @@ export default {
      * @event change
      */
     handleChange(oldValue, newValue) {
-      if (this.fire('change', this.previousValue, this.currentValue) === false) {
+      if (this.fire('change', this.currentValue, this.previousValue) === false) {
         return
       }
 
@@ -819,6 +828,10 @@ export default {
 
     $_assignSlots() {
       _.each(this.schema.slots, (slot, name) => {
+        if (this.skipSlots.indexOf(name) !== -1) {
+          return
+        } 
+
         let instance = new slot({
           propsData: {
             el$: this.el$,

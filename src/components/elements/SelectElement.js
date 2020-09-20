@@ -72,14 +72,14 @@ export default {
        *      "el$": {"type": "object", "description": "The element component."}
        *    }
        *  },
-       *  "noResult": {
-       *    "description": "Component to be rendered when there are no search results.",
+       *  "singleLabel": {
+       *    "description": "Renders the selected value in the input field.",
        *    "attributes": {
        *      "el$": {"type": "object", "description": "The element component."}
        *    }
        *  },
-       *  "singleLabel": {
-       *    "description": "Renders the selected value in the input field.",
+       *  "noResult": {
+       *    "description": "Component to be rendered when there are no search results.",
        *    "attributes": {
        *      "el$": {"type": "object", "description": "The element component."}
        *    }
@@ -104,10 +104,22 @@ export default {
         option: this.theme.components.MultiselectSlotOption,
         beforeList: null,
         afterList: null,
-        noResult: this.theme.components.MultiselectSlotNoResult,
         singleLabel: null,
+        noResult: this.theme.components.MultiselectSlotNoResult,
         noOptions: this.theme.components.MultiselectSlotNoOptions,
       },
+
+      /**
+       * Slots that should not be added to $slots object once found in schema.
+       * 
+       * @private
+       * @type {array}
+       * @default []
+       */
+      skipSlots: [
+        'option', 'beforeList', 'afterList', 'singleLabel',
+        'noResult', 'noOptions',
+      ],
       
       /**
        * Helper property used to store available events for the element.
@@ -117,7 +129,7 @@ export default {
        * @default []
        */
       events: [
-        'change', 'select', 'remove', 'searchChange',
+        'change', 'select', 'deselect', 'searchChange',
         'open', 'close', 'tag',
       ],
     }
@@ -408,29 +420,29 @@ export default {
   methods: {
 
     /**
-     * Triggered when the user selects an option, using non-native element.
+     * Triggered when the user selects an option using non-native element.
      *
      * @public
      * @event select
-     * @param {object} option the selected option.
+     * @param {object} option the selected option object.
      */
     handleSelect(option) {
       this.fire('select', option)
     },
 
     /**
-     * Triggered when the user removes a selected option, using non-native element.
+     * Triggered when the user deselects an option using non-native element. Does not trigger when an *other* element gets selected.
      *
      * @public
      * @event remove
-     * @param {object} option the removed option.
+     * @param {object} option the deselected option object.
      */
-    handleRemove(option) {
-      this.fire('remove', option)
+    handleDeselect(option) {
+      this.fire('deselect', option)
     },
 
     /**
-     * Triggered when the user changes the search criteria, using non-native element.
+     * Triggered when the user changes the search criteria using non-native element.
      *
      * @public
      * @event searchChange
@@ -441,7 +453,7 @@ export default {
     },
 
     /**
-     * Triggered when the option list is opened, using non-native element.
+     * Triggered when the option list is opened using non-native element.
      *
      * @public
      * @event open
@@ -451,7 +463,7 @@ export default {
     },
 
     /**
-     * Triggered when the option list is closed.
+     * Triggered when the option list is closed using non-native element.
      *
      * @public
      * @event close
@@ -461,7 +473,7 @@ export default {
     },
 
     /**
-     * Triggered when the user creates a tag.
+     * Triggered when the user creates a tag using non-native element.
      *
      * @private
      * @event tag
@@ -482,29 +494,27 @@ export default {
       return _.find(this.selectOptions, { value: normalize(value) })
     },
 
-    /**
-     * Helper method used to determine if the select has option with a certain value.
-     * 
-     * @private
-     * @param {str|num} value value to look for.
-     * @returns {boolean}
-     */
-    $_hasOption(value) {
-      return _.some(this.selectOptions, {value: normalize(value)})
+    // /**
+    //  * Helper method used to determine if the select has option with a certain value.
+    //  * 
+    //  * @private
+    //  * @param {str|num} value value to look for.
+    //  * @returns {boolean}
+    //  */
+    // $_hasOption(value) {
+    //   return _.some(this.selectOptions, {value: normalize(value)})
+    // },
+
+    $_setSlots() {
+      _.each(this.skipSlots, (slot) => {
+        if (this.schema.slots && this.schema.slots[slot] !== null) {
+          this.$set(this.slots, slot, this.schema.slots[slot])
+        }
+      })
     },
   },
   created() {
-    if (this.schema.slots && this.schema.slots.option === null) {
-      this.$set(this.slots, 'option', this.schema.slots.option)
-    }
-
-    if (this.schema.slots && this.schema.slots.noResult === null) {
-      this.$set(this.slots, 'noResult', this.schema.slots.noResult)
-    }
-
-    if (this.schema.slots && this.schema.slots.noOptions === null) {
-      this.$set(this.slots, 'noOptions', this.schema.slots.noOptions)
-    }
+    this.$_setSlots()
   },
   mounted() {
     this.select$ = this.$refs.select$ || null

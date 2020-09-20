@@ -185,11 +185,11 @@ export default {
      *
      * @public
      * @prevents 
-     * @param {string|number} oldValue the value before change
      * @param {string|number} newValue the value after change
+     * @param {string|number} oldValue the value before change
      * @event change
      */
-    handleChange(oldValue, newValue) {
+    handleChange(newValue, oldValue) {
       if (this.fire('change', this.previousValue, this.value) === false) {
         return
       }

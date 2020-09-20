@@ -489,12 +489,12 @@ export default {
      *
      * @public
      * @prevents 
-     * @param {any} oldValue old value of the element.
      * @param {any} newValue new value of the element.
+     * @param {any} oldValue old value of the element.
      * @param {any} event event that occured (add|remove|sort)
      * @event change
      */
-    handleChange(oldValue, newValue, event) {
+    handleChange(newValue, oldValue, event) {
       if (!oldValue) {
         var oldValue = this.value
       }
@@ -504,7 +504,7 @@ export default {
           var newValue = this.value
         }
 
-        if (this.fire('change', oldValue, newValue, event) === false) {
+        if (this.fire('change', newValue, oldValue, event) === false) {
           return
         }
 
@@ -571,7 +571,7 @@ export default {
 
       let newValue = this.value
 
-      this.handleChange(oldValue, newValue, 'sort')
+      this.handleChange(newValue, oldValue, 'sort')
     },
 
     /**
