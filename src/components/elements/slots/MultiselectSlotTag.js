@@ -10,7 +10,7 @@ export default {
       required: true
     },
     search: {
-      type: Function,
+      type: [String, Number],
       required: true
     },
     remove: {

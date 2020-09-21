@@ -130,7 +130,7 @@ export default {
        */
       events: [
         'change', 'select', 'deselect', 'searchChange',
-        'open', 'close', 'tag',
+        'open', 'close',
       ],
     }
   },
@@ -290,17 +290,6 @@ export default {
     },
 
     /**
-    * Determines whether multiple options can be selected.
-    * 
-    * @type {boolean} 
-    * @default null
-    * @ignore
-    */
-    multiple() {
-      return false
-    },
-
-    /**
      * List of select options converted to an array of objects.
      * 
      * @type {array}
@@ -373,49 +362,6 @@ export default {
     isNative() {
       return this.native && !this.search
     },
-
-    // /**
-    //  * Text to be rendered when user can add a new tag.
-    //  * 
-    //  * @type {string}
-    //  * @ignore
-    //  */
-    // tagPlaceholder() {
-    //   return this.taggable && this.create
-    //     ? this.locale.elements.createLabel : ''
-    // }
-
-    // /**
-    // * Determines whether multiple options can be selected.
-    // * 
-    // * @type {boolean} 
-    // * @default false
-    // * @ignore
-    // */
-    // multiple: {
-    //   get() {
-    //     return this.schema.multiple !== undefined ? this.schema.multiple : false
-    //   },
-    //   set(value) {
-    //     this.$set(this.schema, 'multiple', value)
-    //   }
-    // },
-
-    // /**
-    // * Determines whether the select should behave as tags.
-    // * 
-    // * @type {boolean} 
-    // * @default false
-    // * @ignore
-    // */
-    // taggable: {
-    //   get() {
-    //     return this.schema.taggable !== undefined ? this.schema.taggable : false
-    //   },
-    //   set(value) {
-    //     this.$set(this.schema, 'taggable', value)
-    //   }
-    // },
   },
   methods: {
 
@@ -494,20 +440,9 @@ export default {
       return _.find(this.selectOptions, { value: normalize(value) })
     },
 
-    // /**
-    //  * Helper method used to determine if the select has option with a certain value.
-    //  * 
-    //  * @private
-    //  * @param {str|num} value value to look for.
-    //  * @returns {boolean}
-    //  */
-    // $_hasOption(value) {
-    //   return _.some(this.selectOptions, {value: normalize(value)})
-    // },
-
     $_setSlots() {
       _.each(this.skipSlots, (slot) => {
-        if (this.schema.slots && this.schema.slots[slot] !== null) {
+        if (this.schema.slots && this.schema.slots[slot] !== undefined) {
           this.$set(this.slots, slot, this.schema.slots[slot])
         }
       })

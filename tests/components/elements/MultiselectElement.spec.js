@@ -1,12 +1,12 @@
 import { createLocalVue, mount } from '@vue/test-utils'
 import {
-    createForm, confirmSelectOptions, installLaraform,
+    createForm, installLaraform,
     testNativeMultiselectModel, testNonNativeMultiselectModel
 } from './../../../src/utils/testHelpers'
 import { Laraform } from './../../../src/index'
 import en from './../../../src/locales/en'
 
-describe('Select Element Rendering', () => {
+describe('Multiselect Element Rendering', () => {
   it('should render multiselect element', (done) => {
     const LocalVue = createLocalVue()
 
@@ -25,37 +25,13 @@ describe('Select Element Rendering', () => {
 
     let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
 
+    expect(a.exists()).toBe(true)
+
     done()
   })
 })
 
-describe('Select Element Props', () => {
-  it('should return true for `multiple`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'multiselect',
-          items: [
-            'aaa',
-            'bbb',
-            'ccc',
-          ],
-          multiple: false,
-        }
-      }
-    })
-
-    let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
-
-    expect(a.vm.multiple).toStrictEqual(true)
-    
-    done()
-  })
-
+describe('Multiselect Element Props', () => {
   it('should have `empty` true if no items selected or value null', (done) => {
     const LocalVue = createLocalVue()
 
@@ -140,7 +116,7 @@ describe('Select Element Props', () => {
   })
 })
 
-describe('Select Element Model (native)', () => {
+describe('Multiselect Element Model (native)', () => {
   it('should set default, change value, update & load with "array of string" items', (done) => {
     const LocalVue = createLocalVue()
 
@@ -305,7 +281,7 @@ describe('Select Element Model (native)', () => {
   })
 })
 
-describe('Select Element Model (non-native)', () => {
+describe('Multiselect Element Model (non-native)', () => {
   it('should set default, change value, update & load with "array of string" items', (done) => {
     const LocalVue = createLocalVue()
 
@@ -477,7 +453,7 @@ describe('Select Element Model (non-native)', () => {
   })
 })
 
-describe('Select Element Methods', () => {
+describe('Multiselect Element Methods', () => {
   it('should `select` options in native', (done) => {
     const LocalVue = createLocalVue()
 
@@ -619,7 +595,7 @@ describe('Select Element Methods', () => {
   })
 })
 
-describe('Select Element Slots', () => {
+describe('Multiselect Element Slots', () => {
   it('should be able to use custom slot for `selection` from schema', (done) => {
     const LocalVue = createLocalVue()
 

@@ -44,6 +44,7 @@ import RadiogroupElement from './components/elements/RadiogroupElement'
 import SelectElement from './components/elements/SelectElement'
 import SliderElement from './components/elements/SliderElement'
 import StaticElement from './components/elements/StaticElement'
+import TagsElement from './components/elements/TagsElement'
 import TextareaElement from './components/elements/TextareaElement'
 import TextElement from './components/elements/TextElement'
 import TimeElement from './components/elements/TimeElement'
@@ -124,6 +125,7 @@ export default {
     SelectElement,
     SliderElement,
     StaticElement,
+    TagsElement,
     TextareaElement,
     TextElement,
     TimeElement,

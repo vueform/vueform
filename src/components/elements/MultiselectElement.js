@@ -188,17 +188,6 @@ export default {
     },
 
     /**
-    * Determines whether multiple options can be selected.
-    * 
-    * @type {boolean} 
-    * @default null
-    * @ignore
-    */
-    multiple() {
-      return true
-    },
-
-    /**
      * Retrieves the selected options' label.
      * 
      * @type {array}

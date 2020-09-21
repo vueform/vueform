@@ -40,7 +40,6 @@ describe('Select Element Rendering', () => {
           id: 'aaa',
           placeholder: 'Placeholder',
           disabled: true,
-          multiple: true,
         }
       }
     })
@@ -50,7 +49,6 @@ describe('Select Element Rendering', () => {
     expect(a.get('select').attributes().id).toBe('aaa')
     expect(a.get('select').attributes().disabled).toBe('disabled')
     expect(a.get('select').attributes().name).toBe('a')
-    expect(a.get('select').attributes().multiple).toBe(undefined)
 
     expect(a.find('.' + a.vm.classes.selectNativePlaceholder).html()).toContain('Placeholder')
 
@@ -73,7 +71,6 @@ describe('Select Element Rendering', () => {
           id: 'aaa',
           placeholder: 'Placeholder',
           disabled: true,
-          multiple: true,
         }
       }
     })
@@ -751,32 +748,6 @@ describe('Select Element Props', () => {
       value: 1,
       label: 'bbb'
     })
-    
-    done()
-  })
-
-  it('should return false for `multiple`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          items: [
-            'aaa',
-            'bbb',
-            'ccc',
-          ],
-          multiple: true,
-        }
-      }
-    })
-
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
-
-    expect(a.vm.multiple).toStrictEqual(false)
     
     done()
   })

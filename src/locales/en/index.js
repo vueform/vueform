@@ -29,7 +29,9 @@ export default {
         maxElements: 'Maximum options selected.',
         noResult: 'No options found.',
         noOptions: 'List is empty.',
-        createLabel: 'Press enter to create a tag',
+      },
+      tags: {
+        createLabel: 'Press enter to create a tag.',
       },
       file: {
         defaultName: 'file',
