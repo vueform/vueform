@@ -4,6 +4,7 @@ import axios from './services/axios'
 import validation from './services/validation'
 import messageBag from './services/messageBag'
 import autosize from './services/autosize'
+import location from './services/location'
 import applyPlugins from './utils/applyPlugins'
 import store from './store'
 
@@ -39,6 +40,7 @@ export default function (config) {
         axios,
         messageBag,
         autosize,
+        location,
       }
     }
 

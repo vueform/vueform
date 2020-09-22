@@ -690,7 +690,7 @@ export default {
         let validate = false
       }
 
-      this.value = value
+      this.$set(this, 'value', value)
 
       if (triggerChange) {
         this.handleChange()

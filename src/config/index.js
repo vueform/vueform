@@ -49,4 +49,11 @@ export default {
       }
     }
   },
+
+  services: {
+    algolia: {
+      app_id: 'plD1GPOB1JIC',
+      api_key: '1f70532b07910d801387a12ea998f035',
+    }
+  }
 }
