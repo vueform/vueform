@@ -928,6 +928,38 @@ describe('Element Computed', () => {
     expect(BaseElementLayout.classes()).not.toContain('class-c')
     expect(BaseElementLayout.classes()).not.toContain(BaseElementLayout.vm.defaultClasses.container)
   })
+
+  it('should set `formatData` to schema', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+      },
+    })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+    a.vm.formatData = () => { return 'aaa' }
+
+    expect(a.vm.formatData()).toBe('aaa')
+  })
+
+  it('should set `formatLoad` to schema', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+      },
+    })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+    a.vm.formatLoad = () => { return 'aaa' }
+
+    expect(a.vm.formatLoad()).toBe('aaa')
+  })
 })
 
 describe('Element Methods', () => {
@@ -1125,6 +1157,108 @@ describe('Element Methods', () => {
         done()
       })
     })
+  })
+})
+
+describe('Element Model', () => {
+  it('should return plain value for `data` if `formatData` is not set', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+    a.vm.update('aaa')
+
+    expect(a.vm.data).toStrictEqual({a:'aaa'})
+
+    done()
+  })
+
+  it('should return formatted value for `value` if `formatData` is set', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          formatData(name, value) {
+            return {
+              [name]: value + 'bbb'
+            }
+          }
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+    a.vm.update('aaa')
+
+    expect(a.vm.data).toStrictEqual({a:'aaabbb'})
+
+    done()
+  })
+
+  it('should `load` plain data if `formatLoad` is not set', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+    a.vm.load({
+      a: 'aaa'
+    })
+
+    expect(a.vm.data).toStrictEqual({a:'aaa'})
+
+    done()
+  })
+
+  it('should return formatted value for `value` if `formatLoad` is set', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          formatLoad(data) {
+            return data + 'bbb'
+          }
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+    a.vm.load({
+      a: 'aaa'
+    })
+
+    expect(a.vm.data).toStrictEqual({a:'aaabbb'})
+
+    done()
   })
 })
 

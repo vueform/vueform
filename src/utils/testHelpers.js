@@ -8,6 +8,7 @@ import condition from './../plugins/condition/services/condition'
 import validation from './../services/validation'
 import messageBag from './../services/messageBag'
 import autosize from './../services/autosize'
+import location from './../services/location'
 import en from './../locales/en'
 import _ from 'lodash'
 import axios from 'axios'
@@ -135,6 +136,7 @@ const createForm = function(data, options = {}) {
           axios,
           messageBag,
           autosize,
+          location,
         },
         locales: options.locales || {
           en: en

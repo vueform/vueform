@@ -35,6 +35,8 @@ export default {
      *  "error": { "type": "boolean", "description": "Whether the element should display it's first error, if any." },
      *  "submit": { "type": "boolean", "description": "Whether the element's value should be submitted." },
      *  "component": { "type": "object", "description": "The Vue Component to be used for the element." },
+     *  "formatData": { "type": function", "description": "A function that formats data before gets merged with form `data`. Should return an `object` with one key which is the name of the element and which has the actual value. Params:<br>**name**: the name of the element<br>**value**: the original value of the element<br>**el$**: the element component" },
+     *  "formatLoad": { "type": function", "description": "A function that formats data before [.load](#method-load) to the element. Should return the same data type as the element's original. Params:<br>**name**: the name of the element<br>**value**: the original value of the element<br>**el$**: the element component" },
      *  "before": { "type": "string", "description": "Text or HTML to be placed before the field. If `before` slot is provided this will not appear." },
      *  "between": { "type": "string", "description": "Text or HTML to be placed between the field and it's description (if any). If `between` slot is provided this will not appear." },
      *  "after": { "type": "string", "description": "Text or HTML to be placed after the field's error message (if any). If `after` slot is provided this will not appear." },
@@ -242,9 +244,7 @@ export default {
      * @type {object}
      */
     data() {
-      return {
-        [this.name]: this.value
-      }
+      return this.formatData(this.name, this.value, this)
     },
 
     /**
@@ -561,6 +561,34 @@ export default {
     },
 
     /**
+     * A function that formats data before gets merged with form `data`.
+     * 
+     * @type {function}
+     */
+    formatData: {
+      get() {
+        return this.schema.formatData !== undefined ? this.schema.formatData : this.defaultFormatData
+      },
+      set(value) {
+        this.$set(this.schema, 'formatData', value)
+      }
+    },
+
+    /**
+     * A function that formats data before [.load](#method-load) to the element.
+     * 
+     * @type {function}
+     */
+    formatLoad: {
+      get() {
+        return this.schema.formatLoad !== undefined ? this.schema.formatLoad : this.defaultFormatLoad
+      },
+      set(value) {
+        this.$set(this.schema, 'formatLoad', value)
+      }
+    },
+
+    /**
      * Text or HTML to be placed before the field. If `before` slot is provided this will not appear.
      * 
      * @type {string}
@@ -656,7 +684,7 @@ export default {
      */
     load(data) {
       if (this.available && data && data[this.name] !== undefined) {
-        this.update(data[this.name])
+        this.update(this.formatLoad(data[this.name], this))
 
         this.$nextTick(() => {
           this.clean()
@@ -764,6 +792,33 @@ export default {
     deactivate() {
       this.active = false
     },
+
+    /**
+     * The default logic to be used to `formatData`.
+     *
+     * @public
+     * @param {string} name the name of the element
+     * @param {any} value the original value of the element
+     * @param {component} el$ the element component
+     * @returns {object}
+     */
+    defaultFormatData(name, value, el$) {
+      return {
+        [name]: value
+      }
+    },
+
+    /**
+     * The default logic to be used to `formatLoad`.
+     *
+     * @public
+     * @param {data} data loaded data for the element
+     * @param {component} el$ the element component
+     * @returns {any}
+     */
+    defaultFormatLoad(data, el$) {
+      return data
+    },
       
     /**
      * Handles the keyup event of the input field if the field has free text input.
@@ -823,6 +878,7 @@ export default {
      * @returns {void}
      */
     $_initElement() {
+      this.previousValue = _.clone(this.null)
       this.value = _.clone(this.default)
     },
 

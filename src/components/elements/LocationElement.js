@@ -2,13 +2,9 @@ import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
 import CanBeDisabled from './../../mixins/CanBeDisabled'
 import HasAddons from './../../mixins/HasAddons'
-import $model from './../../directives/$model'
 
 export default {
   name: 'LocationElement',
-  directives: {
-    $model,
-  },
   mixins: [BaseElement, BaseValidation, HasAddons, CanBeDisabled],
   props: {
     /**
@@ -18,8 +14,6 @@ export default {
      *  "displayKey": { "type": string", "description": "The name of object key which contains the address that should be displayed to the user in the input field when [`.load`](#method-load) or [`.update`](#method-load) method is used. If you are using [`loadFormat`](#option-loadFormat) it should be the key in the **formatted** object. Default: 'formatted_address'." },
      *  "provider": { "type": string", "description": "The Places API provider to use: 'google|algolia'. Default: 'google'." },
      *  "formatValue": { "type": function", "description": "A function that formats value before displaying as `value`. Should return the same data type as the element's original. Params:<br> **value**: the original value of the element<br> **el$**: the element component" },
-     *  "formatData": { "type": function", "description": "A function that formats data before gets merged with form `data`. Should return an `object` with one key which is the name of the element and which has the actual value. Params:<br>**name**: the name of the element<br>**value**: the original value of the element<br>**el$**: the element component" },
-     *  "formatLoad": { "type": function", "description": "A function that formats data before [.load](#method-load) to the element. Should return the same data type as the element's original. Params:<br>**name**: the name of the element<br>**value**: the original value of the element<br>**el$**: the element component" },
      *  "options": { "type": object", "description": "Additional options for [Google Places](https://developers.google.com/maps/documentation/javascript/reference/places-widget#AutocompleteOptions) or [Algolia Places](https://community.algolia.com/places/documentation.html#options) depending on the provider." },
      *  "placeholder": { "type": "string", "description": "The placeholder of the element." },
      *  "floating": { "type": "string", "description": "The floating label of the element." },
@@ -59,12 +53,34 @@ export default {
     },
     options: {
       handler() {
+        if (_.isEqual(this.options, this.locationService.options)) {
+          return
+        }
+
         this.locationService.init(this.options)
       },
       deep: true
     }
   },
   computed: {
+
+    /**
+     * The value of the element.
+     * 
+     * @type {any}
+     */
+    value: {
+      get() {
+        return this.model
+      },
+      set(value) {
+        this.model = this.formatValue(value, this)
+
+        if (this.$refs.input && value && value[this.displayKey] && this.$refs.input.value != value[this.displayKey]) {
+          this.$refs.input.value = value[this.displayKey] !== undefined ? value[this.displayKey] : ''
+        }
+      }
+    },
 
     /**
      * Helper property used for tracking the field's value.
@@ -74,20 +90,27 @@ export default {
      */
     model: {
       get() {
-        return this.value
+        return this.currentValue
       },
       set(value) {
-        this.value = this.formatValue(value, this)
+        this.previousValue = _.clone(this.currentValue)
+
+        this.currentValue = value
       }
     },
 
     /**
-     * An object containing the element `name` as a key and its `value` as value.
+     * A function that formats value before displaying as `value`.
      * 
-     * @type {object}
+     * @type {function}
      */
-    data() {
-      return this.formatData(this.name, this.value, this)
+    formatValue: {
+      get() {
+        return this.schema.formatValue !== undefined ? this.schema.formatValue : this.defaultFormatValue
+      },
+      set(value) {
+        this.$set(this.schema, 'formatValue', value)
+      }
     },
 
     /**
@@ -125,48 +148,6 @@ export default {
       },
       set(value) {
         this.$set(this.schema, 'provider', value)
-      }
-    },
-
-    /**
-     * A function that formats value before displaying as `value`.
-     * 
-     * @type {function}
-     */
-    formatValue: {
-      get() {
-        return this.schema.formatValue !== undefined ? this.schema.formatValue : this.defaultFormatValue
-      },
-      set(value) {
-        this.$set(this.schema, 'formatValue', value)
-      }
-    },
-
-    /**
-     * A function that formats data before gets merged with form `data`.
-     * 
-     * @type {function}
-     */
-    formatData: {
-      get() {
-        return this.schema.formatData !== undefined ? this.schema.formatData : this.defaultFormatData
-      },
-      set(value) {
-        this.$set(this.schema, 'formatData', value)
-      }
-    },
-
-    /**
-     * A function that formats data before [.load](#method-load) to the element.
-     * 
-     * @type {function}
-     */
-    formatLoad: {
-      get() {
-        return this.schema.formatLoad !== undefined ? this.schema.formatLoad : this.defaultFormatLoad
-      },
-      set(value) {
-        this.$set(this.schema, 'formatLoad', value)
       }
     },
 
@@ -266,63 +247,18 @@ export default {
         this.$set(this.schema, 'options', value)
       }
     },
+
+    /**
+     * Helper property used to determine the element's 'null' value.
+     * 
+     * @type {any}
+     * @ignore
+     */
+    null() {
+      return {}
+    },
   },
   methods: {
-    /**
-     * Loads data for element or clears the element if the element's key is not found in the `data` object.  Sets `dirty` to `false`.
-     *
-     * @public
-     * @param {object} data an object containing data for the element using its **name as key**
-     * @returns {void}
-     */
-    load(data) {
-      if (this.available && data && data[this.name] !== undefined) {
-        this.update(this.formatLoad(data[this.name], this))
-
-        this.$nextTick(() => {
-          this.clean()
-        })
-        return
-      }
-
-      this.clear()
-      this.resetValidators()
-        
-      this.$nextTick(() => {
-        this.clean()
-      })
-    },
-
-    /**
-     * Updates the element's value.
-     *
-     * @public
-     * @param {any} value the value to be set for the element
-     * @param {boolean} triggerChange whether the element should trigger `change` event
-     * @param {boolean} validate whether the element should be validated (default: `false`)
-     * @returns {void}
-     */
-    update(value, triggerChange, validate) {
-      if (triggerChange === undefined) {
-        let validate = false
-      }
-
-      if (validate === undefined) {
-        let validate = false
-      }
-
-      this.$set(this, 'value', value)
-
-      this.$refs.input.value = value[this.displayKey]
-
-      if (triggerChange) {
-        this.handleChange()
-      }
-
-      if (validate) {
-        this.validate()
-      }
-    },
 
     /**
      * The default logic to be used to `formatValue`.
@@ -337,33 +273,6 @@ export default {
     },
 
     /**
-     * The default logic to be used to `formatData`.
-     *
-     * @public
-     * @param {string} name the name of the element
-     * @param {any} value the original value of the element
-     * @param {component} el$ the element component
-     * @returns {object}
-     */
-    defaultFormatData(name, value, el$) {
-      return {
-        [name]: value
-      }
-    },
-
-    /**
-     * The default logic to be used to `formatLoad`.
-     *
-     * @public
-     * @param {data} data loaded data for the element
-     * @param {component} el$ the element component
-     * @returns {any}
-     */
-    defaultFormatLoad(data, el$) {
-      return data
-    },
-
-    /**
      * Initalizes location service.
      *
      * @public
@@ -372,7 +281,23 @@ export default {
     initLocationService() {
       this.locationService = new this.$laraform.services.location[this.provider](this)
       this.locationService.init(this.options)
-    }
+    },
+
+    /**
+     * Inits the element.
+     * 
+     * @private 
+     * @returns {void}
+     */
+    $_initElement() {
+      this.value = _.clone(this.default)
+
+      this.$nextTick(() => {
+        if (this.value && this.value[this.displayKey]) {
+          this.$refs.input.value = this.value[this.displayKey]
+        }
+      })
+    },
   },
   mounted() {
     this.initLocationService()

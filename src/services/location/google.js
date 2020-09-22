@@ -3,6 +3,7 @@ export default class {
     this.el$ = el$
     this.autocomplete = null
     this.autocompleteListener = null
+    this.options = {}
   }
 
   init(options) {
@@ -10,24 +11,35 @@ export default class {
       throw new Error('Google Places API missing. Please include script from https://developers.google.com/maps/documentation/javascript/places-autocomplete#loading-the-library.')
     }
 
-    this.autocomplete = new google.maps.places.Autocomplete(this.el$.$refs.input, options)
+    this.options = options
+
+    this.autocomplete = new window.google.maps.places.Autocomplete(this.el$.$refs.input, options)
 
     this.autocompleteListener = this.autocomplete.addListener('place_changed', () => {
-      let place = autocomplete.getPlace()
-
-      this.el$.location = place
-      this.el$.model = this.formatValue(place)
+      this.handleChange(this.autocomplete.getPlace())
     })
   }
 
+  handleChange(data) {
+    this.el$.location = data
+    this.el$.value = this.formatValue(data)
+
+    this.el$.handleChange()
+  }
+
   destroy() {
-    google.maps.event.removeListener(this.autocompleteListener)
-    google.maps.event.clearInstanceListeners(this.autocomplete)
-    $(".pac-container").remove()
-  } 
+    window.google.maps.event.removeListener(this.autocompleteListener)
+    window.google.maps.event.clearInstanceListeners(this.autocomplete)
+
+    let pac = document.querySelector('.pac-container')
+
+    if (pac) {
+      pac.remove()
+    }
+  }
 
   formatValue(value) {
-    if (!value || !_.isPlainObject(value)) {
+    if (!_.isPlainObject(value)) {
       return value
     }
 
@@ -36,6 +48,16 @@ export default class {
     let street = this.addressComponent(addressComponents, 'street')
     let streetNumber = this.addressComponent(addressComponents, 'street_number')
 
+    let address = null
+
+    if (street !== null) {
+      address = street
+    }
+
+    if (streetNumber !== null) {
+      address += (street !== null ? ' ' : '') + street
+    }
+
     return {
       country: this.addressComponent(addressComponents, 'country'),
       country_code: this.addressComponent(addressComponents, 'country_code'),
@@ -43,7 +65,7 @@ export default class {
       state_code: this.addressComponent(addressComponents, 'state_code'),
       city: this.addressComponent(addressComponents, 'city'),
       zip: this.addressComponent(addressComponents, 'zip'),
-      address: street !== null ? `${street} ${streetNumber}` : null,
+      address: address,
       formatted_address: value.formatted_address,
       lat: value.geometry.location.lat(),
       lng: value.geometry.location.lng(),
