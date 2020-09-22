@@ -19,7 +19,7 @@
         :class="classes.select"
         :name="name"
         :id="id"
-        :multiple="multiple"
+        :multiple="options.multiple"
         :disabled="disabled"
         @change="handleChange"
         ref="select$"

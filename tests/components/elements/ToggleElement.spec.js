@@ -897,8 +897,8 @@ describe('Toggle Element Events', () => {
     a.vm.update(true, true)
 
     expect(onChangeMock.mock.calls.length).toBe(1)
-    expect(onChangeMock.mock.calls[0][0]).toBe(false)
-    expect(onChangeMock.mock.calls[0][1]).toBe(true)
+    expect(onChangeMock.mock.calls[0][0]).toBe(true)
+    expect(onChangeMock.mock.calls[0][1]).toBe(false)
 
     done()
   })

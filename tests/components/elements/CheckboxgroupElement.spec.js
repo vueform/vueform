@@ -1083,8 +1083,8 @@ describe('Checkbox Element Events', () => {
     check(cbg1)
 
     expect(onChangeMock.mock.calls.length).toBe(1)
-    expect(onChangeMock.mock.calls[0][0]).toStrictEqual([])
-    expect(onChangeMock.mock.calls[0][1]).toStrictEqual(['b'])
+    expect(onChangeMock.mock.calls[0][0]).toStrictEqual(['b'])
+    expect(onChangeMock.mock.calls[0][1]).toStrictEqual([])
 
     done()
   })
@@ -1120,8 +1120,8 @@ describe('Checkbox Element Events', () => {
     uncheck(cbg1)
 
     expect(onChangeMock.mock.calls.length).toBe(1)
-    expect(onChangeMock.mock.calls[0][0]).toStrictEqual(['b'])
-    expect(onChangeMock.mock.calls[0][1]).toStrictEqual([])
+    expect(onChangeMock.mock.calls[0][0]).toStrictEqual([])
+    expect(onChangeMock.mock.calls[0][1]).toStrictEqual(['b'])
 
     done()
   })

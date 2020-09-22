@@ -210,8 +210,8 @@ describe('Trix Element Rendering', () => {
       trix$.handleChange()
 
       expect(onChangeMock.mock.calls.length).toBe(1)
-      expect(onChangeMock.mock.calls[0][0]).toBe(null)
-      expect(onChangeMock.mock.calls[0][1]).toBe('aaa')
+      expect(onChangeMock.mock.calls[0][0]).toBe('aaa')
+      expect(onChangeMock.mock.calls[0][1]).toBe(null)
 
       done()
     })

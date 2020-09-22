@@ -1672,8 +1672,8 @@ describe('List Element Events', () => {
     LocalVue.nextTick(() => {
       expect(changeMock.mock.calls.length).toBe(1)
 
-      expect(changeMock.mock.calls[0][0]).toStrictEqual([null])
-      expect(changeMock.mock.calls[0][1]).toStrictEqual([null, 'asdf'])
+      expect(changeMock.mock.calls[0][0]).toStrictEqual([null, 'asdf'])
+      expect(changeMock.mock.calls[0][1]).toStrictEqual([null])
       expect(changeMock.mock.calls[0][2]).toStrictEqual('add')
       done()
     })
@@ -1711,8 +1711,8 @@ describe('List Element Events', () => {
       LocalVue.nextTick(() => {
         expect(changeMock.mock.calls.length).toBe(1)
 
-        expect(changeMock.mock.calls[0][0]).toStrictEqual([1,2,3])
-        expect(changeMock.mock.calls[0][1]).toStrictEqual([1,3])
+        expect(changeMock.mock.calls[0][0]).toStrictEqual([1,3])
+        expect(changeMock.mock.calls[0][1]).toStrictEqual([1,2,3])
         expect(changeMock.mock.calls[0][2]).toStrictEqual('remove')
         done()
       })
@@ -1755,8 +1755,8 @@ describe('List Element Events', () => {
       LocalVue.nextTick(() => {
         expect(changeMock.mock.calls.length).toBe(1)
 
-        expect(changeMock.mock.calls[0][0]).toStrictEqual([1,2,3])
-        expect(changeMock.mock.calls[0][1]).toStrictEqual([3,1,2])
+        expect(changeMock.mock.calls[0][0]).toStrictEqual([3,1,2])
+        expect(changeMock.mock.calls[0][1]).toStrictEqual([1,2,3])
         expect(changeMock.mock.calls[0][2]).toStrictEqual('sort')
         done()
       })

@@ -895,8 +895,8 @@ describe('Radio Element Events', () => {
     check(rg1)
 
     expect(onChangeMock.mock.calls.length).toBe(1)
-    expect(onChangeMock.mock.calls[0][0]).toBe(null)
-    expect(onChangeMock.mock.calls[0][1]).toBe('b')
+    expect(onChangeMock.mock.calls[0][0]).toBe('b')
+    expect(onChangeMock.mock.calls[0][1]).toBe(null)
 
     done()
   })
@@ -932,8 +932,8 @@ describe('Radio Element Events', () => {
     check(rg2)
 
     expect(onChangeMock.mock.calls.length).toBe(1)
-    expect(onChangeMock.mock.calls[0][0]).toBe('b')
-    expect(onChangeMock.mock.calls[0][1]).toBe('c')
+    expect(onChangeMock.mock.calls[0][0]).toBe('c')
+    expect(onChangeMock.mock.calls[0][1]).toBe('b')
 
     done()
   })

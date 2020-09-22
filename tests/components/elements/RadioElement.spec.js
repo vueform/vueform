@@ -255,8 +255,8 @@ describe('Radio Element Events', () => {
     check(a)
 
     expect(onChangeMock.mock.calls.length).toBe(1)
-    expect(onChangeMock.mock.calls[0][0]).toBe(null)
-    expect(onChangeMock.mock.calls[0][1]).toBe(1)
+    expect(onChangeMock.mock.calls[0][0]).toBe(1)
+    expect(onChangeMock.mock.calls[0][1]).toBe(null)
 
     done()
   })

@@ -411,8 +411,8 @@ describe('Slider Element Events', () => {
     a.vm.slider$.setValue(20)
 
     expect(onChangeMock.mock.calls.length).toBe(1)
-    expect(onChangeMock.mock.calls[0][0]).toBe(0)
-    expect(onChangeMock.mock.calls[0][1]).toBe(20)
+    expect(onChangeMock.mock.calls[0][0]).toBe(20)
+    expect(onChangeMock.mock.calls[0][1]).toBe(0)
 
     done()
   })

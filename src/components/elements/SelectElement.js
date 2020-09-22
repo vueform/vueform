@@ -271,6 +271,7 @@ export default {
         trackBy: this.trackBy,
         loading: this.loading,
         optionsLimit: this.limit,
+        multiple: false,
       }
     },
 

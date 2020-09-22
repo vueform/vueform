@@ -1302,8 +1302,8 @@ describe('Element Events', () => {
     expect(a.vm.validated).toBe(true)
     expect(a.vm.value).toBe('aaa')
     expect(changeMock.mock.calls.length).toBe(1)
-    expect(changeMock.mock.calls[0][0]).toBe(null)
-    expect(changeMock.mock.calls[0][1]).toBe('aaa')
+    expect(changeMock.mock.calls[0][0]).toBe('aaa')
+    expect(changeMock.mock.calls[0][1]).toBe(null)
 
     done()
   })
