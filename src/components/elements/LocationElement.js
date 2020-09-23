@@ -273,6 +273,20 @@ export default {
     },
 
     /**
+     * Handles location service's address change.
+     *
+     * @public
+     * @param {object} data an object containing address data
+     * @param {object} raw an object containing raw address data (based on provider)
+     */
+    handleAddressChange(data, raw) {
+      this.location = raw
+      this.value = this.formatValue(data)
+
+      this.handleChange()
+    },
+
+    /**
      * Initalizes location service.
      *
      * @public
@@ -280,7 +294,7 @@ export default {
      */
     initLocationService() {
       this.locationService = new this.$laraform.services.location[this.provider](this)
-      this.locationService.init(this.options)
+      this.locationService.init(this.$refs.input, this.handleAddressChange, this.options)
     },
 
     /**

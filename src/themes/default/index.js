@@ -26,6 +26,7 @@ import InputAddon from './components/InputAddon'
 import Flatpickr from './components/wrappers/Flatpickr'
 import Trix from './components/wrappers/Trix'
 
+import AddressElement from './components/elements/AddressElement'
 import ButtonsElement from './components/elements/ButtonsElement'
 import CheckboxElement from './components/elements/CheckboxElement'
 import CheckboxgroupElement from './components/elements/CheckboxgroupElement'
@@ -66,48 +67,51 @@ import RadiogroupSlotRadio from './components/elements/slots/RadiogroupSlotRadio
 
 import columns from './utils/columns'
 
+const components = {
+  Laraform,
+  FormErrors,
+  FormMessages,
+  FormLanguageSelector,
+  FormLanguageSelectorTab,
+  FormTabs,
+  FormTab,
+  FormWizard,
+  FormWizardControls,
+  FormWizardFinish,
+  FormWizardNext,
+  FormWizardPrevious,
+  FormWizardStep,
+  FormElements,
+  FormButton,
+  FormButtonAnchor,
+  FormButtonSubmit,
+  BaseElementLayout,
+  NestedElementLayout,
+  ElementLabelFloating,
+  ElementLabel,
+  ElementError,
+  ElementMessage,
+  InputAddon,
+
+  // Wrappers
+  Flatpickr,
+  Trix,
+
+  // Element slots
+  CheckboxgroupSlotCheckbox,
+  MultiselectSlotNoOptions,
+  MultiselectSlotNoResult,
+  MultiselectSlotOption,
+  MultiselectSlotSelection,
+  MultiselectSlotTag,
+  MultiselectSlotTagsSelection,
+  RadiogroupSlotRadio,
+}
+
 export default {
-  components: {
-    Laraform,
-    FormErrors,
-    FormMessages,
-    FormLanguageSelector,
-    FormLanguageSelectorTab,
-    FormTabs,
-    FormTab,
-    FormWizard,
-    FormWizardControls,
-    FormWizardFinish,
-    FormWizardNext,
-    FormWizardPrevious,
-    FormWizardStep,
-    FormElements,
-    FormButton,
-    FormButtonAnchor,
-    FormButtonSubmit,
-    BaseElementLayout,
-    NestedElementLayout,
-    ElementLabelFloating,
-    ElementLabel,
-    ElementError,
-    ElementMessage,
-    InputAddon,
-
-    // Wrappers
-    Flatpickr,
-    Trix,
-
-    // Element slots
-    CheckboxgroupSlotCheckbox,
-    MultiselectSlotNoOptions,
-    MultiselectSlotNoResult,
-    MultiselectSlotOption,
-    MultiselectSlotSelection,
-    MultiselectSlotTag,
-    MultiselectSlotTagsSelection,
-    RadiogroupSlotRadio,
-  },
+  components,
   elements: {
+    AddressElement,
     ButtonsElement,
     CheckboxElement,
     CheckboxgroupElement,
@@ -146,49 +150,9 @@ export default {
 }
 
 export const core = {
-  components: {
-    Laraform,
-    FormLanguageSelector,
-    FormLanguageSelectorTab,
-    FormTabs,
-    FormTab,
-    FormWizard,
-    FormWizardControls,
-    FormWizardFinish,
-    FormWizardNext,
-    FormWizardPrevious,
-    FormWizardStep,
-    FormElements,
-    FormButton,
-    FormButtonAnchor,
-    FormButtonSubmit,
-    BaseElementLayout,
-    NestedElementLayout,
-    ElementLabelFloating,
-    ElementLabel,
-    ElementError,
-    InputAddon,
-
-    // Wrappers
-    Flatpickr,
-    Trix,
-
-    // Element slots
-    CheckboxgroupSlotCheckbox,
-    MultiselectSlotNoOptions,
-    MultiselectSlotNoResult,
-    MultiselectSlotOption,
-    MultiselectSlotSelection,
-    MultiselectSlotTag,
-    MultiselectSlotTagsSelection,
-    RadiogroupSlotRadio,
-  },
-  elements: {
-    
-  },
-  classes: {
-    
-  }
+  components,
+  elements: {},
+  classes: {}
 }
 
 export {

@@ -6,25 +6,20 @@ export default class {
     this.options = {}
   }
 
-  init(options) {
+  init(container, onChange, options) {
     if (window.google === undefined || window.google.maps === undefined || window.google.maps.places === undefined || window.google.maps.places.Autocomplete === undefined) {
       throw new Error('Google Places API missing. Please include script from https://developers.google.com/maps/documentation/javascript/places-autocomplete#loading-the-library.')
     }
 
     this.options = options
 
-    this.autocomplete = new window.google.maps.places.Autocomplete(this.el$.$refs.input, options)
+    this.autocomplete = new window.google.maps.places.Autocomplete(container, options)
 
     this.autocompleteListener = this.autocomplete.addListener('place_changed', () => {
-      this.handleChange(this.autocomplete.getPlace())
+      let place = this.autocomplete.getPlace()
+      
+      onChange(this.formatValue(place), place)
     })
-  }
-
-  handleChange(data) {
-    this.el$.location = data
-    this.el$.value = this.formatValue(data)
-
-    this.el$.handleChange()
   }
 
   destroy() {
@@ -55,7 +50,7 @@ export default class {
     }
 
     if (streetNumber !== null) {
-      address += (street !== null ? ' ' : '') + street
+      address += (street !== null ? ' ' : '') + streetNumber
     }
 
     return {
@@ -66,9 +61,9 @@ export default class {
       city: this.addressComponent(addressComponents, 'city'),
       zip: this.addressComponent(addressComponents, 'zip'),
       address: address,
-      formatted_address: value.formatted_address,
-      lat: value.geometry.location.lat(),
-      lng: value.geometry.location.lng(),
+      formatted_address: value.formatted_address || null,
+      lat: value.geometry.location.lat() || null,
+      lng: value.geometry.location.lng() || null,
     }
   }
 
@@ -92,7 +87,7 @@ export default class {
           return 
         }
 
-        addressComponent = component[typeMap[type].type]
+        addressComponent = component[typeMap[type].type] || null
       }
     })
 

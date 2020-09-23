@@ -30,30 +30,6 @@ describe('Location Algolia Service', () => {
     }))
   })
 
-  it('should set `value` from raw object with all data', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'location',
-          provider: 'algolia',
-        }
-      }
-    })
-
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
-
-    a.vm.locationService.handleChange(raw)
-
-    expect(a.vm.value).toStrictEqual(formatted)
-    expect(a.vm.$refs.input.value).toStrictEqual(display)
-
-    done()
-  })
-
   it('should return plain value in `formatValue` if the provided data is not a plain object', (done) => {
     const LocalVue = createLocalVue()
 
@@ -70,10 +46,9 @@ describe('Location Algolia Service', () => {
 
     let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
 
-    a.vm.locationService.handleChange([])
+    let value = a.vm.locationService.formatValue([])
 
-    expect(a.vm.value).toStrictEqual([])
-    expect(a.vm.$refs.input.value).toStrictEqual('')
+    expect(value).toStrictEqual([])
 
     done()
   })
@@ -139,9 +114,9 @@ describe('Location Algolia Service', () => {
     formatted.state_code = null
     formatted.country_code = 'DE'
 
-    a.vm.locationService.handleChange(raw)
+    let value = a.vm.locationService.formatValue(raw)
 
-    expect(a.vm.value).toStrictEqual(formatted)
+    expect(value).toStrictEqual(formatted)
 
     done()
   })
@@ -169,9 +144,9 @@ describe('Location Algolia Service', () => {
     formatted.state = 'aaa'
     formatted.state_code = null
 
-    a.vm.locationService.handleChange(raw)
+    let value = a.vm.locationService.formatValue(raw)
 
-    expect(a.vm.value).toStrictEqual(formatted)
+    expect(value).toStrictEqual(formatted)
 
     done()
   })
@@ -208,6 +183,30 @@ describe('Location Algolia Service', () => {
     a.vm.locationService.destroy()
 
     expect(destroyMock.mock.calls.length).toBe(1)
+
+    done()
+  })
+
+  it('should return `stateCode` based on state name', (done) => {
+    const LocalVue = createLocalVue()
+
+    LocalVue.config.errorHandler = done
+
+    let destroyMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'location',
+          provider: 'algolia',
+        },
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+
+    expect(a.vm.locationService.stateCode('alabama')).toBe('AL')
+    expect(a.vm.locationService.stateCode('alabamaaaa')).toBe(null)
 
     done()
   })

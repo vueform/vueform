@@ -29,6 +29,12 @@ export default {
       },
     }
   },
+  watch: {
+    value(newValue, oldValue) {
+      this.currentValue = _.clone(newValue)
+      this.previousValue = _.clone(oldValue)
+    }
+  },
   computed: {
     /**
      * The value of the element.
@@ -56,9 +62,7 @@ export default {
         data = Object.assign({}, data, element$.data)
       })
 
-      return {
-        [this.name]: data
-      }
+      return this.formatData(this.name, data, this)
     },
 
     /**
@@ -97,7 +101,7 @@ export default {
       }
 
       _.each(this.children$, (element$) => {
-        element$.load(data[this.name])
+        element$.load(this.formatLoad(data[this.name]))
       })
     },
 

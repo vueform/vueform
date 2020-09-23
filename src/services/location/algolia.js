@@ -5,7 +5,7 @@ export default class {
     this.options = {}
   }
 
-  init(options) {
+  init(container, onChange, options) {
     if (window.places === undefined) {
       throw new Error('Algolia Places API missing. Please include script in your project from https://community.algolia.com/places/documentation.html#cdn-script or install via npm and set to `window.places`.')
     }
@@ -13,20 +13,14 @@ export default class {
     this.options = options
 
     this.places = window.places(Object.assign({}, {
-      container: this.el$.$refs.input,
+      container,
     }, options))
 
     this.places.on('change', (e) => {
-      this.handleChange(e.suggestion)
+      onChange(this.formatValue(e.suggestion), e.suggestion)
     })
   }
-
-  handleChange(data) {
-    this.el$.location = data
-    this.el$.value = this.formatValue(data)
-
-    this.el$.handleChange()
-  }
+  
   destroy() {
     this.places.destroy()
   } 

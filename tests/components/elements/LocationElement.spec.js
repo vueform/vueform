@@ -899,7 +899,7 @@ describe('Location Element Events', () => {
     windowSpy.mockRestore()
   })
 
-  it('should trigger `change` event with google', (done) => {
+  it('should trigger `change` event on address change', (done) => {
     const LocalVue = createLocalVue()
 
     LocalVue.config.errorHandler = done
@@ -914,49 +914,25 @@ describe('Location Element Events', () => {
           onChange: onChangeMock,
         }
       }
+    }, {
+      attach: true
     })
 
     let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
-    a.vm.locationService.handleChange({address_components:[{long_name:'a',types:['country']}],geometry:{location:{lat(){},lng(){}}}})
+    a.vm.handleAddressChange({
+      zip: 'aaa'
+    }, {})
 
-    expect(onChangeMock.mock.calls.length).toBe(1)
-    expect(onChangeMock.mock.calls[0][0].country).toStrictEqual('a')
-    expect(onChangeMock.mock.calls[0][1]).toStrictEqual({})
+    LocalVue.nextTick(() => {
+      expect(onChangeMock.mock.calls.length).toBe(1)
+      expect(onChangeMock.mock.calls[0][0].zip).toBe('aaa')
+      expect(onChangeMock.mock.calls[0][1]).toStrictEqual({})
 
-    done()
-  })
-
-  it('should trigger `change` event with algolia', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let onChangeMock = jest.fn()
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'location',
-          provider: 'algolia',
-          onChange: onChangeMock,
-        }
-      }
+      done()
     })
-
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
-
-    expect(onChangeMock.mock.calls.length).toBe(0)
-
-    a.vm.locationService.handleChange({country:'a',latlng:{}})
-
-    expect(onChangeMock.mock.calls.length).toBe(1)
-    expect(onChangeMock.mock.calls[0][0].country).toStrictEqual('a')
-    expect(onChangeMock.mock.calls[0][1]).toStrictEqual({})
-
-    done()
   })
 })
 
@@ -994,7 +970,7 @@ describe('Location Element Model', () => {
     windowSpy.mockRestore()
   })
 
-  it('should set `value` from google raw object', (done) => {
+  it('should set `value` when address changes', (done) => {
     const LocalVue = createLocalVue()
 
     LocalVue.config.errorHandler = done
@@ -1010,35 +986,7 @@ describe('Location Element Model', () => {
 
     let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
 
-    a.vm.locationService.handleChange(raw)
-
-    expect(a.vm.value).toStrictEqual(formatted)
-    expect(a.vm.$refs.input.value).toStrictEqual(display)
-
-    done()
-  })
-
-  it('should set `value` from algolia raw object', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    raw = {"name":"22 Boulevard Napoleon","administrative":"Kentucky","county":"Jefferson County","city":"Louisville","country":"United States of America","countryCode":"us","type":"address","latlng":{"lat":38.2218,"lng":-85.6947},"postcode":"40205","postcodes":["40205"],"highlight":{"name":"<em>22</em> <em>Boulevard</em> <em>Napoleon</em>","city":"<em>Louisville</em>","administrative":"<em>Kentucky</em>","country":"<em>United</em> <em>States</em> <em>of</em> <em>America</em>","county":"Jefferson County","postcode":"40205"},"hit":{"country":"United States of America","is_country":false,"city":["Louisville"],"is_highway":true,"importance":26,"_tags":["highway","highway/residential","country/us","address","source/osm"],"postcode":["40205"],"county":["Jefferson County"],"population":612780,"country_code":"us","is_city":false,"is_popular":false,"administrative":["Kentucky"],"admin_level":15,"is_suburb":false,"locale_names":["22 Boulevard Napoleon"],"_geoloc":{"lat":38.2218,"lng":-85.6947},"objectID":"157851623_331770377","_highlightResult":{"country":{"value":"<em>United</em> <em>States</em> <em>of</em> <em>America</em>","matchLevel":"partial","fullyHighlighted":true,"matchedWords":["united","states","of","america"]},"city":[{"value":"<em>Louisville</em>","matchLevel":"partial","fullyHighlighted":true,"matchedWords":["louisville"]}],"postcode":[{"value":"40205","matchLevel":"none","matchedWords":[]}],"county":[{"value":"Jefferson County","matchLevel":"none","matchedWords":[]}],"administrative":[{"value":"<em>Kentucky</em>","matchLevel":"partial","fullyHighlighted":true,"matchedWords":["kentucky"]}],"locale_names":[{"value":"<em>22</em> <em>Boulevard</em> <em>Napoleon</em>","matchLevel":"partial","fullyHighlighted":true,"matchedWords":["boulevard","napoleon","22"]}]}},"hitIndex":0,"query":"Boulevard Napoleon 22, Louisville, Kentucky, United States of America","rawAnswer":{"hits":[{"country":"United States of America","is_country":false,"city":["Louisville"],"is_highway":true,"importance":26,"_tags":["highway","highway/residential","country/us","address","source/osm"],"postcode":["40205"],"county":["Jefferson County"],"population":612780,"country_code":"us","is_city":false,"is_popular":false,"administrative":["Kentucky"],"admin_level":15,"is_suburb":false,"locale_names":["22 Boulevard Napoleon"],"_geoloc":{"lat":38.2218,"lng":-85.6947},"objectID":"157851623_331770377","_highlightResult":{"country":{"value":"<em>United</em> <em>States</em> <em>of</em> <em>America</em>","matchLevel":"partial","fullyHighlighted":true,"matchedWords":["united","states","of","america"]},"city":[{"value":"<em>Louisville</em>","matchLevel":"partial","fullyHighlighted":true,"matchedWords":["louisville"]}],"postcode":[{"value":"40205","matchLevel":"none","matchedWords":[]}],"county":[{"value":"Jefferson County","matchLevel":"none","matchedWords":[]}],"administrative":[{"value":"<em>Kentucky</em>","matchLevel":"partial","fullyHighlighted":true,"matchedWords":["kentucky"]}],"locale_names":[{"value":"<em>22</em> <em>Boulevard</em> <em>Napoleon</em>","matchLevel":"partial","fullyHighlighted":true,"matchedWords":["boulevard","napoleon","22"]}]}}],"nbHits":1,"processingTimeMS":97,"query":"Boulevard Napoleon 22, Louisville, Kentucky, United States of America","params":"hitsPerPage=5&language=en&type=address&query=Boulevard%20Napoleon%2022%2C%20Louisville%2C%20Kentucky%2C%20United%20States%20of%20America","degradedQuery":false},"value":"22 Boulevard Napoleon, Louisville, Kentucky, United States of America"}
-    formatted = {"country":"United States of America","country_code":"US","state":"Kentucky","state_code":"KY","city":"Louisville","zip":"40205","address":"22 Boulevard Napoleon","formatted_address":"22 Boulevard Napoleon, Louisville, Kentucky, United States of America","lat":38.2218,"lng":-85.6947}
-    display = "22 Boulevard Napoleon, Louisville, Kentucky, United States of America"
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'location',
-          provider: 'algolia',
-        }
-      }
-    })
-
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
-
-    a.vm.locationService.handleChange(raw)
+    a.vm.handleAddressChange(formatted, raw)
 
     expect(a.vm.value).toStrictEqual(formatted)
     expect(a.vm.$refs.input.value).toStrictEqual(display)
