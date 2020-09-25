@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
 import formData from './../utils/formData'
+import asyncForEach from './../utils/asyncForEach'
 import HasEvents from './../mixins/HasEvents'
 import HasTranslator from './../mixins/HasTranslator'
 import ref from './../directives/ref'
@@ -224,6 +225,14 @@ export default {
       submitting: false,
 
       /**
+       * Determine if the form is currently preparing for submission.
+       * 
+       * @type {boolean}
+       * @default false
+       */
+      preparing: false,
+
+      /**
        * Determine if the form's data is currently being updated for external model.
        * 
        * @private
@@ -425,12 +434,12 @@ export default {
     },
 
     /**
-     * Whether the form has any busy element.
+     * Whether the form is in debouncing, pending, preparing or submitting state.
      * 
      * @type {boolean}
      */
     busy() {
-      return this.debouncing || this.pending
+      return this.debouncing || this.pending || this.submitting || this.preparing
     },
 
     /**
@@ -628,29 +637,6 @@ export default {
     },
   },
   methods: {
-    /**
-     * Starts the submission process.
-     * 
-     * @public
-     * @returns {void}
-     */
-    submit() {
-      if (this.disabled) {
-        return
-      }
-
-      if (this.handleSubmit() === false) {
-        return
-      }
-
-      if (this.$_shouldValidateOn('submit')) {
-        this.validate()
-      }
-
-      this.proceed(() => {
-        this.send()
-      })
-    },
 
     /**
      * Validates each elements within the form.
@@ -773,6 +759,55 @@ export default {
         callback()
       }
     },
+    /**
+     * Starts the submission process.
+     * 
+     * @public
+     * @returns {void}
+     */
+    async submit() {
+      if (this.disabled) {
+        return
+      }
+
+      if (this.handleSubmit() === false) {
+        return
+      }
+
+      if (this.$_shouldValidateOn('submit')) {
+        this.validate()
+      }
+
+      this.preparing = true
+
+      let prepared = await this.prepare()
+
+      this.preparing = false
+
+      if (prepared === false) {
+        return
+      }
+      
+      this.proceed(() => {
+        this.send()
+      })
+    },
+
+    async prepare() {
+      let prepared = true
+
+      await asyncForEach(this.elements$, async (element$) => {
+        if (await element$.prepare() === false) {
+          prepared = false
+        }
+
+        if (prepared === false) {
+          return false
+        }
+      })
+
+      return prepared
+    },
 
     /**
      * Transforms form data to [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object and sends it to the endpoint.
@@ -780,24 +815,28 @@ export default {
      * @public
      * @returns {void}
      */
-    send() {
+    async send() {
       this.submitting = true
 
-      this.$laraform.services.axios[this.method](this.endpoint, this.formData)
-        .then((response) => {
-          this.submitting = false
+      let response = {}
 
-          if (response.data.payload && response.data.payload.updates) {
-            this.update(response.data.payload.updates)
-          }
+      try {
+        response = await this.$laraform.services.axios[this.method](this.endpoint, this.formData)
 
-          this.handleSuccess(response)
-        })
-        .catch((error) => {
-          this.submitting = false
+        if (response.data.payload && response.data.payload.updates) {
+          this.update(response.data.payload.updates)
+        }
 
-          this.handleError(error.response, error)
-        })
+        this.handleSuccess(response)
+      }
+      catch (error) {
+        this.handleError(error.response, error)
+
+        throw new Error(error)
+      }
+      finally {
+        this.submitting = false
+      }
     },
 
     /**

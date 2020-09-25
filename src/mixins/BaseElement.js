@@ -675,6 +675,15 @@ export default {
     },
   },
   methods: {
+
+    /**
+     * Prepares the element for submission.
+     *
+     * @public
+     * @returns {void}
+     */
+    async prepare() { },
+
     /**
      * Loads data for element or clears the element if the element's key is not found in the `data` object.  Sets `dirty` to `false`.
      *
