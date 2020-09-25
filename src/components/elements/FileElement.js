@@ -30,7 +30,7 @@ export default {
 
       progress: 0,
 
-      uploading: false,
+      request: null,
 
       /**
        * Element slots.
@@ -66,7 +66,7 @@ export default {
        * @ignore
        */
       events: [
-        'change', 'add', 'remove', 'prepare',
+        'change', 'add', 'remove', 'error',
       ],
     }
   },
@@ -167,7 +167,7 @@ export default {
       }
 
       if (_.isString(this.value)) {
-        return 3 // file uploaded & moved
+        return 3 // file uploaded
       }
 
       return 'unknown'
@@ -175,6 +175,10 @@ export default {
 
     uploaded() {
       return this.stage === 3
+    },
+
+    uploading() {
+      return this.request !== null
     },
 
     /**
@@ -239,17 +243,18 @@ export default {
     },
 
     canRemove() {
-      return this.stage > 0
+      return this.stage > 0 && !this.uploading
     }
   },
+
   methods: {
     setFile(file) {
       this.file = file
     },
     remove() {
       if (this.stage === 3) {
-        if (!confirm('The file will be immediately deleted. Are you sure to continue?')) {
-          return
+        if (!confirm('By removing the file it will be permanently deleted. Are you sure to continue?')) {
+          return false
         }
 
         this.$laraform.services.axios.post('/file/remove', { file: this.value })
@@ -265,7 +270,10 @@ export default {
     },
 
     handleFileChanged(e) {
-      this.remove()
+      if (this.remove() === false) {
+        this.$refs.input.value = ''
+        return
+      }
 
       let file = e.target.files[0]
 
@@ -283,24 +291,38 @@ export default {
 
     async uploadTemp(callback) {
       if (this.stage !== 1) {
-        throw new Error('Temporary file cannot be uploaded because no file is selected')
+        throw new Error('No file is selected')
       }
 
+      // Creating data
       let data = new FormData()
- 
       data.append('file', this.value)
 
-      this.uploading = true
+      // Preparing request
+      let axios = this.$laraform.services.axios
+      let response = {}
+      this.request = axios.CancelToken.source()
 
-      let response = await this.$laraform.services.axios.post('/file/preupload', data, {
-        onUploadProgress: (e) => {
-          this.progress = Math.round((e.loaded * 100) / e.total)
+      try {
+        response = await axios.post('/file/preupload', data, {
+          onUploadProgress: (e) => {
+            this.progress = Math.round((e.loaded * 100) / e.total)
+          },
+          cancelToken: this.request.token,
+        })
+
+        this.update(response.data)
+      } catch (e) {
+        this.progress = 0
+
+        if (!axios.isCancel(e)) {
+          this.handleError(`Couldn\'t upload file: ${this.filename}`)
+
+          throw new Error(e)
         }
-      })
-
-      this.uploading = false
-
-      this.update(response.data)
+      } finally {
+        this.request = null
+      }
     },
 
     /**
@@ -332,6 +354,29 @@ export default {
 
     handleRemove() {
       this.remove()
-    }
+    },
+
+    handleCancel() {
+      if (this.request === null) {
+        return
+      }
+
+      this.request.cancel()
+    },
+
+    /**
+     * Triggered when an error occurs during file upload. If no event is attached browsers default `alert()` function will be used.
+     *
+     * @public
+     * @param {string} message message to display.
+     * @event error
+     */
+    handleError(message) {
+      this.fire('error', message)
+
+      if (!this.listeners.error) {
+        alert(message)
+      } 
+    },
   },
 }

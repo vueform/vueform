@@ -274,7 +274,7 @@ export default {
        */
       events: [
         'change', 'submit', 'success', 'error',
-        'language', 'reset', 'clear',
+        'language', 'reset', 'clear', 'fail'
       ],
     }
   },
@@ -780,12 +780,14 @@ export default {
 
       this.preparing = true
 
-      let prepared = await this.prepare()
+      try {
+        await this.prepare()
+      } catch (e) {
+        this.handleFail(e)
 
-      this.preparing = false
-
-      if (prepared === false) {
-        return
+        throw new Error(e)
+      } finally {
+        this.preparing = false
       }
       
       this.proceed(() => {
@@ -794,19 +796,9 @@ export default {
     },
 
     async prepare() {
-      let prepared = true
-
       await asyncForEach(this.elements$, async (element$) => {
-        if (await element$.prepare() === false) {
-          prepared = false
-        }
-
-        if (prepared === false) {
-          return false
-        }
+        await element$.prepare()
       })
-
-      return prepared
     },
 
     /**
@@ -907,6 +899,17 @@ export default {
      */
     handleSubmit(){
       return this.fire('submit')
+    },
+
+    /**
+     * Triggered when the form fails in the preparation stage, before submitting.
+     *
+     * @public
+     * @param {object} error error object
+     * @event fail
+     */
+    handleFail(error){
+      return this.fire('fail', error)
     },
         
     /**

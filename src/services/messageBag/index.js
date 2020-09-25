@@ -46,7 +46,7 @@ export default class {
 
   prepend(msg, type) {
     if (type === undefined) {
-      var type = 'error'
+      type = 'error'
     }
 
     this.prepends[type == 'error' ? 'errors' : 'messages'].unshift(msg)
@@ -54,15 +54,51 @@ export default class {
 
   append(msg, type) {
     if (type === undefined) {
-      var type = 'error'
+      type = 'error'
     }
 
     this.appends[type == 'error' ? 'errors' : 'messages'].push(msg)
   }
 
+  remove(msg, type) {
+    if (type === undefined) {
+      type = 'any'
+    }
+
+    if (['any', 'error'].indexOf(type) !== -1) {
+      _.each(this.prepends.errors, (error, index) => {
+        if (error == msg) {
+          this.rm('prepends', 'errors', index)
+        }
+      })
+      _.each(this.appends.errors, (error, index) => {
+        if (error == msg) {
+          this.rm('appends', 'errors', index)
+        }
+      })
+    }
+
+    if (['any', 'message'].indexOf(type) !== -1) {
+      _.each(this.prepends.messages, (error, index) => {
+        if (error == msg) {
+          this.rm('prepends', 'messages', index)
+        }
+      })
+      _.each(this.appends.errors, (error, index) => {
+        if (error == msg) {
+          this.rm('appends', 'messages', index)
+        }
+      })
+    }
+  }
+
+  rm(group, type, index) {
+    this[group][type].splice(index, 1)
+  }
+
   clear(type) {
     if (type === undefined) {
-      var type = 'all'
+      type = 'all'
     }
 
     if (type == 'all') {
@@ -82,7 +118,7 @@ export default class {
 
   clearBefore(type) {
     if (type === undefined) {
-      var type = 'all'
+      type = 'all'
     }
 
     if (type == 'all') {
@@ -97,7 +133,7 @@ export default class {
 
   clearAfter(type) {
     if (type === undefined) {
-      var type = 'all'
+      type = 'all'
     }
 
     if (type == 'all') {

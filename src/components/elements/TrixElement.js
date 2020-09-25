@@ -40,7 +40,7 @@ export default {
        * @type {array}
        * @default []
        */
-      events: ['change', 'alert']
+      events: ['change', 'error']
     }
   },
   computed: {
@@ -142,16 +142,16 @@ export default {
     },
 
     /**
-     * Triggered when the trix editor fires an alert event (for example not accepted file types). If no event is attached browsers default `alert()` function will be used.
+     * Triggered when the trix editor throws an error during file upload (for example not accepted file types). If no event is attached browsers default `alert()` function will be used.
      *
      * @public
      * @param {string} message message to display.
-     * @event alert
+     * @event error
      */
-    handleAlert(message) {
-      this.fire('alert', message)
+    handleError(message) {
+      this.fire('error', message)
 
-      if (!this.listeners.alert) {
+      if (!this.listeners.error) {
         alert(message)
       } 
     },

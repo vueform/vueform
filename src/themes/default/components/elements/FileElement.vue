@@ -19,21 +19,23 @@
         ref="input"
       />
 
-      <div v-if="isImage" class="preview">
-        <a :href="link" v-if="uploaded" target="_blank"><img :src="preview" /> {{ filename }}</a>
-        <span v-else><img :src="preview" /> {{ filename }}</span>
-        
-      </div>
-      <div v-else class="preview">
+      <!-- Preview -->
+      <div class="preview">
         <a :href="link" v-if="uploaded" target="_blank">{{ filename }}</a>
         <span v-else-if="filename">{{ filename }}</span>
       </div>
 
+      <!-- Progress -->
       <span v-if="progress">{{ progress }}%</span>
 
-      <a v-if="stage === 1 && !auto" @click.prevent="uploadTemp" href="" class="btn btn-primary">Upload</a>
+      <!-- Upload temp button -->
+      <a v-if="stage === 1 && !auto && !uploading" @click.prevent="uploadTemp" href="" class="btn btn-primary">Upload</a>
 
+      <!-- Remove button -->
       <a v-if="canRemove" href="" @click.prevent="handleRemove">Remove</a>
+
+      <!-- Abort button -->
+      <a v-if="uploading" href="" @click.prevent="handleCancel">Abort</a>
         
       <slot name="suffix"></slot>
     </template>
