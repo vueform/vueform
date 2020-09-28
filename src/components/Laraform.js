@@ -434,12 +434,12 @@ export default {
     },
 
     /**
-     * Whether the form is in debouncing, pending, preparing or submitting state.
+     * Whether the form has any busy element or in preparing or submitting state.
      * 
      * @type {boolean}
      */
     busy() {
-      return this.debouncing || this.pending || this.submitting || this.preparing
+      return _.some(this.elements$, { available: true, busy: true }) || this.submitting || this.preparing
     },
 
     /**

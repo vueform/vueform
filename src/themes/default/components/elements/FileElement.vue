@@ -5,6 +5,7 @@
 
       <!-- Upload button -->
       <a
+        v-if="!embed"
         href=""
         :class="classes.uploaderButton"
         @click.prevent="handleClick"
@@ -12,6 +13,7 @@
       
       <!-- Invisible input field -->
       <input
+        v-if="!embed"
         v-show="false"
         type="file"
         :disabled="disabled"
@@ -20,7 +22,12 @@
       />
 
       <!-- Preview -->
-      <div class="preview">
+      <div v-if="isImage" class="preview">
+        <a :href="link" v-if="uploaded" target="_blank"><img :src="preview" /> {{ filename }}</a>
+        <span v-else><img :src="preview" /> {{ filename }}</span>
+        
+      </div>
+      <div v-else class="preview">
         <a :href="link" v-if="uploaded" target="_blank">{{ filename }}</a>
         <span v-else-if="filename">{{ filename }}</span>
       </div>

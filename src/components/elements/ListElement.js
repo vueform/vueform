@@ -52,6 +52,8 @@ export default {
       
       sortableInstance: null,
 
+      defaultInitial: 1,
+
       /**
        * Helper property used to store available events for the element.
        * 
@@ -148,11 +150,11 @@ export default {
     */
     initial: {
       get() {
-        if (this.default && this.default.length > (this.schema.initial || 1)) {
+        if (this.default && this.default.length > (this.schema.initial || this.defaultInitial)) {
           return this.default.length
         }
 
-        return this.schema.initial !== undefined ? this.schema.initial : 1
+        return this.schema.initial !== undefined ? this.schema.initial : this.defaultInitial
       },
       set(value) {
         this.$set(this.schema, 'initial', value)
@@ -435,10 +437,15 @@ export default {
         data = null
       }
 
-      var index = this.next
+      // Key is used for v-for :key
+      let key = this.next
+
+      // Index is the index of new element
+      // in the array and also its :name
+      let index = this.instances.length
 
       var schema = Object.assign({}, _.cloneDeep(this.prototype), {
-        key: index,
+        key,
       })
 
       // adding order data if it should be stored

@@ -59,7 +59,8 @@ export default {
      * @type {boolean}
      */
     busy() {
-      return this.pending || this.debouncing
+      return _.some(this.children$, { available: true, busy: true })
+        || this.pending || this.debouncing
     },
 
     /**
