@@ -720,11 +720,11 @@ export default {
      */
     update(value, triggerChange, validate) {
       if (triggerChange === undefined) {
-        let validate = false
+        triggerChange = false
       }
 
       if (validate === undefined) {
-        let validate = false
+        validate = false
       }
 
       this.$set(this, 'value', value)

@@ -277,7 +277,7 @@ export default {
     },
 
     /**
-     * Validates all unvalidated elements and if everything is fine marks all steps as complete and initiates submission. If the form is invalid it will jump to the first step which has invalid elements.
+     * Validates all elements and if everything is fine marks all steps as complete and initiates submission. If the form is invalid it will jump to the first step which has invalid elements.
      *
      * @public
      * @param {function} callback callback to call when the form is ready to submit

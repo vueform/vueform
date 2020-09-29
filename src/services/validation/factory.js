@@ -35,17 +35,20 @@ const Factory = class {
   }
 
   createRule(inlineRule) {
-    return class extends Validator {
-      get defaultMessage() {
-        let message = inlineRule(this.element$.value, this.form$, this)
+    return inlineRule
+    // return class extends Validator {
+    //   get defaultMessage() {
+    //     return new Promise(async (resolve, reject) => {
+    //       let message = await inlineRule(this.element$.value, this.form$, this)
 
-        return message === true ? '' : message
-      }
+    //       resolve(message === true ? '' : message)
+    //     })
+    //   }
 
-      check() {
-        return inlineRule(this.element$.value, this.form$, this) === true
-      }
-    }
+    //   async check() {
+    //     return await inlineRule(this.element$.value, this.form$, this) === true
+    //   }
+    // }
   }
 
   parseRules(rules) {

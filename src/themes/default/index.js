@@ -59,6 +59,7 @@ import TTextElement from './components/elements/TTextElement'
 import TTrixElement from './components/elements/TTrixElement'
 
 import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
+import FileSlotProgress from './components/elements/slots/FileSlotProgress'
 import MultiselectSlotNoOptions from './components/elements/slots/MultiselectSlotNoOptions'
 import MultiselectSlotNoResult from './components/elements/slots/MultiselectSlotNoResult'
 import MultiselectSlotOption from './components/elements/slots/MultiselectSlotOption'
@@ -101,6 +102,7 @@ const components = {
 
   // Element slots
   CheckboxgroupSlotCheckbox,
+  FileSlotProgress,
   MultiselectSlotNoOptions,
   MultiselectSlotNoResult,
   MultiselectSlotOption,

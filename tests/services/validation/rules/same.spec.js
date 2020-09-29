@@ -76,19 +76,21 @@ describe('Same Rule', () => {
 
       expect(b.vm.invalid).toBe(true)
 
-      a.get('input').setValue('bbb')
-
-      LocalVue.nextTick(() => {
-        expect(b.vm.invalid).toBe(false)
-
-        a.get('input').setValue('aaa')
+      setTimeout(() => {
+        a.get('input').setValue('bbb')
 
         LocalVue.nextTick(() => {
-          expect(b.vm.invalid).toBe(true)
+          expect(b.vm.invalid).toBe(false)
 
-          done()
+          a.get('input').setValue('aaa')
+
+          LocalVue.nextTick(() => {
+            expect(b.vm.invalid).toBe(true)
+
+            done()
+          })
         })
-      })
+      }, 1)
     })
   })
 })

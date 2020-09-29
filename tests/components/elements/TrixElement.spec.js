@@ -471,30 +471,30 @@ describe('Trix Element Model', () => {
 })
 
 describe('Trix Element Events', () => {
-  it('should fire `alert` event on `handleAlert`', (done) => {
+  it('should fire `error` event on `handleError`', (done) => {
     const LocalVue = createLocalVue()
 
     LocalVue.config.errorHandler = done
 
-    let alertMock = jest.fn(() => {})
+    let errorMock = jest.fn(() => {})
 
     let form = createTrix({
       schema: {
         a: {
           type: 'trix',
-          onAlert: alertMock
+          onError: errorMock
         }
       }
     })
 
     let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
     
-    expect(alertMock.mock.calls.length).toBe(0)
+    expect(errorMock.mock.calls.length).toBe(0)
 
-    a.vm.handleAlert('aaa')
+    a.vm.handleError('aaa')
 
-    expect(alertMock.mock.calls.length).toBe(1)
-    expect(alertMock.mock.calls[0][0]).toBe('aaa')
+    expect(errorMock.mock.calls.length).toBe(1)
+    expect(errorMock.mock.calls[0][0]).toBe('aaa')
 
     done()
   })

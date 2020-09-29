@@ -14,7 +14,7 @@
         :disabled="disabled"
         :class="{[classes.trixDisabled]: disabled}"
         @change="handleChange"
-        @alert="handleAlert"
+        @alert="handleError"
         ref="trix$"
       />
 

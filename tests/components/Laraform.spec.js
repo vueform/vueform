@@ -4,6 +4,9 @@ import { Laraform } from './../../src/index'
 import { mergeComponentClasses } from './../../src/utils/mergeClasses'
 import defaultTheme from './../../src/themes/default'
 import bootstrapTheme from './../../src/themes/bootstrap'
+import flushPromises from 'flush-promises'
+
+const Vue = createLocalVue()
 
 jest.mock("axios", () => ({
   get: () => Promise.resolve({ data: 'value' }),
@@ -39,7 +42,7 @@ describe('Laraform Props & Data', () => {
   it('should set class from `class` form prop', () => {
     let form = createForm({}, {
       propsData: {
-        form: {
+      form: {
           class: 'a'
         }
       }
@@ -53,7 +56,7 @@ describe('Laraform Props & Data', () => {
       class: 'a'
     }, {
       propsData: {
-        form: {
+      form: {
           class: 'b'
         }
       }
@@ -63,11 +66,7 @@ describe('Laraform Props & Data', () => {
     expect(form.classes()).not.toContain('b')
   })
 
-  it('should retrieve element VMs in elements$ once the form is rendered', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should retrieve element VMs in elements$ once the form is rendered', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -77,11 +76,9 @@ describe('Laraform Props & Data', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.elements$.a.label).toBe('A')
+    await Vue.nextTick()
 
-      done()
-    })
+    expect(form.vm.elements$.a.label).toBe('A')
   })
   
   it('should select theme what is defined in config', () => {
@@ -109,7 +106,7 @@ describe('Laraform Props & Data', () => {
         theme: 'default'
       },
       propsData: {
-        form: {
+      form: {
           theme: 'bootstrap'
         }
       }
@@ -133,7 +130,7 @@ describe('Laraform Props & Data', () => {
       }
     }, {
       propsData: {
-        form: {
+      form: {
           theme: 'default'
         }
       }
@@ -182,7 +179,7 @@ describe('Laraform Props & Data', () => {
       },
       classes: {
         Laraform: {
-          form: 'class-a'
+        form: 'class-a'
         },
         BaseElementLayout: {
           container: 'class-b'
@@ -279,7 +276,7 @@ describe('Laraform Props & Data', () => {
         columns: 11,
         validateOn: 'other',
         labels: 2,
-        formErrors: 2,
+      formErrors: 2,
         method: 'patch',
         locale: 'ru',
         languages: {
@@ -318,7 +315,7 @@ describe('Laraform Props & Data', () => {
       columns: 10,
       validateOn: 'submit',
       labels: 3,
-      formErrors: 3,
+    formErrors: 3,
       method: 'put',
       locale: 'de',
       languages: {
@@ -335,7 +332,7 @@ describe('Laraform Props & Data', () => {
         columns: 11,
         validateOn: 'other',
         labels: 2,
-        formErrors: 2,
+      formErrors: 2,
         method: 'patch',
         locale: 'ru',
         languages: {
@@ -372,7 +369,7 @@ describe('Laraform Props & Data', () => {
       },
     }, {
       propsData: {
-        form: {
+      form: {
           key: 'aaa',
           class: 'form-class',
           multilingual: 2,
@@ -382,7 +379,7 @@ describe('Laraform Props & Data', () => {
           columns: 11,
           validateOn: 'other',
           labels: 2,
-          formErrors: 2,
+        formErrors: 2,
           method: 'patch',
           locale: 'ru',
           languages: {
@@ -429,7 +426,7 @@ describe('Laraform Props & Data', () => {
       columns: 10,
       validateOn: 'submit',
       labels: 3,
-      formErrors: 3,
+    formErrors: 3,
       method: 'put',
       locale: 'de',
       languages: {
@@ -441,7 +438,7 @@ describe('Laraform Props & Data', () => {
       language: 'de',
     }, {
       propsData: {
-        form: {
+      form: {
           key: 'aaa',
           class: 'form-class',
           multilingual: 2,
@@ -451,7 +448,7 @@ describe('Laraform Props & Data', () => {
           columns: 11,
           validateOn: 'other',
           labels: 2,
-          formErrors: 2,
+        formErrors: 2,
           method: 'patch',
           locale: 'ru',
           languages: {
@@ -523,7 +520,7 @@ describe('Laraform Props & Data', () => {
       }
     }, {
       propsData: {
-        form: {
+      form: {
           schema: {
             a: {
               type: 'text',
@@ -681,11 +678,7 @@ describe('Laraform Computed', () => {
     expect(form.vm.formData instanceof FormData).toBe(true)
   })
 
-  it('should be `dirty` if any element is dirty', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `dirty` if any element is dirty', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -699,21 +692,16 @@ describe('Laraform Computed', () => {
 
     expect(form.vm.dirty).toBe(false)
 
-    LocalVue.nextTick(() => {
-      form.findAllComponents({ name: 'TextElement' }).at(0).get('input').setValue('aaa')
+    await Vue.nextTick()
+
+    form.findAllComponents({ name: 'TextElement' }).at(0).get('input').setValue('aaa')
       
-      LocalVue.nextTick(() => {
-        expect(form.vm.dirty).toBe(true)
-        done()
-      })
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.dirty).toBe(true)
   })
 
-  it('should be `invalid` if any element is invalid', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `invalid` if any element is invalid', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -728,21 +716,16 @@ describe('Laraform Computed', () => {
 
     expect(form.vm.invalid).toBe(false)
 
-    LocalVue.nextTick(() => {
-      form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+    await Vue.nextTick()
+
+    form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
       
-      LocalVue.nextTick(() => {
-        expect(form.vm.invalid).toBe(true)
-        done()
-      })
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.invalid).toBe(true)
   })
 
-  it('should be `debouncing` & `busy` if any element is debouncing', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `debouncing` & `busy` if any element is debouncing', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -758,22 +741,17 @@ describe('Laraform Computed', () => {
     expect(form.vm.debouncing).toBe(false)
     expect(form.vm.busy).toBe(false)
 
-    LocalVue.nextTick(() => {
-      form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+    await Vue.nextTick()
+
+    form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
       
-      LocalVue.nextTick(() => {
-        expect(form.vm.debouncing).toBe(true)
-        expect(form.vm.busy).toBe(true)
-        done()
-      })
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.debouncing).toBe(true)
+    expect(form.vm.busy).toBe(true)
   })
 
-  it('should be `pending`, `busy` & `disabled` if any element is pending', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `pending`, `busy` & `disabled` if any element is pending', () => {
     let form = createForm({
       schema: {
         a: {
@@ -790,23 +768,14 @@ describe('Laraform Computed', () => {
     expect(form.vm.busy).toBe(false)
     expect(form.vm.disabled).toBe(false)
 
-    LocalVue.nextTick(() => {
-      form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
-      
-      LocalVue.nextTick(() => {
-        expect(form.vm.pending).toBe(true)
-        expect(form.vm.busy).toBe(true)
-        expect(form.vm.disabled).toBe(true)
-        done()
-      })
-    })
+    form.vm.validate()
+
+    expect(form.vm.pending).toBe(true)
+    expect(form.vm.busy).toBe(true)
+    expect(form.vm.disabled).toBe(true)
   })
 
-  it('should be `validated` only if all elements are validated', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `validated` only if all elements are validated', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -821,24 +790,21 @@ describe('Laraform Computed', () => {
 
     expect(form.vm.validated).toBe(false)
 
-    LocalVue.nextTick(() => {
-      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    await Vue.nextTick()
 
-      a.get('input').setValue('aaa')
-      a.vm.validate()
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+    a.get('input').setValue('aaa')
+    a.vm.validate()
+
+    await flushPromises()
       
-      LocalVue.nextTick(() => {
-        expect(form.vm.validated).toBe(true)
-        done()
-      })
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.validated).toBe(true)
   })
 
-  it('should be `pending`, `busy` & `disabled` if any element is pending', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `pending`, `busy` & `disabled` if any element is pending', () => {
     let form = createForm({
       schema: {
         a: {
@@ -855,23 +821,14 @@ describe('Laraform Computed', () => {
     expect(form.vm.busy).toBe(false)
     expect(form.vm.disabled).toBe(false)
 
-    LocalVue.nextTick(() => {
-      form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
-      
-      LocalVue.nextTick(() => {
-        expect(form.vm.pending).toBe(true)
-        expect(form.vm.busy).toBe(true)
-        expect(form.vm.disabled).toBe(true)
-        done()
-      })
-    })
+    form.vm.validate()
+
+    expect(form.vm.pending).toBe(true)
+    expect(form.vm.busy).toBe(true)
+    expect(form.vm.disabled).toBe(true)
   })
 
-  it('should collect element errors in `errors`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should collect element errors in `errors`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -886,24 +843,20 @@ describe('Laraform Computed', () => {
 
     expect(form.vm.errors.length).toBe(0)
 
-    LocalVue.nextTick(() => {
-      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    await Vue.nextTick()
 
-      a.vm.validate()
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+    a.vm.validate()
       
-      LocalVue.nextTick(() => {
-        expect(form.vm.errors.length).toBe(1)
-        done()
-      })
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.errors.length).toBe(1)
   })
 
-  it('should be `disabled` when submitting', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `disabled` when submitting', () => {
     let form = createForm({
+      method: 'success',
       schema: {
         a: {
           type: 'text',
@@ -916,19 +869,12 @@ describe('Laraform Computed', () => {
 
     expect(form.vm.disabled).toBe(false)
 
-    LocalVue.nextTick(() => {
-      form.vm.submit()
+    form.vm.submitting = true
 
-      expect(form.vm.disabled).toBe(true)
-      done()
-    })
+    expect(form.vm.disabled).toBe(true)
   })
 
-  it('should be `disabled` if invalid & validateOn change is included', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `disabled` if invalid & validateOn change is included', async () => {
     let form = createForm({
       validateOn: 'change|submit',
       schema: {
@@ -944,21 +890,16 @@ describe('Laraform Computed', () => {
 
     expect(form.vm.disabled).toBe(false)
 
-    LocalVue.nextTick(() => {
-      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    await Vue.nextTick()
 
-      a.vm.validate()
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+    a.vm.validate()
       
-      expect(form.vm.disabled).toBe(true)
-      done()
-    })
+    expect(form.vm.disabled).toBe(true)
   })
 
-  it('should be not `disabled` if invalid & validateOn change is excluded', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be not `disabled` if invalid & validateOn change is excluded', async () => {
     let form = createForm({
       validateOn: 'submit',
       schema: {
@@ -974,21 +915,16 @@ describe('Laraform Computed', () => {
 
     expect(form.vm.disabled).toBe(false)
 
-    LocalVue.nextTick(() => {
-      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    await Vue.nextTick()
 
-      a.vm.validate()
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+
+    a.vm.validate()
       
-      expect(form.vm.disabled).toBe(false)
-      done()
-    })
+    expect(form.vm.disabled).toBe(false)
   })
 
-  it('should have `selectedLocale` equal to vue-i18n\'s locale if installed', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should have `selectedLocale` equal to vue-i18n\'s locale if installed', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1003,17 +939,12 @@ describe('Laraform Computed', () => {
       vueI18nLocale: 'rr',
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.selectedLocale).toBe('rr')
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.selectedLocale).toBe('rr')
   })
 
-  it('should have `selectedLocale` equal to `locale` if defined', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should have `selectedLocale` equal to `locale` if defined', async () => {
     let form = createForm({
       locale: 'c',
       schema: {
@@ -1029,23 +960,18 @@ describe('Laraform Computed', () => {
         locale: 'a'
       },
       propsData: {
-        form: {
+      form: {
           locale: 'b'
         }
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.selectedLocale).toBe('c')
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.selectedLocale).toBe('c')
   })
 
-  it('should have `selectedLocale` equal to form prop\'s `locale` if defined', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should have `selectedLocale` equal to form prop\'s `locale` if defined', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1060,23 +986,18 @@ describe('Laraform Computed', () => {
         locale: 'a'
       },
       propsData: {
-        form: {
+      form: {
           locale: 'b'
         }
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.selectedLocale).toBe('b')
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.selectedLocale).toBe('b')
   })
 
-  it('should have `selectedLocale` equal to config `locale` if nothing else defined', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should have `selectedLocale` equal to config `locale` if nothing else defined', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1092,10 +1013,9 @@ describe('Laraform Computed', () => {
       },
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.selectedLocale).toBe('a')
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.selectedLocale).toBe('a')
   })
 })
 
@@ -1143,7 +1063,7 @@ describe('Laraform Methods', () => {
     expect(proceedMock.mock.calls.length).toBe(0)
   })
 
-  it('should validate elements on submit if validateOn submit is included', () => {
+  it('should validate elements on submit if validateOn submit is included', async () => {
     let form = createForm({
       validateOn: 'submit',
       schema: {
@@ -1159,6 +1079,8 @@ describe('Laraform Methods', () => {
     expect(a.vm.validated).toBe(false)
 
     form.vm.submit()
+
+    await flushPromises()
 
     expect(a.vm.validated).toBe(true)
   })
@@ -1183,7 +1105,7 @@ describe('Laraform Methods', () => {
     expect(a.vm.validated).toBe(false)
   })
 
-  it('should call send on submit', () => {
+  it('should call send on submit', async () => {
     const { LocalVue, config } = installLaraform()
 
     let sendMock = jest.fn(() => {})
@@ -1217,6 +1139,8 @@ describe('Laraform Methods', () => {
     })
     
     form.vm.submit()
+
+    await flushPromises()
 
     expect(sendMock.mock.calls.length).toBe(1)
   })
@@ -1417,11 +1341,7 @@ describe('Laraform Methods', () => {
     expect(a.vm.validated).toBe(false)
   })
 
-  it('should return element with `el$`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return element with `el$`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1430,17 +1350,12 @@ describe('Laraform Methods', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.el$('a').name).toBe('a')
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.el$('a').name).toBe('a')
   })
 
-  it('should return element in object with `el$`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return element in object with `el$`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1454,17 +1369,12 @@ describe('Laraform Methods', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.el$('a.b').name).toBe('b')
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.el$('a.b').name).toBe('b')
   })
 
-  it('should return element in group with `el$`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return element in group with `el$`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1478,17 +1388,12 @@ describe('Laraform Methods', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.el$('a.b').name).toBe('b')
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.el$('a.b').name).toBe('b')
   })
 
-  it('should return element in element list with `el$`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return element in element list with `el$`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1502,17 +1407,12 @@ describe('Laraform Methods', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.el$('a.0').label).toBe('b')
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.el$('a.0').label).toBe('b')
   })
 
-  it('should return element in object list with `el$`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return element in object list with `el$`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1529,17 +1429,12 @@ describe('Laraform Methods', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.el$('a.0.b').name).toBe('b')
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.el$('a.0.b').name).toBe('b')
   })
 
-  it('should return null for `el$` if element can\'t be found', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return null for `el$` if element can\'t be found', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1548,18 +1443,13 @@ describe('Laraform Methods', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.el$('b')).toBe(null)
-      expect(form.vm.el$('a.b')).toBe(null)
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.el$('b')).toBe(null)
+    expect(form.vm.el$('a.b')).toBe(null)
   })
 
-  it('should return return `siblings$` of element', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return return `siblings$` of element', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1574,17 +1464,12 @@ describe('Laraform Methods', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(_.keys(form.vm.siblings$('b'))).toStrictEqual(['a', 'b', 'c'])
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(_.keys(form.vm.siblings$('b'))).toStrictEqual(['a', 'b', 'c'])
   })
 
-  it('should return return `siblings$` of element in object', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return return `siblings$` of element in object', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1604,17 +1489,12 @@ describe('Laraform Methods', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(_.keys(form.vm.siblings$('a.c'))).toStrictEqual(['b', 'c', 'd'])
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(_.keys(form.vm.siblings$('a.c'))).toStrictEqual(['b', 'c', 'd'])
   })
 
-  it('should return return `siblings$` of element in group', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return return `siblings$` of element in group', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1634,17 +1514,12 @@ describe('Laraform Methods', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(_.keys(form.vm.siblings$('a.c'))).toStrictEqual(['b', 'c', 'd'])
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(_.keys(form.vm.siblings$('a.c'))).toStrictEqual(['b', 'c', 'd'])
   })
 
-  it('should return return `siblings$` of element in element list', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return return `siblings$` of element in element list', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1657,17 +1532,12 @@ describe('Laraform Methods', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(_.keys(form.vm.siblings$('a.1'))).toStrictEqual(['0','1','2'])
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(_.keys(form.vm.siblings$('a.1'))).toStrictEqual(['0','1','2'])
   })
 
-  it('should return return `siblings$` of element in object list', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return return `siblings$` of element in object list', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1690,18 +1560,13 @@ describe('Laraform Methods', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(_.keys(form.vm.siblings$('a.1'))).toStrictEqual(['0','1','2'])
-      expect(_.keys(form.vm.siblings$('a.1.c'))).toStrictEqual(['b', 'c', 'd'])
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(_.keys(form.vm.siblings$('a.1'))).toStrictEqual(['0','1','2'])
+    expect(_.keys(form.vm.siblings$('a.1.c'))).toStrictEqual(['b', 'c', 'd'])
   })
 
-  it('should update data if payload contains updates', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-    
+  it('should update data if payload contains updates', async () => {    
     let form = createForm({
       method: 'update', // fake axios method for testing
       schema: {
@@ -1713,19 +1578,16 @@ describe('Laraform Methods', () => {
 
     form.vm.submit()
 
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
-      expect(form.findComponent({ name: 'TextElement' }).vm.value).toBe('aaa')
-      done()
-    })
-    })
+    await flushPromises()
+
+    await Vue.nextTick()
+
+    await Vue.nextTick()
+
+    expect(form.findComponent({ name: 'TextElement' }).vm.value).toBe('aaa')
   })
 
-  it('should proceed with callback once form exits busy state', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should proceed with callback once form exits busy state', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1739,31 +1601,27 @@ describe('Laraform Methods', () => {
 
     expect(form.vm.busy).toBe(false)
 
-    LocalVue.nextTick(() => {
-      form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
-      expect(form.vm.busy).toBe(true)
+    await Vue.nextTick()
 
-      form.vm.proceed(proceedCallbackMock)
-      expect(proceedCallbackMock.mock.calls.length).toBe(0)
+    form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+    expect(form.vm.busy).toBe(true)
+
+    form.vm.proceed(proceedCallbackMock)
+    expect(proceedCallbackMock.mock.calls.length).toBe(0)
       
-      LocalVue.nextTick(() => {
-      LocalVue.nextTick(() => {
-      LocalVue.nextTick(() => {
-        expect(form.vm.busy).toBe(false)
-        expect(proceedCallbackMock.mock.calls.length).toBe(1)
+    await Vue.nextTick()
 
-        done()
-      })
-      })
-      })
-    })
+    await Vue.nextTick()
+
+    await Vue.nextTick()
+
+    expect(form.vm.busy).toBe(false)
+    expect(proceedCallbackMock.mock.calls.length).toBe(1)
   })
 })
 
 describe('Laraform Vuex', () => {
-  it('should update Vuex store data when form data changes', () => {
-    const LocalVue = createLocalVue()
-
+  it('should update Vuex store data when form data changes', async () => {
     let form = createForm({
       storePath: 'form',
       schema: {
@@ -1788,38 +1646,37 @@ describe('Laraform Vuex', () => {
       storePath: 'form'
     }, {
       vuex: {
-        form: {}
+      form: {}
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.$store.state.form.a).toBe(1)
-      expect(form.vm.$store.state.form.b.c).toBe(2)
-      expect(form.vm.$store.state.form.b.d).toBe(3)
+    await Vue.nextTick()
 
-      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-      expect(a.vm.name).toBe('a')
+    expect(form.vm.$store.state.form.a).toBe(1)
+    expect(form.vm.$store.state.form.b.c).toBe(2)
+    expect(form.vm.$store.state.form.b.d).toBe(3)
 
-      let c = form.findAllComponents({ name: 'TextElement' }).at(1)
-      expect(c.vm.name).toBe('c')
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    expect(a.vm.name).toBe('a')
 
-      let d = form.findAllComponents({ name: 'TextElement' }).at(2)
-      expect(d.vm.name).toBe('d')
+    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    expect(c.vm.name).toBe('c')
 
-      a.get('input').setValue('aaa')
-      c.get('input').setValue('ccc')
-      d.get('input').setValue('ddd')
+    let d = form.findAllComponents({ name: 'TextElement' }).at(2)
+    expect(d.vm.name).toBe('d')
 
-      LocalVue.nextTick(() => {
-        expect(form.vm.$store.state.form.a).toBe('aaa')
-        expect(form.vm.$store.state.form.b.c).toBe('ccc')
-        expect(form.vm.$store.state.form.b.d).toBe('ddd')
-      })
-    })
+    a.get('input').setValue('aaa')
+    c.get('input').setValue('ccc')
+    d.get('input').setValue('ddd')
+
+    await Vue.nextTick()
+
+    expect(form.vm.$store.state.form.a).toBe('aaa')
+    expect(form.vm.$store.state.form.b.c).toBe('ccc')
+    expect(form.vm.$store.state.form.b.d).toBe('ddd')
   })
-  it('should update Vuex store data natively when form data changes & store is not registered to Laraform', () => {
-    const LocalVue = createLocalVue()
 
+  it('should update Vuex store data natively when form data changes & store is not registered to Laraform', async () => {
     let form = createForm({
       storePath: 'form',
       schema: {
@@ -1844,40 +1701,38 @@ describe('Laraform Vuex', () => {
       storePath: 'form'
     }, {
       vuex: {
-        form: {}
+      form: {}
       },
       laraformStore: false
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.$store.state.form.a).toBe(1)
-      expect(form.vm.$store.state.form.b.c).toBe(2)
-      expect(form.vm.$store.state.form.b.d).toBe(3)
+    await Vue.nextTick()
 
-      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-      expect(a.vm.name).toBe('a')
+    expect(form.vm.$store.state.form.a).toBe(1)
+    expect(form.vm.$store.state.form.b.c).toBe(2)
+    expect(form.vm.$store.state.form.b.d).toBe(3)
 
-      let c = form.findAllComponents({ name: 'TextElement' }).at(1)
-      expect(c.vm.name).toBe('c')
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    expect(a.vm.name).toBe('a')
 
-      let d = form.findAllComponents({ name: 'TextElement' }).at(2)
-      expect(d.vm.name).toBe('d')
+    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    expect(c.vm.name).toBe('c')
 
-      a.get('input').setValue('aaa')
-      c.get('input').setValue('ccc')
-      d.get('input').setValue('ddd')
+    let d = form.findAllComponents({ name: 'TextElement' }).at(2)
+    expect(d.vm.name).toBe('d')
 
-      LocalVue.nextTick(() => {
-        expect(form.vm.$store.state.form.a).toBe('aaa')
-        expect(form.vm.$store.state.form.b.c).toBe('ccc')
-        expect(form.vm.$store.state.form.b.d).toBe('ddd')
-      })
-    })
+    a.get('input').setValue('aaa')
+    c.get('input').setValue('ccc')
+    d.get('input').setValue('ddd')
+
+    await Vue.nextTick()
+
+    expect(form.vm.$store.state.form.a).toBe('aaa')
+    expect(form.vm.$store.state.form.b.c).toBe('ccc')
+    expect(form.vm.$store.state.form.b.d).toBe('ddd')
   })
 
-  it('should update form data when Vuex store data changes', () => {
-    const LocalVue = createLocalVue()
-
+  it('should update form data when Vuex store data changes', async () => {
     let form = createForm({
       storePath: 'form',
       schema: {
@@ -1902,42 +1757,40 @@ describe('Laraform Vuex', () => {
       storePath: 'form'
     }, {
       vuex: {
-        form: {}
+      form: {}
       }
     })
 
-    LocalVue.nextTick(() => {
-      let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-      expect(a.vm.name).toBe('a')
+    await Vue.nextTick()
 
-      let c = form.findAllComponents({ name: 'TextElement' }).at(1)
-      expect(c.vm.name).toBe('c')
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    expect(a.vm.name).toBe('a')
 
-      let d = form.findAllComponents({ name: 'TextElement' }).at(2)
-      expect(d.vm.name).toBe('d')
+    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    expect(c.vm.name).toBe('c')
 
-      expect(a.vm.value).toBe(1)
-      expect(c.vm.value).toBe(2)
-      expect(d.vm.value).toBe(3)
+    let d = form.findAllComponents({ name: 'TextElement' }).at(2)
+    expect(d.vm.name).toBe('d')
 
-      form.vm.$store.state.form.a = 'aaa'
-      form.vm.$store.state.form.b.c = 'ccc'
-      form.vm.$store.state.form.b.d = 'ddd'
+    expect(a.vm.value).toBe(1)
+    expect(c.vm.value).toBe(2)
+    expect(d.vm.value).toBe(3)
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.value).toBe('aaa')
-        expect(c.vm.value).toBe('ccc')
-        expect(d.vm.value).toBe('ddd')
-      })
-    })
+    form.vm.$store.state.form.a = 'aaa'
+    form.vm.$store.state.form.b.c = 'ccc'
+    form.vm.$store.state.form.b.d = 'ddd'
+
+    await Vue.nextTick()
+
+    expect(a.vm.value).toBe('aaa')
+    expect(c.vm.value).toBe('ccc')
+    expect(d.vm.value).toBe('ddd')
   })
 })
 
 describe('Laraform Elements', () => {
   it('should register new element', () => {
-    const LocalVue = createLocalVue()
-
-    let CustomElement = LocalVue.extend({
+    let CustomElement = Vue.extend({
       name: 'CustomElement',
       render(h) {
         return h('div', 'Custom Element')
@@ -1959,9 +1812,7 @@ describe('Laraform Elements', () => {
   })
 
   it('should overwrite existing element', () => {
-    const LocalVue = createLocalVue()
-
-    let TextElement = LocalVue.extend({
+    let TextElement = Vue.extend({
       name: 'TextElement',
       render(h) {
         return h('div', 'Text Element')
@@ -2004,9 +1855,7 @@ describe('Laraform Components', () => {
   })
 
   it('should overwrite existing component', () => {
-    const LocalVue = createLocalVue()
-
-    let BaseElementLayout = LocalVue.extend({
+    let BaseElementLayout = Vue.extend({
       name: 'BaseElementLayout',
       render(h) {
         return h('div', 'Base Layout')
@@ -2029,11 +1878,7 @@ describe('Laraform Components', () => {
 })
 
 describe('Laraform Events', () => {
-  it('should trigger `change` event when data changes', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-    
+  it('should trigger `change` event when data changes', async () => {    
     let form = createForm({
       schema: {
         a: {
@@ -2052,17 +1897,12 @@ describe('Laraform Events', () => {
 
     a.get('input').setValue('aaa')
 
-    LocalVue.nextTick(() => {
-      expect(changeMock.mock.calls.length).toBe(1)
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(changeMock.mock.calls.length).toBe(1)
   })
 
-  it('should trigger `submit` event when submitted', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-    
+  it('should trigger `submit` event when submitted', async () => {    
     let form = createForm({
       schema: {
         a: {
@@ -2079,17 +1919,12 @@ describe('Laraform Events', () => {
 
     form.vm.submit()
 
-    LocalVue.nextTick(() => {
-      expect(submitMock.mock.calls.length).toBe(1)
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(submitMock.mock.calls.length).toBe(1)
   })
 
-  it('should trigger `success` event on successful response', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-    
+  it('should trigger `success` event on successful response', async () => {    
     let form = createForm({
       method: 'success', // fake axios method for testing
       schema: {
@@ -2105,21 +1940,14 @@ describe('Laraform Events', () => {
 
     expect(successMock.mock.calls.length).toBe(0)
 
-    form.vm.submit()
+    form.vm.send()
 
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
-      expect(successMock.mock.calls.length).toBe(1)
-      done()
-    })
-    })
+    await Vue.nextTick()
+
+    expect(successMock.mock.calls.length).toBe(1)
   })
 
-  it('should trigger `error` event on failed response', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-    
+  it('should trigger `error` event on failed response', async () => {    
     let form = createForm({
       method: 'error', // fake axios method for testing
       schema: {
@@ -2135,23 +1963,17 @@ describe('Laraform Events', () => {
 
     expect(errorMock.mock.calls.length).toBe(0)
 
-    form.vm.submit()
+    try {
+      form.vm.send()
+    }
+    finally {
+      await Vue.nextTick()
 
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
       expect(errorMock.mock.calls.length).toBe(1)
-      done()
-    })
-    })
-    })
+    }
   })
 
-  it('should trigger `language` when language is changed', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-    
+  it('should trigger `language` when language is changed', async () => {    
     let form = createForm({
       multilingual: true,
       language: 'en',
@@ -2185,15 +2007,9 @@ describe('Laraform Events', () => {
     expect(form.vm.language).toBe('de')
     
     expect(languageMock.mock.calls.length).toBe(1)
-
-    done()
   })
 
-  it('should trigger `reset` when form is resetted', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-    
+  it('should trigger `reset` when form is resetted', () => {    
     let form = createForm({
       schema: {
         a: {
@@ -2211,15 +2027,9 @@ describe('Laraform Events', () => {
     form.vm.reset()
     
     expect(resetMock.mock.calls.length).toBe(1)
-
-    done()
   })
 
-  it('should trigger `clear` when form is cleared', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-    
+  it('should trigger `clear` when form is cleared', () => {    
     let form = createForm({
       schema: {
         a: {
@@ -2237,17 +2047,11 @@ describe('Laraform Events', () => {
     form.vm.clear()
     
     expect(clearMock.mock.calls.length).toBe(1)
-
-    done()
   })
 })
 
 describe('Laraform Dynamics', () => {
-  it('should update elements$ when schema changes', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-    
+  it('should update elements$ when schema changes', async () => {    
     let form = createForm({
       schema: {
         a: {
@@ -2267,12 +2071,10 @@ describe('Laraform Dynamics', () => {
       },
     })
 
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
-      expect(_.keys(form.vm.elements$).length).toBe(2)
-      
-      done()
-    })
-    })
+    await Vue.nextTick()
+
+    await Vue.nextTick()
+
+    expect(_.keys(form.vm.elements$).length).toBe(2)
   })
 })

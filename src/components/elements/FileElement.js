@@ -1,11 +1,11 @@
 import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
-import HasFileDrop from './../../mixins/HasFileDrop'
 import CanBeDisabled from './../../mixins/CanBeDisabled'
+import asyncForEach from './../../utils/asyncForEach'
 
 export default {
   name: 'FileElement',
-  mixins: [BaseElement, BaseValidation, HasFileDrop, CanBeDisabled],
+  mixins: [BaseElement, BaseValidation, CanBeDisabled],
   props: {
     /**
      * The element schema containing it's options.
@@ -63,8 +63,12 @@ export default {
         description: null,
         error: null,
 
-        preview: null,
+        progress: this.theme.components.FileSlotProgress,
       },
+
+      skipSlots: [
+        'progress'
+      ],
       
       /**
        * Helper property used to store available events for the element.
@@ -113,7 +117,21 @@ export default {
   computed: {
     url: {
       get() {
-        return this.schema.url !== undefined ? this.schema.url : '/'
+        if (this.schema.url === undefined) {
+          return '/'
+        }
+
+        let url = this.schema.url
+
+        if (!url.match(/\/$/)) {
+          url += '/'
+        }
+
+        if (!url.match(/^http/) && !url.match(/^\//)) {
+          url = '/' + url
+        }
+
+        return url
       },
       set(value) {
         this.$set(this.schema, 'url', value)
@@ -138,41 +156,6 @@ export default {
       },
     },
 
-    link() {
-      if (!this.uploaded && this.clickable) {
-        return
-      }
-
-      return this.url + this.value
-    },
-
-    preview() {
-      if (!this.isImage) {
-        return
-      }
-
-      return this.uploaded ? this.link : this.base64
-    },
-
-    filename() {
-      switch(this.stage) {
-        case 1:
-          return this.file ? this.file.name : null
-          break
-
-        case 2:
-          return this.value.originalName
-          break
-
-        case 3:
-          return this.value
-          break
-
-        default:
-          return null
-      }
-    },
-
     stage() {
       if (this.value === null) {
         return 0 // file not selected
@@ -190,15 +173,48 @@ export default {
         return 3 // file uploaded
       }
 
-      return 'unknown'
+      throw new Error('Unkown file upload stage')
+    },
+
+    filename() {
+      switch(this.stage) {
+        case 1:
+          return this.value.name
+
+        case 2:
+          return this.value.originalName
+
+        case 3:
+          return this.value
+
+        default:
+          return null
+      }
+    },
+
+    link() {
+      if (!this.uploaded || !this.clickable) {
+        return
+      }
+
+      return this.url + this.filename
+    },
+
+    uploading() {
+      return this.request !== null
     },
 
     uploaded() {
       return this.stage === 3
     },
 
-    uploading() {
-      return this.request !== null
+    /**
+     * Whether the element is `pending`, `debouncing` or `uploading`.
+     * 
+     * @type {boolean}
+     */
+    busy() {
+      return this.pending || this.debouncing || this.uploading
     },
 
     /**
@@ -208,34 +224,23 @@ export default {
      * @ignore
      */
     genericName() {
-      if (this.label) {
+      if (this.embed && this.filename) {
+        return this.filename
+      } else if (this.label) {
         return this.label
-      } else if (this.placeholder) {
-        return this.placeholder
       } else {
         return /^\d+$/.test(this.name)
           ? this.__('laraform.elements.file.defaultName')
-          : this.name
+          : _.upperFirst(this.name)
       }
     },
 
-    /**
-     * Whether the element is `pending` or `uploading`.
-     * 
-     * @type {boolean}
-     */
-    busy() {
-      return this.pending || this.uploading
+    canRemove() {
+      return this.stage > 0 && !this.uploading && !this.disabled
     },
 
-    /**
-      * The sibling elements of the element.
-      * 
-      * @type {string}
-      * @ignore
-      */
-    siblings$() {
-      return this.form$.siblings$(this.path)
+    canUploadTemp() {
+      return this.stage === 1 && !this.auto && !this.uploading
     },
 
     /**
@@ -249,25 +254,58 @@ export default {
     },
 
     /**
-     * Determines if the element's value is a file.
+     * Determines if the element's value is an image.
      *
      * @private
      * @type {boolean}
      */
     isImage() {
-      if (!this.filename) {
-        return false
-      }
-
-      return !!this.filename.match(/png|jpg|jpeg|gif|svg/)
+      return false
     },
 
-    canRemove() {
-      return this.stage > 0 && !this.uploading
-    },
+    // preview() {
+    //   if (!this.isImage) {
+    //     return
+    //   }
+
+    //   return this.uploaded ? this.link : this.base64
+    // },
   },
 
   methods: {
+    
+    /**
+     * Validates the element. File element will only validate for `min`, `max`, `between`, `size`, `mimetypes` and `mimes` rules before the temporary files are uploaded.
+     * 
+     * @public
+     * @returns {void}
+     */
+    async validate() {
+      if (!this.rules) {
+        return
+      }
+
+      if (this.form$.validation === false) {
+        return
+      }
+
+      if (!this.schema.rules) {
+        return
+      }
+
+      let restricted = ['min', 'max', 'between', 'size', 'mimetypes', 'mimes']
+
+      await asyncForEach(this.Validators, async (Validator) => {
+        if (!(this.value instanceof File) && restricted.indexOf(Validator.name) !== -1) {
+          return
+        }
+        
+        await Validator.validate()
+      })
+      
+      this.state.validated = true
+    },
+
     remove() {
       if (this.stage === 3) {
         if (!confirm('By removing the file it will be permanently deleted. Are you sure to continue?')) {
@@ -281,21 +319,21 @@ export default {
         this.$laraform.services.axios.post('/file/remove-temp', { file: this.value.tmp })
       }
 
-      this.clear()
+      this.update(null, true, this.form$.$_shouldValidateOn('change'))
       this.progress = 0
 
       this.$emit('remove', this.name)
     },
 
     handleFileChanged(e) {
-      if (this.remove() === false) {
+      if (this.value !== null && this.remove() === false) {
         this.$refs.input.value = ''
         return
       }
 
       let file = e.target.files[0]
 
-      this.update(file || null)
+      this.update(file || null, true, this.form$.$_shouldValidateOn('change'))
 
       this.$refs.input.value = ''
     },
@@ -303,6 +341,12 @@ export default {
     async uploadTemp() {
       if (this.stage !== 1) {
         throw new Error('No file is selected')
+      }
+
+      await this.validate()
+
+      if (this.invalid) {
+        return
       }
 
       this.request = this.axios.CancelToken.source()

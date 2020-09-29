@@ -2,6 +2,9 @@ import { createLocalVue } from '@vue/test-utils'
 import { createForm } from './../../../src/utils/testHelpers'
 import Validator from './../../../src/services/validation/validator'
 import en from './../../../src/locales/en'
+import flushPromises from 'flush-promises'
+
+const Vue = createLocalVue()
 
 jest.mock("axios", () => ({
   get: () => Promise.resolve({ data: 'value' }),
@@ -27,7 +30,7 @@ let Uppercase = class extends Validator {
 }
 
 describe('Validation Service', () => {
-  it('should set one validator from `rules`', (done) => {
+  it('should set one validator from `rules`', () => {
     let form = createForm({
       schema: {
         a: {
@@ -40,11 +43,9 @@ describe('Validation Service', () => {
     let a = form.findAllComponents({ name: 'TextElement' }).at(0)
 
     expect(a.vm.Validators[0].name).toBe('required')
-
-    done()
   })
 
-  it('should set `invalid` if validator fails', (done) => {
+  it('should set `invalid` if validator fails', () => {
     let form = createForm({
       schema: {
         a: {
@@ -64,11 +65,9 @@ describe('Validation Service', () => {
     a.vm.validate()
 
     expect(a.vm.invalid).toBe(false)
-
-    done()
   })
 
-  it('should render error message of failed validator with params', (done) => {
+  it('should render error message of failed validator with params', () => {
     let form = createForm({
       schema: {
         a: {
@@ -83,11 +82,9 @@ describe('Validation Service', () => {
     a.vm.validate()
 
     expect(a.vm.error).toBe(form.vm.$laraform.locales[form.vm.selectedLocale].validation.required.replace(':attribute', 'A'))
-
-    done()
   })
 
-  it('should add validators separated by pipes in `rules`', (done) => {
+  it('should add validators separated by pipes in `rules`', () => {
     let form = createForm({
       schema: {
         a: {
@@ -101,11 +98,9 @@ describe('Validation Service', () => {
 
     expect(a.vm.Validators[0].name).toBe('required')
     expect(a.vm.Validators[1].name).toBe('email')
-
-    done()
   })
 
-  it('should add validators from array of `rules`', (done) => {
+  it('should add validators from array of `rules`', () => {
     let form = createForm({
       schema: {
         a: {
@@ -119,11 +114,9 @@ describe('Validation Service', () => {
 
     expect(a.vm.Validators[0].name).toBe('required')
     expect(a.vm.Validators[1].name).toBe('email')
-
-    done()
   })
 
-  it('should add validator with a single param', (done) => {
+  it('should add validator with a single param', () => {
     let form = createForm({
       schema: {
         a: {
@@ -144,11 +137,9 @@ describe('Validation Service', () => {
     a.vm.validate()
 
     expect(a.vm.invalid).toBe(false)
-
-    done()
   })
 
-  it('should add validator with a single param which contains :', (done) => {
+  it('should add validator with a single param which contains :', () => {
     let form = createForm({
       schema: {
         a: {
@@ -164,11 +155,9 @@ describe('Validation Service', () => {
     a.vm.validate()
 
     expect(a.vm.invalid).toBe(false)
-
-    done()
   })
 
-  it('should add validator with a multiple params', (done) => {
+  it('should add validator with a multiple params', () => {
     let form = createForm({
       schema: {
         a: {
@@ -189,15 +178,9 @@ describe('Validation Service', () => {
     a.vm.validate()
 
     expect(a.vm.invalid).toBe(false)
-
-    done()
   })
 
-  it('should watch for change on a dependent field', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should watch for change on a dependent field', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -213,36 +196,33 @@ describe('Validation Service', () => {
     let a = form.findAllComponents({ name: 'TextElement' }).at(0)
     let b = form.findAllComponents({ name: 'TextElement' }).at(1)
 
-    LocalVue.nextTick(() => {
-      a.get('input').setValue('aaa')
-      a.get('input').trigger('keyup')
+    await Vue.nextTick()
 
-      b.get('input').setValue('bbb')
-      b.get('input').trigger('keyup')
+    a.get('input').setValue('aaa')
+    a.get('input').trigger('keyup')
 
-      expect(b.vm.invalid).toBe(true)
+    b.get('input').setValue('bbb')
+    b.get('input').trigger('keyup')
+    await flushPromises()
 
-      b.get('input').setValue('aaa')
-      b.get('input').trigger('keyup')
+    expect(b.vm.invalid).toBe(true)
 
-      expect(b.vm.invalid).toBe(false)
+    b.get('input').setValue('aaa')
+    b.get('input').trigger('keyup')
+    await flushPromises()
 
-      a.get('input').setValue('aaaa')
-      a.get('input').trigger('keyup')
+    expect(b.vm.invalid).toBe(false)
 
-      LocalVue.nextTick(() => {
-        expect(b.vm.invalid).toBe(true)
+    a.get('input').setValue('aaaa')
+    a.get('input').trigger('keyup')
+    await flushPromises()
 
-        done()
-      })
-    })
+    await Vue.nextTick()
+
+    expect(b.vm.invalid).toBe(true)
   })
 
-  it('should be able to use wildcards in dependent field\'s path', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able to use wildcards in dependent field\'s path', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -265,36 +245,33 @@ describe('Validation Service', () => {
     let b = form.findAllComponents({ name: 'TextElement' }).at(0)
     let c = form.findAllComponents({ name: 'TextElement' }).at(1)
 
-    LocalVue.nextTick(() => {
-      b.get('input').setValue('aaa')
-      b.get('input').trigger('keyup')
+    await Vue.nextTick()
 
-      c.get('input').setValue('bbb')
-      c.get('input').trigger('keyup')
+    b.get('input').setValue('aaa')
+    b.get('input').trigger('keyup')
 
-      expect(c.vm.invalid).toBe(true)
+    c.get('input').setValue('bbb')
+    c.get('input').trigger('keyup')
+    await flushPromises()
 
-      c.get('input').setValue('aaa')
-      c.get('input').trigger('keyup')
+    expect(c.vm.invalid).toBe(true)
 
-      expect(c.vm.invalid).toBe(false)
+    c.get('input').setValue('aaa')
+    c.get('input').trigger('keyup')
+    await flushPromises()
 
-      b.get('input').setValue('aaaa')
-      b.get('input').trigger('keyup')
+    expect(c.vm.invalid).toBe(false)
 
-      LocalVue.nextTick(() => {
-        expect(c.vm.invalid).toBe(true)
+    b.get('input').setValue('aaaa')
+    b.get('input').trigger('keyup')
+    await flushPromises()
 
-        done()
-      })
-    })
+    await Vue.nextTick()
+
+    expect(c.vm.invalid).toBe(true)
   })
 
-  it('should have a rule ignored if nullable is present and the value is unfilled', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should have a rule ignored if nullable is present and the value is unfilled', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -312,15 +289,15 @@ describe('Validation Service', () => {
 
     a.get('input').setValue('hello')
     a.get('input').trigger('keyup')
+    await flushPromises()
 
     expect(a.vm.invalid).toBe(true)
 
     a.get('input').setValue('')
     a.get('input').trigger('keyup')
+    await flushPromises()
 
     expect(a.vm.invalid).toBe(false)
-    
-    done()
   })
 
   it('should validate with element debounce', (done) => {
@@ -345,9 +322,10 @@ describe('Validation Service', () => {
     expect(a.vm.debouncing).toBe(true)
     expect(a.vm.invalid).toBe(false)
 
-    setTimeout(function(){
+    setTimeout(() => {
       expect(a.vm.debouncing).toBe(false)
       expect(a.vm.invalid).toBe(true)
+
       done()
     }, 1)
   })
@@ -406,11 +384,7 @@ describe('Validation Service', () => {
     }, 1)
   })
 
-  it('should add rule conditionally based on condition object', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should add rule conditionally based on condition object', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -436,15 +410,9 @@ describe('Validation Service', () => {
     b.get('input').trigger('keyup')
 
     expect(b.vm.invalid).toBe(true)
-
-    done()
   })
 
-  it('should watch rule condition change based on condition object', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should watch rule condition change based on condition object', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -477,24 +445,20 @@ describe('Validation Service', () => {
     let d = form.findAllComponents({ name: 'TextElement' }).at(1)
 
     d.vm.validate()
+    await flushPromises()
 
     expect(d.vm.invalid).toBe(false)
 
     c.get('input').setValue('aaa')
     c.get('input').trigger('keyup')
+    await flushPromises()
 
-    LocalVue.nextTick(() => {
-      expect(d.vm.invalid).toBe(true)
+    await Vue.nextTick()
 
-      done()
-    })
+    expect(d.vm.invalid).toBe(true)
   })
 
-  it('should have nullable as conditional', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should have nullable as conditional', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -515,22 +479,20 @@ describe('Validation Service', () => {
 
     b.vm.validate()
 
+    await flushPromises()
+
     expect(b.vm.invalid).toBe(true)
 
     a.get('input').setValue('aaa')
 
     b.vm.validate()
+
+    await flushPromises()
 
     expect(b.vm.invalid).toBe(false)
-    
-    done()
   })
 
-  it('should watch nullable as conditional', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should watch nullable as conditional', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -551,22 +513,19 @@ describe('Validation Service', () => {
 
     b.vm.validate()
 
+    await flushPromises()
+
     expect(b.vm.invalid).toBe(true)
 
     a.get('input').setValue('aaa')
+    await flushPromises()
 
-    LocalVue.nextTick(() => {
-      expect(b.vm.invalid).toBe(false)
-      
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(b.vm.invalid).toBe(false)
   })
 
-  it('should add conditional rule with operator', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should add conditional rule with operator', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -588,22 +547,20 @@ describe('Validation Service', () => {
     b.get('input').setValue(1)
     b.get('input').trigger('keyup')
 
+    await flushPromises()
+
     expect(b.vm.invalid).toBe(true)
 
     a.get('input').setValue('aaa')
 
     b.vm.validate()
 
-    expect(b.vm.invalid).toBe(false)
+    await flushPromises()
 
-    done()
+    expect(b.vm.invalid).toBe(false)
   })
 
-  it('should add conditional rule with multiple accepted values', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should add conditional rule with multiple accepted values', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -639,15 +596,9 @@ describe('Validation Service', () => {
     b.get('input').trigger('keyup')
 
     expect(b.vm.invalid).toBe(true)
-
-    done()
   })
 
-  it('should be able to use function condition for rule', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able to use function condition for rule', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -677,15 +628,9 @@ describe('Validation Service', () => {
     b.get('input').trigger('keyup')
 
     expect(b.vm.invalid).toBe(true)
-
-    done()
   })
 
-  it('should watch for custom condition function change', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should watch for custom condition function change', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -717,18 +662,12 @@ describe('Validation Service', () => {
 
     a.get('input').setValue('aaa')
 
-    LocalVue.nextTick(() => {
-      expect(b.vm.invalid).toBe(true)
+    await Vue.nextTick()
 
-      done()
-    })
+    expect(b.vm.invalid).toBe(true)
   })
 
-  it('should separate rules by languages', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should separate rules by languages', async () => {
     let form = createForm({
       multilingual: true,
       languages: {
@@ -770,15 +709,9 @@ describe('Validation Service', () => {
     a.get('input').trigger('keyup')
 
     expect(a.vm.error).toBe(a.vm.Validators.hu[0].message)
-    
-    done()
   })
 
-  it('should overwrite rule message on element level', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should overwrite rule message on element level', async () => {
     let form = createForm({
       messages: {
         required: 'Form required messages'
@@ -799,15 +732,9 @@ describe('Validation Service', () => {
     a.vm.validate()
 
     expect(a.vm.error).toBe('This is required')
-    
-    done()
   })
 
-  it('should overwrite rule message on form level', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should overwrite rule message on form level', async () => {
     let form = createForm({
       messages: {
         required: 'This is required'
@@ -825,15 +752,9 @@ describe('Validation Service', () => {
     a.vm.validate()
 
     expect(a.vm.error).toBe('This is required')
-    
-    done()
   })
 
-  it('should be able to register new rule and use default message', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able to register new rule and use default message', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -860,15 +781,9 @@ describe('Validation Service', () => {
     a.vm.validate()
 
     expect(a.vm.error).toBeFalsy()
-    
-    done()
   })
 
-  it('should be able to register new rule and use element level message', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able to register new rule and use element level message', async () => {
     let form = createForm({
       messages: {
         uppercase: 'Should be uppercase please'
@@ -895,15 +810,9 @@ describe('Validation Service', () => {
     a.vm.validate()
 
     expect(a.vm.error).toBe('Should be uppercase')
-    
-    done()
   })
 
-  it('should be able to register new rule and use form level message', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able to register new rule and use form level message', async () => {
     let form = createForm({
       messages: {
         uppercase: 'Should be uppercase'
@@ -927,15 +836,9 @@ describe('Validation Service', () => {
     a.vm.validate()
 
     expect(a.vm.error).toBe('Should be uppercase')
-    
-    done()
   })
 
-  it('should be able to register new rule and use generic message', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able to register new rule and use generic message', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -963,25 +866,21 @@ describe('Validation Service', () => {
     a.vm.validate()
 
     expect(a.vm.error).toBe('Should be uppercase')
-    
-    done()
   })
 
-  it('should be able to use inline rule', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able to use inline rule', async () => {
     let form = createForm({
       schema: {
         a: {
           type: 'text',
-          rules: ['required', (value, form$, Validator) => {
-            if (value.toUpperCase(value) === value) {
-              return true
+          rules: ['required', class extends Validator {
+            get message() {
+              return 'Should use uppercase'
             }
 
-            return 'Should use uppercase'
+            check(value) {
+              return value.toUpperCase(value) === value
+            }
           }],
         },
       }
@@ -993,16 +892,12 @@ describe('Validation Service', () => {
 
     a.vm.validate()
 
+    await flushPromises()
+
     expect(a.vm.error).toBe('Should use uppercase')
-    
-    done()
   })
 
-  it('should validate regex', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should validate regex', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1023,15 +918,9 @@ describe('Validation Service', () => {
     a.get('input').trigger('keyup')
 
     expect(a.vm.invalid).toBe(true)
-    
-    done()
   })
 
-  it('should validate regex with pipe in array rules', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should validate regex with pipe in array rules', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1052,7 +941,5 @@ describe('Validation Service', () => {
     a.get('input').trigger('keyup')
 
     expect(a.vm.invalid).toBe(true)
-    
-    done()
   })
 })

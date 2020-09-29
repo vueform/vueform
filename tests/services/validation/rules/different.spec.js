@@ -70,25 +70,27 @@ describe('Different Rule', () => {
     let a = form.findAllComponents({ name: 'TextElement' }).at(0)
     let b = form.findAllComponents({ name: 'TextElement' }).at(1)
 
-    LocalVue.nextTick(() => {
+    setTimeout(() => {
       change(a, 'aaa')
       change(b, 'bbb')
 
       expect(b.vm.invalid).toBe(false)
 
-      a.get('input').setValue('bbb')
+      setTimeout(() => {
+        a.get('input').setValue('bbb')
 
-      LocalVue.nextTick(() => {
-        expect(b.vm.invalid).toBe(true)
+        setTimeout(() => {
+          expect(b.vm.invalid).toBe(true)
 
-        a.get('input').setValue('aaa')
+          a.get('input').setValue('aaa')
 
-        LocalVue.nextTick(() => {
-          expect(b.vm.invalid).toBe(false)
+          setTimeout(() => {
+            expect(b.vm.invalid).toBe(false)
 
-          done()
-        })
-      })
-    })
+            done()
+          }, 1)
+        }, 1)
+      }, 1)
+    }, 1)
   })
 })

@@ -1,12 +1,11 @@
 import { createLocalVue } from '@vue/test-utils'
 import { createForm } from './../../src/utils/testHelpers'
+import flushPromises from 'flush-promises'
+
+const Vue = createLocalVue()
 
 describe('Element Validation Computed', () => {
-  it('should not be `dirty` by default', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not be `dirty` by default', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -17,22 +16,15 @@ describe('Element Validation Computed', () => {
 
     let a = form.findComponent({ name: 'TextElement' })
 
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
-      expect(a.vm.dirty).toBe(false)
-      expect(a.vm.previousValue).toBe(null)
-      expect(a.vm.currentValue).toBe(null)
+    await Vue.nextTick()
+    await Vue.nextTick()
 
-      done()
-    })
-    })
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe(null)
   })
 
-  it('should not be `dirty` when element has default value', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not be `dirty` when element has default value', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -44,23 +36,16 @@ describe('Element Validation Computed', () => {
 
     let a = form.findComponent({ name: 'TextElement' })
 
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
-      expect(a.vm.value).toBe('aaa')
-      expect(a.vm.dirty).toBe(false)
-      expect(a.vm.previousValue).toBe(null)
-      expect(a.vm.currentValue).toBe('aaa')
+    await Vue.nextTick()
+    await Vue.nextTick()
 
-      done()
-    })
-    })
+    expect(a.vm.value).toBe('aaa')
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe('aaa')
   })
 
-  it('should not be `dirty` when data is loaded', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not be `dirty` when data is loaded', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -79,23 +64,16 @@ describe('Element Validation Computed', () => {
 
     let a = form.findComponent({ name: 'TextElement' })
 
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
-      expect(a.vm.value).toBe('aaa')
-      expect(a.vm.dirty).toBe(false)
-      expect(a.vm.previousValue).toBe(null)
-      expect(a.vm.currentValue).toBe('aaa')
+    await Vue.nextTick()
+    await Vue.nextTick()
 
-      done()
-    })
-    })
+    expect(a.vm.value).toBe('aaa')
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe('aaa')
   })
 
-  it('should be `dirty` if the element value is changed by user input', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `dirty` if the element value is changed by user input', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -110,25 +88,19 @@ describe('Element Validation Computed', () => {
     expect(a.vm.previousValue).toBe(null)
     expect(a.vm.currentValue).toBe(null)
 
-    LocalVue.nextTick(() => {
-      a.get('input').setValue('aaa')
-      a.get('input').trigger('keyup')
+    await Vue.nextTick()
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.dirty).toBe(true)
-        expect(a.vm.previousValue).toBe(null)
-        expect(a.vm.currentValue).toBe('aaa')
+    a.get('input').setValue('aaa')
+    a.get('input').trigger('keyup')
 
-        done()
-      })
-    })
+    await Vue.nextTick()
+
+    expect(a.vm.dirty).toBe(true)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe('aaa')
   })
 
-  it('should not be `dirty` if the element keyup occurs without value change', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not be `dirty` if the element keyup occurs without value change', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -143,24 +115,18 @@ describe('Element Validation Computed', () => {
     expect(a.vm.previousValue).toBe(null)
     expect(a.vm.currentValue).toBe(null)
 
-    LocalVue.nextTick(() => {
-      a.get('input').trigger('keyup')
+    await Vue.nextTick()
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.dirty).toBe(false)
-        expect(a.vm.previousValue).toBe(null)
-        expect(a.vm.currentValue).toBe(null)
+    a.get('input').trigger('keyup')
 
-        done()
-      })
-    })
+    await Vue.nextTick()
+
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe(null)
   })
 
-  it('should be `dirty` if the element value is changed by update method', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `dirty` if the element value is changed by update method', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -175,24 +141,16 @@ describe('Element Validation Computed', () => {
     expect(a.vm.previousValue).toBe(null)
     expect(a.vm.currentValue).toBe(null)
 
-    LocalVue.nextTick(() => {
-      a.vm.update('aaa')
+    await Vue.nextTick()
+    a.vm.update('aaa')
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.dirty).toBe(true)
-        expect(a.vm.previousValue).toBe(null)
-        expect(a.vm.currentValue).toBe('aaa')
-
-        done()
-      })
-    })
+    await Vue.nextTick()
+    expect(a.vm.dirty).toBe(true)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe('aaa')
   })
 
-  it('should not be `dirty` if the element had no value and resetted', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not be `dirty` if the element had no value and resetted', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -207,24 +165,16 @@ describe('Element Validation Computed', () => {
     expect(a.vm.previousValue).toBe(null)
     expect(a.vm.currentValue).toBe(null)
 
-    LocalVue.nextTick(() => {
-      a.vm.reset()
+    await Vue.nextTick()
+    a.vm.reset()
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.dirty).toBe(false)
-        expect(a.vm.previousValue).toBe(null)
-        expect(a.vm.currentValue).toBe(null)
-
-        done()
-      })
-    })
+    await Vue.nextTick()
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe(null)
   })
 
-  it('should not be `dirty` if the element had default value and resetted', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not be `dirty` if the element had default value and resetted', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -241,25 +191,17 @@ describe('Element Validation Computed', () => {
     expect(a.vm.previousValue).toBe(null)
     expect(a.vm.currentValue).toBe('aaa')
 
-    LocalVue.nextTick(() => {
-      a.vm.reset()
+    await Vue.nextTick()
+    a.vm.reset()
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.value).toBe('aaa')
-        expect(a.vm.dirty).toBe(false)
-        expect(a.vm.previousValue).toBe('aaa')
-        expect(a.vm.currentValue).toBe('aaa')
-
-        done()
-      })
-    })
+    await Vue.nextTick()
+    expect(a.vm.value).toBe('aaa')
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe('aaa')
+    expect(a.vm.currentValue).toBe('aaa')
   })
 
-  it('should be `dirty` if the element had default value, changed then resetted', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `dirty` if the element had default value, changed then resetted', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -278,28 +220,22 @@ describe('Element Validation Computed', () => {
 
     a.get('input').setValue('bbb')
 
-    LocalVue.nextTick(() => {
-      expect(a.vm.value).toBe('bbb')
-      expect(a.vm.dirty).toBe(true)
-      expect(a.vm.previousValue).toBe('aaa')
-      expect(a.vm.currentValue).toBe('bbb')
+    await Vue.nextTick()
 
-      a.vm.reset()
+    expect(a.vm.value).toBe('bbb')
+    expect(a.vm.dirty).toBe(true)
+    expect(a.vm.previousValue).toBe('aaa')
+    expect(a.vm.currentValue).toBe('bbb')
 
-      expect(a.vm.value).toBe('aaa')
-      expect(a.vm.dirty).toBe(true)
-      expect(a.vm.previousValue).toBe('bbb')
-      expect(a.vm.currentValue).toBe('aaa')
+    a.vm.reset()
 
-      done()
-    })
+    expect(a.vm.value).toBe('aaa')
+    expect(a.vm.dirty).toBe(true)
+    expect(a.vm.previousValue).toBe('bbb')
+    expect(a.vm.currentValue).toBe('aaa')
   })
 
-  it('should be `dirty` if the element had value and resetted', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `dirty` if the element had value and resetted', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -316,26 +252,17 @@ describe('Element Validation Computed', () => {
 
     a.vm.value = 'aaa'
 
-    LocalVue.nextTick(() => {
-      a.vm.reset()
+    await Vue.nextTick()
+    a.vm.reset()
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.value).toBe(a.vm.null)
-        expect(a.vm.dirty).toBe(true)
-        expect(a.vm.previousValue).toBe('aaa')
-        expect(a.vm.currentValue).toBe(null)
-
-        done()
-      })
-    })
+    await Vue.nextTick()
+    expect(a.vm.value).toBe(a.vm.null)
+    expect(a.vm.dirty).toBe(true)
+    expect(a.vm.previousValue).toBe('aaa')
+    expect(a.vm.currentValue).toBe(null)
   })
 
-
-  it('should not be `dirty` if the element had no value and cleared', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not be `dirty` if the element had no value and cleared', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -350,24 +277,16 @@ describe('Element Validation Computed', () => {
     expect(a.vm.previousValue).toBe(null)
     expect(a.vm.currentValue).toBe(null)
 
-    LocalVue.nextTick(() => {
-      a.vm.clear()
+    await Vue.nextTick()
+    a.vm.clear()
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.dirty).toBe(false)
-        expect(a.vm.previousValue).toBe(null)
-        expect(a.vm.currentValue).toBe(null)
-
-        done()
-      })
-    })
+    await Vue.nextTick()
+    expect(a.vm.dirty).toBe(false)
+    expect(a.vm.previousValue).toBe(null)
+    expect(a.vm.currentValue).toBe(null)
   })
 
-  it('should be `dirty` if the element had default value and cleared', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `dirty` if the element had default value and cleared', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -384,25 +303,17 @@ describe('Element Validation Computed', () => {
     expect(a.vm.previousValue).toBe(null)
     expect(a.vm.currentValue).toBe('aaa')
 
-    LocalVue.nextTick(() => {
-      a.vm.clear()
+    await Vue.nextTick()
+    a.vm.clear()
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.value).toBe(a.vm.null)
-        expect(a.vm.dirty).toBe(true)
-        expect(a.vm.previousValue).toBe('aaa')
-        expect(a.vm.currentValue).toBe(null)
-
-        done()
-      })
-    })
+    await Vue.nextTick()
+    expect(a.vm.value).toBe(a.vm.null)
+    expect(a.vm.dirty).toBe(true)
+    expect(a.vm.previousValue).toBe('aaa')
+    expect(a.vm.currentValue).toBe(null)
   })
 
-  it('should be `dirty` if the element had value and cleared', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `dirty` if the element had value and cleared', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -419,18 +330,14 @@ describe('Element Validation Computed', () => {
 
     a.vm.value = 'aaa'
 
-    LocalVue.nextTick(() => {
-      a.vm.clear()
+    await Vue.nextTick()
+    a.vm.clear()
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.value).toBe(a.vm.null)
-        expect(a.vm.dirty).toBe(true)
-        expect(a.vm.previousValue).toBe('aaa')
-        expect(a.vm.currentValue).toBe(null)
-
-        done()
-      })
-    })
+    await Vue.nextTick()
+    expect(a.vm.value).toBe(a.vm.null)
+    expect(a.vm.dirty).toBe(true)
+    expect(a.vm.previousValue).toBe('aaa')
+    expect(a.vm.currentValue).toBe(null)
   })
 
   it('should be `pending` and `busy` if an async validation is in progress', () => {
@@ -475,11 +382,7 @@ describe('Element Validation Computed', () => {
     expect(a.vm.busy).toBe(true)
   })
 
-  it('should collect `errors` form validators', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should collect `errors` form validators', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -496,17 +399,11 @@ describe('Element Validation Computed', () => {
     a.vm.validate()
 
     expect(a.vm.errors.length).toBe(1)
-
-    done()
   })
 })
 
 describe('Element Validation Methods', () => {
-  it('should not `validate` if form validation is `false`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not `validate` if form validation is `false`', async () => {
     let form = createForm({
       schema: {
         name: {
@@ -526,15 +423,9 @@ describe('Element Validation Methods', () => {
     name.vm.validate()
 
     expect(name.vm.validated).toBe(false)
-
-    done()
   })
 
-  it('should not `validate` if element has no rules', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not `validate` if element has no rules', async () => {
     let form = createForm({
       schema: {
         name: {
@@ -550,15 +441,9 @@ describe('Element Validation Methods', () => {
     name.vm.validate()
 
     expect(name.vm.validated).toBe(true)
-
-    done()
   })
 
-  it('should be `validated` true if has no rules', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `validated` true if has no rules', async () => {
     let form = createForm({
       schema: {
         name: {
@@ -570,15 +455,9 @@ describe('Element Validation Methods', () => {
     let name = form.findComponent({ name: 'TextElement' })
 
     expect(name.vm.validated).toBe(true)
-
-    done()
   })
 
-  it('should be `validated` true only if validation ran once at least', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `validated` true only if validation ran once at least', async () => {
     let form = createForm({
       schema: {
         name: {
@@ -594,16 +473,12 @@ describe('Element Validation Methods', () => {
 
     name.vm.validate()
 
-    expect(name.vm.validated).toBe(true)
+    await flushPromises()
 
-    done()
+    expect(name.vm.validated).toBe(true)
   })
 
-  it('should `resetValidators`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should `resetValidators`', async () => {
     let form = createForm({
       schema: {
         name: {
@@ -624,15 +499,9 @@ describe('Element Validation Methods', () => {
     name.vm.resetValidators()
 
     expect(name.vm.errors.length).toBe(0)
-
-    done()
   })
 
-  it('should set `validated` true on `resetValidators` if has no rules', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set `validated` true on `resetValidators` if has no rules', async () => {
     let form = createForm({
       schema: {
         name: {
@@ -652,15 +521,9 @@ describe('Element Validation Methods', () => {
     name.vm.resetValidators()
 
     expect(name.vm.validated).toBe(true)
-
-    done()
   })
 
-  it('should set `validated` false on `resetValidators` if has rules', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set `validated` false on `resetValidators` if has rules', async () => {
     let form = createForm({
       schema: {
         name: {
@@ -676,12 +539,12 @@ describe('Element Validation Methods', () => {
 
     name.vm.validate()
 
+    await flushPromises()
+
     expect(name.vm.validated).toBe(true)
 
     name.vm.resetValidators()
 
     expect(name.vm.validated).toBe(false)
-
-    done()
   })
 })

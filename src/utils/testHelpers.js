@@ -9,6 +9,7 @@ import validation from './../services/validation'
 import messageBag from './../services/messageBag'
 import autosize from './../services/autosize'
 import location from './../services/location'
+import asyncForEach from './../utils/asyncForEach'
 import en from './../locales/en'
 import _ from 'lodash'
 import axios from 'axios'
@@ -637,6 +638,29 @@ const testTagsModel = (form, LocalVue, done, values = [0,1,2]) => {
   })
 }
 
+const tryInputValues = async function(values, el, done) {
+  await asyncForEach(values, async (expected, value) => {
+    await tryInputValue(value, expected, el)
+  })
+
+  done()
+}
+
+const tryInputValue = function(value, expected, el) {
+  return new Promise((resolve, reject) => {
+    change(el, value)
+
+    setTimeout(() => {
+      try {
+        expect(el.vm.invalid).toBe(expected)
+      } catch (e) {
+        throw new Error(`Value: ${value}, Expected: ${expected}, Received: ${el.vm.invalid}`)
+      }
+      resolve()
+    }, 1)
+  })
+}
+
 export {
   installLaraform,
   createForm,
@@ -658,6 +682,7 @@ export {
   testNativeMultiselectModel,
   testNonNativeMultiselectModel,
   testTagsModel,
+  tryInputValues,
 }
 
 

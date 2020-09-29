@@ -25,13 +25,17 @@ describe('Nullable Rule', () => {
     a.get('input').setValue('hello')
     a.get('input').trigger('keyup')
 
-    expect(a.vm.invalid).toBe(true)
+    setTimeout(() => {
+      expect(a.vm.invalid).toBe(true)
 
-    a.get('input').setValue('')
-    a.get('input').trigger('keyup')
+      a.get('input').setValue('')
+      a.get('input').trigger('keyup')
 
-    expect(a.vm.invalid).toBe(false)
-    
-    done()
+      setTimeout(() => {
+        expect(a.vm.invalid).toBe(false)
+        
+        done()
+      }, 1)
+    }, 1)
   })
 })

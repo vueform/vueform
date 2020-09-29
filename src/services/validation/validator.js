@@ -142,7 +142,7 @@ const Validator = class {
   }
 
   get isFile() {
-    return this.element$.isFile
+    return this.element$.isFileType
   }
 
   get isArray() {
@@ -171,7 +171,7 @@ const Validator = class {
 
   init() {}
 
-  validate(value = this.element$.value) {
+  async validate(value = this.element$.value) {
     if (!this.form$.validation) {
       return
     }
@@ -189,9 +189,9 @@ const Validator = class {
     }
 
     if (this.debounce) {
-      this._validateWithDebounce(value)
+      await this._validateWithDebounce(value)
     } else {
-      this._validate(value)
+      await this._validate(value)
     }
   }
 
@@ -218,6 +218,20 @@ const Validator = class {
       variable: variable,
       callback: callback.toString(),
       unwatch: this.form$.$watch(variable, callback)
+    })
+  }
+
+  watchOther() {
+    this.form$.$nextTick(() => {
+      if (!this.other$) {
+        throw new Error(this.otherPath + ' element does not exist')
+      }
+
+      this.form$.$watch(() => { return this.other$.value }, () => {
+        if (this.element$.validated) {
+          this.element$.validate()
+        }
+      })
     })
   }
 
@@ -261,23 +275,9 @@ const Validator = class {
     return true
   }
 
-  watchOther() {
-    this.form$.$nextTick(() => {
-      if (!this.other$) {
-        throw new Error(this.otherPath + ' element does not exist')
-      }
-
-      this.form$.$watch(() => { return this.other$.value }, () => {
-        if (this.element$.validated) {
-          this.element$.validate()
-        }
-      })
-    })
-  }
-
-  _validate(value) {
+  async _validate(value) {
     if (this.isAsync) {
-      return this._validateAsync(value)
+      await this._validateAsync(value)
     } else {
       this._validateSync(value)
     }
@@ -288,10 +288,10 @@ const Validator = class {
 
     this.pending = true
 
-    var isValid = await this.check(value)
+    let valid = await this.check(value)
 
     if (this.lastValue == value) {
-      this.invalid = !isValid
+      this.invalid = !valid
       this.pending = false
     }
   }
@@ -300,17 +300,19 @@ const Validator = class {
     this.invalid = !this.check(value)
   }
 
-  _validateWithDebounce(value) {
-    if (this.debouncer) {
-      this.debouncer.cancel()
-    }
+  async _validateWithDebounce(value) {
+    return new Promise((resolve, reject) => {
+      if (this.debouncer) {
+        resolve()
+        clearTimeout(this.debouncer)
+      }
 
-    this.debouncer = _.debounce(() => {
-      this._validate(value)
-      this.debouncer = null
-    }, this.debounce)
-
-    this.debouncer()
+      this.debouncer = setTimeout(() => {
+        this._validate(value)
+        this.debouncer = null
+        resolve()
+      }, this.debounce)
+    })
   }
 }
 

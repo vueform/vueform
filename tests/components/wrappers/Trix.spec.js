@@ -217,18 +217,18 @@ describe('Trix Element Rendering', () => {
     })
   })
 
-  it('should not trigger `alert` event when mime type is allowed', (done) => {
+  it('should not trigger `error` event when mime type is allowed', (done) => {
     const LocalVue = createLocalVue()
 
     LocalVue.config.errorHandler = done
 
-    let onAlertMock = jest.fn()
+    let onErrorMock = jest.fn()
 
     let form = createTrix({
       schema: {
         a: {
           type: 'trix',
-          onAlert: onAlertMock,
+          onError: onErrorMock,
           acceptMimes: ['image/jpeg', 'image/png']
         }
       }
@@ -240,7 +240,7 @@ describe('Trix Element Rendering', () => {
       let trix$ = a.vm.$refs.trix$
       let trixEditor$ = a.vm.$refs.trix$.$refs.trix$
 
-      expect(onAlertMock.mock.calls.length).toBe(0)
+      expect(onErrorMock.mock.calls.length).toBe(0)
 
       let fileMock = {
         type: 'image/jpeg',
@@ -254,25 +254,25 @@ describe('Trix Element Rendering', () => {
         preventDefault: preventMock
       })
 
-      expect(onAlertMock.mock.calls.length).toBe(0)
+      expect(onErrorMock.mock.calls.length).toBe(0)
       expect(preventMock.mock.calls.length).toBe(0)
 
       done()
     })
   })
 
-  it('should trigger `alert` event when mime type is not allowed', (done) => {
+  it('should trigger `error` event when mime type is not allowed', (done) => {
     const LocalVue = createLocalVue()
 
     LocalVue.config.errorHandler = done
 
-    let onAlertMock = jest.fn()
+    let onErrorMock = jest.fn()
 
     let form = createTrix({
       schema: {
         a: {
           type: 'trix',
-          onAlert: onAlertMock,
+          onError: onErrorMock,
           acceptMimes: ['image/jpeg', 'image/png']
         }
       }
@@ -284,7 +284,7 @@ describe('Trix Element Rendering', () => {
       let trix$ = a.vm.$refs.trix$
       let trixEditor$ = a.vm.$refs.trix$.$refs.trix$
 
-      expect(onAlertMock.mock.calls.length).toBe(0)
+      expect(onErrorMock.mock.calls.length).toBe(0)
 
       let fileMock = {
         type: 'image/gif',
@@ -298,27 +298,27 @@ describe('Trix Element Rendering', () => {
         preventDefault: preventMock
       })
 
-      expect(onAlertMock.mock.calls.length).toBe(1)
-      expect(onAlertMock.mock.calls[0][0]).toContain('image/jpeg')
-      expect(onAlertMock.mock.calls[0][0]).toContain('image/png')
+      expect(onErrorMock.mock.calls.length).toBe(1)
+      expect(onErrorMock.mock.calls[0][0]).toContain('image/jpeg')
+      expect(onErrorMock.mock.calls[0][0]).toContain('image/png')
       expect(preventMock.mock.calls.length).toBe(1)
 
       done()
     })
   })
 
-  it('should not trigger `alert` event when extension is allowed', (done) => {
+  it('should not trigger `error` event when extension is allowed', (done) => {
     const LocalVue = createLocalVue()
 
     LocalVue.config.errorHandler = done
 
-    let onAlertMock = jest.fn()
+    let onErrorMock = jest.fn()
 
     let form = createTrix({
       schema: {
         a: {
           type: 'trix',
-          onAlert: onAlertMock,
+          onError: onErrorMock,
           accept: ['jpg', 'png']
         }
       }
@@ -330,7 +330,7 @@ describe('Trix Element Rendering', () => {
       let trix$ = a.vm.$refs.trix$
       let trixEditor$ = a.vm.$refs.trix$.$refs.trix$
 
-      expect(onAlertMock.mock.calls.length).toBe(0)
+      expect(onErrorMock.mock.calls.length).toBe(0)
 
       let fileMock = {
         type: 'image/jpeg',
@@ -344,25 +344,25 @@ describe('Trix Element Rendering', () => {
         preventDefault: preventMock
       })
 
-      expect(onAlertMock.mock.calls.length).toBe(0)
+      expect(onErrorMock.mock.calls.length).toBe(0)
       expect(preventMock.mock.calls.length).toBe(0)
 
       done()
     })
   })
 
-  it('should trigger `alert` event when mime type is not allowed', (done) => {
+  it('should trigger `error` event when mime type is not allowed', (done) => {
     const LocalVue = createLocalVue()
 
     LocalVue.config.errorHandler = done
 
-    let onAlertMock = jest.fn()
+    let onErrorMock = jest.fn()
 
     let form = createTrix({
       schema: {
         a: {
           type: 'trix',
-          onAlert: onAlertMock,
+          onError: onErrorMock,
           accept: ['jpg', 'png']
         }
       }
@@ -374,7 +374,7 @@ describe('Trix Element Rendering', () => {
       let trix$ = a.vm.$refs.trix$
       let trixEditor$ = a.vm.$refs.trix$.$refs.trix$
 
-      expect(onAlertMock.mock.calls.length).toBe(0)
+      expect(onErrorMock.mock.calls.length).toBe(0)
 
       let fileMock = {
         type: 'image/gif',
@@ -388,9 +388,9 @@ describe('Trix Element Rendering', () => {
         preventDefault: preventMock
       })
 
-      expect(onAlertMock.mock.calls.length).toBe(1)
-      expect(onAlertMock.mock.calls[0][0]).toContain('jpg')
-      expect(onAlertMock.mock.calls[0][0]).toContain('png')
+      expect(onErrorMock.mock.calls.length).toBe(1)
+      expect(onErrorMock.mock.calls[0][0]).toContain('jpg')
+      expect(onErrorMock.mock.calls[0][0]).toContain('png')
       expect(preventMock.mock.calls.length).toBe(1)
 
       done()
@@ -402,7 +402,7 @@ describe('Trix Element Rendering', () => {
 
     LocalVue.config.errorHandler = done
 
-    let onAlertMock = jest.fn()
+    let onErrorMock = jest.fn()
 
     let form = createTrix({
       schema: {
@@ -419,7 +419,7 @@ describe('Trix Element Rendering', () => {
       let trix$ = a.vm.$refs.trix$
       let trixEditor$ = a.vm.$refs.trix$.$refs.trix$
 
-      expect(onAlertMock.mock.calls.length).toBe(0)
+      expect(onErrorMock.mock.calls.length).toBe(0)
 
       let preventMock = jest.fn()
 
@@ -438,7 +438,7 @@ describe('Trix Element Rendering', () => {
 
     LocalVue.config.errorHandler = done
 
-    let onAlertMock = jest.fn()
+    let onErrorMock = jest.fn()
 
     let form = createTrix({
       schema: {
@@ -454,7 +454,7 @@ describe('Trix Element Rendering', () => {
       let trix$ = a.vm.$refs.trix$
       let trixEditor$ = a.vm.$refs.trix$.$refs.trix$
 
-      expect(onAlertMock.mock.calls.length).toBe(0)
+      expect(onErrorMock.mock.calls.length).toBe(0)
 
       let preventMock = jest.fn()
 

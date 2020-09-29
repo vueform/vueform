@@ -1,6 +1,9 @@
 import _ from 'lodash'
 import { createLocalVue } from '@vue/test-utils'
 import { createForm } from './../../src/utils/testHelpers'
+import flushPromises from 'flush-promises'
+
+const Vue = createLocalVue()
 
 jest.mock("axios", () => ({
   get: () => Promise.resolve({ data: 'value' }),
@@ -24,11 +27,7 @@ describe('Form Button Submit', () => {
     expect(form.findComponent({ name: 'FormButtonSubmit' }).html()).toContain('Reset')
   })
 
-  it('should return disabled true if `disabled` is not defined but form is disabled', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return disabled true if `disabled` is not defined but form is disabled', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -47,19 +46,14 @@ describe('Form Button Submit', () => {
 
     form.findComponent({ name: 'TextElement' }).vm.validate()
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.disabled).toBe(true)
+    await Vue.nextTick()
 
-      expect(form.findComponent({ name: 'FormButtonSubmit' }).vm.disabled).toBe(true)
-      done()
-    })
+    expect(form.vm.disabled).toBe(true)
+
+    expect(form.findComponent({ name: 'FormButtonSubmit' }).vm.disabled).toBe(true)
   })
 
-  it('should have `disabled` attribute && class when disabled returns `true`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should have `disabled` attribute && class when disabled returns `true`', async () => {
     let form = createForm({
       canReset: true,
       schema: {
@@ -81,21 +75,16 @@ describe('Form Button Submit', () => {
 
     form.vm.$set(form.vm, 'canReset', false)
 
-    LocalVue.nextTick(() => {
-      expect(form.findComponent({ name: 'FormButtonSubmit' }).attributes('disabled')).toBe('disabled')
+    await Vue.nextTick()
 
-      let disabledClass = form.vm.selectedTheme.components.FormButtonSubmit.data().defaultClasses.disabled
+    expect(form.findComponent({ name: 'FormButtonSubmit' }).attributes('disabled')).toBe('disabled')
 
-      expect(form.findComponent({ name: 'FormButtonSubmit' }).classes()).toContain(disabledClass)
-      done()
-    })
+    let disabledClass = form.vm.selectedTheme.components.FormButtonSubmit.data().defaultClasses.disabled
+
+    expect(form.findComponent({ name: 'FormButtonSubmit' }).classes()).toContain(disabledClass)
   })
 
-  it('should return loading true if `loading` is not defined but form is submitting', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return loading true if `loading` is not defined but form is submitting', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -110,22 +99,13 @@ describe('Form Button Submit', () => {
         }
       }
     })
+    
+    form.vm.submitting = true
 
-    form.vm.submit()
-
-    LocalVue.nextTick(() => {
-      expect(form.vm.submitting).toBe(true)
-
-      expect(form.findComponent({ name: 'FormButtonSubmit' }).vm.loading).toBe(true)
-      done()
-    })
+    expect(form.findComponent({ name: 'FormButtonSubmit' }).vm.loading).toBe(true)
   })
 
-  it('should have loading class when loading returns `true`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should have loading class when loading returns `true`', async () => {
     let form = createForm({
       isLoading: false,
       schema: {
@@ -147,19 +127,14 @@ describe('Form Button Submit', () => {
 
     form.vm.$set(form.vm, 'isLoading', true)
 
-    LocalVue.nextTick(() => {
-      let loadingClass = form.vm.selectedTheme.components.FormButtonSubmit.data().defaultClasses.loading
+    await Vue.nextTick()
 
-      expect(form.findComponent({ name: 'FormButtonSubmit' }).classes()).toContain(loadingClass)
-      done()
-    })
+    let loadingClass = form.vm.selectedTheme.components.FormButtonSubmit.data().defaultClasses.loading
+
+    expect(form.findComponent({ name: 'FormButtonSubmit' }).classes()).toContain(loadingClass)
   })
 
-  it('should call `onClick` callback on click', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should call `onClick` callback on click', async () => {
     let onClickMock = jest.fn(() => {})
 
     let form = createForm({
@@ -186,16 +161,13 @@ describe('Form Button Submit', () => {
 
     expect(onClickMock.mock.calls[0][0].$options.name).toBe('Laraform')
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.submitting).toBe(false)
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(form.vm.submitting).toBe(false)
   })
 
-  it('should submit form on click if `onClick` is not defined', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
+  it('should submit form on click if `onClick` is not defined', async () => {
+    let onSubmitMock = jest.fn()
 
     let form = createForm({
       schema: {
@@ -206,25 +178,22 @@ describe('Form Button Submit', () => {
           type: 'buttons',
           buttons: [{
             type: 'submit',
-            label: 'Reset',
+            label: 'Submit',
           }]
         }
       }
     })
 
+    form.vm.on('submit', onSubmitMock)
+
+    expect(onSubmitMock.mock.calls.length).toBe(0)
+
     form.findComponent({ name: 'FormButtonSubmit' }).get('button').trigger('click')
 
-    LocalVue.nextTick(() => {
-      expect(form.vm.submitting).toBe(true)
-      done()
-    })
+    expect(onSubmitMock.mock.calls.length).toBe(1)
   })
 
-  it('should not call `onClick` callback on click if disabled', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not call `onClick` callback on click if disabled', async () => {
     let onClickMock = jest.fn(() => {})
 
     let form = createForm({
@@ -252,15 +221,9 @@ describe('Form Button Submit', () => {
     form.findComponent({ name: 'FormButtonSubmit' }).get('button').trigger('click')
 
     expect(onClickMock.mock.calls.length).toBe(0)
-
-    done()
   })
 
-  it('should not call `onClick` callback on click if loading', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not call `onClick` callback on click if loading', async () => {
     let onClickMock = jest.fn(() => {})
 
     let form = createForm({
@@ -288,7 +251,5 @@ describe('Form Button Submit', () => {
     form.findComponent({ name: 'FormButtonSubmit' }).get('button').trigger('click')
 
     expect(onClickMock.mock.calls.length).toBe(0)
-
-    done()
   })
 })

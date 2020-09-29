@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, setInstances } from './../../../../src/utils/testHelpers'
+import { createForm, change, setInstances, tryInputValues } from './../../../../src/utils/testHelpers'
 
 describe('Between Rule', () => {
   it('should check if numeric value is between min and max', (done) => {
@@ -14,52 +14,25 @@ describe('Between Rule', () => {
 
     let a = form.findAllComponents({ name: 'TextElement' }).at(0)
     
-    change(a, '1')
-    expect(a.vm.invalid).toBe(true)
+    let values = {
+      '1': true,
+      '2': false,
+      '3': false,
+      '5': false,
+      '6': true,
+      '1.2': true,
+      '1,2': true,
+      '2.5': false,
+      '2,5': true,
+      '4.9999999': false,
+      '5.5': true,
+      'asdf': true,
+      '%/?+': true,
+      '3 ': true,
+      '-3': true,
+    }
     
-    change(a, '2')
-    expect(a.vm.invalid).toBe(false)
-    
-    change(a, '3')
-    expect(a.vm.invalid).toBe(false)
-    
-    change(a, '5')
-    expect(a.vm.invalid).toBe(false)
-    
-    change(a, '6')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '1.2')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '1,2')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '2.5')
-    expect(a.vm.invalid).toBe(false)
-    
-    change(a, '2,5')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '4.9999999')
-    expect(a.vm.invalid).toBe(false)
-
-    change(a, '5.5')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, 'asdf')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '%/?+')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '3 ')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '-3')
-    expect(a.vm.invalid).toBe(true)
-
-    done()
+    tryInputValues(values, a, done)
   })
 
   it('should check if integer value is between min and max', (done) => {
@@ -74,52 +47,25 @@ describe('Between Rule', () => {
 
     let a = form.findAllComponents({ name: 'TextElement' }).at(0)
     
-    change(a, '1')
-    expect(a.vm.invalid).toBe(true)
+    let values = {
+      '1': true,
+      '2': false,
+      '3': false,
+      '5': false,
+      '6': true,
+      '1.2': true,
+      '1,2': true,
+      '2.5': true,
+      '2,5': true,
+      '4.9999999': true,
+      '5.5': true,
+      'asdf': true,
+      '%/?+': true,
+      '3 ': false,
+      '-3': true,
+    }
     
-    change(a, '2')
-    expect(a.vm.invalid).toBe(false)
-    
-    change(a, '3')
-    expect(a.vm.invalid).toBe(false)
-    
-    change(a, '5')
-    expect(a.vm.invalid).toBe(false)
-    
-    change(a, '6')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '1.2')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '1,2')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '2.5')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '2,5')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '4.9999999')
-    expect(a.vm.invalid).toBe(true)
-
-    change(a, '5.5')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, 'asdf')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '%/?+')
-    expect(a.vm.invalid).toBe(true)
-    
-    change(a, '3 ')
-    expect(a.vm.invalid).toBe(false)
-    
-    change(a, '-3')
-    expect(a.vm.invalid).toBe(true)
-
-    done()
+    tryInputValues(values, a, done)
   })
 
   it('should check if string length is between min and max', (done) => {

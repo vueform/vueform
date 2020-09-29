@@ -72,6 +72,7 @@
         "babel-preset-env": "^1.7.0",
         "cross-env": "^5.2.0",
         "css-loader": "^2.1.0",
+        "flush-promises": "^1.0.2",
         "jest": "^26.0.1",
         "jest-environment-jsdom-sixteen": "^1.0.3",
         "jest-transform-stub": "^2.0.0",

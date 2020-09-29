@@ -1,5 +1,5 @@
 <template>
-  <component :is="components.BaseElementLayout">
+  <component :is="theme.components.BaseElementLayout">
     <template slot="field">
       <slot name="prefix"></slot>
 
@@ -7,7 +7,7 @@
       <a
         v-if="!embed"
         href=""
-        :class="classes.selectFileButton"
+        :class="classes.uploaderButton"
         @click.prevent="handleClick"
       >{{ __('laraform.elements.file.uploadButton') }}</a>
       
@@ -22,43 +22,27 @@
       />
 
       <!-- Preview -->
-      <div class="preview">
-        <a :href="link" v-if="link && clickable" target="_blank">{{ filename }}</a>
+      <div v-if="isImage" class="preview">
+        <a :href="link" v-if="uploaded" target="_blank"><img :src="preview" /> {{ filename }}</a>
+        <span v-else><img :src="preview" /> {{ filename }}</span>
+        
+      </div>
+      <div v-else class="preview">
+        <a :href="link" v-if="uploaded" target="_blank">{{ filename }}</a>
         <span v-else-if="filename">{{ filename }}</span>
       </div>
 
       <!-- Progress -->
-      <slot name="progress" :el$="el$" :progress="progress">
-        <component
-          :is="slots.progress"
-          :el$="el$"
-          :progress="progress"
-        />
-      </slot>
+      <span v-if="progress">{{ progress }}%</span>
 
       <!-- Upload temp button -->
-      <a
-        v-if="canUploadTemp"
-        href=""
-        :class="classes.uploadTempButton"
-        @click.prevent="uploadTemp"
-      >Upload</a>
+      <a v-if="stage === 1 && !auto && !uploading" @click.prevent="uploadTemp" href="" class="btn btn-primary">Upload</a>
 
       <!-- Remove button -->
-      <a
-        v-if="canRemove"
-        href=""
-        :class="classes.removeButton"
-        @click.prevent="handleRemove"
-      >Remove</a>
+      <a v-if="canRemove" href="" @click.prevent="handleRemove">Remove</a>
 
       <!-- Abort button -->
-      <a
-        v-if="uploading"
-        href=""
-        :class="classes.abortButton"
-        @click.prevent="handleCancel"
-      >Abort</a>
+      <a v-if="uploading" href="" @click.prevent="handleCancel">Abort</a>
         
       <slot name="suffix"></slot>
     </template>
@@ -79,10 +63,7 @@
     data() {
       return {
         defaultClasses: {
-          selectFileButton: 'btn btn-light btn-select-file',
-          uploadTempButton: 'btn btn-primary btn-upload-temp',
-          removeButton: 'btn btn-light btn-remove-file',
-          abortButton: 'btn btn-danger btn-abort-upload',
+          uploaderButton: 'btn btn-light uploader-button',
         }
       }
     }

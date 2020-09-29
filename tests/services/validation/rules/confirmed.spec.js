@@ -1,8 +1,11 @@
 import { createLocalVue } from '@vue/test-utils'
 import { createForm, change } from './../../../../src/utils/testHelpers'
+import flushPromises from 'flush-promises'
+
+const LocalVue = createLocalVue()
 
 describe('Confirmed Rule', () => {
-  it('should be invalid if values do not match', (done) => {
+  it('should be invalid if values do not match', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -20,17 +23,47 @@ describe('Confirmed Rule', () => {
 
     change(a, 'aaa')
     change(a_confirmation, 'bbb')
+    await flushPromises()
+
+    expect(a.vm.invalid).toBe(true)
+  })
+
+  it('should be valid if values match', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          rules: 'confirmed'
+        },
+        a_confirmation: {
+          type: 'text',
+        },
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a_confirmation = form.findAllComponents({ name: 'TextElement' }).at(1)
+
+    a.get('input').setValue('a')
+    a.get('input').trigger('keyup')
+    await flushPromises()
 
     expect(a.vm.invalid).toBe(true)
 
-    done()
+    // Waiting for watchOther to initalize
+    await LocalVue.nextTick()
+
+    a_confirmation.get('input').setValue('a')
+    a_confirmation.get('input').trigger('keyup')
+    await flushPromises()
+
+    // Waiting for watchOther to trigger watch event
+    await LocalVue.nextTick()
+
+    expect(a.vm.invalid).toBe(false)
   })
 
-  it('should be valid if values match', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-    
+  it('should watch the change of the other field', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -46,58 +79,28 @@ describe('Confirmed Rule', () => {
     let a = form.findAllComponents({ name: 'TextElement' }).at(0)
     let a_confirmation = form.findAllComponents({ name: 'TextElement' }).at(1)
 
-    LocalVue.nextTick(() => {
-      change(a, 'aaa')
-      change(a_confirmation, 'aaa')
+    change(a, 'aaa')
+    change(a_confirmation, 'bbb')
+    await flushPromises()
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.invalid).toBe(false)
+    expect(a.vm.invalid).toBe(true)
 
-        done()
-      })
-    })
-  })
+    a.get('input').setValue('bbb')
+    a.get('input').trigger('keyup')
+    await flushPromises()
 
-  it('should watch the change of the other field', (done) => {
-    const LocalVue = createLocalVue()
+    expect(a.vm.invalid).toBe(false)
 
-    LocalVue.config.errorHandler = done
+    // Waiting for watchOther to initalize
+    await LocalVue.nextTick()
 
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'text',
-          rules: 'confirmed'
-        },
-        a_confirmation: {
-          type: 'text',
-        },
-      }
-    })
+    a_confirmation.get('input').setValue('ccc')
+    a_confirmation.get('input').trigger('keyup')
+    await flushPromises()
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let a_confirmation = form.findAllComponents({ name: 'TextElement' }).at(1)
+    // Waiting for watchOther to trigger watch event
+    await LocalVue.nextTick()
 
-    LocalVue.nextTick(() => {
-      change(a, 'aaa')
-      change(a_confirmation, 'bbb')
-
-      expect(a.vm.invalid).toBe(true)
-
-      a.get('input').setValue('bbb')
-
-      LocalVue.nextTick(() => {
-        expect(a.vm.invalid).toBe(false)
-
-        a.get('input').setValue('ccc')
-        a.get('input').trigger('keyup')
-
-        LocalVue.nextTick(() => {
-          expect(a.vm.invalid).toBe(true)
-          
-          done()
-        })
-      })
-    })
+    expect(a.vm.invalid).toBe(true)
   })
 })

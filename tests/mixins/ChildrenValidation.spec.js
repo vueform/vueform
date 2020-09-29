@@ -1,12 +1,11 @@
 import { createLocalVue } from '@vue/test-utils'
 import { createForm } from './../../src/utils/testHelpers'
+import flushPromises from 'flush-promises'
+
+const Vue = createLocalVue()
 
 describe('Children Validation Mixin', () => {
-  it('should be `dirty` if any child is dirty', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `dirty` if any child is dirty', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -27,21 +26,16 @@ describe('Children Validation Mixin', () => {
 
     expect(object.vm.dirty).toBe(false)
 
-    LocalVue.nextTick(() => {
-      form.findAllComponents({ name: 'TextElement' }).at(0).get('input').setValue('aaa')
+    await Vue.nextTick()
+    
+    form.findAllComponents({ name: 'TextElement' }).at(0).get('input').setValue('aaa')
       
-      LocalVue.nextTick(() => {
-        expect(object.vm.dirty).toBe(true)
-        done()
-      })
-    })
+    await Vue.nextTick()
+    
+    expect(object.vm.dirty).toBe(true)
   })
 
-  it('should be `invalid` if any element is invalid', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `invalid` if any element is invalid', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -63,21 +57,16 @@ describe('Children Validation Mixin', () => {
 
     expect(object.vm.invalid).toBe(false)
 
-    LocalVue.nextTick(() => {
-      form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+    await Vue.nextTick()
+    
+    form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
       
-      LocalVue.nextTick(() => {
-        expect(object.vm.invalid).toBe(true)
-        done()
-      })
-    })
+    await Vue.nextTick()
+    
+    expect(object.vm.invalid).toBe(true)
   })
 
-  it('should be `debouncing` & `busy` if any element is debouncing', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `debouncing` & `busy` if any element is debouncing', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -100,22 +89,17 @@ describe('Children Validation Mixin', () => {
     expect(object.vm.debouncing).toBe(false)
     expect(object.vm.busy).toBe(false)
 
-    LocalVue.nextTick(() => {
-      form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+    await Vue.nextTick()
+
+    form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
       
-      LocalVue.nextTick(() => {
-        expect(object.vm.debouncing).toBe(true)
-        expect(object.vm.busy).toBe(true)
-        done()
-      })
-    })
+    await Vue.nextTick()
+
+    expect(object.vm.debouncing).toBe(true)
+    expect(object.vm.busy).toBe(true)
   })
 
-  it('should be `pending` and `busy` if any element is pending', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `pending` and `busy` if any element is pending', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -138,22 +122,17 @@ describe('Children Validation Mixin', () => {
     expect(object.vm.pending).toBe(false)
     expect(object.vm.busy).toBe(false)
 
-    LocalVue.nextTick(() => {
-      form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+    await Vue.nextTick()
+    
+    form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
       
-      LocalVue.nextTick(() => {
-        expect(object.vm.pending).toBe(true)
-        expect(object.vm.busy).toBe(true)
-        done()
-      })
-    })
+    await Vue.nextTick()
+
+    expect(object.vm.pending).toBe(true)
+    expect(object.vm.busy).toBe(true)
   })
 
-  it('should be `validated` only if all elements are validated', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be `validated` only if all elements are validated', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -175,24 +154,20 @@ describe('Children Validation Mixin', () => {
 
     expect(object.vm.validated).toBe(false)
 
-    LocalVue.nextTick(() => {
-      let b = form.findAllComponents({ name: 'TextElement' }).at(0)
+    await Vue.nextTick()
+    
+    let b = form.findAllComponents({ name: 'TextElement' }).at(0)
 
-      b.get('input').setValue('aaa')
-      b.vm.validate()
+    b.get('input').setValue('aaa')
+    b.vm.validate()
+    await flushPromises()
       
-      LocalVue.nextTick(() => {
-        expect(object.vm.validated).toBe(true)
-        done()
-      })
-    })
+    await Vue.nextTick()
+    
+    expect(object.vm.validated).toBe(true)
   })
 
-  it('should collect element errors in `errors`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should collect element errors in `errors`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -214,23 +189,18 @@ describe('Children Validation Mixin', () => {
 
     expect(object.vm.errors.length).toBe(0)
 
-    LocalVue.nextTick(() => {
-      let b = form.findAllComponents({ name: 'TextElement' }).at(0)
+    await Vue.nextTick()
+    
+    let b = form.findAllComponents({ name: 'TextElement' }).at(0)
 
-      b.vm.validate()
-      
-      LocalVue.nextTick(() => {
-        expect(object.vm.errors.length).toBe(1)
-        done()
-      })
-    })
+    b.vm.validate()
+    
+    await Vue.nextTick()
+    
+    expect(object.vm.errors.length).toBe(1)
   })
 
-  it('should leave out unavailable element errors in `errors`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should leave out unavailable element errors in `errors`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -256,25 +226,20 @@ describe('Children Validation Mixin', () => {
 
     expect(object.vm.errors.length).toBe(0)
 
-    LocalVue.nextTick(() => {
-      let b = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let c = form.findAllComponents({ name: 'TextElement' }).at(1)
-
-      b.vm.validate()
-      c.vm.validate()
+    await Vue.nextTick()
       
-      LocalVue.nextTick(() => {
-        expect(object.vm.errors.length).toBe(1)
-        done()
-      })
-    })
+    let b = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+
+    b.vm.validate()
+    c.vm.validate()
+    
+    await Vue.nextTick()
+
+    expect(object.vm.errors.length).toBe(1)
   })
 
-  it('should `validate` children', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should `validate` children', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -297,21 +262,16 @@ describe('Children Validation Mixin', () => {
 
     expect(object.vm.errors.length).toBe(0)
 
-    LocalVue.nextTick(() => {
-      object.vm.validate()
-      
-      LocalVue.nextTick(() => {
-        expect(object.vm.errors.length).toBe(2)
-        done()
-      })
-    })
+    await Vue.nextTick()
+
+    object.vm.validate()
+    
+    await Vue.nextTick()
+    
+    expect(object.vm.errors.length).toBe(2)
   })
 
-  it('should not have `error`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not have `error`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -333,7 +293,5 @@ describe('Children Validation Mixin', () => {
     let object = form.findComponent({ name: 'ObjectElement' })
 
     expect(object.vm.error).toBe(null)
-
-    done()
   })
 })

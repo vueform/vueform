@@ -30,14 +30,16 @@ describe('In Array Rule', () => {
 
     expect(a.vm.invalid).toBe(true)
 
-    b.vm.add('aaa')
+    setTimeout(() => {
+      b.vm.add('aaa')
 
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
-      expect(a.vm.invalid).toBe(false)
+      LocalVue.nextTick(() => {
+      LocalVue.nextTick(() => {
+        expect(a.vm.invalid).toBe(false)
 
-      done()
-    })
-    })
+        done()
+      })
+      })
+    }, 1)
   })
 })

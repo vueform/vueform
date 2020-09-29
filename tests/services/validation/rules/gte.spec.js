@@ -58,13 +58,18 @@ describe('Greater Than Equal Rule', () => {
     change(a, '3')
     change(b, '3')
 
-    expect(a.vm.invalid).toBe(false)
 
-    change(a, '2')
+    setTimeout(() => {
+      expect(a.vm.invalid).toBe(false)
 
-    expect(a.vm.invalid).toBe(true)
+      change(a, '2')
 
-    done()
+      setTimeout(() => {
+        expect(a.vm.invalid).toBe(true)
+
+        done()
+      }, 1)
+    }, 1)
   })
 
   it('should validate if the element\'s value is greater than or equal an other field\'s if value is array', (done) => {

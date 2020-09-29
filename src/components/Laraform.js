@@ -637,22 +637,6 @@ export default {
     },
   },
   methods: {
-
-    /**
-     * Validates each elements within the form.
-     * 
-     * @public
-     * @returns {void}
-     */
-    validate() {
-      if (!this.invalid && this.validated) {
-        return
-      }
-
-      _.each(_.filter(this.elements$, (el$) => { return el$.available && (!el$.validated || !el$.rules) }), (element$) => {
-        element$.validate()
-      })
-    },
     
     /**
      * Loads data and clears any element if the element's key is not found in the `data` object. Sets all elements' `dirty` to `false`.
@@ -759,6 +743,29 @@ export default {
         callback()
       }
     },
+
+    /**
+     * Validates each elements within the form.
+     * 
+     * @public
+     * @returns {void}
+     */
+    async validate() {
+      let validateOnChange = this.$_shouldValidateOn('change')
+
+      if (!this.invalid && this.validated && validateOnChange) {
+        return
+      }
+
+      let elements$ = _.filter(this.elements$, (el$) => {
+        return el$.available && (!el$.validated || !el$.rules || !validateOnChange)
+      })
+      
+      await asyncForEach(elements$, async (element$) => {
+        await element$.validate()
+      })
+    },
+
     /**
      * Starts the submission process.
      * 
@@ -775,7 +782,11 @@ export default {
       }
 
       if (this.$_shouldValidateOn('submit')) {
-        this.validate()
+        await this.validate()
+      }
+
+      if (this.invalid) {
+        return
       }
 
       this.preparing = true
@@ -789,10 +800,8 @@ export default {
       } finally {
         this.preparing = false
       }
-      
-      this.proceed(() => {
-        this.send()
-      })
+
+      this.send()
     },
 
     async prepare() {
@@ -824,7 +833,7 @@ export default {
       catch (error) {
         this.handleError(error.response, error)
 
-        throw new Error(error)
+        // throw new Error(error)
       }
       finally {
         this.submitting = false

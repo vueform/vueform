@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import asyncForEach from './../utils/asyncForEach'
 
 export default {
   data() {
@@ -121,7 +122,7 @@ export default {
      * @public
      * @returns {void}
      */
-    validate() {
+    async validate() {
       if (!this.rules) {
         return
       }
@@ -134,10 +135,10 @@ export default {
         return
       }
 
-      _.each(this.Validators, (Validator) => {
-        Validator.validate()
+      await asyncForEach(this.Validators, async (Validator) => {
+        await Validator.validate()
       })
-
+      
       this.state.validated = true
     },
 

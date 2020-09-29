@@ -1,6 +1,9 @@
 import { createForm } from './../../src/utils/testHelpers'
 import { createLocalVue } from '@vue/test-utils'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
+import flushPromises from 'flush-promises'
+
+const Vue = createLocalVue()
 
 expect.extend({toBeVisible})
 
@@ -57,11 +60,7 @@ describe('Form Wizard Step', () => {
     expect(form.findAllComponents({ name: 'FormWizardStep' }).at(0).classes()).toContain('class-a')
   })
 
-  it('should render step labels for buttons', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-    
+  it('should render step labels for buttons', async () => {    
     let form = createForm({
       wizard: {
         first: {
@@ -93,29 +92,23 @@ describe('Form Wizard Step', () => {
     let next = form.findComponent({ name: 'FormWizardNext' })
     let previous = form.findComponent({ name: 'FormWizardPrevious' })
 
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
-      expect(previous.html()).toContain('Previous2')
-      expect(next.html()).toContain('Next2')
+    await Vue.nextTick()
 
-      next.get('button').trigger('click')
+    await Vue.nextTick()
 
-      LocalVue.nextTick(() => {
-        let finish = form.findComponent({ name: 'FormWizardFinish' })
+    expect(previous.html()).toContain('Previous2')
+    expect(next.html()).toContain('Next2')
 
-        expect(finish.html()).toContain('Finish2')
+    next.get('button').trigger('click')
 
-        done()
-      })
-    })
-    })
+    await Vue.nextTick()
+
+    let finish = form.findComponent({ name: 'FormWizardFinish' })
+
+    expect(finish.html()).toContain('Finish2')
   })
 
-  it('should skip rendering buttons if they are false', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-    
+  it('should skip rendering buttons if they are false', async () => {    
     let form = createForm({
       wizard: {
         first: {
@@ -144,21 +137,15 @@ describe('Form Wizard Step', () => {
     let previous = form.findComponent({ name: 'FormWizardPrevious' })
     let next = form.findComponent({ name: 'FormWizardNext' })
 
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
-      expect(previous.html()).toBeFalsy()
-      expect(next.html()).toBeFalsy()
+    await Vue.nextTick()
 
-      done()
-    })
-    })
+    await Vue.nextTick()
+
+    expect(previous.html()).toBeFalsy()
+    expect(next.html()).toBeFalsy()
   })
   
-  it('should show active\'s elements and hide others', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should show active\'s elements and hide others', async () => {
     let form = createForm({
       wizard: {
         first: {
@@ -198,31 +185,26 @@ describe('Form Wizard Step', () => {
     expect(c.vm.name).toBe('c')
     expect(d.vm.name).toBe('d')
 
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
-      expect(a.vm.$vnode.elm).toBeVisible()
-      expect(b.vm.$vnode.elm).toBeVisible()
-      expect(c.vm.$vnode.elm).not.toBeVisible()
-      expect(d.vm.$vnode.elm).not.toBeVisible()
+    await Vue.nextTick()
 
-      next.get('button').trigger('click')
+    await Vue.nextTick()
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.$vnode.elm).not.toBeVisible()
-        expect(b.vm.$vnode.elm).not.toBeVisible()
-        expect(c.vm.$vnode.elm).toBeVisible()
-        expect(d.vm.$vnode.elm).toBeVisible()
-        done()
-      })
-    })
-    })
+    expect(a.vm.$vnode.elm).toBeVisible()
+    expect(b.vm.$vnode.elm).toBeVisible()
+    expect(c.vm.$vnode.elm).not.toBeVisible()
+    expect(d.vm.$vnode.elm).not.toBeVisible()
+
+    next.get('button').trigger('click')
+
+    await Vue.nextTick()
+
+    expect(a.vm.$vnode.elm).not.toBeVisible()
+    expect(b.vm.$vnode.elm).not.toBeVisible()
+    expect(c.vm.$vnode.elm).toBeVisible()
+    expect(d.vm.$vnode.elm).toBeVisible()
   })
   
-  it('should not be selected if disabled', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not be selected if disabled', async () => {
     let form = createForm({
       wizard: {
         first: {
@@ -252,19 +234,13 @@ describe('Form Wizard Step', () => {
 
     expect(second.vm.disabled).toBe(true)
 
-    LocalVue.nextTick(() => {
-      second.get('a').trigger('click')
-      expect(wizard.vm.current$.name).toBe('first')
+    await Vue.nextTick()
 
-      done()
-    })
+      second.get('a').trigger('click')
+    expect(wizard.vm.current$.name).toBe('first')
   })
   
-  it('should be able select if enabled', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able select if enabled', async () => {
     let form = createForm({
       wizard: {
         first: {
@@ -296,19 +272,13 @@ describe('Form Wizard Step', () => {
 
     second.vm.enable()
 
-    LocalVue.nextTick(() => {
-      second.get('a').trigger('click')
-      expect(wizard.vm.current$.name).toBe('second')
+    await Vue.nextTick()
 
-      done()
-    })
+    second.get('a').trigger('click')
+    expect(wizard.vm.current$.name).toBe('second')
   })
   
-  it('should become done if completed and has no validation rules', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should become done if completed and has no validation rules', async () => {
     let form = createForm({
       wizard: {
         first: {
@@ -338,15 +308,9 @@ describe('Form Wizard Step', () => {
     first.vm.complete()
 
     expect(first.vm.done).toBe(true)
-    
-    done()
   })
   
-  it('should not become done if completed and has invalid validation rules', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not become done if completed and has invalid validation rules', async () => {
     let form = createForm({
       wizard: {
         first: {
@@ -377,18 +341,12 @@ describe('Form Wizard Step', () => {
     first.vm.validate()
     first.vm.complete()
 
-    LocalVue.nextTick(() => {
-      expect(first.vm.done).toBe(false)
-      
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(first.vm.done).toBe(false)
   })
   
-  it('should become done if completed and has valid validation rules', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should become done if completed and has valid validation rules', async () => {
     let form = createForm({
       wizard: {
         first: {
@@ -421,23 +379,19 @@ describe('Form Wizard Step', () => {
 
     a.vm.update(1)
 
-    LocalVue.nextTick(() => {
-      first.vm.validate()
-      first.vm.complete()
+    await Vue.nextTick()
 
-      LocalVue.nextTick(() => {
-        expect(first.vm.done).toBe(true)
-        
-        done()
-      })
-    })
+    first.vm.validate()
+    first.vm.complete()
+
+    await flushPromises()
+
+    await Vue.nextTick()
+
+    expect(first.vm.done).toBe(true)
   })
 
-  it('should validate elements before going next if validateOn step is enabled', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should validate elements before going next if validateOn step is enabled', async () => {
     let form = createForm({
       validateOn: 'change|submit|step',
       wizard: {
@@ -467,30 +421,24 @@ describe('Form Wizard Step', () => {
     let a = form.findAllComponents({ name: 'TextElement' }).at(0)
     expect(a.vm.name).toBe('a')
 
-    LocalVue.nextTick(() => {
-      next.get('button').trigger('click')
+    await Vue.nextTick()
 
-      expect(wizard.vm.invalid).toBe(true)
-      expect(wizard.vm.current$.name).toBe('first')
+    next.get('button').trigger('click')
 
-      a.vm.update(1)
+    expect(wizard.vm.invalid).toBe(true)
+    expect(wizard.vm.current$.name).toBe('first')
 
-      next.get('button').trigger('click')
+    a.vm.update(1)
 
-      expect(wizard.vm.invalid).toBe(false)
-      expect(wizard.vm.current$.name).toBe('second')
+    next.get('button').trigger('click')
 
-      done()
-    })
+    expect(wizard.vm.invalid).toBe(false)
+    expect(wizard.vm.current$.name).toBe('second')
   })
 })
 
 describe('Form Wizard Step Conditions', () => {
-  it('should forward conditions to child elements', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should forward conditions to child elements', async () => {
     let conditions = [
       ['a', 1],
       ['b', 2],
@@ -533,18 +481,13 @@ describe('Form Wizard Step Conditions', () => {
     expect(c.vm.name).toBe('c')
     expect(d.vm.name).toBe('d')
 
-    LocalVue.nextTick(() => {
-      expect(c.vm.conditions).toStrictEqual(conditions)
-      expect(d.vm.conditions).toStrictEqual(_.concat([['c', 3]], conditions))
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(c.vm.conditions).toStrictEqual(conditions)
+    expect(d.vm.conditions).toStrictEqual(_.concat([['c', 3]], conditions))
   })
 
-  it('should hide step if its conditions aren\'t met', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should hide step if its conditions aren\'t met', async () => {
     let form = createForm({
       wizard: {
         first: {
@@ -573,15 +516,10 @@ describe('Form Wizard Step Conditions', () => {
 
     expect(second.vm.name).toBe('second')
 
-      expect(second.html()).toBe('')
-      done()
+    expect(second.html()).toBe('')
   })
 
-  it('should show step if its conditions are met', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should show step if its conditions are met', async () => {
     let form = createForm({
       wizard: {
         first: {
@@ -616,19 +554,14 @@ describe('Form Wizard Step Conditions', () => {
 
     expect(second.vm.name).toBe('second')
 
-    LocalVue.nextTick(() => {
-      expect(second.html()).toContain('Second')
-      done()
-    })
+    await Vue.nextTick()
+
+    expect(second.html()).toContain('Second')
   })
 })
 
 describe('Form Wizard Step Events', () => {
-  it('should trigger `active` event when selected', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should trigger `active` event when selected', async () => {
     let onActiveMock = jest.fn(() => {})
 
     let form = createForm({
@@ -660,20 +593,14 @@ describe('Form Wizard Step Events', () => {
 
     expect(onActiveMock.mock.calls.length).toBe(0)
 
-    LocalVue.nextTick(() => {
-      next.get('button').trigger('click')
+    await Vue.nextTick()
 
-      expect(onActiveMock.mock.calls.length).toBe(1)
+    next.get('button').trigger('click')
 
-      done()
-    })
+    expect(onActiveMock.mock.calls.length).toBe(1)
   })
 
-  it('should trigger `inactive` event when an other step is selected', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should trigger `inactive` event when an other step is selected', async () => {
     let onInactiveMock = jest.fn(() => {})
 
     let form = createForm({
@@ -705,19 +632,14 @@ describe('Form Wizard Step Events', () => {
 
     expect(onInactiveMock.mock.calls.length).toBe(0)
 
-    LocalVue.nextTick(() => {
-      next.get('button').trigger('click')
+    await Vue.nextTick()
+
+    next.get('button').trigger('click')
       
-      expect(onInactiveMock.mock.calls.length).toBe(1)
-      done()
-    })
+    expect(onInactiveMock.mock.calls.length).toBe(1)
   })
 
-  it('should trigger `enable` event when a step becomes enabled', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should trigger `enable` event when a step becomes enabled', async () => {
     let onEnableMock = jest.fn(() => {})
 
     let form = createForm({
@@ -749,19 +671,14 @@ describe('Form Wizard Step Events', () => {
 
     expect(onEnableMock.mock.calls.length).toBe(0)
 
-    LocalVue.nextTick(() => {
-      next.get('button').trigger('click')
+    await Vue.nextTick()
+
+    next.get('button').trigger('click')
       
-      expect(onEnableMock.mock.calls.length).toBe(1)
-      done()
-    })
+    expect(onEnableMock.mock.calls.length).toBe(1)
   })
 
-  it('should trigger `disable` event when a step becomes disabled', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should trigger `disable` event when a step becomes disabled', async () => {
     let onDisableMock = jest.fn(() => {})
 
     let form = createForm({
@@ -794,13 +711,12 @@ describe('Form Wizard Step Events', () => {
 
     expect(onDisableMock.mock.calls.length).toBe(0)
 
-    LocalVue.nextTick(() => {
-      next.get('button').trigger('click')
+    await Vue.nextTick()
 
-      wizard.vm.reset()
+    next.get('button').trigger('click')
+
+    wizard.vm.reset()
       
-      expect(onDisableMock.mock.calls.length).toBe(1)
-      done()
-    })
+    expect(onDisableMock.mock.calls.length).toBe(1)
   })
 })

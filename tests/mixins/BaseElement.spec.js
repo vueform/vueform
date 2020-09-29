@@ -4,6 +4,9 @@ import { mergeComponentClasses } from './../../src/utils/mergeClasses'
 import { Laraform } from './../../src/index'
 import defaultTheme from './../../src/themes/default'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
+import flushPromises from 'flush-promises'
+
+const Vue = createLocalVue()
 
 expect.extend({toBeVisible})
 
@@ -504,11 +507,7 @@ describe('Element Computed', () => {
     expect(b.vm.available).toBe(true)
   })
 
-  it('should set `class`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set `class`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -521,20 +520,15 @@ describe('Element Computed', () => {
 
     a.vm.class = 'class-a'
 
-    LocalVue.nextTick(() => {
-      let defaultClass = form.vm.selectedTheme.components.BaseElementLayout.data().defaultClasses.container
+    await Vue.nextTick()
+    
+    let defaultClass = form.vm.selectedTheme.components.BaseElementLayout.data().defaultClasses.container
 
-      expect(a.classes()).toContain('class-a')
-      expect(a.classes()).toContain(defaultClass)
-      done()
-    })
+    expect(a.classes()).toContain('class-a')
+    expect(a.classes()).toContain(defaultClass)
   })
 
-  it('should set `classes`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set `classes`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -551,20 +545,15 @@ describe('Element Computed', () => {
       }
     }
 
-    LocalVue.nextTick(() => {
-      let defaultClass = form.vm.selectedTheme.components.BaseElementLayout.data().defaultClasses.container
+    await Vue.nextTick()
+    
+    let defaultClass = form.vm.selectedTheme.components.BaseElementLayout.data().defaultClasses.container
 
-      expect(a.classes()).toContain('class-a')
-      expect(a.classes()).not.toContain(defaultClass)
-      done()
-    })
+    expect(a.classes()).toContain('class-a')
+    expect(a.classes()).not.toContain(defaultClass)
   })
 
-  it('should set `addClasses`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set `addClasses`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -581,13 +570,12 @@ describe('Element Computed', () => {
       }
     }
 
-    LocalVue.nextTick(() => {
-      let defaultClass = form.vm.selectedTheme.components.BaseElementLayout.data().defaultClasses.container
+    await Vue.nextTick()
+    
+    let defaultClass = form.vm.selectedTheme.components.BaseElementLayout.data().defaultClasses.container
 
-      expect(a.classes()).toContain('class-a')
-      expect(a.classes()).toContain(defaultClass)
-      done()
-    })
+    expect(a.classes()).toContain('class-a')
+    expect(a.classes()).toContain(defaultClass)
   })
 
   it('should get `before`', () => {
@@ -978,7 +966,7 @@ describe('Element Methods', () => {
 
     expect(name.vm.value).toBe('aaa')
   })
-  it('should `update` and validate value', () => {
+  it('should `update` and validate value', async () => {
     let form = createForm({
       schema: {
         name: {
@@ -993,6 +981,7 @@ describe('Element Methods', () => {
     expect(name.vm.validated).toBe(false)
 
     name.vm.update('aaa', true)
+    await flushPromises()
 
     expect(name.vm.value).toBe('aaa')
     expect(name.vm.validated).toBe(true)
@@ -1103,11 +1092,7 @@ describe('Element Methods', () => {
     expect(name.vm.value).toBe(name.vm.null)
   })
 
-  it('should `hide` element', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should `hide` element', async () => {
     let form = createForm({
       schema: {
         name: {
@@ -1122,17 +1107,12 @@ describe('Element Methods', () => {
 
     name.vm.hide()
     
-    LocalVue.nextTick(() => {
-      expect(name.vm.$el).not.toBeVisible()
-      done()
-    })
+    await Vue.nextTick()
+    
+    expect(name.vm.$el).not.toBeVisible()
   })
 
-  it('should `show` element', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should `show` element', async () => {
     let form = createForm({
       schema: {
         name: {
@@ -1147,25 +1127,20 @@ describe('Element Methods', () => {
 
     name.vm.hide()
     
-    LocalVue.nextTick(() => {
-      expect(name.vm.$el).not.toBeVisible()
+    await Vue.nextTick()
+    
+    expect(name.vm.$el).not.toBeVisible()
       
-      name.vm.show()
+    name.vm.show()
 
-      LocalVue.nextTick(() => {
-        expect(name.vm.$el).toBeVisible()
-        done()
-      })
-    })
+    await Vue.nextTick()
+
+    expect(name.vm.$el).toBeVisible()
   })
 })
 
 describe('Element Model', () => {
-  it('should return plain value for `data` if `formatData` is not set', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return plain value for `data` if `formatData` is not set', () => {
     let form = createForm({
       schema: {
         a: {
@@ -1179,15 +1154,9 @@ describe('Element Model', () => {
     a.vm.update('aaa')
 
     expect(a.vm.data).toStrictEqual({a:'aaa'})
-
-    done()
   })
 
-  it('should return formatted value for `value` if `formatData` is set', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return formatted value for `value` if `formatData` is set', () => {
     let form = createForm({
       schema: {
         a: {
@@ -1206,15 +1175,9 @@ describe('Element Model', () => {
     a.vm.update('aaa')
 
     expect(a.vm.data).toStrictEqual({a:'aaabbb'})
-
-    done()
   })
 
-  it('should `load` plain data if `formatLoad` is not set', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should `load` plain data if `formatLoad` is not set', () => {
     let form = createForm({
       schema: {
         a: {
@@ -1230,15 +1193,9 @@ describe('Element Model', () => {
     })
 
     expect(a.vm.data).toStrictEqual({a:'aaa'})
-
-    done()
   })
 
-  it('should return formatted value for `value` if `formatLoad` is set', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should return formatted value for `value` if `formatLoad` is set', () => {
     let form = createForm({
       schema: {
         a: {
@@ -1257,8 +1214,6 @@ describe('Element Model', () => {
     })
 
     expect(a.vm.data).toStrictEqual({a:'aaabbb'})
-
-    done()
   })
 })
 
@@ -1288,18 +1243,14 @@ describe('Element Components', () => {
 })
 
 describe('Element Slots', () => {
-  it('can assign from element schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('can assign from element schema', async () => {
     let form = createForm({
       schema: {
         name: {
           type: 'text',
           label: 'Name',
           slots: {
-            label: LocalVue.extend({
+            label: Vue.extend({
               props: ['el$'],
               render(h) {
                 return h('div', this.el$.label + ' from slot')
@@ -1310,10 +1261,9 @@ describe('Element Slots', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.findComponent({name: 'TextElement'}).html()).toContain('Name from slot')
-      done()
-    })
+    await Vue.nextTick()
+    
+    expect(form.findComponent({name: 'TextElement'}).html()).toContain('Name from slot')
   })
 
   it('can assign from form template', () => {
@@ -1369,18 +1319,14 @@ describe('Element Slots', () => {
     expect(form.findComponent({name: 'TextElement'}).html()).toContain('Name from slot')
   })
 
-  it('gets rerendered when schema changes', (done) => {
-    const LocalVue = createLocalVue()
-    
-    LocalVue.config.errorHandler = done
-
+  it('gets rerendered when schema changes', async () => {
     let form = createForm({
       schema: {
         name: {
           type: 'text',
           label: 'Name',
           slots: {
-            label: LocalVue.extend({
+            label: Vue.extend({
               props: ['el$'],
               render(h) {
                 return h('div', this.el$.label + ' from slot')
@@ -1391,27 +1337,21 @@ describe('Element Slots', () => {
       }
     })
 
-    LocalVue.nextTick(() => {
-      expect(form.findComponent({name: 'TextElement'}).html()).toContain('Name from slot')
+    await Vue.nextTick()
+    
+    expect(form.findComponent({name: 'TextElement'}).html()).toContain('Name from slot')
 
-      form.vm.schema.name.label = 'Name2'
+    form.vm.schema.name.label = 'Name2'
 
-      LocalVue.nextTick(() => {
-        expect(form.findComponent({name: 'TextElement'}).html()).toContain('Name2 from slot')
-
-        done()
-      })
-    })
+    await Vue.nextTick()
+  
+    expect(form.findComponent({name: 'TextElement'}).html()).toContain('Name2 from slot')
   })
 })
 
 
 describe('Element Events', () => {
-  it('should trigger `change` when value changes and validate', (done) => {
-    const LocalVue = createLocalVue()
-    
-    LocalVue.config.errorHandler = done
-
+  it('should trigger `change` when value changes and validate', async () => {
     let changeMock = jest.fn(() => {})
 
     let form = createForm({
@@ -1432,21 +1372,16 @@ describe('Element Events', () => {
 
     a.get('input').setValue('aaa')
     a.get('input').trigger('keyup')
+    await flushPromises()
 
     expect(a.vm.validated).toBe(true)
     expect(a.vm.value).toBe('aaa')
     expect(changeMock.mock.calls.length).toBe(1)
     expect(changeMock.mock.calls[0][0]).toBe('aaa')
     expect(changeMock.mock.calls[0][1]).toBe(null)
-
-    done()
   })
 
-  it('should not trigger `change` when value changes if readonly', (done) => {
-    const LocalVue = createLocalVue()
-    
-    LocalVue.config.errorHandler = done
-
+  it('should not trigger `change` when value changes if readonly', async () => {
     let changeMock = jest.fn(() => {})
 
     let form = createForm({
@@ -1468,19 +1403,14 @@ describe('Element Events', () => {
 
     a.get('input').setValue('aaa')
     a.get('input').trigger('keyup')
+    await flushPromises()
 
     expect(a.vm.validated).toBe(false)
     expect(a.vm.value).toBe('aaa')
     expect(changeMock.mock.calls.length).toBe(0)
-
-    done()
   })
 
-  it('should not validate elements if `change` event returns `false`', (done) => {
-    const LocalVue = createLocalVue()
-    
-    LocalVue.config.errorHandler = done
-
+  it('should not validate elements if `change` event returns `false`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -1499,20 +1429,15 @@ describe('Element Events', () => {
 
     a.get('input').setValue('aaa')
     a.get('input').trigger('keyup')
+    await flushPromises()
 
     expect(a.vm.validated).toBe(false)
     expect(a.vm.value).toBe('aaa')
-
-    done()
   })
 })
 
 describe('Element Hooks', () => {
-  it('should call all lifecycle hooks', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should call all lifecycle hooks', async () => {
     let beforeCreateMock = jest.fn(() => {})
     let createdMock = jest.fn(() => {})
     let beforeMountMock = jest.fn(() => {})
@@ -1552,18 +1477,16 @@ describe('Element Hooks', () => {
 
     a.vm.label = 'AAA'
 
-    LocalVue.nextTick(() => {
-      expect(beforeUpdateMock.mock.calls.length).toBe(1)
-      expect(updatedMock.mock.calls.length).toBe(1)
+    await Vue.nextTick()
+    
+    expect(beforeUpdateMock.mock.calls.length).toBe(1)
+    expect(updatedMock.mock.calls.length).toBe(1)
 
-      a.vm.$destroy()
+    a.vm.$destroy()
 
-      LocalVue.nextTick(() => {
-        expect(beforeDestroyMock.mock.calls.length).toBe(1)
-        expect(destroyedMock.mock.calls.length).toBe(1)
-
-        done()
-      })
-    })
+    await Vue.nextTick()
+  
+    expect(beforeDestroyMock.mock.calls.length).toBe(1)
+    expect(destroyedMock.mock.calls.length).toBe(1)
   })
 })

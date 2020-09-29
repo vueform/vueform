@@ -58,13 +58,17 @@ describe('Lower Than Rule', () => {
     change(a, '3')
     change(b, '3')
 
-    expect(a.vm.invalid).toBe(true)
+    setTimeout(() => {
+      expect(a.vm.invalid).toBe(true)
 
-    change(a, '2')
+      change(a, '2')
 
-    expect(a.vm.invalid).toBe(false)
+      setTimeout(() => {
+        expect(a.vm.invalid).toBe(false)
 
-    done()
+        done()
+      }, 1)
+    }, 1)
   })
 
   it('should validate if the element\'s value is lower than an other field\'s if value is array', (done) => {

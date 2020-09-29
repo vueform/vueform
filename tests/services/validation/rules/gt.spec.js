@@ -58,13 +58,17 @@ describe('Greater Than Rule', () => {
     change(a, '5')
     change(b, '3')
 
-    expect(a.vm.invalid).toBe(false)
+    setTimeout(() => {
+      expect(a.vm.invalid).toBe(false)
 
-    change(a, '3')
+      change(a, '3')
 
-    expect(a.vm.invalid).toBe(true)
+      setTimeout(() => {
+        expect(a.vm.invalid).toBe(true)
 
-    done()
+        done()
+      }, 1)
+    }, 1)
   })
 
   it('should validate if the element\'s value is greater than an other field\'s if value is array', (done) => {
@@ -140,13 +144,16 @@ describe('Greater Than Rule', () => {
 
       expect(a.vm.invalid).toBe(false)
 
-      change(b, 'aaaa')
+      setTimeout(() => {
+        change(b, 'aaaa')
 
-      LocalVue.nextTick(() => {
-        expect(a.vm.invalid).toBe(true)
+        setTimeout(() => {
+          expect(a.vm.invalid).toBe(true)
 
-        done()
-      })
+          done()
+        }, 1)
+      }, 1)
+
     })
   })
 

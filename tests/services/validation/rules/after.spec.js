@@ -207,18 +207,23 @@ describe('After Rule', () => {
       LocalVue.nextTick(() => {
         expect(to.vm.invalid).toBe(true)
 
-        from.vm.value = '2020-12-24'
-
-        LocalVue.nextTick(() => {
-          expect(to.vm.invalid).toBe(true)
-
+        setTimeout(() => {
           from.vm.value = '2020-12-23'
+
           LocalVue.nextTick(() => {
             expect(to.vm.invalid).toBe(false)
 
-            done()
+            setTimeout(() => {
+              from.vm.value = '2020-12-25'
+
+              LocalVue.nextTick(() => {
+                expect(to.vm.invalid).toBe(true)
+
+                done()
+              })
+            }, 1)
           })
-        })
+        }, 1)
       })
     })
   })
