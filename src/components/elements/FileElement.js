@@ -78,7 +78,7 @@ export default {
        * @ignore
        */
       events: [
-        'change', 'add', 'remove', 'error',
+        'change', 'remove', 'error',
       ],
     }
   },
@@ -115,6 +115,24 @@ export default {
     }
   },
   computed: {
+
+    /**
+     * The value of the element.
+     * 
+     * @type {any}
+     */
+    value: {
+      get() {
+        return this.currentValue
+      },
+      set(value) {
+        this.previousValue = this.currentValue && this.currentValue instanceof File
+          ? new File([this.currentValue], this.currentValue.name)
+          : _.clone(this.currentValue)
+
+        this.currentValue = value
+      }
+    },
     url: {
       get() {
         if (this.schema.url === undefined) {
@@ -173,7 +191,7 @@ export default {
         return 3 // file uploaded
       }
 
-      throw new Error('Unkown file upload stage')
+      return -1
     },
 
     filename() {
@@ -289,10 +307,6 @@ export default {
         return
       }
 
-      if (!this.schema.rules) {
-        return
-      }
-
       let restricted = ['min', 'max', 'between', 'size', 'mimetypes', 'mimes']
 
       await asyncForEach(this.Validators, async (Validator) => {
@@ -320,17 +334,13 @@ export default {
       }
 
       this.update(null, true, this.form$.$_shouldValidateOn('change'))
+
       this.progress = 0
 
       this.$emit('remove', this.name)
     },
 
-    handleFileChanged(e) {
-      if (this.value !== null && this.remove() === false) {
-        this.$refs.input.value = ''
-        return
-      }
-
+    handleFileSelected(e) {
       let file = e.target.files[0]
 
       this.update(file || null, true, this.form$.$_shouldValidateOn('change'))
@@ -364,7 +374,7 @@ export default {
           },
           cancelToken: this.request.token,
         })
-
+        
         this.update(response.data)
       }
       catch (e) {
@@ -408,11 +418,12 @@ export default {
       this.$refs.input.click()
     },
 
-    handleRemove() {
+    handleRemove(oldValue) {
       this.remove()
+      this.fire('remove', this.previousValue)
     },
 
-    handleCancel() {
+    handleAbort() {
       if (this.request === null) {
         return
       }

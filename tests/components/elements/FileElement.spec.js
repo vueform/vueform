@@ -11,17 +11,18 @@ const Vue = createLocalVue()
 let conosleErrorSpy
 
 beforeEach(() => {
-  conosleErrorSpy = jest.spyOn(global.console, 'error')
+  // conosleErrorSpy = jest.spyOn(global.console, 'error')
 
-  conosleErrorSpy.mockImplementation(() => {
-    error: () => {}
-  })
+  // conosleErrorSpy.mockImplementation(() => {
+  //   error: () => {}
+  // })
 
-  window.alert = (text) => {  }
+  jest.spyOn(window, 'alert').mockImplementation(() => {})
+  jest.spyOn(window, 'confirm').mockImplementation(() => true)
 })
 
 afterEach(() => {
-  conosleErrorSpy.mockRestore()
+  // conosleErrorSpy.mockRestore()
 })
 
 describe('File Element Rendering', () => {
@@ -65,7 +66,7 @@ describe('File Element Rendering', () => {
 
     let a = form.findAllComponents({ name: 'FileElement' }).at(0)
 
-    expect(a.html()).toContain(a.vm.classes.selectFileButton)
+    expect(a.html()).toContain(a.vm.classes.selectButton)
   })
 
   it('should not render upload button & input not exist if `embed` is true', async () => {
@@ -79,12 +80,18 @@ describe('File Element Rendering', () => {
 
     let a = form.findAllComponents({ name: 'FileElement' }).at(0)
 
+    const originalConsoleError = console.error
+
+    console.error = () => {}
+
     a.vm.$props.embed = true
+
+    console.error = originalConsoleError
 
     await Vue.nextTick()
 
     expect(a.find('input[type="file"]').exists()).toBe(false)
-    expect(a.html()).not.toContain(a.vm.classes.selectFileButton)
+    expect(a.html()).not.toContain(a.vm.classes.selectButton)
   })
 
   it('should have disabled for input if `disabled`', async () => {
@@ -178,13 +185,13 @@ describe('File Element Rendering', () => {
 
     let a = form.findAllComponents({ name: 'FileElement' }).at(0)
 
-    expect(a.find(`a[class="${a.vm.classes.uploadTempButton}"]`).exists()).toBe(false)
+    expect(a.find(`a[class="${a.vm.classes.uploadButton}"]`).exists()).toBe(false)
 
     a.vm.update(new File([''], 'filename'))
 
     await Vue.nextTick()
 
-    expect(a.find(`a[class="${a.vm.classes.uploadTempButton}"]`).exists()).toBe(true)
+    expect(a.find(`a[class="${a.vm.classes.uploadButton}"]`).exists()).toBe(true)
   })
 
   it('should only show remove button if `canRemove` is true', async () => {
@@ -497,7 +504,7 @@ describe('File Element Computed', () => {
     expect(a.vm.stage).toStrictEqual(3)
   })
 
-  it('should throw an error for `stage` if value is an unknown format', () => {
+  it('should -1 for `stage` if value is an unknown format', () => {
     let form = createForm({
       schema: {
         a: {
@@ -510,9 +517,7 @@ describe('File Element Computed', () => {
 
     a.vm.update(['a'])
 
-    expect(() => {
-      a.vm.stage
-    }).toThrowError()
+    expect(a.vm.stage).toBe(-1)
   })
 
   it('should return null as `filename` if in stage 0', () => {
@@ -729,7 +734,14 @@ describe('File Element Computed', () => {
 
     let a = form.findAllComponents({ name: 'FileElement' }).at(0)
 
+    const originalConsoleError = console.error
+
+    console.error = () => {}
+
     a.vm.$props.embed = true
+    
+    console.error = originalConsoleError
+
     a.vm.update('filename')
 
     expect(a.vm.genericName).toStrictEqual('filename')
@@ -747,7 +759,13 @@ describe('File Element Computed', () => {
 
     let a = form.findAllComponents({ name: 'FileElement' }).at(0)
 
+    const originalConsoleError = console.error
+
+    console.error = () => {}
+
     a.vm.$props.embed = true
+    
+    console.error = originalConsoleError
 
     expect(a.vm.genericName).toStrictEqual('File')
   })
@@ -763,7 +781,13 @@ describe('File Element Computed', () => {
 
     let a = form.findAllComponents({ name: 'FileElement' }).at(0)
 
+    const originalConsoleError = console.error
+
+    console.error = () => {}
+
     a.vm.$props.embed = true
+    
+    console.error = originalConsoleError
 
     expect(a.vm.genericName).toStrictEqual('A')
   })
@@ -779,7 +803,13 @@ describe('File Element Computed', () => {
 
     let a = form.findAllComponents({ name: 'FileElement' }).at(0)
 
+    const originalConsoleError = console.error
+
+    console.error = () => {}
+
     a.vm.$props.embed = true
+    
+    console.error = originalConsoleError
 
     expect(a.vm.genericName).toStrictEqual(a.vm.$laraform.locales[a.vm.locale].laraform.elements.file.defaultName)
   })
@@ -1066,5 +1096,959 @@ describe('File Element Watchers', () => {
     await Vue.nextTick()
 
     expect(a.vm.file).toBe(null)
+  })
+})
+
+describe('File Element Methods', () => {
+  it('should `validate`', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    a.vm.validate()
+
+    await flushPromises()
+
+    expect(a.vm.validated).toBe(true)
+  })
+
+  it('should not `validate` if form validation is turned off', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    a.vm.form$.validation = false
+
+    a.vm.validate()
+
+    await flushPromises()
+
+    expect(a.vm.validated).toBe(false)
+  })
+
+  it('should `validate` restricted rules if the value is a File object', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required|min:30'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    a.vm.update(new File([''], 'filename'))
+
+    a.vm.validate()
+
+    await flushPromises()
+
+    expect(a.vm.errors.length).toBe(1)
+  })
+
+  it('should not `validate` restricted rules if the value is not a File object', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required|min:30'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    a.vm.update('filename.jpg')
+
+    a.vm.validate()
+
+    await flushPromises()
+
+    expect(a.vm.errors.length).toBe(0)
+  })
+
+  it('should set file null on `remove` in stage 1', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let file = new File([''], 'filename')
+
+    a.vm.update(file)
+
+    expect(a.vm.stage).toBe(1)
+    expect(a.vm.value).toStrictEqual(file)
+
+    a.vm.remove()
+
+    expect(a.vm.value).toStrictEqual(null)
+  })
+
+  it('should validate file when `remove` if `validateOn` contains "change"', async () => {
+    let form = createForm({
+      validateOn: 'submit|change',
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    expect(a.vm.validated).toBe(false)
+
+    a.vm.remove()
+
+    await flushPromises()
+
+    expect(a.vm.validated).toBe(true)
+  })
+
+  it('should not validate file when `remove` if `validateOn` does not contain "change"', async () => {
+    let form = createForm({
+      validateOn: 'submit',
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    expect(a.vm.validated).toBe(false)
+
+    a.vm.remove()
+
+    await flushPromises()
+
+    expect(a.vm.validated).toBe(false)
+  })
+
+  it('should set `progress` to 0 on `remove`', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    a.vm.progress = 60
+
+    expect(a.vm.progress).toBe(60)
+
+    a.vm.remove()
+
+    expect(a.vm.progress).toBe(0)
+  })
+
+  it('should emit `remove` event on `remove`', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let removeMock = jest.fn()
+
+    a.vm.$on('remove', removeMock)
+
+    expect(removeMock.mock.calls.length).toBe(0)
+
+    a.vm.remove()
+
+    expect(removeMock.mock.calls.length).toBe(1)
+  })
+
+  it('should call remove temp endpoint when removed in stage 2', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let axiosMock = jest.fn()
+
+    let tmp = {
+      tmp: 'tmp123',
+      originalName: 'filename.jpg'
+    }
+
+    a.vm.axios.post = axiosMock
+
+    a.vm.update(tmp)
+
+    expect(a.vm.stage).toBe(2)
+
+    a.vm.remove()
+
+    expect(axiosMock.mock.calls.length).toBe(1)
+    expect(axiosMock.mock.calls[0][1]).toStrictEqual({
+      file: tmp.tmp
+    })
+  })
+
+  it('should call remove file endpoint when removed in stage 3', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let axiosMock = jest.fn()
+
+    let file = 'filename.jpg'
+
+    a.vm.axios.post = axiosMock
+
+    a.vm.update(file)
+
+    expect(a.vm.stage).toBe(3)
+
+    a.vm.remove()
+
+    expect(axiosMock.mock.calls.length).toBe(1)
+    expect(axiosMock.mock.calls[0][1]).toStrictEqual({
+      file: file
+    })
+  })
+
+  it('should not call remove file endpoint when removed and does not confirm in stage 3', () => {
+    jest.spyOn(window, 'confirm').mockImplementation(() => false)
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let axiosMock = jest.fn()
+
+    let file = 'filename.jpg'
+
+    a.vm.axios.post = axiosMock
+
+    a.vm.update(file)
+
+    expect(a.vm.stage).toBe(3)
+
+    a.vm.remove()
+
+    expect(axiosMock.mock.calls.length).toBe(0)
+  })
+
+  it('should update file when `handleFileSelected` is triggered', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let file = new File([''], 'filaname')
+
+    expect(a.vm.value).toBe(null)
+
+    a.vm.handleFileSelected({
+      target: {
+        files: [
+          file
+        ]
+      }
+    })
+
+    expect(a.vm.value).toStrictEqual(file)
+  })
+
+  it('should validate when `handleFileSelected` is triggered and `validateOn` contains "change"', async () => {
+    let form = createForm({
+      validateOn: 'submit|change',
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let file = new File([''], 'filaname')
+
+    expect(a.vm.validated).toBe(false)
+
+    a.vm.handleFileSelected({
+      target: {
+        files: [
+          file
+        ]
+      }
+    })
+
+    await flushPromises()
+
+    expect(a.vm.validated).toBe(true)
+  })
+
+  it('should not validate when `handleFileSelected` is triggered and `validateOn` does not contain "change"', async () => {
+    let form = createForm({
+      validateOn: 'submit',
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let file = new File([''], 'filaname')
+
+    expect(a.vm.validated).toBe(false)
+
+    a.vm.handleFileSelected({
+      target: {
+        files: [
+          file
+        ]
+      }
+    })
+
+    await flushPromises()
+
+    expect(a.vm.validated).toBe(false)
+  })
+
+  it('should throw an error in `uploadTemp` if not in stage 1', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    a.vm.update({
+      tmp: 'tmp123',
+      originalName: 'filename.jpg'
+    })
+
+    expect(a.vm.stage).toBe(2)
+
+    let catchMock = jest.fn()
+
+    expect(catchMock.mock.calls.length).toBe(0)
+
+    a.vm.uploadTemp().catch((e) => { catchMock() })
+
+    await flushPromises()
+
+    expect(catchMock.mock.calls.length).toBe(1)
+  })
+
+  it('should abort `uploadTemp` if invalid', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required|min:30'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let axiosMock = jest.fn()
+
+    a.vm.axios.post = axiosMock
+
+    a.vm.update(new File([''], 'filename'))
+
+    expect(a.vm.stage).toBe(1)
+
+    expect(axiosMock.mock.calls.length).toBe(0)
+
+    a.vm.uploadTemp()
+
+    await flushPromises()
+
+    expect(axiosMock.mock.calls.length).toBe(0)
+  })
+
+  it('should send file to upload endpoint & update with return value in `uploadTemp`', async () => {
+    let form = createForm({
+      key: 'aaa',
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let tmp = {
+      tmp: 'tmp123',
+      originalName: 'filename.jpg'
+    }
+
+    let axiosMock = jest.fn(() => {
+      return {
+        data: tmp
+      }
+    })
+
+    a.vm.axios.post = axiosMock
+
+    let file = new File([''], 'filename')
+
+    a.vm.update(file)
+
+    expect(a.vm.stage).toBe(1)
+
+    expect(axiosMock.mock.calls.length).toBe(0)
+
+    expect(a.vm.value).toStrictEqual(file)
+
+    a.vm.uploadTemp()
+
+    await flushPromises()
+
+    expect(axiosMock.mock.calls.length).toBe(1)
+
+    expect(axiosMock.mock.calls[0][1] instanceof FormData).toBe(true)
+    expect(axiosMock.mock.calls[0][1].get('file')).toStrictEqual(file)
+    expect(axiosMock.mock.calls[0][1].get('key')).toStrictEqual('aaa')
+    expect(axiosMock.mock.calls[0][1].get('path')).toStrictEqual('a')
+
+    expect(a.vm.value).toStrictEqual(tmp)
+  })
+
+  it('should set `progress` during `uploadTemp`', async () => {
+    let form = createForm({
+      key: 'aaa',
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let tmp = {
+      tmp: 'tmp123',
+      originalName: 'filename.jpg'
+    }
+
+    let axiosMock = jest.fn((url,data,options) => {
+      if (options && options.onUploadProgress) {
+        options.onUploadProgress({
+          loaded: 80,
+          total: 100,
+        })
+      }
+
+      return {
+        data: tmp
+      }
+    })
+
+    a.vm.axios.post = axiosMock
+
+    let file = new File([''], 'filename')
+
+    a.vm.update(file)
+    
+    a.vm.uploadTemp()
+
+    await flushPromises()
+
+    expect(a.vm.progress).toBe(80)
+    axiosMock.mockRestore()
+  })
+
+  it('should set progress to 0 on `uploadTemp` if the response is an error', async () => {
+    let form = createForm({
+      key: 'aaa',
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required'
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let axiosMock = jest.fn((url,data,options) => {})
+
+    a.vm.axios.post = axiosMock
+
+    let file = new File([''], 'filename')
+
+    a.vm.update(file)
+
+    let catchMock = jest.fn()
+    
+    a.vm.uploadTemp().catch((e) => { catchMock() })
+
+    await flushPromises()
+
+    expect(catchMock.mock.calls.length).toBe(1)
+  })
+
+  it('should not call `uploadTemp` in `prepare` if stage is not 1', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let tmp = {
+      tmp: 'tmp123',
+      originalName: 'filename.jpg'
+    }
+
+    a.vm.update(tmp)
+
+    expect(a.vm.validated).toBe(false)
+
+    expect(a.vm.stage).toBe(2)
+
+    a.vm.prepare()
+
+    await flushPromises()
+
+    expect(a.vm.validated).toBe(false)
+  })
+
+  it('should call `uploadTemp` in `prepare` if stage is 1', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          rules: 'required',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    a.vm.axios.post = jest.fn(() => {
+      return {
+        data: {
+          tmp: 'tmp123',
+          originalName: 'filename.jpg'
+        }
+      }
+    })
+
+    a.vm.update(new File([''], 'filename'))
+
+    expect(a.vm.validated).toBe(false)
+
+    expect(a.vm.stage).toBe(1)
+
+    a.vm.prepare()
+
+    await flushPromises()
+
+    expect(a.vm.validated).toBe(true)
+  })
+
+  it('should click input element when upload button is clicked in `handleClick`', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let clickMock = jest.fn()
+
+    a.vm.$refs.input = {
+      click: clickMock
+    }
+
+    expect(clickMock.mock.calls.length).toBe(0)
+
+    a.find(`[class="${a.vm.classes.selectButton}"]`).trigger('click')
+
+    await Vue.nextTick()
+
+    expect(clickMock.mock.calls.length).toBe(1)
+  })
+
+  it('should not click input element when upload button is clicked & disabled in `handleClick`', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          disabled: true
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let clickMock = jest.fn()
+
+    a.vm.$refs.input = {
+      click: clickMock
+    }
+
+    expect(clickMock.mock.calls.length).toBe(0)
+
+    a.find(`[class="${a.vm.classes.selectButton}"]`).trigger('click')
+
+    await Vue.nextTick()
+
+    expect(clickMock.mock.calls.length).toBe(0)
+  })
+
+  it('should cancel request when `Abort` is clicked', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let cancelMock = jest.fn()
+
+    a.vm.request = {
+      cancel: cancelMock
+    }
+
+    await Vue.nextTick()
+
+    expect(cancelMock.mock.calls.length).toBe(0)
+
+    a.find(`[class="${a.vm.classes.abortButton}"]`).trigger('click')
+
+    await Vue.nextTick()
+
+    expect(cancelMock.mock.calls.length).toBe(1)
+  })
+
+  it('should not cancel request when `Abort` is clicked and request does not exist', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let cancelMock = jest.fn()
+
+    a.vm.request = null
+
+    expect(cancelMock.mock.calls.length).toBe(0)
+
+    a.vm.handleAbort()
+
+    await Vue.nextTick()
+
+    expect(cancelMock.mock.calls.length).toBe(0)
+  })
+})
+
+describe('File Element Events', () => {
+  it('should trigger `change` when a file is selected via input', () => {
+    let onChangeMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          onChange: onChangeMock,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    a.get('input').setValue('')
+    a.get('input').trigger('change')
+
+    expect(onChangeMock.mock.calls.length).toBe(1)
+  })
+
+  it('should trigger `change` when a file is selected', () => {
+    let onChangeMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          onChange: onChangeMock,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let file = new File([''], 'filename')
+
+    a.vm.handleFileSelected({
+      target: {
+        files: [
+          file
+        ]
+      }
+    })
+
+    expect(onChangeMock.mock.calls.length).toBe(1)
+    expect(onChangeMock.mock.calls[0][0]).toStrictEqual(file)
+    expect(onChangeMock.mock.calls[0][1]).toStrictEqual(null)
+  })
+
+  it('should trigger `remove` & `change` when remove button is clicked in stage 1', async () => {
+    let onRemoveMock = jest.fn()
+    let onChangeMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          onRemove: onRemoveMock,
+          onChange: onChangeMock,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let file = new File([''], 'filename')
+
+    a.vm.file = file
+    a.vm.update(file)
+
+    await Vue.nextTick()
+
+    expect(a.vm.stage).toBe(1)
+
+    a.find(`[class="${a.vm.classes.removeButton}"]`).trigger('click')
+
+    expect(onRemoveMock.mock.calls.length).toBe(1)
+    expect(onRemoveMock.mock.calls[0][0]).toStrictEqual(file)
+
+    expect(onChangeMock.mock.calls.length).toBe(1)
+    expect(onChangeMock.mock.calls[0][0]).toStrictEqual(null)
+    expect(onChangeMock.mock.calls[0][1]).toStrictEqual(file)
+  })
+
+  it('should trigger `remove` & `change` when remove button is clicked in stage 2', async () => {
+    let onRemoveMock = jest.fn()
+    let onChangeMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          onRemove: onRemoveMock,
+          onChange: onChangeMock,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let file = new File([''], 'filename')
+    let tmp = {
+      tmp: 'tmp123',
+      originalName: file.name
+    }
+
+    a.vm.file = file
+    a.vm.update(tmp)
+
+    await Vue.nextTick()
+
+    expect(a.vm.stage).toBe(2)
+
+    a.find(`[class="${a.vm.classes.removeButton}"]`).trigger('click')
+
+    await Vue.nextTick()
+
+    expect(onRemoveMock.mock.calls.length).toBe(1)
+    expect(onRemoveMock.mock.calls[0][0]).toStrictEqual(tmp)
+
+    expect(onChangeMock.mock.calls.length).toBe(1)
+    expect(onChangeMock.mock.calls[0][0]).toStrictEqual(null)
+    expect(onChangeMock.mock.calls[0][1]).toStrictEqual(tmp)
+  })
+
+  it('should trigger `remove` & `change` when remove button is clicked in stage 3', async () => {
+    let onRemoveMock = jest.fn()
+    let onChangeMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          onRemove: onRemoveMock,
+          onChange: onChangeMock,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    a.vm.axios.post = jest.fn()
+
+    let file = 'filename.jpg'
+    
+    a.vm.update(file)
+
+    await Vue.nextTick()
+
+    expect(a.vm.stage).toBe(3)
+
+    a.find(`[class="${a.vm.classes.removeButton}"]`).trigger('click')
+
+    expect(onRemoveMock.mock.calls.length).toBe(1)
+    expect(onRemoveMock.mock.calls[0][0]).toStrictEqual(file)
+
+    expect(onChangeMock.mock.calls.length).toBe(1)
+    expect(onChangeMock.mock.calls[0][0]).toStrictEqual(null)
+    expect(onChangeMock.mock.calls[0][1]).toStrictEqual(file)
+  })
+
+  it('should trigger `error` event on error', async () => {
+    let onErrorMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+          onError: onErrorMock,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    expect(onErrorMock.mock.calls.length).toBe(0)
+
+    a.vm.handleError('aaa')
+
+    expect(onErrorMock.mock.calls.length).toBe(1)
+  })
+
+  it('should throw alert on default `error`', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    a.vm.update('filename.jpg')
+    a.vm.handleError('aaa')
+
+    expect(window.alert).toBeCalledWith('Couldn\'t upload file: filename.jpg')
   })
 })

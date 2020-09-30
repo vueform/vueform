@@ -5,9 +5,9 @@
 
       <!-- Upload button -->
       <a
-        v-if="!embed"
+        v-if="!embed && stage == 0"
         href=""
-        :class="classes.selectFileButton"
+        :class="classes.selectButton"
         @click.prevent="handleClick"
       >{{ __('laraform.elements.file.uploadButton') }}</a>
       
@@ -17,7 +17,7 @@
         v-show="false"
         type="file"
         :disabled="disabled"
-        @change="handleFileChanged"
+        @change="handleFileSelected"
         ref="input"
       />
 
@@ -40,7 +40,7 @@
       <a
         v-if="canUploadTemp"
         href=""
-        :class="classes.uploadTempButton"
+        :class="classes.uploadButton"
         @click.prevent="uploadTemp"
       >Upload</a>
 
@@ -57,7 +57,7 @@
         v-if="uploading"
         href=""
         :class="classes.abortButton"
-        @click.prevent="handleCancel"
+        @click.prevent="handleAbort"
       >Abort</a>
         
       <slot name="suffix"></slot>
@@ -79,8 +79,8 @@
     data() {
       return {
         defaultClasses: {
-          selectFileButton: 'btn btn-light btn-select-file',
-          uploadTempButton: 'btn btn-primary btn-upload-temp',
+          selectButton: 'btn btn-light btn-select-file',
+          uploadButton: 'btn btn-primary btn-upload-temp',
           removeButton: 'btn btn-light btn-remove-file',
           abortButton: 'btn btn-danger btn-abort-upload',
         }
