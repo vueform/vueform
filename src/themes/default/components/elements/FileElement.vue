@@ -5,7 +5,7 @@
 
       <!-- Upload button -->
       <a
-        v-if="!embed && stage == 0"
+        v-if="canSelect"
         href=""
         :class="classes.selectButton"
         @click.prevent="handleClick"
@@ -13,10 +13,9 @@
       
       <!-- Invisible input field -->
       <input
-        v-if="!embed"
+        v-if="canSelect"
         v-show="false"
         type="file"
-        :disabled="disabled"
         @change="handleFileSelected"
         ref="input"
       />

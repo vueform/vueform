@@ -1585,39 +1585,7 @@ describe('Laraform Methods', () => {
     await Vue.nextTick()
 
     expect(form.findComponent({ name: 'TextElement' }).vm.value).toBe('aaa')
-  })
-
-  it('should proceed with callback once form exits busy state', async () => {
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'text',
-          rules: 'unique'
-        },
-      }
-    })
-
-    let proceedCallbackMock = jest.fn(() => {})
-
-    expect(form.vm.busy).toBe(false)
-
-    await Vue.nextTick()
-
-    form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
-    expect(form.vm.busy).toBe(true)
-
-    form.vm.proceed(proceedCallbackMock)
-    expect(proceedCallbackMock.mock.calls.length).toBe(0)
-      
-    await Vue.nextTick()
-
-    await Vue.nextTick()
-
-    await Vue.nextTick()
-
-    expect(form.vm.busy).toBe(false)
-    expect(proceedCallbackMock.mock.calls.length).toBe(1)
-  })
+  })x
 })
 
 describe('Laraform Vuex', () => {

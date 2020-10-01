@@ -40,6 +40,8 @@ export default {
 
       axios: null,
 
+      preparing: false,
+
       /**
        * Element slots.
        * 
@@ -254,11 +256,15 @@ export default {
     },
 
     canRemove() {
-      return this.stage > 0 && !this.uploading && !this.disabled
+      return this.stage > 0 && !this.uploading && !this.disabled && !this.preparing
     },
 
     canUploadTemp() {
       return this.stage === 1 && !this.auto && !this.uploading
+    },
+
+    canSelect() {
+      return !this.embed && this.stage == 0 && !this.disabled && !this.preparing
     },
 
     /**
@@ -382,9 +388,9 @@ export default {
 
         if (!this.axios.isCancel(e)) {
           this.handleError(e)
-
-          throw new Error(e)
         }
+
+        throw new Error(e)
       }
       finally {
         this.request = null
@@ -400,7 +406,14 @@ export default {
     async prepare() {
       // In selected state
       if (this.stage === 1) {
-        await this.uploadTemp()
+        this.preparing = true
+
+        try {
+          await this.uploadTemp()
+        }
+        finally {
+          this.preparing = false
+        }
       }
     },
 

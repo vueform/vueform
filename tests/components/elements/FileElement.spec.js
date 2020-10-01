@@ -94,7 +94,7 @@ describe('File Element Rendering', () => {
     expect(a.html()).not.toContain(a.vm.classes.selectButton)
   })
 
-  it('should have disabled for input if `disabled`', async () => {
+  it('should not render select button if `disabled`', async () => {
     let form = createForm({
       schema: {
         a: {
@@ -108,7 +108,60 @@ describe('File Element Rendering', () => {
 
     await Vue.nextTick()
 
-    expect(_.keys(a.find('input[type="file"]').attributes())).toContain('disabled')
+    expect(a.find(`[class="${a.vm.classes.selectButton}"]`).exists()).toBe(false)
+  })
+
+  it('should not render select button if `preparing`', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    a.vm.preparing = true
+
+    await Vue.nextTick()
+
+    expect(a.find(`[class="${a.vm.classes.selectButton}"]`).exists()).toBe(false)
+  })
+
+  it('should not render input if `disabled`', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          disabled: true,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    await Vue.nextTick()
+
+    expect(a.find('input[type="file"]').exists()).toBe(false)
+  })
+
+  it('should not render input if `preparing`', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    a.vm.preparing = true
+
+    await Vue.nextTick()
+
+    expect(a.find('input[type="file"]').exists()).toBe(false)
   })
 
   it('should render preview with filename if it has no link', async () => {
@@ -902,6 +955,38 @@ describe('File Element Computed', () => {
     })
 
     let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    expect(a.vm.canRemove).toStrictEqual(false)
+
+    a.vm.update(new File([''], 'filename'))
+
+    expect(a.vm.canRemove).toStrictEqual(false)
+
+    a.vm.update({
+      tmp: 'tmp123',
+      originalName: 'filename'
+    })
+
+    expect(a.vm.canRemove).toStrictEqual(false)
+
+    a.vm.update('filename')
+    
+    expect(a.vm.canRemove).toStrictEqual(false)
+  })
+
+  it('should false for `canRemove` if stage is > 0 & preparing', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    a.vm.preparing = true
 
     expect(a.vm.canRemove).toStrictEqual(false)
 
@@ -1783,7 +1868,7 @@ describe('File Element Methods', () => {
 
     expect(clickMock.mock.calls.length).toBe(0)
 
-    a.find(`[class="${a.vm.classes.selectButton}"]`).trigger('click')
+    a.vm.handleClick()
 
     await Vue.nextTick()
 
@@ -1817,6 +1902,199 @@ describe('File Element Methods', () => {
     await Vue.nextTick()
 
     expect(cancelMock.mock.calls.length).toBe(1)
+  })
+
+  it('should submit form if `Abort` is not clicked', async () => {
+    let form = createForm({
+      method: 'submit',
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let axiosPostMock = jest.fn(() => {
+      return {
+        tmp: 'tmp123',
+        originalName: 'filename.jpg'
+      }
+    })
+
+    let axiosSubmitMock = jest.fn(() => {})
+
+    a.vm.axios.post = axiosPostMock
+
+    form.vm.$laraform.services.axios.submit = axiosSubmitMock
+
+    let file = new File([''], 'filename')
+
+    a.vm.update(file)
+
+    expect(axiosPostMock.mock.calls.length).toBe(0)
+    expect(axiosSubmitMock.mock.calls.length).toBe(0)
+
+    form.vm.submit()
+
+    await flushPromises()
+
+    expect(axiosPostMock.mock.calls.length).toBe(1)
+    expect(axiosSubmitMock.mock.calls.length).toBe(1)
+  })
+
+  it('should throw an error when `Abort` is clicked', async () => {
+    let form = createForm({
+      method: 'submit',
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    try {
+      let axiosPostMock = jest.fn(() => {
+        return {
+          data: {
+            tmp: 'tmp123',
+            originalName: 'filename.jpg'
+          }
+        }
+      })
+
+      a.vm.axios = {
+        post: axiosPostMock,
+        isCancel: () => true,
+        CancelToken: {
+          source: () => {
+            return {
+              token: 'asdf',
+              cancel: () => {
+                throw new Error('Cancelled')
+              }
+            }
+          }
+        }
+      }
+
+      let file = new File([''], 'filename')
+
+      a.vm.update(file)
+
+      a.vm.uploadTemp()
+
+      await Vue.nextTick()
+
+      expect(a.vm.request).not.toBe(null)
+
+      a.vm.handleAbort()
+    
+      await Vue.nextTick()
+    } catch (e) {
+      expect(e).toStrictEqual(new Error('Cancelled'))
+    }
+  })
+
+  it('should set `preparing` to true when `prepare` and set to false after', async () => {
+    let form = createForm({
+      method: 'submit',
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    let axiosPostMock = jest.fn(() => {
+      return {
+        data: {
+          tmp: 'tmp123',
+          originalName: 'filename.jpg'
+        }
+      }
+    })
+
+    a.vm.axios.post = axiosPostMock
+
+    let file = new File([''], 'filename')
+
+    a.vm.update(file)
+
+    a.vm.prepare()
+
+    expect(a.vm.preparing).toBe(true)
+
+    await flushPromises()
+
+    expect(a.vm.preparing).toBe(false)
+  })
+
+  it('should set preparing to false element if `prepare` fails', async () => {
+    let form = createForm({
+      method: 'submit',
+      schema: {
+        a: {
+          type: 'file',
+          auto: false,
+        }
+      }
+    })
+
+    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+
+    try {
+      let axiosPostMock = jest.fn(() => {
+        return {
+          data: {
+            tmp: 'tmp123',
+            originalName: 'filename.jpg'
+          }
+        }
+      })
+
+      a.vm.axios = {
+        post: axiosPostMock,
+        isCancel: () => true,
+        CancelToken: {
+          source: () => {
+            return {
+              token: 'asdf',
+              cancel: () => {
+                throw new Error('Cancelled')
+              }
+            }
+          }
+        }
+      }
+
+      let file = new File([''], 'filename')
+
+      a.vm.update(file)
+
+      a.vm.prepare()
+
+      expect(a.vm.preparing).toBe(true)
+
+      await Vue.nextTick()
+
+      a.vm.handleAbort()
+    
+      await Vue.nextTick()
+    } catch (e) {
+      await Vue.nextTick()
+      await Vue.nextTick()
+      
+      expect(a.vm.preparing).toBe(false)
+    }
   })
 
   it('should not cancel request when `Abort` is clicked and request does not exist', async () => {

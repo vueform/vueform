@@ -725,26 +725,6 @@ export default {
     },
 
     /**
-     * Fires a callback only if all async processes finished and
-     * no invalid elements were found.
-     * 
-     * @public
-     * @param {function} callback the function to call
-     * @returns {void}
-     */
-    proceed(callback) {
-      if (this.busy) {
-        this.$_waitForAsync(callback)
-      }
-      else if (this.invalid) {
-        return
-      }
-      else {
-        callback()
-      }
-    },
-
-    /**
      * Validates each elements within the form.
      * 
      * @public
@@ -792,10 +772,11 @@ export default {
       this.preparing = true
 
       try {
+        await this.prepareElements()
         await this.prepare()
       } catch (e) {
         this.handleFail(e)
-
+        
         throw new Error(e)
       } finally {
         this.preparing = false
@@ -804,11 +785,17 @@ export default {
       this.send()
     },
 
-    async prepare() {
-      await asyncForEach(this.elements$, async (element$) => {
-        await element$.prepare()
-      })
+    async prepareElements() {
+      try {
+        await asyncForEach(this.elements$, async (element$) => {
+          await element$.prepare()
+        })
+      } catch (e) {
+        throw new Error(e)
+      }
     },
+
+    async prepare() { },
 
     /**
      * Transforms form data to [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object and sends it to the endpoint.
@@ -1092,20 +1079,6 @@ export default {
      */
     $_shouldValidateOn(event) {
       return this.validateOn.split('|').indexOf(event) !== -1
-    },
-
-    /**
-     * Waits for all async processes to finish, then invokes a callback.
-     * 
-     * @private
-     * @param {function} callback the function to invoke
-     * @returns {void}
-     */
-    $_waitForAsync(callback) {
-      var unwatch = this.$watch('busy', () => {
-        unwatch()
-        this.proceed(callback)
-      })
     },
 
     $_registerComponents() {
