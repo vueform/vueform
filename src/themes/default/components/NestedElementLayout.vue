@@ -9,7 +9,15 @@
       </div>
 
       <div :class="classes.fieldWrapper">
+        <slot name="before">
+          <span v-if="before" v-html="before" />
+        </slot>
+        
         <slot name="field"></slot>
+
+          <slot name="between">
+            <span v-if="between" v-html="between" />
+          </slot>
 
          <slot name="children">
           <div :class="theme.classes.childrenContainer">
@@ -21,13 +29,21 @@
           </div>
         </slot>
 
+        <slot name="description">
+          <span v-if="description" :class="classes.fieldDescription" v-html="description" />
+        </slot>
+
         <slot name="error">
           <component :is="components.ElementError" />
         </slot>
 
-          <slot name="message">
-            <component :is="components.ElementMessage" />
-          </slot>
+        <slot name="message">
+          <component :is="components.ElementMessage" />
+        </slot>
+
+        <slot name="after">
+          <span v-if="after" v-html="after" />
+        </slot>
       </div>
 
     </div>
@@ -47,6 +63,7 @@
           labelWrapper: 'lf-label-container',
           fieldWrapper: 'lf-field-container',
           childrenContainer: 'element-group',
+          fieldDescription: 'lf-field-description',
         },
         containers: {
           element: 'container',
