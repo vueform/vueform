@@ -25,19 +25,4 @@ export default {
       return this.schema.addon !== undefined
     }
   },
-
-  methods: {
-    /**
-     * Returns a certain type of addon.
-     * 
-     * @private 
-     * @param {string} type the type of addon to be returned
-     * @returns {void}
-     */
-    $_addon(type) {
-      return this.schema.addon && this.schema.addon[type]
-        ? this.schema.addon[type]
-        : null
-    },
-  },
 }

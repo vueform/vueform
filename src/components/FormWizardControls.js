@@ -1,9 +1,8 @@
 import BaseComponent from './../mixins/BaseComponent'
-import Localized from './../mixins/Localized'
 
 export default {
   name: 'FormWizardControls',
-  mixins: [BaseComponent, Localized],
+  mixins: [BaseComponent],
   props: {
     wizard$: {
       type: Object,

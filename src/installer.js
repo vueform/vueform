@@ -5,7 +5,7 @@ import validation from './services/validation'
 import messageBag from './services/messageBag'
 import autosize from './services/autosize'
 import location from './services/location'
-import applyPlugins from './utils/applyPlugins'
+import applyExtensions from './utils/applyExtensions'
 import store from './store'
 
 if (window._ === undefined) {
@@ -23,7 +23,7 @@ export default function (config) {
 
       this.options.config = config
 
-      this.options.plugins = config.plugins
+      this.options.extensions = config.extensions
 
       this.options.themes = config.themes
 
@@ -44,14 +44,14 @@ export default function (config) {
       }
     }
 
-    plugins(plugins) {
-      _.each(plugins, (plugin) => {
-        this.options.plugins.push(plugin)
+    extensions(extensions) {
+      _.each(extensions, (extension) => {
+        this.options.extensions.push(extension)
       })
     }
 
-    plugin(plugin) {
-      this.options.plugins.push(plugin)
+    extension(extension) {
+      this.options.extensions.push(extension)
     }
 
     theme(name, theme) {
@@ -111,12 +111,12 @@ export default function (config) {
 
       let options = this.options
 
-      _.each(this.options.plugins, (plugin) => {
-        if (plugin.install === undefined) {
+      _.each(this.options.extensions, (extension) => {
+        if (extension.install === undefined) {
           return
         }
 
-        let installedOptions = plugin.install(Vue, options)
+        let installedOptions = extension.install(Vue, options)
 
         if (installedOptions) {
           options = installedOptions
@@ -125,7 +125,7 @@ export default function (config) {
 
       _.each(this.options.themes, (theme) => {
         _.each(Object.assign({}, theme.components, theme.elements), (component, name) => {
-          applyPlugins(component, name, this.options.plugins)
+          applyExtensions(component, name, this.options.extensions)
         })
       })
 

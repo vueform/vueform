@@ -5,7 +5,7 @@ export default {
   name: 'ElementMessage',
   computed: {
     message() {
-      return this.el$.messageBag.message
+      return this.el$.messageBag ? this.el$.messageBag.message : null
     }
   }
 }

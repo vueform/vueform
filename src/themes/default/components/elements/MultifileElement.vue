@@ -20,18 +20,17 @@
       >{{ __('laraform.elements.multifile.uploadButton') }}</a>
 
       <div v-sortable="sortable" :class="classes.element">
-        <component
-          v-for="(element, index) in instances"
-          
-          :is="component(element)"
-          :schema="element"
-          :name="index"
-          :parent="el$"
-          :embed="true"
-          :key="element.key"
-          ref="children$"
-          @remove="remove"
-        />
+        <template v-for="(element, index) in instances" :key="element.key">
+          <component
+            :is="component(element)"
+            :schema="element"
+            :name="index"
+            :parent="el$"
+            :embed="true"
+            ref="children$"
+            @remove="remove"
+          />
+        </template>
       </div>
     </template>
   </component>

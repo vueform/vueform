@@ -1,10 +1,8 @@
-import Localized from './../../mixins/Localized'
 import 'trix/dist/trix.css'
 
 // https://github.com/basecamp/trix#styling-formatted-content
 export default {
   name: 'Trix',
-  mixins: [Localized],
   props: {
     value: {
       default: null

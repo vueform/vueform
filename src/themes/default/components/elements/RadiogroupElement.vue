@@ -8,6 +8,7 @@
       >
         <template
           v-for="(item, value, key) in items"
+           :key="key"
         >
           <slot name="radio" :el$="el$" :item="item" :value="value">
             <component
@@ -15,7 +16,6 @@
               :el$="el$"
               :item="item"
               :value="value"
-              :key="key"
             />
           </slot>
         </template>

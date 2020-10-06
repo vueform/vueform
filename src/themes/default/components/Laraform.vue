@@ -3,53 +3,61 @@
     :class="extendedClasses.form"
     @submit.prevent="submit"
   >
-    <component
-      :is="extendedComponents.FormMessages"
+    <!-- <component
+      :is="components.FormMessages"
       v-if="hasMessages"
     />
 
     <component
-      :is="extendedComponents.FormErrors"
+      :is="components.FormErrors"
       v-if="hasErrors"
     />
 
     <component
-      :is="extendedComponents.FormLanguageSelector"
+      :is="components.FormLanguageSelector"
       v-if="multilingual"
       @changeLanguage="setLanguage"
     />
 
     <component
-      :is="extendedComponents.FormTabs"
+      :is="components.FormTabs"
       v-if="hasTabs"
       :tabs="tabs"
       :elements$="elements$"
       ref="tabs$"
     />
     <component
-      :is="extendedComponents.FormWizard"
+      :is="components.FormWizard"
       v-if="hasWizard"
       :steps="wizard"
       :elements$="elements$"
       @submit="handleSubmit"
       ref="wizard$"
-    />
+    /> -->
     
-    <component :is="extendedComponents.FormElements"
+    <component :is="components.FormElements"
       :schema="schema"
       @updateSchema="updateSchema"
-      ref="elements$"
+      ref="formElements$"
     />
 
-    <component :is="extendedComponents.FormWizardControls"
+    <!-- <component
+      :is="components.TextElement"
+      :schema="schema.a"
+      :name="'a'"
+    >
+      <template v-slot:label="{ el$ }">{{ el$.name }}</template>
+    </component> -->
+
+    <!-- <component :is="components.FormWizardControls"
       v-if="hasWizard && wizardControls"
       :wizard$="wizard$"
     />
 
-    <component :is="extendedComponents.FormButtons"
+    <component :is="components.FormButtons"
       :buttons="buttons"
       ref="buttons$"
-    />
+    /> -->
   </form>
 </template>
 

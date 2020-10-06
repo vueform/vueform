@@ -1,8 +1,7 @@
 import BaseComponent from './../mixins/BaseComponent'
-import Localized from './../mixins/Localized'
 
 export default {
-  mixins: [BaseComponent, Localized],
+  mixins: [BaseComponent],
   name: 'FormMessages',
   computed: {
     messages() {

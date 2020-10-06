@@ -1,14 +1,18 @@
-function add (el, binding, vnode) {
-  const ref = binding.arg
-  const vm = vnode.context
-  const thing = vnode.componentInstance || vnode.elm
-  if (!vm.$refs.hasOwnProperty(ref)) {
-    vm.$refs[ref] = []
-  }
-  const index = vm.$refs[ref].indexOf(thing)
-  if (index == -1) {
-  	vnode.context.$refs[ref].push(thing)
- 	}
+function add (el, binding, vnode, prevVnode) {
+  // console.log(1, el.$refs)
+  // console.log(2, binding)
+  // console.log(3, binding.instance) // form elements
+  // console.log(4, binding.instance.$refs)
+  // console.log(5, vnode)
+
+
+  const ref = binding.arg // ok
+  const vm = binding.instance // ok
+  const component = vnode // ok?
+
+  console.log(vnode.instance)
+
+  vm.inlineElements$['a'] = vnode.instance
 }
 
 // function remove (el, {arg: ref }, {context: vm }, vnode) {
@@ -23,7 +27,7 @@ function add (el, binding, vnode) {
 // }
 
 export default {
-  bind: add,
-  update: add,
+  mounted: add,
+  updated: add,
   // unbind: remove
 }

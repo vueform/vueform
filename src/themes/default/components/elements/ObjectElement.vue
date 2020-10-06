@@ -4,13 +4,12 @@
     <slot slot="prefix" name="prefix"></slot>
 
     <div :class="classes.elements" slot="elements">
-      <template v-for="(element, name) in children">
+      <template v-for="(element, name) in children" :key="name">
         <component
           :is="component(element)"
           :schema="element"
           :name="name"
           :parent="el$"
-          :key="name"
           ref="children$"
         />
       </template>

@@ -2,17 +2,16 @@
   <ul
     :class="classes.container"
   >
-    <template v-for="(step, name) in steps">
-      <component :is="components.FormWizardStep"
-        :step="step"
-        :name="name"
-        :elements$="elements$"
-        :visible$="visible$"
-        :key="name"
-        @select="handleSelect"
-        ref="steps$"
-      />
-    </template>
+    <component
+      v-for="(step, name) in steps" :key="name"
+      :is="components.FormWizardStep"
+      :step="step"
+      :name="name"
+      :elements$="elements$"
+      :visible$="visible$"
+      @select="handleSelect"
+      ref="steps$"
+    />
   </ul>
 </template>
 

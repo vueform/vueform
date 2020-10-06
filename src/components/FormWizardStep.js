@@ -1,13 +1,12 @@
 import _ from 'lodash'
 import BaseComponent from './../mixins/BaseComponent'
 import HasEvents from './../mixins/HasEvents'
-import Localized from './../mixins/Localized'
 import HasLabel from './../mixins/HasLabel'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'FormWizardStep',
-  mixins: [BaseComponent, HasEvents, HasLabel, Localized],
+  mixins: [BaseComponent, HasEvents, HasLabel],
   props: {
     /**
      * Name of step within [steps](reference/frontend-form#prop-steps) object.

@@ -2,16 +2,13 @@
   <div
     :class="classes.container"
   >
-    <template
+    <div  
       v-for="(error, key, index) in errors"
+      :key="index"
+      :class="classes.error"
     >
-      <div
-        :class="classes.error"
-        :key="index"
-      >
-        {{ error }}
-      </div>
-    </template>
+      {{ error }}
+    </div>
   </div>
 </template>
 

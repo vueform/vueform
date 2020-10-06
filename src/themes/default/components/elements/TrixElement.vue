@@ -31,13 +31,9 @@
 
 <script>
   import TrixElement from './../../../../components/elements/TrixElement'
-  import Trix from './../wrappers/Trix'
   
   export default {
     mixins: [TrixElement],
-    components: {
-      Trix,
-    },
     data() {
       return {
         defaultClasses: {

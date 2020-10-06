@@ -1,9 +1,5 @@
-import condition from './../plugins/condition'
-
 export default {
-  plugins: [
-    condition,
-  ],
+  plugins: [],
   
   themes: {},
 

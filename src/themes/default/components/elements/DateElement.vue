@@ -39,13 +39,8 @@
 <script>
   import DateElement from './../../../../components/elements/DateElement'
 
-  import Flatpickr from './../wrappers/Flatpickr'
-
   export default {
     mixins: [DateElement],
-    components: {
-      Flatpickr,
-    },
     data() {
       return {
         defaultClasses: {

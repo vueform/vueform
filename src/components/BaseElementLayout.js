@@ -27,5 +27,17 @@ export default {
 
       return classes
     },
+    before() {
+      return this.el$.before
+    },
+    between() {
+      return this.el$.between
+    },
+    after() {
+      return this.el$.after
+    },
+    description() {
+      return this.el$.description
+    },
   }
 }

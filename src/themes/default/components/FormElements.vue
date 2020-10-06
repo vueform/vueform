@@ -1,24 +1,32 @@
 <template>
   <div :class="classes.container">
     <div :class="classes.wrapper">
-      <template v-for="(element, name) in schema">
-        <component
-          :is="component(element)"
-          :schema="element"
-          :name="name"
-          :key="name"
-          ref="elements$"
-        />
-      </template>
+      <component
+        v-for="(element, name) in schema"
+        :is="component(element)"
+        :schema="element"
+        :name="name"
+        :ref="el => { if(el) elements$[name] = el }"
+        :key="name"
+      />
     </div>
   </div>
 </template>
 
 <script>
   import FormElements from './../../../components/FormElements'
+  import { ref, reactive, onBeforeUpdate } from 'vue'
+  import useFormElements from './../../../composables/useFormElements'
 
   export default {
     mixins: [FormElements],
+    setup() {
+      const formElements = useFormElements()
+
+      return {
+        ...formElements,
+      }
+    },
     data() {
       return {
         defaultClasses: {
@@ -26,7 +34,7 @@
           wrapper: 'form-elements',
         }
       }
-    }
+    },
   }
 </script>
 

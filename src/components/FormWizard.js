@@ -1,11 +1,10 @@
 import _ from 'lodash'
 import BaseComponent from './../mixins/BaseComponent'
 import HasEvents from './../mixins/HasEvents'
-import Localized from './../mixins/Localized'
 
 export default {
   name: 'FormWizard',
-  mixins: [BaseComponent, HasEvents, Localized],
+  mixins: [BaseComponent, HasEvents],
   props: {
     /**
      * Steps definition.

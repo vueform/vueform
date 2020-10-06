@@ -4,13 +4,13 @@
     <template
       v-for="(element, name, index) in children"
       slot="elements"
+      :key="index"
     >
       <component
         :is="component(element)"
         :schema="element"
         :name="name"
         :parent="el$"
-        :key="index"
         ref="children$"
       />
     </template>

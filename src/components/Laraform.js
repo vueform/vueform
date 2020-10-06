@@ -3,17 +3,21 @@ import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
 import formData from './../utils/formData'
 import asyncForEach from './../utils/asyncForEach'
 import HasEvents from './../mixins/HasEvents'
-import HasTranslator from './../mixins/HasTranslator'
-import ref from './../directives/ref'
+
+import useLaraform from './../composables/useLaraform'
 
 export default {
   name: 'Laraform',
-  directives: {
-    ref
+  mixins: [HasEvents],
+  setup() {
+    const laraform = useLaraform()
+
+    return {
+      ...laraform
+    }
   },
-  mixins: [HasEvents, HasTranslator],
   render() {
-    return this.extendedTheme.components.Laraform.render.apply(this)
+    return this.extendedTheme.components.Laraform.render.apply(this, arguments)
   },
   provide() {
     const _this = this
@@ -148,9 +152,10 @@ export default {
        */
       labels: null,
 
-      components: {},
-
-      elements: {},
+      override: {
+        components: {},
+        elements: {},
+      },
         
       /**
        * Custom error messages.
@@ -242,14 +247,6 @@ export default {
       updating: false,
 
       /**
-       * Form element components.
-       * 
-       * @type {object}
-       * @default -
-       */
-      elements$: {},
-
-      /**
        * Form wizard component.
        * 
        * @type {object}
@@ -290,22 +287,9 @@ export default {
       deep: true,
       immediate: false
     },
-    schema: {
-      handler() {
-        this.$nextTick(() => {
-          this.$_setElements$()
-        })
-      },
-      deep: true,
-      immediate: false,
-    },
     wizard: {
       handler() {
         this.$_resortSchema()
-
-        this.$nextTick(() => {
-          this.$_setWizard$()
-        })
       },
       deep: true,
       immediate: false,
@@ -313,10 +297,6 @@ export default {
     tabs: {
       handler() {
         this.$_resortSchema()
-
-        this.$nextTick(() => {
-          this.$_setTabs$()
-        })
       },
       deep: true,
       immediate: false,
@@ -331,23 +311,24 @@ export default {
       }, 
       deep: true
     },
-    data: {
-      handler(value) {
-        this.$emit('change', this.filtered)
-        this.handleChange(this.filtered)
+    // data: {
+      // @todo
+    //   handler(value) {
+    //     this.$emit('change', this.filtered)
+    //     this.handleChange(this.filtered)
 
-        if (this.storePath === null) {
-          return
-        }
+    //     if (this.storePath === null) {
+    //       return
+    //     }
         
-        if (_.isEqual(value, this.store)) {
-          return
-        }
+    //     if (_.isEqual(value, this.store)) {
+    //       return
+    //     }
         
-        this.store = this.filtered
-      },
-      deep: true
-    }
+    //     this.store = this.filtered
+    //   },
+    //   deep: true
+    // }
   },
   computed: {
 
@@ -451,7 +432,7 @@ export default {
       var errors = []
 
       _.each(_.filter(this.elements$, { available: true }), (element$) => {
-        _.each(element$.messageBag.errors || [], (error) => {
+        _.each(element$.messageBag.value.errors || [], (error) => {
           errors.push(error)
         })
       })
@@ -485,7 +466,7 @@ export default {
       // not available at the time of `provide` 
       var locale = !_.isEmpty(this.locale)
         ? this.locale
-        : (this.form.locale || laraform.config.locale)
+        : (this.form.locale || this.$laraform.config.locale)
 
       return locale
     },
@@ -553,8 +534,8 @@ export default {
       return classes
     },
 
-    extendedComponents() {
-      return this.extendedTheme.components
+    components() {
+      return Object.assign({}, this.extendedTheme.components, this.extendedTheme.elements)
     },
 
     /**
@@ -581,14 +562,18 @@ export default {
         elements: Object.assign({},
           this.selectedTheme.elements,
           this.$laraform.elements,
-          this.elements,
+
+          // @todo
+          this.override && this.override.elements ? this.override.elements : {},
         ),
 
         // Add registered component to theme (or overwrite)
         components: Object.assign({},
           this.selectedTheme.components,
           this.$laraform.components,
-          this.components,
+
+          // @todo
+          this.override && this.override.components ? this.override.components : {},
         ),
         
         // Ovewrite theme classes with form's classes definition
@@ -1014,31 +999,6 @@ export default {
       return this.el$(path.match(/.*(?=\.)/)[0]).children$
     },
 
-    $_setElements$() {
-      if (!this.$refs.elements$) {
-        throw new Error('elements$ ref must be defined')
-      }
-
-      let elements$ = {}
-      let elementRefs$ = _.isArray(this.$refs.elements$)
-        ? this.$refs.elements$
-        : this.$refs.elements$.$refs.elements$ || []
-
-      _.each(elementRefs$, (element$) => {
-        elements$[element$.name] = element$
-      })
-
-      this.$set(this, 'elements$', elements$)
-    },
-
-    $_setWizard$() {
-      this.$set(this, 'wizard$', this.$refs.wizard$ || {})
-    },
-
-    $_setTabs$() {
-      this.$set(this, 'tabs$', this.$refs.tabs$ || {})
-    },
-
     $_resortSchema() {
       let all = _.keys(this.schema)
       let blocks
@@ -1079,23 +1039,6 @@ export default {
      */
     $_shouldValidateOn(event) {
       return this.validateOn.split('|').indexOf(event) !== -1
-    },
-
-    $_registerComponents() {
-      let components = Object.assign({},
-        this.extendedTheme.components,
-        this.components,
-        this.extendedTheme.elements,
-        this.elements
-      )
-
-      _.each(components, (component, name) => {
-        if (this.$options.components[name] !== undefined) {
-          return
-        }
-
-        this.$options.components[name] = component
-      })
     },
 
     $_initMessageBag() {
@@ -1154,16 +1097,9 @@ export default {
     this.$_resortSchema()
     this.$_initMessageBag()
   },
-  beforeMount() {
-    this.$_registerComponents()
-  },
   mounted() {
-    this.$_setElements$()
-    this.$_setWizard$()
-    this.$_setTabs$()
-
     if (!_.isEmpty(this.form.data)) {
       this.load(this.form.data)
     }
-  }
+  },
 }

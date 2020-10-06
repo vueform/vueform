@@ -11,5 +11,5 @@ export default {
     name() {
       return this.el$.name
     },
-  }
+  },
 }

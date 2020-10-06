@@ -1,10 +1,9 @@
 import BaseComponent from './../mixins/BaseComponent'
-import Localized from './../mixins/Localized'
 import HasLabel from './../mixins/HasLabel'
 
 export default {
   name: 'FormWizardPrevious',
-  mixins: [BaseComponent, HasLabel, Localized],
+  mixins: [BaseComponent, HasLabel],
   props: {
     wizard$: {
       type: Object,

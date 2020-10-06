@@ -1,12 +1,12 @@
 <template>
   <component :is="components.BaseElementLayout">
-    <template slot="field">
+    <template v-slot:field>
 
       <slot name="prefix"></slot>
 
       <div :class="[{[classes.inputContainer]: hasAddon}]">
         <component :is="components.InputAddon"
-          v-if="addon.before"
+          v-if="addons.before"
           type="before"
         />
 
@@ -18,8 +18,8 @@
 
         <MaskedInput
           v-if="masked"
-          v-$model="model"
           :value="String(model === null ? '' : model)"
+          @change="model = $event.target.value"
           :type="inputType"
           :name="name"
           :id="id"
@@ -38,11 +38,10 @@
           @select="handleKeyup"
           ref="input"
         />
-
         <input
           v-else
-          v-$model="model"
           :value="model"
+          @input="model = $event.target.value"
           :type="inputType"
           :name="name"
           :id="id"
@@ -57,7 +56,7 @@
         />
 
         <component :is="components.InputAddon"
-          v-if="addon.after"
+          v-if="addons.after"
           type="after"
         />
 
@@ -67,31 +66,36 @@
       
     </template>
     
-    <slot slot="label" name="label" :el$="el$"></slot>
-    <slot slot="info" name="info" :el$="el$"></slot>
-    <slot slot="before" name="before" :el$="el$"></slot>
-    <slot slot="between" name="between" :el$="el$"></slot>
-    <slot slot="error" name="error" :el$="el$"></slot>
-    <slot slot="after" name="after" :el$="el$"></slot>
+    <template v-slot:before><slot name="before" :el$="el$"><component :is="slots.before" /></slot></template>
+    <template v-slot:label><slot name="label" :el$="el$"><component :is="slots.label" /></slot></template>
+    <template v-slot:between><slot name="between" :el$="el$"><component :is="slots.between" /></slot></template>
+    <template v-slot:description><slot name="description" :el$="el$"><component :is="slots.description" /></slot></template>
+    <template v-slot:error><slot name="error" :el$="el$"><component :is="slots.error" /></slot></template>
+    <template v-slot:message><slot name="message" :el$="el$"><component :is="slots.message" /></slot></template>
+    <template v-slot:after><slot name="after" :el$="el$"><component :is="slots.after" /></slot></template>
   </component>
 </template>
 
 <script>
   import TextElement from './../../../../components/elements/TextElement'
+  import { setup } from './../../../../index'
 
   import MaskedInput from 'vue-text-mask'
+
+  const defaultClasses = {
+    input: 'form-control'
+  }
 
   export default {
     mixins: [TextElement],
     components: {
       MaskedInput,
     },
+    setup: (props, context) => setup(props, context, TextElement, defaultClasses),
     data() {
       return {
-        defaultClasses: {
-          input: 'form-control'
-        }
+        defaultClasses,
       }
-    }
+    },
   }
 </script>

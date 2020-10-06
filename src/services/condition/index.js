@@ -1,12 +1,9 @@
-import normalize from './../../../utils/normalize'
-import replaceWildcards from './../../../utils/replaceWildcards'
-import compare from './../../../utils/compare'
+import normalize from './../../utils/normalize'
+import replaceWildcards from './../../utils/replaceWildcards'
+import compare from './../../utils/compare'
 import _ from 'lodash'
 
-const check = (condition, el$) => {
-  let form$ = el$.form$
-  let path = el$.path
-
+const check = (condition, path, form$) => {
   let checkGlobal = () => {
     return form$.conditions[condition](form$)
   }
@@ -24,7 +21,7 @@ const check = (condition, el$) => {
 
     if (element$) {
       _.each(element$.conditions, (condition) => {
-        if (condition[0] == el$.path) {
+        if (condition[0] == path) {
           hasCircularCondition = true
         }
       })

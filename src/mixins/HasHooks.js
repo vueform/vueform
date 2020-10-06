@@ -71,69 +71,69 @@ export default {
       }
     },
     
-    /**
-     * Triggered in the element's `beforeDestroy` lifecycle hook.
-     * 
-     * @type {function} 
-     * @default null
-     */
-    beforeDestroy: {
-      get() {
-        return this.descriptor.beforeDestroy || null
-      },
-      set(value) {
-        this.$set(this.descriptor, 'beforeDestroy', value)
-      }
-    },
+    // /**
+    //  * Triggered in the element's `beforeDestroy` lifecycle hook.
+    //  * 
+    //  * @type {function} 
+    //  * @default null
+    //  */
+    // beforeDestroy: {
+    //   get() {
+    //     return this.descriptor.beforeDestroy || null
+    //   },
+    //   set(value) {
+    //     this.$set(this.descriptor, 'beforeDestroy', value)
+    //   }
+    // },
     
-    /**
-     * Triggered in the element's `destroyed` lifecycle hook.
-     * 
-     * @type {function} 
-     * @default null
-     */
-    destroyed: {
-      get() {
-        return this.descriptor.destroyed || null
-      },
-      set(value) {
-        this.$set(this.descriptor, 'destroyed', value)
-      }
-    },
+    // /**
+    //  * Triggered in the element's `destroyed` lifecycle hook.
+    //  * 
+    //  * @type {function} 
+    //  * @default null
+    //  */
+    // destroyed: {
+    //   get() {
+    //     return this.descriptor.destroyed || null
+    //   },
+    //   set(value) {
+    //     this.$set(this.descriptor, 'destroyed', value)
+    //   }
+    // },
   },
   created() {
     if (this.created) {
-      this.created()
+      this.created.apply(this)
     }
   },
   beforeMount() {
     if (this.beforeMount) {
-      this.beforeMount()
+      this.beforeMount.apply(this)
     }
   },
   mounted() {
     if (this.mounted) {
-      this.mounted()
+      this.mounted.apply(this)
     }
   },
   beforeUpdate() {
     if (this.beforeUpdate) {
-      this.beforeUpdate()
+      this.beforeUpdate.apply(this)
     }
   },
   updated() {
     if (this.updated) {
-      this.updated()
+      this.updated.apply(this)
     }
   },
-  beforeDestroy() {
-    if (this.beforeDestroy) {
-      this.beforeDestroy()
-    }
-  },
-  destroyed() {
-    if (this.destroyed) {
-      this.destroyed()
-    }
-  },
+  // beforeDestroy() {
+  //   if (this.beforeDestroy) {
+  //     this.beforeDestroy()
+  //   }
+  // },
+  // destroyed() {
+  //   if (this.destroyed) {
+  //     this.destroyed()
+  //   }
+  // },
 }

@@ -1,13 +1,12 @@
 // @todo: check required schema (eg. `elements` property) here and everywhere
 
 import HasEvents from './../mixins/HasEvents'
-import Localized from './../mixins/Localized'
 import BaseComponent from './../mixins/BaseComponent'
 import HasLabel from './../mixins/HasLabel'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
-  mixins: [BaseComponent, HasEvents, HasLabel, Localized],
+  mixins: [BaseComponent, HasEvents, HasLabel],
   name: 'FormTab',
   props: {
     /**

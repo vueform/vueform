@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     baseAddon() {
-      return this.el$.addon[this.type]
+      return this.el$.addons[this.type]
     },
     addon() {
       return this.isAddonFunction
