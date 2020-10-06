@@ -11,7 +11,6 @@ export default {
   mixins: [HasEvents],
   setup() {
     const laraform = useLaraform()
-
     return {
       ...laraform
     }
@@ -458,9 +457,9 @@ export default {
      * @type {object}
      */
     selectedLocale() {
-      if (this.$_isVueI18nInstalled()) {
-        return this.$i18n.locale
-      }
+      // if (this.$_isVueI18nInstalled()) {
+      //   return this.$i18n.locale
+      // }
 
       // calculating locale manually as it is
       // not available at the time of `provide` 

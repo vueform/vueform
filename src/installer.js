@@ -5,6 +5,7 @@ import validation from './services/validation'
 import messageBag from './services/messageBag'
 import autosize from './services/autosize'
 import location from './services/location'
+import condition from './services/condition'
 import applyExtensions from './utils/applyExtensions'
 import store from './store'
 
@@ -41,6 +42,7 @@ export default function (config) {
         messageBag,
         autosize,
         location,
+        condition,
       }
     }
 

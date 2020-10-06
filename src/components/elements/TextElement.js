@@ -12,8 +12,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.id)
-    // this.initMessageBag(this)
-    // this.initValidation(this)
+    this.initMessageBag(this)
+    this.initValidation(this)
   }
 }

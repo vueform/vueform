@@ -1,10 +1,10 @@
-import { inject } from 'composition-api'
+import { inject, reactive } from 'composition-api'
 
 export default function useForm$(props, context, dependencies)
 {
   // =============== INJECT ===============
 
-  let form$ = inject('form$')
+  let form$ = reactive(inject('form$'))
 
   return {
     form$,

@@ -58,10 +58,10 @@ export default function useBaseElement(props, context, dependencies)
    * @ignore
    */
   const genericName = computed(() => {
-    if (label) {
-      return label
-    } else if (placeholder) {
-      return placeholder
+    if (label.value) {
+      return label.value
+    } else if (placeholder.value) {
+      return placeholder.value
     } else {
       return _.upperFirst(name)
     }
