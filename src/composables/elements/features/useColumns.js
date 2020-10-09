@@ -1,8 +1,8 @@
-import { computed } from 'composition-api'
+import { computed, toRefs } from 'composition-api'
 
 export default function useColumns(props, context, dependencies)
 {
-  const schema = props.schema
+  const { schema } = toRefs(props)
 
   // ============== COMPUTED ==============
 

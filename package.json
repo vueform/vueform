@@ -23,38 +23,9 @@
         "build:essentials": "cross-env BUNDLE=essentials node_modules/webpack/bin/webpack.js --progress --config build/webpack.build.config.js",
         "build:core": "cross-env BUNDLE=core node_modules/webpack/bin/webpack.js --progress --config build/webpack.build.config.js",
         "build": "npm run build:full; npm run build:essentials; npm run build:core",
-        "test": "jest"
-    },
-    "jest": {
-        "moduleFileExtensions": [
-            "js",
-            "json",
-            "vue"
-        ],
-        "transform": {
-            ".*\\.(vue)$": "vue-jest",
-            "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
-        },
-        "transformIgnorePatterns": [
-            "/node_modules/(?!vue-js-toggle-button|vue-multiselect)"
-        ],
-        "moduleNameMapper": {
-            "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
-        },
-        "collectCoverage": true,
-        "collectCoverageFrom": [
-            "**/*.{js,vue}",
-            "!**/node_modules/**",
-            "!**/build/**",
-            "!**/coverage/**",
-            "!**/config/**",
-            "!**/dist/**",
-            "!**/ignore/**"
-        ],
-        "coverageReporters": [
-            "html",
-            "text-summary"
-        ]
+        "test": "jest",
+        "test-vue2": "VUE=2 jest --watchAll --verbose --config=jest.config.vue2.js",
+        "test-vue3": "VUE=3 jest --watchAll --verbose --config=jest.config.vue3.js"
     },
     "devDependencies": {
         "@babel/core": "^7.2.2",
@@ -63,8 +34,8 @@
         "@babel/preset-env": "^7.3.1",
         "@babel/runtime": "^7.3.1",
         "@testing-library/jest-dom": "^5.9.0",
-        "@vue/composition-api": "^0.5.0",
-        "@vue/test-utils": "^1.0.2",
+        "@vue/compiler-sfc": "^3.0.0",
+        "@vue/composition-api": "^1.0.0-beta.15",
         "babel-core": "^6.26.3",
         "babel-jest": "^26.0.1",
         "babel-loader": "^8.0.5",
@@ -80,10 +51,15 @@
         "mutationobserver-shim": "^0.3.7",
         "node-sass": "^4.11.0",
         "sass-loader": "^7.1.0",
-        "vue": "^2.6.11",
-        "vue-jest": "^3.0.5",
+        "typescript": "^4.0.3",
+        "vue-jest-next": "npm:vue-jest@^5.0.0-alpha.4",
+        "vue-jest-prev": "npm:vue-jest@^3.0.7",
         "vue-loader": "^15.5.1",
+        "vue-next": "npm:vue@^3.0.0",
+        "vue-prev": "npm:vue@^2.6.12",
         "vue-template-compiler": "^2.6.11",
+        "vue-test-utils-next": "npm:@vue/test-utils@^2.0.0-beta.6",
+        "vue-test-utils-prev": "npm:@vue/test-utils@^1.1.0",
         "webpack": "^4.28.4",
         "webpack-cli": "^3.2.1",
         "webpack-notifier": "^1.7.0"

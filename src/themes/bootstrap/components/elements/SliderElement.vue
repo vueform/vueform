@@ -8,10 +8,7 @@
         v-model="model"
         :name="name"
         :id="id"
-        :min="min"
-        :max="max"
-        :disabled="disabled"
-        @drag-end="handleChange"
+        @callback="handleChange"
         ref="slider$"
       />
 
@@ -29,7 +26,7 @@
 <script>
   import SliderElement from './../../../../components/elements/SliderElement'
 
-  import VueSlider from 'vue-slider-component';
+  import VueSlider from 'vue-slider-component'
 
   export default {
     mixins: [SliderElement],
@@ -43,3 +40,28 @@
     }
   }
 </script>
+
+<style lang="scss">
+  .slider-element {
+    .row {
+      & > div:last-of-type {
+        margin-top: 5px;
+      }
+    }
+  }
+
+  .vue-slider-component {
+    .vue-slider {
+      background-color: #777
+    }
+
+    .vue-slider-tooltip {
+      border-color: #0597db;
+      background-color: #0597db;
+    }
+
+    .vue-slider-process {
+      background-color: #0597db;
+    } 
+  }
+</style>

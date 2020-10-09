@@ -1,5 +1,5 @@
-export default function setup(props, context, component, defaultClasses) {
-  let setup = component.setup(props, Object.assign({}, context, {
+export default function init(props, context, component, defaultClasses) {
+  let setup = component.init(props, Object.assign({}, context, {
     name: component.name,
     defaultClasses,
   }))

@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, check, uncheck } from './../../../../src/utils/testHelpers'
+import { createForm, change, check, uncheck } from './.test-helpers'
 
 describe('String Rule', () => {
   it('should validate string', (done) => {

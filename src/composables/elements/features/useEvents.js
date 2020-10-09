@@ -1,8 +1,12 @@
-import { reactive, onMounted } from 'composition-api'
+import { reactive, toRefs } from 'composition-api'
 
 export default function useEvents(props, context, dependencies, options)
 {
-  const schema = props.schema
+  const { schema } = toRefs(props)
+
+  // ============ DEPENDENCIES =============
+
+  const { form$ } = dependencies.form$
 
   // ================ DATA ================
 
@@ -66,8 +70,7 @@ export default function useEvents(props, context, dependencies, options)
     var response
 
     _.each(listeners[evt], (callback) => {
-      // @todo: this
-      var answer = callback.apply(this, args)
+      var answer = callback.apply(form$, args)
 
       if (answer !== undefined) {
         response = answer
@@ -97,7 +100,7 @@ export default function useEvents(props, context, dependencies, options)
 
 
   _.each(events, (params, evt) => {
-    let callback = schema['on' + _.upperFirst(evt)]
+    let callback = schema.value['on' + _.upperFirst(evt)]
 
     if (callback !== undefined) {
       on(evt, callback)

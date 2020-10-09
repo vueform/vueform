@@ -6,11 +6,9 @@
       <div
         :class="classes.checkboxGroup"
       >
-        <template
-          v-for="(item, value, key) in items"
-        >
           <slot name="checkbox" :el$="el$" :item="item" :value="value">
             <component
+              v-for="(item, value, key) in items"
               :is="slots.checkbox"
               :el$="el$"
               :item="item"
@@ -18,7 +16,6 @@
               :key="key"
             />
           </slot>
-        </template>
       </div>
 
       <slot name="suffix"></slot>

@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../../../src/utils/testHelpers'
+import { createForm } from 'test-helpers'
 
 describe('Key Element', () => {
   it('should render key element', (done) => {

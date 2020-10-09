@@ -1,4 +1,4 @@
-import { createForm, change } from './../../../../src/utils/testHelpers'
+import { createForm, change } from './.test-helpers'
 
 describe('Digits Rule', () => {
   it('should match exact length of digits', (done) => {

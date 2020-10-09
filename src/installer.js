@@ -6,8 +6,10 @@ import messageBag from './services/messageBag'
 import autosize from './services/autosize'
 import location from './services/location'
 import condition from './services/condition'
+import i18n from './services/i18n'
 import applyExtensions from './utils/applyExtensions'
 import store from './store'
+import vRef from './directives/ref'
 
 if (window._ === undefined) {
   window._ = _
@@ -20,122 +22,124 @@ if (window.moment === undefined) {
 export default function (config) {
   const Laraform = class {
     constructor() {
-      this.options = {}
-
-      this.options.config = config
-
-      this.options.extensions = config.extensions
-
-      this.options.themes = config.themes
-
-      this.options.elements = config.elements
-
-      this.options.components = config.components
-
-      this.options.locales = {}
-      
-      this.options.rules = {}
-
-      this.options.services = {
-        validation,
-        axios,
-        messageBag,
-        autosize,
-        location,
-        condition,
-      }
-    }
-
-    extensions(extensions) {
-      _.each(extensions, (extension) => {
-        this.options.extensions.push(extension)
+      this.options = Object.assign({}, config, {
+        services: {
+          validation,
+          axios,
+          messageBag,
+          autosize,
+          location,
+          condition,
+        }
       })
-    }
-
-    extension(extension) {
-      this.options.extensions.push(extension)
-    }
-
-    theme(name, theme) {
-      this.options.themes[name] = theme
-    }
-
-    locale(locale, messages) {
-      this.options.locales[locale] = messages
-    }
-
-    elements(elements) {
-      this.options.elements = Object.assign({}, this.options.elements, elements)
-    }
-
-    element(name, element) {
-      this.options.elements[_.upperFirst(_.camelCase(name+'-element'))] = element
-    }
-
-    components(components) {
-      this.options.components = Object.assign({}, this.options.components, components)
-    }
-
-    component(name, component) {
-      this.options.components[name] = component
-    }
-
-    rule(name, rule) {
-      this.options.rules[name] = rule
     }
 
     store(Store) {
       Store.registerModule('laraform', store)
     }
 
+    locale(locale) {
+      this.options.locale = locale
+    }
+
     config(config) {
-      // replace
+      // merge
       _.each([
-        'theme', 'labels',
+        'extensions', 'themes', 'locales', 'languages',
+        'elements', 'components', 'rules', 'services',
       ], (attr) => {
           if (config[attr] !== undefined) {
-            this.options.config[attr] = config[attr]
+            this.options[attr] = Object.assign({}, this.config[attr], config[attr])
           }
       })
 
-      // merge
+      // deep merge
       _.each([
         'endpoints'
       ], (attr) => {
           if (config[attr] !== undefined) {
-            this.options.config[attr] = _.merge({}, this.options.config[attr], config[attr])
+            this.options[attr] = _.merge({}, this.options[attr], config[attr])
           }
       })
-    }
-
-    install(Vue) {
-      Vue.config.ignoredElements = ['trix-editor']
-
-      let options = this.options
-
-      _.each(this.options.extensions, (extension) => {
-        if (extension.install === undefined) {
-          return
-        }
-
-        let installedOptions = extension.install(Vue, options)
-
-        if (installedOptions) {
-          options = installedOptions
-        }
+      
+      // replace
+      _.each([
+        'theme', 'locale', 'language', 'labels',
+        'columns', 'validateOn', 'method', 'vue',
+      ], (attr) => {
+          if (config[attr] !== undefined) {
+            this.options[attr] = config[attr]
+          }
       })
 
+      if (config.store) {
+        this.store(config.store)
+      }
+    }
+
+    applyExtensions() {
       _.each(this.options.themes, (theme) => {
         _.each(Object.assign({}, theme.components, theme.elements), (component, name) => {
           applyExtensions(component, name, this.options.extensions)
         })
       })
+    }
 
-      Vue.mixin({
-        beforeCreate() {
-          this.$laraform = Vue.observable(options)
-        }
-      })
+    initI18n() {
+      this.options.i18n = this.options.i18n || new i18n(this.options)
+    }
+
+    install(appOrVue, options) {
+      if (options) {
+        this.config(options)
+      }
+
+      this.initI18n()
+
+      if (this.options.extensions.length) {
+        this.applyExtensions()
+      }
+
+      switch (this.options.vue) {
+        case 2:
+          appOrVue.config.ignoredElements = ['trix-editor']
+
+          const $laraform = this.options
+
+          appOrVue.directive('ref', vRef)
+
+          appOrVue.mixin({
+            methods: {
+              __: (expr, data) => this.options.i18n.$t(expr, data)
+            },
+            beforeCreate() {
+              this.$laraform = appOrVue.observable($laraform)
+            }
+          })
+          break
+
+        case 3:
+          appOrVue.config.isCustomElement = tag => ['trix-editor'].indexOf(tag) !== -1
+
+          appOrVue.config.globalProperties.$laraform = this.options
+
+          appOrVue.directive('ref', vRef)
+
+          appOrVue.mixin({
+            methods: {
+              $set(obj, key, value) {
+                obj[key] = value
+              },
+              $delete(obj, key) {
+                delete obj[key]
+              },
+              __: (expr, data) => this.options.i18n.$t(expr, data)
+            },
+          })
+          break
+      }
+      
+      
     }
   }
 

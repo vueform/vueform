@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, setDate } from './../../../../src/utils/testHelpers'
+import { createForm, change, setDate } from './.test-helpers'
 
 describe('Before Rule', () => {
   it('should work with `yesterday`', (done) => {

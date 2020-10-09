@@ -22,7 +22,6 @@
       <div v-sortable="sortable" :class="classes.element">
         <component
           v-for="(element, index) in instances"
-          
           :is="component(element)"
           :schema="element"
           :name="index"

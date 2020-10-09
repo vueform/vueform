@@ -1,13 +1,13 @@
 <template>
   <ul :class="classes.container">
-    <component
-      :is="components.FormLanguageSelectorTab" 
-      v-for="(lang, code, key) in languages"
-      :language="lang"
-      :code="code"
-      :key="key"
-      @select="select"
-    />
+      <component
+        v-for="(lang, code, key) in languages"
+        :is="components.FormLanguageSelectorTab" 
+        :language="lang"
+        :code="code"
+        :key="key"
+        @select="select"
+      />
   </ul>
 </template>
 <script>

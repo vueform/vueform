@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../../src/utils/testHelpers'
+import { createForm } from 'test-helpers'
 
 describe('Has Translator Mixin', () => {
   it('should translate with vue-i18n', (done) => {

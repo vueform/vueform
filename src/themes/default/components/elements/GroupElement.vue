@@ -1,16 +1,14 @@
 <template>
   <component :is="components.NestedElementLayout">
 
-    <template
-      v-for="(element, name, index) in children"
-      slot="elements"
-      :key="index"
-    >
+    <template slot="elements">
       <component
+        v-for="(element, name, index) in children"
         :is="component(element)"
         :schema="element"
         :name="name"
         :parent="el$"
+        :key="index"
         ref="children$"
       />
     </template>

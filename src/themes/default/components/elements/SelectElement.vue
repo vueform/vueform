@@ -24,13 +24,13 @@
         @change="handleChange"
         ref="select$"
       >
-        <template v-for="(option, index) in selectOptions" :key="index">
-          <option
-            :value="option.value"
-          >
-            {{ option.label }}
+        <option
+          v-for="(option, index) in selectOptions"
+          :value="option.value"
+          :key="index"
+        >
+          {{ option.label }}
           </option>
-        </template>
       </select>
 
       <multiselect

@@ -1,4 +1,4 @@
-import { createForm } from './../../src/utils/testHelpers'
+import { createForm } from 'test-helpers'
 import { createLocalVue } from '@vue/test-utils'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import flushPromises from 'flush-promises'

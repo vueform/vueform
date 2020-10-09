@@ -1,5 +1,5 @@
-import useForm$ from './features/useForm$'
-import useTheme from './features/useTheme'
+import useForm$ from './../useForm$'
+import useTheme from './../useTheme'
 import useInput from './features/useInput'
 import useAddons from './features/useAddons'
 import usePath from './features/usePath'
@@ -51,7 +51,7 @@ export default function useText(props, context) {
   const autocomplete = useAutocomplete(props, context)
   const debounce = useDebounce(props, context)
   const disabled = useDisabled(props, context)
-  const events = useEvents(props, context, {}, {
+  const events = useEvents(props, context, { form$ }, {
     events: {
       change: [value.currentValue, value.previousValue]
     },

@@ -1,6 +1,7 @@
+import _ from 'lodash'
 import BaseComponent from './../mixins/BaseComponent'
 import HasElements from './../mixins/HasElements'
-import _ from 'lodash'
+import { reactive, ref } from 'composition-api'
 
 export default {
   name: 'FormElements',
@@ -12,4 +13,13 @@ export default {
       required: true
     },
   },
+  init(props, context) {
+    const elements$ = ref([])
+    const defaultClasses = context.defaultClasses
+
+    return {
+      elements$,
+      defaultClasses,
+    }
+  }
 }

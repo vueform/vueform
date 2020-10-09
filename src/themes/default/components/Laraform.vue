@@ -3,7 +3,7 @@
     :class="extendedClasses.form"
     @submit.prevent="submit"
   >
-    <!-- <component
+    <component
       :is="components.FormMessages"
       v-if="hasMessages"
     />
@@ -24,40 +24,28 @@
       v-if="hasTabs"
       :tabs="tabs"
       :elements$="elements$"
-      ref="tabs$"
+      v-ref:tabs$
     />
+
     <component
       :is="components.FormWizard"
       v-if="hasWizard"
       :steps="wizard"
       :elements$="elements$"
       @submit="handleSubmit"
-      ref="wizard$"
-    /> -->
+      v-ref:wizard$
+    />
     
     <component :is="components.FormElements"
       :schema="schema"
       @updateSchema="updateSchema"
-      ref="formElements$"
+      v-ref:formElements$
     />
 
-    <!-- <component
-      :is="components.TextElement"
-      :schema="schema.a"
-      :name="'a'"
-    >
-      <template v-slot:label="{ el$ }">{{ el$.name }}</template>
-    </component> -->
-
-    <!-- <component :is="components.FormWizardControls"
+    <component :is="components.FormWizardControls"
       v-if="hasWizard && wizardControls"
       :wizard$="wizard$"
     />
-
-    <component :is="components.FormButtons"
-      :buttons="buttons"
-      ref="buttons$"
-    /> -->
   </form>
 </template>
 

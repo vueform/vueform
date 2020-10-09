@@ -1,4 +1,4 @@
-import { createForm } from './../../../src/utils/testHelpers'
+import { createForm } from 'test-helpers'
 
 describe('Condition Plugin', () => {
   it('should not be `available` if conditions aren\'t met', () => {

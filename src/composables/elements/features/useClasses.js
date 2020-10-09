@@ -1,10 +1,10 @@
 import computedOption from './../../../utils/computedOption'
 import { mergeComponentClasses } from './../../../utils/mergeClasses'
-import { computed } from 'composition-api'
+import { computed, toRefs } from 'composition-api'
 
 export default function useClasses(props, context, dependencies)
 {
-  const schema = props.schema
+  const { schema } = toRefs(props)
   const componentName = context.name
   const defaultClasses = context.defaultClasses
 
@@ -90,5 +90,6 @@ export default function useClasses(props, context, dependencies)
     classes,
     mainClass,
     addClasses,
+    defaultClasses,
   }
 }

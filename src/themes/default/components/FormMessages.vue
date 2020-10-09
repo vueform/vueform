@@ -4,8 +4,9 @@
   >
     <div
       v-for="(message, key, index) in messages"
+      :class="classes.message"
       :key="index"
-      :class="classes.message">
+    >
       {{ message }}
     </div>
   </div>

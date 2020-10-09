@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../../../src/utils/testHelpers'
+import { createForm } from 'test-helpers'
 
 describe('Textarea Element Rendering', () => {
   it('should render textarea element', (done) => {

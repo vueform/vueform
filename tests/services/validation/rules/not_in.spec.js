@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './../../../../src/utils/testHelpers'
+import { createForm, change } from './.test-helpers'
 
 describe('Not In Rule', () => {
   it('should check if value is not among a provided list of strings', (done) => {

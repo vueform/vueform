@@ -4,17 +4,9 @@ import formData from './../utils/formData'
 import asyncForEach from './../utils/asyncForEach'
 import HasEvents from './../mixins/HasEvents'
 
-import useLaraform from './../composables/useLaraform'
-
 export default {
   name: 'Laraform',
   mixins: [HasEvents],
-  setup() {
-    const laraform = useLaraform()
-    return {
-      ...laraform
-    }
-  },
   render() {
     return this.extendedTheme.components.Laraform.render.apply(this, arguments)
   },
@@ -29,10 +21,6 @@ export default {
       get theme () {
         return _this.extendedTheme
       },
-
-      get locale () {
-        return _this.selectedLocale
-      }
     }
   },
   props: {
@@ -84,14 +72,6 @@ export default {
        * @default config.theme
        */
       theme: null,
- 
-      /**
-       * Locale of the form.
-       * 
-       * @type {string}
-       * @default config.locale
-       */
-      locale: null,
         
       /**
        * Endpoint to submit the form.
@@ -244,22 +224,6 @@ export default {
        * @default false
        */
       updating: false,
-
-      /**
-       * Form wizard component.
-       * 
-       * @type {object}
-       * @default -
-       */
-      wizard$: {},
-
-      /**
-       * Form tabs component.
-       * 
-       * @type {object}
-       * @default -
-       */
-      tabs$: {},
         
       /**
        * Helper property used to store available events for the element.
@@ -330,6 +294,28 @@ export default {
     // }
   },
   computed: {
+    elements$() {
+      let elements$ = {}
+      let baseElements$ = {}
+
+      if (this.formElements$) {
+        baseElements$ = this.formElements$.elements$
+      }
+
+      if (this.element$ && this.element$.length) {
+        baseElements$ = this.element$
+      }
+
+      _.each(_.keys(this.schema), (name) => {
+        _.each(baseElements$, (element$) => {
+          if (element$.name == name) {
+            elements$[name] = element$
+          }
+        })
+      })
+
+      return elements$
+    },
 
     /**
      * The form's data.
@@ -451,26 +437,6 @@ export default {
     },
 
     /**
-     * The locale object of the selected locale.
-     * 
-     * @ignore
-     * @type {object}
-     */
-    selectedLocale() {
-      // if (this.$_isVueI18nInstalled()) {
-      //   return this.$i18n.locale
-      // }
-
-      // calculating locale manually as it is
-      // not available at the time of `provide` 
-      var locale = !_.isEmpty(this.locale)
-        ? this.locale
-        : (this.form.locale || this.$laraform.config.locale)
-
-      return locale
-    },
-
-    /**
      * Whether the form has wizard.
      * 
      * @ignore
@@ -538,13 +504,13 @@ export default {
     },
 
     /**
-     * The locale object of the selected theme.
+     * The theme object of the selected theme.
      * 
      * @ignore
      * @type {object}
      */
     selectedTheme() {
-      let theme = !_.isEmpty(this.theme) ? this.theme : (this.form.theme || this.$laraform.config.theme)
+      let theme = !_.isEmpty(this.theme) ? this.theme : (this.form.theme || this.$laraform.theme)
 
       return this.$laraform.themes[theme]
     },
@@ -1058,7 +1024,7 @@ export default {
     }
 
     if (this.endpoint === null) {
-      this.endpoint = this.form.endpoint || this.$laraform.config.endpoints.process
+      this.endpoint = this.form.endpoint || this.$laraform.endpoints.process
     }
 
     if (this.form.wizardControls !== undefined && this.wizardControls === null) {
@@ -1072,13 +1038,13 @@ export default {
     // otherwise get the default value from config
     _.each([
       'theme', 'columns', 'validateOn', 'labels',
-      'formErrors', 'method', 'locale', 'languages',
+      'formErrors', 'method', 'languages',
       'language',
     ], (property) => {
       if (this[property] === null) {
         this[property] = this.form[property] !== undefined
           ? this.form[property]
-          : this.$laraform.config[property]
+          : this.$laraform[property]
       }
     })
 

@@ -1,21 +1,22 @@
 import { reactive, ref, computed } from 'composition-api'
 
-export default function useLaraform() {
+export default function useLaraform(props, context) {
   const formElements$ = ref(null)
-  const inlineElements$ = reactive({})
-  const elements$ = computed({
-    get() {
-      return formElements$.value
-        ? formElements$.value.elements$
-        : inlineElements$
-    },
-    set(value) {
-      inlineElements$.value = value
-    }
-  })
+  const element$ = ref([])
+
+  /**
+   * Object of tab$ components.
+   * 
+   * @type {object}
+   * @default {}
+   */
+  const tabs$ = ref({})
+  const wizard$ = ref({})
 
   return {
     formElements$,
-    elements$,
+    element$,
+    tabs$,
+    wizard$,
   }
 }

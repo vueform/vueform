@@ -1,4 +1,4 @@
-import { createForm, testDynamics } from './../../src/utils/testHelpers'
+import { createForm, testDynamics } from 'test-helpers'
 import { createLocalVue } from '@vue/test-utils'
 
 describe('Form Blocks', () => {

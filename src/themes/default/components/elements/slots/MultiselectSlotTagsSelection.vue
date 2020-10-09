@@ -3,9 +3,9 @@
     class="multiselect__tags-wrap"
     v-show="values.length"
   >
-    <template v-for="option of values" @mousedown.prevent>
+    <!-- <template v-for="(option, index) in values" @mousedown.prevent :key="index">
       <slot name="tag" :option="option" :search="search" :remove="remove"></slot>
-    </template>
+    </template> -->
   </span>
 </template>
 

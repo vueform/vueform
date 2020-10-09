@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './../../../../src/utils/testHelpers'
+import { createForm, change } from './.test-helpers'
 
 describe('Alpha Num Rule', () => {
   it('should be valid only for alpha-numeric characters', (done) => {

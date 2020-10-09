@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../../../src/utils/testHelpers'
+import { createForm } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import { current } from 'locutus/php/array'
 

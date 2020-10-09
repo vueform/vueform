@@ -1,4 +1,4 @@
-import { createForm, change } from './../../../../src/utils/testHelpers'
+import { createForm, change } from './.test-helpers'
 
 describe('Regex Rule', () => {
   it('should validate regex', (done) => {

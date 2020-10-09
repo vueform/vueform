@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../../../src/utils/testHelpers'
+import { createForm } from 'test-helpers'
 import Validator from './../../../src/services/validation/validator'
 import en from './../../../src/locales/en'
 import flushPromises from 'flush-promises'

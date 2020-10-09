@@ -1,9 +1,9 @@
 import computedOption from './../../../utils/computedOption'
-import { computed } from 'composition-api'
+import { computed, toRefs } from 'composition-api'
 
 export default function useDebounce(props, context, dependencies)
 {
-  const schema = props.schema
+  const { schema } = toRefs(props)
   
   // ============== COMPUTED ==============
 

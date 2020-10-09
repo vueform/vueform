@@ -1,9 +1,9 @@
 import computedOption from './../../../utils/computedOption'
-import { computed, markRaw } from 'composition-api'
+import { computed, markRaw, toRefs } from 'composition-api'
 
 export default function useSlots(props, context, dependencies)
 {
-  const schema = props.schema
+  const { schema } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 

@@ -4,7 +4,7 @@
   import DateElement from './DateElement'
 
   export default {
-    mixins: [DateElement],
+    mixins: [DatetimeElement],
     render: DateElement.render,
   }
 </script>

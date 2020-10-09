@@ -1,9 +1,8 @@
 <template>
   <label
     :class="[this.type == 'before' ? classes.addonBefore : classes.addonAfter]"
-    v-html-if="{addon: !isAddonComponent}"
+    v-html="addon"
   >
-    <component v-if="isAddonComponent" :is="addon" :el$="el$" />
   </label>
 </template>
 

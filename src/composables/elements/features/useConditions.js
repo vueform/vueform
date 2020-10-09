@@ -1,10 +1,9 @@
 import computedOption from './../../../utils/computedOption'
-import { computed } from 'composition-api'
+import { computed, toRefs } from 'composition-api'
 
 export default function useConditions(props, context, dependencies)
 {
-  const schema = props.schema
-  const parent = props.parent
+  const { schema, parent } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 

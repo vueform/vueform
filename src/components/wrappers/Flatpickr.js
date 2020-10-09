@@ -101,7 +101,7 @@ export default {
       parseDate: (dateStr, format) => {
         return moment(dateStr, format, true).toDate();
       },
-      formatDate: (date, format, locale) => {
+      formatDate: (date, format) => {
         return moment(date).format(format);
       }
     }))

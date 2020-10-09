@@ -5,25 +5,25 @@
 
     <template slot="elements">
       <div :class="classes.element" v-sortable="sortable">
-        <template v-for="(element, index) in instances" :key="element.key">
-          <component
-            :is="component(element)"
-            :schema="element"
-            :name="index"
-            :parent="el$"
-            ref="children$"
-          >
-            <template slot="prefix">
-              <a
-                href=""
-                v-if="!disabled"
-                :class="classes.listRemove"
-                @click.prevent="remove(index)"
-                v-html="__('laraform.elements.list.remove')"
-              ></a>
-            </template>
-          </component>
-        </template>
+        <component
+          v-for="(element, index) in instances"
+          :is="component(element)"
+          :schema="element"
+          :name="index"
+          :parent="el$"
+          :key="element.key"
+          ref="children$"
+        >
+          <template slot="prefix">
+            <a
+              href=""
+              v-if="!disabled"
+              :class="classes.listRemove"
+              @click.prevent="remove(index)"
+              v-html="__('laraform.elements.list.remove')"
+            ></a>
+          </template>
+        </component>
       </div>
     </template>
 

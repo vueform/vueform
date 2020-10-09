@@ -1,4 +1,4 @@
-import { createForm, change } from './../../../../src/utils/testHelpers'
+import { createForm, change } from './.test-helpers'
 
 describe('Not Regex Rule', () => {
   it('should validate if not matches regex', (done) => {

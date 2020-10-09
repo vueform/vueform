@@ -7,7 +7,6 @@
       <div :class="classes.element" v-sortable="sortable">
         <component
           v-for="(element, index) in instances"
-          
           :is="component(element)"
           :schema="element"
           :name="index"

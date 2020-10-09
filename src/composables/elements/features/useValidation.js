@@ -4,7 +4,7 @@ import { computed, reactive, onMounted, watch, toRefs } from 'composition-api'
 
 export default function useData(props, context, dependencies)
 {
-  const schema = props.schema
+  const { schema } = toRefs(props)
 
    // ============ DEPENDENCIES ============
 

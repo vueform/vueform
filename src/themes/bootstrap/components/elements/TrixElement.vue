@@ -3,7 +3,8 @@
     <template slot="field">
       <slot name="prefix"></slot>
 
-      <Trix
+      <component
+        :is="components.Trix"
         v-model="model"
         :placeholder="placeholder"
         :id="id"
@@ -13,7 +14,7 @@
         :disabled="disabled"
         :class="{[classes.trixDisabled]: disabled}"
         @change="handleChange"
-        @alert="handleAlert"
+        @alert="handleError"
         ref="trix$"
       />
 
@@ -30,17 +31,14 @@
 
 <script>
   import TrixElement from './../../../../components/elements/TrixElement'
-
-  import Trix from './../wrappers/Trix'
-
+  
   export default {
     mixins: [TrixElement],
-    components: {
-      Trix,
-    },
     data() {
       return {
-        trixDisabled: 'trix-disabled',
+        defaultClasses: {
+          trixDisabled: 'trix-disabled',
+        }
       }
     }
   }

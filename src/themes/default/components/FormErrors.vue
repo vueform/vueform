@@ -4,8 +4,8 @@
   >
     <div  
       v-for="(error, key, index) in errors"
-      :key="index"
       :class="classes.error"
+      :key="index"
     >
       {{ error }}
     </div>

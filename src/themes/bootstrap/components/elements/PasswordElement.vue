@@ -6,7 +6,6 @@
       <div :class="[{[classes.inputContainer]: hasAddon}]">
         <component :is="components.InputAddon"
           v-if="addons.before"
-          :addon="addons.before"
           type="before"
         />
 
@@ -33,7 +32,6 @@
 
         <component :is="components.InputAddon"
           v-if="addons.after"
-          :addon="addons.after"
           type="after"
         />
       </div>

@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../../src/utils/testHelpers'
+import { createForm } from 'test-helpers'
 
 describe('Multilingual Element Mixin', () => {
   it('should set `model` according to current language', (done) => {

@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../../../src/utils/testHelpers'
+import { createForm } from 'test-helpers'
 import flushPromises from 'flush-promises'
 import Validator from '../../../src/services/validation/validator'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'

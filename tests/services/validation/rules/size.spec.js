@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, setInstances, tryInputValues } from './../../../../src/utils/testHelpers'
+import { createForm, change, setInstances, tryInputValues } from './.test-helpers'
 
 describe('Size Rule', () => {
   it('should check if numeric value is lower or equal than minimum', (done) => {

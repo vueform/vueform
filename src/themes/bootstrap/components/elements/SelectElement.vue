@@ -19,7 +19,7 @@
         :class="classes.select"
         :name="name"
         :id="id"
-        :multiple="multiple"
+        :multiple="options.multiple"
         :disabled="disabled"
         @change="handleChange"
         ref="select$"
@@ -30,7 +30,7 @@
           :key="index"
         >
           {{ option.label }}
-        </option>
+          </option>
       </select>
 
       <multiselect
@@ -42,15 +42,18 @@
         :options="selectOptions"
         :placeholder="placeholder"
         :disabled="disabled"
-        @input="handleInput"
+        @input="handleChange"
         @select="handleSelect"
-        @remove="handleRemove"
+        @remove="handleDeselect"
         @search-change="handleSearchChange"
         @tag="handleTag"
         @open="handleOpen"
         @close="handleClose"
         ref="select$"
       >
+        <slot name="option" slot="option" slot-scope="{ option, search }" :el$="el$" :option="option" :search="search">
+          <component v-if="slots.option" :is="slots.option" :el$="el$" :option="option" :search="search" />
+        </slot>
         <slot name="beforeList" slot="beforeList" :el$="el$">
           <component v-if="slots.beforeList" :is="slots.beforeList" :el$="el$"/>
         </slot>
@@ -65,9 +68,6 @@
         </slot>
         <slot name="noOptions" slot="noOptions" :el$="el$">
           <component v-if="slots.noOptions" :is="slots.noOptions" :el$="el$"/>
-        </slot>
-        <slot name="option" slot="option" slot-scope="{ option, search }" :el$="el$" :option="option" :search="search">
-          <component v-if="slots.option" :is="slots.option" :el$="el$" :option="option" :search="search" />
         </slot>
         <slot name="selection" slot="selection" slot-scope="{ values, search, remove }" :el$="el$" :values="values" :search="search" :remove="remove">
           <component v-if="slots.selection" :is="slots.selection" :el$="el$" :values="values" :search="search" :remove="remove">

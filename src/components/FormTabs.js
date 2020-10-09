@@ -1,9 +1,10 @@
-import BaseComponent from './../mixins/BaseComponent'
 import HasEvents from './../mixins/HasEvents'
+import { ref } from 'composition-api'
+import useFormComponent from './../composables/useFormComponent'
 
 export default {
   name: 'FormTabs',
-  mixins: [BaseComponent, HasEvents],
+  mixins: [HasEvents],
   props: {
     /**
      * Tabs definition.
@@ -21,16 +22,23 @@ export default {
       required: true,
     },
   },
+  init(props, context) {
+    
+    // ============ DEPENDENCIES ============
+
+    const formComponent = useFormComponent(props, context)
+
+    // // ================ DATA ================
+
+    const formTabs$ = ref([])
+
+    return {
+      ...formComponent,
+      formTabs$,
+    }
+  },
   data() {
     return {
-      /**
-       * Object of [tab$](reference/frontend-tab) components.
-       * 
-       * @type {object}
-       * @default {}
-       */
-      tabs$: {},
-
       /**
        * Helper property used to store available events.
        * 
@@ -58,7 +66,7 @@ export default {
     tabs: {
       handler() {
         this.$nextTick(() => {
-          this.$_setTabs$()
+          // this.$_setTabs$()
 
           this.$nextTick(() => {
             if (_.isEmpty(this.current$)) {
@@ -72,6 +80,22 @@ export default {
     }
   },
   computed: {
+    /**
+     * Object of tab$ components.
+     * 
+     * @type {object}
+     * @default {}
+     */
+    tabs$() {
+      let tabs$ = {}
+
+      _.each(this.formTabs$, (formTab$) => {
+        tabs$[formTab$.name] = formTab$
+      })
+
+      return tabs$
+    },
+
     /**
      * Returns the visible [tab$](reference/frontend-tab) components.
      * 
@@ -191,29 +215,17 @@ export default {
     handleChange(tab$) {
       this.fire('change', tab$)
     },
-
-    $_setTabs$() {
-      let tabs$ = {}
-
-      _.each(this.$refs.tabs$, (tab$) => {
-        tabs$[tab$.name] = tab$
-      })
-
-      this.$set(this, 'tabs$', tabs$)
-    }
   },
   mounted() {
     if (_.isEmpty(this.tabs)) {
       return
     }
 
-    this.$_setTabs$()
-
     // nextTick is required because elements$
     // only available after form is mounted,
     // which is later than the tabs mount
-    this.$nextTick(() => {
+    // this.$nextTick(() => {
       this.first$.select()
-    })
+    // })
   }
 }

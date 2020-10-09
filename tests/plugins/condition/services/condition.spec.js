@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../../../../src/utils/testHelpers'
+import { createForm } from './.test-helpers'
 
 describe('Condition Plugin Service', () => {
   it('should `checkGlobal` condition', (done) => {

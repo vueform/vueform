@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../../src/utils/testHelpers'
+import { createForm } from 'test-helpers'
 
 jest.mock("axios", () => ({
   get: () => Promise.resolve({ data: 'value' }),

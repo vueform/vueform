@@ -5,18 +5,10 @@
 
       <toggle-button
         v-model="model"
+        v-bind="options"
         :name="String(name)"
         :id="String(id)"
-        :sync="sync"
-        :labels="labels"
-        :speed="speed"
-        :width="dimensions.width"
-        :height="dimensions.height"
-        :color="colors.background"
-        :switchColor="colors.handle"
-        :cssColors="cssColors"
-        :disabled="disabled"
-        @change="handleChange"
+        @input="handleChange"
         ref="toggle$"
       />
 
@@ -38,7 +30,7 @@
 <script>
   import ToggleElement from './../../../../components/elements/ToggleElement'
 
-  import ToggleButton from 'vue-js-toggle-button/src/Button'
+  import ToggleButton from 'vue-js-toggle-button/src/Button.vue'
 
   export default {
     mixins: [ToggleElement],
@@ -54,3 +46,27 @@
     }
   }
 </script>
+
+<style lang="scss">
+  @import 'variables';
+
+  .vue-js-switch {
+    .v-switch-core {
+      // !!
+      background: #777777;
+    }
+
+    &.toggled {
+      .v-switch-core {
+        background: #0597db;
+      }
+    }
+  }
+
+  .toggle-text {
+    display: inline-block;
+    margin: 0px 0 0 5px;
+    position: relative;
+    top: -3px;
+  }
+</style>

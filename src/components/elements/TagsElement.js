@@ -196,7 +196,7 @@ export default {
 
         return this.schema.tagPlaceholder !== undefined
           ? this.schema.tagPlaceholder
-          : this.$laraform.locales[this.locale].laraform.elements.tags.createLabel
+          : this.__('laraform.elements.tags.createLabel')
       },
       set(value) {
         this.$set(this.schema, 'tagPlaceholder', value)

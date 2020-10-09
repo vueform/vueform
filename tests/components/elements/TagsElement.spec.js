@@ -2,7 +2,7 @@ import { createLocalVue, mount } from '@vue/test-utils'
 import {
     createForm, confirmSelectOptions, installLaraform,
     testTagsModel,
-} from './../../../src/utils/testHelpers'
+} from 'test-helpers'
 import { Laraform } from './../../../src/index'
 import en from './../../../src/locales/en'
 

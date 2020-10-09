@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform, check, uncheck } from './../../../src/utils/testHelpers'
+import { createForm, installLaraform, check, uncheck } from 'test-helpers'
 import { Laraform } from './../../../src/index'
 
 describe('Checkbox Element Rendering', () => {

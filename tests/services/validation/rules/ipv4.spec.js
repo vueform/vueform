@@ -1,4 +1,4 @@
-import { createForm, change } from './../../../../src/utils/testHelpers'
+import { createForm, change } from './.test-helpers'
 
 describe('IPv4 Rule', () => {
   it('should validate IPv4', (done) => {

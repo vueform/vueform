@@ -1,4 +1,4 @@
-import { createForm, change } from './../../../../src/utils/testHelpers'
+import { createForm, change } from './.test-helpers'
 
 describe('Digits Between Rule', () => {
   it('should validate if digits length is between min & max', (done) => {

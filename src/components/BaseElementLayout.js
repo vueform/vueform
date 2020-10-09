@@ -39,5 +39,8 @@ export default {
     description() {
       return this.el$.description
     },
+    visible (){
+      return this.el$.visible
+    } 
   }
 }

@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './../../../../src/utils/testHelpers'
+import { createForm, change } from './.test-helpers'
 import strtotime from 'locutus/php/datetime/strtotime'
 
 describe('Date Rule', () => {

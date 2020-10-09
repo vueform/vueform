@@ -5,8 +5,8 @@
         :is="components.FormLanguageSelectorTab" 
         :language="lang"
         :code="code"
-        @select="select"
         :key="key"
+        @select="select"
       />
   </ul>
 </template>

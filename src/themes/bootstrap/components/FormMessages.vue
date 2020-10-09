@@ -2,16 +2,13 @@
   <div
     :class="classes.container"
   >
-    <template
+    <div
       v-for="(message, key, index) in messages"
+      :class="classes.message"
+      :key="index"
     >
-      <div
-        :class="classes.message"
-        :key="index"
-      >
-        {{ message }}
-      </div>
-    </template>
+      {{ message }}
+    </div>
   </div>
 </template>
 

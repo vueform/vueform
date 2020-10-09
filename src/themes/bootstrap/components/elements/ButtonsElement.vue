@@ -5,13 +5,12 @@
       <slot name="prefix"></slot>
 
       <div :class="classes.wrapper">
-        <template v-for="(button, name) in buttons">
-          <component
-            :is="component(button)"
-            :button="button"
-            :key="name"
-          />
-        </template>
+        <component
+          v-for="(button, name) in buttons"
+          :is="component(button)"
+          :button="button"
+          :key="name"
+        />
       </div>
 
       <slot name="suffix"></slot>

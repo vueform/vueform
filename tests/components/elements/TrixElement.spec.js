@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, createTrix } from './../../../src/utils/testHelpers'
+import { createForm, createTrix } from 'test-helpers'
 
 describe('Trix Element Rendering', () => {
   it('should render Trix', (done) => {

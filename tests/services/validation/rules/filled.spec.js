@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, setInstances, check, uncheck } from './../../../../src/utils/testHelpers'
+import { createForm, change, setInstances, check, uncheck } from './.test-helpers'
 
 describe('Filled Rule', () => {
   it('should be validate if value is filled for string', (done) => {

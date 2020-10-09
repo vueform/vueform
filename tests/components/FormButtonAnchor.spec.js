@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../../src/utils/testHelpers'
+import { createForm } from 'test-helpers'
 
 describe('Form Button Anchor', () => {
   it('should display label', () => {

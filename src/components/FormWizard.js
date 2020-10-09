@@ -1,10 +1,10 @@
-import _ from 'lodash'
-import BaseComponent from './../mixins/BaseComponent'
+import { ref } from 'composition-api'
 import HasEvents from './../mixins/HasEvents'
+import useFormComponent from './../composables/useFormComponent'
 
 export default {
   name: 'FormWizard',
-  mixins: [BaseComponent, HasEvents],
+  mixins: [HasEvents],
   props: {
     /**
      * Steps definition.
@@ -22,16 +22,23 @@ export default {
       required: true
     },
   },
+  init(props, context) {
+    
+    // ============ DEPENDENCIES ============
+
+    const formComponent = useFormComponent(props, context)
+
+    // // ================ DATA ================
+
+    const wizardSteps$ = ref([])
+
+    return {
+      ...formComponent,
+      wizardSteps$,
+    }
+  },
   data() {
     return {
-      /**
-       * Object of [wizardStep$](reference/frontend-wizard-step) components.
-       * 
-       * @type {object}
-       * @default {}
-       */
-      steps$: {},
-
       /**
        * Helper property used to store available events.
        * 
@@ -59,8 +66,7 @@ export default {
     steps: {
       handler() {
         this.$nextTick(() => {
-          this.$_setSteps$()
-
+          
           if (_.isEmpty(this.lastEnabled$)) {
             this.first$.enable()
           }
@@ -75,6 +81,22 @@ export default {
     }
   },
   computed: {
+    /**
+     * Object of wizardStep$ components.
+     * 
+     * @type {object}
+     * @default {}
+     */
+    steps$() {
+      let steps$ = {}
+
+      _.each(this.wizardSteps$, (step$) => {
+        steps$[step$.name] = step$
+      })
+
+      return steps$
+    },
+
     /**
      * Determines whether the wizard has any pending elements.
      * 
@@ -466,23 +488,11 @@ export default {
         this.finish(callback)
       })
     },
-
-    $_setSteps$() {
-      let steps$ = {}
-
-      _.each(this.$refs.steps$, (step$) => {
-        steps$[step$.name] = step$
-      })
-
-      this.$set(this, 'steps$', steps$)
-    }
   },
   mounted() {
     if (_.isEmpty(this.steps)) {
       return
     }
-
-    this.$_setSteps$()
 
     // nextTick is required because elements$
     // only available after form is mounted,
@@ -501,6 +511,5 @@ export default {
         this.$_enableUntilLastEnabled()
       })
     })
-
   }
 }

@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, createTrix } from './../../../src/utils/testHelpers'
+import { createForm, createTrix } from 'test-helpers'
 
 describe('TTrix Element Mixin', () => {
   it('should `load` value and keep it clean', (done) => {

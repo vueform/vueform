@@ -2,12 +2,12 @@
   <div :class="classes.container">
     <div :class="classes.wrapper">
       <component
+        :is="theme.elements.TextElement"
         v-for="(element, name) in schema"
-        :is="component(element)"
         :schema="element"
         :name="name"
-        :ref="el => { if(el) elements$[name] = el }"
         :key="name"
+        v-ref:elements$
       />
     </div>
   </div>
@@ -15,26 +15,14 @@
 
 <script>
   import FormElements from './../../../components/FormElements'
-  import { ref, reactive, onBeforeUpdate } from 'vue'
-  import useFormElements from './../../../composables/useFormElements'
+  import init from './../../../init'
 
   export default {
     mixins: [FormElements],
-    setup() {
-      const formElements = useFormElements()
-
-      return {
-        ...formElements,
-      }
-    },
-    data() {
-      return {
-        defaultClasses: {
-          container: 'row',
-          wrapper: 'form-elements',
-        }
-      }
-    },
+    setup: (props, context) => init(props, context, FormElements, {
+      container: 'row',
+      wrapper: 'form-elements',
+    }),
   }
 </script>
 

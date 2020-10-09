@@ -1,14 +1,14 @@
 import computedOption from './../../../utils/computedOption'
-import { computed, onMounted, nextTick } from 'composition-api'
+import { computed, onMounted, nextTick, toRefs } from 'composition-api'
 
 export default function useMask(props, context, dependencies)
 {
-  const schema = props.schema
+  const { schema } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
   const { placeholder } = dependencies.placeholder
-  const { input } = dependencies.placeholder
+  const { input } = dependencies.input
   const { update } = dependencies.data
 
   // ============== COMPUTED ==============
@@ -75,11 +75,9 @@ export default function useMask(props, context, dependencies)
   const modifiedUpdate = (val, triggerChange, shouldValidate) => {
     update(val, triggerChange, shouldValidate)
 
-    console.log(1111)
-
     if (masked.value === true) {
       nextTick(() => {
-        input.initMask()
+        input.value.initMask()
       })
     }
   }
@@ -89,7 +87,7 @@ export default function useMask(props, context, dependencies)
   onMounted(() => {
     if (masked.value === true) {
       nextTick(() => {
-        input.initMask()
+        input.value.initMask()
       })
     }
   })

@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform, createLaraformInstaller } from './../../src/utils/testHelpers'
+import { createForm, installLaraform, createLaraformInstaller } from 'test-helpers'
 import { mergeComponentClasses } from './../../src/utils/mergeClasses'
 import { Laraform } from './../../src/index'
 import defaultTheme from './../../src/themes/default'

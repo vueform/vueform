@@ -1,10 +1,9 @@
 import computedOption from './../../../utils/computedOption'
-import { computed } from 'composition-api'
+import { computed, toRefs } from 'composition-api'
 
 export default function useId(props, context, dependencies)
 {
-  const schema = props.schema
-  const name = props.name
+  const { schema, name } = toRefs(props)
 
   // ============== COMPUTED ==============
 
@@ -14,7 +13,7 @@ export default function useId(props, context, dependencies)
   * @type {string} 
   * @default null
   */
-  const id = computed(computedOption('id', schema, name))
+  const id = computed(computedOption('id', schema, name.value))
 
   return {
     id,

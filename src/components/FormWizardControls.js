@@ -6,7 +6,6 @@ export default {
   props: {
     wizard$: {
       type: Object,
-      required: true,
     },
   },
 }

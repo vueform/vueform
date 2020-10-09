@@ -1,4 +1,4 @@
-import { createForm } from './../../src/utils/testHelpers'
+import { createForm } from 'test-helpers'
 import { createLocalVue } from '@vue/test-utils'
 
 jest.mock("axios", () => ({

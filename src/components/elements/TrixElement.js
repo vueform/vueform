@@ -83,7 +83,7 @@ export default {
     */
     endpoint: {
       get() {
-        return this.schema.endpoint !== undefined ? this.schema.endpoint : this.$laraform.config.endpoints.elements.trix.attachment
+        return this.schema.endpoint !== undefined ? this.schema.endpoint : this.$laraform.endpoints.elements.trix.attachment
       },
       set(value) {
         this.$set(this.schema, 'endpoint', value)

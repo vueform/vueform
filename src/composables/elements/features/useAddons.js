@@ -3,7 +3,7 @@ import { computed, toRefs } from 'composition-api'
 
 export default function useAddons(props, context, dependencies)
 {
-  const schema = props.schema
+  const { schema } = toRefs(props)
 
   // ============== COMPUTED ==============
 

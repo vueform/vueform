@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, check, uncheck } from './../../../../src/utils/testHelpers'
+import { createForm, change, check, uncheck } from './.test-helpers'
 
 describe('Boolean Rule', () => {
   it('should check if value is "1" or "0"', (done) => {

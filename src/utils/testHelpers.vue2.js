@@ -1,20 +1,32 @@
-import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
-import { Laraform } from './../index'
+import { createLocalVue, mount } from '@vue/test-utils'
+
+// Core
+import { Laraform, useLaraform } from './../index'
 import installer from './../installer'
+import config from './../config'
+
+// Assets
 import bootstrap from './../themes/bootstrap'
 import defaultTheme from './../themes/default'
-import config from './../config'
-import condition from './../plugins/condition/services/condition'
+import en from './../locales/en'
+
+// Services
+import condition from './../services/condition'
 import validation from './../services/validation'
 import messageBag from './../services/messageBag'
 import autosize from './../services/autosize'
 import location from './../services/location'
+
+// Utils
 import asyncForEach from './../utils/asyncForEach'
-import en from './../locales/en'
+
+// 3rd party
 import _ from 'lodash'
 import axios from 'axios'
 import Vuex from 'vuex'
 import VueI18n from 'vue-i18n'
+import CompositionApi from 'composition-api'
+
 window._ = _
 
 const themes = {
@@ -23,47 +35,24 @@ const themes = {
 }
 
 const createLaraformInstaller = function(options = {}) {
-  const theme = options.theme || config.theme
-  
+  let theme = options.theme || config.theme
+
   let finalConfig = Object.assign({}, config, {
-    theme: theme
+    vue: 2,
+    themes: Object.assign({}, {
+      [theme]: themes[theme]
+    }, options.themes || {}),
+    theme: theme,
+    elements: options.elements || {},
+    components: options.components || {},
+    rules: options.rules || {},
+    extensions: options.extensions || {},
+    locales: Object.assign({}, options.locales || {
+      en,
+    })
   }, options.config || {})
 
   const LaraformInstaller = installer(finalConfig)
-
-  LaraformInstaller.theme(theme, themes[theme])
-
-  if (options.elements !== undefined) {
-    LaraformInstaller.elements(options.elements)
-  }
-
-  if (options.components !== undefined) {
-    LaraformInstaller.components(options.components)
-  }
-
-  if (options.themes !== undefined) {
-    _.each(options.themes, (optionTheme, name) => {
-      LaraformInstaller.theme(name, optionTheme)
-    })
-  }
-
-  if (options.rules !== undefined) {
-    _.each(options.rules, (rule, name) => {
-      LaraformInstaller.rule(name, rule)
-    })
-  }
-
-  if (options.plugins !== undefined) {
-    LaraformInstaller.plugins(options.plugins)
-  }
-
-  if (options.locales !== undefined) {
-    _.each(options.locales, (locale, name) => {
-      LaraformInstaller.locale(name, locale)
-    })
-  } else {
-    LaraformInstaller.locale('en', en)
-  }
 
   return {
     LaraformInstaller,
@@ -75,6 +64,8 @@ const installLaraform = function(options = {}) {
   const { LaraformInstaller, config } = createLaraformInstaller(options)
 
   const LocalVue = createLocalVue()
+
+  LocalVue.use(CompositionApi)
 
   let store = null
 
@@ -88,10 +79,6 @@ const installLaraform = function(options = {}) {
     if (options.laraformStore !== false) {
       LaraformInstaller.store(store)
     }
-  }
-
-  if (options.vueI18n) {
-    LocalVue.use(VueI18n)
   }
 
   LocalVue.use(LaraformInstaller)
@@ -108,43 +95,41 @@ const createForm = function(data, options = {}) {
 
   let form = LocalVue.extend({
     mixins: [Laraform],
+    setup(props, context) {
+      const laraform = useLaraform(props, context)
+
+      return {
+        ...laraform
+      }
+    },
     data() {
       return data
     }
   })
 
-  let i18n = null
-
-  if (options.vueI18n) {
-    i18n = new VueI18n({
-      locale: options.vueI18nLocale || 'en', // set locale
-      messges: options.vueI18nMessages || { hello: 'world' }, // set locale messages
-    })
-  }
+  let $laraform = Object.assign({}, config, {
+    extensions: config.extensions,
+    services: {
+      condition,
+      validation,
+      axios,
+      messageBag,
+      autosize,
+      location,
+    },
+    locales: options.locales || {
+      en: en
+    }
+  })
 
   let mountOptions = {
-    LocalVue,
+    localVue: LocalVue,
     store,
-    i18n,
     propsData: options.propsData || {},
     mocks: {
-      $laraform: {
-        config: config,
-        plugins: config.plugins,
-        services: {
-          condition,
-          validation,
-          axios,
-          messageBag,
-          autosize,
-          location,
-        },
-        locales: options.locales || {
-          en: en
-        }
-      },
-      $i18n: options.vueI18n ? new class VueI18n { get locale() { return options.vueI18nLocale || 'en' } } : null,
-      $t: options.vueI18n ? (str) => { return str + ' vue-i18n' } : null,
+      $laraform: $laraform,
+      // $i18n: options.vueI18n ? new class VueI18n { get locale() { return options.vueI18nLocale || 'en' } } : null,
+      // $t: options.vueI18n ? (str) => { return str + ' vue-i18n' } : null,
     }
   }
 
@@ -661,6 +646,14 @@ const tryInputValue = function(value, expected, el) {
   })
 }
 
+const findAllComponents = function(parent, query) {
+  let res = parent.findAllComponents(query)
+
+  return {
+    at: (i) => { return res.at(i) }
+  }
+}
+
 export {
   installLaraform,
   createForm,
@@ -683,6 +676,7 @@ export {
   testNonNativeMultiselectModel,
   testTagsModel,
   tryInputValues,
+  findAllComponents
 }
 
 

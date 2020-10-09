@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './../../../../src/utils/testHelpers'
+import { createForm, change } from './.test-helpers'
 
 describe('Nullable Rule', () => {
   it('should have a rule ignored if nullable is present and the value is unfilled', (done) => {

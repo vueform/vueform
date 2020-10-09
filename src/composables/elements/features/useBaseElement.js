@@ -1,9 +1,8 @@
-import { computed, ref } from 'composition-api'
+import { computed, ref, toRefs } from 'composition-api'
 
 export default function useBaseElement(props, context, dependencies)
 {
-  const schema = props.schema
-  const name = props.name
+  const { schema, name } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
@@ -63,7 +62,7 @@ export default function useBaseElement(props, context, dependencies)
     } else if (placeholder.value) {
       return placeholder.value
     } else {
-      return _.upperFirst(name)
+      return _.upperFirst(name.value)
     }
   })
 

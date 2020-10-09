@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './../../src/utils/testHelpers'
+import { createForm } from 'test-helpers'
 
 describe('Has Hooks Mixin', () => {
   it('should set `beforeUpdate`, `updated`, `beforeDestroy`, `destroyed` hooks in schema', (done) => {

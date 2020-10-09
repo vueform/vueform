@@ -7,24 +7,21 @@
       :name="name"
       :elements$="elements$"
       :visible$="visible$"
-      ref="tabs$"
-      @select="select"
       :key="name"
+      @select="select"
+      v-ref:formTabs$
     />
   </ul>
 </template>
 
 <script>
   import FormTabs from './../../../components/FormTabs'
+  import init from './../../../init'
 
   export default {
     mixins: [FormTabs],
-    data() {
-      return {
-        defaultClasses: {
-          container: 'nav nav-tabs form-tabs'
-        }
-      }
-    }
+    setup: (props, context) => init(props, context, FormTabs, {
+      container: 'nav nav-tabs form-tabs'
+    }),
   }
 </script>

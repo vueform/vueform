@@ -1,4 +1,4 @@
-export default class {
+export default class messageBag {
   constructor(component$) {
     this.component$ = component$
     this.prepends = {

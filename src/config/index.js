@@ -1,16 +1,20 @@
 export default {
-  plugins: [],
+  vue: 3,
+
+  extensions: [],
   
   themes: {},
 
   theme: 'default',
 
-  locale: 'en',
-
   languages: {
     en: {
       label: 'English',
       code: 'en'
+    },
+    fr: {
+      label: 'French',
+      code: 'fr',
     }
   },
 
@@ -19,6 +23,8 @@ export default {
   elements: {},
   
   components: {},
+
+  rules: {},
 
   labels: false,
 
@@ -51,5 +57,7 @@ export default {
       app_id: 'plD1GPOB1JIC',
       api_key: '1f70532b07910d801387a12ea998f035',
     }
-  }
+  },
+
+  i18n: null,
 }

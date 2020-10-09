@@ -134,7 +134,7 @@ export default {
      * @type {boolean}
      */
     visible() {
-      return this.available
+      return true
     },
 
     /**

@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, setInstances } from './../../../../src/utils/testHelpers'
+import { createForm, change, setInstances } from './.test-helpers'
 
 describe('Greater Than Rule', () => {
   it('should validate if the element\'s value is greater than an other field\'s if value is string', (done) => {

@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform, check, uncheck } from './../../../src/utils/testHelpers'
+import { createForm, installLaraform, check, uncheck } from 'test-helpers'
 
 describe('Slider Element Rendering', () => {
   it('should render slider', (done) => {

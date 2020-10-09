@@ -86,7 +86,7 @@ export default {
         [this.containers.state]: {
           [classes.active]: this.active,
           [classes.inactive]: !this.active,
-          [classes.valid]: this.valid,
+          [classes.valid]: !this.invalid,
           [classes.invalid]: this.invalid,
         }
       })
@@ -126,16 +126,6 @@ export default {
      */
     class() {
       return this.tab.class || null
-    },
-
-    /**
-     * Base label of tab.
-     * 
-     * @private
-     * @type {string}
-     */
-    baseLabel() {
-      return this.tab.label
     },
 
     /**
@@ -179,6 +169,10 @@ export default {
 
     tab$() {
       return this
+    },
+
+    descriptor() {
+      return this.tab
     }
   },
   methods: {

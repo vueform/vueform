@@ -225,8 +225,8 @@ export default {
         },
         algolia: {
           type: 'address',
-          appId: this.$laraform.config.services.algolia.app_id,
-          apiKey: this.$laraform.config.services.algolia.api_key,
+          appId: this.$laraform.services.algolia.app_id,
+          apiKey: this.$laraform.services.algolia.api_key,
         }
       }
 

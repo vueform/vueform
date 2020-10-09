@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, check, uncheck } from './../../../src/utils/testHelpers'
+import { createForm, check, uncheck } from 'test-helpers'
 
 describe('Checkbox Element Rendering', () => {
   it('should render a checkbox element', (done) => {

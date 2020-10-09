@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform } from './../../../src/utils/testHelpers'
+import { createForm, installLaraform } from 'test-helpers'
 import defaultTheme from './../../../src/themes/default'
 
 const createTrix = (details) => {
