@@ -1,4 +1,4 @@
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('Digits Between Rule', () => {
   it('should validate if digits length is between min & max', (done) => {
@@ -11,7 +11,7 @@ describe('Digits Between Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     
     change(a, '1')
     expect(a.vm.invalid).toBe(true)

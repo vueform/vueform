@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 import { createLocalVue } from '@vue/test-utils'
 import { dynamicsTesting } from './FormBlocks.spec' 
 
@@ -27,7 +27,7 @@ describe('Form Wizard Rendering', () => {
 
     expect(form.html()).toContain('First')
     expect(form.html()).toContain('Second')
-    expect(form.findAllComponents({ name: 'FormWizardStep' }).length).toBe(2)
+    expect(findAllComponents(form, { name: 'FormWizardStep' }).length).toBe(2)
   })
 })
 
@@ -160,7 +160,7 @@ describe('Form Wizard Computed', () => {
 
     let wizard = form.findComponent({ name: 'FormWizard' })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     expect(a.vm.name).toBe('a')
 
     LocalVue.nextTick(() => {
@@ -236,8 +236,8 @@ describe('Form Wizard Computed', () => {
 
     let wizard = form.findComponent({ name: 'FormWizard' })
 
-    let first = form.findAllComponents({ name: 'FormWizardStep' }).at(0)
-    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
+    let first = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
+    let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
 
     first.vm.complete()
     second.vm.complete()
@@ -274,7 +274,7 @@ describe('Form Wizard Computed', () => {
     })
 
     let wizard = form.findComponent({ name: 'FormWizard' })
-    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
+    let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
     let next = form.findComponent({ name: 'FormWizardNext' })
 
     expect(second.vm.name).toBe('second')
@@ -385,7 +385,7 @@ describe('Form Wizard Computed', () => {
     })
 
     let wizard = form.findComponent({ name: 'FormWizard' })
-    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
+    let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
     let next = form.findComponent({ name: 'FormWizardNext' })
 
     expect(second.vm.name).toBe('second')
@@ -439,9 +439,9 @@ describe('Form Wizard Computed', () => {
 
     let wizard = form.findComponent({ name: 'FormWizard' })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
-    let c = form.findAllComponents({ name: 'TextElement' }).at(2)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(2)
 
     expect(a.vm.name).toBe('a')
     expect(b.vm.name).toBe('b')
@@ -493,9 +493,9 @@ describe('Form Wizard Computed', () => {
     let wizard = form.findComponent({ name: 'FormWizard' })
     let next = form.findComponent({ name: 'FormWizardNext' })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
-    let c = form.findAllComponents({ name: 'TextElement' }).at(2)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(2)
 
     expect(a.vm.name).toBe('a')
     expect(b.vm.name).toBe('b')
@@ -547,9 +547,9 @@ describe('Form Wizard Computed', () => {
     let wizard = form.findComponent({ name: 'FormWizard' })
     let next = form.findComponent({ name: 'FormWizardNext' })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
-    let c = form.findAllComponents({ name: 'TextElement' }).at(2)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(2)
 
     expect(a.vm.name).toBe('a')
     expect(b.vm.name).toBe('b')
@@ -603,10 +603,10 @@ describe('Form Wizard Computed', () => {
 
     let wizard = form.findComponent({ name: 'FormWizard' })
 
-    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
+    let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
     expect(second.vm.name).toBe('second')
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     expect(a.vm.name).toBe('a')
 
     expect(second.vm.disabled).toBe(true)
@@ -693,8 +693,8 @@ describe('Form Wizard Methods', () => {
     })
 
     let wizard = form.findComponent({ name: 'FormWizard' })
-    let first = form.findAllComponents({ name: 'FormWizardStep' }).at(0)
-    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
+    let first = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
+    let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
 
     LocalVue.nextTick(() => {
       wizard.vm.complete()
@@ -733,8 +733,8 @@ describe('Form Wizard Methods', () => {
     })
 
     let wizard = form.findComponent({ name: 'FormWizard' })
-    let first = form.findAllComponents({ name: 'FormWizardStep' }).at(0)
-    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
+    let first = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
+    let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
 
     LocalVue.nextTick(() => {
       wizard.vm.enableAllSteps()
@@ -772,8 +772,8 @@ describe('Form Wizard Methods', () => {
       }
     })
 
-    let first = form.findAllComponents({ name: 'FormWizardStep' }).at(0)
-    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
+    let first = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
+    let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
 
     form.vm.load({
       a: 1,
@@ -822,9 +822,9 @@ describe('Form Wizard Methods', () => {
     })
 
     let wizard = form.findComponent({ name: 'FormWizard' })
-    let first = form.findAllComponents({ name: 'FormWizardStep' }).at(0)
-    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
-    let third = form.findAllComponents({ name: 'FormWizardStep' }).at(2)
+    let first = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
+    let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
+    let third = findAllComponents(form, { name: 'FormWizardStep' }).at(2)
 
     LocalVue.nextTick(() => {
       expect(first.vm.disabled).toBe(false)
@@ -886,9 +886,9 @@ describe('Form Wizard Methods', () => {
     })
 
     let wizard = form.findComponent({ name: 'FormWizard' })
-    let first = form.findAllComponents({ name: 'FormWizardStep' }).at(0)
-    let second = form.findAllComponents({ name: 'FormWizardStep' }).at(1)
-    let third = form.findAllComponents({ name: 'FormWizardStep' }).at(2)
+    let first = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
+    let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
+    let third = findAllComponents(form, { name: 'FormWizardStep' }).at(2)
 
     LocalVue.nextTick(() => {
       expect(first.vm.disabled).toBe(false)

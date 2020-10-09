@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import { current } from 'locutus/php/array'
 
@@ -19,7 +19,7 @@ describe('Date Element Rendering', () => {
       }
     })
 
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     expect(Flatpickr.exists()).toBe(true)
     
@@ -40,8 +40,8 @@ describe('Date Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     Flatpickr.vm.flatpickr$.setDate('20201230', true, 'YYYYMMDD')
 
@@ -63,7 +63,7 @@ describe('Date Element Rendering', () => {
       }
     })
 
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     expect(Flatpickr.vm.flatpickr$.calendarContainer.classList).toContain(form.vm.selectedTheme.components.Flatpickr.data().defaultClasses.calendarContainer)
     
@@ -86,8 +86,8 @@ describe('Date Element Model Single Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     Flatpickr.vm.flatpickr$.setDate('20201230', true, 'YYYYMMDD')
 
@@ -110,8 +110,8 @@ describe('Date Element Model Single Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     Flatpickr.vm.flatpickr$.setDate('20201230', true, 'YYYYMMDD')
 
@@ -133,7 +133,7 @@ describe('Date Element Model Single Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     a.vm.load({
       a: '2020-12-30'
@@ -170,7 +170,7 @@ describe('Date Element Model Single Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     a.vm.update('2020-12-30')
 
@@ -201,7 +201,7 @@ describe('Date Element Model Single Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     a.vm.value = '2020-12-30'
 
@@ -232,8 +232,8 @@ describe('Date Element Model Single Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
     let flatpickr$ = Flatpickr.vm.flatpickr$
 
     flatpickr$.open()
@@ -260,7 +260,7 @@ describe('Date Element Model Single Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     const originalConsoleError = console.error
 
@@ -290,7 +290,7 @@ describe('Date Element Model Single Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.value).toBe('2020-12-30')
     
@@ -311,8 +311,8 @@ describe('Date Element Model Single Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
     let flatpickr$ = Flatpickr.vm.flatpickr$
 
     flatpickr$.setDate('2020-12-30', true, 'YYYY-MM-DD')
@@ -336,8 +336,8 @@ describe('Date Element Model Single Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
     let flatpickr$ = Flatpickr.vm.flatpickr$
 
     flatpickr$.setDate('2020-12-30', true, 'YYYY-MM-DD')
@@ -363,8 +363,8 @@ describe('Date Element Model Range Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     Flatpickr.vm.flatpickr$.setDate(['2020-12-24', '2020-12-30'], true, 'YYYY-MM-DD')
 
@@ -388,8 +388,8 @@ describe('Date Element Model Range Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     Flatpickr.vm.flatpickr$.setDate(['2020-12-24', '2020-12-30'], true, 'YYYY-MM-DD')
 
@@ -413,8 +413,8 @@ describe('Date Element Model Range Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     Flatpickr.vm.flatpickr$.setDate(['2020-12-24', '2020-12-30'], true, 'YYYY-MM-DD')
 
@@ -438,8 +438,8 @@ describe('Date Element Model Range Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
     let flatpickr$ = Flatpickr.vm.flatpickr$
 
     flatpickr$.open()
@@ -469,7 +469,7 @@ describe('Date Element Model Range Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     a.vm.load({
       a: ['2020-12-24', '2020-12-30']
@@ -507,7 +507,7 @@ describe('Date Element Model Range Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     a.vm.update(['2020-12-24','2020-12-30'])
 
@@ -541,7 +541,7 @@ describe('Date Element Model Range Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     a.vm.value = ['24/12/2020', '30/12/2020']
 
@@ -566,7 +566,7 @@ describe('Date Element Model Range Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual(['2020-12-25', '2020-12-30'])
     expect(a.vm.dirty).toBe(false)
@@ -590,8 +590,8 @@ describe('Date Element Model Multiple Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     Flatpickr.vm.flatpickr$.setDate(['2020-12-24', '2020-12-25', '2020-12-30'], true, 'YYYY-MM-DD')
 
@@ -615,8 +615,8 @@ describe('Date Element Model Multiple Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     Flatpickr.vm.flatpickr$.setDate(['2020-12-24', '2020-12-25', '2020-12-30'], true, 'YYYY-MM-DD')
 
@@ -640,8 +640,8 @@ describe('Date Element Model Multiple Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     Flatpickr.vm.flatpickr$.setDate(['2020-12-24', '2020-12-25', '2020-12-30'], true, 'YYYY-MM-DD')
 
@@ -666,7 +666,7 @@ describe('Date Element Model Multiple Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     a.vm.load({
       a: ['2020-12-24', '2020-12-30']
@@ -704,7 +704,7 @@ describe('Date Element Model Multiple Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     a.vm.update(['2020-12-24','2020-12-30'])
 
@@ -738,7 +738,7 @@ describe('Date Element Model Multiple Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     a.vm.value = ['24/12/2020', '30/12/2020']
 
@@ -763,7 +763,7 @@ describe('Date Element Model Multiple Mode', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual(['2020-12-25', '2020-12-30'])
     expect(a.vm.dirty).toBe(false)
@@ -786,7 +786,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.displayFormat).toBe(a.vm.__('laraform.elements.date.displayFormat'))
 
@@ -807,7 +807,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.displayFormat).toBe('DD/MM/YYYY')
 
@@ -827,7 +827,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.displayFormat).toBe(a.vm.__('laraform.elements.date.displayFormat'))
 
@@ -851,7 +851,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.valueFormat).toBe('YYYY-MM-DD')
 
@@ -872,7 +872,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.valueFormat).toBe('DD/MM/YYYY')
 
@@ -892,7 +892,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.valueFormat).toBe('YYYY-MM-DD')
 
@@ -916,7 +916,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.loadFormat).toBe('YYYY-MM-DD')
 
@@ -937,7 +937,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.loadFormat).toBe('DD/MM/YYYY')
 
@@ -957,7 +957,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.loadFormat).toBe('YYYY-MM-DD')
 
@@ -981,7 +981,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.mode).toBe('single')
 
@@ -1002,7 +1002,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.mode).toBe('range')
 
@@ -1022,7 +1022,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.vm.mode).toBe('single')
 
@@ -1047,7 +1047,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.get('input').attributes().placeholder).toBe('aaa')
 
@@ -1067,7 +1067,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.get('input').attributes().placeholder).toBe(undefined)
 
@@ -1094,7 +1094,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.findComponent({ name: 'ElementLabelFloating' }).exists()).toBe(true)
 
@@ -1114,7 +1114,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     expect(a.findComponent({ name: 'ElementLabelFloating' }).exists()).toBe(false)
 
@@ -1140,7 +1140,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     expect(Flatpickr.vm.flatpickr$.input.parentElement.id).toBe(`flatpickr-a`)
     
@@ -1160,8 +1160,8 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     expect(Flatpickr.vm.flatpickr$.input.parentElement.id).toBe(`flatpickr-a`)
 
@@ -1187,7 +1187,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
     
     expect(a.vm.hasDate).toBe(true)
 
@@ -1207,7 +1207,7 @@ describe('Date Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
     
     expect(a.vm.hasTime).toBe(false)
 
@@ -1232,8 +1232,8 @@ describe('Date Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
     let flatpickr$ = Flatpickr.vm.flatpickr$
 
     flatpickr$.setDate('2020-12-30', true)
@@ -1264,8 +1264,8 @@ describe('Date Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
     let flatpickr$ = Flatpickr.vm.flatpickr$
 
     flatpickr$.setDate('2020-12-30', true)
@@ -1296,8 +1296,8 @@ describe('Date Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
     let flatpickr$ = Flatpickr.vm.flatpickr$
 
     flatpickr$.setDate('2020-12-30', true)
@@ -1328,8 +1328,8 @@ describe('Date Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
     let flatpickr$ = Flatpickr.vm.flatpickr$
 
     flatpickr$.setDate('2020-12-30', true)
@@ -1360,8 +1360,8 @@ describe('Date Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
     let flatpickr$ = Flatpickr.vm.flatpickr$
 
     flatpickr$.setDate('2020-12-30', true)
@@ -1395,8 +1395,8 @@ describe('Date Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
     let flatpickr$ = Flatpickr.vm.flatpickr$
 
     flatpickr$.setDate('2020-12-30', true)
@@ -1430,8 +1430,8 @@ describe('Date Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
     let flatpickr$ = Flatpickr.vm.flatpickr$
 
     expect(flatpickr$.config.altFormat).toBe('aaa')
@@ -1452,8 +1452,8 @@ describe('Date Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
     let flatpickr$ = Flatpickr.vm.flatpickr$
 
     a.vm.$set(a.vm.schema, 'options', { altFormat: 'aaa' })

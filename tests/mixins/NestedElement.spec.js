@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform } from 'test-helpers'
+import { createForm, findAllComponents, installLaraform } from 'test-helpers'
 import { mergeComponentClasses } from './../../src/utils/mergeClasses'
 import { Laraform } from './../../src/index'
 
@@ -17,7 +17,7 @@ describe('Nested Element Mixin', () => {
       }
     })
 
-    let object = form.findAllComponents({ name: 'ObjectElement' }).at(0)
+    let object = findAllComponents(form, { name: 'ObjectElement' }).at(0)
 
     const originalConsoleError = console.error
 
@@ -55,7 +55,7 @@ describe('Nested Element Mixin', () => {
       }
     })
 
-    let object = form.findAllComponents({ name: 'ObjectElement' }).at(0)
+    let object = findAllComponents(form, { name: 'ObjectElement' }).at(0)
 
     expect(object.vm.data).toStrictEqual({ name: { a: 'aaa', b: 'bbb' } })
 
@@ -88,8 +88,8 @@ describe('Nested Element Mixin', () => {
       }
     })
 
-    let object = form.findAllComponents({ name: 'ObjectElement' }).at(0)
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let object = findAllComponents(form, { name: 'ObjectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     expect(object.vm.filtered).toStrictEqual({ name: { a: 'aaa' } })
 
@@ -129,8 +129,8 @@ describe('Nested Element Mixin', () => {
       }
     })
 
-    let object = form.findAllComponents({ name: 'ObjectElement' }).at(0)
-    let c = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let object = findAllComponents(form, { name: 'ObjectElement' }).at(0)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     expect(object.vm.filtered).toStrictEqual({ })
 
@@ -165,7 +165,7 @@ describe('Nested Element Mixin', () => {
       }
     })
 
-    let object = form.findAllComponents({ name: 'ObjectElement' }).at(0)
+    let object = findAllComponents(form, { name: 'ObjectElement' }).at(0)
 
     expect(object.vm.filtered).toStrictEqual({ name: { a: 'aaa' } })
 
@@ -193,7 +193,7 @@ describe('Nested Element Mixin', () => {
       }
     })
 
-    let object = form.findAllComponents({ name: 'ObjectElement' }).at(0)
+    let object = findAllComponents(form, { name: 'ObjectElement' }).at(0)
 
     object.vm.load({
       name: {
@@ -228,7 +228,7 @@ describe('Nested Element Mixin', () => {
       }
     })
 
-    let object = form.findAllComponents({ name: 'ObjectElement' }).at(0)
+    let object = findAllComponents(form, { name: 'ObjectElement' }).at(0)
 
     form.vm.load({
       c: 'ccc'
@@ -260,7 +260,7 @@ describe('Nested Element Mixin', () => {
       }
     })
 
-    let object = form.findAllComponents({ name: 'ObjectElement' }).at(0)
+    let object = findAllComponents(form, { name: 'ObjectElement' }).at(0)
 
     object.vm.update({
       a: 'aaa',
@@ -295,9 +295,9 @@ describe('Nested Element Mixin', () => {
       }
     })
 
-    let object = form.findAllComponents({ name: 'ObjectElement' }).at(0)
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let object = findAllComponents(form, { name: 'ObjectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(object.vm.data).toStrictEqual({ name: { a: 'aaa', b: 'bbb' } })
 
@@ -336,9 +336,9 @@ describe('Nested Element Mixin', () => {
       }
     })
 
-    let object = form.findAllComponents({ name: 'ObjectElement' }).at(0)
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let object = findAllComponents(form, { name: 'ObjectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(object.vm.data).toStrictEqual({ name: { a: 'aaa', b: 'bbb' } })
 

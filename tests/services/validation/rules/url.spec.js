@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('URL Rule', () => {
   it('should validate url', (done) => {
@@ -12,7 +12,7 @@ describe('URL Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, 'http://www.laraform.io')
     expect(a.vm.invalid).toBe(false)

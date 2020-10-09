@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 jest.mock("axios", () => ({
   get: () => Promise.resolve({ data: true }),
@@ -21,7 +21,7 @@ describe('Unique Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     form.vm.$laraform.services.axios.post = () => {
       return new Promise((resolve, reject) => {
@@ -52,7 +52,7 @@ describe('Unique Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     form.vm.$laraform.services.axios.post = () => {
       return new Promise((resolve, reject) => {
@@ -90,7 +90,7 @@ describe('Unique Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     let postMock = jest.fn((endpoint, data) => { return { data: true } })
 

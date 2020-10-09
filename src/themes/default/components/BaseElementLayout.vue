@@ -46,6 +46,7 @@
   import BaseElementLayout from './../../../components/BaseElementLayout'
 
   export default {
+    name: 'BaseElementLayout',
     mixins: [BaseElementLayout],
     data() {
       return {

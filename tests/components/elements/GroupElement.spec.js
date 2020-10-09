@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 describe('Group Element Rendering', () => {
   it('should render children', (done) => {
@@ -89,7 +89,7 @@ describe('Group Element Computed', () => {
       }
     })
 
-    let b = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     b.vm.validate()
 
@@ -124,7 +124,7 @@ describe('Group Element Computed', () => {
       }
     })
 
-    let group = form.findAllComponents({ name: 'GroupElement' }).at(0)
+    let group = findAllComponents(form, { name: 'GroupElement' }).at(0)
 
     const originalConsoleError = console.error
 
@@ -162,8 +162,8 @@ describe('Group Element Computed', () => {
       }
     })
 
-    let b = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     b.get('input').setValue('bbb')
     c.get('input').setValue('ccc')
@@ -202,8 +202,8 @@ describe('Group Element Computed', () => {
       }
     })
 
-    let b = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     b.get('input').setValue('bbb')
     c.get('input').setValue('ccc')
@@ -244,8 +244,8 @@ describe('Group Element Computed', () => {
       }
     })
 
-    let b = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     b.get('input').setValue('bbb')
     c.get('input').setValue('ccc')
@@ -283,8 +283,8 @@ describe('Group Element Computed', () => {
       }
     })
 
-    let b = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     b.get('input').setValue('bbb')
     c.get('input').setValue('ccc')
@@ -378,7 +378,7 @@ describe('Group Element Dynamics', () => {
     })
 
     LocalVue.nextTick(() => {
-      let d = form.findAllComponents({ name: 'TextElement' }).at(2)
+      let d = findAllComponents(form, { name: 'TextElement' }).at(2)
       expect(d.vm.name).toBe('d')
 
       LocalVue.nextTick(() => {
@@ -413,14 +413,14 @@ describe('Group Element Dynamics', () => {
     })
 
     let group = form.findComponent({ name: 'GroupElement' })
-    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(1)
     expect(c.vm.name).toBe('c')
 
     form.vm.$delete(form.vm.schema.a.schema, 'c')
 
     LocalVue.nextTick(() => {
     LocalVue.nextTick(() => {
-      expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(1)
+      expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(1)
       expect(group.vm.children$.c).toBeFalsy()
 
       done()

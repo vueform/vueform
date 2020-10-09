@@ -33,6 +33,7 @@
   import ToggleButton from 'vue-js-toggle-button/src/Button.vue'
 
   export default {
+    name: 'ToggleElement',
     mixins: [ToggleElement],
     components: {
       ToggleButton,

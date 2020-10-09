@@ -14,6 +14,7 @@
   import FormWizardNext from './../../../components/FormWizardNext'
 
   export default {
+    name: 'FormWizardNext',
     mixins: [FormWizardNext],
     data() {
       return {

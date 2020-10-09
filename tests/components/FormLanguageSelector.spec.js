@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 describe('Form Language Selector', () => {  
   it('should select form language by clicking tab', () => {
@@ -24,7 +24,7 @@ describe('Form Language Selector', () => {
 
     expect(form.vm.language).toBe('en')
 
-    let tab = form.findAllComponents({ name: 'FormLanguageSelectorTab' }).at(1).get('a')
+    let tab = findAllComponents(form, { name: 'FormLanguageSelectorTab' }).at(1).get('a')
     let languageSelector = form.findComponent({ name: 'FormLanguageSelector' })
 
     tab.trigger('click')

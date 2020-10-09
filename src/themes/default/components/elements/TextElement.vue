@@ -78,18 +78,22 @@
 
 <script>
   import TextElement from './../../../../components/elements/TextElement'
-  import init from './../../../../init'
 
   import MaskedInput from 'vue-text-mask'
 
   export default {
-    mixins: [TextElement],
     name: 'TextElement',
+    mixins: [TextElement],
     components: {
       MaskedInput,
     },
-    setup: (props, context) => init(props, context, TextElement, {
-      input: 'form-control'
-    }),
+    data() {
+      return {
+        defaultClasses: {
+          input: 'form-control',
+          container: 'nav nav-tabs form-tabs'
+        }
+      }
+    },
   }
 </script>

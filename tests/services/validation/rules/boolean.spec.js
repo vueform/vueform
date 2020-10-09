@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, check, uncheck } from './.test-helpers'
+import { createForm, findAllComponents, change, check, uncheck } from './.test-helpers'
 
 describe('Boolean Rule', () => {
   it('should check if value is "1" or "0"', (done) => {
@@ -12,7 +12,7 @@ describe('Boolean Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, '0')
     expect(a.vm.invalid).toBe(false)
@@ -47,7 +47,7 @@ describe('Boolean Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     check(a)
     expect(a.vm.invalid).toBe(false)
@@ -70,7 +70,7 @@ describe('Boolean Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     check(a)
     expect(a.vm.invalid).toBe(false)
@@ -93,7 +93,7 @@ describe('Boolean Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     check(a)
     expect(a.vm.invalid).toBe(true)

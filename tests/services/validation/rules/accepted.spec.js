@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, check, uncheck } from './.test-helpers'
+import { createForm, findAllComponents, change, check, uncheck } from './.test-helpers'
 
 describe('Accepted Rule', () => {
   it('should be true for "true", "yes", "on", "1"', (done) => {
@@ -12,7 +12,7 @@ describe('Accepted Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, 'true')
     expect(a.vm.invalid).toBe(false)
@@ -41,7 +41,7 @@ describe('Accepted Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     a.vm.validate()
     expect(a.vm.invalid).toBe(true)
@@ -67,7 +67,7 @@ describe('Accepted Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     a.vm.validate()
     expect(a.vm.invalid).toBe(true)
@@ -91,7 +91,7 @@ describe('Accepted Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, '')
     expect(a.vm.invalid).toBe(true)

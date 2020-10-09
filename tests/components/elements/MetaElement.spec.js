@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 describe('Meta Element', () => {
   it('should render meta element', (done) => {
@@ -15,7 +15,7 @@ describe('Meta Element', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MetaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MetaElement' }).at(0)
 
     expect(a.exists()).toBe(true)
     expect(a.html()).toBe('')
@@ -37,7 +37,7 @@ describe('Meta Element', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MetaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MetaElement' }).at(0)
 
     expect(a.vm.value).toBe('aaa')
 
@@ -57,7 +57,7 @@ describe('Meta Element', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MetaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MetaElement' }).at(0)
 
     a.vm.value = 'aaa'
 
@@ -79,7 +79,7 @@ describe('Meta Element', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MetaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MetaElement' }).at(0)
 
     a.vm.update('aaa')
 
@@ -101,7 +101,7 @@ describe('Meta Element', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MetaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MetaElement' }).at(0)
 
     form.vm.load({
       a: 'aaa'

@@ -46,6 +46,7 @@
   import ListElement from './../../../../components/elements/ListElement'
 
   export default {
+    name: 'ListElement',
     mixins: [ListElement],
     data() {
       return {

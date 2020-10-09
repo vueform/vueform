@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 let windowSpy
 
@@ -44,7 +44,7 @@ describe('Location Algolia Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     let value = a.vm.locationService.formatValue([])
 
@@ -77,7 +77,7 @@ describe('Location Algolia Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.$laraform.services.location.algolia.handleChange = handleChangeMock
 
@@ -106,7 +106,7 @@ describe('Location Algolia Service', () => {
       attach: true
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     raw.countryCode = 'de'
 
@@ -137,7 +137,7 @@ describe('Location Algolia Service', () => {
       attach: true
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     raw.administrative = 'aaa'
 
@@ -176,7 +176,7 @@ describe('Location Algolia Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(destroyMock.mock.calls.length).toBe(0)
 
@@ -203,7 +203,7 @@ describe('Location Algolia Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.locationService.stateCode('alabama')).toBe('AL')
     expect(a.vm.locationService.stateCode('alabamaaaa')).toBe(null)

@@ -39,6 +39,7 @@
   import TextareaElement from './../../../../components/elements/TextareaElement'
 
   export default {
+    name: 'TextareaElement',
     mixins: [TextareaElement],
     data() {
       return {

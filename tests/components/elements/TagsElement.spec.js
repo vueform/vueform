@@ -23,7 +23,7 @@ describe('Tags Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     expect(a.exists()).toBe(true)
 
@@ -50,7 +50,7 @@ describe('Tags Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     expect(a.vm.create).toBe(false)
     
@@ -76,7 +76,7 @@ describe('Tags Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     expect(a.vm.create).toBe(true)
     
@@ -101,7 +101,7 @@ describe('Tags Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     a.vm.create = true
 
@@ -129,7 +129,7 @@ describe('Tags Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     expect(a.vm.native).toBe(false)
     
@@ -154,7 +154,7 @@ describe('Tags Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     expect(a.vm.tagPlaceholder).toBe('')
     
@@ -180,7 +180,7 @@ describe('Tags Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     expect(a.vm.tagPlaceholder).toBe(a.vm.$laraform.locales[a.vm.locale].laraform.elements.tags.createLabel)
     
@@ -207,7 +207,7 @@ describe('Tags Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     expect(a.vm.tagPlaceholder).toBe('aaa')
     
@@ -233,7 +233,7 @@ describe('Tags Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     a.vm.tagPlaceholder = 'aaa'
 
@@ -395,7 +395,7 @@ describe('Tags Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     a.vm.select$.select({value: 1, label: 'b'})
 
@@ -428,7 +428,7 @@ describe('Tags Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     a.vm.select(1)
     a.vm.select(2)
@@ -462,7 +462,7 @@ describe('Tags Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     a.vm.deselect(1)
     a.vm.deselect(2)
@@ -494,7 +494,7 @@ describe('Tags Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     a.vm.addItem('d', 'd')
 
@@ -524,7 +524,7 @@ describe('Tags Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     a.vm.addItem('d', 'ddd')
 
@@ -553,7 +553,7 @@ describe('Tags Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     a.vm.addItem('d', 'ddd')
 
@@ -583,7 +583,7 @@ describe('Tags Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     a.vm.addItem('dd', 'ddd')
 
@@ -612,7 +612,7 @@ describe('Tags Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     a.vm.removeItem(1)
 
@@ -643,7 +643,7 @@ describe('Tags Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     a.vm.removeItem('b')
 
@@ -673,7 +673,7 @@ describe('Tags Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     a.vm.removeItem('b')
 
@@ -704,7 +704,7 @@ describe('Tags Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     a.vm.removeItem('bb')
 
@@ -742,7 +742,7 @@ describe('Tags Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     LocalVue.nextTick(() => {
       expect(a.findAll('.multiselect__tags-wrap span').length).toBe(2)
@@ -809,7 +809,7 @@ describe('Tags Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     LocalVue.nextTick(() => {
       expect(a.findAll('.multiselect__tags-wrap span').length).toBe(2)
@@ -843,7 +843,7 @@ describe('Tags Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     LocalVue.nextTick(() => {
       expect(a.find('.wrap').html()).toContain('2 selected')
@@ -908,7 +908,7 @@ describe('Tags Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     LocalVue.nextTick(() => {
       expect(a.find('.wrap').html()).toContain('2 selected')
@@ -940,7 +940,7 @@ describe('Tags Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     LocalVue.nextTick(() => {
       a.vm.select$.$emit('tag')
@@ -973,7 +973,7 @@ describe('Tags Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     LocalVue.nextTick(() => {
       a.vm.select$.$emit('tag', 'aaa')
@@ -1010,7 +1010,7 @@ describe('Tags Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     LocalVue.nextTick(() => {
       a.vm.select$.$emit('tag', 'd')
@@ -1043,7 +1043,7 @@ describe('Tags Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TagsElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TagsElement' }).at(0)
 
     LocalVue.nextTick(() => {
       a.vm.select$.$emit('tag', 'b')

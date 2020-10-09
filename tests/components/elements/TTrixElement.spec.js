@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, createTrix } from 'test-helpers'
+import { createForm, findAllComponents, createTrix } from 'test-helpers'
 
 describe('TTrix Element Mixin', () => {
   it('should `load` value and keep it clean', (done) => {
@@ -26,7 +26,7 @@ describe('TTrix Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTrixElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTrixElement' }).at(0)
 
     form.vm.load({
       name: {
@@ -73,7 +73,7 @@ describe('TTrix Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTrixElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTrixElement' }).at(0)
 
     text.vm.load({
       a: 1
@@ -156,7 +156,7 @@ describe('TTrix Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTrixElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTrixElement' }).at(0)
 
     text.vm.update({
       hu: 'HU',
@@ -195,7 +195,7 @@ describe('TTrix Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTrixElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTrixElement' }).at(0)
 
     text.vm.update({
       hu: 'HU1',
@@ -241,7 +241,7 @@ describe('TTrix Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTrixElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTrixElement' }).at(0)
 
     text.vm.clear()
 
@@ -279,7 +279,7 @@ describe('TTrix Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTrixElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTrixElement' }).at(0)
 
     let trixUpdateMock = jest.fn()
 

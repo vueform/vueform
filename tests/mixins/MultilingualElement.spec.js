@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 describe('Multilingual Element Mixin', () => {
   it('should set `model` according to current language', (done) => {
@@ -26,11 +26,11 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     text.get('input').setValue('en')
 
-    let hu = form.findAllComponents({ name: 'FormLanguageSelectorTab' }).at(1)
+    let hu = findAllComponents(form, { name: 'FormLanguageSelectorTab' }).at(1)
 
     hu.get('a').trigger('click')
 
@@ -105,7 +105,7 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.value).toStrictEqual({ en: 'en1', hu: 'hu1' })
 
@@ -136,7 +136,7 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     text.vm.default = {
       en: 'en1',
@@ -172,7 +172,7 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.isMultilingual).toBe(true)
 
@@ -203,7 +203,7 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     form.vm.load({
       name: {
@@ -250,7 +250,7 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     text.vm.load({
       a: 1
@@ -333,7 +333,7 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     text.vm.update({
       hu: 'HU',
@@ -372,7 +372,7 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     text.vm.update({
       hu: 'HU1',
@@ -418,7 +418,7 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     text.vm.clear()
 
@@ -455,7 +455,7 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -497,7 +497,7 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -536,7 +536,7 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -579,7 +579,7 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -624,7 +624,7 @@ describe('Multilingual Element Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 

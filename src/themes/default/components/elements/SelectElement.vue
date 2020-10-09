@@ -96,6 +96,7 @@
   import 'vue-multiselect/dist/vue-multiselect.min.css'
 
   export default {
+    name: 'SelectElement',
     mixins: [SelectElement],
     components: {
       Multiselect,

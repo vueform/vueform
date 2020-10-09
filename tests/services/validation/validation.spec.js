@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 import Validator from './../../../src/services/validation/validator'
 import en from './../../../src/locales/en'
 import flushPromises from 'flush-promises'
@@ -12,7 +12,7 @@ jest.mock("axios", () => ({
 }))
 
 let setLanguage = function(code, form) {
-  _.each(form.findAllComponents({ name: 'FormLanguageSelectorTab' }).wrappers, (tab$) => {
+  _.each(findAllComponents(form, { name: 'FormLanguageSelectorTab' }).wrappers, (tab$) => {
     if (tab$.vm.code == code) {
       tab$.get('a').trigger('click')
     }
@@ -40,7 +40,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     expect(a.vm.Validators[0].name).toBe('required')
   })
@@ -55,7 +55,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
 
@@ -77,7 +77,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
 
@@ -94,7 +94,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     expect(a.vm.Validators[0].name).toBe('required')
     expect(a.vm.Validators[1].name).toBe('email')
@@ -110,7 +110,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     expect(a.vm.Validators[0].name).toBe('required')
     expect(a.vm.Validators[1].name).toBe('email')
@@ -126,7 +126,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').setValue('aa')
     a.vm.validate()
@@ -149,7 +149,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').setValue('2020-12-30 23:59:59')
     a.vm.validate()
@@ -167,7 +167,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').setValue('aa')
     a.vm.validate()
@@ -193,8 +193,8 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     await Vue.nextTick()
 
@@ -242,8 +242,8 @@ describe('Validation Service', () => {
       }
     })
 
-    let b = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     await Vue.nextTick()
 
@@ -281,7 +281,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
 
@@ -315,7 +315,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').trigger('keyup')
 
@@ -344,7 +344,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').trigger('keyup')
 
@@ -372,7 +372,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
 
@@ -399,8 +399,8 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     b.vm.validate()
 
@@ -441,8 +441,8 @@ describe('Validation Service', () => {
       }
     })
 
-    let c = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let d = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let d = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     d.vm.validate()
     await flushPromises()
@@ -474,8 +474,8 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     b.vm.validate()
 
@@ -508,8 +508,8 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     b.vm.validate()
 
@@ -541,8 +541,8 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     b.get('input').setValue(1)
     b.get('input').trigger('keyup')
@@ -575,8 +575,8 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     b.vm.validate()
 
@@ -617,8 +617,8 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     b.vm.validate()
 
@@ -653,8 +653,8 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     b.vm.validate()
 
@@ -691,7 +691,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     a.get('input').setValue('aa')
     a.get('input').trigger('keyup')
@@ -727,7 +727,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
 
@@ -747,7 +747,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
 
@@ -768,7 +768,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').setValue('aaa')
 
@@ -803,7 +803,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').setValue('aaa')
 
@@ -829,7 +829,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').setValue('aaa')
 
@@ -859,7 +859,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').setValue('aaa')
 
@@ -886,7 +886,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').setValue('aaa')
 
@@ -907,7 +907,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').setValue('aaa')
     a.get('input').trigger('keyup')
@@ -930,7 +930,7 @@ describe('Validation Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').setValue('aaa|aa')
     a.get('input').trigger('keyup')

@@ -15,14 +15,18 @@
 
 <script>
   import FormElements from './../../../components/FormElements'
-  import init from './../../../init'
 
   export default {
+    name: 'FormElements',
     mixins: [FormElements],
-    setup: (props, context) => init(props, context, FormElements, {
-      container: 'row',
-      wrapper: 'form-elements',
-    }),
+    data() {
+      return {
+        defaultClasses: {
+          container: 'row',
+          wrapper: 'form-elements',
+        }
+      }
+    },
   }
 </script>
 

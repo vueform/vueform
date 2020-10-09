@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('Alpha Rule', () => {
   it('should be valid only for alphabetic characters', (done) => {
@@ -12,7 +12,7 @@ describe('Alpha Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, 'foo')
     expect(a.vm.invalid).toBe(false)

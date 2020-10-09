@@ -1,4 +1,4 @@
-import { createForm, testDynamics } from 'test-helpers'
+import { createForm, findAllComponents, testDynamics } from 'test-helpers'
 import { createLocalVue } from '@vue/test-utils'
 
 describe('Form Blocks', () => {
@@ -169,8 +169,8 @@ const dynamicsTesting = (options) => {
         form.vm.$delete(form.vm.schema, 'b')
 
         LocalVue.nextTick(() => {
-          let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-          let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+          let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+          let c = findAllComponents(form, { name: 'TextElement' }).at(1)
           
           expect(form.findComponent({ name: blockSelector }).exists()).toBe(true)
           expect(form.findComponent({ name: blockSelector }).html()).toContain('First')

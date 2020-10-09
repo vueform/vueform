@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 describe('Password Element Rendering', () => {
   it('should render password element', (done) => {
@@ -15,7 +15,7 @@ describe('Password Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     expect(a.exists()).toBe(true)
     expect(a.get('input').attributes().type).toBe('password')
@@ -40,7 +40,7 @@ describe('Password Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     expect(a.get('input').attributes().id).toBe('pwd')
     expect(a.get('input').attributes().placeholder).toBe('Password')
@@ -64,8 +64,8 @@ describe('Password Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
-    let elf = form.findAllComponents({ name: 'ElementLabelFloating' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
+    let elf = findAllComponents(form, { name: 'ElementLabelFloating' }).at(0)
 
     expect(elf.exists()).toBe(true)
     expect(elf.html()).toContain('Password')
@@ -90,9 +90,9 @@ describe('Password Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
-    let ia0 = form.findAllComponents({ name: 'InputAddon' }).at(0)
-    let ia1 = form.findAllComponents({ name: 'InputAddon' }).at(1)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
+    let ia0 = findAllComponents(form, { name: 'InputAddon' }).at(0)
+    let ia1 = findAllComponents(form, { name: 'InputAddon' }).at(1)
 
     expect(ia0.exists()).toBe(true)
     expect(ia1.exists()).toBe(true)
@@ -122,7 +122,7 @@ describe('Password Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     expect(a.get('input').attributes().placeholder).toBe('aaa')
 
@@ -142,7 +142,7 @@ describe('Password Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     expect(a.get('input').attributes().placeholder).toBe(undefined)
 
@@ -169,7 +169,7 @@ describe('Password Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     expect(a.findComponent({ name: 'ElementLabelFloating' }).exists()).toBe(true)
 
@@ -189,7 +189,7 @@ describe('Password Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     expect(a.findComponent({ name: 'ElementLabelFloating' }).exists()).toBe(false)
 
@@ -215,7 +215,7 @@ describe('Password Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     expect(a.vm.readonly).toBe(false)
 
@@ -236,7 +236,7 @@ describe('Password Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     expect(a.vm.readonly).toBe(true)
 
@@ -256,7 +256,7 @@ describe('Password Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     a.vm.readonly = true
     
@@ -281,7 +281,7 @@ describe('Password Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     expect(a.vm.value).toBe('aaa')
 
@@ -301,7 +301,7 @@ describe('Password Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     a.vm.value = 'aaa'
 
@@ -323,7 +323,7 @@ describe('Password Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     a.vm.update('aaa')
 
@@ -345,7 +345,7 @@ describe('Password Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     form.vm.load({
       a: 'aaa'
@@ -374,7 +374,7 @@ describe('Password Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -404,7 +404,7 @@ describe('Password Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'PasswordElement' }).at(0)
+    let a = findAllComponents(form, { name: 'PasswordElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 

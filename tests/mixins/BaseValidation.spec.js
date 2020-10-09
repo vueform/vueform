@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 const Vue = createLocalVue()
@@ -392,7 +392,7 @@ describe('Element Validation Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     expect(a.vm.errors.length).toBe(0)
 

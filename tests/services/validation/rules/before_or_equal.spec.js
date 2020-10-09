@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, setDate } from './.test-helpers'
+import { createForm, findAllComponents, change, setDate } from './.test-helpers'
 
 describe('Before Or Equal Rule', () => {
   it('should work with `yesterday`', (done) => {
@@ -12,7 +12,7 @@ describe('Before Or Equal Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     let yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD')
     let today = moment().format('YYYY-MM-DD')
@@ -40,7 +40,7 @@ describe('Before Or Equal Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     let yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD')
     let today = moment().format('YYYY-MM-DD')
@@ -68,7 +68,7 @@ describe('Before Or Equal Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     let yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD')
     let today = moment().format('YYYY-MM-DD')
@@ -102,7 +102,7 @@ describe('Before Or Equal Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     setDate(a, '24/12/2020')
     expect(a.vm.invalid).toBe(false)
@@ -129,8 +129,8 @@ describe('Before Or Equal Rule', () => {
       }
     })
 
-    let from = form.findAllComponents({ name: 'DateElement' }).at(0)
-    let to = form.findAllComponents({ name: 'DateElement' }).at(1)
+    let from = findAllComponents(form, { name: 'DateElement' }).at(0)
+    let to = findAllComponents(form, { name: 'DateElement' }).at(1)
 
     setDate(from, '2020-12-25')
     setDate(to, '2020-12-24')
@@ -162,7 +162,7 @@ describe('Before Or Equal Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DateElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DateElement' }).at(0)
 
     setDate(a, ['2020-12-24', '2020-12-30'])
     expect(a.vm.invalid).toBe(true)

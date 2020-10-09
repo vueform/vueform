@@ -1,4 +1,4 @@
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('IPv4 Rule', () => {
   it('should validate IPv4', (done) => {
@@ -11,7 +11,7 @@ describe('IPv4 Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, '127')
     expect(a.vm.invalid).toBe(true)

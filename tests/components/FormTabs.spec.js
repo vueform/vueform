@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 import { createLocalVue } from '@vue/test-utils'
 import { dynamicsTesting } from './FormBlocks.spec.js' 
 
@@ -27,7 +27,7 @@ describe('Form Tabs Rendering', () => {
 
     expect(form.html()).toContain('First')
     expect(form.html()).toContain('Second')
-    expect(form.findAllComponents({ name: 'FormTab' }).length).toBe(2)
+    expect(findAllComponents(form, { name: 'FormTab' }).length).toBe(2)
   })
 })
 
@@ -55,7 +55,7 @@ describe('Form Tabs Computed', () => {
     })
 
     let tabs = form.findComponent({ name: 'FormTabs' })
-    let second = form.findAllComponents({ name: 'FormTab' }).at(1)
+    let second = findAllComponents(form, { name: 'FormTab' }).at(1)
 
     expect(second.vm.name).toBe('second')
 
@@ -224,7 +224,7 @@ describe('Form Tabs Events', () => {
     let tabs = form.findComponent({ name: 'FormTabs' })
     tabs.vm.on('change', onChangeMock)
 
-    let second = form.findAllComponents({ name: 'FormTab' }).at(1)
+    let second = findAllComponents(form, { name: 'FormTab' }).at(1)
 
     expect(second.vm.name).toBe('second')
 

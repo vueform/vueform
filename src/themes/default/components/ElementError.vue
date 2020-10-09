@@ -10,6 +10,7 @@
   import ElementError from './../../../components/ElementError'
 
   export default {
+    name: 'ElementError',
     mixins: [ElementError],
     data() {
       return {

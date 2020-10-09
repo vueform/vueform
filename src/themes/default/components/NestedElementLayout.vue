@@ -54,6 +54,7 @@
   import NestedElementLayout from './../../../components/NestedElementLayout'
 
   export default {
+    name: 'NestedElementLayout',
     mixins: [NestedElementLayout],
     data() {
       return {

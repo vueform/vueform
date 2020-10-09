@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 import flushPromises from 'flush-promises'
 
 const LocalVue = createLocalVue()
@@ -18,8 +18,8 @@ describe('Confirmed Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let a_confirmation = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let a_confirmation = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     change(a, 'aaa')
     change(a_confirmation, 'bbb')
@@ -41,8 +41,8 @@ describe('Confirmed Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let a_confirmation = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let a_confirmation = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     a.get('input').setValue('a')
     a.get('input').trigger('keyup')
@@ -76,8 +76,8 @@ describe('Confirmed Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let a_confirmation = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let a_confirmation = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     change(a, 'aaa')
     change(a_confirmation, 'bbb')

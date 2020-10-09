@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, check, uncheck } from './.test-helpers'
+import { createForm, findAllComponents, change, check, uncheck } from './.test-helpers'
 
 describe('String Rule', () => {
   it('should validate string', (done) => {
@@ -12,7 +12,7 @@ describe('String Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, 'asdf')
     expect(a.vm.invalid).toBe(false)
@@ -41,7 +41,7 @@ describe('String Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     check(a)
     expect(a.vm.invalid).toBe(true)

@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform } from 'test-helpers'
+import { createForm, findAllComponents, installLaraform } from 'test-helpers'
 import { Laraform } from './../../src/index'
 import { mergeComponentClasses } from './../../src/utils/mergeClasses'
 import defaultTheme from './../../src/themes/default'
@@ -694,7 +694,7 @@ describe('Laraform Computed', () => {
 
     await Vue.nextTick()
 
-    form.findAllComponents({ name: 'TextElement' }).at(0).get('input').setValue('aaa')
+    findAllComponents(form, { name: 'TextElement' }).at(0).get('input').setValue('aaa')
       
     await Vue.nextTick()
 
@@ -718,7 +718,7 @@ describe('Laraform Computed', () => {
 
     await Vue.nextTick()
 
-    form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+    findAllComponents(form, { name: 'TextElement' }).at(0).vm.validate()
       
     await Vue.nextTick()
 
@@ -743,7 +743,7 @@ describe('Laraform Computed', () => {
 
     await Vue.nextTick()
 
-    form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+    findAllComponents(form, { name: 'TextElement' }).at(0).vm.validate()
       
     await Vue.nextTick()
 
@@ -792,7 +792,7 @@ describe('Laraform Computed', () => {
 
     await Vue.nextTick()
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').setValue('aaa')
     a.vm.validate()
@@ -845,7 +845,7 @@ describe('Laraform Computed', () => {
 
     await Vue.nextTick()
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
       
@@ -892,7 +892,7 @@ describe('Laraform Computed', () => {
 
     await Vue.nextTick()
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
       
@@ -917,7 +917,7 @@ describe('Laraform Computed', () => {
 
     await Vue.nextTick()
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
       
@@ -1159,8 +1159,8 @@ describe('Laraform Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(a.vm.value).toBe(a.vm.null)
     expect(b.vm.value).toBe(1)
@@ -1187,8 +1187,8 @@ describe('Laraform Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(a.vm.value).toBe(a.vm.null)
     expect(b.vm.value).toBe(1)
@@ -1214,8 +1214,8 @@ describe('Laraform Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(a.vm.value).toBe(a.vm.null)
     expect(b.vm.value).toBe(1)
@@ -1247,8 +1247,8 @@ describe('Laraform Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(a.vm.value).toBe(a.vm.null)
     expect(b.vm.value).toBe(1)
@@ -1330,7 +1330,7 @@ describe('Laraform Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     expect(a.vm.validated).toBe(false)
 
@@ -1624,13 +1624,13 @@ describe('Laraform Vuex', () => {
     expect(form.vm.$store.state.form.b.c).toBe(2)
     expect(form.vm.$store.state.form.b.d).toBe(3)
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     expect(a.vm.name).toBe('a')
 
-    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(1)
     expect(c.vm.name).toBe('c')
 
-    let d = form.findAllComponents({ name: 'TextElement' }).at(2)
+    let d = findAllComponents(form, { name: 'TextElement' }).at(2)
     expect(d.vm.name).toBe('d')
 
     a.get('input').setValue('aaa')
@@ -1680,13 +1680,13 @@ describe('Laraform Vuex', () => {
     expect(form.vm.$store.state.form.b.c).toBe(2)
     expect(form.vm.$store.state.form.b.d).toBe(3)
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     expect(a.vm.name).toBe('a')
 
-    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(1)
     expect(c.vm.name).toBe('c')
 
-    let d = form.findAllComponents({ name: 'TextElement' }).at(2)
+    let d = findAllComponents(form, { name: 'TextElement' }).at(2)
     expect(d.vm.name).toBe('d')
 
     a.get('input').setValue('aaa')
@@ -1731,13 +1731,13 @@ describe('Laraform Vuex', () => {
 
     await Vue.nextTick()
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     expect(a.vm.name).toBe('a')
 
-    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(1)
     expect(c.vm.name).toBe('c')
 
-    let d = form.findAllComponents({ name: 'TextElement' }).at(2)
+    let d = findAllComponents(form, { name: 'TextElement' }).at(2)
     expect(d.vm.name).toBe('d')
 
     expect(a.vm.value).toBe(1)
@@ -1861,7 +1861,7 @@ describe('Laraform Events', () => {
 
     expect(changeMock.mock.calls.length).toBe(0)
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.get('input').setValue('aaa')
 
@@ -1970,7 +1970,7 @@ describe('Laraform Events', () => {
 
     expect(form.vm.language).toBe('en')
 
-    form.findAllComponents({ name: 'FormLanguageSelectorTab' }).at(1).get('a').trigger('click')
+    findAllComponents(form, { name: 'FormLanguageSelectorTab' }).at(1).get('a').trigger('click')
 
     expect(form.vm.language).toBe('de')
     

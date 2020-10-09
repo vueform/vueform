@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform, check, uncheck } from 'test-helpers'
+import { createForm, findAllComponents, installLaraform, check, uncheck } from 'test-helpers'
 
 describe('Slider Element Rendering', () => {
   it('should render slider', (done) => {
@@ -15,8 +15,8 @@ describe('Slider Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
-    let slider$ = a.findAllComponents({ name: 'VueSliderComponent' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
+    let slider$ = findAllComponents(a, { name: 'VueSliderComponent' }).at(0)
 
     expect(a.exists()).toBe(true)
     expect(slider$.exists()).toBe(true)
@@ -39,7 +39,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.min).toBe(0)
 
@@ -60,7 +60,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.min).toBe(5)
 
@@ -80,7 +80,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.min).toBe(0)
 
@@ -105,7 +105,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.max).toBe(100)
 
@@ -126,7 +126,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.max).toBe(50)
 
@@ -146,7 +146,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.max).toBe(100)
 
@@ -171,7 +171,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.null).toBe(18)
 
@@ -192,7 +192,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.default).toBe(a.vm.null)
 
@@ -213,7 +213,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.default).toBe(a.vm.null)
 
@@ -234,7 +234,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.multiple).toBe(true)
 
@@ -255,7 +255,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.multiple).toBe(false)
 
@@ -275,7 +275,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.options).toStrictEqual(a.vm.defaultOptions)
 
@@ -298,7 +298,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.options).toStrictEqual(Object.assign({}, a.vm.defaultOptions, {
       direction: 'rtl'
@@ -320,7 +320,7 @@ describe('Slider Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     a.vm.options = {
       direction: 'rtl'
@@ -353,7 +353,7 @@ describe('Slider Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
     let slider$ = a.vm.slider$
 
     expect(slider$.min).toBe(10)
@@ -378,7 +378,7 @@ describe('Slider Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
     let slider$ = a.vm.slider$
 
     expect(slider$.isRange).toBe(true)
@@ -404,7 +404,7 @@ describe('Slider Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -433,7 +433,7 @@ describe('Slider Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.value).toBe(33)
     expect(a.vm.slider$.value).toBe(33)
@@ -455,7 +455,7 @@ describe('Slider Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual([33,38])
     expect(a.vm.slider$.value).toStrictEqual([33,38])
@@ -476,7 +476,7 @@ describe('Slider Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     a.vm.value = 33
 
@@ -503,7 +503,7 @@ describe('Slider Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     a.vm.value = [33,38]
 
@@ -529,7 +529,7 @@ describe('Slider Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     a.vm.update(33)
 
@@ -556,7 +556,7 @@ describe('Slider Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     a.vm.update([33,38])
 
@@ -582,7 +582,7 @@ describe('Slider Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     form.vm.load({
       a: 33
@@ -611,7 +611,7 @@ describe('Slider Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     form.vm.load({
       a: [33,38]
@@ -639,7 +639,7 @@ describe('Slider Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     a.vm.slider$.setValue(22)
     expect(a.vm.value).toBe(22)
@@ -660,7 +660,7 @@ describe('Slider Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SliderElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SliderElement' }).at(0)
 
     a.vm.slider$.setValue([22,28])
     expect(a.vm.value).toStrictEqual([22,28])

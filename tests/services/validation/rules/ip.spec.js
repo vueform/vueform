@@ -1,4 +1,4 @@
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('IP Rule', () => {
   it('should validate IP', (done) => {
@@ -11,7 +11,7 @@ describe('IP Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, '127.0.0.1')
     expect(a.vm.invalid).toBe(false)

@@ -10,6 +10,7 @@ import i18n from './services/i18n'
 import applyExtensions from './utils/applyExtensions'
 import store from './store'
 import vRef from './directives/ref'
+import init from './init'
 
 if (window._ === undefined) {
   window._ = _
@@ -89,6 +90,20 @@ export default function (config) {
       this.options.i18n = this.options.i18n || new i18n(this.options)
     }
 
+    initComponents() {
+      _.each(this.options.themes, (theme) => {
+        _.each(Object.assign({}, theme.components, theme.elements), (component, name) => {
+          if (!component.mixins || component.mixins[0].init === undefined) {
+            return
+          }
+
+          let data = component.data ? component.data() : {}
+
+          component.setup = (props, context) => init(props, context, component.mixins[0], data)
+        })
+      })
+    }
+
     install(appOrVue, options) {
       if (options) {
         this.config(options)
@@ -99,6 +114,8 @@ export default function (config) {
       if (this.options.extensions.length) {
         this.applyExtensions()
       }
+
+      this.initComponents()
 
       switch (this.options.vue) {
         case 2:

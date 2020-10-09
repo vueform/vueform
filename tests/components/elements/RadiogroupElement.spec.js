@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform, check, uncheck } from 'test-helpers'
+import { createForm, findAllComponents, installLaraform, check, uncheck } from 'test-helpers'
 import { Laraform } from './../../../src/index'
 
 describe('Radio Element Rendering', () => {
@@ -20,10 +20,10 @@ describe('Radio Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
 
     expect(rg0.exists()).toBe(true)
     expect(rg1.exists()).toBe(true)
@@ -56,7 +56,7 @@ describe('Radio Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
     expect(a.html()).toContain('aaa radio')
     expect(a.html()).toContain('bbb radio')
@@ -117,7 +117,7 @@ describe('Radio Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({name: 'RadiogroupElement'}).at(0)
+    let a = findAllComponents(form, {name: 'RadiogroupElement'}).at(0)
 
     expect(a.html()).toContain('aaa radio')
     expect(a.html()).toContain('bbb radio')
@@ -142,11 +142,11 @@ describe('Radio Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     expect(_.values(rg0.get('input').attributes())).toContain('disabled')
     expect(_.values(rg1.get('input').attributes())).not.toContain('disabled')
@@ -174,11 +174,11 @@ describe('Radio Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     expect(_.values(rg0.get('input').attributes())).toContain('disabled')
     expect(_.values(rg1.get('input').attributes())).toContain('disabled')
@@ -202,7 +202,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
     expect(a.vm.items).toStrictEqual({})
 
@@ -226,7 +226,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
     expect(a.vm.items).toStrictEqual({
       a: 'aaa',
@@ -249,7 +249,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
     expect(a.vm.items).toStrictEqual({})
 
@@ -279,7 +279,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
     expect(a.vm.disables).toStrictEqual([])
 
@@ -305,7 +305,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
     expect(a.vm.disables).toStrictEqual(['a', 'b'])
 
@@ -325,7 +325,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
     expect(a.vm.disables).toStrictEqual([])
 
@@ -349,7 +349,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
     expect(a.vm.disabled).toBe(false)
 
@@ -375,7 +375,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
     expect(a.vm.disabled).toBe(true)
 
@@ -395,7 +395,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
     expect(a.vm.disabled).toBe(false)
 
@@ -426,11 +426,11 @@ describe('Radio Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     expect(_.values(rg0.get('input').attributes())).not.toContain('disabled')
     expect(_.values(rg1.get('input').attributes())).not.toContain('disabled')
@@ -465,11 +465,11 @@ describe('Radio Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     expect(_.values(rg0.get('input').attributes())).not.toContain('disabled')
     expect(_.values(rg1.get('input').attributes())).not.toContain('disabled')
@@ -512,11 +512,11 @@ describe('Radio Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     expect(_.values(rg0.get('input').attributes())).not.toContain('disabled')
     expect(_.values(rg1.get('input').attributes())).not.toContain('disabled')
@@ -551,11 +551,11 @@ describe('Radio Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     expect(_.values(rg0.get('input').attributes())).not.toContain('disabled')
     expect(_.values(rg1.get('input').attributes())).not.toContain('disabled')
@@ -591,11 +591,11 @@ describe('Radio Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     expect(_.values(rg0.get('input').attributes())).toContain('disabled')
     expect(_.values(rg1.get('input').attributes())).not.toContain('disabled')
@@ -631,11 +631,11 @@ describe('Radio Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     expect(_.values(rg0.get('input').attributes())).toContain('disabled')
     expect(_.values(rg1.get('input').attributes())).not.toContain('disabled')
@@ -672,11 +672,11 @@ describe('Radio Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     check(rg0)
 
@@ -704,11 +704,11 @@ describe('Radio Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     expect(rg0.get('input').element.checked).toBe(true)
     expect(rg1.get('input').element.checked).toBe(false)
@@ -735,11 +735,11 @@ describe('Radio Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     a.vm.value = 'a'
 
@@ -770,11 +770,11 @@ describe('Radio Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     a.vm.update('a')
 
@@ -805,11 +805,11 @@ describe('Radio Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     form.vm.load({
       a: 'a'
@@ -842,11 +842,11 @@ describe('Radio Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     check(rg0)
 
@@ -886,11 +886,11 @@ describe('Radio Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     check(rg1)
 
@@ -923,11 +923,11 @@ describe('Radio Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadiogroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadiogroupElement' }).at(0)
 
-    let rg0 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(0)
-    let rg1 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(1)
-    let rg2 = a.findAllComponents({ name: 'RadiogroupSlotRadio' }).at(2)
+    let rg0 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(0)
+    let rg1 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(1)
+    let rg2 = findAllComponents(a, { name: 'RadiogroupSlotRadio' }).at(2)
 
     check(rg2)
 

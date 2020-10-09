@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from './.test-helpers'
+import { createForm, findAllComponents } from './.test-helpers'
 
 describe('Condition Plugin Service', () => {
   it('should `checkGlobal` condition', (done) => {
@@ -24,8 +24,8 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(b.vm.available).toBe(false)
 
@@ -57,8 +57,8 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(b.vm.available).toBe(false)
 
@@ -84,8 +84,8 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(b.vm.available).toBe(false)
 
@@ -143,8 +143,8 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(b.vm.available).toBe(false)
 
@@ -175,8 +175,8 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(b.vm.available).toBe(true)
 
@@ -207,8 +207,8 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(b.vm.available).toBe(false)
 
@@ -233,8 +233,8 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(b.vm.available).toBe(true)
 
@@ -259,8 +259,8 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(b.vm.available).toBe(false)
 
@@ -288,8 +288,8 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(b.vm.available).toBe(false)
 
@@ -320,8 +320,8 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(b.vm.available).toBe(true)
 
@@ -352,8 +352,8 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(b.vm.available).toBe(true)
 
@@ -396,10 +396,10 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
-    let c = form.findAllComponents({ name: 'TextElement' }).at(2)
-    let d = form.findAllComponents({ name: 'TextElement' }).at(3)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(2)
+    let d = findAllComponents(form, { name: 'TextElement' }).at(3)
 
     expect(b.vm.available).toBe(false)
     expect(c.vm.available).toBe(false)
@@ -480,15 +480,15 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'GroupElement' }).at(0)
-    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
-    let d = form.findAllComponents({ name: 'TextElement' }).at(2)
-    let e = form.findAllComponents({ name: 'TextElement' }).at(3)
-    let f = form.findAllComponents({ name: 'TextElement' }).at(4)
-    let g = form.findAllComponents({ name: 'GroupElement' }).at(1)
-    let h = form.findAllComponents({ name: 'TextElement' }).at(5)
-    let i = form.findAllComponents({ name: 'TextElement' }).at(6)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'GroupElement' }).at(0)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let d = findAllComponents(form, { name: 'TextElement' }).at(2)
+    let e = findAllComponents(form, { name: 'TextElement' }).at(3)
+    let f = findAllComponents(form, { name: 'TextElement' }).at(4)
+    let g = findAllComponents(form, { name: 'GroupElement' }).at(1)
+    let h = findAllComponents(form, { name: 'TextElement' }).at(5)
+    let i = findAllComponents(form, { name: 'TextElement' }).at(6)
 
     expect(b.vm.available).toBe(true)
     expect(c.vm.available).toBe(true)
@@ -583,11 +583,11 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ListElement' }).at(0)
-    let b0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let c0 = form.findAllComponents({ name: 'TextElement' }).at(1)
-    let d0 = form.findAllComponents({ name: 'TextElement' }).at(2)
-    let e = form.findAllComponents({ name: 'TextElement' }).at(3)
+    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
+    let b0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let c0 = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let d0 = findAllComponents(form, { name: 'TextElement' }).at(2)
+    let e = findAllComponents(form, { name: 'TextElement' }).at(3)
 
     expect(c0.vm.available).toBe(false)
     expect(d0.vm.available).toBe(false)
@@ -621,8 +621,8 @@ describe('Condition Plugin Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(a.vm.available).toBe(true)
     expect(b.vm.available).toBe(true)

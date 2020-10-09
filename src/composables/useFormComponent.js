@@ -6,7 +6,7 @@ import useTheme from './useTheme'
 export default function useFormComponent(props, context, dependencies)
 {
   const componentName = context.name
-  const defaultClasses = context.defaultClasses
+  const defaultClasses = context.data.defaultClasses
 
 
   // ============ DEPENDENCIES ============

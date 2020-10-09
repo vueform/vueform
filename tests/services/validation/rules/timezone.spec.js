@@ -1,4 +1,4 @@
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('Timezone Rule', () => {
   it('should validate timezone', (done) => {
@@ -11,7 +11,7 @@ describe('Timezone Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, 'Europe/Budapest')
     expect(a.vm.invalid).toBe(false)

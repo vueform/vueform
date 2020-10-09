@@ -1,9 +1,14 @@
 <template>
-  <div>Hello</div>
+  <div><Hi/></div>
 </template>
 
 <script>
-  export default {
+  import Hi from './Hi'
 
+  export default {
+    name: 'Hello',
+    components: {
+      Hi,
+    }
   }
 </script>

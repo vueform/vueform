@@ -8,6 +8,7 @@
   import MultiselectSlotOption from './../../../../../components/elements/slots/MultiselectSlotOption'
 
   export default {
+    name: 'MultiselectSlotOption',
     mixins: [MultiselectSlotOption],
 }
 </script>

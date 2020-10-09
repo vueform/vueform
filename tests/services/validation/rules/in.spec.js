@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('In Rule', () => {
   it('should check if value is among a provided list of strings', (done) => {
@@ -16,7 +16,7 @@ describe('In Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, 'aaa')
     expect(a.vm.invalid).toBe(true)

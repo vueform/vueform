@@ -1,4 +1,4 @@
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('Regex Rule', () => {
   it('should validate regex', (done) => {
@@ -11,7 +11,7 @@ describe('Regex Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, 'asdf')
     expect(a.vm.invalid).toBe(true)

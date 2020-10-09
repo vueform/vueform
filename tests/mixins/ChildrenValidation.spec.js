@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 const Vue = createLocalVue()
@@ -28,7 +28,7 @@ describe('Children Validation Mixin', () => {
 
     await Vue.nextTick()
     
-    form.findAllComponents({ name: 'TextElement' }).at(0).get('input').setValue('aaa')
+    findAllComponents(form, { name: 'TextElement' }).at(0).get('input').setValue('aaa')
       
     await Vue.nextTick()
     
@@ -59,7 +59,7 @@ describe('Children Validation Mixin', () => {
 
     await Vue.nextTick()
     
-    form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+    findAllComponents(form, { name: 'TextElement' }).at(0).vm.validate()
       
     await Vue.nextTick()
     
@@ -91,7 +91,7 @@ describe('Children Validation Mixin', () => {
 
     await Vue.nextTick()
 
-    form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+    findAllComponents(form, { name: 'TextElement' }).at(0).vm.validate()
       
     await Vue.nextTick()
 
@@ -124,7 +124,7 @@ describe('Children Validation Mixin', () => {
 
     await Vue.nextTick()
     
-    form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+    findAllComponents(form, { name: 'TextElement' }).at(0).vm.validate()
       
     await Vue.nextTick()
 
@@ -156,7 +156,7 @@ describe('Children Validation Mixin', () => {
 
     await Vue.nextTick()
     
-    let b = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     b.get('input').setValue('aaa')
     b.vm.validate()
@@ -191,7 +191,7 @@ describe('Children Validation Mixin', () => {
 
     await Vue.nextTick()
     
-    let b = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     b.vm.validate()
     
@@ -228,8 +228,8 @@ describe('Children Validation Mixin', () => {
 
     await Vue.nextTick()
       
-    let b = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     b.vm.validate()
     c.vm.validate()

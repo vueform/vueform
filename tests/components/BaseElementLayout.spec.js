@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 describe('Base Element Layout Rendering', () => {
   it('should render label if config.labels is false, but element has label', () => {

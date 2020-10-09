@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 let windowSpy
 
@@ -38,7 +38,7 @@ describe('Location Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.exists()).toBe(true)
 
@@ -98,7 +98,7 @@ describe('Location Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.exists()).toBe(true)
 
@@ -159,7 +159,7 @@ describe('Location Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.get('input').attributes().id).toBe('txt')
     expect(a.get('input').attributes().placeholder).toBe('Location')
@@ -195,8 +195,8 @@ describe('Location Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
-    let elf = form.findAllComponents({ name: 'ElementLabelFloating' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
+    let elf = findAllComponents(form, { name: 'ElementLabelFloating' }).at(0)
 
     expect(elf.exists()).toBe(true)
     expect(elf.html()).toContain('Location')
@@ -233,9 +233,9 @@ describe('Location Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
-    let ia0 = form.findAllComponents({ name: 'InputAddon' }).at(0)
-    let ia1 = form.findAllComponents({ name: 'InputAddon' }).at(1)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
+    let ia0 = findAllComponents(form, { name: 'InputAddon' }).at(0)
+    let ia1 = findAllComponents(form, { name: 'InputAddon' }).at(1)
 
     expect(ia0.exists()).toBe(true)
     expect(ia1.exists()).toBe(true)
@@ -276,7 +276,7 @@ describe('Location Element Provider', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.locationService).not.toBe(null)
 
@@ -325,7 +325,7 @@ describe('Location Element Provider', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(autocompleteMock.mock.calls.length).toBe(1)
     expect(googleRemoveListenerMock.mock.calls.length).toBe(0)
@@ -371,7 +371,7 @@ describe('Location Element Provider', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(autocompleteMock.mock.calls.length).toBe(1)
 
@@ -462,7 +462,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.displayKey).toBe('formatted_address')
 
@@ -483,7 +483,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.displayKey).toBe('aaa')
 
@@ -503,7 +503,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.displayKey = 'aaa'
 
@@ -530,7 +530,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let b = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let b = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(b.vm.id).toBe(b.vm.path)
 
@@ -551,7 +551,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.id).toBe('loc')
 
@@ -571,7 +571,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.id = 'loc'
 
@@ -593,7 +593,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.provider).toBe('google')
 
@@ -613,7 +613,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.placeholder).toBe(null)
 
@@ -634,7 +634,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.placeholder).toBe('aaa')
 
@@ -654,7 +654,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.placeholder = 'aaa'
 
@@ -676,7 +676,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.floating).toBe(null)
 
@@ -697,7 +697,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.floating).toBe('aaa')
 
@@ -717,7 +717,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.floating = 'aaa'
 
@@ -739,7 +739,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.readonly).toBe(false)
 
@@ -760,7 +760,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.readonly).toBe(true)
 
@@ -780,7 +780,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.readonly = true
 
@@ -802,7 +802,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.options).toStrictEqual(a.vm.defaultOptions)
 
@@ -825,7 +825,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.options).toStrictEqual(Object.assign({}, a.vm.defaultOptions, {a: 1}))
 
@@ -845,7 +845,7 @@ describe('Location Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.options = {
       a: 1
@@ -865,7 +865,7 @@ describe('Location Element Props', () => {
       },
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.formatValue = () => { return 'aaa' }
 
@@ -918,7 +918,7 @@ describe('Location Element Events', () => {
       attach: true
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -984,7 +984,7 @@ describe('Location Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.handleAddressChange(formatted, raw)
 
@@ -1008,7 +1008,7 @@ describe('Location Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.value = formatted
 
@@ -1032,7 +1032,7 @@ describe('Location Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.update(formatted)
 
@@ -1056,7 +1056,7 @@ describe('Location Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     form.vm.load({
       a: formatted
@@ -1083,7 +1083,7 @@ describe('Location Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual(formatted)
 
@@ -1113,7 +1113,7 @@ describe('Location Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.value = formatted
 
@@ -1145,7 +1145,7 @@ describe('Location Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.update(formatted)
 
@@ -1177,7 +1177,7 @@ describe('Location Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.load({
       a: formatted
@@ -1212,7 +1212,7 @@ describe('Location Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual({formatted_address:formatted.formatted_address})
 
@@ -1247,7 +1247,7 @@ describe('Location Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     a.vm.load({
       a: formatted

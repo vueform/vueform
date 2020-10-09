@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 const setRule = function (el, rule) {
   el.vm.Validators.splice(0)
@@ -18,7 +18,7 @@ describe('Date Format Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, '2020-12-30')
     expect(a.vm.invalid).toBe(false)

@@ -18,12 +18,16 @@
 
 <script>
   import FormWizard from './../../../components/FormWizard'
-  import init from './../../../init'
 
   export default {
+    name: 'FormWizard',
     mixins: [FormWizard],
-    setup: (props, context) => init(props, context, FormWizard, {
-      container: 'form-wizard',
-    }),
+    data() {
+      return {
+        defaultClasses: {
+          container: 'form-wizard',
+        }
+      }
+    },
   }
 </script>

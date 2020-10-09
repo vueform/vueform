@@ -41,6 +41,7 @@
   import RadioElement from './../../../../components/elements/RadioElement'
 
   export default {
+    name: 'RadioElement',
     mixins: [RadioElement],
     data() {
       return {

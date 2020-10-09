@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 describe('Has Addon Mixin', () => {
   it('should render as a string', (done) => {
@@ -18,7 +18,7 @@ describe('Has Addon Mixin', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     let ia = a.findComponent({name: 'InputAddon'})
 
     expect(ia.html()).toContain('aaa')
@@ -51,7 +51,7 @@ describe('Has Addon Mixin', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     let ia = a.findComponent({name: 'InputAddon'})
 
     expect(ia.html()).toContain('aaa')
@@ -87,7 +87,7 @@ describe('Has Addon Mixin', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     let ia = a.findComponent({name: 'InputAddon'})
 
     expect(ia.html()).toContain('aaa')

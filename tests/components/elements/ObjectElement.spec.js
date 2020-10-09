@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 describe('Object Element', () => {
   it('should render children', (done) => {
@@ -124,7 +124,7 @@ describe('Object Element', () => {
       }
     })
 
-    let b = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     b.vm.validate()
 
@@ -176,7 +176,7 @@ describe('Object Element Dynamics', () => {
     })
 
     LocalVue.nextTick(() => {
-      let d = form.findAllComponents({ name: 'TextElement' }).at(2)
+      let d = findAllComponents(form, { name: 'TextElement' }).at(2)
       expect(d.vm.name).toBe('d')
 
       LocalVue.nextTick(() => {
@@ -211,14 +211,14 @@ describe('Object Element Dynamics', () => {
     })
 
     let object = form.findComponent({ name: 'ObjectElement' })
-    let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let c = findAllComponents(form, { name: 'TextElement' }).at(1)
     expect(c.vm.name).toBe('c')
 
     form.vm.$delete(form.vm.schema.a.schema, 'c')
 
     LocalVue.nextTick(() => {
     LocalVue.nextTick(() => {
-      expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(1)
+      expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(1)
       expect(object.vm.children$.c).toBeFalsy()
 
       done()

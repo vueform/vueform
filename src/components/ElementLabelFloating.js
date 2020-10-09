@@ -8,5 +8,6 @@ import ElementComponent from './../mixins/ElementComponent'
         type: Boolean,
         default: false,
       }
-    }
+    },
+    init() {}
   }

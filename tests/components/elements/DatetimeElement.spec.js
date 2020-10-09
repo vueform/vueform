@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import { current } from 'locutus/php/array'
 
@@ -19,7 +19,7 @@ describe('Datetime Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     a.vm.value = '2020-12-30 23:59'
 
@@ -44,7 +44,7 @@ describe('Datetime Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     a.vm.value = '2020-12-30 23:59:59'
 
@@ -69,8 +69,8 @@ describe('Datetime Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     expect(Flatpickr.vm.flatpickr$.config.time_24hr).toBe(true)
 
@@ -90,8 +90,8 @@ describe('Datetime Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     expect(Flatpickr.vm.flatpickr$.config.time_24hr).toBe(false)
 
@@ -113,7 +113,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.displayFormat).toBe(a.vm.__('laraform.elements.datetime.displayFormat'))
 
@@ -134,7 +134,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.displayFormat).toBe('DD/MM/YYYY HH:mm')
 
@@ -154,7 +154,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.displayFormat).toBe(a.vm.__('laraform.elements.datetime.displayFormat'))
 
@@ -179,7 +179,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.valueFormat).toBe('YYYY-MM-DD HH:mm')
 
@@ -200,7 +200,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.valueFormat).toBe('YYYY-MM-DD HH:mm:ss')
 
@@ -221,7 +221,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.valueFormat).toBe('DD/MM/YYYY HH:mm')
 
@@ -241,7 +241,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.valueFormat).toBe('YYYY-MM-DD HH:mm')
 
@@ -266,7 +266,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.loadFormat).toBe('YYYY-MM-DD HH:mm')
 
@@ -287,7 +287,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.loadFormat).toBe('YYYY-MM-DD HH:mm:ss')
 
@@ -308,7 +308,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.loadFormat).toBe('DD/MM/YYYY HH:mm')
 
@@ -328,7 +328,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.loadFormat).toBe('YYYY-MM-DD HH:mm')
 
@@ -352,7 +352,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.seconds).toBe(false)
 
@@ -373,7 +373,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.seconds).toBe(true)
 
@@ -393,7 +393,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.seconds).toBe(false)
 
@@ -418,7 +418,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.mode).toBe('single')
 
@@ -438,7 +438,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     const originalConsoleError = console.error
 
@@ -466,7 +466,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.hour24).toBe(false)
 
@@ -487,7 +487,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.hour24).toBe(true)
 
@@ -507,7 +507,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
 
     expect(a.vm.hour24).toBe(false)
 
@@ -531,7 +531,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
     
     expect(a.vm.hasDate).toBe(true)
 
@@ -551,7 +551,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'DatetimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'DatetimeElement' }).at(0)
     
     expect(a.vm.hasTime).toBe(true)
 

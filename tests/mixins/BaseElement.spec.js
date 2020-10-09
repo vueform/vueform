@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform, createLaraformInstaller } from 'test-helpers'
+import { createForm, findAllComponents, installLaraform, createLaraformInstaller } from 'test-helpers'
 import { mergeComponentClasses } from './../../src/utils/mergeClasses'
 import { Laraform } from './../../src/index'
 import defaultTheme from './../../src/themes/default'
@@ -493,8 +493,8 @@ describe('Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     expect(b.vm.available).toBe(true)
     
@@ -516,7 +516,7 @@ describe('Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.class = 'class-a'
 
@@ -537,7 +537,7 @@ describe('Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.classes = {
       BaseElementLayout: {
@@ -562,7 +562,7 @@ describe('Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.addClasses = {
       BaseElementLayout: {
@@ -926,7 +926,7 @@ describe('Element Computed', () => {
       },
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.formatData = () => { return 'aaa' }
 
@@ -942,7 +942,7 @@ describe('Element Computed', () => {
       },
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.formatLoad = () => { return 'aaa' }
 
@@ -1149,7 +1149,7 @@ describe('Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.update('aaa')
 
@@ -1170,7 +1170,7 @@ describe('Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.update('aaa')
 
@@ -1186,7 +1186,7 @@ describe('Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.load({
       a: 'aaa'
@@ -1207,7 +1207,7 @@ describe('Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.load({
       a: 'aaa'

@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 describe('Condition Plugin', () => {
   it('should not be `available` if conditions aren\'t met', () => {
@@ -16,7 +16,7 @@ describe('Condition Plugin', () => {
       }
     })
 
-    expect(form.findAllComponents({ name: 'TextElement' }).at(1).vm.available).toBe(false)
+    expect(findAllComponents(form, { name: 'TextElement' }).at(1).vm.available).toBe(false)
   })
 
   it('should be `available` if has no conditions', () => {
@@ -31,6 +31,6 @@ describe('Condition Plugin', () => {
       }
     })
 
-    expect(form.findAllComponents({ name: 'TextElement' }).at(1).vm.available).toBe(true)
+    expect(findAllComponents(form, { name: 'TextElement' }).at(1).vm.available).toBe(true)
   })
 })

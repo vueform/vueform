@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 import strtotime from 'locutus/php/datetime/strtotime'
 
 describe('Date Rule', () => {
@@ -13,7 +13,7 @@ describe('Date Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, '2020.12.30')
     expect(a.vm.invalid).toBe(true)

@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import { current } from 'locutus/php/array'
 
@@ -19,7 +19,7 @@ describe('Time Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
 
     a.vm.value = '23:59'
 
@@ -44,7 +44,7 @@ describe('Time Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
 
     a.vm.value = '23:59:59'
 
@@ -69,8 +69,8 @@ describe('Time Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     expect(Flatpickr.vm.flatpickr$.config.time_24hr).toBe(true)
 
@@ -90,8 +90,8 @@ describe('Time Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     expect(Flatpickr.vm.flatpickr$.config.time_24hr).toBe(false)
 
@@ -111,8 +111,8 @@ describe('Time Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
-    let Flatpickr = form.findAllComponents({ name: 'Flatpickr' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
+    let Flatpickr = findAllComponents(form, { name: 'Flatpickr' }).at(0)
 
     expect(Flatpickr.vm.flatpickr$.config.noCalendar).toBe(true)
 
@@ -134,7 +134,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
 
     expect(a.vm.displayFormat).toBe(a.vm.__('laraform.elements.time.displayFormat'))
 
@@ -155,7 +155,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
 
     expect(a.vm.displayFormat).toBe('HH:mm')
 
@@ -175,7 +175,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
 
     expect(a.vm.displayFormat).toBe(a.vm.__('laraform.elements.time.displayFormat'))
 
@@ -200,7 +200,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
 
     expect(a.vm.valueFormat).toBe('HH:mm')
 
@@ -221,7 +221,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
 
     expect(a.vm.valueFormat).toBe('HH:mm:ss')
 
@@ -242,7 +242,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
 
     expect(a.vm.valueFormat).toBe('HH:mm')
 
@@ -262,7 +262,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
 
     expect(a.vm.valueFormat).toBe('HH:mm')
 
@@ -287,7 +287,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
 
     expect(a.vm.loadFormat).toBe('HH:mm')
 
@@ -308,7 +308,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
 
     expect(a.vm.loadFormat).toBe('HH:mm:ss')
 
@@ -329,7 +329,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
 
     expect(a.vm.loadFormat).toBe('HH:mm')
 
@@ -349,7 +349,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
 
     expect(a.vm.loadFormat).toBe('HH:mm')
 
@@ -373,7 +373,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
     
     expect(a.vm.hasDate).toBe(false)
 
@@ -393,7 +393,7 @@ describe('Datetime Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TimeElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TimeElement' }).at(0)
     
     expect(a.vm.hasTime).toBe(true)
 

@@ -5,6 +5,7 @@
   import Trix from './../wrappers/Trix'
 
   export default {
+    name: 'TTrixElement',
     mixins: [TTrixElement],
     components: {
       Trix,

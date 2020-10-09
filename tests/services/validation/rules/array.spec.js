@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('Array Rule', () => {
   it('should be valid for an array', (done) => {
@@ -15,7 +15,7 @@ describe('Array Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ListElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
 
     a.vm.validate()
 
@@ -34,7 +34,7 @@ describe('Array Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, 'aaa')
 
@@ -53,7 +53,7 @@ describe('Array Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, 123)
 

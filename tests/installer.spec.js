@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, createLaraformInstaller } from 'test-helpers'
+import { createForm, findAllComponents, createLaraformInstaller } from 'test-helpers'
 import { Laraform } from './../src/index'
 import config from './../src/config'
 

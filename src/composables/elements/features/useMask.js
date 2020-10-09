@@ -77,7 +77,7 @@ export default function useMask(props, context, dependencies)
 
     if (masked.value === true) {
       nextTick(() => {
-        input.value.initMask()
+        // input.value.initMask()
       })
     }
   }
@@ -87,7 +87,7 @@ export default function useMask(props, context, dependencies)
   onMounted(() => {
     if (masked.value === true) {
       nextTick(() => {
-        input.value.initMask()
+        // input.value.initMask()
       })
     }
   })

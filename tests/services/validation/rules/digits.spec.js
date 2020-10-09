@@ -1,4 +1,4 @@
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('Digits Rule', () => {
   it('should match exact length of digits', (done) => {
@@ -11,7 +11,7 @@ describe('Digits Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     
     change(a, '0')
     expect(a.vm.invalid).toBe(true)

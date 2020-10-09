@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform, check, uncheck } from 'test-helpers'
+import { createForm, findAllComponents, installLaraform, check, uncheck } from 'test-helpers'
 
 describe('Toggle Element Rendering', () => {
   it('should render toggle', (done) => {
@@ -15,8 +15,8 @@ describe('Toggle Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
-    let tb = a.findAllComponents({ name: 'ToggleButton' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
+    let tb = findAllComponents(a, { name: 'ToggleButton' }).at(0)
 
     expect(a.exists()).toBe(true)
     expect(tb.exists()).toBe(true)
@@ -38,7 +38,7 @@ describe('Toggle Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.html()).toContain('aaa')
 
@@ -60,7 +60,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.text).toBe(null)
 
@@ -81,7 +81,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.text).toBe('aaa')
 
@@ -101,7 +101,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.text).toBe(null)
 
@@ -125,7 +125,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.trueValue).toBe(true)
 
@@ -146,7 +146,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.trueValue).toBe('yes')
 
@@ -166,7 +166,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.trueValue).toBe(true)
 
@@ -190,7 +190,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.falseValue).toBe(false)
 
@@ -211,7 +211,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.falseValue).toBe('no')
 
@@ -231,7 +231,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.falseValue).toBe(false)
 
@@ -255,7 +255,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.labels).toBe(false)
 
@@ -279,7 +279,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.labels).toStrictEqual({
       checked: 'On',
@@ -302,7 +302,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.labels).toBe(false)
 
@@ -332,7 +332,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.speed).toBe(300)
 
@@ -353,7 +353,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.speed).toBe(500)
 
@@ -373,7 +373,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.speed).toBe(300)
 
@@ -397,7 +397,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.dimensions).toStrictEqual({
       width: 50,
@@ -424,7 +424,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.dimensions).toStrictEqual({
       width: 60,
@@ -450,7 +450,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.dimensions).toStrictEqual({
       width: 60,
@@ -476,7 +476,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.dimensions).toStrictEqual({
       width: 50,
@@ -499,7 +499,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.dimensions).toStrictEqual({
       width: 50,
@@ -532,7 +532,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.colors).toStrictEqual({
       background: '#777777',
@@ -559,7 +559,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.colors).toStrictEqual({
       background: '#000',
@@ -585,7 +585,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.colors).toStrictEqual({
       background: '#000',
@@ -611,7 +611,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.colors).toStrictEqual({
       background: '#777777',
@@ -634,7 +634,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.colors).toStrictEqual({
       background: '#777777',
@@ -667,7 +667,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.cssColors).toBe(true)
 
@@ -690,7 +690,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.cssColors).toBe(false)
 
@@ -711,7 +711,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.cssColors).toBe(false)
 
@@ -731,7 +731,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.cssColors).toBe(true)
 
@@ -755,7 +755,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.sync).toBe(true)
 
@@ -776,7 +776,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.sync).toBe(false)
 
@@ -796,7 +796,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.sync).toBe(true)
 
@@ -821,7 +821,7 @@ describe('Toggle Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.null).toBe('no')
 
@@ -857,7 +857,7 @@ describe('Toggle Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
     let toggle$ = a.vm.toggle$
 
     expect(toggle$.margin).toBe(3)
@@ -890,7 +890,7 @@ describe('Toggle Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -919,7 +919,7 @@ describe('Toggle Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
     
     expect(a.vm.value).toStrictEqual(0)
     expect(a.vm.model).toStrictEqual(false)
@@ -942,7 +942,7 @@ describe('Toggle Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
     
     expect(a.vm.value).toStrictEqual('yas')
     expect(a.vm.model).toStrictEqual(true)
@@ -965,7 +965,7 @@ describe('Toggle Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual('no')
     expect(a.vm.model).toStrictEqual(false)
@@ -993,7 +993,7 @@ describe('Toggle Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual('no')
     expect(a.vm.model).toStrictEqual(false)
@@ -1021,7 +1021,7 @@ describe('Toggle Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual('no')
     expect(a.vm.model).toStrictEqual(false)
@@ -1049,7 +1049,7 @@ describe('Toggle Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual(false)
     expect(a.vm.model).toStrictEqual(false)
@@ -1092,7 +1092,7 @@ describe('Toggle Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual(false)
     expect(a.vm.model).toStrictEqual(false)
@@ -1134,7 +1134,7 @@ describe('Toggle Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ToggleElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ToggleElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual(false)
     expect(a.vm.model).toStrictEqual(false)

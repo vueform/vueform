@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 jest.mock("axios", () => ({
   get: () => Promise.resolve({ data: 'value' }),
@@ -7,7 +7,7 @@ jest.mock("axios", () => ({
 }))
 
 let setLanguage = function(code, form) {
-  _.each(form.findAllComponents({ name: 'FormLanguageSelectorTab' }).wrappers, (tab$) => {
+  _.each(findAllComponents(form, { name: 'FormLanguageSelectorTab' }).wrappers, (tab$) => {
     if (tab$.vm.code == code) {
       tab$.get('a').trigger('click')
     }
@@ -43,7 +43,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.dirty).toBe(false)
 
@@ -84,7 +84,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.dirty).toBe(false)
 
@@ -124,7 +124,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.validated).toBe(false)
 
@@ -164,7 +164,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.validated).toBe(false)
 
@@ -214,7 +214,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.invalid).toBe(false)
 
@@ -254,7 +254,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.invalid).toBe(false)
 
@@ -295,7 +295,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.pending).toBe(false)
 
@@ -335,7 +335,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.pending).toBe(false)
 
@@ -371,7 +371,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.debouncing).toBe(false)
 
@@ -411,7 +411,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.debouncing).toBe(false)
 
@@ -447,7 +447,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.busy).toBe(false)
 
@@ -487,7 +487,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.busy).toBe(false)
 
@@ -526,7 +526,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.rules).toStrictEqual({})
 
@@ -562,7 +562,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.Validators.en.length).toBe(1)
     expect(text.vm.Validators.en[0].name).toBe('required')
@@ -607,7 +607,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.Validators.en.length).toBe(1)
     expect(text.vm.Validators.en[0].name).toBe('required')
@@ -650,7 +650,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.Validators.en.length).toBe(1)
     expect(text.vm.Validators.en[0].name).toBe('required')
@@ -689,7 +689,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     text.vm.validate()
 
@@ -726,7 +726,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     text.get('input').trigger('keyup')
     expect(text.vm.error).toBe(text.vm.Validators.en[0].message)
@@ -763,7 +763,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     text.get('input').trigger('keyup')
 
@@ -803,7 +803,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     text.get('input').trigger('keyup')
     text.vm.messageBag.append('aaa')
@@ -847,7 +847,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     setLanguage('en', form)
     expect(text.vm.validated).toBe(false)
@@ -901,7 +901,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.validated).toBe(false)
 
@@ -942,7 +942,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.validated).toBe(true)
 
@@ -982,7 +982,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.validated).toBe(false)
 
@@ -1023,7 +1023,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.validated).toBe(false)
 
@@ -1065,7 +1065,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     setLanguage('en', form)
     text.vm.dirt()
@@ -1106,7 +1106,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     setLanguage('en', form)
     text.vm.dirt()
@@ -1156,7 +1156,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     setLanguage('en', form)
     text.vm.validate()
@@ -1212,7 +1212,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.dirty).toBe(false)
 
@@ -1247,7 +1247,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.validated).toBe(true)
 
@@ -1283,7 +1283,7 @@ describe('Multilingual Validation Mixin', () => {
       }
     })
 
-    let text = form.findAllComponents({ name: 'TTextElement' }).at(0)
+    let text = findAllComponents(form, { name: 'TTextElement' }).at(0)
 
     expect(text.vm.validated).toBe(false)
 

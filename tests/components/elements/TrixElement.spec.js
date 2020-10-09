@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, createTrix } from 'test-helpers'
+import { createForm, findAllComponents, createTrix } from 'test-helpers'
 
 describe('Trix Element Rendering', () => {
   it('should render Trix', (done) => {
@@ -17,8 +17,8 @@ describe('Trix Element Rendering', () => {
       attach: true
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
-    let trix = a.findAllComponents({ name: 'Trix' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let trix = findAllComponents(a, { name: 'Trix' }).at(0)
 
     expect(a.exists()).toBe(true)
     expect(trix.exists()).toBe(true)
@@ -40,7 +40,7 @@ describe('Trix Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
     let trix = a.get('trix-editor')
 
     expect(trix.attributes().placeholder).toBe('Trix')
@@ -63,7 +63,7 @@ describe('Trix Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
 
     expect(a.vm.accept).toStrictEqual([])
 
@@ -84,7 +84,7 @@ describe('Trix Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
 
     expect(a.vm.accept).toStrictEqual(['jpeg', 'png', 'gif'])
 
@@ -104,7 +104,7 @@ describe('Trix Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
 
     expect(a.vm.accept).toStrictEqual([])
 
@@ -128,7 +128,7 @@ describe('Trix Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
 
     expect(a.vm.acceptMimes).toStrictEqual([])
 
@@ -149,7 +149,7 @@ describe('Trix Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
 
     expect(a.vm.acceptMimes).toStrictEqual(['image/jpeg', 'image/png', 'image/gif'])
 
@@ -169,7 +169,7 @@ describe('Trix Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
 
     expect(a.vm.acceptMimes).toStrictEqual([])
 
@@ -193,7 +193,7 @@ describe('Trix Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
 
     expect(a.vm.endpoint).toStrictEqual(a.vm.$laraform.config.endpoints.elements.trix.attachment)
 
@@ -214,7 +214,7 @@ describe('Trix Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
 
     expect(a.vm.endpoint).toBe('/trix')
 
@@ -234,7 +234,7 @@ describe('Trix Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
 
     a.vm.endpoint = '/trix'
 
@@ -256,7 +256,7 @@ describe('Trix Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
 
     expect(a.vm.placeholder).toBe(null)
 
@@ -277,7 +277,7 @@ describe('Trix Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
 
     expect(a.vm.placeholder).toBe('Trix')
 
@@ -297,7 +297,7 @@ describe('Trix Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
 
     a.vm.placeholder = 'Trix'
 
@@ -327,8 +327,8 @@ describe('Trix Element Props', () => {
 //       }
 //     })
 
-//     let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
-//     let trix = a.findAllComponents({ name: 'Trix' }).at(0)
+//     let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+//     let trix = findAllComponents(a, { name: 'Trix' }).at(0)
 //     let trix$ = trix.vm.$refs.trix$
 
 //     a.vm.update('aaa')
@@ -354,7 +354,7 @@ describe('Trix Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
     
     let trixUpdateMock = jest.fn(() => {})
 
@@ -385,7 +385,7 @@ describe('Trix Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
     
     let trixUpdateMock = jest.fn(() => {})
 
@@ -419,7 +419,7 @@ describe('Trix Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
     
     let trixUpdateMock = jest.fn(() => {})
 
@@ -451,7 +451,7 @@ describe('Trix Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
     
     let trixUpdateMock = jest.fn(() => {})
 
@@ -487,7 +487,7 @@ describe('Trix Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
     
     expect(errorMock.mock.calls.length).toBe(0)
 

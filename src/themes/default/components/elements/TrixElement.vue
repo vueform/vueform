@@ -33,6 +33,7 @@
   import TrixElement from './../../../../components/elements/TrixElement'
   
   export default {
+    name: 'TrixElement',
     mixins: [TrixElement],
     data() {
       return {

@@ -4,6 +4,7 @@
   import TextareaElement from './TextareaElement'
 
   export default {
+    name: 'TTextareaElement',
     mixins: [TTextareaElement],
     render: TextareaElement.render,
   }

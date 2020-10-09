@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, setInstances, tryInputValues } from './.test-helpers'
+import { createForm, findAllComponents, change, setInstances, tryInputValues } from './.test-helpers'
 
 describe('Min Rule', () => {
   it('should check if numeric value is higher or equal than minimum', (done) => {
@@ -12,7 +12,7 @@ describe('Min Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     let values = {
       '2': false,
@@ -40,7 +40,7 @@ describe('Min Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     let values = {
       '1': true,
@@ -69,7 +69,7 @@ describe('Min Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     
     change(a, 'a')
     expect(a.vm.invalid).toBe(true)
@@ -130,7 +130,7 @@ describe('Min Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ListElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
     
     setInstances(a, 1)
 
@@ -159,7 +159,7 @@ describe('Min Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ListElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
     
     setInstances(a, 2)
 
@@ -188,7 +188,7 @@ describe('Min Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ListElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
     
     setInstances(a, 3)
 

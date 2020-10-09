@@ -6,7 +6,7 @@ export default function useClasses(props, context, dependencies)
 {
   const { schema } = toRefs(props)
   const componentName = context.name
-  const defaultClasses = context.defaultClasses
+  const defaultClasses = context.data.defaultClasses
 
   // ============ DEPENDENCIES ============
 

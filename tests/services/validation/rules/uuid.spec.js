@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('UUID Rule', () => {
   it('should validate UUID', (done) => {
@@ -12,7 +12,7 @@ describe('UUID Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, '123e4567-e89b-12d3-a456-426614174000')
     expect(a.vm.invalid).toBe(false)

@@ -1,4 +1,4 @@
-// import { createForm } from 'test-helpers'
+// import { createForm, findAllComponents } from 'test-helpers'
 // import { createLocalVue } from '@vue/test-utils'
 
 // const Vue = createLocalVue()
@@ -21,8 +21,8 @@ describe('Vue3', () => {
   //     }
   //   })
 
-  //   let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-  //   let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+  //   let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+  //   let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
   //   expect(form.vm.elements$.a.schema).toStrictEqual(a.vm.schema)
   //   expect(form.vm.elements$.b.schema).toStrictEqual(b.vm.schema)
@@ -31,7 +31,7 @@ describe('Vue3', () => {
 
   //   await Vue.nextTick
 
-  //   let c = form.findAllComponents({ name: 'TextElement' }).at(2)
+  //   let c = findAllComponents(form, { name: 'TextElement' }).at(2)
 
   //   expect(form.vm.elements$.a.schema).toStrictEqual(a.vm.schema)
   //   expect(form.vm.elements$.b.schema).toStrictEqual(b.vm.schema)

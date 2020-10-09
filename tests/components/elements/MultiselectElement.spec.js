@@ -23,7 +23,7 @@ describe('Multiselect Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MultiselectElement' }).at(0)
 
     expect(a.exists()).toBe(true)
 
@@ -50,7 +50,7 @@ describe('Multiselect Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MultiselectElement' }).at(0)
 
     expect(a.vm.empty).toBe(true)
 
@@ -83,7 +83,7 @@ describe('Multiselect Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MultiselectElement' }).at(0)
 
     expect(a.vm.isArrayType).toBe(true)
     
@@ -108,7 +108,7 @@ describe('Multiselect Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MultiselectElement' }).at(0)
 
     expect(a.vm.textValue).toBe(undefined)
     
@@ -267,7 +267,7 @@ describe('Multiselect Element Model (native)', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MultiselectElement' }).at(0)
 
     let option1 = a.findAll('option').at(1)
     let option2 = a.findAll('option').at(2)
@@ -439,7 +439,7 @@ describe('Multiselect Element Model (non-native)', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MultiselectElement' }).at(0)
 
     a.vm.select$.select({value: 1, label: 'b'})
 
@@ -471,7 +471,7 @@ describe('Multiselect Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MultiselectElement' }).at(0)
 
     a.vm.select(1)
     a.vm.select(2)
@@ -506,7 +506,7 @@ describe('Multiselect Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MultiselectElement' }).at(0)
 
     a.vm.deselect(1)
     a.vm.deselect(2)
@@ -541,7 +541,7 @@ describe('Multiselect Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MultiselectElement' }).at(0)
 
     a.vm.select(1)
     a.vm.select(2)
@@ -577,7 +577,7 @@ describe('Multiselect Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MultiselectElement' }).at(0)
 
     a.vm.deselect(1)
     a.vm.deselect(2)
@@ -620,7 +620,7 @@ describe('Multiselect Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MultiselectElement' }).at(0)
 
     LocalVue.nextTick(() => {
       expect(a.find('.multiselect__tags').html()).toContain('2 items')
@@ -686,7 +686,7 @@ describe('Multiselect Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'MultiselectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'MultiselectElement' }).at(0)
 
     LocalVue.nextTick(() => {
       expect(a.find('.multiselect__tags').html()).toContain('2 items')

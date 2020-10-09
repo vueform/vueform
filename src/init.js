@@ -1,7 +1,7 @@
-export default function init(props, context, component, defaultClasses) {
+export default function init(props, context, component, data) {
   let setup = component.init(props, Object.assign({}, context, {
     name: component.name,
-    defaultClasses,
+    data,
   }))
 
   _.each(component.extensions, (extension) => {

@@ -14,6 +14,7 @@
   import FormWizardFinish from './../../../components/FormWizardFinish'
 
   export default {
+    name: 'FormWizardFinish',
     mixins: [FormWizardFinish],
     data() {
       return {

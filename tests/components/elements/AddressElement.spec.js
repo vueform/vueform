@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 let windowSpy
 
@@ -49,7 +49,7 @@ describe('Address Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
     expect(a.exists()).toBe(true)
 
@@ -70,7 +70,7 @@ describe('Address Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
     expect(a.exists()).toBe(true)
 
@@ -90,14 +90,14 @@ describe('Address Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     expect(address.exists()).toBe(true)
     expect(address2.exists()).toBe(true)
@@ -122,14 +122,14 @@ describe('Address Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     expect(address.exists()).toBe(true)
     expect(address2.exists()).toBe(true)
@@ -168,7 +168,7 @@ describe('Address Element Provider', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
     expect(a.vm.addressService).not.toBe(null)
 
@@ -217,7 +217,7 @@ describe('Address Element Provider', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
     expect(autocompleteMock.mock.calls.length).toBe(1)
     expect(googleRemoveListenerMock.mock.calls.length).toBe(0)
@@ -269,7 +269,7 @@ describe('Address Element Provider', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
     expect(autocompleteMock.mock.calls.length).toBe(1)
     expect(removeListenerMock.mock.calls.length).toBe(0)
@@ -342,14 +342,14 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     expect(address.vm.disabled).toBe(false)
     expect(address2.vm.disabled).toBe(false)
@@ -375,14 +375,14 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     expect(address.vm.disabled).toBe(true)
     expect(address2.vm.disabled).toBe(true)
@@ -407,14 +407,14 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     a.vm.disabled = true
 
@@ -443,14 +443,14 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     expect(address.vm.readonly).toBe(false)
     expect(address2.vm.readonly).toBe(false)
@@ -476,14 +476,14 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     expect(address.vm.readonly).toBe(true)
     expect(address2.vm.readonly).toBe(true)
@@ -508,14 +508,14 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     a.vm.readonly = true
 
@@ -544,14 +544,14 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     expect(address.vm.rules).toBe(undefined)
     expect(address2.vm.rules).toBe(undefined)
@@ -577,14 +577,14 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     expect(address.vm.rules).toBe('required')
     expect(address2.vm.rules).toBe(undefined)
@@ -609,14 +609,14 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     a.vm.required = true
 
@@ -645,7 +645,7 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
     expect(a.vm.children).toStrictEqual(a.vm.fields)
 
@@ -665,7 +665,7 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
     expect(a.vm.provider).toBe('google')
 
@@ -685,7 +685,7 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
     expect(a.vm.options).toStrictEqual(a.vm.defaultOptions)
 
@@ -708,7 +708,7 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
     expect(a.vm.options).toStrictEqual(Object.assign({}, a.vm.defaultOptions, {a: 1}))
 
@@ -728,7 +728,7 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
     a.vm.options = {
       a: 1
@@ -753,7 +753,7 @@ describe('Address Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
     expect(a.vm.defaultOptions.templates.value({name:'aaa'})).toBe('aaa')
 
@@ -781,7 +781,7 @@ describe('Address Element Events', () => {
       attach: true
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -847,14 +847,14 @@ describe('Address Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     a.vm.handleAddressChange(formatted, raw)
 
@@ -886,14 +886,14 @@ describe('Address Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     a.vm.handleAddressChange(formatted, raw)
 
@@ -920,7 +920,7 @@ describe('Address Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'AddressElement' }).at(0)
+    let a = findAllComponents(form, { name: 'AddressElement' }).at(0)
 
     a.vm.load({
       a: {
@@ -933,12 +933,12 @@ describe('Address Element Model', () => {
       }
     })
 
-    let address = a.findAllComponents({ name: 'TextElement' }).at(0)
-    let address2 = a.findAllComponents({ name: 'TextElement' }).at(1)
-    let zip = a.findAllComponents({ name: 'TextElement' }).at(2)
-    let city = a.findAllComponents({ name: 'TextElement' }).at(3)
-    let state = a.findAllComponents({ name: 'SelectElement' }).at(0)
-    let country = a.findAllComponents({ name: 'SelectElement' }).at(1)
+    let address = findAllComponents(a, { name: 'TextElement' }).at(0)
+    let address2 = findAllComponents(a, { name: 'TextElement' }).at(1)
+    let zip = findAllComponents(a, { name: 'TextElement' }).at(2)
+    let city = findAllComponents(a, { name: 'TextElement' }).at(3)
+    let state = findAllComponents(a, { name: 'SelectElement' }).at(0)
+    let country = findAllComponents(a, { name: 'SelectElement' }).at(1)
 
     LocalVue.nextTick(() => {
       expect(address.vm.value).toBe('a')

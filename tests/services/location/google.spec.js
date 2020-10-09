@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 let windowSpy
 
@@ -55,7 +55,7 @@ describe('Location Google Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     let value = a.vm.locationService.formatValue([])
 
@@ -84,7 +84,7 @@ describe('Location Google Service', () => {
       attach: true
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     expect(form.find('.pac-container').exists()).toBe(true)
 
@@ -111,7 +111,7 @@ describe('Location Google Service', () => {
       attach: true
     })
 
-    let a = form.findAllComponents({ name: 'LocationElement' }).at(0)
+    let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
     raw.address_components[6].short_name = 'DE'
 

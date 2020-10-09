@@ -51,6 +51,7 @@
   import PasswordElement from './../../../../components/elements/PasswordElement'
 
   export default {
+    name: 'PasswordElement',
     mixins: [PasswordElement],
     data() {
       return {

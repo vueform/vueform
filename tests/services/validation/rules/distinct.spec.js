@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('Distinct Rule', () => {
   it('should validate if array values are unique', (done) => {
@@ -19,7 +19,7 @@ describe('Distinct Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ListElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
 
     form.vm.load({
       a: [1,1,1]
@@ -84,7 +84,7 @@ describe('Distinct Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ListElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
 
     form.vm.load({
       a: [

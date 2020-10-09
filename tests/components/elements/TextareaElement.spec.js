@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 describe('Textarea Element Rendering', () => {
   it('should render textarea element', (done) => {
@@ -15,7 +15,7 @@ describe('Textarea Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.exists()).toBe(true)
 
@@ -40,7 +40,7 @@ describe('Textarea Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.get('textarea').attributes().id).toBe('pwd')
     expect(a.get('textarea').attributes().placeholder).toBe('Textarea')
@@ -65,8 +65,8 @@ describe('Textarea Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
-    let elf = form.findAllComponents({ name: 'ElementLabelFloating' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
+    let elf = findAllComponents(form, { name: 'ElementLabelFloating' }).at(0)
 
     expect(elf.exists()).toBe(true)
     expect(elf.html()).toContain('Textarea')
@@ -89,7 +89,7 @@ describe('Textarea Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.vm.autogrow).toBe(true)
 
@@ -110,7 +110,7 @@ describe('Textarea Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.vm.autogrow).toBe(false)
 
@@ -130,7 +130,7 @@ describe('Textarea Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.vm.autogrow).toBe(true)
 
@@ -154,7 +154,7 @@ describe('Textarea Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.vm.rows).toBe(3)
 
@@ -175,7 +175,7 @@ describe('Textarea Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.vm.rows).toBe(5)
 
@@ -195,7 +195,7 @@ describe('Textarea Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.vm.rows).toBe(3)
 
@@ -220,7 +220,7 @@ describe('Textarea Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.get('textarea').attributes().placeholder).toBe('aaa')
 
@@ -240,7 +240,7 @@ describe('Textarea Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.get('textarea').attributes().placeholder).toBe(undefined)
 
@@ -267,7 +267,7 @@ describe('Textarea Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.findComponent({ name: 'ElementLabelFloating' }).exists()).toBe(true)
 
@@ -287,7 +287,7 @@ describe('Textarea Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.findComponent({ name: 'ElementLabelFloating' }).exists()).toBe(false)
 
@@ -313,7 +313,7 @@ describe('Textarea Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.vm.readonly).toBe(false)
 
@@ -334,7 +334,7 @@ describe('Textarea Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.vm.readonly).toBe(true)
 
@@ -354,7 +354,7 @@ describe('Textarea Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.readonly = true
     
@@ -379,7 +379,7 @@ describe('Textarea Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(a.vm.value).toBe('aaa')
 
@@ -399,7 +399,7 @@ describe('Textarea Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.value = 'aaa'
 
@@ -421,7 +421,7 @@ describe('Textarea Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.update('aaa')
 
@@ -443,7 +443,7 @@ describe('Textarea Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     form.vm.load({
       a: 'aaa'
@@ -472,7 +472,7 @@ describe('Textarea Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -504,7 +504,7 @@ describe('Textarea Element Autosize', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = autosizeMock
 
@@ -532,7 +532,7 @@ describe('Textarea Element Autosize', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = autosizeMock
 
@@ -559,7 +559,7 @@ describe('Textarea Element Autosize', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = jest.fn(() => {})
     a.vm.$laraform.services.autosize.update = autosizeUpdateMock
@@ -590,7 +590,7 @@ describe('Textarea Element Autosize', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = jest.fn(() => {})
     a.vm.$laraform.services.autosize.update = autosizeUpdateMock
@@ -620,7 +620,7 @@ describe('Textarea Element Autosize', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = jest.fn(() => {})
     a.vm.$laraform.services.autosize.update = autosizeUpdateMock
@@ -653,7 +653,7 @@ describe('Textarea Element Autosize', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = jest.fn(() => {})
     a.vm.$laraform.services.autosize.update = autosizeUpdateMock
@@ -685,7 +685,7 @@ describe('Textarea Element Autosize', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = jest.fn(() => {})
     a.vm.$laraform.services.autosize.update = autosizeUpdateMock
@@ -716,7 +716,7 @@ describe('Textarea Element Autosize', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = jest.fn(() => {})
     a.vm.$laraform.services.autosize.update = autosizeUpdateMock
@@ -746,7 +746,7 @@ describe('Textarea Element Autosize', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = jest.fn(() => {})
     a.vm.$laraform.services.autosize.update = autosizeUpdateMock
@@ -777,7 +777,7 @@ describe('Textarea Element Autosize', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = jest.fn(() => {})
     a.vm.$laraform.services.autosize.update = autosizeUpdateMock
@@ -807,7 +807,7 @@ describe('Textarea Element Autosize', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = jest.fn(() => {})
     a.vm.$laraform.services.autosize.destroy = autosizeDestroyMock
@@ -839,7 +839,7 @@ describe('Textarea Element Autosize', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = autosizeMock
 

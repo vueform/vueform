@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('Nullable Rule', () => {
   it('should have a rule ignored if nullable is present and the value is unfilled', (done) => {
@@ -16,7 +16,7 @@ describe('Nullable Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
 

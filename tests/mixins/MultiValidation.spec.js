@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 const Vue = createLocalVue()
@@ -29,7 +29,7 @@ describe('Multi Validation Mixin', () => {
 
     await Vue.nextTick()
 
-    form.findAllComponents({ name: 'TextElement' }).at(0).get('input').setValue('aaa')
+    findAllComponents(form, { name: 'TextElement' }).at(0).get('input').setValue('aaa')
       
     await Vue.nextTick()
 
@@ -77,8 +77,8 @@ describe('Multi Validation Mixin', () => {
       }
     })
 
-    let text0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let text1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let text0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let text1 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     let list = form.findComponent({ name: 'ListElement' })
 
@@ -113,8 +113,8 @@ describe('Multi Validation Mixin', () => {
       }
     })
 
-    let text0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let text1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let text0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let text1 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     let list = form.findComponent({ name: 'ListElement' })
 
@@ -149,8 +149,8 @@ describe('Multi Validation Mixin', () => {
       }
     })
 
-    let text0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let text1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let text0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let text1 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     let list = form.findComponent({ name: 'ListElement' })
 
@@ -202,7 +202,7 @@ describe('Multi Validation Mixin', () => {
       }
     })
 
-    let text1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let text1 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     let list = form.findComponent({ name: 'ListElement' })
 
@@ -254,7 +254,7 @@ describe('Multi Validation Mixin', () => {
       }
     })
 
-    let text1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let text1 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     let list = form.findComponent({ name: 'ListElement' })
 
@@ -452,7 +452,7 @@ describe('Multi Validation Mixin', () => {
   //   expect(object.vm.busy).toBe(false)
 
   //   Vue.nextTick(() => {
-  //     form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+  //     findAllComponents(form, { name: 'TextElement' }).at(0).vm.validate()
       
   //     Vue.nextTick(() => {
   //       expect(object.vm.debouncing).toBe(true)
@@ -490,7 +490,7 @@ describe('Multi Validation Mixin', () => {
   //   expect(object.vm.busy).toBe(false)
 
   //   Vue.nextTick(() => {
-  //     form.findAllComponents({ name: 'TextElement' }).at(0).vm.validate()
+  //     findAllComponents(form, { name: 'TextElement' }).at(0).vm.validate()
       
   //     Vue.nextTick(() => {
   //       expect(object.vm.pending).toBe(true)
@@ -527,7 +527,7 @@ describe('Multi Validation Mixin', () => {
   //   expect(object.vm.validated).toBe(false)
 
   //   Vue.nextTick(() => {
-  //     let b = form.findAllComponents({ name: 'TextElement' }).at(0)
+  //     let b = findAllComponents(form, { name: 'TextElement' }).at(0)
 
   //     b.get('input').setValue('aaa')
   //     b.vm.validate()
@@ -566,7 +566,7 @@ describe('Multi Validation Mixin', () => {
   //   expect(object.vm.errors.length).toBe(0)
 
   //   Vue.nextTick(() => {
-  //     let b = form.findAllComponents({ name: 'TextElement' }).at(0)
+  //     let b = findAllComponents(form, { name: 'TextElement' }).at(0)
 
   //     b.vm.validate()
       
@@ -608,8 +608,8 @@ describe('Multi Validation Mixin', () => {
   //   expect(object.vm.errors.length).toBe(0)
 
   //   Vue.nextTick(() => {
-  //     let b = form.findAllComponents({ name: 'TextElement' }).at(0)
-  //     let c = form.findAllComponents({ name: 'TextElement' }).at(1)
+  //     let b = findAllComponents(form, { name: 'TextElement' }).at(0)
+  //     let c = findAllComponents(form, { name: 'TextElement' }).at(1)
 
   //     b.vm.validate()
   //     c.vm.validate()

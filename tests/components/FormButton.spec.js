@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 describe('Form Button', () => {
   it('should display label', () => {

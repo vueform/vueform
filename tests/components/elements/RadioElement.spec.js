@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, check, uncheck } from 'test-helpers'
+import { createForm, findAllComponents, check, uncheck } from 'test-helpers'
 
 describe('Radio Element Rendering', () => {
   it('should render a radio element', (done) => {
@@ -15,7 +15,7 @@ describe('Radio Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadioElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadioElement' }).at(0)
 
     expect(a.get('input').attributes().type).toBe('radio')
 
@@ -36,7 +36,7 @@ describe('Radio Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadioElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadioElement' }).at(0)
 
     expect(a.html()).toContain('Check me')
 
@@ -58,7 +58,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadioElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadioElement' }).at(0)
 
     expect(a.vm.text).toBe('')
 
@@ -79,7 +79,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadioElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadioElement' }).at(0)
 
     expect(a.vm.text).toBe('aaa')
 
@@ -99,7 +99,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadioElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadioElement' }).at(0)
 
     expect(a.vm.text).toBe('')
 
@@ -123,7 +123,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadioElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadioElement' }).at(0)
 
     expect(a.vm.radioValue).toBe(1)
 
@@ -144,7 +144,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadioElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadioElement' }).at(0)
 
     expect(a.vm.radioValue).toBe('yes')
 
@@ -164,7 +164,7 @@ describe('Radio Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadioElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadioElement' }).at(0)
 
     expect(a.vm.radioValue).toBe(1)
 
@@ -191,7 +191,7 @@ describe('Radio Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadioElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadioElement' }).at(0)
 
     expect(a.vm.value).toBe(a.vm.null)
 
@@ -215,7 +215,7 @@ describe('Radio Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadioElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadioElement' }).at(0)
 
     expect(a.vm.value).toBe(a.vm.null)
 
@@ -248,7 +248,7 @@ describe('Radio Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadioElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadioElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -277,7 +277,7 @@ describe('Radio Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'RadioElement' }).at(0)
+    let a = findAllComponents(form, { name: 'RadioElement' }).at(0)
 
     a.vm.value = 'a'
 
@@ -313,8 +313,8 @@ describe('Radio Element Model', () => {
       attach: true
     })
 
-    let a = form.findAllComponents({ name: 'RadioElement' }).at(0)
-    let b = form.findAllComponents({ name: 'RadioElement' }).at(1)
+    let a = findAllComponents(form, { name: 'RadioElement' }).at(0)
+    let b = findAllComponents(form, { name: 'RadioElement' }).at(1)
 
     check(a)
 

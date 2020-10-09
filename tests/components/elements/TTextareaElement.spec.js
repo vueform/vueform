@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 describe('TTextarea Element', () => {
   it('should render t-textarea element', (done) => {
@@ -16,7 +16,7 @@ describe('TTextarea Element', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TTextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TTextareaElement' }).at(0)
 
     expect(a.exists()).toBe(true)
 
@@ -50,7 +50,7 @@ describe('TTextarea Element', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TTextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TTextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = jest.fn(() => {})
     a.vm.$laraform.services.autosize.update = autosizeUpdateMock
@@ -93,7 +93,7 @@ describe('TTextarea Element', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TTextareaElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TTextareaElement' }).at(0)
 
     a.vm.$laraform.services.autosize = jest.fn(() => {})
     a.vm.$laraform.services.autosize.update = autosizeUpdateMock

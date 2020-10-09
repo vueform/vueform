@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 describe('List Element Rendering', () => {
   it('should render initial no. children (single)', (done) => {
@@ -21,7 +21,7 @@ describe('List Element Rendering', () => {
   
     let list = form.findComponent({ name: 'ListElement' })
 
-    expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(2)
+    expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(2)
 
     expect(_.keys(list.vm.children$)).toStrictEqual(['0', '1'])
 
@@ -54,7 +54,7 @@ describe('List Element Rendering', () => {
   
     let list = form.findComponent({ name: 'ListElement' })
 
-    expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(4)
+    expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(4)
 
     expect(_.keys(list.vm.children$)).toStrictEqual(['0', '1'])
 
@@ -194,8 +194,8 @@ describe('List Element Computed', () => {
   
     let list = form.findComponent({ name: 'ListElement' })
 
-    let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     el0.get('input').setValue('aaa')
     el1.get('input').setValue('bbb')
@@ -235,8 +235,8 @@ describe('List Element Computed', () => {
   
     let list = form.findComponent({ name: 'ListElement' })
 
-    let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     el0.get('input').setValue('aaa')
     el1.get('input').setValue('bbb')
@@ -319,8 +319,8 @@ describe('List Element Computed', () => {
   
     let list = form.findComponent({ name: 'ListElement' })
 
-    let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     el0.get('input').setValue('aaa')
     el1.get('input').setValue('bbb')
@@ -409,7 +409,7 @@ describe('List Element Computed', () => {
       }
     })
 
-    expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(2)
+    expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(2)
 
     LocalVue.nextTick(() => {
       expect(form.vm.data).toStrictEqual({a: ['a', 'b']})
@@ -535,10 +535,10 @@ describe('List Element Computed', () => {
     })
 
     LocalVue.nextTick(() => {
-      let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+      let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+      let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+      let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+      let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
 
       expect(el0.vm.value).toBe(3)
       expect(el1.vm.value).toBe(4)
@@ -587,10 +587,10 @@ describe('List Element Computed', () => {
     })
 
     LocalVue.nextTick(() => {
-      let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+      let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+      let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+      let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+      let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
 
       expect(el0.vm.value).toBe(1)
       expect(el1.vm.value).toBe(2)
@@ -640,10 +640,10 @@ describe('List Element Computed', () => {
     })
 
     LocalVue.nextTick(() => {
-      let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+      let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+      let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+      let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+      let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
 
       expect(el0.vm.value).toBe(3)
       expect(el1.vm.value).toBe(1)
@@ -692,10 +692,10 @@ describe('List Element Computed', () => {
     })
 
     LocalVue.nextTick(() => {
-      let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+      let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+      let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+      let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+      let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
 
       expect(el0.vm.value).toBe(3)
       expect(el1.vm.value).toBe(4)
@@ -745,10 +745,10 @@ describe('List Element Computed', () => {
     })
 
     LocalVue.nextTick(() => {
-      let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+      let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+      let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+      let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+      let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
 
       expect(el0.vm.value).toBe(3)
       expect(el1.vm.value).toBe(4)
@@ -799,10 +799,10 @@ describe('List Element Computed', () => {
     })
 
     LocalVue.nextTick(() => {
-      let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+      let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+      let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+      let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+      let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
 
       expect(el0.vm.value).toBe(2)
       expect(el1.vm.value).toBe(4)
@@ -939,10 +939,10 @@ describe('List Element Methods', () => {
     })
 
     LocalVue.nextTick(() => {
-      let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+      let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+      let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+      let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+      let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
 
       expect(el0.vm.value).toBe(4)
       expect(el1.vm.value).toBe(3)
@@ -977,13 +977,13 @@ describe('List Element Methods', () => {
     })
 
     LocalVue.nextTick(() => {
-      expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(4)
+      expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(4)
 
       form.findComponent({ name: 'ListElement' }).vm.reset()
 
       LocalVue.nextTick(() => {
       LocalVue.nextTick(() => {
-        expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(2)
+        expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(2)
 
         done()
       })
@@ -1017,14 +1017,14 @@ describe('List Element Methods', () => {
     let list = form.findComponent({ name: 'ListElement' })
 
     LocalVue.nextTick(() => {
-      expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(4)
+      expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(4)
 
       list.vm.disable()
       list.vm.reset()
 
       LocalVue.nextTick(() => {
       LocalVue.nextTick(() => {
-        expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(4)
+        expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(4)
 
         done()
       })
@@ -1053,9 +1053,9 @@ describe('List Element Methods', () => {
     list.vm.add('aa')
 
     LocalVue.nextTick(() => {
-      expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(2)
+      expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(2)
 
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+      let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
       expect(el1.vm.value).toBe('aa')
       done()
@@ -1083,9 +1083,9 @@ describe('List Element Methods', () => {
     list.vm.add()
 
     LocalVue.nextTick(() => {
-      expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(2)
+      expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(2)
 
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+      let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
       expect(el1.vm.value).toBe(el1.vm.null)
       done()
@@ -1123,10 +1123,10 @@ describe('List Element Methods', () => {
     })).toBe(1) // index of new item
 
     LocalVue.nextTick(() => {
-      expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(4)
+      expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(4)
 
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+      let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+      let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
 
       expect(el2.vm.value).toBe(1)
       expect(el3.vm.value).toBe(2)
@@ -1162,10 +1162,10 @@ describe('List Element Methods', () => {
     expect(list.vm.add()).toBe(1) // index of new item
 
     LocalVue.nextTick(() => {
-      expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(4)
+      expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(4)
 
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+      let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+      let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
 
       expect(el2.vm.value).toBe(el2.vm.null)
       expect(el3.vm.value).toBe(el2.vm.null)
@@ -1204,7 +1204,7 @@ describe('List Element Methods', () => {
     list.vm.add()
 
     LocalVue.nextTick(() => {
-      expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(2)
+      expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(2)
 
       expect(_.keys(list.vm.children$)).toStrictEqual(['0'])
       done()
@@ -1240,7 +1240,7 @@ describe('List Element Methods', () => {
     list.vm.add()
 
     LocalVue.nextTick(() => {
-      expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(2)
+      expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(2)
 
       expect(_.keys(list.vm.children$)).toStrictEqual(['0'])
       done()
@@ -1276,12 +1276,12 @@ describe('List Element Methods', () => {
     list.vm.add()
 
     LocalVue.nextTick(() => {
-      expect(form.findAllComponents({ name: 'TextElement' }).length).toBe(4)
+      expect(findAllComponents(form, { name: 'TextElement' }).length).toBe(4)
 
-      let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+      let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+      let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+      let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+      let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
 
       expect(el0.vm.value).toBe(1)
       expect(el1.vm.value).toBe(el3.vm.null)
@@ -1336,10 +1336,10 @@ describe('List Element Methods', () => {
       list.vm.remove(1)
 
       LocalVue.nextTick(() => {
-        let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-        let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-        let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-        let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+        let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+        let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+        let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+        let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
 
         expect(el0.vm.value).toBe(1)
         expect(el1.vm.value).toBe(2)
@@ -1395,12 +1395,12 @@ describe('List Element Methods', () => {
     list.vm.remove(1)
 
     LocalVue.nextTick(() => {
-      let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-      let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-      let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
-      let el4 = form.findAllComponents({ name: 'TextElement' }).at(4)
-      let el5 = form.findAllComponents({ name: 'TextElement' }).at(5)
+      let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+      let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+      let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+      let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
+      let el4 = findAllComponents(form, { name: 'TextElement' }).at(4)
+      let el5 = findAllComponents(form, { name: 'TextElement' }).at(5)
 
       expect(el0.vm.value).toBe(1)
       expect(el1.vm.value).toBe(2)
@@ -1451,12 +1451,12 @@ describe('List Element Methods', () => {
 
     let list = form.findComponent({ name: 'ListElement' })
 
-    let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-    let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-    let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
-    let el4 = form.findAllComponents({ name: 'TextElement' }).at(4)
-    let el5 = form.findAllComponents({ name: 'TextElement' }).at(5)
+    let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+    let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
+    let el4 = findAllComponents(form, { name: 'TextElement' }).at(4)
+    let el5 = findAllComponents(form, { name: 'TextElement' }).at(5)
 
     LocalVue.nextTick(() => {
       expect(el0.vm.value).toBe(1)
@@ -1469,10 +1469,10 @@ describe('List Element Methods', () => {
       list.vm.remove(1)
 
       LocalVue.nextTick(() => {
-        let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-        let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-        let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-        let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
+        let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+        let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+        let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+        let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
 
         expect(el0.vm.value).toBe(1)
         expect(el1.vm.value).toBe(2)
@@ -1522,12 +1522,12 @@ describe('List Element Methods', () => {
 
     let list = form.findComponent({ name: 'ListElement' })
 
-    let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-    let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-    let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
-    let el4 = form.findAllComponents({ name: 'TextElement' }).at(4)
-    let el5 = form.findAllComponents({ name: 'TextElement' }).at(5)
+    let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+    let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
+    let el4 = findAllComponents(form, { name: 'TextElement' }).at(4)
+    let el5 = findAllComponents(form, { name: 'TextElement' }).at(5)
 
     LocalVue.nextTick(() => {
       expect(el0.vm.value).toBe(1)
@@ -1543,12 +1543,12 @@ describe('List Element Methods', () => {
       })
 
       LocalVue.nextTick(() => {
-        let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-        let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-        let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-        let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
-        let el4 = form.findAllComponents({ name: 'TextElement' }).at(4)
-        let el5 = form.findAllComponents({ name: 'TextElement' }).at(5)
+        let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+        let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+        let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+        let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
+        let el4 = findAllComponents(form, { name: 'TextElement' }).at(4)
+        let el5 = findAllComponents(form, { name: 'TextElement' }).at(5)
 
         expect(el0.vm.value).toBe(1)
         expect(el1.vm.value).toBe(6)
@@ -1600,12 +1600,12 @@ describe('List Element Methods', () => {
 
     let list = form.findComponent({ name: 'ListElement' })
 
-    let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-    let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-    let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
-    let el4 = form.findAllComponents({ name: 'TextElement' }).at(4)
-    let el5 = form.findAllComponents({ name: 'TextElement' }).at(5)
+    let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+    let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
+    let el4 = findAllComponents(form, { name: 'TextElement' }).at(4)
+    let el5 = findAllComponents(form, { name: 'TextElement' }).at(5)
 
     LocalVue.nextTick(() => {
       expect(el0.vm.value).toBe(1)
@@ -1622,12 +1622,12 @@ describe('List Element Methods', () => {
       })
 
       LocalVue.nextTick(() => {
-        let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
-        let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
-        let el2 = form.findAllComponents({ name: 'TextElement' }).at(2)
-        let el3 = form.findAllComponents({ name: 'TextElement' }).at(3)
-        let el4 = form.findAllComponents({ name: 'TextElement' }).at(4)
-        let el5 = form.findAllComponents({ name: 'TextElement' }).at(5)
+        let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
+        let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
+        let el2 = findAllComponents(form, { name: 'TextElement' }).at(2)
+        let el3 = findAllComponents(form, { name: 'TextElement' }).at(3)
+        let el4 = findAllComponents(form, { name: 'TextElement' }).at(4)
+        let el5 = findAllComponents(form, { name: 'TextElement' }).at(5)
 
         expect(el0.vm.value).toBe(1)
         expect(el1.vm.value).toBe(2)
@@ -2002,7 +2002,7 @@ describe('List Element Dynamics', () => {
       }
     })
 
-    let el0 = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let el0 = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     el0.get('input').setValue('aaa')
 
@@ -2028,7 +2028,7 @@ describe('List Element Dynamics', () => {
     })
 
     LocalVue.nextTick(() => {
-      let el1 = form.findAllComponents({ name: 'TextElement' }).at(1)
+      let el1 = findAllComponents(form, { name: 'TextElement' }).at(1)
       
       expect(el0.vm.value).toBe('aaa')
       expect(el0.vm.label).toBe('aaa')

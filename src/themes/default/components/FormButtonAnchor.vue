@@ -13,6 +13,7 @@
   import FormButtonAnchor from './../../../components/FormButtonAnchor'
 
   export default {
+    name: 'FormButtonAnchor',
     mixins: [FormButtonAnchor],
     data() {
       return {

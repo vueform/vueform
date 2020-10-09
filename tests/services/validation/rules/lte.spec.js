@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, setInstances } from './.test-helpers'
+import { createForm, findAllComponents, change, setInstances } from './.test-helpers'
 
 describe('Lower Than Equal Rule', () => {
   it('should validate if the element\'s value is lower than or equal an other field\'s if value is string', (done) => {
@@ -19,8 +19,8 @@ describe('Lower Than Equal Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     change(a, 'aaa')
     change(b, 'aa')
@@ -52,8 +52,8 @@ describe('Lower Than Equal Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'TextElement' }).at(1)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     change(a, '4')
     change(b, '3')
@@ -95,8 +95,8 @@ describe('Lower Than Equal Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ListElement' }).at(0)
-    let b = form.findAllComponents({ name: 'ListElement' }).at(1)
+    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
+    let b = findAllComponents(form, { name: 'ListElement' }).at(1)
 
     setInstances(a, 4)
     setInstances(b, 3)

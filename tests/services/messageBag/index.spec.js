@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 describe('Message Bag Service', () => {
@@ -13,7 +13,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
     await flushPromises()
@@ -31,7 +31,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
     await flushPromises()
@@ -54,7 +54,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
     await flushPromises()
@@ -77,7 +77,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.messageBag.prepend('aaa', 'message')
     a.vm.messageBag.prepend('bbb', 'message')
@@ -97,7 +97,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.messageBag.append('aaa', 'message')
     a.vm.messageBag.append('bbb', 'message')
@@ -117,7 +117,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.validate()
 
@@ -134,7 +134,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.messageBag.append('aaa', 'message')
     a.vm.messageBag.append('bbb', 'message')
@@ -152,7 +152,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.messageBag.append('aaa')
     a.vm.messageBag.append('aaa', 'message')
@@ -176,7 +176,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.messageBag.append('aaa')
     a.vm.messageBag.append('aaa', 'message')
@@ -200,7 +200,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.messageBag.append('aaa')
     a.vm.messageBag.append('aaa', 'message')
@@ -224,7 +224,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.messageBag.prepend('aaa')
     a.vm.messageBag.prepend('aaa', 'message')
@@ -248,7 +248,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.messageBag.prepend('aaa')
     a.vm.messageBag.prepend('aaa', 'message')
@@ -272,7 +272,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.messageBag.prepend('aaa')
     a.vm.messageBag.prepend('aaa', 'message')
@@ -296,7 +296,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.messageBag.append('bbb')
     a.vm.messageBag.append('bbb', 'message')
@@ -320,7 +320,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.messageBag.append('bbb')
     a.vm.messageBag.append('bbb', 'message')
@@ -344,7 +344,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.messageBag.append('bbb')
     a.vm.messageBag.append('bbb', 'message')
@@ -368,7 +368,7 @@ describe('Message Bag Service', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     a.vm.messageBag.append('bbb')
     a.vm.messageBag.append('bbb', 'message')

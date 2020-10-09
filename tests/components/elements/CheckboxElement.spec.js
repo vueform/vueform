@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, check, uncheck } from 'test-helpers'
+import { createForm, findAllComponents, check, uncheck } from 'test-helpers'
 
 describe('Checkbox Element Rendering', () => {
   it('should render a checkbox element', (done) => {
@@ -15,7 +15,7 @@ describe('Checkbox Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.get('input').attributes().type).toBe('checkbox')
 
@@ -36,7 +36,7 @@ describe('Checkbox Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.html()).toContain('Check me')
 
@@ -58,7 +58,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.vm.text).toBe('')
 
@@ -79,7 +79,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.vm.text).toBe('aaa')
 
@@ -99,7 +99,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.vm.text).toBe('')
 
@@ -123,7 +123,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.vm.trueValue).toBe(true)
 
@@ -144,7 +144,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.vm.trueValue).toBe('yes')
 
@@ -164,7 +164,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.vm.trueValue).toBe(true)
 
@@ -188,7 +188,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.vm.falseValue).toBe(false)
 
@@ -209,7 +209,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.vm.falseValue).toBe('no')
 
@@ -229,7 +229,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.vm.falseValue).toBe(false)
 
@@ -254,7 +254,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.vm.null).toBe('no')
 
@@ -276,7 +276,7 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.vm.value).toBe(a.vm.falseValue)
 
@@ -300,7 +300,7 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.vm.value).toBe(a.vm.falseValue)
 
@@ -333,7 +333,7 @@ describe('Checkbox Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -363,7 +363,7 @@ describe('Checkbox Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     a.vm.value = 'yes'
 
@@ -394,7 +394,7 @@ describe('Checkbox Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     expect(a.vm.value).toBe(null)
 
@@ -424,7 +424,7 @@ describe('Checkbox Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     form.vm.load({
       a: 1
@@ -452,7 +452,7 @@ describe('Checkbox Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     form.vm.load({
       a: 1

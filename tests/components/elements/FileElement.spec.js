@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 import flushPromises from 'flush-promises'
 import Validator from '../../../src/services/validation/validator'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
@@ -35,7 +35,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.exists()).toBe(true)
   })
@@ -49,7 +49,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.find('input[type="file"]').exists()).toBe(true)
     expect(a.get('input').element).not.toBeVisible()
@@ -64,7 +64,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.html()).toContain(a.vm.classes.selectButton)
   })
@@ -78,7 +78,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     const originalConsoleError = console.error
 
@@ -104,7 +104,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     await Vue.nextTick()
 
@@ -120,7 +120,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.preparing = true
 
@@ -139,7 +139,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     await Vue.nextTick()
 
@@ -155,7 +155,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.preparing = true
 
@@ -173,7 +173,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update({
       tmp: 'tmp123',
@@ -195,7 +195,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update('filename')
 
@@ -214,7 +214,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
     let fsp$ = a.findComponent({ name: 'FileSlotProgress' })
 
     expect(fsp$.html()).toBe('')
@@ -236,7 +236,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.find(`a[class="${a.vm.classes.uploadButton}"]`).exists()).toBe(false)
 
@@ -257,7 +257,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.find(`a[class="${a.vm.classes.removeButton}"]`).exists()).toBe(false)
 
@@ -278,7 +278,7 @@ describe('File Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.find(`a[class="${a.vm.classes.abortButton}"]`).exists()).toBe(false)
 
@@ -300,7 +300,7 @@ describe('File Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.file).toStrictEqual(null)
     expect(a.vm.base64).toStrictEqual(null)
@@ -318,7 +318,7 @@ describe('File Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.url).toStrictEqual('/')
   })
@@ -333,7 +333,7 @@ describe('File Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.url).toStrictEqual('/uploads/')
   })
@@ -348,7 +348,7 @@ describe('File Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.url).toStrictEqual('/uploads/')
   })
@@ -363,7 +363,7 @@ describe('File Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.url).toStrictEqual('https://domain.com/')
   })
@@ -378,7 +378,7 @@ describe('File Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.url).toStrictEqual('/uploads/')
   })
@@ -392,7 +392,7 @@ describe('File Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.url = '/uploads/'
 
@@ -408,7 +408,7 @@ describe('File Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.clickable).toStrictEqual(true)
   })
@@ -423,7 +423,7 @@ describe('File Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.clickable).toStrictEqual(false)
   })
@@ -437,7 +437,7 @@ describe('File Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.clickable = false
 
@@ -453,7 +453,7 @@ describe('File Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.auto).toStrictEqual(true)
   })
@@ -468,7 +468,7 @@ describe('File Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.auto).toStrictEqual(false)
   })
@@ -482,7 +482,7 @@ describe('File Element Options', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.auto = false
 
@@ -500,7 +500,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.stage).toStrictEqual(0)
   })
@@ -515,7 +515,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update(new File([''], 'filename'))
 
@@ -531,7 +531,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update({
       tmp: 'tmp123',
@@ -550,7 +550,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update('filename.jpg')
 
@@ -566,7 +566,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update(['a'])
 
@@ -582,7 +582,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.filename).toStrictEqual(null)
   })
@@ -597,7 +597,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update(new File([''], 'filename'))
 
@@ -614,7 +614,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update({
       tmp: 'tmp123',
@@ -634,7 +634,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update('filename')
 
@@ -651,7 +651,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.link).toStrictEqual(undefined)
   })
@@ -665,7 +665,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update('a.jpg')
 
@@ -685,7 +685,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.uploading).toStrictEqual(false)
 
@@ -704,7 +704,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.stage).not.toStrictEqual(3)
     expect(a.vm.uploaded).toStrictEqual(false)
@@ -742,7 +742,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.busy).toStrictEqual(false)
 
@@ -785,7 +785,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     const originalConsoleError = console.error
 
@@ -810,7 +810,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     const originalConsoleError = console.error
 
@@ -832,7 +832,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     const originalConsoleError = console.error
 
@@ -854,7 +854,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     const originalConsoleError = console.error
 
@@ -876,7 +876,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.canRemove).toStrictEqual(false)
   })
@@ -891,7 +891,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.canRemove).toStrictEqual(false)
 
@@ -921,7 +921,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.request = {}
 
@@ -954,7 +954,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.canRemove).toStrictEqual(false)
 
@@ -984,7 +984,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.preparing = true
 
@@ -1016,7 +1016,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.canUploadTemp).toStrictEqual(false)
 
@@ -1054,7 +1054,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.isFileType).toStrictEqual(true)
   })
@@ -1068,7 +1068,7 @@ describe('File Element Computed', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.isImage).toStrictEqual(false)
   })
@@ -1085,7 +1085,7 @@ describe('File Element Watchers', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.file).toBe(null)
 
@@ -1108,7 +1108,7 @@ describe('File Element Watchers', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.axios.post = postMock
 
@@ -1133,7 +1133,7 @@ describe('File Element Watchers', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.axios.post = postMock
 
@@ -1156,7 +1156,7 @@ describe('File Element Watchers', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update(new File([''], 'a'))
 
@@ -1172,7 +1172,7 @@ describe('File Element Watchers', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.file).toBe(null)
 
@@ -1196,7 +1196,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.validate()
 
@@ -1216,7 +1216,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.form$.validation = false
 
@@ -1238,7 +1238,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update(new File([''], 'filename'))
 
@@ -1260,7 +1260,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update('filename.jpg')
 
@@ -1281,7 +1281,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let file = new File([''], 'filename')
 
@@ -1307,7 +1307,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.validated).toBe(false)
 
@@ -1330,7 +1330,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(a.vm.validated).toBe(false)
 
@@ -1351,7 +1351,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.progress = 60
 
@@ -1372,7 +1372,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let removeMock = jest.fn()
 
@@ -1395,7 +1395,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let axiosMock = jest.fn()
 
@@ -1428,7 +1428,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let axiosMock = jest.fn()
 
@@ -1460,7 +1460,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let axiosMock = jest.fn()
 
@@ -1487,7 +1487,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let file = new File([''], 'filaname')
 
@@ -1516,7 +1516,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let file = new File([''], 'filaname')
 
@@ -1547,7 +1547,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let file = new File([''], 'filaname')
 
@@ -1576,7 +1576,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update({
       tmp: 'tmp123',
@@ -1607,7 +1607,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let axiosMock = jest.fn()
 
@@ -1638,7 +1638,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let tmp = {
       tmp: 'tmp123',
@@ -1689,7 +1689,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let tmp = {
       tmp: 'tmp123',
@@ -1735,7 +1735,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let axiosMock = jest.fn((url,data,options) => {})
 
@@ -1765,7 +1765,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let tmp = {
       tmp: 'tmp123',
@@ -1796,7 +1796,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.axios.post = jest.fn(() => {
       return {
@@ -1830,7 +1830,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let clickMock = jest.fn()
 
@@ -1858,7 +1858,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let clickMock = jest.fn()
 
@@ -1885,7 +1885,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let cancelMock = jest.fn()
 
@@ -1915,7 +1915,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let axiosPostMock = jest.fn(() => {
       return {
@@ -1956,7 +1956,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     try {
       let axiosPostMock = jest.fn(() => {
@@ -2012,7 +2012,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let axiosPostMock = jest.fn(() => {
       return {
@@ -2049,7 +2049,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     try {
       let axiosPostMock = jest.fn(() => {
@@ -2107,7 +2107,7 @@ describe('File Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let cancelMock = jest.fn()
 
@@ -2137,7 +2137,7 @@ describe('File Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.get('input').setValue('')
     a.get('input').trigger('change')
@@ -2158,7 +2158,7 @@ describe('File Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let file = new File([''], 'filename')
 
@@ -2190,7 +2190,7 @@ describe('File Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let file = new File([''], 'filename')
 
@@ -2226,7 +2226,7 @@ describe('File Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     let file = new File([''], 'filename')
     let tmp = {
@@ -2268,7 +2268,7 @@ describe('File Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.axios.post = jest.fn()
 
@@ -2303,7 +2303,7 @@ describe('File Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     expect(onErrorMock.mock.calls.length).toBe(0)
 
@@ -2322,7 +2322,7 @@ describe('File Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'FileElement' }).at(0)
+    let a = findAllComponents(form, { name: 'FileElement' }).at(0)
 
     a.vm.update('filename.jpg')
     a.vm.handleError('aaa')

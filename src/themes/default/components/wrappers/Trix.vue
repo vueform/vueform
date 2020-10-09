@@ -22,6 +22,7 @@
   import 'trix/dist/trix.css'
 
   export default {
+    name: 'TrixWrapper',
     mixins: [TrixWrapper],
     data() {
       return {

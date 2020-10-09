@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, installLaraform, check, uncheck } from 'test-helpers'
+import { createForm, findAllComponents, installLaraform, check, uncheck } from 'test-helpers'
 import { Laraform } from './../../../src/index'
 
 describe('Checkbox Element Rendering', () => {
@@ -20,10 +20,10 @@ describe('Checkbox Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
 
     expect(cbg0.exists()).toBe(true)
     expect(cbg1.exists()).toBe(true)
@@ -56,7 +56,7 @@ describe('Checkbox Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.html()).toContain('aaa checkbox')
     expect(a.html()).toContain('bbb checkbox')
@@ -117,7 +117,7 @@ describe('Checkbox Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({name: 'CheckboxgroupElement'}).at(0)
+    let a = findAllComponents(form, {name: 'CheckboxgroupElement'}).at(0)
 
     expect(a.html()).toContain('aaa checkbox')
     expect(a.html()).toContain('bbb checkbox')
@@ -142,11 +142,11 @@ describe('Checkbox Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     expect(_.values(cbg0.get('input').attributes())).toContain('disabled')
     expect(_.values(cbg1.get('input').attributes())).not.toContain('disabled')
@@ -174,11 +174,11 @@ describe('Checkbox Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     expect(_.values(cbg0.get('input').attributes())).toContain('disabled')
     expect(_.values(cbg1.get('input').attributes())).toContain('disabled')
@@ -202,7 +202,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.items).toStrictEqual({})
 
@@ -226,7 +226,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.items).toStrictEqual({
       a: 'aaa',
@@ -249,7 +249,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.items).toStrictEqual({})
 
@@ -279,7 +279,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.disables).toStrictEqual([])
 
@@ -305,7 +305,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.disables).toStrictEqual(['a', 'b'])
 
@@ -325,7 +325,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.disables).toStrictEqual([])
 
@@ -349,7 +349,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.disabled).toBe(false)
 
@@ -375,7 +375,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.disabled).toBe(true)
 
@@ -395,7 +395,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.disabled).toBe(false)
 
@@ -419,7 +419,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.null).toStrictEqual([])
 
@@ -439,7 +439,7 @@ describe('Checkbox Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.isArrayType).toBe(true)
 
@@ -466,7 +466,7 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual([])
 
@@ -495,7 +495,7 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual([])
 
@@ -528,11 +528,11 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     expect(_.values(cbg0.get('input').attributes())).not.toContain('disabled')
     expect(_.values(cbg1.get('input').attributes())).not.toContain('disabled')
@@ -567,11 +567,11 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     expect(_.values(cbg0.get('input').attributes())).not.toContain('disabled')
     expect(_.values(cbg1.get('input').attributes())).not.toContain('disabled')
@@ -614,7 +614,7 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual([])
 
@@ -643,7 +643,7 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual([])
 
@@ -672,7 +672,7 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual([])
 
@@ -705,7 +705,7 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
     expect(a.vm.value).toStrictEqual([])
 
@@ -738,11 +738,11 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     expect(_.values(cbg0.get('input').attributes())).not.toContain('disabled')
     expect(_.values(cbg1.get('input').attributes())).not.toContain('disabled')
@@ -777,11 +777,11 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     expect(_.values(cbg0.get('input').attributes())).not.toContain('disabled')
     expect(_.values(cbg1.get('input').attributes())).not.toContain('disabled')
@@ -817,11 +817,11 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     expect(_.values(cbg0.get('input').attributes())).toContain('disabled')
     expect(_.values(cbg1.get('input').attributes())).not.toContain('disabled')
@@ -857,11 +857,11 @@ describe('Checkbox Element Methods', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     expect(_.values(cbg0.get('input').attributes())).toContain('disabled')
     expect(_.values(cbg1.get('input').attributes())).not.toContain('disabled')
@@ -898,11 +898,11 @@ describe('Checkbox Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     check(cbg0)
     check(cbg2)
@@ -931,11 +931,11 @@ describe('Checkbox Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     expect(cbg0.get('input').element.checked).toBe(true)
     expect(cbg1.get('input').element.checked).toBe(false)
@@ -962,11 +962,11 @@ describe('Checkbox Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     a.vm.value = ['a', 'c']
 
@@ -997,11 +997,11 @@ describe('Checkbox Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     a.vm.update(['a', 'c'])
 
@@ -1032,11 +1032,11 @@ describe('Checkbox Element Model', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     form.vm.load({
       a: ['a', 'c']
@@ -1074,11 +1074,11 @@ describe('Checkbox Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     check(cbg1)
 
@@ -1111,11 +1111,11 @@ describe('Checkbox Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxgroupElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
 
-    let cbg0 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(0)
-    let cbg1 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(1)
-    let cbg2 = a.findAllComponents({ name: 'CheckboxgroupSlotCheckbox' }).at(2)
+    let cbg0 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(0)
+    let cbg1 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(1)
+    let cbg2 = findAllComponents(a, { name: 'CheckboxgroupSlotCheckbox' }).at(2)
 
     uncheck(cbg1)
 

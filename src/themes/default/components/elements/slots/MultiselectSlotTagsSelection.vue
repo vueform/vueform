@@ -13,6 +13,7 @@
   import MultiselectSlotTagsSelection from './../../../../../components/elements/slots/MultiselectSlotTagsSelection'
 
   export default {
+    name: 'MultiselectSlotTagsSelection',
     mixins: [MultiselectSlotTagsSelection],
 }
 </script>

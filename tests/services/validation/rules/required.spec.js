@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, setInstances, check, uncheck } from './.test-helpers'
+import { createForm, findAllComponents, change, setInstances, check, uncheck } from './.test-helpers'
 
 describe('Required Rule', () => {
   it('should be validate if value is filled for string', (done) => {
@@ -12,7 +12,7 @@ describe('Required Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, '')
     expect(a.vm.invalid).toBe(true)
@@ -56,7 +56,7 @@ describe('Required Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ListElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
 
     setInstances(a, 0)
 
@@ -90,7 +90,7 @@ describe('Required Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'CheckboxElement' }).at(0)
+    let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     check(a)
     expect(a.vm.invalid).toBe(true)

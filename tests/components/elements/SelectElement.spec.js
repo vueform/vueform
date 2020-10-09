@@ -23,7 +23,7 @@ describe('Select Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     done()
   })
@@ -44,7 +44,7 @@ describe('Select Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.get('select').attributes().id).toBe('aaa')
     expect(a.get('select').attributes().disabled).toBe('disabled')
@@ -75,8 +75,8 @@ describe('Select Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
-    let vms$ = form.findAllComponents({ name: 'VueMultiselect' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let vms$ = findAllComponents(form, { name: 'VueMultiselect' }).at(0)
 
     expect(vms$.vm.$props.name).toBe('a')
     expect(vms$.vm.$props.id).toBe('aaa')
@@ -103,8 +103,8 @@ describe('Select Element Rendering', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
-    let elf = form.findAllComponents({ name: 'ElementLabelFloating' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let elf = findAllComponents(form, { name: 'ElementLabelFloating' }).at(0)
 
     expect(elf.exists()).toBe(true)
     expect(elf.html()).toContain('Select')
@@ -127,7 +127,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.items).toStrictEqual({})
 
@@ -151,7 +151,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.items).toStrictEqual({
       a: 1,
@@ -174,7 +174,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     a.vm.items = {
       a: 1,
@@ -202,7 +202,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.native).toStrictEqual(true)
 
@@ -223,7 +223,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.native).toStrictEqual(false)
 
@@ -243,7 +243,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     a.vm.native = false
 
@@ -265,7 +265,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.trackBy).toStrictEqual('label')
 
@@ -286,7 +286,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.trackBy).toStrictEqual('name')
 
@@ -306,7 +306,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     a.vm.trackBy = 'name'
 
@@ -328,7 +328,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.search).toStrictEqual(false)
 
@@ -349,7 +349,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.search).toStrictEqual(true)
 
@@ -369,7 +369,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     a.vm.search = true
 
@@ -391,7 +391,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.limit).toStrictEqual(1000)
 
@@ -412,7 +412,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.limit).toStrictEqual(500)
 
@@ -432,7 +432,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     a.vm.limit = 500
 
@@ -454,7 +454,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.placeholder).toStrictEqual(null)
 
@@ -475,7 +475,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.placeholder).toStrictEqual('aaa')
 
@@ -495,7 +495,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     a.vm.placeholder = 'aaa'
 
@@ -517,7 +517,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.floating).toStrictEqual(null)
 
@@ -538,7 +538,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.floating).toStrictEqual('aaa')
 
@@ -558,7 +558,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     a.vm.floating = 'aaa'
 
@@ -580,7 +580,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.options).toStrictEqual(a.vm.defaultOptions)
 
@@ -603,7 +603,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.options).toStrictEqual(Object.assign({}, a.vm.defaultOptions, {
       a: 'aaa'
@@ -625,7 +625,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     a.vm.options = {
       a: 'aaa'
@@ -651,7 +651,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.isNative).toBe(true)
 
@@ -688,7 +688,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     a.vm.update(1)
 
@@ -715,7 +715,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.textValue).toBe('')
     
@@ -740,7 +740,7 @@ describe('Select Element Props', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     a.vm.update(1)
 
@@ -1046,7 +1046,7 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     confirmSelectOptions(a, done, LocalVue, {
       0: 'aaa',
@@ -1073,7 +1073,7 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.selectOptions).toStrictEqual([
       { value: 0, label: 'aaa' },
@@ -1107,7 +1107,7 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.selectOptions).toStrictEqual([
       { value: 0, name: 'aaa', label: 'aaa' },
@@ -1169,7 +1169,7 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.selectOptions).toStrictEqual([
       { value: 'a', label: 'aaa' },
@@ -1202,7 +1202,7 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.selectOptions).toStrictEqual([
       { value: 'a', label: 'aaa' },
@@ -1235,7 +1235,7 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.selectOptions).toStrictEqual([
       { value: 'a', label: 'aaa' },
@@ -1269,7 +1269,7 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.selectOptions).toStrictEqual([
       { value: 'a', name: 'aaa', label: 'aaa' },
@@ -1331,7 +1331,7 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(a.vm.selectOptions).toStrictEqual([
       { value: 'aa', label: 'aaa' },
@@ -1365,7 +1365,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -1396,7 +1396,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -1427,7 +1427,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(onSelectMock.mock.calls.length).toBe(0)
 
@@ -1457,7 +1457,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(onDeselectMock.mock.calls.length).toBe(0)
 
@@ -1487,7 +1487,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(onSearchChangeMock.mock.calls.length).toBe(0)
 
@@ -1517,7 +1517,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(onOpenMock.mock.calls.length).toBe(0)
 
@@ -1546,7 +1546,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(onCloseMock.mock.calls.length).toBe(0)
 
@@ -1575,7 +1575,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
 
     expect(onTagMock.mock.calls.length).toBe(0)
 
@@ -1611,7 +1611,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
     let mso0 = a.findAll('.multiselect__option').at(0)
     let mso1 = a.findAll('.multiselect__option').at(1)
     let mso2 = a.findAll('.multiselect__option').at(2)
@@ -1679,7 +1679,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
     let mso0 = a.findAll('.multiselect__option').at(0)
     let mso1 = a.findAll('.multiselect__option').at(1)
     let mso2 = a.findAll('.multiselect__option').at(2)
@@ -1715,7 +1715,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
     
     LocalVue.nextTick(() => {
       expect(a.html()).toContain('AAA before list')
@@ -1782,7 +1782,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
     
     expect(a.html()).toContain('AAA before list')
 
@@ -1813,7 +1813,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
     
     LocalVue.nextTick(() => {
       expect(a.html()).toContain('AAA after list')
@@ -1880,7 +1880,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
     
     expect(a.html()).toContain('AAA after list')
 
@@ -1910,7 +1910,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
     
     LocalVue.nextTick(() => {
       expect(a.html()).toContain('No results')
@@ -1976,7 +1976,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
     
     expect(a.html()).toContain('No results.')
 
@@ -2007,7 +2007,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
     
     LocalVue.nextTick(() => {
       expect(a.find('.multiselect__single').html()).toContain('b single label')
@@ -2073,7 +2073,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
     
     expect(a.find('.multiselect__single').html()).toContain('b single label')
 
@@ -2104,7 +2104,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
     
     LocalVue.nextTick(() => {
       expect(a.html()).toContain('No options.')
@@ -2170,7 +2170,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
     
     expect(a.html()).toContain('No options.')
 

@@ -10,6 +10,7 @@
   import InputAddon from './../../../components/InputAddon'
 
   export default {
+    name: 'InputAddon',
     mixins: [InputAddon],
     data() {
       return {

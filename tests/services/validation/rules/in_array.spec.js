@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change } from './.test-helpers'
+import { createForm, findAllComponents, change } from './.test-helpers'
 
 describe('In Array Rule', () => {
   it('should check if a value exists in an other elements array of values', (done) => {
@@ -22,8 +22,8 @@ describe('In Array Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
-    let b = form.findAllComponents({ name: 'ListElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'ListElement' }).at(0)
 
     a.get('input').setValue('aaa')
     a.get('input').trigger('keyup')

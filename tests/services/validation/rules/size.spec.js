@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createForm, change, setInstances, tryInputValues } from './.test-helpers'
+import { createForm, findAllComponents, change, setInstances, tryInputValues } from './.test-helpers'
 
 describe('Size Rule', () => {
   it('should check if numeric value is lower or equal than minimum', (done) => {
@@ -12,7 +12,7 @@ describe('Size Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     
     let values = {
       '1': true,
@@ -41,7 +41,7 @@ describe('Size Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     
     let values = {
       '1': true,
@@ -70,7 +70,7 @@ describe('Size Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'TextElement' }).at(0)
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     
     change(a, 'a')
     expect(a.vm.invalid).toBe(true)
@@ -128,7 +128,7 @@ describe('Size Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ListElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
     
     setInstances(a, 1)
 
@@ -157,7 +157,7 @@ describe('Size Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ListElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
     
     setInstances(a, 2)
 
@@ -186,7 +186,7 @@ describe('Size Rule', () => {
       }
     })
 
-    let a = form.findAllComponents({ name: 'ListElement' }).at(0)
+    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
     
     setInstances(a, 3)
 

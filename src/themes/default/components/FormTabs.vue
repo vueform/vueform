@@ -16,12 +16,16 @@
 
 <script>
   import FormTabs from './../../../components/FormTabs'
-  import init from './../../../init'
 
   export default {
+    name: 'FormTabs',
     mixins: [FormTabs],
-    setup: (props, context) => init(props, context, FormTabs, {
-      container: 'nav nav-tabs form-tabs'
-    }),
+    data() {
+      return {
+        defaultClasses: {
+          container: 'nav nav-tabs form-tabs'
+        }
+      }
+    },
   }
 </script>
