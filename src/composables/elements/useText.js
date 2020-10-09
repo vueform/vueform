@@ -26,6 +26,7 @@ import useDisabled from './features/useDisabled'
 import useEvents from './features/useEvents'
 import useHandleChange from './features/useHandleChange'
 import useHandleKeyup from './features/useHandleKeyup'
+import useEmpty from './features/useEmpty'
 
 export default function useText(props, context) {
   const form$ = useForm$(props, context)
@@ -60,6 +61,7 @@ export default function useText(props, context) {
   const handleKeyup = useHandleKeyup(props, context, { readonly, handleChange })
   const data = useData(props, context, { form$, conditions, value, validation, events })
   const mask = useMask(props, context, { placeholder, input, data, events })
+  const empty = useEmpty(props, context, { value, data })
 
   return {
     ...form$,
@@ -90,5 +92,6 @@ export default function useText(props, context) {
     ...handleKeyup,
     ...data,
     ...mask,
+    ...empty,
   }
 } 

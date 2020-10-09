@@ -13,11 +13,11 @@ export default function useData(props, context, dependencies)
   const { clean, resetValidators, validate } = dependencies.validation
   const { fireChange } = dependencies.events
 
-  // =============== PRIVATE ===============
-
-  const nill = ref(null)
-
   // ============== COMPUTED ===============
+
+  const nill = computed(() => {
+    return null
+  })
 
   /**
    * A function that formats data before gets merged with form `data`.
@@ -165,6 +165,7 @@ export default function useData(props, context, dependencies)
 
   return {
     // Computed
+    nill,
     data,
     filtered,
     formatData,
