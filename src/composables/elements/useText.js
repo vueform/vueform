@@ -1,9 +1,10 @@
+import { toRefs } from 'composition-api'
 import useForm$ from './../useForm$'
 import useTheme from './../useTheme'
 import useInput from './features/useInput'
 import useAddons from './features/useAddons'
 import usePath from './features/usePath'
-import useConditions from './features/useConditions'
+import useConditions from './../useConditions'
 import useValue from './features/useValue'
 import useData from './features/useData'
 import useValidation from './features/useValidation'
@@ -29,12 +30,15 @@ import useHandleKeyup from './features/useHandleKeyup'
 import useEmpty from './features/useEmpty'
 
 export default function useText(props, context) {
+  const { schema } = toRefs(props)
+
+  // @todo: deconstruct
   const form$ = useForm$(props, context)
   const theme = useTheme(props, context)
   const input = useInput(props, context)
   const addons = useAddons(props, context)
   const path = usePath(props, context)
-  const conditions = useConditions(props, context, { form$, path })
+  const conditions = useConditions(props, context, { form$, path, descriptor: schema })
   const value = useValue(props, context)
   const validation = useValidation(props, context, { form$, value })
   const label = useLabel(props, context, { form$ })

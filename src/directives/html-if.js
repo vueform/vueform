@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { nextTick } from 'composition-api'
 
 const vueVersion = function(binding, vnode) {
   if (vnode.context && vnode.context.$laraform && vnode.context.$laraform.vue == 2) {
@@ -25,14 +25,10 @@ const update = function(el, binding, vnode) {
     el.innerHTML = vueVersion(binding, vnode) == 2 ? vnode.context[key] : binding.instance[key]
   }
   else {
-    binding.instance.$nextTick(() => {
-      let html = ''
-
+    nextTick(() => {
       _.each(vnode.context.$children, (child) => {
-        html += child.$el.outerHTML
+        el.appendChild(child._isVue ? child.$el : child)
       })
-
-      el.innerHTML = html
     })
   }
 }

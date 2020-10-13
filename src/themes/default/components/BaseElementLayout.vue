@@ -64,6 +64,6 @@
           field: 'fieldWrapper',
         }
       }
-    }
+    },
   }
 </script>

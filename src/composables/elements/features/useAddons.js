@@ -1,5 +1,5 @@
-import computedOption from './../../../utils/computedOption'
 import { computed, toRefs } from 'composition-api'
+import computedOption from './../../../utils/computedOption'
 
 export default function useAddons(props, context, dependencies)
 {
@@ -20,7 +20,7 @@ export default function useAddons(props, context, dependencies)
    * 
    * @type {boolean}
    */
-  const hasAddon = computed(() => schema.addons !== undefined)
+  const hasAddon = computed(() => schema.value.addons !== undefined)
 
   return {
     addons,

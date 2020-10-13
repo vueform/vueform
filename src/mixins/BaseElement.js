@@ -1,14 +1,12 @@
-import _ from 'lodash'
+import { computed } from 'composition-api'
 
 export default {
   name: 'BaseElement',
   provide() {
-    const _this = this
-  
     return {
-      get el$ () {
-        return _this.el$
-      },
+      el$: computed(() => {
+        return this
+      })
     }
   },
   props: {
@@ -31,6 +29,6 @@ export default {
   computed: {
     el$() {
       return this
-    },
-  },
+    }
+  }
 }

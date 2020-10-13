@@ -46,7 +46,7 @@ const Validator = class {
   }
 
   get defaultMessage() {
-    return ''
+    return 'Invalid field'
   }
 
   get message() {
@@ -59,7 +59,10 @@ const Validator = class {
       message = this.form$.messages[this.name]
     }
     else {
-      message = this.form$.$laraform.locales[this.form$.selectedLocale].validation[this.name] || this.defaultMessage
+      let tagName = `laraform.validation.${this.name}`
+      let tag = this.form$.__(tagName)
+
+      message = tagName === tag || !tag ? this.defaultMessage : tag
 
       if (_.isPlainObject(message)) {
         message = message[this.messageType]

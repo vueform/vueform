@@ -1,31 +1,52 @@
-import _ from 'lodash'
-import ElementComponent from './../mixins/ElementComponent'
+import { computed, toRefs } from 'composition-api'
+import useElementComponent from './../composables/useElementComponent'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'BaseElementLayout',
-  mixins: [ElementComponent],
-  computed: {
-    hasLabel() {
-      return this.el$.hasLabel
-    },
-    classes() {
-      let classes = this.mergedClasses
+  init(props, context)
+  {
+    const { containers } = toRefs(context.data)
 
-      classes = mergeComponentClasses(classes, {
-        [this.containers.element]: this.el$.columns.classes.element || '',
-        [this.containers.label]: this.el$.columns.classes.label || '',
-        [this.containers.field]: this.el$.columns.classes.field || '',
+    // ============ DEPENDENCIES ============
+
+    const { form$, el$, classes, components, mainClass, theme } = useElementComponent(props, context)
+
+    // ============== COMPUTED ==============
+
+    const updatedClasses = computed(() => {
+      let classList = classes.value
+
+      classList = mergeComponentClasses(classList, {
+        [containers.value.element]: el$.value.columns.classes.element || '',
+        [containers.value.label]: el$.value.columns.classes.label || '',
+        [containers.value.field]: el$.value.columns.classes.field || '',
       })
 
       // Add element's class to main class
-      if (this.el$.class !== null) {
-        classes = mergeComponentClasses(classes, {
-          [this.mainClass]: this.el$.class
+      if (el$.value.class !== null) {
+        classList = mergeComponentClasses(classList, {
+          [mainClass]: el$.value.class
         })
       }
 
-      return classes
+      return classList
+    })
+
+    return {
+      // Inject
+      el$,
+      form$,
+      theme,
+
+      // Computed
+      components,
+      classes: updatedClasses,
+    }
+  },
+  computed: {
+    hasLabel() {
+      return this.el$.hasLabel
     },
     before() {
       return this.el$.before

@@ -1,12 +1,12 @@
 import { inject } from 'composition-api'
 
-export default function useForm$(props, context, dependencies)
+export default function useEl$(props, context, dependencies)
 {
   // =============== INJECT ===============
 
-  let form$ = inject('form$')
+  let el$ = inject('el$')
 
   return {
-    form$,
+    el$,
   }
 }

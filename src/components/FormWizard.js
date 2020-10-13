@@ -1,6 +1,6 @@
 import { ref } from 'composition-api'
-import HasEvents from './../mixins/HasEvents'
 import useFormComponent from './../composables/useFormComponent'
+import HasEvents from './../mixins/HasEvents'
 
 export default {
   name: 'FormWizard',
@@ -22,19 +22,27 @@ export default {
       required: true
     },
   },
-  init(props, context) {
-    
+  init(props, context)
+  { 
     // ============ DEPENDENCIES ============
 
-    const formComponent = useFormComponent(props, context)
+    const { form$, theme, classes, components } = useFormComponent(props, context)
 
     // // ================ DATA ================
 
     const wizardSteps$ = ref([])
 
     return {
-      ...formComponent,
+      // Inject
+      form$,
+      theme,
+
+      // Data
       wizardSteps$,
+
+      // Computed
+      classes,
+      components,
     }
   },
   data() {

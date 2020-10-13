@@ -1,9 +1,53 @@
-import BaseComponent from './../mixins/BaseComponent'
+import { computed, toRefs } from 'composition-api'
+import useFormComponent from './../composables/useFormComponent'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'FormLanguageSelectorTab',
-  mixins: [BaseComponent],
+  init(props, context)
+  {  
+    const { code } = toRefs(props.code)
+    const { containers } = toRefs(context.data)
+
+    // ============ DEPENDENCIES ============
+
+    const { form$, theme, classes, components } = useFormComponent(props, context)
+
+    // ============== COMPUTED ==============
+
+    const selectedLanguage = computed(() => {
+      return form$.value.language
+    })
+
+    const selected = computed(() => {
+      return selectedLanguage.value == code.value
+    })
+
+    const updatedClasses = computed(() => {
+      let classList = classes.value
+
+      classList = mergeComponentClasses(classList, {
+        [containers.value.state]: {
+          [classList.active]: selected.value,
+          [classList.inactive]: !selected.value,
+        }
+      })
+
+      return classList
+    })
+
+    return {
+      // Inject
+      form$,
+      theme,
+
+      // Computed
+      selectedLanguage,
+      selected,
+      classes: updatedClasses,
+      components,
+    }
+  },
   props: {
     language: {
       type: Object,
@@ -13,28 +57,6 @@ export default {
       type: String,
       required: true,
     },
-  },
-  computed: {
-    classes() {
-      let classes = this.mergedClasses
-
-      classes = mergeComponentClasses(classes, {
-        [this.containers.state]: {
-          [classes.active]: this.selected,
-          [classes.inactive]: !this.selected,
-        }
-      })
-
-      return classes
-    },
-
-    selected() {
-      return this.selectedLanguage == this.code
-    },
-
-    selectedLanguage() {
-      return this.form$.language
-    }
   },
   methods: {
     select() {

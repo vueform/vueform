@@ -1,5 +1,5 @@
-import computedOption from './../../../utils/computedOption'
 import { computed, toRefs } from 'composition-api'
+import computedOption from './../../../utils/computedOption'
 
 export default function useLabel(props, context, dependencies)
 {
@@ -27,7 +27,7 @@ export default function useLabel(props, context, dependencies)
    * @ignore
    */
   const hasLabel = computed(() => {
-    return !!(form$.$laraform.labels || label.value)
+    return !!(form$.value.$laraform.labels || label.value)
   })
 
   return {

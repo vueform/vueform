@@ -57,7 +57,7 @@
         "vue-loader": "^15.5.1",
         "vue-next": "npm:vue@^3.0.0",
         "vue-prev": "npm:vue@^2.6.12",
-        "vue-template-compiler": "^2.6.11",
+        "vue-template-compiler": "^2.6.12",
         "vue-test-utils-next": "npm:@vue/test-utils@^2.0.0-beta.6",
         "vue-test-utils-prev": "npm:@vue/test-utils@^1.1.0",
         "webpack": "^4.28.4",

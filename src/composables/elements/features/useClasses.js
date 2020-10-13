@@ -1,19 +1,17 @@
+import { computed, toRefs } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 import { mergeComponentClasses } from './../../../utils/mergeClasses'
-import { computed, toRefs } from 'composition-api'
 
 export default function useClasses(props, context, dependencies)
 {
   const { schema } = toRefs(props)
+  const { defaultClasses } = toRefs(context.data)
   const componentName = context.name
-  const defaultClasses = context.data.defaultClasses
 
   // ============ DEPENDENCIES ============
 
   const { form$ } = dependencies.form$
   const { theme } = dependencies.theme
-
-  // ============== PRIVATE ===============
 
   // ============== COMPUTED ==============
   
@@ -24,7 +22,7 @@ export default function useClasses(props, context, dependencies)
   * @default null
   */
   const mainClass = computed(() => {
-    return _.keys(defaultClasses)[0]
+    return _.keys(defaultClasses.value)[0]
   })
 
   /**
@@ -43,18 +41,18 @@ export default function useClasses(props, context, dependencies)
   const mergedClasses = computed(() => {
     let classes = _.merge({},
       // Default component classes
-      defaultClasses,
+      defaultClasses.value,
 
       // Theme / form level overwrites
-      theme.classes[componentName] || {},
+      theme.value.classes[componentName.value] || {},
 
       // Element level overwrites
-      schema.classes ? schema.classes[componentName] : {}
+      schema.value.classes ? schema.value.classes[componentName.value] : {}
     )
 
     // Add form's addClasses if classes is not defined in element
-    if (!schema.classes || _.isEmpty(schema.classes[componentName])) {
-      classes = mergeComponentClasses(classes, form$.addClasses[componentName] || null)
+    if (!schema.value.classes || _.isEmpty(schema.value.classes[componentName.value])) {
+      classes = mergeComponentClasses(classes, form$.value.addClasses[componentName.value] || null)
     }
 
     // Add element's addClasses options
@@ -73,7 +71,7 @@ export default function useClasses(props, context, dependencies)
       return mergedClasses.value
     },
     set(val) {
-      schema.classes = val
+      schema.value.classes = val
     }
   })
 

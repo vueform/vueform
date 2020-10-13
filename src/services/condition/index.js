@@ -3,7 +3,7 @@ import replaceWildcards from './../../utils/replaceWildcards'
 import compare from './../../utils/compare'
 import _ from 'lodash'
 
-const check = (condition, path, form$) => {
+const check = (condition, elementPath, form$) => {
   let checkGlobal = () => {
     return form$.conditions[condition](form$)
   }
@@ -13,15 +13,15 @@ const check = (condition, path, form$) => {
   }
 
   let checkArray = () => {
-    let { path, operator, expected } = details()
+    let { conditionPath, operator, expected } = details()
 
-    let element$ = form$.el$(path)
+    let element$ = form$.el$(conditionPath)
 
     let hasCircularCondition = false
 
-    if (element$) {
+    if (element$ && elementPath) {
       _.each(element$.conditions, (condition) => {
-        if (condition[0] == path) {
+        if (condition[0] == conditionPath) {
           hasCircularCondition = true
         }
       })
@@ -36,7 +36,7 @@ const check = (condition, path, form$) => {
 
   let details = () => {
     return {
-      path: path ? replaceWildcards(condition[0], path) : condition[0],
+      conditionPath: elementPath ? replaceWildcards(condition[0], elementPath) : condition[0],
       operator: condition.length == 3 ? condition[1] : '=',
       expected: condition.length == 3 ? condition[2] : condition[1],
     }

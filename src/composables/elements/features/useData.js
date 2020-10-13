@@ -1,5 +1,5 @@
+import { computed, nextTick, toRefs } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
-import { computed, nextTick, ref, toRefs } from 'composition-api'
 
 export default function useData(props, context, dependencies)
 {
@@ -25,7 +25,7 @@ export default function useData(props, context, dependencies)
    * @type {function}
    */
   const formatData = computed(computedOption('formatData', schema, (elName, value, form$) => {
-    return { [elName]: value.value }
+    return { [elName]: value }
   }))
 
   /**
@@ -43,7 +43,7 @@ export default function useData(props, context, dependencies)
    * @type {object}
    */
   const data = computed(() => {
-    return formatData.value(name.value, value, form$)
+    return formatData.value(name.value, value.value, form$.value)
   })
   
   /**
@@ -83,8 +83,8 @@ export default function useData(props, context, dependencies)
    * @returns {void}
    */
   const load = (data) => {
-    if (available && data && data[name.value] !== undefined) {
-      update(formatLoad.value(data[name.value], form$))
+    if (available.value && data && data[name.value] !== undefined) {
+      update(formatLoad.value(data[name.value], form$.value))
 
       nextTick(() => {
         clean()

@@ -1,25 +1,41 @@
-import _ from 'lodash'
-import BaseComponent from './../mixins/BaseComponent'
-import HasElements from './../mixins/HasElements'
-import { reactive, ref } from 'composition-api'
+import { ref } from 'composition-api'
+import useFormComponent from './../composables/useFormComponent'
+import useElements from './../composables/useElements'
 
 export default {
   name: 'FormElements',
-  mixins: [BaseComponent, HasElements],
-  inject: ['form$'],
   props: {
     schema: {
       type: Object,
       required: true
     },
   },
-  init(props, context) {
+  init(props, context)
+  {  
+    // ============ DEPENDENCIES ============
+
+    const { form$, theme, classes, components } = useFormComponent(props, context)
+
+    const { component } = useElements(props, context, { theme })
+
+    // ================ DATA ================
+    
     const elements$ = ref([])
-    const defaultClasses = context.defaultClasses
 
     return {
+      // Inject
+      form$,
+      theme,
+
+      // Data
       elements$,
-      defaultClasses,
+
+      // Computed
+      classes,
+      components,
+
+      // Methods
+      component,
     }
   }
 }

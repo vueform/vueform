@@ -1,9 +1,10 @@
 import { computed, toRefs } from 'composition-api'
 import useForm$ from './useForm$'
+import useEl$ from './useEl$'
 import useTheme from './useTheme'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
-export default function useFormComponent(props, context, dependencies)
+export default function useElementComponent(props, context, dependencies)
 {
   const componentName = context.name
   const { defaultClasses } = toRefs(context.data)
@@ -11,6 +12,7 @@ export default function useFormComponent(props, context, dependencies)
   // =============== INJECT ===============
 
   const { form$ } = useForm$(props, context)
+  const { el$ } = useEl$(props, context)
   const { theme } = useTheme(props, context)
   
   // ============== COMPUTED ===============
@@ -21,11 +23,19 @@ export default function useFormComponent(props, context, dependencies)
       defaultClasses.value,
 
       // Theme / form level overwrites
-      theme.value.classes[componentName.value] || {}
+      theme.value.classes[componentName.value] || {},
+
+      // Element level overwrites
+      el$.value.schema.classes ? el$.value.schema.classes[componentName.value] : {}
     )
 
-    // Add form's addClasses
-    classes = mergeComponentClasses(classes, form$.value.addClasses[componentName.value] || null)
+    // Add form's addClasses if classes is not defined in element
+    if (!el$.value.schema.classes || _.isEmpty(el$.value.schema.classes[componentName.value])) {
+      classes = mergeComponentClasses(classes, form$.value.addClasses[componentName.value] || null)
+    }
+
+    // Add element's addClasses options
+    classes = mergeComponentClasses(classes, el$.value.addClasses[componentName.value] || null)
 
     return classes
   })
@@ -49,6 +59,7 @@ export default function useFormComponent(props, context, dependencies)
 
   return {
     // Inject
+    el$,
     form$,
     theme,
 

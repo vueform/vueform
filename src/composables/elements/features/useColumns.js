@@ -22,7 +22,7 @@ export default function useColumns(props, context, dependencies)
       }
     },
     set(val) {
-      schema.columns = val
+      schema.value.columns = val
     }
   })
 

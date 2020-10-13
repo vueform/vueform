@@ -1,12 +1,13 @@
-import _ from 'lodash'
-import BaseComponent from './../mixins/BaseComponent'
+import { toRefs, ref, computed } from 'composition-api'
+import useFormComponent from './../composables/useFormComponent'
+import useConditions from './../composables/useConditions'
 import HasEvents from './../mixins/HasEvents'
 import HasLabel from './../mixins/HasLabel'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'FormWizardStep',
-  mixins: [BaseComponent, HasEvents, HasLabel],
+  mixins: [HasEvents, HasLabel],
   props: {
     /**
      * Name of step within [steps](reference/frontend-form#prop-steps) object.
@@ -40,31 +41,141 @@ export default {
       required: false,
     },
   },
+  init(props, context)
+  {  
+    const { step, elements$ } = toRefs(props)
+    const { containers } = toRefs(context.data)
+
+    // ============ DEPENDENCIES ============
+
+    const { form$, theme, classes, components, mainClass } = useFormComponent(props, context)
+    const { available, conditions } = useConditions(props, context, { form$, descriptor: step })
+
+    // ================ DATA ================
+
+    /**
+     * Determines whether the step is active.
+     * 
+     * @type {boolean}
+     * @default false
+     */
+    const active = ref(false)
+
+    /**
+     * Determines whether the step is disabled.
+     * 
+     * @type {boolean}
+     * @default true
+     */
+    const disabled = ref(true)
+
+    /**
+     * Determines whether the step is completed.
+     * 
+     * @type {boolean}
+     * @default false
+     */
+    const completed = ref(false)
+
+    // ============== COMPUTED ==============
+
+    /**
+      * Returns the components of elements within the step.
+      * 
+      * @type {object}
+      */
+    const children$ = computed(() => {
+      return _.filter(elements$.value, (element$, key) => {
+        return step.value.elements.indexOf(key) !== -1
+      })
+    })
+
+    /**
+     * Determines whether the step is visible.
+     * 
+     * @type {boolean}
+     */
+    const visible = computed(() => {
+      return available.value
+    })
+
+    /**
+      * Determines whether the step has any invalid elements.
+      * 
+      * @type {boolean}
+      */
+    const invalid = computed(() => {
+      return _.some(children$.value, { available: true, invalid: true })   
+    })
+
+    /**
+      * Determines whether the step has any pending elements.
+      * 
+      * @type {boolean}
+      */
+    const pending = computed(() => {
+      return _.some(children$.value, { available: true, pending: true })   
+    })
+
+    /**
+     * Class of step.
+     * 
+     * @type {string|array|object}
+     */
+    const class_ = computed(() => {
+      return step.value.class || null
+    })
+    
+    const updatedClasses = computed(() => {
+      let classList = classes.value
+
+      classList = mergeComponentClasses(classList, {
+        [containers.value.state]: {
+          [classList.active]: active.value,
+          [classList.inactive]: !active.value,
+          [classList.disabled]: disabled.value,
+          [classList.enabled]: !disabled.value,
+          [classList.completed]: completed.value,
+          [classList.incompleted]: !completed.value,
+          [classList.valid]: !invalid.value,
+          [classList.invalid]: invalid.value,
+          [classList.pending]: pending.value,
+        }
+      })
+
+      // Add tabs's class to main class
+      if (class_.value !== null) {
+        classList = mergeComponentClasses(classList, {
+          [mainClass.value]: class_.value
+        })
+      }
+
+      return classList
+    })
+
+    return {
+      // Inject
+      form$,
+      theme,
+
+      // Data
+      active,
+      disabled,
+      completed,
+
+      // Computed
+      children$,
+      visible,
+      invalid,
+      pending,
+      classes: updatedClasses,
+      components,
+      conditions,
+      available,
+    }
+  },
   data() {
     return {
-      /**
-       * Determines whether the step is active.
-       * 
-       * @type {boolean}
-       * @default false
-       */
-      active: false,
-
-      /**
-       * Determines whether the step is disabled.
-       * 
-       * @type {boolean}
-       * @default true
-       */
-      disabled: true,
-
-      /**
-       * Determines whether the step is completed.
-       * 
-       * @type {boolean}
-       * @default false
-       */
-      completed: false,
 
       /**
        * Helper property used to store available events.
@@ -101,50 +212,6 @@ export default {
     }
   },
   computed: {
-    classes() {
-      let classes = this.mergedClasses
-
-      classes = mergeComponentClasses(classes, {
-        [this.containers.state]: {
-          [classes.active]: this.active,
-          [classes.inactive]: !this.active,
-          [classes.valid]: !this.invalid,
-          [classes.invalid]: this.invalid,
-          [classes.disabled]: this.disabled,
-          [classes.enabled]: !this.disabled,
-          [classes.completed]: this.completed,
-          [classes.incompleted]: !this.completed,
-          [classes.pending]: this.pending,
-        }
-      })
-
-      // Add tabs's class to main class
-      if (this.class !== null) {
-        classes = mergeComponentClasses(classes, {
-          [this.mainClass]: this.class
-        })
-      }
-
-      return classes
-    },
-
-    /**
-     * Determines whether the step is visible.
-     * 
-     * @type {boolean}
-     */
-    visible() {
-      return true
-    },
-
-    /**
-     * Class of step.
-     * 
-     * @type {string|array|object}
-     */
-    class() {
-      return this.step.class || null
-    },
 
     /**
      * Base label of step.
@@ -172,24 +239,6 @@ export default {
       */
     buttons() {
       return this.step.buttons || {}
-    },
-
-    /**
-      * Determines whether the step has any invalid elements.
-      * 
-      * @type {boolean}
-      */
-    invalid() {
-      return _.some(this.children$, { available: true, invalid: true })   
-    },
-
-    /**
-      * Determines whether the step has any pending elements.
-      * 
-      * @type {boolean}
-      */
-    pending() {
-      return _.some(this.children$, { available: true, pending: true })   
     },
 
     /**
@@ -229,27 +278,6 @@ export default {
         && this.validated
         && !this.invalid
         && !this.pending
-    },
-
-    /**
-      * Returns the components of elements within the step.
-      * 
-      * @type {object}
-      */
-    children$() {
-      return _.filter(this.elements$, (element$, key) => {
-        return this.step.elements.indexOf(key) !== -1
-      })
-    },
-
-    /**
-      * Returns the conditions of the step.
-      * 
-      * @type {array}
-      * @default []
-      */
-    conditions() {
-      return this.step.conditions || []
     },
 
     /**

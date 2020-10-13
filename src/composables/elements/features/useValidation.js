@@ -1,6 +1,6 @@
+import { computed, reactive, onMounted, watch, toRefs, ref } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 import asyncForEach from './../../../utils/asyncForEach'
-import { computed, reactive, onMounted, watch, toRefs } from 'composition-api'
 
 export default function useData(props, context, dependencies)
 {
@@ -20,7 +20,7 @@ export default function useData(props, context, dependencies)
    * @type {object}
    * @default {}
    */
-  const state = reactive({
+  const state = ref({
     dirty: false,
     validated: true,
   })
@@ -31,7 +31,7 @@ export default function useData(props, context, dependencies)
    * @type {array}
    * @default []
    */
-  const Validators = reactive([])
+  const Validators = ref([])
 
   /**
    * Message bag service.
@@ -39,7 +39,7 @@ export default function useData(props, context, dependencies)
    * @type {MessageBag}
    * @default {MessageBag}
    */
-  const messageBag = reactive({})
+  const messageBag = ref({})
 
   /**
    * Validator factory service.
@@ -73,7 +73,7 @@ export default function useData(props, context, dependencies)
    * @type {boolean}
    */
   const dirty = computed(() => {
-    return state.dirty
+    return state.value.dirty
   })
 
   /**
@@ -82,7 +82,7 @@ export default function useData(props, context, dependencies)
    * @type {boolean}
    */
   const validated = computed(() => {
-    return state.validated
+    return state.value.validated
   })
 
   /**
@@ -91,7 +91,7 @@ export default function useData(props, context, dependencies)
    * @type {boolean}
    */
   const invalid = computed(() => {
-    return _.some(Validators, { invalid: true })
+    return _.some(Validators.value, { invalid: true })
   })
 
   /**
@@ -100,7 +100,7 @@ export default function useData(props, context, dependencies)
    * @type {boolean}
    */
   const pending = computed(() => {
-    return _.some(Validators, { pending: true })
+    return _.some(Validators.value, { pending: true })
   })
 
   /**
@@ -109,7 +109,7 @@ export default function useData(props, context, dependencies)
    * @type {boolean}
    */
   const debouncing = computed(() => {
-    return _.some(Validators, { debouncing: true })
+    return _.some(Validators.value, { debouncing: true })
   })
 
   /**
@@ -129,7 +129,7 @@ export default function useData(props, context, dependencies)
   const errors = computed(() => {
     let errs = []
 
-    _.each(Validators, (Validator) => {
+    _.each(Validators.value, (Validator) => {
       if (Validator.invalid) {
         errs.push(Validator.message)
       }
@@ -144,7 +144,7 @@ export default function useData(props, context, dependencies)
    * @type {string}
    */
   const error = computed(() => {
-    return messageBag.value ? messageBag.value.error : null
+    return messageBag.value.error || null
   })
 
   /**
@@ -169,19 +169,19 @@ export default function useData(props, context, dependencies)
       return
     }
 
-    if (form$.validation === false) {
+    if (form$.value.validation === false) {
       return
     }
 
-    if (!schema.rules) {
+    if (!schema.value.rules) {
       return
     }
 
-    await asyncForEach(Validators, async (Validator) => {
+    await asyncForEach(Validators.value, async (Validator) => {
       await Validator.validate()
     })
     
-    state.validated = true
+    state.value.validated = true
   }
 
   /**
@@ -191,7 +191,7 @@ export default function useData(props, context, dependencies)
    * @returns {void}
    */
   const dirt = () => {
-    state.dirty = true
+    state.value.dirty = true
   }
 
   /**
@@ -201,7 +201,7 @@ export default function useData(props, context, dependencies)
    * @returns {void}
    */
   const clean = () => {
-    state.dirty = false
+    state.value.dirty = false
   }
 
   /**
@@ -211,11 +211,11 @@ export default function useData(props, context, dependencies)
    * @returns {void}
    */
   const resetValidators = () => {
-    _.each(Validators, (Validator) => {
+    _.each(Validators.value, (Validator) => {
       Validator.reset()
     })
 
-    state.validated = !schema.rules
+    state.value.validated = !schema.value.rules
   }
 
   /**
@@ -225,7 +225,7 @@ export default function useData(props, context, dependencies)
    * @returns {void}
    */
   const initMessageBag = (el$) => {
-    messageBag.value = new form$.$laraform.services.messageBag(el$)
+    messageBag.value = new form$.value.$laraform.services.messageBag(el$)
   }
 
   /**
@@ -241,12 +241,12 @@ export default function useData(props, context, dependencies)
 
     // If the element has rules it does not
     // qualify as validated by default
-    state.validated = false
+    state.value.validated = false
 
-    validatorFactory.value = new form$.$laraform.services.validation.factory(el$)
+    validatorFactory.value = new form$.value.$laraform.services.validation.factory(el$)
 
     _.each(validatorFactory.value.makeAll(rules.value), (Validator) => {
-      Validators.push(Validator)
+      Validators.value.push(Validator)
     })
   }
 

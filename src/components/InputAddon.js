@@ -1,17 +1,29 @@
-import ElementComponent from './../mixins/ElementComponent'
-import htmlIf from './../directives/html-if'
+import useElementComponent from './../composables/useElementComponent'
 
 export default {
   name: 'InputAddon',
-  directives: {
-    htmlIf,
-  },
-  mixins: [ElementComponent],
   props: {
     type: {
       required: true,
       type: String
     },
+  },
+  init(props, context)
+  {  
+    // ============ DEPENDENCIES ============
+
+    const { form$, el$, classes, components, theme } = useElementComponent(props, context)
+
+    return {
+      // Inject
+      el$,
+      form$,
+      theme,
+
+      // Computed
+      components,
+      classes,
+    }
   },
   computed: {
     baseAddon() {

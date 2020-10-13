@@ -11,10 +11,6 @@ export default function useBaseElement(props, context, dependencies)
   const { label } = dependencies.label || { label: null }
   const { placeholder } = dependencies.placeholder || { placeholder: null }
 
-
-  // =============== PRIVATE ==============
-
-
   // ================ DATA ================
 
   /**
@@ -43,10 +39,10 @@ export default function useBaseElement(props, context, dependencies)
    */
   const components = computed({
     get() {
-      return Object.assign({}, theme.components, schema.components || {})
+      return Object.assign({}, theme.value.components, schema.value.components || {})
     },
     set(val) {
-      schema.compontents = val
+      schema.value.components = val
     }
   })
 
@@ -57,9 +53,9 @@ export default function useBaseElement(props, context, dependencies)
    * @ignore
    */
   const genericName = computed(() => {
-    if (label.value) {
+    if (label && label.value) {
       return label.value
-    } else if (placeholder.value) {
+    } else if (placeholder && placeholder.value) {
       return placeholder.value
     } else {
       return _.upperFirst(name.value)

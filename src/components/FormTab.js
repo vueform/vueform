@@ -1,12 +1,13 @@
 // @todo: check required schema (eg. `elements` property) here and everywhere
-
+import { computed, ref, toRefs } from 'composition-api'
+import useFormComponent from './../composables/useFormComponent'
+import useConditions from './../composables/useConditions'
 import HasEvents from './../mixins/HasEvents'
-import BaseComponent from './../mixins/BaseComponent'
 import HasLabel from './../mixins/HasLabel'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
-  mixins: [BaseComponent, HasEvents, HasLabel],
+  mixins: [HasEvents, HasLabel],
   name: 'FormTab',
   props: {
     /**
@@ -41,16 +42,108 @@ export default {
       required: false,
     },
   },
+  init(props, context)
+  {  
+    const { tab, elements$ } = toRefs(props)
+    const { containers } = toRefs(context.data)
+
+    // ============ DEPENDENCIES ============
+
+    const { form$, theme, classes, components, mainClass } = useFormComponent(props, context)
+    const { available, conditions } = useConditions(props, context, { form$, descriptor: tab })
+
+    // ================ DATA ================
+
+    /**
+     * Determines whether the tab is active.
+     * 
+     * @type {boolean}
+     * @default false
+     */
+    const active = ref(false)
+
+    // ============== COMPUTED ==============
+
+    /**
+     * Returns the components of elements within the tab.
+     * 
+     * @type {object}
+     */
+    const children$ = computed(() => {
+      return _.filter(elements$.value, (element$, key) => {
+        return tab.value.elements.indexOf(key) !== -1
+      })
+    })
+
+    /**
+     * Determines whether the tab is visible.
+     * 
+     * @type {boolean}
+     */
+    const visible = computed(() => {
+      return available.value
+    })
+
+    /**
+     * Class of tab.
+     * 
+     * @type {string|array|object}
+     */
+    const class_ = computed(() => {
+      return tab.value.class || null
+    })
+
+    /**
+     * Determines whether the tab has any invalid elements.
+     * 
+     * @type {boolean}
+     */
+    const invalid = computed(() => {
+      return _.some(children$.value, { available: true, invalid: true })   
+    })
+
+    const updatedClasses = computed(() => {
+      let classList = classes.value
+
+      classList = mergeComponentClasses(classList, {
+        [containers.value.state]: {
+          [classList.active]: active.value,
+          [classList.inactive]: !active.value,
+          [classList.valid]: !invalid.value,
+          [classList.invalid]: invalid.value,
+        }
+      })
+
+      // Add tabs's class to main class
+      if (class_ !== null) {
+        classList = mergeComponentClasses(classList, {
+          [mainClass.value]: class_.value
+        })
+      }
+
+      return classList
+    })
+
+    return {
+      // Inject
+      form$,
+      theme,
+
+      // Data
+      active,
+
+      // Computed
+      children$,
+      visible,
+      invalid,
+      classes: updatedClasses,
+      components,
+      conditions,
+      available,
+    }
+  },
   data() {
     return {
-      /**
-       * Determines whether the tab is active.
-       * 
-       * @type {boolean}
-       * @default false
-       */
-      active: false,
-
       /**
        * Helper property used to store available events.
        * 
@@ -79,84 +172,6 @@ export default {
     }
   },
   computed: {
-    classes() {
-      let classes = this.mergedClasses
-
-      classes = mergeComponentClasses(classes, {
-        [this.containers.state]: {
-          [classes.active]: this.active,
-          [classes.inactive]: !this.active,
-          [classes.valid]: !this.invalid,
-          [classes.invalid]: this.invalid,
-        }
-      })
-
-      // Add tabs's class to main class
-      if (this.class !== null) {
-        classes = mergeComponentClasses(classes, {
-          [this.mainClass]: this.class
-        })
-      }
-
-      return classes
-    },
-
-    /**
-     * Whether the element has any unmet conditions.
-     * 
-     * @type boolean
-     */
-    available() {
-      return true
-    },
-
-    /**
-     * Determines whether the tab is visible.
-     * 
-     * @type {boolean}
-     */
-    visible() {
-      return this.available
-    },
-
-    /**
-     * Class of tab.
-     * 
-     * @type {string|array|object}
-     */
-    class() {
-      return this.tab.class || null
-    },
-
-    /**
-     * Determines whether the tab has any invalid elements.
-     * 
-     * @type {boolean}
-     */
-    invalid() {
-      return _.some(this.children$, { available: true, invalid: true })   
-    },
-
-    /**
-     * Returns the components of elements within the tab.
-     * 
-     * @type {object}
-     */
-    children$() {
-      return _.filter(this.elements$, (element$, key) => {
-        return this.tab.elements.indexOf(key) !== -1
-      })
-    },
-
-    /**
-     * Returns the conditions of the tab.
-     * 
-     * @type {array}
-     * @default []
-     */
-    conditions() {
-      return this.tab.conditions || []
-    },
 
     /**
       * Returns the index of tab.
@@ -292,5 +307,5 @@ export default {
     this.$nextTick(() => {
       this.$_forwardConditions()
     })
-  }
+  },
 }

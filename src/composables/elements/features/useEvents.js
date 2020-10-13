@@ -67,17 +67,9 @@ export default function useEvents(props, context, dependencies, options)
     let evt = arguments[0]
     let args = [].slice.call(arguments).splice(1)
 
-    var response
-
     _.each(listeners[evt], (callback) => {
-      var answer = callback.apply(form$, args)
-
-      if (answer !== undefined) {
-        response = answer
-      }
+      callback.apply(form$.value, args)
     })
-
-    return response
   }
 
   /**

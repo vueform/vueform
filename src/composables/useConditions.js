@@ -1,14 +1,15 @@
-import computedOption from './../../../utils/computedOption'
-import { computed, toRefs } from 'composition-api'
+import { computed, toRefs, ref } from 'composition-api'
+import computedOption from './../utils/computedOption'
 
 export default function useConditions(props, context, dependencies)
 {
-  const { schema, parent } = toRefs(props)
+  const { parent } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
   const { form$ } = dependencies.form$
-  const { path } = dependencies.path
+  const { path } = dependencies.path || { path: ref(null) }
+  const descriptor = dependencies.descriptor
 
   // ============== COMPUTED ==============
 
@@ -18,7 +19,7 @@ export default function useConditions(props, context, dependencies)
    * @type {array} 
    * @default []
    */
-  const conditions = computed(computedOption('conditions', schema, []))
+  const conditions = computed(computedOption('conditions', descriptor, []))
 
   /**
    * Whether all element conditions are met (if any).
@@ -27,7 +28,7 @@ export default function useConditions(props, context, dependencies)
    */
   const available = computed(() => {
 
-    if (parent && parent.available !== undefined && !parent.available) {
+    if (parent && parent.value && parent.value.available !== undefined && !parent.value.available) {
       return false
     }
 
@@ -36,7 +37,7 @@ export default function useConditions(props, context, dependencies)
     }
 
     return !_.some(conditions.value, (condition) => {
-      return !form$.$laraform.services.condition.check(condition, path.value, form$)
+      return !form$.value.$laraform.services.condition.check(condition, path.value, form$.value)
     })
   })
 

@@ -10,6 +10,7 @@ import i18n from './services/i18n'
 import applyExtensions from './utils/applyExtensions'
 import store from './store'
 import vRef from './directives/ref'
+import vHtmlIf from './directives/html-if'
 import init from './init'
 
 if (window._ === undefined) {
@@ -124,6 +125,7 @@ export default function (config) {
           const $laraform = this.options
 
           appOrVue.directive('ref', vRef)
+          appOrVue.directive('html-if', vHtmlIf)
 
           appOrVue.mixin({
             methods: {
@@ -141,6 +143,7 @@ export default function (config) {
           appOrVue.config.globalProperties.$laraform = this.options
 
           appOrVue.directive('ref', vRef)
+          appOrVue.directive('html-if', vHtmlIf)
 
           appOrVue.mixin({
             methods: {

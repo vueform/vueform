@@ -1,12 +1,28 @@
-import BaseComponent from './../mixins/BaseComponent'
+import useFormComponent from './../composables/useFormComponent'
 import HasLabel from './../mixins/HasLabel'
 
 export default {
   name: 'FormWizardPrevious',
-  mixins: [BaseComponent, HasLabel],
+  mixins: [HasLabel],
   props: {
     wizard$: {
       type: Object,
+    }
+  },
+  init(props, context)
+  {  
+    // ============ DEPENDENCIES ============
+
+    const { form$, theme, classes, components } = useFormComponent(props, context)
+
+    return {
+      // Inject
+      form$,
+      theme,
+
+      // Computed
+      classes,
+      components,
     }
   },
   computed: {

@@ -22,8 +22,8 @@
         defaultClasses: {
           container: 'nav-item',
           active: 'active',
-          inactive: '',
-          valid: '',
+          inactive: 'inactive',
+          valid: 'valid',
           invalid: 'has-error',
           wrapper: 'nav-link',
         },

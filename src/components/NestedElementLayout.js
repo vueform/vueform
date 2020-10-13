@@ -2,5 +2,7 @@ import BaseElementLayout from './BaseElementLayout'
 
 export default {
   name: 'NestedElementLayout',
-  mixins: [BaseElementLayout],
+  init(props, context) {
+    return BaseElementLayout.init(props, context)
+  }
 }

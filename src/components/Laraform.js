@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { computed } from 'composition-api'
 import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
 import formData from './../utils/formData'
 import asyncForEach from './../utils/asyncForEach'
@@ -11,16 +11,14 @@ export default {
     return this.extendedTheme.components.Laraform.render.apply(this, arguments)
   },
   provide() {
-    const _this = this
-  
     return {
-      get form$ () {
-        return _this.form$
-      },
+      form$: computed(() => {
+        return this
+      }),
 
-      get theme () {
-        return _this.extendedTheme
-      },
+      theme: computed(() => {
+        return this.extendedTheme
+      }),
     }
   },
   props: {
@@ -417,7 +415,7 @@ export default {
       var errors = []
 
       _.each(_.filter(this.elements$, { available: true }), (element$) => {
-        _.each(element$.messageBag.value.errors || [], (error) => {
+        _.each(element$.messageBag.errors || [], (error) => {
           errors.push(error)
         })
       })

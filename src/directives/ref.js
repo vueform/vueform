@@ -31,7 +31,7 @@ const add = function (el, binding, vnode) {
     }
   }
   else {
-    parent[name] = component
+    parent.$set(parent, name, component)
   }
 }
 
@@ -42,7 +42,7 @@ const unbind = function(el, binding, vnode) {
     parent[name].splice(parent[name].indexOf(component), 1)
   }
   else {
-    parent[name] = undefined
+    parent.$set(parent, name, undefined)
   }
 }
 

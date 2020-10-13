@@ -18,7 +18,7 @@ export default function useHandleChange(props, context, dependencies)
   const handleChange = () => {
     fireChange()
 
-    if (form$.$_shouldValidateOn('change')) {
+    if (form$.value.$_shouldValidateOn('change')) {
       validate()
     }
   }

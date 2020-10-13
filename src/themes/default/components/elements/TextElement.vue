@@ -91,7 +91,8 @@
       return {
         defaultClasses: {
           input: 'form-control',
-          container: 'nav nav-tabs form-tabs'
+          container: 'nav nav-tabs form-tabs',
+          inputContainer: 'input-group',
         }
       }
     },

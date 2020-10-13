@@ -29,6 +29,10 @@ const Factory = class {
   make(rule) {
     let ruleClass = typeof rule == 'function' ? this.createRule(rule) : this.rules[rule.name]
 
+    if (!ruleClass) {
+      throw new Error(`Unknown rule: '${rule.name}'`)
+    }
+
     return new ruleClass(rule, {
       element$: this.element$
     })
