@@ -2,6 +2,12 @@ import useElementComponent from './../composables/useElementComponent'
 
   export default {
     name: 'ElementLabelFloating',
+    props: {
+      visible: {
+        type: Boolean,
+        default: false,
+      }
+    },
     init(props, context)
     {    
       // ============ DEPENDENCIES ============
@@ -17,12 +23,6 @@ import useElementComponent from './../composables/useElementComponent'
         // Computed
         classes,
         components,
-      }
-    },
-    props: {
-      visible: {
-        type: Boolean,
-        default: false,
       }
     },
   }

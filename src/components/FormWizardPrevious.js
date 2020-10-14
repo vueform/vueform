@@ -1,9 +1,9 @@
+import { computed, toRefs } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
-import HasLabel from './../mixins/HasLabel'
+import useLabel from './../composables/useLabel'
 
 export default {
   name: 'FormWizardPrevious',
-  mixins: [HasLabel],
   props: {
     wizard$: {
       type: Object,
@@ -11,9 +11,56 @@ export default {
   },
   init(props, context)
   {  
+    const { wizard$ } = toRefs(props)
+    
     // ============ DEPENDENCIES ============
 
     const { form$, theme, classes, components } = useFormComponent(props, context)
+
+    // ============== COMPUTED ==============
+
+    const visible = computed(() => {
+      if (current$ && current$.value && current$.value.buttons && current$.value.buttons.previous === false) {
+        return false
+      }
+
+      return true
+    })
+
+    const disabled = computed(() => {
+      return wizard$.value.isAtFirstStep
+    })
+
+    const current$ = computed(() => {
+      return wizard$.value.current$
+    })
+
+    const baseLabel = computed(() => {
+      if (current$ && current$.value && current$.value.labels && current$.value.labels.previous) {
+        return current$.value.labels.previous
+      }
+      
+      return form$.value.__('laraform.wizard.previous')
+    })
+
+    const descriptor = computed(() => {
+      return {
+        label: baseLabel.value
+      }
+    })
+
+    // =============== METHODS ==============
+
+    const previous = () => {
+      wizard$.value.previous()
+    }
+
+    // ============ DEPENDENCIES ============
+
+    const { label, isLabelComponent } = useLabel(props, context, {
+      descriptor,
+      form$,
+    })
 
     return {
       // Inject
@@ -23,33 +70,14 @@ export default {
       // Computed
       classes,
       components,
-    }
-  },
-  computed: {
-    visible() {
-      if (this.current$ && this.current$.buttons && this.current$.buttons.previous === false) {
-        return false
-      }
+      visible,
+      disabled,
+      current$,
+      label,
+      isLabelComponent,
 
-      return true
-    },
-    disabled() {
-      return this.wizard$.isAtFirstStep
-    },
-    baseLabel() {
-      if (this.current$ && this.current$.labels && this.current$.labels.previous) {
-        return this.current$.labels.previous
-      }
-
-      return this.__('laraform.wizard.previous')
-    },
-    current$() {
-      return this.wizard$.current$
-    },
-  },
-  methods: {
-    previous() {
-      this.wizard$.previous()
+      // Methods
+      previous,
     }
   },
 }

@@ -1,3 +1,4 @@
+import { computed } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 
 export default {
@@ -8,6 +9,22 @@ export default {
 
     const { form$, theme, classes, components } = useFormComponent(props, context)
 
+    // ============== COMPUTED ==============
+
+    const language = computed(() => {
+      return form$.value.language
+    })
+
+    const languages = computed(() => {
+      return form$.value.languages
+    })
+
+    // =============== METHODS ==============
+
+    const select = () => {
+      context.emit('changeLanguage', language.value)
+    }
+
     return {
       // Inject
       form$,
@@ -16,19 +33,11 @@ export default {
       // Computed
       classes,
       components,
+      language,
+      languages,
+
+      // Methods
+      select,
     }
-  },
-  computed: {
-    language() {
-      return this.form$.language
-    },
-    languages() {
-      return this.form$.languages
-    },
-  },
-  methods: {
-    select(language) {
-      this.$emit('changeLanguage', language)
-    },
   },
 }

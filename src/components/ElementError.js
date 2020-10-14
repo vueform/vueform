@@ -1,3 +1,4 @@
+import { computed } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
 
 export default {
@@ -8,6 +9,12 @@ export default {
 
     const { el$, form$, classes, components, theme } = useElementComponent(props, context)
 
+    // ============== COMPUTED ==============
+    
+    const error = computed(() => {
+      return el$.value.error
+    })
+
     return {
       // Inject
       el$,
@@ -17,11 +24,7 @@ export default {
       // Computed
       classes,
       components,
+      error,
     }
   },
-  computed: {
-    error() {
-      return this.el$.error
-    }
-  }
 }

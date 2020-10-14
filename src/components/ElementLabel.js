@@ -1,3 +1,4 @@
+import { computed, ref } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
 import useLabel from './../composables/useLabel'
 
@@ -10,10 +11,15 @@ export default {
     const { el$, form$, classes, components, theme } = useElementComponent(props, context)
 
     const { label, isLabelComponent } = useLabel(props, context, { 
-      descriptor: el$.value.schema,
-      form$: form$,
+      descriptor: ref(el$.value.schema),
       el$: el$,
      })
+
+    // ============== COMPUTED ==============
+
+    const name = computed(() => {
+      return el$.value.name
+    })
 
     return {
       // Inject
@@ -26,11 +32,7 @@ export default {
       components,
       label,
       isLabelComponent,
+      name,
     }
-  },
-  computed: {
-    name() {
-      return this.el$.name
-    },
   },
 }

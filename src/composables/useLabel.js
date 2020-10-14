@@ -6,13 +6,13 @@ export default function useLabel(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const descriptor = dependencies.descriptor
-  const el$ = dependencies.el$
-  const form$ = dependencies.form$
+  const el$ = dependencies.el$ // optional
+  const form$ = dependencies.form$ // optional
 
   // ============== COMPUTED ==============
   
   const baseLabel = computed(() => {
-    return descriptor.label
+    return descriptor.value.label
   })
 
   const isLabelFunction = computed(() => {
@@ -24,7 +24,7 @@ export default function useLabel(props, context, dependencies)
   })
   
   const label = computed(() => {
-    return isLabelFunction.value ? baseLabel.value(el$.value || form$) : baseLabel.value || null
+    return isLabelFunction.value ? baseLabel.value(el$.value || form$.value) : baseLabel.value || null
   })
 
   return {

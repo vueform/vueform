@@ -1,9 +1,9 @@
+import { computed, toRefs } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
-import HasLabel from './../mixins/HasLabel'
+import useLabel from './../composables/useLabel'
 
 export default {
   name: 'FormWizardFinish',
-  mixins: [HasLabel],
   props: {
     wizard$: {
       type: Object,
@@ -11,9 +11,75 @@ export default {
   },
   init(props, context)
   {  
+    const { wizard$ } = toRefs(props)
+
     // ============ DEPENDENCIES ============
 
     const { form$, theme, classes, components } = useFormComponent(props, context)
+
+    // ============== COMPUTED ==============
+
+    const visible = computed(() => {
+      return wizard$.value.isAtLastStep
+    })
+
+
+    const disabled = computed(() => {
+      // only disable finish because of invalidity
+      // if element validations are triggered on
+      // change, otherwise it might occur that the
+      // form has invalid fields, which values have
+      // changed to valid, but still marked as invalid
+      return (wizard$.value.invalid && form$.value.$_shouldValidateOn('change')) ||
+            wizard$.value.busy || form$.value.submitting || form$.value.disabled
+    })
+
+    const current$ = computed(() => {
+      return wizard$.value.current$
+    })
+
+    const visible$ = computed(() => {
+      return wizard$.value.visible$
+    })
+
+    const baseLabel = computed(() => {
+      if (current$ && current$.value && current$.value.labels && current$.value.labels.finish) {
+        return current$.value.labels.finish
+      }
+      
+      return form$.value.__('laraform.wizard.finish')
+    })
+
+    const descriptor = computed(() => {
+      return {
+        label: baseLabel.value
+      }
+    })
+
+    // =============== METHODS ==============
+
+    const finish = () => {
+      if (wizard$.value.handleFinish() === false) {
+        return
+      }
+
+      if (form$.value.$_shouldValidateOn('submit')) {
+        _.each(visible$.value, (step$) => {
+          step$.validate()
+        })
+      }
+
+      wizard$.value.finish(() => {
+        wizard$.value.submit()
+      })
+    }
+
+    // ============ DEPENDENCIES ============
+
+    const { label, isLabelComponent } = useLabel(props, context, {
+      descriptor,
+      form$,
+    })
 
     return {
       // Inject
@@ -23,51 +89,15 @@ export default {
       // Computed
       classes,
       components,
+      visible,
+      disabled,
+      current$,
+      visible$,
+      label,
+      isLabelComponent,
+
+      // Methods
+      finish,
     }
   },
-  computed: {
-    visible() {
-      return this.wizard$.isAtLastStep
-    },
-    disabled() {
-      // only disable finish because of invalidity
-      // if element validations are triggered on
-      // change, otherwise it might occur that the
-      // form has invalid fields, which values have
-      // changed to valid, but still marked as invalid
-      return (this.wizard$.invalid && this.form$.$_shouldValidateOn('change')) ||
-            this.wizard$.busy || this.form$.submitting || this.form$.disabled
-    },
-    baseLabel() {
-      if (this.current$ && this.current$.labels && this.current$.labels.finish) {
-        return this.current$.labels.finish
-      }
-      
-      return this.__('laraform.wizard.finish')
-    },
-    current$() {
-      return this.wizard$.current$
-    },
-    visible$() {
-      return this.wizard$.visible$
-    },
-  },
-  methods: {
-    finish() {
-      if (this.wizard$.handleFinish() === false) {
-        return
-      }
-
-      if (this.form$.$_shouldValidateOn('submit')) {
-        _.each(this.visible$, (step$) => {
-          step$.validate()
-        })
-      }
-
-      this.wizard$.finish(() => {
-        this.wizard$.submit()
-      })
-    },
-  },
-
 }

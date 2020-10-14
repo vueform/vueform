@@ -1,3 +1,4 @@
+import { computed } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 
 export default {
@@ -8,6 +9,12 @@ export default {
 
     const { form$, theme, classes, components } = useFormComponent(props, context)
 
+    // ============== COMPUTED ==============
+
+    const errors = computed(() => {
+      return form$.value.messageBag.errors
+    })
+
     return {
       // Inject
       form$,
@@ -16,11 +23,7 @@ export default {
       // Computed
       classes,
       components,
-    }
-  },
-  computed: {
-    errors() {
-      return this.form$.messageBag.errors
+      errors,
     }
   },
 }

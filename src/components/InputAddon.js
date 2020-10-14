@@ -1,4 +1,6 @@
+import { computed, toRefs } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
+import isVueComponent from './../utils/isVueComponent'
 
 export default {
   name: 'InputAddon',
@@ -9,10 +11,32 @@ export default {
     },
   },
   init(props, context)
-  {  
+  { 
+    const { type } = toRefs(props)
+
     // ============ DEPENDENCIES ============
 
     const { form$, el$, classes, components, theme } = useElementComponent(props, context)
+
+    // ============== COMPUTED ==============
+
+    const baseAddon = computed(() => {
+      return el$.value.addons[type.value]
+    })
+
+    const addon = computed(() => {
+      return isAddonFunction.value
+        ? baseAddon.value(el$.value)
+        : baseAddon.value || null
+    })
+    
+    const isAddonFunction = computed(() => {
+      return typeof baseAddon.value === 'function' && (!baseAddon.value.prototype || !baseAddon.value.prototype.constructor || (baseAddon.value.prototype.constructor && baseAddon.value.prototype.constructor.name !== 'VueComponent'))
+    })
+
+    const isAddonComponent = computed(() => {
+      return isVueComponent(baseAddon.value)
+    })
 
     return {
       // Inject
@@ -23,25 +47,8 @@ export default {
       // Computed
       components,
       classes,
+      addon,
+      isAddonComponent,
     }
   },
-  computed: {
-    baseAddon() {
-      return this.el$.addons[this.type]
-    },
-    addon() {
-      return this.isAddonFunction
-        ? this.baseAddon(this.el$)
-        : this.baseAddon || null
-    },
-    isAddonFunction() {
-      return typeof this.baseAddon === 'function' && 
-             (!this.baseAddon.prototype || !this.baseAddon.prototype.constructor || (this.baseAddon.prototype.constructor && this.baseAddon.prototype.constructor.name !== 'VueComponent'))
-    },
-    isAddonComponent() {
-      return typeof this.baseAddon === 'function' && 
-             this.baseAddon.prototype &&
-             this.baseAddon.prototype.constructor.name === 'VueComponent'
-    },
-  }
 }

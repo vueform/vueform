@@ -33,6 +33,30 @@ export default {
       return classList
     })
 
+    const hasLabel = computed(() => {
+      return el$.value.hasLabel
+    })
+
+    const before = computed(() => {
+      return el$.value.before
+    })
+
+    const between = computed(() => {
+      return el$.value.between
+    })
+
+    const after = computed(() => {
+      return el$.value.after
+    })
+
+    const description = computed(() => {
+      return el$.value.description
+    })
+
+    const visible = computed(() => {
+      return el$.value.visible
+    })
+
     return {
       // Inject
       el$,
@@ -42,26 +66,12 @@ export default {
       // Computed
       components,
       classes: updatedClasses,
+      visible,
+      hasLabel,
+      before,
+      between,
+      after,
+      description,
     }
   },
-  computed: {
-    hasLabel() {
-      return this.el$.hasLabel
-    },
-    before() {
-      return this.el$.before
-    },
-    between() {
-      return this.el$.between
-    },
-    after() {
-      return this.el$.after
-    },
-    description() {
-      return this.el$.description
-    },
-    visible (){
-      return this.el$.visible
-    } 
-  }
 }

@@ -36,6 +36,12 @@ export default {
       return classList
     })
 
+    // =============== METHODS ==============
+
+    const select = () => {
+      context.emit('select', code.value)
+    }
+
     return {
       // Inject
       form$,
@@ -58,9 +64,4 @@ export default {
       required: true,
     },
   },
-  methods: {
-    select() {
-      this.$emit('select', this.code)
-    }
-  }
 }
