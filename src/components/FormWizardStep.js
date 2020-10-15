@@ -1,13 +1,12 @@
-import { toRefs, ref, computed } from 'composition-api'
+import { toRefs, ref, computed, onMounted, nextTick, watch } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useConditions from './../composables/useConditions'
-import HasEvents from './../mixins/HasEvents'
-import HasLabel from './../mixins/HasLabel'
+import useLabel from './../composables/useLabel'
+import useEvents from './../composables/useEvents'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'FormWizardStep',
-  mixins: [HasEvents, HasLabel],
   props: {
     /**
      * Name of step within [steps](reference/frontend-form#prop-steps) object.
@@ -43,13 +42,26 @@ export default {
   },
   init(props, context)
   {  
-    const { step, elements$ } = toRefs(props)
+    const { step, elements$, name, visible$ } = toRefs(props)
     const { containers } = toRefs(context.data)
 
     // ============ DEPENDENCIES ============
 
     const { form$, theme, classes, components, mainClass } = useFormComponent(props, context)
     const { available, conditions } = useConditions(props, context, { form$, descriptor: step })
+    const { label, isLabelComponent } = useLabel(props, context, { form$, descriptor: step })
+    const {
+        events, listeners, on, off, fire, fireActive, fireInactive,
+        fireComplete, fireEnable, fireDisable,
+    } = useEvents(props, context, { form$, descriptor: step }, {
+      events: {
+        active: [],
+        inactive: [],
+        complete: [],
+        enable: [],
+        disable: [],
+      },
+    })
 
     // ================ DATA ================
 
@@ -153,6 +165,303 @@ export default {
       return classList
     })
 
+    /**
+     * Base label of step.
+     * 
+     * @private
+     * @type {string}
+     */
+    const baseLabel = computed(() => {
+      return step.value.label
+    })
+
+    /**
+     * Returns the labels object of step schema.
+     * 
+     * @type {object}
+     */
+    const labels = computed(() => {
+      return step.value.labels || {}
+    })
+
+    /**
+      * Returns the buttons object of step schema.
+      * 
+      * @type {object}
+      */
+    const buttons = computed(() => {
+      return step.value.buttons || {}
+    })
+
+    /**
+      * Determines whether the step has any debouncing elements.
+      * 
+      * @type {boolean}
+      */
+    const debouncing = computed(() => {
+      return _.some(children$.value, { available: true, debouncing: true })   
+    })
+
+    /**
+      * Determines whether all the elements in the step has been validated.
+      * 
+      * @type {boolean}
+      */
+    const validated = computed(() => {
+      return !_.some(children$.value, { available: true, validated: false })
+    })
+
+    /**
+      * Determines whether the step has any busy elements.
+      * 
+      * @type {boolean}
+      */
+    const busy = computed(() => {
+      return pending.value || debouncing.value
+    })
+
+    /**
+      * Determines whether the step is done (complete, validated has no invalid or pending elements).
+      * 
+      * @type {boolean}
+      */
+    const done = computed(() => {
+      return completed.value
+        && validated.value
+        && !invalid.value
+        && !pending.value
+    })
+
+    /**
+      * Returns the index of step within the wizard.
+      * 
+      * @type {integer}
+      */
+    const index = computed(() => {
+      return _.keys(visible$.value).indexOf(name.value)
+    })
+
+    const step$ = computed(() => {
+      return form$.value.wizard$.steps$[name.value]
+    })
+
+    // =============== METHODS ==============
+
+
+    /**
+     * Validate the elements within the step.
+     *
+     * @public
+     * @returns {void}
+     */
+    const validate = () => {
+      // only skip validation if the elements
+      // are validated and none is invalid
+      if (validated.value && !invalid.value) {
+        return 
+      }
+
+      _.each(children$.value, (element$) => {
+        if ((!element$.validated || element$.invalid) && element$.available) {
+          element$.validate()
+        }
+      })
+    }
+
+    /**
+      * Prepares to proceed to the next step. If [validateOn](reference/frontend-form#prop-validateOn) contains 'step' it first validates any unvalidated element and wait for async validators to finish. Only continues no elements has `invalid` status.
+      *
+      * @public
+      * @param {function} callback callback to call when the form is ready to proceed
+      * @returns {void}
+      */
+    const proceed = (callback) => {
+      if (busy.value) {
+        return waitForAsync(callback)
+      }
+
+      // prevent next only if the step has invalid
+      // elements and they should be validated on step
+      if (invalid.value && form$.value.shouldValidateOn('step')) {
+        return
+      }
+
+      callback()
+    }
+
+    /**
+     * Activates the step.
+     *
+     * @public
+     * @returns {void}
+     */
+    const activate = () => {
+      if (active.value) {
+        return
+      }
+
+      active.value = true
+
+     fireActive()
+    }
+
+    /**
+     * Deactivates the step.
+     *
+     * @public
+     * @returns {void}
+     */
+    const deactivate = () => {
+      if (!active.value) {
+        return
+      }
+
+      active.value = false
+
+      fireInactive()
+    }
+
+    /**
+     * Enables the step.
+     *
+     * @public
+     * @returns {void}
+     */
+    const enable = () => {
+      if (!disabled.value) {
+        return
+      }
+
+      disabled.value = false
+
+      fireEnable()
+    }
+
+    /**
+     * Disables the step.
+     *
+     * @public
+     * @returns {void}
+     */
+    const disable = () => {
+      if (disabled.value) {
+        return
+      }
+      
+      disabled.value = true
+
+      fireDisable()
+    }
+
+    /**
+     * Completes the step.
+     *
+     * @public
+     * @returns {void}
+     */
+    const complete = () => {
+      if (completed.value) {
+        return
+      }
+
+      completed.value = true
+
+      fireComplete()
+    }
+
+    /**
+     * Uncompletes the step.
+     *
+     * @public
+     * @returns {void}
+     */
+    const uncomplete = () => {
+      completed.value = false
+    }
+
+    /**
+     * Selects the step to become the active step.
+     *
+     * @public
+     * @returns {void}
+     */
+    const select = () => {
+      if (disabled.value) {
+        return
+      }
+
+      context.emit('select', step$.value)
+
+      _.each(children$.value, (element$) => {
+        element$.activate()
+      })
+
+      activate()
+    }
+
+    /**
+      * Apply conditions of the step to the elements within.
+      * 
+      * @private
+      * @returns {void}
+      */
+    const forwardConditions = () => {
+      if (conditions.value.length == 0) {
+        return
+      }
+
+      _.each(children$.value, (element$) => {
+        _.each(step.value.conditions, (condition) => {
+          element$.conditions.push(condition)
+        })
+      })
+    }
+
+    /**
+      * Waits for all async processes to finish, then invokes a callback.
+      * 
+      * @private
+      * @param {function} callback the function to invoke
+      * @returns {void}
+      */
+    const waitForAsync = (callback) => {
+      var unwatch = watch(busy, () => {
+        unwatch()
+        proceed(callback)
+      })
+    }
+
+    // ============== WATCHERS ==============
+
+    watch(visible, (val) => {
+      // if a revealed step is earlier than the
+      // current step, it should be enabled
+      if (val && index.value < form$.value.wizard$.current$.index) {
+        enable()
+      }
+    })
+
+    watch(children$, () => {
+      if (!active.value) {
+        return
+      } 
+
+      _.each(children$.value, (element$) => {
+        element$.activate()
+      })
+    }, { deep: false, lazy: true })
+
+    // ================ HOOKS ===============
+
+    onMounted(() => {
+      // nextTick is required because elements$
+      // only available after form is mounted,
+      // which is later than the wizard mount
+      nextTick(() => {
+        forwardConditions()
+      })
+    })
+
     return {
       // Inject
       form$,
@@ -162,6 +471,8 @@ export default {
       active,
       disabled,
       completed,
+      events,
+      listeners,
 
       // Computed
       children$,
@@ -172,385 +483,38 @@ export default {
       components,
       conditions,
       available,
+      baseLabel,
+      labels,
+      buttons,
+      debouncing,
+      validated,
+      busy,
+      done,
+      index,
+      step$,
+      label,
+      isLabelComponent,
+
+      // Methods
+      validate,
+      proceed,
+      activate,
+      deactivate,
+      enable,
+      disable,
+      complete,
+      uncomplete,
+      select,
+      forwardConditions,
+      waitForAsync,
+      on,
+      off,
+      fire,
+      fireActive,
+      fireInactive,
+      fireComplete,
+      fireEnable,
+      fireDisable,
     }
   },
-  data() {
-    return {
-
-      /**
-       * Helper property used to store available events.
-       * 
-       * @private
-       * @type {array}
-       * @default []
-       */
-      events: [
-        'active', 'inactive', 'complete', 'enable', 'disable',
-      ]
-    }
-  },
-  watch: {
-    visible(visible) {
-      // if a revealed step is earlier than the
-      // current step, it should be enabled
-      if (visible && this.index < this.form$.wizard$.current$.index) {
-        this.enable()
-      }
-    },
-    children$: {
-      handler() {
-        if (!this.active) {
-          return
-        } 
-
-        _.each(this.children$, (element$) => {
-          element$.activate()
-        })
-      },
-      deep: false,
-      immediate: false,
-    }
-  },
-  computed: {
-
-    /**
-     * Base label of step.
-     * 
-     * @private
-     * @type {string}
-     */
-    baseLabel() {
-      return this.step.label
-    },
-
-    /**
-     * Returns the labels object of step schema.
-     * 
-     * @type {object}
-     */
-    labels() {
-      return this.step.labels || {}
-    },
-
-    /**
-      * Returns the buttons object of step schema.
-      * 
-      * @type {object}
-      */
-    buttons() {
-      return this.step.buttons || {}
-    },
-
-    /**
-      * Determines whether the step has any debouncing elements.
-      * 
-      * @type {boolean}
-      */
-    debouncing() {
-      return _.some(this.children$, { available: true, debouncing: true })   
-    },
-
-    /**
-      * Determines whether all the elements in the step has been validated.
-      * 
-      * @type {boolean}
-      */
-    validated() {
-      return !_.some(this.children$, { available: true, validated: false })
-    },
-
-    /**
-      * Determines whether the step has any busy elements.
-      * 
-      * @type {boolean}
-      */
-    busy() {
-      return this.pending || this.debouncing
-    },
-
-    /**
-      * Determines whether the step is done (complete, validated has no invalid or pending elements).
-      * 
-      * @type {boolean}
-      */
-    done() {
-      return this.completed
-        && this.validated
-        && !this.invalid
-        && !this.pending
-    },
-
-    /**
-      * Returns the index of step within the wizard.
-      * 
-      * @type {integer}
-      */
-    index() {
-      return _.keys(this.visible$).indexOf(this.name)
-    },
-
-    step$() {
-      return this
-    }
-  },
-  methods: {
-    /**
-     * Validate the elements within the step.
-     *
-     * @public
-     * @returns {void}
-     */
-    validate() {
-      // only skip validation if the elements
-      // are validated and none is invalid
-      if (this.validated && !this.invalid) {
-        return 
-      }
-
-      _.each(this.children$, (element$) => {
-        if ((!element$.validated || element$.invalid) && element$.available) {
-          element$.validate()
-        }
-      })
-    },
-
-    /**
-      * Prepares to proceed to the next step. If [validateOn](reference/frontend-form#prop-validateOn) contains 'step' it first validates any unvalidated element and wait for async validators to finish. Only continues no elements has `invalid` status.
-      *
-      * @public
-      * @param {function} callback callback to call when the form is ready to proceed
-      * @returns {void}
-      */
-    proceed(callback) {
-      if (this.busy) {
-        return this.$_waitForAsync(callback)
-      }
-
-      // prevent next only if the step has invalid
-      // elements and they should be validated on step
-      if (this.invalid && this.form$.$_shouldValidateOn('step')) {
-        return
-      }
-
-      callback()
-    },
-
-    /**
-     * Activates the step.
-     *
-     * @public
-     * @returns {void}
-     */
-    activate() {
-      if (this.active) {
-        return
-      }
-
-      this.active = true
-
-      this.handleActive()
-    },
-
-    /**
-     * Deactivates the step.
-     *
-     * @public
-     * @returns {void}
-     */
-    deactivate() {
-      if (!this.active) {
-        return
-      }
-
-      this.active = false
-
-      this.handleInactive()
-    },
-
-    /**
-     * Enables the step.
-     *
-     * @public
-     * @returns {void}
-     */
-    enable() {
-      if (!this.disabled) {
-        return
-      }
-
-      this.disabled = false
-
-      this.handleEnable()
-    },
-
-    /**
-     * Disables the step.
-     *
-     * @public
-     * @returns {void}
-     */
-    disable() {
-      if (this.disabled) {
-        return
-      }
-      
-      this.disabled = true
-
-      this.handleDisable()
-    },
-
-    /**
-     * Completes the step.
-     *
-     * @public
-     * @returns {void}
-     */
-    complete() {
-      if (this.completed) {
-        return
-      }
-
-      this.completed = true
-
-      this.handleComplete()
-    },
-
-    /**
-     * Uncompletes the step.
-     *
-     * @public
-     * @returns {void}
-     */
-    uncomplete() {
-      this.completed = false
-    },
-
-    /**
-     * Selects the step to become the active step.
-     *
-     * @public
-     * @returns {void}
-     */
-    select() {
-      if (this.disabled) {
-        return
-      }
-
-      this.$emit('select', this)
-
-      _.each(this.children$, (element$) => {
-        element$.activate()
-      })
-
-      this.activate()
-    },
-        
-    /**
-      * Triggered when the step becomes active using [activate](#method-activate) method.
-      *
-      * @public
-      * @event active
-      */
-    handleActive(){
-      this.fire('active')
-    },
-        
-    /**
-      * Triggered when the step becomes inactive using [deactivate](#method-deactivate) method.
-      *
-      * @public
-      * @event inactive
-      */
-    handleInactive(){
-      this.fire('inactive')
-    },
-        
-    /**
-      * Triggered when the step becomes commpleted using [complete](#method-complete) method.
-      *
-      * @public
-      * @event complete
-      */
-    handleComplete(){
-      this.fire('complete')
-    },
-        
-    /**
-      * Triggered when the step becomes enabled using [enable](#method-enable) method.
-      *
-      * @public
-      * @event enable
-      */
-    handleEnable(){
-      this.fire('enable')
-    },
-        
-    /**
-      * Triggered when the step becomes disabled using [disable](#method-disable) method.
-      *
-      * @public
-      * @event disable
-      */
-    handleDisable(){
-      this.fire('disable')
-    },
-
-    /**
-      * Apply conditions of the step to the elements within.
-      * 
-      * @private
-      * @returns {void}
-      */
-    $_forwardConditions() {
-      if (this.conditions.length == 0) {
-        return
-      }
-
-      _.each(this.children$, (element$) => {
-        _.each(this.step.conditions, (condition) => {
-          element$.conditions.push(condition)
-        })
-      })
-    },
-
-    /**
-     * Set event listeners based on the step schema's {eventName} property.
-     * 
-     * @private
-     * @returns {void}
-     */
-    $_initEvents() {
-      _.each(this.events, (event) => {
-        var listener = this.step['on' + _.upperFirst(event)]
-
-        if (listener !== undefined) {
-          this.on(event, listener)
-        }
-      })
-    },
-
-    /**
-      * Waits for all async processes to finish, then invokes a callback.
-      * 
-      * @private
-      * @param {function} callback the function to invoke
-      * @returns {void}
-      */
-    $_waitForAsync(callback) {
-      var unwatch = this.$watch('busy', () => {
-        unwatch()
-        this.proceed(callback)
-      })
-    },
-  },
-  mounted() {
-    this.$_initEvents()
-
-    // nextTick is required because elements$
-    // only available after form is mounted,
-    // which is later than the wizard mount
-    this.$nextTick(() => {
-      this.$_forwardConditions()
-    })
-  }
 }

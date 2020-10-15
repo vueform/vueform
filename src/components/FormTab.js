@@ -1,13 +1,12 @@
 // @todo: check required schema (eg. `elements` property) here and everywhere
-import { computed, ref, toRefs } from 'composition-api'
+import { computed, ref, toRefs, watch, onMounted, nextTick } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useConditions from './../composables/useConditions'
-import HasEvents from './../mixins/HasEvents'
-import HasLabel from './../mixins/HasLabel'
+import useLabel from './../composables/useLabel'
+import useEvents from './../composables/useEvents'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
-  mixins: [HasEvents, HasLabel],
   name: 'FormTab',
   props: {
     /**
@@ -44,13 +43,20 @@ export default {
   },
   init(props, context)
   {  
-    const { tab, elements$ } = toRefs(props)
+    const { tab, elements$, name, visible$ } = toRefs(props)
     const { containers } = toRefs(context.data)
 
     // ============ DEPENDENCIES ============
 
     const { form$, theme, classes, components, mainClass } = useFormComponent(props, context)
     const { available, conditions } = useConditions(props, context, { form$, descriptor: tab })
+    const { label, isLabelComponent } = useLabel(props, context, { form$, descriptor: tab })
+    const { events, listeners, on, off, fire, fireActive, fireInactive } = useEvents(props, context, { form$, descriptor: tab }, {
+      events: {
+        active: [], // (tab$)
+        inactive: [], // (tab$)
+      },
+    })
 
     // ================ DATA ================
 
@@ -124,6 +130,108 @@ export default {
       return classList
     })
 
+    /**
+      * Returns the index of tab.
+      * 
+      * @type {integer}
+      */
+    const index = computed(() => {
+      return _.keys(visible$.value).indexOf(name.value)
+    })
+    
+    const tab$ = computed(() => {
+      return form$.value.tabs$.tabs$[name.value]
+    })
+
+    // =============== METHODS ==============
+
+    /**
+     * Selects the tab to become the active tab.
+     *
+     * @public
+     * @returns {void}
+     */
+    const select = () => {
+      if (active.value) {
+        return
+      }
+
+      context.emit('select', tab$.value)
+
+      activate()
+    }
+
+    /**
+     * Activates the tab.
+     *
+     * @public
+     * @returns {void}
+     */
+    const activate = () => {
+      if (active.value) {
+        return
+      }
+
+      active.value = true
+
+      _.each(children$.value, (element$) => {
+        element$.activate()
+      })
+
+      fireActive()
+    }
+
+    /**
+     * Deactivates the step.
+     *
+     * @public
+     * @returns {void}
+     */
+    const deactivate = () => {
+      if (!active.value) {
+        return
+      }
+
+      active.value = false
+
+      _.each(children$.value, (element$) => {
+        element$.deactivate()
+      })
+
+      fireInactive()
+    }
+
+    // ============== WATCHERS ==============
+
+    watch(children$, () => {
+      if (!active.value) {
+        return
+      } 
+
+      _.each(children$.value, (element$) => {
+        element$.activate()
+      })
+    }, { deep: false, lazy: true })
+
+    // ================ HOOKS ===============
+
+    onMounted(() => {
+      // nextTick is required because elements$
+      // only available after form is mounted,
+      // which is later than the tab mount
+      nextTick(() => {
+        if (conditions.value.length == 0) {
+          return
+        }
+
+        _.each(children$.value, (element$) => {
+          _.each(tab.value.conditions, (condition) => {
+            element$.conditions.push(condition)
+          })
+        })
+      })
+    })
+
     return {
       // Inject
       form$,
@@ -131,6 +239,8 @@ export default {
 
       // Data
       active,
+      events,
+      listeners,
 
       // Computed
       children$,
@@ -140,172 +250,20 @@ export default {
       components,
       conditions,
       available,
+      index,
+      label,
+      isLabelComponent,
+      tab$,
+
+      // Methods
+      select,
+      activate,
+      deactivate,
+      on,
+      off,
+      fire,
+      fireActive,
+      fireInactive
     }
-  },
-  data() {
-    return {
-      /**
-       * Helper property used to store available events.
-       * 
-       * @private
-       * @type {array}
-       * @default []
-       */
-      events: [
-        'active', 'inactive',
-      ],
-    }
-  },
-  watch: {
-    children$: {
-      handler() {
-        if (!this.active) {
-          return
-        } 
-
-        _.each(this.children$, (element$) => {
-          element$.activate()
-        })
-      },
-      deep: false,
-      immediate: false,
-    }
-  },
-  computed: {
-
-    /**
-      * Returns the index of tab.
-      * 
-      * @type {integer}
-      */
-    index() {
-      return _.keys(this.visible$).indexOf(this.name)
-    },
-
-    tab$() {
-      return this
-    },
-
-    descriptor() {
-      return this.tab
-    }
-  },
-  methods: {
-
-    /**
-     * Selects the tab to become the active tab.
-     *
-     * @public
-     * @returns {void}
-     */
-    select() {
-      if (this.active) {
-        return
-      }
-
-      this.$emit('select', this)
-
-      _.each(this.children$, (element$) => {
-        element$.activate()
-      })
-
-      this.activate()
-    },
-
-    /**
-     * Activates the tab.
-     *
-     * @public
-     * @returns {void}
-     */
-    activate() {
-      if (this.active) {
-        return
-      }
-
-      this.active = true
-
-      this.handleActive()
-    },
-
-    /**
-     * Deactivates the step.
-     *
-     * @public
-     * @returns {void}
-     */
-    deactivate() {
-      if (!this.active) {
-        return
-      }
-
-      this.active = false
-
-      this.handleInactive()
-    },
-        
-    /**
-     * Triggered when the tab becomes active using [activate](#method-activate) or [select](#method-select) method.
-     *
-     * @public
-     * @event active
-     */
-    handleActive(){
-      this.fire('active')
-    },
-        
-    /**
-     * Triggered when the tab becomes active using [inactivate](#method-activate) on the current or [select](#method-select) method for an other tab.
-     *
-     * @public
-     * @event inactive
-     */
-    handleInactive(){
-      this.fire('inactive')
-    },
-
-    /**
-     * Apply conditions of the step to the elements within.
-     * 
-     * @private
-     * @returns {void}
-     */
-    $_forwardConditions() {
-      if (this.conditions.length == 0) {
-        return
-      }
-
-      _.each(this.children$, (element$) => {
-        _.each(this.tab.conditions, (condition) => {
-          element$.conditions.push(condition)
-        })
-      })
-    },
-
-    /**
-     * Set event listeners based on the tab schema's {eventName} property.
-     * 
-     * @private
-     * @returns {void}
-     */
-    $_initEvents() {
-      _.each(this.events, (event) => {
-        var listener = this.tab['on' + _.upperFirst(event)]
-
-        if (listener !== undefined) {
-          this.on(event, listener)
-        }
-      })
-    },
-  },
-  mounted() {
-    this.$_initEvents()
-
-    // nextTick is required because elements$
-    // only available after form is mounted,
-    // which is later than the tab mount
-    this.$nextTick(() => {
-      this.$_forwardConditions()
-    })
   },
 }

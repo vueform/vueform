@@ -1,10 +1,9 @@
-import { ref } from 'composition-api'
+import { ref, computed, toRefs, watch, onMounted, nextTick } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
-import HasEvents from './../mixins/HasEvents'
+import useEvents from './../composables/useEvents'
 
 export default {
   name: 'FormTabs',
-  mixins: [HasEvents],
   props: {
     /**
      * Tabs definition.
@@ -24,142 +23,96 @@ export default {
   },
   init(props, context)
   {  
+    const { elements$, tabs } = toRefs(props)
+
     // ============ DEPENDENCIES ============
 
     const { form$, theme, classes, components } = useFormComponent(props, context)
+    const { events, listeners, on, off, fire, fireChange } = useEvents(props, context, { form$ }, {
+      events: {
+        change: [], // (tab$, oldTab$)
+      },
+    })
 
     // ================ DATA ================
 
     const formTabs$ = ref([])
 
-    return {
-      // Inject
-      form$,
-      theme,
+    // ============== COMPUTED ==============
 
-      // Data
-      formTabs$,
-
-      // Computed
-      classes,
-      components,
-    }
-  },
-  data() {
-    return {
-      /**
-       * Helper property used to store available events.
-       * 
-       * @private
-       * @type {array}
-       * @default []
-       */
-      events: [
-        'change',
-      ],
-    }
-  },
-  watch: {
-    elements$: {
-      handler(newValue, oldValue) {
-        let newElements$ = _.difference(_.keys(newValue), _.keys(oldValue))
-
-        _.each(newElements$, (newElement$) => {
-          this.elements$[newElement$].deactivate()
-        })
-      },
-      deep: false,
-      immediate: false
-    },
-    tabs: {
-      handler() {
-        this.$nextTick(() => {
-          // this.$_setTabs$()
-
-          this.$nextTick(() => {
-            if (_.isEmpty(this.current$)) {
-              this.first$.select()
-            }
-          })
-        })
-      },
-      deep: true,
-      immediate: false,
-    }
-  },
-  computed: {
     /**
      * Object of tab$ components.
      * 
      * @type {object}
      * @default {}
      */
-    tabs$() {
-      let tabs$ = {}
+    const tabs$ = computed(() => {
+      let tabList$ = {}
 
-      _.each(this.formTabs$, (formTab$) => {
-        tabs$[formTab$.name] = formTab$
+      _.each(formTabs$.value, (formTab$) => {
+        tabList$[formTab$.name] = formTab$
       })
 
-      return tabs$
-    },
+      return tabList$
+    })
 
     /**
      * Returns the visible [tab$](reference/frontend-tab) components.
      * 
      * @type {object}
      */
-    visible$() {
-      var tabs$ = {}
+    const visible$ = computed(() => {
+      var tabList$ = {}
 
-      _.each(this.tabs$, (tab$) => {
+      _.each(tabs$.value, (tab$) => {
         if (tab$.visible) {
-          tabs$[tab$.name] = tab$
+          tabList$[tab$.name] = tab$
         }
       })
 
-      return tabs$
-    },
+      return tabList$
+    })
 
     /**
      * Returns the current [tab$](reference/frontend-tab) components.
      * 
      * @type {object}
      */
-    current$() {
-      var current = _.find(this.tabs$, { active: true })
+    const current$ = computed(() => {
+      var current = _.find(tabs$.value, { active: true })
 
       return current !== undefined ? current : {}
-    },
+    })
 
     /**
      * Returns the first [tab$](reference/frontend-tab) components.
      * 
      * @type {object}
      */
-    first$() {
-      return this.visible$[_.head(_.keys(this.visible$))]
-    },
+    const first$ = computed(() => {
+      return visible$.value[_.head(_.keys(visible$.value))]
+    })
 
     /**
      * Returns the next [tab$](reference/frontend-tab) component.
      * 
      * @type {tab$}
      */
-    next$() {
-      return this.visible$[_.keys(this.visible$)[this.current$.index + 1]]
-    },
+    const next$ = computed(() => {
+      return visible$.value[_.keys(visible$.value)[current$.value.index + 1]]
+    })
 
     /**
      * Returns the previous [tabs$](reference/frontend-tab) component.
      * 
      * @type {tab$}
      */
-    previous$() {
-      return this.visible$[_.keys(this.visible$)[this.current$.index - 1]]
-    },
-  },
-  methods: {
+    const previous$ = computed(() => {
+      return visible$[_.keys(visible$.value)[current$.value.index - 1]]
+    })
+
+    // =============== METHODS ==============
+
     /**
      * Moves to a tab.
      *
@@ -167,11 +120,11 @@ export default {
      * @param {object} tab key of tab in [tabs](reference/frontend-form#prop-tabs)
      * @returns {void}
      */
-    goTo(tab) {
-      let tab$ = this.visible$[tab]
+    const goTo = (tab) => {
+      let tab$ = visible$.value[tab]
       
       tab$.select()
-    },
+    }
 
     /**
      * Selects a tab.
@@ -180,17 +133,15 @@ export default {
      * @param {object} tab$ selected tab component
      * @returns {void}
      */
-    select(tab$) {
-      _.each(this.elements$, (element$) => {
-        element$.deactivate()
-      })
+    const select = (tab$) => {
+      let curr$ = current$.value
 
-      _.each(this.tabs$, (tab$) => {
+      _.each(tabs$.value, (tab$) => {
         tab$.deactivate()
       })
 
-      this.handleChange(tab$)
-    },
+      fireChange(tab$, curr$)
+    }
 
     /**
      * Returns a specific [tab$](reference/frontend-tab).
@@ -199,9 +150,9 @@ export default {
      * @param {object} tab key of tab in [tabs](reference/frontend-form#prop-tabs) object
      * @returns {wizardStep$}
      */
-    tab$(tab) {
-      return _.find(this.tabs$, {name: tab})
-    },
+    const tab$ = (tab) => {
+      return _.find(tabs$.value, { name: tab })
+    }
 
     /**
      * Reset tabs, meaning selecting [first$](#prop-first) tab. 
@@ -209,31 +160,74 @@ export default {
      * @public
      * @returns {void}
      */
-    reset() {
-      this.first$.select()
-    },
-
-    /**
-     * Triggered the tab changes using [select](#method-select) method.
-     *
-     * @public
-     * @param {object} tab$ selected tab component
-     * @event change
-     */
-    handleChange(tab$) {
-      this.fire('change', tab$)
-    },
-  },
-  mounted() {
-    if (_.isEmpty(this.tabs)) {
-      return
+    const reset = () => {
+      first$.value.select()
     }
 
-    // nextTick is required because elements$
-    // only available after form is mounted,
-    // which is later than the tabs mount
-    // this.$nextTick(() => {
-      this.first$.select()
-    // })
-  }
+    // ============== WATCHERS ==============
+
+    watch(elements$, (newValue, oldValue) => {
+      let newElements$ = _.difference(_.keys(newValue), _.keys(oldValue))
+
+      _.each(newElements$, (newElement$) => {
+        elements$.value[newElement$].deactivate()
+      })
+    }, { deep: false, lazy: true })
+
+    watch(tabs, () => {
+      nextTick(() => {
+        nextTick(() => {
+          if (_.isEmpty(current$.value)) {
+            first$.value.select()
+          }
+        })
+      })
+    }, { deep: true, lazy: true })
+
+    // =============== HOOKS ================
+
+    onMounted(() => {
+      if (_.isEmpty(tabs.value)) {
+        return
+      }
+
+      // nextTick is required because elements$
+      // only available after form is mounted,
+      // which is later than the tabs mount
+      nextTick(() => {
+        first$.value.select()
+      })
+    })
+
+    return {
+      // Inject
+      form$,
+      theme,
+
+      // Data
+      formTabs$,
+      events,
+      listeners,
+
+      // Computed
+      classes,
+      components,
+      tabs$,
+      visible$,
+      current$,
+      first$,
+      next$,
+      previous$,
+
+      // Methods
+      goTo,
+      select,
+      tab$,
+      reset,
+      on,
+      off,
+      fire,
+      fireChange,
+    }
+  },
 }

@@ -8,7 +8,7 @@ export default function useData(props, context, dependencies)
 
    // ============ DEPENDENCIES ============
 
-  const { form$ } = dependencies.form$
+  const form$ = dependencies.form$
   const { value } = dependencies.value
 
   // ================ DATA ================

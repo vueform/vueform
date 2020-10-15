@@ -7,7 +7,7 @@ export default function useLabel(props, context, dependencies)
 
   // ============ DEPENDENCIES ============
 
-  const { form$ } = dependencies.form$
+  const form$ = dependencies.form$
 
   // ============== COMPUTED ==============
 

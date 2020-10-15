@@ -1,5 +1,5 @@
 <template>
-  <li v-if="visible" :class="classes.container">
+  <li v-show="visible" :class="classes.container">
     <a
       href="#"
       :class="classes.wrapper"

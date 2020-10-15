@@ -1,10 +1,9 @@
-import { ref } from 'composition-api'
+import { ref, computed, toRefs, nextTick, watch, onMounted } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
-import HasEvents from './../mixins/HasEvents'
+import useEvents from './../composables/useEvents'
 
 export default {
   name: 'FormWizard',
-  mixins: [HasEvents],
   props: {
     /**
      * Steps definition.
@@ -24,233 +23,190 @@ export default {
   },
   init(props, context)
   { 
+    const { elements$, steps } = toRefs(props)
+
     // ============ DEPENDENCIES ============
 
     const { form$, theme, classes, components } = useFormComponent(props, context)
+    const { events, listeners, on, off, fire, fireNext, firePrevious, fireFinish, fireSelect } = useEvents(props, context, { form$ }, {
+      events: {
+        next: [],
+        previous: [],
+        finish: [],
+        select: [], // (step$, oldStep$)
+      },
+    })
 
     // // ================ DATA ================
 
     const wizardSteps$ = ref([])
 
-    return {
-      // Inject
-      form$,
-      theme,
+    // ============== COMPUTED ==============
 
-      // Data
-      wizardSteps$,
-
-      // Computed
-      classes,
-      components,
-    }
-  },
-  data() {
-    return {
-      /**
-       * Helper property used to store available events.
-       * 
-       * @private
-       * @type {array}
-       * @default []
-       */
-      events: [
-        'next', 'previous', 'finish', 'select',
-      ]
-    }
-  },
-  watch: {
-    elements$: {
-      handler(newValue, oldValue) {
-        let newElements$ = _.difference(_.keys(newValue), _.keys(oldValue))
-
-        _.each(newElements$, (newElement$) => {
-          this.elements$[newElement$].deactivate()
-        })
-      },
-      deep: false,
-      immediate: false
-    },
-    steps: {
-      handler() {
-        this.$nextTick(() => {
-          
-          if (_.isEmpty(this.lastEnabled$)) {
-            this.first$.enable()
-          }
-
-          if (_.isEmpty(this.current$)) {
-            this.first$.select()
-          }
-        })
-      },
-      deep: true,
-      immediate: false,
-    }
-  },
-  computed: {
     /**
      * Object of wizardStep$ components.
      * 
      * @type {object}
      * @default {}
      */
-    steps$() {
+    const steps$ = computed(() => {
       let steps$ = {}
 
-      _.each(this.wizardSteps$, (step$) => {
+      _.each(wizardSteps$.value, (step$) => {
         steps$[step$.name] = step$
       })
 
       return steps$
-    },
+    })
 
     /**
      * Determines whether the wizard has any pending elements.
      * 
      * @type {boolean}
      */
-    pending() {
-      return _.some(this.visible$, { pending: true })
-    },
+    const pending = computed(() => {
+      return _.some(visible$.value, { pending: true })
+    })
 
     /**
      * Determines whether the wizard has any debouncing elements.
      * 
      * @type {boolean}
      */
-    debouncing() {
-      return _.some(this.visible$, { debouncing: true })
-    },
+    const debouncing = computed(() => {
+      return _.some(visible$.value, { debouncing: true })
+    })
 
     /**
      * Determines whether the wizard has any invalid elements.
      * 
      * @type {boolean}
      */
-    invalid() {
-      return _.some(this.visible$, { invalid: true })
-    },
+    const invalid = computed(() => {
+      return _.some(visible$.value, { invalid: true })
+    })
 
     /**
      * Determines whether all the steps are completetly filled out.
      * 
      * @type {boolean}
      */
-    done() {
-      return !_.some(this.visible$, { done: false })
-    },
+    const done = computed(() => {
+      return !_.some(visible$.value, { done: false })
+    })
 
     /**
      * Determines whether the wizard has any pending or debouncing elements.
      * 
      * @type {boolean}
      */
-    busy() {
-      return this.pending || this.debouncing
-    },
+    const busy = computed(() => {
+      return pending.value || debouncing.value
+    })
 
     /**
      * Returns the visible [wizardStep$](reference/frontend-wizard-step) components.
      * 
      * @type {object}
      */
-    visible$() {
-      var steps$ = {}
+    const visible$ = computed(() => {
+      var stepList$ = {}
 
-      _.each(this.steps$, (step$) => {
+      _.each(steps$.value, (step$) => {
         if (step$.visible) {
-          steps$[step$.name] = step$
+          stepList$[step$.name] = step$
         }
       })
 
-      return steps$
-    },
+      return stepList$
+    })
 
     /**
      * Returns the first [wizardStep$](reference/frontend-wizard-step) component.
      * 
      * @type {wizardStep$}
      */
-    first$() {
-      return this.visible$[_.head(_.keys(this.visible$))]
-    },
+    const first$ = computed(() => {
+      return visible$.value[_.head(_.keys(visible$.value))]
+    })
 
     /**
      * Returns the current [wizardStep$](reference/frontend-wizard-step) component.
      * 
      * @type {wizardStep$}
      */
-    current$() {
-      var current = _.find(this.steps$, { active: true })
+    const current$ = computed(() => {
+      var current = _.find(steps$.value, { active: true })
 
       return current !== undefined ? current : {}
-    },
+    })
 
     /**
      * Returns the next [wizardStep$](reference/frontend-wizard-step) component.
      * 
      * @type {wizardStep$}
      */
-    next$() {
-      return this.visible$[_.keys(this.visible$)[this.current$.index + 1]]
-    },
+    const next$ = computed(() => {
+      return visible$.value[_.keys(visible$.value)[current$.value.index + 1]]
+    })
 
     /**
      * Returns the previous [wizardStep$](reference/frontend-wizard-step) component.
      * 
      * @type {wizardStep$}
      */
-    previous$() {
-      return this.visible$[_.keys(this.visible$)[this.current$.index - 1]]
-    },
+    const previous$ = computed(() => {
+      return visible$.value[_.keys(visible$.value)[current$.value.index - 1]]
+    })
 
     /**
      * Returns the first invalid [wizardStep$](reference/frontend-wizard-step) component.
      * 
      * @type {wizardStep$}
      */
-    firstInvalid$() {
-      return _.find(this.visible$, { invalid: true })
-    },
+    const firstInvalid$ = computed(() => {
+      return _.find(visible$.value, { invalid: true })
+    })
 
     /**
      * Returns the first [wizardStep$](reference/frontend-wizard-step) component which is not done yet.
      * 
      * @type {wizardStep$}
      */
-    firstNonDone$() {
-      return _.find(this.visible$, { done: false })
-    },
+    const firstNonDone$ = computed(() => {
+      return _.find(visible$.value, { done: false })
+    })
 
     /**
      * Returns the last enabled [wizardStep$](reference/frontend-wizard-step) component.
      * 
      * @type {wizardStep$}
      */
-    lastEnabled$() {
-      return _.findLast(this.visible$, { disabled: false })
-    },
+    const lastEnabled$ = computed(() => {
+      return _.findLast(visible$.value, { disabled: false })
+    })
 
     /**
      * Determines whether the wizard is at the last step.
      * 
      * @type {boolean}
      */
-    isAtLastStep() {
-      return _.size(this.visible$) === this.current$.index + 1
-    },
+    const isAtLastStep = computed(() => {
+      return _.size(visible$.value) === current$.value.index + 1
+    })
 
     /**
      * Determines whether the wizard is at the first step.
      * 
      * @type {boolean}
      */
-    isAtFirstStep() {
-      return this.current$.index === 0
-    },
-  },
-  methods: {
+    const isAtFirstStep = computed(() => {
+      return current$.value.index === 0
+    })
+
+    // =============== METHODS ==============
+
+
     /**
      * Moves to a step. If it is disabled, enables it.
      *
@@ -259,22 +215,22 @@ export default {
      * @param {boolean} enableUntil whether steps should be enabled before destination step (default: false)
      * @returns {void}
      */
-    goTo(step, enableUntil) {
+    const goTo = (step, enableUntil) => {
       if (enableUntil === undefined) {
         let enableUntil = false
       }
 
-      var step = this.visible$[step]
+      var step = visible$.value[step]
       
       step.enable()
       step.select()
 
       if (enableUntil) {
-        this.$nextTick(() => {
-          this.$_enableUntilLastEnabled()
+        nextTick(() => {
+          enableUntilLastEnabled()
         })
       }
-    },
+    }
 
     /**
      * Moves to next step and enables it.
@@ -282,14 +238,12 @@ export default {
      * @public
      * @returns {void}
      */
-    next() {
-      if (this.handleNext(this.$next) === false) {
-        return
-      }
+    const next = () => {
+      fireNext(next$.value)
 
-      this.next$.enable()
-      this.next$.select()
-    },
+      next$.value.enable()
+      next$.value.select()
+    }
 
     /**
      * Moves to previous step.
@@ -297,13 +251,11 @@ export default {
      * @public
      * @returns {void}
      */
-    previous() {
-      if (this.handlePrevious(this.$previous) === false) {
-        return
-      }
+    const previous = () => {
+      firePrevious(previous$.value)
 
-      this.previous$.select()
-    },
+      previous$.value.select()
+    }
 
     /**
      * Validates all elements and if everything is fine marks all steps as complete and initiates submission. If the form is invalid it will jump to the first step which has invalid elements.
@@ -312,26 +264,20 @@ export default {
      * @param {function} callback callback to call when the form is ready to submit
      * @returns {void}
      */
-    finish(callback) {
-      if (this.pending) {
-        return this.$_waitForAsync(callback)
+    const finish = (callback) => {
+      if (pending.value) {
+        return waitForAsync(callback)
       }
 
-      if (this.invalid) {
-        this.firstInvalid$.select()
+      if (invalid.value) {
+        firstInvalid$.value.select()
         return
       }
 
-      this.complete()
-
-      // This will never be called
-      // if (!this.done) {
-      //   this.firstNonDone$.select()
-      //   return
-      // }
+      complete()
 
       callback()
-    },
+    }
 
     /**
      * Marks each [wizardStep$](reference/frontend-wizard-step) as complete.
@@ -339,11 +285,11 @@ export default {
      * @public
      * @returns {void}
      */
-    complete() {
-      _.each(this.steps$, (step$) => {
+    const complete = () => {
+      _.each(steps$.value, (step$) => {
         step$.complete()
       })
-    },
+    }
 
     /**
      * Returns a specific [wizardStep$](reference/frontend-wizard-step).
@@ -352,9 +298,9 @@ export default {
      * @param {object} step key of step in [wizard](reference/frontend-form#prop-wizard)
      * @returns {wizardStep$}
      */
-    step$(step) {
-      return _.find(this.visible$, { name: step })
-    },
+    const step$ = (step) => {
+      return _.find(visible$.value, { name: step })
+    }
 
     /**
      * Resets form and goes back to first step while disabling all others.
@@ -362,15 +308,15 @@ export default {
      * @public
      * @returns {void}
      */
-    reset() {
-      _.each(this.steps$, (step$) => {
+    const reset = () => {
+      _.each(steps$.value, (step$) => {
         step$.uncomplete()
         step$.disable()
       })
 
-      this.first$.enable()
-      this.first$.select()
-    },
+      first$.value.enable()
+      first$.value.select()
+    }
 
     /**
      * Enables all steps.
@@ -378,56 +324,21 @@ export default {
      * @public
      * @returns {void}
      */
-    enableAllSteps() {
-      _.each(this.steps$, (step$) => {
+    const enableAllSteps = () => {
+      _.each(steps$.value, (step$) => {
         step$.enable()
       })
-    },
+    }
 
     /**
-     * Su
+     * Emits submit event.
      *
      * @public
      * @returns {void}
      */
-    submit() {
-      this.$emit('submit')
-    },
-        
-    /**
-     * Triggered when moves to next step. Can prevent further execution if returns `false`.
-     *
-     * @public
-     * @prevents 
-     * @param {object} step$ the next step component
-     * @event next
-     */
-    handleNext(step$){
-      return this.fire('next', step$)
-    },
-        
-    /**
-     * Triggered when moves to previous step. Can prevent further execution if returns `false`.
-     *
-     * @public
-     * @prevents 
-     * @param {object} step$ the previous step component
-     * @event previous
-     */
-    handlePrevious(step$){
-      return this.fire('previous', step$)
-    },
-        
-    /**
-     * Triggered when finishes. Can prevent further execution if returns `false`.
-     *
-     * @public
-     * @prevents 
-     * @event finish
-     */
-    handleFinish(){
-      return this.fire('finish')
-    },
+    const submit = () => {
+      context.emit('submit')
+    }
 
     /**
      * Triggered when a step is selected.
@@ -436,17 +347,19 @@ export default {
      * @param {object} step$ the selected step component
      * @event select
      */
-    handleSelect(step$) {
-      _.each(this.elements$, (element$) => {
+    const select = (step$) => {
+      let curr$ = current$.value
+
+      _.each(elements$.value, (element$) => {
         element$.deactivate()
       })
 
-      _.each(this.steps$, (step$) => {
+      _.each(steps$.value, (step$) => {
         step$.deactivate()
       })
 
-      this.fire('select', step$)
-    },
+      fireSelect(step$, curr$)
+    }
 
     /**
      * Enable steps until a certain index.
@@ -455,13 +368,13 @@ export default {
      * @param {integer} index index of step
      * @returns {void}
      */
-    $_enableUntil(index) {
-      _.each(this.steps$, (step$) => {
+    const enableUntil = (index) => {
+      _.each(steps$.value, (step$) => {
         if (step$.index <= index && step$.visible) {
           step$.enable()
         }
       })
-    },
+    }
 
     /**
      * Enable steps until current step.
@@ -469,9 +382,9 @@ export default {
      * @private
      * @returns {void}
      */
-    $_enableUntilCurrent() {
-      this.$_enableUntil(this.current$.index)
-    },
+    const enableUntilCurrent = () => {
+      enableUntil(current$.value.index)
+    }
 
     /**
      * Enable steps until last enabled.
@@ -479,9 +392,9 @@ export default {
      * @private
      * @returns {void}
      */
-    $_enableUntilLastEnabled() {
-      this.$_enableUntil(this.lastEnabled$.index)
-    },
+    const enableUntilLastEnabled = () => {
+      enableUntil(lastEnabled$.value.index)
+    }
 
     /**
      * Waits for all async processes to finish, then invokes a callback.
@@ -490,34 +403,113 @@ export default {
      * @param {function} callback the function to invoke
      * @returns {void}
      */
-    $_waitForAsync(callback) {
-      var unwatch = this.$watch('busy', () => {
+    const waitForAsync = (callback) => {
+      var unwatch = watch(busy, () => {
         unwatch()
-        this.finish(callback)
+        finish(callback)
       })
-    },
-  },
-  mounted() {
-    if (_.isEmpty(this.steps)) {
-      return
     }
 
-    // nextTick is required because elements$
-    // only available after form is mounted,
-    // which is later than the wizard mount
-    this.$nextTick(() => {
-      if (_.isEmpty(this.current$)) {
-        this.first$.enable()
-        this.first$.select()
+    // ============== WATCHERS ==============
+
+    watch(elements$, (newValue, oldValue) => {
+      let newElements$ = _.difference(_.keys(newValue), _.keys(oldValue))
+
+      _.each(newElements$, (newElement$) => {
+        elements$.value[newElement$].deactivate()
+      })
+    }, { deep: false, lazy: true })
+
+    watch(steps, () => {
+      nextTick(() => {
+        if (_.isEmpty(lastEnabled$)) {
+          first$.value.enable()
+        }
+
+        if (_.isEmpty(current$.value)) {
+          first$.value.select()
+        }
+      })
+    }, { deep: true, lazy: true })
+
+    // =============== HOOKS ================
+
+    onMounted(() => {
+      if (_.isEmpty(steps.value)) {
+        return
       }
-      
-      this.$_enableUntilCurrent()
-      // if new steps are shown because of
-      // changing conditions the ones before
-      // the last active should be enabled
-      this.$watch('visible$', () => {
-        this.$_enableUntilLastEnabled()
+
+      // nextTick is required because elements$
+      // only available after form is mounted,
+      // which is later than the wizard mount
+      nextTick(() => {
+        if (_.isEmpty(current$.value)) {
+          first$.value.enable()
+          first$.value.select()
+        }
+        
+        enableUntilCurrent()
+        // if new steps are shown because of
+        // changing conditions the ones before
+        // the last active should be enabled
+        watch(visible$, () => {
+          enableUntilLastEnabled()
+        })
       })
     })
-  }
+
+    return {
+      // Inject
+      form$,
+      theme,
+
+      // Data
+      wizardSteps$,
+      events,
+      listeners,
+
+      // Computed
+      classes,
+      components,
+      steps$,
+      pending,
+      debouncing,
+      invalid,
+      done,
+      busy,
+      visible$,
+      first$,
+      current$,
+      next$,
+      previous$,
+      firstInvalid$,
+      firstNonDone$,
+      lastEnabled$,
+      isAtLastStep,
+      isAtFirstStep,
+
+      // Methods
+      goTo,
+      next,
+      previous,
+      finish,
+      complete,
+      step$,
+      reset,
+      enableAllSteps,
+      submit,
+      select,
+      enableUntil,
+      enableUntilCurrent,
+      enableUntilLastEnabled,
+      waitForAsync,
+      on,
+      off,
+      fire,
+      fireNext,
+      firePrevious,
+      fireFinish,
+      fireSelect,
+    }
+  },
 }

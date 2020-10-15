@@ -24,7 +24,7 @@ import useAutocomplete from './features/useAutocomplete'
 import useDebounce from './features/useDebounce'
 import useMask from './features/useMask'
 import useDisabled from './features/useDisabled'
-import useEvents from './features/useEvents'
+import useEvents from './../useEvents'
 import useHandleChange from './features/useHandleChange'
 import useHandleKeyup from './features/useHandleKeyup'
 import useEmpty from './features/useEmpty'
@@ -33,7 +33,7 @@ export default function useText(props, context) {
   const { schema } = toRefs(props)
 
   // @todo: deconstruct
-  const form$ = useForm$(props, context)
+  const { form$ } = useForm$(props, context)
   const theme = useTheme(props, context)
   const input = useInput(props, context)
   const addons = useAddons(props, context)
@@ -56,7 +56,7 @@ export default function useText(props, context) {
   const autocomplete = useAutocomplete(props, context)
   const debounce = useDebounce(props, context)
   const disabled = useDisabled(props, context)
-  const events = useEvents(props, context, { form$ }, {
+  const events = useEvents(props, context, { form$, descriptor: schema }, {
     events: {
       change: [value.currentValue, value.previousValue]
     },
@@ -68,7 +68,7 @@ export default function useText(props, context) {
   const empty = useEmpty(props, context, { value, data })
 
   return {
-    ...form$,
+    form$,
     ...theme,
     ...input,
     ...addons,

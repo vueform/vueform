@@ -10,7 +10,7 @@ export default function useClasses(props, context, dependencies)
 
   // ============ DEPENDENCIES ============
 
-  const { form$ } = dependencies.form$
+  const form$ = dependencies.form$
   const { theme } = dependencies.theme
 
   // ============== COMPUTED ==============

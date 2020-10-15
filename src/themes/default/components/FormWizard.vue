@@ -10,7 +10,7 @@
       :elements$="elements$"
       :visible$="visible$"
       :key="name"
-      @select="handleSelect"
+      @select="select"
       v-ref:wizardSteps$
     />
   </ul>

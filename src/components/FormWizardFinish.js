@@ -59,9 +59,7 @@ export default {
     // =============== METHODS ==============
 
     const finish = () => {
-      if (wizard$.value.handleFinish() === false) {
-        return
-      }
+      wizard$.value.fireFinish()
 
       if (form$.value.$_shouldValidateOn('submit')) {
         _.each(visible$.value, (step$) => {

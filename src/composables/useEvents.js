@@ -2,11 +2,10 @@ import { reactive, toRefs } from 'composition-api'
 
 export default function useEvents(props, context, dependencies, options)
 {
-  const { schema } = toRefs(props)
-
   // ============ DEPENDENCIES =============
 
-  const { form$ } = dependencies.form$
+  const form$ = dependencies.form$
+  const descriptor = dependencies.descriptor || null
 
   // ================ DATA ================
 
@@ -81,23 +80,24 @@ export default function useEvents(props, context, dependencies, options)
   const fireMethods = {}
 
   _.each(options.events, (params, evt) => {
-    fireMethods[`fire${_.upperFirst(evt)}`] = () => {
-      fire.apply(null, [evt].concat(_.map(params, (param) => {
-        return param.value
-      })))
+    fireMethods[`fire${_.upperFirst(evt)}`] = function() {
+      fire.apply(null, [evt].concat(params.length ? _.map(params, (param) => param.value) : _.map(arguments, (arg) => arg)))
     }
   })
 
   // =============== HOOKS ================
 
+  // If component has descriptor subscribe upfront
+  // for events using `onEvent` format 
+  if (descriptor) {
+    _.each(events, (params, evt) => {
+      let callback = descriptor.value['on' + _.upperFirst(evt)]
 
-  _.each(events, (params, evt) => {
-    let callback = schema.value['on' + _.upperFirst(evt)]
-
-    if (callback !== undefined) {
-      on(evt, callback)
-    }
-  })
+      if (callback !== undefined) {
+        on(evt, callback)
+      }
+    })
+  }
 
   return {
     // Data
