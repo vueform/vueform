@@ -4,7 +4,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
   mode: 'development',
   entry: {
-    laraform: './src/index.ts',
+    laraform: './src/index.js',
     themes: './src/themes/index.js',
   },
   output: {
@@ -55,16 +55,6 @@ module.exports = {
       {
         test: /\.json$/,
         use: 'json-loader'
-      },
-      {
-        test: /\.tsx?$/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            appendTsSuffixTo: [/\.vue$/]
-          }
-        },
-        exclude: /node_modules/,
       },
     ]
   },

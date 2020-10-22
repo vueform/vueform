@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.ts");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -3786,9 +3786,9 @@ function useLaraform(props, context) {
 
 /***/ }),
 
-/***/ "./src/config/index.ts":
+/***/ "./src/config/index.js":
 /*!*****************************!*\
-  !*** ./src/config/index.ts ***!
+  !*** ./src/config/index.js ***!
   \*****************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -3796,55 +3796,54 @@ function useLaraform(props, context) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var config = {
-    vue: 3,
-    extensions: [],
-    themes: {},
-    theme: 'default',
-    languages: {
-        en: {
-            label: 'English',
-            code: 'en'
-        },
-        fr: {
-            label: 'French',
-            code: 'fr',
-        }
+  vue: 3,
+  extensions: [],
+  themes: {},
+  theme: 'default',
+  languages: {
+    en: {
+      label: 'English',
+      code: 'en'
     },
-    language: 'en',
-    elements: {},
-    components: {},
-    rules: {},
-    labels: false,
-    columns: {
-        element: 12,
-        label: 12,
-        field: 12,
+    fr: {
+      label: 'French',
+      code: 'fr'
+    }
+  },
+  language: 'en',
+  elements: {},
+  components: {},
+  rules: {},
+  labels: false,
+  columns: {
+    element: 12,
+    label: 12,
+    field: 12
+  },
+  validateOn: 'change|submit|step',
+  method: 'post',
+  endpoints: {
+    process: '/laraform/process',
+    validators: {
+      active_url: '/active_url',
+      unique: '/',
+      exists: '/'
     },
-    validateOn: 'change|submit|step',
-    method: 'post',
-    endpoints: {
-        process: '/laraform/process',
-        validators: {
-            active_url: '/active_url',
-            unique: '/',
-            exists: '/',
-        },
-        elements: {
-            trix: {
-                attachment: '/trix/attachment'
-            }
-        }
-    },
-    services: {
-        algolia: {
-            app_id: 'plD1GPOB1JIC',
-            api_key: '1f70532b07910d801387a12ea998f035',
-        }
-    },
-    i18n: null,
+    elements: {
+      trix: {
+        attachment: '/trix/attachment'
+      }
+    }
+  },
+  services: {
+    algolia: {
+      app_id: 'plD1GPOB1JIC',
+      api_key: '1f70532b07910d801387a12ea998f035'
+    }
+  },
+  i18n: null
 };
 /* harmony default export */ __webpack_exports__["default"] = (config);
-
 
 /***/ }),
 
@@ -3978,17 +3977,17 @@ var unbind = function unbind(el, binding, vnode) {
 
 /***/ }),
 
-/***/ "./src/index.ts":
+/***/ "./src/index.js":
 /*!**********************!*\
-  !*** ./src/index.ts ***!
+  !*** ./src/index.js ***!
   \**********************/
 /*! exports provided: default, Laraform, useLaraform, init */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _installer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./installer */ "./src/installer.ts");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config */ "./src/config/index.ts");
+/* harmony import */ var _installer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./installer */ "./src/installer.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config */ "./src/config/index.js");
 /* harmony import */ var _init__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./init */ "./src/init.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "init", function() { return _init__WEBPACK_IMPORTED_MODULE_2__["default"]; });
 
@@ -4004,7 +4003,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(_installer__WEBPACK_IMPORTED_MODULE_0__["default"])(_config__WEBPACK_IMPORTED_MODULE_1__["default"]));
-
 
 
 /***/ }),
@@ -4037,9 +4035,9 @@ function init(props, context, component, data) {
 
 /***/ }),
 
-/***/ "./src/installer.ts":
+/***/ "./src/installer.js":
 /*!**************************!*\
-  !*** ./src/installer.ts ***!
+  !*** ./src/installer.js ***!
   \**************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -4062,6 +4060,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _directives_ref__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./directives/ref */ "./src/directives/ref.js");
 /* harmony import */ var _directives_html_if__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./directives/html-if */ "./src/directives/html-if.js");
 /* harmony import */ var _init__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./init */ "./src/init.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 
 
@@ -4077,134 +4082,169 @@ __webpack_require__.r(__webpack_exports__);
 
 
 if (window._ === undefined) {
-    window._ = lodash__WEBPACK_IMPORTED_MODULE_0___default.a;
+  window._ = lodash__WEBPACK_IMPORTED_MODULE_0___default.a;
 }
-if (window.moment === undefined) {
-    window.moment = moment__WEBPACK_IMPORTED_MODULE_1___default.a;
-}
-/* harmony default export */ __webpack_exports__["default"] = (function (config) {
-    var Laraform = /** @class */ (function () {
-        function class_1() {
-            this.options = Object.assign({}, config, {
-                services: {
-                    validation: _services_validation__WEBPACK_IMPORTED_MODULE_3__["default"],
-                    axios: _services_axios__WEBPACK_IMPORTED_MODULE_2__["default"],
-                    messageBag: _services_messageBag__WEBPACK_IMPORTED_MODULE_4__["default"],
-                    autosize: _services_autosize__WEBPACK_IMPORTED_MODULE_5__["default"],
-                    location: _services_location__WEBPACK_IMPORTED_MODULE_6__["default"],
-                    condition: _services_condition__WEBPACK_IMPORTED_MODULE_7__["default"],
-                }
-            });
-        }
-        class_1.prototype.store = function (Store) {
-            Store.registerModule('laraform', _store__WEBPACK_IMPORTED_MODULE_10__["default"]);
-        };
-        class_1.prototype.locale = function (locale) {
-            this.options.locale = locale;
-        };
-        class_1.prototype.config = function (config) {
-            var _this = this;
-            // merge
-            lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each([
-                'extensions', 'themes', 'locales', 'languages',
-                'elements', 'components', 'rules', 'services',
-            ], function (attr) {
-                if (config[attr] !== undefined) {
-                    _this.options[attr] = Object.assign({}, _this.config[attr], config[attr]);
-                }
-            });
-            // deep merge
-            lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each([
-                'endpoints'
-            ], function (attr) {
-                if (config[attr] !== undefined) {
-                    _this.options[attr] = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.merge({}, _this.options[attr], config[attr]);
-                }
-            });
-            // replace
-            lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each([
-                'theme', 'locale', 'language', 'labels',
-                'columns', 'validateOn', 'method', 'vue',
-            ], function (attr) {
-                if (config[attr] !== undefined) {
-                    _this.options[attr] = config[attr];
-                }
-            });
-            if (config.store) {
-                this.store(config.store);
-            }
-        };
-        class_1.prototype.applyExtensions = function () {
-            var _this = this;
-            lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(this.options.themes, function (theme) {
-                lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(Object.assign({}, theme.components, theme.elements), function (component, name) {
-                    Object(_utils_applyExtensions__WEBPACK_IMPORTED_MODULE_9__["default"])(component, name, _this.options.extensions);
-                });
-            });
-        };
-        class_1.prototype.initI18n = function () {
-            this.options.i18n = this.options.i18n || new _services_i18n__WEBPACK_IMPORTED_MODULE_8__["default"](this.options);
-        };
-        class_1.prototype.initComponents = function () {
-            lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(this.options.themes, function (theme) {
-                lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(Object.assign({}, theme.components, theme.elements), function (component, name) {
-                    if (!component.mixins || component.mixins[0].init === undefined) {
-                        return;
-                    }
-                    var data = component.data ? component.data() : {};
-                    component.setup = function (props, context) { return Object(_init__WEBPACK_IMPORTED_MODULE_13__["default"])(props, context, component.mixins[0], data); };
-                });
-            });
-        };
-        class_1.prototype.install = function (appOrVue, options) {
-            var _this = this;
-            if (options) {
-                this.config(options);
-            }
-            this.initI18n();
-            if (this.options.extensions && this.options.extensions.length) {
-                this.applyExtensions();
-            }
-            this.initComponents();
-            switch (this.options.vue) {
-                case 2:
-                    appOrVue.config.ignoredElements = ['trix-editor'];
-                    var $laraform_1 = this.options;
-                    appOrVue.directive('ref', _directives_ref__WEBPACK_IMPORTED_MODULE_11__["default"]);
-                    appOrVue.directive('html-if', _directives_html_if__WEBPACK_IMPORTED_MODULE_12__["default"]);
-                    appOrVue.mixin({
-                        methods: {
-                            __: function (expr, data) { return _this.options.i18n.$t(expr, data); }
-                        },
-                        beforeCreate: function () {
-                            this.$laraform = appOrVue.observable($laraform_1);
-                        }
-                    });
-                    break;
-                case 3:
-                    appOrVue.config.isCustomElement = function (tag) { return ['trix-editor'].indexOf(tag) !== -1; };
-                    appOrVue.config.globalProperties.$laraform = this.options;
-                    appOrVue.directive('ref', _directives_ref__WEBPACK_IMPORTED_MODULE_11__["default"]);
-                    appOrVue.directive('html-if', _directives_html_if__WEBPACK_IMPORTED_MODULE_12__["default"]);
-                    appOrVue.mixin({
-                        methods: {
-                            $set: function (obj, key, value) {
-                                obj[key] = value;
-                            },
-                            $delete: function (obj, key) {
-                                delete obj[key];
-                            },
-                            __: function (expr, data) { return _this.options.i18n.$t(expr, data); }
-                        },
-                    });
-                    break;
-            }
-        };
-        return class_1;
-    }());
-    return new Laraform();
-});
 
+if (window.moment === undefined) {
+  window.moment = moment__WEBPACK_IMPORTED_MODULE_1___default.a;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (function (config) {
+  var Laraform = /*#__PURE__*/function () {
+    function Laraform() {
+      _classCallCheck(this, Laraform);
+
+      this.options = Object.assign({}, config, {
+        services: {
+          validation: _services_validation__WEBPACK_IMPORTED_MODULE_3__["default"],
+          axios: _services_axios__WEBPACK_IMPORTED_MODULE_2__["default"],
+          messageBag: _services_messageBag__WEBPACK_IMPORTED_MODULE_4__["default"],
+          autosize: _services_autosize__WEBPACK_IMPORTED_MODULE_5__["default"],
+          location: _services_location__WEBPACK_IMPORTED_MODULE_6__["default"],
+          condition: _services_condition__WEBPACK_IMPORTED_MODULE_7__["default"]
+        }
+      });
+    }
+
+    _createClass(Laraform, [{
+      key: "store",
+      value: function store(Store) {
+        Store.registerModule('laraform', _store__WEBPACK_IMPORTED_MODULE_10__["default"]);
+      }
+    }, {
+      key: "locale",
+      value: function locale(_locale) {
+        this.options.locale = _locale;
+      }
+    }, {
+      key: "config",
+      value: function config(_config) {
+        var _this = this;
+
+        // merge
+        lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(['extensions', 'themes', 'locales', 'languages', 'elements', 'components', 'rules', 'services'], function (attr) {
+          if (_config[attr] !== undefined) {
+            _this.options[attr] = Object.assign({}, _this.config[attr], _config[attr]);
+          }
+        }); // deep merge
+
+
+        lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(['endpoints'], function (attr) {
+          if (_config[attr] !== undefined) {
+            _this.options[attr] = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.merge({}, _this.options[attr], _config[attr]);
+          }
+        }); // replace
+
+
+        lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(['theme', 'locale', 'language', 'labels', 'columns', 'validateOn', 'method', 'vue'], function (attr) {
+          if (_config[attr] !== undefined) {
+            _this.options[attr] = _config[attr];
+          }
+        });
+
+        if (_config.store) {
+          this.store(_config.store);
+        }
+      }
+    }, {
+      key: "applyExtensions",
+      value: function applyExtensions() {
+        var _this2 = this;
+
+        lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(this.options.themes, function (theme) {
+          lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(Object.assign({}, theme.components, theme.elements), function (component, name) {
+            Object(_utils_applyExtensions__WEBPACK_IMPORTED_MODULE_9__["default"])(component, name, _this2.options.extensions);
+          });
+        });
+      }
+    }, {
+      key: "initI18n",
+      value: function initI18n() {
+        this.options.i18n = this.options.i18n || new _services_i18n__WEBPACK_IMPORTED_MODULE_8__["default"](this.options);
+      }
+    }, {
+      key: "initComponents",
+      value: function initComponents() {
+        lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(this.options.themes, function (theme) {
+          lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(Object.assign({}, theme.components, theme.elements), function (component, name) {
+            if (!component.mixins || component.mixins[0].init === undefined) {
+              return;
+            }
+
+            var data = component.data ? component.data() : {};
+
+            component.setup = function (props, context) {
+              return Object(_init__WEBPACK_IMPORTED_MODULE_13__["default"])(props, context, component.mixins[0], data);
+            };
+          });
+        });
+      }
+    }, {
+      key: "install",
+      value: function install(appOrVue, options) {
+        var _this3 = this;
+
+        if (options) {
+          this.config(options);
+        }
+
+        this.initI18n();
+
+        if (this.options.extensions && this.options.extensions.length) {
+          this.applyExtensions();
+        }
+
+        this.initComponents();
+
+        switch (this.options.vue) {
+          case 2:
+            appOrVue.config.ignoredElements = ['trix-editor'];
+            var $laraform = this.options;
+            appOrVue.directive('ref', _directives_ref__WEBPACK_IMPORTED_MODULE_11__["default"]);
+            appOrVue.directive('html-if', _directives_html_if__WEBPACK_IMPORTED_MODULE_12__["default"]);
+            appOrVue.mixin({
+              methods: {
+                __: function __(expr, data) {
+                  return _this3.options.i18n.$t(expr, data);
+                }
+              },
+              beforeCreate: function beforeCreate() {
+                this.$laraform = appOrVue.observable($laraform);
+              }
+            });
+            break;
+
+          case 3:
+            appOrVue.config.isCustomElement = function (tag) {
+              return ['trix-editor'].indexOf(tag) !== -1;
+            };
+
+            appOrVue.config.globalProperties.$laraform = this.options;
+            appOrVue.directive('ref', _directives_ref__WEBPACK_IMPORTED_MODULE_11__["default"]);
+            appOrVue.directive('html-if', _directives_html_if__WEBPACK_IMPORTED_MODULE_12__["default"]);
+            appOrVue.mixin({
+              methods: {
+                $set: function $set(obj, key, value) {
+                  obj[key] = value;
+                },
+                $delete: function $delete(obj, key) {
+                  delete obj[key];
+                },
+                __: function __(expr, data) {
+                  return _this3.options.i18n.$t(expr, data);
+                }
+              }
+            });
+            break;
+        }
+      }
+    }]);
+
+    return Laraform;
+  }();
+
+  return new Laraform();
+});
 
 /***/ }),
 

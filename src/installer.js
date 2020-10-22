@@ -1,5 +1,3 @@
-import _Vue from 'vue'
-
 import _ from 'lodash'
 import moment from 'moment'
 import axios from './services/axios'
@@ -15,14 +13,6 @@ import vRef from './directives/ref'
 import vHtmlIf from './directives/html-if'
 import init from './init'
 
-import Config from './config'
-
-declare global {
-    interface Window {
-        _: any;
-    }
-}
-
 if (window._ === undefined) {
   window._ = _
 }
@@ -31,10 +21,8 @@ if (window.moment === undefined) {
   window.moment = moment
 }
 
-export default function(config: typeof Config) {
+export default function(config) {
   const Laraform = class {
-    options: typeof Config
-
     constructor() {
       this.options = Object.assign({}, config, {
         services: {
@@ -117,7 +105,7 @@ export default function(config: typeof Config) {
       })
     }
 
-    install(appOrVue: any, options?: any) {
+    install(appOrVue, options) {
       if (options) {
         this.config(options)
       }
@@ -150,7 +138,7 @@ export default function(config: typeof Config) {
           break
 
         case 3:
-          appOrVue.config.isCustomElement = tag => ['trix-editor'].indexOf(tag) !== -1
+          appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
 
           appOrVue.config.globalProperties.$laraform = this.options
 

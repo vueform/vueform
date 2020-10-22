@@ -18,7 +18,7 @@
         "url": "https://github.com/laraform/laraform.git"
     },
     "main": "dist/laraform.js",
-    "types": "types",
+    "types": "types/laraform.d.ts",
     "scripts": {
         "dev": "cross-env node_modules/webpack/bin/webpack.js --progress --config webpack.config.js --watch",
         "test-vue2": "VUE=2 jest --watchAll --verbose --config=jest.config.vue2.js",
