@@ -16,37 +16,14 @@
           :visible="!empty"
         >{{ floating }}</component>
 
-        <MaskedInput
-          v-if="masked"
-          :value="String(model === null ? '' : model)"
-          @change="model = $event.target.value"
-          :type="inputType"
-          :name="name"
-          :id="id"
-          :class="classes.input"
-          :placeholder="placeholder"
-          :autocomplete="autocomplete"
-          :disabled="disabled"
-          :readonly="readonly"
-          :mask="mask"
-          :guide="guide"
-          :placeholderChar="placeholderChar"
-          :keepCharPositions="keepCharPositions"
-          :pipe="pipe"
-          :showMask="showMask"
-          @keyup="handleKeyup"
-          @select="handleKeyup"
-          ref="input"
-        />
         <input
-          v-else
           :value="model"
           @input="model = $event.target.value"
           :type="inputType"
           :name="name"
           :id="id"
           :class="classes.input"
-          :placeholder="placeholder"
+          :placeholder="placeholder" 
           :autocomplete="autocomplete"
           :disabled="disabled"
           :readonly="readonly"
@@ -79,19 +56,13 @@
 <script>
   import TextElement from './../../../../components/elements/TextElement'
 
-  import MaskedInput from 'vue-text-mask'
-
   export default {
     name: 'TextElement',
     mixins: [TextElement],
-    components: {
-      MaskedInput,
-    },
     data() {
       return {
         defaultClasses: {
           input: 'form-control',
-          container: 'nav nav-tabs form-tabs',
           inputContainer: 'input-group',
         }
       }

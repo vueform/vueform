@@ -21,11 +21,11 @@ const mergeComponentClasses = function (base, add) {
 }
 
 const mergeClass = function (base, add) {
-  if (add === null) {
+  if (add === null || _.isEmpty(add)) {
     return base
   }
 
-  if (base === null) {
+  if (base === null || _.isEmpty(base)) {
     return add
   }
 

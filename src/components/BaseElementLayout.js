@@ -26,7 +26,7 @@ export default {
       // Add element's class to main class
       if (el$.value.class !== null) {
         classList = mergeComponentClasses(classList, {
-          [mainClass]: el$.value.class
+          [mainClass.value]: el$.value.class
         })
       }
 

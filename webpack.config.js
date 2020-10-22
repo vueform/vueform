@@ -1,37 +1,15 @@
 const path = require('path')
-const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const WebpackNotifierPlugin = require('webpack-notifier')
-
-let banner = 
-	" Laraform\n" +
-	" License: https://laraform.io/terms\n" +
-	" Copyright (c) Adam Berecz <adam@laraform.io>"
-
-let file = {
-  entry: 'index.js',
-  output: 'full.js',
-}
-
-if (process.env.BUNDLE == 'essentials') {
-  file = {
-    entry: 'essentials.js',
-    output: 'essentials.js',
-  } 
-}
-else if (process.env.BUNDLE == 'core') {
-  file = {
-    entry: 'core.js',
-    output: 'core.js',
-  }
-}
 
 module.exports = {
-  entry: './src/' + file.entry,
-  mode: 'production',
+  mode: 'development',
+  entry: {
+    laraform: './src/index.ts',
+    themes: './src/themes/index.js',
+  },
   output: {
     path: path.resolve('dist'),
-    filename: file.output,
+    filename: '[name].js',
     library: 'Laraform',
 		libraryTarget: 'umd'
   },
@@ -57,7 +35,7 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        use: 'vue-loader'
       },
       {
         test: /\.css$/,
@@ -76,19 +54,23 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        use: 'json-loader'
+      },
+      {
+        test: /\.tsx?$/,
+        use: {
+          loader: 'ts-loader',
+          options: {
+            appendTsSuffixTo: [/\.vue$/]
+          }
+        },
+        exclude: /node_modules/,
       },
     ]
   },
 
   plugins: [
     new VueLoaderPlugin(),
-    new WebpackNotifierPlugin({
-      title: 'Laraform'
-    }),
-    new webpack.BannerPlugin({
-      banner: banner
-    })
   ],
 
   externals: {
@@ -110,13 +92,21 @@ module.exports = {
       amd: 'moment',
       root: 'moment'
     },
+    vue: {
+      commonjs: 'vue',
+      commonjs2: 'vue',
+      amd: 'vue',
+      root: 'vue'
+    },
+    "composition-api": {
+      commonjs: 'composition-api',
+      commonjs2: 'composition-api',
+      amd: 'composition-api',
+      root: 'composition-api'
+    },
   },
-
   resolve: {
-		extensions: ['.json', '.js', '.vue'],
-    alias: {
-      vue$: "vue/dist/vue.esm.js",
-    }
+		extensions: ['.tsx', '.ts', '.json', '.js', '.vue'],
   },
 
   devtool: false,

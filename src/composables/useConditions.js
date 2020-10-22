@@ -8,7 +8,7 @@ export default function useConditions(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
-  const { path } = dependencies.path || { path: ref(null) }
+  const path = dependencies.path || ref(null)
   const descriptor = dependencies.descriptor
 
   // ============== COMPUTED ==============

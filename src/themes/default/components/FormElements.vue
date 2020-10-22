@@ -2,8 +2,8 @@
   <div :class="classes.container">
     <div :class="classes.wrapper">
       <component
-        :is="theme.elements.TextElement"
         v-for="(element, name) in schema"
+        :is="component(element)"
         :schema="element"
         :name="name"
         :key="name"

@@ -3,8 +3,8 @@ export default function useHandleKeyup(props, context, dependencies)
 
   // ============ DEPENDENCIES ============
 
-  const { readonly } = dependencies.readonly
-  const { handleChange } = dependencies.handleChange
+  const readonly = dependencies.readonly
+  const handleChange = dependencies.handleChange
 
 
   // =============== METHODS ==============

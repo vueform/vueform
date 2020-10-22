@@ -12,7 +12,7 @@ export default {
     }
   },
   mounted() {
-    this.initMessageBag(this)
-    this.initValidation(this)
+    this.initMessageBag(this.el$)
+    this.initValidation(this.el$)
   }
 }

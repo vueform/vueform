@@ -1,4 +1,28 @@
-export default {
+interface Config {
+  vue?: number,
+  extensions?: object[],
+  themes?: object,
+  theme?: string,
+  languages?: object,
+  language?: string,
+  elements?: object ,
+  components?: object,
+  rules?: object,
+  labels?: boolean,
+  columns?: object,
+  validateOn?: string,
+  method?: string,
+  endpoints?: {
+    process?: string,
+    validators?: object,
+    elements?: object,
+  },
+  services?: object,
+  i18n?: any,
+  locale?: string,
+}
+
+const config: Config = {
   vue: 3,
 
   extensions: [],
@@ -61,3 +85,5 @@ export default {
 
   i18n: null,
 }
+
+export default config

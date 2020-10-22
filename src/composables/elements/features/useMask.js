@@ -7,9 +7,9 @@ export default function useMask(props, context, dependencies)
 
   // ============ DEPENDENCIES ============
 
-  const { placeholder } = dependencies.placeholder
-  const { input } = dependencies.input
-  const { update } = dependencies.data
+  const placeholder = dependencies.placeholder
+  const input = dependencies.input
+  const update = dependencies.update
 
   // ============== COMPUTED ==============
 

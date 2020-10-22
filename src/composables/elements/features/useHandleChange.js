@@ -4,8 +4,8 @@ export default function useHandleChange(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
-  const { validate } = dependencies.validation
-  const { fireChange } = dependencies.events
+  const validate = dependencies.validate
+  const fireChange = dependencies.fireChange
 
 
   // =============== METHODS ==============

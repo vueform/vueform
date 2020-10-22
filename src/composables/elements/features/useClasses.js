@@ -11,7 +11,7 @@ export default function useClasses(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
-  const { theme } = dependencies.theme
+  const theme = dependencies.theme
 
   // ============== COMPUTED ==============
   
@@ -50,13 +50,13 @@ export default function useClasses(props, context, dependencies)
       schema.value.classes ? schema.value.classes[componentName.value] : {}
     )
 
-    // Add form's addClasses if classes is not defined in element
-    if (!schema.value.classes || _.isEmpty(schema.value.classes[componentName.value])) {
+    // Add form's addClasses
+    if (form$.value.addClasses[componentName.value] !== undefined) {
       classes = mergeComponentClasses(classes, form$.value.addClasses[componentName.value] || null)
     }
-
+    
     // Add element's addClasses options
-    classes = mergeComponentClasses(classes, addClasses.value[componentName] || null)
+    classes = mergeComponentClasses(classes, addClasses.value[componentName.value] || null)
 
     return classes
   })

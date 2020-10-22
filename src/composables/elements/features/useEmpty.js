@@ -4,8 +4,8 @@ export default function useEmpty(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const { value } = dependencies.value
-  const { nill } = dependencies.data
+  const value = dependencies.value
+  const nill = dependencies.nill
 
   // ============== COMPUTED ==============
 

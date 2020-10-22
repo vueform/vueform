@@ -29,8 +29,8 @@ export default function useElementComponent(props, context, dependencies)
       el$.value.schema.classes ? el$.value.schema.classes[componentName.value] : {}
     )
 
-    // Add form's addClasses if classes is not defined in element
-    if (!el$.value.schema.classes || _.isEmpty(el$.value.schema.classes[componentName.value])) {
+    // Add form's addClasses
+    if (form$.value.addClasses[componentName.value] !== undefined) {
       classes = mergeComponentClasses(classes, form$.value.addClasses[componentName.value] || null)
     }
 

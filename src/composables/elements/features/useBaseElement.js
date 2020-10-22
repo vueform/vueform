@@ -6,10 +6,10 @@ export default function useBaseElement(props, context, dependencies)
 
   // ============ DEPENDENCIES ============
 
-  const { available } = dependencies.conditions
-  const { theme } = dependencies.theme
-  const { label } = dependencies.label || { label: null }
-  const { placeholder } = dependencies.placeholder || { placeholder: null }
+  const available = dependencies.available
+  const theme = dependencies.theme
+  const label = dependencies.label || ref(null)
+  const placeholder = dependencies.placeholder || ref(null)
 
   // ================ DATA ================
 

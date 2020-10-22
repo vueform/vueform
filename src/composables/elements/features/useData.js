@@ -8,10 +8,13 @@ export default function useData(props, context, dependencies)
   // ============ DEPENDENCIES =============
 
   const form$ = dependencies.form$
-  const { available } = dependencies.conditions
-  const { value, previousValue } = dependencies.value
-  const { clean, resetValidators, validate } = dependencies.validation
-  const { fireChange } = dependencies.events
+  const available = dependencies.available
+  const value = dependencies.value
+  const previousValue = dependencies.previousValue
+  const clean = dependencies.clean
+  const resetValidators = dependencies.resetValidators
+  const validate = dependencies.validate
+  const fireChange = dependencies.fireChange
 
   // ============== COMPUTED ===============
 

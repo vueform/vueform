@@ -148,7 +148,6 @@ export default {
     // TTrixElement,
   },
   classes: {
-    
   },
   utils: {
     columns,

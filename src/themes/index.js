@@ -1,5 +1,5 @@
-import bootstrap from './bootstrap'
+import basic from './default'
 
 export {
-  bootstrap,
+  basic,
 }

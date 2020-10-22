@@ -7,7 +7,7 @@ export default function useSlots(props, context, dependencies)
 
   // ============ DEPENDENCIES ============
 
-  const { theme } = dependencies.theme
+  const theme = dependencies.theme
 
   // ============== COMPUTED ==============
 

@@ -2,7 +2,8 @@ import { computed, ref } from 'composition-api'
 
 export default function useValue(props, context, dependencies)
 {
-  // =============== PRIVATE ===============
+  // ============== COMPUTED ===============
+
   /**
    * Helper property used to store the element value.
    * 
@@ -18,8 +19,6 @@ export default function useValue(props, context, dependencies)
    * @default null
    */
   const previousValue = ref(null)
-
-  // ============== COMPUTED ===============
 
   /**
    * The value of the element.
