@@ -1020,51 +1020,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6787,70 +6742,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    {
-      class: _vm.extendedClasses.form,
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.submit($event)
-        }
-      }
-    },
-    [
-      _vm.hasMessages
-        ? _c(_vm.components.FormMessages, { tag: "component" })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.hasErrors
-        ? _c(_vm.components.FormErrors, { tag: "component" })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.multilingual
-        ? _c(_vm.components.FormLanguageSelector, {
-            tag: "component",
-            on: { changeLanguage: _vm.setLanguage }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.hasTabs
-        ? _c(_vm.components.FormTabs, {
-            directives: [{ name: "ref", rawName: "v-ref:tabs$", arg: "tabs$" }],
-            tag: "component",
-            attrs: { tabs: _vm.tabs, elements$: _vm.elements$ }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.hasWizard
-        ? _c(_vm.components.FormWizard, {
-            directives: [
-              { name: "ref", rawName: "v-ref:wizard$", arg: "wizard$" }
-            ],
-            tag: "component",
-            attrs: { steps: _vm.wizard, elements$: _vm.elements$ },
-            on: { submit: _vm.handleSubmit }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _c(_vm.components.FormElements, {
-        directives: [
-          { name: "ref", rawName: "v-ref:formElements$", arg: "formElements$" }
-        ],
-        tag: "component",
-        attrs: { schema: _vm.schema },
-        on: { updateSchema: _vm.updateSchema }
-      }),
-      _vm._v(" "),
-      _vm.hasWizard && _vm.wizardControls
-        ? _c(_vm.components.FormWizardControls, {
-            tag: "component",
-            attrs: { wizard$: _vm.wizard$ }
-          })
-        : _vm._e()
-    ],
-    1
-  )
+  return _c("form", [_vm._v("\n  Helloka\n")])
 }
 var staticRenderFns = []
 render._withStripped = true

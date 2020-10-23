@@ -50,7 +50,7 @@ export default function useElementComponent(props, context, dependencies)
   })
 
   const components = computed(() => {
-    return theme.value.components
+    return el$.value.components
   })
 
   const mainClass = computed(() => {

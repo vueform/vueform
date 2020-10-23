@@ -23,12 +23,10 @@ export default {
         [containers.value.field]: el$.value.columns.classes.field || '',
       })
 
-      // Add element's class to main class
-      if (el$.value.class !== null) {
-        classList = mergeComponentClasses(classList, {
-          [mainClass.value]: el$.value.class
-        })
-      }
+      // Add element's main class to main class
+      classList = mergeComponentClasses(classList, {
+        [mainClass.value]: el$.value.classes[el$.value.mainClass]
+      })
 
       return classList
     })

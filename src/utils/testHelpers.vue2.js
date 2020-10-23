@@ -650,7 +650,73 @@ const findAllComponents = function(parent, query) {
   let res = parent.findAllComponents(query)
 
   return {
-    at: (i) => { return res.at(i) }
+    at: (i) => { return res.at(i) },
+    length: res.length,
+  }
+}
+
+const testComputedOption = function(it, elementType, optionName, defaultValue, testValue) {
+  const elementName = `${_.upperFirst(elementType)}Element`
+
+  let defaultString = defaultValue.toString()
+
+  if (_.isPlainObject(defaultValue)) {
+    defaultString = JSON.stringify(defaultValue)
+  }
+
+  it('should have "'+defaultString+'" as default for `'+optionName+'`', () => {
+    let form = createForm({
+      schema: {
+        [elementType]: {
+          type: elementType
+        }
+      }
+    })
+
+    let el = findAllComponents(form, { name: elementName }).at(0)
+
+    expect(el.vm[optionName]).toStrictEqual(defaultValue)
+  })
+
+  it('should set `'+optionName+'` from schema', () => {
+    let form = createForm({
+      schema: {
+        [elementType]: {
+          type: elementType,
+          [optionName]: testValue
+        }
+      }
+    })
+
+    let el = findAllComponents(form, { name: elementName }).at(0)
+
+    expect(el.vm[optionName]).toStrictEqual(testValue)
+  })
+
+  it('should set `'+optionName+'` to schema', () => {
+    let form = createForm({
+      schema: {
+        [elementType]: {
+          type: elementType,
+          [optionName]: testValue
+        }
+      }
+    })
+
+    let el = findAllComponents(form, { name: elementName }).at(0)
+
+    el.vm[optionName] = testValue
+
+    expect(el.vm[optionName]).toStrictEqual(testValue)
+    expect(el.vm.schema[optionName]).toStrictEqual(testValue)
+  })
+}
+
+const renderComponent = function() {
+  let args = arguments
+
+  return function (h) {
+    return h.apply(this, args)
   }
 }
 
@@ -676,7 +742,9 @@ export {
   testNonNativeMultiselectModel,
   testTagsModel,
   tryInputValues,
-  findAllComponents
+  findAllComponents,
+  testComputedOption,
+  renderComponent,
 }
 
 

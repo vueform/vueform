@@ -21,8 +21,8 @@
     "types": "types/laraform.d.ts",
     "scripts": {
         "dev": "cross-env node_modules/webpack/bin/webpack.js --progress --config webpack.config.js --watch",
-        "test-vue2": "VUE=2 jest --watchAll --verbose --config=jest.config.vue2.js",
-        "test-vue3": "VUE=3 jest --watchAll --verbose --config=jest.config.vue3.js"
+        "test-vue2": "VUE=2 jest --watchAll --verbose --config=jest/jest.config.vue2.js",
+        "test-vue3": "VUE=3 jest --watchAll --verbose --config=jest/jest.config.vue3.js"
     },
     "devDependencies": {
         "@babel/core": "^7.2.2",
@@ -34,7 +34,7 @@
         "@types/vue": "^2.0.0",
         "@vue/compiler-sfc": "^3.0.0",
         "babel-core": "^6.26.3",
-        "babel-jest": "^26.0.1",
+        "babel-jest": "^26.6.0",
         "babel-loader": "^8.0.5",
         "babel-plugin-transform-runtime": "^6.23.0",
         "babel-preset-env": "^1.7.0",
@@ -52,14 +52,14 @@
         "ts-loader": "^8.0.5",
         "typescript": "^4.0.3",
         "vue-class-component": "^7.2.6",
+        "vue-loader": "^15.5.1",
         "vue-next": "npm:vue@^3.0.0",
         "vue-next-jest": "npm:vue-jest@^5.0.0-alpha.4",
         "vue-next-test-utils": "npm:@vue/test-utils@^2.0.0-beta.6",
         "vue-prev": "npm:vue@^2.6.12",
+        "vue-prev-composition-api": "npm:@vue/composition-api@^1.0.0-beta.17",
         "vue-prev-jest": "npm:vue-jest@^3.0.7",
         "vue-prev-test-utils": "npm:@vue/test-utils@^1.1.0",
-        "vue-prev-composition-api": "npm:@vue/composition-api@^1.0.0-beta.17",
-        "vue-loader": "^15.5.1",
         "vue-template-compiler": "^2.6.12",
         "webpack": "^4.28.4",
         "webpack-cli": "^3.2.1",

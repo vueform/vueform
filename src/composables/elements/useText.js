@@ -18,6 +18,9 @@ import useDescription from './features/useDescription'
 import useReadonly from './features/useReadonly'
 import useInfo from './features/useInfo'
 import useBaseElement from './features/useBaseElement'
+import useView from './features/useView'
+import useComponents from './features/useComponents'
+import useBaseLayout from './features/useBaseLayout'
 import useSlots from './features/useSlots'
 import useInputType from './features/useInputType'
 import useAutocomplete from './features/useAutocomplete'
@@ -65,10 +68,19 @@ export default function useText(props, context) {
     theme: theme.theme,
     label: label.label,
     placeholder: placeholder.placeholder,
+    form$: form$.form$
   })
-  const slots = useSlots(props, context, {
+  const view = useView(props, context, {
+    available: conditions.available,
+  })
+  const components = useComponents(props, context, {
     theme: theme.theme,
+    form$: form$.form$
   })
+  const baseLayout = useBaseLayout(props, context, {
+    components: components.components,
+  })
+  const slots = useSlots(props, context)
   const inputType = useInputType(props, context)
   const autocomplete = useAutocomplete(props, context)
   const debounce = useDebounce(props, context)
@@ -124,6 +136,9 @@ export default function useText(props, context) {
     ...readonly,
     ...info,
     ...baseElement,
+    ...view,
+    ...components,
+    ...baseLayout,
     ...slots,
     ...inputType,
     ...autocomplete,

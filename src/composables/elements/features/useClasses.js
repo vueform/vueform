@@ -14,6 +14,22 @@ export default function useClasses(props, context, dependencies)
   const theme = dependencies.theme
 
   // ============== COMPUTED ==============
+
+  /**
+  * Classes to be added to components within the element. Eg. `addClasses: { ElementLabel: { label: 'my-label-class' } }` will add `my-label-class` to `ElementLabel`'s `label` class list.
+  * 
+  * @type {object} 
+  * @default {}
+  */
+  const addClasses = computed(computedOption('addClasses', schema, {}))
+
+  /**
+  * Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object).
+  * 
+  * @type {string} 
+  * @default null
+  */
+  const class_ = computed(computedOption('class', schema, ''))
   
   /**
   * Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object).
@@ -24,14 +40,6 @@ export default function useClasses(props, context, dependencies)
   const mainClass = computed(() => {
     return _.keys(defaultClasses.value)[0]
   })
-
-  /**
-  * Classes to be added to components within the element. Eg. `addClasses: { ElementLabel: { label: 'my-label-class' } }` will add `my-label-class` to `ElementLabel`'s `label` class list.
-  * 
-  * @type {object} 
-  * @default {}
-  */
-  const addClasses = computed(computedOption('addClasses', schema, {}))
 
   /**
    * Returns the final classes of the components within the element.
@@ -57,6 +65,13 @@ export default function useClasses(props, context, dependencies)
     
     // Add element's addClasses options
     classes = mergeComponentClasses(classes, addClasses.value[componentName.value] || null)
+    
+    // Add element's class to main class
+    if (!_.isEmpty(class_.value)) {
+      classes = mergeComponentClasses(classes, {
+        [mainClass.value]: class_.value
+      })
+    }
 
     return classes
   })
@@ -71,17 +86,9 @@ export default function useClasses(props, context, dependencies)
       return mergedClasses.value
     },
     set(val) {
-      schema.value.classes = val
+      form$.value.$set(schema.value, 'classes', val)
     }
   })
-
-  /**
-  * Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object).
-  * 
-  * @type {string} 
-  * @default null
-  */
-  const class_ = computed(computedOption('class', schema, ''))
 
   return {
     class: class_,

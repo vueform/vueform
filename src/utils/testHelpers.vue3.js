@@ -1,4 +1,5 @@
 import { mount } from '@vue/test-utils'
+import { h } from 'composition-api'
 
 import {
   testDynamics,
@@ -19,6 +20,7 @@ import {
   testNonNativeMultiselectModel,
   testTagsModel,
   tryInputValues,
+  testComputedOption,
 } from './testHelpers.vue2'
 
 // Core
@@ -169,6 +171,14 @@ const findAllComponents = function(parent, query) {
   }
 }
 
+const renderComponent = function() {
+  let args = arguments
+
+  return function () {
+    return h.apply(this, args)
+  }
+}
+
 export {
   installLaraform,
   createForm,
@@ -192,4 +202,6 @@ export {
   testTagsModel,
   tryInputValues,
   findAllComponents,
+  testComputedOption,
+  renderComponent,
 }

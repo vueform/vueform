@@ -1,13 +1,9 @@
-import { computed, markRaw, toRefs } from 'composition-api'
+import { computed,  toRefs } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 
 export default function useSlots(props, context, dependencies)
 {
   const { schema } = toRefs(props)
-
-  // ============ DEPENDENCIES ============
-
-  const theme = dependencies.theme
 
   // ============== COMPUTED ==============
 
@@ -20,13 +16,13 @@ export default function useSlots(props, context, dependencies)
     get() {
       return Object.assign({}, {
         info: null,
-        label: markRaw(theme.value.components.ElementLabel),
+        label: null,
         before: null,
         between: null,
         after: null,
         description: null,
-        error: markRaw(theme.value.components.ElementError),
-        message: markRaw(theme.value.components.ElementMessage),
+        error: null,
+        message: null,
       }, schema.slots || {})
     },
     set(val) {

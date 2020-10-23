@@ -1,5 +1,5 @@
 <template>
-  <component :is="components.BaseElementLayout">
+  <component :is="layout">
     <template v-slot:field>
 
       <slot name="prefix"></slot>
@@ -62,6 +62,7 @@
     data() {
       return {
         defaultClasses: {
+          container: 'lf-text',
           input: 'form-control',
           inputContainer: 'input-group',
         }

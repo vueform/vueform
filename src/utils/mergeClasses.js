@@ -67,7 +67,7 @@ const mergeClass = function (base, add) {
     else if (_.isArray(add)) {
       classes = _.concat([base], add)
     } else {
-      classes = !base.includes(add) ? `${base} ${add}` : base
+      classes = base.split(' ').indexOf('add') === -1 ? `${base} ${add}` : base
     }
   }
 

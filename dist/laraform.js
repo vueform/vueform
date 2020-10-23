@@ -401,6 +401,33 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/Laraform.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--0!./node_modules/vue-loader/lib??vue-loader-options!./src/themes/default/components/Laraform.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      defaultClasses: {
+        form: 'lf-form'
+      }
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/locutus/php/datetime/strtotime.js":
 /*!********************************************************!*\
   !*** ./node_modules/locutus/php/datetime/strtotime.js ***!
@@ -2527,6 +2554,142 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* global window, exports, define */
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/Laraform.vue?vue&type=template&id=a0fec5b2&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/themes/default/components/Laraform.vue?vue&type=template&id=a0fec5b2& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("form", [_vm._v("\n  Helloka\n")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () {
+        injectStyles.call(
+          this,
+          (options.functional ? this.parent : this).$root.$options.shadowRoot
+        )
+      }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functional component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
 /***/ "./src/components/Laraform.js":
 /*!************************************!*\
   !*** ./src/components/Laraform.js ***!
@@ -2536,1217 +2699,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/* global window, exports, define */
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var composition_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! composition-api */ "composition-api");
-/* harmony import */ var composition_api__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(composition_api__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utils_mergeClasses__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../utils/mergeClasses */ "./src/utils/mergeClasses.js");
-/* harmony import */ var _utils_formData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../utils/formData */ "./src/utils/formData.js");
-/* harmony import */ var _utils_asyncForEach__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../utils/asyncForEach */ "./src/utils/asyncForEach.js");
-/* harmony import */ var _mixins_HasEvents__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../mixins/HasEvents */ "./src/mixins/HasEvents.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-
-
+/* harmony import */ var _themes_default_components_Laraform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../themes/default/components/Laraform */ "./src/themes/default/components/Laraform.vue");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Laraform',
-  mixins: [_mixins_HasEvents__WEBPACK_IMPORTED_MODULE_5__["default"]],
-  render: function render() {
-    return this.extendedTheme.components.Laraform.render.apply(this, arguments);
-  },
-  provide: function provide() {
-    var _this = this;
-
-    return {
-      form$: Object(composition_api__WEBPACK_IMPORTED_MODULE_1__["computed"])(function () {
-        return _this;
-      }),
-      theme: Object(composition_api__WEBPACK_IMPORTED_MODULE_1__["computed"])(function () {
-        return _this.extendedTheme;
-      })
-    };
-  },
-  props: {
-    form: {
-      type: Object,
-      required: false,
-      "default": function _default() {
-        return {};
-      }
-    }
-  },
-  data: function data() {
-    return {
-      /**
-       * The schema of element contained within the form.
-       * 
-       * @type {object}
-       * @default {}
-       */
-      schema: {},
-
-      /**
-       * Form tabs definition.
-       * 
-       * @type {object}
-       * @default {}
-       */
-      tabs: {},
-
-      /**
-       * Form wizard definition.
-       * 
-       * @type {object}
-       * @default {}
-       */
-      wizard: {},
-
-      /**
-       * Whether wizard controls should appear when using wizard.
-       * 
-       * @type {boolean}
-       * @default true
-       */
-      wizardControls: null,
-
-      /**
-       * Theme of the form.
-       * 
-       * @type {string}
-       * @default config.theme
-       */
-      theme: null,
-
-      /**
-       * Endpoint to submit the form.
-       * 
-       * @type {string}
-       * @default config.endpoints.process
-       */
-      endpoint: null,
-
-      /**
-       * Method how the form should submit.
-       * 
-       * @type {string}
-       * @default config.method
-       */
-      method: null,
-
-      /**
-       * Form key to be sent when submitting data.
-       * 
-       * @type {string}
-       * @default null
-       */
-      key: null,
-
-      /**
-       * Form's CSS class.
-       * 
-       * @type {string}
-       * @default null
-       */
-      "class": null,
-
-      /**
-       * Override of [theme](style-and-theme#classes-property) classes.
-       * 
-       * @type {object}
-       * @default {}
-       */
-      classes: {},
-      addClasses: {},
-
-      /**
-       * Default column sizes for elements.
-       * 
-       * @type {object|number}
-       * @default config.columns
-       */
-      columns: null,
-
-      /**
-       * Whether label DOM should be displayed for elements without label option defined.
-       * 
-       * @type {boolean}
-       * @default config.labels
-       */
-      labels: null,
-      override: {
-        components: {},
-        elements: {}
-      },
-
-      /**
-       * Custom error messages.
-       * 
-       * @type {object}
-       * @default {}
-       */
-      messages: {},
-
-      /**
-       * Whether the form is multilingual.
-       * 
-       * @type {boolean}
-       * @default false
-       */
-      multilingual: null,
-
-      /**
-       * Available languages for mulitlingual form.
-       * 
-       * @type {object}
-       * @default config.languages
-       */
-      languages: null,
-
-      /**
-       * The default language of a multilingual form.
-       * 
-       * @type {string}
-       * @default config.language
-       */
-      language: null,
-
-      /**
-       * Whether errors should be displayed above form.
-       * 
-       * @type {boolean}
-       * @default config.formErrors
-       */
-      formErrors: null,
-
-      /**
-       * List of events separated by `|` when validation should occur. Possible values: `change`, `submit`, `step`.
-       * 
-       * @type {string}
-       * @default config.validateOn
-       */
-      validateOn: null,
-
-      /**
-       * Determine if the form should validate.
-       * 
-       * @type {boolean}
-       * @default true
-       */
-      validation: true,
-
-      /**
-       * Message bag that contains computed & custom errors & messages.
-       * 
-       * @type {MessageBag}
-       * @default {MessageBag}
-       */
-      messageBag: {},
-
-      /**
-       * Determine if the form is currently submitting.
-       * 
-       * @type {boolean}
-       * @default false
-       */
-      submitting: false,
-
-      /**
-       * Determine if the form is currently preparing for submission.
-       * 
-       * @type {boolean}
-       * @default false
-       */
-      preparing: false,
-
-      /**
-       * Determine if the form's data is currently being updated for external model.
-       * 
-       * @private
-       * @type {boolean}
-       * @default false
-       */
-      updating: false,
-
-      /**
-       * Helper property used to store available events for the element.
-       * 
-       * @ignore
-       * @type {array}
-       * @default []
-       */
-      events: ['change', 'submit', 'success', 'error', 'language', 'reset', 'clear', 'fail']
-    };
-  },
-  watch: {
-    'form.schema': {
-      handler: function handler(schema) {
-        if (_.isEmpty(schema)) {
-          return;
-        }
-
-        this.schema = schema;
-      },
-      deep: true,
-      immediate: false
-    },
-    wizard: {
-      handler: function handler() {
-        this.$_resortSchema();
-      },
-      deep: true,
-      immediate: false
-    },
-    tabs: {
-      handler: function handler() {
-        this.$_resortSchema();
-      },
-      deep: true,
-      immediate: false
-    },
-    store: {
-      handler: function handler(value) {
-        if (_.isEqual(value, this.filtered)) {
-          return;
-        }
-
-        this.update(this.store);
-      },
-      deep: true
-    } // data: {
-    // @todo
-    //   handler(value) {
-    //     this.$emit('change', this.filtered)
-    //     this.handleChange(this.filtered)
-    //     if (this.storePath === null) {
-    //       return
-    //     }
-    //     if (_.isEqual(value, this.store)) {
-    //       return
-    //     }
-    //     this.store = this.filtered
-    //   },
-    //   deep: true
-    // }
-
-  },
-  computed: {
-    elements$: function elements$() {
-      var elements$ = {};
-      var baseElements$ = {};
-
-      if (this.formElements$) {
-        baseElements$ = this.formElements$.elements$;
-      }
-
-      if (this.element$ && this.element$.length) {
-        baseElements$ = this.element$;
-      }
-
-      _.each(_.keys(this.schema), function (name) {
-        _.each(baseElements$, function (element$) {
-          if (element$.name == name) {
-            elements$[name] = element$;
-          }
-        });
-      });
-
-      return elements$;
-    },
-
-    /**
-     * The form's data.
-     * 
-     * @type {object}
-     */
-    data: function data() {
-      var data = {};
-
-      _.each(this.elements$, function (element$) {
-        data = Object.assign({}, data, element$.data);
-      });
-
-      return data;
-    },
-
-    /**
-     * The form's data excluding elements with unmet conditions and the ones which should not submit.
-     * 
-     * @type {object}
-     */
-    filtered: function filtered() {
-      var filtered = {};
-
-      _.each(this.elements$, function (element$) {
-        filtered = Object.assign({}, filtered, element$.filtered);
-      });
-
-      return filtered;
-    },
-    formData: function formData() {
-      return Object(_utils_formData__WEBPACK_IMPORTED_MODULE_3__["default"])({
-        key: this.key,
-        data: this.filtered
-      });
-    },
-
-    /**
-     * Whether the form has any dirty element.
-     * 
-     * @type {boolean}
-     */
-    dirty: function dirty() {
-      return _.some(this.elements$, {
-        available: true,
-        dirty: true
-      });
-    },
-
-    /**
-     * Whether the form has any invalid element.
-     * 
-     * @type {boolean}
-     */
-    invalid: function invalid() {
-      return _.some(this.elements$, {
-        available: true,
-        invalid: true
-      });
-    },
-
-    /**
-     * Whether the form has any debouncing element.
-     * 
-     * @type {boolean}
-     */
-    debouncing: function debouncing() {
-      return _.some(this.elements$, {
-        available: true,
-        debouncing: true
-      });
-    },
-
-    /**
-     * Whether the form has any pending element.
-     * 
-     * @type {boolean}
-     */
-    pending: function pending() {
-      return _.some(this.elements$, {
-        available: true,
-        pending: true
-      });
-    },
-
-    /**
-     * Whether each element of the form has been validated.
-     * 
-     * @type {boolean}
-     */
-    validated: function validated() {
-      return !_.some(this.elements$, {
-        available: true,
-        validated: false
-      });
-    },
-
-    /**
-     * Whether the form has any busy element or in preparing or submitting state.
-     * 
-     * @type {boolean}
-     */
-    busy: function busy() {
-      return _.some(this.elements$, {
-        available: true,
-        busy: true
-      }) || this.submitting || this.preparing;
-    },
-
-    /**
-     * List of all errors within the form.
-     * 
-     * @type {array}
-     */
-    errors: function errors() {
-      var errors = [];
-
-      _.each(_.filter(this.elements$, {
-        available: true
-      }), function (element$) {
-        _.each(element$.messageBag.errors || [], function (error) {
-          errors.push(error);
-        });
-      });
-
-      return errors;
-    },
-
-    /**
-     * Whether the form is disabled.
-     * 
-     * @type {boolean}
-     */
-    disabled: function disabled() {
-      return this.invalid && this.$_shouldValidateOn('change') || this.busy || this.submitting;
-    },
-
-    /**
-     * Whether the form has wizard.
-     * 
-     * @ignore
-     * @type {boolean}
-     */
-    hasWizard: function hasWizard() {
-      return !_.isEmpty(this.wizard);
-    },
-
-    /**
-     * Whether the form has tabs.
-     * 
-     * @ignore
-     * @type {boolean}
-     */
-    hasTabs: function hasTabs() {
-      return !_.isEmpty(this.tabs);
-    },
-
-    /**
-     * Whether the form has errors.
-     * 
-     * @ignore
-     * @type {boolean}
-     */
-    hasErrors: function hasErrors() {
-      return this.messageBag.errors && this.messageBag.errors.length > 0;
-    },
-
-    /**
-     * Whether the form has messages.
-     * 
-     * @ignore
-     * @type {boolean}
-     */
-    hasMessages: function hasMessages() {
-      return this.messageBag.messages && this.messageBag.messages.length > 0;
-    },
-    mainClass: function mainClass() {
-      return _.keys(this.defaultClasses)[0];
-    },
-    defaultClasses: function defaultClasses() {
-      return this.extendedTheme.components.Laraform.data().defaultClasses;
-    },
-    extendedClasses: function extendedClasses() {
-      var classes = Object.assign({}, this.defaultClasses, this.extendedTheme.classes.Laraform);
-      classes = Object(_utils_mergeClasses__WEBPACK_IMPORTED_MODULE_2__["mergeComponentClasses"])(classes, this.addClasses.Laraform || null);
-
-      if (this["class"] !== null || this.form["class"]) {
-        classes[this.mainClass] = Object(_utils_mergeClasses__WEBPACK_IMPORTED_MODULE_2__["mergeClass"])(classes[this.mainClass], this["class"] || this.form["class"]);
-      }
-
-      return classes;
-    },
-    components: function components() {
-      return Object.assign({}, this.extendedTheme.components, this.extendedTheme.elements);
-    },
-
-    /**
-     * The theme object of the selected theme.
-     * 
-     * @ignore
-     * @type {object}
-     */
-    selectedTheme: function selectedTheme() {
-      var theme = !_.isEmpty(this.theme) ? this.theme : this.form.theme || this.$laraform.theme;
-      return this.$laraform.themes[theme];
-    },
-
-    /**
-     * The selected theme's file with local extensions.
-     * 
-     * @ignore
-     * @type {object}
-     */
-    extendedTheme: function extendedTheme() {
-      return Object.assign({}, this.selectedTheme, {
-        // Add registered elements to theme elements (or overwrite)
-        elements: Object.assign({}, this.selectedTheme.elements, this.$laraform.elements, // @todo
-        this.override && this.override.elements ? this.override.elements : {}),
-        // Add registered component to theme (or overwrite)
-        components: Object.assign({}, this.selectedTheme.components, this.$laraform.components, // @todo
-        this.override && this.override.components ? this.override.components : {}),
-        // Ovewrite theme classes with form's classes definition
-        classes: _.merge({}, this.selectedTheme.classes, this.classes)
-      });
-    },
-
-    /**
-     * The value of external Vuex store state.
-     * 
-     * @type {object}
-     */
-    store: {
-      get: function get() {
-        if (this.storePath === null || !this.$store) {
-          return null;
-        }
-
-        return _.get(this.$store.state, this.storePath);
-      },
-      set: function set(value) {
-        if (!this.$store) {
-          return;
-        } // If store is not registered with Laraform.store()
-
-
-        if (!this.$store._mutations['laraform/LARAFORM_UPDATE_STORE']) {
-          _.set(this.$store.state, this.storePath, value);
-        } // If store is registered properly call a mutation
-        else {
-            this.$store.commit('laraform/LARAFORM_UPDATE_STORE', {
-              path: this.storePath,
-              value: value
-            });
-          }
-      }
-    },
-    form$: function form$() {
-      return this;
-    }
-  },
-  methods: {
-    /**
-     * Loads data and clears any element if the element's key is not found in the `data` object. Sets all elements' `dirty` to `false`.
-     * 
-     * @public
-     * @param {object} data data to load
-     * @returns {void}
-     */
-    load: function load(data) {
-      if (!_.isEmpty(this.wizard$)) {
-        this.wizard$.enableAllSteps();
-      }
-
-      _.each(this.elements$, function (element$) {
-        element$.load(data);
-      });
-    },
-
-    /**
-     * Sets all elements' `dirty` to `false`.
-     * 
-     * @public
-     * @returns {void}
-     */
-    clean: function clean() {
-      _.each(this.elements$, function (element$) {
-        element$.clean();
-      });
-    },
-
-    /**
-     * Updates the element values which are contained in the data.
-     * 
-     * @public
-     * @param {object} data data to update with
-     * @returns {void}
-     */
-    update: function update(data) {
-      var _this2 = this;
-
-      _.each(data, function (value, key) {
-        _this2.elements$[key].update(value);
-      });
-    },
-
-    /**
-     * Resets the form to its default state.
-     * 
-     * @public
-     * @returns {void}
-     */
-    reset: function reset() {
-      _.each(this.elements$, function (element$) {
-        element$.reset();
-      });
-
-      if (!_.isEmpty(this.wizard$)) {
-        this.wizard$.reset();
-      }
-
-      if (!_.isEmpty(this.tabs$)) {
-        this.tabs$.reset();
-      }
-
-      this.handleReset();
-    },
-
-    /**
-     * Resets the form to null values.
-     * 
-     * @public
-     * @returns {void}
-     */
-    clear: function clear() {
-      _.each(this.elements$, function (element$) {
-        element$.clear();
-      });
-
-      if (!_.isEmpty(this.wizard$)) {
-        this.wizard$.reset();
-      }
-
-      if (!_.isEmpty(this.tabs$)) {
-        this.tabs$.reset();
-      }
-
-      this.handleClear();
-    },
-
-    /**
-     * Validates each elements within the form.
-     * 
-     * @public
-     * @returns {void}
-     */
-    validate: function validate() {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var validateOnChange, elements$;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                validateOnChange = _this3.$_shouldValidateOn('change');
-
-                if (!(!_this3.invalid && _this3.validated && validateOnChange)) {
-                  _context2.next = 3;
-                  break;
-                }
-
-                return _context2.abrupt("return");
-
-              case 3:
-                elements$ = _.filter(_this3.elements$, function (el$) {
-                  return el$.available && (!el$.validated || !el$.rules || !validateOnChange);
-                });
-                _context2.next = 6;
-                return Object(_utils_asyncForEach__WEBPACK_IMPORTED_MODULE_4__["default"])(elements$, /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(element$) {
-                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-                      while (1) {
-                        switch (_context.prev = _context.next) {
-                          case 0:
-                            _context.next = 2;
-                            return element$.validate();
-
-                          case 2:
-                          case "end":
-                            return _context.stop();
-                        }
-                      }
-                    }, _callee);
-                  }));
-
-                  return function (_x) {
-                    return _ref.apply(this, arguments);
-                  };
-                }());
-
-              case 6:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-
-    /**
-     * Starts the submission process.
-     * 
-     * @public
-     * @returns {void}
-     */
-    submit: function submit() {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                if (!_this4.disabled) {
-                  _context3.next = 2;
-                  break;
-                }
-
-                return _context3.abrupt("return");
-
-              case 2:
-                if (!(_this4.handleSubmit() === false)) {
-                  _context3.next = 4;
-                  break;
-                }
-
-                return _context3.abrupt("return");
-
-              case 4:
-                if (!_this4.$_shouldValidateOn('submit')) {
-                  _context3.next = 7;
-                  break;
-                }
-
-                _context3.next = 7;
-                return _this4.validate();
-
-              case 7:
-                if (!_this4.invalid) {
-                  _context3.next = 9;
-                  break;
-                }
-
-                return _context3.abrupt("return");
-
-              case 9:
-                _this4.preparing = true;
-                _context3.prev = 10;
-                _context3.next = 13;
-                return _this4.prepareElements();
-
-              case 13:
-                _context3.next = 15;
-                return _this4.prepare();
-
-              case 15:
-                _context3.next = 21;
-                break;
-
-              case 17:
-                _context3.prev = 17;
-                _context3.t0 = _context3["catch"](10);
-
-                _this4.handleFail(_context3.t0);
-
-                throw new Error(_context3.t0);
-
-              case 21:
-                _context3.prev = 21;
-                _this4.preparing = false;
-                return _context3.finish(21);
-
-              case 24:
-                _this4.send();
-
-              case 25:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, null, [[10, 17, 21, 24]]);
-      }))();
-    },
-    prepareElements: function prepareElements() {
-      var _this5 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.prev = 0;
-                _context5.next = 3;
-                return Object(_utils_asyncForEach__WEBPACK_IMPORTED_MODULE_4__["default"])(_this5.elements$, /*#__PURE__*/function () {
-                  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(element$) {
-                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-                      while (1) {
-                        switch (_context4.prev = _context4.next) {
-                          case 0:
-                            _context4.next = 2;
-                            return element$.prepare();
-
-                          case 2:
-                          case "end":
-                            return _context4.stop();
-                        }
-                      }
-                    }, _callee4);
-                  }));
-
-                  return function (_x2) {
-                    return _ref2.apply(this, arguments);
-                  };
-                }());
-
-              case 3:
-                _context5.next = 8;
-                break;
-
-              case 5:
-                _context5.prev = 5;
-                _context5.t0 = _context5["catch"](0);
-                throw new Error(_context5.t0);
-
-              case 8:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5, null, [[0, 5]]);
-      }))();
-    },
-    prepare: function prepare() {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-              case "end":
-                return _context6.stop();
-            }
-          }
-        }, _callee6);
-      }))();
-    },
-
-    /**
-     * Transforms form data to [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object and sends it to the endpoint.
-     * 
-     * @public
-     * @returns {void}
-     */
-    send: function send() {
-      var _this6 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
-          while (1) {
-            switch (_context7.prev = _context7.next) {
-              case 0:
-                _this6.submitting = true;
-                response = {};
-                _context7.prev = 2;
-                _context7.next = 5;
-                return _this6.$laraform.services.axios[_this6.method](_this6.endpoint, _this6.formData);
-
-              case 5:
-                response = _context7.sent;
-
-                if (response.data.payload && response.data.payload.updates) {
-                  _this6.update(response.data.payload.updates);
-                }
-
-                _this6.handleSuccess(response);
-
-                _context7.next = 13;
-                break;
-
-              case 10:
-                _context7.prev = 10;
-                _context7.t0 = _context7["catch"](2);
-
-                _this6.handleError(_context7.t0.response, _context7.t0); // throw new Error(error)
-
-
-              case 13:
-                _context7.prev = 13;
-                _this6.submitting = false;
-                return _context7.finish(13);
-
-              case 16:
-              case "end":
-                return _context7.stop();
-            }
-          }
-        }, _callee7, null, [[2, 10, 13, 16]]);
-      }))();
-    },
-
-    /**
-     * Transforms form data into [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
-     * 
-     * @public
-     * @param {object} data data to transform
-     * @returns {void}
-     */
-    createFormData: function createFormData(data) {
-      return Object(_utils_formData__WEBPACK_IMPORTED_MODULE_3__["default"])(data);
-    },
-
-    /**
-     * Disabled validation.
-     * 
-     * @public
-     * @returns {void}
-     */
-    disableValidation: function disableValidation() {
-      this.validation = false;
-    },
-
-    /**
-     * Enables validation.
-     * 
-     * @public
-     * @returns {void}
-     */
-    enableValidation: function enableValidation() {
-      this.validation = true;
-    },
-
-    /**
-     * Set the language of a multilingual form.
-     * 
-     * @public
-     * @param {string} code code of language to set
-     * @returns {void}
-     */
-    setLanguage: function setLanguage(code) {
-      this.language = code;
-      this.handleLanguage(code);
-    },
-    updateSchema: function updateSchema(schema) {
-      this.$set(this, 'schema', schema);
-    },
-
-    /**
-     * Triggered when form's data is changed.
-     *
-     * @public
-     * @param {object} data data of the form (filtered)
-     * @event change
-     */
-    handleChange: function handleChange(data) {
-      this.fire('change', data);
-    },
-
-    /**
-     * Triggered when the form is submitted. Can prevent further execution (element validation) if returns `false`.
-     *
-     * @public
-     * @prevents 
-     * @event submit
-     */
-    handleSubmit: function handleSubmit() {
-      return this.fire('submit');
-    },
-
-    /**
-     * Triggered when the form fails in the preparation stage, before submitting.
-     *
-     * @public
-     * @param {object} error error object
-     * @event fail
-     */
-    handleFail: function handleFail(error) {
-      return this.fire('fail', error);
-    },
-
-    /**
-     * Triggered when receives a success response from the server upon submitting the form.
-     *
-     * @public
-     * @param {object} response response object
-     * @event success
-     */
-    handleSuccess: function handleSuccess(response) {
-      this.fire('success', response);
-    },
-
-    /**
-     * Triggered when receives a failed response from the server upon submitting the form.
-     *
-     * @public
-     * @param {object} response response object
-     * @event error
-     */
-    handleError: function handleError(response, error) {
-      this.fire('error', response, error);
-    },
-
-    /**
-     * Triggered when user selects a language in a multilingual form.
-     *
-     * @public
-     * @param {string} language the selected language's code
-     * @event language
-     */
-    handleLanguage: function handleLanguage(language) {
-      this.fire('language', language);
-    },
-
-    /**
-     * Triggered when the form is resetted.
-     *
-     * @public
-     * @event reset
-     */
-    handleReset: function handleReset() {
-      this.fire('reset');
-    },
-
-    /**
-     * Triggered when the form is cleared.
-     *
-     * @public
-     * @event clear
-     */
-    handleClear: function handleClear() {
-      this.fire('clear');
-    },
-
-    /**
-     * Returns an element by its path.
-     * 
-     * @public
-     * @param {string} path path of the element
-     * @param {string} elements elements$ object to look elements for (leave blank)
-     * @returns {void}
-     */
-    el$: function el$(path, elements) {
-      if (elements === undefined) {
-        elements = this.elements$;
-      }
-
-      if (_.isEmpty(elements) || !path) {
-        return null;
-      }
-
-      var matches = String(path).match(/^[^.]+\./);
-
-      if (matches) {
-        var current = matches[0].replace('.', '');
-
-        if (!elements[current]) {
-          return null;
-        }
-
-        return this.el$(path.replace(matches[0], ''), elements[current].children$);
-      } else if (elements[path] !== undefined) {
-        return elements[path];
-      }
-
-      return null;
-    },
-
-    /**
-     * Returns the siblings of an element.
-     * 
-     * @public
-     * @param {string} path path of the element
-     * @returns {void}
-     */
-    siblings$: function siblings$(path) {
-      if (!/\.+/.test(path)) {
-        return this.elements$;
-      }
-
-      return this.el$(path.match(/.*(?=\.)/)[0]).children$;
-    },
-    $_resortSchema: function $_resortSchema() {
-      var _this7 = this;
-
-      var all = _.keys(this.schema);
-
-      var blocks;
-
-      if (!_.isEmpty(this.wizard)) {
-        blocks = this.wizard;
-      }
-
-      if (!_.isEmpty(this.tabs)) {
-        blocks = this.tabs;
-      }
-
-      if (blocks) {
-        var schema = {};
-
-        _.each(blocks, function (block) {
-          _.each(block.elements, function (element) {
-            schema[element] = _this7.schema[element];
-          });
-        });
-
-        _.each(all, function (element) {
-          if (schema[element] === undefined) {
-            schema[element] = _this7.schema[element];
-          }
-        });
-
-        this.updateSchema(schema);
-      }
-    },
-
-    /**
-     * Determines if validation should occur on a specific event.
-     * 
-     * @private
-     * @param {string} event event to examine
-     * @returns {boolean}
-     */
-    $_shouldValidateOn: function $_shouldValidateOn(event) {
-      return this.validateOn.split('|').indexOf(event) !== -1;
-    },
-    $_initMessageBag: function $_initMessageBag() {
-      this.messageBag = new this.$laraform.services.messageBag(this);
-    }
-  },
-  created: function created() {
-    var _this8 = this;
-
-    if (this.key === null) {
-      this.key = this.form.key || null;
-    }
-
-    if (this["class"] === null) {
-      this["class"] = this.form["class"] || null;
-    }
-
-    if (this.multilingual === null) {
-      this.multilingual = this.form.multilingual !== undefined ? this.form.multilingual : false;
-    }
-
-    if (this.endpoint === null) {
-      this.endpoint = this.form.endpoint || this.$laraform.endpoints.process;
-    }
-
-    if (this.form.wizardControls !== undefined && this.wizardControls === null) {
-      this.wizardControls = this.form.wizardControls;
-    } else if (this.wizardControls === null) {
-      this.wizardControls = true;
-    } // if the component does not have a data value
-    // and receives as a form prop, set it from that
-    // otherwise get the default value from config
-
-
-    _.each(['theme', 'columns', 'validateOn', 'labels', 'formErrors', 'method', 'languages', 'language'], function (property) {
-      if (_this8[property] === null) {
-        _this8[property] = _this8.form[property] !== undefined ? _this8.form[property] : _this8.$laraform[property];
-      }
-    }); // if the form has a property, merge it
-    // with the component's existing data
-
-
-    _.each(['schema', 'tabs', 'wizard', 'messages'], function (property) {
-      if (_this8.form[property]) {
-        _this8[property] = _.merge({}, _.cloneDeep(_this8.form[property]), _.cloneDeep(_this8[property]));
-      }
-    });
-
-    this.$_resortSchema();
-    this.$_initMessageBag();
-  },
-  mounted: function mounted() {
-    if (!_.isEmpty(this.form.data)) {
-      this.load(this.form.data);
-    }
-  }
+  render: _themes_default_components_Laraform__WEBPACK_IMPORTED_MODULE_0__["default"].render
 });
 
 /***/ }),
@@ -4220,6 +3177,7 @@ if (window.moment === undefined) {
             };
 
             appOrVue.config.globalProperties.$laraform = this.options;
+            console.log(appOrVue.config.globalProperties);
             appOrVue.directive('ref', _directives_ref__WEBPACK_IMPORTED_MODULE_11__["default"]);
             appOrVue.directive('html-if', _directives_html_if__WEBPACK_IMPORTED_MODULE_12__["default"]);
             appOrVue.mixin({
@@ -4244,96 +3202,6 @@ if (window.moment === undefined) {
   }();
 
   return new Laraform();
-});
-
-/***/ }),
-
-/***/ "./src/mixins/HasEvents.js":
-/*!*********************************!*\
-  !*** ./src/mixins/HasEvents.js ***!
-  \*********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      /**
-       * Helper property used to store available events for the element.
-       * 
-       * @ignore
-       * @type {array}
-       * @default []
-       */
-      events: [],
-
-      /**
-       * Helper property used to store listeners for events.
-       * 
-       * @ignore
-       * @type {object}
-       * @default {}
-       */
-      listeners: {}
-    };
-  },
-  methods: {
-    /**
-     * Adds a listener for an event.
-     *
-     * @public
-     * @param {string} event event to listen for.
-     * @param {function} callback callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.
-     * @returns {void}
-     */
-    on: function on(event, callback) {
-      if (!this.listeners[event]) {
-        this.$set(this.listeners, event, []);
-      }
-
-      this.listeners[event].push(callback);
-    },
-
-    /**
-     * Removes all listeners for an event.
-     *
-     * @public
-     * @param {string} event event to remove the listeners for.
-     * @returns {void}
-     */
-    off: function off(event) {
-      delete this.listeners[event];
-    },
-
-    /**
-     * Fires an event.
-     *
-     * @public
-     * @returns {any}
-     */
-    fire: function fire() {
-      var _this = this;
-
-      var event = arguments[0];
-      var args = [].slice.call(arguments).splice(1);
-      var response;
-
-      lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(this.listeners[event], function (callback) {
-        var answer = callback.apply(_this, args);
-
-        if (answer !== undefined) {
-          response = answer;
-        }
-      });
-
-      return response;
-    }
-  }
 });
 
 /***/ }),
@@ -9871,6 +8739,75 @@ var store = {
 
 /***/ }),
 
+/***/ "./src/themes/default/components/Laraform.vue":
+/*!****************************************************!*\
+  !*** ./src/themes/default/components/Laraform.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Laraform_vue_vue_type_template_id_a0fec5b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Laraform.vue?vue&type=template&id=a0fec5b2& */ "./src/themes/default/components/Laraform.vue?vue&type=template&id=a0fec5b2&");
+/* harmony import */ var _Laraform_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Laraform.vue?vue&type=script&lang=js& */ "./src/themes/default/components/Laraform.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Laraform_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Laraform_vue_vue_type_template_id_a0fec5b2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Laraform_vue_vue_type_template_id_a0fec5b2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "src/themes/default/components/Laraform.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./src/themes/default/components/Laraform.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./src/themes/default/components/Laraform.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Laraform_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Laraform.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/Laraform.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Laraform_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./src/themes/default/components/Laraform.vue?vue&type=template&id=a0fec5b2&":
+/*!***********************************************************************************!*\
+  !*** ./src/themes/default/components/Laraform.vue?vue&type=template&id=a0fec5b2& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Laraform_vue_vue_type_template_id_a0fec5b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Laraform.vue?vue&type=template&id=a0fec5b2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/Laraform.vue?vue&type=template&id=a0fec5b2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Laraform_vue_vue_type_template_id_a0fec5b2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Laraform_vue_vue_type_template_id_a0fec5b2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./src/utils/applyExtensions.js":
 /*!**************************************!*\
   !*** ./src/utils/applyExtensions.js ***!
@@ -9913,64 +8850,6 @@ __webpack_require__.r(__webpack_exports__);
     component.mixins[0].extensions.push(extension);
   });
 });
-
-/***/ }),
-
-/***/ "./src/utils/asyncForEach.js":
-/*!***********************************!*\
-  !*** ./src/utils/asyncForEach.js ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return asyncForEach; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function asyncForEach(_x, _x2) {
-  return _asyncForEach.apply(this, arguments);
-}
-
-function _asyncForEach() {
-  _asyncForEach = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(array, callback) {
-    var index, key;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            index = 0;
-
-          case 1:
-            if (!(index < (_.isPlainObject(array) ? _.values(array) : array).length)) {
-              _context.next = 8;
-              break;
-            }
-
-            key = _.isPlainObject(array) ? _.keys(array)[index] : index;
-            _context.next = 5;
-            return callback(array[key], key, array);
-
-          case 5:
-            index++;
-            _context.next = 1;
-            break;
-
-          case 8:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _asyncForEach.apply(this, arguments);
-}
 
 /***/ }),
 
@@ -10048,47 +8927,6 @@ var flattenKeys = function flattenKeys(obj) {
 
 /***/ }),
 
-/***/ "./src/utils/formData.js":
-/*!*******************************!*\
-  !*** ./src/utils/formData.js ***!
-  \*******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var getFormData = function getFormData(data, formData, namespace) {
-  if (formData === undefined) {
-    formData = new FormData();
-  }
-
-  if (namespace === undefined) {
-    namespace = '';
-  }
-
-  if (lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isArray(data)) {
-    lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(data, function (value, key) {
-      getFormData(value, formData, namespace + '[' + key + ']');
-    });
-  } else if (lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isPlainObject(data)) {
-    lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(data, function (value, key) {
-      getFormData(value, formData, namespace ? namespace + '[' + key + ']' : key);
-    });
-  } else {
-    formData.append(namespace, data === null ? '' : data);
-  }
-
-  return formData;
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (getFormData);
-
-/***/ }),
-
 /***/ "./src/utils/isJson.js":
 /*!*****************************!*\
   !*** ./src/utils/isJson.js ***!
@@ -10107,94 +8945,6 @@ __webpack_require__.r(__webpack_exports__);
 
   return true;
 });
-
-/***/ }),
-
-/***/ "./src/utils/mergeClasses.js":
-/*!***********************************!*\
-  !*** ./src/utils/mergeClasses.js ***!
-  \***********************************/
-/*! exports provided: default, mergeClass, mergeComponentClasses */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeClass", function() { return mergeClass; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeComponentClasses", function() { return mergeComponentClasses; });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-var mergeClasses = function mergeClasses(base, add) {
-  var components = base;
-
-  lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(add, function (classes, component) {
-    components[component] = mergeComponentClasses(base[component] || {}, classes);
-  });
-
-  return components;
-};
-
-var mergeComponentClasses = function mergeComponentClasses(base, add) {
-  var classes = base;
-
-  lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(add, function (classes_, key) {
-    classes[key] = mergeClass(base[key] || null, classes_);
-  });
-
-  return classes;
-};
-
-var mergeClass = function mergeClass(base, add) {
-  if (add === null || lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isEmpty(add)) {
-    return base;
-  }
-
-  if (base === null || lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isEmpty(base)) {
-    return add;
-  }
-
-  var classes;
-
-  if (lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isPlainObject(base)) {
-    if (lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isPlainObject(add)) {
-      classes = Object.assign({}, base, add);
-    } else if (lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isArray(add)) {
-      classes = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.concat([base], add);
-    } else {
-      classes = Object.assign({}, base, _defineProperty({}, add, true));
-    }
-  } else if (lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isArray(base)) {
-    if (lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isPlainObject(add)) {
-      classes = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.concat(base, [add]);
-    } else if (lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isArray(add)) {
-      classes = base;
-
-      lodash__WEBPACK_IMPORTED_MODULE_0___default.a.each(add, function (a) {
-        if (classes.indexOf(a) === -1) {
-          classes = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.concat(classes, [a]);
-        }
-      });
-    } else {
-      classes = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.concat(base, [add]);
-    }
-  } else {
-    if (lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isPlainObject(add)) {
-      classes = Object.assign({}, _defineProperty({}, base, true), add);
-    } else if (lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isArray(add)) {
-      classes = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.concat([base], add);
-    } else {
-      classes = !base.includes(add) ? "".concat(base, " ").concat(add) : base;
-    }
-  }
-
-  return classes;
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (mergeClasses);
-
 
 /***/ }),
 
