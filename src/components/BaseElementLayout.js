@@ -35,6 +35,10 @@ export default {
       return el$.value.hasLabel
     })
 
+    const info = computed(() => {
+      return el$.value.info
+    })
+
     const before = computed(() => {
       return el$.value.before
     })
@@ -66,6 +70,7 @@ export default {
       classes: updatedClasses,
       visible,
       hasLabel,
+      info,
       before,
       between,
       after,

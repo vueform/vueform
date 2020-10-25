@@ -4,6 +4,10 @@ export default function useColumns(props, context, dependencies)
 {
   const { schema } = toRefs(props)
 
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
+
   // ============== COMPUTED ==============
 
   /**
@@ -22,7 +26,7 @@ export default function useColumns(props, context, dependencies)
       }
     },
     set(val) {
-      schema.value.columns = val
+      form$.value.$set(schema.value, 'columns', val)
     }
   })
 

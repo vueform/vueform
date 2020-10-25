@@ -171,12 +171,12 @@ const findAllComponents = function(parent, query) {
   }
 }
 
-const renderComponent = function() {
-  let args = arguments
+const createElement = function() {
+  let args = _.values(arguments)
 
-  return function () {
-    return h.apply(this, args)
-  }
+  args.splice(0,1)
+
+  return h.apply(null, args)
 }
 
 export {
@@ -203,5 +203,5 @@ export {
   tryInputValues,
   findAllComponents,
   testComputedOption,
-  renderComponent,
+  createElement,
 }

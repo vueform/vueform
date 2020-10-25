@@ -5,7 +5,7 @@ export default function useEmpty(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const value = dependencies.value
-  const nill = dependencies.nill
+  const nullValue = dependencies.nullValue
 
   // ============== COMPUTED ==============
 
@@ -15,7 +15,7 @@ export default function useEmpty(props, context, dependencies)
     * @type {boolean}
     */
   const empty = computed(() => {
-    return value.value == nill.value || value.value === ''
+    return value.value == nullValue.value || value.value === ''
   })
 
   return {

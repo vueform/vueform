@@ -27,7 +27,6 @@ export default function useConditions(props, context, dependencies)
    * @type {boolean}
    */
   const available = computed(() => {
-
     if (parent && parent.value && parent.value.available !== undefined && !parent.value.available) {
       return false
     }

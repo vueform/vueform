@@ -1,34 +1,32 @@
 import { computed,  toRefs } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 
-export default function useSlots(props, context, dependencies)
+export default function useSlots(props, context, dependencies, options = {})
 {
   const { schema } = toRefs(props)
 
-  // ============== COMPUTED ==============
+  // =============== OPTIONS ==============
 
-  /**
-   * Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.
-   * 
-   * @type {object}
-   */
-  const slots = computed({
-    get() {
-      return Object.assign({}, {
-        info: null,
-        label: null,
-        before: null,
-        between: null,
-        after: null,
-        description: null,
-        error: null,
-        message: null,
-      }, schema.slots || {})
-    },
-    set(val) {
-      schema.value.slots = Object.assign({}, schema.value.slots || {}, val)
-    }
-  })
+  let defaultSlots = options.slots || [
+    'label', 'info', 'before', 'between', 'after',
+    'description', 'error', 'message',
+  ]
+
+  if (_.isArray(defaultSlots)) {
+    let slotList = {}
+
+    _.each(defaultSlots, (name) => {
+      slotList[name] = null
+    })
+
+    defaultSlots = slotList
+  }
+
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
+
+  // ============== COMPUTED ==============
 
   /**
    * Text or HTML to be placed before the field. If `before` slot is provided this will not appear.
@@ -51,10 +49,24 @@ export default function useSlots(props, context, dependencies)
    */
   const after = computed(computedOption('after', schema, null))
 
+  /**
+   * Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.
+   * 
+   * @type {object}
+   */
+  const slots = computed({
+    get() {
+      return Object.assign({}, defaultSlots, schema.value.slots || {})
+    },
+    set(val) {
+      form$.value.$set(schema.value, 'slots', Object.assign({}, defaultSlots, schema.value.slots || {}, val))
+    }
+  })
+
   return {
-    slots,
     before,
     between,
     after,
+    slots,
   }
 }

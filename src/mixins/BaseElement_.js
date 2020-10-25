@@ -1,12 +1,11 @@
 import _ from 'lodash'
-import Localized from './Localized'
 import HasEvents from './HasEvents'
 import HasHooks from './HasHooks'
 import { markRaw } from 'vue'
 
 export default {
   name: 'BaseElement',
-  mixins: [HasEvents, HasHooks, Localized],
+  mixins: [HasEvents, HasHooks],
   provide() {
     const _this = this
   

@@ -43,6 +43,7 @@
       
     </template>
     
+    <template v-slot:info><slot name="info" :el$="el$"><component v-if="slots.info" :is="slots.info" /></slot></template>
     <template v-slot:before><slot name="before" :el$="el$"><component v-if="slots.before" :is="slots.before" /></slot></template>
     <template v-slot:label><slot name="label" :el$="el$"><component v-if="slots.label" :is="slots.label" /></slot></template>
     <template v-slot:between><slot name="between" :el$="el$"><component v-if="slots.between" :is="slots.between" /></slot></template>

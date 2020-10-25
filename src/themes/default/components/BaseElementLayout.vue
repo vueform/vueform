@@ -7,6 +7,9 @@
           <slot name="label">
             <component :is="components.ElementLabel" />
           </slot>
+          <slot v-if="info" name="info">
+            <component :is="components.ElementInfo" />
+          </slot>
         </div>
 
         <div :class="classes.fieldWrapper">

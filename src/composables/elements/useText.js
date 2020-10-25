@@ -59,7 +59,9 @@ export default function useText(props, context) {
     theme: theme.theme,
   })
   const id = useId(props, context)
-  const columns = useColumns(props, context)
+  const columns = useColumns(props, context, {
+    form$: form$.form$,
+  })
   const description = useDescription(props, context)
   const readonly = useReadonly(props, context)
   const info = useInfo(props, context)
@@ -80,7 +82,9 @@ export default function useText(props, context) {
   const baseLayout = useBaseLayout(props, context, {
     components: components.components,
   })
-  const slots = useSlots(props, context)
+  const slots = useSlots(props, context, {
+    form$: form$.form$
+  })
   const inputType = useInputType(props, context)
   const autocomplete = useAutocomplete(props, context)
   const debounce = useDebounce(props, context)
@@ -114,7 +118,7 @@ export default function useText(props, context) {
   })
   const empty = useEmpty(props, context, {
     value: value.value,
-    nill: data.nill,
+    nullValue: data.nullValue,
   })
 
   return {

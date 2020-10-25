@@ -68,6 +68,14 @@ export default function useData(props, context, dependencies)
   const messages = computed(computedOption('messages', schema, {}))
 
   /**
+   * Whether the element should display it's first error, if any.
+   * 
+   * @type {boolean} 
+   * @default true
+   */
+  const displayError = computed(computedOption('displayError', schema, true))
+
+  /**
    * Whether the element's value has been modified by the user.
    * 
    * @type {boolean}
@@ -147,14 +155,6 @@ export default function useData(props, context, dependencies)
     return messageBag.value.error || null
   })
 
-  /**
-   * Whether the element should display it's first error, if any.
-   * 
-   * @type {boolean} 
-   * @default true
-   */
-  const displayError = computed(computedOption('error', schema, true))
-
   // =============== METHODS ===============
 
   /**
@@ -173,15 +173,25 @@ export default function useData(props, context, dependencies)
       return
     }
 
-    if (!schema.value.rules) {
-      return
-    }
-
     await asyncForEach(Validators.value, async (Validator) => {
       await Validator.validate()
     })
     
     state.value.validated = true
+  }
+
+  /**
+   * Set the validated state to false.
+   * 
+   * @public
+   * @returns {void}
+   */
+  const resetValidators = () => {
+    _.each(Validators.value, (Validator) => {
+      Validator.reset()
+    })
+
+    state.value.validated = !schema.value.rules
   }
 
   /**
@@ -202,20 +212,6 @@ export default function useData(props, context, dependencies)
    */
   const clean = () => {
     state.value.dirty = false
-  }
-
-  /**
-   * Set the validated state to false.
-   * 
-   * @public
-   * @returns {void}
-   */
-  const resetValidators = () => {
-    _.each(Validators.value, (Validator) => {
-      Validator.reset()
-    })
-
-    state.value.validated = !schema.value.rules
   }
 
   /**

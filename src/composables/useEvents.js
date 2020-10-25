@@ -1,7 +1,11 @@
 import { reactive, toRefs } from 'composition-api'
 
-export default function useEvents(props, context, dependencies, options)
+export default function useEvents(props, context, dependencies, options = {})
 {
+  if (!options.events) {
+    throw new Error('`events` option is required for useEvents')
+  }
+
   // ============ DEPENDENCIES =============
 
   const form$ = dependencies.form$

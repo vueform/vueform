@@ -18,9 +18,24 @@ export default function useData(props, context, dependencies)
 
   // ============== COMPUTED ===============
 
-  const nill = computed(() => {
+  const nullValue = computed(() => {
     return null
   })
+
+  /**
+  * Whether the element's value should be submitted.
+  * 
+  * @type {boolean} 
+  * @default true
+  */
+  const submit = computed(computedOption('submit', schema, true))
+
+  /**
+  * The default value of the element.
+  * 
+  * @type {boolean}
+  */
+  const default_ = computed(computedOption('default', schema, nullValue.value))
 
   /**
    * A function that formats data before gets merged with form `data`.
@@ -62,21 +77,6 @@ export default function useData(props, context, dependencies)
     return data.value
   })
 
-  /**
-  * Whether the element's value should be submitted.
-  * 
-  * @type {boolean} 
-  * @default true
-  */
-  const submit = computed(computedOption('submit', schema, true))
-
-  /**
-  * The default value of the element.
-  * 
-  * @type {boolean}
-  */
-  const default_ = computed(computedOption('default', schema, nill.value))
-
   // =============== METHODS ===============
 
   /**
@@ -89,8 +89,13 @@ export default function useData(props, context, dependencies)
     if (available.value && data && data[name.value] !== undefined) {
       update(formatLoad.value(data[name.value], form$.value))
 
+      // Double nextTick is required because first the value watcher is triggered
+      // then the value changes (1st) nextTick any only dirts the element afterwards.
+      // So we need a 2nd tick to catch the moment after.
+      nextTick(() => {
       nextTick(() => {
         clean()
+      })
       })
       return
     }
@@ -99,7 +104,9 @@ export default function useData(props, context, dependencies)
     resetValidators()
       
     nextTick(() => {
+    nextTick(() => {
       clean()
+    })
     })
   }
 
@@ -111,15 +118,7 @@ export default function useData(props, context, dependencies)
    * @param {boolean} shouldValidate whether the element should be validated (default: `false`)
    * @returns {void}
    */
-  const update = (val, triggerChange, shouldValidate) => {
-    if (triggerChange === undefined) {
-      triggerChange = false
-    }
-
-    if (shouldValidate === undefined) {
-      shouldValidate = false
-    }
-
+  const update = (val, triggerChange = false, shouldValidate = false) => {
     value.value = val
 
     if (triggerChange) {
@@ -150,7 +149,7 @@ export default function useData(props, context, dependencies)
    * @returns {void}
    */
   const clear = () => {
-    value.value = _.clone(nill.value)
+    value.value = _.clone(nullValue.value)
   }
 
   /**
@@ -163,12 +162,12 @@ export default function useData(props, context, dependencies)
 
   // =============== HOOKS ================
 
-  previousValue.value = _.clone(nill.value)
+  previousValue.value = _.clone(nullValue.value)
   value.value = _.clone(default_.value)
 
   return {
     // Computed
-    nill,
+    nullValue,
     data,
     filtered,
     formatData,

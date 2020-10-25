@@ -1,6 +1,6 @@
 import { nextTick } from 'vue'
 import { defineComponent } from 'composition-api'
-import { createForm, findAllComponents, renderComponent } from 'test-helpers'
+import { createForm, findAllComponents, createElement } from 'test-helpers'
 
 export default function baseElement(elementType) {
   const elementName = `${_.upperFirst(elementType)}Element`
@@ -49,7 +49,9 @@ export default function baseElement(elementType) {
       let components = {
         ElementError: defineComponent({
           name: 'CustomElementError',
-          render: renderComponent('div', 'hello')
+          render(h) {
+            return createElement(h, 'div', 'hello')
+          }
         })
       }
 
@@ -74,7 +76,9 @@ export default function baseElement(elementType) {
       let components = {
         ElementError: defineComponent({
           name: 'CustomElementError',
-          render: renderComponent('div', 'hello')
+          render(h) {
+            return createElement(h, 'div', 'hello')
+          }
         })
       }
 
@@ -99,7 +103,9 @@ export default function baseElement(elementType) {
       let components = {
         ElementError: defineComponent({
           name: 'CustomElementError',
-          render: renderComponent('div', 'hello')
+          render(h) {
+            return createElement(h, 'div', 'hello')
+          }
         })
       }
 

@@ -1,6 +1,6 @@
 import { nextTick } from 'vue'
 import { defineComponent } from 'composition-api'
-import { createForm, findAllComponents, renderComponent } from 'test-helpers'
+import { createForm, findAllComponents, createElement } from 'test-helpers'
 
 export default function baseLayout(elementType) {
   const elementName = `${_.upperFirst(elementType)}Element`
@@ -30,7 +30,9 @@ export default function baseLayout(elementType) {
             components: {
               BaseElementLayout: defineComponent({
                 name: 'CustomBaseElementLayout',
-                render: renderComponent('div', 'Hello')
+                render(h) {
+                  return createElement(h, 'div', 'hello')
+                }
               })
             }
           }
@@ -59,7 +61,9 @@ export default function baseLayout(elementType) {
       el.vm.components = {
         BaseElementLayout: defineComponent({
           name: 'CustomBaseElementLayout',
-          render: renderComponent('div', 'Hello')
+          render(h) {
+            return createElement(h, 'div', 'hello')
+          }
         })
       }
 

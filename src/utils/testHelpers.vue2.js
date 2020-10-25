@@ -90,10 +90,10 @@ const installLaraform = function(options = {}) {
   }
 }
 
-const createForm = function(data, options = {}) {
+const createForm = function(data, options = {}, render = null) {
   let { LocalVue, config, store } = installLaraform(options)
 
-  let form = LocalVue.extend({
+  let form = LocalVue.extend(Object.assign({}, {
     mixins: [Laraform],
     setup(props, context) {
       const laraform = useLaraform(props, context)
@@ -105,7 +105,9 @@ const createForm = function(data, options = {}) {
     data() {
       return data
     }
-  })
+  }, render ? {
+    render,
+  } : {}))
 
   let $laraform = Object.assign({}, config, {
     extensions: config.extensions,
@@ -655,28 +657,42 @@ const findAllComponents = function(parent, query) {
   }
 }
 
-const testComputedOption = function(it, elementType, optionName, defaultValue, testValue) {
+const testComputedOption = function(it, elementType, optionName, defaultValue, testValue, testDefault = true) {
   const elementName = `${_.upperFirst(elementType)}Element`
 
-  let defaultString = defaultValue.toString()
+  let defaultString
 
-  if (_.isPlainObject(defaultValue)) {
+  if (_.isBoolean(defaultValue) || _.isString(defaultValue)) {
+     defaultString = defaultValue.toString()
+  }
+  else if (defaultValue === null) {
+     defaultString = 'null'
+  }
+  else if (defaultValue === undefined) {
+     defaultString = 'undefined'
+  }
+  else if (_.isPlainObject(defaultValue)) {
     defaultString = JSON.stringify(defaultValue)
   }
+  else if (_.isArray(defaultValue) && defaultValue.length == 0) {
+    defaultString = '[]'
+  }
 
-  it('should have "'+defaultString+'" as default for `'+optionName+'`', () => {
-    let form = createForm({
-      schema: {
-        [elementType]: {
-          type: elementType
+  if (testDefault) {
+    it('should have "'+defaultString+'" as default for `'+optionName+'`', () => {
+      let form = createForm({
+        schema: {
+          [elementType]: {
+            type: elementType
+          }
         }
-      }
+      })
+
+      let el = findAllComponents(form, { name: elementName }).at(0)
+
+      expect(el.vm[optionName]).toStrictEqual(defaultValue)
     })
-
-    let el = findAllComponents(form, { name: elementName }).at(0)
-
-    expect(el.vm[optionName]).toStrictEqual(defaultValue)
-  })
+  }
 
   it('should set `'+optionName+'` from schema', () => {
     let form = createForm({
@@ -712,12 +728,14 @@ const testComputedOption = function(it, elementType, optionName, defaultValue, t
   })
 }
 
-const renderComponent = function() {
-  let args = arguments
+const createElement = function() {
+  let args = _.values(arguments)
 
-  return function (h) {
-    return h.apply(this, args)
-  }
+  let h = args[0]
+
+  args.splice(0,1)
+
+  return h.apply(null, args)
 }
 
 export {
@@ -744,7 +762,7 @@ export {
   tryInputValues,
   findAllComponents,
   testComputedOption,
-  renderComponent,
+  createElement,
 }
 
 

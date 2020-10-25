@@ -1,4 +1,4 @@
-import BaseElement from './BaseElement'
+import BaseElement from './BaseElement_'
 import HasElements from './HasElements'
 
 export default {

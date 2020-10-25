@@ -19,6 +19,7 @@ import BaseElementLayout from './components/BaseElementLayout'
 import NestedElementLayout from './components/NestedElementLayout'
 import ElementLabelFloating from './components/ElementLabelFloating'
 import ElementLabel from './components/ElementLabel'
+import ElementInfo from './components/ElementInfo'
 import ElementError from './components/ElementError'
 import ElementMessage from './components/ElementMessage'
 import InputAddon from './components/InputAddon'
@@ -92,6 +93,7 @@ const components = {
   NestedElementLayout,
   ElementLabelFloating,
   ElementLabel,
+  ElementInfo,
   ElementError,
   ElementMessage,
   InputAddon,
