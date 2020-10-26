@@ -1,5 +1,6 @@
 import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
+import { nextTick } from 'vue'
 
 expect.extend({toBeVisible})
 
@@ -84,6 +85,29 @@ export default function conditions (elementType) {
       let el = findAllComponents(form, { name: elementName }).at(0)
 
       expect(el.vm.$el).not.toBeVisible()
+    })
+
+    it('should should not hide element if `available`', async () => {
+      let form = createForm({
+        schema: {
+          el: {
+            type: elementType,
+            conditions: [
+              ['el2', 'value']
+            ]
+          },
+          el2: {
+            type: 'text',
+            default: 'value'
+          }
+        }
+      })
+
+      let el = findAllComponents(form, { name: elementName }).at(0)
+
+      await nextTick()
+
+      expect(el.vm.$el).toBeVisible()
     })
   }
 }

@@ -1,9 +1,9 @@
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 
 expect.extend({toBeVisible})
 
-export default function disabled (elementType) {
+export default function disabled (elementType, options) {
   const elementName = `${_.upperFirst(elementType)}Element`
 
   return () => {
@@ -44,6 +44,36 @@ export default function disabled (elementType) {
       el.vm.enable()
 
       expect(el.vm.disabled).toBe(false)
+    })
+
+    it('should disable input when `disabled`', () => {
+      let form = createForm({
+        schema: {
+          el: {
+            type: elementType,
+            disabled: true
+          }
+        }
+      })
+
+      let el = findAllComponents(form, { name: elementName }).at(0)
+
+      testAttribute(el, options.fieldType, 'disabled', null, 'toBeTruthy')
+    })
+    
+    it('should not disable input when not `disabled`', () => {
+      let form = createForm({
+        schema: {
+          el: {
+            type: elementType,
+            disabled: false
+          }
+        }
+      })
+
+      let el = findAllComponents(form, { name: elementName }).at(0)
+      
+      testAttribute(el, options.fieldType, 'disabled', null, 'toBeFalsy')
     })
   }
 }

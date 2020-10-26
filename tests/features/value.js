@@ -1,6 +1,6 @@
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm, findAllComponents, testValue, setValue } from 'test-helpers'
 
-export default function(elementType) {
+export default function(elementType, options) {
   const elementName = `${_.upperFirst(elementType)}Element`
 
   return () => {
@@ -99,6 +99,40 @@ export default function(elementType) {
       el.vm.model = 'value'
 
       expect(el.vm.value).toBe(el.vm.model)
+    })
+
+    it('should render `value` attribute', () => {
+      let form = createForm({
+        schema: {
+          el: {
+            type: elementType,
+            default: 'value'
+          }
+        }
+      })
+
+      let el = findAllComponents(form, { name: elementName }).at(0)
+
+      testValue(el, options.fieldType, 'value')
+    })
+
+    it('should update `model` when input value changes', async () => {
+      let form = createForm({
+        schema: {
+          el: {
+            type: elementType,
+            default: 'value'
+          }
+        }
+      })
+
+      let el = findAllComponents(form, { name: elementName }).at(0)
+
+      expect(el.vm.model).toBe('value')
+
+      setValue(el, options.fieldType, 'value2')
+      
+      expect(el.vm.model).toBe('value2')
     })
   }
 }

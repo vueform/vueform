@@ -20,6 +20,7 @@ import NestedElementLayout from './components/NestedElementLayout'
 import ElementLabelFloating from './components/ElementLabelFloating'
 import ElementLabel from './components/ElementLabel'
 import ElementInfo from './components/ElementInfo'
+import ElementDescription from './components/ElementDescription'
 import ElementError from './components/ElementError'
 import ElementMessage from './components/ElementMessage'
 import InputAddon from './components/InputAddon'
@@ -94,6 +95,7 @@ const components = {
   ElementLabelFloating,
   ElementLabel,
   ElementInfo,
+  ElementDescription,
   ElementError,
   ElementMessage,
   InputAddon,

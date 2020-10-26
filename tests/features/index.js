@@ -8,6 +8,7 @@ import components from './components'
 import conditions from './conditions'
 import data from './data'
 import debounce from './debounce'
+import description from './description'
 import disabled from './disabled'
 import empty from './empty'
 import floating from './floating'
@@ -39,6 +40,7 @@ export default {
   conditions,
   data,
   debounce,
+  description,
   disabled,
   empty,
   floating,

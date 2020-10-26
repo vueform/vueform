@@ -738,6 +738,38 @@ const createElement = function() {
   return h.apply(null, args)
 }
 
+const testAttribute = function(el, fieldType, attribute, expectedValue, checker = 'toBe') {
+  switch (fieldType) {
+    case 'input':
+      expect(el.find('input').attributes(attribute))[checker](expectedValue || undefined)
+      break
+  }
+} 
+
+const triggerEvent = function (el, fieldType, event) {
+  switch (fieldType) {
+    case 'input':
+      el.get('input').trigger(event)
+      break
+  }
+}
+
+const testValue = function (el, fieldType, expectedValue) {
+  switch (fieldType) {
+    case 'input':
+      expect(el.get('input').element.value).toBe(expectedValue)
+      break
+  }
+}
+
+const setValue = function (el, fieldType, value) {
+  switch (fieldType) {
+    case 'input':
+      el.get('input').setValue(value)
+      break
+  }
+}
+
 export {
   installLaraform,
   createForm,
@@ -763,6 +795,10 @@ export {
   findAllComponents,
   testComputedOption,
   createElement,
+  testAttribute,
+  triggerEvent,
+  testValue,
+  setValue,
 }
 
 

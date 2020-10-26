@@ -24,7 +24,7 @@
           </slot>
 
           <slot name="description">
-            <span v-if="description" :class="classes.fieldDescription" v-html="description" />
+            <component v-if="description" :is="components.ElementDescription" />
           </slot>
 
           <slot name="error">
@@ -59,7 +59,6 @@
           innerWrapper: 'row',	
           labelWrapper: 'lf-label-container',	
           fieldWrapper: 'lf-field-container',
-          fieldDescription: 'lf-field-description',
         },
         containers: {
           element: 'container',
