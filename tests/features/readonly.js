@@ -18,7 +18,7 @@ export default function(elementType, options) {
 
       let el = findAllComponents(form, { name: elementName }).at(0)
 
-      testAttribute(el, options.fieldType, 'readonly', null, 'toBeTruthy')
+      testAttribute(el, options.fieldType, 'readonly', ['readonly', ''])
     })
   }
 }

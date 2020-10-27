@@ -1,30 +1,51 @@
-import { computed,  toRefs } from 'composition-api'
+import { computed,  toRefs, markRaw } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 
 export default function useSlots(props, context, dependencies, options = {})
 {
   const { schema } = toRefs(props)
 
-  // =============== OPTIONS ==============
-
-  let defaultSlots = options.slots || [
-    'label', 'info', 'before', 'between', 'after',
-    'description', 'error', 'message',
-  ]
-
-  if (_.isArray(defaultSlots)) {
-    let slotList = {}
-
-    _.each(defaultSlots, (name) => {
-      slotList[name] = null
-    })
-
-    defaultSlots = slotList
-  }
-
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
+  const components = dependencies.components
+
+  // =============== OPTIONS ==============
+
+  const defaultSlots = computed(() => {
+    return {
+      label: markRaw(components.value.ElementLabel),
+      info: markRaw(components.value.ElementInfo),
+      description: markRaw(components.value.ElementDescription),
+      error: markRaw(components.value.ElementError),
+      message: markRaw(components.value.ElementMessage),
+      before: markRaw(components.value.ElementText),
+      between: markRaw(components.value.ElementText),
+      after: markRaw(components.value.ElementText),
+    }
+  })
+
+  let elementSlots = options.slots || [
+    'label', 'info', 'description', 'error',
+    'message', 'before', 'between', 'after'
+  ]
+
+  let baseSlots = computed(() => {
+    let slots = elementSlots
+
+    if (_.isArray(elementSlots)) {
+      let slotList = {}
+
+      _.each(elementSlots, (name) => {
+        slotList[name] = defaultSlots.value[name]
+      })
+
+      slots = slotList
+    }
+
+    return slots
+  })
+
 
   // ============== COMPUTED ==============
 
@@ -56,10 +77,10 @@ export default function useSlots(props, context, dependencies, options = {})
    */
   const slots = computed({
     get() {
-      return Object.assign({}, defaultSlots, schema.value.slots || {})
+      return Object.assign({}, baseSlots.value, schema.value.slots || {})
     },
     set(val) {
-      form$.value.$set(schema.value, 'slots', Object.assign({}, defaultSlots, schema.value.slots || {}, val))
+      form$.value.$set(schema.value, 'slots', val)
     }
   })
 

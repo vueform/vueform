@@ -4,40 +4,18 @@
       <div :class="classes.innerWrapper">
 
         <div v-if="hasLabel" :class="classes.labelWrapper">
-          <slot name="label">
-            <component :is="components.ElementLabel" />
-          </slot>
-          <slot v-if="info" name="info">
-            <component :is="components.ElementInfo" />
-          </slot>
+          <slot name="label"></slot>
+          <slot v-if="info" name="info"></slot>
         </div>
 
         <div :class="classes.fieldWrapper">
-          <slot name="before">
-            <span v-if="before" v-html="before" />
-          </slot>
-
+          <slot name="before"></slot>
           <slot name="field"></slot>
-
-          <slot name="between">
-            <span v-if="between" v-html="between" />
-          </slot>
-
-          <slot name="description">
-            <component v-if="description" :is="components.ElementDescription" />
-          </slot>
-
-          <slot name="error">
-            <component :is="components.ElementError" />
-          </slot>
-
-          <slot name="message">
-            <component :is="components.ElementMessage" />
-          </slot>
-
-          <slot name="after">
-            <span v-if="after" v-html="after" />
-          </slot>
+          <slot name="between"></slot>
+          <slot name="description"></slot>
+          <slot name="error"></slot>
+          <slot name="message"></slot>
+          <slot name="after"></slot>
         </div>
 
       </div>

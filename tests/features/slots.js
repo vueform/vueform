@@ -1,7 +1,6 @@
-import { createForm, findAllComponents, testComputedOption, createElement } from 'test-helpers'
-import { defineComponent } from 'composition-api'
+import { createForm, findAllComponents, testComputedOption, createElement,  } from 'test-helpers'
+import { defineComponent, markRaw, nextTick } from 'composition-api'
 import { TextElement } from './../../src/themes/default'
-import Vue from 'vue'
 
 export default function(elementType, options = {}) {
   const elementName = `${_.upperFirst(elementType)}Element`
@@ -35,16 +34,10 @@ export default function(elementType, options = {}) {
 
         let el = findAllComponents(form, { name: elementName }).at(0)
 
-        expect(el.vm.slots).toStrictEqual({
-          label: null,
-          info: null,
-          before: null,
-          between: null,
-          after: null,
-          description: null,
-          error: null,
-          message: null,
-        })
+        expect(_.keys(el.vm.slots)).toStrictEqual([
+          'label', 'info', 'description', 'error',
+          'message', 'before', 'between', 'after'
+        ])
       })
     }
 
@@ -160,13 +153,13 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
               label: 'label',
               info: 'info',
               slots: {
-                [slot]: defineComponent({
+                [slot]: markRaw(defineComponent({
                   name: 'CustomSlot',
                   props: ['el$'],
                   render(h) {
                     return createElement(h, 'div', 'from schema slot')
                   }
-                })
+                }))
               }
             }
           }
@@ -199,16 +192,16 @@ const testDynamicSchemaSlot = function(it, elementName, elementType, slot) {
         let el = findAllComponents(form, { name: elementName }).at(0)
 
         el.vm.slots = {
-          [slot]: defineComponent({
+          [slot]: markRaw(defineComponent({
             name: 'CustomSlot',
             props: ['el$'],
             render(h) {
               return createElement(h, 'div', 'from schema slot')
             }
-          })
+          }))
         }
 
-        Vue.nextTick(() => {
+        nextTick(() => {
           let CustomSlot = findAllComponents(el, { name: 'CustomSlot' })
           expect(CustomSlot.length).toBe(1)
           done()
@@ -244,7 +237,7 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
                 {
                   name: 'ref',
                   arg: 'element$'
-                }
+                },
               ],
               scopedSlots: {
                 [slot]: (props) => {
@@ -256,7 +249,7 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
         })
 
         let el = findAllComponents(form, { name: elementName }).at(0)
-
+        
         expect(el.html()).toContain('from inline slot')
     }
 

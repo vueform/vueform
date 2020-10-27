@@ -6,7 +6,7 @@ export default function description (elementType) {
   return () => {
     testComputedOption(it, elementType, 'description', null, 'description')
 
-    it('should should render `ElementDescription` if has description', () => {
+    it('should should render `ElementDescription`', () => {
       let form = createForm({
         schema: {
           el: {
@@ -20,21 +20,6 @@ export default function description (elementType) {
       let ElementDescription = findAllComponents(el, { name: 'ElementDescription' })
 
       expect(ElementDescription.length).toBe(1)
-    })
-
-    it('should should not render `ElementDescription` if has no description', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-          }
-        }
-      })
-
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let ElementDescription = findAllComponents(el, { name: 'ElementDescription' })
-
-      expect(ElementDescription.length).toBe(0)
     })
   }
 }

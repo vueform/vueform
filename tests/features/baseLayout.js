@@ -1,5 +1,5 @@
 import { nextTick } from 'vue'
-import { defineComponent } from 'composition-api'
+import { defineComponent, markRaw } from 'composition-api'
 import { createForm, findAllComponents, createElement } from 'test-helpers'
 
 export default function baseLayout(elementType) {
@@ -28,12 +28,12 @@ export default function baseLayout(elementType) {
           el: {
             type: elementType,
             components: {
-              BaseElementLayout: defineComponent({
+              BaseElementLayout: markRaw(defineComponent({
                 name: 'CustomBaseElementLayout',
                 render(h) {
                   return createElement(h, 'div', 'hello')
                 }
-              })
+              }))
             }
           }
         }
@@ -59,12 +59,12 @@ export default function baseLayout(elementType) {
       let el = findAllComponents(form, { name: elementName }).at(0)
 
       el.vm.components = {
-        BaseElementLayout: defineComponent({
+        BaseElementLayout: markRaw(defineComponent({
           name: 'CustomBaseElementLayout',
           render(h) {
             return createElement(h, 'div', 'hello')
           }
-        })
+        }))
       }
 
       await nextTick()

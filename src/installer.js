@@ -142,8 +142,6 @@ export default function(config) {
 
           appOrVue.config.globalProperties.$laraform = this.options
 
-          console.log(appOrVue.config.globalProperties)
-
           appOrVue.directive('ref', vRef)
           appOrVue.directive('html-if', vHtmlIf)
 

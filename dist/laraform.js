@@ -3177,7 +3177,7 @@ if (window.moment === undefined) {
             };
 
             appOrVue.config.globalProperties.$laraform = this.options;
-            console.log(appOrVue.config.globalProperties);
+            
             appOrVue.directive('ref', _directives_ref__WEBPACK_IMPORTED_MODULE_11__["default"]);
             appOrVue.directive('html-if', _directives_html_if__WEBPACK_IMPORTED_MODULE_12__["default"]);
             appOrVue.mixin({

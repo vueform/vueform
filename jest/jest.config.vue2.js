@@ -17,7 +17,7 @@ module.exports = {
       "^composition-api$": "vue-prev-composition-api",
       "^@vue/test-utils$": "vue-prev-test-utils",
       "^vue$": "vue-prev",
-      '^test-helpers$': "<rootDir>/src/utils/testHelpers.vue2.js",
+      '^test-helpers$': "<rootDir>/tests/helpers/vue2/index.js",
       '^vue-jest$': "vue-prev-jest"
   },
   "collectCoverage": false,

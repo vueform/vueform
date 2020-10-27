@@ -83,7 +83,8 @@ export default function useText(props, context) {
     components: components.components,
   })
   const slots = useSlots(props, context, {
-    form$: form$.form$
+    form$: form$.form$,
+    components: components.components,
   })
   const inputType = useInputType(props, context)
   const autocomplete = useAutocomplete(props, context)

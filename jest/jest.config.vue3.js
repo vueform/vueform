@@ -1,36 +1,16 @@
-module.exports = {
-  "moduleFileExtensions": [
-      "js",
-      "json",
-      "vue"
-  ],
+var base = require('./jest.config.vue2.js')
+
+module.exports = Object.assign({}, base, {
   "transform": {
-      ".*\\.(vue)$": "vue-jest-next",
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+      ".*\\.(vue)$": "vue-next-jest",
+      "^.+\\.js$": "babel-jest"
   },
-  "transformIgnorePatterns": [
-      "/node_modules/(?!vue-js-toggle-button|vue-multiselect)"
-  ],
   "moduleNameMapper": {
       "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
       "^composition-api$": "vue-next",
-      "^@vue/test-utils$": "vue-test-utils-next",
+      "^@vue/test-utils$": "vue-next-test-utils",
       "^vue$": "vue-next",
-      '^test-helpers$': "<rootDir>/src/utils/testHelpers.vue3.js",
-      '^vue-jest$': "vue-jest-next"
+      '^test-helpers$': "<rootDir>/tests/helpers/index.js",
+      '^vue-jest$': "vue-next-jest"
   },
-  "collectCoverage": false,
-  "collectCoverageFrom": [
-      "**/*.{js,vue}",
-      "!**/node_modules/**",
-      "!**/build/**",
-      "!**/coverage/**",
-      "!**/config/**",
-      "!**/dist/**",
-      "!**/ignore/**"
-  ],
-  "coverageReporters": [
-      "html",
-      "text-summary"
-  ]
-}
+})

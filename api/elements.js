@@ -12,6 +12,7 @@ export default {
       'data',
       'debounce',
       'description',
+
       'disabled',
       'empty',
       'events',

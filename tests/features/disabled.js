@@ -58,7 +58,7 @@ export default function disabled (elementType, options) {
 
       let el = findAllComponents(form, { name: elementName }).at(0)
 
-      testAttribute(el, options.fieldType, 'disabled', null, 'toBeTruthy')
+      testAttribute(el, options.fieldType, 'disabled', ['disabled', ''])
     })
     
     it('should not disable input when not `disabled`', () => {
@@ -73,7 +73,7 @@ export default function disabled (elementType, options) {
 
       let el = findAllComponents(form, { name: elementName }).at(0)
       
-      testAttribute(el, options.fieldType, 'disabled', null, 'toBeFalsy')
+      testAttribute(el, options.fieldType, 'disabled', undefined)
     })
   }
 }

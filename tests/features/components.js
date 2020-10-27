@@ -1,5 +1,5 @@
 import { nextTick } from 'vue'
-import { defineComponent } from 'composition-api'
+import { defineComponent, markRaw } from 'composition-api'
 import { createForm, findAllComponents, createElement } from 'test-helpers'
 
 export default function baseElement(elementType) {
@@ -23,10 +23,10 @@ export default function baseElement(elementType) {
 
     it('should return theme components merged with local components if `components` is defined', () => {
       let components = {
-        ElementError: defineComponent({
+        ElementError: markRaw({
           name: 'CustomElementError',
           render(h) {
-            return h('div', 'Hello')
+            return createElement(h, 'div', 'Hello')
           }
         })
       }
@@ -47,7 +47,7 @@ export default function baseElement(elementType) {
 
     it('should return theme components merged with local components if `components` is set after rendering', async () => {
       let components = {
-        ElementError: defineComponent({
+        ElementError: markRaw({
           name: 'CustomElementError',
           render(h) {
             return createElement(h, 'div', 'hello')
@@ -74,8 +74,8 @@ export default function baseElement(elementType) {
     // Template
     it('should replace component in template when `components` is defined', () => {
       let components = {
-        ElementError: defineComponent({
-          name: 'CustomElementError',
+        ElementLabel: markRaw({
+          name: 'CustomElementLabel',
           render(h) {
             return createElement(h, 'div', 'hello')
           }
@@ -86,23 +86,24 @@ export default function baseElement(elementType) {
         schema: {
           el: {
             type: elementType,
+            label: 'Label',
             components: components,
           }
         }
       })
 
       let el = findAllComponents(form, { name: elementName }).at(0)
-      let ElementError = findAllComponents(el, { name: 'ElementError' })
-      let CustomElementError = findAllComponents(el, { name: 'CustomElementError' })
+      let ElementLabel = findAllComponents(el, { name: 'ElementLabel' })
+      let CustomElementLabel = findAllComponents(el, { name: 'CustomElementLabel' })
 
-      expect(ElementError.length).toBe(0)
-      expect(CustomElementError.length).toBe(1)
+      expect(ElementLabel.length).toBe(0)
+      expect(CustomElementLabel.length).toBe(1)
     })
 
     it('should replace component in template when `components` change', async () => {
       let components = {
-        ElementError: defineComponent({
-          name: 'CustomElementError',
+        ElementLabel: markRaw({
+          name: 'CustomElementLabel',
           render(h) {
             return createElement(h, 'div', 'hello')
           }
@@ -113,6 +114,7 @@ export default function baseElement(elementType) {
         schema: {
           el: {
             type: elementType,
+            label: 'Label',
           }
         }
       })
@@ -123,11 +125,11 @@ export default function baseElement(elementType) {
 
       await nextTick()
 
-      let ElementError = findAllComponents(el, { name: 'ElementError' })
-      let CustomElementError = findAllComponents(el, { name: 'CustomElementError' })
+      let ElementLabel = findAllComponents(el, { name: 'ElementLabel' })
+      let CustomElementLabel = findAllComponents(el, { name: 'CustomElementLabel' })
 
-      expect(ElementError.length).toBe(0)
-      expect(CustomElementError.length).toBe(1)
+      expect(ElementLabel.length).toBe(0)
+      expect(CustomElementLabel.length).toBe(1)
     })
   }
 }
