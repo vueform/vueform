@@ -74,7 +74,9 @@ export default function baseElement(elementType) {
       })
 
       let el = findAllComponents(form, { name: elementName }).at(0)
-      let el2 = findAllComponents(form, { name: elementName }).at(1)
+      let el2 = findAllComponents(form, { name: 'TextElement' })
+      
+      el2 = elementName === 'TextElement' ? el2.at(1) : el2.at(0)
 
       expect(el.vm.available).toBe(false)
       expect(el.vm.hidden).toBe(false)

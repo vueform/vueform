@@ -11,8 +11,4 @@ export default {
       ...text,
     }
   },
-  mounted() {
-    this.initMessageBag(this.el$)
-    this.initValidation(this.el$)
-  }
 }

@@ -1,5 +1,6 @@
 <template>
   <small
+    v-if="error"
     :class="classes.container"
   >
     {{ error }}

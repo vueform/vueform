@@ -7,6 +7,8 @@ import usePath from './features/usePath'
 import useConditions from './../useConditions'
 import useValue from './features/useValue'
 import useData from './features/useData'
+import useDefault from './features/useDefault'
+import useNullValue from './features/useNullValue'
 import useValidation from './features/useValidation'
 import useLabel from './features/useLabel'
 import usePlaceholder from './features/usePlaceholder'
@@ -39,57 +41,34 @@ export default function useText(props, context) {
   const input = useInput(props, context)
   const addons = useAddons(props, context)
   const path = usePath(props, context)
+  const value = useValue(props, context)
+  const placeholder = usePlaceholder(props, context)
+  const floating = useFloating(props, context)
+  const id = useId(props, context)
+  const description = useDescription(props, context)
+  const readonly = useReadonly(props, context)
+  const info = useInfo(props, context)
+  const inputType = useInputType(props, context)
+  const autocomplete = useAutocomplete(props, context)
+  const debounce = useDebounce(props, context)
+  const disabled = useDisabled(props, context)
+  const nullValue = useNullValue(props, context)
+
+  const default_ = useDefault(props, context, {
+    nullValue: nullValue.nullValue
+  })
+
   const conditions = useConditions(props, context, {
     form$: form$.form$,
     path: path.path,
     descriptor: schema,
   })
-  const value = useValue(props, context)
+
   const validation = useValidation(props, context, {
     form$: form$.form$,
     value: value.value,
   })
-  const label = useLabel(props, context, {
-    form$: form$.form$,
-  })
-  const placeholder = usePlaceholder(props, context)
-  const floating = useFloating(props, context)
-  const classes = useClasses(props, context, {
-    form$: form$.form$,
-    theme: theme.theme,
-  })
-  const id = useId(props, context)
-  const columns = useColumns(props, context, {
-    form$: form$.form$,
-  })
-  const description = useDescription(props, context)
-  const readonly = useReadonly(props, context)
-  const info = useInfo(props, context)
-  const baseElement = useBaseElement(props, context, {
-    available: conditions.available,
-    theme: theme.theme,
-    label: label.label,
-    placeholder: placeholder.placeholder,
-    form$: form$.form$
-  })
-  const view = useView(props, context, {
-    available: conditions.available,
-  })
-  const components = useComponents(props, context, {
-    theme: theme.theme,
-    form$: form$.form$
-  })
-  const baseLayout = useBaseLayout(props, context, {
-    components: components.components,
-  })
-  const slots = useSlots(props, context, {
-    form$: form$.form$,
-    components: components.components,
-  })
-  const inputType = useInputType(props, context)
-  const autocomplete = useAutocomplete(props, context)
-  const debounce = useDebounce(props, context)
-  const disabled = useDisabled(props, context)
+
   const events = useEvents(props, context, {
     form$: form$.form$,
     descriptor: schema,
@@ -98,15 +77,18 @@ export default function useText(props, context) {
       change: [value.currentValue, value.previousValue]
     },
   })
+
   const handleChange = useHandleChange(props, context, {
     form$: form$.form$,
     validate: validation.validate,
     fireChange: events.fireChange,
   })
+
   const handleKeyup = useHandleKeyup(props, context, {
     readonly: readonly.readonly,
     handleChange: handleChange.handleChange,
   })
+
   const data = useData(props, context, {
     form$: form$.form$,
     available: conditions.available,
@@ -116,10 +98,49 @@ export default function useText(props, context) {
     validate: validation.validate,
     resetValidators: validation.resetValidators,
     fireChange: events.fireChange,
+    default: default_.default,
+    nullValue: nullValue.nullValue,
   })
+
   const empty = useEmpty(props, context, {
     value: value.value,
-    nullValue: data.nullValue,
+    nullValue: nullValue.nullValue,
+  })
+
+  const label = useLabel(props, context, {
+    form$: form$.form$,
+  })
+
+  const baseElement = useBaseElement(props, context, {
+    label: label.label,
+    placeholder: placeholder.placeholder,
+  })
+  
+  const components = useComponents(props, context, {
+    theme: theme.theme,
+    form$: form$.form$
+  })
+
+  const layout = useBaseLayout(props, context, {
+    components: components.components,
+  })
+
+  const classes = useClasses(props, context, {
+    form$: form$.form$,
+    theme: theme.theme,
+  })
+
+  const columns = useColumns(props, context, {
+    form$: form$.form$,
+  })
+
+  const view = useView(props, context, {
+    available: conditions.available,
+  })
+
+  const slots = useSlots(props, context, {
+    form$: form$.form$,
+    components: components.components,
   })
 
   return {
@@ -143,7 +164,7 @@ export default function useText(props, context) {
     ...baseElement,
     ...view,
     ...components,
-    ...baseLayout,
+    ...layout,
     ...slots,
     ...inputType,
     ...autocomplete,
@@ -154,5 +175,7 @@ export default function useText(props, context) {
     ...handleKeyup,
     ...data,
     ...empty,
+    ...default_,
+    ...nullValue,
   }
 } 

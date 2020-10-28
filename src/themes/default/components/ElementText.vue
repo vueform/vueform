@@ -1,5 +1,5 @@
 <template>
-  <span :class="classes[type]" v-html="content"></span>
+  <span v-if="content" :class="classes[type]" v-html="content"></span>
 </template>
 
 <script>

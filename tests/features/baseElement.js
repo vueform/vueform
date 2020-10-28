@@ -32,7 +32,9 @@ export default function baseElement(elementType) {
 
       let el = findAllComponents(form, { name: elementName }).at(0)
 
-      expect(el.vm.genericName).toBe('Element placeholder')
+      if (el.vm.placeholder !== undefined) {
+        expect(el.vm.genericName).toBe('Element placeholder')
+      }
     })
 
     it('should return `genericName` when no placeholder nor label is defined', () => {

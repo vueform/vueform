@@ -1,5 +1,6 @@
 <template>
   <small
+    v-if="message"
     :class="classes.container"
   >
     {{ message }}

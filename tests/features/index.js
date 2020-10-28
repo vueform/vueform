@@ -8,9 +8,11 @@ import components from './components'
 import conditions from './conditions'
 import data from './data'
 import debounce from './debounce'
+import default_ from './default'
 import description from './description'
 import disabled from './disabled'
 import empty from './empty'
+import events from './events'
 import floating from './floating'
 import form$ from './form$'
 import handleChange from './handleChange'
@@ -20,6 +22,7 @@ import info from './info'
 import input from './input'
 import inputType from './inputType'
 import label from './label'
+import nullValue from './nullValue'
 import path from './path'
 import placeholder from './placeholder'
 import readonly from './readonly'
@@ -40,9 +43,11 @@ export default {
   conditions,
   data,
   debounce,
+  default: default_,
   description,
   disabled,
   empty,
+  events,
   floating,
   form$,
   handleChange,
@@ -53,6 +58,7 @@ export default {
   inputType,
   label,
   path,
+  nullValue,
   placeholder,
   readonly,
   slots,

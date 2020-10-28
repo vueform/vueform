@@ -6,9 +6,6 @@ export default function useBaseElement(props, context, dependencies)
 
   // ============ DEPENDENCIES ============
 
-  const form$ = dependencies.form$
-  const available = dependencies.available
-  const theme = dependencies.theme
   const label = dependencies.label || ref(null)
   const placeholder = dependencies.placeholder || ref(null)
 

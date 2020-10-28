@@ -2,7 +2,7 @@ const fs = require('fs')
 const _ = require('lodash')
 const basePath = './..'
 const featuresPath = '/src/composables/elements'
-const elements = ['text']
+const elements = ['text', 'group']
 
 function getFeatures() {
   const features = {}
@@ -39,7 +39,7 @@ function getElementsContent() {
     content += `    features: [\n`
     content += `      '${elementFeatures.join('\',\n      \'')}'\n`
     content += `    ]\n`
-    content += `  }`
+    content += `  },\n`
   })
 
   content += "}"

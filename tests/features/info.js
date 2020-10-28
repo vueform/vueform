@@ -6,12 +6,11 @@ export default function info (elementType) {
   return () => {
     testComputedOption(it, elementType, 'info', false, 'info')
 
-    it('should should render `ElementInfo` if has info & label', () => {
+    it('should should render `ElementInfo` if has label', () => {
       let form = createForm({
         schema: {
           el: {
             type: elementType,
-            info: 'Info',
             label: 'Label'
           }
         }
@@ -21,22 +20,6 @@ export default function info (elementType) {
       let ElementInfo = findAllComponents(el, { name: 'ElementInfo' })
 
       expect(ElementInfo.length).toBe(1)
-    })
-
-    it('should should not render `ElementInfo` if has no info', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-            label: 'Label'
-          }
-        }
-      })
-
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let ElementInfo = findAllComponents(el, { name: 'ElementInfo' })
-
-      expect(ElementInfo.length).toBe(0)
     })
 
     it('should should not render `ElementInfo` if has no label', () => {

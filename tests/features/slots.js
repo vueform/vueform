@@ -15,6 +15,7 @@ export default function(elementType, options = {}) {
     })
 
     const defaultSlots = findAllComponents(defaultForm, { name: elementName }).at(0).vm.slots
+    const defaultSlotKeys = _.keys(defaultSlots)
 
     // Computed Options
     testComputedOption(it, elementType, 'before', null, 'before')
@@ -22,24 +23,19 @@ export default function(elementType, options = {}) {
     testComputedOption(it, elementType, 'after', null, 'after')
     
     // Computed Props
-    if (!options.slots) {
-      it('should have default `slots` by default', () => {
-        let form = createForm({
-          schema: {
-            el: {
-              type: elementType,
-            }
+    it('should have default `slots` by default', () => {
+      let form = createForm({
+        schema: {
+          el: {
+            type: elementType,
           }
-        })
-
-        let el = findAllComponents(form, { name: elementName }).at(0)
-
-        expect(_.keys(el.vm.slots)).toStrictEqual([
-          'label', 'info', 'description', 'error',
-          'message', 'before', 'between', 'after'
-        ])
+        }
       })
-    }
+
+      let el = findAllComponents(form, { name: elementName }).at(0)
+
+      expect(_.keys(el.vm.slots)).toStrictEqual(defaultSlotKeys)
+    })
 
     it('should set `slots` from schema', () => {
       let form = createForm({
@@ -219,15 +215,15 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
         let form = createForm({
           schema: {
             el: {
-              type: 'text'
+              type: elementType
             }
           }
         }, {}, function(h) {
           return createElement(h, 'form', [
-            createElement(h, TextElement, {
+            createElement(h, this.extendedTheme.elements[elementName], {
               props: {
                 schema: {
-                  type: 'text',
+                  type: elementType,
                   label: 'label',
                   info: 'info',
                 },

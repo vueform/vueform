@@ -15,12 +15,10 @@ export default function useData(props, context, dependencies)
   const resetValidators = dependencies.resetValidators
   const validate = dependencies.validate
   const fireChange = dependencies.fireChange
+  const default_ = dependencies.default
+  const nullValue = dependencies.nullValue
 
   // ============== COMPUTED ===============
-
-  const nullValue = computed(() => {
-    return null
-  })
 
   /**
   * Whether the element's value should be submitted.
@@ -29,13 +27,6 @@ export default function useData(props, context, dependencies)
   * @default true
   */
   const submit = computed(computedOption('submit', schema, true))
-
-  /**
-  * The default value of the element.
-  * 
-  * @type {boolean}
-  */
-  const default_ = computed(computedOption('default', schema, nullValue.value))
 
   /**
    * A function that formats data before gets merged with form `data`.
@@ -92,22 +83,18 @@ export default function useData(props, context, dependencies)
       // Double nextTick is required because first the value watcher is triggered
       // then the value changes (1st) nextTick any only dirts the element afterwards.
       // So we need a 2nd tick to catch the moment after.
-      nextTick(() => {
-      nextTick(() => {
+      nextTick(() => { nextTick(() => {
         clean()
-      })
-      })
+      })})
       return
     }
 
     clear()
     resetValidators()
       
-    nextTick(() => {
-    nextTick(() => {
+    nextTick(() => { nextTick(() => {
       clean()
-    })
-    })
+    })})
   }
 
   /**
@@ -162,18 +149,21 @@ export default function useData(props, context, dependencies)
 
   // =============== HOOKS ================
 
-  previousValue.value = _.clone(nullValue.value)
-  value.value = _.clone(default_.value)
+  if (nullValue !== undefined) {
+    previousValue.value = _.clone(nullValue.value)
+  }
+
+  if (default_ !== undefined) {
+    value.value = _.clone(default_.value)
+  }
 
   return {
     // Computed
-    nullValue,
     data,
     filtered,
     formatData,
     formatLoad,
     submit,
-    default: default_,
 
     // Mehtods
     load,

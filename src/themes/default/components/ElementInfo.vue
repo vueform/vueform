@@ -1,5 +1,5 @@
 <template>
-  <i :class="classes.info" :title="info">[i]</i>
+  <i v-if="info" :class="classes.info" :title="info">[i]</i>
 </template>
 
 <script>

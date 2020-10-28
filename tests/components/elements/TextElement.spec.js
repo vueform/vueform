@@ -1,12 +1,18 @@
 import features from './../../features'
 import elements from './../../../api/elements'
 import { createForm, findAllComponents } from 'test-helpers'
-import { nextTick } from 'vue'
 
 describe('Text Element', () => {
   const options = {
     default: {
       fieldType: 'input',
+    },
+    events: {
+      events: [
+        {
+          change: ['currentValue', 'previousValue']
+        }
+      ]
     }
   }
 

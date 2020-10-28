@@ -1,6 +1,6 @@
 import useTheme from './useTheme'
 
-export default function useFormComponent(props, context, dependencies)
+export default function useElements(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 

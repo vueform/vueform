@@ -30,5 +30,14 @@ export default {
     el$() {
       return this
     }
+  },
+  mounted() {
+    if (this.Validators !== undefined) {
+      this.initValidation(this.el$)
+    }
+
+    if (this.messageBag !== undefined) {
+      this.initMessageBag(this.el$)
+    }
   }
 }

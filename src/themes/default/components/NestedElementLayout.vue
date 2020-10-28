@@ -1,70 +1,42 @@
 <template>
-  <div :class="classes.container" v-show="el$.visible">
-    <div :class="classes.wrapper">
+  <div :class="classes.container" v-show="visible">
+    <div :class="classes.outerWrapper">
+      <div :class="classes.innerWrapper">
 
-      <div v-if="el$.hasLabel" :class="classes.labelWrapper">
-        <slot name="label">
-          <component :is="components.ElementLabel" />
-        </slot>
+        <div v-if="hasLabel" :class="classes.labelWrapper">
+          <slot name="label"></slot>x
+          <slot name="info"></slot>
+        </div>
+
+        <div :class="classes.fieldWrapper">
+          <slot name="before"></slot>
+          <slot name="field"></slot>
+          <slot name="between"></slot>
+          <slot name="description"></slot>
+          <slot name="error"></slot>
+          <slot name="message"></slot>
+          <slot name="after"></slot>
+        </div>
+
       </div>
-
-      <div :class="classes.fieldWrapper">
-        <slot name="before">
-          <span v-if="before" v-html="before" />
-        </slot>
-        
-        <slot name="field"></slot>
-
-          <slot name="between">
-            <span v-if="between" v-html="between" />
-          </slot>
-
-         <slot name="children">
-          <div :class="theme.classes.childrenContainer">
-            <slot name="prefix"></slot>
-
-            <slot name="elements"></slot>
-
-            <slot name="suffix"></slot>
-          </div>
-        </slot>
-
-        <slot name="description">
-          <span v-if="description" :class="classes.fieldDescription" v-html="description" />
-        </slot>
-
-        <slot name="error">
-          <component :is="components.ElementError" />
-        </slot>
-
-        <slot name="message">
-          <component :is="components.ElementMessage" />
-        </slot>
-
-        <slot name="after">
-          <span v-if="after" v-html="after" />
-        </slot>
-      </div>
-
     </div>
   </div>
 </template>
 
 <script>
-  import NestedElementLayout from './../../../components/NestedElementLayout'
+  import BaseElementLayout from './../../../components/BaseElementLayout'
 
   export default {
-    name: 'NestedElementLayout',
-    mixins: [NestedElementLayout],
+    name: 'BaseElementLayout',
+    mixins: [BaseElementLayout],
     data() {
       return {
         defaultClasses: {
-          container: 'element-container',
-          wrapper: 'row',
-          labelWrapper: 'lf-label-container',
+          container: 'lf-element',
+          outerWrapper: 'form-group',
+          innerWrapper: 'row',	
+          labelWrapper: 'lf-label-container',	
           fieldWrapper: 'lf-field-container',
-          childrenContainer: 'element-group',
-          fieldDescription: 'lf-field-description',
         },
         containers: {
           element: 'container',
@@ -72,6 +44,6 @@
           field: 'fieldWrapper',
         }
       }
-    }
+    },
   }
 </script>
