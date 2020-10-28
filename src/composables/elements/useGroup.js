@@ -1,7 +1,7 @@
 import { toRefs } from 'composition-api'
 import useForm$ from './../useForm$'
 import useTheme from './../useTheme'
-import usePath from './features/usePath'
+import useGroupPath from './features/useGroupPath'
 import useConditions from './../useConditions'
 import useNestedValue from './features/useNestedValue'
 import useGroupData from './features/useGroupData'
@@ -13,7 +13,7 @@ import useInfo from './features/useInfo'
 import useBaseElement from './features/useBaseElement'
 import useView from './features/useView'
 import useComponents from './features/useComponents'
-import useNestedLayout from './features/useNestedLayout'
+import useBaseLayout from './features/useBaseLayout'
 import useSlots from './features/useSlots'
 import useSchemaChildren from './features/useSchemaChildren'
 import useChildrenValidation from './features/useChildrenValidation'
@@ -24,7 +24,7 @@ export default function useGroup(props, context) {
 
   const form$ = useForm$(props, context)
   const theme = useTheme(props, context)
-  const path = usePath(props, context)
+  const path = useGroupPath(props, context)
   const description = useDescription(props, context)
   const info = useInfo(props, context)
   const children = useSchemaChildren(props, context)
@@ -75,7 +75,7 @@ export default function useGroup(props, context) {
     form$: form$.form$
   })
 
-  const layout = useNestedLayout(props, context, {
+  const layout = useBaseLayout(props, context, {
     components: components.components,
   })
 

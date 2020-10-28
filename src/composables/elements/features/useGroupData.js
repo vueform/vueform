@@ -4,15 +4,19 @@ import useNestedData from './useNestedData'
 
 export default function useGroupData(props, context, dependencies)
 {
-  const { schema } = toRefs(props)
+  const { schema, name } = toRefs(props)
 
   // ============ DEPENDENCIES =============
 
-  const { data, filtered, formatLoad, submit, update, clear, reset, prepare } = useNestedData(props, context, dependencies)
+  const { formatLoad, submit, update, clear, reset, prepare } = useNestedData(props, context, dependencies)
 
   const form$ = dependencies.form$
+  const children$ = dependencies.children$
+  const value = dependencies.value
+  const available = dependencies.available
 
   // ============== COMPUTED ===============
+
   /**
    * A function that formats data before gets merged with form `data`.
    * 
@@ -22,12 +26,41 @@ export default function useGroupData(props, context, dependencies)
     return value
   }))
 
+  /**
+   * An object containing the element `name` as a key and its `value` as value.
+   * 
+   * @type {object}
+   */
+  const data = computed(() => {
+    return formatData.value(name.value, value.value, form$.value)
+  })
+
+  /**
+   * A function that formats data before gets merged with form `data`.
+   * 
+   * @type {function}
+   */
+  
+  const filtered = computed(() => {
+    if (!available.value || !submit.value) {
+      return {}
+    }
+    
+    let filtered = {}
+
+    _.each(children$.value, (element$) => {
+      filtered = Object.assign({}, filtered, element$.filtered)
+    })
+
+    return formatData.value(name.value, filtered, form$.value)
+  })
+
   // =============== METHODS ===============
 
   const load = (data) => {
-    let formattedData = formatLoad(data, form$.value)
+    let formattedData = formatLoad.value(data, form$.value)
 
-    _.each(this.children$, (element$) => {
+    _.each(children$.value, (element$) => {
       element$.load(formattedData)
     })
   }

@@ -28,7 +28,7 @@ export default function useGroupData(props, context, dependencies)
       return {}
     }
     
-    var filtered = {}
+    let filtered = {}
 
     _.each(children$.value, (element$) => {
       filtered = Object.assign({}, filtered, element$.filtered)
@@ -59,11 +59,10 @@ export default function useGroupData(props, context, dependencies)
 
   const update = (val) => {
     _.each(children$.value, (element$) => {
-      if (val[element$.name] === undefined) {
+      if (val[element$.name] === undefined && !element$.flat) {
         return
       }
-      
-      element$.update(val[element$.name])
+      element$.update(element$.flat ? val : val[element$.name])
     })
   }
 

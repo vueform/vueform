@@ -69,7 +69,7 @@ export default function useChildrenValidation (props, context, dependencies)
    * @type {boolean}
    */
   const busy = computed(() => {
-    return pending.value || debouncing.value
+    return _.some(children$.value, { available: true, busy: true })
   })
 
   /**

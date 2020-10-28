@@ -15,7 +15,12 @@ export default function usePath(props, context, dependencies)
     return parent.value && parent.value.path ? parent.value.path + '.' + name.value : name.value
   })
 
+  const flat = computed(() => {
+    return false
+  })
+
   return {
     path,
+    flat,
   }
 }

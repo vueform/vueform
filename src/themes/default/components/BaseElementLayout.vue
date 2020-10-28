@@ -5,7 +5,7 @@
 
         <div v-if="hasLabel" :class="classes.labelWrapper">
           <slot name="label"></slot>
-          <slot v-if="info" name="info"></slot>
+          <slot name="info"></slot>
         </div>
 
         <div :class="classes.fieldWrapper">

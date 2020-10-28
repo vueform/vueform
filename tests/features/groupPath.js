@@ -1,23 +1,12 @@
 import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { path } from './path'
 
-export const path = function (elementType, elementName) {
-  it('should have `path` equal to name if parent is not provided', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = findAllComponents(form, { name: elementName }).at(0)
-
-    expect(el.vm.path).toBe(el.vm.name)
-  })
+export {
+  path,
 }
 
 export const flat = function (elementType, elementName) {
-  it('should have `flat` equal to "false"', () => {
+  it('should have `flat` equal to "true"', () => {
     let form = createForm({
       schema: {
         el: {
@@ -28,7 +17,7 @@ export const flat = function (elementType, elementName) {
 
     let el = findAllComponents(form, { name: elementName }).at(0)
 
-    expect(el.vm.flat).toBe(false)
+    expect(el.vm.flat).toBe(true)
   })
 }
 
