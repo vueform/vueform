@@ -1,5 +1,6 @@
 <template>
   <small
+    v-if="message"
     :class="classes.container"
   >
     {{ message }}
@@ -10,6 +11,7 @@
   import ElementMessage from './../../../components/ElementMessage'
 
   export default {
+    name: 'ElementMessage',
     mixins: [ElementMessage],
     data() {
       return {

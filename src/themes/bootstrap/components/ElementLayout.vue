@@ -24,11 +24,11 @@
 </template>
 
 <script>
-  import BaseElementLayout from './../../../components/BaseElementLayout'
+  import ElementLayout from './../../../components/ElementLayout'
 
   export default {
-    name: 'BaseElementLayout',
-    mixins: [BaseElementLayout],
+    name: 'ElementLayout',
+    mixins: [ElementLayout],
     data() {
       return {
         defaultClasses: {

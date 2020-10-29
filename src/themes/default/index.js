@@ -15,8 +15,7 @@ import FormElements from './components/FormElements'
 import FormButton from './components/FormButton'
 import FormButtonAnchor from './components/FormButtonAnchor'
 import FormButtonSubmit from './components/FormButtonSubmit'
-import BaseElementLayout from './components/BaseElementLayout'
-import NestedElementLayout from './components/NestedElementLayout'
+import ElementLayout from './components/ElementLayout'
 import ElementLabelFloating from './components/ElementLabelFloating'
 import ElementLabel from './components/ElementLabel'
 import ElementInfo from './components/ElementInfo'
@@ -91,8 +90,7 @@ const components = {
   FormButton,
   FormButtonAnchor,
   FormButtonSubmit,
-  BaseElementLayout,
-  NestedElementLayout,
+  ElementLayout,
   ElementLabelFloating,
   ElementLabel,
   ElementInfo,

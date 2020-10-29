@@ -1,6 +1,6 @@
 import { computed } from 'composition-api'
 
-export default function useBaseLayout(props, context, dependencies)
+export default function useLayout(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
@@ -10,7 +10,7 @@ export default function useBaseLayout(props, context, dependencies)
 
   const layout = computed({
     get() {
-      return components.value.BaseElementLayout
+      return components.value.ElementLayout
     }
   })
 

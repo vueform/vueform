@@ -4,7 +4,7 @@
       <div :class="classes.innerWrapper">
 
         <div v-if="hasLabel" :class="classes.labelWrapper">
-          <slot name="label"></slot>x
+          <slot name="label"></slot>
           <slot name="info"></slot>
         </div>
 
@@ -24,11 +24,11 @@
 </template>
 
 <script>
-  import BaseElementLayout from './../../../components/BaseElementLayout'
+  import ElementLayout from './../../../components/ElementLayout'
 
   export default {
-    name: 'BaseElementLayout',
-    mixins: [BaseElementLayout],
+    name: 'ElementLayout',
+    mixins: [ElementLayout],
     data() {
       return {
         defaultClasses: {

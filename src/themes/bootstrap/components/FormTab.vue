@@ -1,5 +1,5 @@
 <template>
-  <li v-if="visible" :class="classes.container">
+  <li v-show="visible" :class="classes.container">
     <a
       href="#"
       :class="classes.wrapper"
@@ -15,14 +15,15 @@
   import FormTab from './../../../components/FormTab'
 
   export default {
+    name: 'FormTab',
     mixins: [FormTab],
     data() {
       return {
         defaultClasses: {
           container: 'nav-item',
           active: 'active',
-          inactive: '',
-          valid: '',
+          inactive: 'inactive',
+          valid: 'valid',
           invalid: 'has-error',
           wrapper: 'nav-link',
         },

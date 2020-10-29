@@ -1,7 +1,7 @@
 import addons from './addons'
 import autocomplete from './autocomplete'
 import baseElement from './baseElement'
-import baseLayout from './baseLayout'
+import layout from './layout'
 import childrenValidation from './childrenValidation'
 import classes from './classes'
 import columns from './columns'
@@ -42,7 +42,7 @@ export default {
   addons,
   autocomplete,
   baseElement,
-  baseLayout,
+  layout,
   childrenValidation,
   classes,
   columns,

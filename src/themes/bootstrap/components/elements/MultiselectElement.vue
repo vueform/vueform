@@ -6,6 +6,7 @@
   import Multiselect from 'vue-multiselect'
 
   export default {
+    name: 'MultiselectElement',
     mixins: [MultiselectElement],
     components: {
       Multiselect,

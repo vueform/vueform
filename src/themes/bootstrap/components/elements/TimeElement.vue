@@ -4,6 +4,7 @@
   import DateElement from './DateElement'
 
   export default {
+    name: 'TimeElement',
     mixins: [TimeElement],
     render: DateElement.render,
   }

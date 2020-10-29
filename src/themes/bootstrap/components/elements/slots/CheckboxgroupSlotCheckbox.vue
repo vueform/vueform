@@ -24,6 +24,7 @@
   import CheckboxgroupSlotCheckbox from './../../../../../components/elements/slots/CheckboxgroupSlotCheckbox'
 
   export default {
+    name: 'CheckboxgroupSlotCheckbox',
     mixins: [CheckboxgroupSlotCheckbox],
     data() {
       return {

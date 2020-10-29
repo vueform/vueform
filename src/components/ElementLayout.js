@@ -3,7 +3,7 @@ import useElementComponent from './../composables/useElementComponent'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
-  name: 'BaseElementLayout',
+  name: 'ElementLayout',
   init(props, context)
   {
     const { containers } = toRefs(context.data)

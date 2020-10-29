@@ -1,5 +1,5 @@
 <template>
-  <li :class="classes.container" v-if="visible">
+  <li :class="classes.container" v-show="visible">
     <a
       href="#"
       :class="classes.wrapper"
@@ -15,6 +15,7 @@
   import FormWizardStep from './../../../components/FormWizardStep'
 
   export default {
+    name: 'FormWizardStep',
     mixins: [FormWizardStep],
     data() {
       return {

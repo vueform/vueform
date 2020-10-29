@@ -4,6 +4,7 @@
   import ObjectElement from './ObjectElement'
 
   export default {
+    name: 'AddressElement',
     mixins: [AddressElement],
     render: ObjectElement.render,
   }

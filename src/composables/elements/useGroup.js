@@ -13,7 +13,7 @@ import useInfo from './features/useInfo'
 import useBaseElement from './features/useBaseElement'
 import useView from './features/useView'
 import useComponents from './features/useComponents'
-import useBaseLayout from './features/useBaseLayout'
+import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
 import useSchemaChildren from './features/useSchemaChildren'
 import useChildrenValidation from './features/useChildrenValidation'
@@ -27,7 +27,18 @@ export default function useGroup(props, context) {
   const path = useGroupPath(props, context)
   const description = useDescription(props, context)
   const info = useInfo(props, context)
-  const children = useSchemaChildren(props, context)
+
+  const label = useLabel(props, context, {
+    form$: form$.form$,
+  })
+
+  const baseElement = useBaseElement(props, context, {
+    label: label.label,
+  })
+
+  const children = useSchemaChildren(props, context, {
+    form$: form$.form$,
+  })
 
   const value = useNestedValue(props, context, {
     children$: children.children$
@@ -49,10 +60,6 @@ export default function useGroup(props, context) {
     children$: children.children$,
   })
 
-  const label = useLabel(props, context, {
-    form$: form$.form$,
-  })
-
   const classes = useClasses(props, context, {
     form$: form$.form$,
     theme: theme.theme,
@@ -60,10 +67,6 @@ export default function useGroup(props, context) {
 
   const columns = useColumns(props, context, {
     form$: form$.form$,
-  })
-
-  const baseElement = useBaseElement(props, context, {
-    label: label.label,
   })
 
   const view = useView(props, context, {
@@ -75,7 +78,7 @@ export default function useGroup(props, context) {
     form$: form$.form$
   })
 
-  const layout = useBaseLayout(props, context, {
+  const layout = useLayout(props, context, {
     components: components.components,
   })
 

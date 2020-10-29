@@ -50,6 +50,7 @@
   import LocationElement from './../../../../components/elements/LocationElement'
 
   export default {
+    name: 'LocationElement',
     mixins: [LocationElement],
     data() {
       return {

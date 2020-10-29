@@ -14,6 +14,7 @@
   import FormLanguageSelectorTab from './../../../components/FormLanguageSelectorTab'
 
   export default {
+    name: 'FormLanguageSelectorTab',
     mixins: [FormLanguageSelectorTab],
     data() {
       return {

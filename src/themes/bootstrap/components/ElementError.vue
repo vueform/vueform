@@ -1,5 +1,6 @@
 <template>
   <small
+    v-if="error"
     :class="classes.container"
   >
     {{ error }}
@@ -10,6 +11,7 @@
   import ElementError from './../../../components/ElementError'
 
   export default {
+    name: 'ElementError',
     mixins: [ElementError],
     data() {
       return {

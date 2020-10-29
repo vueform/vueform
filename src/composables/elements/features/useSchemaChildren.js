@@ -4,6 +4,10 @@ export default function useSchemaChildren(props, context, dependencies)
 {
   const { schema } = toRefs(props)
 
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
+
   // ================ DATA ===============
   
   const child$ = ref([])
@@ -16,8 +20,13 @@ export default function useSchemaChildren(props, context, dependencies)
    * @type {object}
    * @ignore
    */
-  const children = computed(() => {
-    return schema.value.schema
+  const children = computed({
+    get() {
+      return schema.value.schema
+    },
+    set(val) {
+      form$.value.$set(schema.value, 'schema', val)
+    }
   })
 
   const children$ = computed(() => {

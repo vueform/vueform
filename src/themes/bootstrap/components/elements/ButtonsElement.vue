@@ -29,6 +29,7 @@
   import ButtonsElement from './../../../../components/elements/ButtonsElement'
 
   export default {
+    name: 'ButtonsElement',
     mixins: [ButtonsElement],
     data() {
       return {

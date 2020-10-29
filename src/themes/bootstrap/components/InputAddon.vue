@@ -1,8 +1,9 @@
 <template>
   <label
     :class="[this.type == 'before' ? classes.addonBefore : classes.addonAfter]"
-    v-html="addon"
+    v-html-if="{addon: !isAddonComponent}"
   >
+    <component v-if="isAddonComponent" :is="addon" :el$="el$" />
   </label>
 </template>
 
@@ -10,6 +11,7 @@
   import InputAddon from './../../../components/InputAddon'
 
   export default {
+    name: 'InputAddon',
     mixins: [InputAddon],
     data() {
       return {

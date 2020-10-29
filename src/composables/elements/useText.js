@@ -22,7 +22,7 @@ import useInfo from './features/useInfo'
 import useBaseElement from './features/useBaseElement'
 import useView from './features/useView'
 import useComponents from './features/useComponents'
-import useBaseLayout from './features/useBaseLayout'
+import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
 import useInputType from './features/useInputType'
 import useAutocomplete from './features/useAutocomplete'
@@ -121,7 +121,7 @@ export default function useText(props, context) {
     form$: form$.form$
   })
 
-  const layout = useBaseLayout(props, context, {
+  const layout = useLayout(props, context, {
     components: components.components,
   })
 

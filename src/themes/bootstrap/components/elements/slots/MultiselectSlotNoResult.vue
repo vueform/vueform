@@ -9,6 +9,7 @@
   import MultiselectSlotNoResult from './../../../../../components/elements/slots/MultiselectSlotNoResult'
 
   export default {
+    name: 'MultiselectSlotNoResult',
     mixins: [MultiselectSlotNoResult],
 }
 </script>

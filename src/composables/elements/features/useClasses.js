@@ -1,4 +1,4 @@
-import { computed, toRefs } from 'composition-api'
+import { computed, toRefs, watchEffect } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 import { mergeComponentClasses } from './../../../utils/mergeClasses'
 

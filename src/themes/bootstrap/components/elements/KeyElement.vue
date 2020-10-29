@@ -4,6 +4,7 @@
   import HiddenElement from './HiddenElement'
 
   export default {
+    name: 'KeyElement',
     mixins: [KeyElement],
     render: HiddenElement.render,
   }

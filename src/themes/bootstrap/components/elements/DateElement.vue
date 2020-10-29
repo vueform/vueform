@@ -40,6 +40,7 @@
   import DateElement from './../../../../components/elements/DateElement'
 
   export default {
+    name: 'DateElement',
     mixins: [DateElement],
     data() {
       return {
