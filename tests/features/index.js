@@ -26,6 +26,7 @@ import info from './info'
 import input from './input'
 import inputType from './inputType'
 import label from './label'
+import nestedData from './nestedData'
 import nestedValue from './nestedValue'
 import nullValue from './nullValue'
 import path from './path'
@@ -67,6 +68,7 @@ export default {
   input,
   inputType,
   label,
+  nestedData,
   nestedValue,
   path,
   nullValue,

@@ -1,16 +1,13 @@
 import { nextTick } from 'vue'
 import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
 import flushPromises from 'flush-promises'
-import { submit, formatData, formatLoad, prepare } from './data'
+import { submit, formatData, formatLoad } from './data'
 
 export {
   // Computed
   submit,
   formatData,
   formatLoad,
-
-  // Methods
-  prepare,
 }
 
 export const data = function (elementType, elementName) {
@@ -264,11 +261,9 @@ export const update = function(elementType, elementName) {
     }
     else {
       el.vm.update({
-        el: {
-          child1: 'not-value',
-          child3: {
-            child4: 'not-value4'
-          }
+        child1: 'not-value',
+        child3: {
+          child4: 'not-value4'
         }
       })
     }
@@ -277,6 +272,37 @@ export const update = function(elementType, elementName) {
     expect(child2.vm.value).toBe('value2')
     expect(child4.vm.value).toBe('not-value4')
     expect(child5.vm.value).toBe('value5')
+  })
+}
+
+export const clear = function(elementType, elementName) {
+  it('should clear all children on `clear`', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          schema: {
+            child1: {
+              type: 'text',
+              default: 'value',
+            },
+            child2: {
+              type: 'text',
+              default: 'value2',
+            },
+          }
+        },
+      }
+    })
+
+    let el = findAllComponents(form, { name: elementName }).at(0)
+    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
+
+    el.vm.clear()
+
+    expect(child1.vm.value).toBe(child1.vm.nullValue)
+    expect(child2.vm.value).toBe(child1.vm.nullValue)
   })
 }
 
@@ -315,43 +341,12 @@ export const reset = function(elementType, elementName)
   })
 }
 
-export const clear = function(elementType, elementName) {
-  it('should clear all children on `clear`', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          schema: {
-            child1: {
-              type: 'text',
-              default: 'value',
-            },
-            child2: {
-              type: 'text',
-              default: 'value2',
-            },
-          }
-        },
-      }
-    })
-
-    let el = findAllComponents(form, { name: elementName }).at(0)
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-    el.vm.clear()
-
-    expect(child1.vm.value).toBe(child1.vm.nullValue)
-    expect(child2.vm.value).toBe(child1.vm.nullValue)
-  })
-}
-
-export default function (elementType) {
+export default function (elementType, options) {
   const elementName = `${_.upperFirst(elementType)}Element`
 
   return () => {
     _.each(exports, (suite) => {
-      suite(elementType, elementName)
+      suite(elementType, elementName, options)
     })
   }
 }

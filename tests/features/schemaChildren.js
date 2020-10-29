@@ -123,6 +123,37 @@ export const children$ = function (elementType, elementName) {
     expect(el.vm.children$.child3.name).toBe('child3')
   })
 
+  it('should remove child from `children$`', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          schema: {
+            child1: {
+              type: 'text'
+            },
+            child2: {
+              type: 'text'
+            },
+          },
+        }
+      }
+    })
+
+    let el = findAllComponents(form, { name: elementName }).at(0)
+
+    el.vm.children = {
+      child2: {
+        type: 'text'
+      }
+    }
+
+    await nextTick()
+
+    expect(_.keys(el.vm.children$).length).toBe(1)
+    expect(el.vm.children$.child2.name).toBe('child2')
+  })
+
   it('should reorder `children$`', async () => {
     let form = createForm({
       schema: {

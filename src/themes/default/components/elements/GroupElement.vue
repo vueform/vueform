@@ -2,6 +2,9 @@
   <component :is="layout">
 
     <template v-slot:field>
+      
+      <slot name="prefix"></slot>
+
       <div :class="classes.childrenContainer">
         <component
           v-for="(element, name, index) in children"
@@ -13,6 +16,9 @@
           v-ref:child$
         />
       </div>
+
+      <slot name="suffix"></slot>
+
     </template>
     
     <template v-slot:info><slot name="info" :el$="el$"><component v-if="slots.info" :is="slots.info" /></slot></template>

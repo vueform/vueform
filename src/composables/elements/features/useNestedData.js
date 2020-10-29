@@ -34,7 +34,7 @@ export default function useGroupData(props, context, dependencies)
       filtered = Object.assign({}, filtered, element$.filtered)
     })
 
-    return formatData.value(filtered, form$.value)
+    return formatData.value(name.value, filtered, form$.value)
   })
 
   // =============== METHODS ===============

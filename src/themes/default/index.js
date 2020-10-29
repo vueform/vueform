@@ -43,7 +43,7 @@ import GroupElement from './components/elements/GroupElement'
 // import MetaElement from './components/elements/MetaElement'
 // import MultifileElement from './components/elements/MultifileElement'
 // import MultiselectElement from './components/elements/MultiselectElement'
-// import ObjectElement from './components/elements/ObjectElement'
+import ObjectElement from './components/elements/ObjectElement'
 // import PasswordElement from './components/elements/PasswordElement'
 // import RadioElement from './components/elements/RadioElement'
 // import RadiogroupElement from './components/elements/RadiogroupElement'
@@ -134,7 +134,7 @@ export default {
     // MetaElement,
     // MultifileElement,
     // MultiselectElement,
-    // ObjectElement,
+    ObjectElement,
     // PasswordElement,
     // RadioElement,
     // RadiogroupElement,

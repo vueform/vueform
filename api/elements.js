@@ -39,7 +39,6 @@ export default {
   group: {
     features: [
       'baseElement',
-      'baseLayout',
       'childrenValidation',
       'classes',
       'columns',
@@ -52,7 +51,31 @@ export default {
       'groupPath',
       'info',
       'label',
+      'layout',
       'nestedValue',
+      'schemaChildren',
+      'slots',
+      'theme',
+      'view'
+    ]
+  },
+  object: {
+    features: [
+      'baseElement',
+      'childrenValidation',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      'description',
+      'elements',
+      'form$',
+      'info',
+      'label',
+      'layout',
+      'nestedData',
+      'nestedValue',
+      'path',
       'schemaChildren',
       'slots',
       'theme',
