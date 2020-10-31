@@ -15,7 +15,7 @@ describe('Group Element', () => {
 
   _.each(elements.group.features, (feature) => {
     if (!features[feature]) {
-      return
+      throw new Error('Feature wasn\'t found: `'+feature+'`')
     }
 
     describe(`${_.upperFirst(feature)} feature`, features[feature]('group', Object.assign({}, options.default, options[feature] || {})))

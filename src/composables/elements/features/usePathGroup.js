@@ -1,7 +1,7 @@
 import { computed, toRefs } from 'composition-api'
 import usePath from './usePath'
 
-export default function useGroupPath(props, context, dependencies)
+export default function usePathGroup(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 

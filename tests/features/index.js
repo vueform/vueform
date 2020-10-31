@@ -1,13 +1,15 @@
 import addons from './addons'
 import autocomplete from './autocomplete'
 import baseElement from './baseElement'
-import layout from './layout'
-import childrenValidation from './childrenValidation'
+import childrenObject from './childrenObject'
+import childrenGroup from './childrenGroup'
 import classes from './classes'
 import columns from './columns'
 import components from './components'
 import conditions from './conditions'
 import data from './data'
+import dataGroup from './dataGroup'
+import dataObject from './dataObject'
 import debounce from './debounce'
 import default_ from './default'
 import description from './description'
@@ -17,8 +19,6 @@ import empty from './empty'
 import events from './events'
 import floating from './floating'
 import form$ from './form$'
-import groupData from './groupData'
-import groupPath from './groupPath'
 import handleChange from './handleChange'
 import handleKeyup from './handleKeyup'
 import id from './id'
@@ -26,32 +26,37 @@ import info from './info'
 import input from './input'
 import inputType from './inputType'
 import label from './label'
-import nestedData from './nestedData'
-import nestedValue from './nestedValue'
+import layout from './layout'
 import nullValue from './nullValue'
 import path from './path'
+import pathGroup from './pathGroup'
 import placeholder from './placeholder'
-import schemaChildren from './schemaChildren'
 import readonly from './readonly'
 import slots from './slots'
 import theme from './theme'
 import validation from './validation'
+import validationGroup from './validationGroup'
+import validationObject from './validationObject'
 import value from './value'
+import valueGroup from './valueGroup'
+import valueObject from './valueObject'
 import view from './view'
 
 export default {
   addons,
   autocomplete,
   baseElement,
-  layout,
-  childrenValidation,
+  childrenObject,
+  childrenGroup,
   classes,
   columns,
   components,
   conditions,
   data,
+  dataGroup,
+  dataObject,
   debounce,
-  default: default_,
+  default_,
   description,
   disabled,
   elements,
@@ -59,8 +64,6 @@ export default {
   events,
   floating,
   form$,
-  groupData,
-  groupPath,
   handleChange,
   handleKeyup,
   id,
@@ -68,16 +71,19 @@ export default {
   input,
   inputType,
   label,
-  nestedData,
-  nestedValue,
-  path,
+  layout,
   nullValue,
+  path,
+  pathGroup,
   placeholder,
   readonly,
-  schemaChildren,
   slots,
   theme,
   validation,
+  validationGroup,
+  validationObject,
   value,
+  valueGroup,
+  valueObject,
   view,
 }

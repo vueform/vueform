@@ -1,10 +1,7 @@
 import { toRefs } from 'composition-api'
 import useForm$ from './../useForm$'
 import useTheme from './../useTheme'
-import useGroupPath from './features/useGroupPath'
 import useConditions from './../useConditions'
-import useNestedValue from './features/useNestedValue'
-import useGroupData from './features/useGroupData'
 import useLabel from './features/useLabel'
 import useClasses from './features/useClasses'
 import useColumns from './features/useColumns'
@@ -15,16 +12,20 @@ import useView from './features/useView'
 import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
-import useSchemaChildren from './features/useSchemaChildren'
-import useChildrenValidation from './features/useChildrenValidation'
 import useElements from './../useElements'
+
+import usePathGroup from './features/usePathGroup'
+import useValidationGroup from './features/useValidationGroup'
+import useChildrenGroup from './features/useChildrenGroup'
+import useValueGroup from './features/useValueGroup'
+import useDataGroup from './features/useDataGroup'
 
 export default function useGroup(props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
   const theme = useTheme(props, context)
-  const path = useGroupPath(props, context)
+  const path = usePathGroup(props, context)
   const description = useDescription(props, context)
   const info = useInfo(props, context)
 
@@ -36,11 +37,11 @@ export default function useGroup(props, context) {
     label: label.label,
   })
 
-  const children = useSchemaChildren(props, context, {
+  const children = useChildrenGroup(props, context, {
     form$: form$.form$,
   })
 
-  const value = useNestedValue(props, context, {
+  const value = useValueGroup(props, context, {
     children$: children.children$
   })
 
@@ -54,7 +55,7 @@ export default function useGroup(props, context) {
     descriptor: schema,
   })
 
-  const validation = useChildrenValidation(props, context, {
+  const validation = useValidationGroup(props, context, {
     form$: form$.form$,
     value: value.value,
     children$: children.children$,
@@ -92,7 +93,7 @@ export default function useGroup(props, context) {
     ]
   })
 
-  const data = useGroupData(props, context, {
+  const data = useDataGroup(props, context, {
     form$: form$.form$,
     available: conditions.available,
     value: value.value,

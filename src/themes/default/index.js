@@ -38,7 +38,7 @@ import Trix from './components/wrappers/Trix'
 import GroupElement from './components/elements/GroupElement'
 // import HiddenElement from './components/elements/HiddenElement'
 // import KeyElement from './components/elements/KeyElement'
-// import ListElement from './components/elements/ListElement'
+import ListElement from './components/elements/ListElement'
 // import LocationElement from './components/elements/LocationElement'
 // import MetaElement from './components/elements/MetaElement'
 // import MultifileElement from './components/elements/MultifileElement'
@@ -129,7 +129,7 @@ export default {
     GroupElement,
     // HiddenElement,
     // KeyElement,
-    // ListElement,
+    ListElement,
     // LocationElement,
     // MetaElement,
     // MultifileElement,

@@ -1,6 +1,6 @@
 import { computed, nextTick, toRefs } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
-import useNestedData from './useNestedData'
+import useDataObject from './useDataObject'
 
 export default function useGroupData(props, context, dependencies)
 {
@@ -8,7 +8,7 @@ export default function useGroupData(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
 
-  const { formatLoad, submit, update, clear, reset, prepare } = useNestedData(props, context, dependencies)
+  const { formatLoad, submit, update, clear, reset, prepare } = useDataObject(props, context, dependencies)
 
   const form$ = dependencies.form$
   const children$ = dependencies.children$

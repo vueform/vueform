@@ -2,7 +2,7 @@ const fs = require('fs')
 const _ = require('lodash')
 const basePath = './..'
 const featuresPath = '/src/composables/elements'
-const elements = ['text', 'group', 'object']
+const elements = ['text', 'group', 'object', 'list']
 
 function getFeatures() {
   const features = {}

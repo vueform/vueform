@@ -1,4 +1,4 @@
-import { computed } from 'composition-api'
+import { computed, markRaw } from 'composition-api'
 
 export default function useLayout(props, context, dependencies)
 {
@@ -10,7 +10,7 @@ export default function useLayout(props, context, dependencies)
 
   const layout = computed({
     get() {
-      return components.value.ElementLayout
+      return markRaw(components.value.ElementLayout)
     }
   })
 

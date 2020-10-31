@@ -3,8 +3,6 @@ import useForm$ from './../useForm$'
 import useTheme from './../useTheme'
 import usePath from './features/usePath'
 import useConditions from './../useConditions'
-import useNestedValue from './features/useNestedValue'
-import useNestedData from './features/useNestedData'
 import useLabel from './features/useLabel'
 import useClasses from './features/useClasses'
 import useColumns from './features/useColumns'
@@ -15,9 +13,12 @@ import useView from './features/useView'
 import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
-import useSchemaChildren from './features/useSchemaChildren'
-import useChildrenValidation from './features/useChildrenValidation'
 import useElements from './../useElements'
+
+import useValueObject from './features/useValueObject'
+import useDataObject from './features/useDataObject'
+import useChildrenObject from './features/useChildrenObject'
+import useValidationObject from './features/useValidationObject'
 
 export default function useGroup(props, context) {
   const { schema } = toRefs(props)
@@ -36,11 +37,11 @@ export default function useGroup(props, context) {
     label: label.label,
   })
 
-  const children = useSchemaChildren(props, context, {
+  const children = useChildrenObject(props, context, {
     form$: form$.form$,
   })
 
-  const value = useNestedValue(props, context, {
+  const value = useValueObject(props, context, {
     children$: children.children$
   })
 
@@ -54,7 +55,7 @@ export default function useGroup(props, context) {
     descriptor: schema,
   })
 
-  const validation = useChildrenValidation(props, context, {
+  const validation = useValidationObject(props, context, {
     form$: form$.form$,
     value: value.value,
     children$: children.children$,
@@ -92,7 +93,7 @@ export default function useGroup(props, context) {
     ]
   })
 
-  const data = useNestedData(props, context, {
+  const data = useDataObject(props, context, {
     form$: form$.form$,
     available: conditions.available,
     value: value.value,

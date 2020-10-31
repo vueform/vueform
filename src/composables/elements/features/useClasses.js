@@ -92,6 +92,7 @@ export default function useClasses(props, context, dependencies)
 
   return {
     class: class_,
+    mergedClasses,
     classes,
     mainClass,
     addClasses,

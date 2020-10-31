@@ -1,19 +1,9 @@
-const vueVersion = function(binding, vnode) {
-  if (vnode.context && vnode.context.$laraform && vnode.context.$laraform.vue == 2) {
-    return 2
-  }
-
-  return 3
-}
+import { computed, ref } from 'vue'
 
 const options = function(el, binding, vnode) {
   let name = binding.arg
-  let parent = vueVersion(binding, vnode) == 2 ? vnode.context : binding.instance
-  let component = vueVersion(binding, vnode) == 2 ? (vnode.componentInstance || vnode.elm) : el.__vueParentComponent.ctx
-
-  if (vueVersion(binding, vnode) == 3 && component.$options.name.endsWith('ElementLayout')) {
-    component = el.__vueParentComponent.parent.ctx
-  }
+  let parent = vnode.context
+  let component = vnode.componentInstance || vnode.elm
 
   return {
     name,
@@ -51,9 +41,4 @@ export default {
   bind: add,
   udpate: add,
   unbind: unbind,
-
-  // Vue3
-  mounted: add,
-  updated: add,
-  unmounted: unbind,
 }

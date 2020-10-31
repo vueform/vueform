@@ -1,7 +1,7 @@
 import { nextTick } from 'vue'
 import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
 import flushPromises from 'flush-promises'
-import { filtered, formatData, formatLoad, submit, load, update, clear, reset } from './nestedData'
+import { filtered, formatData, formatLoad, submit, load, update, clear, reset } from './dataObject'
 
 export {
   filtered,
