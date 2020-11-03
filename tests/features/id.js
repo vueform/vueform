@@ -16,9 +16,9 @@ export default function id (elementType, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      testAttribute(el, options.fieldType, 'id', 'my-id')
+      testAttribute(elWrapper, options.fieldType, 'id', 'my-id')
     })
   }
 }

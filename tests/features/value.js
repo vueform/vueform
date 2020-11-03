@@ -11,9 +11,9 @@ export const currentValue = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.currentValue).not.toBe(undefined)
+    expect(el.currentValue).not.toBe(undefined)
   })
 }
 
@@ -27,9 +27,9 @@ export const previousValue = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.previousValue).not.toBe(undefined)
+    expect(el.previousValue).not.toBe(undefined)
   })
 }
 
@@ -43,11 +43,11 @@ export const value = function (elementType, elementName, options) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    el.vm.currentValue = 'value'
+    el.currentValue = 'value'
 
-    expect(el.vm.value).toBe(el.vm.currentValue)
+    expect(el.value).toBe(el.currentValue)
   })
 
   it('should set currentValue as previousValue and passed over value as current value when setting `value`', () => {
@@ -59,15 +59,15 @@ export const value = function (elementType, elementName, options) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    el.vm.currentValue = 'value'
+    el.currentValue = 'value'
 
-    el.vm.value = 'value2'
+    el.value = 'value2'
 
-    expect(el.vm.previousValue).toBe('value')
-    expect(el.vm.currentValue).toBe('value2')
-    expect(el.vm.value).toBe('value2')
+    expect(el.previousValue).toBe('value')
+    expect(el.currentValue).toBe('value2')
+    expect(el.value).toBe('value2')
   })
 
   it('should render `value` attribute', async () => {
@@ -80,11 +80,11 @@ export const value = function (elementType, elementName, options) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
     await nextTick()
 
-    testValue(el, options.fieldType, 'value')
+    testValue(elWrapper, options.fieldType, 'value')
   })
 }
 
@@ -98,11 +98,11 @@ export const model = function (elementType, elementName, options) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    el.vm.value = 'value'
+    el.value = 'value'
 
-    expect(el.vm.model).toBe(el.vm.value)
+    expect(el.model).toBe(el.value)
   })
 
   it('should return set value when setting `model`', () => {
@@ -114,11 +114,11 @@ export const model = function (elementType, elementName, options) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    el.vm.model = 'value'
+    el.model = 'value'
 
-    expect(el.vm.value).toBe(el.vm.model)
+    expect(el.value).toBe(el.model)
   })
   
   it('should update `model` when input value changes', async () => {
@@ -131,13 +131,14 @@ export const model = function (elementType, elementName, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      expect(el.vm.model).toBe('value')
+      expect(el.model).toBe('value')
 
-      setValue(el, options.fieldType, 'value2')
+      setValue(elWrapper, options.fieldType, 'value2')
       
-      expect(el.vm.model).toBe('value2')
+      expect(el.model).toBe('value2')
     })
 }
 

@@ -5,6 +5,39 @@ import { nextTick } from 'vue'
 
 describe('List Element', () => {
   const options = {
+    childrenList: {
+      prototypes: [
+        {
+          element: {
+            type: 'text'
+          }
+        },
+        {
+          object: {
+            schema: {
+              child: {
+                type: 'text'
+              }
+            }
+          }
+        },
+      ],
+      childTypes: ['text', 'object'],
+      childValues: ['value{i}', { child: 'value{i}' }],
+      childSchemas: [
+        {
+          type: 'text'
+        },
+        {
+          type: 'object',
+          schema: {
+            child: {
+              type: 'text'
+            }
+          }
+        }
+      ]
+    }
   }
 
   _.each(elements.list.features, (feature) => {

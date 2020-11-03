@@ -7,7 +7,7 @@
         :schema="element"
         :name="name"
         :key="name"
-        :ref="el => { if (el) elements$[i] = el }"
+        :ref="setRef(elements$, i)"
         v-ref:elements$
       />
     </div>

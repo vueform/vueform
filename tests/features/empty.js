@@ -13,17 +13,17 @@ export default function empty (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.empty).toBe(true)
+      expect(el.empty).toBe(true)
 
-      el.vm.update('')
+      el.update('')
 
-      expect(el.vm.empty).toBe(true)
+      expect(el.empty).toBe(true)
 
-      el.vm.update(null)
+      el.update(null)
 
-      expect(el.vm.empty).toBe(true)
+      expect(el.empty).toBe(true)
     })
 
     it('should have `empty` false when value is not empty', () => {
@@ -36,9 +36,9 @@ export default function empty (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.empty).toBe(false)
+      expect(el.empty).toBe(false)
     })
   }
 }

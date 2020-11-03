@@ -26,9 +26,9 @@ export default function classes (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.mainClass).toStrictEqual(_.keys(el.vm.defaultClasses)[0])
+      expect(el.mainClass).toStrictEqual(_.keys(el.defaultClasses)[0])
     })
 
     // Theme classes
@@ -41,9 +41,9 @@ export default function classes (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.classes).toStrictEqual(el.vm.defaultClasses)
+      expect(el.classes).toStrictEqual(el.defaultClasses)
     })
 
     it('should `classes` in theme overwrite defaultClasses, even when changes', () => {
@@ -70,14 +70,14 @@ export default function classes (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
+      expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
       // This also works but running tests with Vue2 fails for some reason
       
-      // el.vm.$laraform.themes.default.classes[elementName] = overwriteClasses2
-      // expect(el.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
+      // el.$laraform.themes.default.classes[elementName] = overwriteClasses2
+      // expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     })
 
     // Form classes
@@ -100,13 +100,13 @@ export default function classes (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
+      expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
-      el.vm.form$.classes[elementName] = overwriteClasses2
+      el.form$.classes[elementName] = overwriteClasses2
 
-      expect(el.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
+      expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     })
 
     it('should `classes` in form overwrite theme classes, even when changes', () => {
@@ -138,13 +138,13 @@ export default function classes (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
+      expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
-      el.vm.form$.classes[elementName] = overwriteClasses2
+      el.form$.classes[elementName] = overwriteClasses2
 
-      expect(el.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
+      expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     })
 
     it('should `addClasses` in form add classes, even when changes', () => {
@@ -166,13 +166,13 @@ export default function classes (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses1[mainClass])
+      expect(el.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses1[mainClass])
 
-      el.vm.form$.addClasses[elementName] = addClasses2
+      el.form$.addClasses[elementName] = addClasses2
 
-      expect(el.vm.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses2[mainClass])
+      expect(el.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses2[mainClass])
     })
 
     // Element classes
@@ -195,16 +195,16 @@ export default function classes (elementType) {
         },
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
+      expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
-      el.vm.classes = {
+      el.classes = {
         [elementName]: overwriteClasses2
       }
 
-      expect(el.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
-      expect(el.vm.schema.classes).toStrictEqual({
+      expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
+      expect(el.schema.classes).toStrictEqual({
         [elementName]: overwriteClasses2
       })
     })
@@ -238,16 +238,16 @@ export default function classes (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
+      expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
-      el.vm.classes = {
+      el.classes = {
         [elementName]: overwriteClasses2
       }
 
-      expect(el.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
-      expect(el.vm.schema.classes).toStrictEqual({
+      expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
+      expect(el.schema.classes).toStrictEqual({
         [elementName]: overwriteClasses2
       })
     })
@@ -276,16 +276,16 @@ export default function classes (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
+      expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
-      el.vm.classes = {
+      el.classes = {
         [elementName]: overwriteClasses2
       }
 
-      expect(el.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
-      expect(el.vm.schema.classes).toStrictEqual({
+      expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
+      expect(el.schema.classes).toStrictEqual({
         [elementName]: overwriteClasses2
       })
     })
@@ -309,13 +309,13 @@ export default function classes (elementType) {
         },
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses1[mainClass])
+      expect(el.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses1[mainClass])
 
-      el.vm.addClasses[elementName] = addClasses2
+      el.addClasses[elementName] = addClasses2
 
-      expect(el.vm.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses2[mainClass])
+      expect(el.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses2[mainClass])
     })
 
     it('should `addClasses` in both form and element add classes, even when changes', () => {
@@ -346,14 +346,14 @@ export default function classes (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClassesForm1[mainClass] + ' ' + addClassesElement1[mainClass])
+      expect(el.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClassesForm1[mainClass] + ' ' + addClassesElement1[mainClass])
 
-      el.vm.form$.addClasses[elementName] = addClassesForm2
-      el.vm.addClasses[elementName] = addClassesElement2
+      el.form$.addClasses[elementName] = addClassesForm2
+      el.addClasses[elementName] = addClassesElement2
 
-      expect(el.vm.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClassesForm2[mainClass] + ' ' + addClassesElement2[mainClass])
+      expect(el.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClassesForm2[mainClass] + ' ' + addClassesElement2[mainClass])
     })
 
     // Element class
@@ -367,15 +367,16 @@ export default function classes (elementType) {
         },
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      expect(el.classes('element-add-class')).toBe(true)
+      expect(elWrapper.classes('element-add-class')).toBe(true)
 
-      el.vm.class = 'element-add-class2'
+      el.class = 'element-add-class2'
 
       await nextTick()
 
-      expect(el.classes('element-add-class2')).toBe(true)
+      expect(elWrapper.classes('element-add-class2')).toBe(true)
     })
 
     it('should `class` in element add classes to the outer-most DOM even if form `classes` is defined, even when changes', async () => {
@@ -393,18 +394,19 @@ export default function classes (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      expect(el.classes('element-add-class')).toBe(true)
-      expect(el.classes('form-add-class')).toBe(true)
+      expect(elWrapper.classes('element-add-class')).toBe(true)
+      expect(elWrapper.classes('form-add-class')).toBe(true)
 
-      el.vm.class = 'element-add-class2'
+      el.class = 'element-add-class2'
       form.vm.classes[elementName][mainClass] = 'form-add-class2'
 
       await nextTick()
 
-      expect(el.classes('element-add-class2')).toBe(true)
-      expect(el.classes('form-add-class2')).toBe(true)
+      expect(elWrapper.classes('element-add-class2')).toBe(true)
+      expect(elWrapper.classes('form-add-class2')).toBe(true)
     })
 
     it('should `class` in element add classes to the outer-most DOM even if element `classes` is defined, even when changes', async () => {
@@ -422,13 +424,14 @@ export default function classes (elementType) {
         },
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      expect(el.classes('element-add-class')).toBe(true)
-      expect(el.classes('element-add-classes')).toBe(true)
+      expect(elWrapper.classes('element-add-class')).toBe(true)
+      expect(elWrapper.classes('element-add-classes')).toBe(true)
 
-      el.vm.class = 'element-add-class2'
-      el.vm.classes = {
+      el.class = 'element-add-class2'
+      el.classes = {
         [elementName]: {
           [mainClass]: 'element-add-classes2'
         }
@@ -436,8 +439,8 @@ export default function classes (elementType) {
 
       await nextTick()
 
-      expect(el.classes('element-add-class2')).toBe(true)
-      expect(el.classes('element-add-classes2')).toBe(true)
+      expect(elWrapper.classes('element-add-class2')).toBe(true)
+      expect(elWrapper.classes('element-add-classes2')).toBe(true)
     })
 
     it('should `class` in element add classes to the outer-most DOM even if form `addClasses` is defined, even when changes', async () => {
@@ -455,18 +458,19 @@ export default function classes (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      expect(el.classes('element-add-class')).toBe(true)
-      expect(el.classes('form-add-class')).toBe(true)
+      expect(elWrapper.classes('element-add-class')).toBe(true)
+      expect(elWrapper.classes('form-add-class')).toBe(true)
 
-      el.vm.class = 'element-add-class2'
+      el.class = 'element-add-class2'
       form.vm.addClasses[elementName][mainClass] = 'form-add-class2'
 
       await nextTick()
 
-      expect(el.classes('element-add-class2')).toBe(true)
-      expect(el.classes('form-add-class2')).toBe(true)
+      expect(elWrapper.classes('element-add-class2')).toBe(true)
+      expect(elWrapper.classes('form-add-class2')).toBe(true)
     })
 
     it('should `class` in element add classes to the outer-most DOM even if element `addClasses` is defined, even when changes', async () => {
@@ -484,13 +488,14 @@ export default function classes (elementType) {
         },
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      expect(el.classes('element-add-class')).toBe(true)
-      expect(el.classes('element-add-classes')).toBe(true)
+      expect(elWrapper.classes('element-add-class')).toBe(true)
+      expect(elWrapper.classes('element-add-classes')).toBe(true)
 
-      el.vm.class = 'element-add-class2'
-      el.vm.addClasses = {
+      el.class = 'element-add-class2'
+      el.addClasses = {
         [elementName]: {
           [mainClass]: 'element-add-classes2'
         }
@@ -498,8 +503,8 @@ export default function classes (elementType) {
 
       await nextTick()
 
-      expect(el.classes('element-add-class2')).toBe(true)
-      expect(el.classes('element-add-classes2')).toBe(true)
+      expect(elWrapper.classes('element-add-class2')).toBe(true)
+      expect(elWrapper.classes('element-add-classes2')).toBe(true)
     })
 
     it('should `class` in element add classes to the outer-most DOM even if both form and element `addClasses` are defined, even when changes', async () => {
@@ -522,14 +527,15 @@ export default function classes (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      expect(el.classes('element-add-class')).toBe(true)
-      expect(el.classes('element-add-classes')).toBe(true)
-      expect(el.classes('form-add-classes')).toBe(true)
+      expect(elWrapper.classes('element-add-class')).toBe(true)
+      expect(elWrapper.classes('element-add-classes')).toBe(true)
+      expect(elWrapper.classes('form-add-classes')).toBe(true)
 
-      el.vm.class = 'element-add-class2'
-      el.vm.addClasses = {
+      el.class = 'element-add-class2'
+      el.addClasses = {
         [elementName]: {
           [mainClass]: 'element-add-classes2'
         }
@@ -542,9 +548,9 @@ export default function classes (elementType) {
 
       await nextTick()
 
-      expect(el.classes('element-add-class2')).toBe(true)
-      expect(el.classes('element-add-classes2')).toBe(true)
-      expect(el.classes('form-add-classes2')).toBe(true)
+      expect(elWrapper.classes('element-add-class2')).toBe(true)
+      expect(elWrapper.classes('element-add-classes2')).toBe(true)
+      expect(elWrapper.classes('form-add-classes2')).toBe(true)
     })
   }
 }

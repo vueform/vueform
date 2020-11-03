@@ -1,4 +1,4 @@
-import { toRefs } from 'composition-api'
+import { toRefs, onBeforeUpdate } from 'composition-api'
 import useForm$ from './../useForm$'
 import useTheme from './../useTheme'
 import useConditions from './../useConditions'
@@ -19,6 +19,7 @@ import useArrayType from './features/useArrayType'
 import useSort from './features/useSort'
 import usePrototype from './features/usePrototype'
 import useSortable from './features/useSortable'
+import useWatchPrototype from './features/useWatchPrototype'
 
 import usePath from './features/usePath'
 import useValueList from './features/useValueList'
@@ -80,13 +81,14 @@ export default function useList(props, context) {
     refreshOrderStore: sort.refreshOrderStore,
     prototype: prototype.prototype,
     isObject: prototype.isObject,
+    storeOrder: sort.storeOrder,
     // handleChange: handleChange.handleChange,
   }, {
     initial: 1
   })
 
   const value = useValueList(props, context, {
-    children$: children.children$
+    children$: children.children$,
   })
 
   const elements = useElements(props, context, {
@@ -103,6 +105,7 @@ export default function useList(props, context) {
     form$: form$.form$,
     value: value.value,
     children$: children.children$,
+    form$: form$.form$,
   })
 
   const classes = useClassesList(props, context, {
@@ -142,6 +145,8 @@ export default function useList(props, context) {
     validate: validation.validate,
     resetValidators: validation.resetValidators,
     children$: children.children$,
+    instances: children.instances,
+    nullValue: nullValue.nullValue,
   })
 
   const handleChange = useHandleChangeList(props, context, {
@@ -160,6 +165,13 @@ export default function useList(props, context) {
     handleSort: disabled.handleSort,
     disabled: disabled.disabled,
     sort: sort.sort,
+  })
+
+  const watchPrototype = useWatchPrototype(props, context, {
+    prototype: prototype.prototype,
+    value: value.value,
+    clear: data.clear,
+    insert: children.insert,
   })
 
   return {
@@ -190,5 +202,7 @@ export default function useList(props, context) {
     ...sort,
     ...sortable,
     ...handleSort,
+    ...watchPrototype,
+    ...default_,
   }
 } 

@@ -14,7 +14,7 @@ import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
 //       }
 //     })
 
-//     let el = findAllComponents(form, { name: elementName }).at(0)
+//     let el = form.vm.el$('el')
 //   })
 // }
 

@@ -10,6 +10,7 @@ export default function useData(props, context, dependencies)
 
   const form$ = dependencies.form$
   const value = dependencies.value
+  const path = dependencies.path
 
   // ================ DATA ================
 
@@ -220,8 +221,8 @@ export default function useData(props, context, dependencies)
    * @private
    * @returns {void}
    */
-  const initMessageBag = (el$) => {
-    messageBag.value = new form$.value.$laraform.services.messageBag(el$)
+  const initMessageBag = () => {
+    messageBag.value = new form$.value.$laraform.services.messageBag(errors)
   }
 
   /**
@@ -230,7 +231,7 @@ export default function useData(props, context, dependencies)
    * @private
    * @returns {void}
    */
-  const initValidation = (el$) => {
+  const initValidation = () => {
     if (!rules.value) {
       return
     }
@@ -239,7 +240,7 @@ export default function useData(props, context, dependencies)
     // qualify as validated by default
     state.value.validated = false
 
-    validatorFactory.value = new form$.value.$laraform.services.validation.factory(el$)
+    validatorFactory.value = new form$.value.$laraform.services.validation.factory(path.value, form$.value)
 
     _.each(validatorFactory.value.makeAll(rules.value), (Validator) => {
       Validators.value.push(Validator)
@@ -249,9 +250,13 @@ export default function useData(props, context, dependencies)
   // =============== HOOKS ================
 
   onMounted(() => {
+    // @todo: move to validationList??
     watch(value, () => {
       dirt()
     }, { deep: true })
+
+    initMessageBag()
+    initValidation()
   })
 
   return {

@@ -16,8 +16,8 @@ export default function floating (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let ElementLabelFloating = findAllComponents(el, { name: 'ElementLabelFloating' })
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+      let ElementLabelFloating = findAllComponents(elWrapper, { name: 'ElementLabelFloating' })
 
       expect(ElementLabelFloating.length).toBe(1)
     })
@@ -31,8 +31,8 @@ export default function floating (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let ElementLabelFloating = findAllComponents(el, { name: 'ElementLabelFloating' })
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+      let ElementLabelFloating = findAllComponents(elWrapper, { name: 'ElementLabelFloating' })
 
       expect(ElementLabelFloating.length).toBe(0)
     })

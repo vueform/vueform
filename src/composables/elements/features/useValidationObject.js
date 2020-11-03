@@ -9,9 +9,6 @@ export default function useChildrenValidation (props, context, dependencies)
   const { 
     // Data
     messageBag,
-
-    // Methods
-    initMessageBag,
   } = useValidation(props, context, dependencies)
 
   const children$ = dependencies.children$
@@ -131,6 +128,14 @@ export default function useChildrenValidation (props, context, dependencies)
       element$.resetValidators()
     })
   }
+  
+  const initMessageBag = (el$) => {
+    messageBag.value = new form$.value.$laraform.services.messageBag(elements)
+  }
+  
+  onMounted(() => {
+    initMessageBag()  
+  })
 
   return {
     // Data

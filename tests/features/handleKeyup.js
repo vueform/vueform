@@ -16,9 +16,9 @@ export default function handleKeyup (elementType, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.handleKeyup()
+      el.handleKeyup()
 
       expect(onChangeMock).toHaveBeenCalled()
     })
@@ -36,9 +36,9 @@ export default function handleKeyup (elementType, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.handleKeyup()
+      el.handleKeyup()
 
       expect(onChangeMock).not.toHaveBeenCalled()
     })
@@ -56,15 +56,16 @@ export default function handleKeyup (elementType, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      triggerEvent(el, options.fieldType, 'keyup')
+      triggerEvent(elWrapper, options.fieldType, 'keyup')
 
       expect(onChangeMock).not.toHaveBeenCalled()
 
-      el.vm.readonly = false
+      el.readonly = false
 
-      triggerEvent(el, options.fieldType, 'keyup')
+      triggerEvent(elWrapper, options.fieldType, 'keyup')
 
       expect(onChangeMock).toHaveBeenCalled()
     })
@@ -82,15 +83,16 @@ export default function handleKeyup (elementType, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      triggerEvent(el, options.fieldType, 'select')
+      triggerEvent(elWrapper, options.fieldType, 'select')
 
       expect(onChangeMock).not.toHaveBeenCalled()
 
-      el.vm.readonly = false
+      el.readonly = false
 
-      triggerEvent(el, options.fieldType, 'select')
+      triggerEvent(elWrapper, options.fieldType, 'select')
 
       expect(onChangeMock).toHaveBeenCalled()
     })

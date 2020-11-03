@@ -17,9 +17,9 @@ export default function handleChange (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.handleChange()
+      el.handleChange()
 
       expect(onChangeMock).toHaveBeenCalled()
     })
@@ -35,15 +35,15 @@ export default function handleChange (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.validated).toBe(false)
+      expect(el.validated).toBe(false)
 
-      el.vm.handleChange()
+      el.handleChange()
 
       await flushPromises()
 
-      expect(el.vm.validated).toBe(true)
+      expect(el.validated).toBe(true)
     })
 
     it('should not validate element on `handleChange` if validateOn does not contain "change"', async () => {
@@ -57,15 +57,15 @@ export default function handleChange (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.validated).toBe(false)
+      expect(el.validated).toBe(false)
 
-      el.vm.handleChange()
+      el.handleChange()
 
       await flushPromises()
 
-      expect(el.vm.validated).toBe(false)
+      expect(el.validated).toBe(false)
     })
   }
 }

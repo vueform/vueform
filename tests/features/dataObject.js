@@ -30,16 +30,16 @@ export const data = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    if (el.vm.flat) {
-      expect(el.vm.data).toStrictEqual({
+    if (el.flat) {
+      expect(el.data).toStrictEqual({
         child1: 'value',
         child2: 'value2',
       })
     }
     else {
-      expect(el.vm.data).toStrictEqual({
+      expect(el.data).toStrictEqual({
         el: {
           child1: 'value',
           child2: 'value2',
@@ -72,9 +72,9 @@ export const data = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.data).toStrictEqual({
+    expect(el.data).toStrictEqual({
       custom: {
         child1: 'value',
         child2: 'value2',
@@ -108,9 +108,9 @@ export const filtered = function(elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.filtered).toStrictEqual({})
+    expect(el.filtered).toStrictEqual({})
   })
 
   it('should have `filtered` equal to available children filtered values', async () => {
@@ -151,16 +151,16 @@ export const filtered = function(elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    if (el.vm.flat) {
-      expect(el.vm.filtered).toStrictEqual({
+    if (el.flat) {
+      expect(el.filtered).toStrictEqual({
         child1: 'value',
         child4: 'value4'
       })
     }
     else {
-      expect(el.vm.filtered).toStrictEqual({
+      expect(el.filtered).toStrictEqual({
         el: {
           child1: 'value',
           child3: {
@@ -190,18 +190,18 @@ export const load = function(elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
     let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
     let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
-    if (el.vm.flat) {
-      el.vm.load({
+    if (el.flat) {
+      el.load({
         child1: 'value',
         child2: 'value2',
       })
     }
     else {
-      el.vm.load({
+      el.load({
         el: {
           child1: 'value',
           child2: 'value2',
@@ -247,20 +247,20 @@ export const update = function(elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
     let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
     let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
     let child4 = findAllComponents(form, { name: 'TextElement' }).at(2)
     let child5 = findAllComponents(form, { name: 'TextElement' }).at(3)
 
-    if (el.vm.flat) {
-      el.vm.update({
+    if (el.flat) {
+      el.update({
         child1: 'not-value',
         child4: 'not-value4'
       })
     }
     else {
-      el.vm.update({
+      el.update({
         child1: 'not-value',
         child3: {
           child4: 'not-value4'
@@ -295,11 +295,11 @@ export const clear = function(elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
     let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
     let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
-    el.vm.clear()
+    el.clear()
 
     expect(child1.vm.value).toBe(child1.vm.nullValue)
     expect(child2.vm.value).toBe(child1.vm.nullValue)
@@ -327,14 +327,14 @@ export const reset = function(elementType, elementName)
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
     let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
     let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
     child1.vm.update('not-value')
     child2.vm.update('not-value2')
 
-    el.vm.reset()
+    el.reset()
 
     expect(child1.vm.value).toBe('value')
     expect(child2.vm.value).toBe('value2')

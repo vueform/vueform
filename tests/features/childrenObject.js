@@ -15,9 +15,9 @@ export const child$ = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.child$).toStrictEqual([])
+    expect(el.child$).toStrictEqual([])
   })
 
   it('should collect elements to `child$`', async () => {
@@ -37,9 +37,9 @@ export const child$ = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.child$.length).toBe(2)
+    expect(el.child$.length).toBe(2)
   })
 }
 
@@ -63,9 +63,9 @@ export const children = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.children).toStrictEqual(childrenSchema)
+    expect(el.children).toStrictEqual(childrenSchema)
   })
 }
 
@@ -87,10 +87,10 @@ export const children$ = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.children$.child1.name).toBe('child1')
-    expect(el.vm.children$.child2.name).toBe('child2')
+    expect(el.children$.child1.name).toBe('child1')
+    expect(el.children$.child2.name).toBe('child2')
   })
 
   it('should add new child to `children$`', async () => {
@@ -110,17 +110,17 @@ export const children$ = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    el.vm.children.child3 = {
+    el.children.child3 = {
       type: 'text'
     }
 
     await nextTick()
 
-    expect(el.vm.children$.child1.name).toBe('child1')
-    expect(el.vm.children$.child2.name).toBe('child2')
-    expect(el.vm.children$.child3.name).toBe('child3')
+    expect(el.children$.child1.name).toBe('child1')
+    expect(el.children$.child2.name).toBe('child2')
+    expect(el.children$.child3.name).toBe('child3')
   })
 
   it('should remove child from `children$`', async () => {
@@ -140,9 +140,9 @@ export const children$ = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    el.vm.children = {
+    el.children = {
       child2: {
         type: 'text'
       }
@@ -150,8 +150,8 @@ export const children$ = function (elementType, elementName) {
 
     await nextTick()
 
-    expect(_.keys(el.vm.children$).length).toBe(1)
-    expect(el.vm.children$.child2.name).toBe('child2')
+    expect(_.keys(el.children$).length).toBe(1)
+    expect(el.children$.child2.name).toBe('child2')
   })
 
   it('should reorder `children$`', async () => {
@@ -171,9 +171,9 @@ export const children$ = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    el.vm.children = {
+    el.children = {
       child2: {
         type: 'text'
       },
@@ -184,7 +184,7 @@ export const children$ = function (elementType, elementName) {
 
     await nextTick()
 
-    let children$Keys = _.keys(el.vm.children$)
+    let children$Keys = _.keys(el.children$)
 
     expect(children$Keys[0]).toBe('child2')
     expect(children$Keys[1]).toBe('child1')

@@ -17,7 +17,7 @@
             :key="element.key"
             v-ref:child$
           >
-            <template slot="prefix">
+            <template v-slot:prefix>
               <a
                 href=""
                 v-if="!disabled"

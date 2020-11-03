@@ -7,13 +7,14 @@
 
       <div :class="classes.childrenContainer">
         <component
-          v-for="(element, name, index) in children"
+          v-for="(element, name, i) in children"
           :is="component(element)"
           :schema="element"
           :name="name"
           :parent="el$"
-          :key="index"
+          :key="i"
           v-ref:child$
+          :ref="setRef(child$, i)"
         />
       </div>
 

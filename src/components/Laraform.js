@@ -1005,7 +1005,7 @@ export default {
     },
 
     $_initMessageBag() {
-      this.messageBag = new this.$laraform.services.messageBag(this)
+      this.messageBag = new this.$laraform.services.messageBag(this.errors)
     }
   },
   created() {

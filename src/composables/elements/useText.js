@@ -67,6 +67,7 @@ export default function useText(props, context) {
   const validation = useValidation(props, context, {
     form$: form$.form$,
     value: value.value,
+    path: path.path,
   })
 
   const events = useEvents(props, context, {

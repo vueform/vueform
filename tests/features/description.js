@@ -16,8 +16,8 @@ export default function description (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let ElementDescription = findAllComponents(el, { name: 'ElementDescription' })
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+      let ElementDescription = findAllComponents(elWrapper, { name: 'ElementDescription' })
 
       expect(ElementDescription.length).toBe(1)
     })

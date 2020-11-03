@@ -1,4 +1,4 @@
-import { computed, toRefs, ref, watch, nextTick } from 'composition-api'
+import { computed, toRefs, ref, watch, nextTick, onBeforeUpdate } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 
 export default function useListChildren(props, context, dependencies, options)
@@ -14,6 +14,9 @@ export default function useListChildren(props, context, dependencies, options)
   const fireAdd = dependencies.fireAdd
   const handleChange = dependencies.handleChange
   const refreshOrderStore = dependencies.refreshOrderStore
+  const isObject = dependencies.isObject
+  const storeOrder = dependencies.storeOrder
+  const prototype = dependencies.prototype
 
   // ============== OPTIONS ===============
 
@@ -27,22 +30,10 @@ export default function useListChildren(props, context, dependencies, options)
       
   // ============== COMPUTED ==============
 
-  /**
-   * Schema of child elements.
-   * 
-   * @type {object}
-   * @ignore
-   */
-  const children = computed({
-    get() {
-      return schema.value.schema
-    },
-    set(val) {
-      form$.value.$set(schema.value, 'schema', val)
-    }
-  })
-
   const children$ = computed(() => {
+    // console.log('children$ get', child$.value.length)
+    // return child$.value
+
     const elements$ = {}
 
     _.each(child$.value, (element$) => {
@@ -72,26 +63,6 @@ export default function useListChildren(props, context, dependencies, options)
   })
 
   /**
-    * The schema of a child.
-    * 
-    * @type {object}
-    */
-  const prototype = computed(() => {
-    return isObject.value
-      ? Object.assign({}, schema.value.object, {type: 'object'})
-      : schema.value.element
-  })
-
-  /**
-   * Determines if the list items are objects.
-   *
-   * @type {boolean}
-   */
-  const isObject = computed(() => {
-    return schema.value.object !== undefined
-  })
-
-  /**
    * Helper method used to retrieve the next key for a new instance.
    *
    * @type {number}
@@ -118,9 +89,9 @@ export default function useListChildren(props, context, dependencies, options)
     var index = insert(data)
 
     nextTick(() => {
-      let child$ = children$.value[index]
+      // let child$ = children$.value[index]
 
-      handleAdd(child$, index)
+      // handleAdd(child$, index)
     })
 
     // handleChange(null, null, 'add')
@@ -140,7 +111,7 @@ export default function useListChildren(props, context, dependencies, options)
       return
     }
 
-    handleRemove(index)
+    // handleRemove(index)
 
     instances.value.splice(index, 1)
 
@@ -241,23 +212,15 @@ export default function useListChildren(props, context, dependencies, options)
     }
   }
 
-  // ============== WATCHERS ==============
-
-  watch(prototype, () => {
-    let value = value.value
-
-    clear()
-
-    _.each(value, (one) => {
-      insert(one)
-    })
-  }, { lazy: false, deep: true })
-
   // ================ HOOKS ===============
 
   if (prototype.value !== undefined) {
     setInitialInstances()
   }
+  
+  onBeforeUpdate(() => {
+    child$.value = []
+  })
 
   return {
     // Data
@@ -265,7 +228,6 @@ export default function useListChildren(props, context, dependencies, options)
     instances,
 
     // Computed
-    children,
     children$,
     initial,
     prototype,

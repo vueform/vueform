@@ -18,12 +18,12 @@ export default function(elementType) {
         }
       })
 
-      let el = form.findComponent({ name: elementName })
+      let el = form.vm.el$('el')
 
       await nextTick()
       await nextTick()
 
-      expect(el.vm.dirty).toBe(false)
+      expect(el.dirty).toBe(false)
     })
 
     it('should be `validated` "true" if has no rules by default', async () => {
@@ -35,9 +35,9 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.validated).toBe(true)
+      expect(el.validated).toBe(true)
     })
 
     it('should be `validated` "false" if has rules by default', async () => {
@@ -50,9 +50,9 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.validated).toBe(false)
+      expect(el.validated).toBe(false)
     })
     
     it('should be `validated` true only if validation ran once at least', async () => {
@@ -65,15 +65,15 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.validated).toBe(false)
+      expect(el.validated).toBe(false)
 
-      el.vm.validate()
+      el.validate()
 
       await flushPromises()
 
-      expect(el.vm.validated).toBe(true)
+      expect(el.validated).toBe(true)
     })
 
     // Computed Options
@@ -91,11 +91,11 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.state.dirty = true
+      el.state.dirty = true
 
-      expect(el.vm.dirty).toBe(true)
+      expect(el.dirty).toBe(true)
     })
     
     it('should have `dirty` "false" if state.dirty is false', () => {
@@ -107,11 +107,11 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.state.dirty = false
+      el.state.dirty = false
 
-      expect(el.vm.dirty).toBe(false)
+      expect(el.dirty).toBe(false)
     })
     
     it('should have `validated` "true" if state.validated is true', () => {
@@ -123,11 +123,11 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.state.validated = true
+      el.state.validated = true
 
-      expect(el.vm.validated).toBe(true)
+      expect(el.validated).toBe(true)
     })
     
     it('should have `validated` "false" if state.validated is false', () => {
@@ -139,11 +139,11 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.state.validated = false
+      el.state.validated = false
 
-      expect(el.vm.validated).toBe(false)
+      expect(el.validated).toBe(false)
     })
     
     it('should have `invalid` "true" if any of the validators is invalid', async () => {
@@ -156,15 +156,15 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.update('value')
+      el.update('value')
 
-      el.vm.validate()
+      el.validate()
 
       await flushPromises()
 
-      expect(el.vm.invalid).toBe(true)
+      expect(el.invalid).toBe(true)
     })
     
     it('should have `invalid` "false" if none of the validators is invalid', async () => {
@@ -177,15 +177,15 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.update('value@domain.com')
+      el.update('value@domain.com')
 
-      el.vm.validate()
+      el.validate()
 
       await flushPromises()
 
-      expect(el.vm.invalid).toBe(false)
+      expect(el.invalid).toBe(false)
     })
     
     it('should have `pending` & `busy` "true" if any of the validators is pending and "false" when async validation finished', async () => {
@@ -200,19 +200,19 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.$laraform.services.axios.post = axiosPostMock
+      el.$laraform.services.axios.post = axiosPostMock
 
-      el.vm.validate()
+      el.validate()
 
-      expect(el.vm.pending).toBe(true)
-      expect(el.vm.busy).toBe(true)
+      expect(el.pending).toBe(true)
+      expect(el.busy).toBe(true)
 
       await flushPromises()
 
-      expect(el.vm.pending).toBe(false)
-      expect(el.vm.busy).toBe(false)
+      expect(el.pending).toBe(false)
+      expect(el.busy).toBe(false)
     })
     
     it('should have `debouncing` & `busy` "true" if any of the validators is debouncing and "false" when async it finishes', async () => {
@@ -228,19 +228,19 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.$laraform.services.axios.post = axiosPostMock
+      el.$laraform.services.axios.post = axiosPostMock
 
-      el.vm.validate()
+      el.validate()
 
-      expect(el.vm.debouncing).toBe(true)
-      expect(el.vm.busy).toBe(true)
+      expect(el.debouncing).toBe(true)
+      expect(el.busy).toBe(true)
 
       await flushPromises()
 
-      expect(el.vm.debouncing).toBe(false)
-      expect(el.vm.busy).toBe(false)
+      expect(el.debouncing).toBe(false)
+      expect(el.busy).toBe(false)
     })
     
     it('should collect `errors` from failed validation rules', async () => {
@@ -253,13 +253,13 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.validate()
+      el.validate()
 
       await flushPromises()
 
-      expect(el.vm.errors.length).toBe(2)
+      expect(el.errors.length).toBe(2)
     })
     
     it('should `error` as the first message from errors', async () => {
@@ -272,13 +272,13 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.validate()
+      el.validate()
 
       await flushPromises()
 
-      expect(el.vm.error).toBe(el.vm.errors[0])
+      expect(el.error).toBe(el.errors[0])
     })
 
     // Methods
@@ -294,14 +294,14 @@ export default function(elementType) {
 
       form.vm.disableValidation()
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.validated).toBe(false)
+      expect(el.validated).toBe(false)
 
-      el.vm.update('value')
-      el.vm.validate()
+      el.update('value')
+      el.validate()
 
-      expect(el.vm.validated).toBe(false)
+      expect(el.validated).toBe(false)
     })
 
     it('should not `validate` if element has no rules', async () => {
@@ -313,13 +313,13 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.validated).toBe(true)
+      expect(el.validated).toBe(true)
 
-      el.vm.validate()
+      el.validate()
 
-      expect(el.vm.validated).toBe(true)
+      expect(el.validated).toBe(true)
     })
 
     it('should `validate` & set `validated` "true"', async () => {
@@ -332,17 +332,17 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.invalid).toBe(false)
-      expect(el.vm.validated).toBe(false)
+      expect(el.invalid).toBe(false)
+      expect(el.validated).toBe(false)
 
-      el.vm.validate()
+      el.validate()
 
       await flushPromises()
 
-      expect(el.vm.invalid).toBe(true)
-      expect(el.vm.validated).toBe(true)
+      expect(el.invalid).toBe(true)
+      expect(el.validated).toBe(true)
     })
 
     it('should `resetValidators`', async () => {
@@ -355,17 +355,17 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.errors.length).toBe(0)
+      expect(el.errors.length).toBe(0)
 
-      el.vm.validate()
+      el.validate()
 
-      expect(el.vm.errors.length).toBe(1)
+      expect(el.errors.length).toBe(1)
 
-      el.vm.resetValidators()
+      el.resetValidators()
 
-      expect(el.vm.errors.length).toBe(0)
+      expect(el.errors.length).toBe(0)
     })
 
     it('should set `validated` "true" on `resetValidators` if has no rules', async () => {
@@ -377,17 +377,17 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.validated).toBe(true)
+      expect(el.validated).toBe(true)
 
-      el.vm.validate()
+      el.validate()
 
-      expect(el.vm.validated).toBe(true)
+      expect(el.validated).toBe(true)
 
-      el.vm.resetValidators()
+      el.resetValidators()
 
-      expect(el.vm.validated).toBe(true)
+      expect(el.validated).toBe(true)
     })
 
     it('should set `validated` false on `resetValidators` if has rules', async () => {
@@ -400,19 +400,19 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.validated).toBe(false)
+      expect(el.validated).toBe(false)
 
-      el.vm.validate()
+      el.validate()
 
       await flushPromises()
 
-      expect(el.vm.validated).toBe(true)
+      expect(el.validated).toBe(true)
 
-      el.vm.resetValidators()
+      el.resetValidators()
 
-      expect(el.vm.validated).toBe(false)
+      expect(el.validated).toBe(false)
     })
 
     it('should `dirt`', () => {
@@ -424,11 +424,11 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.dirt()
+      el.dirt()
       
-      expect(el.vm.dirty).toBe(true)
+      expect(el.dirty).toBe(true)
     })
 
     it('should `clean`', () => {
@@ -440,15 +440,15 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.dirt()
+      el.dirt()
       
-      expect(el.vm.dirty).toBe(true)
+      expect(el.dirty).toBe(true)
 
-      el.vm.clean()
+      el.clean()
 
-      expect(el.vm.dirty).toBe(false)
+      expect(el.dirty).toBe(false)
     })
 
     // Hooks
@@ -461,9 +461,9 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.messageBag instanceof el.vm.$laraform.services.messageBag).toBe(true)
+      expect(el.messageBag instanceof el.$laraform.services.messageBag).toBe(true)
     })
 
     it('should init `Validators`', () => {
@@ -476,13 +476,13 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.Validators.length).toBe(2)
-      expect(el.vm.Validators[0] instanceof Validator).toBe(true)
-      expect(el.vm.Validators[1] instanceof Validator).toBe(true)
-      expect(el.vm.Validators[0].name).toBe('required')
-      expect(el.vm.Validators[1].name).toBe('email')
+      expect(el.Validators.length).toBe(2)
+      expect(el.Validators[0] instanceof Validator).toBe(true)
+      expect(el.Validators[1] instanceof Validator).toBe(true)
+      expect(el.Validators[0].name).toBe('required')
+      expect(el.Validators[1].name).toBe('email')
     })
 
     // Watchers
@@ -495,15 +495,15 @@ export default function(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.dirty).toBe(false)
+      expect(el.dirty).toBe(false)
 
-      el.vm.value = 'value'
+      el.value = 'value'
 
       await nextTick()
 
-      expect(el.vm.dirty).toBe(true)
+      expect(el.dirty).toBe(true)
     })
   }
 }

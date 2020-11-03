@@ -15,7 +15,7 @@ export default function columns (elementType) {
     //     }
     //   })
 
-    //   let el = findAllComponents(form, { name: elementName }).at(0)
+    //   let el = form.vm.el$('el')
     // })
   }
 }

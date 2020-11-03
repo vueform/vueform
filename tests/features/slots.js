@@ -32,9 +32,9 @@ export default function(elementType, options = {}) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(_.keys(el.vm.slots)).toStrictEqual(defaultSlotKeys)
+      expect(_.keys(el.slots)).toStrictEqual(defaultSlotKeys)
     })
 
     it('should set `slots` from schema', () => {
@@ -49,9 +49,9 @@ export default function(elementType, options = {}) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.slots).toStrictEqual(Object.assign({}, defaultSlots, {
+      expect(el.slots).toStrictEqual(Object.assign({}, defaultSlots, {
         custom: 'custom-slot'
       }))
     })
@@ -65,13 +65,13 @@ export default function(elementType, options = {}) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.slots = {
+      el.slots = {
         custom: 'custom-slot'
       }
 
-      expect(el.vm.slots).toStrictEqual(Object.assign({}, defaultSlots, {
+      expect(el.slots).toStrictEqual(Object.assign({}, defaultSlots, {
         custom: 'custom-slot'
       }))
     })
@@ -87,9 +87,9 @@ export default function(elementType, options = {}) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      expect(el.html()).toContain('it is before')
+      expect(elWrapper.html()).toContain('it is before')
     })
 
     it('should render `between`', () => {
@@ -102,9 +102,9 @@ export default function(elementType, options = {}) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      expect(el.html()).toContain('it is between')
+      expect(elWrapper.html()).toContain('it is between')
     })
 
     it('should render `after`', () => {
@@ -117,9 +117,9 @@ export default function(elementType, options = {}) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      expect(el.html()).toContain('it is after')
+      expect(elWrapper.html()).toContain('it is after')
     })
 
     // Slots
@@ -161,8 +161,8 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
           }
         })
 
-        let el = findAllComponents(form, { name: elementName }).at(0)
-        let CustomSlot = findAllComponents(el, { name: 'CustomSlot' })
+        let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+        let CustomSlot = findAllComponents(elWrapper, { name: 'CustomSlot' })
 
         expect(CustomSlot.length).toBe(1)
     }
@@ -185,9 +185,10 @@ const testDynamicSchemaSlot = function(it, elementName, elementType, slot) {
           }
         })
 
-        let el = findAllComponents(form, { name: elementName }).at(0)
+        let el = form.vm.el$('el')
+        let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-        el.vm.slots = {
+        el.slots = {
           [slot]: markRaw(defineComponent({
             name: 'CustomSlot',
             props: ['el$'],
@@ -198,7 +199,7 @@ const testDynamicSchemaSlot = function(it, elementName, elementType, slot) {
         }
 
         nextTick(() => {
-          let CustomSlot = findAllComponents(el, { name: 'CustomSlot' })
+          let CustomSlot = findAllComponents(elWrapper, { name: 'CustomSlot' })
           expect(CustomSlot.length).toBe(1)
           done()
         })
@@ -244,9 +245,9 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
           ])
         })
 
-        let el = findAllComponents(form, { name: elementName }).at(0)
+        let elWrapper = findAllComponents(form, { name: elementName }).at(0)
         
-        expect(el.html()).toContain('from inline slot')
+        expect(elWrapper.html()).toContain('from inline slot')
     }
 
   })

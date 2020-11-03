@@ -16,9 +16,9 @@ export default function placeholder (elementType, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      testAttribute(el, options.fieldType, 'placeholder', 'Placeholder')
+      testAttribute(elWrapper, options.fieldType, 'placeholder', 'Placeholder')
     })
   }
 }

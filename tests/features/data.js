@@ -12,9 +12,9 @@ export const nullValue = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.nullValue).toBe(null)
+    expect(el.nullValue).toBe(null)
   })
 }
 
@@ -45,9 +45,9 @@ export const data = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.data).toStrictEqual({
+    expect(el.data).toStrictEqual({
       el: 'value'
     })
   })
@@ -69,9 +69,9 @@ export const data = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.data).toStrictEqual({
+    expect(el.data).toStrictEqual({
       custom: {
         el: 'value'
       }
@@ -90,9 +90,9 @@ export const filtered = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.filtered).toStrictEqual(el.vm.data)
+    expect(el.filtered).toStrictEqual(el.data)
   })
 
   it('should have `filtered` equal to `data` if there are met conditions', () => {
@@ -112,9 +112,9 @@ export const filtered = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.filtered).toStrictEqual(el.vm.data)
+    expect(el.filtered).toStrictEqual(el.data)
   })
 
   it('should have empty object for `filtered` if there are unmet conditions', () => {
@@ -133,9 +133,9 @@ export const filtered = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.filtered).toStrictEqual({})
+    expect(el.filtered).toStrictEqual({})
   })
 }
 
@@ -149,18 +149,18 @@ export const load = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    el.vm.load({
+    el.load({
       el: 'value'
     })
 
-    expect(el.vm.value).toBe('value')
+    expect(el.value).toBe('value')
 
     await nextTick()
     await nextTick()
 
-    expect(el.vm.dirty).toBe(false)
+    expect(el.dirty).toBe(false)
   })
 
   it('should clear and reset validators on `load`& remove dirty state afterwards when element data is not present in the load object', async () => {
@@ -174,28 +174,28 @@ export const load = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    el.vm.dirt()
-    el.vm.validate()
+    el.dirt()
+    el.validate()
 
     await flushPromises()
 
-    expect(el.vm.validated).toBe(true)
-    expect(el.vm.dirty).toBe(true)
-    expect(el.vm.value).toBe('value')
+    expect(el.validated).toBe(true)
+    expect(el.dirty).toBe(true)
+    expect(el.value).toBe('value')
 
-    el.vm.load({
+    el.load({
       el2: 'value'
     })
 
-    expect(el.vm.value).toBe(el.vm.nullValue)
-    expect(el.vm.validated).toBe(false)
+    expect(el.value).toBe(el.nullValue)
+    expect(el.validated).toBe(false)
 
     await nextTick()
     await nextTick()
 
-    expect(el.vm.dirty).toBe(false)
+    expect(el.dirty).toBe(false)
   })
 
   it('should clear and reset validators on `load` & remove dirty state afterwards when element data is present in the load object, but not available', async () => {
@@ -216,31 +216,31 @@ export const load = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
     let el2 = findAllComponents(form, { name: elementName }).at(1)
 
-    el.vm.dirt()
-    el.vm.validate()
+    el.dirt()
+    el.validate()
 
     await flushPromises()
 
-    expect(el.vm.validated).toBe(true)
-    expect(el.vm.dirty).toBe(true)
-    expect(el.vm.value).toBe('value')
+    expect(el.validated).toBe(true)
+    expect(el.dirty).toBe(true)
+    expect(el.value).toBe('value')
 
     el2.vm.value = null
 
-    el.vm.load({
+    el.load({
       el: 'value'
     })
 
-    expect(el.vm.value).toBe(el.vm.nullValue)
-    expect(el.vm.validated).toBe(false)
+    expect(el.value).toBe(el.nullValue)
+    expect(el.validated).toBe(false)
 
     await nextTick()
     await nextTick()
 
-    expect(el.vm.dirty).toBe(false)
+    expect(el.dirty).toBe(false)
   })
 }
 
@@ -258,14 +258,14 @@ export const update = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    el.vm.update('value')
+    el.update('value')
 
     await flushPromises()
 
-    expect(el.vm.value).toBe('value')
-    expect(el.vm.validated).toBe(false)
+    expect(el.value).toBe('value')
+    expect(el.validated).toBe(false)
     expect(onChangeMock).not.toHaveBeenCalled()
   })
 
@@ -282,14 +282,14 @@ export const update = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    el.vm.update('value', true)
+    el.update('value', true)
 
     await flushPromises()
 
-    expect(el.vm.value).toBe('value')
-    expect(el.vm.validated).toBe(false)
+    expect(el.value).toBe('value')
+    expect(el.validated).toBe(false)
     expect(onChangeMock).toHaveBeenCalled()
   })
 
@@ -306,14 +306,14 @@ export const update = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    el.vm.update('value', false, true)
+    el.update('value', false, true)
 
     await flushPromises()
 
-    expect(el.vm.value).toBe('value')
-    expect(el.vm.validated).toBe(true)
+    expect(el.value).toBe('value')
+    expect(el.validated).toBe(true)
     expect(onChangeMock).not.toHaveBeenCalled()
   })
 }
@@ -330,20 +330,20 @@ export const reset = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    el.vm.update('value2')
-    el.vm.validate()
+    el.update('value2')
+    el.validate()
 
     await flushPromises()
 
-    expect(el.vm.validated).toBe(true)
-    expect(el.vm.value).toBe('value2')
+    expect(el.validated).toBe(true)
+    expect(el.value).toBe('value2')
 
-    el.vm.reset()
+    el.reset()
 
-    expect(el.vm.validated).toBe(false)
-    expect(el.vm.value).toBe('value')
+    expect(el.validated).toBe(false)
+    expect(el.value).toBe('value')
   })
 }
 
@@ -359,13 +359,13 @@ export const clear = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.value).toBe('value')
+    expect(el.value).toBe('value')
 
-    el.vm.clear()
+    el.clear()
 
-    expect(el.vm.value).toStrictEqual(el.vm.nullValue)
+    expect(el.value).toStrictEqual(el.nullValue)
   })
 }
 
@@ -379,9 +379,9 @@ export const onMounted = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.previousValue).toBe(el.vm.nullValue)
+    expect(el.previousValue).toBe(el.nullValue)
   })
 
   it('should set `currentValue` to "default" on mounted', async () => {
@@ -394,9 +394,9 @@ export const onMounted = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.currentValue).toBe('value')
+    expect(el.currentValue).toBe('value')
   })
 }
 

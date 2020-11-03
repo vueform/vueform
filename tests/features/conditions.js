@@ -20,9 +20,9 @@ export default function conditions (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.available).toBe(true)
+      expect(el.available).toBe(true)
     })
     
     it('should be `available` if has conditions which are met', () => {
@@ -41,9 +41,9 @@ export default function conditions (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.available).toBe(true)
+      expect(el.available).toBe(true)
     })
     
     it('should not be `available` if has conditions which are not met', () => {
@@ -61,9 +61,9 @@ export default function conditions (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.available).toBe(false)
+      expect(el.available).toBe(false)
     })
 
     // Template
@@ -82,9 +82,9 @@ export default function conditions (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.$el).not.toBeVisible()
+      expect(el.$el).not.toBeVisible()
     })
 
     it('should should not hide element if `available`', async () => {
@@ -103,11 +103,11 @@ export default function conditions (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       await nextTick()
 
-      expect(el.vm.$el).toBeVisible()
+      expect(el.$el).toBeVisible()
     })
   }
 }

@@ -15,6 +15,8 @@ export default function useGroupData(props, context, dependencies)
   const children$ = dependencies.children$
   const clean = dependencies.clean
   const resetValidators = dependencies.resetValidators
+  const instances = dependencies.instances
+  const nullValue = dependencies.nullValue
 
   // ============== COMPUTED ===============
   /**

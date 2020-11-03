@@ -1,8 +1,10 @@
 import addons from './addons'
+import arrayType from './arrayType'
 import autocomplete from './autocomplete'
 import baseElement from './baseElement'
 import childrenObject from './childrenObject'
 import childrenGroup from './childrenGroup'
+import childrenList from './childrenList'
 import classes from './classes'
 import columns from './columns'
 import components from './components'
@@ -44,10 +46,12 @@ import view from './view'
 
 export default {
   addons,
+  arrayType,
   autocomplete,
   baseElement,
   childrenObject,
   childrenGroup,
+  childrenList,
   classes,
   columns,
   components,
@@ -56,7 +60,7 @@ export default {
   dataGroup,
   dataObject,
   debounce,
-  default_,
+  default: default_,
   description,
   disabled,
   elements,

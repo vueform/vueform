@@ -15,9 +15,9 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.genericName).toBe('Element label')
+      expect(el.genericName).toBe('Element label')
     })
 
     it('should return `genericName` when placeholder is defined', () => {
@@ -30,10 +30,10 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      if (el.vm.placeholder !== undefined) {
-        expect(el.vm.genericName).toBe('Element placeholder')
+      if (el.placeholder !== undefined) {
+        expect(el.genericName).toBe('Element placeholder')
       }
     })
 
@@ -46,9 +46,9 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.genericName).toBe('El')
+      expect(el.genericName).toBe('El')
     })
   }
 }

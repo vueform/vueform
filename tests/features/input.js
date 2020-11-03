@@ -13,10 +13,10 @@ export default function input (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.input instanceof HTMLInputElement).toBe(true)
-      expect(el.vm.input.type).toBe(el.vm.inputType)
+      expect(el.input instanceof HTMLInputElement).toBe(true)
+      expect(el.input.type).toBe(el.inputType)
     })
   }
 }

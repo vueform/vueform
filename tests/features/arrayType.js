@@ -1,11 +1,10 @@
-import { createForm, findAllComponents } from 'test-helpers'
+import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
 
-export default function nullValue (elementType) {
+export default function (elementType, options) {
   const elementName = `${_.upperFirst(elementType)}Element`
 
   return () => {
-    // Computed Props
-    it('should have "null" as `nullValue`', () => {
+    it('should have `isArrayType` "true"', () => {
       let form = createForm({
         schema: {
           el: {
@@ -16,7 +15,7 @@ export default function nullValue (elementType) {
 
       let el = form.vm.el$('el')
 
-      expect(el.nullValue).toBe(null)
+      expect(el.isArrayType).toBe(true)
     })
   }
 }

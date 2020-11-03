@@ -1,5 +1,5 @@
 import computedOption from './../../../utils/computedOption'
-import { computed } from 'composition-api'
+import { computed, onMounted } from 'composition-api'
 import useValidation from './useValidation'
 
 export default function useChildrenValidation (props, context, dependencies)
@@ -20,9 +20,9 @@ export default function useChildrenValidation (props, context, dependencies)
     // Methods
     dirt,
     initValidation,
-    initMessageBag,
   } = useValidation(props, context, dependencies)
 
+  const form$ = dependencies.form$
   const children$ = dependencies.children$
 
   // ============== COMPUTED ==============
@@ -210,6 +210,21 @@ export default function useChildrenValidation (props, context, dependencies)
 
     state.value.valdated = !schema.value.rules
   }
+
+  /**
+   * Initalizes messageBag service.
+   * 
+   * @private
+   * @returns {void}
+   */
+  const initMessageBag = () => {
+    messageBag.value = new form$.value.$laraform.services.messageBag(errors)
+  }
+
+  onMounted(() => {
+    initMessageBag()  
+    initValidation()
+  })
 
   return {
     // Data

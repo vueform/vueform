@@ -20,9 +20,9 @@ export default function addons(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.hasAddon).toBe(false)
+      expect(el.hasAddon).toBe(false)
     })
 
     it('should `hasAddon` "true" if `addons.before` is defined', () => {
@@ -37,9 +37,9 @@ export default function addons(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.hasAddon).toBe(true)
+      expect(el.hasAddon).toBe(true)
     })
 
     it('should `hasAddon` "true" if `addons.after` is defined', () => {
@@ -54,9 +54,9 @@ export default function addons(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.hasAddon).toBe(true)
+      expect(el.hasAddon).toBe(true)
     })
 
     // Template
@@ -69,8 +69,8 @@ export default function addons(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let InputAddon = findAllComponents(el, { name: 'InputAddon' })
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+      let InputAddon = findAllComponents(elWrapper, { name: 'InputAddon' })
 
       expect(InputAddon.length).toBe(0)
     })
@@ -87,8 +87,8 @@ export default function addons(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let InputAddon = findAllComponents(el, { name: 'InputAddon' }).at(0)
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+      let InputAddon = findAllComponents(elWrapper, { name: 'InputAddon' }).at(0)
 
       expect(InputAddon.vm.type).toBe('before')
     })
@@ -105,8 +105,8 @@ export default function addons(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let InputAddon = findAllComponents(el, { name: 'InputAddon' }).at(0)
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+      let InputAddon = findAllComponents(elWrapper, { name: 'InputAddon' }).at(0)
 
       expect(InputAddon.vm.type).toBe('after')
     })

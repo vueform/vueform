@@ -22,9 +22,9 @@ export const value = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.value).toStrictEqual({
+    expect(el.value).toStrictEqual({
       child1: 'value',
       child2: 'value2',
     })
@@ -39,10 +39,10 @@ export const value = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
     expect(() => {
-      el.vm.value = {}
+      el.value = {}
     }).toThrowError()
   })
 }
@@ -69,11 +69,11 @@ export const currentValue = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
     await nextTick()
 
-    expect(el.vm.currentValue).toStrictEqual({
+    expect(el.currentValue).toStrictEqual({
       child1: 'value',
       child2: 'value2',
     })
@@ -102,7 +102,7 @@ export const previousValue = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
     let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
     let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
@@ -113,7 +113,7 @@ export const previousValue = function (elementType, elementName) {
 
     await nextTick()
 
-    expect(el.vm.previousValue).toStrictEqual({
+    expect(el.previousValue).toStrictEqual({
       child1: 'value',
       child2: 'value2',
     })

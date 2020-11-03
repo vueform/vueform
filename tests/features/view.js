@@ -18,9 +18,9 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.hidden).toBe(false)
+      expect(el.hidden).toBe(false)
     })
 
     it('should have `active` equal to "true" by default', () => {
@@ -32,9 +32,9 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.active).toBe(true)
+      expect(el.active).toBe(true)
     })
     
     // Computed Porps
@@ -52,12 +52,12 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.available).toBe(true)
-      expect(el.vm.hidden).toBe(false)
-      expect(el.vm.active).toBe(true)
-      expect(el.vm.visible).toBe(true)
+      expect(el.available).toBe(true)
+      expect(el.hidden).toBe(false)
+      expect(el.active).toBe(true)
+      expect(el.visible).toBe(true)
     })
 
     it('should have "false" for `visible` if not available, hidden or not active', () => {
@@ -73,41 +73,41 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
       let el2 = findAllComponents(form, { name: 'TextElement' })
       
       el2 = elementName === 'TextElement' ? el2.at(1) : el2.at(0)
 
-      expect(el.vm.available).toBe(false)
-      expect(el.vm.hidden).toBe(false)
-      expect(el.vm.active).toBe(true)
+      expect(el.available).toBe(false)
+      expect(el.hidden).toBe(false)
+      expect(el.active).toBe(true)
 
-      expect(el.vm.visible).toBe(false)
+      expect(el.visible).toBe(false)
 
       el2.vm.update('value')
 
-      expect(el.vm.available).toBe(true)
-      expect(el.vm.hidden).toBe(false)
-      expect(el.vm.active).toBe(true)
+      expect(el.available).toBe(true)
+      expect(el.hidden).toBe(false)
+      expect(el.active).toBe(true)
 
-      expect(el.vm.visible).toBe(true)
+      expect(el.visible).toBe(true)
       
-      el.vm.hidden = true
+      el.hidden = true
 
-      expect(el.vm.available).toBe(true)
-      expect(el.vm.hidden).toBe(true)
-      expect(el.vm.active).toBe(true)
+      expect(el.available).toBe(true)
+      expect(el.hidden).toBe(true)
+      expect(el.active).toBe(true)
 
-      expect(el.vm.visible).toBe(false)
+      expect(el.visible).toBe(false)
       
-      el.vm.hidden = false
-      el.vm.active = false
+      el.hidden = false
+      el.active = false
 
-      expect(el.vm.available).toBe(true)
-      expect(el.vm.hidden).toBe(false)
-      expect(el.vm.active).toBe(false)
+      expect(el.available).toBe(true)
+      expect(el.hidden).toBe(false)
+      expect(el.active).toBe(false)
 
-      expect(el.vm.visible).toBe(false)
+      expect(el.visible).toBe(false)
     })
 
     // Methods
@@ -120,13 +120,13 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.hidden).toBe(false)
+      expect(el.hidden).toBe(false)
 
-      el.vm.hide()
+      el.hide()
 
-      expect(el.vm.hidden).toBe(true)
+      expect(el.hidden).toBe(true)
     })
 
     it('should set hidden to "false" on `show`', () => {
@@ -138,15 +138,15 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.hidden = true
+      el.hidden = true
 
-      expect(el.vm.hidden).toBe(true)
+      expect(el.hidden).toBe(true)
 
-      el.vm.show()
+      el.show()
 
-      expect(el.vm.hidden).toBe(false)
+      expect(el.hidden).toBe(false)
     })
 
     it('should set active to "true" on `activate`', () => {
@@ -158,15 +158,15 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.active = false
+      el.active = false
 
-      expect(el.vm.active).toBe(false)
+      expect(el.active).toBe(false)
 
-      el.vm.activate()
+      el.activate()
 
-      expect(el.vm.active).toBe(true)
+      expect(el.active).toBe(true)
     })
 
     it('should set active to "false" on `deactivate`', () => {
@@ -178,13 +178,13 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.active).toBe(true)
+      expect(el.active).toBe(true)
 
-      el.vm.deactivate()
+      el.deactivate()
 
-      expect(el.vm.active).toBe(false)
+      expect(el.active).toBe(false)
     })
 
     // Template
@@ -197,10 +197,10 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.visible).toBe(true)
-      expect(el.vm.$el).toBeVisible()
+      expect(el.visible).toBe(true)
+      expect(el.$el).toBeVisible()
     })
 
     it('should not show element if `visible` is "true"', async () => {
@@ -212,14 +212,14 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.hide()
+      el.hide()
 
       await nextTick()
 
-      expect(el.vm.visible).toBe(false)
-      expect(el.vm.$el).not.toBeVisible()
+      expect(el.visible).toBe(false)
+      expect(el.$el).not.toBeVisible()
     })
   }
 }

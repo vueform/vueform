@@ -16,8 +16,8 @@ export default function layout(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let ElementLayout = findAllComponents(el, { name: 'ElementLayout' })
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+      let ElementLayout = findAllComponents(elWrapper, { name: 'ElementLayout' })
 
       expect(ElementLayout.length).toBe(1)
     })
@@ -39,9 +39,9 @@ export default function layout(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let ElementLayout = findAllComponents(el, { name: 'ElementLayout' })
-      let CustomElementLayout = findAllComponents(el, { name: 'CustomElementLayout' })
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+      let ElementLayout = findAllComponents(elWrapper, { name: 'ElementLayout' })
+      let CustomElementLayout = findAllComponents(elWrapper, { name: 'CustomElementLayout' })
 
       expect(ElementLayout.length).toBe(0)
       expect(CustomElementLayout.length).toBe(1)
@@ -56,9 +56,10 @@ export default function layout(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      el.vm.components = {
+      el.components = {
         ElementLayout: markRaw(defineComponent({
           name: 'CustomElementLayout',
           render(h) {
@@ -69,8 +70,8 @@ export default function layout(elementType) {
 
       await nextTick()
 
-      let ElementLayout = findAllComponents(el, { name: 'ElementLayout' })
-      let CustomElementLayout = findAllComponents(el, { name: 'CustomElementLayout' })
+      let ElementLayout = findAllComponents(elWrapper, { name: 'ElementLayout' })
+      let CustomElementLayout = findAllComponents(elWrapper, { name: 'CustomElementLayout' })
 
       expect(ElementLayout.length).toBe(0)
       expect(CustomElementLayout.length).toBe(1)

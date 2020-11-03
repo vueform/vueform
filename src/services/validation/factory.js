@@ -5,9 +5,9 @@ import Validator from './../../../src/services/validation/validator'
  
 const Factory = class {
 
-  constructor(element$) {
-    this.element$ = element$
-    this.form$ = element$.form$
+  constructor(path, form$) {
+    this.form$ = form$
+    this.element$ = form$.el$(path)
   }
 
   get rules() {

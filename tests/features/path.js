@@ -10,9 +10,9 @@ export const path = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.path).toBe(el.vm.name)
+    expect(el.path).toBe(el.name)
   })
 }
 
@@ -26,9 +26,9 @@ export const flat = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.flat).toBe(false)
+    expect(el.flat).toBe(false)
   })
 }
 

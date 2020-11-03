@@ -16,9 +16,9 @@ export default function autocomplete(elementType, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      testAttribute(el, options.fieldType, 'autocomplete', 'on')
+      testAttribute(elWrapper, options.fieldType, 'autocomplete', 'on')
     })
   }
 }

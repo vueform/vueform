@@ -13,9 +13,9 @@ export default function theme (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.theme).toStrictEqual(form.vm.extendedTheme)
+      expect(el.theme).toStrictEqual(form.vm.extendedTheme)
     })
   }
 }

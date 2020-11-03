@@ -16,8 +16,8 @@ export default function info (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let ElementInfo = findAllComponents(el, { name: 'ElementInfo' })
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+      let ElementInfo = findAllComponents(elWrapper, { name: 'ElementInfo' })
 
       expect(ElementInfo.length).toBe(1)
     })
@@ -32,8 +32,8 @@ export default function info (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let ElementInfo = findAllComponents(el, { name: 'ElementInfo' })
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+      let ElementInfo = findAllComponents(elWrapper, { name: 'ElementInfo' })
 
       expect(ElementInfo.length).toBe(0)
     })

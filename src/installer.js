@@ -129,6 +129,7 @@ export default function(config) {
 
           appOrVue.mixin({
             methods: {
+            setRef() {},
               __: (expr, data) => this.options.i18n.$t(expr, data)
             },
             beforeCreate() {
@@ -147,6 +148,15 @@ export default function(config) {
 
           appOrVue.mixin({
             methods: {
+              setRef(prop, key) {
+                return function(el) {
+                  if (el) {
+                    prop[key] = el
+                  } else {
+                    console.log('no el: ' , key)
+                  }
+                }
+              },
               $set(obj, key, value) {
                 obj[key] = value
               },

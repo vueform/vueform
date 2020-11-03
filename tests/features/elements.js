@@ -26,9 +26,9 @@ export default function elements (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.component(childSchema)).toStrictEqual(component)
+      expect(el.component(childSchema)).toStrictEqual(component)
     })
 
     it('should return component from theme by default for `component()`', () => {
@@ -44,9 +44,9 @@ export default function elements (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.component(childSchema)).toStrictEqual(el.vm.theme.elements.TextElement)
+      expect(el.component(childSchema)).toStrictEqual(el.theme.elements.TextElement)
     })
 
     it('should throw an error if element type\'s component does not exist in theme and not defined in schema', () => {
@@ -62,10 +62,10 @@ export default function elements (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       expect(() => {
-        el.vm.component(childSchema)
+        el.component(childSchema)
       }).toThrowError()
     })
   }

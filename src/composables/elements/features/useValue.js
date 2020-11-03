@@ -1,4 +1,4 @@
-import { computed, ref } from 'composition-api'
+import { computed, ref, watch } from 'composition-api'
 
 export default function useValue(props, context, dependencies)
 {

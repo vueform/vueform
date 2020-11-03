@@ -15,9 +15,9 @@ export const flat = function (elementType, elementName) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(el.vm.flat).toBe(true)
+    expect(el.flat).toBe(true)
   })
 }
 

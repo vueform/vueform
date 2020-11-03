@@ -16,9 +16,9 @@ const testHasFireEvent = function(elementType, elementName, event) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(typeof el.vm[`fire${_.upperFirst(e)}`]).toBe('function')
+    expect(typeof el[`fire${_.upperFirst(e)}`]).toBe('function')
   })
 }
 
@@ -38,13 +38,13 @@ const testFireEvent = function(elementType, elementName, event, params = []) {
       }
     })
 
-    let el = findAllComponents(form, { name: elementName }).at(0)
+    let el = form.vm.el$('el')
 
     let onEventMock = jest.fn()
 
-    el.vm.on(e, onEventMock)
+    el.on(e, onEventMock)
 
-    el.vm.fire(e)
+    el.fire(e)
 
     if (params.length) {
       expect(onEventMock.mock.calls.length).toBe(1)
@@ -72,15 +72,15 @@ export default function events (elementType, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       let onEventMock = jest.fn()
 
-      el.vm.on('event', onEventMock)
+      el.on('event', onEventMock)
 
       expect(onEventMock).not.toHaveBeenCalled()
 
-      el.vm.fire('event', 'a', 'b')
+      el.fire('event', 'a', 'b')
 
       expect(onEventMock).toHaveBeenLastCalledWith('a', 'b')
     })
@@ -94,17 +94,17 @@ export default function events (elementType, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       let onEventMock = jest.fn()
 
-      el.vm.on('event', onEventMock)
+      el.on('event', onEventMock)
 
       expect(onEventMock).not.toHaveBeenCalled()
 
-      el.vm.off('event')
+      el.off('event')
 
-      el.vm.fire('event')
+      el.fire('event')
 
       expect(onEventMock).not.toHaveBeenCalled()
     })

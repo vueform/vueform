@@ -23,9 +23,9 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.dirty).toBe(false)
+      expect(el.dirty).toBe(false)
     })
     
     it('should be `dirty` if any of the children is dirty', () => {
@@ -45,12 +45,12 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
       let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
 
       child1.vm.dirt()
 
-      expect(el.vm.dirty).toBe(true)
+      expect(el.dirty).toBe(true)
     })
     
     it('should not be `validated` if any of the children is not validated', async () => {
@@ -72,14 +72,14 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
       let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
 
       child1.vm.validate()
 
       await flushPromises()
 
-      expect(el.vm.validated).toBe(false)
+      expect(el.validated).toBe(false)
     })
     
     it('should be `validated` if all of the children are validated', async () => {
@@ -101,7 +101,7 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
       let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
       let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
@@ -110,7 +110,7 @@ export default function childrenValidation (elementType) {
 
       await flushPromises()
 
-      expect(el.vm.validated).toBe(true)
+      expect(el.validated).toBe(true)
     })
     
     it('should not be `invalid` if none of the children is invalid', () => {
@@ -130,9 +130,9 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.invalid).toBe(false)
+      expect(el.invalid).toBe(false)
     })
     
     it('should be `invalid` if any of the children is invalid', async () => {
@@ -153,7 +153,7 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
 
@@ -161,7 +161,7 @@ export default function childrenValidation (elementType) {
 
       await flushPromises()
 
-      expect(el.vm.invalid).toBe(true)
+      expect(el.invalid).toBe(true)
     })
 
     it('should not be `pending` if none of the children is pending', () => {
@@ -181,9 +181,9 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.pending).toBe(false)
+      expect(el.pending).toBe(false)
     })
 
     it('should be `pending` if any of the children is pending', async () => {
@@ -206,7 +206,7 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
 
@@ -214,11 +214,11 @@ export default function childrenValidation (elementType) {
 
       child1.vm.validate()
 
-      expect(el.vm.pending).toBe(true)
+      expect(el.pending).toBe(true)
 
       await flushPromises()
 
-      expect(el.vm.pending).toBe(false)
+      expect(el.pending).toBe(false)
     })
 
     it('should not be `debouncing` if none of the children is debouncing', () => {
@@ -238,9 +238,9 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.debouncing).toBe(false)
+      expect(el.debouncing).toBe(false)
     })
 
     it('should be `debouncing` if any of the children is debouncing', async () => {
@@ -264,7 +264,7 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
 
@@ -272,11 +272,11 @@ export default function childrenValidation (elementType) {
 
       child1.vm.validate()
 
-      expect(el.vm.debouncing).toBe(true)
+      expect(el.debouncing).toBe(true)
 
       await flushPromises()
 
-      expect(el.vm.debouncing).toBe(false)
+      expect(el.debouncing).toBe(false)
     })
 
     it('should not be `busy` if none of the children is busy', () => {
@@ -296,9 +296,9 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.busy).toBe(false)
+      expect(el.busy).toBe(false)
     })
 
     it('should be `busy` if any of the children is busy', async () => {
@@ -321,7 +321,7 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
 
@@ -329,11 +329,11 @@ export default function childrenValidation (elementType) {
 
       child1.vm.validate()
 
-      expect(el.vm.busy).toBe(true)
+      expect(el.busy).toBe(true)
 
       await flushPromises()
 
-      expect(el.vm.busy).toBe(false)
+      expect(el.busy).toBe(false)
     })
 
     it('should collect `errors` from available children', () => {
@@ -364,7 +364,7 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
       let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
@@ -374,7 +374,7 @@ export default function childrenValidation (elementType) {
       child2.vm.validate()
       child3.vm.validate()
 
-      expect(el.vm.errors.length).toBe(2)
+      expect(el.errors.length).toBe(2)
     })
 
     // Methods
@@ -397,7 +397,7 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
       let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
@@ -405,7 +405,7 @@ export default function childrenValidation (elementType) {
       expect(child1.vm.validated).toBe(false)
       expect(child2.vm.validated).toBe(false)
 
-      el.vm.validate()
+      el.validate()
 
       await flushPromises()
 
@@ -430,7 +430,7 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
       let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
@@ -438,7 +438,7 @@ export default function childrenValidation (elementType) {
       child1.vm.dirt()
       child2.vm.dirt()
 
-      el.vm.clean()
+      el.clean()
 
       expect(child1.vm.dirty).toBe(false)
       expect(child2.vm.dirty).toBe(false)
@@ -463,7 +463,7 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
       let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
@@ -473,7 +473,7 @@ export default function childrenValidation (elementType) {
 
       await flushPromises()
 
-      el.vm.resetValidators()
+      el.resetValidators()
 
       expect(child1.vm.validated).toBe(false)
       expect(child2.vm.validated).toBe(false)
@@ -489,9 +489,9 @@ export default function childrenValidation (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.messageBag instanceof el.vm.$laraform.services.messageBag).toBe(true)
+      expect(el.messageBag instanceof el.$laraform.services.messageBag).toBe(true)
     })
   }
 }

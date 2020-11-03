@@ -20,10 +20,10 @@ export default function label (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       expect(form.vm.$laraform.labels).toBe(false)
-      expect(el.vm.hasLabel).toBe(true)
+      expect(el.hasLabel).toBe(true)
     })
 
     it('should have `hasLabel` equal "true" if the element has no label defined & config.labels enabled', () => {
@@ -39,10 +39,10 @@ export default function label (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       expect(form.vm.$laraform.labels).toBe(true)
-      expect(el.vm.hasLabel).toBe(true)
+      expect(el.hasLabel).toBe(true)
     })
 
     it('should have `hasLabel` equal "false" if the element has no label defined & config.labels disabled', () => {
@@ -58,10 +58,10 @@ export default function label (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
       expect(form.vm.$laraform.labels).toBe(false)
-      expect(el.vm.hasLabel).toBe(false)
+      expect(el.hasLabel).toBe(false)
     })
 
     it('should should render `ElementLabel` if hasLabel is "true"', () => {
@@ -74,8 +74,8 @@ export default function label (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let ElementLabel = findAllComponents(el, { name: 'ElementLabel' })
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+      let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
 
       expect(ElementLabel.length).toBe(1)
     })
@@ -93,8 +93,8 @@ export default function label (elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let ElementLabel = findAllComponents(el, { name: 'ElementLabel' })
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+      let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
 
       expect(ElementLabel.length).toBe(0)
     })

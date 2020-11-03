@@ -16,9 +16,9 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.components).toStrictEqual(el.vm.theme.components)
+      expect(el.components).toStrictEqual(el.theme.components)
     })
 
     it('should return theme components merged with local components if `components` is defined', () => {
@@ -40,9 +40,9 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.components).toStrictEqual(Object.assign({}, el.vm.theme.components, components))
+      expect(el.components).toStrictEqual(Object.assign({}, el.theme.components, components))
     })
 
     it('should return theme components merged with local components if `components` is set after rendering', async () => {
@@ -63,12 +63,12 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      el.vm.components = components
+      el.components = components
 
-      expect(el.vm.schema.components).toStrictEqual(components)
-      expect(el.vm.components).toStrictEqual(Object.assign({}, el.vm.theme.components, components))
+      expect(el.schema.components).toStrictEqual(components)
+      expect(el.components).toStrictEqual(Object.assign({}, el.theme.components, components))
     })
 
     // Template
@@ -92,9 +92,9 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
-      let ElementLabel = findAllComponents(el, { name: 'ElementLabel' })
-      let CustomElementLabel = findAllComponents(el, { name: 'CustomElementLabel' })
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+      let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
+      let CustomElementLabel = findAllComponents(elWrapper, { name: 'CustomElementLabel' })
 
       expect(ElementLabel.length).toBe(0)
       expect(CustomElementLabel.length).toBe(1)
@@ -119,14 +119,15 @@ export default function baseElement(elementType) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      el.vm.components = components
+      el.components = components
 
       await nextTick()
 
-      let ElementLabel = findAllComponents(el, { name: 'ElementLabel' })
-      let CustomElementLabel = findAllComponents(el, { name: 'CustomElementLabel' })
+      let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
+      let CustomElementLabel = findAllComponents(elWrapper, { name: 'CustomElementLabel' })
 
       expect(ElementLabel.length).toBe(0)
       expect(CustomElementLabel.length).toBe(1)

@@ -18,13 +18,13 @@ export default function disabled (elementType, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.disabled).toBe(false)
+      expect(el.disabled).toBe(false)
 
-      el.vm.disable()
+      el.disable()
 
-      expect(el.vm.disabled).toBe(true)
+      expect(el.disabled).toBe(true)
     })
     
     it('should `enable` element', () => {
@@ -37,13 +37,13 @@ export default function disabled (elementType, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let el = form.vm.el$('el')
 
-      expect(el.vm.disabled).toBe(true)
+      expect(el.disabled).toBe(true)
 
-      el.vm.enable()
+      el.enable()
 
-      expect(el.vm.disabled).toBe(false)
+      expect(el.disabled).toBe(false)
     })
 
     it('should disable input when `disabled`', () => {
@@ -56,9 +56,9 @@ export default function disabled (elementType, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-      testAttribute(el, options.fieldType, 'disabled', ['disabled', ''])
+      testAttribute(elWrapper, options.fieldType, 'disabled', ['disabled', ''])
     })
     
     it('should not disable input when not `disabled`', () => {
@@ -71,9 +71,9 @@ export default function disabled (elementType, options) {
         }
       })
 
-      let el = findAllComponents(form, { name: elementName }).at(0)
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
       
-      testAttribute(el, options.fieldType, 'disabled', undefined)
+      testAttribute(elWrapper, options.fieldType, 'disabled', undefined)
     })
   }
 }
