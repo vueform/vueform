@@ -5,7 +5,8 @@ import { nextTick } from 'vue'
 
 describe('List Element', () => {
   const options = {
-    childrenList: {
+    default: {
+      initial: 1,
       prototypes: [
         {
           element: {
@@ -22,22 +23,9 @@ describe('List Element', () => {
           }
         },
       ],
-      childTypes: ['text', 'object'],
       childValues: ['value{i}', { child: 'value{i}' }],
-      childSchemas: [
-        {
-          type: 'text'
-        },
-        {
-          type: 'object',
-          schema: {
-            child: {
-              type: 'text'
-            }
-          }
-        }
-      ]
-    }
+      childNulls: [null, { child: null }],
+    },
   }
 
   _.each(elements.list.features, (feature) => {

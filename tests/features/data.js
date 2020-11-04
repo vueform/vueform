@@ -48,7 +48,7 @@ export const data = function (elementType, elementName) {
     let el = form.vm.el$('el')
 
     expect(el.data).toStrictEqual({
-      el: 'value'
+      el: el.value
     })
   })
 
@@ -73,7 +73,7 @@ export const data = function (elementType, elementName) {
 
     expect(el.data).toStrictEqual({
       custom: {
-        el: 'value'
+        el: el.value
       }
     })
   })
@@ -151,9 +151,7 @@ export const load = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    el.load({
-      el: 'value'
-    })
+    el.load('value')
 
     expect(el.value).toBe('value')
 
@@ -163,7 +161,7 @@ export const load = function (elementType, elementName) {
     expect(el.dirty).toBe(false)
   })
 
-  it('should clear and reset validators on `load`& remove dirty state afterwards when element data is not present in the load object', async () => {
+  it('should unload when element data is not present in the `load` object', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -176,29 +174,12 @@ export const load = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    el.dirt()
-    el.validate()
-
-    await flushPromises()
-
-    expect(el.validated).toBe(true)
-    expect(el.dirty).toBe(true)
-    expect(el.value).toBe('value')
-
-    el.load({
-      el2: 'value'
-    })
+    el.load(undefined)
 
     expect(el.value).toBe(el.nullValue)
-    expect(el.validated).toBe(false)
-
-    await nextTick()
-    await nextTick()
-
-    expect(el.dirty).toBe(false)
   })
 
-  it('should clear and reset validators on `load` & remove dirty state afterwards when element data is present in the load object, but not available', async () => {
+  it('should unload when element data is present in the `load` object, but not available', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -211,13 +192,134 @@ export const load = function (elementType, elementName) {
         },
         el2: {
           type: 'text',
-          default: 'value2'
         }
       }
     })
 
     let el = form.vm.el$('el')
-    let el2 = findAllComponents(form, { name: elementName }).at(1)
+
+    el.load('value')
+
+    expect(el.value).toBe(el.nullValue)
+  })
+
+  it('should not `load` "undefined"', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        },
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.load(undefined)
+
+    expect(el.value).toBe(el.default)
+  })
+
+  it('should `load` ""', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        },
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.load('')
+
+    expect(el.value).toBe('')
+  })
+
+  it('should `load` "0"', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        },
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.load(0)
+
+    expect(el.value).toBe(0)
+  })
+
+  it('should `load` "null"', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          default: 'value'
+        },
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.load(null)
+
+    expect(el.value).toBe(null)
+  })
+
+  it('should not format data on `load` by default', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          formatLoad(value, form$) {
+            return `${value}-formatted`
+          }
+        },
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.load('value')
+
+    expect(el.value).toBe('value')
+  })
+
+  it('should format data if "format" is "true" on `load`', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          formatLoad(value, form$) {
+            return `${value}-formatted`
+          }
+        },
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.load('value', true)
+
+    expect(el.value).toBe('value-formatted')
+  })
+}
+
+export const unload = function (elementType, elementName) {
+  it('should clear and reset validators on `unload` & remove dirty state afterwards', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          default: 'value',
+          rules: 'required',
+        },
+      }
+    })
+
+    let el = form.vm.el$('el')
 
     el.dirt()
     el.validate()
@@ -228,11 +330,7 @@ export const load = function (elementType, elementName) {
     expect(el.dirty).toBe(true)
     expect(el.value).toBe('value')
 
-    el2.vm.value = null
-
-    el.load({
-      el: 'value'
-    })
+    el.unload()
 
     expect(el.value).toBe(el.nullValue)
     expect(el.validated).toBe(false)

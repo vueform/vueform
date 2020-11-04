@@ -11,15 +11,17 @@ export default function useWatchPrototype (props, context, dependencies)
 
   // ============== WATCHERS ==============
 
-  watch(prototype, () => {
-    let val = value.value
+  // @todo: after value
+//   watch(prototype, () => {
+//     let val = value.value
+// console.log(1, val)
+//     clear()
+// console.log(2, val)
 
-    clear()
-
-    _.each(val, (one) => {
-      insert(one)
-    })
-  }, { lazy: false, deep: true })
+//     _.each(val, (one) => {
+//       insert(one)
+//     })
+//   }, { lazy: false, deep: true })
 
   return {}
 }

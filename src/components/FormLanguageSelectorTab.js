@@ -11,7 +11,7 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes, components } = useFormComponent(props, context)
+    const { form$, theme, classes: baseClasses, components } = useFormComponent(props, context)
 
     // ============== COMPUTED ==============
 
@@ -23,8 +23,8 @@ export default {
       return selectedLanguage.value == code.value
     })
 
-    const updatedClasses = computed(() => {
-      let classList = classes.value
+    const classes = computed(() => {
+      let classList = baseClasses.value
 
       classList = mergeComponentClasses(classList, {
         [containers.value.state]: {
@@ -50,7 +50,7 @@ export default {
       // Computed
       selectedLanguage,
       selected,
-      classes: updatedClasses,
+      classes,
       components,
     }
   },

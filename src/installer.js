@@ -152,8 +152,6 @@ export default function(config) {
                 return function(el) {
                   if (el) {
                     prop[key] = el
-                  } else {
-                    console.log('no el: ' , key)
                   }
                 }
               },

@@ -6,7 +6,7 @@ function name (type) {
   return  `${_.upperFirst(type)}Element`
 }
 
-function replaceValue(value, i) {
+export function replaceValue(value, i) {
   if (_.isString(value)) {
     return value.replace('{i}', i)
   }
@@ -18,6 +18,26 @@ function replaceValue(value, i) {
     }
   }
 } 
+
+function childSchema(prototype) {
+  let key = _.keys(prototype)[0]
+
+  if (key == 'element') {
+    return prototype.element
+  }
+  else {
+    return {
+      type: 'object',
+      schema: prototype.object.schema
+    }
+  }
+}
+
+function childType(prototype) {
+  let key = _.keys(prototype)[0]
+
+  return key == 'element' ? prototype.element.type : 'object'
+}
 
 export const child$ = function (elementType, elementName, options) {
   const prototypes = options.prototypes
@@ -51,7 +71,7 @@ export const child$ = function (elementType, elementName, options) {
       let el = form.vm.el$('el')
 
       expect(el.child$.length).toBe(1)
-      expect(el.child$[0].schema.type).toStrictEqual(options.childTypes[i])
+      expect(el.child$[0].schema.type).toStrictEqual(childType(prototype))
     })
   })
 }
@@ -89,12 +109,139 @@ export const instances = function (elementType, elementName, options) {
       el.add()
 
       expect(el.instances.length).toBe(2)
-      expect(el.instances[0]).toStrictEqual(Object.assign({}, options.childSchemas[i], {
+      expect(el.instances[0]).toStrictEqual(Object.assign({}, childSchema(prototype), {
         key: 0
       }))
-      expect(el.instances[1]).toStrictEqual(Object.assign({}, options.childSchemas[i], {
+      expect(el.instances[1]).toStrictEqual(Object.assign({}, childSchema(prototype), {
         key: 1
       }))
+    })
+  })
+}
+
+export const initial = function (elementType, elementName, options) {
+  it('should have '+options.initial+' as `initial` by default', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.initial).toBe(options.initial)
+  })
+
+  it('should set `initial` from schema', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          initial: 3,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.initial).toBe(3)
+  })
+
+  it('should set `initial` based on default length', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          default: [1,2,3],
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.initial).toBe(3)
+  })
+
+  it('should `initial` be equal to initial option if default length is smaller', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          initial: 5,
+          default: [1,2,3],
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.initial).toBe(5)
+  })
+
+  it('should `initial` be equal to default length if initial is smaller', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          initial: 3,
+          default: [1,2,3,4,5],
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.initial).toBe(5)
+  })
+}
+
+export const next = function (elementType, elementName, options) {
+  const prototypes = options.prototypes
+
+  it('should `next` be equal to 0 if there are no instances', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 0,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      expect(el.next).toBe(0)
+    })
+  })
+
+  it('should `next` be equal to 1 + the highest key from instances', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 0,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      el.add() // key: 0
+      el.add() // key: 1
+      el.add() // key: 2
+      el.add() // key: 3
+
+      el.remove(1) // key: 1
+
+      expect(el.instances[0].key).toBe(0)
+      expect(el.instances[1].key).toBe(2)
+      expect(el.instances[2].key).toBe(3)
+
+      expect(el.next).toBe(4)
     })
   })
 }
@@ -120,8 +267,16 @@ export const add = function (elementType, elementName, options) {
       await nextTick()
 
       expect(el.child$.length).toBe(2)
-      expect(el.child$[0].schema.type).toStrictEqual(options.childTypes[i])
-      expect(el.child$[1].schema.type).toStrictEqual(options.childTypes[i])
+      expect(el.child$[0].schema.type).toStrictEqual(childType(prototype))
+      expect(el.child$[1].schema.type).toStrictEqual(childType(prototype))
+
+      expect(_.keys(el.children$).length).toBe(2)
+      expect(el.children$[0].schema.type).toStrictEqual(childType(prototype))
+      expect(el.children$[1].schema.type).toStrictEqual(childType(prototype))
+
+      expect(el.instances.length).toBe(2)
+      expect(el.instances[0].key).toBe(0)
+      expect(el.instances[1].key).toBe(1)
     })
   })
 
@@ -145,10 +300,22 @@ export const add = function (elementType, elementName, options) {
       await nextTick()
 
       expect(el.child$.length).toBe(4)
-      expect(el.child$[0].schema.type).toStrictEqual(options.childTypes[i])
-      expect(el.child$[1].schema.type).toStrictEqual(options.childTypes[i])
-      expect(el.child$[2].schema.type).toStrictEqual(options.childTypes[i])
-      expect(el.child$[3].schema.type).toStrictEqual(options.childTypes[i])
+      expect(el.child$[0].schema.type).toStrictEqual(childType(prototype))
+      expect(el.child$[1].schema.type).toStrictEqual(childType(prototype))
+      expect(el.child$[2].schema.type).toStrictEqual(childType(prototype))
+      expect(el.child$[3].schema.type).toStrictEqual(childType(prototype))
+
+      expect(_.keys(el.children$).length).toBe(4)
+      expect(el.children$[0].schema.type).toStrictEqual(childType(prototype))
+      expect(el.children$[1].schema.type).toStrictEqual(childType(prototype))
+      expect(el.children$[2].schema.type).toStrictEqual(childType(prototype))
+      expect(el.children$[3].schema.type).toStrictEqual(childType(prototype))
+
+      expect(el.instances.length).toBe(4)
+      expect(el.instances[0].key).toBe(0)
+      expect(el.instances[1].key).toBe(1)
+      expect(el.instances[2].key).toBe(2)
+      expect(el.instances[3].key).toBe(3)
     })
   })
 
@@ -171,6 +338,13 @@ export const add = function (elementType, elementName, options) {
 
       expect(el.child$.length).toBe(2)
       expect(el.child$[1].value).toStrictEqual(options.childValues[i])
+
+      expect(_.keys(el.children$).length).toBe(2)
+      expect(el.children$[1].schema.type).toStrictEqual(childType(prototype))
+
+      expect(el.instances.length).toBe(2)
+      expect(el.instances[0].key).toBe(0)
+      expect(el.instances[1].key).toBe(1)
     })
   })
 
@@ -197,28 +371,17 @@ export const add = function (elementType, elementName, options) {
       expect(el.child$[1].value).toStrictEqual(options.childValues[i])
       expect(el.child$[2].value).toStrictEqual(options.childValues[i])
       expect(el.child$[3].value).toStrictEqual(options.childValues[i])
-    })
-  })
 
-  it('should not `add` child if disabled', async () => {
-    await asyncForEach(prototypes, async (prototype, i) => {
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 1,
-            disabled: true,
-          }, prototype)
-        }
-      })
+      expect(_.keys(el.children$).length).toBe(4)
+      expect(el.children$[1].schema.type).toStrictEqual(childType(prototype))
+      expect(el.children$[2].schema.type).toStrictEqual(childType(prototype))
+      expect(el.children$[3].schema.type).toStrictEqual(childType(prototype))
 
-      let el = form.vm.el$('el')
-
-      el.add()
-
-      await nextTick()
-
-      expect(el.child$.length).toBe(1)
+      expect(el.instances.length).toBe(4)
+      expect(el.instances[0].key).toBe(0)
+      expect(el.instances[1].key).toBe(1)
+      expect(el.instances[2].key).toBe(2)
+      expect(el.instances[3].key).toBe(3)
     })
   })
 
@@ -274,9 +437,22 @@ export const remove = function (elementType, elementName, options) {
       
       await nextTick()
 
-      expect(el.child$.length).toBe(2)
+      // @todo
+      // expect(el.child$.length).toBe(2)
       expect(el.child$[0].value).toStrictEqual(replaceValue(options.childValues[i], 0))
       expect(el.child$[1].value).toStrictEqual(replaceValue(options.childValues[i], 2))
+      expect(el.child$[0].schema.key).toStrictEqual(0)
+      expect(el.child$[1].schema.key).toStrictEqual(2)
+
+      expect(_.keys(el.children$).length).toBe(2)
+      expect(el.children$[0].value).toStrictEqual(replaceValue(options.childValues[i], 0))
+      expect(el.children$[1].value).toStrictEqual(replaceValue(options.childValues[i], 2))
+      expect(el.children$[0].schema.key).toStrictEqual(0)
+      expect(el.children$[1].schema.key).toStrictEqual(2)
+
+      expect(el.instances.length).toBe(2)
+      expect(el.instances[0].key).toBe(0)
+      expect(el.instances[1].key).toBe(2)
     })
   })
 
@@ -308,10 +484,63 @@ export const remove = function (elementType, elementName, options) {
       
       await nextTick()
 
-      expect(el.child$.length).toBe(3)
+      // @todo
+      // expect(el.child$.length).toBe(3)
       expect(el.child$[0].value).toStrictEqual(replaceValue(options.childValues[i], 0))
       expect(el.child$[1].value).toStrictEqual(replaceValue(options.childValues[i], 2))
       expect(el.child$[2].value).toStrictEqual(replaceValue(options.childValues[i], 4))
+      expect(el.child$[0].schema.key).toStrictEqual(0)
+      expect(el.child$[1].schema.key).toStrictEqual(2)
+      expect(el.child$[2].schema.key).toStrictEqual(4)
+
+      // expect(_.keys(el.children$).length).toBe(3)
+      expect(el.children$[0].value).toStrictEqual(replaceValue(options.childValues[i], 0))
+      expect(el.children$[1].value).toStrictEqual(replaceValue(options.childValues[i], 2))
+      expect(el.children$[2].value).toStrictEqual(replaceValue(options.childValues[i], 4))
+      expect(el.children$[0].schema.key).toStrictEqual(0)
+      expect(el.children$[1].schema.key).toStrictEqual(2)
+      expect(el.children$[2].schema.key).toStrictEqual(4)
+
+      expect(el.instances.length).toBe(3)
+      expect(el.instances[0].key).toBe(0)
+      expect(el.instances[1].key).toBe(2)
+      expect(el.instances[2].key).toBe(4)
+    })
+  })
+}
+
+export const initialInstances = function (elementType, elementName, options) {
+  const prototypes = options.prototypes
+
+  it('should not set `initialInstances` if prototype is not defined', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          initial: 3,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.instances.length).toBe(0)
+  })
+
+  it('should set `initialInstances` if prototype is defined', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 3,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      expect(el.instances.length).toBe(3)
     })
   })
 }

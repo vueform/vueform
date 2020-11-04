@@ -6,10 +6,11 @@ import useClasses from './useClasses'
 export default function useListClasses(props, context, dependencies)
 {
   const { schema } = toRefs(props)
+  const { containers } = toRefs(context.data)
 
   // ============ DEPENDENCIES ============
 
-  const { class: class_, mainClass, mergedClasses, addClasses, defaultClasses } = useClasses(props, context, dependencies)
+  const { class: class_, mainClass, classes: baseClasses, addClasses, defaultClasses } = useClasses(props, context, dependencies)
 
   const form$ = dependencies.form$
   const sort = dependencies.sort
@@ -23,10 +24,10 @@ export default function useListClasses(props, context, dependencies)
    */
   const classes = computed({
     get() {
-      let classes = mergedClasses.value
+      let classes = baseClasses.value
 
       classes = mergeComponentClasses(classes, {
-        [mainClass.value]: {
+        [containers.value.sortable]: {
           [classes.sortable]: sort.value
         },
       })

@@ -17,6 +17,12 @@ export default function useGroupData(props, context, dependencies)
   const resetValidators = dependencies.resetValidators
   const instances = dependencies.instances
   const nullValue = dependencies.nullValue
+  const disabled = dependencies.disabled
+  const setInitialInstances = dependencies.setInitialInstances
+  const insert = dependencies.insert
+  const isObject = dependencies.isObject
+  const orderBy = dependencies.orderBy
+  const order = dependencies.order
 
   // ============== COMPUTED ===============
   /**
@@ -35,7 +41,7 @@ export default function useGroupData(props, context, dependencies)
     _.each(children$.value, (element$) => {
       let value = element$.filtered[element$.name]
 
-      if (value) {
+      if (value !== undefined) {
         filtered.push(value)
       }
     })
@@ -45,18 +51,28 @@ export default function useGroupData(props, context, dependencies)
 
   // =============== METHODS ===============
 
-  const load = (data) => {
+  const load = (val, format = false) => {
+    let formatted = format ? formatLoad.value(val, form$.value) : val
+
+    if (!available.value || formatted === undefined) {
+      unload()
+      return
+    }
+
+    // Remove all existing children
     clear()
 
-    var length = available.value
-      ? _.keys(data[name.value]).length
-      : initial.value
-
-    for (var i = 0; i < length; i++) {
+    // Insert a number of children based on data length
+    for (let i = 0; i < _.keys(formatted).length; i++) {
       insert()
     }
 
-    clean()
+    // Set dirty to `false` because we just loaded children
+    nextTick(() => {
+      nextTick(() => {
+        clean()
+      })
+    })
     
     // nextTick is required because children$ reflects
     // $refs, which only refreshed after DOM rerender
@@ -64,26 +80,38 @@ export default function useGroupData(props, context, dependencies)
     // will only contain them once they are rendered
     nextTick(() => {
       _.each(children$.value, (element$) => {
-        // order loaded data by it's
-        // order field if should be ordered
-        var value = data[name.value]
+        // order loaded data by it's order field if should be ordered
+        const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
 
         if (isObject.value && orderBy.value) {
-          value = _.sortBy(value, orderBy.value)
+          const sorted = _.sortBy(formatted, orderBy.value)
 
-          if (order.value == 'DESC') {
-            value = value.reverse()
-          }
+          formatted = desc ? sorted.reverse() : sorted
         }
         else if (order.value) {
-          value = value.sort()
-          
-          if (order.value == 'DESC') {
-            value = value.reverse()
-          }
+          formatted = desc ? formatted.sort().reverse() : formatted.sort()
         }
 
-        element$.load(value)
+        element$.load(formatted[element$.name], format)
+      })
+
+      // Set dirty to `false` because children data got updated and that
+      // affecets list element's data too
+      nextTick(() => {
+        nextTick(() => {
+          clean()
+        })
+      })
+    })
+  }
+
+  const unload = () => {
+    clear()
+    resetValidators()
+      
+    nextTick(() => {
+      nextTick(() => {
+        clean()
       })
     })
   }
@@ -112,10 +140,6 @@ export default function useGroupData(props, context, dependencies)
    * @returns {void}
    */
   const reset = () => {
-    if (disabled.value) {
-      return
-    }
-    
     clear()
 
     // nextTick is required because the children
@@ -137,7 +161,7 @@ export default function useGroupData(props, context, dependencies)
    * @returns {void}
    */
   const clear = () => {
-    instances.value = _.clone(nullValue.value)
+    instances.value = []
   }
 
   return {
@@ -150,6 +174,7 @@ export default function useGroupData(props, context, dependencies)
 
     // Mehtods
     load,
+    unload,
     update,
     clear,
     reset,

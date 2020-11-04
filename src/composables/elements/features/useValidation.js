@@ -250,10 +250,9 @@ export default function useData(props, context, dependencies)
   // =============== HOOKS ================
 
   onMounted(() => {
-    // @todo: move to validationList??
     watch(value, () => {
       dirt()
-    }, { deep: true })
+    }, { deep: false })
 
     initMessageBag()
     initValidation()

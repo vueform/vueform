@@ -6,11 +6,13 @@ import childrenObject from './childrenObject'
 import childrenGroup from './childrenGroup'
 import childrenList from './childrenList'
 import classes from './classes'
+import classesList from './classesList'
 import columns from './columns'
 import components from './components'
 import conditions from './conditions'
 import data from './data'
 import dataGroup from './dataGroup'
+import dataList from './dataList'
 import dataObject from './dataObject'
 import debounce from './debounce'
 import default_ from './default'
@@ -53,11 +55,13 @@ export default {
   childrenGroup,
   childrenList,
   classes,
+  classesList,
   columns,
   components,
   conditions,
   data,
   dataGroup,
+  dataList,
   dataObject,
   debounce,
   default: default_,

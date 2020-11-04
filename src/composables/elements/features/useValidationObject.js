@@ -1,5 +1,5 @@
 import computedOption from './../../../utils/computedOption'
-import { computed } from 'composition-api'
+import { computed, onMounted } from 'composition-api'
 import useValidation from './useValidation'
 
 export default function useChildrenValidation (props, context, dependencies)
@@ -12,6 +12,7 @@ export default function useChildrenValidation (props, context, dependencies)
   } = useValidation(props, context, dependencies)
 
   const children$ = dependencies.children$
+  const form$ = dependencies.form$
 
   // ============== COMPUTED ==============
 
@@ -130,7 +131,7 @@ export default function useChildrenValidation (props, context, dependencies)
   }
   
   const initMessageBag = (el$) => {
-    messageBag.value = new form$.value.$laraform.services.messageBag(elements)
+    messageBag.value = new form$.value.$laraform.services.messageBag(errors)
   }
   
   onMounted(() => {

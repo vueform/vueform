@@ -10,12 +10,12 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, el$, classes, components, mainClass, theme } = useElementComponent(props, context)
+    const { form$, el$, classes: baseClasses, components, mainClass, theme } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
 
-    const updatedClasses = computed(() => {
-      let classList = classes.value
+    const classes = computed(() => {
+      let classList = baseClasses.value
 
       classList = mergeComponentClasses(classList, {
         [containers.value.element]: el$.value.columns.classes.element || '',
@@ -67,7 +67,7 @@ export default {
 
       // Computed
       components,
-      classes: updatedClasses,
+      classes,
       visible,
       hasLabel,
       info,

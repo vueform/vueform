@@ -593,14 +593,20 @@ export default {
      * @param {object} data data to load
      * @returns {void}
      */
-    load(data) {
+    load(data, format = true) {
       if (!_.isEmpty(this.wizard$)) {
         this.wizard$.enableAllSteps()
       }
 
       _.each(this.elements$, (element$) => {
-        element$.load(data)
+        let formatted = format ? this.formatLoad(data) : data
+
+        element$.load(element$.flat ? formatted : formatted[element$.name], format)
       })
+    },
+
+    formatLoad(data) {
+      return data
     },
     
     /**

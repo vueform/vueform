@@ -8,7 +8,7 @@ export default function useGroupData(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
 
-  const { formatLoad, submit, update, clear, reset, prepare } = useDataObject(props, context, dependencies)
+  const { submit, update, clear, reset, prepare } = useDataObject(props, context, dependencies)
 
   const form$ = dependencies.form$
   const children$ = dependencies.children$
@@ -22,8 +22,17 @@ export default function useGroupData(props, context, dependencies)
    * 
    * @type {function}
    */
-  const formatData = computed(computedOption('formatData', schema, (elName, value, form$) => {
-    return value
+  const formatData = computed(computedOption('formatData', schema, (name, val, form$) => {
+    return val
+  }))
+
+  /**
+   * A function that formats data before [.load](#method-load) to the element.
+   * 
+   * @type {function}
+   */
+  const formatLoad = computed(computedOption('formatLoad', schema, (val, form$) => {
+    return val
   }))
 
   /**
@@ -57,11 +66,11 @@ export default function useGroupData(props, context, dependencies)
 
   // =============== METHODS ===============
 
-  const load = (data) => {
-    let formattedData = formatLoad.value(data, form$.value)
+  const load = (val, format = false) => {
+    let formatted = format ? formatLoad.value(val, form$.value) : val
 
     _.each(children$.value, (element$) => {
-      element$.load(formattedData)
+      element$.load(element$.flat ? formatted : formatted[element$.name], format)
     })
   }
 

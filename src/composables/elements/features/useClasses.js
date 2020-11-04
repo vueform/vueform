@@ -46,44 +46,35 @@ export default function useClasses(props, context, dependencies)
    * 
    * @type {object}
    */
-  const mergedClasses = computed(() => {
-    let classes = _.merge({},
-      // Default component classes
-      defaultClasses.value,
-
-      // Theme / form level overwrites
-      theme.value.classes[componentName.value] || {},
-
-      // Element level overwrites
-      schema.value.classes ? schema.value.classes[componentName.value] : {}
-    )
-
-    // Add form's addClasses
-    if (form$.value.addClasses[componentName.value] !== undefined) {
-      classes = mergeComponentClasses(classes, form$.value.addClasses[componentName.value] || null)
-    }
-    
-    // Add element's addClasses options
-    classes = mergeComponentClasses(classes, addClasses.value[componentName.value] || null)
-    
-    // Add element's class to main class
-    if (!_.isEmpty(class_.value)) {
-      classes = mergeComponentClasses(classes, {
-        [mainClass.value]: class_.value
-      })
-    }
-
-    return classes
-  })
-
-  /**
-   * Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`.
-   * 
-   * @type {object}
-   */
   const classes = computed({
     get() {
-      return mergedClasses.value
+      let classes = _.merge({},
+        // Default component classes
+        defaultClasses.value,
+
+        // Theme / form level overwrites
+        theme.value.classes[componentName.value] || {},
+
+        // Element level overwrites
+        schema.value.classes ? schema.value.classes[componentName.value] : {}
+      )
+
+      // Add form's addClasses
+      if (form$.value.addClasses[componentName.value] !== undefined) {
+        classes = mergeComponentClasses(classes, form$.value.addClasses[componentName.value] || null)
+      }
+      
+      // Add element's addClasses options
+      classes = mergeComponentClasses(classes, addClasses.value[componentName.value] || null)
+      
+      // Add element's class to main class
+      if (!_.isEmpty(class_.value)) {
+        classes = mergeComponentClasses(classes, {
+          [mainClass.value]: class_.value
+        })
+      }
+
+      return classes
     },
     set(val) {
       form$.value.$set(schema.value, 'classes', val)
@@ -92,7 +83,6 @@ export default function useClasses(props, context, dependencies)
 
   return {
     class: class_,
-    mergedClasses,
     classes,
     mainClass,
     addClasses,

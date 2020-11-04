@@ -39,22 +39,12 @@ export default function useGroupData(props, context, dependencies)
 
   // =============== METHODS ===============
 
-  const load = (data) => {
-    if (available.value && data && data[name.value] !== undefined) {
-      let formattedData = formatLoad.value(data[name.value], form$.value)
+  const load = (val, format = false) => {
+    let formatted = format ? formatLoad.value(val, form$.value) : val
 
-      _.each(children$.value, (element$) => {
-        element$.load(formattedData)
-      })
-      return
-    }
-
-    clear()
-    resetValidators()
-      
-    nextTick(() => { nextTick(() => {
-      clean()
-    })})
+    _.each(children$.value, (element$) => {
+      element$.load(element$.flat ? formatted : formatted[element$.name], format)
+    })
   }
 
   const update = (val) => {

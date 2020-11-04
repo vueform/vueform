@@ -59,6 +59,7 @@ export default function useGroup(props, context) {
     form$: form$.form$,
     value: value.value,
     children$: children.children$,
+    form$: form$.form$,
   })
 
   const classes = useClasses(props, context, {

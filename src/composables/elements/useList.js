@@ -1,4 +1,4 @@
-import { toRefs, onBeforeUpdate } from 'composition-api'
+import { toRefs } from 'composition-api'
 import useForm$ from './../useForm$'
 import useTheme from './../useTheme'
 import useConditions from './../useConditions'
@@ -106,6 +106,7 @@ export default function useList(props, context) {
     value: value.value,
     children$: children.children$,
     form$: form$.form$,
+    path: path.path,
   })
 
   const classes = useClassesList(props, context, {
@@ -136,6 +137,24 @@ export default function useList(props, context) {
     components: components.components,
   })
 
+  const handleChange = useHandleChangeList(props, context, {
+    form$: form$.form$,
+    validateValidators: validation.validateValidators,
+    fireChange: events.fireChange,
+  })
+  
+  const handleSort = useSort(props, context, {
+    fireSort: events.fireSort,
+    disabled: disabled.disabled,
+    value: value.value,
+  })
+
+  const sortable = useSortable(props, context, {
+    handleSort: disabled.handleSort,
+    disabled: disabled.disabled,
+    sort: sort.sort,
+  })
+
   const data = useDataList(props, context, {
     form$: form$.form$,
     available: conditions.available,
@@ -147,24 +166,12 @@ export default function useList(props, context) {
     children$: children.children$,
     instances: children.instances,
     nullValue: nullValue.nullValue,
-  })
-
-  const handleChange = useHandleChangeList(props, context, {
-    form$: form$.form$,
-    validateValidators: validation.validateValidators,
-    fireChange: events.fireChange,
-  })
-  
-  const handleSort = useSort(props, context, {
-    fireSort: disabled.fireSort,
     disabled: disabled.disabled,
-    value: value.value,
-  })
-
-  const sortable = useSortable(props, context, {
-    handleSort: disabled.handleSort,
-    disabled: disabled.disabled,
-    sort: sort.sort,
+    setInitialInstances: children.setInitialInstances,
+    insert: children.insert,
+    isObject: prototype.isObject,
+    orderBy: sort.orderBy,
+    order: sort.order,
   })
 
   const watchPrototype = useWatchPrototype(props, context, {

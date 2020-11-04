@@ -9,20 +9,21 @@
         <div :class="classes.element" v-sortable="sortable">
 
           <component
-            v-for="(element, index) in instances"
+            v-for="(element, i) in instances"
             :is="component(element)"
             :schema="element"
-            :name="index"
+            :name="i"
             :parent="el$"
             :key="element.key"
             v-ref:child$
+            :ref="setRef(child$, i)"
           >
             <template v-slot:prefix>
               <a
                 href=""
                 v-if="!disabled"
                 :class="classes.listRemove"
-                @click.prevent="remove(index)"
+                @click.prevent="remove(i)"
                 v-html="__('laraform.elements.list.remove')"
               ></a>
             </template>
@@ -68,6 +69,9 @@
           sortable: 'list-element-container-sortable',
           remove: 'list-add',
           add: 'list-remove'
+        },
+        containers: {
+          sortable: 'element',
         }
       }
     }

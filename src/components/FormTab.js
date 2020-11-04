@@ -48,7 +48,7 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes, components, mainClass } = useFormComponent(props, context)
+    const { form$, theme, classes: baseClasses, components, mainClass } = useFormComponent(props, context)
     const { available, conditions } = useConditions(props, context, { form$, descriptor: tab })
     const { label, isLabelComponent } = useLabel(props, context, { form$, descriptor: tab })
     const { events, listeners, on, off, fire, fireActive, fireInactive } = useEvents(props, context, { form$, descriptor: tab }, {
@@ -108,8 +108,8 @@ export default {
       return _.some(children$.value, { available: true, invalid: true })   
     })
 
-    const updatedClasses = computed(() => {
-      let classList = classes.value
+    const classes = computed(() => {
+      let classList = baseClasses.value
 
       classList = mergeComponentClasses(classList, {
         [containers.value.state]: {
@@ -246,7 +246,7 @@ export default {
       children$,
       visible,
       invalid,
-      classes: updatedClasses,
+      classes,
       components,
       conditions,
       available,

@@ -33,8 +33,8 @@ export default function useData(props, context, dependencies)
    * 
    * @type {function}
    */
-  const formatData = computed(computedOption('formatData', schema, (elName, value, form$) => {
-    return { [elName]: value }
+  const formatData = computed(computedOption('formatData', schema, (name, val, form$) => {
+    return { [name]: val }
   }))
 
   /**
@@ -42,8 +42,8 @@ export default function useData(props, context, dependencies)
    * 
    * @type {function}
    */
-  const formatLoad = computed(computedOption('formatLoad', schema, (data, form$) => {
-    return data
+  const formatLoad = computed(computedOption('formatLoad', schema, (val, form$) => {
+    return val
   }))
 
   /**
@@ -76,25 +76,35 @@ export default function useData(props, context, dependencies)
    * @param {object} data an object containing data for the element using its **name as key**
    * @returns {void}
    */
-  const load = (data) => {
-    if (available.value && data && data[name.value] !== undefined) {
-      update(formatLoad.value(data[name.value], form$.value))
+  const load = (val, format = false) => {
+    let formatted = format ? formatLoad.value(val, form$.value) : val
 
-      // Double nextTick is required because first the value watcher is triggered
-      // then the value changes (1st) nextTick any only dirts the element afterwards.
-      // So we need a 2nd tick to catch the moment after.
-      nextTick(() => { nextTick(() => {
-        clean()
-      })})
+    if (!available.value || formatted === undefined) {
+      unload()
       return
     }
 
+    update(formatted)
+
+    // Double nextTick is required because first the value watcher is triggered
+    // then the value changes (1st) nextTick any only dirts the element afterwards.
+    // So we need a 2nd tick to catch the moment after.
+    nextTick(() => {
+      nextTick(() => {
+        clean()
+      })
+    })
+  }
+
+  const unload = () => {
     clear()
     resetValidators()
       
-    nextTick(() => { nextTick(() => {
-      clean()
-    })})
+    nextTick(() => {
+      nextTick(() => {
+        clean()
+      })
+    })
   }
 
   /**
@@ -167,6 +177,7 @@ export default function useData(props, context, dependencies)
 
     // Mehtods
     load,
+    unload,
     update,
     clear,
     reset,

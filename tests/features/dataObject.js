@@ -173,7 +173,7 @@ export const filtered = function(elementType, elementName) {
 }
 
 export const load = function(elementType, elementName) {
-  it('should `load` data to children', async () => {
+  it('should not format data by default on `load`', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -181,10 +181,22 @@ export const load = function(elementType, elementName) {
           schema: {
             child1: {
               type: 'text',
+              formatLoad(value, form$) {
+                return `${value}-formatted`
+              },
             },
             child2: {
               type: 'text',
+              formatLoad(value, form$) {
+                return `${value}-formatted`
+              },
             },
+          },
+          formatLoad(value, form$) {
+            return {
+              child1: `pre-${value.child1}`,
+              child2: `pre-${value.child2}`,
+            }
           }
         },
       }
@@ -194,23 +206,55 @@ export const load = function(elementType, elementName) {
     let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
     let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
 
-    if (el.flat) {
-      el.load({
-        child1: 'value',
-        child2: 'value2',
-      })
-    }
-    else {
-      el.load({
-        el: {
-          child1: 'value',
-          child2: 'value2',
-        }
-      })
-    }
+    el.load({
+      child1: 'value',
+      child2: 'value2',
+    })
 
     expect(child1.vm.value).toBe('value')
     expect(child2.vm.value).toBe('value2')
+  })
+
+  it('should format data if "format" is "true" on `load`', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          schema: {
+            child1: {
+              type: 'text',
+              formatLoad(value, form$) {
+                return `${value}-formatted`
+              },
+            },
+            child2: {
+              type: 'text',
+              formatLoad(value, form$) {
+                return `${value}-formatted`
+              },
+            },
+          },
+          formatLoad(value, form$) {
+            return {
+              child1: `pre-${value.child1}`,
+              child2: `pre-${value.child2}`,
+            }
+          }
+        },
+      }
+    })
+
+    let el = form.vm.el$('el')
+    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
+
+    el.load({
+      child1: 'value',
+      child2: 'value2',
+    }, true)
+
+    expect(child1.vm.value).toBe('pre-value-formatted')
+    expect(child2.vm.value).toBe('pre-value2-formatted')
   })
 }
 

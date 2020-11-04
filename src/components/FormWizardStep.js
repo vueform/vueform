@@ -47,7 +47,7 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes, components, mainClass } = useFormComponent(props, context)
+    const { form$, theme, classes: baseClasses, components, mainClass } = useFormComponent(props, context)
     const { available, conditions } = useConditions(props, context, { form$, descriptor: step })
     const { label, isLabelComponent } = useLabel(props, context, { form$, descriptor: step })
     const {
@@ -138,8 +138,8 @@ export default {
       return step.value.class || null
     })
     
-    const updatedClasses = computed(() => {
-      let classList = classes.value
+    const classes = computed(() => {
+      let classList = baseClasses.value
 
       classList = mergeComponentClasses(classList, {
         [containers.value.state]: {
@@ -479,7 +479,7 @@ export default {
       visible,
       invalid,
       pending,
-      classes: updatedClasses,
+      classes,
       components,
       conditions,
       available,

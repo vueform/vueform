@@ -31,9 +31,6 @@ export default function useListChildren(props, context, dependencies, options)
   // ============== COMPUTED ==============
 
   const children$ = computed(() => {
-    // console.log('children$ get', child$.value.length)
-    // return child$.value
-
     const elements$ = {}
 
     _.each(child$.value, (element$) => {
@@ -82,10 +79,6 @@ export default function useListChildren(props, context, dependencies, options)
    * @returns {number}
    */
   const add = (data = null) => {
-    if (disabled.value) {
-      return
-    }
-
     var index = insert(data)
 
     nextTick(() => {
@@ -107,10 +100,6 @@ export default function useListChildren(props, context, dependencies, options)
    * @returns {void}
    */
   const remove = (index) => {
-    if (disabled.value) {
-      return
-    }
-
     // handleRemove(index)
 
     instances.value.splice(index, 1)
@@ -166,9 +155,8 @@ export default function useListChildren(props, context, dependencies, options)
       nextTick(() => {
         var child$ = children$.value[index]
 
-        child$.load({
-          [child$.name]: data
-        })
+        // @todo: think about formatLoad
+        child$.load(data)
       })
     }
 
