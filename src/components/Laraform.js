@@ -429,9 +429,21 @@ export default {
      * @type {boolean}
      */
     disabled() {
-      return (this.invalid && this.$_shouldValidateOn('change')) ||
+      return (this.invalid && this.shouldValidateOnChange) ||
             this.busy ||
             this.submitting
+    },
+
+    shouldValidateOnChange() {
+      return this.validateOn.split('|').indexOf('change') !== -1
+    },
+
+    shouldValidateOnSubmit() {
+      return this.validateOn.split('|').indexOf('submit') !== -1
+    },
+
+    shouldValidateOnStep() {
+      return this.validateOn.split('|').indexOf('step') !== -1
     },
 
     /**
@@ -593,7 +605,7 @@ export default {
      * @param {object} data data to load
      * @returns {void}
      */
-    load(data, format = true) {
+    load(data, triggerChange = false, shouldValidate = false, shouldDirt = false, format = true) {
       if (!_.isEmpty(this.wizard$)) {
         this.wizard$.enableAllSteps()
       }
@@ -601,7 +613,7 @@ export default {
       _.each(this.elements$, (element$) => {
         let formatted = format ? this.formatLoad(data) : data
 
-        element$.load(element$.flat ? formatted : formatted[element$.name], format)
+        element$.load(element$.flat ? formatted : formatted[element$.name], triggerChange, shouldValidate, shouldDirt, format)
       })
     },
 
@@ -685,7 +697,7 @@ export default {
      * @returns {void}
      */
     async validate() {
-      let validateOnChange = this.$_shouldValidateOn('change')
+      let validateOnChange = this.shouldValidateOnChange
 
       if (!this.invalid && this.validated && validateOnChange) {
         return
@@ -715,7 +727,7 @@ export default {
         return
       }
 
-      if (this.$_shouldValidateOn('submit')) {
+      if (this.shouldValidateOnSubmit) {
         await this.validate()
       }
 
@@ -997,17 +1009,6 @@ export default {
 
         this.updateSchema(schema)
       }
-    },
-
-    /**
-     * Determines if validation should occur on a specific event.
-     * 
-     * @private
-     * @param {string} event event to examine
-     * @returns {boolean}
-     */
-    $_shouldValidateOn(event) {
-      return this.validateOn.split('|').indexOf(event) !== -1
     },
 
     $_initMessageBag() {

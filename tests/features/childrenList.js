@@ -1,42 +1,9 @@
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm, findAllComponents, testComputedOption, prototypeChildType, prototypeChildSchema, replacePrototypeValue } from 'test-helpers'
 import { nextTick } from 'vue'
 import asyncForEach from './../../src/utils/asyncForEach'
 
 function name (type) {
   return  `${_.upperFirst(type)}Element`
-}
-
-export function replaceValue(value, i) {
-  if (_.isString(value)) {
-    return value.replace('{i}', i)
-  }
-  else {
-    let key = _.keys(value)[0]
-
-    return {
-      [key]: replaceValue(value[key], i)
-    }
-  }
-} 
-
-function childSchema(prototype) {
-  let key = _.keys(prototype)[0]
-
-  if (key == 'element') {
-    return prototype.element
-  }
-  else {
-    return {
-      type: 'object',
-      schema: prototype.object.schema
-    }
-  }
-}
-
-function childType(prototype) {
-  let key = _.keys(prototype)[0]
-
-  return key == 'element' ? prototype.element.type : 'object'
 }
 
 export const child$ = function (elementType, elementName, options) {
@@ -71,7 +38,7 @@ export const child$ = function (elementType, elementName, options) {
       let el = form.vm.el$('el')
 
       expect(el.child$.length).toBe(1)
-      expect(el.child$[0].schema.type).toStrictEqual(childType(prototype))
+      expect(el.child$[0].schema.type).toStrictEqual(prototypeChildType(prototype))
     })
   })
 }
@@ -109,10 +76,10 @@ export const instances = function (elementType, elementName, options) {
       el.add()
 
       expect(el.instances.length).toBe(2)
-      expect(el.instances[0]).toStrictEqual(Object.assign({}, childSchema(prototype), {
+      expect(el.instances[0]).toStrictEqual(Object.assign({}, prototypeChildSchema(prototype), {
         key: 0
       }))
-      expect(el.instances[1]).toStrictEqual(Object.assign({}, childSchema(prototype), {
+      expect(el.instances[1]).toStrictEqual(Object.assign({}, prototypeChildSchema(prototype), {
         key: 1
       }))
     })
@@ -267,12 +234,12 @@ export const add = function (elementType, elementName, options) {
       await nextTick()
 
       expect(el.child$.length).toBe(2)
-      expect(el.child$[0].schema.type).toStrictEqual(childType(prototype))
-      expect(el.child$[1].schema.type).toStrictEqual(childType(prototype))
+      expect(el.child$[0].schema.type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.child$[1].schema.type).toStrictEqual(prototypeChildType(prototype))
 
       expect(_.keys(el.children$).length).toBe(2)
-      expect(el.children$[0].schema.type).toStrictEqual(childType(prototype))
-      expect(el.children$[1].schema.type).toStrictEqual(childType(prototype))
+      expect(el.children$[0].schema.type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.children$[1].schema.type).toStrictEqual(prototypeChildType(prototype))
 
       expect(el.instances.length).toBe(2)
       expect(el.instances[0].key).toBe(0)
@@ -300,16 +267,16 @@ export const add = function (elementType, elementName, options) {
       await nextTick()
 
       expect(el.child$.length).toBe(4)
-      expect(el.child$[0].schema.type).toStrictEqual(childType(prototype))
-      expect(el.child$[1].schema.type).toStrictEqual(childType(prototype))
-      expect(el.child$[2].schema.type).toStrictEqual(childType(prototype))
-      expect(el.child$[3].schema.type).toStrictEqual(childType(prototype))
+      expect(el.child$[0].schema.type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.child$[1].schema.type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.child$[2].schema.type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.child$[3].schema.type).toStrictEqual(prototypeChildType(prototype))
 
       expect(_.keys(el.children$).length).toBe(4)
-      expect(el.children$[0].schema.type).toStrictEqual(childType(prototype))
-      expect(el.children$[1].schema.type).toStrictEqual(childType(prototype))
-      expect(el.children$[2].schema.type).toStrictEqual(childType(prototype))
-      expect(el.children$[3].schema.type).toStrictEqual(childType(prototype))
+      expect(el.children$[0].schema.type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.children$[1].schema.type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.children$[2].schema.type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.children$[3].schema.type).toStrictEqual(prototypeChildType(prototype))
 
       expect(el.instances.length).toBe(4)
       expect(el.instances[0].key).toBe(0)
@@ -340,7 +307,7 @@ export const add = function (elementType, elementName, options) {
       expect(el.child$[1].value).toStrictEqual(options.childValues[i])
 
       expect(_.keys(el.children$).length).toBe(2)
-      expect(el.children$[1].schema.type).toStrictEqual(childType(prototype))
+      expect(el.children$[1].schema.type).toStrictEqual(prototypeChildType(prototype))
 
       expect(el.instances.length).toBe(2)
       expect(el.instances[0].key).toBe(0)
@@ -373,9 +340,9 @@ export const add = function (elementType, elementName, options) {
       expect(el.child$[3].value).toStrictEqual(options.childValues[i])
 
       expect(_.keys(el.children$).length).toBe(4)
-      expect(el.children$[1].schema.type).toStrictEqual(childType(prototype))
-      expect(el.children$[2].schema.type).toStrictEqual(childType(prototype))
-      expect(el.children$[3].schema.type).toStrictEqual(childType(prototype))
+      expect(el.children$[1].schema.type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.children$[2].schema.type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.children$[3].schema.type).toStrictEqual(prototypeChildType(prototype))
 
       expect(el.instances.length).toBe(4)
       expect(el.instances[0].key).toBe(0)
@@ -425,9 +392,9 @@ export const remove = function (elementType, elementName, options) {
 
       let el = form.vm.el$('el')
 
-      el.add(replaceValue(options.childValues[i], 0))
-      el.add(replaceValue(options.childValues[i], 1))
-      el.add(replaceValue(options.childValues[i], 2))
+      el.add(replacePrototypeValue(options.childValues[i], 0))
+      el.add(replacePrototypeValue(options.childValues[i], 1))
+      el.add(replacePrototypeValue(options.childValues[i], 2))
 
       await nextTick()
 
@@ -439,14 +406,14 @@ export const remove = function (elementType, elementName, options) {
 
       // @todo
       // expect(el.child$.length).toBe(2)
-      expect(el.child$[0].value).toStrictEqual(replaceValue(options.childValues[i], 0))
-      expect(el.child$[1].value).toStrictEqual(replaceValue(options.childValues[i], 2))
+      expect(el.child$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
+      expect(el.child$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
       expect(el.child$[0].schema.key).toStrictEqual(0)
       expect(el.child$[1].schema.key).toStrictEqual(2)
 
       expect(_.keys(el.children$).length).toBe(2)
-      expect(el.children$[0].value).toStrictEqual(replaceValue(options.childValues[i], 0))
-      expect(el.children$[1].value).toStrictEqual(replaceValue(options.childValues[i], 2))
+      expect(el.children$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
+      expect(el.children$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
       expect(el.children$[0].schema.key).toStrictEqual(0)
       expect(el.children$[1].schema.key).toStrictEqual(2)
 
@@ -469,11 +436,11 @@ export const remove = function (elementType, elementName, options) {
 
       let el = form.vm.el$('el')
 
-      el.add(replaceValue(options.childValues[i], 0))
-      el.add(replaceValue(options.childValues[i], 1))
-      el.add(replaceValue(options.childValues[i], 2))
-      el.add(replaceValue(options.childValues[i], 3))
-      el.add(replaceValue(options.childValues[i], 4))
+      el.add(replacePrototypeValue(options.childValues[i], 0))
+      el.add(replacePrototypeValue(options.childValues[i], 1))
+      el.add(replacePrototypeValue(options.childValues[i], 2))
+      el.add(replacePrototypeValue(options.childValues[i], 3))
+      el.add(replacePrototypeValue(options.childValues[i], 4))
 
       await nextTick()
 
@@ -486,17 +453,17 @@ export const remove = function (elementType, elementName, options) {
 
       // @todo
       // expect(el.child$.length).toBe(3)
-      expect(el.child$[0].value).toStrictEqual(replaceValue(options.childValues[i], 0))
-      expect(el.child$[1].value).toStrictEqual(replaceValue(options.childValues[i], 2))
-      expect(el.child$[2].value).toStrictEqual(replaceValue(options.childValues[i], 4))
+      expect(el.child$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
+      expect(el.child$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
+      expect(el.child$[2].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 4))
       expect(el.child$[0].schema.key).toStrictEqual(0)
       expect(el.child$[1].schema.key).toStrictEqual(2)
       expect(el.child$[2].schema.key).toStrictEqual(4)
 
       // expect(_.keys(el.children$).length).toBe(3)
-      expect(el.children$[0].value).toStrictEqual(replaceValue(options.childValues[i], 0))
-      expect(el.children$[1].value).toStrictEqual(replaceValue(options.childValues[i], 2))
-      expect(el.children$[2].value).toStrictEqual(replaceValue(options.childValues[i], 4))
+      expect(el.children$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
+      expect(el.children$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
+      expect(el.children$[2].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 4))
       expect(el.children$[0].schema.key).toStrictEqual(0)
       expect(el.children$[1].schema.key).toStrictEqual(2)
       expect(el.children$[2].schema.key).toStrictEqual(4)

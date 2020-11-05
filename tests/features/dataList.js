@@ -1,9 +1,8 @@
 import { nextTick } from 'vue'
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm, findAllComponents, testComputedOption, replacePrototypeValue } from 'test-helpers'
 import flushPromises from 'flush-promises'
 import { submit, data, formatData, formatLoad } from './data'
 import asyncForEach from './../../src/utils/asyncForEach'
-import { replaceValue } from './childrenList'
 
 export {
   // Computed
@@ -234,8 +233,8 @@ export const load = function (elementType, elementName, options) {
       expect(el.instances.length).toBe(3)
 
       el.load([
-        replaceValue(options.childValues[i], 0),
-        replaceValue(options.childValues[i], 1),
+        replacePrototypeValue(options.childValues[i], 0),
+        replacePrototypeValue(options.childValues[i], 1),
       ])
 
       await nextTick()
@@ -257,8 +256,8 @@ export const load = function (elementType, elementName, options) {
       let el = form.vm.el$('el')
 
       el.load([
-        replaceValue(options.childValues[i], 0),
-        replaceValue(options.childValues[i], 1),
+        replacePrototypeValue(options.childValues[i], 0),
+        replacePrototypeValue(options.childValues[i], 1),
       ])
 
       await nextTick()
@@ -266,8 +265,8 @@ export const load = function (elementType, elementName, options) {
       let child0 = form.vm.el$('el.0')
       let child1 = form.vm.el$('el.1')
 
-      expect(child0.value).toStrictEqual(replaceValue(options.childValues[i], 0))
-      expect(child1.value).toStrictEqual(replaceValue(options.childValues[i], 1))
+      expect(child0.value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
+      expect(child1.value).toStrictEqual(replacePrototypeValue(options.childValues[i], 1))
     })
   })
 
@@ -286,12 +285,12 @@ export const load = function (elementType, elementName, options) {
       el.dirt()
 
       el.load([
-        replaceValue(options.childValues[i], 0),
-        replaceValue(options.childValues[i], 1),
+        replacePrototypeValue(options.childValues[i], 0),
+        replacePrototypeValue(options.childValues[i], 1),
       ])
 
-      await nextTick()
-      await nextTick()
+      expect(el.dirty).toBe(false)
+
       await nextTick()
 
       expect(el.dirty).toBe(false)
@@ -543,8 +542,8 @@ export const unload = function (elementType, elementName, options) {
           el: Object.assign({}, {
             type: elementType,
             default: [
-              replaceValue(options.childValues[i], 0),
-              replaceValue(options.childValues[i], 1),
+              replacePrototypeValue(options.childValues[i], 0),
+              replacePrototypeValue(options.childValues[i], 1),
             ],
             rules: 'required'
           }, prototype)
@@ -568,10 +567,6 @@ export const unload = function (elementType, elementName, options) {
 
       expect(el.instances.length).toBe(0)
       expect(el.validated).toBe(false)
-
-      await nextTick()
-      await nextTick()
-
       expect(el.dirty).toBe(false)
     })
   })
@@ -639,8 +634,8 @@ export const reset = function (elementType, elementName, options) {
           el: Object.assign({}, {
             type: elementType,
             default: [
-              replaceValue(options.childValues[i], 0),
-              replaceValue(options.childValues[i], 1),
+              replacePrototypeValue(options.childValues[i], 0),
+              replacePrototypeValue(options.childValues[i], 1),
             ]
           }, prototype)
         }
@@ -660,8 +655,8 @@ export const reset = function (elementType, elementName, options) {
       await nextTick()
       
       expect(el.instances.length).toBe(2)
-      expect(el.child$[0].value).toStrictEqual(replaceValue(options.childValues[i], 0))
-      expect(el.child$[1].value).toStrictEqual(replaceValue(options.childValues[i], 1))
+      expect(el.child$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
+      expect(el.child$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 1))
     })
   })
 }

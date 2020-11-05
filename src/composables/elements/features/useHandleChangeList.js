@@ -23,7 +23,7 @@ export default function useHandleChangeList(props, context, dependencies)
     nextTick(() => {
       fireChange(newValue, oldValue)
 
-      if (form$.value.$_shouldValidateOn('change')) {
+      if (form$.value.shouldValidateOnChange) {
         // nextTick is required because the `value`
         // comes from children$ which only refreshes
         // once DOM is reloaded

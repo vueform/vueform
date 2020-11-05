@@ -10,13 +10,19 @@ export default function useData(props, context, dependencies)
   const form$ = dependencies.form$
   const available = dependencies.available
   const value = dependencies.value
+  const currentValue = dependencies.currentValue
   const previousValue = dependencies.previousValue
+  const dirt = dependencies.dirt
   const clean = dependencies.clean
   const resetValidators = dependencies.resetValidators
   const validate = dependencies.validate
   const fireChange = dependencies.fireChange
   const default_ = dependencies.default
   const nullValue = dependencies.nullValue
+
+  // =============== OPTIONS ===============
+
+  const shouldValidateOnChange = form$.value.shouldValidateOnChange
 
   // ============== COMPUTED ===============
 
@@ -76,35 +82,20 @@ export default function useData(props, context, dependencies)
    * @param {object} data an object containing data for the element using its **name as key**
    * @returns {void}
    */
-  const load = (val, format = false) => {
+  const load = (val, triggerChange = false, shouldValidate = false, shouldDirt = false, format = false) => {
     let formatted = format ? formatLoad.value(val, form$.value) : val
 
     if (!available.value || formatted === undefined) {
-      unload()
-      return
+      unload(triggerChange, shouldValidate, shouldDirt)
     }
-
-    update(formatted)
-
-    // Double nextTick is required because first the value watcher is triggered
-    // then the value changes (1st) nextTick any only dirts the element afterwards.
-    // So we need a 2nd tick to catch the moment after.
-    nextTick(() => {
-      nextTick(() => {
-        clean()
-      })
-    })
+    else {
+      update(formatted, triggerChange, shouldValidate, shouldDirt)
+    }
   }
 
-  const unload = () => {
-    clear()
+  const unload = (triggerChange = false, shouldValidate = false, shouldDirt = false) => {
     resetValidators()
-      
-    nextTick(() => {
-      nextTick(() => {
-        clean()
-      })
-    })
+    clear(triggerChange, shouldValidate, shouldDirt)
   }
 
   /**
@@ -115,28 +106,9 @@ export default function useData(props, context, dependencies)
    * @param {boolean} shouldValidate whether the element should be validated (default: `false`)
    * @returns {void}
    */
-  const update = (val, triggerChange = false, shouldValidate = false) => {
+  const update = (val, triggerChange = true, shouldValidate = form$.value.shouldValidateOnChange, shouldDirt = true) => {
     value.value = val
-
-    if (triggerChange) {
-      fireChange()
-    }
-
-    if (shouldValidate) {
-     validate()
-    }
-  }
-
-  /**
-   * Resets the element to it's default state.
-   *
-   * @public
-   * @returns {void}
-   */
-  const reset = () => {
-    value.value = _.clone(default_.value)
-    
-    resetValidators()
+    handleUpdated(triggerChange, shouldValidate, shouldDirt)
   }
 
   /**
@@ -145,8 +117,41 @@ export default function useData(props, context, dependencies)
    * @public
    * @returns {void}
    */
-  const clear = () => {
+  const clear = (triggerChange = true, shouldValidate = form$.value.shouldValidateOnChange, shouldDirt = true) => {
     value.value = _.clone(nullValue.value)
+    handleUpdated(triggerChange, shouldValidate, shouldDirt)
+  }
+
+  /**
+   * Resets the element to it's default state.
+   *
+   * @public
+   * @returns {void}
+   */
+  const reset = (triggerChange = true) => {
+    value.value = _.clone(default_.value)
+
+    if (triggerChange && !_.isEqual(currentValue.value, previousValue.value)) {
+      fireChange()
+    }
+    
+    resetValidators()
+  }
+
+  const handleUpdated = (triggerChange, shouldValidate, shouldDirt) => {
+    if ((triggerChange || shouldDirt) && !_.isEqual(currentValue.value, previousValue.value)) {
+      if (shouldDirt) {
+        dirt()
+      }
+
+      if (triggerChange) {
+        fireChange()
+      }
+    }
+
+    if (shouldValidate) {
+      validate()
+    }
   }
 
   /**

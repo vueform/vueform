@@ -9,7 +9,6 @@ export default function useData(props, context, dependencies)
    // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
-  const value = dependencies.value
   const path = dependencies.path
 
   // ================ DATA ================
@@ -250,10 +249,6 @@ export default function useData(props, context, dependencies)
   // =============== HOOKS ================
 
   onMounted(() => {
-    watch(value, () => {
-      dirt()
-    }, { deep: false })
-
     initMessageBag()
     initValidation()
   })

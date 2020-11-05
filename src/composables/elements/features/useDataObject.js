@@ -39,32 +39,32 @@ export default function useGroupData(props, context, dependencies)
 
   // =============== METHODS ===============
 
-  const load = (val, format = false) => {
+  const load = (val, triggerChange = false, shouldValidate = false, shouldDirt = false, format = false) => {
     let formatted = format ? formatLoad.value(val, form$.value) : val
 
     _.each(children$.value, (element$) => {
-      element$.load(element$.flat ? formatted : formatted[element$.name], format)
+      element$.load(element$.flat ? formatted : formatted[element$.name], triggerChange, shouldValidate, shouldDirt, format)
     })
   }
 
-  const update = (val) => {
+  const update = (val, triggerChange = true, shouldValidate = form$.value.shouldValidateOnChange, shouldDirt = true) => {
     _.each(children$.value, (element$) => {
       if (val[element$.name] === undefined && !element$.flat) {
         return
       }
-      element$.update(element$.flat ? val : val[element$.name])
+      element$.update(element$.flat ? val : val[element$.name], triggerChange, shouldValidate, shouldDirt)
     })
   }
 
-  const reset = () => {
+  const clear = (triggerChange = true, shouldValidate = form$.value.shouldValidateOnChange, shouldDirt = true) => {
     _.each(children$.value, (element$) => {
-      element$.reset()
+      element$.clear(triggerChange, shouldValidate, shouldDirt)
     })
   }
 
-  const clear = () => {
+  const reset = (triggerChange = true) => {
     _.each(children$.value, (element$) => {
-      element$.clear()
+      element$.reset(triggerChange)
     })
   }
 

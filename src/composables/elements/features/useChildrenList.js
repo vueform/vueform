@@ -78,8 +78,8 @@ export default function useListChildren(props, context, dependencies, options)
    * @param {any} data data to be set for added child.
    * @returns {number}
    */
-  const add = (data = null) => {
-    var index = insert(data)
+  const add = (val = null, triggerChange = false, shouldValidate = false) => {
+    var index = insert(val)
 
     nextTick(() => {
       // let child$ = children$.value[index]
@@ -87,7 +87,9 @@ export default function useListChildren(props, context, dependencies, options)
       // handleAdd(child$, index)
     })
 
-    // handleChange(null, null, 'add')
+    if (triggerChange) {
+      // fireChange()
+    }
 
     return index
   }
@@ -99,7 +101,7 @@ export default function useListChildren(props, context, dependencies, options)
    * @param {index} index index of child to be removed.
    * @returns {void}
    */
-  const remove = (index) => {
+  const remove = (index, triggerChange = false, shouldValidate = false) => {
     // handleRemove(index)
 
     instances.value.splice(index, 1)
@@ -163,16 +165,12 @@ export default function useListChildren(props, context, dependencies, options)
     return index
   }
 
-  /**
-   * Triggered when the user adds a new list item or `.add()` method is invoked.
-   *
-   * @public
-   * @param {object} child$ the child element's component that has been added.
-   * @param {array} index index of added list item.
-   * @event add
-   */
-  const handleAdd = (child$, index) => {
-    fireAdd(child$, index)
+  const handleAdd = () => {
+    if (disabled.value) {
+      return
+    }
+
+    add()
   }
 
   /**
@@ -182,8 +180,12 @@ export default function useListChildren(props, context, dependencies, options)
    * @param {number} index index of child to be removed.
    * @event remove
    */
-  const handleRemove = (index) => {
-    fireRemove(index)
+  const handleRemove = () => {
+    if (disabled.value) {
+      return
+    }
+
+    remove()
   }
 
   /**

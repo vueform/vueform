@@ -30,7 +30,7 @@ export default {
       // change, otherwise it might occur that the
       // form has invalid fields, which values have
       // changed to valid, but still marked as invalid
-      return (wizard$.value.invalid && form$.value.$_shouldValidateOn('change')) ||
+      return (wizard$.value.invalid && form$.value.shouldValidateOnChange) ||
             wizard$.value.busy || form$.value.submitting || form$.value.disabled
     })
 
@@ -61,7 +61,7 @@ export default {
     const finish = () => {
       wizard$.value.fireFinish()
 
-      if (form$.value.$_shouldValidateOn('submit')) {
+      if (form$.value.shouldValidateOnSubmit) {
         _.each(visible$.value, (step$) => {
           step$.validate()
         })

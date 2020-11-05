@@ -339,7 +339,7 @@ export default {
         this.$laraform.services.axios.post('/file/remove-temp', { file: this.value.tmp })
       }
 
-      this.update(null, true, this.form$.$_shouldValidateOn('change'))
+      this.update(null, true, this.form$.shouldValidateOnChange)
 
       this.progress = 0
 
@@ -349,7 +349,7 @@ export default {
     handleFileSelected(e) {
       let file = e.target.files[0]
 
-      this.update(file || null, true, this.form$.$_shouldValidateOn('change'))
+      this.update(file || null, true, this.form$.shouldValidateOnChange)
 
       this.$refs.input.value = ''
     },

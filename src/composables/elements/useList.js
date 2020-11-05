@@ -12,7 +12,7 @@ import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
 import useElements from './../useElements'
-import useDisabled from './features/useDisabled'
+import useDisabledList from './features/useDisabledList'
 import useDefault from './features/useDefault'
 import useEvents from './../useEvents'
 import useArrayType from './features/useArrayType'
@@ -38,7 +38,7 @@ export default function useList(props, context) {
   const path = usePath(props, context)
   const description = useDescription(props, context)
   const info = useInfo(props, context)
-  const disabled = useDisabled(props, context)
+  const disabled = useDisabledList(props, context)
   const nullValue = useNullValueArray(props, context)
   const prototype = usePrototype(props, context)
 
@@ -113,6 +113,7 @@ export default function useList(props, context) {
     form$: form$.form$,
     theme: theme.theme,
     sort: sort.sort,
+    disabled: disabled.disabled,
   })
 
   const columns = useColumns(props, context, {

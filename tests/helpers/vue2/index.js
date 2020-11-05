@@ -2,6 +2,11 @@ import change from './../change'
 import check from './../check'
 import confirmSelectOptions from './../confirmSelectOptions'
 import createTrix from './../createTrix'
+import prototypeAddOptions from './../prototypeAddOptions'
+import prototypeChildSchema from './../prototypeChildSchema'
+import prototypeChildType from './../prototypeChildType'
+import prototypeInputType from './../prototypeInputType'
+import replacePrototypeValue from './../replacePrototypeValue'
 import select from './../select'
 import setDate from './../setDate'
 import setInstances from './../setInstances'
@@ -42,6 +47,11 @@ export {
   createTrix,
   findAllComponents,
   installLaraform,
+  prototypeAddOptions,
+  prototypeChildSchema,
+  prototypeChildType,
+  prototypeInputType,
+  replacePrototypeValue,
   select,
   setDate,
   setInstances,

@@ -21,9 +21,8 @@
             <template v-slot:prefix>
               <a
                 href=""
-                v-if="!disabled"
-                :class="classes.listRemove"
-                @click.prevent="remove(i)"
+                :class="classes.remove"
+                @click.prevent="handleRemove(i)"
                 v-html="__('laraform.elements.list.remove')"
               ></a>
             </template>
@@ -34,9 +33,8 @@
 
       <a
         href=""
-        v-if="!disabled"
-        :class="classes.listAdd"
-        @click.prevent="add()"
+        :class="classes.add"
+        @click.prevent="handleAdd()"
         v-html="__('laraform.elements.list.add')"
       ></a>
 
@@ -68,10 +66,13 @@
           element: 'list-element-container',
           sortable: 'list-element-container-sortable',
           remove: 'list-add',
-          add: 'list-remove'
+          add: 'list-remove',
+          disabled: 'disabled',
         },
         containers: {
           sortable: 'element',
+          add: 'add',
+          remove: 'remove',
         }
       }
     }

@@ -14,6 +14,7 @@ export default function useListClasses(props, context, dependencies)
 
   const form$ = dependencies.form$
   const sort = dependencies.sort
+  const disabled = dependencies.disabled
 
   // ============== COMPUTED ==============
 
@@ -29,6 +30,12 @@ export default function useListClasses(props, context, dependencies)
       classes = mergeComponentClasses(classes, {
         [containers.value.sortable]: {
           [classes.sortable]: sort.value
+        },
+        [containers.value.add]: {
+          [classes.disabled]: disabled.value
+        },
+        [containers.value.remove]: {
+          [classes.disabled]: disabled.value
         },
       })
 

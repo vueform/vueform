@@ -68,11 +68,7 @@ export default function useGroupData(props, context, dependencies)
     }
 
     // Set dirty to `false` because we just loaded children
-    nextTick(() => {
-      nextTick(() => {
-        clean()
-      })
-    })
+    clean()
     
     // nextTick is required because children$ reflects
     // $refs, which only refreshed after DOM rerender
@@ -97,23 +93,14 @@ export default function useGroupData(props, context, dependencies)
 
       // Set dirty to `false` because children data got updated and that
       // affecets list element's data too
-      nextTick(() => {
-        nextTick(() => {
-          clean()
-        })
-      })
+      clean()
     })
   }
 
   const unload = () => {
     clear()
     resetValidators()
-      
-    nextTick(() => {
-      nextTick(() => {
-        clean()
-      })
-    })
+    clean()
   }
   
   /**

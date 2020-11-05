@@ -10040,7 +10040,7 @@ __webpack_require__.r(__webpack_exports__);
       // change, otherwise it might occur that the
       // form has invalid fields, which values have
       // changed to valid, but still marked as invalid
-      return wizard$.value.invalid && form$.value.$_shouldValidateOn('change') || wizard$.value.busy || form$.value.submitting || form$.value.disabled;
+      return wizard$.value.invalid && form$.value.shouldValidateOnChange || wizard$.value.busy || form$.value.submitting || form$.value.disabled;
     });
     var current$ = Object(composition_api__WEBPACK_IMPORTED_MODULE_0__["computed"])(function () {
       return wizard$.value.current$;
@@ -10064,7 +10064,7 @@ __webpack_require__.r(__webpack_exports__);
     var finish = function finish() {
       wizard$.value.fireFinish();
 
-      if (form$.value.$_shouldValidateOn('submit')) {
+      if (form$.value.shouldValidateOnSubmit) {
         _.each(visible$.value, function (step$) {
           step$.validate();
         });
@@ -10156,7 +10156,7 @@ __webpack_require__.r(__webpack_exports__);
       // change, otherwise it might occur that the
       // step has invalid fields, which values have
       // changed to valid, but still marked as invalid
-      current$.value.invalid && form$.value.$_shouldValidateOn('change') || current$.value.busy);
+      current$.value.invalid && form$.value.shouldValidateOnChange || current$.value.busy);
     });
     var current$ = Object(composition_api__WEBPACK_IMPORTED_MODULE_0__["computed"])(function () {
       return wizard$.value.current$;
@@ -10175,7 +10175,7 @@ __webpack_require__.r(__webpack_exports__);
     }); // =============== METHODS ==============
 
     var next = function next() {
-      if (form$.value.$_shouldValidateOn('step')) {
+      if (form$.value.shouldValidateOnStep) {
         current$.value.validate();
       }
 
@@ -12411,7 +12411,7 @@ function useHandleChange(props, context, dependencies) {
   var handleChange = function handleChange() {
     fireChange();
 
-    if (form$.value.$_shouldValidateOn('change')) {
+    if (form$.value.shouldValidateOnChange) {
       validate();
     }
   };

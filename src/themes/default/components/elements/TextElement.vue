@@ -18,7 +18,7 @@
 
         <input
           :value="model"
-          @input="model = $event.target.value"
+          @input="handleInput"
           :type="inputType"
           :name="name"
           :id="id"
@@ -27,8 +27,6 @@
           :autocomplete="autocomplete"
           :disabled="disabled"
           :readonly="readonly"
-          @keyup="handleKeyup"
-          @select="handleKeyup"
           ref="input"
         />
 

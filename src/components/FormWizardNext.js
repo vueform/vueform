@@ -39,7 +39,7 @@ export default {
         // step has invalid fields, which values have
         // changed to valid, but still marked as invalid
         (
-          (current$.value.invalid && form$.value.$_shouldValidateOn('change')) ||  
+          (current$.value.invalid && form$.value.shouldValidateOnChange) ||  
           current$.value.busy
         )
     })
@@ -65,7 +65,7 @@ export default {
     // =============== METHODS ==============
 
     const next = () => {
-      if (form$.value.$_shouldValidateOn('step')) {
+      if (form$.value.shouldValidateOnStep) {
         current$.value.validate()
       }
 

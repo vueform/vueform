@@ -469,7 +469,7 @@ export default {
         return
       }
 
-      if (this.form$.$_shouldValidateOn('change')) {
+      if (this.form$.shouldValidateOnChange) {
         this.validate()
       }
     },

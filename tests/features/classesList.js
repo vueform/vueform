@@ -26,7 +26,13 @@ export const classes = function (elementType, elementName, options) {
     mergeWith: {
       [el.containers.sortable]: {
         [el.classes.sortable]: el.sort
-      }
+      },
+      [el.containers.add]: {
+        [el.classes.disabled]: el.disabled
+      },
+      [el.containers.remove]: {
+        [el.classes.disabled]: el.disabled
+      },
     }
   }))
 }

@@ -27,10 +27,11 @@ import useSlots from './features/useSlots'
 import useInputType from './features/useInputType'
 import useAutocomplete from './features/useAutocomplete'
 import useDebounce from './features/useDebounce'
-import useDisabled from './features/useDisabled'
+import useDisabledInput from './features/useDisabledInput'
 import useEvents from './../useEvents'
 import useHandleChange from './features/useHandleChange'
 import useHandleKeyup from './features/useHandleKeyup'
+import useHandleInput from './features/useHandleInput'
 import useEmpty from './features/useEmpty'
 
 export default function useText(props, context) {
@@ -51,7 +52,7 @@ export default function useText(props, context) {
   const inputType = useInputType(props, context)
   const autocomplete = useAutocomplete(props, context)
   const debounce = useDebounce(props, context)
-  const disabled = useDisabled(props, context)
+  const disabled = useDisabledInput(props, context)
   const nullValue = useNullValue(props, context)
 
   const default_ = useDefault(props, context, {
@@ -66,7 +67,6 @@ export default function useText(props, context) {
 
   const validation = useValidation(props, context, {
     form$: form$.form$,
-    value: value.value,
     path: path.path,
   })
 
@@ -85,15 +85,11 @@ export default function useText(props, context) {
     fireChange: events.fireChange,
   })
 
-  const handleKeyup = useHandleKeyup(props, context, {
-    readonly: readonly.readonly,
-    handleChange: handleChange.handleChange,
-  })
-
   const data = useData(props, context, {
     form$: form$.form$,
     available: conditions.available,
     value: value.value,
+    currentValue: value.currentValue,
     previousValue: value.previousValue,
     clean: validation.clean,
     validate: validation.validate,
@@ -101,6 +97,7 @@ export default function useText(props, context) {
     fireChange: events.fireChange,
     default: default_.default,
     nullValue: nullValue.nullValue,
+    dirt: validation.dirt,
   })
 
   const empty = useEmpty(props, context, {
@@ -144,6 +141,14 @@ export default function useText(props, context) {
     components: components.components,
   })
 
+  const handleInput = useHandleInput(props, context, {
+    dirt: validation.dirt,
+    model: value.model,
+    currentValue: value.currentValue,
+    previousValue: value.previousValue,
+    handleChange: handleChange.handleChange,
+  })
+
   return {
     ...form$,
     ...theme,
@@ -173,10 +178,10 @@ export default function useText(props, context) {
     ...disabled,
     ...events,
     ...handleChange,
-    ...handleKeyup,
     ...data,
     ...empty,
     ...default_,
     ...nullValue,
+    ...handleInput,
   }
 } 

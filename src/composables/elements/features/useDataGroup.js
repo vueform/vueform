@@ -66,11 +66,11 @@ export default function useGroupData(props, context, dependencies)
 
   // =============== METHODS ===============
 
-  const load = (val, format = false) => {
+  const load = (val, triggerChange = false, shouldValidate = false, shouldDirt = false, format = false) => {
     let formatted = format ? formatLoad.value(val, form$.value) : val
 
     _.each(children$.value, (element$) => {
-      element$.load(element$.flat ? formatted : formatted[element$.name], format)
+      element$.load(element$.flat ? formatted : formatted[element$.name], triggerChange, shouldValidate, shouldDirt, format)
     })
   }
 
