@@ -13,16 +13,11 @@ export default function useData(props, context, dependencies)
   const currentValue = dependencies.currentValue
   const previousValue = dependencies.previousValue
   const dirt = dependencies.dirt
-  const clean = dependencies.clean
   const resetValidators = dependencies.resetValidators
   const validate = dependencies.validate
   const fireChange = dependencies.fireChange
   const default_ = dependencies.default
   const nullValue = dependencies.nullValue
-
-  // =============== OPTIONS ===============
-
-  const shouldValidateOnChange = form$.value.shouldValidateOnChange
 
   // ============== COMPUTED ===============
 
@@ -130,12 +125,11 @@ export default function useData(props, context, dependencies)
    */
   const reset = (triggerChange = true) => {
     value.value = _.clone(default_.value)
+    resetValidators()
 
     if (triggerChange && !_.isEqual(currentValue.value, previousValue.value)) {
       fireChange()
     }
-    
-    resetValidators()
   }
 
   const handleUpdated = (triggerChange, shouldValidate, shouldDirt) => {
@@ -162,16 +156,6 @@ export default function useData(props, context, dependencies)
    */
   const prepare = async () => {}
 
-  // =============== HOOKS ================
-
-  if (nullValue !== undefined) {
-    previousValue.value = _.clone(nullValue.value)
-  }
-
-  if (default_ !== undefined) {
-    value.value = _.clone(default_.value)
-  }
-
   return {
     // Computed
     data,
@@ -187,5 +171,6 @@ export default function useData(props, context, dependencies)
     clear,
     reset,
     prepare,
+    handleUpdated,
   }
 }

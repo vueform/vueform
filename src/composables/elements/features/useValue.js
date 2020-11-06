@@ -2,6 +2,11 @@ import { computed, ref, watch } from 'composition-api'
 
 export default function useValue(props, context, dependencies)
 {
+  // ============ DEPENDENCIES =============
+
+  const default_ = dependencies.default
+  const nullValue = dependencies.nullValue
+
   // ============== COMPUTED ===============
 
   /**
@@ -48,6 +53,16 @@ export default function useValue(props, context, dependencies)
       value.value = val
     }
   })
+
+  // =============== HOOKS ================
+
+  if (nullValue !== undefined) {
+    previousValue.value = _.clone(nullValue.value)
+  }
+
+  if (default_ !== undefined) {
+    value.value = _.clone(default_.value)
+  }
 
   return {
     // Computed

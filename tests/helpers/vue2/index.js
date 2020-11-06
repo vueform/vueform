@@ -3,6 +3,7 @@ import check from './../check'
 import confirmSelectOptions from './../confirmSelectOptions'
 import createTrix from './../createTrix'
 import prototypeAddOptions from './../prototypeAddOptions'
+import prototypeAddChildOptions from './../prototypeAddChildOptions'
 import prototypeChildSchema from './../prototypeChildSchema'
 import prototypeChildType from './../prototypeChildType'
 import prototypeInputType from './../prototypeInputType'
@@ -48,6 +49,7 @@ export {
   findAllComponents,
   installLaraform,
   prototypeAddOptions,
+  prototypeAddChildOptions,
   prototypeChildSchema,
   prototypeChildType,
   prototypeInputType,

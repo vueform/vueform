@@ -245,6 +245,7 @@ export default function useChildrenValidation (props, context, dependencies)
 
     // Methods
     validate,
+    validateValidators,
     dirt,
     clean,
     resetValidators,

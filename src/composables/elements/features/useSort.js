@@ -8,6 +8,7 @@ export default function useSort(props, context, dependencies, options)
   // ============ DEPENDENCIES ============
 
   const isObject = dependencies.isObject
+  const children$ = dependencies.children$
 
   // ============== COMPUTED ==============
 
@@ -57,7 +58,7 @@ export default function useSort(props, context, dependencies, options)
       nextTick(() => {
         _.each(children$.value, (element$, index) => {
           element$.update({
-            [storeOrder.value]: index + 1
+            [storeOrder.value]: parseInt(index) + 1
           })
         })
       })

@@ -41,6 +41,7 @@ export default function useList(props, context) {
   const disabled = useDisabledList(props, context)
   const nullValue = useNullValueArray(props, context)
   const prototype = usePrototype(props, context)
+  const children = useChildrenList(props, context)
 
   const default_ = useDefault(props, context, {
     nullValue: nullValue.nullValue
@@ -70,25 +71,12 @@ export default function useList(props, context) {
 
   const sort = useSort(props, context, {
     isObject: prototype.isObject,
-  })
-
-  const children = useChildrenList(props, context, {
-    form$: form$.form$,
-    default: default_.default,
-    disabled: disabled.disabled,
-    fireAdd: events.fireAdd,
-    fireRemove: events.fireRemove,
-    refreshOrderStore: sort.refreshOrderStore,
-    prototype: prototype.prototype,
-    isObject: prototype.isObject,
-    storeOrder: sort.storeOrder,
-    // handleChange: handleChange.handleChange,
-  }, {
-    initial: 1
+    children$: children.children$,
   })
 
   const value = useValueList(props, context, {
     children$: children.children$,
+    nullValue: nullValue.nullValue,
   })
 
   const elements = useElements(props, context, {
@@ -158,21 +146,34 @@ export default function useList(props, context) {
 
   const data = useDataList(props, context, {
     form$: form$.form$,
-    available: conditions.available,
-    value: value.value,
-    previousValue: value.previousValue,
-    clean: validation.clean,
-    validate: validation.validate,
-    resetValidators: validation.resetValidators,
     children$: children.children$,
     instances: children.instances,
+    default: default_.default,
     nullValue: nullValue.nullValue,
+    available: conditions.available,
     disabled: disabled.disabled,
-    setInitialInstances: children.setInitialInstances,
-    insert: children.insert,
-    isObject: prototype.isObject,
-    orderBy: sort.orderBy,
+
+    value: value.value,
+    currentValue: value.currentValue,
+    previousValue: value.previousValue,
+
+    dirt: validation.dirt,
+    validate: validation.validate,
+    validateValidators: validation.validateValidators,
+    resetValidators: validation.resetValidators,
+
+    nullValue: nullValue.nullValue,
     order: sort.order,
+    orderBy: sort.orderBy,
+    storeOrder: sort.storeOrder,
+    refreshOrderStore: sort.refreshOrderStore,
+
+    isObject: prototype.isObject,
+    prototype: prototype.prototype,
+
+    fireChange: events.fireChange,
+  }, {
+    initial: 1
   })
 
   const watchPrototype = useWatchPrototype(props, context, {

@@ -9,7 +9,9 @@ export default function prototypeAddOptions(prototype, options) {
   else {
     return {
       object: {
-        schema: _.merge({}, prototype.object.schema, options)
+        schema: {
+          child: Object.assign({}, prototype.object.schema.child, options)
+        }
       }
     }
   }

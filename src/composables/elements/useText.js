@@ -42,7 +42,6 @@ export default function useText(props, context) {
   const input = useInput(props, context)
   const addons = useAddons(props, context)
   const path = usePath(props, context)
-  const value = useValue(props, context)
   const placeholder = usePlaceholder(props, context)
   const floating = useFloating(props, context)
   const id = useId(props, context)
@@ -57,6 +56,11 @@ export default function useText(props, context) {
 
   const default_ = useDefault(props, context, {
     nullValue: nullValue.nullValue
+  })
+
+  const value = useValue(props, context, {
+    nullValue: nullValue.nullValue,
+    default: default_.default,
   })
 
   const conditions = useConditions(props, context, {

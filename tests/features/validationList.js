@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, findAllComponents, testComputedOption, prototypeChildType, prototypeInputType, prototypeAddOptions } from 'test-helpers'
+import { createForm, findAllComponents, testComputedOption, prototypeChildType, prototypeInputType, prototypeAddChildOptions } from 'test-helpers'
 import {
   rules, messages, displayError, dirty as baseDirty, validated as baseValidated,
 } from './validation'
@@ -57,7 +57,7 @@ export const validated = function (elementType, elementName, options) {
           el: Object.assign({}, {
             type: elementType,
             initial: 2,
-          }, prototypeAddOptions(prototype, { rules: 'required' }))
+          }, prototypeAddChildOptions(prototype, { rules: 'required' }))
         }
       })
 
@@ -88,7 +88,7 @@ export const validated = function (elementType, elementName, options) {
           el: Object.assign({}, {
             type: elementType,
             initial: 2,
-          }, prototypeAddOptions(prototype, { rules: 'required' }))
+          }, prototypeAddChildOptions(prototype, { rules: 'required' }))
         }
       })
 

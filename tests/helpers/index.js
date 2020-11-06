@@ -8,6 +8,7 @@ import createTrix from './createTrix'
 import findAllComponents from './findAllComponents'
 import installLaraform from './installLaraform'
 import prototypeAddOptions from './prototypeAddOptions'
+import prototypeAddChildOptions from './prototypeAddChildOptions'
 import prototypeChildSchema from './prototypeChildSchema'
 import prototypeChildType from './prototypeChildType'
 import prototypeInputType from './prototypeInputType'
@@ -47,6 +48,7 @@ export {
   findAllComponents,
   installLaraform,
   prototypeAddOptions,
+  prototypeAddChildOptions,
   prototypeChildSchema,
   prototypeChildType,
   prototypeInputType,
