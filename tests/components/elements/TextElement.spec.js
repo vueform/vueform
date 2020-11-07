@@ -8,17 +8,13 @@ describe('Text Element', () => {
       fieldType: 'input',
     },
     events: {
-      events: [
-        {
-          change: ['currentValue', 'previousValue']
-        }
-      ]
+      events: ['change']
     }
   }
 
   _.each(elements.text.features, (feature) => {
     if (!features[feature]) {
-      return
+      throw new Error('Missing feature test: ' + feature)
     }
 
     describe(`${_.upperFirst(feature)} feature`, features[feature]('text', Object.assign({}, options.default, options[feature] || {})))

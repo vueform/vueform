@@ -320,13 +320,13 @@ export const next = function (elementType, elementName, options) {
 export const add = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  it('should `add` child', async () => {
+  it('should add children with or without value on `add`', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            initial: 1,
+            initial: 0,
           }, prototype)
         }
       })
@@ -334,30 +334,42 @@ export const add = function (elementType, elementName, options) {
       let el = form.vm.el$('el')
 
       el.add()
+      el.add(options.childValues[i])
 
       await nextTick()
 
-      expect(el.child$.length).toBe(2)
-      expect(el.child$[0].schema.type).toStrictEqual(prototypeChildType(prototype))
-      expect(el.child$[1].schema.type).toStrictEqual(prototypeChildType(prototype))
-
-      expect(_.keys(el.children$).length).toBe(2)
-      expect(el.children$[0].schema.type).toStrictEqual(prototypeChildType(prototype))
-      expect(el.children$[1].schema.type).toStrictEqual(prototypeChildType(prototype))
-
-      expect(el.instances.length).toBe(2)
-      expect(el.instances[0].key).toBe(0)
-      expect(el.instances[1].key).toBe(1)
+      expect(el.value).toStrictEqual([
+        options.childNulls[i],
+        options.childValues[i]
+      ])
     })
   })
 
-  it('should `add` multiple children', async () => {
+  it('should return index of new child on `add`', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            initial: 1,
+            initial: 0,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      expect(el.add()).toBe(0)
+      expect(el.add()).toBe(1)
+    })
+  })
+
+  it('should trigger updated on `add` on next tick', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 0,
           }, prototype)
         }
       })
@@ -365,201 +377,23 @@ export const add = function (elementType, elementName, options) {
       let el = form.vm.el$('el')
 
       el.add()
-      el.add()
-      el.add()
-
+      
       await nextTick()
 
-      expect(el.child$.length).toBe(4)
-      expect(el.child$[0].schema.type).toStrictEqual(prototypeChildType(prototype))
-      expect(el.child$[1].schema.type).toStrictEqual(prototypeChildType(prototype))
-      expect(el.child$[2].schema.type).toStrictEqual(prototypeChildType(prototype))
-      expect(el.child$[3].schema.type).toStrictEqual(prototypeChildType(prototype))
-
-      expect(_.keys(el.children$).length).toBe(4)
-      expect(el.children$[0].schema.type).toStrictEqual(prototypeChildType(prototype))
-      expect(el.children$[1].schema.type).toStrictEqual(prototypeChildType(prototype))
-      expect(el.children$[2].schema.type).toStrictEqual(prototypeChildType(prototype))
-      expect(el.children$[3].schema.type).toStrictEqual(prototypeChildType(prototype))
-
-      expect(el.instances.length).toBe(4)
-      expect(el.instances[0].key).toBe(0)
-      expect(el.instances[1].key).toBe(1)
-      expect(el.instances[2].key).toBe(2)
-      expect(el.instances[3].key).toBe(3)
-    })
-  })
-
-  it('should `add` child with data', async () => {
-    await asyncForEach(prototypes, async (prototype, i) => {
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 1,
-          }, prototype)
-        }
-      })
-
-      let el = form.vm.el$('el')
-
-      el.add(options.childValues[i])
-
-      await nextTick()
-
-      expect(el.child$.length).toBe(2)
-      expect(el.child$[1].value).toStrictEqual(options.childValues[i])
-
-      expect(_.keys(el.children$).length).toBe(2)
-      expect(el.children$[1].schema.type).toStrictEqual(prototypeChildType(prototype))
-
-      expect(el.instances.length).toBe(2)
-      expect(el.instances[0].key).toBe(0)
-      expect(el.instances[1].key).toBe(1)
-    })
-  })
-
-  it('should `add` multiple children with data', async () => {
-    await asyncForEach(prototypes, async (prototype, i) => {
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 1,
-          }, prototype)
-        }
-      })
-
-      let el = form.vm.el$('el')
-
-      el.add(options.childValues[i])
-      el.add(options.childValues[i])
-      el.add(options.childValues[i])
-
-      await nextTick()
-
-      expect(el.child$.length).toBe(4)
-      expect(el.child$[1].value).toStrictEqual(options.childValues[i])
-      expect(el.child$[2].value).toStrictEqual(options.childValues[i])
-      expect(el.child$[3].value).toStrictEqual(options.childValues[i])
-
-      expect(_.keys(el.children$).length).toBe(4)
-      expect(el.children$[1].schema.type).toStrictEqual(prototypeChildType(prototype))
-      expect(el.children$[2].schema.type).toStrictEqual(prototypeChildType(prototype))
-      expect(el.children$[3].schema.type).toStrictEqual(prototypeChildType(prototype))
-
-      expect(el.instances.length).toBe(4)
-      expect(el.instances[0].key).toBe(0)
-      expect(el.instances[1].key).toBe(1)
-      expect(el.instances[2].key).toBe(2)
-      expect(el.instances[3].key).toBe(3)
-    })
-  })
-
-  it('should `add` with or without "triggerChange", "shouldValidate" & "shouldDirt"', async () => {
-    await asyncForEach(prototypes, async (prototype, i) => {
-      let onChangeMock = jest.fn()
-
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            rules: 'required',
-            initial: 1,
-            onChange: onChangeMock,
-          }, prototype)
-        }
-      })
-
-      let el = form.vm.el$('el')
-
-      expect(el.validated).toBe(false)
-      expect(el.dirty).toBe(false)
-
-      el.add(null /*true, true, true*/)
-
-      await flushPromises()
-      await nextTick()
-
-      expect(onChangeMock).toHaveBeenCalledTimes(1)
-      expect(el.validated).toBe(true)
       expect(el.dirty).toBe(true)
-
-      el.state.validated = false
-      el.state.dirty = false
-
-      el.add(null, false, false, false)
-
-      await flushPromises()
-      await nextTick()
-
-      expect(onChangeMock).toHaveBeenCalledTimes(1)
-      expect(el.validated).toBe(false)
-      expect(el.dirty).toBe(false)
     })
   })
 
-  it('should `add` with data without "triggerChange", "shouldValidate", "shouldDirt" on child', async () => {
+  it('should trigger "add" event on `add` on next tick', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
-      let onChangeMock = jest.fn()
+      let onAddMock = jest.fn()
 
       let form = createForm({
         schema: {
           el: Object.assign({}, {
             type: elementType,
             initial: 0,
-          }, prototypeAddChildOptions(prototype, {
-            rules: 'required',
-            onChange: onChangeMock,
-          }))
-        }
-      })
-
-      let el = form.vm.el$('el')
-
-      el.add(options.childValues[i])
-
-      await flushPromises()
-      await nextTick()
-
-      let child0 = form.vm.el$('el.0')
-
-      expect(onChangeMock).not.toHaveBeenCalled()
-      expect(child0.dirty).toBe(false)
-      expect(child0.validated).toBe(false)
-    })
-  })
-
-  it('should return index on `add`', async () => {
-    await asyncForEach(prototypes, async (prototype, i) => {
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 1,
-          }, prototype)
-        }
-      })
-
-      let el = form.vm.el$('el')
-
-      let index1 = el.add()
-      let index2 = el.add()
-      let index3 = el.add()
-
-      expect(index1).toBe(1)
-      expect(index2).toBe(2)
-      expect(index3).toBe(3)
-    })
-  })
-
-  it('should `add` instances of prototypes with key to "instances"', async () => {
-    await asyncForEach(prototypes, async (prototype, i) => {
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 1,
+            onAdd: onAddMock,
           }, prototype)
         }
       })
@@ -567,18 +401,46 @@ export const add = function (elementType, elementName, options) {
       let el = form.vm.el$('el')
 
       el.add()
+      
+      await nextTick()
 
-      expect(el.instances.length).toBe(2)
-      expect(el.instances[0]).toStrictEqual(Object.assign({}, prototypeChildSchema(prototype), {
-        key: 0
-      }))
-      expect(el.instances[1]).toStrictEqual(Object.assign({}, prototypeChildSchema(prototype), {
-        key: 1
-      }))
+      expect(onAddMock).toHaveBeenCalled()
+    })
+  })
+}
+
+export const insert = function (elementType, elementName, options) {
+  const prototypes = options.prototypes
+
+  it('should insert new children with or without data based on their prototype assigning a "key" property on `insert`', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 0,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      el.insert()
+      el.insert(options.childValues[i])
+
+      expect(el.instances[0]).toStrictEqual(Object.assign({}, el.prototype, { key: 0 }))
+      expect(el.instances[1]).toStrictEqual(Object.assign({}, el.prototype, { key: 1 }))
+
+      await nextTick()
+
+      expect(el.value).toStrictEqual([
+        options.childNulls[i],
+        options.childValues[i]
+      ])
     })
   })
 
-  it('should add order to "storeOrder" field on `add` if is object', async () => {
+  it('should fill in "storeOrder" value if object and "storeOrder" is defined on `insert`', async () => {
     let form = createForm({
       schema: {
         el: Object.assign({}, {
@@ -595,9 +457,9 @@ export const add = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.add()
-    el.add()
-    el.add()
+    el.insert()
+    el.insert()
+    el.insert()
 
     await nextTick()
 
@@ -614,147 +476,98 @@ export const add = function (elementType, elementName, options) {
 export const remove = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  it('should `remove` child', async () => {
+  it('should remove child on `remove` if a single index is provided', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            initial: 0,
+            default: [
+              replacePrototypeValue(options.childValues[i], 0),
+              replacePrototypeValue(options.childValues[i], 1),
+              replacePrototypeValue(options.childValues[i], 2),
+            ]
           }, prototype)
         }
       })
 
       let el = form.vm.el$('el')
 
-      el.add(replacePrototypeValue(options.childValues[i], 0))
-      el.add(replacePrototypeValue(options.childValues[i], 1))
-      el.add(replacePrototypeValue(options.childValues[i], 2))
-
       await nextTick()
-
-      expect(el.child$.length).toBe(3)
 
       el.remove(1)
-      
+
       await nextTick()
 
-      // @todo
-      // expect(el.child$.length).toBe(2)
-      expect(el.child$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
-      expect(el.child$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
-      expect(el.child$[0].schema.key).toStrictEqual(0)
-      expect(el.child$[1].schema.key).toStrictEqual(2)
-
-      expect(_.keys(el.children$).length).toBe(2)
-      expect(el.children$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
-      expect(el.children$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
-      expect(el.children$[0].schema.key).toStrictEqual(0)
-      expect(el.children$[1].schema.key).toStrictEqual(2)
-
-      expect(el.instances.length).toBe(2)
-      expect(el.instances[0].key).toBe(0)
-      expect(el.instances[1].key).toBe(2)
+      expect(el.value).toStrictEqual([
+        replacePrototypeValue(options.childValues[i], 0),
+        replacePrototypeValue(options.childValues[i], 2),
+      ])
     })
   })
 
-  it('should `remove` multiple children', async () => {
+  it('should trigger "remove" event before a child is being removed on `remove`', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
+      let onRemoveMock = jest.fn()
+
       let form = createForm({
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            initial: 0,
+            default: [
+              replacePrototypeValue(options.childValues[i], 0),
+              replacePrototypeValue(options.childValues[i], 1),
+              replacePrototypeValue(options.childValues[i], 2),
+            ],
+            onRemove: onRemoveMock,
           }, prototype)
         }
       })
 
       let el = form.vm.el$('el')
 
-      el.add(replacePrototypeValue(options.childValues[i], 0))
-      el.add(replacePrototypeValue(options.childValues[i], 1))
-      el.add(replacePrototypeValue(options.childValues[i], 2))
-      el.add(replacePrototypeValue(options.childValues[i], 3))
-      el.add(replacePrototypeValue(options.childValues[i], 4))
+      await nextTick()
+
+      let child$ = el.children$[1]
 
       await nextTick()
 
-      expect(el.child$.length).toBe(5)
-
-      el.remove(3)
       el.remove(1)
-      
-      await nextTick()
 
-      // @todo
-      // expect(el.child$.length).toBe(3)
-      expect(el.child$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
-      expect(el.child$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
-      expect(el.child$[2].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 4))
-      expect(el.child$[0].schema.key).toStrictEqual(0)
-      expect(el.child$[1].schema.key).toStrictEqual(2)
-      expect(el.child$[2].schema.key).toStrictEqual(4)
-
-      // expect(_.keys(el.children$).length).toBe(3)
-      expect(el.children$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
-      expect(el.children$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
-      expect(el.children$[2].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 4))
-      expect(el.children$[0].schema.key).toStrictEqual(0)
-      expect(el.children$[1].schema.key).toStrictEqual(2)
-      expect(el.children$[2].schema.key).toStrictEqual(4)
-
-      expect(el.instances.length).toBe(3)
-      expect(el.instances[0].key).toBe(0)
-      expect(el.instances[1].key).toBe(2)
-      expect(el.instances[2].key).toBe(4)
+      expect(onRemoveMock).toHaveBeenCalledWith(child$, 1)
     })
   })
 
-  it('should `remove` with and without "triggerChange", "shouldValidate" and "shouldDirt"', async () => {
+  it('should trigger "updated" when a child has been removed on `remove` on next tick', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
-      let onChangeMock = jest.fn()
-
       let form = createForm({
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            rules: 'required',
-            initial: 1,
-            onChange: onChangeMock,
+            default: [
+              replacePrototypeValue(options.childValues[i], 0),
+              replacePrototypeValue(options.childValues[i], 1),
+              replacePrototypeValue(options.childValues[i], 2),
+            ],
           }, prototype)
         }
       })
 
       let el = form.vm.el$('el')
 
-      expect(el.validated).toBe(false)
+      await nextTick()
+
       expect(el.dirty).toBe(false)
 
-      el.remove(0 /*true, true, true*/)
+      el.remove(1)
 
-      await flushPromises()
       await nextTick()
-
-      expect(onChangeMock).toHaveBeenCalledTimes(1)
-      expect(el.validated).toBe(true)
+      
       expect(el.dirty).toBe(true)
-
-      el.add(null, false, false, false)
-      el.state.validated = false
-      el.state.dirty = false
-
-      el.remove(0, false, false, false)
-
-      await flushPromises()
-      await nextTick()
-
-      expect(onChangeMock).toHaveBeenCalledTimes(1)
-      expect(el.validated).toBe(false)
-      expect(el.dirty).toBe(false)
     })
   })
 
-  it('should refresh order store if object and has "storeOrder" on remove', async () => {
+  it('should refresh order store when a child has been removed on `remove` on next tick when using object', async () => {
     let form = createForm({
       schema: {
         el: Object.assign({}, {
@@ -771,9 +584,9 @@ export const remove = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.add()
-    el.add()
-    el.add()
+    el.insert()
+    el.insert()
+    el.insert()
 
     await nextTick()
 
@@ -781,161 +594,379 @@ export const remove = function (elementType, elementName, options) {
 
     await nextTick()
 
+    let child0 = form.vm.el$('el.0')
+    let child1 = form.vm.el$('el.1')
     let order0 = form.vm.el$('el.0.order')
     let order1 = form.vm.el$('el.1.order')
 
-    expect(order0.value).toBe(1)
-    // @todo: after value
+    // @todo: after children$ fix
+    // expect(order0.value).toBe(1)
     // expect(order1.value).toBe(2)
+    // expect(child0.schema.key).toBe(0)
+    // expect(child1.schema.key).toBe(2)
   })
 }
 
 export const load = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  it('should unload on `load` if load value is undefined', async () => {
+  it('should load data to children if provided value is not "undefined" on `load`', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
             type: elementType,
+            initial: 0,
           }, prototype)
         }
       })
 
       let el = form.vm.el$('el')
 
-      el.update([options.childValues[i]])
+      await nextTick()
 
-      expect(el.instances.length).toBe(1)
+      let values = [
+        replacePrototypeValue(options.childValues[i], 0),
+        replacePrototypeValue(options.childValues[i], 1),
+        replacePrototypeValue(options.childValues[i], 2),
+      ]
+      
+      el.load(values)
 
-      el.load(undefined)
+      expect(el.instances.length).toBe(3)
 
-      expect(el.instances.length).toBe(0)
+      await nextTick()
+
+      expect(el.value).toStrictEqual(values)
+      expect(el.dirty).toBe(false)
     })
   })
 
-  it('should unload on `load` if not available', async () => {
+  it('should should format data if "formatData" is "true" on `load`', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 0,
+            formatLoad(value) {
+              elFormatLoadMock()
+
+              return value
+            }
+          }, prototypeAddChildOptions(prototype, {
+            formatLoad(value) {
+              childFormatLoadMock()
+
+              return value
+            }
+          }))
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+
+      let values = [
+        replacePrototypeValue(options.childValues[i], 0),
+        replacePrototypeValue(options.childValues[i], 1),
+        replacePrototypeValue(options.childValues[i], 2),
+      ]
+      
+      el.load(values)
+
+      expect(el.instances.length).toBe(3)
+
+      await nextTick()
+
+      expect(el.value).toStrictEqual(values)
+    })
+  })
+
+  it('should null value if value is "undefined" on `load`', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 0,
+            default: [
+              replacePrototypeValue(options.childValues[i], 0),
+              replacePrototypeValue(options.childValues[i], 1),
+              replacePrototypeValue(options.childValues[i], 2),
+            ]
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+
+      el.load(undefined)
+
+      await nextTick()
+
+      // @todo: after children$ fix
+      // expect(el.value).toStrictEqual([])
+    })
+  })
+
+  it('should order value on `load` if "order" is not "null" when object', async () => {
+    let form = createForm({
+      schema: {
+        el: Object.assign({}, {
+          type: elementType,
+          initial: 0,
+          storeOrder: 'order',
+          order: 'ASC',
+        }, prototypeAddOptions(prototypes[1], {
+          order: {
+            type: 'text'
+          }
+        }))
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    await nextTick()
+
+    el.load([
+      {
+        order: 3
+      },
+      {
+        order: 2
+      },
+      {
+        order: 4
+      },
+    ])
+
+    await nextTick()
+
+    expect(el.value).toStrictEqual([
+      Object.assign({}, options.childNulls[1], {
+        order: 2
+      }),
+      Object.assign({}, options.childNulls[1], {
+        order: 3
+      }),
+      Object.assign({}, options.childNulls[1], {
+        order: 4
+      }),
+    ])
+  })
+
+  it('should order value on `load` if "order" is not "null" when element', async () => {
+    let form = createForm({
+      schema: {
+        el: Object.assign({}, {
+          type: elementType,
+          initial: 0,
+          order: 'DESC',
+        }, prototypes[0])
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    await nextTick()
+
+    el.load([3,2,4])
+
+    await nextTick()
+
+    expect(el.value).toStrictEqual([4,3,2])
+  })
+}
+
+export const update = function (elementType, elementName, options) {
+  const prototypes = options.prototypes
+
+  it('should update children on `update`', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 0,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+
+      let values = [
+        replacePrototypeValue(options.childValues[i], 0),
+        replacePrototypeValue(options.childValues[i], 1),
+        replacePrototypeValue(options.childValues[i], 2),
+      ]
+      
+      el.update(values)
+
+      expect(el.instances.length).toBe(3)
+
+      await nextTick()
+
+      expect(el.value).toStrictEqual(values)
+    })
+  })
+
+  it('should trigger updated on `update` on next tick', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 0,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+      
+      el.update([
+        replacePrototypeValue(options.childValues[i], 0),
+      ])
+
+      await nextTick()
+
+      expect(el.dirty).toBe(true)
+    })
+  })
+}
+
+export const clear = function (elementType, elementName, options) {
+  const prototypes = options.prototypes
+
+  it('should clear children on `clear`', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
             type: elementType,
             initial: 3,
-            conditions: [
-              ['el2', 'value2']
-            ]
-          }, prototype),
-          el2: {
-            type: 'text',
-          }
+          }, prototype)
         }
       })
 
       let el = form.vm.el$('el')
 
-      expect(el.instances.length).toBe(3)
-
-      el.load([
-        replacePrototypeValue(options.childValues[i], 0),
-        replacePrototypeValue(options.childValues[i], 1),
-      ])
-
       await nextTick()
+      
+      el.clear()
 
       expect(el.instances.length).toBe(0)
     })
   })
 
-  it('should `load` if available', async () => {
+  it('should trigger updated on `clear` on next tick', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
             type: elementType,
+            initial: 3,
           }, prototype)
         }
       })
 
       let el = form.vm.el$('el')
 
-      el.load([
-        replacePrototypeValue(options.childValues[i], 0),
-        replacePrototypeValue(options.childValues[i], 1),
-      ])
+      await nextTick()
+      
+      el.clear()
 
       await nextTick()
 
-      let child0 = form.vm.el$('el.0')
-      let child1 = form.vm.el$('el.1')
-
-      expect(child0.value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
-      expect(child1.value).toStrictEqual(replacePrototypeValue(options.childValues[i], 1))
-    })
-  })
-
-  it('should `load` with and without "triggerChange", "shouldValidate", "shouldDirt" and "format"', async () => {
-    await asyncForEach(prototypes, async (prototype, i) => {
-      let onChangeMock = jest.fn()
-      let formatLoadMock = jest.fn()
-
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            rules: 'required',
-            onChange: onChangeMock,
-            formatLoad() {
-              formatLoadMock()
-            }
-          }, prototype)
-        }
-      })
-
-      let el = form.vm.el$('el')
-
-      el.load([
-        replacePrototypeValue(options.childValues[i], 0),
-        replacePrototypeValue(options.childValues[i], 1),
-      ] /*false, false, false, false*/)
-
-      await flushPromises()
-      await nextTick()
-
-      expect(onChangeMock).not.toHaveBeenCalled()
-      expect(formatLoadMock).not.toHaveBeenCalled()
-      expect(el.dirty).toBe(false)
-      expect(el.state.validated).toBe(false)
-
-      el.load([
-        replacePrototypeValue(options.childValues[i], 0),
-        replacePrototypeValue(options.childValues[i], 1),
-      ], true, true, true, true)
-
-      await flushPromises()
-      await nextTick()
-
-      expect(onChangeMock).toHaveBeenCalledTimes(1)
-      expect(formatLoadMock).toHaveBeenCalledTimes(1)
       expect(el.dirty).toBe(true)
-      expect(el.state.validated).toBe(true)
+    })
+  })
+}
+
+export const reset = function (elementType, elementName, options) {
+  const prototypes = options.prototypes
+
+  it('should set default instances on `reset`', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 3,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+
+      el.add()
+      el.add()
+      
+      el.reset()
+
+      await nextTick()
+
+      expect(el.instances.length).toBe(3)
     })
   })
 
-  it('should sort data by ASC on `load` with "element" type if "order" is "true"', async () => {
+  it('should trigger "change" event on `reset` if value changed', async () => {
+    let onChangeMock = jest.fn()
+
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 3,
+            onChange: onChangeMock,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+
+      el.add()
+      el.add()
+      
+      el.reset()
+
+      await nextTick()
+
+      expect(onChangeMock).toHaveBeenCalled()
+    })
+  })
+}
+
+export const orderValue = function (elementType, elementName, options) {
+  const prototypes = options.prototypes
+
+  it('should `orderValue` "ASC" if "order" is "ASC" using single element', async () => {
     let form = createForm({
       schema: {
-        el: {
+        el: Object.assign({}, {
           type: elementType,
-          order: true,
-          element: {
-            type: 'text'
-          }
-        }
+          initial: 0,
+          order: 'ASC',
+        }, prototypes[0])
       }
     })
 
     let el = form.vm.el$('el')
+
+    await nextTick()
 
     el.load([3,2,4])
 
@@ -944,20 +975,20 @@ export const load = function (elementType, elementName, options) {
     expect(el.value).toStrictEqual([2,3,4])
   })
 
-  it('should sort data by DESC on `load` with "element" type if "order" is "DESC"', async () => {
+  it('should `orderValue` "DESC" if "order" is "DESC" using single element', async () => {
     let form = createForm({
       schema: {
-        el: {
+        el: Object.assign({}, {
           type: elementType,
+          initial: 0,
           order: 'DESC',
-          element: {
-            type: 'text'
-          }
-        }
+        }, prototypes[0])
       }
     })
 
     let el = form.vm.el$('el')
+
+    await nextTick()
 
     el.load([3,2,4])
 
@@ -966,62 +997,34 @@ export const load = function (elementType, elementName, options) {
     expect(el.value).toStrictEqual([4,3,2])
   })
 
-  it('should sort data by DESC on `load` with "element" type if "order" is "desc"', async () => {
+  it('should `orderValue` by "orderBy" "ASC" if "orderBy" is defined using object element', async () => {
     let form = createForm({
       schema: {
-        el: {
+        el: Object.assign({}, {
           type: elementType,
-          order: 'desc',
-          element: {
+          initial: 0,
+          orderBy: 'order',
+          order: 'ASC',
+        }, prototypeAddOptions(prototypes[1], {
+          order: {
             type: 'text'
           }
-        }
+        }))
       }
     })
 
     let el = form.vm.el$('el')
-
-    el.load([3,2,4])
 
     await nextTick()
 
-    expect(el.value).toStrictEqual([4,3,2])
-  })
-
-  it('should sort data ASC on `load` with "object" type if "order" is "true" and "orderBy" is defined', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          order: true,
-          orderBy: 'order',
-          object: {
-            schema: {
-              child: {
-                type: 'text',
-              },
-              order: {
-                type: 'text',
-              },
-            }
-          }
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
     el.load([
       {
-        child: 'value3',
         order: 3
       },
       {
-        child: 'value2',
         order: 2
       },
       {
-        child: 'value4',
         order: 4
       },
     ])
@@ -1029,55 +1032,46 @@ export const load = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.value).toStrictEqual([
-      {
-        child: 'value2',
+      Object.assign({}, options.childNulls[1], {
         order: 2
-      },
-      {
-        child: 'value3',
+      }),
+      Object.assign({}, options.childNulls[1], {
         order: 3
-      },
-      {
-        child: 'value4',
+      }),
+      Object.assign({}, options.childNulls[1], {
         order: 4
-      },
+      }),
     ])
   })
 
-  it('should sort data DESC on `load` with "object" type if "order" is "DESC" and "orderBy" is defined', async () => {
+  it('should `orderValue` by "orderBy" "DESC" if "orderBy" is defined and "order" is "DESC" using object element', async () => {
     let form = createForm({
       schema: {
-        el: {
+        el: Object.assign({}, {
           type: elementType,
+          initial: 0,
+          orderBy: 'order',
           order: 'DESC',
-          orderBy: 'order',
-          object: {
-            schema: {
-              child: {
-                type: 'text',
-              },
-              order: {
-                type: 'text',
-              },
-            }
+        }, prototypeAddOptions(prototypes[1], {
+          order: {
+            type: 'text'
           }
-        }
+        }))
       }
     })
 
     let el = form.vm.el$('el')
 
+    await nextTick()
+
     el.load([
       {
-        child: 'value3',
         order: 3
       },
       {
-        child: 'value2',
         order: 2
       },
       {
-        child: 'value4',
         order: 4
       },
     ])
@@ -1085,235 +1079,281 @@ export const load = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.value).toStrictEqual([
-      {
-        child: 'value4',
+      Object.assign({}, options.childNulls[1], {
         order: 4
-      },
-      {
-        child: 'value3',
+      }),
+      Object.assign({}, options.childNulls[1], {
         order: 3
-      },
-      {
-        child: 'value2',
+      }),
+      Object.assign({}, options.childNulls[1], {
         order: 2
-      },
-    ])
-  })
-
-  it('should sort data DESC on `load` with "object" type if "order" is "desc" and "orderBy" is defined', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          order: 'desc',
-          orderBy: 'order',
-          object: {
-            schema: {
-              child: {
-                type: 'text',
-              },
-              order: {
-                type: 'text',
-              },
-            }
-          }
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.load([
-      {
-        child: 'value3',
-        order: 3
-      },
-      {
-        child: 'value2',
-        order: 2
-      },
-      {
-        child: 'value4',
-        order: 4
-      },
-    ])
-
-    await nextTick()
-
-    expect(el.value).toStrictEqual([
-      {
-        child: 'value4',
-        order: 4
-      },
-      {
-        child: 'value3',
-        order: 3
-      },
-      {
-        child: 'value2',
-        order: 2
-      },
+      }),
     ])
   })
 }
 
-export const unload = function (elementType, elementName, options) {
+export const updated = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  // it('should clear and reset validators on `unload` & remove dirty state afterwards', async () => {
-  //   await asyncForEach(prototypes, async (prototype, i) => {
-  //     let form = createForm({
-  //       schema: {
-  //         el: Object.assign({}, {
-  //           type: elementType,
-  //           default: [
-  //             replacePrototypeValue(options.childValues[i], 0),
-  //             replacePrototypeValue(options.childValues[i], 1),
-  //           ],
-  //           rules: 'required'
-  //         }, prototype)
-  //       }
-  //     })
-
-  //     let el = form.vm.el$('el')
-
-  //     el.dirt()
-  //     el.validate()
-
-  //     await flushPromises()
-
-  //     expect(el.validated).toBe(true)
-  //     expect(el.dirty).toBe(true)
-  //     expect(el.instances.length).toBe(2)
-
-  //     el.unload()
-
-  //     await nextTick()
-
-  //     expect(el.instances.length).toBe(0)
-  //     expect(el.validated).toBe(false)
-  //     expect(el.dirty).toBe(false)
-  //   })
-  // })
-}
-
-export const update = function (elementType, elementName, options) {
-  const prototypes = options.prototypes
-
-  it('should `update` children', async () => {
+  it('should dirt element on `updated` if value changed', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            initial: 2,
+            initial: 3,
           }, prototype)
         }
       })
 
       let el = form.vm.el$('el')
-
-      el.update([options.childValues[i]])
-
-      expect(el.value).toStrictEqual([
-        options.childValues[i],
-        options.childNulls[i],
-      ])
-    })
-  })
-}
-
-export const reset = function (elementType, elementName, options) {
-  const prototypes = options.prototypes
-
-  it('should `reset` to initial instances', async () => {
-    await asyncForEach(prototypes, async (prototype, i) => {
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 1,
-          }, prototype)
-        }
-      })
-
-      let el = form.vm.el$('el')
-      
-      el.add()
-      el.add()
-
-      expect(el.instances.length).toBe(3)
-
-      el.reset()
 
       await nextTick()
-      
+
+      el.previousValue = options.childNulls[i]
+      el.currentValue = options.childValues[i]
+
+      el.updated()
+
+      expect(el.dirty).toBe(true)
+    })
+  })
+
+  it('should not dirt element on `updated` if value has not changed', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 3,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+
+      el.previousValue = options.childValues[i]
+      el.currentValue = options.childValues[i]
+
+      el.updated()
+
+      expect(el.dirty).toBe(false)
+    })
+  })
+
+  it('should trigger "change" event on `updated` if value changed', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let onChangeMock = jest.fn()
+
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 3,
+            onChange: onChangeMock,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+
+      el.previousValue = options.childNulls[i]
+      el.currentValue = options.childValues[i]
+
+      el.updated()
+
+      expect(onChangeMock).toHaveBeenCalledWith(options.childValues[i], options.childNulls[i])
+    })
+  })
+
+  it('should not trigger "change" event on `updated` if value has not changed', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let onChangeMock = jest.fn()
+
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 3,
+            onChange: onChangeMock,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+
+      el.previousValue = options.childValues[i]
+      el.currentValue = options.childValues[i]
+
+      el.updated()
+
+      expect(onChangeMock).not.toHaveBeenCalled()
+    })
+  })
+
+  it('should validate validators only on `updated` if "validateOn" contains "change"', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        validateOn: 'submit|change',
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 3,
+            rules: 'required',
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+
+      el.updated()
+
+      await flushPromises()
+
+      expect(el.validated).toBe(true)
+    })
+  })
+
+  it('should not validate validators on `updated` if "validateOn" does not contain "change"', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        validateOn: 'submit',
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 3,
+            rules: 'required',
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+
+      el.updated()
+
+      await flushPromises()
+
+      expect(el.validated).toBe(false)
+    })
+  })
+}
+
+export const handleAdd = function (elementType, elementName, options) {
+  const prototypes = options.prototypes
+
+  it('should trigger add on `handleAdd` if not disabled', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 0,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+
+      el.handleAdd()
+
+      expect(el.instances.length).toBe(1)
+
+      el.disabled = true
+
+      el.handleAdd()
+
       expect(el.instances.length).toBe(1)
     })
   })
 
-  it('should `reset` to default instances', async () => {
+  it('should trigger add on `handleAdd` when clicking "Add" button', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            default: [
-              replacePrototypeValue(options.childValues[i], 0),
-              replacePrototypeValue(options.childValues[i], 1),
-            ]
+            initial: 0,
           }, prototype)
         }
       })
 
       let el = form.vm.el$('el')
-      
-      el.add()
-      el.add()
-
-      expect(el.instances.length).toBe(4)
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
       await nextTick()
 
-      el.reset()
+      elWrapper.find(`.${el.defaultClasses.add}`).trigger('click')
 
-      await nextTick()
-      
-      expect(el.instances.length).toBe(2)
-      expect(el.child$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
-      expect(el.child$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 1))
+      expect(el.instances.length).toBe(1)
     })
   })
 }
 
-export const clear = function (elementType, elementName, options) {
+export const handleRemove = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  it('should clear instance on `clear`', async () => {
+  it('should trigger remove on `handleRemove` if not disabled', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            initial: 1,
+            initial: 3,
           }, prototype)
         }
       })
 
       let el = form.vm.el$('el')
-      
-      el.clear()
-      
-      expect(el.instances.length).toBe(0)
 
-      // await nextTick()
-      
-      // @todo
-      // expect(el.child$.length).toBe(0)
-      // expect(_.keys(el.children$).length).toBe(0)
+      await nextTick()
+
+      el.handleRemove(1)
+
+      expect(el.instances.length).toBe(2)
+
+      el.disabled = true
+
+      el.handleRemove(1)
+
+      expect(el.instances.length).toBe(2)
+    })
+  })
+
+  it('should trigger add on `handleAdd` when clicking "Add" button', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            initial: 3,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+
+      await nextTick()
+
+      elWrapper.find(`.${el.defaultClasses.remove}`).trigger('click')
+
+      expect(el.instances.length).toBe(2)
     })
   })
 }
+
 export const setInitialInstances = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 

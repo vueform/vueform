@@ -184,7 +184,7 @@ export const pending = function (elementType, elementName, options) {
     expect(el.pending).toBe(true)
 
     await flushPromises()
-
+    
     expect(el.pending).toBe(false)
   })
 }

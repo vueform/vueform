@@ -1,7 +1,8 @@
+import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
 
 export const handleInput = function (elementType, elementName, options) {
-  it('should dirt the element on if input value is different than the current', () => {
+  it('should dirt the element if input value is different than the current', () => {
     let form = createForm({
       schema: {
         el: {
@@ -52,7 +53,6 @@ export const handleInput = function (elementType, elementName, options) {
       }
     })
 
-    let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
     elWrapper.get('input').setValue('value')
@@ -72,13 +72,41 @@ export const handleInput = function (elementType, elementName, options) {
         }
       }
     })
+    
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+
+    elWrapper.get('input').setValue('value')
+
+    expect(onChangeMock).not.toHaveBeenCalled()
+  })
+
+  it('should trigger validation on if validateOn contains "change"', async () => {
+    let form = createForm({
+      validateOn: 'submit',
+      schema: {
+        el: {
+          type: elementType,
+          rules: 'required',
+        }
+      }
+    })
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
     elWrapper.get('input').setValue('value')
 
-    expect(onChangeMock).not.toHaveBeenCalled()
+    await flushPromises()
+
+    expect(el.validated).toBe(false)
+
+    form.vm.validateOn = 'submit|change'
+
+    elWrapper.get('input').setValue('value2')
+
+    await flushPromises()
+
+    expect(el.validated).toBe(true)
   })
 }
 

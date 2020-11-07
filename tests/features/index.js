@@ -24,9 +24,7 @@ import empty from './empty'
 import events from './events'
 import floating from './floating'
 import form$ from './form$'
-import handleChange from './handleChange'
 import handleInput from './handleInput'
-import handleKeyup from './handleKeyup'
 import id from './id'
 import info from './info'
 import input from './input'
@@ -35,11 +33,13 @@ import label from './label'
 import layout from './layout'
 import nullValue from './nullValue'
 import nullValueArray from './nullValueArray'
+import order from './order'
 import path from './path'
 import pathGroup from './pathGroup'
 import placeholder from './placeholder'
 import readonly from './readonly'
 import slots from './slots'
+import sort from './sort'
 import theme from './theme'
 import validation from './validation'
 import validationGroup from './validationGroup'
@@ -77,9 +77,7 @@ export default {
   events,
   floating,
   form$,
-  handleChange,
   handleInput,
-  handleKeyup,
   id,
   info,
   input,
@@ -88,11 +86,13 @@ export default {
   layout,
   nullValue,
   nullValueArray,
+  order,
   path,
   pathGroup,
   placeholder,
   readonly,
   slots,
+  sort,
   theme,
   validation,
   validationGroup,

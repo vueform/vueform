@@ -66,6 +66,7 @@ export default {
       acceptedExtensions: 'Accepted extenions are: :extensions',
     },
   },
+  defaultMessage: 'Invalid field',
   validation: {
     accepted: 'The :attribute must be accepted.',
     active_url: 'The :attribute is not a valid URL.',

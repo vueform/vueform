@@ -1,7 +1,7 @@
 import { nextTick } from 'vue'
 import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
 import flushPromises from 'flush-promises'
-import { FileWatcherEventKind } from 'typescript'
+import { FileWatcherEventKind, isExportDeclaration } from 'typescript'
 
 export const nullValue = function (elementType, elementName) {
   it('should have "null" as `nullValue`', () => {
@@ -141,74 +141,41 @@ export const filtered = function (elementType, elementName) {
 }
 
 export const load = function (elementType, elementName) {
-  it('should `load` data with and without "triggerChange", "shouldValidate", "shouldDirt" and "format" params', async () => {
-    let onChangeMock = jest.fn()
-
+  it('should set value if provided value is not "undefined" on `load`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          rules: 'required',
-          formatLoad(val) {
-            return `${val}-formatted`
-          },
-          onChange: onChangeMock,
-        },
+        }
       }
     })
 
     let el = form.vm.el$('el')
 
     el.load('value')
-
     expect(el.value).toBe('value')
+
+    el.load(null)
+    expect(el.value).toBe(null)
+
+    el.load(0)
+    expect(el.value).toBe(0)
+
+    el.load('')
+    expect(el.value).toBe('')
+
     expect(el.dirty).toBe(false)
-    expect(el.validated).toBe(false)
-    expect(onChangeMock).not.toHaveBeenCalled()
-
-    el.load('value2', true)
-
-    expect(el.value).toBe('value2')
-    expect(el.dirty).toBe(false)
-    expect(el.validated).toBe(false)
-    expect(onChangeMock).toHaveBeenCalled()
-
-    el.load('value3', false, true)
-
-    await flushPromises()
-    
-    expect(el.value).toBe('value3')
-    expect(el.dirty).toBe(false)
-    expect(el.validated).toBe(true)
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
-
-    el.state.validated = false
-    el.load('value4', false, false, true)
-    
-    expect(el.value).toBe('value4')
-    expect(el.dirty).toBe(true)
-    expect(el.validated).toBe(false)
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
-
-    el.state.dirty = false
-    el.load('value5', false, false, false, true)
-    
-    expect(el.value).toBe('value5-formatted')
-    expect(el.dirty).toBe(false)
-    expect(el.validated).toBe(false)
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
   })
 
-  it('should `load` only trigger "change" event if the value has changed', async () => {
-    let onChangeMock = jest.fn()
-
+  it('should should format data if "formatData" is "true" on `load`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          default: 'value',
-          onChange: onChangeMock,
-        },
+          formatLoad(value) {
+            return `${value}-formatted`
+          }
+        }
       }
     })
 
@@ -216,238 +183,49 @@ export const load = function (elementType, elementName) {
 
     el.load('value', true)
 
-    expect(onChangeMock).not.toHaveBeenCalled()
-
-    el.load('value2', true)
-
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
+    expect(el.value).toBe('value-formatted')
   })
 
-  it('should `load` only "dirt" if the value has changed', async () => {
+  it('should set value to null if value is "undefined" on `load`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           default: 'value',
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.load('value', false, false, true)
-
-    expect(el.dirty).toBe(false)
-
-    el.load('value2', false, false, true)
-
-    expect(el.dirty).toBe(true)
-  })
-
-  it('should unload when element data is not present in the `load` object', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          default: 'value',
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.value).toBe('value')
-
-    el.load(undefined)
-
-    expect(el.value).toBe(el.nullValue)
-  })
-
-  it('should unload when element data is present in the `load` object, but not available', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          default: 'value',
-          conditions: [
-            ['el2', 'value2']
-          ]
-        },
-        el2: {
-          type: 'text',
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.value).toBe('value')
-    
-    el.load('value')
+    el.load(undefined)
 
     expect(el.value).toBe(el.nullValue)
-  })
-
-  it('should pass over "triggerChange", "shouldValidate" and "shouldDirt" params to unload when triggered on `load`', async () => {
-    let onChangeMock = jest.fn()
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          default: 'value',
-          rules: 'required',
-          formatLoad(val) {
-            return `${val}-formatted`
-          },
-          onChange: onChangeMock,
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-    
-    el.load(undefined, true, true, true)
-
-    await flushPromises()
-
-    expect(el.value).toBe(el.nullValue)
-    expect(el.validated).toBe(true)
-    expect(el.dirty).toBe(true)
-    expect(onChangeMock).toHaveBeenCalled()
-  })
-
-  it('should `load` ""', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.load('')
-
-    expect(el.value).toBe('')
-  })
-
-  it('should `load` "0"', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.load(0)
-
-    expect(el.value).toBe(0)
-  })
-
-  it('should `load` "null"', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          default: 'value'
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.load(null)
-
-    expect(el.value).toBe(null)
-  })
-}
-
-export const unload = function (elementType, elementName) {
-  it('should `unload` with and without "triggerChange", "shouldValidate" and "shouldDirt" params', async () => {
-    let onChangeMock = jest.fn()
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          default: 'value',
-          rules: 'required',
-          onChange: onChangeMock,
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.value).toBe('value')
-    expect(el.validated).toBe(false)
-    expect(el.dirty).toBe(false)
-    expect(onChangeMock).not.toHaveBeenCalled()
-
-    el.unload(true)
-
-    expect(el.validated).toBe(false)
-    expect(el.dirty).toBe(false)
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
-
-    el.unload(false, true)
-
-    await flushPromises()
-
-    expect(el.validated).toBe(true)
-    expect(el.dirty).toBe(false)
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
-
-    el.state.validated = false
-    el.update('value', false, false, false)
-    el.unload(false, false, true)
-
-    expect(el.validated).toBe(false)
-    expect(el.dirty).toBe(true)
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
-  })
-
-  it('should `unload` reset validators if "shouldValidate" is false', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          rules: 'required',
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.validate()
-
-    await flushPromises()
-
-    expect(el.validated).toBe(true)
-
-    el.unload()
-
-    expect(el.validated).toBe(false)
   })
 }
 
 export const update = function (elementType, elementName) {
-  it('should `update` with and without "triggerChange", "shouldValidate" and "shouldDirt" params', async () => {
-    const onChangeMock = jest.fn()
-
+  it('should set value to provided value `update`', async () => {
     let form = createForm({
-      validateOn: 'change|submit',
       schema: {
         el: {
           type: elementType,
-          onChange: onChangeMock,
-          rules: 'required',
-        },
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.update('value')
+    expect(el.value).toBe('value')
+  })
+
+  it('should trigger "updated" on `update`', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
       }
     })
 
@@ -455,195 +233,73 @@ export const update = function (elementType, elementName) {
 
     el.update('value')
 
-    await flushPromises()
-
-    expect(el.value).toBe('value')
     expect(el.dirty).toBe(true)
-    expect(el.validated).toBe(true)
-    expect(onChangeMock).toHaveBeenCalled()
-
-    el.state.dirty = false
-    el.state.validated = false
-    el.update('value2', false)
-
-    await flushPromises()
-
-    expect(el.value).toBe('value2')
-    expect(el.dirty).toBe(true)
-    expect(el.validated).toBe(true)
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
-
-    el.state.dirty = false
-    el.state.validated = false
-    el.update('value3', false, false)
-
-    await flushPromises()
-
-    expect(el.value).toBe('value3')
-    expect(el.dirty).toBe(true)
-    expect(el.validated).toBe(false)
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
-
-    el.state.dirty = false
-    el.state.validated = false
-    el.update('value4', false, false, false)
-
-    await flushPromises()
-
-    expect(el.value).toBe('value4')
-    expect(el.dirty).toBe(false)
-    expect(el.validated).toBe(false)
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
   })
+}
 
-  it('should `update` only trigger "change" event if the value has changed', async () => {
-    let onChangeMock = jest.fn()
-
+export const clear = function (elementType, elementName) {
+  it('should set value to null on `clear`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           default: 'value',
-          onChange: onChangeMock,
-        },
+        }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.update('value', true)
+    el.clear()
 
-    expect(onChangeMock).not.toHaveBeenCalled()
-
-    el.update('value2', true)
-
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
+    expect(el.value).toBe(el.nullValue)
   })
 
-  it('should `update` only "dirt" if the value has changed', async () => {
+  it('should trigger "updated" on `clear`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           default: 'value',
-        },
+        }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.update('value', false, false, true)
-
-    expect(el.dirty).toBe(false)
-
-    el.update('value2', false, false, true)
+    el.clear()
 
     expect(el.dirty).toBe(true)
-  })
-
-  it('should `update` only validate if validateOn has "change" by default', async () => {
-    let form = createForm({
-      validateOn: 'submit',
-      schema: {
-        el: {
-          type: elementType,
-          default: 'value',
-          rules: 'required',
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.update('value2')
-
-    await flushPromises()
-
-    expect(el.validated).toBe(false)
-
-    el.form$.validateOn = 'submit|change'
-
-    el.update('value3')
-
-    await flushPromises()
-
-    expect(el.validated).toBe(true)
   })
 }
 
 export const reset = function (elementType, elementName) {
-  it('should `reset` set value to default', async () => {
+  it('should set value to default on `reset`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          rules: 'required',
           default: 'value',
-        },
+        }
       }
     })
 
     let el = form.vm.el$('el')
 
     el.update('value2')
+
     el.reset()
 
-    expect(el.value).toBe('value')
+    expect(el.value).toBe(el.default)
   })
 
-  it('should `reset` trigger change by default only if value changed', async () => {
-    let onChangeMock = jest.fn()
-
+  it('should reset validators on `reset`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          default: 'value',
-          onChange: onChangeMock,
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.reset()
-
-    expect(onChangeMock).not.toHaveBeenCalled()
-
-    el.update('value2', false)
-    el.reset()
-
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
-  })
-
-  it('should `reset` not trigger change if triggerChange is "false"', async () => {
-    let onChangeMock = jest.fn()
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          default: 'value',
-          onChange: onChangeMock,
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.update('value2', false)
-    el.reset(false)
-
-    expect(onChangeMock).not.toHaveBeenCalled()
-  })
-
-  it('should `reset` reset validators', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          rules: 'required',
-        },
+          rules: 'required'
+        }
       }
     })
 
@@ -652,80 +308,14 @@ export const reset = function (elementType, elementName) {
     el.validate()
 
     await flushPromises()
-    
-    expect(el.validated).toBe(true)
 
     el.reset()
 
     expect(el.validated).toBe(false)
-  })
-}
-
-export const clear = function (elementType, elementName) {
-  it('should `clear` with and without "triggerChange", "shouldValidate" and "shouldDirt" params', async () => {
-    const onChangeMock = jest.fn()
-
-    let form = createForm({
-      validateOn: 'change|submit',
-      schema: {
-        el: {
-          type: elementType,
-          onChange: onChangeMock,
-          rules: 'required',
-          default: 'value'
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.clear()
-
-    await flushPromises()
-
-    expect(el.value).toBe(el.nullValue)
-    expect(el.dirty).toBe(true)
-    expect(el.validated).toBe(true)
-    expect(onChangeMock).toHaveBeenCalled()
-
-    el.update('value', false, false, false)
-    el.state.dirty = false
-    el.state.validated = false
-    el.clear(false)
-
-    await flushPromises()
-
-    expect(el.value).toBe(el.nullValue)
-    expect(el.dirty).toBe(true)
-    expect(el.validated).toBe(true)
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
-
-    el.update('value', false, false, false)
-    el.state.dirty = false
-    el.state.validated = false
-    el.clear(false, false)
-
-    await flushPromises()
-
-    expect(el.value).toBe(el.nullValue)
-    expect(el.dirty).toBe(true)
-    expect(el.validated).toBe(false)
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
-
-    el.update('value', false, false, false)
-    el.state.dirty = false
-    el.state.validated = false
-    el.clear(false, false, false)
-
-    await flushPromises()
-
-    expect(el.value).toBe(el.nullValue)
-    expect(el.dirty).toBe(false)
-    expect(el.validated).toBe(false)
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
+    expect(el.invalid).toBe(false)
   })
 
-  it('should `clear` only trigger "change" event if the value has changed', async () => {
+  it('should trigger "change" on `reset` if value changed', async () => {
     let onChangeMock = jest.fn()
 
     let form = createForm({
@@ -733,70 +323,159 @@ export const clear = function (elementType, elementName) {
         el: {
           type: elementType,
           onChange: onChangeMock,
-        },
+        }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.clear(true)
+    el.update('value')
+    el.reset()
 
-    expect(onChangeMock).not.toHaveBeenCalled()
-
-    el.update('value', false)
-    el.clear(true)
-
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
+    expect(onChangeMock).toHaveBeenCalledWith(el.default, 'value')
   })
 
-  it('should `update` only "dirt" if the value has changed', async () => {
+  it('should not trigger "change" on `reset` if value has not changed', async () => {
+    let onChangeMock = jest.fn()
+
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-        },
+          onChange: onChangeMock,
+        }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.clear(false, false, true)
+    el.reset()
 
-    expect(el.dirty).toBe(false)
+    expect(onChangeMock).not.toHaveBeenCalled()
+  })
+}
 
-    el.update('value', false, false, false)
-    el.clear(false, false, true)
+export const updated = function (elementType, elementName) {
+  it('should dirt element on `updated` if value changed', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.currentValue = 'value'
+    el.previousValue = null
+
+    el.updated()
 
     expect(el.dirty).toBe(true)
   })
 
-  it('should `clear` only validate if validateOn has "change" by default', async () => {
+  it('should not dirt element on `updated` if value has not changed', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.currentValue = 'value'
+    el.previousValue = 'value'
+
+    el.updated()
+
+    expect(el.dirty).toBe(false)
+  })
+
+  it('should trigger "change" event on `updated` if value changed', async () => {
+    let onChangeMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          onChange: onChangeMock,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.currentValue = 'value'
+    el.previousValue = null
+
+    el.updated()
+
+    expect(onChangeMock).toHaveBeenCalledWith('value', null)
+  })
+
+  it('should not trigger "change" event on `updated` if value has not changed', async () => {
+    let onChangeMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          onChange: onChangeMock,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.currentValue = 'value'
+    el.previousValue = 'value'
+
+    el.updated()
+
+    expect(onChangeMock).not.toHaveBeenCalled()
+  })
+
+  it('should validate element on `updated` if "validateOn" contains "change"', async () => {
+    let form = createForm({
+      validateOn: 'submit|change',
+      schema: {
+        el: {
+          type: elementType,
+          rules: 'required',
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.updated()
+
+    await flushPromises()
+
+    expect(el.validated).toBe(true)
+  })
+
+  it('should not validate element on `updated` if "validateOn" does not contain "change"', async () => {
     let form = createForm({
       validateOn: 'submit',
       schema: {
         el: {
           type: elementType,
-          default: 'value',
           rules: 'required',
-        },
+        }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.clear()
+    el.updated()
 
     await flushPromises()
 
     expect(el.validated).toBe(false)
-
-    el.form$.validateOn = 'submit|change'
-
-    el.clear()
-
-    await flushPromises()
-
-    expect(el.validated).toBe(true)
   })
 }
 

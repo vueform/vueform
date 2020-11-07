@@ -15,7 +15,7 @@ export default function useData(props, context, dependencies)
   const dirt = dependencies.dirt
   const resetValidators = dependencies.resetValidators
   const validate = dependencies.validate
-  const fireChange = dependencies.fireChange
+  const fire = dependencies.fire
   const default_ = dependencies.default
   const nullValue = dependencies.nullValue
 
@@ -69,81 +69,49 @@ export default function useData(props, context, dependencies)
     return data.value
   })
 
+  const changed = computed(() => {
+    return !_.isEqual(currentValue.value, previousValue.value)
+  })
+
   // =============== METHODS ===============
 
-  /**
-   * Loads data for element or clears the element if the element's key is not found in the `data` object.  Sets `dirty` to `false`.
-   *
-   * @param {object} data an object containing data for the element using its **name as key**
-   * @returns {void}
-   */
-  const load = (val, triggerChange = false, shouldValidate = false, shouldDirt = false, format = false) => {
+  const load = (val, format = false) => {
     let formatted = format ? formatLoad.value(val, form$.value) : val
 
-    if (!available.value || formatted === undefined) {
-      unload(triggerChange, shouldValidate, shouldDirt)
-    }
-    else {
-      update(formatted, triggerChange, shouldValidate, shouldDirt)
-    }
+    value.value = available.value && formatted !== undefined
+      ? formatted
+      : _.clone(nullValue.value)
   }
 
-  const unload = (triggerChange = false, shouldValidate = false, shouldDirt = false) => {
-    resetValidators()
-    clear(triggerChange, shouldValidate, shouldDirt)
-  }
-
-  /**
-   * Updates the element's value.
-   *
-   * @param {any} value the value to be set for the element
-   * @param {boolean} triggerChange whether the element should trigger `change` event
-   * @param {boolean} shouldValidate whether the element should be validated (default: `false`)
-   * @returns {void}
-   */
-  const update = (val, triggerChange = true, shouldValidate = form$.value.shouldValidateOnChange, shouldDirt = true) => {
+  const update = (val) => {
     value.value = val
-    handleUpdated(triggerChange, shouldValidate, shouldDirt)
+
+    updated()
   }
 
-  /**
-   * Clears the value of the element.
-   *
-   * @public
-   * @returns {void}
-   */
-  const clear = (triggerChange = true, shouldValidate = form$.value.shouldValidateOnChange, shouldDirt = true) => {
+  const clear = () => {
     value.value = _.clone(nullValue.value)
-    handleUpdated(triggerChange, shouldValidate, shouldDirt)
+
+    updated()
   }
 
-  /**
-   * Resets the element to it's default state.
-   *
-   * @public
-   * @returns {void}
-   */
-  const reset = (triggerChange = true) => {
+  const reset = () => {
     value.value = _.clone(default_.value)
+
     resetValidators()
 
-    if (triggerChange && !_.isEqual(currentValue.value, previousValue.value)) {
-      fireChange()
+    if (changed.value) {
+      fire('change', currentValue.value, previousValue.value)
     }
   }
 
-  const handleUpdated = (triggerChange, shouldValidate, shouldDirt) => {
-    if ((triggerChange || shouldDirt) && !_.isEqual(currentValue.value, previousValue.value)) {
-      if (shouldDirt) {
-        dirt()
-      }
-
-      if (triggerChange) {
-        fireChange()
-      }
+  const updated = () => {
+    if (changed.value) {
+      dirt()
+      fire('change', currentValue.value, previousValue.value)
     }
 
-    if (shouldValidate) {
+    if (form$.value.shouldValidateOnChange) {
       validate()
     }
   }
@@ -163,14 +131,14 @@ export default function useData(props, context, dependencies)
     formatData,
     formatLoad,
     submit,
+    changed,
 
     // Mehtods
     load,
-    unload,
     update,
+    updated,
     clear,
     reset,
     prepare,
-    handleUpdated,
   }
 }

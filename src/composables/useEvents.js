@@ -75,26 +75,12 @@ export default function useEvents(props, context, dependencies, options = {})
     })
   }
 
-  /**
-   * Creating dynamic `fire` methods in eg. `fireChange` format.
-   *
-   * @public
-   * @returns {void}
-   */
-  const fireMethods = {}
-
-  _.each(options.events, (params, evt) => {
-    fireMethods[`fire${_.upperFirst(evt)}`] = function() {
-      fire.apply(null, [evt].concat(params.length ? _.map(params, (param) => param.value) : _.map(arguments, (arg) => arg)))
-    }
-  })
-
   // =============== HOOKS ================
 
   // If component has descriptor subscribe upfront
   // for events using `onEvent` format 
   if (descriptor) {
-    _.each(events, (params, evt) => {
+    _.each(events, (evt) => {
       let callback = descriptor.value['on' + _.upperFirst(evt)]
 
       if (callback !== undefined) {
@@ -112,6 +98,5 @@ export default function useEvents(props, context, dependencies, options = {})
     on,
     off,
     fire,
-    ...fireMethods,
   }
 }

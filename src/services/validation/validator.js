@@ -46,7 +46,7 @@ const Validator = class {
   }
 
   get defaultMessage() {
-    return 'Invalid field'
+    return this.form$.__('laraform.defaultMessage')
   }
 
   get message() {
@@ -58,15 +58,14 @@ const Validator = class {
     else if (this.form$.messages[this.name]) {
       message = this.form$.messages[this.name]
     }
-    else {
-      let tagName = `laraform.validation.${this.name}`
-      let tag = this.form$.__(tagName)
-
-      message = tagName === tag || !tag ? this.defaultMessage : tag
+    else if (this.name) {
+      message = this.form$.__(`laraform.validation.${this.name}`)
 
       if (_.isPlainObject(message)) {
         message = message[this.messageType]
       }
+    } else {
+      message = this.defaultMessage
     }
 
     // replace :params
@@ -293,7 +292,7 @@ const Validator = class {
 
     let valid = await this.check(value)
 
-    if (this.lastValue == value) {
+    if (_.isEqual(this.lastValue, value)) {
       this.invalid = !valid
       this.pending = false
     }

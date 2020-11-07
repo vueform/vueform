@@ -34,7 +34,7 @@
       <a
         href=""
         :class="classes.add"
-        @click.prevent="handleAdd()"
+        @click.prevent="handleAdd"
         v-html="__('laraform.elements.list.add')"
       ></a>
 
@@ -47,6 +47,7 @@
     <template v-slot:label><slot name="label" :el$="el$"><component v-if="slots.label" :is="slots.label" /></slot></template>
     <template v-slot:between><slot name="between" :el$="el$"><component v-if="slots.between" :is="slots.between" type="between" /></slot></template>
     <template v-slot:description><slot name="description" :el$="el$"><component v-if="slots.description" :is="slots.description" /></slot></template>
+    <template v-slot:error><slot name="error" :el$="el$"><component v-if="slots.error" :is="slots.error" /></slot></template>
     <template v-slot:message><slot name="message" :el$="el$"><component v-if="slots.message" :is="slots.message" /></slot></template>
     <template v-slot:after><slot name="after" :el$="el$"><component v-if="slots.after" :is="slots.after" type="after" /></slot></template>
   </component>
@@ -65,8 +66,8 @@
           childrenContainer: 'element-group',
           element: 'list-element-container',
           sortable: 'list-element-container-sortable',
-          remove: 'list-add',
-          add: 'list-remove',
+          remove: 'list-remove',
+          add: 'list-add',
           disabled: 'disabled',
         },
         containers: {

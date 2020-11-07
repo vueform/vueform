@@ -173,396 +173,144 @@ export const filtered = function(elementType, elementName) {
 }
 
 export const load = function(elementType, elementName) {
-  it('should not format data by default on `load`', async () => {
+  it('should load data to children on `load`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           schema: {
-            child1: {
-              type: 'text',
-              formatLoad(value, form$) {
-                return `${value}-formatted`
-              },
-            },
-            child2: {
-              type: 'text',
-              formatLoad(value, form$) {
-                return `${value}-formatted`
-              },
-            },
-          },
-          formatLoad(value, form$) {
-            return {
-              child1: `pre-${value.child1}`,
-              child2: `pre-${value.child2}`,
+            child: {
+              type: 'text'
             }
           }
-        },
+        }
       }
     })
 
     let el = form.vm.el$('el')
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let child = form.vm.el$('el.child')
 
-    el.load({
-      child1: 'value',
-      child2: 'value2',
-    })
+    el.load({ child: 'value' })
 
-    expect(child1.vm.value).toBe('value')
-    expect(child2.vm.value).toBe('value2')
+    expect(el.value).toStrictEqual({ child: 'value' })
+    expect(child.dirty).toBe(false)
   })
 
-  it('should format data if "format" is "true" on `load`', async () => {
+  it('should should format data if "formatData" is "true" on `load`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           schema: {
-            child1: {
+            child: {
               type: 'text',
-              formatLoad(value, form$) {
-                return `${value}-formatted`
-              },
-            },
-            child2: {
-              type: 'text',
-              formatLoad(value, form$) {
-                return `${value}-formatted`
-              },
-            },
-          },
-          formatLoad(value, form$) {
-            return {
-              child1: `pre-${value.child1}`,
-              child2: `pre-${value.child2}`,
-            }
-          }
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-    el.load({
-      child1: 'value',
-      child2: 'value2',
-    }, false, false, false, true)
-
-    expect(child1.vm.value).toBe('pre-value-formatted')
-    expect(child2.vm.value).toBe('pre-value2-formatted')
-  })
-
-  it('should pass "triggerChange", "shouldValidate", "shouldDirt" & "format" to children on `load`', async () => {
-    let onChangeMock = jest.fn()
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          schema: {
-            child1: {
-              type: 'text',
-              rules: 'required',
-              onChange: onChangeMock,
               formatLoad(value) {
                 return `${value}-formatted`
               }
-            },
+            }
           },
-        },
+          formatLoad(value) {
+            return {
+              child: `pre-${value.child}`
+            }
+          }
+        }
       }
     })
 
     let el = form.vm.el$('el')
 
-    await nextTick()
-
-    let child1 = form.vm.el$('el.child1')
-
-    el.load({
-      child1: 'value',
-    })
-
-    await flushPromises()
-
-    expect(onChangeMock).not.toHaveBeenCalled()
-    expect(child1.validated).toBe(false)
-    expect(child1.dirty).toBe(false)
-    expect(child1.value).toBe('value')
-
-    el.load({
-      child1: 'value',
-    }, true, true, true, true)
-
-    await flushPromises()
-
-    expect(onChangeMock).toHaveBeenCalled()
-    expect(child1.validated).toBe(true)
-    expect(child1.dirty).toBe(true)
-    expect(child1.value).toBe('value-formatted')
+    el.load({ child: 'value' }, true)
+    
+    expect(el.value).toStrictEqual({ child: 'pre-value-formatted' })
   })
 }
 
 export const update = function(elementType, elementName) {
-  it('should update children on `update`', () => {
+  it('should load data to children on `update`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           schema: {
-            child1: {
-              type: 'text',
-              default: 'value',
-            },
-            child2: {
-              type: 'text',
-              default: 'value2',
-            },
-            child3: {
-              type: elementType,
-              schema: {
-                child4: {
-                  type: 'text',
-                  default: 'value4'
-                },
-                child5: {
-                  type: 'text',
-                  default: 'value5'
-                },
-              }
-            },
+            child: {
+              type: 'text'
+            }
           }
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
-    let child4 = findAllComponents(form, { name: 'TextElement' }).at(2)
-    let child5 = findAllComponents(form, { name: 'TextElement' }).at(3)
-
-    if (el.flat) {
-      el.update({
-        child1: 'not-value',
-        child4: 'not-value4'
-      })
-    }
-    else {
-      el.update({
-        child1: 'not-value',
-        child3: {
-          child4: 'not-value4'
         }
-      })
-    }
-
-    expect(child1.vm.value).toBe('not-value')
-    expect(child2.vm.value).toBe('value2')
-    expect(child4.vm.value).toBe('not-value4')
-    expect(child5.vm.value).toBe('value5')
-  })
-
-  it('should pass "triggerChange", "shouldValidate" & "shouldDirt" to children on `update`', async () => {
-    let onChangeMock = jest.fn()
-
-    let form = createForm({
-      validateOn: 'change|submit',
-      schema: {
-        el: {
-          type: elementType,
-          schema: {
-            child1: {
-              type: 'text',
-              onChange: onChangeMock,
-            },
-          },
-        },
       }
     })
 
     let el = form.vm.el$('el')
+    let child = form.vm.el$('el.child')
 
-    await nextTick()
+    el.update({ child: 'value' })
 
-    let child1 = form.vm.el$('el.child1')
-
-    el.update({
-      child1: 'value',
-    } /*true, true, true*/)
-
-    await flushPromises()
-
-    expect(onChangeMock).toHaveBeenCalled()
-    expect(child1.validated).toBe(true)
-    expect(child1.dirty).toBe(true)
-    expect(child1.value).toBe('value')
-
-    child1.state.validated = false
-    child1.state.dirty = false
-    el.update({
-      child1: 'value2',
-    }, false, false, false)
-
-    await flushPromises()
-
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
-    expect(child1.validated).toBe(false)
-    expect(child1.dirty).toBe(false)
-    expect(child1.value).toBe('value2')
+    expect(el.value).toStrictEqual({ child: 'value' })
+    expect(child.dirty).toBe(true)
   })
 }
 
 export const clear = function(elementType, elementName) {
-  it('should clear all children on `clear`', async () => {
+  it('should clear children on `clear`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           schema: {
-            child1: {
+            child: {
               type: 'text',
-              default: 'value',
-            },
-            child2: {
-              type: 'text',
-              default: 'value2',
-            },
+              default: 'value'
+            }
           }
-        },
+        }
       }
     })
 
     let el = form.vm.el$('el')
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let child = form.vm.el$('el.child')
 
     el.clear()
 
-    expect(child1.vm.value).toBe(child1.vm.nullValue)
-    expect(child2.vm.value).toBe(child1.vm.nullValue)
-  })
-
-  it('should pass "triggerChange", "shouldValidate" & "shouldDirt" to children on `clear`', async () => {
-    let onChangeMock = jest.fn()
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          schema: {
-            child1: {
-              type: 'text',
-              default: 'value',
-              onChange: onChangeMock,
-            },
-          },
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    await nextTick()
-
-    let child1 = form.vm.el$('el.child1')
-
-    el.clear(/*true, true, true*/)
-
-    await flushPromises()
-
-    expect(onChangeMock).toHaveBeenCalled()
-    expect(child1.validated).toBe(true)
-    expect(child1.dirty).toBe(true)
-    expect(child1.value).toBe(child1.nullValue)
-
-    child1.state.validated = false
-    child1.state.dirty = false
-    child1.update('value2', false, false, false)
-    el.clear(false, false, false)
-
-    await flushPromises()
-
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
-    expect(child1.validated).toBe(false)
-    expect(child1.dirty).toBe(false)
-    expect(child1.value).toBe(child1.nullValue)
+    expect(el.value).toStrictEqual({ child: child.nullValue })
+    expect(child.dirty).toBe(true)
   })
 }
 
-export const reset = function(elementType, elementName)
-{
-  it('should reset all children on `reset`', async () => {
+export const reset = function(elementType, elementName) {
+  it('should reset children on `reset`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           schema: {
-            child1: {
+            child: {
               type: 'text',
+              rules: 'required',
               default: 'value',
-            },
-            child2: {
-              type: 'text',
-              default: 'value2',
-            },
+            }
           }
-        },
+        }
       }
     })
 
     let el = form.vm.el$('el')
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let child = form.vm.el$('el.child')
 
-    child1.vm.update('not-value')
-    child2.vm.update('not-value2')
+    child.update('')
+    child.validate()
+
+    await flushPromises()
+
+    expect(child.invalid).toBe(true)
+    expect(child.validated).toBe(true)
+    expect(child.value).toBe('')
 
     el.reset()
 
-    expect(child1.vm.value).toBe('value')
-    expect(child2.vm.value).toBe('value2')
-  })
-
-  it('should pass "triggerChange" to children on `reset`', async () => {
-    let onChangeMock = jest.fn()
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          schema: {
-            child1: {
-              type: 'text',
-              onChange: onChangeMock,
-            },
-          },
-        },
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    await nextTick()
-
-    let child1 = form.vm.el$('el.child1')
-
-    child1.update('value', false, false, false)
-
-    el.reset(/*true*/)
-
-    expect(onChangeMock).toHaveBeenCalled()
-
-    child1.update('value', false, false, false)
-
-    el.reset(false)
-
-    expect(onChangeMock).toHaveBeenCalledTimes(1)
+    expect(child.invalid).toBe(false)
+    expect(child.validated).toBe(false)
+    expect(child.value).toBe('value')
   })
 }
 

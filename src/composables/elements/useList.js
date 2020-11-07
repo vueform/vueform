@@ -17,9 +17,10 @@ import useDefault from './features/useDefault'
 import useEvents from './../useEvents'
 import useArrayType from './features/useArrayType'
 import useSort from './features/useSort'
+import useOrder from './features/useOrder'
 import usePrototype from './features/usePrototype'
-import useSortable from './features/useSortable'
 import useWatchPrototype from './features/useWatchPrototype'
+import useDebounce from './features/useDebounce'
 
 import usePath from './features/usePath'
 import useValueList from './features/useValueList'
@@ -28,7 +29,6 @@ import useClassesList from './features/useClassesList'
 import useChildrenList from './features/useChildrenList'
 import useValidationList from './features/useValidationList'
 import useNullValueArray from './features/useNullValueArray'
-import useHandleChangeList from './features/useHandleChangeList'
 
 export default function useList(props, context) {
   const { schema } = toRefs(props)
@@ -42,6 +42,7 @@ export default function useList(props, context) {
   const nullValue = useNullValueArray(props, context)
   const prototype = usePrototype(props, context)
   const children = useChildrenList(props, context)
+  const debounce = useDebounce(props, context)
 
   const default_ = useDefault(props, context, {
     nullValue: nullValue.nullValue
@@ -61,17 +62,7 @@ export default function useList(props, context) {
     form$: form$.form$,
     descriptor: schema,
   }, {
-    events: {
-      change: [],
-      add: [],
-      sort: [],
-      remove: [],
-    },
-  })
-
-  const sort = useSort(props, context, {
-    isObject: prototype.isObject,
-    children$: children.children$,
+    events: ['change', 'add', 'remove', 'sort']
   })
 
   const value = useValueList(props, context, {
@@ -97,13 +88,6 @@ export default function useList(props, context) {
     path: path.path,
   })
 
-  const classes = useClassesList(props, context, {
-    form$: form$.form$,
-    theme: theme.theme,
-    sort: sort.sort,
-    disabled: disabled.disabled,
-  })
-
   const columns = useColumns(props, context, {
     form$: form$.form$,
   })
@@ -126,22 +110,9 @@ export default function useList(props, context) {
     components: components.components,
   })
 
-  const handleChange = useHandleChangeList(props, context, {
-    form$: form$.form$,
-    validateValidators: validation.validateValidators,
-    fireChange: events.fireChange,
-  })
-  
-  const handleSort = useSort(props, context, {
-    fireSort: events.fireSort,
-    disabled: disabled.disabled,
-    value: value.value,
-  })
-
-  const sortable = useSortable(props, context, {
-    handleSort: disabled.handleSort,
-    disabled: disabled.disabled,
-    sort: sort.sort,
+  const order = useOrder(props, context, {
+    isObject: prototype.isObject,
+    children$: children.children$,
   })
 
   const data = useDataList(props, context, {
@@ -163,17 +134,34 @@ export default function useList(props, context) {
     resetValidators: validation.resetValidators,
 
     nullValue: nullValue.nullValue,
-    order: sort.order,
-    orderBy: sort.orderBy,
-    storeOrder: sort.storeOrder,
-    refreshOrderStore: sort.refreshOrderStore,
+    order: order.order,
+    orderBy: order.orderBy,
+    storeOrder: order.storeOrder,
+    refreshOrderStore: order.refreshOrderStore,
 
     isObject: prototype.isObject,
     prototype: prototype.prototype,
 
-    fireChange: events.fireChange,
+    fire: events.fire,
   }, {
     initial: 1
+  })
+
+  const sort = useSort(props, context, {
+    child$: children.child$,
+    currentValue: value.currentValue,
+    fire: events.fire,
+    disabled: disabled.disabled,
+    updated: data.updated,
+    refreshOrderStore: order.refreshOrderStore,
+    instances: children.instances,
+  })
+
+  const classes = useClassesList(props, context, {
+    form$: form$.form$,
+    theme: theme.theme,
+    sort: sort.sort,
+    disabled: disabled.disabled,
   })
 
   const watchPrototype = useWatchPrototype(props, context, {
@@ -207,11 +195,11 @@ export default function useList(props, context) {
     ...slots,
     ...data,
     ...events,
-    ...handleChange,
     ...sort,
-    ...sortable,
-    ...handleSort,
     ...watchPrototype,
     ...default_,
+    ...order,
+    ...debounce,
+    ...prototype,
   }
 } 

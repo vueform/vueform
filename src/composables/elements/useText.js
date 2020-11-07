@@ -29,8 +29,6 @@ import useAutocomplete from './features/useAutocomplete'
 import useDebounce from './features/useDebounce'
 import useDisabledInput from './features/useDisabledInput'
 import useEvents from './../useEvents'
-import useHandleChange from './features/useHandleChange'
-import useHandleKeyup from './features/useHandleKeyup'
 import useHandleInput from './features/useHandleInput'
 import useEmpty from './features/useEmpty'
 
@@ -78,15 +76,7 @@ export default function useText(props, context) {
     form$: form$.form$,
     descriptor: schema,
   }, {
-    events: {
-      change: [value.currentValue, value.previousValue]
-    },
-  })
-
-  const handleChange = useHandleChange(props, context, {
-    form$: form$.form$,
-    validate: validation.validate,
-    fireChange: events.fireChange,
+    events: ['change'],
   })
 
   const data = useData(props, context, {
@@ -98,7 +88,7 @@ export default function useText(props, context) {
     clean: validation.clean,
     validate: validation.validate,
     resetValidators: validation.resetValidators,
-    fireChange: events.fireChange,
+    fire: events.fire,
     default: default_.default,
     nullValue: nullValue.nullValue,
     dirt: validation.dirt,
@@ -146,11 +136,14 @@ export default function useText(props, context) {
   })
 
   const handleInput = useHandleInput(props, context, {
-    dirt: validation.dirt,
+    form$: form$.form$,
     model: value.model,
     currentValue: value.currentValue,
     previousValue: value.previousValue,
-    handleChange: handleChange.handleChange,
+    changed: data.changed,
+    dirt: validation.dirt,
+    validate: validation.validate,
+    fire: events.fire,
   })
 
   return {
@@ -181,7 +174,6 @@ export default function useText(props, context) {
     ...debounce,
     ...disabled,
     ...events,
-    ...handleChange,
     ...data,
     ...empty,
     ...default_,

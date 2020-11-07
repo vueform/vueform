@@ -8,7 +8,7 @@ export default function useDataList(props, context, dependencies, options)
 
   // ============ DEPENDENCIES =============
 
-  const { submit, data, formatData, formatLoad, prepare } = useData(props, context, dependencies)
+  const { submit, data, formatData, formatLoad, changed, prepare } = useData(props, context, dependencies)
 
   const form$ = dependencies.form$
   const instances = dependencies.instances
@@ -31,7 +31,7 @@ export default function useDataList(props, context, dependencies, options)
   const isObject = dependencies.isObject
   const prototype = dependencies.prototype
 
-  const fireChange = dependencies.fireChange
+  const fire = dependencies.fire
 
   // ============== OPTIONS ===============
 
@@ -94,14 +94,20 @@ export default function useDataList(props, context, dependencies, options)
 
   // =============== METHODS ===============
 
-  /**
-   * Adds a child to the `instances`. Returns the index of the added children.
-   *
-   * @public
-   * @param {any} data data to be set for added child.
-   * @returns {number}
-   */
-  const add = (val = null, triggerChange = true, shouldValidate = true, shouldDirt = true) => {
+  // Inserts a new element with triggering change, dirting element and validating if validateOn contains 'change'
+  const add = (val = null) => {
+    const index = insert(val)
+
+    nextTick(() => {
+      fire('add', children$.value[index], index)
+      updated()
+    })
+
+    return index
+  }
+
+  // Inserts a new element without triggering change, validating or dirt
+  const insert = (val = null) => {
     const index = instances.value.length
 
     const schema = Object.assign({}, _.cloneDeep(prototype.value), {
@@ -117,108 +123,73 @@ export default function useDataList(props, context, dependencies, options)
       })
     }
 
-    nextTick(() => {
-      if (val !== null) {
-        children$.value[index].update(val, false, false, false)
-      }
-
-      handleUpdated(triggerChange, shouldValidate, shouldDirt)
-    })
+    if (val !== null) {
+      nextTick(() => {
+        children$.value[index].load(val)
+      })
+    }
 
     return index
   }
+  
+  const remove = (index) => {
+    fire('remove', children$.value[index], index)
 
-  /**
-   * Removes a child by it's index.
-   *
-   * @public
-   * @param {index} index index of child to be removed.
-   * @returns {void}
-   */
-  const remove = (index, triggerChange = true, shouldValidate = true, shouldDirt = true) => {
     instances.value.splice(index, 1)
   
     nextTick(() => {
       refreshOrderStore()
-      handleUpdated(triggerChange, shouldValidate, shouldDirt)
+
+      updated()
     })
   }
 
-  const load = (val, triggerChange = false, shouldValidate = false, shouldDirt = false, format = false) => {
+  const load = (val, format = false) => {
     let formatted = format ? formatLoad.value(val, form$.value) : val
 
+    instances.value = []
+
     if (!available.value || formatted === undefined) {
-      unload(triggerChange, shouldValidate, shouldDirt)
       return
     }
 
-    clear(false, false, false)
-
     for (let i = 0; i < _.keys(formatted).length; i++) {
-      add(null, false, false, false)
+      insert()
     }
-    
+
+    if (!formatted.length) {
+      return
+    }
+
     nextTick(() => {
-      _.each(children$.value, (element$) => {
-        const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
-
-        if (isObject.value && orderBy.value) {
-          formatted = desc ? _.sortBy(formatted, orderBy.value).reverse() : _.sortBy(formatted, orderBy.value)
-        }
-        else if (order.value) {
-          formatted = desc ? formatted.sort().reverse() : formatted.sort()
-        }
-
-        element$.load(formatted[element$.name], triggerChange, shouldValidate, shouldDirt, format)
+      _.each(orderValue(formatted), (childValue, i) => {
+        children$.value[i].load(childValue)
       })
-      
-      handleUpdated(triggerChange, shouldValidate, shouldDirt)
     })
-  }
 
-  const unload = (triggerChange = false, shouldValidate = false, shouldDirt = false) => {
-    resetValidators()
-    clear(triggerChange, shouldValidate, shouldDirt)
   }
   
-  /**
-   * Updates the element's value.
-   *
-   * @public
-   * @param {any} value the value to be set for the element
-   * @returns {void}
-   */
-  const update = (val, triggerChange = true, shouldValidate = form$.value.shouldValidateOnChange, shouldDirt = true) => {
-    _.each(children$.value, (element$) => {
-      if (val[element$.name] === undefined) {
-        return
-      }
-      
-      element$.update(val[element$.name])
+  const update = (val) => {
+    instances.value = []
+
+    for (let i = 0; i < _.keys(val).length; i++) {
+      insert(val[i])
+    }
+
+    nextTick(() => {
+      updated()
     })
   }
 
-  /**
-   * Clears the value of the element.
-   *
-   * @public
-   * @returns {void}
-   */
-  const clear = (triggerChange = true, shouldValidate = form$.value.shouldValidateOnChange, shouldDirt = true) => {
+  const clear = () => {
     instances.value = []
 
     nextTick(() => {
-      handleUpdated(triggerChange, shouldValidate, shouldDirt)
+      updated()
     })
   }
 
-  /**
-   * Resets the element to it's default state.
-   *
-   * @public
-   * @returns {void}
-   */
-  const reset = (triggerChange = true) => {
+  const reset = () => {
     instances.value = []
     resetValidators()
 
@@ -226,25 +197,39 @@ export default function useDataList(props, context, dependencies, options)
       setInitialInstances()
 
       nextTick(() => {
-        if (triggerChange && !_.isEqual(currentValue.value, previousValue.value)) {
-          fireChange()
+        if (changed.value) {
+          fire('change', currentValue.value, previousValue.value)
         }
       })
     })
   }
 
-  const handleUpdated = (triggerChange, shouldValidate, shouldDirt) => {
-    if ((triggerChange || shouldDirt) && !_.isEqual(currentValue.value, previousValue.value)) {
-      if (shouldDirt) {
-        dirt()
-      }
-
-      if (triggerChange) {
-        fireChange()
-      }
+  const orderValue = function(val) {
+    if (!order.value && !orderBy.value) {
+      return val
     }
 
-    if (shouldValidate) {
+    _.each(children$.value, (element$) => {
+      const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
+
+      if (isObject.value && orderBy.value) {
+        val = desc ? _.sortBy(val, orderBy.value).reverse() : _.sortBy(val, orderBy.value)
+      }
+      else if (order.value) {
+        val = desc ? val.sort().reverse() : val.sort()
+      }
+    })
+
+    return val
+  }
+
+  const updated = () => {
+    if (changed.value) {
+      dirt()
+      fire('change', currentValue.value, previousValue.value)
+    }
+
+    if (form$.value.shouldValidateOnChange) {
       validateValidators()
     }
   }
@@ -264,12 +249,12 @@ export default function useDataList(props, context, dependencies, options)
    * @param {number} index index of child to be removed.
    * @event remove
    */
-  const handleRemove = () => {
+  const handleRemove = (index) => {
     if (disabled.value) {
       return
     }
 
-    remove()
+    remove(index)
   }
 
   /**
@@ -282,7 +267,7 @@ export default function useDataList(props, context, dependencies, options)
     let count = default_.value.length > initial.value ? default_.value.length : initial.value
 
     for (let i = 0; i < count; i++) {
-      add(default_.value && default_.value[i] ? default_.value[i] : null, false, false, false)
+      insert(default_.value && default_.value[i] ? default_.value[i] : null, false, false, false)
     }
   }
 
@@ -306,10 +291,11 @@ export default function useDataList(props, context, dependencies, options)
 
     // Mehtods
     add,
+    insert,
     remove,
     load,
-    unload,
     update,
+    updated,
     clear,
     reset,
     prepare,

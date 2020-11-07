@@ -163,6 +163,10 @@ export default function useChildrenValidation (props, context, dependencies)
    * @returns {void}
    */
   const validateValidators = () => {
+    if (form$.value.validation === false) {
+      return
+    }
+
     _.each(Validators.value, (Validator) => {
       Validator.validate()
     })
@@ -177,6 +181,10 @@ export default function useChildrenValidation (props, context, dependencies)
    * @returns {void}
    */
   const validateChildren = () => {
+    if (form$.value.validation === false) {
+      return
+    }
+
     _.each(children$.value, (element$) => {
       element$.validate()
     })
@@ -246,6 +254,7 @@ export default function useChildrenValidation (props, context, dependencies)
     // Methods
     validate,
     validateValidators,
+    validateChildren,
     dirt,
     clean,
     resetValidators,

@@ -26,6 +26,9 @@ describe('List Element', () => {
       childValues: ['value{i}', { child: 'value{i}' }],
       childNulls: [null, { child: null }],
     },
+    events: {
+      events: ['change', 'add', 'remove', 'sort']
+    }
   }
 
   _.each(elements.list.features, (feature) => {

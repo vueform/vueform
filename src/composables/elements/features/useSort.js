@@ -7,8 +7,13 @@ export default function useSort(props, context, dependencies, options)
 
   // ============ DEPENDENCIES ============
 
-  const isObject = dependencies.isObject
-  const children$ = dependencies.children$
+  const child$ = dependencies.child$
+  const disabled = dependencies.disabled
+  const fire = dependencies.fire
+  const updated = dependencies.updated
+  const refreshOrderStore = dependencies.refreshOrderStore
+  const instances = dependencies.instances
+  const currentValue = dependencies.currentValue
 
   // ============== COMPUTED ==============
 
@@ -20,59 +25,49 @@ export default function useSort(props, context, dependencies, options)
   */
   const sort = computed(computedOption('sort', schema, false))
 
-  /**
-  * The name of the element which should contain the order of the list item in case of an object list.
-  * 
-  * @type {string}
-  * @default null
-  */
-  const storeOrder = computed(computedOption('storeOrder', schema, null))
-
-  /**
-  * The default order direction of list items when data is loaded. Possible values: `null`, `'ASC'`, `'DESC'`.
-  * 
-  * @type {string}
-  * @default null
-  */
-  const order = computed(computedOption('order', schema, 'ASC'))
-
-  /**
-  * When using an object list the list items will be ordered by this element's values. If `storeOrder` is defined, `orderBy` will be equal to that unless specified otherwise.
-  * 
-  * @type {string}
-  * @default null
-  */
-  const orderBy = computed(computedOption('orderBy', schema, storeOrder.value || null))
-
-  /**
-   * Helper method used to refresh the element's value which stores the order.
-   *
-   * @private
-   * @returns {void}
-   */
-  const refreshOrderStore = () => {
-    if (isObject.value && storeOrder.value) {
-      // nextTick is required because children$
-      // only refreshes on DOM rerender because
-      // it's based on ref
-      nextTick(() => {
-        _.each(children$.value, (element$, index) => {
-          element$.update({
-            [storeOrder.value]: parseInt(index) + 1
-          })
-        })
-      })
+  const sortable = computed(() => {
+    return {
+      sort: disabled.value ? false : sort.value,
+      onUpdate: handleSort,
     }
+  })
+
+  // =============== METHODS ==============
+
+  /**
+   * Triggered when the user changes the order of the list items.
+   *
+   * @public
+   * @param {object} indexes an object containing `newIndex` and `oldIndex`.
+   * @event sort
+   */
+  const handleSort = (indexes) => {
+    let oldIndex = indexes.oldIndex
+    let newIndex = indexes.newIndex
+
+    if (disabled.value) {
+      return
+    }
+    
+    instances.value.splice(newIndex, 0, instances.value.splice(oldIndex, 1)[0])
+    child$.value.splice(newIndex, 0, child$.value.splice(oldIndex, 1)[0])
+
+    nextTick(() => {
+      refreshOrderStore()
+      
+      nextTick(() => {
+        fire('sort', currentValue.value)
+        updated()
+      })
+    })
   }
 
   return {
     // Computed
     sort,
-    storeOrder,
-    order,
-    orderBy,
+    sortable,
 
     // Methods
-    refreshOrderStore,
+    handleSort,
   }
 }
