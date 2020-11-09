@@ -4,24 +4,19 @@ export default function useWatchPrototype (props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const value = dependencies.value
+  const instances = dependencies.instances
   const prototype = dependencies.prototype
-  const clear = dependencies.clear
-  const insert = dependencies.insert
 
   // ============== WATCHERS ==============
 
   // @todo: after value
-//   watch(prototype, () => {
-//     let val = value.value
-// console.log(1, val)
-//     clear()
-// console.log(2, val)
-
-//     _.each(val, (one) => {
-//       insert(one)
-//     })
-//   }, { lazy: false, deep: true })
+  watch(prototype, () => {
+    instances.value = _.map(instances.value, (instance) => {
+      return Object.assign({}, prototype.value, {
+        key: instance.key,
+      })
+    })
+  }, { deep: true })
 
   return {}
 }

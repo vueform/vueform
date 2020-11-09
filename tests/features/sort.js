@@ -297,6 +297,7 @@ export const handleSort = function (elementType, elementName, options) {
 
       await nextTick()
       await nextTick()
+      await nextTick()
 
       // @todo: after children$ fix
       expect(onChangeMock).toHaveBeenCalled()
@@ -338,6 +339,7 @@ export const handleSort = function (elementType, elementName, options) {
         newIndex: 0,
       })
 
+      await nextTick()
       await nextTick()
       await nextTick()
 

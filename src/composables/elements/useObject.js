@@ -20,7 +20,7 @@ import useDataObject from './features/useDataObject'
 import useChildrenObject from './features/useChildrenObject'
 import useValidationObject from './features/useValidationObject'
 
-export default function useGroup(props, context) {
+export default function useObject(props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)

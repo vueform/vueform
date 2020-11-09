@@ -110,11 +110,13 @@ export default function useDataList(props, context, dependencies, options)
   const insert = (val = null) => {
     const index = instances.value.length
 
-    const schema = Object.assign({}, _.cloneDeep(prototype.value), {
-      key: next.value,
+    const schema = computed(() => {
+      return Object.assign({}, prototype.value, {
+        key: next.value,
+      })
     })
 
-    instances.value.push(schema)
+    instances.value.push(schema.value)
 
     // Add order to data
     if (isObject.value && storeOrder.value) {
@@ -224,10 +226,14 @@ export default function useDataList(props, context, dependencies, options)
   }
 
   const updated = () => {
-    if (changed.value) {
-      dirt()
-      fire('change', currentValue.value, previousValue.value)
-    }
+    // Required because currentValue & previousValue are only updated
+    // on nextTick when then value changes (because of watch)
+    nextTick(() => {
+      if (changed.value) {
+        dirt()
+        fire('change', currentValue.value, previousValue.value)
+      }
+    })
 
     if (form$.value.shouldValidateOnChange) {
       validateValidators()

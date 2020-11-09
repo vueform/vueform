@@ -33,7 +33,7 @@ describe('List Element', () => {
 
   _.each(elements.list.features, (feature) => {
     if (!features[feature]) {
-      return
+      throw new Error('Missing feature test: ' + feature)
     }
 
     describe(`${_.upperFirst(feature)} feature`, features[feature]('list', Object.assign({}, options.default, options[feature] || {})))

@@ -37,6 +37,7 @@ import order from './order'
 import path from './path'
 import pathGroup from './pathGroup'
 import placeholder from './placeholder'
+import prototype from './prototype'
 import readonly from './readonly'
 import slots from './slots'
 import sort from './sort'
@@ -47,8 +48,10 @@ import validationList from './validationList'
 import validationObject from './validationObject'
 import value from './value'
 import valueGroup from './valueGroup'
+import valueList from './valueList'
 import valueObject from './valueObject'
 import view from './view'
+import watchPrototype from './watchPrototype'
 
 export default {
   addons,
@@ -90,6 +93,7 @@ export default {
   path,
   pathGroup,
   placeholder,
+  prototype,
   readonly,
   slots,
   sort,
@@ -100,6 +104,8 @@ export default {
   validationObject,
   value,
   valueGroup,
+  valueList,
   valueObject,
   view,
+  watchPrototype,
 }

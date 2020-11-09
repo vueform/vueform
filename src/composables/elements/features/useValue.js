@@ -15,7 +15,7 @@ export default function useValue(props, context, dependencies)
    * @type {object}
    * @default null
    */
-  const currentValue = ref(null)
+  const currentValue = ref(default_ !== undefined ? default_.value : null)
 
   /**
    * Helper property used to store the element previous value.
@@ -23,7 +23,7 @@ export default function useValue(props, context, dependencies)
    * @type {object}
    * @default null
    */
-  const previousValue = ref(null)
+  const previousValue = ref(nullValue !== undefined ? nullValue.value : null)
 
   /**
    * The value of the element.
@@ -53,16 +53,6 @@ export default function useValue(props, context, dependencies)
       value.value = val
     }
   })
-
-  // =============== HOOKS ================
-
-  if (nullValue !== undefined) {
-    previousValue.value = _.clone(nullValue.value)
-  }
-
-  if (default_ !== undefined) {
-    value.value = _.clone(default_.value)
-  }
 
   return {
     // Computed

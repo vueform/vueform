@@ -11,7 +11,7 @@ export default {
     const { el$, form$, classes, components, theme } = useElementComponent(props, context)
 
     const { label, isLabelComponent } = useLabel(props, context, { 
-      descriptor: ref(el$.value.schema),
+      descriptor: computed(() => { return el$.value.schema }),
       el$: el$,
      })
 

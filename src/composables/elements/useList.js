@@ -68,6 +68,7 @@ export default function useList(props, context) {
   const value = useValueList(props, context, {
     children$: children.children$,
     nullValue: nullValue.nullValue,
+    default: default_.default,
   })
 
   const elements = useElements(props, context, {
@@ -169,6 +170,7 @@ export default function useList(props, context) {
     value: value.value,
     clear: data.clear,
     insert: children.insert,
+    instances: children.instances,
   })
 
   return {

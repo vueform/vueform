@@ -9,7 +9,7 @@ describe('Object Element', () => {
 
   _.each(elements.object.features, (feature) => {
     if (!features[feature]) {
-      return
+      throw new Error('Missing feature test: ' + feature)
     }
 
     describe(`${_.upperFirst(feature)} feature`, features[feature]('object', Object.assign({}, options.default, options[feature] || {})))

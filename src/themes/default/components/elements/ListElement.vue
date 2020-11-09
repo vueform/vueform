@@ -2,7 +2,6 @@
   <component :is="layout">
 
     <template v-slot:field>
-      
       <slot name="prefix"></slot>
 
       <div :class="classes.childrenContainer">
@@ -59,6 +58,11 @@
   export default {
     name: 'ListElement',
     mixins: [ListElement],
+    computed: {
+      console() {
+        return window.console
+      }
+    },
     data() {
       return {
         defaultClasses: {

@@ -13,7 +13,7 @@ export default function useListChildren(props, context, dependencies)
   const children$ = computed(() => {
     const elements$ = {}
 
-    _.each(child$.value, (element$) => {
+    _.each(child$.value, (element$, i) => {
       elements$[element$.name] = element$
     })
 

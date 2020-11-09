@@ -13,7 +13,7 @@ export const currentValue = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.currentValue).not.toBe(undefined)
+    expect(el.currentValue).toStrictEqual(el.default || null)
   })
 }
 
@@ -29,7 +29,7 @@ export const previousValue = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.previousValue).not.toBe(undefined)
+    expect(el.previousValue).toStrictEqual(el.nullValue || null)
   })
 }
 
