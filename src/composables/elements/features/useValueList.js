@@ -33,6 +33,7 @@ export default function useListValue(props, context, dependencies)
   })
 
   watch(value, (newValue, oldValue) => {
+    console.log('value changed', newValue, oldValue)
     currentValue.value = newValue
     previousValue.value = oldValue
   })

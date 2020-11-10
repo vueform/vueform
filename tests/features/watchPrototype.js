@@ -1,5 +1,5 @@
 import { createForm, findAllComponents, testValue, setValue } from 'test-helpers'
-import { nextTick } from 'vue'
+import { nextTick } from 'composition-api'
 
 export const watcher = function (elementType, elementName, options) {
   const prototypes = options.prototypes

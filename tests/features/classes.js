@@ -79,7 +79,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-    // @todo: This also works but running tests with Vue2 fails for some reason
+    // This also works but running tests with Vue2 fails for some reason
     // el.$laraform.themes.default.classes[elementName] = overwriteClasses2
     // expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
   })

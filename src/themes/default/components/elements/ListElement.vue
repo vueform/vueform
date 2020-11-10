@@ -1,5 +1,6 @@
 <template>
-  <component :is="layout">
+  <component :is="layout" @vnode-before-update="handleLayoutBeforeUpdate">
+  <!-- @vnode-before-update required because of: https://forum.vuejs.org/t/vue3-onbeforeupdate-hook-not-triggered-when-contained-in-slot/106389/2 -->
 
     <template v-slot:field>
       <slot name="prefix"></slot>
@@ -15,7 +16,7 @@
             :parent="el$"
             :key="element.key"
             v-ref:child$
-            :ref="setRef(child$, i)"
+            :ref="setRef(child$)"
           >
             <template v-slot:prefix>
               <a

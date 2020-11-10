@@ -1,4 +1,4 @@
-import { computed, toRefs } from 'composition-api'
+import { computed, toRefs, onBeforeUpdate } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 

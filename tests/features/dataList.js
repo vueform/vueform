@@ -563,9 +563,9 @@ export const remove = function (elementType, elementName, options) {
       el.remove(1)
 
       await nextTick()
+      await nextTick()
       
-      // @todo: after children$ fix
-      // expect(el.dirty).toBe(true)
+      expect(el.dirty).toBe(true)
     })
   })
 
@@ -595,17 +595,17 @@ export const remove = function (elementType, elementName, options) {
     el.remove(1)
 
     await nextTick()
+    await nextTick()
 
     let child0 = form.vm.el$('el.0')
     let child1 = form.vm.el$('el.1')
     let order0 = form.vm.el$('el.0.order')
     let order1 = form.vm.el$('el.1.order')
 
-    // @todo: after children$ fix
-    // expect(order0.value).toBe(1)
-    // expect(order1.value).toBe(2)
-    // expect(child0.schema.key).toBe(0)
-    // expect(child1.schema.key).toBe(2)
+    expect(order0.value).toBe(1)
+    expect(order1.value).toBe(2)
+    expect(child0.schema.key).toBe(0)
+    expect(child1.schema.key).toBe(2)
   })
 }
 
@@ -710,8 +710,7 @@ export const load = function (elementType, elementName, options) {
 
       await nextTick()
 
-      // @todo: after children$ fix
-      // expect(el.value).toStrictEqual([])
+      expect(el.value).toStrictEqual([])
     })
   })
 
@@ -1340,7 +1339,7 @@ export const handleRemove = function (elementType, elementName, options) {
     })
   })
 
-  it('should trigger add on `handleAdd` when clicking "Add" button', async () => {
+  it('should trigger remove on `handleRemove` when clicking "Remove" button', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm({
         schema: {

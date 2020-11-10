@@ -151,7 +151,8 @@ export default function(config) {
               setRef(prop, key) {
                 return function(el) {
                   if (el) {
-                    prop[key] = el
+                    // console.log('set child$', el.value, el.schema.key)
+                    prop.push(el)
                   }
                 }
               },

@@ -20,9 +20,10 @@ export default function useListChildren(props, context, dependencies)
     return elements$
   })
   
-  onBeforeUpdate(() => {
+  const handleLayoutBeforeUpdate = () => {
+    // console.log('emptied child$')
     child$.value = []
-  })
+  }
 
   return {
     // Data
@@ -31,5 +32,6 @@ export default function useListChildren(props, context, dependencies)
 
     // Computed
     children$,
+    handleLayoutBeforeUpdate,
   }
 }

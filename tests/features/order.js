@@ -78,11 +78,10 @@ export const refreshOrderStore = function (elementType, elementName, options) {
     order0 = form.vm.el$('el.0.order')
     order1 = form.vm.el$('el.1.order')
 
-    // @todo: after children$ remove
-    // expect(order0.value).toBe(1)
-    // expect(order1.value).toBe(2)
-    // expect(child0.schema.key).toBe(0)
-    // expect(child1.schema.key).toBe(2)
+    expect(order0.value).toBe(1)
+    expect(order1.value).toBe(2)
+    expect(child0.schema.key).toBe(0)
+    expect(child1.schema.key).toBe(2)
   })
 }
 

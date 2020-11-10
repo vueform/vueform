@@ -39,6 +39,5 @@ const unbind = function(el, binding, vnode) {
 export default {
   // Vue2
   bind: add,
-  udpate: add,
   unbind: unbind,
 }

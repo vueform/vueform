@@ -35,6 +35,21 @@ export const classes = function (elementType, elementName, options) {
       },
     }
   }))
+
+  // it('should set default `childrenContainer` class on the container of child elements', () => {
+  //   let form = createForm({
+  //     schema: {
+  //       el: {
+  //         type: elementType,
+  //       }
+  //     }
+  //   })
+
+  //   let el = findAllComponents(form, { name: elementName }).at(0)
+  //   let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    
+  //   expect(child1.element.parentElement.className.split(' ').indexOf(el.vm.classes.childrenContainer) !== -1).toBe(true)
+  // })
 }
 
 export default function (elementType, options) {

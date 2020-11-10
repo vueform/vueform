@@ -153,6 +153,7 @@ export const handleSort = function (elementType, elementName, options) {
       })
 
       await nextTick()
+      await nextTick()
 
       expect(el.value).toStrictEqual([
         replacePrototypeValue(options.childValues[i], 1),
@@ -160,6 +161,7 @@ export const handleSort = function (elementType, elementName, options) {
         replacePrototypeValue(options.childValues[i], 2),
       ])
 
+      // @todo
       expect(el.child$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 1))
       expect(el.child$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
       expect(el.child$[2].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
@@ -221,13 +223,12 @@ export const handleSort = function (elementType, elementName, options) {
     order1 = form.vm.el$('el.1.order')
     order2 = form.vm.el$('el.2.order')
 
-    // @todo: after children$ remove
-    // expect(order0.value).toBe(1)
-    // expect(order1.value).toBe(2)
-    // expect(order2.value).toBe(3)
-    // expect(child0.schema.key).toBe(1)
-    // expect(child1.schema.key).toBe(0)
-    // expect(child2.schema.key).toBe(2)
+    expect(order0.value).toBe(1)
+    expect(order1.value).toBe(2)
+    expect(order2.value).toBe(3)
+    expect(child0.schema.key).toBe(1)
+    expect(child1.schema.key).toBe(0)
+    expect(child2.schema.key).toBe(2)
   })
 
   it('should fire "sort" event with "value" on `handleSort`', async () => {
@@ -257,6 +258,7 @@ export const handleSort = function (elementType, elementName, options) {
         newIndex: 0,
       })
 
+      await nextTick()
       await nextTick()
 
       // @todo: after children$ fix

@@ -46,14 +46,9 @@ export default function useOrder(props, context, dependencies, options)
    */
   const refreshOrderStore = () => {
     if (isObject.value && storeOrder.value) {
-      // nextTick is required because children$
-      // only refreshes on DOM rerender because
-      // it's based on ref
-      nextTick(() => {
-        _.each(children$.value, (element$, index) => {
-          element$.update({
-            [storeOrder.value]: parseInt(index) + 1
-          })
+      _.each(children$.value, (element$, index) => {
+        element$.update({
+          [storeOrder.value]: parseInt(index) + 1
         })
       })
     }

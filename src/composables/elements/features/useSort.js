@@ -48,18 +48,26 @@ export default function useSort(props, context, dependencies, options)
     if (disabled.value) {
       return
     }
-    
-    instances.value.splice(newIndex, 0, instances.value.splice(oldIndex, 1)[0])
-    child$.value.splice(newIndex, 0, child$.value.splice(oldIndex, 1)[0])
 
-    nextTick(() => {
-      refreshOrderStore()
+    let instancesClone = [
+      instances.value[1],
+      instances.value[0],
+      instances.value[2],
+    ]
+    
+    // instancesClone.splice(newIndex, 0, instancesClone.splice(oldIndex, 1)[0])
+
+    instances.value = instancesClone
+    // child$.value.splice(newIndex, 0, child$.value.splice(oldIndex, 1)[0])
+
+    // nextTick(() => {
+    //   refreshOrderStore()
       
-      nextTick(() => {
-        fire('sort', currentValue.value)
-        updated()
-      })
-    })
+    //   nextTick(() => {
+    //     fire('sort', currentValue.value)
+    //     updated()
+    //   })
+    // })
   }
 
   return {
