@@ -12,7 +12,7 @@ export default function useDataList(props, context, dependencies, options)
 
   const form$ = dependencies.form$
   const instances = dependencies.instances
-  const children$ = dependencies.children$
+  const child$ = dependencies.child$
   const default_ = dependencies.default
   const available = dependencies.available
   const disabled = dependencies.disabled
@@ -51,7 +51,7 @@ export default function useDataList(props, context, dependencies, options)
     
     let filtered = []
 
-    _.each(children$.value, (element$) => {
+    _.each(child$.value, (element$) => {
       let val = element$.filtered[element$.name]
 
       if (val !== undefined) {
@@ -99,7 +99,7 @@ export default function useDataList(props, context, dependencies, options)
     const index = insert(val)
 
     nextTick(() => {
-      fire('add', children$.value[index], index)
+      fire('add', child$.value[index], index)
       updated()
     })
 
@@ -127,7 +127,7 @@ export default function useDataList(props, context, dependencies, options)
 
     if (val !== null) {
       nextTick(() => {
-        children$.value[index].load(val)
+        child$.value[index].load(val)
       })
     }
 
@@ -135,7 +135,7 @@ export default function useDataList(props, context, dependencies, options)
   }
   
   const remove = (index) => {
-    fire('remove', children$.value[index], index)
+    fire('remove', child$.value[index], index)
 
     instances.value.splice(index, 1)
   
@@ -165,7 +165,7 @@ export default function useDataList(props, context, dependencies, options)
 
     nextTick(() => {
       _.each(orderValue(formatted), (childValue, i) => {
-        children$.value[i].load(childValue)
+        child$.value[i].load(childValue)
       })
     })
 
@@ -211,7 +211,7 @@ export default function useDataList(props, context, dependencies, options)
       return val
     }
 
-    _.each(children$.value, (element$) => {
+    _.each(child$.value, (element$) => {
       const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
 
       if (isObject.value && orderBy.value) {

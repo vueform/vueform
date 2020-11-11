@@ -16,7 +16,7 @@
             :parent="el$"
             :key="element.key"
             v-ref:child$
-            :ref="setRef(child$)"
+            :ref="setRef(child$, i)"
           >
             <template v-slot:prefix>
               <a
@@ -59,11 +59,6 @@
   export default {
     name: 'ListElement',
     mixins: [ListElement],
-    computed: {
-      console() {
-        return window.console
-      }
-    },
     data() {
       return {
         defaultClasses: {

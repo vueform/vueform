@@ -161,7 +161,6 @@ export const handleSort = function (elementType, elementName, options) {
         replacePrototypeValue(options.childValues[i], 2),
       ])
 
-      // @todo
       expect(el.child$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 1))
       expect(el.child$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
       expect(el.child$[2].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
@@ -261,12 +260,11 @@ export const handleSort = function (elementType, elementName, options) {
       await nextTick()
       await nextTick()
 
-      // @todo: after children$ fix
-      // expect(onSortMock).toHaveBeenCalledWith([
-      //   replacePrototypeValue(options.childValues[i], 1),
-      //   replacePrototypeValue(options.childValues[i], 0),
-      //   replacePrototypeValue(options.childValues[i], 2),
-      // ])
+      expect(onSortMock).toHaveBeenCalledWith([
+        replacePrototypeValue(options.childValues[i], 1),
+        replacePrototypeValue(options.childValues[i], 0),
+        replacePrototypeValue(options.childValues[i], 2),
+      ])
     })
   })
 
@@ -291,6 +289,7 @@ export const handleSort = function (elementType, elementName, options) {
       el.insert(replacePrototypeValue(options.childValues[i], 2))
 
       await nextTick()
+      await nextTick()
 
       el.handleSort({
         oldIndex: 1,
@@ -300,18 +299,17 @@ export const handleSort = function (elementType, elementName, options) {
       await nextTick()
       await nextTick()
       await nextTick()
+      await nextTick()
 
-      // @todo: after children$ fix
-      expect(onChangeMock).toHaveBeenCalled()
-      // expect(onChangeMock).toHaveBeenCalledWith([
-      //   replacePrototypeValue(options.childValues[i], 1),
-      //   replacePrototypeValue(options.childValues[i], 0),
-      //   replacePrototypeValue(options.childValues[i], 2),
-      // ], [
-      //   replacePrototypeValue(options.childValues[i], 0),
-      //   replacePrototypeValue(options.childValues[i], 1),
-      //   replacePrototypeValue(options.childValues[i], 2),
-      // ])
+      expect(onChangeMock).toHaveBeenCalledWith([
+        replacePrototypeValue(options.childValues[i], 1),
+        replacePrototypeValue(options.childValues[i], 0),
+        replacePrototypeValue(options.childValues[i], 2),
+      ], [
+        replacePrototypeValue(options.childValues[i], 0),
+        replacePrototypeValue(options.childValues[i], 1),
+        replacePrototypeValue(options.childValues[i], 2),
+      ])
     })
   })
 

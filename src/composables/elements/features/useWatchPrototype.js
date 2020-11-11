@@ -9,7 +9,6 @@ export default function useWatchPrototype (props, context, dependencies)
 
   // ============== WATCHERS ==============
 
-  // @todo: after value
   watch(prototype, () => {
     instances.value = _.map(instances.value, (instance) => {
       return Object.assign({}, prototype.value, {

@@ -25,7 +25,7 @@ export default function useChildrenValidation (props, context, dependencies)
   } = useValidation(props, context, dependencies)
 
   const form$ = dependencies.form$
-  const children$ = dependencies.children$
+  const child$ = dependencies.child$
   const value = dependencies.value
 
   // ============== COMPUTED ==============
@@ -36,7 +36,7 @@ export default function useChildrenValidation (props, context, dependencies)
    * @type {boolean}
    */
   const dirty = computed(() => {
-    return _.some(children$.value, { available: true, dirty: true })
+    return _.some(child$.value, { available: true, dirty: true })
       || state.value.dirty
   })
 
@@ -46,7 +46,7 @@ export default function useChildrenValidation (props, context, dependencies)
    * @type {boolean}
    */
   const validated = computed(() => {
-    return !_.some(children$.value, { available: true, validated: false })
+    return !_.some(child$.value, { available: true, validated: false })
       && state.value.validated
   })
 
@@ -56,7 +56,7 @@ export default function useChildrenValidation (props, context, dependencies)
    * @type {boolean}
    */
   const invalid = computed(() => {
-    return _.some(children$.value, { available: true, invalid: true })
+    return _.some(child$.value, { available: true, invalid: true })
       || _.some(Validators.value, { invalid: true })
   })
 
@@ -66,7 +66,7 @@ export default function useChildrenValidation (props, context, dependencies)
    * @type {boolean}
    */
   const pending = computed(() => {
-    return _.some(children$.value, { available: true, pending: true })
+    return _.some(child$.value, { available: true, pending: true })
       || _.some(Validators.value, { pending: true })
   })
 
@@ -76,7 +76,7 @@ export default function useChildrenValidation (props, context, dependencies)
    * @type {boolean}
    */
   const debouncing = computed(() => {
-    return _.some(children$.value, { available: true, debouncing: true })
+    return _.some(child$.value, { available: true, debouncing: true })
       || _.some(Validators.value, { debouncing: true })
   })
 
@@ -86,7 +86,7 @@ export default function useChildrenValidation (props, context, dependencies)
    * @type {boolean}
    */
   const busy = computed(() => {
-    return _.some(children$.value, { available: true, busy: true })
+    return _.some(child$.value, { available: true, busy: true })
       || pending.value || debouncing.value
   })
 
@@ -102,7 +102,7 @@ export default function useChildrenValidation (props, context, dependencies)
       errorList.push(error)
     })
 
-    _.each(children$.value, (element$) => {
+    _.each(child$.value, (element$) => {
       if (!element$.available) {
         return
       }
@@ -185,7 +185,7 @@ export default function useChildrenValidation (props, context, dependencies)
       return
     }
 
-    _.each(children$.value, (element$) => {
+    _.each(child$.value, (element$) => {
       element$.validate()
     })
   }
@@ -197,7 +197,7 @@ export default function useChildrenValidation (props, context, dependencies)
    * @returns {void}
    */
   const clean = () => {
-    _.each(children$.value, (element$) => {
+    _.each(child$.value, (element$) => {
       element$.clean()
     })
 
@@ -211,7 +211,7 @@ export default function useChildrenValidation (props, context, dependencies)
    * @returns {void}
    */
   const resetValidators = () => {
-    _.each(children$.value, (element$) => {
+    _.each(child$.value, (element$) => {
       element$.resetValidators()
     })
 

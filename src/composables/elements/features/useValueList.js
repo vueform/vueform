@@ -8,7 +8,7 @@ export default function useListValue(props, context, dependencies)
 
   const { previousValue, currentValue } = useValue(props, context, dependencies)
 
-  const children$ = dependencies.children$
+  const child$ = dependencies.child$
 
   // ============== COMPUTED ===============
 
@@ -21,7 +21,7 @@ export default function useListValue(props, context, dependencies)
     get() {
       let value = []
 
-      _.each(children$.value, (element$) => {
+      _.each(child$.value, (element$) => {
         value.push(element$.value)
       })
 
@@ -33,10 +33,9 @@ export default function useListValue(props, context, dependencies)
   })
 
   watch(value, (newValue, oldValue) => {
-    console.log('value changed', newValue, oldValue)
     currentValue.value = newValue
     previousValue.value = oldValue
-  })
+  }, { flush: 'post' })
 
   return {
     value,

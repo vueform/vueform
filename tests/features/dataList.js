@@ -529,7 +529,7 @@ export const remove = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child$ = el.children$[1]
+      let child$ = el.child$[1]
 
       await nextTick()
 

@@ -1,4 +1,4 @@
-import { toRefs } from 'composition-api'
+import { toRefs, onBeforeUpdate } from 'composition-api'
 import useForm$ from './../useForm$'
 import useTheme from './../useTheme'
 import useConditions from './../useConditions'
@@ -66,7 +66,7 @@ export default function useList(props, context) {
   })
 
   const value = useValueList(props, context, {
-    children$: children.children$,
+    child$: children.child$,
     nullValue: nullValue.nullValue,
     default: default_.default,
   })
@@ -84,7 +84,7 @@ export default function useList(props, context) {
   const validation = useValidationList(props, context, {
     form$: form$.form$,
     value: value.value,
-    children$: children.children$,
+    child$: children.child$,
     form$: form$.form$,
     path: path.path,
   })
@@ -113,12 +113,12 @@ export default function useList(props, context) {
 
   const order = useOrder(props, context, {
     isObject: prototype.isObject,
-    children$: children.children$,
+    child$: children.child$,
   })
 
   const data = useDataList(props, context, {
     form$: form$.form$,
-    children$: children.children$,
+    child$: children.child$,
     instances: children.instances,
     default: default_.default,
     nullValue: nullValue.nullValue,

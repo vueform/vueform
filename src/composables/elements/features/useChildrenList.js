@@ -21,7 +21,6 @@ export default function useListChildren(props, context, dependencies)
   })
   
   const handleLayoutBeforeUpdate = () => {
-    // console.log('emptied child$')
     child$.value = []
   }
 

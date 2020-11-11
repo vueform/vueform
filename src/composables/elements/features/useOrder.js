@@ -8,7 +8,7 @@ export default function useOrder(props, context, dependencies, options)
   // ============ DEPENDENCIES ============
 
   const isObject = dependencies.isObject
-  const children$ = dependencies.children$
+  const child$ = dependencies.child$
 
   // ============== COMPUTED ==============
 
@@ -46,7 +46,7 @@ export default function useOrder(props, context, dependencies, options)
    */
   const refreshOrderStore = () => {
     if (isObject.value && storeOrder.value) {
-      _.each(children$.value, (element$, index) => {
+      _.each(child$.value, (element$, index) => {
         element$.update({
           [storeOrder.value]: parseInt(index) + 1
         })
