@@ -3,6 +3,7 @@ import useFormComponent from './../composables/useFormComponent'
 
 export default {
   name: 'FormLanguageSelector',
+  emits: ['changeLanguage'],
   init(props, context)
   {  
     // ============ DEPENDENCIES ============
@@ -21,8 +22,12 @@ export default {
 
     // =============== METHODS ==============
 
-    const select = () => {
-      context.emit('changeLanguage', language.value)
+    const select = (code) => {
+      context.emit('changeLanguage', code)
+    }
+
+    const handleSelect = (code) => {
+      select(code)
     }
 
     return {
@@ -38,6 +43,7 @@ export default {
 
       // Methods
       select,
+      handleSelect,
     }
   },
 }

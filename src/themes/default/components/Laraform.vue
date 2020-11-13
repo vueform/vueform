@@ -16,7 +16,7 @@
     <component
       :is="components.FormLanguageSelector"
       v-if="multilingual"
-      @changeLanguage="setLanguage"
+      @changeLanguage="handleChangeLanguage"
     />
 
     <component

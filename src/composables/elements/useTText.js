@@ -5,11 +5,11 @@ import useInput from './features/useInput'
 import useAddons from './features/useAddons'
 import usePath from './features/usePath'
 import useConditions from './../useConditions'
-import useValue from './features/useValue'
-import useData from './features/useData'
-import useDefault from './features/useDefault'
-import useNullValue from './features/useNullValue'
-import useValidation from './features/useValidation'
+import useValueMultilingual from './features/useValueMultilingual'
+import useDataMultilingual from './features/useDataMultilingual'
+import useDefaultMultilingual from './features/useDefaultMultilingual'
+import useNullValueMultilingual from './features/useNullValueMultilingual'
+import useValidationMultilingual from './features/useValidationMultilingual'
 import useLabel from './features/useLabel'
 import usePlaceholder from './features/usePlaceholder'
 import useFloating from './features/useFloating'
@@ -29,10 +29,11 @@ import useAutocomplete from './features/useAutocomplete'
 import useDebounce from './features/useDebounce'
 import useDisabledInput from './features/useDisabledInput'
 import useEvents from './../useEvents'
-import useHandleInput from './features/useHandleInput'
-import useEmpty from './features/useEmpty'
+import useHandleInputMultilingual from './features/useHandleInputMultilingual'
+import useEmptyMultilingual from './features/useEmptyMultilingual'
+import useLanguages from './features/useLanguages'
 
-export default function useText(props, context) {
+export default function useTText(props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
@@ -50,15 +51,24 @@ export default function useText(props, context) {
   const autocomplete = useAutocomplete(props, context)
   const debounce = useDebounce(props, context)
   const disabled = useDisabledInput(props, context)
-  const nullValue = useNullValue(props, context)
 
-  const default_ = useDefault(props, context, {
-    nullValue: nullValue.nullValue
+  const languages = useLanguages(props, context, {
+    form$: form$.form$,
   })
 
-  const value = useValue(props, context, {
+  const nullValue = useNullValueMultilingual(props, context, {
+    languages: languages.languages,
+  })
+
+  const default_ = useDefaultMultilingual(props, context, {
+    form$: form$.form$,
+    nullValue: nullValue.nullValue,
+  })
+
+  const value = useValueMultilingual(props, context, {
     nullValue: nullValue.nullValue,
     default: default_.default,
+    language: languages.language,
   })
 
   const conditions = useConditions(props, context, {
@@ -67,9 +77,12 @@ export default function useText(props, context) {
     descriptor: schema,
   })
 
-  const validation = useValidation(props, context, {
+  const validation = useValidationMultilingual(props, context, {
     form$: form$.form$,
     path: path.path,
+    language: languages.language,
+    languages: languages.languages,
+    value: value.value,
   })
 
   const events = useEvents(props, context, {
@@ -79,24 +92,26 @@ export default function useText(props, context) {
     events: ['change'],
   })
 
-  const data = useData(props, context, {
+  const data = useDataMultilingual(props, context, {
     form$: form$.form$,
     available: conditions.available,
     value: value.value,
     currentValue: value.currentValue,
     previousValue: value.previousValue,
     clean: validation.clean,
-    validate: validation.validate,
+    validateLanguage: validation.validateLanguage,
     resetValidators: validation.resetValidators,
     fire: events.fire,
     default: default_.default,
     nullValue: nullValue.nullValue,
     dirt: validation.dirt,
+    language: languages.language,
   })
 
-  const empty = useEmpty(props, context, {
+  const empty = useEmptyMultilingual(props, context, {
     value: value.value,
     nullValue: nullValue.nullValue,
+    language: languages.language,
   })
 
   const label = useLabel(props, context, {
@@ -135,18 +150,20 @@ export default function useText(props, context) {
     components: components.components,
   })
 
-  const handleInput = useHandleInput(props, context, {
+  const handleInput = useHandleInputMultilingual(props, context, {
     form$: form$.form$,
     model: value.model,
     currentValue: value.currentValue,
     previousValue: value.previousValue,
     changed: data.changed,
     dirt: validation.dirt,
-    validate: validation.validate,
+    validateLanguage: validation.validateLanguage,
     fire: events.fire,
+    language: languages.language,
   })
 
   onMounted(() => {
+    validation.initState()
     validation.initMessageBag()
     validation.initValidation()
   })
@@ -184,5 +201,6 @@ export default function useText(props, context) {
     ...default_,
     ...nullValue,
     ...handleInput,
+    ...languages,
   }
 } 

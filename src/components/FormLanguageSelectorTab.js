@@ -4,9 +4,20 @@ import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'FormLanguageSelectorTab',
+  emits: ['select'],
+  props: {
+    language: {
+      type: Object,
+      required: true,
+    },
+    code: {
+      type: String,
+      required: true,
+    },
+  },
   init(props, context)
   {  
-    const { code } = toRefs(props.code)
+    const { code } = toRefs(props)
     const { containers } = toRefs(context.data)
 
     // ============ DEPENDENCIES ============
@@ -52,16 +63,9 @@ export default {
       selected,
       classes,
       components,
+
+      // Methods
+      select,
     }
-  },
-  props: {
-    language: {
-      type: Object,
-      required: true,
-    },
-    code: {
-      type: String,
-      required: true,
-    },
   },
 }

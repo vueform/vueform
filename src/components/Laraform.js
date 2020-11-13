@@ -831,6 +831,10 @@ export default {
      * @param {string} code code of language to set
      * @returns {void}
      */
+    handleChangeLanguage(code) {
+      this.setLanguage(code)
+    },
+
     setLanguage(code) {
       this.language = code
 
@@ -904,7 +908,7 @@ export default {
      * @event language
      */
     handleLanguage(language){
-      this.fire('language', language)
+      // this.fire('language', language)
     },
         
     /**

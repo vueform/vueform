@@ -1,8 +1,14 @@
-import TextElement from './TextElement'
-import MultilingualElement from './../../mixins/MultilingualElement'
-import MultilingualValidation from './../../mixins/MultilingualValidation'
+import BaseElement from './../../mixins/BaseElement'
+import useTText from './../../composables/elements/useTText'
 
 export default {
-  mixins: [TextElement, MultilingualElement, MultilingualValidation],
   name: 'TTextElement',
+  mixins: [BaseElement],
+  init(props, context) {
+    const ttext = useTText(props, context)
+
+    return {
+      ...ttext,
+    }
+  },
 }

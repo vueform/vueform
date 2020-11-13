@@ -16,7 +16,7 @@ export default function useDefault(props, context, dependencies)
   * 
   * @type {boolean}
   */
-  const default_ = computed(computedOption('default', schema, nullValue.value))
+  const default_ = computed(computedOption('default', schema, _.clone(nullValue.value)))
 
   return {
     // Computed

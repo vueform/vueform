@@ -167,7 +167,7 @@ export const load = function (elementType, elementName) {
     expect(el.dirty).toBe(false)
   })
 
-  it('should should format data if "formatData" is "true" on `load`', async () => {
+  it('should should format data if "formatLoad" is set on `load`', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -252,7 +252,7 @@ export const clear = function (elementType, elementName) {
 
     el.clear()
 
-    expect(el.value).toBe(el.nullValue)
+    expect(el.value).toStrictEqual(el.nullValue)
   })
 
   it('should trigger "updated" on `clear`', async () => {
@@ -290,7 +290,7 @@ export const reset = function (elementType, elementName) {
 
     el.reset()
 
-    expect(el.value).toBe(el.default)
+    expect(el.value).toStrictEqual(el.default)
   })
 
   it('should reset validators on `reset`', async () => {
@@ -332,7 +332,7 @@ export const reset = function (elementType, elementName) {
     el.update('value')
     el.reset()
 
-    expect(onChangeMock).toHaveBeenCalledWith(el.default, 'value')
+    expect(onChangeMock).toHaveBeenCalledWith(el.default, el.previousValue)
   })
 
   it('should not trigger "change" on `reset` if value has not changed', async () => {
@@ -352,6 +352,30 @@ export const reset = function (elementType, elementName) {
     el.reset()
 
     expect(onChangeMock).not.toHaveBeenCalled()
+  })
+}
+
+export const changed = function (elementType, elementName) {
+  it('should `changed` be true if current and previous values do not match', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.currentValue = 'value'
+    el.previousValue = null
+
+    expect(el.changed).toBe(true)
+
+    el.currentValue = 'value'
+    el.previousValue = 'value'
+
+    expect(el.changed).toBe(false)
   })
 }
 

@@ -1,4 +1,4 @@
-import { toRefs } from 'composition-api'
+import { toRefs, onMounted } from 'composition-api'
 import useForm$ from './../useForm$'
 import useTheme from './../useTheme'
 import usePath from './features/usePath'
@@ -103,6 +103,10 @@ export default function useObject(props, context) {
     validate: validation.validate,
     resetValidators: validation.resetValidators,
     children$: children.children$,
+  })
+  
+  onMounted(() => {
+    validation.initMessageBag()  
   })
 
   return {

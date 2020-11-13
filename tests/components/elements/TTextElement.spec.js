@@ -1,29 +1,28 @@
 import features from './../../features'
 import elements from './../../../api/elements'
-import { createForm, findAllComponents } from 'test-helpers'
-import { nextTick } from 'vue'
-import { Group } from './../../elements/group'
+import { Text } from './../../elements/text'
 
 export {
-  Group,
+  Text,
 }
 
-describe('Group Element', () => {
-  const elementType = 'group'
+describe('TText Element', () => {
+  const elementType = 'tText'
   const elementName = `${_.upperFirst(elementType)}Element`
   const options = {
-    slots: {
-      slots: [
-        'label', 'info', 'description', 'message',
-        'before', 'between', 'after'
-      ]
+    default: {
+      fieldType: 'input',
+    },
+    events: {
+      events: ['change']
     }
   }
 
   // Feature tests
-  _.each(elements.group.features, (feature) => {
+  _.each(elements.tText.features, (feature) => {
     if (!features[feature]) {
-      throw new Error('Feature wasn\'t found: `'+feature+'`')
+      throw new Error('Missing feature test: ' + feature)
+      return
     }
 
     describe(`${_.upperFirst(feature)} feature`, features[feature](elementType, Object.assign({}, options.default, options[feature] || {})))

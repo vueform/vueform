@@ -1399,7 +1399,7 @@ export const setInitialInstances = function (elementType, elementName, options) 
 }
 
 export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
+  const elementName = `${_.upperFirst(_.kebabCase(elementType))}Element`
 
   return () => {
     _.each(exports, (suite) => {

@@ -1,4 +1,4 @@
-import { toRefs, onBeforeUpdate } from 'composition-api'
+import { toRefs, onMounted } from 'composition-api'
 import useForm$ from './../useForm$'
 import useTheme from './../useTheme'
 import useConditions from './../useConditions'
@@ -171,6 +171,11 @@ export default function useList(props, context) {
     clear: data.clear,
     insert: children.insert,
     instances: children.instances,
+  })
+
+  onMounted(() => {
+    validation.initMessageBag()
+    validation.initValidation()
   })
 
   return {

@@ -246,13 +246,6 @@ export default function useData(props, context, dependencies)
     })
   }
 
-  // =============== HOOKS ================
-
-  onMounted(() => {
-    initMessageBag()
-    initValidation()
-  })
-
   return {
     // Data
     state,

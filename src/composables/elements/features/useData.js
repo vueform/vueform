@@ -78,9 +78,7 @@ export default function useData(props, context, dependencies)
   const load = (val, format = false) => {
     let formatted = format ? formatLoad.value(val, form$.value) : val
 
-    value.value = available.value && formatted !== undefined
-      ? formatted
-      : _.clone(nullValue.value)
+    value.value = available.value && formatted !== undefined ? formatted : _.clone(nullValue.value)
   }
 
   const update = (val) => {

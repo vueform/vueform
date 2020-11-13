@@ -1,11 +1,12 @@
 import { computed, ref, watch } from 'composition-api'
 
-export default function useValue(props, context, dependencies)
+export default function useValueMultilingual(props, context, dependencies)
 {
   // ============ DEPENDENCIES =============
 
   const default_ = dependencies.default
   const nullValue = dependencies.nullValue
+  const language = dependencies.language
 
   // ============== COMPUTED ===============
 
@@ -15,7 +16,7 @@ export default function useValue(props, context, dependencies)
    * @type {object}
    * @default null
    */
-  const currentValue = ref(default_ !== undefined ? _.clone(default_.value) : null)
+  const currentValue = ref(default_ !== undefined ? _.clone(default_.value) : {})
 
   /**
    * Helper property used to store the element previous value.
@@ -23,7 +24,7 @@ export default function useValue(props, context, dependencies)
    * @type {object}
    * @default null
    */
-  const previousValue = ref(nullValue !== undefined ? _.clone(nullValue.value) : null)
+  const previousValue = ref(nullValue !== undefined ? _.clone(nullValue.value) : {})
 
   /**
    * The value of the element.
@@ -47,10 +48,12 @@ export default function useValue(props, context, dependencies)
    */
   const model = computed({
     get() {
-      return value.value
+      return value.value[language.value]
     },
     set(val) {
-      value.value = val
+      value.value = Object.assign({}, value.value, {
+        [language.value]: val,
+      })
     }
   })
 

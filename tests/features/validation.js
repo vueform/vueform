@@ -190,7 +190,7 @@ export const pending = function (elementType, elementName, options) {
 }
 
 export const debouncing = function (elementType, elementName, options) {
-  it('should have `debouncing` "true" if any of the validators is debouncing and "false" when async it finishes', async () => {
+  it('should have `debouncing` "true" if any of the validators is debouncing and "false" when async it finishes', async (done) => {
     let axiosPostMock = jest.fn(() => Promise.resolve({ data: {} }))
 
     let form = createForm({
@@ -213,6 +213,7 @@ export const debouncing = function (elementType, elementName, options) {
 
     setTimeout(() => {
       expect(el.debouncing).toBe(false)
+      done()
     }, 1)
   })
 }
@@ -243,7 +244,7 @@ export const busy = function (elementType, elementName, options) {
     expect(el.busy).toBe(false)
   })
 
-  it('should have `busy` "true" if any of the validators is debouncing and "false" when async it finishes', async () => {
+  it('should have `busy` "true" if any of the validators is debouncing and "false" when async it finishes', async (done) => {
     let axiosPostMock = jest.fn(() => Promise.resolve({ data: {} }))
 
     let form = createForm({
@@ -266,6 +267,7 @@ export const busy = function (elementType, elementName, options) {
 
     setTimeout(() => {
       expect(el.busy).toBe(false)
+      done()
     }, 1)
   })
 }
