@@ -13,7 +13,7 @@ export default function useFloating(props, context, dependencies)
   * @type {string} 
   * @default null
   */
-  const floating = computed(computedOption('floating', schema, null))
+  const floating = computedOption('floating', schema, null)
 
   return {
     floating,

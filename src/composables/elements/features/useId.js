@@ -13,7 +13,7 @@ export default function useId(props, context, dependencies)
   * @type {string} 
   * @default null
   */
-  const id = computed(computedOption('id', schema, name.value))
+  const id = computedOption('id', schema, name.value)
 
   return {
     id,

@@ -13,7 +13,7 @@ export default function useDescription(props, context, dependencies)
    * @type {string} 
    * @default null
    */
-  const description = computed(computedOption('description', schema, null))
+  const description = computedOption('description', schema, null)
 
   return {
     description,

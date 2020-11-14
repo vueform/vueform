@@ -23,7 +23,7 @@ export default function useSort(props, context, dependencies, options)
   * @type {boolean}
   * @default false
   */
-  const sort = computed(computedOption('sort', schema, false))
+  const sort = computedOption('sort', schema, false)
 
   const sortable = computed(() => {
     return {

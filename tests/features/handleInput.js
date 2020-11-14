@@ -14,7 +14,7 @@ export const handleInput = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-    elWrapper.get('input').setValue('value')
+    elWrapper.get(options.fieldType).setValue('value')
 
     expect(el.model).toBe('value')
   })
@@ -33,7 +33,7 @@ export const handleInput = function (elementType, elementName, options) {
 
     expect(el.dirty).toBe(false)
 
-    elWrapper.get('input').setValue('value')
+    elWrapper.get(options.fieldType).setValue('value')
 
     expect(el.dirty).toBe(true)
   })
@@ -53,7 +53,7 @@ export const handleInput = function (elementType, elementName, options) {
 
     expect(el.dirty).toBe(false)
 
-    elWrapper.get('input').setValue('value')
+    elWrapper.get(options.fieldType).setValue('value')
 
     expect(el.dirty).toBe(false)
   })
@@ -72,7 +72,7 @@ export const handleInput = function (elementType, elementName, options) {
 
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-    elWrapper.get('input').setValue('value')
+    elWrapper.get(options.fieldType).setValue('value')
 
     expect(onChangeMock).toHaveBeenCalled()
   })
@@ -92,7 +92,7 @@ export const handleInput = function (elementType, elementName, options) {
     
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-    elWrapper.get('input').setValue('value')
+    elWrapper.get(options.fieldType).setValue('value')
 
     expect(onChangeMock).not.toHaveBeenCalled()
   })
@@ -111,7 +111,7 @@ export const handleInput = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-    elWrapper.get('input').setValue('value')
+    elWrapper.get(options.fieldType).setValue('value')
 
     await flushPromises()
 
@@ -119,7 +119,7 @@ export const handleInput = function (elementType, elementName, options) {
 
     form.vm.validateOn = 'submit|change'
 
-    elWrapper.get('input').setValue('value2')
+    elWrapper.get(options.fieldType).setValue('value2')
 
     await flushPromises()
 

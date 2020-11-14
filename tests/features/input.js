@@ -12,6 +12,14 @@ export const input = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.input instanceof HTMLInputElement).toBe(true)
+    switch (options.inputType) {
+      case 'input':
+        expect(el.input instanceof HTMLInputElement).toBe(true)
+        break
+
+      case 'textarea':
+        expect(el.input instanceof HTMLTextAreaElement).toBe(true)
+        break
+    }
   })
 }

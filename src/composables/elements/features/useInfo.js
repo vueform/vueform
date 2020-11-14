@@ -14,7 +14,7 @@ export default function useInfo(props, context, dependencies)
    * @default null
    * @ignore
    */
-  const info = computed(computedOption('info', schema, false))
+  const info = computedOption('info', schema, false)
 
   return {
     info,

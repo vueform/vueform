@@ -54,21 +54,21 @@ export default function useSlots(props, context, dependencies, options = {})
    * 
    * @type {string}
    */
-  const before = computed(computedOption('before', schema, null))
+  const before = computedOption('before', schema, null)
 
   /**
    * Text or HTML to be placed between the field and it's description (if any). If `between` slot is provided this will not appear.
    * 
    * @type {string}
    */
-  const between = computed(computedOption('between', schema, null))
+  const between = computedOption('between', schema, null)
 
   /**
    * Text or HTML to be placed after the field's error message (if any). If `after` slot is provided this will not appear.
    * 
    * @type {string}
    */
-  const after = computed(computedOption('after', schema, null))
+  const after = computedOption('after', schema, null)
 
   /**
    * Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.

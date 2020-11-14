@@ -13,7 +13,7 @@ export default function useInputType(props, context, dependencies)
    * @type {string}
    * @default 'text'
    */
-  const inputType = computed(computedOption('inputType', schema, 'text'))
+  const inputType = computedOption('inputType', schema, 'text')
 
   return {
     inputType,

@@ -17,7 +17,7 @@ export default function useLabel(props, context, dependencies)
    * @type {string} 
    * @default ''
    */
-  const label = computed(computedOption('label', schema, ''))
+  const label = computedOption('label', schema, '')
 
   /**
    * Helper property used to determine internally if a label should be

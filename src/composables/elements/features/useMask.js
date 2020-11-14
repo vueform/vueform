@@ -19,7 +19,7 @@ export default function useMask(props, context, dependencies)
    * @type {array|false}
    * @default false
    */
-  const mask = computed(computedOption('mask', schema, false))
+  const mask = computedOption('mask', schema, false)
 
   /**
    * Whether the mask is in in *guide* or *no guide* mode.
@@ -27,7 +27,7 @@ export default function useMask(props, context, dependencies)
    * @type boolean
    * @default true
    */
-  const guide = computed(computedOption('guide', schema, true))
+  const guide = computedOption('guide', schema, true)
 
   /**
    * Placeholder character represents the fillable spot in the mask.
@@ -35,7 +35,7 @@ export default function useMask(props, context, dependencies)
    * @type {string}
    * @default '_'
    */
-  const placeholderChar = computed(computedOption('placeholderChar', schema, '_'))
+  const placeholderChar = computedOption('placeholderChar', schema, '_')
 
   /**
    * If `true`, adding or deleting characters will not affect the positions of existing characters. If `false`, adding characters causes existing characters to advance and deleting characters causes existing characters to move back.
@@ -43,7 +43,7 @@ export default function useMask(props, context, dependencies)
    * @type {boolean}
    * @default false
    */
-  const keepCharPositions = computed(computedOption('keepCharPositions', schema, false))
+  const keepCharPositions = computedOption('keepCharPositions', schema, false)
 
   /**
    * A function that will give you the opportunity to modify the conformed value before it is displayed on the screen when masked.
@@ -51,7 +51,7 @@ export default function useMask(props, context, dependencies)
    * @type {function}
    * @default null
    */
-  const pipe = computed(computedOption('pipe', schema, null))
+  const pipe = computedOption('pipe', schema, null)
 
   /**
    * Whether to display the mask as a placeholder in place of the regular placeholder when the input element value is empty.
@@ -59,7 +59,7 @@ export default function useMask(props, context, dependencies)
    * @type {boolean}
    * @default true
    */
-  const showMask = computed(computedOption('showMask', schema, !placeholder.value))
+  const showMask = computedOption('showMask', schema, !placeholder.value)
 
   /**
    * Determines if the element is masked.

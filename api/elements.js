@@ -117,6 +117,41 @@ export default {
       'view'
     ]
   },
+  textarea: {
+    features: [
+      // 'addons',
+      // 'autogrow',
+      // 'baseElement',
+      // 'classes',
+      'columns',
+      'components',
+      'conditions',
+      'data',
+      'debounce',
+      'default',
+      'description',
+      'disabledInput',
+      'empty',
+      'events',
+      'floating',
+      'form$',
+      'handleInput',
+      'id',
+      'info',
+      'input',
+      'label',
+      'layout',
+      'nullValue',
+      'path',
+      'placeholder',
+      'readonly',
+      'slots',
+      'theme',
+      'validation',
+      'value',
+      'view'
+    ]
+  },
   text: {
     features: [
       'addons',

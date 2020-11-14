@@ -19,7 +19,7 @@ export default function useConditions(props, context, dependencies)
    * @type {array} 
    * @default []
    */
-  const conditions = computed(computedOption('conditions', descriptor, []))
+  const conditions = computedOption('conditions', descriptor, [])
 
   /**
    * Whether all element conditions are met (if any).

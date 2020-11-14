@@ -12,7 +12,7 @@ export default function usePlaceholder(props, context, dependencies)
   * 
   * @type {string}
   */
-  const placeholder = computed(computedOption('placeholder', schema, null))
+  const placeholder = computedOption('placeholder', schema, null)
 
   return {
     placeholder,

@@ -13,7 +13,7 @@ export default function useAutocomplete(props, context, dependencies)
    * @type {boolean}
    * @default true
    */
-  const autocomplete = computed(computedOption('autocomplete', schema, false))
+  const autocomplete = computedOption('autocomplete', schema, false)
 
   return {
     autocomplete,

@@ -13,7 +13,7 @@ export default function useDisabled(props, context, dependencies)
    * @type {boolean} 
    * @default false
    */
-  const disabled = computed(computedOption('disabled', schema, false))
+  const disabled = computedOption('disabled', schema, false)
 
 
   // =============== METHODS ==============

@@ -27,25 +27,25 @@ export default function useData(props, context, dependencies)
   * @type {boolean} 
   * @default true
   */
-  const submit = computed(computedOption('submit', schema, true))
+  const submit = computedOption('submit', schema, true)
 
   /**
    * A function that formats data before gets merged with form `data`.
    * 
    * @type {function}
    */
-  const formatData = computed(computedOption('formatData', schema, (name, val, form$) => {
+  const formatData = computedOption('formatData', schema, (name, val, form$) => {
     return { [name]: val }
-  }))
+  })
 
   /**
    * A function that formats data before [.load](#method-load) to the element.
    * 
    * @type {function}
    */
-  const formatLoad = computed(computedOption('formatLoad', schema, (val, form$) => {
+  const formatLoad = computedOption('formatLoad', schema, (val, form$) => {
     return val
-  }))
+  })
 
   /**
    * An object containing the element `name` as a key and its `value` as value.

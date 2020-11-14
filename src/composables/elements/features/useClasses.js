@@ -21,7 +21,7 @@ export default function useClasses(props, context, dependencies)
   * @type {object} 
   * @default {}
   */
-  const addClasses = computed(computedOption('addClasses', schema, {}))
+  const addClasses = computedOption('addClasses', schema, {})
 
   /**
   * Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object).
@@ -29,7 +29,7 @@ export default function useClasses(props, context, dependencies)
   * @type {string} 
   * @default null
   */
-  const class_ = computed(computedOption('class', schema, ''))
+  const class_ = computedOption('class', schema, '')
   
   /**
   * Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object).

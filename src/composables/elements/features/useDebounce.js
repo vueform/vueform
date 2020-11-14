@@ -13,7 +13,7 @@ export default function useDebounce(props, context, dependencies)
   * @type {number}
   * @default null
   */
-  const debounce = computed(computedOption('debounce', schema, null))
+  const debounce = computedOption('debounce', schema, null)
 
   return {
     debounce,

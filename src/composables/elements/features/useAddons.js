@@ -13,7 +13,7 @@ export default function useAddons(props, context, dependencies)
   * @type {object}
   * @default {}
   */
-  const addons = computed(computedOption('addons', schema, {}))
+  const addons = computedOption('addons', schema, {})
   
   /**
    * Helper property used to determine internally if the element has any addons.

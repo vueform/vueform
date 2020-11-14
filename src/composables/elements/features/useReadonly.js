@@ -13,7 +13,7 @@ export default function useReadonly(props, context, dependencies)
    * @type {boolean} 
    * @default false
    */
-  const readonly = computed(computedOption('readonly', schema, false))
+  const readonly = computedOption('readonly', schema, false)
 
   return {
     readonly,

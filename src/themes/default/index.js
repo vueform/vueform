@@ -51,7 +51,7 @@ import ObjectElement from './components/elements/ObjectElement'
 // import SliderElement from './components/elements/SliderElement'
 // import StaticElement from './components/elements/StaticElement'
 // import TagsElement from './components/elements/TagsElement'
-// import TextareaElement from './components/elements/TextareaElement'
+import TextareaElement from './components/elements/TextareaElement'
 import TextElement from './components/elements/TextElement'
 // import TimeElement from './components/elements/TimeElement'
 // import ToggleElement from './components/elements/ToggleElement'
@@ -142,7 +142,7 @@ export default {
     // SliderElement,
     // StaticElement,
     // TagsElement,
-    // TextareaElement,
+    TextareaElement,
     TextElement,
     // TimeElement,
     // ToggleElement,

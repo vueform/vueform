@@ -18,7 +18,7 @@ export default function useOrder(props, context, dependencies, options)
   * @type {string}
   * @default null
   */
-  const storeOrder = computed(computedOption('storeOrder', schema, null))
+  const storeOrder = computedOption('storeOrder', schema, null)
 
   /**
   * The default order direction of list items when data is loaded. Possible values: `null`, `'ASC'`, `'DESC'`.
@@ -26,7 +26,7 @@ export default function useOrder(props, context, dependencies, options)
   * @type {string}
   * @default null
   */
-  const order = computed(computedOption('order', schema, null))
+  const order = computedOption('order', schema, null)
 
   /**
   * When using an object list the list items will be ordered by this element's values. If `storeOrder` is defined, `orderBy` will be equal to that unless specified otherwise.
@@ -34,7 +34,7 @@ export default function useOrder(props, context, dependencies, options)
   * @type {string}
   * @default null
   */
-  const orderBy = computed(computedOption('orderBy', schema, storeOrder.value || null))
+  const orderBy = computedOption('orderBy', schema, storeOrder.value || null)
 
   // =============== METHODS ==============
 

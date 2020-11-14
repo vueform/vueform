@@ -57,7 +57,7 @@ export default function useData(props, context, dependencies)
    * @type {array|string|object}
    * @ignore
    */
-  const rules = computed(computedOption('rules', schema))
+  const rules = computedOption('rules', schema)
 
   /**
    * Overrides default validation rule [messages](validation#custom-messages).
@@ -65,7 +65,7 @@ export default function useData(props, context, dependencies)
    * @type {object} 
    * @default null
    */
-  const messages = computed(computedOption('messages', schema, {}))
+  const messages = computedOption('messages', schema, {})
 
   /**
    * Whether the element should display it's first error, if any.
@@ -73,7 +73,7 @@ export default function useData(props, context, dependencies)
    * @type {boolean} 
    * @default true
    */
-  const displayError = computed(computedOption('displayError', schema, true))
+  const displayError = computedOption('displayError', schema, true)
 
   /**
    * Whether the element's value has been modified by the user.

@@ -22,18 +22,18 @@ export default function useGroupData(props, context, dependencies)
    * 
    * @type {function}
    */
-  const formatData = computed(computedOption('formatData', schema, (name, val, form$) => {
+  const formatData = computedOption('formatData', schema, (name, val, form$) => {
     return val
-  }))
+  })
 
   /**
    * A function that formats data before [.load](#method-load) to the element.
    * 
    * @type {function}
    */
-  const formatLoad = computed(computedOption('formatLoad', schema, (val, form$) => {
+  const formatLoad = computedOption('formatLoad', schema, (val, form$) => {
     return val
-  }))
+  })
 
   /**
    * An object containing the element `name` as a key and its `value` as value.
