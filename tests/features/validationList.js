@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, findAllComponents, testComputedOption, prototypeChildType, prototypeInputType, prototypeAddChildOptions } from 'test-helpers'
+import { createForm, prototypeChildType, prototypeAddChildOptions } from 'test-helpers'
 import {
   rules, messages, displayError, dirt, messageBag, Validators, dirty as baseDirty,
   validated as baseValidated, pending as basePending, debouncing as baseDebouncing,
@@ -696,14 +696,4 @@ export const resetValidators = function (elementType, elementName, options) {
       expect(child1.validated).toBe(false)
     })
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

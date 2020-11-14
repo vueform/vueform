@@ -1,6 +1,4 @@
-import { nextTick } from 'vue'
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
-import flushPromises from 'flush-promises'
+import { createForm } from 'test-helpers'
 
 export const empty = function(elementType, elementName) {
   it('should have `empty` "true" if current language\'s value is empty', async () => {
@@ -33,13 +31,4 @@ export const empty = function(elementType, elementName) {
     
     expect(el.empty).toBe(false)
   })
-}
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm } from 'test-helpers'
 
 export const path = function (elementType, elementName) {
   it('should have `path` equal to name if parent is not provided', () => {
@@ -30,14 +30,4 @@ export const flat = function (elementType, elementName) {
 
     expect(el.flat).toBe(false)
   })
-}
-
-export default function (elementType) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName)
-    })
-  }
 }

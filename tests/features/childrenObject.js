@@ -1,10 +1,6 @@
 import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
 import { nextTick } from 'vue'
 
-// export const ___ = function (elementType, elementName) {
-//   testComputedOption(it, elementType, '_____', defaultValue, testValue)
-// }
-
 export const child$ = function (elementType, elementName) {
   it('should have `child$` as an empty array by default', () => {
     let form = createForm({
@@ -189,14 +185,4 @@ export const children$ = function (elementType, elementName) {
     expect(children$Keys[0]).toBe('child2')
     expect(children$Keys[1]).toBe('child1')
   })
-}
-
-export default function (elementType) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName)
-    })
-  }
 }

@@ -1,6 +1,5 @@
-import { createForm, findAllComponents, testValue, setValue } from 'test-helpers'
+import { createForm } from 'test-helpers'
 import { currentValue, previousValue } from './value'
-import { nextTick } from 'vue'
 
 export {
   currentValue,
@@ -143,14 +142,4 @@ export const model = function (elementType, elementName, options) {
       fr: 'value-fr'
     })
   })
-}
-
-export default function (elementType) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName)
-    })
-  }
 }

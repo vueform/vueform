@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testValue, setValue } from 'test-helpers'
+import { createForm } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const watcher = function (elementType, elementName, options) {
@@ -48,14 +48,4 @@ export const watcher = function (elementType, elementName, options) {
 
     expect(child.label).toBe('new label')
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

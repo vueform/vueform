@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
+import { createForm, testComputedOption } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 
 expect.extend({toBeVisible})
@@ -46,14 +46,4 @@ export const enable = function (elementType, elementName, options) {
 
     expect(el.disabled).toBe(false)
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

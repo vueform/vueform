@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm } from 'test-helpers'
 import { path } from './path'
 
 export {
@@ -19,14 +19,4 @@ export const flat = function (elementType, elementName) {
 
     expect(el.flat).toBe(true)
   })
-}
-
-export default function (elementType) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName)
-    })
-  }
 }

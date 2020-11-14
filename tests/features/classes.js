@@ -562,13 +562,3 @@ export const rendering = function (elementType, elementName, options) {
     expect(elWrapper.classes('form-add-classes2')).toBe(true)
   })
 }
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
-}

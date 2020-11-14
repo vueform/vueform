@@ -1,6 +1,5 @@
 import { nextTick } from 'vue'
-import { createForm, findAllComponents, testComputedOption, prototypeAddOptions } from 'test-helpers'
-import flushPromises from 'flush-promises'
+import { createForm, testComputedOption, prototypeAddOptions } from 'test-helpers'
 
 export const storeOrder = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'storeOrder', null, 'order')
@@ -83,14 +82,4 @@ export const refreshOrderStore = function (elementType, elementName, options) {
     expect(child0.schema.key).toBe(0)
     expect(child1.schema.key).toBe(2)
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

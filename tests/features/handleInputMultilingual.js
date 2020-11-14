@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 export const handleInput = function (elementType, elementName, options) {
   it('should set model on input', () => {
@@ -185,14 +185,4 @@ export const handleInput = function (elementType, elementName, options) {
 
     expect(el.state.validated.en).toBe(true)
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

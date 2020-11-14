@@ -1,10 +1,5 @@
-import { createForm, findAllComponents, testComputedOption, prototypeChildType, prototypeChildSchema, replacePrototypeValue } from 'test-helpers'
-import { nextTick } from 'vue'
+import { createForm, prototypeChildType } from 'test-helpers'
 import asyncForEach from './../../src/utils/asyncForEach'
-
-function name (type) {
-  return  `${_.upperFirst(type)}Element`
-}
 
 export const child$ = function (elementType, elementName, options) {
   const prototypes = options.prototypes
@@ -59,14 +54,4 @@ export const instances = function (elementType, elementName, options) {
 
     expect(el.instances).toStrictEqual([])
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

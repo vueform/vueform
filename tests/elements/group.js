@@ -1,6 +1,6 @@
 import { createForm, findAllComponents } from 'test-helpers'
 
-export const Group = function (elementType, elementName, options) {
+export default function (elementType, elementName, options) {
   describe('Classes feature', () => {
     it('should set default `childrenContainer` class on the container of child elements', () => {
       let form = createForm({

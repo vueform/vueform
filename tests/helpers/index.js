@@ -13,6 +13,8 @@ import prototypeChildSchema from './prototypeChildSchema'
 import prototypeChildType from './prototypeChildType'
 import prototypeInputType from './prototypeInputType'
 import replacePrototypeValue from './replacePrototypeValue'
+import runElementTests from './runElementTests'
+import runFeatureTests from './runFeatureTests'
 import select from './select'
 import setDate from './setDate'
 import setInstances from './setInstances'
@@ -53,6 +55,8 @@ export {
   prototypeChildType,
   prototypeInputType,
   replacePrototypeValue,
+  runElementTests,
+  runFeatureTests,
   select,
   setDate,
   setInstances,

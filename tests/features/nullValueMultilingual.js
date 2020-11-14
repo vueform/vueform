@@ -1,5 +1,4 @@
-import flushPromises from 'flush-promises'
-import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
+import { createForm } from 'test-helpers'
 
 export const nullValue = function (elementType, elementName, options) {
   it('should `nullValue` have "null" for each languages', () => {
@@ -28,14 +27,4 @@ export const nullValue = function (elementType, elementName, options) {
       fr: null,
     })
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

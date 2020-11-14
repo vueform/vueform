@@ -1,18 +1,15 @@
 import { testComputedOption, createForm } from 'test-helpers'
 
-export default function default_ (elementType) {
-
-  return () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType
-        }
+export const default_ = function (elementType, elementName, options) {
+  let form = createForm({
+    schema: {
+      el: {
+        type: elementType
       }
-    })
+    }
+  })
 
-    let el = form.vm.el$('el')
+  let el = form.vm.el$('el')
 
-    testComputedOption(it, elementType, 'default', el.nullValue, 'value')
-  }
+  testComputedOption(it, elementType, 'default', el.nullValue, 'value')
 }

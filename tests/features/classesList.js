@@ -1,14 +1,11 @@
-import { nextTick } from 'vue'
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
-import defaultTheme from './../../src/themes/default'
+import { createForm } from 'test-helpers'
 import { addClasses, class_, mainClass, rendering, classes as baseClasses } from './classes'
-import { mergeComponentClasses } from './../../src/utils/mergeClasses'
 
 export {
-  // addClasses,
-  // class_,
-  // mainClass,
-  // rendering,
+  addClasses,
+  class_,
+  mainClass,
+  rendering,
 }
 
 export const classes = function (elementType, elementName, options) {
@@ -35,14 +32,4 @@ export const classes = function (elementType, elementName, options) {
       },
     }
   }))
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

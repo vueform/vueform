@@ -1,6 +1,6 @@
 import { createForm, findAllComponents } from 'test-helpers'
 
-export const Text = function (elementType, elementName, options) {
+export default function (elementType, elementName, options) {
   it('should add `name` attribute to input', () => {
     let form = createForm({
       schema: {

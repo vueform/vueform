@@ -141,13 +141,3 @@ export const model = function (elementType, elementName, options) {
     expect(el.model).toBe('value2')
   })
 }
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
-}

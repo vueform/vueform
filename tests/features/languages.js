@@ -1,5 +1,4 @@
-import flushPromises from 'flush-promises'
-import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
+import { createForm } from 'test-helpers'
 
 export const languages = function (elementType, elementName, options) {
   it('should return an array of language codes for `languages`', () => {
@@ -53,14 +52,4 @@ export const languages = function (elementType, elementName, options) {
 
     expect(el.language).toBe('fr')
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

@@ -1,7 +1,6 @@
-import { createForm, findAllComponents, testComputedOption, prototypeChildType } from 'test-helpers'
+import { createForm, findAllComponents, prototypeChildType } from 'test-helpers'
 import { disabled, disable, enable } from './disabled'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
-import { nextTick } from 'vue'
 
 expect.extend({toBeVisible})
 
@@ -10,7 +9,6 @@ export {
   disable,
   enable,
 }
-
 
 export const rendering = function (elementType, elementName, options) {
   const prototypes = options.prototypes
@@ -53,15 +51,4 @@ export const rendering = function (elementType, elementName, options) {
     expect(elWrapper.vm.$el.querySelector(`.${el.defaultClasses.add}`).classList.contains(el.defaultClasses.disabled)).toBe(true)
     expect(childWrapper.vm.$el.querySelector(`.${el.defaultClasses.remove}`).classList.contains(el.defaultClasses.disabled)).toBe(true)
   })
-}
-
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

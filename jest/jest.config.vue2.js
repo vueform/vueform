@@ -12,6 +12,7 @@ module.exports = {
   "transformIgnorePatterns": [
       "/node_modules/(?!vue-js-toggle-button|vue-multiselect)"
   ],
+  "modulePathIgnorePatterns": ["<rootDir>/old_tests/"],
   "moduleNameMapper": {
       "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
       "^composition-api$": "vue-prev-composition-api",
@@ -28,7 +29,8 @@ module.exports = {
       "!**/coverage/**",
       "!**/config/**",
       "!**/dist/**",
-      "!**/ignore/**"
+      "!**/ignore/**",
+      "!**/old_tests/**"
   ],
   "coverageReporters": [
       "html",

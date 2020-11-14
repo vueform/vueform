@@ -1,5 +1,4 @@
-import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
-import { nextTick } from 'vue'
+import { createForm, findAllComponents, testAttribute } from 'test-helpers'
 import { disabled, disable, enable } from './disabled'
 
 export {
@@ -7,7 +6,6 @@ export {
   disable,
   enable,
 }
-
 
 export const rendering = function (elementType, elementName, options) {
   it('should disable input when `disabled`', () => {
@@ -39,15 +37,4 @@ export const rendering = function (elementType, elementName, options) {
     
     testAttribute(elWrapper, options.fieldType, 'disabled', undefined)
   })
-}
-
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

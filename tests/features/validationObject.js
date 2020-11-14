@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 
 export const dirty = function (elementType, elementName, options) {
   it('should be not `dirty` if none of the children is dirty', () => {
@@ -507,14 +507,4 @@ export const messageBag = function (elementType, elementName, options) {
 
     expect(el.messageBag instanceof el.$laraform.services.messageBag).toBe(true)
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm, testComputedOption } from 'test-helpers'
 import { nextTick } from 'vue'
 import Validator from './../../src/services/validation/validator'
 
@@ -526,14 +526,4 @@ export const Validators = function (elementType, elementName, options) {
     expect(el.Validators[0].name).toBe('required')
     expect(el.Validators[1].name).toBe('email')
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

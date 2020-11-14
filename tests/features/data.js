@@ -1,7 +1,5 @@
-import { nextTick } from 'vue'
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm, testComputedOption } from 'test-helpers'
 import flushPromises from 'flush-promises'
-import { FileWatcherEventKind, isExportDeclaration } from 'typescript'
 
 export const nullValue = function (elementType, elementName) {
   it('should have "null" as `nullValue`', () => {
@@ -532,14 +530,4 @@ export const onCreated = function (elementType, elementName) {
 
     expect(el.currentValue).toBe('value')
   })
-}
-
-export default function (elementType) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName)
-    })
-  }
 }

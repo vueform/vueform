@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testValue, setValue , replacePrototypeValue} from 'test-helpers'
+import { createForm, replacePrototypeValue} from 'test-helpers'
 import { nextTick } from 'vue'
 import { currentValue, previousValue } from './value'
 import asyncForEach from './../../src/utils/asyncForEach'
@@ -55,14 +55,4 @@ export const value = function (elementType, elementName, options) {
       }).toThrowError()
     })
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

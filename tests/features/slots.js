@@ -1,12 +1,26 @@
-import { createForm, findAllComponents, testComputedOption, createElement,  } from 'test-helpers'
+import { createForm, findAllComponents, testComputedOption, createElement } from 'test-helpers'
 import { defineComponent, markRaw, nextTick } from 'composition-api'
-import { TextElement } from './../../src/themes/default'
 
-export default function(elementType, options = {}) {
-  const elementName = `${_.upperFirst(elementType)}Element`
+export const slots = function (elementType, elementName, options) {
+  const defaultForm = createForm({
+    schema: {
+      el: {
+        type: elementType,
+      }
+    }
+  })
 
-  return () => {
-    const defaultForm = createForm({
+  const defaultSlots = findAllComponents(defaultForm, { name: elementName }).at(0).vm.slots
+  const defaultSlotKeys = _.keys(defaultSlots)
+
+  // Computed Options
+  testComputedOption(it, elementType, 'before', null, 'before')
+  testComputedOption(it, elementType, 'between', null, 'between')
+  testComputedOption(it, elementType, 'after', null, 'after')
+  
+  // Computed Props
+  it('should have default `slots` by default', () => {
+    let form = createForm({
       schema: {
         el: {
           type: elementType,
@@ -14,127 +28,108 @@ export default function(elementType, options = {}) {
       }
     })
 
-    const defaultSlots = findAllComponents(defaultForm, { name: elementName }).at(0).vm.slots
-    const defaultSlotKeys = _.keys(defaultSlots)
+    let el = form.vm.el$('el')
 
-    // Computed Options
-    testComputedOption(it, elementType, 'before', null, 'before')
-    testComputedOption(it, elementType, 'between', null, 'between')
-    testComputedOption(it, elementType, 'after', null, 'after')
-    
-    // Computed Props
-    it('should have default `slots` by default', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
+    expect(_.keys(el.slots)).toStrictEqual(defaultSlotKeys)
+  })
+
+  it('should set `slots` from schema', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          slots: {
+            custom: 'custom-slot'
           }
         }
-      })
-
-      let el = form.vm.el$('el')
-
-      expect(_.keys(el.slots)).toStrictEqual(defaultSlotKeys)
-    })
-
-    it('should set `slots` from schema', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-            slots: {
-              custom: 'custom-slot'
-            }
-          }
-        }
-      })
-
-      let el = form.vm.el$('el')
-
-      expect(el.slots).toStrictEqual(Object.assign({}, defaultSlots, {
-        custom: 'custom-slot'
-      }))
-    })
-
-    it('should set `slots` to schema', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-          }
-        }
-      })
-
-      let el = form.vm.el$('el')
-
-      el.slots = {
-        custom: 'custom-slot'
       }
-
-      expect(el.slots).toStrictEqual(Object.assign({}, defaultSlots, {
-        custom: 'custom-slot'
-      }))
     })
 
-    // Template
-    it('should render `before`', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-            before: 'it is before'
-          }
+    let el = form.vm.el$('el')
+
+    expect(el.slots).toStrictEqual(Object.assign({}, defaultSlots, {
+      custom: 'custom-slot'
+    }))
+  })
+
+  it('should set `slots` to schema', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
         }
-      })
-
-      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-
-      expect(elWrapper.html()).toContain('it is before')
+      }
     })
 
-    it('should render `between`', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-            between: 'it is between'
-          }
+    let el = form.vm.el$('el')
+
+    el.slots = {
+      custom: 'custom-slot'
+    }
+
+    expect(el.slots).toStrictEqual(Object.assign({}, defaultSlots, {
+      custom: 'custom-slot'
+    }))
+  })
+
+  // Template
+  it('should render `before`', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          before: 'it is before'
         }
-      })
-
-      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-
-      expect(elWrapper.html()).toContain('it is between')
+      }
     })
 
-    it('should render `after`', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-            after: 'it is after'
-          }
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+
+    expect(elWrapper.html()).toContain('it is before')
+  })
+
+  it('should render `between`', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          between: 'it is between'
         }
-      })
-
-      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-
-      expect(elWrapper.html()).toContain('it is after')
+      }
     })
 
-    // Slots
-    _.each(_.keys(defaultSlots), (slot) => {
-      testSchemaSlot(it, elementName, elementType, slot)
-    })
-    
-    _.each(_.keys(defaultSlots), (slot) => {
-      testDynamicSchemaSlot(it, elementName, elementType, slot)
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+
+    expect(elWrapper.html()).toContain('it is between')
+  })
+
+  it('should render `after`', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          after: 'it is after'
+        }
+      }
     })
 
-    _.each(_.keys(defaultSlots), (slot) => {
-      testInlineSlot(it, elementName, elementType, slot)
-    })
-  }
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+
+    expect(elWrapper.html()).toContain('it is after')
+  })
+
+  // Slots
+  _.each(_.keys(defaultSlots), (slot) => {
+    testSchemaSlot(it, elementName, elementType, slot)
+  })
+  
+  _.each(_.keys(defaultSlots), (slot) => {
+    testDynamicSchemaSlot(it, elementName, elementType, slot)
+  })
+
+  _.each(_.keys(defaultSlots), (slot) => {
+    testInlineSlot(it, elementName, elementType, slot)
+  })
 }
 
 const testSchemaSlot = function(it, elementName, elementType, slot) {

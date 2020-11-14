@@ -1,102 +1,102 @@
 import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
 
-export default function label (elementType) {
-  const elementName = `${_.upperFirst(elementType)}Element`
+export const label = function (elementType, elementName, options) {
+  testComputedOption(it, elementType, 'label', '', 'Label')
+}
 
-  return () => {
-    testComputedOption(it, elementType, 'label', '', 'Label')
-    
-    it('should have `hasLabel` equal "true" if the element has label defined & config.labels disabled', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-            label: 'Label'
-          }
+export const hasLabel = function (elementType, elementName, options) { 
+  it('should have `hasLabel` equal "true" if the element has label defined & config.labels disabled', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          label: 'Label'
         }
-      }, {
-        config: {
-          labels: false,
-        }
-      })
-
-      let el = form.vm.el$('el')
-
-      expect(form.vm.$laraform.labels).toBe(false)
-      expect(el.hasLabel).toBe(true)
+      }
+    }, {
+      config: {
+        labels: false,
+      }
     })
 
-    it('should have `hasLabel` equal "true" if the element has no label defined & config.labels enabled', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-          }
-        }
-      }, {
-        config: {
-          labels: true,
-        }
-      })
+    let el = form.vm.el$('el')
 
-      let el = form.vm.el$('el')
+    expect(form.vm.$laraform.labels).toBe(false)
+    expect(el.hasLabel).toBe(true)
+  })
 
-      expect(form.vm.$laraform.labels).toBe(true)
-      expect(el.hasLabel).toBe(true)
+  it('should have `hasLabel` equal "true" if the element has no label defined & config.labels enabled', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    }, {
+      config: {
+        labels: true,
+      }
     })
 
-    it('should have `hasLabel` equal "false" if the element has no label defined & config.labels disabled', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-          }
-        }
-      }, {
-        config: {
-          labels: false,
-        }
-      })
+    let el = form.vm.el$('el')
 
-      let el = form.vm.el$('el')
+    expect(form.vm.$laraform.labels).toBe(true)
+    expect(el.hasLabel).toBe(true)
+  })
 
-      expect(form.vm.$laraform.labels).toBe(false)
-      expect(el.hasLabel).toBe(false)
+  it('should have `hasLabel` equal "false" if the element has no label defined & config.labels disabled', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    }, {
+      config: {
+        labels: false,
+      }
     })
 
-    it('should should render `ElementLabel` if hasLabel is "true"', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-            label: 'Label'
-          }
+    let el = form.vm.el$('el')
+
+    expect(form.vm.$laraform.labels).toBe(false)
+    expect(el.hasLabel).toBe(false)
+  })
+}
+
+export const rendering = function (elementType, elementName, options) {
+  it('should should render `ElementLabel` if hasLabel is "true"', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          label: 'Label'
         }
-      })
-
-      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-      let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
-
-      expect(ElementLabel.length).toBe(1)
+      }
     })
 
-    it('should should render `ElementLabel` if hasLabel is "false"', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-          }
-        }
-      }, {
-        config: {
-          labels: false,
-        }
-      })
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
 
-      let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-      let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
+    expect(ElementLabel.length).toBe(1)
+  })
 
-      expect(ElementLabel.length).toBe(0)
+  it('should should render `ElementLabel` if hasLabel is "false"', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    }, {
+      config: {
+        labels: false,
+      }
     })
-  }
+
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
+
+    expect(ElementLabel.length).toBe(0)
+  })
 }

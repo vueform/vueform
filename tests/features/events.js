@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm } from 'test-helpers'
 
 export const events = function (elementType, elementName, options) {
   it('should "' + options.events.join('", "') + '" `events`', () => {
@@ -64,14 +64,4 @@ export const off = function (elementType, elementName, options) {
 
     expect(onEventMock).not.toHaveBeenCalled()
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

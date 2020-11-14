@@ -1,5 +1,4 @@
-import { nextTick } from 'vue'
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm } from 'test-helpers'
 import flushPromises from 'flush-promises'
 import { submit, formatData, formatLoad, data, filtered, changed, clear, reset } from './data'
 
@@ -354,14 +353,4 @@ export const updated = function (elementType, elementName) {
     expect(el.state.validated.en).toBe(false)
     expect(el.state.validated.fr).toBe(false)
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

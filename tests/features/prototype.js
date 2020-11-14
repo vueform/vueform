@@ -1,10 +1,4 @@
-import { nextTick } from 'vue'
-import {
-  createForm, findAllComponents, testComputedOption, prototypeAddOptions,
-  replacePrototypeValue
-} from 'test-helpers'
-import flushPromises from 'flush-promises'
-import asyncForEach from './../../src/utils/asyncForEach'
+import { createForm } from 'test-helpers'
 
 export const prototype = function (elementType, elementName, options) {
   let prototypes = options.prototypes
@@ -70,14 +64,4 @@ export const isObject = function (elementType, elementName, options) {
 
     expect(el.isObject).toBe(true)
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }

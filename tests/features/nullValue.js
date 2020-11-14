@@ -1,22 +1,17 @@
-import { createForm, findAllComponents } from 'test-helpers'
+import { createForm } from 'test-helpers'
 
-export default function nullValue (elementType) {
-  const elementName = `${_.upperFirst(elementType)}Element`
-
-  return () => {
-    // Computed Props
-    it('should have "null" as `nullValue`', () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-          }
+export const nullValue = function (elementType, elementName, options) {
+  it('should have "null" as `nullValue`', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
         }
-      })
-
-      let el = form.vm.el$('el')
-
-      expect(el.nullValue).toBe(null)
+      }
     })
-  }
+
+    let el = form.vm.el$('el')
+
+    expect(el.nullValue).toBe(null)
+  })
 }

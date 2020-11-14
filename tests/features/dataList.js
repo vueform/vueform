@@ -1,7 +1,6 @@
 import { nextTick } from 'vue'
 import {
-  createForm, findAllComponents, testComputedOption, replacePrototypeValue,
-  prototypeChildType, prototypeChildSchema, prototypeAddOptions, 
+  createForm, findAllComponents, replacePrototypeValue, prototypeAddOptions,
   prototypeAddChildOptions, 
 } from 'test-helpers'
 import flushPromises from 'flush-promises'
@@ -1396,14 +1395,4 @@ export const setInitialInstances = function (elementType, elementName, options) 
       expect(el.instances.length).toBe(3)
     })
   })
-}
-
-export default function (elementType, options) {
-  const elementName = `${_.upperFirst(_.kebabCase(elementType))}Element`
-
-  return () => {
-    _.each(exports, (suite) => {
-      suite(elementType, elementName, options)
-    })
-  }
 }
