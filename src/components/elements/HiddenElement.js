@@ -1,31 +1,14 @@
 import BaseElement from './../../mixins/BaseElement'
-import BaseValidation from './../../mixins/BaseValidation'
+import useHidden from './../../composables/elements/useHidden'
 
 export default {
   name: 'HiddenElement',
-  mixins: [BaseElement, BaseValidation],
-  props: {
-    /**
-     * The element schema containing it's options.
-     * 
-     * @default {
-     *  "default": { "type": "string", "description": "Value of element when the form is initially loaded or reseted." }
-     * }
-     */
-    schema: {
-      type: Object,
-      required: true
-    },
-  },
-  data() {
+  mixins: [BaseElement],
+  init(props, context) {
+    const hidden = useHidden(props, context)
+
     return {
-      /**
-       * Element slots.
-       * 
-       * @type {object}
-       * @default {}
-       */
-      slots: {}
+      ...hidden,
     }
-  }
+  },
 }

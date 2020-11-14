@@ -13,6 +13,5 @@ export const input = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.input instanceof HTMLInputElement).toBe(true)
-    expect(el.input.type).toBe(el.inputType)
   })
 }

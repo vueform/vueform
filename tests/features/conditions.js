@@ -66,7 +66,7 @@ export const available = function (elementType, elementName, options) {
 }
 
 export const rendering = function (elementType, elementName, options) {
-  it('should should hide element if not `available`', () => {
+  it('should hide element if not `available`', () => {
     let form = createForm({
       schema: {
         el: {
@@ -83,10 +83,12 @@ export const rendering = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.$el).not.toBeVisible()
+    if (el.visible !== undefined) {
+      expect(el.$el).not.toBeVisible()
+    }
   })
 
-  it('should should not hide element if `available`', async () => {
+  it('should not hide element if `available`', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -106,6 +108,8 @@ export const rendering = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.$el).toBeVisible()
+    if (el.visible !== undefined) {
+      expect(el.$el).toBeVisible()
+    }
   })
 }

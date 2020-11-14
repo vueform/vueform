@@ -18,7 +18,7 @@ export default function (elementType, options, elementExports) {
     })
 
     // Element tests
-    _.each(elements[elementType], (suite) => {
+    _.each(elements[elementType] || {}, (suite) => {
       suite(elementType, elementName, options)
     })
   })

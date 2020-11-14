@@ -120,24 +120,4 @@ export const model = function (elementType, elementName, options) {
 
     expect(el.value).toBe(el.model)
   })
-  
-  it('should update `model` when input value changes', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          default: 'value'
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-
-    expect(el.model).toBe('value')
-
-    setValue(elWrapper, options.fieldType, 'value2')
-    
-    expect(el.model).toBe('value2')
-  })
 }

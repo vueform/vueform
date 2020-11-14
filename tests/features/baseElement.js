@@ -13,7 +13,9 @@ export const baseElement = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.genericName).toBe('Element label')
+    if (el.label !== undefined) {
+      expect(el.genericName).toBe('Element label')
+    }
   })
 
   it('should return `genericName` when placeholder is defined', () => {

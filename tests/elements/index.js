@@ -1,13 +1,20 @@
-import group from './group'
-import list from './list'
-import object from './object'
-import text from './text'
-import tText from './tText'
+import _ from 'lodash'
+import fs from 'fs'
 
-export default {
-  group,
-  list,
-  object,
-  text,
-  tText,
-}
+const files = fs.readdirSync(__dirname)
+
+const exclude = ['index.js']
+
+const elements = {}
+
+_.each(files, (file) => {
+  if (exclude.indexOf(file) !== -1) {
+    return
+  }
+  
+  let element = file.replace('.js', '')
+
+  elements[element] = require('./' + element)
+})
+
+export default elements

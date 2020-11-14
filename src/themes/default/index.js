@@ -36,7 +36,7 @@ import Trix from './components/wrappers/Trix'
 // import DatetimeElement from './components/elements/DatetimeElement'
 // import FileElement from './components/elements/FileElement'
 import GroupElement from './components/elements/GroupElement'
-// import HiddenElement from './components/elements/HiddenElement'
+import HiddenElement from './components/elements/HiddenElement'
 // import KeyElement from './components/elements/KeyElement'
 import ListElement from './components/elements/ListElement'
 // import LocationElement from './components/elements/LocationElement'
@@ -127,7 +127,7 @@ export default {
     // DatetimeElement,
     // FileElement,
     GroupElement,
-    // HiddenElement,
+    HiddenElement,
     // KeyElement,
     ListElement,
     // LocationElement,

@@ -4,7 +4,6 @@
     v-model="model"
     :name="name"
     :id="id"
-    @change="handleChange"
     ref="input"
   />
 </template>
