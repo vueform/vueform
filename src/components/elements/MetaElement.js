@@ -1,20 +1,8 @@
 import BaseElement from './../../mixins/BaseElement'
-import BaseValidation from './../../mixins/BaseValidation'
+import useMeta from './../../composables/elements/useMeta'
 
 export default {
   name: 'MetaElement',
-  mixins: [BaseElement, BaseValidation],
-  props: {
-    /**
-      * The element schema containing it's options.
-      * 
-      * @default {
-      *  "default": { "type": "string", "description": "Value of element when the form is initially loaded or reseted." }
-      * }
-      */
-    schema: {
-      type: Object,
-      required: true
-    },
-  },
+  mixins: [BaseElement],
+  init: useMeta,
 }

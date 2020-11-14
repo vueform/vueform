@@ -1,9 +1,11 @@
 import ListElement from './ListElement'
 import HasFileDrop from './../../mixins/HasFileDrop'
+import useMultifile from './../../composables/elements/useMultifile'
 
 export default {
-  mixins: [ListElement, HasFileDrop],
   name: 'MultifileElement',
+  mixins: [ListElement, HasFileDrop],
+  init: useMultifile,
   props: {
     /**
      * The element schema containing it's options.

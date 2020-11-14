@@ -1,10 +1,12 @@
 import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
 import CanBeDisabled from './../../mixins/CanBeDisabled'
+import useDate from './../../composables/elements/useDate'
 
 export default {
   name: 'DateElement',
   mixins: [BaseElement, BaseValidation, CanBeDisabled],
+  init: useDate,
   data() {
     return {
       /**

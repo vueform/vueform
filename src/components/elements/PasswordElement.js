@@ -3,6 +3,7 @@ import BaseValidation from './../../mixins/BaseValidation'
 import CanBeDisabled from './../../mixins/CanBeDisabled'
 import HasAddons from './../../mixins/HasAddons'
 import $model from './../../directives/$model'
+import usePassword from './../../composables/elements/usePassword'
 
 export default {
   name: 'PasswordElement',
@@ -10,6 +11,7 @@ export default {
     $model,
   },
   mixins: [BaseElement, BaseValidation, HasAddons, CanBeDisabled],
+  init: usePassword,
   props: {
     /**
      * The element schema containing it's options.

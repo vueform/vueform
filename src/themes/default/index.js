@@ -37,10 +37,10 @@ import Trix from './components/wrappers/Trix'
 // import FileElement from './components/elements/FileElement'
 import GroupElement from './components/elements/GroupElement'
 import HiddenElement from './components/elements/HiddenElement'
-// import KeyElement from './components/elements/KeyElement'
+import KeyElement from './components/elements/KeyElement'
 import ListElement from './components/elements/ListElement'
 // import LocationElement from './components/elements/LocationElement'
-// import MetaElement from './components/elements/MetaElement'
+import MetaElement from './components/elements/MetaElement'
 // import MultifileElement from './components/elements/MultifileElement'
 // import MultiselectElement from './components/elements/MultiselectElement'
 import ObjectElement from './components/elements/ObjectElement'
@@ -128,10 +128,10 @@ export default {
     // FileElement,
     GroupElement,
     HiddenElement,
-    // KeyElement,
+    KeyElement,
     ListElement,
     // LocationElement,
-    // MetaElement,
+    MetaElement,
     // MultifileElement,
     // MultiselectElement,
     ObjectElement,

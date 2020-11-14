@@ -1,8 +1,10 @@
 import ObjectElement from './ObjectElement'
+import useAddress from './../../composables/elements/useAddress'
 
 export default {
   name: 'AddressElement',
   mixins: [ObjectElement],
+  init: useAddress,
   props: {
     /**
      * The element schema containing it's options.

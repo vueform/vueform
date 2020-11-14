@@ -2,10 +2,12 @@ import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
 import CanBeDisabled from './../../mixins/CanBeDisabled'
 import HasAddons from './../../mixins/HasAddons'
+import useLocation from './../../composables/elements/useLocation'
 
 export default {
   name: 'LocationElement',
   mixins: [BaseElement, BaseValidation, HasAddons, CanBeDisabled],
+  init: useLocation,
   props: {
     /**
      * The element schema containing it's options.

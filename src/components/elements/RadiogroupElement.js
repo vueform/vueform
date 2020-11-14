@@ -1,9 +1,11 @@
 import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
+import useRadiogroup from './../../composables/elements/useRadiogroup'
 
 export default {
   name: 'RadiogroupElement',
   mixins: [BaseElement, BaseValidation],
+  init: useRadiogroup,
   props: {
     /**
      * The element schema containing it's options.

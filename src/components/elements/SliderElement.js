@@ -1,10 +1,12 @@
 import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
 import CanBeDisabled from './../../mixins/CanBeDisabled'
+import useSlider from './../../composables/elements/useSlider'
 
 export default {
   name: 'SliderElement',
   mixins: [BaseElement, BaseValidation, CanBeDisabled],
+  init: useSlider,
   props: {
     /**
      * The element schema containing it's options.

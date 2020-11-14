@@ -1,9 +1,11 @@
 import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
+import useCheckboxgroup from './../../composables/elements/useCheckboxgroup'
 
 export default {
-  mixins: [BaseElement, BaseValidation],
   name: 'CheckboxgroupElement',
+  mixins: [BaseElement, BaseValidation],
+  init: useCheckboxgroup,
   props: {
     /**
      * The element schema containing it's options.

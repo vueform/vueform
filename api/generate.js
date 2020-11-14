@@ -2,7 +2,39 @@ const fs = require('fs')
 const _ = require('lodash')
 const basePath = './..'
 const featuresPath = '/src/composables/elements'
-const elements = ['group', 'hidden', 'list', 'object', 'text', 'tText']
+const elements = [
+  'address',
+  'buttons',
+  'checkbox',
+  'checkboxgroup',
+  'date',
+  'datetime',
+  'file',
+  'group',
+  'hidden',
+  'key',
+  'list',
+  'location',
+  'meta',
+  'multifile',
+  'multiselect',
+  'object',
+  'password',
+  'radio',
+  'radiogroup',
+  'select',
+  'slider',
+  'static',
+  'tags',
+  'textarea',
+  'text',
+  'time',
+  'toggle',
+  'trix',
+  'tTextarea',
+  'tText',
+  'tTrix',
+]
 
 function getFeatures() {
   const features = {}
@@ -10,7 +42,16 @@ function getFeatures() {
   elements.forEach((element) => {
     const path = `${basePath}${featuresPath}/use${_.upperFirst(element)}.js`
 
-    const data = fs.readFileSync(path, 'UTF-8')
+    let data
+
+    try {
+      data = fs.readFileSync(path, 'UTF-8')
+    } catch (e) {}
+
+    if (!data) {
+      return
+    }
+
     const lines = data.split(/\r?\n/)
 
     features[element] = []

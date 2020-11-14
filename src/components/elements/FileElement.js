@@ -2,10 +2,12 @@ import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
 import CanBeDisabled from './../../mixins/CanBeDisabled'
 import asyncForEach from './../../utils/asyncForEach'
+import useFile from './../../composables/elements/useFile'
 
 export default {
   name: 'FileElement',
   mixins: [BaseElement, BaseValidation, CanBeDisabled],
+  init: useFile,
   props: {
     /**
      * The element schema containing it's options.

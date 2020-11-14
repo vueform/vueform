@@ -1,8 +1,10 @@
 import StaticElement from './StaticElement'
+import useButtons from './../../composables/elements/useButtons'
 
 export default {
   name: 'ButtonsElement',
   mixins: [StaticElement],
+  init: useButtons,
   computed: {
     buttons() {
       return this.schema.buttons || []

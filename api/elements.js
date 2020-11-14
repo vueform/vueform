@@ -32,11 +32,17 @@ export default {
       'empty',
       'events',
       'form$',
+      'id',
       'input',
       'nullValue',
       'path',
       'validation',
       'value'
+    ]
+  },
+  key: {
+    features: [
+      'hidden'
     ]
   },
   list: {
@@ -70,6 +76,22 @@ export default {
       'valueList',
       'view',
       'watchPrototype'
+    ]
+  },
+  meta: {
+    features: [
+      'baseElement',
+      'conditions',
+      'data',
+      'debounce',
+      'default',
+      'empty',
+      'events',
+      'form$',
+      'nullValue',
+      'path',
+      'validation',
+      'value'
     ]
   },
   object: {

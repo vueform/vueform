@@ -2,10 +2,12 @@ import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
 import CanBeDisabled from './../../mixins/CanBeDisabled'
 import normalize from './../../utils/normalize'
+import useSelect from './../../composables/elements/useSelect'
 
 export default {
   name: 'SelectElement',
   mixins: [BaseElement, BaseValidation, CanBeDisabled],
+  init: useSelect,
   props: {
     /**
      * The element schema containing it's options.

@@ -1,10 +1,12 @@
 import TrixElement from './TrixElement'
 import MultilingualElement from './../../mixins/MultilingualElement'
 import MultilingualValidation from './../../mixins/MultilingualValidation'
+import useTTrix from './../../composables/elements/useTTrix'
 
 export default {
-  mixins: [TrixElement, MultilingualElement, MultilingualValidation],
   name: 'TTrixElement',
+  mixins: [TrixElement, MultilingualElement, MultilingualValidation],
+  init: useTTrix,
   watch: {
     language() {
       this.refresh()

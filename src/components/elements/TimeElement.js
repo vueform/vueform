@@ -1,8 +1,10 @@
 import DatetimeElement from './DatetimeElement'
+import useTime from './../../composables/elements/useTime'
 
 export default {
   name: 'TimeElement',
   mixins: [DatetimeElement],
+  init: useTime,
   computed: {
 
     /**

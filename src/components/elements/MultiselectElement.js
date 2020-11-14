@@ -1,9 +1,11 @@
 import SelectElement from './SelectElement'
 import normalize from './../../utils/normalize'
+import useMultiselect from './../../composables/elements/useMultiselect'
 
 export default {
   name: 'MultiselectElement',
   mixins: [SelectElement],
+  init: useMultiselect,
   props: {
     /**
      * The element schema containing it's options.

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="false"></div>
+  <div v-show="false"><!-- Meta element --></div>
 </template>
 
 <script>

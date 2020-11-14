@@ -1,10 +1,12 @@
 import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
 import CanBeDisabled from './../../mixins/CanBeDisabled'
+import useToggle from './../../composables/elements/useToggle'
 
 export default {
   name: 'ToggleElement',
   mixins: [BaseElement, BaseValidation, CanBeDisabled],
+  init: useToggle,
   props: {
     /**
      * The element schema containing it's options.

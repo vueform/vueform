@@ -12,6 +12,7 @@ import useBaseElement from './features/useBaseElement'
 import useDebounce from './features/useDebounce'
 import useEvents from './../useEvents'
 import useEmpty from './features/useEmpty'
+import useId from './features/useId'
 
 export default function useText(props, context) {
   const { schema } = toRefs(props)
@@ -19,6 +20,7 @@ export default function useText(props, context) {
   const form$ = useForm$(props, context)
   const input = useInput(props, context)
   const path = usePath(props, context)
+  const id = useId(props, context)
   const debounce = useDebounce(props, context)
   const nullValue = useNullValue(props, context)
 
@@ -80,6 +82,7 @@ export default function useText(props, context) {
     ...form$,
     ...input,
     ...path,
+    ...id,
     ...debounce,
     ...nullValue,
     ...default_,

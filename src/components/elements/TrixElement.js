@@ -1,10 +1,12 @@
 import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
 import CanBeDisabled from './../../mixins/CanBeDisabled'
+import useTrix from './../../composables/elements/useTrix'
 
 export default {
   name: 'TrixElement',
   mixins: [BaseElement, BaseValidation, CanBeDisabled],
+  init: useTrix,
   props: {
     /**
      * The element schema containing it's options.

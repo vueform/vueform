@@ -2,6 +2,7 @@ import BaseElement from './../../mixins/BaseElement'
 import BaseValidation from './../../mixins/BaseValidation'
 import CanBeDisabled from './../../mixins/CanBeDisabled'
 import $model from './../../directives/$model'
+import useTextarea from './../../composables/elements/useTextarea'
 
 export default {
   name: 'TextareaElement',
@@ -9,6 +10,7 @@ export default {
     $model,
   },
   mixins: [BaseElement, BaseValidation, CanBeDisabled],
+  init: useTextarea,
   props: {
     /**
      * The element schema containing it's options.
