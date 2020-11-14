@@ -1,15 +1,8 @@
-import TextareaElement from './TextareaElement'
-import MultilingualElement from './../../mixins/MultilingualElement'
-import MultilingualValidation from './../../mixins/MultilingualValidation'
+import BaseElement from './../../mixins/BaseElement'
 import useTTextarea from './../../composables/elements/useTTextarea'
 
 export default {
   name: 'TTextareaElement',
-  mixins: [TextareaElement, MultilingualElement, MultilingualValidation],
+  mixins: [BaseElement],
   init: useTTextarea,
-  mounted() {
-    this.form$.on('language', () => {
-      this.autosize()
-    })
-  }
 }

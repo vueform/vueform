@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
+import { createForm, testComputedOption } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const autogrow = function (elementType, elementName, options) {

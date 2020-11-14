@@ -908,7 +908,7 @@ export default {
      * @event language
      */
     handleLanguage(language){
-      // this.fire('language', language)
+      this.fire('language', language)
     },
         
     /**
