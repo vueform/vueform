@@ -1,29 +1,34 @@
 <template>
-  <component :is="components.BaseElementLayout">
-    <template slot="field">
+  <component :is="layout">
+
+    <template v-slot:field>
+
       <slot name="prefix"></slot>
 
       <toggle-button
-        v-model="model"
         v-bind="options"
+        :value="model"
         :name="String(name)"
         :id="String(id)"
         @input="handleChange"
-        ref="toggle$"
+        ref="input"
       />
 
-      <span v-if="text" :class="classes.toggleText">
-        {{ text }}
-      </span>
+      <span v-if="text" :class="classes.toggleText" v-html="text"></span>
 
       <slot name="suffix"></slot>
+
     </template>
 
-    <slot slot="label" name="label" :el$="el$"></slot>
-    <slot slot="before" name="before" :el$="el$"></slot>
-    <slot slot="between" name="between" :el$="el$"></slot>
-    <slot slot="error" name="error" :el$="el$"></slot>
-    <slot slot="after" name="after" :el$="el$"></slot>
+    <template v-slot:info><slot name="info" :el$="el$"><component v-if="slots.info" :is="slots.info" /></slot></template>
+    <template v-slot:before><slot name="before" :el$="el$"><component v-if="slots.before" :is="slots.before" type="before" /></slot></template>
+    <template v-slot:label><slot name="label" :el$="el$"><component v-if="slots.label" :is="slots.label" /></slot></template>
+    <template v-slot:between><slot name="between" :el$="el$"><component v-if="slots.between" :is="slots.between" type="between" /></slot></template>
+    <template v-slot:description><slot name="description" :el$="el$"><component v-if="slots.description" :is="slots.description" /></slot></template>
+    <template v-slot:error><slot name="error" :el$="el$"><component v-if="slots.error" :is="slots.error" /></slot></template>
+    <template v-slot:message><slot name="message" :el$="el$"><component v-if="slots.message" :is="slots.message" /></slot></template>
+    <template v-slot:after><slot name="after" :el$="el$"><component v-if="slots.after" :is="slots.after" type="after" /></slot></template>
+
   </component>
 </template>
 
@@ -41,6 +46,7 @@
     data() {
       return {
         defaultClasses: {
+          container: 'lf-toggle',
           toggleText: 'toggle-text',
         }
       }
@@ -49,7 +55,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  // @import 'variables';
 
   .vue-js-switch {
     .v-switch-core {

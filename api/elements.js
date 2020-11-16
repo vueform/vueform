@@ -233,6 +233,39 @@ export default {
       'view'
     ]
   },
+  toggle: {
+    features: [
+      'baseElement',
+      'booleanValue',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      'data',
+      'debounce',
+      'default',
+      'description',
+      'disabledInput',
+      'events',
+      'form$',
+      'handleChangeToggle',
+      'id',
+      'info',
+      'input',
+      'label',
+      'layout',
+      'nullValueBoolean',
+      'optionsToggle',
+      'path',
+      'slots',
+      'text',
+      'theme',
+      'toggle',
+      'validation',
+      'valueToggle',
+      'view'
+    ]
+  },
   tTextarea: {
     features: [
       'addons',

@@ -14,11 +14,11 @@ export const submit = function (elementType, elementName, options) {
 }
 
 export const formatData = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'formatData', null, 'formatDataFunction', false)
+  testComputedOption(it, elementType, 'formatData', null, function() { return 'foo' }, false)
 }
 
 export const formatLoad = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'formatLoad', null, 'formatLoadFunction', false)
+  testComputedOption(it, elementType, 'formatLoad', null, function() { return 'foo' }, false)
 }
 
 export const data = function (elementType, elementName, options) {

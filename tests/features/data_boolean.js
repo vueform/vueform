@@ -5,10 +5,6 @@ const value = function(options) {
   return options.value || 'value'
 }
 
-const value2 = function(options) {
-  return options.value2 || 'value2'
-}
-
 export { 
   submit,
   formatData,

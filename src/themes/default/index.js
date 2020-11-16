@@ -54,7 +54,7 @@ import ObjectElement from './components/elements/ObjectElement'
 import TextareaElement from './components/elements/TextareaElement'
 import TextElement from './components/elements/TextElement'
 // import TimeElement from './components/elements/TimeElement'
-// import ToggleElement from './components/elements/ToggleElement'
+import ToggleElement from './components/elements/ToggleElement'
 // import TrixElement from './components/elements/TrixElement'
 import TTextareaElement from './components/elements/TTextareaElement'
 import TTextElement from './components/elements/TTextElement'
@@ -145,7 +145,7 @@ export default {
     TextareaElement,
     TextElement,
     // TimeElement,
-    // ToggleElement,
+    ToggleElement,
     // TrixElement,
     TTextareaElement,
     TTextElement,
