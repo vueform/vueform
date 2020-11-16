@@ -1,6 +1,5 @@
-export default function useHandleInput(props, context, dependencies)
+export default function useHandleChange(props, context, dependencies)
 {
-
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
@@ -9,10 +8,8 @@ export default function useHandleInput(props, context, dependencies)
   const previousValue = dependencies.previousValue
   const changed = dependencies.changed
   const dirt = dependencies.dirt
-  const validateLanguage = dependencies.validateLanguage
+  const validate = dependencies.validate
   const fire = dependencies.fire
-  const language = dependencies.language
-
 
   // =============== METHODS ==============
 
@@ -21,7 +18,7 @@ export default function useHandleInput(props, context, dependencies)
    *
    * @public
    */
-  const handleInput = (e) => {
+  const handleChange = (e) => {
     model.value = e.target.value
 
     if (changed.value) {
@@ -30,11 +27,11 @@ export default function useHandleInput(props, context, dependencies)
     }
 
     if (form$.value.shouldValidateOnChange) {
-      validateLanguage(language.value)
+      validate()
     }
   }
 
   return {
-    handleInput,
+    handleChange,
   }
 }

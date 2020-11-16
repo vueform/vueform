@@ -1,16 +1,10 @@
+import useHandleChange from "./useHandleChange"
+
 export default function useHandleInput(props, context, dependencies)
 {
-
   // ============ DEPENDENCIES ============
 
-  const form$ = dependencies.form$
-  const model = dependencies.model
-  const currentValue = dependencies.currentValue
-  const previousValue = dependencies.previousValue
-  const changed = dependencies.changed
-  const dirt = dependencies.dirt
-  const validate = dependencies.validate
-  const fire = dependencies.fire
+  const { handleChange } = useHandleChange(props, context, dependencies)
 
 
   // =============== METHODS ==============
@@ -20,18 +14,7 @@ export default function useHandleInput(props, context, dependencies)
    *
    * @public
    */
-  const handleInput = (e) => {
-    model.value = e.target.value
-
-    if (changed.value) {
-      dirt()
-      fire('change', currentValue.value, previousValue.value)
-    }
-
-    if (form$.value.shouldValidateOnChange) {
-      validate()
-    }
-  }
+  const handleInput = handleChange
 
   return {
     handleInput,

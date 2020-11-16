@@ -131,7 +131,7 @@ export const invalid = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.update('value')
+    el.update(options.value || 'value')
 
     el.validate()
 
@@ -145,14 +145,14 @@ export const invalid = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          rules: 'required|email'
+          rules: 'required'
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.update('value@domain.com')
+    el.update(options.value || 'value')
 
     el.validate()
 
@@ -278,7 +278,7 @@ export const errors = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          rules: 'required|email',
+          rules: 'url|email',
         }
       }
     })
@@ -299,7 +299,7 @@ export const error = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          rules: 'required|email',
+          rules: 'url|email',
         }
       }
     })
@@ -360,7 +360,7 @@ export const validate = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          rules: 'required'
+          rules: 'url'
         }
       }
     })
@@ -385,7 +385,7 @@ export const resetValidators = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          rules: 'required'
+          rules: 'url'
         }
       }
     })

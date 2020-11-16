@@ -1,4 +1,36 @@
 export default {
+  checkbox: {
+    features: [
+      'baseElement',
+      'booleanValue',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      'data',
+      'debounce',
+      'default',
+      'description',
+      'disabledInput',
+      'events',
+      'form$',
+      'handleChangeCheckbox',
+      'id',
+      'info',
+      'input',
+      'label',
+      'layout',
+      'nullValueBoolean',
+      'path',
+      'slots',
+      'text',
+      'theme',
+      'toggle',
+      'validation',
+      'valueToggle',
+      'view'
+    ]
+  },
   group: {
     features: [
       'baseElement',
@@ -42,7 +74,20 @@ export default {
   },
   key: {
     features: [
-      'hidden'
+      'baseElement',
+      'conditions',
+      'data',
+      'debounce',
+      'default',
+      'empty',
+      'events',
+      'form$',
+      'id',
+      'input',
+      'nullValue',
+      'path',
+      'validation',
+      'value'
     ]
   },
   list: {
@@ -206,7 +251,7 @@ export default {
       'events',
       'floating',
       'form$',
-      'handleInputMultilingual',
+      'handleInput',
       'id',
       'info',
       'input',
@@ -242,7 +287,7 @@ export default {
       'events',
       'floating',
       'form$',
-      'handleInputMultilingual',
+      'handleInput',
       'id',
       'info',
       'input',

@@ -30,7 +30,7 @@ import Trix from './components/wrappers/Trix'
 
 // import AddressElement from './components/elements/AddressElement'
 // import ButtonsElement from './components/elements/ButtonsElement'
-// import CheckboxElement from './components/elements/CheckboxElement'
+import CheckboxElement from './components/elements/CheckboxElement'
 // import CheckboxgroupElement from './components/elements/CheckboxgroupElement'
 // import DateElement from './components/elements/DateElement'
 // import DatetimeElement from './components/elements/DatetimeElement'
@@ -121,7 +121,7 @@ export default {
   elements: {
     // AddressElement,
     // ButtonsElement,
-    // CheckboxElement,
+    CheckboxElement,
     // CheckboxgroupElement,
     // DateElement,
     // DatetimeElement,

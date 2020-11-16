@@ -1,45 +1,33 @@
 import { createForm, testComputedOption } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
-export const nullValue = function (elementType, elementName) {
-  it('should have "null" as `nullValue`', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.nullValue).toBe(null)
-  })
+const value = function(options) {
+  return options.value || 'value'
 }
 
-export const submit = function (elementType, elementName) {
+const value2 = function(options) {
+  return options.value2 || 'value2'
+}
+
+export const submit = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'submit', true, false)
 }
 
-export const default_ = function (elementType, elementName) {
-  testComputedOption(it, elementType, 'default', null, 'value')
-}
-
-export const formatData = function (elementType, elementName) {
+export const formatData = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'formatData', null, 'formatDataFunction', false)
 }
 
-export const formatLoad = function (elementType, elementName) {
+export const formatLoad = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'formatLoad', null, 'formatLoadFunction', false)
 }
 
-export const data = function (elementType, elementName) {
+export const data = function (elementType, elementName, options) {
   it('should have "data" as an object with element name as property and element value as value by default', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          default: 'value'
+          default: value(options)
         }
       }
     })
@@ -56,11 +44,11 @@ export const data = function (elementType, elementName) {
       schema: {
         el: {
           type: elementType,
-          default: 'value',
-          formatData(name, value) {
+          default: value(options),
+          formatData(name, val) {
             return {
               custom: {
-                [name]: value
+                [name]: val
               }
             }
           }
@@ -78,13 +66,13 @@ export const data = function (elementType, elementName) {
   })
 }
 
-export const filtered = function (elementType, elementName) {
+export const filtered = function (elementType, elementName, options) {
   it('should have `filtered` equal to `data` if there are no conditions', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          default: 'value'
+          default: value(options)
         }
       }
     })
@@ -99,7 +87,7 @@ export const filtered = function (elementType, elementName) {
       schema: {
         el: {
           type: elementType,
-          default: 'value',
+          default: value(options),
           conditions: [
             ['el2', 'value2']
           ]
@@ -121,7 +109,7 @@ export const filtered = function (elementType, elementName) {
       schema: {
         el: {
           type: elementType,
-          default: 'value',
+          default: value(options),
           conditions: [
             ['el2', 'value2']
           ]
@@ -138,7 +126,7 @@ export const filtered = function (elementType, elementName) {
   })
 }
 
-export const load = function (elementType, elementName) {
+export const load = function (elementType, elementName, options) {
   it('should set value if provided value is not "undefined" on `load`', async () => {
     let form = createForm({
       schema: {
@@ -202,7 +190,7 @@ export const load = function (elementType, elementName) {
   })
 }
 
-export const update = function (elementType, elementName) {
+export const update = function (elementType, elementName, options) {
   it('should set value to provided value `update`', async () => {
     let form = createForm({
       schema: {
@@ -214,8 +202,8 @@ export const update = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    el.update('value')
-    expect(el.value).toBe('value')
+    el.update(value(options))
+    expect(el.value).toBe(value(options))
   })
 
   it('should trigger "updated" on `update`', async () => {
@@ -229,19 +217,19 @@ export const update = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    el.update('value')
+    el.update(value(options))
 
     expect(el.dirty).toBe(true)
   })
 }
 
-export const clear = function (elementType, elementName) {
+export const clear = function (elementType, elementName, options) {
   it('should set value to null on `clear`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          default: 'value',
+          default: value(options),
         }
       }
     })
@@ -258,7 +246,7 @@ export const clear = function (elementType, elementName) {
       schema: {
         el: {
           type: elementType,
-          default: 'value',
+          default: value(options),
         }
       }
     })
@@ -271,20 +259,20 @@ export const clear = function (elementType, elementName) {
   })
 }
 
-export const reset = function (elementType, elementName) {
+export const reset = function (elementType, elementName, options) {
   it('should set value to default on `reset`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          default: 'value',
+          default: value(options),
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.update('value2')
+    el.update(value2(options))
 
     el.reset()
 
@@ -327,7 +315,7 @@ export const reset = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    el.update('value')
+    el.update(value(options))
     el.reset()
 
     expect(onChangeMock).toHaveBeenCalledWith(el.default, el.previousValue)
@@ -353,7 +341,7 @@ export const reset = function (elementType, elementName) {
   })
 }
 
-export const changed = function (elementType, elementName) {
+export const changed = function (elementType, elementName, options) {
   it('should `changed` be true if current and previous values do not match', async () => {
     let form = createForm({
       schema: {
@@ -365,19 +353,19 @@ export const changed = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    el.currentValue = 'value'
-    el.previousValue = null
+    el.currentValue = value(options)
+    el.previousValue = value2(options)
 
     expect(el.changed).toBe(true)
 
-    el.currentValue = 'value'
-    el.previousValue = 'value'
+    el.currentValue = value(options)
+    el.previousValue = value(options)
 
     expect(el.changed).toBe(false)
   })
 }
 
-export const updated = function (elementType, elementName) {
+export const updated = function (elementType, elementName, options) {
   it('should dirt element on `updated` if value changed', async () => {
     let form = createForm({
       schema: {
@@ -389,8 +377,8 @@ export const updated = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    el.currentValue = 'value'
-    el.previousValue = null
+    el.currentValue = value(options)
+    el.previousValue = value2(options)
 
     el.updated()
 
@@ -408,8 +396,8 @@ export const updated = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    el.currentValue = 'value'
-    el.previousValue = 'value'
+    el.currentValue = value(options)
+    el.previousValue = value(options)
 
     el.updated()
 
@@ -430,12 +418,12 @@ export const updated = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    el.currentValue = 'value'
-    el.previousValue = null
+    el.currentValue = value(options)
+    el.previousValue = value2(options)
 
     el.updated()
 
-    expect(onChangeMock).toHaveBeenCalledWith('value', null)
+    expect(onChangeMock).toHaveBeenCalledWith(value(options), value2(options))
   })
 
   it('should not trigger "change" event on `updated` if value has not changed', async () => {
@@ -452,8 +440,8 @@ export const updated = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    el.currentValue = 'value'
-    el.previousValue = 'value'
+    el.currentValue = value(options)
+    el.previousValue = value(options)
 
     el.updated()
 
@@ -501,7 +489,7 @@ export const updated = function (elementType, elementName) {
   })
 }
 
-export const onCreated = function (elementType, elementName) {
+export const onCreated = function (elementType, elementName, options) {
   it('should set `previousValue` to "nullValue" on mounted', async () => {
     let form = createForm({
       schema: {
@@ -521,13 +509,13 @@ export const onCreated = function (elementType, elementName) {
       schema: {
         el: {
           type: elementType,
-          default: 'value'
+          default: value(options)
         },
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.currentValue).toBe('value')
+    expect(el.currentValue).toBe(value(options))
   })
 }

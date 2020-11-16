@@ -28,7 +28,7 @@ import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
 import useDisabledInput from './features/useDisabledInput'
 import useEvents from './../useEvents'
-import useHandleInputMultilingual from './features/useHandleInputMultilingual'
+import useHandleInput from './features/useHandleInput'
 import useAutogrowMultilingual from './features/useAutogrowMultilingual'
 import useLanguages from './features/useLanguages'
 
@@ -146,14 +146,14 @@ export default function useTTextarea(props, context) {
     components: components.components,
   })
 
-  const handleInput = useHandleInputMultilingual(props, context, {
+  const handleInput = useHandleInput(props, context, {
     form$: form$.form$,
     model: value.model,
     currentValue: value.currentValue,
     previousValue: value.previousValue,
     changed: data.changed,
     dirt: validation.dirt,
-    validateLanguage: validation.validateLanguage,
+    validate: validation.validateLanguage,
     fire: events.fire,
     language: languages.language,
   })

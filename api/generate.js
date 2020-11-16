@@ -35,12 +35,16 @@ const elements = [
   'tText',
   'tTrix',
 ]
+const overrides = {
+  key: 'hidden',
+}
 
 function getFeatures() {
   const features = {}
   
   elements.forEach((element) => {
-    const path = `${basePath}${featuresPath}/use${_.upperFirst(element)}.js`
+    const composable = overrides[element] || element
+    const path = `${basePath}${featuresPath}/use${_.upperFirst(composable)}.js`
 
     let data
 
