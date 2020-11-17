@@ -1,4 +1,4 @@
-export default function useHandleChange(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
@@ -18,9 +18,7 @@ export default function useHandleChange(props, context, dependencies)
    *
    * @public
    */
-  const handleChange = (e) => {
-    model.value = e.target.value
-
+  const handleChange = () => {
     if (changed.value) {
       dirt()
       fire('change', currentValue.value, previousValue.value)

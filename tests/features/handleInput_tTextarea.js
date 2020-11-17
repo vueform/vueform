@@ -1,0 +1,1 @@
+export { handleInput } from './handleInput_tText'

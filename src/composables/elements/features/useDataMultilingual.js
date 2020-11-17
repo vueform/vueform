@@ -2,7 +2,7 @@ import { computed, nextTick, toRefs } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 import useData from './useData'
 
-export default function useDataMultilingual(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   const { name } = toRefs(props)
 

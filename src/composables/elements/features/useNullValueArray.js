@@ -1,6 +1,6 @@
 import { computed } from 'composition-api'
 
-export default function useArrayNullValue(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   // ============== COMPUTED ===============
 

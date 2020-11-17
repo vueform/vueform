@@ -1,6 +1,6 @@
 import useValidationObject from './useValidationObject'
 
-export default function useValidationGroup (props, context, dependencies)
+export default function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 

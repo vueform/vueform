@@ -1,6 +1,6 @@
 import { computed, ref, toRefs } from 'composition-api'
 
-export default function useComponents(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   const { schema, name } = toRefs(props)
 

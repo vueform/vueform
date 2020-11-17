@@ -1,7 +1,7 @@
 import { computed,  toRefs, markRaw } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 
-export default function useSlots(props, context, dependencies, options = {})
+export default function(props, context, dependencies, options = {})
 {
   const { schema } = toRefs(props)
 
@@ -22,6 +22,7 @@ export default function useSlots(props, context, dependencies, options = {})
       before: markRaw(components.value.ElementText),
       between: markRaw(components.value.ElementText),
       after: markRaw(components.value.ElementText),
+      checkbox: markRaw(components.value.CheckboxgroupSlotCheckbox),
     }
   })
 

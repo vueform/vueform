@@ -203,7 +203,7 @@ export const update = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     el.update(value(options))
-    expect(el.value).toBe(value(options))
+    expect(el.value).toStrictEqual(value(options))
   })
 
   it('should trigger "updated" on `update`', async () => {
@@ -501,7 +501,7 @@ export const onCreated = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.previousValue).toBe(el.nullValue)
+    expect(el.previousValue).toStrictEqual(el.nullValue)
   })
 
   it('should set `currentValue` to "default" on mounted', async () => {
@@ -516,6 +516,6 @@ export const onCreated = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.currentValue).toBe(value(options))
+    expect(el.currentValue).toStrictEqual(value(options))
   })
 }

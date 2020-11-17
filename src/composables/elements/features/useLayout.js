@@ -1,6 +1,6 @@
 import { computed, markRaw } from 'composition-api'
 
-export default function useLayout(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 

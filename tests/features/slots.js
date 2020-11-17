@@ -143,6 +143,9 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
               type: elementType,
               label: 'label',
               info: 'info',
+              items: {
+                1: 'value',
+              },
               slots: {
                 [slot]: markRaw(defineComponent({
                   name: 'CustomSlot',
@@ -176,6 +179,9 @@ const testDynamicSchemaSlot = function(it, elementName, elementType, slot) {
               type: elementType,
               label: 'label',
               info: 'info',
+              items: {
+                1: 'value',
+              },
             }
           }
         })
@@ -222,6 +228,9 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
                   type: elementType,
                   label: 'label',
                   info: 'info',
+                  items: {
+                    1: 'value',
+                  },
                 },
                 name: 'el'
               },

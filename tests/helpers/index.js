@@ -6,6 +6,7 @@ import createForm from './createForm'
 import createLaraformInstaller from './createLaraformInstaller'
 import createTrix from './createTrix'
 import findAllComponents from './findAllComponents'
+import findAll from './findAll'
 import installLaraform from './installLaraform'
 import prototypeAddOptions from './prototypeAddOptions'
 import prototypeAddChildOptions from './prototypeAddChildOptions'
@@ -48,6 +49,7 @@ export {
   createLaraformInstaller,
   createTrix,
   findAllComponents,
+  findAll,
   installLaraform,
   prototypeAddOptions,
   prototypeAddChildOptions,

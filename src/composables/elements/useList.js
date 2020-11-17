@@ -43,6 +43,7 @@ export default function useList(props, context) {
   const prototype = usePrototype(props, context)
   const children = useChildrenList(props, context)
   const debounce = useDebounce(props, context)
+  const arrayType = useArrayType(props, context)
 
   const default_ = useDefault(props, context, {
     nullValue: nullValue.nullValue
@@ -55,8 +56,6 @@ export default function useList(props, context) {
   const baseElement = useBaseElement(props, context, {
     label: label.label,
   })
-
-  const arrayType = useArrayType(props, context)
 
   const events = useEvents(props, context, {
     form$: form$.form$,

@@ -1,7 +1,7 @@
 import { computed, toRefs, ref, watch, nextTick } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 
-export default function useSort(props, context, dependencies, options)
+export default function(props, context, dependencies, options)
 {
   const { schema } = toRefs(props)
 

@@ -6,11 +6,9 @@ export default {
       required: true
     },
     item: {
-      type: [Object, String, Number, Array],
       required: true
     },
     value: {
-      type: [Object, String, Number, Array],
       required: true
     },
   },

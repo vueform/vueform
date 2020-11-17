@@ -1,6 +1,6 @@
 import useDisabled from './useDisabled'
 
-export default function useDisabledList (props, context, dependencies)
+export default function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 

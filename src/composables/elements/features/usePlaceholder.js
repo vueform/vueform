@@ -1,7 +1,7 @@
 import computedOption from './../../../utils/computedOption'
 import { computed, toRefs } from 'composition-api'
 
-export default function usePlaceholder(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
   

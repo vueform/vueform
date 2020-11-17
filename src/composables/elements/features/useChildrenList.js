@@ -1,6 +1,6 @@
 import { computed, ref, onBeforeUpdate } from 'composition-api'
 
-export default function useListChildren(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   // ================ DATA ================
   

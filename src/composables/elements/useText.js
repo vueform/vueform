@@ -27,7 +27,7 @@ import useSlots from './features/useSlots'
 import useInputType from './features/useInputType'
 import useAutocomplete from './features/useAutocomplete'
 import useDebounce from './features/useDebounce'
-import useDisabledInput from './features/useDisabledInput'
+import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
 import useHandleInput from './features/useHandleInput'
 import useEmpty from './features/useEmpty'
@@ -49,7 +49,7 @@ export default function useText(props, context) {
   const inputType = useInputType(props, context)
   const autocomplete = useAutocomplete(props, context)
   const debounce = useDebounce(props, context)
-  const disabled = useDisabledInput(props, context)
+  const disabled = useDisabled(props, context)
   const nullValue = useNullValue(props, context)
 
   const default_ = useDefault(props, context, {

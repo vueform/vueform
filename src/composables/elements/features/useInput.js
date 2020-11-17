@@ -1,6 +1,6 @@
 import { ref } from 'composition-api'
 
-export default function useInput(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   // ================ DATA ================
 

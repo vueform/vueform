@@ -1,4 +1,4 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testComputedOption, testAttribute } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 
 expect.extend({toBeVisible})
@@ -45,5 +45,41 @@ export const enable = function (elementType, elementName, options) {
     el.enable()
 
     expect(el.disabled).toBe(false)
+  })
+}
+
+export const rendering = function (elementType, elementName, options) {
+  if (options.fieldType === undefined) {
+    return
+  }
+  
+  it('should disable input when `disabled`', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          disabled: true
+        }
+      }
+    })
+
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+
+    testAttribute(elWrapper, options.fieldType, 'disabled', ['disabled', ''])
+  })
+  
+  it('should not disable input when not `disabled`', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          disabled: false
+        }
+      }
+    })
+
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    
+    testAttribute(elWrapper, options.fieldType, 'disabled', undefined)
   })
 }

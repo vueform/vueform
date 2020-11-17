@@ -3,7 +3,7 @@ import computedOption from './../../../utils/computedOption'
 import { mergeComponentClasses } from './../../../utils/mergeClasses'
 import useClasses from './useClasses'
 
-export default function useListClasses(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
   const { containers } = toRefs(context.data)

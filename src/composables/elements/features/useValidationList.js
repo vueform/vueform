@@ -2,7 +2,7 @@ import computedOption from './../../../utils/computedOption'
 import { computed, onMounted, toRefs, watch } from 'composition-api'
 import useValidation from './useValidation'
 
-export default function useChildrenValidation (props, context, dependencies)
+export default function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
 

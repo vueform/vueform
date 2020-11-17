@@ -21,7 +21,7 @@ import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
-import useDisabledInput from './features/useDisabledInput'
+import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
 import useHandleChangeToggle from './features/useHandleChangeToggle'
 import useText from './features/useText'
@@ -40,7 +40,7 @@ export default function (props, context) {
   const description = useDescription(props, context)
   const info = useInfo(props, context)
   const debounce = useDebounce(props, context)
-  const disabled = useDisabledInput(props, context)
+  const disabled = useDisabled(props, context)
   const booleanValue = useBooleanValue(props, context)
 
   const options = useOptionsToggle(props, context, {

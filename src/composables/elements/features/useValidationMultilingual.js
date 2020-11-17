@@ -1,7 +1,7 @@
 import { computed, reactive, onMounted, watch, toRefs, ref, nextTick } from 'composition-api'
 import useValidation from './useValidation'
 
-export default function useValidationMultilingual(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
 

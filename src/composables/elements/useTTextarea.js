@@ -26,7 +26,7 @@ import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
-import useDisabledInput from './features/useDisabledInput'
+import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
 import useHandleInput from './features/useHandleInput'
 import useAutogrowMultilingual from './features/useAutogrowMultilingual'
@@ -47,7 +47,7 @@ export default function useTTextarea(props, context) {
   const readonly = useReadonly(props, context)
   const info = useInfo(props, context)
   const debounce = useDebounce(props, context)
-  const disabled = useDisabledInput(props, context)
+  const disabled = useDisabled(props, context)
 
   const languages = useLanguages(props, context, {
     form$: form$.form$,

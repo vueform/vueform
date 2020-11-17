@@ -1,7 +1,7 @@
 import { computed, watch } from 'composition-api'
 import useValue from './useValue'
 
-export default function useNestedValue(props, context, dependencies)
+export default function(props, context, dependencies)
 {
 
   // ============ DEPENDENCIES ============

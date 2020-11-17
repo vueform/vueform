@@ -1,11 +1,11 @@
-import useHandleChange from "./useHandleChange"
+import useHandleChange from './useHandleChange'
 
-export default function useHandleInput(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
+  const model = dependencies.model
   const { handleChange } = useHandleChange(props, context, dependencies)
-
 
   // =============== METHODS ==============
 
@@ -14,7 +14,11 @@ export default function useHandleInput(props, context, dependencies)
    *
    * @public
    */
-  const handleInput = handleChange
+  const handleInput = (e) => {
+    model.value = e.target.value
+
+    handleChange()
+  }
 
   return {
     handleInput,

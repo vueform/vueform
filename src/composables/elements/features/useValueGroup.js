@@ -1,6 +1,6 @@
 import useValueObject from './useValueObject'
 
-export default function useValueGroup (props, context, dependencies)
+export default function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 

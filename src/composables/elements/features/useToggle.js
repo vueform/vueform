@@ -1,4 +1,4 @@
-export default function useToggle (props, context, dependencies)
+export default function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 

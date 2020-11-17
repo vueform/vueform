@@ -1,7 +1,7 @@
 import computedOption from './../../../utils/computedOption'
 import { onMounted, nextTick, watch, toRefs } from 'composition-api'
 
-export default function useAutogrow (props, context, dependencies)
+export default function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
 

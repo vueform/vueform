@@ -2,7 +2,7 @@ import { computed, reactive, onMounted, watch, toRefs, ref, nextTick } from 'com
 import computedOption from './../../../utils/computedOption'
 import asyncForEach from './../../../utils/asyncForEach'
 
-export default function useData(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
 

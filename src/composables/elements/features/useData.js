@@ -1,7 +1,7 @@
 import { computed, nextTick, toRefs } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 
-export default function useData(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   const { schema, name } = toRefs(props)
 

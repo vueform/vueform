@@ -1,7 +1,7 @@
 import computedOption from './../../../utils/computedOption'
 import { toRefs } from 'composition-api'
 
-export default function useText (props, context, dependencies)
+export default function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
 

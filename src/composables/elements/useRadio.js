@@ -21,9 +21,9 @@ import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
-import useDisabledInput from './features/useDisabledInput'
+import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
-import useHandleChangeCheckable from './features/useHandleChangeCheckable'
+import useHandleChangeRadio from './features/useHandleChangeRadio'
 import useText from './features/useText'
 import useRadio from './features/useRadio'
 import useRadioValue from './features/useRadioValue'
@@ -39,7 +39,7 @@ export default function useCheckbox(props, context) {
   const description = useDescription(props, context)
   const info = useInfo(props, context)
   const debounce = useDebounce(props, context)
-  const disabled = useDisabledInput(props, context)
+  const disabled = useDisabled(props, context)
   const radioValue = useRadioValue(props, context)
 
   const nullValue = useNullValue(props, context)
@@ -123,7 +123,7 @@ export default function useCheckbox(props, context) {
     components: components.components,
   })
 
-  const handleChange = useHandleChangeCheckable(props, context, {
+  const handleChange = useHandleChangeRadio(props, context, {
     form$: form$.form$,
     model: value.model,
     currentValue: value.currentValue,

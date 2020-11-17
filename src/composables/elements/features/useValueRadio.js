@@ -1,7 +1,7 @@
 import { computed } from 'composition-api'
 import useValue from './useValue'
 
-export default function useValueRadio (props, context, dependencies)
+export default function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 

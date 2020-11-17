@@ -1,15 +1,11 @@
-export default function useHandleChangeToggle (props, context, dependencies)
+import useHandleChange from './useHandleChange'
+
+export default function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const form$ = dependencies.form$
   const model = dependencies.model
-  const currentValue = dependencies.currentValue
-  const previousValue = dependencies.previousValue
-  const changed = dependencies.changed
-  const dirt = dependencies.dirt
-  const validate = dependencies.validate
-  const fire = dependencies.fire
+  const { handleChange: baseHandleChange } = useHandleChange(props, context, dependencies)
 
   // =============== METHODS ==============
 
@@ -21,14 +17,7 @@ export default function useHandleChangeToggle (props, context, dependencies)
   const handleChange = (val) => {
     model.value = val
 
-    if (changed.value) {
-      dirt()
-      fire('change', currentValue.value, previousValue.value)
-    }
-
-    if (form$.value.shouldValidateOnChange) {
-      validate()
-    }
+    baseHandleChange()
   }
 
   return {

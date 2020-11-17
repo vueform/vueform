@@ -1,6 +1,6 @@
 import { computed, toRefs } from 'composition-api'
 
-export default function useNullValueMultilingual(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 

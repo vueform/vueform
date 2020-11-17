@@ -2,7 +2,7 @@ import { computed, toRefs, watchEffect } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 import { mergeComponentClasses } from './../../../utils/mergeClasses'
 
-export default function useClasses(props, context, dependencies)
+export default function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
   const { defaultClasses } = toRefs(context.data)
