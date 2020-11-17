@@ -12,9 +12,4 @@ export default {
       required: true
     },
   },
-  methods: {
-    __(expr, data) {
-      return this.el$.__(expr, data)
-    }
-  }
 }

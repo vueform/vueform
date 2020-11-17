@@ -7,7 +7,6 @@
       <input
         type="checkbox"
         v-model="el$.model"
-        :value="value"
         :class="el$.classes.checkbox"
         :name="`${el$.name}-${value}`"
         :id="`${el$.id}-${value}`"
