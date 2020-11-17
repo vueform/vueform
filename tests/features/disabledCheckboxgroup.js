@@ -69,7 +69,7 @@ export const disable = function (elementType, elementName, options) {
   })
 }
 
-export const enables = function (elementType, elementName, options) {
+export const enable = function (elementType, elementName, options) {
   it('should `enable` single or multiple items', () => {
     let form = createForm({
       schema: {

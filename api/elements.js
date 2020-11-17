@@ -35,7 +35,7 @@ export default {
     features: [
       'arrayType',
       'baseElement',
-      'checkCheckboxgroup',
+      'check',
       'classes',
       'columns',
       'components',
@@ -222,6 +222,35 @@ export default {
       'theme',
       'validation',
       'valueRadio',
+      'view'
+    ]
+  },
+  radiogroup: {
+    features: [
+      'baseElement',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      'data',
+      'debounce',
+      'default',
+      'description',
+      'disabledRadiogroup',
+      'events',
+      'form$',
+      'handleChange',
+      'id',
+      'info',
+      'items',
+      'label',
+      'layout',
+      'nullValue',
+      'path',
+      'slots',
+      'theme',
+      'validation',
+      'value',
       'view'
     ]
   },

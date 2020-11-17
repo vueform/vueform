@@ -1,0 +1,1 @@
+export { handleChange } from './handleChange_checkboxgroup'

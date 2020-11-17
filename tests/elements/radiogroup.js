@@ -1,8 +1,8 @@
 import { createForm, findAllComponents, findAll } from 'test-helpers'
 
 export default function (elementType, elementName, options) {
-  describe('Checkboxes', () => {
-    it('should have the right attributes for checkboxes', () => {
+  describe('Radios', () => {
+    it('should have the right attributes for radios', () => {
       let form = createForm({
         schema: {
           el: {
@@ -23,10 +23,10 @@ export default function (elementType, elementName, options) {
       let label = input.element.parentElement
       let label2 = input2.element.parentElement
 
-      expect(input.attributes('name')).toBe('el-1')
+      expect(input.attributes('name')).toBe('el')
       expect(input.attributes('id')).toBe('el-1')
       expect(input.attributes('value')).toBe('1')
-      expect(input2.attributes('name')).toBe('el-2')
+      expect(input2.attributes('name')).toBe('el')
       expect(input2.attributes('id')).toBe('el-2')
       expect(input2.attributes('value')).toBe('2')
 

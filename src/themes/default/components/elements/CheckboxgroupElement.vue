@@ -14,7 +14,6 @@
               :el$="el$"
               :item="item"
               :value="value"
-              :key="key"
             />
           </slot>
         </div>

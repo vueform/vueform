@@ -23,6 +23,7 @@ export default function(props, context, dependencies, options = {})
       between: markRaw(components.value.ElementText),
       after: markRaw(components.value.ElementText),
       checkbox: markRaw(components.value.CheckboxgroupSlotCheckbox),
+      radio: markRaw(components.value.RadiogroupSlotRadio),
     }
   })
 

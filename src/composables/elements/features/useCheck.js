@@ -3,6 +3,7 @@ export default function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const value = dependencies.value
+  const items = dependencies.items
 
   // =============== METHODS ==============
 
@@ -58,8 +59,30 @@ export default function(props, context, dependencies)
     value.value = values
   }
 
+  /**
+   * Checks all checkboxes.
+   *
+   * @public
+   * @returns {void}
+   */
+  const checkAll = () => {
+    check(_.keys(items.value))
+  }
+
+  /**
+   * Checks all checkboxes.
+   *
+   * @public
+   * @returns {void}
+   */
+  const uncheckAll = () => {
+    uncheck(_.keys(items.value))
+  }
+
   return {
     check,
     uncheck,
+    checkAll,
+    uncheckAll,
   }
 }

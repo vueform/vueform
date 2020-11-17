@@ -24,7 +24,7 @@ import useEvents from './../useEvents'
 import useHandleChange from './features/useHandleChange'
 import useArrayType from './features/useArrayType'
 import useDisabledCheckboxgroup from './features/useDisabledCheckboxgroup'
-import useCheckCheckboxgroup from './features/useCheckCheckboxgroup'
+import useCheck from './features/useCheck'
 import useItems from './features/useItems'
 
 export default function useText(props, context) {
@@ -54,7 +54,7 @@ export default function useText(props, context) {
     default: default_.default,
   })
 
-  const check = useCheckCheckboxgroup(props, context, {
+  const check = useCheck(props, context, {
     items: items.items,
     value: value.value,
   })

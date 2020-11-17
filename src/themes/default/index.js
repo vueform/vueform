@@ -46,7 +46,7 @@ import MetaElement from './components/elements/MetaElement'
 import ObjectElement from './components/elements/ObjectElement'
 // import PasswordElement from './components/elements/PasswordElement'
 import RadioElement from './components/elements/RadioElement'
-// import RadiogroupElement from './components/elements/RadiogroupElement'
+import RadiogroupElement from './components/elements/RadiogroupElement'
 // import SelectElement from './components/elements/SelectElement'
 // import SliderElement from './components/elements/SliderElement'
 // import StaticElement from './components/elements/StaticElement'
@@ -137,7 +137,7 @@ export default {
     ObjectElement,
     // PasswordElement,
     RadioElement,
-    // RadiogroupElement,
+    RadiogroupElement,
     // SelectElement,
     // SliderElement,
     // StaticElement,
