@@ -23,7 +23,7 @@ import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
 import useDisabledInput from './features/useDisabledInput'
 import useEvents from './../useEvents'
-import useHandleChangeCheckbox from './features/useHandleChangeCheckbox'
+import useHandleChangeCheckable from './features/useHandleChangeCheckable'
 import useText from './features/useText'
 import useBooleanValue from './features/useBooleanValue'
 import useToggle from './features/useToggle'
@@ -125,7 +125,7 @@ export default function useCheckbox(props, context) {
     components: components.components,
   })
 
-  const handleChange = useHandleChangeCheckbox(props, context, {
+  const handleChange = useHandleChangeCheckable(props, context, {
     form$: form$.form$,
     model: value.model,
     currentValue: value.currentValue,

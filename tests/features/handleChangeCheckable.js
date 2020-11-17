@@ -1,8 +1,9 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents } from 'test-helpers'
+import { nextTick } from 'vue'
 
 export const handleChange = function (elementType, elementName, options) {
-  it('should set model on change', () => {
+  it('should set model on change', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -13,8 +14,10 @@ export const handleChange = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let input = elWrapper.get(`input[type="${options.fieldType}"]`)
 
-    elWrapper.get('input[type="checkbox"]').setChecked()
+    input.element.checked = true
+    input.trigger('change')
 
     expect(el.model).toBe(true)
   })
@@ -30,10 +33,12 @@ export const handleChange = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let input = elWrapper.get(`input[type="${options.fieldType}"]`)
 
     expect(el.dirty).toBe(false)
 
-    elWrapper.get('input[type="checkbox"]').setChecked()
+    input.element.checked = true
+    input.trigger('change')
 
     expect(el.dirty).toBe(true)
   })
@@ -43,17 +48,19 @@ export const handleChange = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          default: true,
+          default: options.value || true,
         }
       }
     })
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let input = elWrapper.get(`input[type="${options.fieldType}"]`)
 
     expect(el.dirty).toBe(false)
 
-    elWrapper.get('input[type="checkbox"]').setChecked()
+    input.element.checked = true
+    input.trigger('change')
 
     expect(el.dirty).toBe(false)
   })
@@ -71,8 +78,10 @@ export const handleChange = function (elementType, elementName, options) {
     })
 
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let input = elWrapper.get(`input[type="${options.fieldType}"]`)
 
-    elWrapper.get('input[type="checkbox"]').setChecked()
+    input.element.checked = true
+    input.trigger('change')
 
     expect(onChangeMock).toHaveBeenCalled()
   })
@@ -85,14 +94,16 @@ export const handleChange = function (elementType, elementName, options) {
         el: {
           type: elementType,
           onChange: onChangeMock,
-          default: true,
+          default: options.value || true,
         }
       }
     })
     
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let input = elWrapper.get(`input[type="${options.fieldType}"]`)
 
-    elWrapper.get('input[type="checkbox"]').setChecked()
+    input.element.checked = true
+    input.trigger('change')
 
     expect(onChangeMock).not.toHaveBeenCalled()
   })
@@ -110,18 +121,21 @@ export const handleChange = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let input = elWrapper.get(`input[type="${options.fieldType}"]`)
 
-    elWrapper.get('input[type="checkbox"]').setChecked()
+    input.element.checked = true
+    input.trigger('change')
 
     await flushPromises()
 
     expect(el.validated).toBe(false)
 
-    elWrapper.get('input[type="checkbox"]').setChecked(false)
+    input.element.checked = false
 
     form.vm.validateOn = 'submit|change'
 
-    elWrapper.get('input[type="checkbox"]').setChecked()
+    input.element.checked = true
+    input.trigger('change')
 
     await flushPromises()
 

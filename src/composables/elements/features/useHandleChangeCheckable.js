@@ -1,4 +1,4 @@
-export default function useHandleChangeCheckbox (props, context, dependencies)
+export default function useHandleChangeCheckable (props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
