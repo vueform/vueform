@@ -394,6 +394,39 @@ export default {
       'view'
     ]
   },
+  trix: {
+    features: [
+      'baseElement',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      // 'dataTrix',
+      'debounce',
+      'default',
+      'description',
+      'disabled',
+      'empty',
+      'events',
+      'form$',
+      // 'handleInput',
+      'id',
+      'info',
+      'input',
+      'label',
+      'layout',
+      'nullValue',
+      'path',
+      'placeholder',
+      'readonly',
+      'slots',
+      'theme',
+      // 'trix',
+      // 'validation',
+      'value',
+      'view'
+    ]
+  },
   tTextarea: {
     features: [
       'addons',

@@ -1,7 +1,7 @@
 import { computed, nextTick, toRefs } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 
-export default function(props, context, dependencies)
+export default function(props, context, dependencies, options = {})
 {
   const { schema, name } = toRefs(props)
 
@@ -18,6 +18,16 @@ export default function(props, context, dependencies)
   const fire = dependencies.fire
   const default_ = dependencies.default
   const nullValue = dependencies.nullValue
+
+  // =============== PRIVATE ===============
+
+  const setValue = (val) => {
+    if (options.setValue) {
+      return options.setValue(val)
+    }
+
+    value.value = val
+  }
 
   // ============== COMPUTED ===============
 
@@ -78,23 +88,23 @@ export default function(props, context, dependencies)
   const load = (val, format = false) => {
     let formatted = format ? formatLoad.value(val, form$.value) : val
 
-    value.value = available.value && formatted !== undefined ? formatted : _.clone(nullValue.value)
+    setValue(available.value && formatted !== undefined ? formatted : _.clone(nullValue.value))
   }
 
   const update = (val) => {
-    value.value = val
+    setValue(val)
 
     updated()
   }
 
   const clear = () => {
-    value.value = _.clone(nullValue.value)
+    setValue(_.clone(nullValue.value))
 
     updated()
   }
 
   const reset = () => {
-    value.value = _.clone(default_.value)
+    setValue(_.clone(default_.value))
 
     resetValidators()
 

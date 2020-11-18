@@ -53,7 +53,7 @@ export default {
       this.$refs.trix$[key] = value
     },
     handleChange() {
-      this.$emit('input', this.$refs.trix$.value)
+      this.$emit('input', { target: { value: this.$refs.trix$.value }})
       this.$emit('change', this.$refs.trix$.value)
     },
     handleFileAccept(e) {

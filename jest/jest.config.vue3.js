@@ -2,8 +2,8 @@ var base = require('./jest.config.vue2.js')
 
 module.exports = Object.assign({}, base, {
   "transform": {
-      ".*\\.(vue)$": "vue-next-jest",
-      "^.+\\.js$": "babel-jest"
+      ".*\\.(vue)$":  "vue-next-jest",
+      "^.+\\.js$": "babel-jest",
   },
   "moduleNameMapper": {
       "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
