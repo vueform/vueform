@@ -290,6 +290,37 @@ export default {
       'view'
     ]
   },
+  slider: {
+    features: [
+      'baseElement',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      'data',
+      'debounce',
+      'default',
+      'description',
+      'disabled',
+      'events',
+      'form$',
+      'handleInput',
+      'id',
+      'info',
+      'input',
+      'label',
+      'layout',
+      // 'nullValueMin',
+      // 'optionsSlider',
+      'path',
+      'readonly',
+      'slots',
+      'theme',
+      // 'validationSlider',
+      'value',
+      'view'
+    ]
+  },
   textarea: {
     features: [
       'addons',
@@ -401,7 +432,7 @@ export default {
       'columns',
       'components',
       'conditions',
-      // 'dataTrix',
+      'dataTrix',
       'debounce',
       'default',
       'description',
@@ -409,7 +440,7 @@ export default {
       'empty',
       'events',
       'form$',
-      // 'handleInput',
+      'handleInput',
       'id',
       'info',
       'input',
@@ -421,8 +452,8 @@ export default {
       'readonly',
       'slots',
       'theme',
-      // 'trix',
-      // 'validation',
+      'trix',
+      'validation',
       'value',
       'view'
     ]

@@ -48,7 +48,7 @@ import PasswordElement from './components/elements/PasswordElement'
 import RadioElement from './components/elements/RadioElement'
 import RadiogroupElement from './components/elements/RadiogroupElement'
 // import SelectElement from './components/elements/SelectElement'
-// import SliderElement from './components/elements/SliderElement'
+import SliderElement from './components/elements/SliderElement'
 // import StaticElement from './components/elements/StaticElement'
 // import TagsElement from './components/elements/TagsElement'
 import TextareaElement from './components/elements/TextareaElement'
@@ -139,7 +139,7 @@ export default {
     RadioElement,
     RadiogroupElement,
     // SelectElement,
-    // SliderElement,
+    SliderElement,
     // StaticElement,
     // TagsElement,
     TextareaElement,
