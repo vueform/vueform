@@ -62,8 +62,8 @@
       return {
         defaultClasses: {
           container: 'lf-text',
-          input: 'form-control',
           inputContainer: 'input-group',
+          input: 'form-control',
         }
       }
     },

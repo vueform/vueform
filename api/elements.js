@@ -193,6 +193,42 @@ export default {
       'view'
     ]
   },
+  password: {
+    features: [
+      'addons',
+      'autocomplete',
+      'baseElement',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      'data',
+      'debounce',
+      'default',
+      'description',
+      'disabled',
+      'empty',
+      'events',
+      'floating',
+      'form$',
+      'handleInput',
+      'id',
+      'info',
+      'input',
+      'inputTypePassword',
+      'label',
+      'layout',
+      'nullValue',
+      'path',
+      'placeholder',
+      'readonly',
+      'slots',
+      'theme',
+      'validation',
+      'value',
+      'view'
+    ]
+  },
   radio: {
     features: [
       'baseElement',
