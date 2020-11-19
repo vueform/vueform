@@ -3,7 +3,6 @@ export default function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
-  const model = dependencies.model
   const currentValue = dependencies.currentValue
   const previousValue = dependencies.previousValue
   const changed = dependencies.changed

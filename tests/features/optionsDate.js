@@ -21,7 +21,56 @@ export const loadFormat = function (elementType, elementName, options) {
 }
 
 export const disables = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'disables', [], [options.value || options.value || '2020-12-30'])
+  it('should have "[]" as `disables` by default', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.disables).toStrictEqual([])
+  })
+
+  it('should set `disables` from schema', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          disables: ['2020-12-30', moment('2020-12-15').toDate()],
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.disables).toStrictEqual([
+      moment('2020-12-30').toDate(),
+      moment('2020-12-15').toDate(),
+    ])
+  })
+
+  it('should set `disables` to schema', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.disables = ['2020-12-30', moment('2020-12-15').toDate()]
+
+    expect(el.schema.disables).toStrictEqual([
+      '2020-12-30',
+      '2020-12-15',
+    ])
+  })
 }
 
 export const min = function (elementType, elementName, options) {

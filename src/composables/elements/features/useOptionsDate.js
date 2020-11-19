@@ -44,7 +44,27 @@ export default function(props, context, dependencies)
    * @type {array} 
    * @default []
    */
-  const disables = computedOption('disables', schema, [])
+  const disables = computed({
+    get() {
+      let disables = schema.value.disables
+
+      if (disables === undefined) {
+        return []
+      }
+
+      return _.map(disables, (disabled) => {
+        checkDateFormat(valueFormat.value, disabled)
+
+        return disabled instanceof Date ? disabled : moment(disabled, valueFormat.value, true).toDate()
+      })
+
+    },
+    set(val) {
+      form$.value.$set(schema.value, 'disables', _.map(val, (disabled) => {
+        return disabled instanceof Date ? moment(disabled).format(valueFormat.value) : disabled
+      }))
+    }
+  })
 
   /**
    * Earliest selectable date. Can be a string in `[loadFormat](#prop-loadFormat)` or a Date object.
