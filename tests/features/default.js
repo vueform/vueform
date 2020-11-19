@@ -4,7 +4,7 @@ export const default_ = function (elementType, elementName, options) {
   let form = createForm({
     schema: {
       el: {
-        type: elementType
+        type: elementType,
       }
     }
   })

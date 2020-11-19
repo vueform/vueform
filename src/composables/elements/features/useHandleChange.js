@@ -19,7 +19,6 @@ export default function(props, context, dependencies)
    * @public
    */
   const handleChange = () => {
-    console.log(111)
     if (changed.value) {
       dirt()
       fire('change', currentValue.value, previousValue.value)

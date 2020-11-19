@@ -1,18 +1,21 @@
 import clickedOutsideElement from './../../utils/clickedOutsideElement'
-import ElementComponent from '../../mixins/ElementComponent'
+import useElementComponent from '../../composables/useElementComponent'
 import flatpickr from 'flatpickr'
 import 'flatpickr/dist/themes/light.css'
 
 export default {
   name: 'Flatpickr',
-  mixins: [ElementComponent],
-  inject: ['form$'],
+  init(props, context) {
+    return {
+      ...useElementComponent(props, context),
+    }
+  },
   props: {
     options: {
       type: [Object],
       required: true
     },
-    model: {
+    value: {
       required: true,
     },
     id: {
@@ -23,14 +26,6 @@ export default {
       type: [Number, String],
       required: false
     },
-    dateFormat: {
-      type: [String],
-      required: false
-    },
-    mode: {
-      type: [String],
-      required: false
-    },
   },
   data() {
     return {
@@ -38,7 +33,7 @@ export default {
     }
   },
   watch: {
-    model(value) {
+    value(value) {
       this.flatpickr$.setDate(value, false)
     },
     id: {
@@ -57,6 +52,9 @@ export default {
     }
   },
   computed: {
+    mode() {
+      return this.options.mode || 'single'
+    },
     config() {
       var config = {}
 
@@ -81,7 +79,6 @@ export default {
     update(value) {
       value = this.mode == 'single' ? (value[0] || null) : value
 
-      this.$emit('input', value)
       this.$emit('change', value)
     },
     $_setFlatpickrId() {
@@ -98,9 +95,11 @@ export default {
 
         this.update(value)
       },
+      // creating a date object from a string date provided in displayFormat (to value)
       parseDate: (dateStr, format) => {
         return moment(dateStr, format, true).toDate();
       },
+      // creating a date string according to displayFormat (to display)
       formatDate: (date, format) => {
         return moment(date).format(format);
       }
@@ -111,6 +110,11 @@ export default {
     }
 
     this.$_setFlatpickrId()
+
+    if (this.value !== null) {
+      this.flatpickr$.setDate(this.value, false)
+    }
+
     // // Required because if static == true the picker does
     // // not close properly when clicking outside of it.
     // document.addEventListener('click', () => {

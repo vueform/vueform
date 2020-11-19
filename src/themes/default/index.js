@@ -32,7 +32,8 @@ import Trix from './components/wrappers/Trix'
 // import ButtonsElement from './components/elements/ButtonsElement'
 import CheckboxElement from './components/elements/CheckboxElement'
 import CheckboxgroupElement from './components/elements/CheckboxgroupElement'
-// import DateElement from './components/elements/DateElement'
+import DateElement from './components/elements/DateElement'
+import DatesElement from './components/elements/DatesElement'
 // import DatetimeElement from './components/elements/DatetimeElement'
 // import FileElement from './components/elements/FileElement'
 import GroupElement from './components/elements/GroupElement'
@@ -123,7 +124,8 @@ export default {
     // ButtonsElement,
     CheckboxElement,
     CheckboxgroupElement,
-    // DateElement,
+    DateElement,
+    DatesElement,
     // DatetimeElement,
     // FileElement,
     GroupElement,

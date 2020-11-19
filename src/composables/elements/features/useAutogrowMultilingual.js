@@ -6,6 +6,9 @@ export default function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
+
+  // ================ BASE ================
+
   const { autogrow, rows, autosize } = useAutogrow(props, context, dependencies)
 
   // =============== HOOKS ================

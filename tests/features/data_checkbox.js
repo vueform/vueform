@@ -2,7 +2,7 @@ import { createForm } from 'test-helpers'
 import { submit, formatData, formatLoad, data, filtered, update, reset, clear, changed, updated, onCreated } from './data'
 
 const value = function(options) {
-  return options.value || 'value'
+  return options.value !== undefined ? options.value : 'value'
 }
 
 export { 

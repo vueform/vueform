@@ -60,6 +60,8 @@ const config = {
   },
 
   i18n: null,
+
+  fallbackLocale: 'en',
 }
 
 export default config

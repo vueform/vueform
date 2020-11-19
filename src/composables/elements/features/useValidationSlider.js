@@ -39,7 +39,7 @@ export default function(props, context, dependencies)
     }
     else {
       await asyncForEach(Validators.value, async (Validator) => {
-        await Validator.validate(modelValue)
+        await Validator.validate(model.value)
       })
     }
 

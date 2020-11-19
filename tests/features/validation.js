@@ -3,6 +3,14 @@ import { createForm, testComputedOption } from 'test-helpers'
 import { nextTick } from 'vue'
 import Validator from './../../src/services/validation/validator'
 
+const value = function(options) {
+  return options.value !== undefined ? options.value : 'value'
+}
+
+const value2 = function(options) {
+  return options.value2 !== undefined ? options.value2 : 'value2'
+}
+
 export const rules = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'rules', undefined, 'required')
 }
@@ -131,7 +139,7 @@ export const invalid = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.update(options.value || 'value')
+    el.update(value(options))
 
     el.validate()
 
@@ -152,7 +160,7 @@ export const invalid = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.update(options.value || 'value')
+    el.update(value(options))
 
     el.validate()
 
@@ -331,7 +339,7 @@ export const validate = function (elementType, elementName, options) {
 
     expect(el.validated).toBe(false)
 
-    el.update('value')
+    el.update(value(options))
     el.validate()
 
     expect(el.validated).toBe(false)

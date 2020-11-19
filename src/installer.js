@@ -129,7 +129,7 @@ export default function(config) {
 
           appOrVue.mixin({
             methods: {
-            setRef() {},
+              setRef() {},
               __: (expr, data) => this.options.i18n.$t(expr, data)
             },
             beforeCreate() {

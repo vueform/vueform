@@ -2,7 +2,7 @@ import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, findAll } from 'test-helpers'
 
 const value = function(options) {
-  return options.value || 'value'
+  return options.value !== undefined ? options.value : 'value'
 }
 
 const value2 = function(options) {

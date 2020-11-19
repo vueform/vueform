@@ -1,5 +1,6 @@
 import { createForm } from 'test-helpers'
 import { submit, formatData, formatLoad, data, filtered, update, reset, clear, changed, updated, onCreated } from './data'
+import { nextTick } from 'composition-api'
 
 const value = function(options) {
   return options.value !== undefined ? options.value : 'value'
@@ -13,7 +14,7 @@ export {
   filtered,
   update,
   reset,
-  clear,
+  // clear,
   changed,
   updated,
   onCreated,
@@ -32,10 +33,28 @@ export {
     let el = form.vm.el$('el')
 
     el.load(value(options))
-
-    expect(el.value).toStrictEqual(value(options))
+    expect(el.value).toBe(value(options))
 
     expect(el.dirty).toBe(false)
+  })
+
+  it('should should format data if "formatLoad" is set on `load`', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          formatLoad(value) {
+            return `${value[0]}-${value[1]}-${value[2]}`
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.load(['2020','12','30'], true)
+
+    expect(el.value).toBe('2020-12-30')
   })
 
   it('should set value to null if value is "undefined" on `load`', async () => {
@@ -52,27 +71,8 @@ export {
 
     el.load(undefined)
 
-    expect(el.value).toStrictEqual(el.nullValue)
-  })
+    await nextTick()
 
-  it('should should format data if "formatLoad" is set on `load`', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          formatLoad(value) {
-            return _.map(value, (one) => {
-              return one + '-formatted'
-            })
-          }
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.load(['1','2'], true)
-
-    expect(el.value).toStrictEqual(['1-formatted','2-formatted'])
+    expect(el.value).toBe(el.nullValue)
   })
 }

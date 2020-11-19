@@ -2,11 +2,11 @@ import { createForm, testComputedOption } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 const value = function(options) {
-  return options.value || 'value'
+  return options.value !== undefined ? options.value : 'value'
 }
 
 const value2 = function(options) {
-  return options.value2 || 'value2'
+  return options.value2 !== undefined ? options.value2 : 'value2'
 }
 
 export const submit = function (elementType, elementName, options) {
@@ -516,6 +516,6 @@ export const onCreated = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.currentValue).toStrictEqual(value(options))
+    expect(el.currentValue).toStrictEqual(el.default)
   })
 }

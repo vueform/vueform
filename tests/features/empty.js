@@ -28,7 +28,7 @@ export const empty = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          default: 'value'
+          default: options.value || 'value'
         }
       }
     })

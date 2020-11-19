@@ -4,14 +4,14 @@
 
       <slot name="prefix"></slot>
 
-      <VueSlider
+      <!-- <VueSlider
         v-bind="options"
         v-model="model"
         :name="name"
         :id="id"
         @change="handleChange"
         ref="input"
-      />
+      /> -->
 
       <slot name="suffix"></slot>
 
@@ -31,15 +31,15 @@
 <script>
   import SliderElement from './../../../../components/elements/SliderElement'
 
-  import VueSlider from 'vue-slider-component'
-  import 'vue-slider-component/theme/default.css'
+  // import VueSlider from 'vue-slider-component'
+  // import 'vue-slider-component/theme/default.css'
 
   export default {
     name: 'SliderElement',
     mixins: [SliderElement],
-    components: {
-      VueSlider,
-    },
+    // components: {
+    //   VueSlider,
+    // },
     data() {
       return {
         defaultClasses: {
