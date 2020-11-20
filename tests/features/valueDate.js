@@ -98,6 +98,7 @@ export const value = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          valueFormat: 'YYYY-MM-DD'
         }
       }
     })

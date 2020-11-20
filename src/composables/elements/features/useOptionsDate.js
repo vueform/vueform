@@ -31,7 +31,7 @@ export default function(props, context, dependencies)
   const valueFormat = computedOption('valueFormat', schema, 'YYYY-MM-DD')
 
   /**
-   * Defines how date is formatted when using `load` or `update` method or by directly setting `value`.
+   * Defines how date is formatted when using `load` or `update` method or by directly setting `value`. When using "formatLoad" this should be the output format of that.
    * 
   * @type {string} 
   * @default 'YYYY-MM-DD'

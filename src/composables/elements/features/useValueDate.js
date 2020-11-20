@@ -37,7 +37,7 @@ export default function(props, context, dependencies)
       return moment(model.value).format(valueFormat.value)
     },
     set(val) {
-      if (!_.isEmpty(val) && !(val instanceof Date)) {
+      if (_.isEmpty(val) && !(val instanceof Date)) {
         model.value = nullValue.value
         return
       }

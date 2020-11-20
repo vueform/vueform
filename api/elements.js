@@ -98,6 +98,7 @@ export default {
   },
   dates: {
     features: [
+      'arrayType',
       'baseElement',
       'classes',
       'columns',
@@ -127,6 +128,40 @@ export default {
       'theme',
       'validation',
       'valueDates',
+      'view'
+    ]
+  },
+  datetime: {
+    features: [
+      'baseElement',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      'dataDate',
+      'debounce',
+      'defaultDate',
+      'description',
+      'disabled',
+      'empty',
+      'events',
+      'floating',
+      'form$',
+      'handleChangeDate',
+      'id',
+      'info',
+      'input',
+      'label',
+      'layout',
+      'nullValue',
+      'optionsDatetime',
+      'path',
+      'placeholder',
+      'readonly',
+      'slots',
+      'theme',
+      'validation',
+      'valueDate',
       'view'
     ]
   },

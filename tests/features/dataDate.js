@@ -107,6 +107,7 @@ export const load = function (elementType, elementName, options) {
         el: {
           type: elementType,
           valueFormat: 'YYYY-MM-DD',
+          loadFormat: 'YYYY-MM-DD',
           formatLoad(value) {
             return `${value}-01`
           }
@@ -206,6 +207,7 @@ export const update = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          valueFormat: 'YYYY-MM-DD',
         }
       }
     })
@@ -224,6 +226,7 @@ export const reset = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          valueFormat: 'YYYY-MM-DD',
           default: '2020-12-30',
         }
       }
