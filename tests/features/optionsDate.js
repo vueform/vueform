@@ -40,8 +40,8 @@ export const disables = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD',
-          disables: ['2020-12-30', moment('2020-12-15').toDate()],
+          valueFormat: options.valueFormat,
+          disables: [options.value, moment(options.value2, options.valueFormat2).toDate()],
         }
       }
     })
@@ -49,8 +49,8 @@ export const disables = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.disables).toStrictEqual([
-      moment('2020-12-30').toDate(),
-      moment('2020-12-15').toDate(),
+      moment(options.value, options.valueFormat).toDate(),
+      moment(options.value2, options.valueFormat2).toDate(),
     ])
   })
 
@@ -59,18 +59,18 @@ export const disables = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD',
+          valueFormat: options.valueFormat,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.disables = ['2020-12-30', moment('2020-12-15').toDate()]
+    el.disables = [options.value, moment(options.value2, options.valueFormat2).toDate()]
 
     expect(el.schema.disables).toStrictEqual([
-      '2020-12-30',
-      '2020-12-15',
+      options.value,
+      moment(options.value2, options.valueFormat2).format(options.valueFormat),
     ])
   })
 }
@@ -91,13 +91,13 @@ export const min = function (elementType, elementName, options) {
   })
 
   it('should set `min` from schema', () => {
-    let dateObj = moment('2020-12-30').toDate()
+    let dateObj = moment(options.value, options.valueFormat).toDate()
 
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD',
+          valueFormat: options.valueFormat,
           min: dateObj,
         }
       }
@@ -109,13 +109,13 @@ export const min = function (elementType, elementName, options) {
   })
 
   it('should set `min` as a string from schema', () => {
-    let date = '2020-12-30'
+    let date = options.value
 
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD',
+          valueFormat: options.valueFormat,
           min: date,
         }
       }
@@ -123,17 +123,17 @@ export const min = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.min).toStrictEqual(moment(date).toDate())
+    expect(el.min).toStrictEqual(moment(date, options.valueFormat).toDate())
   })
 
   it('should set `min` to schema', () => {
-    let date = '2020-12-30'
+    let date = options.value
 
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD',
+          valueFormat: options.valueFormat,
         }
       }
     })
@@ -162,13 +162,13 @@ export const max = function (elementType, elementName, options) {
   })
 
   it('should set `max` from schema', () => {
-    let dateObj = moment('2020-12-30').toDate()
+    let dateObj = moment(options.value, options.valueFormat).toDate()
 
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD',
+          valueFormat: options.valueFormat,
           max: dateObj,
         }
       }
@@ -180,13 +180,13 @@ export const max = function (elementType, elementName, options) {
   })
 
   it('should set `max` as a string from schema', () => {
-    let date = '2020-12-30'
+    let date = options.value
 
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD',
+          valueFormat: options.valueFormat,
           max: date,
         }
       }
@@ -194,17 +194,17 @@ export const max = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.max).toStrictEqual(moment(date).toDate())
+    expect(el.max).toStrictEqual(moment(date, options.valueFormat).toDate())
   })
 
   it('should set `max` to schema', () => {
-    let date = '2020-12-30'
+    let date = options.value
 
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD',
+          valueFormat: options.valueFormat,
         }
       }
     })

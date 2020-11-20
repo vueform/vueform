@@ -20,50 +20,47 @@ export const default_ = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          valueFormat: options.valueFormat,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.default = '2020-12-30'
+    el.default = options.value
 
-    expect(el.schema.default).toBe('2020-12-30')
+    expect(el.schema.default).toBe(options.value)
   })
 
   it('should convert string date to date object according to valueFormat in `default`', () => {
-    let dateObj = moment('2020-12-30').toDate()
-
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'DD-MM-YYYY',
-          default: '30-12-2020',
+          valueFormat: options.valueFormat2,
+          default: options.value2,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.default).toStrictEqual(dateObj)
+    expect(el.default).toStrictEqual(moment(options.value, options.valueFormat).toDate())
   })
 
   it('should return date object in `default`', () => {
-    let dateObj = moment('2020-12-30').toDate()
-
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          default: dateObj,
+          default: moment(options.value, options.valueFormat).toDate(),
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.default).toStrictEqual(dateObj)
+    expect(el.default).toStrictEqual(moment(options.value, options.valueFormat).toDate())
   })
 
   it('should throw an error if `default` is not provided according to valueFormat', () => {
@@ -71,16 +68,21 @@ export const default_ = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          valueFormat: options.valueFormat2,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.default = '30-12-2020'
-
     expect(() => {
+      el.default = options.value
       el.default
     }).toThrowError()
+
+    expect(() => {
+      el.default = options.value2
+      el.default
+    }).not.toThrowError()
   })
 }

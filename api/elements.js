@@ -495,6 +495,40 @@ export default {
       'view'
     ]
   },
+  time: {
+    features: [
+      'baseElement',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      'dataDate',
+      'debounce',
+      'defaultDate',
+      'description',
+      'disabled',
+      'empty',
+      'events',
+      'floating',
+      'form$',
+      'handleChangeDate',
+      'id',
+      'info',
+      'input',
+      'label',
+      'layout',
+      'nullValue',
+      'optionsTime',
+      'path',
+      'placeholder',
+      'readonly',
+      'slots',
+      'theme',
+      'validation',
+      'valueDate',
+      'view'
+    ]
+  },
   toggle: {
     features: [
       'baseElement',

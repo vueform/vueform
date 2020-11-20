@@ -14,7 +14,7 @@ export const handleChange = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    let date = moment('2020-12-30').toDate()
+    let date = moment(options.value, options.valueFormat).toDate()
     
     el.input.update([date])
 
@@ -34,7 +34,7 @@ export const handleChange = function (elementType, elementName, options) {
 
     expect(el.dirty).toBe(false)
 
-    let date = moment('2020-12-30').toDate()
+    let date = moment(options.value, options.valueFormat).toDate()
     
     el.input.update([date])
 
@@ -42,7 +42,7 @@ export const handleChange = function (elementType, elementName, options) {
   })
 
   it('should not dirt the element if input value is not different than the current', () => {
-    let date = moment('2020-12-30').toDate()
+    let date = moment(options.value, options.valueFormat).toDate()
 
     let form = createForm({
       schema: {
@@ -76,7 +76,7 @@ export const handleChange = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    let date = moment('2020-12-30').toDate()
+    let date = moment(options.value, options.valueFormat).toDate()
     
     el.input.update([date])
 
@@ -85,7 +85,7 @@ export const handleChange = function (elementType, elementName, options) {
 
   it('should not trigger "change" event if value has not changed', () => {
     let onChangeMock = jest.fn()
-    let date = moment('2020-12-30').toDate()
+    let date = moment(options.value, options.valueFormat).toDate()
 
     let form = createForm({
       schema: {
@@ -117,7 +117,7 @@ export const handleChange = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     
-    el.input.update([moment('2020-12-30').toDate()])
+    el.input.update([moment(options.value, options.valueFormat).toDate()])
 
     await flushPromises()
 
@@ -125,7 +125,7 @@ export const handleChange = function (elementType, elementName, options) {
 
     form.vm.validateOn = 'submit|change'
 
-    el.input.update([moment('2020-12-29').toDate()])
+    el.input.update([moment(options.value2, options.valueFormat2).toDate()])
 
     await flushPromises()
 

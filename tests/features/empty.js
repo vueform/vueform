@@ -21,10 +21,6 @@ export const empty = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.empty).toBe(true)
-
-    el.update(value2(options))
-
-    expect(el.empty).toBe(true)
   })
 
   it('should have `empty` false when value is not empty', () => {
@@ -32,7 +28,8 @@ export const empty = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          default: value(options)
+          valueFormat: options.valueFormat,
+          default: value(options),
         }
       }
     })

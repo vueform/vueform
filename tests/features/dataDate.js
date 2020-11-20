@@ -1,14 +1,6 @@
 import { createForm } from 'test-helpers'
-import { submit, formatData, formatLoad, data, filtered, clear, changed, updated, onCreated, } from './data'
+import { submit, formatData, formatLoad, data, filtered, clear, onCreated, } from './data'
 import flushPromises from 'flush-promises'
-
-const value = function(options) {
-  return options.value !== undefined ? options.value : 'value'
-}
-
-const value2 = function(options) {
-  return options.value2 !== undefined ? options.value2 : 'value2'
-}
 
 export { 
   submit,
@@ -17,8 +9,6 @@ export {
   data,
   filtered,
   clear,
-  changed,
-  updated,
   onCreated,
 }
 
@@ -28,16 +18,16 @@ export const load = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          loadFormat: 'DD-MM-YYYY',
-          valueFormat: 'YYYY-MM-DD',
+          loadFormat: options.loadFormat2,
+          valueFormat: options.valueFormat,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.load('30-12-2020')
-    expect(el.value).toBe('2020-12-30')
+    el.load(options.value2)
+    expect(el.value).toBe(options.value)
   })
 
   it('should set Date instance on `load`', async () => {
@@ -45,15 +35,15 @@ export const load = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD',
+          valueFormat: options.valueFormat,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.load(moment('2020-12-30').toDate())
-    expect(el.value).toStrictEqual('2020-12-30')
+    el.load(moment(options.value, options.loadFormat).toDate())
+    expect(el.value).toStrictEqual(options.value)
   })
 
   it('should throw an error on `load` when value not being provided according to loadFormat', async () => {
@@ -61,7 +51,7 @@ export const load = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          loadFormat: 'DD-MM-YYYY'
+          loadFormat: options.loadFormat2
         }
       }
     })
@@ -69,11 +59,11 @@ export const load = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(() => {
-      el.load('2020-12-30')
+      el.load(options.value)
     }).toThrowError()
 
     expect(() => {
-      el.load('30-12-2020')
+      el.load(options.value2)
     }).not.toThrowError()
   })
 
@@ -102,14 +92,18 @@ export const load = function (elementType, elementName, options) {
   })
 
   it('should should format data if "formatLoad" is set on `load`', async () => {
+    let formatLoadMock = jest.fn()
+
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD',
-          loadFormat: 'YYYY-MM-DD',
+          valueFormat: options.valueFormat,
+          loadFormat: options.loadFormat,
           formatLoad(value) {
-            return `${value}-01`
+            formatLoadMock()
+
+            return value
           }
         }
       }
@@ -117,9 +111,9 @@ export const load = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.load('2020-12', true)
+    el.load(options.value, true)
 
-    expect(el.value).toBe('2020-12-01')
+    expect(formatLoadMock).toHaveBeenCalled()
   })
 }
 
@@ -129,15 +123,15 @@ export const update = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD'
+          valueFormat: options.valueFormat,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.update('2020-12-30')
-    expect(el.value).toBe('2020-12-30')
+    el.update(options.value)
+    expect(el.value).toBe(options.value)
   })
 
   it('should set Date instance value on `update`', async () => {
@@ -145,15 +139,15 @@ export const update = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD'
+          valueFormat: options.valueFormat
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.update(moment('2020-12-30').toDate())
-    expect(el.value).toBe('2020-12-30')
+    el.update(moment(options.value, options.valueFormat).toDate())
+    expect(el.value).toBe(options.value)
   })
 
   it('should throw an error on `update` when value not being provided according to valueFormat', async () => {
@@ -161,7 +155,7 @@ export const update = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'DD-MM-YYYY'
+          valueFormat: options.valueFormat2
         }
       }
     })
@@ -169,11 +163,11 @@ export const update = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(() => {
-      el.update('2020-12-30')
+      el.update(options.value)
     }).toThrowError()
 
     expect(() => {
-      el.update('30-12-2020')
+      el.update(options.value2)
     }).not.toThrowError()
   })
 
@@ -182,7 +176,7 @@ export const update = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD'
+          valueFormat: options.valueFormat
         }
       }
     })
@@ -207,14 +201,14 @@ export const update = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD',
+          valueFormat: options.valueFormat,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.update('2020-12-30')
+    el.update(options.value)
 
     expect(el.dirty).toBe(true)
   })
@@ -226,8 +220,8 @@ export const reset = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD',
-          default: '2020-12-30',
+          valueFormat: options.valueFormat,
+          default: options.value,
         }
       }
     })
@@ -238,7 +232,7 @@ export const reset = function (elementType, elementName, options) {
 
     el.reset()
 
-    expect(el.value).toStrictEqual('2020-12-30')
+    expect(el.value).toStrictEqual(options.value)
   })
 
   it('should reset validators on `reset`', async () => {
@@ -271,13 +265,14 @@ export const reset = function (elementType, elementName, options) {
         el: {
           type: elementType,
           onChange: onChangeMock,
+          valueFormat: options.valueFormat,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.update(value(options))
+    el.update(options.value)
     el.reset()
 
     expect(onChangeMock).toHaveBeenCalledWith(el.default, el.previousValue)
@@ -300,5 +295,153 @@ export const reset = function (elementType, elementName, options) {
     el.reset()
 
     expect(onChangeMock).not.toHaveBeenCalled()
+  })
+}
+
+export const changed = function (elementType, elementName, options) {
+  it('should `changed` be true if current and previous values do not match', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.currentValue = moment(options.value, options.valueFormat).toDate()
+    el.previousValue = null
+
+    expect(el.changed).toBe(true)
+
+    el.currentValue = moment(options.value, options.valueFormat).toDate()
+    el.previousValue = moment(options.value, options.valueFormat).toDate()
+
+    expect(el.changed).toBe(false)
+  })
+}
+
+export const updated = function (elementType, elementName, options) {
+  it('should dirt element on `updated` if value changed', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.currentValue = moment(options.value, options.valueFormat).toDate()
+    el.previousValue = null
+
+    el.updated()
+
+    expect(el.dirty).toBe(true)
+  })
+
+  it('should not dirt element on `updated` if value has not changed', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.currentValue = moment(options.value, options.valueFormat).toDate()
+    el.previousValue = moment(options.value, options.valueFormat).toDate()
+
+    el.updated()
+
+    expect(el.dirty).toBe(false)
+  })
+
+  it('should trigger "change" event on `updated` if value changed', async () => {
+    let onChangeMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          onChange: onChangeMock,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.currentValue = moment(options.value, options.valueFormat).toDate()
+    el.previousValue = null
+
+    el.updated()
+
+    expect(onChangeMock).toHaveBeenCalledWith(moment(options.value, options.valueFormat).toDate(), null)
+  })
+
+  it('should not trigger "change" event on `updated` if value has not changed', async () => {
+    let onChangeMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          onChange: onChangeMock,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.currentValue = moment(options.value, options.valueFormat).toDate()
+    el.previousValue = moment(options.value, options.valueFormat).toDate()
+
+    el.updated()
+
+    expect(onChangeMock).not.toHaveBeenCalled()
+  })
+
+  it('should validate element on `updated` if "validateOn" contains "change"', async () => {
+    let form = createForm({
+      validateOn: 'submit|change',
+      schema: {
+        el: {
+          type: elementType,
+          rules: 'required',
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.updated()
+
+    await flushPromises()
+
+    expect(el.validated).toBe(true)
+  })
+
+  it('should not validate element on `updated` if "validateOn" does not contain "change"', async () => {
+    let form = createForm({
+      validateOn: 'submit',
+      schema: {
+        el: {
+          type: elementType,
+          rules: 'required',
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.updated()
+
+    await flushPromises()
+
+    expect(el.validated).toBe(false)
   })
 }
