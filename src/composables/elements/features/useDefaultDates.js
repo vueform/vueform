@@ -1,5 +1,5 @@
 import { computed, toRefs } from 'composition-api'
-import computedOption from './../../../utils/computedOption'
+import checkDateFormat from './../../../utils/checkDateFormat'
 
 export default function(props, context, dependencies)
 {
@@ -27,6 +27,8 @@ export default function(props, context, dependencies)
       }
 
       return _.map(val, (v) => {
+        checkDateFormat(valueFormat.value, v)
+
         return v instanceof Date ? v : moment(v, valueFormat.value, true).toDate()
       })
     },

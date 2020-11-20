@@ -36,8 +36,8 @@ export const load = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.load('30-12-2020')
-    expect(el.value).toBe('2020-12-30')
+    el.load(['30-12-2020'])
+    expect(el.value).toStrictEqual(['2020-12-30'])
   })
 
   it('should set Date instance on `load`', async () => {
@@ -52,8 +52,8 @@ export const load = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.load(moment('2020-12-30').toDate())
-    expect(el.value).toStrictEqual('2020-12-30')
+    el.load([moment('2020-12-30').toDate()])
+    expect(el.value).toStrictEqual(['2020-12-30'])
   })
 
   it('should throw an error on `load` when value not being provided according to loadFormat', async () => {
@@ -69,11 +69,11 @@ export const load = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(() => {
-      el.load('2020-12-30')
+      el.load(['2020-12-30'])
     }).toThrowError()
 
     expect(() => {
-      el.load('30-12-2020')
+      el.load(['30-12-2020'])
     }).not.toThrowError()
   })
 
@@ -89,16 +89,19 @@ export const load = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     el.load(null)
-    expect(el.value).toBe(el.nullValue)
+    expect(el.value).toStrictEqual(el.nullValue)
 
     el.load(0)
-    expect(el.value).toBe(el.nullValue)
+    expect(el.value).toStrictEqual(el.nullValue)
 
     el.load('')
-    expect(el.value).toBe(el.nullValue)
+    expect(el.value).toStrictEqual(el.nullValue)
 
     el.load(undefined)
-    expect(el.value).toBe(el.nullValue)
+    expect(el.value).toStrictEqual(el.nullValue)
+
+    el.load([])
+    expect(el.value).toStrictEqual(el.nullValue)
   })
 
   it('should should format data if "formatLoad" is set on `load`', async () => {
@@ -108,7 +111,7 @@ export const load = function (elementType, elementName, options) {
           type: elementType,
           valueFormat: 'YYYY-MM-DD',
           formatLoad(value) {
-            return `${value}-01`
+            return [`${value[0]}-01`]
           }
         }
       }
@@ -116,9 +119,9 @@ export const load = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.load('2020-12', true)
+    el.load(['2020-12'], true)
 
-    expect(el.value).toBe('2020-12-01')
+    expect(el.value).toStrictEqual(['2020-12-01'])
   })
 }
 
@@ -135,8 +138,8 @@ export const update = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.update('2020-12-30')
-    expect(el.value).toBe('2020-12-30')
+    el.update(['2020-12-30'])
+    expect(el.value).toStrictEqual(['2020-12-30'])
   })
 
   it('should set Date instance value on `update`', async () => {
@@ -151,8 +154,8 @@ export const update = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.update(moment('2020-12-30').toDate())
-    expect(el.value).toBe('2020-12-30')
+    el.update([moment('2020-12-30').toDate()])
+    expect(el.value).toStrictEqual(['2020-12-30'])
   })
 
   it('should throw an error on `update` when value not being provided according to valueFormat', async () => {
@@ -168,11 +171,11 @@ export const update = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(() => {
-      el.update('2020-12-30')
+      el.update(['2020-12-30'])
     }).toThrowError()
 
     expect(() => {
-      el.update('30-12-2020')
+      el.update(['30-12-2020'])
     }).not.toThrowError()
   })
 
@@ -181,7 +184,6 @@ export const update = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          valueFormat: 'YYYY-MM-DD'
         }
       }
     })
@@ -199,6 +201,9 @@ export const update = function (elementType, elementName, options) {
 
     el.update(undefined)
     expect(el.value).toStrictEqual(el.nullValue)
+
+    el.update([])
+    expect(el.value).toStrictEqual(el.nullValue)
   })
 
   it('should trigger "updated" on `update`', async () => {
@@ -212,9 +217,9 @@ export const update = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.update('2020-12-30')
+    el.update(['2020-12-30'])
 
-    expect(el.dirty).toBe(true)
+    expect(el.dirty).toStrictEqual(true)
   })
 }
 
@@ -224,7 +229,7 @@ export const reset = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          default: '2020-12-30',
+          default: ['2020-12-30'],
         }
       }
     })
@@ -235,7 +240,7 @@ export const reset = function (elementType, elementName, options) {
 
     el.reset()
 
-    expect(el.value).toStrictEqual('2020-12-30')
+    expect(el.value).toStrictEqual(['2020-12-30'])
   })
 
   it('should reset validators on `reset`', async () => {
@@ -256,8 +261,8 @@ export const reset = function (elementType, elementName, options) {
 
     el.reset()
 
-    expect(el.validated).toBe(false)
-    expect(el.invalid).toBe(false)
+    expect(el.validated).toStrictEqual(false)
+    expect(el.invalid).toStrictEqual(false)
   })
 
   it('should trigger "change" on `reset` if value changed', async () => {

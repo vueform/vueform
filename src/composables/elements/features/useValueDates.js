@@ -1,54 +1,57 @@
 import { computed } from 'composition-api'
 import useValueDate from './useValueDate'
+import checkDateFormat from './../../../utils/checkDateFormat'
 
 export default function(props, context, dependencies)
 {
   // ============ DEPENDENCIES =============
 
-  const nullValue = dependencies.nullValue
   const valueFormat = dependencies.valueFormat
-  const { currentValue, previousValue, model } = useValueDate(props, context, dependencies)
+  const { currentValue, previousValue } = useValueDate(props, context, dependencies)
 
   // ============== COMPUTED ===============
 
-  const value = computed({
+  // Is always a Date instance
+  const model = computed({
     get() {
-      // Model has no value
-      if (!model.value) {
-        return model.value
+      return currentValue.value
+    },
+    set(val) {
+      if (!_.isArray(val)) {
+        throw new Error('Dates model must an array')
       }
 
-      // No need to format dates
+      _.each(val, (v) => {
+        if (!_.isEmpty(v) && !(v instanceof Date)) {
+          throw new Error('Date model must be an array of `Date` instances')
+        }
+      })
+      
+      previousValue.value = _.clone(currentValue.value)
+      currentValue.value = val
+    }
+  })
+
+  const value = computed({
+    get() {
       if (valueFormat.value === false) {
         return model.value
       }
 
-      let val = []
-
-      _.each(model.value, (date) => {
-        if (date === null) {
-          return
-        }
-
-        value.push(moment(date).format(valueFormat.value))
+      return _.map(model.value, (val) => {
+        return moment(val).format(valueFormat.value)
       })
-
-      return val
     },
     set(val) {
-      // Value is empty
-      if (_.isEmpty(val)) {
-        model.value = _.clone(nullValue.value)
-        return
+      if (!_.isArray(val)) {
+        throw new Error('Dates value must an array')
       }
 
-      let values = []
+      model.value = _.map(val, (v) => {
+        checkDateFormat(valueFormat.value, v)
 
-      _.each(val, (v) => {
-        values.push(v instanceof Date ? v : moment(v, valueFormat.value, true).toDate())
+        return v instanceof Date ? v : moment(v, valueFormat.value, true).toDate()
       })
-
-      model.value = values
     }
   })
 

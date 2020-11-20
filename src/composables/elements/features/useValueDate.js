@@ -1,4 +1,5 @@
 import { computed } from 'composition-api'
+import checkDateFormat from '../../../utils/checkDateFormat'
 import useValue from './useValue'
 
 export default function(props, context, dependencies)
@@ -6,6 +7,7 @@ export default function(props, context, dependencies)
   // ============ DEPENDENCIES =============
 
   const valueFormat = dependencies.valueFormat
+  const nullValue = dependencies.nullValue
   const { currentValue, previousValue } = useValue(props, context, dependencies)
 
   // ============== COMPUTED ===============
@@ -36,10 +38,13 @@ export default function(props, context, dependencies)
     },
     set(val) {
       if (!_.isEmpty(val) && !(val instanceof Date)) {
-        throw new Error('Date value must be an instance of `Date`')
+        model.value = nullValue.value
+        return
       }
 
-      model.value = val
+      checkDateFormat(valueFormat.value, val)
+
+      model.value = val instanceof Date ? val : moment(val, valueFormat.value, true).toDate()
     }
   })
 

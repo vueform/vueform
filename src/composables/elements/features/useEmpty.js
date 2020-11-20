@@ -15,7 +15,7 @@ export default function(props, context, dependencies)
     * @type {boolean}
     */
   const empty = computed(() => {
-    return value.value == nullValue.value || value.value === ''
+    return _.isEqual(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1
   })
 
   return {

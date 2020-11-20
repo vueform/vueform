@@ -1,5 +1,13 @@
 import { createForm } from 'test-helpers'
 
+const value = function(options) {
+  return options.value !== undefined ? options.value : 'value'
+}
+
+const value2 = function(options) {
+  return options.value2 !== undefined ? options.value2 : 'value2'
+}
+
 export const empty = function (elementType, elementName, options) {
   it('should have `empty` true when value is empty', () => {
     let form = createForm({
@@ -14,11 +22,7 @@ export const empty = function (elementType, elementName, options) {
 
     expect(el.empty).toBe(true)
 
-    el.update('')
-
-    expect(el.empty).toBe(true)
-
-    el.update(null)
+    el.update(value2(options))
 
     expect(el.empty).toBe(true)
   })
@@ -28,7 +32,7 @@ export const empty = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          default: options.value || 'value'
+          default: value(options)
         }
       }
     })

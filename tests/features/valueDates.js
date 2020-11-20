@@ -18,7 +18,9 @@ export const model = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.currentValue = moment('2020-12-30').toDate()
+    el.currentValue = [
+      moment('2020-12-30').toDate(),
+    ]
 
     expect(el.model).toStrictEqual(el.currentValue)
   })
@@ -34,11 +36,11 @@ export const model = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.currentValue = moment('2020-12-29').toDate()
-    el.model = moment('2020-12-30').toDate()
+    el.currentValue = [moment('2020-12-29').toDate()]
+    el.model = [moment('2020-12-30').toDate()]
 
-    expect(el.currentValue).toStrictEqual(moment('2020-12-30').toDate())
-    expect(el.previousValue).toStrictEqual(moment('2020-12-29').toDate())
+    expect(el.currentValue).toStrictEqual([moment('2020-12-30').toDate()])
+    expect(el.previousValue).toStrictEqual([moment('2020-12-29').toDate()])
   })
 
   it('should throw error when setting `model` with not a Date instance', () => {
@@ -53,7 +55,23 @@ export const model = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(() => {
-      el.model = '2020-12-30'
+      el.model = ['2020-12-30']
+    }).toThrowError()
+  })
+
+  it('should throw error when setting `model` with not an array', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(() => {
+      el.model = moment('2020-12-30').toDate()
     }).toThrowError()
   })
 }
@@ -71,9 +89,9 @@ export const value = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.value = moment('2020-12-30').toDate()
+    el.value = [moment('2020-12-30').toDate()]
 
-    expect(el.value).toStrictEqual('30-12-2020')
+    expect(el.value).toStrictEqual(['30-12-2020'])
   })
 
   it('should return Date instance for `value` if valueFormat is false', () => {
@@ -88,9 +106,9 @@ export const value = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.value = moment('2020-12-30').toDate()
+    el.value = [moment('2020-12-30').toDate()]
 
-    expect(el.value).toStrictEqual(moment('2020-12-30').toDate())
+    expect(el.value).toStrictEqual([moment('2020-12-30').toDate()])
   })
 
   it('should set `value` to model', () => {
@@ -104,13 +122,33 @@ export const value = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.value = moment('2020-12-30').toDate()
+    el.value = [moment('2020-12-30').toDate()]
 
-    expect(el.model).toStrictEqual(moment('2020-12-30').toDate())
+    expect(el.model).toStrictEqual([moment('2020-12-30').toDate()])
 
-    el.value = '2020-12-29'
+    el.value = ['2020-12-29']
 
-    expect(el.model).toStrictEqual(moment('2020-12-29').toDate())
+    expect(el.model).toStrictEqual([moment('2020-12-29').toDate()])
+  })
+
+  it('should throw error when setting `value` with not an array', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(() => {
+      el.value = '2020-12-30'
+    }).toThrowError()
+
+    expect(() => {
+      el.value = ['2020-12-30']
+    }).not.toThrowError()
   })
 
   it('should throw error when setting `value` with string date that does not have valueFormat', () => {
@@ -126,11 +164,11 @@ export const value = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(() => {
-      el.value = '2020-12-30'
+      el.value = ['2020-12-30']
     }).toThrowError()
 
     expect(() => {
-      el.value = '30-12-2020'
+      el.value = ['30-12-2020']
     }).not.toThrowError()
   })
 }
