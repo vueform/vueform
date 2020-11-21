@@ -1,5 +1,13 @@
 import { createForm, testComputedOption } from 'test-helpers'
 
+const value = (options) => {
+  return _.isArray(options.value) ? options.value[0] : options.value
+}
+
+const value2 = (options) => {
+  return _.isArray(options.value2) ? options.value2[0] : options.value2
+}
+
 export const displayFormat = function (elementType, elementName, options) {
   let form = createForm({
     schema: {
@@ -41,7 +49,7 @@ export const disables = function (elementType, elementName, options) {
         el: {
           type: elementType,
           valueFormat: options.valueFormat,
-          disables: [options.value, moment(options.value2, options.valueFormat2).toDate()],
+          disables: [value(options), moment(value2(options), options.valueFormat2).toDate()],
         }
       }
     })
@@ -49,8 +57,8 @@ export const disables = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.disables).toStrictEqual([
-      moment(options.value, options.valueFormat).toDate(),
-      moment(options.value2, options.valueFormat2).toDate(),
+      moment(value(options), options.valueFormat).toDate(),
+      moment(value2(options), options.valueFormat2).toDate(),
     ])
   })
 
@@ -66,11 +74,11 @@ export const disables = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.disables = [options.value, moment(options.value2, options.valueFormat2).toDate()]
+    el.disables = [value(options), moment(value2(options), options.valueFormat2).toDate()]
 
     expect(el.schema.disables).toStrictEqual([
-      options.value,
-      moment(options.value2, options.valueFormat2).format(options.valueFormat),
+      value(options),
+      moment(value2(options), options.valueFormat2).format(options.valueFormat),
     ])
   })
 }
@@ -91,7 +99,7 @@ export const min = function (elementType, elementName, options) {
   })
 
   it('should set `min` from schema', () => {
-    let dateObj = moment(options.value, options.valueFormat).toDate()
+    let dateObj = moment(value(options), options.valueFormat).toDate()
 
     let form = createForm({
       schema: {
@@ -109,7 +117,7 @@ export const min = function (elementType, elementName, options) {
   })
 
   it('should set `min` as a string from schema', () => {
-    let date = options.value
+    let date = value(options)
 
     let form = createForm({
       schema: {
@@ -127,7 +135,7 @@ export const min = function (elementType, elementName, options) {
   })
 
   it('should set `min` to schema', () => {
-    let date = options.value
+    let date = value(options)
 
     let form = createForm({
       schema: {
@@ -162,7 +170,7 @@ export const max = function (elementType, elementName, options) {
   })
 
   it('should set `max` from schema', () => {
-    let dateObj = moment(options.value, options.valueFormat).toDate()
+    let dateObj = moment(value(options), options.valueFormat).toDate()
 
     let form = createForm({
       schema: {
@@ -180,7 +188,7 @@ export const max = function (elementType, elementName, options) {
   })
 
   it('should set `max` as a string from schema', () => {
-    let date = options.value
+    let date = value(options)
 
     let form = createForm({
       schema: {
@@ -198,7 +206,7 @@ export const max = function (elementType, elementName, options) {
   })
 
   it('should set `max` to schema', () => {
-    let date = options.value
+    let date = value(options)
 
     let form = createForm({
       schema: {
