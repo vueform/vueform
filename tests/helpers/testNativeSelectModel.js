@@ -1,34 +1,32 @@
-export default function testNativeSelectModel (form, LocalVue, done, values = [0,1,2]) {
-  let a = form.findAllComponents({ name: 'SelectElement' }).at(0)
+import { nextTick } from 'composition-api'
 
-  expect(a.vm.value).toBe(values[1])
-  expect(a.get('select').findAll('option').at(1).element.selected).toBe(true)
+export default async function testNativeSelectModel(form, values = [0,1,2]) {
+  let el = form.findAllComponents({ name: 'SelectElement' }).at(0)
 
-  a.vm.value = values[2]
+  expect(el.vm.value).toBe(values[1])
+  expect(el.get('select').findAll('option').at(1).element.selected).toBe(true)
 
-  expect(a.vm.value).toBe(values[2])
+  el.vm.value = values[2]
 
-  LocalVue.nextTick(() => {
-    expect(a.get('select').findAll('option').at(2).element.selected).toBe(true)
+  expect(el.vm.model).toBe(values[2])
 
-    a.vm.update(values[0])
+  await nextTick()
 
-    expect(a.vm.value).toBe(values[0])
+  expect(el.get('select').findAll('option').at(2).element.selected).toBe(true)
 
-    LocalVue.nextTick(() => {
-      expect(a.get('select').findAll('option').at(0).element.selected).toBe(true)
+  el.vm.update(values[0])
 
-      form.vm.load({
-        a: values[1]
-      })
+  expect(el.vm.model).toBe(values[0])
 
-      expect(a.vm.value).toBe(values[1])
+  await nextTick()
+  
+  expect(el.get('select').findAll('option').at(0).element.selected).toBe(true)
+
+  el.vm.load(values[1])
+
+  expect(el.vm.model).toBe(values[1])
       
-      LocalVue.nextTick(() => {
-        expect(a.get('select').findAll('option').at(1).element.selected).toBe(true)
+  await nextTick()
 
-        done()
-      })
-    })
-  })
+  expect(el.get('select').findAll('option').at(1).element.selected).toBe(true)
 }

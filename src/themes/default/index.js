@@ -48,7 +48,7 @@ import ObjectElement from './components/elements/ObjectElement'
 import PasswordElement from './components/elements/PasswordElement'
 import RadioElement from './components/elements/RadioElement'
 import RadiogroupElement from './components/elements/RadiogroupElement'
-// import SelectElement from './components/elements/SelectElement'
+import SelectElement from './components/elements/SelectElement'
 import SliderElement from './components/elements/SliderElement'
 // import StaticElement from './components/elements/StaticElement'
 // import TagsElement from './components/elements/TagsElement'
@@ -67,6 +67,7 @@ import MultiselectSlotNoOptions from './components/elements/slots/MultiselectSlo
 import MultiselectSlotNoResult from './components/elements/slots/MultiselectSlotNoResult'
 import MultiselectSlotOption from './components/elements/slots/MultiselectSlotOption'
 import MultiselectSlotSelection from './components/elements/slots/MultiselectSlotSelection'
+import MultiselectSlotSingleLabel from './components/elements/slots/MultiselectSlotSingleLabel'
 import MultiselectSlotTag from './components/elements/slots/MultiselectSlotTag'
 import MultiselectSlotTagsSelection from './components/elements/slots/MultiselectSlotTagsSelection'
 import RadiogroupSlotRadio from './components/elements/slots/RadiogroupSlotRadio'
@@ -112,6 +113,7 @@ const components = {
   MultiselectSlotNoResult,
   MultiselectSlotOption,
   MultiselectSlotSelection,
+  MultiselectSlotSingleLabel,
   MultiselectSlotTag,
   MultiselectSlotTagsSelection,
   RadiogroupSlotRadio,
@@ -140,7 +142,7 @@ export default {
     PasswordElement,
     RadioElement,
     RadiogroupElement,
-    // SelectElement,
+    SelectElement,
     SliderElement,
     // StaticElement,
     // TagsElement,

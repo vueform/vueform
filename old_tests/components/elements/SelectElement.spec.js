@@ -6,763 +6,631 @@ import {
 import { Laraform } from './../../../src/index'
 import en from './../../../src/locales/en'
 
-describe('Select Element Rendering', () => {
-  it('should render select element', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          items: {
-            a: 1
-          }
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    done()
-  })
-
-  it('should render component attributes when native', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          id: 'aaa',
-          placeholder: 'Placeholder',
-          disabled: true,
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.get('select').attributes().id).toBe('aaa')
-    expect(a.get('select').attributes().disabled).toBe('disabled')
-    expect(a.get('select').attributes().name).toBe('a')
-
-    expect(a.find('.' + a.vm.classes.selectNativePlaceholder).html()).toContain('Placeholder')
-
-    done()
-  })
-
-  it('should render component attributes when non-native', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          native: false,
-          search: true,
-          trackBy: 'name',
-          limit: 300,
-          id: 'aaa',
-          placeholder: 'Placeholder',
-          disabled: true,
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-    let vms$ = findAllComponents(form, { name: 'VueMultiselect' }).at(0)
-
-    expect(vms$.vm.$props.name).toBe('a')
-    expect(vms$.vm.$props.id).toBe('aaa')
-    expect(vms$.vm.$props.placeholder).toBe('Placeholder')
-    expect(vms$.vm.$props.disabled).toBe(true)
-    expect(vms$.vm.$props.searchable).toBe(true)
-    expect(vms$.vm.$props.trackBy).toBe('name')
-    expect(vms$.vm.$props.optionsLimit).toBe(300)
-
-    done()
-  })
-
-  it('should render floating label', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          floating: 'Select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-    let elf = findAllComponents(form, { name: 'ElementLabelFloating' }).at(0)
-
-    expect(elf.exists()).toBe(true)
-    expect(elf.html()).toContain('Select')
+// describe('Select Element Rendering', () => {
+//   it('should render select element', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           items: {
+//             a: 1
+//           }
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     done()
+//   })
+
+//   it('should render component attributes when native', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           id: 'aaa',
+//           placeholder: 'Placeholder',
+//           disabled: true,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.get('select').attributes().id).toBe('aaa')
+//     expect(el.get('select').attributes().disabled).toBe('disabled')
+//     expect(el.get('select').attributes().name).toBe('a')
+
+//     expect(el.find('.' + a.vm.classes.selectNativePlaceholder).html()).toContain('Placeholder')
+
+//     done()
+//   })
+
+//   it('should render component attributes when non-native', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           native: false,
+//           search: true,
+//           trackBy: 'name',
+//           limit: 300,
+//           id: 'aaa',
+//           placeholder: 'Placeholder',
+//           disabled: true,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+//     let vms$ = findAllComponents(form, { name: 'VueMultiselect' }).at(0)
+
+//     expect(vms$.vm.$props.name).toBe('a')
+//     expect(vms$.vm.$props.id).toBe('aaa')
+//     expect(vms$.vm.$props.placeholder).toBe('Placeholder')
+//     expect(vms$.vm.$props.disabled).toBe(true)
+//     expect(vms$.vm.$props.searchable).toBe(true)
+//     expect(vms$.vm.$props.trackBy).toBe('name')
+//     expect(vms$.vm.$props.optionsLimit).toBe(300)
+
+//     done()
+//   })
+
+//   it('should render floating label', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           floating: 'Select',
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+//     let elf = findAllComponents(form, { name: 'ElementLabelFloating' }).at(0)
+
+//     expect(elf.exists()).toBe(true)
+//     expect(elf.html()).toContain('Select')
+
+//     done()
+//   })
+// })
+
+// describe('Select Element Props', () => {
+//   it('should have empty object as default for `items`', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.items).toStrictEqual({})
+
+//     done()
+//   })
+
+//   it('should set `items` from schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           items: {
+//             a: 1,
+//             b: 2,
+//           }
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.items).toStrictEqual({
+//       a: 1,
+//       b: 2,
+//     })
+
+//     done()
+//   })
+
+//   it('should set `items` to schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     a.vm.items = {
+//       a: 1,
+//       b: 2,
+//     }
+
+//     expect(el.vm.items).toStrictEqual({
+//       a: 1,
+//       b: 2,
+//     })
+
+//     done()
+//   })
+
+//   it('should have true as default for `native`', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.native).toStrictEqual(true)
+
+//     done()
+//   })
+
+//   it('should set `native` from schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           native: false
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.native).toStrictEqual(false)
+
+//     done()
+//   })
+
+//   it('should set `native` to schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     a.vm.native = false
+
+//     expect(el.vm.native).toStrictEqual(false)
+
+//     done()
+//   })
+
+//   it('should have "label" as default for `trackBy`', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.trackBy).toStrictEqual('label')
+
+//     done()
+//   })
+
+//   it('should set `trackBy` from schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           trackBy: 'name'
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.trackBy).toStrictEqual('name')
+
+//     done()
+//   })
+
+//   it('should set `trackBy` to schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     a.vm.trackBy = 'name'
+
+//     expect(el.vm.trackBy).toStrictEqual('name')
+
+//     done()
+//   })
 
-    done()
-  })
-})
+//   it('should have false as default for `search`', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.search).toStrictEqual(false)
+
+//     done()
+//   })
 
-describe('Select Element Props', () => {
-  it('should have empty object as default for `items`', (done) => {
-    const LocalVue = createLocalVue()
+//   it('should set `search` from schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           search: true
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.search).toStrictEqual(true)
+
+//     done()
+//   })
+
+//   it('should set `search` to schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     a.vm.search = true
+
+//     expect(el.vm.search).toStrictEqual(true)
+
+//     done()
+//   })
 
-    LocalVue.config.errorHandler = done
+//   it('should have 1000 as default for `limit`', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.limit).toStrictEqual(1000)
+
+//     done()
+//   })
 
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
+//   it('should set `limit` from schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           limit: 500
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.limit).toStrictEqual(500)
+
+//     done()
+//   })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+//   it('should set `limit` to schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     a.vm.limit = 500
+
+//     expect(el.vm.limit).toStrictEqual(500)
+
+//     done()
+//   })
 
-    expect(a.vm.items).toStrictEqual({})
+//   it('should have null as default for `placeholder`', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.placeholder).toStrictEqual(null)
+
+//     done()
+//   })
 
-    done()
-  })
-
-  it('should set `items` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          items: {
-            a: 1,
-            b: 2,
-          }
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.items).toStrictEqual({
-      a: 1,
-      b: 2,
-    })
-
-    done()
-  })
-
-  it('should set `items` to schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    a.vm.items = {
-      a: 1,
-      b: 2,
-    }
-
-    expect(a.vm.items).toStrictEqual({
-      a: 1,
-      b: 2,
-    })
-
-    done()
-  })
-
-  it('should have true as default for `native`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.native).toStrictEqual(true)
-
-    done()
-  })
-
-  it('should set `native` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          native: false
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.native).toStrictEqual(false)
-
-    done()
-  })
-
-  it('should set `native` to schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    a.vm.native = false
-
-    expect(a.vm.native).toStrictEqual(false)
-
-    done()
-  })
-
-  it('should have "label" as default for `trackBy`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.trackBy).toStrictEqual('label')
-
-    done()
-  })
-
-  it('should set `trackBy` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          trackBy: 'name'
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.trackBy).toStrictEqual('name')
-
-    done()
-  })
-
-  it('should set `trackBy` to schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    a.vm.trackBy = 'name'
-
-    expect(a.vm.trackBy).toStrictEqual('name')
-
-    done()
-  })
-
-  it('should have false as default for `search`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.search).toStrictEqual(false)
-
-    done()
-  })
-
-  it('should set `search` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          search: true
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.search).toStrictEqual(true)
-
-    done()
-  })
-
-  it('should set `search` to schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    a.vm.search = true
-
-    expect(a.vm.search).toStrictEqual(true)
-
-    done()
-  })
-
-  it('should have 1000 as default for `limit`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.limit).toStrictEqual(1000)
-
-    done()
-  })
-
-  it('should set `limit` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          limit: 500
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.limit).toStrictEqual(500)
-
-    done()
-  })
-
-  it('should set `limit` to schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    a.vm.limit = 500
-
-    expect(a.vm.limit).toStrictEqual(500)
-
-    done()
-  })
-
-  it('should have null as default for `placeholder`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.placeholder).toStrictEqual(null)
-
-    done()
-  })
-
-  it('should set `placeholder` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          placeholder: 'aaa'
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.placeholder).toStrictEqual('aaa')
-
-    done()
-  })
-
-  it('should set `placeholder` to schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    a.vm.placeholder = 'aaa'
-
-    expect(a.vm.placeholder).toStrictEqual('aaa')
-
-    done()
-  })
-
-  it('should have null as default for `floating`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.floating).toStrictEqual(null)
-
-    done()
-  })
-
-  it('should set `floating` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          floating: 'aaa'
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.floating).toStrictEqual('aaa')
-
-    done()
-  })
-
-  it('should set `floating` to schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    a.vm.floating = 'aaa'
-
-    expect(a.vm.floating).toStrictEqual('aaa')
-
-    done()
-  })
-
-  it('should have `defaultOptions` as default for `options`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.options).toStrictEqual(a.vm.defaultOptions)
-
-    done()
-  })
-
-  it('should set `options` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          options: {
-            a: 'aaa'
-          }
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.options).toStrictEqual(Object.assign({}, a.vm.defaultOptions, {
-      a: 'aaa'
-    }))
-
-    done()
-  })
-
-  it('should set `options` to schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    a.vm.options = {
-      a: 'aaa'
-    }
-
-    expect(a.vm.options).toStrictEqual(Object.assign({}, a.vm.defaultOptions, {
-      a: 'aaa'
-    }))
-
-    done()
-  })
-
-  it('should return true for `isNative` if native is true & search is false', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.isNative).toBe(true)
-
-    a.vm.native = false
-
-    expect(a.vm.isNative).toBe(false)
+//   it('should set `placeholder` from schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           placeholder: 'aaa'
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.placeholder).toStrictEqual('aaa')
+
+//     done()
+//   })
+
+//   it('should set `placeholder` to schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     a.vm.placeholder = 'aaa'
+
+//     expect(el.vm.placeholder).toStrictEqual('aaa')
+
+//     done()
+//   })
+
+//   it('should have null as default for `floating`', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.floating).toStrictEqual(null)
+
+//     done()
+//   })
+
+//   it('should set `floating` from schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           floating: 'aaa'
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.floating).toStrictEqual('aaa')
+
+//     done()
+//   })
+
+//   it('should set `floating` to schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     a.vm.floating = 'aaa'
+
+//     expect(el.vm.floating).toStrictEqual('aaa')
+
+//     done()
+//   })
+
+//   it('should have `defaultOptions` as default for `options`', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.options).toStrictEqual(a.vm.defaultOptions)
+
+//     done()
+//   })
+
+//   it('should set `options` from schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           options: {
+//             a: 'aaa'
+//           }
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.options).toStrictEqual(Object.assign({}, a.vm.defaultOptions, {
+//       a: 'aaa'
+//     }))
+
+//     done()
+//   })
+
+//   it('should set `options` to schema', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     a.vm.options = {
+//       a: 'aaa'
+//     }
+
+//     expect(el.vm.options).toStrictEqual(Object.assign({}, a.vm.defaultOptions, {
+//       a: 'aaa'
+//     }))
+
+//     done()
+//   })
+
+//   it('should return true for `isNative` if native is true & search is false', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+
+//     let el = form.vm.el$('el')
+
+//     expect(el.vm.isNative).toBe(true)
+
+//     a.vm.native = false
+
+//     expect(el.vm.isNative).toBe(false)
     
-    a.vm.native = true
+//     a.vm.native = true
 
-    expect(a.vm.isNative).toBe(true)
+//     expect(el.vm.isNative).toBe(true)
 
-    a.vm.search = true
+//     a.vm.search = true
 
-    expect(a.vm.isNative).toBe(false)
+//     expect(el.vm.isNative).toBe(false)
 
-    done()
-  })
+//     done()
+//   })
 
-  it('should return current value\'s label for `textValue`', (done) => {
-    const LocalVue = createLocalVue()
+//   it('should return current value\'s label for `textValue`', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           items: [
+//             'aaa',
+//             'bbb',
+//             'ccc',
+//           ],
+//         }
+//       }
+//     })
 
-    LocalVue.config.errorHandler = done
+//     let el = form.vm.el$('el')
 
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          items: [
-            'aaa',
-            'bbb',
-            'ccc',
-          ],
-        }
-      }
-    })
+//     a.vm.update(1)
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    a.vm.update(1)
-
-    expect(a.vm.textValue).toBe('bbb')
+//     expect(el.vm.textValue).toBe('bbb')
     
-    done()
-  })
+//     done()
+//   })
 
-  it('should return empty for `textValue` if value is not been selected yet', (done) => {
-    const LocalVue = createLocalVue()
+//   it('should return empty for `textValue` if value is not been selected yet', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           items: [
+//             'aaa',
+//             'bbb',
+//             'ccc',
+//           ],
+//         }
+//       }
+//     })
 
-    LocalVue.config.errorHandler = done
+//     let el = form.vm.el$('el')
 
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          items: [
-            'aaa',
-            'bbb',
-            'ccc',
-          ],
-        }
-      }
-    })
-
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    expect(a.vm.textValue).toBe('')
+//     expect(el.vm.textValue).toBe('')
     
-    done()
-  })
+//     done()
+//   })
 
-  it('should return current item for `textValue`', (done) => {
-    const LocalVue = createLocalVue()
+//   it('should return current item for `textValue`', async () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           items: [
+//             'aaa',
+//             'bbb',
+//             'ccc',
+//           ],
+//         }
+//       }
+//     })
 
-    LocalVue.config.errorHandler = done
+//     let el = form.vm.el$('el')
 
-    let form = createForm({
-      schema: {
-        a: {
-          type: 'select',
-          items: [
-            'aaa',
-            'bbb',
-            'ccc',
-          ],
-        }
-      }
-    })
+//     a.vm.update(1)
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
-
-    a.vm.update(1)
-
-    expect(a.vm.selectedOption).toStrictEqual({
-      value: 1,
-      label: 'bbb'
-    })
+//     expect(el.vm.selectedOption).toStrictEqual({
+//       value: 1,
+//       label: 'bbb'
+//     })
     
-    done()
-  })
-})
+//     done()
+//   })
+// })
 
 describe('Select Element Model (native)', () => {
-  it('should set default, change value, update & load with "array of string" items', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set default, change value, update & load with "array of string" items', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           items: [
             'a',
             'b',
@@ -776,15 +644,11 @@ describe('Select Element Model (native)', () => {
     testNativeSelectModel(form, LocalVue, done)
   })
   
-  it('should set default, change value, update & load with "array of objects with label only" items', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set default, change value, update & load with "array of objects with label only" items', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           items: [
             { label: 'a' },
             { label: 'b' },
@@ -798,15 +662,11 @@ describe('Select Element Model (native)', () => {
     testNativeSelectModel(form, LocalVue, done)
   })
   
-  it('should set default, change value, update & load with "array of objects which contains value & label" items', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set default, change value, update & load with "array of objects which contains value & label" items', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           items: [
             { value: 'a', label: 'aaa' },
             { value: 'b', label: 'bbb' },
@@ -820,15 +680,11 @@ describe('Select Element Model (native)', () => {
     testNativeSelectModel(form, LocalVue, done, ['a', 'b', 'c'])
   })
   
-  it('should set default, change value, update & load with "object with string values" items', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set default, change value, update & load with "object with string values" items', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           items: {
             a: 'aaa',
             b: 'bbb',
@@ -842,17 +698,13 @@ describe('Select Element Model (native)', () => {
     testNativeSelectModel(form, LocalVue, done, ['a', 'b', 'c'])
   })
   
-  it('should set default, change value, update & load with "object with object values including label only" items', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set default, change value, update & load with "object with object values including label only" items', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           items: {
-            a: { label: 'aaa' },
+            el: { label: 'aaa' },
             b: { label: 'bbb' },
             c: { label: 'ccc' },
           },
@@ -864,17 +716,13 @@ describe('Select Element Model (native)', () => {
     testNativeSelectModel(form, LocalVue, done, ['a', 'b', 'c'])
   })
   
-  it('should set default, change value, update & load with "object with object values which includes value + label" items', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set default, change value, update & load with "object with object values which includes value + label" items', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           items: {
-            a: { value: 'aa', label: 'aaa' },
+            el: { value: 'aa', label: 'aaa' },
             b: { value: 'bb', label: 'bbb' },
             c: { value: 'cc', label: 'ccc' },
           },
@@ -888,15 +736,11 @@ describe('Select Element Model (native)', () => {
 })
 
 describe('Select Element Model (non-native)', () => {
-  it('should set default, change value, update & load with "array of string" items', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set default, change value, update & load with "array of string" items', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: [
             'a',
@@ -911,15 +755,11 @@ describe('Select Element Model (non-native)', () => {
     testNonNativeSelectModel(form, LocalVue, done)
   })
   
-  it('should set default, change value, update & load with "array of objects with label only" items', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set default, change value, update & load with "array of objects with label only" items', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: [
             { label: 'a' },
@@ -934,15 +774,11 @@ describe('Select Element Model (non-native)', () => {
     testNonNativeSelectModel(form, LocalVue, done)
   })
   
-  it('should set default, change value, update & load with "array of objects which contains value & label" items', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set default, change value, update & load with "array of objects which contains value & label" items', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: [
             { value: 'a', label: 'aaa' },
@@ -957,15 +793,11 @@ describe('Select Element Model (non-native)', () => {
     testNonNativeSelectModel(form, LocalVue, done, ['a', 'b', 'c'])
   })
   
-  it('should set default, change value, update & load with "object with string values" items', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set default, change value, update & load with "object with string values" items', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: {
             a: 'aaa',
@@ -980,18 +812,14 @@ describe('Select Element Model (non-native)', () => {
     testNonNativeSelectModel(form, LocalVue, done, ['a', 'b', 'c'])
   })
   
-  it('should set default, change value, update & load with "object with object values including label only" items', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set default, change value, update & load with "object with object values including label only" items', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: {
-            a: { label: 'aaa' },
+            el: { label: 'aaa' },
             b: { label: 'bbb' },
             c: { label: 'ccc' },
           },
@@ -1003,18 +831,14 @@ describe('Select Element Model (non-native)', () => {
     testNonNativeSelectModel(form, LocalVue, done, ['a', 'b', 'c'])
   })
   
-  it('should set default, change value, update & load with "object with object values which includes value + label" items', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should set default, change value, update & load with "object with object values which includes value + label" items', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: {
-            a: { value: 'aa', label: 'aaa' },
+            el: { value: 'aa', label: 'aaa' },
             b: { value: 'bb', label: 'bbb' },
             c: { value: 'cc', label: 'ccc' },
           },
@@ -1028,15 +852,11 @@ describe('Select Element Model (non-native)', () => {
 })
 
 describe('Select Element Items', () => {
-  it('should convert an array of strings to `selectOptions`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should convert an array of strings to `selectOptions`', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           items: [
             'aaa',
             'bbb',
@@ -1046,7 +866,7 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
     confirmSelectOptions(a, done, LocalVue, {
       0: 'aaa',
@@ -1055,15 +875,11 @@ describe('Select Element Items', () => {
     })
   })
 
-  it('should convert an array of objects with label only to `selectOptions`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should convert an array of objects with label only to `selectOptions`', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           items: [
             { label: 'aaa' },
             { label: 'bbb' },
@@ -1073,9 +889,9 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(a.vm.selectOptions).toStrictEqual([
+    expect(el.vm.selectOptions).toStrictEqual([
       { value: 0, label: 'aaa' },
       { value: 1, label: 'bbb' },
       { value: 2, label: 'ccc' },
@@ -1088,15 +904,11 @@ describe('Select Element Items', () => {
     })
   })
 
-  it('should convert an array of objects with trackBy key only to `selectOptions`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should convert an array of objects with trackBy key only to `selectOptions`', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           trackBy: 'name',
           items: [
             { name: 'aaa' },
@@ -1107,9 +919,9 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(a.vm.selectOptions).toStrictEqual([
+    expect(el.vm.selectOptions).toStrictEqual([
       { value: 0, name: 'aaa', label: 'aaa' },
       { value: 1, name: 'bbb', label: 'bbb' },
       { value: 2, name: 'ccc', label: 'ccc' },
@@ -1122,11 +934,7 @@ describe('Select Element Items', () => {
     })
   })
 
-  it('should throw an error if an array of objects is provided as items without including the trackBy key', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should throw an error if an array of objects is provided as items without including the trackBy key', async () => {
     const originalConsoleError = console.error
 
     console.error = () => {}
@@ -1134,8 +942,8 @@ describe('Select Element Items', () => {
     expect(() => {
       let form = createForm({
         schema: {
-          a: {
-            type: 'select',
+          el: {
+            type: elementType,
             items: [
               { name: 'aaa' },
               { name: 'bbb' },
@@ -1151,15 +959,11 @@ describe('Select Element Items', () => {
     done()
   })
 
-  it('should convert an array of objects which contains value & label to `selectOptions`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should convert an array of objects which contains value & label to `selectOptions`', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           items: [
             { value: 'a', label: 'aaa' },
             { value: 'b', label: 'bbb' },
@@ -1169,9 +973,9 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(a.vm.selectOptions).toStrictEqual([
+    expect(el.vm.selectOptions).toStrictEqual([
       { value: 'a', label: 'aaa' },
       { value: 'b', label: 'bbb' },
       { value: 'c', label: 'ccc' },
@@ -1184,15 +988,11 @@ describe('Select Element Items', () => {
     })
   })
 
-  it('should convert an an object with string values to `selectOptions`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should convert an an object with string values to `selectOptions`', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           items: {
             a: 'aaa',
             b: 'bbb',
@@ -1202,9 +1002,9 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(a.vm.selectOptions).toStrictEqual([
+    expect(el.vm.selectOptions).toStrictEqual([
       { value: 'a', label: 'aaa' },
       { value: 'b', label: 'bbb' },
       { value: 'c', label: 'ccc' },
@@ -1217,17 +1017,13 @@ describe('Select Element Items', () => {
     })
   })
 
-  it('should convert an object with object values including label only to `selectOptions`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should convert an object with object values including label only to `selectOptions`', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           items: {
-            a: { label: 'aaa' },
+            el: { label: 'aaa' },
             b: { label: 'bbb' },
             c: { label: 'ccc' },
           },
@@ -1235,9 +1031,9 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(a.vm.selectOptions).toStrictEqual([
+    expect(el.vm.selectOptions).toStrictEqual([
       { value: 'a', label: 'aaa' },
       { value: 'b', label: 'bbb' },
       { value: 'c', label: 'ccc' },
@@ -1250,18 +1046,14 @@ describe('Select Element Items', () => {
     })
   })
 
-  it('should convert an object of objects values with trackBy key only to `selectOptions`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should convert an object of objects values with trackBy key only to `selectOptions`', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           trackBy: 'name',
           items: {
-            a: { name: 'aaa' },
+            el: { name: 'aaa' },
             b: { name: 'bbb' },
             c: { name: 'ccc' },
           },
@@ -1269,9 +1061,9 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(a.vm.selectOptions).toStrictEqual([
+    expect(el.vm.selectOptions).toStrictEqual([
       { value: 'a', name: 'aaa', label: 'aaa' },
       { value: 'b', name: 'bbb', label: 'bbb' },
       { value: 'c', name: 'ccc', label: 'ccc' },
@@ -1284,11 +1076,7 @@ describe('Select Element Items', () => {
     })
   })
 
-  it('should throw an error if an object of objects is provided as items without including the trackBy key', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should throw an error if an object of objects is provided as items without including the trackBy key', async () => {
     const originalConsoleError = console.error
 
     console.error = () => {}
@@ -1296,10 +1084,10 @@ describe('Select Element Items', () => {
     expect(() => {
       let form = createForm({
         schema: {
-          a: {
-            type: 'select',
+          el: {
+            type: elementType,
             items: {
-              a: { name: 'aaa' },
+              el: { name: 'aaa' },
               b: { name: 'bbb' },
               c: { name: 'ccc' },
             },
@@ -1313,17 +1101,13 @@ describe('Select Element Items', () => {
     done()
   })
 
-  it('should convert an object with object values which includes value + label to `selectOptions`', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should convert an object with object values which includes value + label to `selectOptions`', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           items: {
-            a: { value: 'aa', label: 'aaa' },
+            el: { value: 'aa', label: 'aaa' },
             b: { value: 'bb', label: 'bbb' },
             c: { value: 'cc', label: 'ccc' },
           },
@@ -1331,9 +1115,9 @@ describe('Select Element Items', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
-    expect(a.vm.selectOptions).toStrictEqual([
+    expect(el.vm.selectOptions).toStrictEqual([
       { value: 'aa', label: 'aaa' },
       { value: 'bb', label: 'bbb' },
       { value: 'cc', label: 'ccc' },
@@ -1348,24 +1132,20 @@ describe('Select Element Items', () => {
 })
 
 describe('Select Element Events', () => {
-  it('should trigger `change` on native element', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should trigger `change` on native element', async () => {
     let onChangeMock = jest.fn()
 
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           items: ['a', 'b', 'c'],
           onChange: onChangeMock
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -1378,17 +1158,13 @@ describe('Select Element Events', () => {
     done()
   })
 
-  it('should trigger `change` on non-native element', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should trigger `change` on non-native element', async () => {
     let onChangeMock = jest.fn()
 
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: ['a', 'b', 'c'],
           onChange: onChangeMock
@@ -1396,7 +1172,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
@@ -1409,17 +1185,13 @@ describe('Select Element Events', () => {
     done()
   })
 
-  it('should trigger `select` on non-native element', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should trigger `select` on non-native element', async () => {
     let onSelectMock = jest.fn()
 
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: ['a', 'b', 'c'],
           onSelect: onSelectMock
@@ -1427,7 +1199,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
     expect(onSelectMock.mock.calls.length).toBe(0)
 
@@ -1439,17 +1211,13 @@ describe('Select Element Events', () => {
     done()
   })
 
-  it('should trigger `deselect` on non-native element', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should trigger `deselect` on non-native element', async () => {
     let onDeselectMock = jest.fn()
 
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: ['a', 'b', 'c'],
           onDeselect: onDeselectMock
@@ -1457,7 +1225,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
     expect(onDeselectMock.mock.calls.length).toBe(0)
 
@@ -1469,17 +1237,13 @@ describe('Select Element Events', () => {
     done()
   })
 
-  it('should trigger `searchChange` on non-native element', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should trigger `searchChange` on non-native element', async () => {
     let onSearchChangeMock = jest.fn()
 
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: ['a', 'b', 'c'],
           onSearchChange: onSearchChangeMock
@@ -1487,7 +1251,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
     expect(onSearchChangeMock.mock.calls.length).toBe(0)
 
@@ -1499,17 +1263,13 @@ describe('Select Element Events', () => {
     done()
   })
 
-  it('should trigger `open` on non-native element', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should trigger `open` on non-native element', async () => {
     let onOpenMock = jest.fn()
 
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: ['a', 'b', 'c'],
           onOpen: onOpenMock
@@ -1517,7 +1277,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
     expect(onOpenMock.mock.calls.length).toBe(0)
 
@@ -1528,17 +1288,13 @@ describe('Select Element Events', () => {
     done()
   })
 
-  it('should trigger `close` on non-native element', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should trigger `close` on non-native element', async () => {
     let onCloseMock = jest.fn()
 
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: ['a', 'b', 'c'],
           onClose: onCloseMock
@@ -1546,7 +1302,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
     expect(onCloseMock.mock.calls.length).toBe(0)
 
@@ -1557,17 +1313,13 @@ describe('Select Element Events', () => {
     done()
   })
 
-  it('should not trigger `tag` on non-native element', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should not trigger `tag` on non-native element', async () => {
     let onTagMock = jest.fn()
 
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: ['a', 'b', 'c'],
           onTag: onTagMock
@@ -1575,7 +1327,7 @@ describe('Select Element Events', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
 
     expect(onTagMock.mock.calls.length).toBe(0)
 
@@ -1588,15 +1340,11 @@ describe('Select Element Events', () => {
 })
 
 describe('Select Element Slots', () => {
-  it('should be able to use custom slot for `option` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able to use custom slot for `option` from schema', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: ['a', 'b', 'c'],
           slots: {
@@ -1611,7 +1359,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
     let mso0 = a.findAll('.multiselect__option').at(0)
     let mso1 = a.findAll('.multiselect__option').at(1)
     let mso2 = a.findAll('.multiselect__option').at(2)
@@ -1633,8 +1381,8 @@ describe('Select Element Slots', () => {
       data() {
         return {
           schema: {
-            a: {
-              type: 'select',
+            el: {
+              type: elementType,
               native: false,
               items: ['a', 'b', 'c'],
             }
@@ -1679,7 +1427,7 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
     let mso0 = a.findAll('.multiselect__option').at(0)
     let mso1 = a.findAll('.multiselect__option').at(1)
     let mso2 = a.findAll('.multiselect__option').at(2)
@@ -1691,15 +1439,11 @@ describe('Select Element Slots', () => {
     done()
   })
 
-  it('should be able to use custom slot for `beforeList` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able to use custom slot for `beforeList` from schema', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: ['a', 'b', 'c'],
           label: 'AAA',
@@ -1715,14 +1459,11 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
     
-    LocalVue.nextTick(() => {
-      expect(a.html()).toContain('AAA before list')
-      
-      done()
-    })
+    await nextTick()
 
+    expect(el.html()).toContain('AAA before list')
   })
 
   it('should be able to use inline slot for `beforeList`', (done) => {
@@ -1735,8 +1476,8 @@ describe('Select Element Slots', () => {
       data() {
         return {
           schema: {
-            a: {
-              type: 'select',
+            el: {
+              type: elementType,
               native: false,
               items: ['a', 'b', 'c'],
               label: 'AAA'
@@ -1782,22 +1523,18 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
     
-    expect(a.html()).toContain('AAA before list')
+    expect(el.html()).toContain('AAA before list')
 
     done()
   })
 
-  it('should be able to use custom slot for `afterList` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able to use custom slot for `afterList` from schema', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           native: false,
           items: ['a', 'b', 'c'],
           label: 'AAA',
@@ -1813,14 +1550,11 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
     
-    LocalVue.nextTick(() => {
-      expect(a.html()).toContain('AAA after list')
-      
-      done()
-    })
+    await nextTick()
 
+    expect(el.html()).toContain('AAA after list')
   })
 
   it('should be able to use inline slot for `afterList`', (done) => {
@@ -1833,8 +1567,8 @@ describe('Select Element Slots', () => {
       data() {
         return {
           schema: {
-            a: {
-              type: 'select',
+            el: {
+              type: elementType,
               native: false,
               items: ['a', 'b', 'c'],
               label: 'AAA'
@@ -1880,22 +1614,18 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
     
-    expect(a.html()).toContain('AAA after list')
+    expect(el.html()).toContain('AAA after list')
 
     done()
   })
 
-  it('should be able to use custom slot for `noResult` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able to use custom slot for `noResult` from schema', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           search: true,
           items: ['a', 'b', 'c'],
           slots: {
@@ -1910,14 +1640,11 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
     
-    LocalVue.nextTick(() => {
-      expect(a.html()).toContain('No results')
-      
-      done()
-    })
+    await nextTick()
 
+    expect(el.html()).toContain('No results')
   })
 
   it('should be able to use inline slot for `noResult`', (done) => {
@@ -1930,8 +1657,8 @@ describe('Select Element Slots', () => {
       data() {
         return {
           schema: {
-            a: {
-              type: 'select',
+            el: {
+              type: elementType,
               search: true,
               items: ['a', 'b', 'c'],
             }
@@ -1976,22 +1703,18 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
     
-    expect(a.html()).toContain('No results.')
+    expect(el.html()).toContain('No results.')
 
     done()
   })
 
-  it('should be able to use custom slot for `singleLabel` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able to use custom slot for `singleLabel` from schema', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           search: true,
           items: ['a', 'b', 'c'],
           default: 1,
@@ -2007,13 +1730,11 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
     
-    LocalVue.nextTick(() => {
-      expect(a.find('.multiselect__single').html()).toContain('b single label')
-      
-      done()
-    })
+    await nextTick()
+
+    expect(el.find('.multiselect__single').html()).toContain('b single label')
   })
 
   it('should be able to use inline slot for `singleLabel`', (done) => {
@@ -2026,8 +1747,8 @@ describe('Select Element Slots', () => {
       data() {
         return {
           schema: {
-            a: {
-              type: 'select',
+            el: {
+              type: elementType,
               search: true,
               items: ['a', 'b', 'c'],
               default: 1,
@@ -2073,22 +1794,18 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
     
-    expect(a.find('.multiselect__single').html()).toContain('b single label')
+    expect(el.find('.multiselect__single').html()).toContain('b single label')
 
     done()
   })
 
-  it('should be able to use custom slot for `noOptions` from schema', (done) => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
+  it('should be able to use custom slot for `noOptions` from schema', async () => {
     let form = createForm({
       schema: {
-        a: {
-          type: 'select',
+        el: {
+          type: elementType,
           search: true,
           items: ['a', 'b', 'c'],
           default: 1,
@@ -2104,13 +1821,11 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
     
-    LocalVue.nextTick(() => {
-      expect(a.html()).toContain('No options.')
-      
-      done()
-    })
+    await nextTick()
+
+    expect(el.html()).toContain('No options.')
   })
 
   it('should be able to use inline slot for `noOptions`', (done) => {
@@ -2123,8 +1838,8 @@ describe('Select Element Slots', () => {
       data() {
         return {
           schema: {
-            a: {
-              type: 'select',
+            el: {
+              type: elementType,
               search: true,
               items: ['a', 'b', 'c'],
               default: 1,
@@ -2170,9 +1885,9 @@ describe('Select Element Slots', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'SelectElement' }).at(0)
+    let el = form.vm.el$('el')
     
-    expect(a.html()).toContain('No options.')
+    expect(el.html()).toContain('No options.')
 
     done()
   })

@@ -24,6 +24,16 @@ export default function(props, context, dependencies, options = {})
       after: markRaw(components.value.ElementText),
       checkbox: markRaw(components.value.CheckboxgroupSlotCheckbox),
       radio: markRaw(components.value.RadiogroupSlotRadio),
+      option: markRaw(components.value.MultiselectSlotOption),
+      noResult: markRaw(components.value.MultiselectSlotNoResult),
+      noOptions: markRaw(components.value.MultiselectSlotNoOptions),
+      singleLabel: markRaw(components.value.MultiselectSlotSingleLabel),
+      beforeList: null,
+      afterList: null,
+      // tag: markRaw(components.value.MultiselectSlotTag),
+      // selection: markRaw(components.value.MultiselectSlotSelection),
+      // tagsSelection: markRaw(components.value.MultiselectSlotTagsSelection),
+      // singleLabel: null,
     }
   })
 

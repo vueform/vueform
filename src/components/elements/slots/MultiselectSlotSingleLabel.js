@@ -1,5 +1,5 @@
 export default {
-  name: 'MultiselectSlotOption',
+  name: 'MultiselectSlotSingleLabel',
   props: {
     el$: {
       type: Object,
@@ -7,9 +7,6 @@ export default {
     },
     option: {
       required: true
-    },
-    search: {
-      required: false
     },
   },
   methods: {

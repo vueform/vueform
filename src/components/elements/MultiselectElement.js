@@ -92,6 +92,7 @@ export default {
         afterList: null,
         noResult: this.theme.components.MultiselectSlotNoResult,
         noOptions: this.theme.components.MultiselectSlotNoOptions,
+        
         selection: this.theme.components.MultiselectSlotSelection,
       },
 
