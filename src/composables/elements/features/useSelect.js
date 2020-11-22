@@ -1,12 +1,14 @@
 import computedOption from './../../../utils/computedOption'
 import { computed, toRefs } from 'composition-api'
 import normalize from './../../../utils/normalize'
+import spliceMultiple from './../../../utils/spliceMultiple'
 
 export default function (props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
   const value = dependencies.value
+  const updated = dependencies.updated
 
 
   // =============== PRIVATE ==============
@@ -30,14 +32,20 @@ export default function (props, context, dependencies)
    * @param {str|num} option the key of option to select.
    * @returns {void}
    */
-  const select = (option) => {
-    if (inValue(normalize(option))) {
-      return
+  const select = (options) => {
+    if (!_.isArray(options)) {
+      options = [options]
     }
-    
+
     let val = _.clone(value.value)
 
-    val.push(option)
+    _.each(options, (option) => {
+      if (inValue(normalize(option))) {
+        return
+      }
+
+      val.push(option)
+    })
 
     value.value = val
 
@@ -51,14 +59,25 @@ export default function (props, context, dependencies)
    * @param {str|num} option the key of option to deselect.
    * @returns {void}
    */
-  const deselect = (option) => {
-    var index = value.value.indexOf(option)
-
-    if (index === -1) {
-      return
+  const deselect = (options) => {
+    if (!_.isArray(options)) {
+      options = [options]
     }
 
-    value.value.splice(index, 1)
+    let val = _.clone(value.value)
+    let indexes = []
+
+    _.each(options, (option) => {
+      let i = value.value.indexOf(option)
+
+      if (i === -1 || indexes.indexOf(i) !== -1) {
+        return
+      }
+
+      indexes.push(i)
+    })
+
+    value.value = spliceMultiple(val, indexes)
 
     updated()
   }

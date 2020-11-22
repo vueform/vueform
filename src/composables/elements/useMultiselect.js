@@ -32,6 +32,7 @@ import useOptionsMultiselect from './features/useOptionsMultiselect'
 import useItems from './features/useItems'
 import useHandleSelectEvents from './features/useHandleSelectEvents'
 import useArrayType from './features/useArrayType'
+import useSelect from './features/useSelect'
 
 export default function (props, context) {
   const { schema } = toRefs(props)
@@ -167,6 +168,11 @@ export default function (props, context) {
     fire: events.fire,
   })
 
+  const select = useSelect(props, context, {
+    value: value.value,
+    updated: data.updated,
+  })
+
   onMounted(() => {
     validation.initMessageBag()
     validation.initValidation()
@@ -206,5 +212,6 @@ export default function (props, context) {
     ...options,
     ...handleSelectEvents,
     ...arrayType,
+    ...select,
   }
 } 
