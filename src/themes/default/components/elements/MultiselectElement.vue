@@ -12,5 +12,12 @@
       Multiselect,
     },
     render: SelectElement.render,
+    data() {
+      return _.merge(SelectElement.data(), {
+        defaultClasses: {
+          container: 'lf-multiselect',
+        }
+      })
+    }
   }
 </script>

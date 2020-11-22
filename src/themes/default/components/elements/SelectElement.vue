@@ -11,7 +11,7 @@
       >{{ floating }}</component>
 
       <span
-        v-if="placeholder && !(multiple && native)"
+        v-if="!options.multiple && !native"
         :class="classes.selectNativePlaceholder"
       >{{ placeholder }}</span>
 
@@ -41,8 +41,8 @@
         :id="id"
         :name="String(name)"
         :options="selectOptions"
-        :placeholder="placeholder"
         :disabled="disabled"
+        :placeholder="placeholder"
         @input="handleChange"
         @select="handleSelect"
         @remove="handleDeselect"
@@ -61,6 +61,12 @@
         <template v-slot:singleLabel="{ option }">
           <slot name="singleLabel" :el$="el$" :option="option">
             <component :is="slots.singleLabel" :el$="el$" :option="option" />
+          </slot>
+        </template>
+        
+        <template v-slot:selection="{ values, search, remove }">
+          <slot name="selection" :el$="el$" :values="values" :search="search" :remove="remove">
+            <component :is="slots.selection" :el$="el$" :values="values" :search="search" :remove="remove" />
           </slot>
         </template>
 

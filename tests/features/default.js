@@ -11,5 +11,5 @@ export const default_ = function (elementType, elementName, options) {
 
   let el = form.vm.el$('el')
 
-  testComputedOption(it, elementType, 'default', el.nullValue, 'value')
+  testComputedOption(it, elementType, 'default', el.nullValue, options.value || 'value')
 }

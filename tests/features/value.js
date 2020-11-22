@@ -45,7 +45,7 @@ export const value = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.currentValue = 'value'
+    el.currentValue = options.value || 'value'
 
     expect(el.value).toBe(el.currentValue)
   })
@@ -61,13 +61,13 @@ export const value = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.currentValue = 'value'
+    el.currentValue = options.value || 'value'
 
-    el.value = 'value2'
+    el.value = options.value2 || 'value2'
 
-    expect(el.previousValue).toBe('value')
-    expect(el.currentValue).toBe('value2')
-    expect(el.value).toBe('value2')
+    expect(el.previousValue).toStrictEqual(options.value || 'value')
+    expect(el.currentValue).toStrictEqual(options.value2 || 'value2')
+    expect(el.value).toStrictEqual(options.value2 || 'value2')
   })
 
   it('should render `value` attribute', async () => {

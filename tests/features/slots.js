@@ -139,6 +139,39 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
     let CustomSlot
 
     switch (slot) {
+      case 'selection':
+        form = createForm({
+          schema: {
+            el: {
+              type: elementType,
+              items: {
+                1: 'value',
+              },
+              native: false,
+              slots: {
+                [slot]: markRaw(defineComponent({
+                  name: 'CustomSlot',
+                  props: ['el$', 'values'],
+                  render(h) {
+                    return createElement(h, 'div', 'from schema slot ' + this.values.length)
+                  }
+                }))
+              }
+            }
+          }
+        })
+
+        elWrapper = findAllComponents(form, { name: elementName }).at(0)
+        elWrapper.vm.load([1])
+
+        await nextTick()
+
+        CustomSlot = findAllComponents(elWrapper, { name: 'CustomSlot' })
+
+        expect(CustomSlot.length).toBe(1)
+        expect(CustomSlot.at(0).html()).toContain('from schema slot 1')
+        break
+
       case 'singleLabel':
       case 'options':
         form = createForm({
@@ -214,6 +247,41 @@ const testDynamicSchemaSlot = function(it, elementName, elementType, slot) {
     let CustomSlot
 
     switch (slot) {
+      case 'selection':
+        form = createForm({
+          schema: {
+            el: {
+              type: elementType,
+              items: {
+                1: 'value',
+              },
+              native: false,
+            }
+          }
+        })
+
+        el = form.vm.el$('el')
+        elWrapper = findAllComponents(form, { name: elementName }).at(0)
+
+        el.slots = {
+          [slot]: markRaw(defineComponent({
+            name: 'CustomSlot',
+            props: ['el$', 'values'],
+            render(h) {
+              return createElement(h, 'div', 'from schema slot ' + this.values.length)
+            }
+          }))
+        }
+
+        await nextTick()
+        el.load([1])
+        await nextTick()
+
+        CustomSlot = findAllComponents(elWrapper, { name: 'CustomSlot' })
+        expect(CustomSlot.length).toBe(1)
+        expect(CustomSlot.at(0).html()).toContain('from schema slot 1')
+        break
+
       case 'singleLabel':
       case 'options':
         form = createForm({
@@ -294,7 +362,54 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
     let el
 
     switch (slot) {
+      case 'selection':
+      case 'options':
+        form = createForm({
+          schema: {
+            el: {
+              type: elementType
+            }
+          }
+        }, {}, function(h) {
+          return createElement(h, 'form', [
+            createElement(h, this.extendedTheme.elements[elementName], {
+              props: {
+                schema: {
+                  type: elementType,
+                  items: {
+                    1: 'value',
+                  },
+                  native: false,
+                },
+                name: 'el'
+              },
+              directives: [
+                {
+                  name: 'ref',
+                  arg: 'element$'
+                },
+              ],
+              scopedSlots: {
+                [slot]: (props) => {
+                  return createElement(h, 'div', 'from inline slot ' + props.values.length)
+                }
+              }
+            })
+          ])
+        })
+
+        el = form.vm.el$('el')
+        el.load([1])
+
+        await nextTick()
+
+        elWrapper = findAllComponents(form, { name: elementName }).at(0)
+        
+        expect(elWrapper.html()).toContain('from inline slot 1')
+        break
+
       case 'singleLabel':
+      case 'options':
         form = createForm({
           schema: {
             el: {
@@ -336,7 +451,7 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
 
         elWrapper = findAllComponents(form, { name: elementName }).at(0)
         
-        expect(elWrapper.html()).toContain('from inline slot')
+        expect(elWrapper.html()).toContain('from inline slot value')
         break
 
       default:

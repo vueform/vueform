@@ -28,12 +28,11 @@ export default function(props, context, dependencies, options = {})
       noResult: markRaw(components.value.MultiselectSlotNoResult),
       noOptions: markRaw(components.value.MultiselectSlotNoOptions),
       singleLabel: markRaw(components.value.MultiselectSlotSingleLabel),
+      selection: markRaw(components.value.MultiselectSlotSelection),
       beforeList: null,
       afterList: null,
       // tag: markRaw(components.value.MultiselectSlotTag),
-      // selection: markRaw(components.value.MultiselectSlotSelection),
       // tagsSelection: markRaw(components.value.MultiselectSlotTagsSelection),
-      // singleLabel: null,
     }
   })
 

@@ -273,6 +273,43 @@ export default {
       'value'
     ]
   },
+  multiselect: {
+    features: [
+      'arrayType',
+      'baseElement',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      'data',
+      'debounce',
+      'default',
+      'description',
+      'disabled',
+      'emptyArray',
+      'events',
+      'floating',
+      'form$',
+      'handleChange',
+      'handleSelectEvents',
+      'id',
+      'info',
+      'input',
+      'items',
+      'label',
+      'layout',
+      'nullValueArray',
+      'optionsMultiselect',
+      'path',
+      'placeholder',
+      'readonly',
+      'slots',
+      'theme',
+      'validation',
+      'valueMultiselect',
+      'view'
+    ]
+  },
   object: {
     features: [
       'baseElement',
