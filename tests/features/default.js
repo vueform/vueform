@@ -5,6 +5,7 @@ export const default_ = function (elementType, elementName, options) {
     schema: {
       el: {
         type: elementType,
+        items: options.items || [],
       }
     }
   })

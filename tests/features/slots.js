@@ -172,6 +172,39 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
         expect(CustomSlot.at(0).html()).toContain('from schema slot 1')
         break
 
+      case 'tag':
+        form = createForm({
+          schema: {
+            el: {
+              type: elementType,
+              items: {
+                1: 'value',
+              },
+              native: false,
+              slots: {
+                [slot]: markRaw(defineComponent({
+                  name: 'CustomSlot',
+                  props: ['el$', 'option'],
+                  render(h) {
+                    return createElement(h, 'div', 'from schema slot ' + this.option.label)
+                  }
+                }))
+              }
+            }
+          }
+        })
+
+        elWrapper = findAllComponents(form, { name: elementName }).at(0)
+        elWrapper.vm.load([1])
+
+        await nextTick()
+
+        CustomSlot = findAllComponents(elWrapper, { name: 'CustomSlot' })
+
+        expect(CustomSlot.length).toBe(1)
+        expect(CustomSlot.at(0).html()).toContain('from schema slot value')
+        break
+
       case 'singleLabel':
       case 'options':
         form = createForm({
@@ -198,6 +231,7 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
         elWrapper = findAllComponents(form, { name: elementName }).at(0)
         elWrapper.vm.load(1)
 
+        await nextTick()
         await nextTick()
 
         CustomSlot = findAllComponents(elWrapper, { name: 'CustomSlot' })
@@ -282,6 +316,41 @@ const testDynamicSchemaSlot = function(it, elementName, elementType, slot) {
         expect(CustomSlot.at(0).html()).toContain('from schema slot 1')
         break
 
+      case 'tag':
+        form = createForm({
+          schema: {
+            el: {
+              type: elementType,
+              items: {
+                1: 'value',
+              },
+              native: false,
+            }
+          }
+        })
+
+        el = form.vm.el$('el')
+        elWrapper = findAllComponents(form, { name: elementName }).at(0)
+
+        el.slots = {
+          [slot]: markRaw(defineComponent({
+            name: 'CustomSlot',
+            props: ['el$', 'option'],
+            render(h) {
+              return createElement(h, 'div', 'from schema slot ' + this.option.label)
+            }
+          }))
+        }
+
+        await nextTick()
+        el.load([1])
+        await nextTick()
+
+        CustomSlot = findAllComponents(elWrapper, { name: 'CustomSlot' })
+        expect(CustomSlot.length).toBe(1)
+        expect(CustomSlot.at(0).html()).toContain('from schema slot value')
+        break
+
       case 'singleLabel':
       case 'options':
         form = createForm({
@@ -363,7 +432,6 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
 
     switch (slot) {
       case 'selection':
-      case 'options':
         form = createForm({
           schema: {
             el: {
@@ -406,6 +474,51 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
         elWrapper = findAllComponents(form, { name: elementName }).at(0)
         
         expect(elWrapper.html()).toContain('from inline slot 1')
+        break
+
+      case 'tag':
+        form = createForm({
+          schema: {
+            el: {
+              type: elementType
+            }
+          }
+        }, {}, function(h) {
+          return createElement(h, 'form', [
+            createElement(h, this.extendedTheme.elements[elementName], {
+              props: {
+                schema: {
+                  type: elementType,
+                  items: {
+                    1: 'value',
+                  },
+                  native: false,
+                },
+                name: 'el'
+              },
+              directives: [
+                {
+                  name: 'ref',
+                  arg: 'element$'
+                },
+              ],
+              scopedSlots: {
+                [slot]: (props) => {
+                  return createElement(h, 'div', 'from inline slot ' + props.option.label)
+                }
+              }
+            })
+          ])
+        })
+
+        el = form.vm.el$('el')
+        el.load([1])
+
+        await nextTick()
+
+        elWrapper = findAllComponents(form, { name: elementName }).at(0)
+        
+        expect(elWrapper.html()).toContain('from inline slot value')
         break
 
       case 'singleLabel':
@@ -495,6 +608,5 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
         
         expect(elWrapper.html()).toContain('from inline slot')
     }
-
   })
 }

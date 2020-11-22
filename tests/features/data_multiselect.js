@@ -41,14 +41,17 @@ export const load = function (elementType, elementName, options) {
   })
 
   it('should should format data if "formatLoad" is set on `load`', async () => {
+    let formatLoadMock = jest.fn()
+
     let form = createForm({
       schema: {
         el: {
           type: elementType,
+          items: options.items || [],
           formatLoad(value) {
-            return _.map(value, (one) => {
-              return one + '-formatted'
-            })
+            formatLoadMock()
+
+            return value
           }
         }
       }
@@ -58,6 +61,6 @@ export const load = function (elementType, elementName, options) {
 
     el.load(['1','2'], true)
 
-    expect(el.value).toStrictEqual(['1-formatted','2-formatted'])
+    expect(formatLoadMock).toHaveBeenCalled()
   })
 }

@@ -26,12 +26,11 @@ export const handleChange = function (elementType, elementName, options) {
     })
 
     let el = form.vm.el$('el')
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let input = findAll(elWrapper, `select`).at(0)
 
     expect(el.dirty).toBe(false)
 
-    setValue(input, options.value)
+    el.value = options.value
+    el.handleChange()
 
     expect(el.dirty).toBe(true)
   })
@@ -48,12 +47,11 @@ export const handleChange = function (elementType, elementName, options) {
     })
 
     let el = form.vm.el$('el')
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let input = findAll(elWrapper, `select`).at(0)
 
     expect(el.dirty).toBe(false)
 
-    input.trigger('change')
+    el.value = options.value
+    el.handleChange()
 
     expect(el.dirty).toBe(false)
   })
@@ -71,10 +69,10 @@ export const handleChange = function (elementType, elementName, options) {
       }
     })
 
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let input = findAll(elWrapper, `select`).at(0)
+    let el = form.vm.el$('el')
 
-    setValue(input, options.value)
+    el.value = options.value
+    el.handleChange()
 
     expect(onChangeMock).toHaveBeenCalled()
   })
@@ -93,10 +91,10 @@ export const handleChange = function (elementType, elementName, options) {
       }
     })
 
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let input = findAll(elWrapper, `select`).at(0)
-    
-    input.trigger('change')
+    let el = form.vm.el$('el')
+
+    el.value = options.value
+    el.handleChange()
 
     expect(onChangeMock).not.toHaveBeenCalled()
   })
@@ -114,10 +112,9 @@ export const handleChange = function (elementType, elementName, options) {
     })
 
     let el = form.vm.el$('el')
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let input = findAll(elWrapper, `select`).at(0)
     
-    setValue(input, options.value)
+    el.value = options.value
+    el.handleChange()
 
     await flushPromises()
 
@@ -125,13 +122,16 @@ export const handleChange = function (elementType, elementName, options) {
 
     form.vm.validateOn = 'submit|change'
 
-    setValue(input, options.value2)
+    el.value = options.value2
+    el.handleChange()
 
     await flushPromises()
 
     expect(el.validated).toBe(true)
   })
+}
 
+export const rendering = function (elementType, elementName, options) {
   it('should trigger `handleChange` on native change', async () => {
     let onChangeMock = jest.fn()
 

@@ -1,4 +1,4 @@
-import { reactive, toRefs } from 'composition-api'
+import { ref } from 'composition-api'
 
 export default function useEvents(props, context, dependencies, options = {})
 {
@@ -19,7 +19,7 @@ export default function useEvents(props, context, dependencies, options = {})
    * @type {array}
    * @default []
    */
-  const events = reactive(options.events)
+  const events = ref(options.events)
 
   /**
    * Helper property used to store listeners for events.
@@ -28,7 +28,7 @@ export default function useEvents(props, context, dependencies, options = {})
    * @type {object}
    * @default {}
    */
-  const listeners = reactive({})
+  const listeners = ref({})
 
 
   // =============== METHODS ==============
@@ -42,11 +42,11 @@ export default function useEvents(props, context, dependencies, options = {})
    * @returns {void}
    */
   const on = (evt, callback) => {
-    if (!listeners[evt]) {
-      listeners[evt] = []
+    if (!listeners.value[evt]) {
+      listeners.value[evt] = []
     }
 
-    listeners[evt].push(callback)
+    listeners.value[evt].push(callback)
   }
 
   /**
@@ -57,7 +57,7 @@ export default function useEvents(props, context, dependencies, options = {})
    * @returns {void}
    */
   const off = (evt) => {
-    delete listeners[evt]
+    delete listeners.value[evt]
   }
 
   /**
@@ -70,7 +70,7 @@ export default function useEvents(props, context, dependencies, options = {})
     let evt = arguments[0]
     let args = [].slice.call(arguments).splice(1)
 
-    _.each(listeners[evt], (callback) => {
+    _.each(listeners.value[evt], (callback) => {
       callback.apply(form$.value, args)
     })
   }
@@ -80,7 +80,7 @@ export default function useEvents(props, context, dependencies, options = {})
   // If component has descriptor subscribe upfront
   // for events using `onEvent` format 
   if (descriptor) {
-    _.each(events, (evt) => {
+    _.each(events.value, (evt) => {
       let callback = descriptor.value['on' + _.upperFirst(evt)]
 
       if (callback !== undefined) {

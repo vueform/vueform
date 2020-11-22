@@ -13,7 +13,7 @@ export default function(props, context, dependencies, options = {})
   // =============== OPTIONS ==============
 
   const defaultSlots = computed(() => {
-    return {
+    return Object.assign({}, {
       label: markRaw(components.value.ElementLabel),
       info: markRaw(components.value.ElementInfo),
       description: markRaw(components.value.ElementDescription),
@@ -29,11 +29,10 @@ export default function(props, context, dependencies, options = {})
       noOptions: markRaw(components.value.MultiselectSlotNoOptions),
       singleLabel: markRaw(components.value.MultiselectSlotSingleLabel),
       selection: markRaw(components.value.MultiselectSlotSelection),
+      tag: markRaw(components.value.MultiselectSlotTag),
       beforeList: null,
       afterList: null,
-      // tag: markRaw(components.value.MultiselectSlotTag),
-      // tagsSelection: markRaw(components.value.MultiselectSlotTagsSelection),
-    }
+    }, options.defaultSlots || {})
   })
 
   let elementSlots = options.slots || [

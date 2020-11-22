@@ -6,11 +6,9 @@ export default {
       required: true
     },
     search: {
-      type: [String, Number],
       required: true
     },
     values: {
-      type: Array,
       required: false
     },
     remove: {

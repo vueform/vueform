@@ -60,13 +60,19 @@
         
         <template v-slot:singleLabel="{ option }">
           <slot name="singleLabel" :el$="el$" :option="option">
-            <component :is="slots.singleLabel" :el$="el$" :option="option" />
+            <component v-if="slots.singleLabel" :is="slots.singleLabel" :el$="el$" :option="option" />
           </slot>
         </template>
         
         <template v-slot:selection="{ values, search, remove }">
           <slot name="selection" :el$="el$" :values="values" :search="search" :remove="remove">
-            <component :is="slots.selection" :el$="el$" :values="values" :search="search" :remove="remove" />
+            <component :is="slots.selection" :el$="el$" :values="values" :search="search" :remove="remove">
+              <template v-slot:tag="{ option, search, remove }">
+                <slot v-if="selectOptions.length" name="tag" :el$="el$" :option="option" :search="search" :remove="remove">
+                  <component v-if="slots.tag" :is="slots.tag" :el$="el$" :option="option" :search="search" :remove="remove" />
+                </slot>
+              </template>
+            </component>
           </slot>
         </template>
 
@@ -74,15 +80,6 @@
         <template v-slot:afterList><slot name="afterList" :el$="el$"><component v-if="slots.afterList" :is="slots.afterList" :el$="el$" /></slot></template>
         <template v-slot:noResult><slot name="noResult" :el$="el$"><component :is="slots.noResult" :el$="el$" /></slot></template>
         <template v-slot:noOptions><slot name="noOptions" :el$="el$"><component :is="slots.noOptions" :el$="el$" /></slot></template>
-
-        <!-- 
-        <slot name="selection" v-slot:selection slot-scope="{ values, search, remove }" :el$="el$" :values="values" :search="search" :remove="remove">
-          <component v-if="slots.selection" :is="slots.selection" :el$="el$" :values="values" :search="search" :remove="remove">
-            <slot name="tag" slot="tag" slot-scope="{ option, search, remove }" :el$="el$" :option="option" :search="search" :remove="remove">
-              <component v-if="slots.tag && selectOptions.length > 0" :is="slots.tag" :el$="el$" :option="option" :search="search" :remove="remove" />
-            </slot>
-          </component>
-        </slot> -->
 
       </multiselect>
 
