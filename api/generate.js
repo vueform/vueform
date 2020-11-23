@@ -65,8 +65,14 @@ function getFeatures() {
       if (!line || !line.match(/\/use([^']*)\'$/)) {
         return false
       }
+
+      let feature = _.lowerFirst(line.match(/\/use([^']*)\'$/)[1])
+
+      if (line.match(/^import { ([^ ]*)/)) {
+        feature += '_' + line.match(/^import { ([^ ]*)/)[1]
+      }
       
-      features[element].push(_.lowerFirst(line.match(/\/use([^']*)\'$/)[1]))
+      features[element].push(feature)
     })
 
     features[element].sort()

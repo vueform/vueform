@@ -1,7 +1,7 @@
 import { computed,  toRefs, markRaw } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 
-export default function(props, context, dependencies, options = {})
+const base = function(props, context, dependencies, options = {})
 {
   const { schema } = toRefs(props)
 
@@ -101,3 +101,5 @@ export default function(props, context, dependencies, options = {})
     slots,
   }
 }
+
+export default base

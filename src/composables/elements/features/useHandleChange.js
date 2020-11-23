@@ -1,4 +1,4 @@
-export default function(props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
@@ -32,3 +32,67 @@ export default function(props, context, dependencies)
     handleChange,
   }
 }
+
+const checkbox = function(props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+
+  const model = dependencies.model
+  const { handleChange: baseHandleChange } = base(props, context, dependencies)
+
+  // =============== METHODS ==============
+
+  /**
+   * Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.
+   *
+   * @public
+   */
+  const handleChange = (e) => {
+    model.value = e.target.checked
+
+    baseHandleChange()
+  }
+
+  return {
+    handleChange,
+  }
+}
+
+const toggle = function(props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+
+  const model = dependencies.model
+  const { handleChange: baseHandleChange } = base(props, context, dependencies)
+
+  // =============== METHODS ==============
+
+  /**
+   * Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.
+   *
+   * @public
+   */
+  const handleChange = (val) => {
+    model.value = val
+
+    baseHandleChange()
+  }
+
+  return {
+    handleChange,
+  }
+}
+
+const date = toggle
+const dates = date
+const radio = checkbox
+
+export {
+  checkbox,
+  date,
+  dates,
+  radio,
+  toggle,
+} 
+
+export default base

@@ -4,10 +4,8 @@ import useTheme from './../useTheme'
 import useInput from './features/useInput'
 import usePath from './features/usePath'
 import useConditions from './../useConditions'
-import useValueMultiselect from './features/useValueMultiselect'
 import useData from './features/useData'
 import useDefault from './features/useDefault'
-import useNullValueArray from './features/useNullValueArray'
 import useValidation from './features/useValidation'
 import useLabel from './features/useLabel'
 import useFloating from './features/useFloating'
@@ -26,8 +24,6 @@ import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
-import useEmptyArray from './features/useEmptyArray'
-import useOptionsTags from './features/useOptionsTags'
 import useItems from './features/useItems'
 import useHandleChange from './features/useHandleChange'
 import useHandleSelectEvents from './features/useHandleSelectEvents'
@@ -35,6 +31,11 @@ import useHandleTag from './features/useHandleTag'
 import useArrayType from './features/useArrayType'
 import useSelect from './features/useSelect'
 import useTaggable from './features/useTaggable'
+
+import { tags as useOptions } from './features/useOptions'
+import { multiselect as useValue } from './features/useValue'
+import { array as  useNullValue } from './features/useNullValue'
+import { array as useEmpty } from './features/useEmpty'
 
 export default function (props, context) {
   const { schema } = toRefs(props)
@@ -51,7 +52,7 @@ export default function (props, context) {
   const info = useInfo(props, context)
   const debounce = useDebounce(props, context)
   const disabled = useDisabled(props, context)
-  const nullValue = useNullValueArray(props, context)
+  const nullValue = useNullValue(props, context)
   const items = useItems(props, context)
   const arrayType = useArrayType(props, context)
 
@@ -59,11 +60,11 @@ export default function (props, context) {
     nullValue: nullValue.nullValue
   })
 
-  const options = useOptionsTags(props, context, {
+  const options = useOptions(props, context, {
     form$: form$.form$,
   })
 
-  const value = useValueMultiselect(props, context, {
+  const value = useValue(props, context, {
     nullValue: nullValue.nullValue,
     default: default_.default,
     isNative: options.isNative,
@@ -107,7 +108,7 @@ export default function (props, context) {
     dirt: validation.dirt,
   })
 
-  const empty = useEmptyArray(props, context, {
+  const empty = useEmpty(props, context, {
     value: value.value,
     nullValue: nullValue.nullValue,
   })

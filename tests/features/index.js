@@ -5,14 +5,15 @@ import fs from 'fs'
 
 const files = fs.readdirSync(__dirname)
 
-const exclude = ['_template.js', 'index.js']
+const exclude = ['_template.js', 'index.js', '.DS_Store']
 
 const features = {}
 
 _.each(files, (file) => {
-  if (exclude.indexOf(file) !== -1) {
+  if (exclude.indexOf(file) !== -1 || file.substr(0,1) === '_') {
     return
   }
+
   
   let feature = file.replace('.js', '')
 

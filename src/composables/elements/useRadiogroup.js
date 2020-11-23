@@ -22,8 +22,9 @@ import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
 import useEvents from './../useEvents'
 import useHandleChange from './features/useHandleChange'
-import useDisabledRadiogroup from './features/useDisabledRadiogroup'
 import useItems from './features/useItems'
+
+import { radiogroup as useDisabled } from './features/useDisabled'
 
 export default function useRadiogroup (props, context) {
   const { schema } = toRefs(props)
@@ -38,7 +39,7 @@ export default function useRadiogroup (props, context) {
   const nullValue = useNullValue(props, context)
   const items = useItems(props, context)
 
-  const disabled = useDisabledRadiogroup(props, context, {
+  const disabled = useDisabled(props, context, {
     form$: form$.form$,
   })
 

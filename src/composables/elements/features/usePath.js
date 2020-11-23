@@ -1,6 +1,6 @@
 import { computed, toRefs } from 'composition-api'
 
-export default function(props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   const { parent, name } = toRefs(props)
 
@@ -24,3 +24,27 @@ export default function(props, context, dependencies)
     flat,
   }
 }
+
+const group = function (props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+
+  const { path } = base(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+
+  const flat = computed(() => {
+    return true
+  })
+
+  return {
+    path,
+    flat,
+  }
+}
+
+export {
+  group,
+}
+
+export default base

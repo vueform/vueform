@@ -1,7 +1,7 @@
 import { onMounted, nextTick } from 'composition-api'
 import normalize from './../../../utils/normalize'
 
-export default function (props, context, dependencies)
+const base = function (props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
@@ -82,3 +82,5 @@ export default function (props, context, dependencies)
     removeItem,
   }
 }
+
+export default base

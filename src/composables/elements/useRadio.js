@@ -4,7 +4,6 @@ import useTheme from './../useTheme'
 import useInput from './features/useInput'
 import usePath from './features/usePath'
 import useConditions from './../useConditions'
-import useValueRadio from './features/useValueRadio'
 import useData from './features/useData'
 import useDefault from './features/useDefault'
 import useNullValue from './features/useNullValue'
@@ -23,10 +22,12 @@ import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
-import useHandleChangeRadio from './features/useHandleChangeRadio'
 import useText from './features/useText'
 import useRadio from './features/useRadio'
 import useRadioValue from './features/useRadioValue'
+
+import { radio as useValue } from './features/useValue'
+import { radio as useHandleChange } from './features/useHandleChange'
 
 export default function useCheckbox(props, context) {
   const { schema } = toRefs(props)
@@ -48,7 +49,7 @@ export default function useCheckbox(props, context) {
     nullValue: nullValue.nullValue
   })
 
-  const value = useValueRadio(props, context, {
+  const value = useValue(props, context, {
     nullValue: nullValue.nullValue,
     radioValue: radioValue.radioValue,
     nullValue: nullValue.nullValue,
@@ -123,7 +124,7 @@ export default function useCheckbox(props, context) {
     components: components.components,
   })
 
-  const handleChange = useHandleChangeRadio(props, context, {
+  const handleChange = useHandleChange(props, context, {
     form$: form$.form$,
     model: value.model,
     currentValue: value.currentValue,

@@ -3,10 +3,8 @@ import useForm$ from './../useForm$'
 import useTheme from './../useTheme'
 import usePath from './features/usePath'
 import useConditions from './../useConditions'
-import useValueCheckboxgroup from './features/useValueCheckboxgroup'
 import useData from './features/useData'
 import useDefault from './features/useDefault'
-import useNullValueArray from './features/useNullValueArray'
 import useValidation from './features/useValidation'
 import useLabel from './features/useLabel'
 import useClasses from './features/useClasses'
@@ -23,9 +21,12 @@ import useDebounce from './features/useDebounce'
 import useEvents from './../useEvents'
 import useHandleChange from './features/useHandleChange'
 import useArrayType from './features/useArrayType'
-import useDisabledCheckboxgroup from './features/useDisabledCheckboxgroup'
 import useCheck from './features/useCheck'
 import useItems from './features/useItems'
+
+import { checkboxgroup as useValue } from './features/useValue'
+import { checkboxgroup as useDisabled } from './features/useDisabled'
+import { array as useNullValue } from './features/useNullValue'
 
 export default function useText(props, context) {
   const { schema } = toRefs(props)
@@ -37,11 +38,11 @@ export default function useText(props, context) {
   const description = useDescription(props, context)
   const info = useInfo(props, context)
   const debounce = useDebounce(props, context)
-  const nullValue = useNullValueArray(props, context)
+  const nullValue = useNullValue(props, context)
   const arrayType = useArrayType(props, context)
   const items = useItems(props, context)
 
-  const disabled = useDisabledCheckboxgroup(props, context, {
+  const disabled = useDisabled(props, context, {
     form$: form$.form$,
   })
 
@@ -49,7 +50,7 @@ export default function useText(props, context) {
     nullValue: nullValue.nullValue
   })
 
-  const value = useValueCheckboxgroup(props, context, {
+  const value = useValue(props, context, {
     nullValue: nullValue.nullValue,
     default: default_.default,
   })

@@ -14,18 +14,18 @@ import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
 import useElements from './../useElements'
 
-import usePathGroup from './features/usePathGroup'
-import useValidationGroup from './features/useValidationGroup'
-import useChildrenGroup from './features/useChildrenGroup'
-import useValueGroup from './features/useValueGroup'
-import useDataGroup from './features/useDataGroup'
+import { group as usePath } from './features/usePath'
+import { group as useValidation } from './features/useValidation'
+import { group as useChildren } from './features/useChildren'
+import { group as useValue } from './features/useValue'
+import { group as useData } from './features/useData'
 
 export default function useGroup(props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
   const theme = useTheme(props, context)
-  const path = usePathGroup(props, context)
+  const path = usePath(props, context)
   const description = useDescription(props, context)
   const info = useInfo(props, context)
 
@@ -37,11 +37,11 @@ export default function useGroup(props, context) {
     label: label.label,
   })
 
-  const children = useChildrenGroup(props, context, {
+  const children = useChildren(props, context, {
     form$: form$.form$,
   })
 
-  const value = useValueGroup(props, context, {
+  const value = useValue(props, context, {
     children$: children.children$
   })
 
@@ -55,7 +55,7 @@ export default function useGroup(props, context) {
     descriptor: schema,
   })
 
-  const validation = useValidationGroup(props, context, {
+  const validation = useValidation(props, context, {
     form$: form$.form$,
     value: value.value,
     children$: children.children$,
@@ -93,7 +93,7 @@ export default function useGroup(props, context) {
     ]
   })
 
-  const data = useDataGroup(props, context, {
+  const data = useData(props, context, {
     form$: form$.form$,
     available: conditions.available,
     value: value.value,

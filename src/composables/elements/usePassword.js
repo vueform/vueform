@@ -24,13 +24,14 @@ import useView from './features/useView'
 import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
-import useInputTypePassword from './features/useInputTypePassword'
 import useAutocomplete from './features/useAutocomplete'
 import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
 import useHandleInput from './features/useHandleInput'
 import useEmpty from './features/useEmpty'
+
+import { password as useInputType } from './features/useInputType'
 
 export default function usePassword (props, context) {
   const { schema } = toRefs(props)
@@ -46,7 +47,7 @@ export default function usePassword (props, context) {
   const description = useDescription(props, context)
   const readonly = useReadonly(props, context)
   const info = useInfo(props, context)
-  const inputType = useInputTypePassword(props, context)
+  const inputType = useInputType(props, context)
   const autocomplete = useAutocomplete(props, context)
   const debounce = useDebounce(props, context)
   const disabled = useDisabled(props, context)

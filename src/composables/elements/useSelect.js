@@ -4,7 +4,6 @@ import useTheme from './../useTheme'
 import useInput from './features/useInput'
 import usePath from './features/usePath'
 import useConditions from './../useConditions'
-import useValueSelect from './features/useValueSelect'
 import useData from './features/useData'
 import useDefault from './features/useDefault'
 import useNullValue from './features/useNullValue'
@@ -28,9 +27,11 @@ import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
 import useHandleChange from './features/useHandleChange'
 import useEmpty from './features/useEmpty'
-import useOptionsSelect from './features/useOptionsSelect'
 import useItems from './features/useItems'
 import useHandleSelectEvents from './features/useHandleSelectEvents'
+
+import { select as useValue } from './features/useValue'
+import { select as useOptions } from './features/useOptions'
 
 export default function useText(props, context) {
   const { schema } = toRefs(props)
@@ -54,11 +55,11 @@ export default function useText(props, context) {
     nullValue: nullValue.nullValue
   })
 
-  const options = useOptionsSelect(props, context, {
+  const options = useOptions(props, context, {
     form$: form$.form$,
   })
 
-  const value = useValueSelect(props, context, {
+  const value = useValue(props, context, {
     nullValue: nullValue.nullValue,
     default: default_.default,
     isNative: options.isNative,

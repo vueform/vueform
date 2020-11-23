@@ -1,18 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, findAllComponents, findAll } from 'test-helpers'
-import normalize from './../../src/utils/normalize'
-
-const setValue = function(select, values) {
-  let options = findAll(select, `option`)
-  let option
-
-  for (let i = 0; i < options.length; i++) {
-    option = options.at(i)
-
-    option.element.selected = values.indexOf(normalize(option.attributes('value'))) !== -1
-  }
-  select.trigger('change')
-}
+import { createForm, findAllComponents, findAll, setMultiselectValue } from 'test-helpers'
 
 export const handleChange = function (elementType, elementName, options) {
   it('should dirt the element if input value is different than the current', () => {
@@ -151,7 +138,7 @@ export const rendering = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let input = findAll(elWrapper, 'select').at(0)
 
-    setValue(input, options.value)
+    setMultiselectValue(input, options.value)
 
     expect(onChangeMock).toHaveBeenCalledWith(el.currentValue, el.previousValue)
   })

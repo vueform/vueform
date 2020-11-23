@@ -19,6 +19,7 @@ import runFeatureTests from './runFeatureTests'
 import select from './select'
 import setDate from './setDate'
 import setInstances from './setInstances'
+import setMultiselectValue from './setMultiselectValue'
 import setValue from './setValue'
 import testAttribute from './testAttribute'
 import testComputedOption from './testComputedOption'
@@ -62,6 +63,7 @@ export {
   select,
   setDate,
   setInstances,
+  setMultiselectValue,
   setValue,
   testAttribute,
   testComputedOption,

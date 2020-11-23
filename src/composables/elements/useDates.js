@@ -4,10 +4,6 @@ import useTheme from './../useTheme'
 import useInput from './features/useInput'
 import usePath from './features/usePath'
 import useConditions from './../useConditions'
-import useValueDates from './features/useValueDates'
-import useDataDates from './features/useDataDates'
-import useDefaultDates from './features/useDefaultDates'
-import useNullValueArray from './features/useNullValueArray'
 import useValidation from './features/useValidation'
 import useLabel from './features/useLabel'
 import usePlaceholder from './features/usePlaceholder'
@@ -26,10 +22,15 @@ import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
-import useHandleChangeDates from './features/useHandleChangeDates'
 import useEmpty from './features/useEmpty'
-import useOptionsDates from './features/useOptionsDates'
 import useArrayType from './features/useArrayType'
+
+import { dates as useValue } from './features/useValue'
+import { dates as useData } from './features/useData'
+import { dates as useDefault } from './features/useDefault'
+import { dates as useHandleChange } from './features/useHandleChange'
+import { dates as useOptions } from './features/useOptions'
+import { array as useNullValue } from './features/useNullValue'
 
 export default function useDate(props, context) {
   const { schema } = toRefs(props)
@@ -46,22 +47,22 @@ export default function useDate(props, context) {
   const info = useInfo(props, context)
   const debounce = useDebounce(props, context)
   const disabled = useDisabled(props, context)
-  const nullValue = useNullValueArray(props, context)
+  const nullValue = useNullValue(props, context)
   const arrayType = useArrayType(props, context)
 
-  const options = useOptionsDates(props, context, {
+  const options = useOptions(props, context, {
     form$: form$.form$,
     disabled: disabled.disabled,
     readonly: readonly.readonly,
   })
 
-  const default_ = useDefaultDates(props, context, {
+  const default_ = useDefault(props, context, {
     form$: form$.form$,
     nullValue: nullValue.nullValue,
     valueFormat: options.valueFormat,
   })
 
-  const value = useValueDates(props, context, {
+  const value = useValue(props, context, {
     nullValue: nullValue.nullValue,
     default: default_.default,
     valueFormat: options.valueFormat,
@@ -85,7 +86,7 @@ export default function useDate(props, context) {
     events: ['change'],
   })
 
-  const data = useDataDates(props, context, {
+  const data = useData(props, context, {
     form$: form$.form$,
     available: conditions.available,
     value: value.value,
@@ -143,7 +144,7 @@ export default function useDate(props, context) {
     components: components.components,
   })
 
-  const handleChange = useHandleChangeDates(props, context, {
+  const handleChange = useHandleChange(props, context, {
     form$: form$.form$,
     model: value.model,
     currentValue: value.currentValue,

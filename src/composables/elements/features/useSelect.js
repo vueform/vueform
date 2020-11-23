@@ -3,7 +3,7 @@ import { computed, toRefs } from 'composition-api'
 import normalize from './../../../utils/normalize'
 import spliceMultiple from './../../../utils/spliceMultiple'
 
-export default function (props, context, dependencies)
+const base = function (props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
@@ -87,3 +87,5 @@ export default function (props, context, dependencies)
     deselect,
   }
 }
+
+export default base

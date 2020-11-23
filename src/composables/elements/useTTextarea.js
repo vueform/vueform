@@ -5,12 +5,6 @@ import useInput from './features/useInput'
 import useAddons from './features/useAddons'
 import usePath from './features/usePath'
 import useConditions from './../useConditions'
-import useValueMultilingual from './features/useValueMultilingual'
-import useDataMultilingual from './features/useDataMultilingual'
-import useDefaultMultilingual from './features/useDefaultMultilingual'
-import useNullValueMultilingual from './features/useNullValueMultilingual'
-import useValidationMultilingual from './features/useValidationMultilingual'
-import useEmptyMultilingual from './features/useEmptyMultilingual'
 import useLabel from './features/useLabel'
 import usePlaceholder from './features/usePlaceholder'
 import useFloating from './features/useFloating'
@@ -29,8 +23,15 @@ import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
 import useHandleInput from './features/useHandleInput'
-import useAutogrowMultilingual from './features/useAutogrowMultilingual'
 import useLanguages from './features/useLanguages'
+
+import { multilingual as useValue } from './features/useValue'
+import { multilingual as useData } from './features/useData'
+import { multilingual as useDefault } from './features/useDefault'
+import { multilingual as useNullValue } from './features/useNullValue'
+import { multilingual as useValidation } from './features/useValidation'
+import { multilingual as useEmpty } from './features/useEmpty'
+import { multilingual as useAutogrow } from './features/useAutogrow'
 
 export default function useTTextarea(props, context) {
   const { schema } = toRefs(props)
@@ -53,15 +54,15 @@ export default function useTTextarea(props, context) {
     form$: form$.form$,
   })
 
-  const nullValue = useNullValueMultilingual(props, context, {
+  const nullValue = useNullValue(props, context, {
     languages: languages.languages,
   })
 
-  const default_ = useDefaultMultilingual(props, context, {
+  const default_ = useDefault(props, context, {
     nullValue: nullValue.nullValue
   })
 
-  const value = useValueMultilingual(props, context, {
+  const value = useValue(props, context, {
     nullValue: nullValue.nullValue,
     default: default_.default,
     language: languages.language,
@@ -73,7 +74,7 @@ export default function useTTextarea(props, context) {
     descriptor: schema,
   })
 
-  const validation = useValidationMultilingual(props, context, {
+  const validation = useValidation(props, context, {
     form$: form$.form$,
     path: path.path,
     language: languages.language,
@@ -88,7 +89,7 @@ export default function useTTextarea(props, context) {
     events: ['change'],
   })
 
-  const data = useDataMultilingual(props, context, {
+  const data = useData(props, context, {
     form$: form$.form$,
     available: conditions.available,
     value: value.value,
@@ -104,7 +105,7 @@ export default function useTTextarea(props, context) {
     language: languages.language,
   })
 
-  const empty = useEmptyMultilingual(props, context, {
+  const empty = useEmpty(props, context, {
     value: value.value,
     nullValue: nullValue.nullValue,
     language: languages.language,
@@ -158,7 +159,7 @@ export default function useTTextarea(props, context) {
     language: languages.language,
   })
 
-  const autogrow = useAutogrowMultilingual(props, context, {
+  const autogrow = useAutogrow(props, context, {
     form$: form$.form$,
     input: input.input,
     value: value.value,

@@ -15,10 +15,10 @@ import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
 import useElements from './../useElements'
 
-import useValueObject from './features/useValueObject'
-import useDataObject from './features/useDataObject'
-import useChildrenObject from './features/useChildrenObject'
-import useValidationObject from './features/useValidationObject'
+import { object as useValue } from './features/useValue'
+import { object as useData } from './features/useData'
+import { object as useChildren } from './features/useChildren'
+import { object as useValidation } from './features/useValidation'
 
 export default function useObject(props, context) {
   const { schema } = toRefs(props)
@@ -37,11 +37,11 @@ export default function useObject(props, context) {
     label: label.label,
   })
 
-  const children = useChildrenObject(props, context, {
+  const children = useChildren(props, context, {
     form$: form$.form$,
   })
 
-  const value = useValueObject(props, context, {
+  const value = useValue(props, context, {
     children$: children.children$
   })
 
@@ -55,7 +55,7 @@ export default function useObject(props, context) {
     descriptor: schema,
   })
 
-  const validation = useValidationObject(props, context, {
+  const validation = useValidation(props, context, {
     form$: form$.form$,
     value: value.value,
     children$: children.children$,
@@ -94,7 +94,7 @@ export default function useObject(props, context) {
     ]
   })
 
-  const data = useDataObject(props, context, {
+  const data = useData(props, context, {
     form$: form$.form$,
     available: conditions.available,
     value: value.value,

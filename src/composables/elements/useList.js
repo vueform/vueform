@@ -12,7 +12,7 @@ import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
 import useElements from './../useElements'
-import useDisabledList from './features/useDisabledList'
+import useDisabled from './features/useDisabled'
 import useDefault from './features/useDefault'
 import useEvents from './../useEvents'
 import useArrayType from './features/useArrayType'
@@ -21,14 +21,14 @@ import useOrder from './features/useOrder'
 import usePrototype from './features/usePrototype'
 import useWatchPrototype from './features/useWatchPrototype'
 import useDebounce from './features/useDebounce'
-
 import usePath from './features/usePath'
-import useValueList from './features/useValueList'
-import useDataList from './features/useDataList'
-import useClassesList from './features/useClassesList'
-import useChildrenList from './features/useChildrenList'
-import useValidationList from './features/useValidationList'
-import useNullValueArray from './features/useNullValueArray'
+
+import { list as useValue } from './features/useValue'
+import { list as useData } from './features/useData'
+import { list as useClasses } from './features/useClasses'
+import { list as useChildren } from './features/useChildren'
+import { list as useValidation } from './features/useValidation'
+import { array as useNullValueArray } from './features/useNullValue'
 
 export default function useList(props, context) {
   const { schema } = toRefs(props)
@@ -38,10 +38,10 @@ export default function useList(props, context) {
   const path = usePath(props, context)
   const description = useDescription(props, context)
   const info = useInfo(props, context)
-  const disabled = useDisabledList(props, context)
+  const disabled = useDisabled(props, context)
   const nullValue = useNullValueArray(props, context)
   const prototype = usePrototype(props, context)
-  const children = useChildrenList(props, context)
+  const children = useChildren(props, context)
   const debounce = useDebounce(props, context)
   const arrayType = useArrayType(props, context)
 
@@ -64,7 +64,7 @@ export default function useList(props, context) {
     events: ['change', 'add', 'remove', 'sort']
   })
 
-  const value = useValueList(props, context, {
+  const value = useValue(props, context, {
     child$: children.child$,
     nullValue: nullValue.nullValue,
     default: default_.default,
@@ -80,7 +80,7 @@ export default function useList(props, context) {
     descriptor: schema,
   })
 
-  const validation = useValidationList(props, context, {
+  const validation = useValidation(props, context, {
     form$: form$.form$,
     value: value.value,
     child$: children.child$,
@@ -115,7 +115,7 @@ export default function useList(props, context) {
     child$: children.child$,
   })
 
-  const data = useDataList(props, context, {
+  const data = useData(props, context, {
     form$: form$.form$,
     child$: children.child$,
     instances: children.instances,
@@ -157,7 +157,7 @@ export default function useList(props, context) {
     instances: children.instances,
   })
 
-  const classes = useClassesList(props, context, {
+  const classes = useClasses(props, context, {
     form$: form$.form$,
     theme: theme.theme,
     sort: sort.sort,

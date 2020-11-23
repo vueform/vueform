@@ -1,6 +1,6 @@
 import { computed } from 'composition-api'
 
-export default function(props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   // ============== COMPUTED ==============
 
@@ -12,3 +12,5 @@ export default function(props, context, dependencies)
     isArrayType,
   }
 }
+
+export default base

@@ -4,9 +4,6 @@ import useTheme from './../useTheme'
 import useInput from './features/useInput'
 import usePath from './features/usePath'
 import useConditions from './../useConditions'
-import useValueDate from './features/useValueDate'
-import useDataDate from './features/useDataDate'
-import useDefaultDate from './features/useDefaultDate'
 import useNullValue from './features/useNullValue'
 import useValidation from './features/useValidation'
 import useLabel from './features/useLabel'
@@ -26,9 +23,13 @@ import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
-import useHandleChangeDate from './features/useHandleChangeDate'
 import useEmpty from './features/useEmpty'
-import useOptionsTime from './features/useOptionsTime'
+
+import { time as useOptions } from './features/useOptions'
+import { date as useValue } from './features/useValue'
+import { date as useData } from './features/useData'
+import { date as useDefault } from './features/useDefault'
+import { date as useHandleChange } from './features/useHandleChange'
 
 export default function useTime(props, context) {
   const { schema } = toRefs(props)
@@ -47,19 +48,19 @@ export default function useTime(props, context) {
   const disabled = useDisabled(props, context)
   const nullValue = useNullValue(props, context)
 
-  const options = useOptionsTime(props, context, {
+  const options = useOptions(props, context, {
     form$: form$.form$,
     disabled: disabled.disabled,
     readonly: readonly.readonly,
   })
 
-  const default_ = useDefaultDate(props, context, {
+  const default_ = useDefault(props, context, {
     form$: form$.form$,
     nullValue: nullValue.nullValue,
     valueFormat: options.valueFormat,
   })
 
-  const value = useValueDate(props, context, {
+  const value = useValue(props, context, {
     nullValue: nullValue.nullValue,
     default: default_.default,
     valueFormat: options.valueFormat,
@@ -83,7 +84,7 @@ export default function useTime(props, context) {
     events: ['change'],
   })
 
-  const data = useDataDate(props, context, {
+  const data = useData(props, context, {
     form$: form$.form$,
     available: conditions.available,
     value: value.value,
@@ -141,7 +142,7 @@ export default function useTime(props, context) {
     components: components.components,
   })
 
-  const handleChange = useHandleChangeDate(props, context, {
+  const handleChange = useHandleChange(props, context, {
     form$: form$.form$,
     model: value.model,
     currentValue: value.currentValue,

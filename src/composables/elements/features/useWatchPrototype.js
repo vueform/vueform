@@ -1,6 +1,6 @@
 import { watch } from 'composition-api'
 
-export default function(props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
@@ -19,3 +19,5 @@ export default function(props, context, dependencies)
 
   return {}
 }
+
+export default base

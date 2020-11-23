@@ -14,14 +14,16 @@ export default function (elementType, options, elementExports) {
 
     // Feature tests
     _.each(elementsApi[elementType].features, (feature) => {
-      const featureTest = features[`${feature}_${elementType}`] || features[feature]
+      let baseFeature = feature.split('_')[0]
+
+      const featureTest = features[`${baseFeature}_${elementType}`] || features[feature] || features[baseFeature]
 
       if (!featureTest) {
         throw new Error('Missing feature test: ' + feature)
         return
       }
 
-      describe(`${_.upperFirst(feature)} feature`, featureTest(elementType, Object.assign({}, options.default || {}, options[feature] || {})))
+      describe(`${_.upperFirst(baseFeature)} feature`, featureTest(elementType, Object.assign({}, options.default || {}, options[feature] || {})))
     })
 
     // Element tests

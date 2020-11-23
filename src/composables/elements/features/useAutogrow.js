@@ -1,7 +1,7 @@
 import computedOption from './../../../utils/computedOption'
 import { onMounted, nextTick, watch, toRefs } from 'composition-api'
 
-export default function(props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
 
@@ -59,3 +59,35 @@ export default function(props, context, dependencies)
     autosize,
   }
 }
+
+const multilingual = function(props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
+
+  // ================ BASE ================
+
+  const { autogrow, rows, autosize } = base(props, context, dependencies)
+
+  // =============== HOOKS ================
+
+  onMounted(() => {
+    form$.value.on('language', () => {
+      autosize()
+    })
+  })
+
+  return {
+    autogrow,
+    rows,
+
+    autosize,
+  }
+}
+
+export {
+  multilingual,
+}
+
+export default base

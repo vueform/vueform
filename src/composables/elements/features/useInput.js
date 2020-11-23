@@ -1,6 +1,6 @@
 import { ref } from 'composition-api'
 
-export default function(props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   // ================ DATA ================
 
@@ -10,3 +10,5 @@ export default function(props, context, dependencies)
     input,
   }
 }
+
+export default base

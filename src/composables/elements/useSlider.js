@@ -7,8 +7,6 @@ import useConditions from './../useConditions'
 import useValue from './features/useValue'
 import useData from './features/useData'
 import useDefault from './features/useDefault'
-import useNullValueMin from './features/useNullValueMin'
-import useValidationSlider from './features/useValidationSlider'
 import useLabel from './features/useLabel'
 import useClasses from './features/useClasses'
 import useId from './features/useId'
@@ -25,7 +23,10 @@ import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
 import useHandleChange from './features/useHandleChange'
-import useOptionsSlider from './features/useOptionsSlider'
+
+import { slider as useValidation } from './features/useValidation'
+import { slider as useOptions } from './features/useOptions'
+import { min as useNullValue } from './features/useNullValue'
 
 export default function useSlider(props, context) {
   const { schema } = toRefs(props)
@@ -41,11 +42,11 @@ export default function useSlider(props, context) {
   const debounce = useDebounce(props, context)
   const disabled = useDisabled(props, context)
 
-  const options = useOptionsSlider(props, context, {
+  const options = useOptions(props, context, {
     disabled: disabled.disabled
   })
 
-  const nullValue = useNullValueMin(props, context, {
+  const nullValue = useNullValue(props, context, {
     min: options.min,
   })
 
@@ -64,7 +65,7 @@ export default function useSlider(props, context) {
     descriptor: schema,
   })
 
-  const validation = useValidationSlider(props, context, {
+  const validation = useValidation(props, context, {
     form$: form$.form$,
     path: path.path,
     value: value.value,

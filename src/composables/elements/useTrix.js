@@ -5,7 +5,6 @@ import useInput from './features/useInput'
 import usePath from './features/usePath'
 import useConditions from './../useConditions'
 import useValue from './features/useValue'
-import useDataTrix from './features/useDataTrix'
 import useDefault from './features/useDefault'
 import useNullValue from './features/useNullValue'
 import useValidation from './features/useValidation'
@@ -28,6 +27,8 @@ import useEvents from './../useEvents'
 import useHandleInput from './features/useHandleInput'
 import useEmpty from './features/useEmpty'
 import useTrix from './features/useTrix'
+
+import { trix as useData } from './features/useData'
 
 export default function (props, context) {
   const { schema } = toRefs(props)
@@ -72,7 +73,7 @@ export default function (props, context) {
     events: ['change', 'error'],
   })
 
-  const data = useDataTrix(props, context, {
+  const data = useData(props, context, {
     form$: form$.form$,
     available: conditions.available,
     value: value.value,

@@ -1,7 +1,7 @@
 import computedOption from './../../../utils/computedOption'
 import { toRefs, onMounted } from 'composition-api'
 
-export default function useRadio (props, context, dependencies)
+const base = function useRadio (props, context, dependencies)
 {
   const { schema, name } = toRefs(props)
 
@@ -64,3 +64,5 @@ export default function useRadio (props, context, dependencies)
     uncheck,
   }
 }
+
+export default base

@@ -4,10 +4,8 @@ import useTheme from './../useTheme'
 import useInput from './features/useInput'
 import usePath from './features/usePath'
 import useConditions from './../useConditions'
-import useValueToggle from './features/useValueToggle'
 import useData from './features/useData'
 import useDefault from './features/useDefault'
-import useNullValueBoolean from './features/useNullValueBoolean'
 import useValidation from './features/useValidation'
 import useLabel from './features/useLabel'
 import useClasses from './features/useClasses'
@@ -23,10 +21,13 @@ import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
-import useHandleChangeCheckbox from './features/useHandleChangeCheckbox'
 import useText from './features/useText'
-import useBooleanValue from './features/useBooleanValue'
 import useToggle from './features/useToggle'
+import useBooleanValue from './features/useBooleanValue'
+
+import { checkbox as useValue } from './features/useValue'
+import { boolean as useNullValue } from './features/useNullValue'
+import { checkbox as useHandleChange } from './features/useHandleChange'
 
 export default function useCheckbox(props, context) {
   const { schema } = toRefs(props)
@@ -42,7 +43,7 @@ export default function useCheckbox(props, context) {
   const disabled = useDisabled(props, context)
   const booleanValue = useBooleanValue(props, context)
 
-  const nullValue = useNullValueBoolean(props, context, {
+  const nullValue = useNullValue(props, context, {
     falseValue: booleanValue.falseValue,
   })
 
@@ -50,7 +51,7 @@ export default function useCheckbox(props, context) {
     nullValue: nullValue.nullValue
   })
 
-  const value = useValueToggle(props, context, {
+  const value = useValue(props, context, {
     nullValue: nullValue.nullValue,
     default: default_.default,
     trueValue: booleanValue.trueValue,
@@ -125,7 +126,7 @@ export default function useCheckbox(props, context) {
     components: components.components,
   })
 
-  const handleChange = useHandleChangeCheckbox(props, context, {
+  const handleChange = useHandleChange(props, context, {
     form$: form$.form$,
     model: value.model,
     currentValue: value.currentValue,

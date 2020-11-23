@@ -1,7 +1,7 @@
 import computedOption from './../../../utils/computedOption'
 import { toRefs } from 'composition-api'
 
-export default function(props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
 
@@ -28,3 +28,5 @@ export default function(props, context, dependencies)
     falseValue,
   }
 }
+
+export default base

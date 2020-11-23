@@ -1,4 +1,4 @@
-export default function (props, context, dependencies)
+const base = function (props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
@@ -85,3 +85,5 @@ export default function (props, context, dependencies)
     handleTag,
   }
 }
+
+export default base
