@@ -8,6 +8,7 @@ import useDefault from './features/useDefault'
 import useNullValue from './features/useNullValue'
 import useValidation from './features/useValidation'
 import useBaseElement from './features/useBaseElement'
+import useGenericName from './features/useGenericName'
 import useDebounce from './features/useDebounce'
 import useEvents from './../useEvents'
 import useEmpty from './features/useEmpty'
@@ -16,6 +17,7 @@ export default function useText(props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
+  const baseElement = useBaseElement(props, context)
   const path = usePath(props, context)
   const debounce = useDebounce(props, context)
   const nullValue = useNullValue(props, context)
@@ -67,7 +69,7 @@ export default function useText(props, context) {
     nullValue: nullValue.nullValue,
   })
 
-  const baseElement = useBaseElement(props, context, {})
+  const genericName = useGenericName(props, context, {})
 
   onMounted(() => {
     validation.initMessageBag()
@@ -87,5 +89,6 @@ export default function useText(props, context) {
     ...data,
     ...empty,
     ...baseElement,
+    ...genericName,
   }
 } 

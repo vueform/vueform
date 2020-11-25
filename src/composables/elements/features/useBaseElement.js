@@ -1,32 +1,13 @@
-import { computed, ref, toRefs } from 'composition-api'
+import { computed, toRefs } from 'composition-api'
+import computedOption from './../../../utils/computedOption'
 
 const base = function(props, context, dependencies)
 {
-  const { schema, name } = toRefs(props)
-
-  // ============ DEPENDENCIES ============
-
-  const label = dependencies.label || ref(null)
-  const placeholder = dependencies.placeholder || ref(null)
-
+  const { schema } = toRefs(props)
 
   // ============== COMPUTED ==============
 
-  /**
-   * Helper property used to determine a generic name for the element.
-   * 
-   * @type {object}
-   * @ignore
-   */
-  const genericName = computed(() => {
-    if (label && label.value) {
-      return label.value
-    } else if (placeholder && placeholder.value) {
-      return placeholder.value
-    } else {
-      return _.upperFirst(name.value)
-    }
-  })
+  const type = computedOption('type', schema, schema.value.type)
 
   /**
    * Determines if the element's value is a file.
@@ -58,12 +39,71 @@ const base = function(props, context, dependencies)
   })
 
   return {
-    // Computed
-    genericName,
+    type,
     isFileType,
     isArrayType,
     isImageType,
   }
 }
+
+const list = function(props, context, dependencies)
+{
+  const { type, isFileType, isImageType } = base(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Determines if the element's value is a file.
+   *
+   * @returns {boolean}
+   */
+  const isArrayType = computed(() => {
+    return true
+  })
+
+  return {
+    type,
+    isFileType,
+    isArrayType,
+    isImageType,
+  }
+}
+
+const file = function(props, context, dependencies)
+{
+  const { type, isArrayType, isImageType } = base(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Determines if the element's value is a file.
+   *
+   * @returns {boolean}
+   */
+  const isFileType = computed(() => {
+    return true
+  })
+
+  return {
+    type,
+    isFileType,
+    isArrayType,
+    isImageType,
+  }
+}
+
+const checkboxgroup = list
+const dates = list
+const multiselect = list
+const tags = list
+
+export {
+  list,
+  checkboxgroup,
+  dates,
+  multiselect,
+  tags,
+  file,
+} 
 
 export default base

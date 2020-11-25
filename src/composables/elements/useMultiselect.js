@@ -16,7 +16,7 @@ import useColumns from './features/useColumns'
 import useDescription from './features/useDescription'
 import useReadonly from './features/useReadonly'
 import useInfo from './features/useInfo'
-import useBaseElement from './features/useBaseElement'
+import useGenericName from './features/useGenericName'
 import useView from './features/useView'
 import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
@@ -27,18 +27,19 @@ import useEvents from './../useEvents'
 import useHandleChange from './features/useHandleChange'
 import useItems from './features/useItems'
 import useHandleSelectEvents from './features/useHandleSelectEvents'
-import useArrayType from './features/useArrayType'
 import useSelect from './features/useSelect'
 
 import { multiselect as useValue } from './features/useValue'
 import { multiselect as useOptions } from './features/useOptions'
 import { array as useNullValue } from './features/useNullValue'
 import { array as useEmpty } from './features/useEmpty'
+import { multiselect as useBaseElement } from './features/useBaseElement'
 
 export default function (props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
+  const baseElement = useBaseElement(props, context)
   const theme = useTheme(props, context)
   const input = useInput(props, context)
   const path = usePath(props, context)
@@ -52,7 +53,6 @@ export default function (props, context) {
   const disabled = useDisabled(props, context)
   const nullValue = useNullValue(props, context)
   const items = useItems(props, context)
-  const arrayType = useArrayType(props, context)
 
   const default_ = useDefault(props, context, {
     nullValue: nullValue.nullValue
@@ -115,7 +115,7 @@ export default function (props, context) {
     form$: form$.form$,
   })
 
-  const baseElement = useBaseElement(props, context, {
+  const genericName = useGenericName(props, context, {
     label: label.label,
     placeholder: placeholder.placeholder,
   })
@@ -197,6 +197,7 @@ export default function (props, context) {
     ...readonly,
     ...info,
     ...baseElement,
+    ...genericName,
     ...view,
     ...components,
     ...layout,
@@ -212,7 +213,6 @@ export default function (props, context) {
     ...items,
     ...options,
     ...handleSelectEvents,
-    ...arrayType,
     ...select,
   }
 } 

@@ -1003,7 +1003,7 @@ const object = function(props, context, dependencies)
   }
 }
 
-export const slider = function(props, context, dependencies)
+const slider = function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
 
@@ -1076,6 +1076,92 @@ export const slider = function(props, context, dependencies)
   }
 }
 
+const file = function(props, context, dependencies)
+{
+  const { schema } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
+  const value = dependencies.value
+  const uploading = dependencies.uploading
+
+  const { 
+    state, Validators, messageBag, rules, messages, dirty, validated,
+    invalid, pending, debouncing, errors, error, displayError,
+    dirt, clean, resetValidators, initMessageBag, initValidation,
+  } = base(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Whether the element is `pending`, `debouncing` or `uploading`.
+   * 
+   * @type {boolean}
+   */
+  const busy = computed(() => {
+    return pending.value || debouncing.value || uploading.value
+  })
+
+  // =============== METHODS ==============
+
+  /**
+   * Validates the element. File element will only validate for `min`, `max`, `between`, `size`, `mimetypes` and `mimes` rules before the temporary files are uploaded.
+   * 
+   * @public
+   * @returns {void}
+   */
+  const validate = async () => {
+    if (!schema.value.rules) {
+      return
+    }
+
+    if (form$.value.validation === false) {
+      return
+    }
+
+    let restricted = ['min', 'max', 'between', 'size', 'mimetypes', 'mimes']
+
+    await asyncForEach(Validators.value, async (Validator) => {
+      if (!(value.value instanceof File) && restricted.indexOf(Validator.name) !== -1) {
+        return
+      }
+      
+      await Validator.validate()
+    })
+    
+    state.value.validated = true
+  }
+
+  return {
+    // Data
+    state,
+    Validators,
+    messageBag,
+
+    // Computed
+    rules,
+    messages,
+    dirty,
+    validated,
+    invalid,
+    pending,
+    debouncing,
+    busy,
+    errors,
+    error,
+    displayError,
+
+    // Methods
+    validate,
+    dirt,
+    clean,
+    resetValidators,
+    initMessageBag,
+    initValidation,
+  }
+}
+
 const group = object
 
 export {
@@ -1083,6 +1169,8 @@ export {
   multilingual,
   object,
   group,
+  slider,
+  file,
 }
 
 export default base

@@ -1,8 +1,8 @@
-import SelectElement from './SelectElement'
+import BaseElement from './../../mixins/BaseElement'
 import useMultiselect from './../../composables/elements/useMultiselect'
 
 export default {
   name: 'MultiselectElement',
-  mixins: [SelectElement],
+  mixins: [BaseElement],
   init: useMultiselect,
 }

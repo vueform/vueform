@@ -1,13 +1,19 @@
 import useElementComponent from './../../../composables/useElementComponent'
 
 export default {
-  name: 'FileSlotProgress',
+  name: 'FileSloPreview',
   props: {
-    progress: {
+    clickable: {
+      type: Boolean,
       required: true,
-      type: [Number],
-      default: 0,
-    }
+    },
+    filename: {
+      required: true,
+    },
+    link: {
+      type: String,
+      required: false,
+    },
   },
   init(props, context) {
     return {

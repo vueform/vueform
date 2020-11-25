@@ -14,7 +14,7 @@ import useColumns from './features/useColumns'
 import useDescription from './features/useDescription'
 import useReadonly from './features/useReadonly'
 import useInfo from './features/useInfo'
-import useBaseElement from './features/useBaseElement'
+import useGenericName from './features/useGenericName'
 import useView from './features/useView'
 import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
@@ -23,7 +23,6 @@ import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
 import useEmpty from './features/useEmpty'
-import useArrayType from './features/useArrayType'
 
 import { dates as useValue } from './features/useValue'
 import { dates as useData } from './features/useData'
@@ -31,11 +30,13 @@ import { dates as useDefault } from './features/useDefault'
 import { dates as useHandleChange } from './features/useHandleChange'
 import { dates as useOptions } from './features/useOptions'
 import { array as useNullValue } from './features/useNullValue'
+import { dates as useBaseElement } from './features/useBaseElement'
 
 export default function useDate(props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
+  const baseElement = useBaseElement(props, context)
   const theme = useTheme(props, context)
   const input = useInput(props, context)
   const path = usePath(props, context)
@@ -48,7 +49,6 @@ export default function useDate(props, context) {
   const debounce = useDebounce(props, context)
   const disabled = useDisabled(props, context)
   const nullValue = useNullValue(props, context)
-  const arrayType = useArrayType(props, context)
 
   const options = useOptions(props, context, {
     form$: form$.form$,
@@ -112,7 +112,7 @@ export default function useDate(props, context) {
     form$: form$.form$,
   })
 
-  const baseElement = useBaseElement(props, context, {
+  const genericName = useGenericName(props, context, {
     label: label.label,
     placeholder: placeholder.placeholder,
   })
@@ -178,6 +178,7 @@ export default function useDate(props, context) {
     ...readonly,
     ...info,
     ...baseElement,
+    ...genericName,
     ...view,
     ...components,
     ...layout,
@@ -191,6 +192,5 @@ export default function useDate(props, context) {
     ...nullValue,
     ...handleChange,
     ...options,
-    ...arrayType,
   }
 } 

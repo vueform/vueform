@@ -30,6 +30,8 @@ const base = function(props, context, dependencies, options = {})
       singleLabel: markRaw(components.value.MultiselectSlotSingleLabel),
       selection: markRaw(components.value.MultiselectSlotSelection),
       tag: markRaw(components.value.MultiselectSlotTag),
+      progress: markRaw(components.value.FileSlotProgress),
+      preview: markRaw(components.value.FileSlotPreview),
       beforeList: null,
       afterList: null,
     }, options.defaultSlots || {})

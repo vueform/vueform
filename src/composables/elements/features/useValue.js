@@ -633,6 +633,35 @@ const select = function(props, context, dependencies)
   }
 }
 
+const file = function(props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+
+  const { previousValue, currentValue, model } = base(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+  
+  const value = computed({
+    get() {
+      return currentValue.value
+    },
+    set(value) {
+      previousValue.value = currentValue.value && currentValue.value instanceof File
+        ? new File([currentValue.value], currentValue.value.name)
+        : _.clone(currentValue.value)
+
+      currentValue.value = value
+    }
+  })
+
+  return {
+    value,
+    model,
+    previousValue,
+    currentValue,
+  }
+}
+
 const group = object
 const toggle = checkbox
 const tags = multiselect
@@ -651,6 +680,7 @@ export {
   select,
   tags,
   toggle,
+  file,
 }
 
 export default base

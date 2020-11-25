@@ -12,7 +12,7 @@ import useId from './features/useId'
 import useColumns from './features/useColumns'
 import useDescription from './features/useDescription'
 import useInfo from './features/useInfo'
-import useBaseElement from './features/useBaseElement'
+import useGenericName from './features/useGenericName'
 import useView from './features/useView'
 import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
@@ -20,18 +20,19 @@ import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
 import useEvents from './../useEvents'
 import useHandleChange from './features/useHandleChange'
-import useArrayType from './features/useArrayType'
 import useCheck from './features/useCheck'
 import useItems from './features/useItems'
 
 import { checkboxgroup as useValue } from './features/useValue'
 import { checkboxgroup as useDisabled } from './features/useDisabled'
 import { array as useNullValue } from './features/useNullValue'
+import { checkboxgroup as useBaseElement } from './features/useBaseElement'
 
 export default function useText(props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
+  const baseElement = useBaseElement(props, context)
   const theme = useTheme(props, context)
   const path = usePath(props, context)
   const id = useId(props, context)
@@ -39,7 +40,6 @@ export default function useText(props, context) {
   const info = useInfo(props, context)
   const debounce = useDebounce(props, context)
   const nullValue = useNullValue(props, context)
-  const arrayType = useArrayType(props, context)
   const items = useItems(props, context)
 
   const disabled = useDisabled(props, context, {
@@ -97,7 +97,7 @@ export default function useText(props, context) {
     form$: form$.form$,
   })
 
-  const baseElement = useBaseElement(props, context, {
+  const genericName = useGenericName(props, context, {
     label: label.label,
   })
   
@@ -163,6 +163,7 @@ export default function useText(props, context) {
     ...description,
     ...info,
     ...baseElement,
+    ...genericName,
     ...view,
     ...components,
     ...layout,
@@ -174,7 +175,6 @@ export default function useText(props, context) {
     ...default_,
     ...nullValue,
     ...handleChange,
-    ...arrayType,
     ...check,
     ...items,
   }

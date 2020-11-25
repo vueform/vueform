@@ -6,7 +6,7 @@ import useLabel from './features/useLabel'
 import useColumns from './features/useColumns'
 import useDescription from './features/useDescription'
 import useInfo from './features/useInfo'
-import useBaseElement from './features/useBaseElement'
+import useGenericName from './features/useGenericName'
 import useView from './features/useView'
 import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
@@ -15,7 +15,6 @@ import useElements from './../useElements'
 import useDisabled from './features/useDisabled'
 import useDefault from './features/useDefault'
 import useEvents from './../useEvents'
-import useArrayType from './features/useArrayType'
 import useSort from './features/useSort'
 import useOrder from './features/useOrder'
 import usePrototype from './features/usePrototype'
@@ -29,11 +28,13 @@ import { list as useClasses } from './features/useClasses'
 import { list as useChildren } from './features/useChildren'
 import { list as useValidation } from './features/useValidation'
 import { array as useNullValueArray } from './features/useNullValue'
+import { list as useBaseElement } from './features/useBaseElement'
 
 export default function useList(props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
+  const baseElement = useBaseElement(props, context)
   const theme = useTheme(props, context)
   const path = usePath(props, context)
   const description = useDescription(props, context)
@@ -43,7 +44,6 @@ export default function useList(props, context) {
   const prototype = usePrototype(props, context)
   const children = useChildren(props, context)
   const debounce = useDebounce(props, context)
-  const arrayType = useArrayType(props, context)
 
   const default_ = useDefault(props, context, {
     nullValue: nullValue.nullValue
@@ -53,7 +53,7 @@ export default function useList(props, context) {
     form$: form$.form$,
   })
 
-  const baseElement = useBaseElement(props, context, {
+  const genericName = useGenericName(props, context, {
     label: label.label,
   })
 
@@ -187,7 +187,7 @@ export default function useList(props, context) {
     ...nullValue,
     ...label,
     ...baseElement,
-    ...arrayType,
+    ...genericName,
     ...children,
     ...value,
     ...elements,

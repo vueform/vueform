@@ -36,10 +36,22 @@ const config = {
 
   validateOn: 'change|submit|step',
 
-  method: 'post',
+  methods: {
+    process: 'post',
+    file: {
+      uploadTemp: 'post',
+      removeTemp: 'post',
+      remove: 'post',
+    }
+  },
 
   endpoints: {
     process: '/laraform/process',
+    file: {
+      uploadTemp: '/laraform/file/upload-temp',
+      removeTemp: '/laraform/file/remove-temp',
+      remove: '/laraform/file/remove',
+    },
     validators: {
       active_url: '/active_url',
       unique: '/',

@@ -1,6 +1,8 @@
 <template>
-  <component :is="components.BaseElementLayout">
-    <template slot="field">
+  <component :is="layout">
+
+    <template v-slot:field>
+
       <slot name="prefix"></slot>
 
       <!-- Upload button -->
@@ -9,30 +11,26 @@
         href=""
         :class="classes.selectButton"
         @click.prevent="handleClick"
-      >{{ __('laraform.elements.file.uploadButton') }}</a>
+      >{{ __(`laraform.elements.${type}.select`) }}</a>
       
       <!-- Invisible input field -->
       <input
         v-if="canSelect"
         v-show="false"
         type="file"
-        @change="handleFileSelected"
+        :id="id"
+        @change="handleChange"
         ref="input"
       />
 
       <!-- Preview -->
-      <div class="preview">
-        <a :href="link" v-if="link && clickable" target="_blank">{{ filename }}</a>
-        <span v-else-if="filename">{{ filename }}</span>
-      </div>
+      <slot name="preview" :link="link" :clickable="clickable" :filename="filename">
+        <component :is="slots.preview" :link="link" :clickable="clickable" :filename="filename" />
+      </slot>
 
       <!-- Progress -->
-      <slot name="progress" :el$="el$" :progress="progress">
-        <component
-          :is="slots.progress"
-          :el$="el$"
-          :progress="progress"
-        />
+      <slot name="progress" :progress="progress">
+        <component :is="slots.progress" :progress="progress" />
       </slot>
 
       <!-- Upload temp button -->
@@ -40,8 +38,8 @@
         v-if="canUploadTemp"
         href=""
         :class="classes.uploadButton"
-        @click.prevent="uploadTemp"
-      >Upload</a>
+        @click.prevent="handleUploadTemp"
+      >{{ __(`laraform.elements.${type}.upload`) }}</a>
 
       <!-- Remove button -->
       <a
@@ -49,7 +47,7 @@
         href=""
         :class="classes.removeButton"
         @click.prevent="handleRemove"
-      >Remove</a>
+      >{{ __(`laraform.elements.${type}.remove`) }}</a>
 
       <!-- Abort button -->
       <a
@@ -57,16 +55,20 @@
         href=""
         :class="classes.abortButton"
         @click.prevent="handleAbort"
-      >Abort</a>
+      >{{ __(`laraform.elements.${type}.abort`) }}</a>
         
       <slot name="suffix"></slot>
-    </template>
 
-    <slot slot="label" name="label" :el$="el$"></slot>
-    <slot slot="before" name="before" :el$="el$"></slot>
-    <slot slot="between" name="between" :el$="el$"></slot>
-    <slot slot="error" name="error" :el$="el$"></slot>
-    <slot slot="after" name="after" :el$="el$"></slot>
+    </template>
+    
+    <template v-slot:info><slot name="info" :el$="el$"><component v-if="slots.info" :is="slots.info" /></slot></template>
+    <template v-slot:before><slot name="before" :el$="el$"><component v-if="slots.before" :is="slots.before" type="before" /></slot></template>
+    <template v-slot:label><slot name="label" :el$="el$"><component v-if="slots.label" :is="slots.label" /></slot></template>
+    <template v-slot:between><slot name="between" :el$="el$"><component v-if="slots.between" :is="slots.between" type="between" /></slot></template>
+    <template v-slot:description><slot name="description" :el$="el$"><component v-if="slots.description" :is="slots.description" /></slot></template>
+    <template v-slot:error><slot name="error" :el$="el$"><component v-if="slots.error" :is="slots.error" /></slot></template>
+    <template v-slot:message><slot name="message" :el$="el$"><component v-if="slots.message" :is="slots.message" /></slot></template>
+    <template v-slot:after><slot name="after" :el$="el$"><component v-if="slots.after" :is="slots.after" type="after" /></slot></template>
   </component>
 </template>
 
@@ -79,6 +81,7 @@
     data() {
       return {
         defaultClasses: {
+          container: 'lf-file',
           selectButton: 'btn btn-light btn-select-file',
           uploadButton: 'btn btn-primary btn-upload-temp',
           removeButton: 'btn btn-light btn-remove-file',

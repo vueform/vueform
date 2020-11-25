@@ -35,7 +35,7 @@ import CheckboxgroupElement from './components/elements/CheckboxgroupElement'
 import DateElement from './components/elements/DateElement'
 import DatesElement from './components/elements/DatesElement'
 import DatetimeElement from './components/elements/DatetimeElement'
-// import FileElement from './components/elements/FileElement'
+import FileElement from './components/elements/FileElement'
 import GroupElement from './components/elements/GroupElement'
 import HiddenElement from './components/elements/HiddenElement'
 import KeyElement from './components/elements/KeyElement'
@@ -63,6 +63,7 @@ import TTextElement from './components/elements/TTextElement'
 
 import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
 import FileSlotProgress from './components/elements/slots/FileSlotProgress'
+import FileSlotPreview from './components/elements/slots/FileSlotPreview'
 import MultiselectSlotNoOptions from './components/elements/slots/MultiselectSlotNoOptions'
 import MultiselectSlotNoResult from './components/elements/slots/MultiselectSlotNoResult'
 import MultiselectSlotOption from './components/elements/slots/MultiselectSlotOption'
@@ -109,6 +110,7 @@ const components = {
   // Element slots
   CheckboxgroupSlotCheckbox,
   FileSlotProgress,
+  FileSlotPreview,
   MultiselectSlotNoOptions,
   MultiselectSlotNoResult,
   MultiselectSlotOption,
@@ -129,7 +131,7 @@ export default {
     DateElement,
     DatesElement,
     DatetimeElement,
-    // FileElement,
+    FileElement,
     GroupElement,
     HiddenElement,
     KeyElement,

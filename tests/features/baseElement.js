@@ -1,41 +1,39 @@
 import { createForm } from 'test-helpers'
 
-export const baseElement = function (elementType, elementName, options) {
-  it('should return `genericName` when label is defined', () => {
+export const isImageType = function (elementType, elementName, options) {
+  it('should return `isImageType` false', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          label: 'Element label'
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    if (el.label !== undefined) {
-      expect(el.genericName).toBe('Element label')
-    }
+    expect(el.isImageType).toBe(false)
   })
+}
 
-  it('should return `genericName` when placeholder is defined', () => {
+export const isFileType = function (elementType, elementName, options) {
+  it('should return `isFileType` false', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          placeholder: 'Element placeholder'
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    if (el.placeholder !== undefined) {
-      expect(el.genericName).toBe('Element placeholder')
-    }
+    expect(el.isFileType).toBe(false)
   })
+}
 
-  it('should return `genericName` when no placeholder nor label is defined', () => {
+export const isArrayType = function (elementType, elementName, options) {
+  it('should return `isArrayType` false', () => {
     let form = createForm({
       schema: {
         el: {
@@ -46,6 +44,6 @@ export const baseElement = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.genericName).toBe('El')
+    expect(el.isArrayType).toBe(false)
   })
 }

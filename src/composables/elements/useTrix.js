@@ -17,6 +17,7 @@ import useDescription from './features/useDescription'
 import useReadonly from './features/useReadonly'
 import useInfo from './features/useInfo'
 import useBaseElement from './features/useBaseElement'
+import useGenericName from './features/useGenericName'
 import useView from './features/useView'
 import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
@@ -34,6 +35,7 @@ export default function (props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
+  const baseElement = useBaseElement(props, context)
   const theme = useTheme(props, context)
   const input = useInput(props, context)
   const path = usePath(props, context)
@@ -98,7 +100,7 @@ export default function (props, context) {
     form$: form$.form$,
   })
 
-  const baseElement = useBaseElement(props, context, {
+  const genericName = useGenericName(props, context, {
     label: label.label,
     placeholder: placeholder.placeholder,
   })
@@ -167,6 +169,7 @@ export default function (props, context) {
     ...readonly,
     ...info,
     ...baseElement,
+    ...genericName,
     ...view,
     ...components,
     ...layout,
