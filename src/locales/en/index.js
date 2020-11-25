@@ -45,12 +45,16 @@ export default {
         abort: 'Abort',
       },
       image: {
-        defaultName: 'image',
+        defaultName: 'Image',
         uploadButton: 'Upload image',
         dndTitle: 'Upload image',
         dndDescription: 'Drop image or click here to upload',
         removeConfirm: 'By removing the image it will be permanently deleted. Are you sure to continue?',
         uploadError: 'Couldn\'t upload image: :filename',
+        select: 'Select file',
+        upload: 'Upload',
+        remove: 'Remove',
+        abort: 'Abort',
       },
       multifile: {
         uploadButton: 'Upload files',

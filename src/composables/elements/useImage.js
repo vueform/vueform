@@ -1,4 +1,4 @@
-import { toRefs, onMounted } from 'composition-api'
+import { toRefs, onMounted, markRaw } from 'composition-api'
 import useForm$ from './../useForm$'
 import useTheme from './../useTheme'
 import useInput from './features/useInput'
@@ -20,11 +20,11 @@ import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
 import useEmpty from './features/useEmpty'
-import useFile from './features/useFile'
+import useImage from './features/useImage'
 import useRequest from './features/useRequest'
 import useData from './features/useData'
 
-import { file as useBaseElement } from './features/useBaseElement'
+import { image as useBaseElement } from './features/useBaseElement'
 import { file as useValue } from './features/useValue'
 import { file as useValidation } from './features/useValidation'
 import { file as useGenericName } from './features/useGenericName'
@@ -94,7 +94,7 @@ export default function (props, context) {
     dirt: validation.dirt,
   })
 
-  const file = useFile(props, context, {
+  const image = useImage(props, context, {
     form$: form$.form$,
     value: value.value,
     previousValue: value.previousValue,
@@ -124,7 +124,7 @@ export default function (props, context) {
   const genericName = useGenericName(props, context, {
     form$: form$.form$,
     label: label.label,
-    filename: file.filename,
+    filename: image.filename,
   })
   
   const components = useComponents(props, context, {
@@ -157,7 +157,10 @@ export default function (props, context) {
       'label', 'info', 'description', 'error',
       'message', 'before', 'between', 'after',
       'progress', 'preview',
-    ]
+    ],
+    defaultSlots: {
+      preview: markRaw(components.components.value.ImageSlotPreview),
+    }
   })
 
   onMounted(() => {
@@ -193,7 +196,7 @@ export default function (props, context) {
     ...empty,
     ...default_,
     ...nullValue,
-    ...file,
+    ...image,
     ...request,
   }
 } 

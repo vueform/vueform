@@ -92,6 +92,24 @@ const file = function(props, context, dependencies)
   }
 }
 
+const image = function(props, context, dependencies)
+{
+  const { type, isArrayType, isFileType } = file(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+
+  const isImageType = computed(() => {
+    return true
+  })
+
+  return {
+    type,
+    isFileType,
+    isArrayType,
+    isImageType,
+  }
+}
+
 const checkboxgroup = list
 const dates = list
 const multiselect = list
@@ -104,6 +122,7 @@ export {
   multiselect,
   tags,
   file,
+  image,
 } 
 
 export default base

@@ -38,6 +38,7 @@ import DatetimeElement from './components/elements/DatetimeElement'
 import FileElement from './components/elements/FileElement'
 import GroupElement from './components/elements/GroupElement'
 import HiddenElement from './components/elements/HiddenElement'
+import ImageElement from './components/elements/ImageElement'
 import KeyElement from './components/elements/KeyElement'
 import ListElement from './components/elements/ListElement'
 // import LocationElement from './components/elements/LocationElement'
@@ -64,6 +65,7 @@ import TTextElement from './components/elements/TTextElement'
 import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
 import FileSlotProgress from './components/elements/slots/FileSlotProgress'
 import FileSlotPreview from './components/elements/slots/FileSlotPreview'
+import ImageSlotPreview from './components/elements/slots/ImageSlotPreview'
 import MultiselectSlotNoOptions from './components/elements/slots/MultiselectSlotNoOptions'
 import MultiselectSlotNoResult from './components/elements/slots/MultiselectSlotNoResult'
 import MultiselectSlotOption from './components/elements/slots/MultiselectSlotOption'
@@ -111,6 +113,7 @@ const components = {
   CheckboxgroupSlotCheckbox,
   FileSlotProgress,
   FileSlotPreview,
+  ImageSlotPreview,
   MultiselectSlotNoOptions,
   MultiselectSlotNoResult,
   MultiselectSlotOption,
@@ -134,6 +137,7 @@ export default {
     FileElement,
     GroupElement,
     HiddenElement,
+    ImageElement,
     KeyElement,
     ListElement,
     // LocationElement,

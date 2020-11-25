@@ -140,6 +140,14 @@ const base = function (props, context, dependencies)
     return !embed.value && stage.value == 0 && !disabled.value && !preparing.value
   })
 
+  const previewOptions = computed(() => {
+    return {
+      link: link.value,
+      clickable: clickable.value,
+      filename: filename.value,
+    }
+  })
+
   // =============== METHODS ==============
 
   const uploadTemp = async () => {
@@ -328,6 +336,7 @@ const base = function (props, context, dependencies)
     canRemove,
     canUploadTemp,
     canSelect,
+    previewOptions,
 
     // Methods
     uploadTemp,

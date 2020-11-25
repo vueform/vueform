@@ -45,7 +45,7 @@ export const file = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -59,39 +59,6 @@ export const file = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.file).toBe(null)
-  })
-}
-
-export const base64 = function (elementType, elementName, options) {
-  it('should `base64` be null by default', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.base64).toBe(null)
-  })
-
-  it('should not set `base64` when file changes if isImage is false', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: false,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.load(new File([''], 'a'))
-
-    expect(el.base64).toBe(null)
   })
 }
 
@@ -144,7 +111,7 @@ export const methods = function (elementType, elementName, options) {
     }
   })
 
-  testComputedOption(it, elementType, 'methods', form.vm.$laraform.methods[elementType], {
+  testComputedOption(it, elementType, 'methods', form.vm.$laraform.methods.file, {
     uploadTemp: 'put',
     removeTemp: 'delete',
     remove: 'patch',
@@ -164,7 +131,7 @@ export const methods = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.methods).toStrictEqual(Object.assign({}, el.$laraform.methods[elementType], {
+    expect(el.methods).toStrictEqual(Object.assign({}, el.$laraform.methods.file, {
       uploadTemp: 'put'
     }))
   })
@@ -210,7 +177,7 @@ export const url = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -302,7 +269,7 @@ export const stage = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -333,7 +300,7 @@ export const stage = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -352,7 +319,7 @@ export const stage = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -368,7 +335,7 @@ export const stage = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -386,7 +353,7 @@ export const filename = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -418,7 +385,7 @@ export const filename = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -438,7 +405,7 @@ export const filename = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -457,7 +424,7 @@ export const link = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -690,6 +657,26 @@ export const canUploadTemp = function (elementType, elementName, options) {
     el.load('filename')
 
     expect(el.canUploadTemp).toStrictEqual(false)
+  })
+}
+
+export const previewOptions = function (elementType, elementName, options) {
+  it('should have `previewOptions`', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+    
+    expect(el.previewOptions).toStrictEqual({
+      link: el.link,
+      clickable: el.clickable,
+      filename: el.filename,
+    })
   })
 }
 
@@ -1852,7 +1839,7 @@ export const handleError = function (elementType, elementName, options) {
     el.load('filename.jpg')
     el.handleError('error')
 
-    expect(alertSpy).toBeCalledWith('Couldn\'t upload file: filename.jpg')
+    expect(alertSpy).toBeCalledWith(el.__(`laraform.elements.${el.type}.uploadError`, { filename: el.filename }))
   })
 }
 
@@ -1861,7 +1848,7 @@ export const rendering = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -1876,7 +1863,7 @@ export const rendering = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -1891,7 +1878,7 @@ export const rendering = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -2013,7 +2000,7 @@ export const rendering = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })
@@ -2033,7 +2020,7 @@ export const rendering = function (elementType, elementName, options) {
     let form = createForm({
       schema: {
         el: {
-          type: 'file'
+          type: elementType,
         }
       }
     })

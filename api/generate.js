@@ -13,6 +13,7 @@ const elements = [
   'file',
   'group',
   'hidden',
+  'image',
   'key',
   'list',
   'location',

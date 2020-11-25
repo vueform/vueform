@@ -24,8 +24,8 @@
       />
 
       <!-- Preview -->
-      <slot name="preview" :link="link" :clickable="clickable" :filename="filename">
-        <component :is="slots.preview" :link="link" :clickable="clickable" :filename="filename" />
+      <slot name="preview" :previewOptions="previewOptions">
+        <component :is="slots.preview" :previewOptions="previewOptions" />
       </slot>
 
       <!-- Progress -->
