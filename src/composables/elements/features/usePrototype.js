@@ -1,6 +1,6 @@
 import { computed, toRefs } from 'composition-api'
 
-const base = function(props, context, dependencies, options)
+const base = function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
       
@@ -31,6 +31,44 @@ const base = function(props, context, dependencies, options)
     prototype,
     isObject,
   }
+}
+
+const multifile = function(props, context, dependencies)
+{
+  const { schema } = toRefs(props)
+
+  // ============== COMPUTED ==============
+
+  /**
+    * The schema of a child.
+    * 
+    * @type {object}
+    */
+  const prototype = computed(() => {
+    return {
+      type: 'file',
+      url: '/uploads/'
+    }
+  })
+
+  /**
+   * Determines if the list items are objects.
+   *
+   * @type {boolean}
+   */
+  const isObject = computed(() => {
+    return false
+  })
+
+  return {
+    // Computed
+    prototype,
+    isObject,
+  }
+}
+
+export {
+  multifile,
 }
 
 export default base

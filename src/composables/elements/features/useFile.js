@@ -183,7 +183,7 @@ const base = function (props, context, dependencies)
       progress.value = 0
 
       if (!axios.value.isCancel(e)) {
-        handleError(e)
+        handleError(form$.value.__(`laraform.elements.${schema.value.type}.uploadError`, { filename: filename.value }), e)
       }
 
       throw new Error(e)
@@ -193,17 +193,22 @@ const base = function (props, context, dependencies)
     }
   }
 
-  const remove = () => {
-    if (stage.value === 3) {
-      if (!confirm(form$.value.__(`laraform.elements.${schema.value.type}.removeConfirm`))) {
-        return false
+  const remove = async () => {
+    try {
+      if (stage.value === 3) {
+        if (!confirm(form$.value.__(`laraform.elements.${schema.value.type}.removeConfirm`))) {
+          return false
+        }
+
+        await form$.value.$laraform.services.axios[methods.value.remove](endpoints.value.remove, { file: value.value })
       }
 
-      form$.value.$laraform.services.axios[methods.value.remove](endpoints.value.remove, { file: value.value })
-    }
-
-    if (stage.value === 2) {
-      form$.value.$laraform.services.axios[methods.value.removeTemp](endpoints.value.removeTemp, { file: value.value.tmp })
+      if (stage.value === 2) {
+        await form$.value.$laraform.services.axios[methods.value.removeTemp](endpoints.value.removeTemp, { file: value.value.tmp })
+      }
+    } catch (e) {
+      handleError(form$.value.__(`laraform.elements.${schema.value.type}.removeError`), e)
+      return
     }
 
     update(null)
@@ -274,11 +279,11 @@ const base = function (props, context, dependencies)
    * @param {string} e error object
    * @event error
    */
-  const handleError = (e) => {
-    fire('error', e)
+  const handleError = (error, e) => {
+    fire('error', error, e)
 
     if (!listeners.value.error) {
-      alert(form$.value.__(`laraform.elements.${schema.value.type}.uploadError`, { filename: filename.value }))
+      alert(error)
     } 
   }
 

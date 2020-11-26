@@ -36,6 +36,7 @@ import DateElement from './components/elements/DateElement'
 import DatesElement from './components/elements/DatesElement'
 import DatetimeElement from './components/elements/DatetimeElement'
 import FileElement from './components/elements/FileElement'
+// import GalleryElement from './components/elements/GalleryElement'
 import GroupElement from './components/elements/GroupElement'
 import HiddenElement from './components/elements/HiddenElement'
 import ImageElement from './components/elements/ImageElement'
@@ -43,7 +44,7 @@ import KeyElement from './components/elements/KeyElement'
 import ListElement from './components/elements/ListElement'
 // import LocationElement from './components/elements/LocationElement'
 import MetaElement from './components/elements/MetaElement'
-// import MultifileElement from './components/elements/MultifileElement'
+import MultifileElement from './components/elements/MultifileElement'
 import MultiselectElement from './components/elements/MultiselectElement'
 import ObjectElement from './components/elements/ObjectElement'
 import PasswordElement from './components/elements/PasswordElement'
@@ -136,13 +137,14 @@ export default {
     DatetimeElement,
     FileElement,
     GroupElement,
+    // GalleryElement,
     HiddenElement,
     ImageElement,
     KeyElement,
     ListElement,
     // LocationElement,
     MetaElement,
-    // MultifileElement,
+    MultifileElement,
     MultiselectElement,
     ObjectElement,
     PasswordElement,

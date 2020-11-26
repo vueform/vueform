@@ -39,7 +39,6 @@
       ></a>
 
       <slot name="suffix"></slot>
-
     </template>
 
     <template v-slot:info><slot name="info" :el$="el$"><component v-if="slots.info" :is="slots.info" /></slot></template>

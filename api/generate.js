@@ -18,7 +18,7 @@ const elements = [
   'list',
   'location',
   'meta',
-  'multifile',
+  // 'multifile',
   // 'multiselect',
   'object',
   'password',
