@@ -1,6 +1,6 @@
 import { nextTick } from 'composition-api'
 
-export { previousValue, currentValue, selectOptions, getOption, value } from './value_select'
+export { previousValue, currentValue, selectOptions, getOption, value, rendering } from './value_select'
 
 export const model = function (elementType, elementName, options) {
   it('should return object value for `model` when non-native', async () => {

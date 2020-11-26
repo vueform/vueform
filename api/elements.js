@@ -327,6 +327,42 @@ export default {
       'watchPrototype'
     ]
   },
+  location: {
+    features: [
+      'addons',
+      'baseElement',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      'data',
+      'debounce',
+      'default',
+      'description',
+      'disabled',
+      'displayKey',
+      'empty',
+      'events',
+      'floating',
+      'form$',
+      'genericName',
+      'id',
+      'info',
+      'input',
+      'label',
+      'layout',
+      'location',
+      'nullValue_object',
+      'path',
+      'placeholder',
+      'readonly',
+      'slots',
+      'theme',
+      'validation',
+      'value_location',
+      'view'
+    ]
+  },
   meta: {
     features: [
       'baseElement',

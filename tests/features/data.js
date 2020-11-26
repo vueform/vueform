@@ -186,7 +186,7 @@ export const load = function (elementType, elementName, options) {
 
     el.load(undefined)
 
-    expect(el.value).toBe(el.nullValue)
+    expect(el.value).toStrictEqual(el.nullValue)
   })
 }
 

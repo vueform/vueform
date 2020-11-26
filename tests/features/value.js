@@ -69,23 +69,6 @@ export const value = function (elementType, elementName, options) {
     expect(el.currentValue).toStrictEqual(options.value2 || 'value2')
     expect(el.value).toStrictEqual(options.value2 || 'value2')
   })
-
-  it('should render `value` attribute', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          default: 'value'
-        }
-      }
-    })
-
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-
-    await nextTick()
-
-    testValue(elWrapper, options.fieldType, 'value')
-  })
 }
 
 export const model = function (elementType, elementName, options) {
@@ -119,5 +102,24 @@ export const model = function (elementType, elementName, options) {
     el.model = 'value'
 
     expect(el.value).toBe(el.model)
+  })
+}
+
+export const rendering = function (elementType, elementName, options) {
+  it('should render `value` attribute', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          default: 'value'
+        }
+      }
+    })
+
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+
+    await nextTick()
+
+    testValue(elWrapper, options.fieldType, 'value')
   })
 }

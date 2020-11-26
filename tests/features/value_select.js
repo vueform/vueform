@@ -1,7 +1,7 @@
 import { createForm, findAllComponents, findAll } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
-export { currentValue, previousValue, value } from './value'
+export { currentValue, previousValue, value, rendering } from './value'
 
 export const model = function (elementType, elementName, options) {
   it('should return plain value for `model` when native', async () => {

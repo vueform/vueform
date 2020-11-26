@@ -1,6 +1,5 @@
 export default class {
-  constructor(el$) {
-    this.el$ = el$
+  constructor() {
     this.places = null
     this.options = {}
   }

@@ -23,8 +23,8 @@ _.each(files, (file) => {
 const wrapped = {}
 
 const wrap = function (tests) {
-  return function(elementType, options) {
-    return runFeatureTests(elementType, options, tests)
+  return function(elementType, options, spies) {
+    return runFeatureTests(elementType, options, tests, spies)
   }
 }
 

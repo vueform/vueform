@@ -42,7 +42,7 @@ import HiddenElement from './components/elements/HiddenElement'
 import ImageElement from './components/elements/ImageElement'
 import KeyElement from './components/elements/KeyElement'
 import ListElement from './components/elements/ListElement'
-// import LocationElement from './components/elements/LocationElement'
+import LocationElement from './components/elements/LocationElement'
 import MetaElement from './components/elements/MetaElement'
 import MultifileElement from './components/elements/MultifileElement'
 import MultiselectElement from './components/elements/MultiselectElement'
@@ -142,7 +142,7 @@ export default {
     ImageElement,
     KeyElement,
     ListElement,
-    // LocationElement,
+    LocationElement,
     MetaElement,
     MultifileElement,
     MultiselectElement,

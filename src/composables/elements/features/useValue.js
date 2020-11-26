@@ -662,6 +662,36 @@ const file = function(props, context, dependencies)
   }
 }
 
+const location = function(props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+
+  const input = dependencies.input
+  const displayKey = dependencies.displayKey
+  const { previousValue, currentValue, model } = base(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+  
+  const value = computed({
+    get() {
+      return currentValue.value
+    },
+    set(val) {
+      previousValue.value = _.clone(currentValue.value)
+      currentValue.value = val
+
+      input.value.value = input.value && val && val[displayKey.value] !== undefined ? val[displayKey.value] : ''
+    }
+  })
+
+  return {
+    value,
+    model,
+    previousValue,
+    currentValue,
+  }
+}
+
 const group = object
 const toggle = checkbox
 const tags = multiselect
@@ -681,6 +711,7 @@ export {
   tags,
   toggle,
   file,
+  location,
 }
 
 export default base
