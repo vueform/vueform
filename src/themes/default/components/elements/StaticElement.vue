@@ -1,37 +1,21 @@
 <template>
-  <component v-if="wrap" :is="components.BaseElementLayout">
+  <component v-if="wrap" :is="layout">
 
-    <template slot="field">
-      <div
-        v-if="isHtml"
-        v-html="content"
-      ></div>
-
-      <component
-        v-else
-        :is="content"
-        :el$="el$"
-      />
+    <template v-slot:field>
+      <component v-if="!isHtml" :is="content" :el$="el$" />
+      <div v-else v-html="content"></div>
     </template>
 
-    <slot slot="label" name="label" :el$="el$"></slot>
-    <slot slot="info" name="info" :el$="el$"></slot>
-    <slot slot="before" name="before" :el$="el$"></slot>
-    <slot slot="between" name="between" :el$="el$"></slot>
-    <slot slot="error" name="error" :el$="el$"></slot>
-    <slot slot="after" name="after" :el$="el$"></slot>
+    <template v-slot:info><slot name="info" :el$="el$"><component v-if="slots.info" :is="slots.info" /></slot></template>
+    <template v-slot:before><slot name="before" :el$="el$"><component v-if="slots.before" :is="slots.before" type="before" /></slot></template>
+    <template v-slot:label><slot name="label" :el$="el$"><component v-if="slots.label" :is="slots.label" /></slot></template>
+    <template v-slot:between><slot name="between" :el$="el$"><component v-if="slots.between" :is="slots.between" type="between" /></slot></template>
+    <template v-slot:description><slot name="description" :el$="el$"><component v-if="slots.description" :is="slots.description" /></slot></template>
+    <template v-slot:after><slot name="after" :el$="el$"><component v-if="slots.after" :is="slots.after" type="after" /></slot></template>
   </component>
+  <component v-else-if="!isHtml" :is="content" :el$="el$" />
+  <div v-else v-html="content"></div>
 
-  <div
-    v-else-if="isHtml"
-    v-html="content"
-  ></div>
-
-  <component
-    v-else
-    :is="content"
-    :el$="el$"
-  />
 </template>
 
 <script>
@@ -40,5 +24,12 @@
   export default {
     name: 'StaticElement',
     mixins: [StaticElement],
+    data() {
+      return {
+        defaultClasses: {
+          container: 'lf-static'
+        }
+      }
+    }
   }
 </script>

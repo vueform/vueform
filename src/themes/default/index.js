@@ -52,7 +52,7 @@ import RadioElement from './components/elements/RadioElement'
 import RadiogroupElement from './components/elements/RadiogroupElement'
 import SelectElement from './components/elements/SelectElement'
 import SliderElement from './components/elements/SliderElement'
-// import StaticElement from './components/elements/StaticElement'
+import StaticElement from './components/elements/StaticElement'
 import TagsElement from './components/elements/TagsElement'
 import TextareaElement from './components/elements/TextareaElement'
 import TextElement from './components/elements/TextElement'
@@ -152,7 +152,7 @@ export default {
     RadiogroupElement,
     SelectElement,
     SliderElement,
-    // StaticElement,
+    StaticElement,
     TagsElement,
     TextareaElement,
     TextElement,

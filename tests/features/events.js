@@ -1,7 +1,7 @@
 import { createForm } from 'test-helpers'
 
 export const events = function (elementType, elementName, options) {
-  it('should "' + options.events.join('", "') + '" `events`', () => {
+  it('should have "' + options.events.join('", "') + '" `events`', () => {
     let form = createForm({
       schema: {
         el: {

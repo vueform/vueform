@@ -410,26 +410,26 @@ export default {
   },
   object: {
     features: [
-      // 'baseElement',
-      // 'children_object',
-      // 'classes',
-      // 'columns',
-      // 'components',
-      // 'conditions',
+      'baseElement',
+      'children_object',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
       'data_object',
-      // 'description',
-      // 'elements',
-      // 'form$',
-      // 'genericName',
-      // 'info',
-      // 'label',
-      // 'layout',
-      // 'path',
-      // 'slots',
-      // 'theme',
-      // 'validation_object',
-      // 'value_object',
-      // 'view'
+      'description',
+      'elements',
+      'form$',
+      'genericName',
+      'info',
+      'label',
+      'layout',
+      'path',
+      'slots',
+      'theme',
+      'validation_object',
+      'value_object',
+      'view'
     ]
   },
   password: {
@@ -529,6 +529,27 @@ export default {
       'theme',
       'validation',
       'value',
+      'view'
+    ]
+  },
+  static: {
+    features: [
+      'baseElement',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      'description',
+      'events',
+      'form$',
+      'genericName',
+      'info',
+      'label',
+      'layout',
+      'path',
+      'slots',
+      'static',
+      'theme',
       'view'
     ]
   },
