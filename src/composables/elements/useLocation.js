@@ -1,4 +1,4 @@
-import { toRefs, onMounted } from 'composition-api'
+import { toRefs, onMounted, nextTick } from 'composition-api'
 import useForm$ from './../useForm$'
 import useTheme from './../useTheme'
 import useInput from './features/useInput'
@@ -27,9 +27,9 @@ import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
 import useEmpty from './features/useEmpty'
-import useLocation from './features/useLocation'
 import useDisplayKey from './features/useDisplayKey'
 
+import { location as useLocation } from './features/useLocation'
 import { location as useValue } from './features/useValue'
 import { object as useNullValue } from './features/useNullValue'
 
@@ -103,6 +103,8 @@ export default function useText(props, context) {
     input: input.input,
     displayKey: displayKey.displayKey,
     updated: data.updated,
+  }, {
+    input: input.input,
   })
 
   const empty = useEmpty(props, context, {
@@ -149,6 +151,12 @@ export default function useText(props, context) {
   onMounted(() => {
     validation.initMessageBag()
     validation.initValidation()
+
+    nextTick(() => {
+      if (value.value && value.value[displayKey.value]) {
+        input.value = value.value[displayKey.value]
+      }
+    })
   })
 
   return {

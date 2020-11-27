@@ -120,9 +120,7 @@ export const options = function (elementType, elementName, options, spies) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual({ 
-      fields: ['geometry', 'formatted_address', 'address_components'],
-    })
+    expect(el.options).toStrictEqual(el.defaultOptions)
   })
 
   it('should have default `options` when algolia', () => {
@@ -137,11 +135,7 @@ export const options = function (elementType, elementName, options, spies) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual({ 
-      type: 'address',
-      appId: el.$laraform.service.algolia.app_id,
-      apiKey: el.$laraform.service.algolia.api_key,
-    })
+    expect(el.options).toStrictEqual(el.defaultOptions)
   })
   
   it('should extend `options` from schema', () => {
@@ -158,10 +152,9 @@ export const options = function (elementType, elementName, options, spies) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual({ 
-      fields: ['geometry', 'formatted_address', 'address_components'],
+    expect(el.options).toStrictEqual(Object.assign({}, el.defaultOptions, { 
       custom: 'option'
-    })
+    }))
   })
   
   it('should set `options` to schema', () => {

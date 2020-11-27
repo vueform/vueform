@@ -42,9 +42,9 @@ export const dirty = function (elementType, elementName, options) {
     })
 
     let el = form.vm.el$('el')
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let child1 = form.vm.el$(`el.${_.keys(el.children)[0]}`)
 
-    child1.vm.dirt()
+    child1.dirt()
 
     expect(el.dirty).toBe(true)
   })
@@ -56,6 +56,7 @@ export const validated = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          required: true,
           schema: {
             child1: {
               type: 'text',
@@ -71,9 +72,9 @@ export const validated = function (elementType, elementName, options) {
     })
 
     let el = form.vm.el$('el')
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let child1 = form.vm.el$(`el.${_.keys(el.children)[0]}`)
 
-    child1.vm.validate()
+    child1.validate()
 
     await flushPromises()
 
@@ -85,6 +86,7 @@ export const validated = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          required: true,
           schema: {
             child1: {
               type: 'text',
@@ -100,11 +102,8 @@ export const validated = function (elementType, elementName, options) {
     })
 
     let el = form.vm.el$('el')
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-    child1.vm.validate()
-    child2.vm.validate()
+   
+    el.validate()
 
     await flushPromises()
 
@@ -140,6 +139,7 @@ export const invalid = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          required: true,
           schema: {
             child1: {
               type: 'text',
@@ -155,9 +155,9 @@ export const invalid = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let child1 = form.vm.el$(`el.${_.keys(el.children)[0]}`)
 
-    child1.vm.validate()
+    child1.validate()
 
     await flushPromises()
 
@@ -210,11 +210,11 @@ export const pending = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let child1 = form.vm.el$(`el.${_.keys(el.children)[0]}`)
 
-    child1.vm.$laraform.services.axios.post = axiosPostMock
+    child1.$laraform.services.axios.post = axiosPostMock
 
-    child1.vm.validate()
+    child1.validate()
 
     expect(el.pending).toBe(true)
 
@@ -392,6 +392,7 @@ export const validate = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          required: true,
           schema: {
             child1: {
               type: 'text',
@@ -408,18 +409,21 @@ export const validate = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
+    _.each(el.children$, (child$) => {
+      if (!child$.rules) {
+        return
+      }
 
-    expect(child1.vm.validated).toBe(false)
-    expect(child2.vm.validated).toBe(false)
+      expect(child$.validated).toBe(false)
+    })
 
     el.validate()
 
     await flushPromises()
 
-    expect(child1.vm.validated).toBe(true)
-    expect(child2.vm.validated).toBe(true)
+    _.each(el.children$, (child$) => {
+      expect(child$.validated).toBe(true)
+    })
   })
 }
 
@@ -443,16 +447,15 @@ export const clean = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-    child1.vm.dirt()
-    child2.vm.dirt()
+    _.each(el.children$, (child$) => {
+      child$.dirt()
+    })
 
     el.clean()
 
-    expect(child1.vm.dirty).toBe(false)
-    expect(child2.vm.dirty).toBe(false)
+    _.each(el.children$, (child$) => {
+      expect(child$.dirty).toBe(false)
+    })
   })
 }
 
@@ -462,6 +465,7 @@ export const resetValidators = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          required: true,
           schema: {
             child1: {
               type: 'text',
@@ -478,18 +482,19 @@ export const resetValidators = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let child2 = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-    child1.vm.validate()
-    child2.vm.validate()
+    el.validate()
 
     await flushPromises()
 
     el.resetValidators()
 
-    expect(child1.vm.validated).toBe(false)
-    expect(child2.vm.validated).toBe(false)
+    _.each(el.children$, (child$) => {
+      if (!child$.rules) {
+        return
+      }
+      
+      expect(child$.validated).toBe(false)
+    })
   })
 }
 

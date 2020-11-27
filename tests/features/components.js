@@ -84,17 +84,18 @@ export const rendering = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          label: 'Label',
+          label: 'Element Label',
           components: components,
         }
       }
     })
 
+    let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
     let CustomElementLabel = findAllComponents(elWrapper, { name: 'CustomElementLabel' })
 
-    expect(ElementLabel.length).toBe(0)
+    expect(ElementLabel.length === 0 || ElementLabel.at(0).vm.label !== el.label).toBe(true)
     expect(CustomElementLabel.length).toBe(1)
   })
 
@@ -112,7 +113,7 @@ export const rendering = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          label: 'Label',
+          label: 'Element Label',
         }
       }
     })
@@ -127,7 +128,7 @@ export const rendering = function (elementType, elementName, options) {
     let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
     let CustomElementLabel = findAllComponents(elWrapper, { name: 'CustomElementLabel' })
 
-    expect(ElementLabel.length).toBe(0)
+    expect(ElementLabel.length === 0 || ElementLabel.at(0).vm.label !== el.label).toBe(true)
     expect(CustomElementLabel.length).toBe(1)
   })
 }

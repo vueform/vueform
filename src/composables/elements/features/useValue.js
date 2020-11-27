@@ -467,7 +467,7 @@ const object = function(props, context, dependencies)
   watch(value, (newValue, oldValue) => {
     currentValue.value = newValue
     previousValue.value = oldValue
-  })
+  }, { flush: 'sync' })
 
   return {
     value,

@@ -73,9 +73,7 @@ export const visible = function (elementType, elementName, options) {
     })
 
     let el = form.vm.el$('el')
-    let el2 = findAllComponents(form, { name: 'TextElement' })
-    
-    el2 = elementName === 'TextElement' ? el2.at(1) : el2.at(0)
+    let el2 = form.vm.el$('el2')
 
     expect(el.available).toBe(false)
     expect(el.hidden).toBe(false)
@@ -83,7 +81,7 @@ export const visible = function (elementType, elementName, options) {
 
     expect(el.visible).toBe(false)
 
-    el2.vm.update('value')
+    el2.update('value')
 
     expect(el.available).toBe(true)
     expect(el.hidden).toBe(false)

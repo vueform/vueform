@@ -12,10 +12,11 @@ export const layout = function (elementType, elementName, options) {
       }
     })
 
+    let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let ElementLayout = findAllComponents(elWrapper, { name: 'ElementLayout' })
 
-    expect(ElementLayout.length).toBe(1)
+    expect(ElementLayout.at(0).classes(el.defaultClasses.container)).toBe(true)
   })
 
   it('should use custom `ElementLayout` if it is defined in `components`', () => {

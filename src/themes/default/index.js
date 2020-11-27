@@ -28,7 +28,7 @@ import InputAddon from './components/InputAddon'
 import Flatpickr from './components/wrappers/Flatpickr'
 import Trix from './components/wrappers/Trix'
 
-// import AddressElement from './components/elements/AddressElement'
+import AddressElement from './components/elements/AddressElement'
 // import ButtonsElement from './components/elements/ButtonsElement'
 import CheckboxElement from './components/elements/CheckboxElement'
 import CheckboxgroupElement from './components/elements/CheckboxgroupElement'
@@ -128,7 +128,7 @@ const components = {
 export default {
   components,
   elements: {
-    // AddressElement,
+    AddressElement,
     // ButtonsElement,
     CheckboxElement,
     CheckboxgroupElement,

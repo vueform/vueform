@@ -70,15 +70,16 @@ export const rendering = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          label: 'Label'
+          label: 'Element Label',
         }
       }
     })
 
+    let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
 
-    expect(ElementLabel.length).toBe(1)
+    expect(ElementLabel.at(0).vm.label === el.label).toBe(true)
   })
 
   it('should should render `ElementLabel` if hasLabel is "false"', () => {
@@ -94,9 +95,10 @@ export const rendering = function (elementType, elementName, options) {
       }
     })
 
+    let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
 
-    expect(ElementLabel.length).toBe(0)
+    expect(ElementLabel.length === 0 || ElementLabel.at(0).vm.label !== el.label).toBe(true)
   })
 }

@@ -1,6 +1,6 @@
 import { computed, toRefs, ref, onMounted, watch, nextTick } from 'composition-api'
 
-export default function (props, context, dependencies)
+const base = function (props, context, dependencies, options_ = {})
 {
   const { schema } = toRefs(props)
 
@@ -8,9 +8,13 @@ export default function (props, context, dependencies)
 
   const form$ = dependencies.form$
   const value = dependencies.value
-  const input = dependencies.input
-  const displayKey = dependencies.displayKey
   const updated = dependencies.updated
+
+  // ============== PRIVATE ===============
+
+  const inputElement = () => {
+    return options_.input.value
+  }
 
   // ================ DATA ================
 
@@ -71,6 +75,7 @@ export default function (props, context, dependencies)
         type: 'address',
         appId: form$.value.$laraform.service.algolia.app_id,
         apiKey: form$.value.$laraform.service.algolia.api_key,
+        templates: options_.templates || {}
       }
     }
 
@@ -101,7 +106,7 @@ export default function (props, context, dependencies)
    * @param {object} data an object containing address data
    * @param {object} raw an object containing raw address data (based on provider)
    */
-  const handleAddressChange = (data, raw) => {
+  const handleAddressChange = options_.handleAddressChange || function (data, raw) {
     location.value = raw
     value.value = data
 
@@ -116,7 +121,7 @@ export default function (props, context, dependencies)
    */
   const initLocationService = () => {
     locationService.value = new form$.value.$laraform.services.location[provider.value]
-    locationService.value.init(input.value, handleAddressChange, options.value)
+    locationService.value.init(inputElement(), handleAddressChange, options.value)
   }
 
   // ============== WATCHERS ==============
@@ -139,7 +144,32 @@ export default function (props, context, dependencies)
 
   onMounted(() => {
     initLocationService()
+  })
 
+  return {
+    locationService,
+    location,
+    provider,
+    defaultOptions,
+    options,
+    handleAddressChange,
+    initLocationService,
+  }
+}
+
+const location = function (props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+
+  const value = dependencies.value
+  const displayKey = dependencies.displayKey
+  const input = dependencies.input
+
+  const useBase = base(props, context, dependencies)
+  
+  // =============== HOOKS ================
+
+  onMounted(() => {
     nextTick(() => {
       if (value.value && value.value[displayKey.value]) {
         input.value = value.value[displayKey.value]
@@ -148,11 +178,92 @@ export default function (props, context, dependencies)
   })
 
   return {
+    ...useBase,
+  }
+}
+
+const address = function (props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+
+  const children$ = dependencies.children$
+  const fields = dependencies.fields
+
+  // =============== METHODS ==============
+
+  /**
+   * Updates fields with address data.
+   *
+   * @public
+   * @param {object} data an object containing address data
+   */
+  const updateFields = (data) => {
+    if (children$.value.address) {
+      children$.value.address.update(data.address || null, true)
+    }
+
+    if (children$.value.city) {
+      children$.value.city.update(data.city || null, true)
+    }
+
+    if (children$.value.zip) {
+      children$.value.zip.update(data.zip || null, true)
+    }
+
+    if (children$.value.state) {
+      children$.value.state.update(data.state_code ? data.state_code.toUpperCase() : null, true)
+    }
+
+    if (children$.value.country) {
+      children$.value.country.update(data.country_code ? data.country_code.toUpperCase() : null, true)
+    }
+
+    if (document.getElementById(fields.value.address.id)) {
+      document.getElementById(fields.value.address.id).value = data.address || ''
+    }
+  }
+
+  /**
+   * Handles location service's address change.
+   *
+   * @public
+   * @param {object} data an object containing address data
+   * @param {object} raw an object containing raw address data (based on provider)
+   */
+  const handleAddressChange = (data, raw) => {
+    location.value = raw
+    updateFields(data)
+  }
+
+  // ============ DEPENDENCIES ============
+
+  const { locationService, location, provider, defaultOptions, options, initLocationService } = base(props, context, dependencies, {
+    input: computed(() => {
+      return document.getElementById(fields.value.address.id)
+    }),
+    templates: {
+      value: function(suggestion) {
+        return suggestion.name;
+      }
+    },
+    handleAddressChange,
+  })
+
+  return {
     locationService,
     location,
     provider,
+    defaultOptions,
     options,
+    updateFields,
     handleAddressChange,
     initLocationService,
   }
 }
+
+export {
+  location,
+  address,
+}
+
+export default base
