@@ -117,7 +117,6 @@ export default function useObject(props, context) {
     ...path,
     ...conditions,
     ...value,
-    ...value,
     ...label,
     ...classes,
     ...columns,

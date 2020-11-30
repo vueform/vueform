@@ -157,7 +157,7 @@ const base = function (props, context, dependencies, options_ = {})
   }
 }
 
-const location = function (props, context, dependencies)
+const location = function (props, context, dependencies, options = {})
 {
   // ============ DEPENDENCIES ============
 
@@ -165,7 +165,7 @@ const location = function (props, context, dependencies)
   const displayKey = dependencies.displayKey
   const input = dependencies.input
 
-  const useBase = base(props, context, dependencies)
+  const useBase = base(props, context, dependencies, options)
   
   // =============== HOOKS ================
 

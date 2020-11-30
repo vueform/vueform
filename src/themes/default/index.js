@@ -13,8 +13,8 @@ import FormWizardPrevious from './components/FormWizardPrevious'
 import FormWizardStep from './components/FormWizardStep'
 import FormElements from './components/FormElements'
 import FormButton from './components/FormButton'
-import FormButtonAnchor from './components/FormButtonAnchor'
 import FormButtonSubmit from './components/FormButtonSubmit'
+import FormButtonAnchor from './components/FormButtonAnchor'
 import ElementLayout from './components/ElementLayout'
 import ElementLabelFloating from './components/ElementLabelFloating'
 import ElementLabel from './components/ElementLabel'
@@ -29,7 +29,7 @@ import Flatpickr from './components/wrappers/Flatpickr'
 import Trix from './components/wrappers/Trix'
 
 import AddressElement from './components/elements/AddressElement'
-// import ButtonsElement from './components/elements/ButtonsElement'
+import ButtonsElement from './components/elements/ButtonsElement'
 import CheckboxElement from './components/elements/CheckboxElement'
 import CheckboxgroupElement from './components/elements/CheckboxgroupElement'
 import DateElement from './components/elements/DateElement'
@@ -94,8 +94,8 @@ const components = {
   FormWizardStep,
   FormElements,
   FormButton,
-  FormButtonAnchor,
   FormButtonSubmit,
+  FormButtonAnchor,
   ElementLayout,
   ElementLabelFloating,
   ElementLabel,
@@ -129,7 +129,7 @@ export default {
   components,
   elements: {
     AddressElement,
-    // ButtonsElement,
+    ButtonsElement,
     CheckboxElement,
     CheckboxgroupElement,
     DateElement,

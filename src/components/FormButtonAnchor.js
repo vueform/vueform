@@ -1,59 +1,71 @@
+import { toRefs } from 'composition-api'
+import computedOption from '../utils/computedOption'
 import FormButton from './FormButton'
 
 export default {
   name: 'FormButtonAnchor',
   mixins: [FormButton],
-  props: {
-    /**
-     * Button options.
-     * 
-     * @default {
-     *  "label": { "type": "string", "description": "Button label;" },
-     *  "class": { "type": "string", "description": "Button class." },
-     *  "href": { "type": "string", "description": "Href attribute." },
-     *  "target": { "type": "string", "description": "Anchort target attribute. (default: `_self`)" },
-     *  "beforeCreate": { "type": "function", "description": "Triggered in the button's `beforeCreate` lifecycle hook." },
-     *  "created": { "type": "function", "description": "Triggered in the button's `created` lifecycle hook." },
-     *  "beforeMount": { "type": "function", "description": "Triggered in the button's `beforeMount` lifecycle hook." },
-     *  "mounted": { "type": "function", "description": "Triggered in the button's `mounted` lifecycle hook." },
-     *  "beforeUpdate": { "type": "function", "description": "Triggered in the button's `beforeUpdate` lifecycle hook." },
-     *  "updated": { "type": "function", "description": "Triggered in the button's `updated` lifecycle hook." },
-     *  "beforeDestroy": { "type": "function", "description": "Triggered in the button's `beforeDestroy` lifecycle hook." },
-     *  "destroyed": { "type": "function", "description": "Triggered in the button's `destroyed` lifecycle hook." }
-     * }
-     */
-    button: {
-      type: Object,
-      required: true
-    },
-  },
-  computed: {
-    href() {
-      return this.button.href || null
-    },
+  init(props, context)
+  {
+    const { button } = toRefs(props)
 
-    target() {
-      return this.button.target || '_self'
-    },
+    // ============ DEPENDENCIES ============
 
-    /**
-     * Determines if the button is disabled.
-     * 
-     * @private
-     * @type {boolean}
-     */
-    disabled() {
-      return false
-    },
+    const {
+      el$, form$, theme, align, loading, disabled, mainClass, classes, components,
+      label, isDisabled, isLoading, isLabelComponent, available, conditions,
+      setLoading, disable, enable,
+    } = FormButton.init(props, context)
+  
+    // ============== COMPUTED ==============
 
-    /**
-     * Determines if the button is in loading state.
-     * 
-     * @private
-     * @type {boolean}
-     */
-    loading() {
-      return false
+    const href = computedOption('href', button, '')
+
+    const target = computedOption('target', button, '_self')
+
+    // =============== METHODS ==============
+
+    const handleClick = (e) => {
+      if (href.value === '') {
+        e.preventDefault()
+      }
+
+      if (disabled.value || loading.value) {
+        return
+      }
+
+      if (typeof button.value.onClick == 'function') {
+        button.value.onClick(form$.value)
+      }
     }
-  }
+
+    return {
+      // Inject
+      el$,
+      form$,
+      theme,
+
+      // Computed
+      align,
+      loading,
+      disabled,
+      isLoading,
+      isDisabled,
+      mainClass,
+      classes,
+      components,
+      label,
+      isLabelComponent,
+      available,
+      conditions,
+      href,
+      target,
+
+      // Methods
+      setLoading,
+      disable,
+      enable,
+      handleClick,
+    }
+  },
 }

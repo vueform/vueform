@@ -27,6 +27,27 @@ export default {
       'view'
     ]
   },
+  buttons: {
+    features: [
+      'baseElement',
+      'buttons',
+      'children_buttons',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      'description',
+      'form$',
+      'genericName',
+      'info',
+      'label',
+      'layout',
+      'path',
+      'slots',
+      'theme',
+      'view'
+    ]
+  },
   checkbox: {
     features: [
       'baseElement',

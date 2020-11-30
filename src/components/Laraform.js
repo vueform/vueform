@@ -415,7 +415,7 @@ export default {
       var errors = []
 
       _.each(_.filter(this.elements$, { available: true }), (element$) => {
-        _.each(element$.messageBag.errors || [], (error) => {
+        _.each(element$.messageBag ? (element$.messageBag.errors || []) : [], (error) => {
           errors.push(error)
         })
       })
@@ -708,6 +708,10 @@ export default {
       })
       
       await asyncForEach(elements$, async (element$) => {
+        if (!element$.validate) {
+          return
+        }
+        
         await element$.validate()
       })
     },
@@ -754,7 +758,9 @@ export default {
     async prepareElements() {
       try {
         await asyncForEach(this.elements$, async (element$) => {
-          await element$.prepare()
+          if (element$.prepare) {
+            await element$.prepare()
+          }
         })
       } catch (e) {
         throw new Error(e)
@@ -786,7 +792,7 @@ export default {
       catch (error) {
         this.handleError(error.response, error)
 
-        // throw new Error(error)
+        throw new Error(error)
       }
       finally {
         this.submitting = false

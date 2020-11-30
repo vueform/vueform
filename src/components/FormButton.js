@@ -1,107 +1,120 @@
-import BaseComponent from './../mixins/BaseComponent'
+import { computed, ref, toRefs, watch, onMounted, nextTick } from 'composition-api'
+import useElementComponent from './../composables/useElementComponent'
+import useConditions from './../composables/useConditions'
+import useLabel from './../composables/useLabel'
 import { mergeComponentClasses } from './../utils/mergeClasses'
-import HasHooks from './../mixins/HasHooks'
-import HasLabel from './../mixins/HasLabel'
+import computedOption from '../utils/computedOption'
 
 export default {
   name: 'FormButton',
-  mixins: [BaseComponent, HasHooks, HasLabel],
   props: {
-    /**
-     * Button options.
-     * 
-     * @default {
-     *  "label": { "type": "string", "description": "Button label;" },
-     *  "class": { "type": "string", "description": "Button class." },
-     *  "onClick": { "type": "function", "description": "Handling submit button click. Receives `form$` as first param." },
-     *  "disabled": { "type": "function", "description": "A method to determine when the button should be disabled." },
-     *  "loading": { "type": "function", "description": "A method to determine when the button should be in loading state (`loading` class added)." },
-     *  "beforeCreate": { "type": "function", "description": "Triggered in the button's `beforeCreate` lifecycle hook." },
-     *  "created": { "type": "function", "description": "Triggered in the button's `created` lifecycle hook." },
-     *  "beforeMount": { "type": "function", "description": "Triggered in the button's `beforeMount` lifecycle hook." },
-     *  "mounted": { "type": "function", "description": "Triggered in the button's `mounted` lifecycle hook." },
-     *  "beforeUpdate": { "type": "function", "description": "Triggered in the button's `beforeUpdate` lifecycle hook." },
-     *  "updated": { "type": "function", "description": "Triggered in the button's `updated` lifecycle hook." },
-     *  "beforeDestroy": { "type": "function", "description": "Triggered in the button's `beforeDestroy` lifecycle hook." },
-     *  "destroyed": { "type": "function", "description": "Triggered in the button's `destroyed` lifecycle hook." }
-     * }
-     */
     button: {
       type: Object,
       required: true
     },
-  },
-  computed: {
-    descriptor() {
-      return this.button
+    name: {
+      type: [Number, String],
+      required: true
     },
+    parent: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
+  },
+  init(props, context)
+  {
+    const { button } = toRefs(props)
 
-    classes() {
-      let classes = this.mergedClasses
+    // ============ DEPENDENCIES ============
 
-      classes = mergeComponentClasses(classes, {
-        [this.mainClass]: {
-          [classes.loading]: this.loading,
-          [classes.disabled]: this.disabled,
+    const { el$, form$, classes: baseClasses, components, theme, mainClass } = useElementComponent(props, context)
+    const { available, conditions } = useConditions(props, context, { form$, descriptor: button })
+    const { label, isLabelComponent } = useLabel(props, context, { form$, descriptor: button })
+
+    // ================ DATA ================
+
+    const loading = ref(false)
+
+    const disabled = ref(false)
+
+    // ============== COMPUTED ==============
+
+    const align = computedOption('align', button, 'left', ['left', 'center', 'right'])
+
+    const classes = computed(() => {
+      let classes = _.clone(baseClasses.value)
+
+      return mergeComponentClasses(classes, {
+        [mainClass.value]: {
+          [classes[align.value]]: true,
+          [classes.loading]: isLoading.value,
+          [classes.disabled]: isDisabled.value,
         }
       })
+    })
 
-      // Add buttons's class to main class
-      if (this.button.class) {
-        classes = mergeComponentClasses(classes, {
-          [this.mainClass]: this.button.class,
-        })
-      }
+    const isDisabled = computed(() => {
+      return typeof button.value.disabled == 'function'
+        ? button.value.disabled(form$.value) || disabled.value
+        : disabled.value
+    })
 
-      return classes
-    },
+    const isLoading = computed(() => {
+      return typeof button.value.loading == 'function'
+        ? button.value.loading(form$.value) || loading.value
+        : loading.value
+    })
 
-    /**
-     * Determines if the button is disabled.
-     * 
-     * @type {boolean}
-     */
-    disabled() {
-      if (this.button.disabled !== undefined) {
-        return this.button.disabled(this.form$)
-      }
+    // =============== METHODS ==============
 
-      return false
-    },
-
-    /**
-     * Determines if the button should be in loading state.
-     * 
-     * @type {boolean}
-     */
-    loading() {
-      if (this.button.loading !== undefined) {
-        return this.button.loading(this.form$)
-      }
-
-      return false
+    const setLoading = (val) => {
+      loading.value = val
     }
-  },
-  methods: {
-    /**
-     * Handles button click
-     *
-     * @private 
-     * @returns {void}
-     */
-    handleClick() {
-      if (this.disabled || this.loading) {
+
+    const disable = () => {
+      disabled.value = true
+    }
+
+    const enable = () => {
+      disabled.value = false
+    }
+
+    const handleClick = () => {
+      if (disabled.value || loading.value) {
         return
       }
 
-      if (this.button.onClick !== undefined) {
-        this.button.onClick(this.form$)
+      if (typeof button.value.onClick == 'function') {
+        button.value.onClick(form$.value)
       }
     }
-  },
-  beforeCreate() {
-    if (this.$options.propsData.button.beforeCreate) {
-      this.$options.propsData.button.beforeCreate.call(this)
+
+    return {
+      // Inject
+      el$,
+      form$,
+      theme,
+
+      // Computed
+      align,
+      loading,
+      disabled,
+      isLoading,
+      isDisabled,
+      mainClass,
+      classes,
+      components,
+      label,
+      isLabelComponent,
+      available,
+      conditions,
+
+      // Methods
+      setLoading,
+      disable,
+      enable,
+      handleClick,
     }
   },
 }

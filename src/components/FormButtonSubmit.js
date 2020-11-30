@@ -1,78 +1,77 @@
+import { computed, toRefs } from 'composition-api'
 import FormButton from './FormButton'
 
 export default {
   name: 'FormButtonSubmit',
   mixins: [FormButton],
-  props: {
-    /**
-     * Button options.
-     * 
-     * @default {
-     *  "label": { "type": "string", "description": "Button label;" },
-     *  "class": { "type": "string", "description": "Button class." },
-     *  "onClick": { "type": "function", "description": "Handling submit button click. Receives `form$` as first param. If not defined it will submit the form by default." },
-     *  "disabled": { "type": "function", "description": "A method to determine when the button should be disabled. If not defined it will be true if the form's `disabled` property is `true`." },
-     *  "loading": { "type": "function", "description": "A method to determine when the button should be in loading state (`loading` class added). If not defined it will be true if the form's `submitting` property is `true`." },
-     *  "beforeCreate": { "type": "function", "description": "Triggered in the button's `beforeCreate` lifecycle hook." },
-     *  "created": { "type": "function", "description": "Triggered in the button's `created` lifecycle hook." },
-     *  "beforeMount": { "type": "function", "description": "Triggered in the button's `beforeMount` lifecycle hook." },
-     *  "mounted": { "type": "function", "description": "Triggered in the button's `mounted` lifecycle hook." },
-     *  "beforeUpdate": { "type": "function", "description": "Triggered in the button's `beforeUpdate` lifecycle hook." },
-     *  "updated": { "type": "function", "description": "Triggered in the button's `updated` lifecycle hook." },
-     *  "beforeDestroy": { "type": "function", "description": "Triggered in the button's `beforeDestroy` lifecycle hook." },
-     *  "destroyed": { "type": "function", "description": "Triggered in the button's `destroyed` lifecycle hook." }
-     * }
-     */
-    button: {
-      type: Object,
-      required: true
-    },
-  },
-  computed: {
-    /**
-     * Determines if the button is disabled.
-     * 
-     * @type {boolean}
-     */
-    disabled() {
-      if (this.button.disabled !== undefined) {
-        return this.button.disabled(this.form$)
-      }
+  init(props, context)
+  {
+    const { button } = toRefs(props)
 
-      return this.form$.disabled
-    },
+    // ============ DEPENDENCIES ============
 
-    /**
-     * Determines if the button should be in loading state.
-     * 
-     * @type {boolean}
-     */
-    loading() {
-      if (this.button.loading !== undefined) {
-        return this.button.loading(this.form$)
-      }
+    const {
+      el$, form$, theme, align, loading, disabled, mainClass, classes, components, label,
+      isLabelComponent, available, conditions, setLoading, disable, enable,
+    } = FormButton.init(props, context)
+  
+    // ============== COMPUTED ==============
 
-      return this.form$.submitting
-    }
-  },
-  methods: {
-    /**
-     * Handles button click
-     *
-     * @private 
-     * @returns {void}
-     */
-    handleClick() {
-      if (this.disabled || this.loading) {
+    const isDisabled = computed(() => {
+      let disabledByFunction = typeof button.value.disabled == 'function'
+        ? button.value.disabled(form$.value)
+        : form$.value.submitting || (form$.value.invalid && form$.value.shouldValidateOnChange)
+
+      return disabledByFunction || disabled.value
+    })
+
+    const isLoading = computed(() => {
+      let loadingByFunction = typeof button.value.loading == 'function'
+        ? button.value.loading(form$.value)
+        : form$.value.submitting
+
+      return loadingByFunction || loading.value
+    })
+
+    // =============== METHODS ==============
+
+    const handleClick = () => {
+      if (disabled.value || loading.value) {
         return
       }
 
-      if (this.button.onClick !== undefined) {
-        this.button.onClick(this.form$)
-        return
+      if (typeof button.value.onClick == 'function') {
+        button.value.onClick(form$.value)
+      } else {
+        form$.value.submit()
       }
-
-      this.form$.submit()
     }
-  }
+
+    return {
+      // Inject
+      el$,
+      form$,
+      theme,
+
+      // Computed
+      align,
+      loading,
+      disabled,
+      isLoading,
+      isDisabled,
+      mainClass,
+      classes,
+      components,
+      label,
+      isLabelComponent,
+      available,
+      conditions,
+
+      // Methods
+      setLoading,
+      disable,
+      enable,
+      handleClick,
+    }
+  },
 }

@@ -1816,30 +1816,9 @@ export const handleError = function (elementType, elementName, options) {
 
     expect(onErrorMock).not.toHaveBeenCalled()
 
-    el.handleError('error')
+    el.handleError('error', 'e')
 
-    expect(onErrorMock).toHaveBeenCalledWith('error')
-  })
-
-  it('should throw alert on default `error`', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: false,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    let alertSpy = jest.spyOn(window, 'alert')
-    alertSpy.mockImplementation(() => {})
-
-    el.load('filename.jpg')
-    el.handleError('error')
-
-    expect(alertSpy).toBeCalledWith(el.__(`laraform.elements.${el.type}.uploadError`, { filename: el.filename }))
+    expect(onErrorMock).toHaveBeenCalledWith('error', 'e')
   })
 }
 

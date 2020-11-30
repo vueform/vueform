@@ -179,6 +179,44 @@ const address = function(props, context, dependencies)
   }
 }
 
+const buttons = function(props, context, dependencies)
+{
+  const { schema } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
+  const { child$, children$ } = object(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Schema of child elements.
+   * 
+   * @type {object}
+   * @ignore
+   */
+  const children = computed({
+    get() {
+      return schema.value.buttons
+    },
+    set(val) {
+      form$.value.$set(schema.value, 'buttons', val)
+    }
+  })
+  
+  const handleLayoutBeforeUpdate = () => {
+    child$.value = []
+  }
+
+  return {
+    child$,
+    children,
+    children$,
+    handleLayoutBeforeUpdate,
+  }
+}
+
 const group = object
 
 export {
@@ -186,4 +224,5 @@ export {
   list,
   object,
   address,
+  buttons,
 }
