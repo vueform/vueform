@@ -23,6 +23,7 @@ import useEmpty from './features/useEmpty'
 import useImage from './features/useImage'
 import useRequest from './features/useRequest'
 import useData from './features/useData'
+import useDrop from './features/useDrop'
 
 import { image as useBaseElement } from './features/useBaseElement'
 import { file as useValue } from './features/useValue'
@@ -92,6 +93,10 @@ export default function (props, context) {
     default: default_.default,
     nullValue: nullValue.nullValue,
     dirt: validation.dirt,
+  })
+  
+  const drop = useDrop(props, context, {
+    update: data.update,
   })
 
   const image = useImage(props, context, {
@@ -198,5 +203,6 @@ export default function (props, context) {
     ...nullValue,
     ...image,
     ...request,
+    ...drop,
   }
 } 

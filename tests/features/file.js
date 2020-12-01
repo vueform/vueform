@@ -1108,6 +1108,45 @@ export const remove = function (elementType, elementName, options) {
     })
   })
 
+  it('should restore file & progress when removed in stage 2 with error', async () => {
+    let errorMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+          onError: errorMock,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    let axiosMock = jest.fn(() => Promise.reject({ data: 'value' }))
+
+    let tmp = {
+      tmp: 'tmp123',
+      originalName: 'filename.jpg'
+    }
+
+    el.axios.post = axiosMock
+
+    el.progress = 100
+    el.load(tmp)
+
+    expect(el.stage).toBe(2)
+
+    el.remove()
+
+    await flushPromises()
+
+    expect(errorMock).toHaveBeenCalled()
+    
+    expect(el.value).toStrictEqual(tmp)
+    expect(el.progress).toBe(100)
+  })
+
   it('should call remove file endpoint when removed in stage 3', () => {
     let form = createForm({
       schema: {
@@ -1165,6 +1204,42 @@ export const remove = function (elementType, elementName, options) {
     el.remove()
 
     expect(axiosMock).not.toHaveBeenCalled()
+  })
+
+  it('should restore file & progress when removed in stage 3 with error', async () => {
+    let errorMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+          onError: errorMock,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    let axiosMock = jest.fn(() => Promise.reject({ data: 'value' }))
+
+    let file = 'filename.jpg'
+
+    el.axios.post = axiosMock
+
+    el.progress = 100
+    el.load(file)
+
+    expect(el.stage).toBe(3)
+
+    el.remove()
+
+    await flushPromises()
+
+    expect(errorMock).toHaveBeenCalled()
+    
+    expect(el.value).toStrictEqual(file)
+    expect(el.progress).toBe(100)
   })
 
   it('should call "updated" when `handleChange` updates value', async () => {
@@ -1695,7 +1770,7 @@ export const handleAbort = function (elementType, elementName, options) {
       }
     })
 
-    let axiosSubmitMock = jest.fn(() => {})
+    let axiosSubmitMock = jest.fn(() => { return { data: {} } })
 
     el.axios.post = axiosPostMock
 

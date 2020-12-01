@@ -5,9 +5,18 @@
 
       <slot name="prefix"></slot>
 
+      <!-- Drag n drop -->
+      <component
+        v-if="drop && canDrop && canSelect"
+        :is="components.DragAndDrop"
+        :title="__(`laraform.elements.${type}.dndTitle`)"
+        :description="__(`laraform.elements.${type}.dndDescription`)"
+        @click="handleClick"
+        @drop="handleDrop"
+      />
       <!-- Upload button -->
       <a
-        v-if="canSelect"
+        v-else-if="canSelect"
         href=""
         :class="classes.selectButton"
         @click.prevent="handleClick"

@@ -23,6 +23,7 @@ import useEmpty from './features/useEmpty'
 import useFile from './features/useFile'
 import useRequest from './features/useRequest'
 import useData from './features/useData'
+import useDrop from './features/useDrop'
 
 import { file as useBaseElement } from './features/useBaseElement'
 import { file as useValue } from './features/useValue'
@@ -92,6 +93,10 @@ export default function (props, context) {
     default: default_.default,
     nullValue: nullValue.nullValue,
     dirt: validation.dirt,
+  })
+  
+  const drop = useDrop(props, context, {
+    update: data.update,
   })
 
   const file = useFile(props, context, {
@@ -195,5 +200,6 @@ export default function (props, context) {
     ...nullValue,
     ...file,
     ...request,
+    ...drop,
   }
 } 
