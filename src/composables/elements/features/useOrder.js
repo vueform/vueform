@@ -8,17 +8,10 @@ const base = function(props, context, dependencies, options)
   // ============ DEPENDENCIES ============
 
   const isObject = dependencies.isObject
+  const storeOrder = dependencies.storeOrder
   const child$ = dependencies.child$
 
   // ============== COMPUTED ==============
-
-  /**
-  * The name of the element which should contain the order of the list item in case of an object list.
-  * 
-  * @type {string}
-  * @default null
-  */
-  const storeOrder = computedOption('storeOrder', schema, null)
 
   /**
   * The default order direction of list items when data is loaded. Possible values: `null`, `'ASC'`, `'DESC'`.
@@ -56,7 +49,6 @@ const base = function(props, context, dependencies, options)
 
   return {
     // Computed
-    storeOrder,
     order,
     orderBy,
 

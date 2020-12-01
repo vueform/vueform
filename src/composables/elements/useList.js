@@ -21,6 +21,7 @@ import usePrototype from './features/usePrototype'
 import useWatchPrototype from './features/useWatchPrototype'
 import useDebounce from './features/useDebounce'
 import usePath from './features/usePath'
+import useStoreOrder from './features/useStoreOrder'
 
 import { list as useValue } from './features/useValue'
 import { list as useData } from './features/useData'
@@ -44,6 +45,7 @@ export default function useList(props, context) {
   const prototype = usePrototype(props, context)
   const children = useChildren(props, context)
   const debounce = useDebounce(props, context)
+  const storeOrder = useStoreOrder(props, context)
 
   const default_ = useDefault(props, context, {
     nullValue: nullValue.nullValue
@@ -113,6 +115,7 @@ export default function useList(props, context) {
   const order = useOrder(props, context, {
     isObject: prototype.isObject,
     child$: children.child$,
+    storeOrder: storeOrder.storeOrder,
   })
 
   const data = useData(props, context, {
@@ -136,7 +139,7 @@ export default function useList(props, context) {
     nullValue: nullValue.nullValue,
     order: order.order,
     orderBy: order.orderBy,
-    storeOrder: order.storeOrder,
+    storeOrder: storeOrder.storeOrder,
     refreshOrderStore: order.refreshOrderStore,
 
     isObject: prototype.isObject,
@@ -207,5 +210,6 @@ export default function useList(props, context) {
     ...order,
     ...debounce,
     ...prototype,
+    ...storeOrder,
   }
 } 

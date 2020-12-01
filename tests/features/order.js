@@ -1,10 +1,6 @@
 import { nextTick } from 'vue'
 import { createForm, testComputedOption, prototypeAddOptions } from 'test-helpers'
 
-export const storeOrder = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'storeOrder', null, 'order')
-}
-
 export const order = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'order', null, 'DESC')
 }

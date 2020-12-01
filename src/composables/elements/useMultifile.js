@@ -22,6 +22,7 @@ import useDebounce from './features/useDebounce'
 import usePath from './features/usePath'
 import useInput from './features/useInput'
 import useMultifile from './features/useMultifile'
+import useStoreOrder from './features/useStoreOrder'
 
 import { multifile as usePrototype } from './features/usePrototype'
 import { list as useValue } from './features/useValue'
@@ -43,10 +44,14 @@ export default function (props, context) {
   const info = useInfo(props, context)
   const disabled = useDisabled(props, context)
   const nullValue = useNullValueArray(props, context)
-  const prototype = usePrototype(props, context)
   const children = useChildren(props, context)
   const debounce = useDebounce(props, context)
   const input = useInput(props, context)
+  const storeOrder = useStoreOrder(props, context)
+
+  const prototype = usePrototype(props, context, {
+    storeOrder: storeOrder.storeOrder,
+  })
 
   const default_ = useDefault(props, context, {
     nullValue: nullValue.nullValue
@@ -116,6 +121,7 @@ export default function (props, context) {
   const order = useOrder(props, context, {
     isObject: prototype.isObject,
     child$: children.child$,
+    storeOrder: storeOrder.storeOrder,
   })
 
   const data = useData(props, context, {
@@ -139,7 +145,7 @@ export default function (props, context) {
     nullValue: nullValue.nullValue,
     order: order.order,
     orderBy: order.orderBy,
-    storeOrder: order.storeOrder,
+    storeOrder: storeOrder.storeOrder,
     refreshOrderStore: order.refreshOrderStore,
 
     isObject: prototype.isObject,
@@ -154,6 +160,8 @@ export default function (props, context) {
     disabled: disabled.disabled,
     input: input.input,
     add: data.add,
+    isObject: prototype.isObject,
+    storeFile: prototype.storeFile,
   })
 
   const sort = useSort(props, context, {
@@ -218,5 +226,6 @@ export default function (props, context) {
     ...prototype,
     ...multifile,
     ...input,
+    ...storeOrder,
   }
 } 

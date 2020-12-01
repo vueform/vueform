@@ -5,6 +5,8 @@ export default function (props, context, dependencies)
   const disabled = dependencies.disabled
   const add = dependencies.add
   const input = dependencies.input
+  const isObject = dependencies.isObject
+  const storeFile = dependencies.storeFile
 
   // =============== METHODS ==============
 
@@ -20,10 +22,10 @@ export default function (props, context, dependencies)
     }
 
     _.each(e.target.files, (file) => {
-      add(file)
+      add(isObject.value ? {
+        [storeFile.value]: file
+      } : file)
     })
-
-    input.value = ''
   }
 
   /**

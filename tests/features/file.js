@@ -743,7 +743,7 @@ export const uploadTemp = function (elementType, elementName, options) {
 
   it('should send file to upload endpoint & update with return value in `uploadTemp`', async () => {
     let form = createForm({
-      key: 'aaa',
+      key: 'key',
       schema: {
         el: {
           type: elementType,
@@ -786,7 +786,7 @@ export const uploadTemp = function (elementType, elementName, options) {
 
     expect(axiosMock.mock.calls[0][1] instanceof FormData).toBe(true)
     expect(axiosMock.mock.calls[0][1].get('file')).toStrictEqual(file)
-    expect(axiosMock.mock.calls[0][1].get('key')).toStrictEqual('aaa')
+    expect(axiosMock.mock.calls[0][1].get('key')).toStrictEqual('key')
     expect(axiosMock.mock.calls[0][1].get('path')).toStrictEqual('el')
 
     expect(el.value).toStrictEqual(tmp)
@@ -794,7 +794,7 @@ export const uploadTemp = function (elementType, elementName, options) {
 
   it('should set `progress` during `uploadTemp`', async () => {
     let form = createForm({
-      key: 'aaa',
+      key: 'key',
       schema: {
         el: {
           type: elementType,
@@ -840,7 +840,7 @@ export const uploadTemp = function (elementType, elementName, options) {
 
   it('should set progress to 0 on `uploadTemp` if the response is an error', async () => {
     let form = createForm({
-      key: 'aaa',
+      key: 'key',
       schema: {
         el: {
           type: elementType,
@@ -924,7 +924,7 @@ export const uploadTemp = function (elementType, elementName, options) {
     let onChangeMock = jest.fn()
 
     let form = createForm({
-      key: 'aaa',
+      key: 'key',
       schema: {
         el: {
           type: elementType,
