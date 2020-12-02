@@ -1,7 +1,7 @@
 import { nextTick } from 'vue'
 import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
 import defaultTheme from './../../src/themes/default'
-import { mergeComponentClasses } from './../../src/utils/mergeClasses'
+import { mergeComponentClasses, mergeClass } from './../../src/utils/mergeClasses'
 
 export const addClasses = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'addClasses', {}, {
@@ -172,11 +172,11 @@ export const classes = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses1[mainClass])
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses1[mainClass], mergeWith[mainClass] || ''))
 
     el.form$.addClasses[elementName] = addClasses2
 
-    expect(el.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses2[mainClass])
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses2[mainClass], mergeWith[mainClass] || ''))
   })
 
   // Element classes
@@ -315,11 +315,11 @@ export const classes = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses1[mainClass])
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses1[mainClass], mergeWith[mainClass] || ''))
 
     el.addClasses[elementName] = addClasses2
 
-    expect(el.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses2[mainClass])
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses2[mainClass], mergeWith[mainClass] || ''))
   })
 
   it('should addClasses in both form and element add classes in `classes`, even when changes', () => {
@@ -352,12 +352,18 @@ export const classes = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClassesForm1[mainClass] + ' ' + addClassesElement1[mainClass])
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass(
+      defaultClasses[mainClass] + ' ' + addClassesForm1[mainClass] + ' ' + addClassesElement1[mainClass],
+      mergeWith[mainClass] || ''
+    ))
 
     el.form$.addClasses[elementName] = addClassesForm2
     el.addClasses[elementName] = addClassesElement2
 
-    expect(el.classes[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClassesForm2[mainClass] + ' ' + addClassesElement2[mainClass])
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass(
+      defaultClasses[mainClass] + ' ' + addClassesForm2[mainClass] + ' ' + addClassesElement2[mainClass],
+      mergeWith[mainClass] || ''
+    ))
   })
 }
 

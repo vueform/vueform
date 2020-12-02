@@ -1,0 +1,1 @@
+export * from './watchPrototype_multifile'

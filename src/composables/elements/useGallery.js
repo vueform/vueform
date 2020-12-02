@@ -24,7 +24,7 @@ import useInput from './features/useInput'
 import useMultifile from './features/useMultifile'
 import useStoreOrder from './features/useStoreOrder'
 
-import { multifile as usePrototype } from './features/usePrototype'
+import { gallery as usePrototype } from './features/usePrototype'
 import { multifile as useDrop } from './features/useDrop'
 import { multifile as useData } from './features/useData'
 import { list as useValue } from './features/useValue'

@@ -37,7 +37,7 @@ import DateElement from './components/elements/DateElement'
 import DatesElement from './components/elements/DatesElement'
 import DatetimeElement from './components/elements/DatetimeElement'
 import FileElement from './components/elements/FileElement'
-// import GalleryElement from './components/elements/GalleryElement'
+import GalleryElement from './components/elements/GalleryElement'
 import GroupElement from './components/elements/GroupElement'
 import HiddenElement from './components/elements/HiddenElement'
 import ImageElement from './components/elements/ImageElement'
@@ -139,7 +139,7 @@ export default {
     DatetimeElement,
     FileElement,
     GroupElement,
-    // GalleryElement,
+    GalleryElement,
     HiddenElement,
     ImageElement,
     KeyElement,

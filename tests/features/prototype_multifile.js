@@ -48,7 +48,7 @@ export const prototype = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.prototype).toStrictEqual({
-      type: 'file',
+      type: options.fileType,
       auto: el.auto,
     })
   })
@@ -68,7 +68,7 @@ export const prototype = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.prototype).toStrictEqual({
-      type: 'file',
+      type: options.fileType,
       auto: el.auto,
       url: '/uploads/'
     })
@@ -90,7 +90,7 @@ export const prototype = function (elementType, elementName, options) {
       type: 'object',
       schema: {
         file: {
-          type: 'file',
+          type: options.fileType,
           auto: el.auto,
         }
       }
@@ -114,7 +114,7 @@ export const prototype = function (elementType, elementName, options) {
       type: 'object',
       schema: {
         filename: {
-          type: 'file',
+          type: options.fileType,
           auto: el.auto,
         }
       }
@@ -140,7 +140,7 @@ export const prototype = function (elementType, elementName, options) {
       type: 'object',
       schema: {
         file: {
-          type: 'file',
+          type: options.fileType,
           auto: el.auto,
           url: '/uploads/',
         }
@@ -165,7 +165,7 @@ export const prototype = function (elementType, elementName, options) {
       type: 'object',
       schema: {
         file: {
-          type: 'file',
+          type: options.fileType,
           auto: el.auto,
         },
         order: {
@@ -196,7 +196,7 @@ export const prototype = function (elementType, elementName, options) {
       type: 'object',
       schema: {
         file: {
-          type: 'file',
+          type: options.fileType,
           auto: el.auto,
         },
         label: {

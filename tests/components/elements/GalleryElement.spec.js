@@ -1,14 +1,14 @@
 import { runElementTests } from 'test-helpers'
 
-export default runElementTests('multifile', {
+export default runElementTests('gallery', {
   default: {
     initial: 0,
-    fileType: 'file',
+    fileType: 'image',
     prototypes: [
       {
         auto: false,
         element: {
-          type: 'file'
+          type: 'image'
         }
       },
       {
@@ -16,7 +16,7 @@ export default runElementTests('multifile', {
         object: {
           schema: {
             file: {
-              type: 'file'
+              type: 'image'
             }
           }
         },

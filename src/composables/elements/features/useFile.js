@@ -24,6 +24,7 @@ const base = function (props, context, dependencies)
   const fire = dependencies.fire
   const isImageType = dependencies.isImageType
   const listeners = dependencies.listeners
+  const removing = dependencies.removing
 
   // ================ DATA ================
 
@@ -133,7 +134,7 @@ const base = function (props, context, dependencies)
   })
 
   const canRemove = computed(() => {
-    return stage.value > 0 && !uploading.value && !disabled.value && !preparing.value
+    return stage.value > 0 && !uploading.value && !disabled.value && !preparing.value && !removing.value
   })
 
   const canUploadTemp = computed(() => {
@@ -198,10 +199,7 @@ const base = function (props, context, dependencies)
   }
 
   const remove = async () => {
-    const file = value.value
-    const progressTemp = progress.value
-
-    progress.value = 0
+    removing.value = true
 
     try {
       if (stage.value === 3) {
@@ -209,27 +207,22 @@ const base = function (props, context, dependencies)
           return false
         }
 
-        update(null)
-        await form$.value.$laraform.services.axios[methods.value.remove](endpoints.value.remove, { file: file })
+        await form$.value.$laraform.services.axios[methods.value.remove](endpoints.value.remove, { file: value.value })
       }
 
       else if (stage.value === 2) {
-        update(null)
-        await form$.value.$laraform.services.axios[methods.value.removeTemp](endpoints.value.removeTemp, { file: file.tmp })
-      }
-
-      else {
-        update(null)
+        await form$.value.$laraform.services.axios[methods.value.removeTemp](endpoints.value.removeTemp, { file: value.value.tmp })
       }
     } catch (e) {
-      progress.value = progressTemp
-
-      update(previousValue.value)
-
       handleError(form$.value.__(`laraform.elements.${schema.value.type}.removeError`), e)
-
       return
+    } finally {
+      removing.value = false
     }
+
+    update(null)
+
+    progress.value = 0
 
     context.emit('remove')
     

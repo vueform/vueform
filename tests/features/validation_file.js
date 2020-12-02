@@ -29,6 +29,26 @@ export const busy = function (elementType, elementName, options) {
 
     expect(el.busy).toBe(false)
   })
+
+  it('should have `busy` "true" when removing', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+    
+    el.removing = true
+
+    expect(el.busy).toBe(true)
+    
+    el.removing = false
+
+    expect(el.busy).toBe(false)
+  })
 }
 
 export const validate = function (elementType, elementName, options) {

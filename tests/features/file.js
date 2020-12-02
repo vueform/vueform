@@ -621,6 +621,38 @@ export const canRemove = function (elementType, elementName, options) {
     
     expect(el.canRemove).toStrictEqual(false)
   })
+
+  it('should false for `canRemove` if stage is > 0 & removing', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.removing = true
+
+    expect(el.canRemove).toStrictEqual(false)
+
+    el.load(new File([''], 'filename'))
+
+    expect(el.canRemove).toStrictEqual(false)
+
+    el.load({
+      tmp: 'tmp123',
+      originalName: 'filename'
+    })
+
+    expect(el.canRemove).toStrictEqual(false)
+
+    el.load('filename')
+    
+    expect(el.canRemove).toStrictEqual(false)
+  })
 }
 
 export const canUploadTemp = function (elementType, elementName, options) {
@@ -1061,6 +1093,44 @@ export const remove = function (elementType, elementName, options) {
     expect(el.progress).toBe(0)
   })
 
+  it('should set "removing" true when `remove` starts and false when finishes even with an error', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.axios.post = jest.fn(() => Promise.reject({ data: 'value' }))
+
+    el.load({
+      tmp: 'tmp123',
+      originalName: 'filename.jpg'
+    })
+
+    el.remove()
+
+    expect(el.removing).toBe(true)
+
+    await flushPromises()
+
+    expect(el.removing).toBe(false)
+
+    el.axios.post = jest.fn(() => Promise.resolve({ data: 'value' }))
+
+    el.remove()
+
+    expect(el.removing).toBe(true)
+
+    await flushPromises()
+
+    expect(el.removing).toBe(false)
+  })
+
   it('should emit `remove` event on `remove`', () => {
     let form = createForm({
       schema: {
@@ -1079,7 +1149,7 @@ export const remove = function (elementType, elementName, options) {
     expect(elWrapper.emitted().remove).toBeTruthy()
   })
 
-  it('should call remove temp endpoint when removed in stage 2', () => {
+  it('should call remove temp endpoint when removed in stage 2', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -1106,13 +1176,15 @@ export const remove = function (elementType, elementName, options) {
 
     el.remove()
 
+    await flushPromises()
+
     expect(axiosMock).toHaveBeenCalled()
     expect(axiosMock.mock.calls[0][1]).toStrictEqual({
       file: tmp.tmp
     })
   })
 
-  it('should restore file & progress when removed in stage 2 with error', async () => {
+  it('should not remove file and null progress when removed in stage 2 with error', async () => {
     let errorMock = jest.fn()
 
     let form = createForm({
@@ -1148,7 +1220,7 @@ export const remove = function (elementType, elementName, options) {
     expect(errorMock).toHaveBeenCalled()
     
     expect(el.value).toStrictEqual(tmp)
-    expect(el.progress).toBe(100)
+    expect(el.progress).toStrictEqual(100)
   })
 
   it('should call remove file endpoint when removed in stage 3', () => {
@@ -1210,7 +1282,7 @@ export const remove = function (elementType, elementName, options) {
     expect(axiosMock).not.toHaveBeenCalled()
   })
 
-  it('should restore file & progress when removed in stage 3 with error', async () => {
+  it('should not remove file and null progress when removed in stage 2 with error', async () => {
     let errorMock = jest.fn()
 
     let form = createForm({
@@ -1227,12 +1299,12 @@ export const remove = function (elementType, elementName, options) {
 
     let axiosMock = jest.fn(() => Promise.reject({ data: 'value' }))
 
-    let file = 'filename.jpg'
+    let tmp = 'filename.jpg'
 
     el.axios.post = axiosMock
 
     el.progress = 100
-    el.load(file)
+    el.load(tmp)
 
     expect(el.stage).toBe(3)
 
@@ -1242,8 +1314,8 @@ export const remove = function (elementType, elementName, options) {
 
     expect(errorMock).toHaveBeenCalled()
     
-    expect(el.value).toStrictEqual(file)
-    expect(el.progress).toBe(100)
+    expect(el.value).toStrictEqual(tmp)
+    expect(el.progress).toStrictEqual(100)
   })
 
   it('should call "updated" when `handleChange` updates value', async () => {

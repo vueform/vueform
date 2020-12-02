@@ -142,8 +142,53 @@ const list = function(props, context, dependencies)
   }
 }
 
+const file = function(props, context, dependencies)
+{
+  const { schema } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const { class: class_, mainClass, classes: baseClasses, addClasses, defaultClasses } = base(props, context, dependencies)
+
+  const form$ = dependencies.form$
+  const removing = dependencies.removing
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`.
+   * 
+   * @type {object}
+   */
+  const classes = computed({
+    get() {
+      let classes = _.clone(baseClasses.value)
+
+      classes = mergeComponentClasses(classes, {
+        [mainClass.value]: {
+          [classes.removing]: removing.value,
+        },
+      })
+
+      return classes
+    },
+    set(val) {
+      form$.value.$set(schema.value, 'classes', val)
+    }
+  })
+
+  return {
+    class: class_,
+    classes,
+    mainClass,
+    addClasses,
+    defaultClasses,
+  }
+}
+
 export {
   list,
+  file,
 }
 
 export default base

@@ -7,7 +7,6 @@ import useConditions from './../useConditions'
 import useDefault from './features/useDefault'
 import useNullValue from './features/useNullValue'
 import useLabel from './features/useLabel'
-import useClasses from './features/useClasses'
 import useId from './features/useId'
 import useColumns from './features/useColumns'
 import useDescription from './features/useDescription'
@@ -24,11 +23,13 @@ import useImage from './features/useImage'
 import useRequest from './features/useRequest'
 import useData from './features/useData'
 import useDrop from './features/useDrop'
+import useRemoving from './features/useRemoving'
 
 import { image as useBaseElement } from './features/useBaseElement'
 import { file as useValue } from './features/useValue'
 import { file as useValidation } from './features/useValidation'
 import { file as useGenericName } from './features/useGenericName'
+import { file as useClasses } from './features/useClasses'
 
 export default function (props, context) {
   const { schema } = toRefs(props)
@@ -44,6 +45,7 @@ export default function (props, context) {
   const debounce = useDebounce(props, context)
   const disabled = useDisabled(props, context)
   const nullValue = useNullValue(props, context)
+  const removing = useRemoving(props, context)
 
   const request = useRequest(props, context, {
     form$: form$.form$,
@@ -69,6 +71,7 @@ export default function (props, context) {
     path: path.path,
     value: value.value,
     uploading: request.uploading,
+    removing: removing.removing,
   })
 
   const events = useEvents(props, context, {
@@ -111,6 +114,7 @@ export default function (props, context) {
     request: request.request,
     axios: request.axios,
     isImageType: baseElement.isImageType,
+    removing: removing.removing,
   })
   
   const drop = useDrop(props, context, {
@@ -146,6 +150,7 @@ export default function (props, context) {
   const classes = useClasses(props, context, {
     form$: form$.form$,
     theme: theme.theme,
+    removing: removing.removing,
   })
 
   const columns = useColumns(props, context, {
@@ -206,5 +211,6 @@ export default function (props, context) {
     ...image,
     ...request,
     ...drop,
+    ...removing,
   }
 } 

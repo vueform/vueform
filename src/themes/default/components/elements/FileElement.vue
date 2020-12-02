@@ -96,8 +96,15 @@
           uploadButton: 'btn btn-primary btn-upload-temp',
           removeButton: 'btn btn-light btn-remove-file',
           abortButton: 'btn btn-danger btn-abort-upload',
+          removing: 'removing',
         }
       }
     }
   }
 </script>
+
+<style>
+  .removing {
+    opacity: 0.6;
+  }
+</style>

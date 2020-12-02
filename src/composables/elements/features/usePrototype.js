@@ -34,13 +34,19 @@ const base = function(props, context, dependencies)
   }
 }
 
-const multifile = function(props, context, dependencies)
+const multifile = function(props, context, dependencies, options = {})
 {
   const { schema } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
   const storeOrder = dependencies.storeOrder
+
+  // =============== PRIVATE ==============
+
+  const type = computed(() => {
+    return options.type || 'file'
+  })
 
   // ============== COMPUTED ==============
 
@@ -62,7 +68,7 @@ const multifile = function(props, context, dependencies)
   const prototype = computed(() => {
     if (!isObject.value) {
       return Object.assign({}, {
-        type: 'file',
+        type: type.value,
         auto: auto.value,
       }, file.value)
     }
@@ -72,8 +78,8 @@ const multifile = function(props, context, dependencies)
       schema: Object.assign({},
         // File
         {[storeFile.value]: Object.assign({}, {
-          type: 'file',
-        auto: auto.value,
+          type: type.value,
+          auto: auto.value,
         }, file.value)},
 
         // Order
@@ -110,8 +116,20 @@ const multifile = function(props, context, dependencies)
   }
 }
 
+const gallery = function(props, context, dependencies)
+{
+  const useMultifile = multifile(props, context, dependencies, {
+    type: 'image'
+  })
+
+  return {
+    ...useMultifile,
+  }
+}
+
 export {
   multifile,
+  gallery,
 }
 
 export default base

@@ -1085,6 +1085,7 @@ const file = function(props, context, dependencies)
   const form$ = dependencies.form$
   const value = dependencies.value
   const uploading = dependencies.uploading
+  const removing = dependencies.removing
 
   const { 
     state, Validators, messageBag, rules, messages, dirty, validated,
@@ -1100,7 +1101,7 @@ const file = function(props, context, dependencies)
    * @type {boolean}
    */
   const busy = computed(() => {
-    return pending.value || debouncing.value || uploading.value
+    return pending.value || debouncing.value || uploading.value || removing.value
   })
 
   // =============== METHODS ==============

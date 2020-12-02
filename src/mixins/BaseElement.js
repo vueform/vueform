@@ -25,6 +25,12 @@ export default {
       required: false,
       default: () => ({})
     },
+    
+    embed: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
   },
   computed: {
     el$() {
