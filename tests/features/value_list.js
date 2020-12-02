@@ -19,6 +19,7 @@ export const value = function (elementType, elementName, options) {
         schema: {
           el: Object.assign({}, {
             type: elementType,
+            auto: false,
             default: values
           }, prototype)
         }
@@ -38,6 +39,7 @@ export const value = function (elementType, elementName, options) {
         schema: {
           el: Object.assign({}, {
             type: elementType,
+            auto: false,
           }, prototype)
         }
       })

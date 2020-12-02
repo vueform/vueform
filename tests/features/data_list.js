@@ -636,8 +636,11 @@ export const load = function (elementType, elementName, options) {
     })
   })
 
-  it('should should format data if "formatData" is "true" on `load`', async () => {
+  it('should should format data if "format" is "true" on `load`', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
+      let elFormatLoadMock = jest.fn()
+      let childFormatLoadMock = jest.fn()
+
       let form = createForm({
         schema: {
           el: Object.assign({}, {
@@ -668,13 +671,16 @@ export const load = function (elementType, elementName, options) {
         replacePrototypeValue(options.childValues[i], 2),
       ]
       
-      el.load(values)
+      el.load(values, true)
 
       expect(el.instances.length).toBe(3)
 
       await nextTick()
 
       expect(el.value).toStrictEqual(values)
+
+      expect(elFormatLoadMock).toHaveBeenCalled()
+      expect(childFormatLoadMock).toHaveBeenCalled()
     })
   })
 

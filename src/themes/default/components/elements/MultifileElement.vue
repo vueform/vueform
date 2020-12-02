@@ -1,8 +1,25 @@
 <template>
-  <component :is="layout">
+  <component :is="layout" @vnode-before-update="handleLayoutBeforeUpdate">
     
     <template v-slot:field>
       <slot name="prefix"></slot>
+
+      <!-- Drag n drop -->
+      <component
+        v-if="drop && canDrop && !disabled"
+        :is="components.DragAndDrop"
+        :title="__(`laraform.elements.${type}.dndTitle`)"
+        :description="__(`laraform.elements.${type}.dndDescription`)"
+        @click="handleClick"
+        @drop="handleDrop"
+      />
+      <!-- Upload button -->
+      <a
+        v-else-if="!disabled"
+        href=""
+        :class="classes.selectButton"
+        @click.prevent="handleClick"
+      >{{ __('laraform.elements.multifile.uploadButton') }}</a>
       
       <!-- Actual input field -->
       <input
@@ -13,13 +30,6 @@
         :disabled="disabled"
         ref="input" 
       />
-
-      <!-- Upload button -->
-      <a
-        href=""
-        :class="classes.uploadButton"
-        @click.prevent="handleClick"
-      >{{ __('laraform.elements.multifile.uploadButton') }}</a>
 
       <div v-sortable="sortable" :class="classes.element">
         <component
@@ -61,9 +71,10 @@
       return {
         defaultClasses: {
           container: 'lf-multifile',
-          element: 'form-group',
-          uploadButton: 'btn btn-light uploader-button',
-          listRemove: 'list-remove',
+          element: 'list-element-container',
+          sortable: 'list-element-container-sortable',
+          disabled: 'disabled',
+          selectButton: 'btn btn-light btn-select-file',
         },
         containers: {
           sortable: 'element',

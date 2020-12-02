@@ -97,6 +97,7 @@ export default function (props, context) {
   
   const drop = useDrop(props, context, {
     update: data.update,
+    disabled: disabled.disabled,
   })
 
   const image = useImage(props, context, {

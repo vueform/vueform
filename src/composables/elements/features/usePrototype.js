@@ -44,13 +44,15 @@ const multifile = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  const auto = computedOption('auto', schema, true)
+
   const object = computedOption('object', schema, false)
 
   const file = computedOption('file', schema, {})
 
-  const storeFile = computedOption('storeFile', schema, object.value ? 'file' : null)
-
   const fields = computedOption('fields', schema, {})
+
+  const storeFile = computedOption('storeFile', schema, object.value || _.keys(fields.value).length || storeOrder.value ? 'file' : null)
 
   /**
     * The schema of a child.
@@ -61,6 +63,7 @@ const multifile = function(props, context, dependencies)
     if (!isObject.value) {
       return Object.assign({}, {
         type: 'file',
+        auto: auto.value,
       }, file.value)
     }
 
@@ -69,7 +72,8 @@ const multifile = function(props, context, dependencies)
       schema: Object.assign({},
         // File
         {[storeFile.value]: Object.assign({}, {
-          type: 'file'
+          type: 'file',
+        auto: auto.value,
         }, file.value)},
 
         // Order
@@ -91,11 +95,12 @@ const multifile = function(props, context, dependencies)
    * @type {boolean}
    */
   const isObject = computed(() => {
-    return object.value || storeFile.value || storeOrder.value || _.keys(fields.value).length
+    return !!object.value || !!storeFile.value || !!storeOrder.value || !!_.keys(fields.value).length
   })
 
   return {
     // Computed
+    auto,
     object,
     file,
     storeFile,

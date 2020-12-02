@@ -9,14 +9,14 @@ export const child$ = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          initial: 1,
+          initial: 0,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.child$).toStrictEqual([])
+    expect(el.child$.length).toBe(0)
   })
 
   it('should `child$` contain instances of child components', async () => {

@@ -1,5 +1,5 @@
 export default function prototypeChildType(prototype) {
-  let key = _.keys(prototype)[0]
+  let key = prototype.element !== undefined ? 'element' : 'object'
 
   return key == 'element' ? prototype.element.type : 'object'
 }

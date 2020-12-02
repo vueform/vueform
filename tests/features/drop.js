@@ -71,6 +71,31 @@ export const handleDrop = function (elementType, elementName, options) {
     expect(el.value).toStrictEqual(file)
     expect(el.dirty).toBe(true)
   })
+
+  it('should not update file on `handleDrop` when disbled', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+          disabled: true,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    let file = new File([''], 'filename.jpg')
+
+    el.handleDrop({
+      dataTransfer: {
+        files: [file]
+      }
+    })
+
+    expect(el.value).toStrictEqual(el.null)
+    expect(el.dirty).toBe(false)
+  })
 }
 
 export const rendering = function (elementType, elementName, options) {
@@ -96,8 +121,6 @@ export const rendering = function (elementType, elementName, options) {
     expect(DragAndDrop.length).toBe(1)
 
     el.disable()
-
-    expect(el.canSelect).toBe(false)
     
     await nextTick()
 

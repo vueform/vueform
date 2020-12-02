@@ -25,8 +25,9 @@ import useMultifile from './features/useMultifile'
 import useStoreOrder from './features/useStoreOrder'
 
 import { multifile as usePrototype } from './features/usePrototype'
+import { multifile as useDrop } from './features/useDrop'
+import { multifile as useData } from './features/useData'
 import { list as useValue } from './features/useValue'
-import { list as useData } from './features/useData'
 import { list as useClasses } from './features/useClasses'
 import { list as useChildren } from './features/useChildren'
 import { list as useValidation } from './features/useValidation'
@@ -156,6 +157,13 @@ export default function (props, context) {
     initial: 0
   })
 
+  const drop = useDrop(props, context, {
+    add: data.add,
+    disabled: disabled.disabled,
+    isObject: prototype.isObject,
+    storeFile: prototype.storeFile,
+  })
+
   const multifile = useMultifile(props, context, {
     disabled: disabled.disabled,
     input: input.input,
@@ -227,5 +235,6 @@ export default function (props, context) {
     ...multifile,
     ...input,
     ...storeOrder,
+    ...drop,
   }
 } 

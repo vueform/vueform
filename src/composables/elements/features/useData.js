@@ -531,7 +531,7 @@ const list = function(props, context, dependencies, options)
 
     nextTick(() => {
       _.each(orderValue(formatted), (childValue, i) => {
-        child$.value[i].load(childValue)
+        child$.value[i].load(childValue, format)
       })
     })
 
@@ -882,6 +882,19 @@ const trix = function(props, context, dependencies)
   }
 }
 
+const multifile = function(props, context, dependencies, options)
+{
+  // ============ DEPENDENCIES =============
+
+  const useList = list(props, context, dependencies, options)
+
+  delete useList.initial
+
+  return {
+    ...useList,
+  }
+}
+
 export {
   date,
   dates,
@@ -890,6 +903,7 @@ export {
   multilingual,
   object,
   trix,
+  multifile,
 }
 
 export default base

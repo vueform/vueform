@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, prototypeChildType, prototypeAddChildOptions } from 'test-helpers'
+import { createForm, prototypeChildType, prototypeAddChildOptions, prototypeChildName } from 'test-helpers'
 import {
   dirty as baseDirty, validated as baseValidated, pending as basePending, debouncing as baseDebouncing,
   busy as baseBusy, errors as baseErrors, error as baseError
@@ -31,7 +31,7 @@ export const dirty = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
+      let child = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
 
       expect(el.dirty).toBe(false)
 
@@ -64,8 +64,8 @@ export const validated = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
-      let child1 = form.vm.el$(`el.${childType == 'object' ? '1.child' : '1'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
+      let child1 = form.vm.el$(`el.${childType == 'object' ? `1.${prototypeChildName(prototype)}` : '1'}`)
 
       expect(el.validated).toBe(false)
 
@@ -95,7 +95,7 @@ export const validated = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
 
       expect(el.validated).toBe(false)
 
@@ -177,7 +177,7 @@ export const invalid = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
 
       child0.update('value')
 
@@ -206,8 +206,8 @@ export const invalid = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
-      let child1 = form.vm.el$(`el.${childType == 'object' ? '1.child' : '1'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
+      let child1 = form.vm.el$(`el.${childType == 'object' ? `1.${prototypeChildName(prototype)}` : '1'}`)
 
       child0.update('value')
       child1.update('value2')
@@ -245,8 +245,8 @@ export const pending = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
-      let child1 = form.vm.el$(`el.${childType == 'object' ? '1.child' : '1'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
+      let child1 = form.vm.el$(`el.${childType == 'object' ? `1.${prototypeChildName(prototype)}` : '1'}`)
 
       child0.$laraform.services.axios.post = axiosPostMock
       child1.$laraform.services.axios.post = axiosPostMock
@@ -284,7 +284,7 @@ export const debouncing = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
 
       child0.validate()
 
@@ -321,8 +321,8 @@ export const busy = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
-      let child1 = form.vm.el$(`el.${childType == 'object' ? '1.child' : '1'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
+      let child1 = form.vm.el$(`el.${childType == 'object' ? `1.${prototypeChildName(prototype)}` : '1'}`)
 
       child0.$laraform.services.axios.post = axiosPostMock
       child1.$laraform.services.axios.post = axiosPostMock
@@ -354,7 +354,7 @@ export const busy = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
 
       child0.validate()
 
@@ -448,8 +448,8 @@ export const validate = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
-      let child1 = form.vm.el$(`el.${childType == 'object' ? '1.child' : '1'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
+      let child1 = form.vm.el$(`el.${childType == 'object' ? `1.${prototypeChildName(prototype)}` : '1'}`)
 
       expect(el.validated).toBe(false)
       expect(child0.validated).toBe(false)
@@ -487,8 +487,8 @@ export const validateValidators = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
-      let child1 = form.vm.el$(`el.${childType == 'object' ? '1.child' : '1'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
+      let child1 = form.vm.el$(`el.${childType == 'object' ? `1.${prototypeChildName(prototype)}` : '1'}`)
 
       expect(el.state.validated).toBe(false)
       expect(child0.validated).toBe(false)
@@ -554,8 +554,8 @@ export const validateChildren = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
-      let child1 = form.vm.el$(`el.${childType == 'object' ? '1.child' : '1'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
+      let child1 = form.vm.el$(`el.${childType == 'object' ? `1.${prototypeChildName(prototype)}` : '1'}`)
 
       expect(el.state.validated).toBe(false)
       expect(child0.validated).toBe(false)
@@ -589,8 +589,8 @@ export const validateChildren = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
-      let child1 = form.vm.el$(`el.${childType == 'object' ? '1.child' : '1'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
+      let child1 = form.vm.el$(`el.${childType == 'object' ? `1.${prototypeChildName(prototype)}` : '1'}`)
 
       expect(child0.validated).toBe(false)
       expect(child1.validated).toBe(false)
@@ -627,8 +627,8 @@ export const clean = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
-      let child1 = form.vm.el$(`el.${childType == 'object' ? '1.child' : '1'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
+      let child1 = form.vm.el$(`el.${childType == 'object' ? `1.${prototypeChildName(prototype)}` : '1'}`)
 
       el.dirt()
       child0.dirt()
@@ -664,8 +664,8 @@ export const resetValidators = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child0 = form.vm.el$(`el.${childType == 'object' ? '0.child' : '0'}`)
-      let child1 = form.vm.el$(`el.${childType == 'object' ? '1.child' : '1'}`)
+      let child0 = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
+      let child1 = form.vm.el$(`el.${childType == 'object' ? `1.${prototypeChildName(prototype)}` : '1'}`)
 
       el.validate()
 

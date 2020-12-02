@@ -10,6 +10,7 @@ import findAll from './findAll'
 import installLaraform from './installLaraform'
 import prototypeAddOptions from './prototypeAddOptions'
 import prototypeAddChildOptions from './prototypeAddChildOptions'
+import prototypeChildName from './prototypeChildName'
 import prototypeChildSchema from './prototypeChildSchema'
 import prototypeChildType from './prototypeChildType'
 import prototypeInputType from './prototypeInputType'
@@ -54,6 +55,7 @@ export {
   installLaraform,
   prototypeAddOptions,
   prototypeAddChildOptions,
+  prototypeChildName,
   prototypeChildSchema,
   prototypeChildType,
   prototypeInputType,
