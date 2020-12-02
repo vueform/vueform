@@ -157,19 +157,20 @@ export default function (props, context) {
     initial: 0
   })
 
-  const drop = useDrop(props, context, {
-    add: data.add,
-    disabled: disabled.disabled,
-    isObject: prototype.isObject,
-    storeFile: prototype.storeFile,
-  })
-
   const multifile = useMultifile(props, context, {
     disabled: disabled.disabled,
     input: input.input,
     add: data.add,
     isObject: prototype.isObject,
     storeFile: prototype.storeFile,
+  })
+
+  const drop = useDrop(props, context, {
+    add: data.add,
+    disabled: disabled.disabled,
+    isObject: prototype.isObject,
+    storeFile: prototype.storeFile,
+    accept: multifile.accept,
   })
 
   const sort = useSort(props, context, {

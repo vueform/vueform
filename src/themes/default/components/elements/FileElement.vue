@@ -28,6 +28,7 @@
         v-show="false"
         type="file"
         :id="id"
+        :accept="accept"
         @change="handleChange"
         ref="input"
       />

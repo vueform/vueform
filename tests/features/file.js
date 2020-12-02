@@ -94,6 +94,10 @@ export const preparing = function (elementType, elementName, options) {
   })
 }
 
+export const accept = function (elementType, elementName, options) {
+  testComputedOption(it, elementType, 'accept', null, ['.jpg', '.png'])
+}
+
 export const clickable = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'clickable', true, false)
 }

@@ -94,11 +94,6 @@ export default function (props, context) {
     nullValue: nullValue.nullValue,
     dirt: validation.dirt,
   })
-  
-  const drop = useDrop(props, context, {
-    update: data.update,
-    disabled: disabled.disabled,
-  })
 
   const file = useFile(props, context, {
     form$: form$.form$,
@@ -118,6 +113,12 @@ export default function (props, context) {
     request: request.request,
     axios: request.axios,
     isImageType: baseElement.isImageType,
+  })
+  
+  const drop = useDrop(props, context, {
+    update: data.update,
+    disabled: disabled.disabled,
+    accept: file.accept,
   })
 
   const empty = useEmpty(props, context, {

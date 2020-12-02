@@ -27,6 +27,7 @@
         multiple
         type="file"
         @change="handleChange"
+        :accept="accept"
         :disabled="disabled"
         ref="input" 
       />

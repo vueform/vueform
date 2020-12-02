@@ -1,4 +1,5 @@
 import computedOption from './../../../utils/computedOption'
+import checkFileType from './../../../utils/checkFileType'
 import { computed, toRefs } from 'composition-api'
 
 const base = function(props, context, dependencies)
@@ -9,6 +10,7 @@ const base = function(props, context, dependencies)
 
   const update = dependencies.update
   const disabled = dependencies.disabled
+  const accept = dependencies.accept
   
   // ============== COMPUTED ==============
 
@@ -32,6 +34,10 @@ const base = function(props, context, dependencies)
 
     let file = e.dataTransfer.files[0]
 
+    if (!checkFileType(file, accept.value)) {
+      return
+    }
+
     update(file || null)
   }
 
@@ -50,6 +56,7 @@ const multifile = function(props, context, dependencies)
   const disabled = dependencies.disabled
   const isObject = dependencies.isObject
   const storeFile = dependencies.storeFile
+  const accept = dependencies.accept
 
   const { drop, canDrop } = base(props, context, dependencies)
 
@@ -61,6 +68,10 @@ const multifile = function(props, context, dependencies)
     }
 
     _.each(e.dataTransfer.files, (file) => {
+      if (!checkFileType(file, accept.value)) {
+        return
+      }
+      
       add(isObject.value ? {
         [storeFile.value]: file
       } : file)

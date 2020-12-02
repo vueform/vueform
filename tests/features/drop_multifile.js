@@ -86,4 +86,31 @@ export const handleDrop = function (elementType, elementName, options) {
 
     expect(el.value).toStrictEqual(el.nullValue)
   })
+
+  it('should not add files on `handleDrop` when not in accept', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+          accept: ['.png']
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    let file = new File([''], 'filename.png')
+    let file2 = new File([''], 'filename2.jpg')
+
+    el.handleDrop({
+      dataTransfer: {
+        files: [file, file2]
+      }
+    })
+
+    await nextTick()
+
+    expect(el.value).toStrictEqual([file])
+  })
 }

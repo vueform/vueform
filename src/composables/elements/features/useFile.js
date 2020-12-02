@@ -37,6 +37,8 @@ const base = function (props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  const accept = computedOption('accept', schema, null)
+
   const clickable = computedOption('clickable', schema, true)
 
   const auto = computedOption('auto', schema, true)
@@ -337,6 +339,7 @@ const base = function (props, context, dependencies)
 
   return {
     // Data
+    accept,
     file,
     base64,
     progress,

@@ -1,5 +1,10 @@
+import computedOption from './../../../utils/computedOption'
+import { toRefs } from 'composition-api'
+
 export default function (props, context, dependencies)
 {
+  const { schema } = toRefs(props)
+
   // ============ DEPENDENCIES ============
 
   const disabled = dependencies.disabled
@@ -7,6 +12,10 @@ export default function (props, context, dependencies)
   const input = dependencies.input
   const isObject = dependencies.isObject
   const storeFile = dependencies.storeFile
+
+  // ============== COMPUTED ==============
+
+  const accept = computedOption('accept', schema, null)
 
   // =============== METHODS ==============
 
@@ -43,6 +52,7 @@ export default function (props, context, dependencies)
   }
 
   return {
+    accept,
     handleChange,
     handleClick,
   }

@@ -72,7 +72,7 @@ export const handleDrop = function (elementType, elementName, options) {
     expect(el.dirty).toBe(true)
   })
 
-  it('should not update file on `handleDrop` when disbled', () => {
+  it('should not update file on `handleDrop` when disabled', () => {
     let form = createForm({
       schema: {
         el: {
@@ -93,7 +93,32 @@ export const handleDrop = function (elementType, elementName, options) {
       }
     })
 
-    expect(el.value).toStrictEqual(el.null)
+    expect(el.value).toStrictEqual(el.nullValue)
+    expect(el.dirty).toBe(false)
+  })
+
+  it('should not update file on `handleDrop` when file type is not among accept', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+          accept: ['.png']
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    let file = new File([''], 'filename.jpg')
+
+    el.handleDrop({
+      dataTransfer: {
+        files: [file]
+      }
+    })
+
+    expect(el.value).toStrictEqual(el.nullValue)
     expect(el.dirty).toBe(false)
   })
 }

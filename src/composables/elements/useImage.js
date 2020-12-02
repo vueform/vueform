@@ -94,11 +94,6 @@ export default function (props, context) {
     nullValue: nullValue.nullValue,
     dirt: validation.dirt,
   })
-  
-  const drop = useDrop(props, context, {
-    update: data.update,
-    disabled: disabled.disabled,
-  })
 
   const image = useImage(props, context, {
     form$: form$.form$,
@@ -116,6 +111,12 @@ export default function (props, context) {
     request: request.request,
     axios: request.axios,
     isImageType: baseElement.isImageType,
+  })
+  
+  const drop = useDrop(props, context, {
+    update: data.update,
+    disabled: disabled.disabled,
+    accept: image.accept,
   })
 
   const empty = useEmpty(props, context, {
