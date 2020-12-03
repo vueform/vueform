@@ -14,7 +14,6 @@ import useClasses from './features/useClasses'
 import useId from './features/useId'
 import useColumns from './features/useColumns'
 import useDescription from './features/useDescription'
-import useReadonly from './features/useReadonly'
 import useInfo from './features/useInfo'
 import useBaseElement from './features/useBaseElement'
 import useGenericName from './features/useGenericName'
@@ -42,7 +41,6 @@ export default function (props, context) {
   const placeholder = usePlaceholder(props, context)
   const id = useId(props, context)
   const description = useDescription(props, context)
-  const readonly = useReadonly(props, context)
   const info = useInfo(props, context)
   const debounce = useDebounce(props, context)
   const disabled = useDisabled(props, context)
@@ -166,7 +164,6 @@ export default function (props, context) {
     ...id,
     ...columns,
     ...description,
-    ...readonly,
     ...info,
     ...baseElement,
     ...genericName,

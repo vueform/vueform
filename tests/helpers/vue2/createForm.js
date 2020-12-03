@@ -19,8 +19,13 @@ import axios from 'axios'
 // Helpers
 import { installLaraform } from './index'
 
+// Mocks
+import TrixEditor from './../../mocks/TrixEditor'
+
 export default function createForm (data, options = {}, render = null) {
   let { LocalVue, config, store } = installLaraform(options)
+
+  LocalVue.component(TrixEditor.name, TrixEditor)
 
   let form = LocalVue.extend(Object.assign({}, {
     mixins: [Laraform],

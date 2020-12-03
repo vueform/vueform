@@ -20,6 +20,9 @@ import axios from 'axios'
 // Helpers
 import { installLaraform } from './index'
 
+// Mocks
+import TrixEditor from './../mocks/TrixEditor'
+
 export default function createForm (data, options = {}, render = null) {
   let { LaraformInstaller, config, store } = installLaraform(options)
 
@@ -66,7 +69,10 @@ export default function createForm (data, options = {}, render = null) {
     propsData: options.propsData || {},
     global: {
       mixins: [$laraformMixin],
-      plugins: [LaraformInstaller]
+      plugins: [LaraformInstaller],
+      components: {
+        TrixEditor
+      } ,
     }
   }
 

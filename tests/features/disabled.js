@@ -65,7 +65,7 @@ export const rendering = function (elementType, elementName, options) {
 
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-    testAttribute(elWrapper, options.fieldType, 'disabled', ['disabled', ''])
+    testAttribute(elWrapper, options.fieldType, 'disabled', ['disabled', '', true])
   })
   
   it('should not disable input when not `disabled`', () => {
@@ -80,6 +80,6 @@ export const rendering = function (elementType, elementName, options) {
 
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     
-    testAttribute(elWrapper, options.fieldType, 'disabled', undefined)
+    testAttribute(elWrapper, options.fieldType, 'disabled', [undefined, false])
   })
 }

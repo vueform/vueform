@@ -339,7 +339,6 @@ export const validate = function (elementType, elementName, options) {
 
     expect(el.validated).toBe(false)
 
-    el.update(value(options))
     el.validate()
 
     expect(el.validated).toBe(false)

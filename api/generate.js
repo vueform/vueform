@@ -33,7 +33,7 @@ const elements = [
   'text',
   'time',
   'toggle',
-  // 'trix',
+  'trix',
   'tTextarea',
   'tText',
   'tTrix',

@@ -5,6 +5,7 @@ module.exports = {
       "json",
       "vue"
   ],
+  "testTimeout": 1000,
   "transform": {
       ".*\\.(vue)$": "vue-prev-jest",
       "^.+\\.js$": "babel-jest"
@@ -21,6 +22,7 @@ module.exports = {
       '^test-helpers$': "<rootDir>/tests/helpers/vue2/index.js",
       '^vue-jest$': "vue-prev-jest"
   },
+  "setupFilesAfterEnv": ["<rootDir>/jest/jest.setup.js"],
   "collectCoverage": false,
   "collectCoverageFrom": [
       "**/*.{js,vue}",

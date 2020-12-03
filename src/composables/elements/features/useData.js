@@ -853,13 +853,18 @@ const trix = function(props, context, dependencies)
   // ============ DEPENDENCIES =============
 
   const input = dependencies.input
+  const value = dependencies.value
 
   const {
     submit, formatData, formatLoad, data, filtered, changed,
     load, update, clear, reset, updated, prepare
   } = base(props, context, dependencies, {
     setValue: (val) => {
-      input.value.update(val)
+      value.value = val
+
+      nextTick(() => {
+        input.value.update(val)
+      })
     }
   })
 
