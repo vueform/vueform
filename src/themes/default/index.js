@@ -26,6 +26,7 @@ import ElementText from './components/ElementText'
 import DragAndDrop from './components/DragAndDrop'
 import InputAddon from './components/InputAddon'
 
+import Multiselect from './components/wrappers/Multiselect'
 import Flatpickr from './components/wrappers/Flatpickr'
 import Trix from './components/wrappers/Trix'
 
@@ -111,6 +112,7 @@ const components = {
   // Wrappers
   Flatpickr,
   Trix,
+  Multiselect,
 
   // Element slots
   CheckboxgroupSlotCheckbox,

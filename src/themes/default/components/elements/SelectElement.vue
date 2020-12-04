@@ -37,7 +37,6 @@
       <multiselect
         v-else
         v-model="model"
-        v-bind="options"
         :id="id"
         :name="String(name)"
         :options="selectOptions"
@@ -101,8 +100,7 @@
 <script>
   import SelectElement from './../../../../components/elements/SelectElement'
 
-  import Multiselect from 'vue-multiselect'
-  import 'vue-multiselect/dist/vue-multiselect.min.css'
+  import Multiselect from './../wrappers/Multiselect'
 
   export default {
     name: 'SelectElement',
