@@ -104,6 +104,12 @@ export const handleInput = function (elementType, elementName, options) {
   it('should trigger validation on if validateOn contains "change"', async () => {
     let form = createForm({
       validateOn: 'submit',
+      languages: {
+        en: {
+          label: 'English',
+          code: 'en',
+        }
+      },
       schema: {
         el: {
           type: elementType,

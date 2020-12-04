@@ -13,7 +13,10 @@
     render: TrixElement.render,
     data() {
       return {
-        defaultClasses: {}
+        defaultClasses: {
+          container: 'lf-trix',
+          trixDisabled: 'trix-disabled',
+        }
       }
     }
   }

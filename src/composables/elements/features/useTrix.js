@@ -35,7 +35,6 @@ const base = function useTrix (props, context, dependencies)
   */
   const endpoint = computedOption('endpoint', schema, form$.value.$laraform.endpoints.elements.trix.attachment)
 
-
   return {
     accept,
     acceptMimes,

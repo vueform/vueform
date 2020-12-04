@@ -1,4 +1,5 @@
 import { ref, watch, onMounted, toRefs } from 'composition-api'
+import { trix } from '../../composables/elements/features/useData'
 import useElementComponent from './../../composables/useElementComponent'
 
 export default {
@@ -67,7 +68,7 @@ export default {
       // method (which implies an external call) we should
       // not emit any events because that would duplicate the
       // effects of the value change.
-      if (trix$.value.value == value.value) {
+      if (trix$.value.value == value.value || (!trix$.value.value && !value.value)) {
         return
       }
 

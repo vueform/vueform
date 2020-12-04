@@ -1949,30 +1949,6 @@ export const handleAbort = function (elementType, elementName, options) {
   })
 }
 
-export const handleError = function (elementType, elementName, options) {
-  it('should trigger `error` event on error', async () => {
-    let onErrorMock = jest.fn()
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: false,
-          onError: onErrorMock,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(onErrorMock).not.toHaveBeenCalled()
-
-    el.handleError('error', 'e')
-
-    expect(onErrorMock).toHaveBeenCalledWith('error', 'e')
-  })
-}
-
 export const rendering = function (elementType, elementName, options) {
   it('should hide file input', () => {
     let form = createForm({

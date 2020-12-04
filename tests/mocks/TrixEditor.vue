@@ -12,7 +12,11 @@
 
       const editor = ref({
         loadHTML: (val) => {
-          value.value = /<\/?[a-z][\s\S]*>/i.test(val) ? val : `<div>${val}</div>`
+          if (val === null) {
+            val = ''
+          }
+
+          value.value = /<\/?[a-z][\s\S]*>/i.test(val) || !val.length ? val : `<div>${val}</div>`
         }
       })
 

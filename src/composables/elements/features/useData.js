@@ -1,4 +1,4 @@
-import { computed, nextTick, toRefs } from 'composition-api'
+import { computed, nextTick, toRefs, watch } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 import checkDateFormat from './../../../utils/checkDateFormat'
 
@@ -677,7 +677,7 @@ const list = function(props, context, dependencies, options)
   }
 }
 
-const multilingual = function(props, context, dependencies)
+const multilingual = function(props, context, dependencies, options = {})
 {
   const { name } = toRefs(props)
 
@@ -695,7 +695,17 @@ const multilingual = function(props, context, dependencies)
   const fire = dependencies.fire
   const default_ = dependencies.default
   const nullValue = dependencies.nullValue
-  const { submit, formatData, formatLoad, data, filtered, changed, reset, prepare } = base(props, context, dependencies)
+  const { submit, formatData, formatLoad, data, filtered, changed, reset, prepare } = base(props, context, dependencies, options)
+
+  // =============== PRIVATE ===============
+
+  const setValue = (val) => {
+    if (options.setValue) {
+      return options.setValue(val)
+    }
+
+    value.value = val
+  }
 
   // =============== METHODS ===============
 
@@ -711,7 +721,7 @@ const multilingual = function(props, context, dependencies)
       throw new Error('Multilingual element requires an object to load')
     }
 
-    value.value = Object.assign({}, _.clone(nullValue.value), formatted)
+    setValue(Object.assign({}, _.clone(nullValue.value), formatted))
   }
 
   const update = (val) => {
@@ -723,13 +733,13 @@ const multilingual = function(props, context, dependencies)
       }
     }
     
-    value.value = Object.assign({}, value.value, updateValue)
+    setValue(Object.assign({}, value.value, updateValue))
 
     updated()
   }
 
   const clear = () => {
-    value.value = _.clone(nullValue.value)
+    setValue(_.clone(nullValue.value))
 
     updated()
   }
@@ -848,6 +858,19 @@ const object = function(props, context, dependencies)
   }
 }
 
+const multifile = function(props, context, dependencies, options = {})
+{
+  // ============ DEPENDENCIES =============
+
+  const useList = list(props, context, dependencies, options)
+
+  delete useList.initial
+
+  return {
+    ...useList,
+  }
+}
+
 const trix = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES =============
@@ -887,16 +910,50 @@ const trix = function(props, context, dependencies)
   }
 }
 
-const multifile = function(props, context, dependencies, options)
+const ttrix = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES =============
 
-  const useList = list(props, context, dependencies, options)
+  const input = dependencies.input
+  const model = dependencies.model
+  const value = dependencies.value
+  const language = dependencies.language
 
-  delete useList.initial
+  const {
+    submit, formatData, formatLoad, data, filtered, changed,
+    load, update, clear, reset, updated, prepare
+  } = multilingual(props, context, dependencies, {
+    setValue: (val) => {
+      value.value = val
+
+      nextTick(() => {
+        input.value.update(val[language.value])
+      })
+    }
+  })
+
+  // ============== WATCHERS ==============
+
+  watch(language, () => {
+    input.value.update(model.value)
+  })
 
   return {
-    ...useList,
+    // Computed
+    data,
+    filtered,
+    formatData,
+    formatLoad,
+    submit,
+    changed,
+
+    // Mehtods
+    load,
+    update,
+    updated,
+    clear,
+    reset,
+    prepare,
   }
 }
 
@@ -907,8 +964,9 @@ export {
   list,
   multilingual,
   object,
-  trix,
   multifile,
+  trix,
+  ttrix,
 }
 
 export default base

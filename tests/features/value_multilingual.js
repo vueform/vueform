@@ -57,14 +57,11 @@ export const value = function (elementType, elementName) {
 
     el.update('value-en')
 
-    expect(el.previousValue).toStrictEqual({
-      en: null,
-      fr: null
-    })
+    expect(el.previousValue).toStrictEqual(el.nullValue)
 
     expect(el.currentValue).toStrictEqual({
       en: 'value-en',
-      fr: null
+      fr: el.nullValue.fr,
     })
   })
 }
@@ -127,7 +124,7 @@ export const model = function (elementType, elementName, options) {
 
     expect(el.value).toStrictEqual({
       en: 'value-en',
-      fr: null
+      fr: el.nullValue.fr,
     })
 
     form.vm.setLanguage('fr')

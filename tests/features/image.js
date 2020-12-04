@@ -3,7 +3,7 @@ import { createForm } from 'test-helpers'
 export {
   file, progress, preparing, auto, methods, endpoints, url, stage, filename,
   uploaded, canRemove, canUploadTemp, uploadTemp, remove, prepare, handleChange, handleClick,
-  handleUploadTemp, handleRemove, handleAbort, handleError, rendering, } from './file'
+  handleUploadTemp, handleRemove, handleAbort, rendering, } from './file'
 
 export const base64 = function (elementType, elementName, options) {
   it('should `base64` be null by default', () => {

@@ -62,7 +62,7 @@ import ToggleElement from './components/elements/ToggleElement'
 import TrixElement from './components/elements/TrixElement'
 import TTextareaElement from './components/elements/TTextareaElement'
 import TTextElement from './components/elements/TTextElement'
-// import TTrixElement from './components/elements/TTrixElement'
+import TTrixElement from './components/elements/TTrixElement'
 
 import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
 import FileSlotProgress from './components/elements/slots/FileSlotProgress'
@@ -163,7 +163,7 @@ export default {
     TrixElement,
     TTextareaElement,
     TTextElement,
-    // TTrixElement,
+    TTrixElement,
   },
   classes: {
   },

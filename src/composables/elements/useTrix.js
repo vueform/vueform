@@ -27,6 +27,7 @@ import useEvents from './../useEvents'
 import useHandleInput from './features/useHandleInput'
 import useEmpty from './features/useEmpty'
 import useTrix from './features/useTrix'
+import useHandleError from './features/useHandleError'
 
 import { trix as useData } from './features/useData'
 
@@ -141,6 +142,11 @@ export default function (props, context) {
     fire: events.fire,
   })
 
+  const handleError = useHandleError(props, context, {
+    fire: events.fire,
+    listeners: events.listeners,
+  })
+
   const trix = useTrix(props, context, {
     form$: form$.form$,
   })
@@ -179,6 +185,7 @@ export default function (props, context) {
     ...default_,
     ...nullValue,
     ...handleInput,
+    ...handleError,
     ...trix,
   }
 } 

@@ -24,6 +24,7 @@ import useRequest from './features/useRequest'
 import useData from './features/useData'
 import useDrop from './features/useDrop'
 import useRemoving from './features/useRemoving'
+import useHandleError from './features/useHandleError'
 
 import { file as useBaseElement } from './features/useBaseElement'
 import { file as useValue } from './features/useValue'
@@ -99,6 +100,11 @@ export default function (props, context) {
     dirt: validation.dirt,
   })
 
+  const handleError = useHandleError(props, context, {
+    fire: events.fire,
+    listeners: events.listeners,
+  })
+
   const file = useFile(props, context, {
     form$: form$.form$,
     value: value.value,
@@ -118,6 +124,7 @@ export default function (props, context) {
     axios: request.axios,
     isImageType: baseElement.isImageType,
     removing: removing.removing,
+    handleError: handleError.handleError,
   })
   
   const drop = useDrop(props, context, {
@@ -212,5 +219,6 @@ export default function (props, context) {
     ...request,
     ...drop,
     ...removing,
+    ...handleError,
   }
 } 

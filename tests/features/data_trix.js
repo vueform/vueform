@@ -1,8 +1,9 @@
 import { createForm, testComputedOption } from 'test-helpers'
 import flushPromises from 'flush-promises'
 import { nextTick } from 'composition-api'
+import { update as baseUpdate, clear as baseClear, reset as baseReset, } from './data'
 
-export { submit, formatData, formatLoad, data, filtered, update, clear, reset, changed, updated, onCreated, } from './data'
+export { submit, formatData, formatLoad, data, filtered, changed, updated, onCreated, } from './data'
 
 export const load = function (elementType, elementName, options) {
   it('should set value if provided value is not "undefined" on `load`', async () => {
@@ -75,5 +76,78 @@ export const load = function (elementType, elementName, options) {
     el.load(undefined)
 
     expect(el.value).toStrictEqual(el.nullValue)
+  })
+}
+
+export const update = function (elementType, elementName, options) {
+  baseUpdate(elementType, elementName, options)
+
+  it('should update trix value on `update`', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.update('value')
+
+    await nextTick()
+
+    expect(el.input.trix$.value).toBe('<div>value</div>')
+  })
+}
+
+export const reset = function (elementType, elementName, options) {
+  baseUpdate(elementType, elementName, options)
+
+  it('should update trix value on `reset`', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.update('value')
+
+    await nextTick()
+
+    expect(el.input.trix$.value).toBe('<div>value</div>')
+
+    el.reset()
+
+    await nextTick()
+
+    expect(el.input.trix$.value).toBe('')
+  })
+}
+
+export const clear = function (elementType, elementName, options) {
+  baseUpdate(elementType, elementName, options)
+
+  it('should update trix value on `clear`', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          default: 'value',
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.clear()
+
+    await nextTick()
+
+    expect(el.input.trix$.value).toBe('')
   })
 }

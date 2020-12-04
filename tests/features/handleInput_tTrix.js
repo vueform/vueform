@@ -1,0 +1,1 @@
+export * from './handleInput_trix'

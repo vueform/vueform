@@ -1,6 +1,6 @@
 import { createForm } from 'test-helpers'
 import flushPromises from 'flush-promises'
-export { submit, formatData, formatLoad, data, filtered, changed, clear, reset } from './data'
+export { submit, formatData, formatLoad, data, filtered, changed, clear, reset, onCreated } from './data'
 
 export const load = function(elementType, elementName) {
   it('should set value to null if provided value is "undefined" on `load`', async () => {
@@ -146,7 +146,7 @@ export const update = function(elementType, elementName) {
 
     expect(el.value).toStrictEqual({
       en: 'value',
-      fr: null,
+      fr: el.nullValue.fr,
     })
   })
 
@@ -178,7 +178,7 @@ export const update = function(elementType, elementName) {
 
     expect(el.value).toStrictEqual({
       en: 'value-en',
-      fr: null,
+      fr: el.nullValue.fr,
     })
 
     el.update({

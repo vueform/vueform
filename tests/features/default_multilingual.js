@@ -57,7 +57,7 @@ export const default_ = function(elementType, elementName) {
 
     expect(el.value).toStrictEqual({
       en: 'value-en',
-      fr: null,
+      fr: el.nullValue.fr,
     })
   })
 }

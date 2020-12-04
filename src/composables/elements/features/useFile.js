@@ -25,6 +25,7 @@ const base = function (props, context, dependencies)
   const isImageType = dependencies.isImageType
   const listeners = dependencies.listeners
   const removing = dependencies.removing
+  const handleError = dependencies.handleError
 
   // ================ DATA ================
 
@@ -281,21 +282,6 @@ const base = function (props, context, dependencies)
     request.value.cancel()
   }
 
-  /**
-   * Triggered when an error occurs during file upload. If no event is attached browsers default `alert()` function will be used with a default error message.
-   *
-   * @public
-   * @param {string} e error object
-   * @event error
-   */
-  const handleError = (error, e) => {
-    fire('error', error, e)
-
-    if (!listeners.value.error) {
-      alert(error)
-    } 
-  }
-
   // ============== WATCHERS ==============
   
   watch(file, (val) => {
@@ -362,7 +348,6 @@ const base = function (props, context, dependencies)
     handleUploadTemp,
     handleRemove,
     handleAbort,
-    handleError,
   }
 }
 
