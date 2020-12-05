@@ -1,7 +1,7 @@
 <script>
   import MultiselectElement from './../../../../components/elements/MultiselectElement'
   import SelectElement from './SelectElement'
-  import Multiselect from 'vue-multiselect'
+  import Multiselect from './../wrappers/Multiselect'
 
   export default {
     name: 'MultiselectElement',
@@ -11,11 +11,13 @@
     },
     render: SelectElement.render,
     data() {
-      return _.merge(SelectElement.data(), {
+      return {
         defaultClasses: {
           container: 'lf-multiselect',
+          select: 'form-control',
+          selectNativePlaceholder: 'native-select-placeholder',
         }
-      })
+      }
     }
   }
 </script>

@@ -1,4 +1,4 @@
-import { ref, toRefs, computed } from 'composition-api'
+import { ref, toRefs, computed, watch, nextTick } from 'composition-api'
 
 export default {
   name: 'Multiselect',
@@ -9,7 +9,7 @@ export default {
     id: {
       type: [String, Number],
       required: false,
-      default: '',
+      default: 'multiselect',
     },
     name: {
       type: [String, Number],
@@ -30,6 +30,11 @@ export default {
       required: false,
       default: 'label',
     },
+    trackBy: {
+      type: String,
+      required: false,
+      default: 'label',
+    },
     placeholder: {
       type: String,
       required: false,
@@ -38,21 +43,61 @@ export default {
     mode: {
       type: String,
       required: false,
-      default: 'single', // single|multi|tags
+      default: 'single', // single|multiple|tags
     },
-    closeOnSelect: {
+    searchable: {
       type: Boolean,
       required: false,
-      default: true,
+      default: false,
+    },
+    limit: {
+      type: Number,
+      required: false,
+      default: 20,
+    },
+    maxHeight: {
+      type: Number,
+      required: false,
+      default: 160,
     },
   },
   init(props, context) {
-    const { value, options, mode, closeOnSelect, } = toRefs(props)
+    const { value, options, mode,  searchable, trackBy, limit, maxHeight, id } = toRefs(props)
 
     const isOpen = ref(false)
 
+    const search = ref(null)
+
+    const input = ref(null)
+
+    const multiselect = ref(null)
+
+    const pointer = ref(null)
+
+    const tabindex = computed(() => {
+      return searchable.value ? -1 : 0
+    })
+
+    const contentMaxHeight = computed(() => {
+      return `${maxHeight.value}px`
+    })
+
     const filteredOptions = computed(() => {
-      return options.value
+      if (!search.value) {
+        return options.value.slice(0, limit.value)
+      }
+
+      return options.value.filter((option, index) => {
+        return option[trackBy.value].toLowerCase().trim().indexOf(
+          search.value.toLowerCase().trim()
+        ) !== -1
+      }).slice(0, limit.value)
+    })
+
+    const multipleSelectionText = computed(() => {
+      return value.value.length > 1
+        ? `${value.value.length} options selected`
+        : `${value.value.length} option selected`
     })
 
     const hasSelected = computed(() => {
@@ -60,7 +105,7 @@ export default {
         case 'single':
           return !!value.value
 
-        case 'multi':
+        case 'multiple':
         case 'tags':
           return !!value.value.length
       }
@@ -71,7 +116,7 @@ export default {
         case 'single':
           return null
 
-        case 'multi':
+        case 'multiple':
         case 'tags':
           return []
       }
@@ -79,10 +124,12 @@ export default {
 
     const open = () => {
       isOpen.value = true
+      context.emit('open')
     }
 
     const close = () => {
-      isOpen.value = false
+      // isOpen.value = false
+      context.emit('close')
     }
 
     const toggle = () => {
@@ -90,15 +137,23 @@ export default {
     }
 
     const update = (val) => {
-      switch (mode.value) {
-        case 'single':
-          context.emit('input', val)
-          break
-      }
+      context.emit('input', val)
     } 
 
     const clear = (option) => {
       update(nullValue.value)
+    }
+
+    const clearSearch = () => {
+      search.value = null
+    }
+
+    const blurSearch = () => {
+      if (!searchable.value) {
+        return
+      }
+
+      input.value.blur()
     }
 
     const select = (option) => {
@@ -107,11 +162,13 @@ export default {
           update(option)
           break
 
-        case 'multi':
+        case 'multiple':
         case 'tags':
           update([...value.value].concat(option))
           break
       }
+
+      context.emit('select', option)
     }
 
     const deselect = (option) => {
@@ -119,14 +176,84 @@ export default {
         case 'single':
           clear()
           break
+
+        case 'multiple':
+          update(value.value.filter((val, i) => !_.isEqual(val, option)))
+          break
       }
+
+      context.emit('deselect', option)
     }
 
     const isSelected = (option) => {
       switch (mode.value) {
         case 'single':
           return _.isEqual(value.value, option)
-          break
+
+        case 'multiple':
+          return value.value.indexOf(option) !== -1
+      }
+    }
+
+    const isPointed = (option) => {
+      return _.isEqual(pointer.value, option)
+    }
+
+    const setPointer = (option) => {
+      pointer.value = option
+    }
+
+    const clearPointer = () => {
+      pointer.value = null
+    }
+
+    const selectPointer = () => {
+      handleOptionClick(pointer.value)
+    }
+
+    const forwardPointer = (option) => {
+      if (pointer.value === null) {
+        setPointer(filteredOptions.value[0])
+      }
+      else {
+        let nextIndex = filteredOptions.value.indexOf(pointer.value) + 1
+
+        if (filteredOptions.value.length <= nextIndex) {
+          nextIndex = 0
+        }
+
+        setPointer(filteredOptions.value[nextIndex])
+      }
+
+      nextTick(() => {
+        adjustWrapperScrollToPointer()
+      })
+    }
+
+    const backwardPointer = (option) => {
+      let prevIndex = filteredOptions.value.indexOf(pointer.value) - 1
+
+      if (prevIndex < 0) {
+        prevIndex = filteredOptions.value.length - 1
+      }
+
+      setPointer(filteredOptions.value[prevIndex])
+
+      nextTick(() => {
+        adjustWrapperScrollToPointer()
+      })
+    }
+
+    const adjustWrapperScrollToPointer = () => {
+      let pointedOption = context.parent.$el.querySelector(`#${id.value} .is-pointed`)
+      let wrapper = pointedOption.parentElement
+
+      if (pointedOption.offsetTop + pointedOption.offsetHeight > wrapper.clientHeight + wrapper.scrollTop) {
+        wrapper.scrollTop = pointedOption.offsetTop + pointedOption.offsetHeight - wrapper.clientHeight
+      }
+      
+      if (pointedOption.offsetTop < wrapper.scrollTop) {
+        wrapper.scrollTop = pointedOption.offsetTop
       }
     }
 
@@ -140,18 +267,42 @@ export default {
 
           clear()
           select(option)
+          blurSearch()
+          break
 
-          if (closeOnSelect.value) {
-            close()
+        case 'multiple':
+          if (isSelected(option)) {
+            deselect(option)
+            return
           }
+
+          select(option)
+          clearSearch()
           break
       }
     }
+
+    const handleEsc = (e) => {
+      close()
+      clearPointer()
+      e.target.blur()
+    }
+
+    watch(search, (val) => {
+      context.emit('search-change', val)
+    })
 
     return {
       isOpen,
       filteredOptions,
       hasSelected,
+      search,
+      tabindex,
+      input,
+      multiselect,
+      contentMaxHeight,
+      pointer,
+      multipleSelectionText,
 
       open,
       close,
@@ -160,7 +311,16 @@ export default {
       deselect,
       clear,
       isSelected,
+      clearSearch,
+      blurSearch,
+      isPointed,
+      setPointer,
+      clearPointer,
+      selectPointer,
+      forwardPointer,
+      backwardPointer,
       handleOptionClick,
+      handleEsc,
     }
   }
 }

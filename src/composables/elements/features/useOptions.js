@@ -389,70 +389,6 @@ const datetime = function(props, context, dependencies)
   }
 }
 
-const multiselect = function (props, context, dependencies)
-{
-  const { schema } = toRefs(props)
-
-  // ============ DEPENDENCIES ============
-
-  const form$ = dependencies.form$
-
-  const { loading, native, trackBy, search, limit, isNative } = select(props, context, dependencies)
-
-  // ============== COMPUTED ==============
-
-  /**
-  * Default options for vue-multiselect.
-  * 
-  * @type {object} 
-  * @default {}
-  * @ignore
-  */
-  const defaultOptions = computed(() => {
-    return {
-      showLabels: false,
-      searchable: search.value,
-      label: 'label',
-      trackBy: trackBy.value,
-      loading: loading.value,
-      optionsLimit: limit.value,
-      multiple: true,
-      clearOnSelect: true,
-      closeOnSelect: false,
-      preserveSearch: true,
-      showLabels: true,
-      selectLabel: '',
-      deselectLabel: '✓',
-      selectedLabel: '✓',
-    }
-  })
-
-  /**
-   * Additional [options](https://vue-multiselect.js.org/#sub-props) for the select.
-   * 
-   * @type {object}
-   * @default {}
-   */
-  const options = computed({
-    get() {
-      return Object.assign({}, defaultOptions.value, schema.value.options || {})
-    },
-    set(val) {
-      form$.value.$set(schema.value, 'options', val)
-    }
-  })
-
-  return {
-    loading,
-    native,
-    trackBy,
-    search,
-    limit,
-    isNative,
-    options,
-  }
-}
-
 const select = function (props, context, dependencies)
 {
   const { schema, name } = toRefs(props)
@@ -499,6 +435,8 @@ const select = function (props, context, dependencies)
   */
   const limit = computedOption('limit', schema, 20)
 
+  const maxHeight = computedOption('maxHeight', schema, 160)
+
   /**
    * Determines if the native select is used.
    * 
@@ -522,8 +460,9 @@ const select = function (props, context, dependencies)
       label: 'label',
       trackBy: trackBy.value,
       loading: loading.value,
-      optionsLimit: limit.value,
-      multiple: false,
+      limit: limit.value,
+      mode: 'tags',
+      maxHeight: maxHeight.value,
     }
   })
 
@@ -548,6 +487,153 @@ const select = function (props, context, dependencies)
     trackBy,
     search,
     limit,
+    maxHeight,
+    isNative,
+    options,
+  }
+}
+
+const multiselect = function (props, context, dependencies)
+{
+  const { schema } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
+
+  const { loading, native, trackBy, search, limit, maxHeight, isNative } = select(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+
+  /**
+  * Default options for vue-multiselect.
+  * 
+  * @type {object} 
+  * @default {}
+  * @ignore
+  */
+  const defaultOptions = computed(() => {
+    return {
+      searchable: search.value,
+      label: 'label',
+      trackBy: trackBy.value,
+      loading: loading.value,
+      limit: limit.value,
+      mode: 'multiple',
+      clearOnSelect: true,
+      maxHeight: maxHeight.value,
+    }
+  })
+
+  /**
+   * Additional [options](https://vue-multiselect.js.org/#sub-props) for the select.
+   * 
+   * @type {object}
+   * @default {}
+   */
+  const options = computed({
+    get() {
+      return Object.assign({}, defaultOptions.value, schema.value.options || {})
+    },
+    set(val) {
+      form$.value.$set(schema.value, 'options', val)
+    }
+  })
+
+  return {
+    loading,
+    native,
+    trackBy,
+    search,
+    limit,
+    maxHeight,
+    isNative,
+    options,
+  }
+}
+
+const tags = function (props, context, dependencies)
+{
+  const { schema } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
+
+  const { loading, trackBy, limit, maxHeight } = select(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+
+  const create = computedOption('create', schema, false)
+
+  const tagPlaceholder = computedOption('tagPlaceholder', schema, form$.value.__('laraform.elements.tags.createLabel'))
+
+  const search = computed({
+    get() {
+      return schema.value.search !== undefined ? schema.value.search : create.value
+    },
+    set(val) {
+      form$.value.$set(schema.value, 'search', val)
+    }
+  })
+
+  const native = computed(() => {
+    return false
+  })
+
+  const isNative = computed(() => {
+    return native.value && !search.value
+  })
+
+  /**
+  * Default options for vue-multiselect.
+  * 
+  * @type {object} 
+  * @default {}
+  * @ignore
+  */
+  const defaultOptions = computed(() => {
+    return {
+      showLabels: false,
+      searchable: search.value,
+      label: 'label',
+      trackBy: trackBy.value,
+      loading: loading.value,
+      limit: limit.value,
+      multiple: true,
+      taggable: true,
+      tagPlaceholder: tagPlaceholder.value,
+      clearOnSelect: true,
+      hideSelected: true,
+      closeOnSelect: false,
+      maxHeight: maxHeight.value,
+    }
+  })
+
+  /**
+   * Additional [options](https://vue-multiselect.js.org/#sub-props) for the select.
+   * 
+   * @type {object}
+   * @default {}
+   */
+  const options = computed({
+    get() {
+      return Object.assign({}, defaultOptions.value, schema.value.options || {})
+    },
+    set(val) {
+      form$.value.$set(schema.value, 'options', val)
+    }
+  })
+
+  return {
+    loading,
+    native,
+    trackBy,
+    search,
+    limit,
+    maxHeight,
+    create,
+    tagPlaceholder,
     isNative,
     options,
   }
@@ -600,91 +686,6 @@ const slider = function (props, context, dependencies)
   return {
     min,
     max,
-    options,
-  }
-}
-
-const tags = function (props, context, dependencies)
-{
-  const { schema } = toRefs(props)
-
-  // ============ DEPENDENCIES ============
-
-  const form$ = dependencies.form$
-
-  const { loading, trackBy, limit } = select(props, context, dependencies)
-
-  // ============== COMPUTED ==============
-
-  const create = computedOption('create', schema, false)
-
-  const tagPlaceholder = computedOption('tagPlaceholder', schema, form$.value.__('laraform.elements.tags.createLabel'))
-
-  const search = computed({
-    get() {
-      return schema.value.search !== undefined ? schema.value.search : create.value
-    },
-    set(val) {
-      form$.value.$set(schema.value, 'search', val)
-    }
-  })
-
-  const native = computed(() => {
-    return false
-  })
-
-  const isNative = computed(() => {
-    return native.value && !search.value
-  })
-
-  /**
-  * Default options for vue-multiselect.
-  * 
-  * @type {object} 
-  * @default {}
-  * @ignore
-  */
-  const defaultOptions = computed(() => {
-    return {
-      showLabels: false,
-      searchable: search.value,
-      label: 'label',
-      trackBy: trackBy.value,
-      loading: loading.value,
-      optionsLimit: limit.value,
-      multiple: true,
-      taggable: true,
-      tagPlaceholder: tagPlaceholder.value,
-      clearOnSelect: true,
-      hideSelected: true,
-      closeOnSelect: false,
-    }
-  })
-
-  /**
-   * Additional [options](https://vue-multiselect.js.org/#sub-props) for the select.
-   * 
-   * @type {object}
-   * @default {}
-   */
-  const options = computed({
-    get() {
-      return Object.assign({}, defaultOptions.value, schema.value.options || {})
-    },
-    set(val) {
-      form$.value.$set(schema.value, 'options', val)
-    }
-  })
-
-  return {
-    loading,
-    native,
-    trackBy,
-    search,
-    limit,
-    create,
-    tagPlaceholder,
-    isNative,
     options,
   }
 }

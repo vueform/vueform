@@ -10,11 +10,6 @@
         :visible="!empty"
       >{{ floating }}</component>
 
-      <span
-        v-if="!options.multiple && !native"
-        :class="classes.selectNativePlaceholder"
-      >{{ placeholder }}</span>
-
       <select
         v-if="isNative"
         v-model="model"
@@ -37,6 +32,7 @@
       <multiselect
         v-else
         v-model="model"
+        v-bind="options"
         :id="id"
         :name="String(name)"
         :options="selectOptions"
