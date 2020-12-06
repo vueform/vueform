@@ -32,6 +32,10 @@ export const limit = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'limit', 20, 10)
 }
 
+export const maxHeight = function (elementType, elementName, options) {
+  testComputedOption(it, elementType, 'maxHeight', 160, 200)
+}
+
 export const isNative = function (elementType, elementName, options) {
   it('should have `isNative` "true" if "native" is true and "search" is false', () => {
     let form = createForm({
@@ -68,13 +72,13 @@ export const options = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.options).toStrictEqual({ 
-      showLabels: false,
       searchable: el.search,
       label: 'label',
       trackBy: el.trackBy,
       loading: el.loading,
-      optionsLimit: el.limit,
-      multiple: false,
+      limit: el.limit,
+      mode: 'single',
+      maxHeight: el.maxHeight,
     })
   })
   
@@ -93,13 +97,13 @@ export const options = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.options).toStrictEqual({ 
-      showLabels: false,
       searchable: el.search,
       label: 'label',
       trackBy: el.trackBy,
       loading: el.loading,
-      optionsLimit: el.limit,
-      multiple: false,
+      limit: el.limit,
+      mode: 'single',
+      maxHeight: el.maxHeight,
       custom: 'option'
     })
   })
@@ -124,7 +128,7 @@ export const options = function (elementType, elementName, options) {
     })
   })
   
-  it('should bind `options` to VueMultiselect when not native', () => {
+  it('should bind `options` to Multiselect when not native', () => {
     let form = createForm({
       schema: {
         el: {
@@ -136,10 +140,10 @@ export const options = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let VueMultiselect = findAllComponents(elWrapper, { name: 'VueMultiselect' }).at(0)
+    let Multiselect = findAllComponents(elWrapper, { name: 'Multiselect' }).at(0)
     
     _.each(el.options, (value, key) => {
-      expect(VueMultiselect.props(key)).toStrictEqual(value)
+      expect(Multiselect.props(key)).toStrictEqual(value)
     })
   })
 }

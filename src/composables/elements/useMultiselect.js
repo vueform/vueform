@@ -27,6 +27,7 @@ import useEvents from './../useEvents'
 import useItems from './features/useItems'
 import useHandleSelectEvents from './features/useHandleSelectEvents'
 import useSelect from './features/useSelect'
+import useHandleChange from './features/useHandleChange'
 
 import { multiselect as useValue } from './features/useValue'
 import { multiselect as useOptions } from './features/useOptions'
@@ -68,6 +69,7 @@ export default function (props, context) {
     isNative: options.isNative,
     items: items.items,
     trackBy: options.trackBy,
+    loading: options.loading,
   })
 
   const conditions = useConditions(props, context, {
@@ -165,6 +167,17 @@ export default function (props, context) {
     fire: events.fire,
   })
 
+  const handleChange = useHandleChange(props, context, {
+    form$: form$.form$,
+    model: value.model,
+    currentValue: value.currentValue,
+    previousValue: value.previousValue,
+    changed: data.changed,
+    dirt: validation.dirt,
+    validate: validation.validate,
+    fire: events.fire,
+  })
+
   const handleSelectEvents = useHandleSelectEvents(props, context, {
     fire: events.fire,
   })
@@ -214,5 +227,6 @@ export default function (props, context) {
     ...options,
     ...handleSelectEvents,
     ...select,
+    ...handleChange,
   }
 } 

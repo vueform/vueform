@@ -1,5 +1,6 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, findAll, setMultiselectValue } from 'test-helpers'
+import { nextTick } from 'composition-api'
 
 export const handleChange = function (elementType, elementName, options) {
   it('should dirt the element if input value is different than the current', () => {
@@ -133,6 +134,8 @@ export const rendering = function (elementType, elementName, options) {
         }
       }
     })
+
+    await nextTick()
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)

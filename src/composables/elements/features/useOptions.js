@@ -455,7 +455,6 @@ const select = function (props, context, dependencies)
   */
   const defaultOptions = computed(() => {
     return {
-      showLabels: false,
       searchable: search.value,
       label: 'label',
       trackBy: trackBy.value,
@@ -520,7 +519,6 @@ const multiselect = function (props, context, dependencies)
       loading: loading.value,
       limit: limit.value,
       mode: 'multiple',
-      clearOnSelect: true,
       maxHeight: maxHeight.value,
     }
   })
@@ -637,6 +635,7 @@ const tags = function (props, context, dependencies)
     maxHeight,
     create,
     tagPlaceholder,
+    hideSelectedTag,
     isNative,
     options,
   }

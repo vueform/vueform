@@ -219,5 +219,6 @@ export default function (props, context) {
     ...request,
     ...drop,
     ...removing,
+    ...handleError,
   }
 } 

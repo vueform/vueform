@@ -70,6 +70,7 @@ export default function (props, context) {
     isNative: options.isNative,
     items: items.items,
     trackBy: options.trackBy,
+    loading: options.loading,
   })
 
   const conditions = useConditions(props, context, {

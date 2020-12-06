@@ -1,5 +1,6 @@
 import { createForm, findAllComponents, findAll } from 'test-helpers'
 import { nextTick } from 'composition-api'
+import flushPromises from 'flush-promises'
 
 export { currentValue, previousValue, value, rendering } from './value'
 
@@ -107,12 +108,13 @@ export const model = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.model = 1
+    el.model = 2
 
     await nextTick()
 
-    expect(el.input.value).toBe('1')
-    expect(el.value).toBe(1)
+    expect(el.value).toBe(2)
+    expect(el.model).toBe(2)
+    expect(el.input.value).toBe('2')
   })
 
   it('should set `model` value when changing select using native', async () => {
@@ -130,14 +132,17 @@ export const model = function (elementType, elementName, options) {
       }
     })
 
+    await nextTick()
+
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let select = findAll(elWrapper, `select`).at(0)
+    let option1 = findAll(select, `option`).at(1)
 
-    select.setValue(1)
+    option1.setSelected()
 
-    expect(el.model).toBe(1)
     expect(el.value).toBe(1)
+    expect(el.model).toBe(1)
   })
 
   it('should set the select\'s value when setting `model` using non native', async () => {
@@ -190,6 +195,43 @@ export const model = function (elementType, elementName, options) {
 }
 
 export const selectOptions = function (elementType, elementName, options) {
+  it('should convert an array of strings into `selectOptions`', async (done) => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          items: async () => {
+            return await new Promise((resolve, reject) => {
+              setTimeout(() => {
+                resolve([
+                  'item',
+                  'item2',
+                  'item3'
+                ])
+              }, 1)
+            })
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.selectOptions).toStrictEqual([])
+
+    await flushPromises()
+
+    setTimeout(async () => {
+      expect(el.selectOptions).toStrictEqual([
+        { value: 0, label: 'item' },
+        { value: 1, label: 'item2' },
+        { value: 2, label: 'item3' },
+      ])
+      done()
+    }, 10)
+
+  })
+
   it('should convert an array of strings into `selectOptions`', async () => {
     let form = createForm({
       schema: {

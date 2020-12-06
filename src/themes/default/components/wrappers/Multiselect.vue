@@ -4,6 +4,8 @@
     :class="[`is-${mode}`, {
       'is-open': isOpen,
       'is-searchable': searchable,
+      'is-disabled': disabled,
+      'no-caret': !caret,
     }]"
     :id="id"
     @keydown.prevent.enter
@@ -47,13 +49,14 @@
           {{ option[label] }}
 
           <i
+            v-if="!disabled"
             @click.prevent
             @mousedown.prevent="remove(option)"
           ></i>
         </div>
     
         <div
-          v-if="searchable"
+          v-if="searchable && !disabled"
           class="multiselect-search"
           :style="{ width: tagsSearchWidth }"
         >
@@ -73,7 +76,7 @@
       </div>
     
       <div
-        v-if="mode !== 'tags' && searchable"
+        v-if="mode !== 'tags' && searchable && !disabled"
         class="multiselect-search"
       >
         <input    
@@ -95,6 +98,10 @@
       >
         {{ placeholder }}
       </div>
+
+      <transition name="multiselect-loading">
+        <div v-show="loading" class="multiselect-spinner" />
+      </transition>
 
     </div>
 
@@ -128,6 +135,7 @@
   import Multiselect from './../../../../components/wrappers/Multiselect'
 
   export default {
+    name: 'Multiselect',
     mixins: [Multiselect],
   }
 
@@ -175,6 +183,12 @@
     }
   }
 
+  .is-disabled {
+    .multiselect-input {
+      background: #f9f9f9;
+    }
+  }
+
   .is-open {
     .multiselect-input {
       border-radius: 3px 3px 0 0;
@@ -183,6 +197,14 @@
     .multiselect-input {
       &:before {
         transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+
+  .no-caret {
+    .multiselect-input {
+      &:before {
+        display: none;
       }
     }
   }
@@ -290,6 +312,13 @@
     }
   }
 
+  .is-disabled {
+    .multiselect-tag {
+      background: #a0a0a0;
+      padding: 1px 8px 1px 8px;
+    }
+  }
+
   .multiselect-content {
     position: absolute;
     left: 0;
@@ -337,6 +366,54 @@
       }
     }
   }
+
+  .multiselect-spinner {
+    position: absolute;
+    right: 12px;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    display: block;
+    transform: translateY(50%);
+
+    &:before,
+    &:after {
+      position: absolute;
+      content: "";
+      top: 50%;
+      left: 50%;
+      margin: -8px 0 0 -8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 100%;
+      border-color: #41b883 transparent transparent;
+      border-style: solid;
+      border-width: 2px;
+      box-shadow: 0 0 0 1px transparent;
+    }
+  }
+
+  .is-disabled {
+    .multiselect-spinner {
+      background: #f9f9f9;
+
+      &:before,
+      &:after {
+        border-color: #999999 transparent transparent;
+      }
+    }
+  }
+
+  .multiselect-spinner:before {
+    animation: spinning 2.4s cubic-bezier(0.41, 0.26, 0.2, 0.62);
+    animation-iteration-count: infinite;
+  }
+  .multiselect-spinner:after {
+    animation: spinning 2.4s cubic-bezier(0.51, 0.09, 0.21, 0.8);
+    animation-iteration-count: infinite;
+  }
+
   .multiselect-enter-active {
     transition: all 0.15s ease;
   }
@@ -348,5 +425,24 @@
   .multiselect-enter,
   .multiselect-leave-active {
     opacity: 0;
+  }
+
+  .multiselect-loading-enter-active,
+  .multiselect-loading-leave-active {
+    transition: opacity 0.4s ease-in-out;
+    opacity: 1;
+  }
+  .multiselect-loading-enter,
+  .multiselect-loading-leave-active {
+    opacity: 0;
+  }
+
+  @keyframes spinning {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(2turn);
+    }
   }
 </style>

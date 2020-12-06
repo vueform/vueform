@@ -1,6 +1,10 @@
 import { createForm, testComputedOption } from 'test-helpers'
 
-export { loading, trackBy, limit } from './options_select'
+export { loading, trackBy, limit, maxHeight, } from './options_select'
+
+export const hideSelectedTag = function (elementType, elementName, options) {
+  testComputedOption(it, elementType, 'hideSelectedTag', false, true)
+}
 
 export const search = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'search', false, true)
@@ -85,18 +89,16 @@ export const options = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.options).toStrictEqual({ 
-      showLabels: false,
       searchable: el.search,
       label: 'label',
       trackBy: el.trackBy,
       loading: el.loading,
-      optionsLimit: el.limit,
-      multiple: true,
-      taggable: true,
-      tagPlaceholder: el.tagPlaceholder,
-      clearOnSelect: true,
-      hideSelected: true,
-      closeOnSelect: false,
+      limit: el.limit,
+      mode: 'tags',
+      hideSelectedTag: el.hideSelectedTag,
+      maxHeight: el.maxHeight,
+      createTag: el.create,
+      appendNewTag: false,
     })
   })
   
@@ -115,18 +117,16 @@ export const options = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.options).toStrictEqual({ 
-      showLabels: false,
       searchable: el.search,
       label: 'label',
       trackBy: el.trackBy,
       loading: el.loading,
-      optionsLimit: el.limit,
-      multiple: true,
-      taggable: true,
-      tagPlaceholder: el.tagPlaceholder,
-      clearOnSelect: true,
-      hideSelected: true,
-      closeOnSelect: false,
+      limit: el.limit,
+      mode: 'tags',
+      hideSelectedTag: el.hideSelectedTag,
+      maxHeight: el.maxHeight,
+      createTag: el.create,
+      appendNewTag: false,
       custom: 'option'
     })
   })
@@ -151,7 +151,7 @@ export const options = function (elementType, elementName, options) {
     })
   })
   
-  it('should bind `options` to VueMultiselect when not native', () => {
+  it('should bind `options` to Multiselect when not native', () => {
     let form = createForm({
       schema: {
         el: {
@@ -163,10 +163,10 @@ export const options = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let VueMultiselect = findAllComponents(elWrapper, { name: 'VueMultiselect' }).at(0)
+    let Multiselect = findAllComponents(elWrapper, { name: 'Multiselect' }).at(0)
     
     _.each(el.options, (value, key) => {
-      expect(VueMultiselect.props(key)).toStrictEqual(value)
+      expect(Multiselect.props(key)).toStrictEqual(value)
     })
   })
 }

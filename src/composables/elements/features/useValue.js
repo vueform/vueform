@@ -1,4 +1,4 @@
-import { computed, ref, watch } from 'composition-api'
+import { computed, ref, watch, onMounted } from 'composition-api'
 import checkDateFormat from '../../../utils/checkDateFormat'
 import normalize from './../../../utils/normalize'
 
@@ -385,7 +385,12 @@ const select = function(props, context, dependencies)
   const isNative = dependencies.isNative
   const trackBy = dependencies.trackBy
   const items = dependencies.items
+  const loading = dependencies.loading
   const { previousValue, currentValue, value } = base(props, context, dependencies)
+
+  // =============== PRIVATE ==============
+
+  const resolvedItems = ref([])
 
   // ============== COMPUTED ==============
   
@@ -404,19 +409,14 @@ const select = function(props, context, dependencies)
         throw new Error('Model "set" must be an object when using non-native type. Try `getOption` to retrieve option object.')
       }
 
-      value.value = isNative.value || val === null ? val : val['value']
+      value.value = isNative.value || val === null ? normalize(val) : val['value']
     }
   })
 
-  /**
-   * List of select options converted to an array of objects.
-   * 
-   * @type {array}
-   */
   const selectOptions = computed(() => {
     let options = []
 
-    _.each(items.value, (item, key) => {
+    _.each(resolvedItems.value, (item, key) => {
       let val = key
       let label = item
 
@@ -460,7 +460,7 @@ const select = function(props, context, dependencies)
   const textValue = computed(() => {
     var val = getOption(value.value)
 
-    if (val === undefined) {
+    if (val === null) {
       return ''
     }
 
@@ -470,8 +470,19 @@ const select = function(props, context, dependencies)
   // =============== METHODS ==============
   
   const getOption = (val) => {
-    return _.find(selectOptions.value, { value: normalize(val) })
+    return _.find(selectOptions.value, { value: normalize(val) }) || null
   }
+
+  onMounted(async () => {
+    if (typeof items.value == 'function') {
+      loading.value = true
+      resolvedItems.value = await items.value() || []
+      loading.value = false
+      return
+    }
+
+    resolvedItems.value = items.value || []
+  })
 
   return {
     value,
@@ -509,7 +520,13 @@ const multiselect = function(props, context, dependencies)
         values = []
 
         _.each(value.value, (option) => {
-          values.push(getOption(option))
+          let optionObject = getOption(option)
+
+          if (!optionObject) {
+            return
+          }
+
+          values.push(optionObject)
         })
       }
 

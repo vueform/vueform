@@ -1,8 +1,9 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, findAll } from 'test-helpers'
+import { nextTick } from 'composition-api'
 
 export const handleChange = function (elementType, elementName, options) {
-  it('should dirt the element if input value is different than the current', () => {
+  it('should dirt the element if input value is different than the current', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -12,40 +13,46 @@ export const handleChange = function (elementType, elementName, options) {
       }
     })
 
+    await nextTick()
+
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let input = findAll(elWrapper, `select`).at(0)
+    let select = findAll(elWrapper, `select`).at(0)
+    let option0 = findAll(select, `option`).at(0)
 
     expect(el.dirty).toBe(false)
 
-    input.setValue(options.value)
+    option0.setSelected()
 
     expect(el.dirty).toBe(true)
   })
 
-  it('should not dirt the element if input value is not different than the current', () => {
+  it('should not dirt the element if input value is not different than the current', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           items: options.items,
-          default: options.value,
+          default: _.keys(options.items)[0],
         }
       }
     })
 
+    await nextTick()
+
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let input = findAll(elWrapper, `select`).at(0)
+    let select = findAll(elWrapper, `select`).at(0)
+    let option0 = findAll(select, `option`).at(0)
 
     expect(el.dirty).toBe(false)
 
-    input.setValue(options.value)
-
+    option0.setSelected()
+    
     expect(el.dirty).toBe(false)
   })
 
-  it('should trigger "change" event if value changed', () => {
+  it('should trigger "change" event if value changed', async () => {
     let onChangeMock = jest.fn()
 
     let form = createForm({
@@ -58,15 +65,18 @@ export const handleChange = function (elementType, elementName, options) {
       }
     })
 
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let input = findAll(elWrapper, `select`).at(0)
+    await nextTick()
 
-    input.setValue(options.value)
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let select = findAll(elWrapper, `select`).at(0)
+    let option0 = findAll(select, `option`).at(0)
+
+    option0.setSelected()
 
     expect(onChangeMock).toHaveBeenCalled()
   })
 
-  it('should not trigger "change" event if value has not changed', () => {
+  it('should not trigger "change" event if value has not changed', async () => {
     let onChangeMock = jest.fn()
 
     let form = createForm({
@@ -75,15 +85,18 @@ export const handleChange = function (elementType, elementName, options) {
           type: elementType,
           onChange: onChangeMock,
           items: options.items,
-          default: options.value,
+          default: _.keys(options.items)[0],
         }
       }
     })
 
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let input = findAll(elWrapper, `select`).at(0)
+    await nextTick()
 
-    input.setValue(options.value)
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let select = findAll(elWrapper, `select`).at(0)
+    let option0 = findAll(select, `option`).at(0)
+
+    option0.setSelected()
 
     expect(onChangeMock).not.toHaveBeenCalled()
   })
@@ -100,11 +113,15 @@ export const handleChange = function (elementType, elementName, options) {
       }
     })
 
+    await nextTick()
+
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let input = findAll(elWrapper, `select`).at(0)
+    let select = findAll(elWrapper, `select`).at(0)
+    let option0 = findAll(select, `option`).at(0)
+    let option1 = findAll(select, `option`).at(1)
 
-    input.setValue(options.value)
+    option0.setSelected()
 
     await flushPromises()
 
@@ -112,7 +129,7 @@ export const handleChange = function (elementType, elementName, options) {
 
     form.vm.validateOn = 'submit|change'
 
-    input.setValue(options.value2)
+    option1.setSelected()
 
     await flushPromises()
 
@@ -134,11 +151,14 @@ export const handleChange = function (elementType, elementName, options) {
       }
     })
 
+    await nextTick()
+
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let select = findAll(elWrapper, 'select').at(0)
+    let select = findAll(elWrapper, `select`).at(0)
+    let option0 = findAll(select, `option`).at(0)
 
-    select.setValue(options.value)
+    option0.setSelected()
 
     expect(onChangeMock).toHaveBeenCalledWith(el.currentValue, el.previousValue)
   })
@@ -157,6 +177,8 @@ export const handleChange = function (elementType, elementName, options) {
         }
       }
     })
+
+    await nextTick()
 
     let el = form.vm.el$('el')
 

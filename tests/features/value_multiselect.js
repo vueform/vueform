@@ -65,6 +65,8 @@ export const model = function (elementType, elementName, options) {
       }
     })
 
+    await nextTick()
+
     let el = form.vm.el$('el')
 
     el.model = [1]
@@ -89,6 +91,8 @@ export const model = function (elementType, elementName, options) {
         }
       }
     })
+
+    await nextTick()
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)

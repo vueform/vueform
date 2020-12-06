@@ -18,6 +18,11 @@ export default {
     name: {
       type: [String, Number],
       required: false,
+      default: 'multiselect',
+    },
+    name: {
+      type: [String, Number],
+      required: false,
       default: '',
     },
     disabled: {
@@ -79,9 +84,25 @@ export default {
       required: false,
       default: true,
     },
+    caret: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    loading: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   init(props, context) {
-    const { value, options, mode,  searchable, trackBy, limit, maxHeight, id, hideSelectedTag, createTag, label, appendNewTag } = toRefs(props)
+    const { value, options, mode,  searchable, trackBy, limit, maxHeight,
+            id, hideSelectedTag, createTag, label, appendNewTag, disabled } = toRefs(props)
 
     const isOpen = ref(false)
 
@@ -94,8 +115,6 @@ export default {
     const pointer = ref(null)
 
     const appendedOptions = ref([])
-
-    const resolvedOptions = ref(options.value instanceof Promise ? [] : options.value)
 
     const tabindex = computed(() => {
       return searchable.value ? -1 : 0
@@ -118,7 +137,7 @@ export default {
     })
 
     const filteredOptions = computed(() => {
-      let filteredOptions = resolvedOptions.value
+      let filteredOptions = options.value
 
       if (createdTag.value.length) {
         filteredOptions = createdTag.value.concat(filteredOptions)
@@ -158,11 +177,11 @@ export default {
     })
 
     const optionExist = (option) => {
-      return _.findIndex(resolvedOptions.value.concat(appendedOptions.value), option) !== -1
+      return _.findIndex(options.value.concat(appendedOptions.value), option) !== -1
     }
 
     const optionExistsWithTracyBy = (val) => {
-      return _.findIndex(resolvedOptions.value.concat(appendedOptions.value),
+      return _.findIndex(options.value.concat(appendedOptions.value),
         (option) => normalize(option[trackBy.value]) == normalize(val)
       ) !== -1
     }
@@ -172,9 +191,9 @@ export default {
     }
 
     const multipleSelectionText = computed(() => {
-      return value.value.length > 1
+      return value.value && value.value.length > 1
         ? `${value.value.length} options selected`
-        : `${value.value.length} option selected`
+        : `1 option selected`
     })
 
     const hasSelected = computed(() => {
@@ -212,6 +231,10 @@ export default {
     }
 
     const open = () => {
+      if (disabled.value) {
+        return
+      }
+
       isOpen.value = true
       context.emit('open')
     }
