@@ -461,7 +461,7 @@ const select = function (props, context, dependencies)
       trackBy: trackBy.value,
       loading: loading.value,
       limit: limit.value,
-      mode: 'tags',
+      mode: 'single',
       maxHeight: maxHeight.value,
     }
   })
@@ -566,11 +566,17 @@ const tags = function (props, context, dependencies)
 
   const create = computedOption('create', schema, false)
 
+  const hideSelectedTag = computedOption('hideSelectedTag', schema, false)
+
   const tagPlaceholder = computedOption('tagPlaceholder', schema, form$.value.__('laraform.elements.tags.createLabel'))
 
   const search = computed({
     get() {
-      return schema.value.search !== undefined ? schema.value.search : create.value
+      if (create.value) {
+        return true
+      }
+
+      return schema.value.search !== undefined ? schema.value.search : false
     },
     set(val) {
       form$.value.$set(schema.value, 'search', val)
@@ -594,19 +600,16 @@ const tags = function (props, context, dependencies)
   */
   const defaultOptions = computed(() => {
     return {
-      showLabels: false,
       searchable: search.value,
       label: 'label',
       trackBy: trackBy.value,
       loading: loading.value,
       limit: limit.value,
-      multiple: true,
-      taggable: true,
-      tagPlaceholder: tagPlaceholder.value,
-      clearOnSelect: true,
-      hideSelected: true,
-      closeOnSelect: false,
+      mode: 'tags',
+      hideSelectedTag: hideSelectedTag.value,
       maxHeight: maxHeight.value,
+      createTag: create.value,
+      appendNewTag: false,
     }
   })
 

@@ -1,7 +1,10 @@
 <template>
   <div
     class="multiselect"
-    :class="{'is-open': isOpen, 'is-searchable': searchable}"
+    :class="[`is-${mode}`, {
+      'is-open': isOpen,
+      'is-searchable': searchable,
+    }]"
     :id="id"
     @keydown.prevent.enter
     ref="multiselect"
@@ -13,24 +16,10 @@
       @blur="close"
       @keyup.esc="handleEsc"
       @keyup.enter="selectPointer"
-      @keydown.up="backwardPointer"
-      @keydown.down="forwardPointer"
+      @keyup.prevent.backspace="handleBackspace"
+      @keydown.prevent.up="backwardPointer"
+      @keydown.prevent.down="forwardPointer"
     >
-      <div
-        v-if="searchable"
-        class="multiselect-search"
-      >
-        <input    
-          v-model="search"
-          @focus.stop="open"
-          @blur.stop="close"
-          @keyup.stop.esc="handleEsc"
-          @keyup.stop.enter="selectPointer"
-          @keydown.stop.up="backwardPointer"
-          @keydown.stop.down="forwardPointer"
-          ref="input"
-        />
-      </div>
 
       <div
         v-if="mode == 'single' && hasSelected && !search"
@@ -47,7 +36,61 @@
       </div>
 
       <div
-        v-if="placeholder && !hasSelected && !search"
+        v-if="mode == 'tags'"
+        class="multiselect-tags"
+      >
+        <div
+          v-for="(option, i, key) in value"
+          class="multiselect-tag"
+          :key="key"
+        >
+          {{ option[label] }}
+
+          <i
+            @click.prevent
+            @mousedown.prevent="remove(option)"
+          ></i>
+        </div>
+    
+        <div
+          v-if="searchable"
+          class="multiselect-search"
+          :style="{ width: tagsSearchWidth }"
+        >
+          <input    
+            v-model="search"
+            @focus.stop="open"
+            @blur.stop="close"
+            @keyup.stop.esc="handleEsc"
+            @keyup.stop.enter="selectPointer"
+            @keyup.backspace="handleTagsSearchBackspace"
+            @keydown.stop.up="backwardPointer"
+            @keydown.stop.down="forwardPointer"
+            :style="{ width: tagsSearchWidth }"
+            ref="input"
+          />
+        </div>
+      </div>
+    
+      <div
+        v-if="mode !== 'tags' && searchable"
+        class="multiselect-search"
+      >
+        <input    
+          v-model="search"
+          @focus.stop="open"
+          @blur.stop="close"
+          @keyup.stop.esc="handleEsc"
+          @keyup.stop.enter="selectPointer"
+          @keyup.stop.backspace
+          @keydown.stop.up="backwardPointer"
+          @keydown.stop.down="forwardPointer"
+          ref="input"
+        />
+      </div>
+
+      <div
+        v-show="placeholder && !hasSelected && !search"
         class="multiselect-placeholder"
       >
         {{ placeholder }}
@@ -72,7 +115,7 @@
           :key="key"
           @mousedown.prevent
           @mouseenter="setPointer(option)"
-          @click.prevent="handleOptionClick(option)"
+          @click.stop.prevent="handleOptionClick(option)"
         >
           <span>{{ option[label] }}</span>
         </a>
@@ -101,45 +144,46 @@
       font-size: initial;
     }
 
-    .multiselect-input {
-      width: 100%;
-      display: inline-block;
-      height: 40px;
-      border: 1px solid #e7e7e7;
-      border-radius: 3px;
-      box-sizing: border-box;
-      cursor: pointer;
-      position: relative;
-      outline: none;
-
-      &:before {
-        position: absolute;
-        right: 12px;
-        top: 50%;
-        color: #999;
-        border-style: solid;
-        border-width: 5px 5px 0;
-        border-color: #999 transparent transparent;
-        content: "";
-        transform: translateY(-50%);
-        transition: .3s transform;
-      }
-    }
-
-    &.is-open {
-      .multiselect-input {
-        border-radius: 3px 3px 0 0;
-      }
-
-      .multiselect-input {
-        &:before {
-          transform: translateY(-50%) rotate(180deg);
-        }
-      }
-    }
-
     &.is-searchable {
       cursor: auto;
+    }
+  }
+
+  .multiselect-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+
+    &:before {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      color: #999;
+      border-style: solid;
+      border-width: 5px 5px 0;
+      border-color: #999 transparent transparent;
+      content: "";
+      transform: translateY(-50%);
+      transition: .3s transform;
+    }
+  }
+
+  .is-open {
+    .multiselect-input {
+      border-radius: 3px 3px 0 0;
+    }
+
+    .multiselect-input {
+      &:before {
+        transform: translateY(-50%) rotate(180deg);
+      }
     }
   }
 
@@ -155,26 +199,96 @@
     top: 0;
     pointer-events: none;
     background: transparent;
-  } 
+  }
 
   .multiselect-placeholder {
     color: #777777;
   } 
 
-  .multiselect-search {
+  .is-single,
+  .is-multiple {
+    .multiselect-search {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      background: transparent;
+
+      input {
+        width: 100%;
+        border: 0;
+        padding: 8px 35px 8px 14px;
+        outline: none;
+        background: transparent;
+        font-size: 16px;
+        font-family: inherit;
+      }
+    } 
+  }
+
+  .is-tags {
+    .multiselect-search {
+      flex-grow: 1;
+
+      input {
+        outline: none;
+        border: 0;
+        margin: 0 0 5px 3px;
+        flex-grow: 1;
+        min-width: 100%;
+        font-size: 16px;
+        font-family: inherit;
+      }
+    } 
+  }
+
+  .multiselect-tags {
     display: flex;
     height: 100%;
     width: 100%;
-    background: transparent;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 9px;
+    margin-top: 5px;
+    flex-wrap: wrap;
+    padding-right: 36px;
+  }
 
-    input {
-      width: 100%;
-      border: 0;
-      padding: 8px 35px 8px 14px;
-      outline: none;
-      background: transparent;
+  .multiselect-tag {
+    background: #41b883;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 0 0 8px;
+    border-radius: 3px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    cursor: text;
+    white-space: nowrap;
+
+    i {
+      cursor: pointer;
+
+      &:before {
+        content: "\D7";
+        color: #266d4d;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 1px 5px 1px 5px;
+        margin-left: 3px;
+        display: flex;
+        font-style: normal;
+      }
+
+      &:hover {
+        &:before {
+          color: #ffffff;
+          background: rgba(255,255,255,0.2);
+        }
+      }
     }
-  } 
+  }
 
   .multiselect-content {
     position: absolute;
@@ -186,6 +300,7 @@
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
   }
+
 
   .multiselect-option {
     display: flex;
@@ -208,7 +323,20 @@
       }
     }
   }
+  
+  .is-multiple,
+  .is-tags {
+    .multiselect-option {
+      &.is-selected {
+        color: #999999;
+        background: transparent;
 
+        &.is-pointed {
+          background: #f1f1f1;
+        }
+      }
+    }
+  }
   .multiselect-enter-active {
     transition: all 0.15s ease;
   }

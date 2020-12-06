@@ -26,13 +26,13 @@ import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
-import useHandleChange from './features/useHandleChange'
 import useEmpty from './features/useEmpty'
 import useItems from './features/useItems'
 import useHandleSelectEvents from './features/useHandleSelectEvents'
 
 import { select as useValue } from './features/useValue'
 import { select as useOptions } from './features/useOptions'
+import { select as useHandleInput } from './features/useHandleInput'
 
 export default function useText(props, context) {
   const { schema } = toRefs(props)
@@ -153,7 +153,7 @@ export default function useText(props, context) {
     ]
   })
 
-  const handleChange = useHandleChange(props, context, {
+  const handleInput = useHandleInput(props, context, {
     form$: form$.form$,
     model: value.model,
     currentValue: value.currentValue,
@@ -203,7 +203,7 @@ export default function useText(props, context) {
     ...empty,
     ...default_,
     ...nullValue,
-    ...handleChange,
+    ...handleInput,
     ...items,
     ...options,
     ...handleSelectEvents,

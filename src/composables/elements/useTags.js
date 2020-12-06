@@ -25,7 +25,6 @@ import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
 import useItems from './features/useItems'
-import useHandleChange from './features/useHandleChange'
 import useHandleSelectEvents from './features/useHandleSelectEvents'
 import useHandleTag from './features/useHandleTag'
 import useSelect from './features/useSelect'
@@ -36,6 +35,7 @@ import { multiselect as useValue } from './features/useValue'
 import { array as  useNullValue } from './features/useNullValue'
 import { array as useEmpty } from './features/useEmpty'
 import { tags as useBaseElement } from './features/useBaseElement'
+import { select as useHandleInput } from './features/useHandleInput'
 
 export default function (props, context) {
   const { schema } = toRefs(props)
@@ -159,7 +159,7 @@ export default function (props, context) {
     }
   })
 
-  const handleChange = useHandleChange(props, context, {
+  const handleInput = useHandleInput(props, context, {
     form$: form$.form$,
     model: value.model,
     currentValue: value.currentValue,
@@ -229,7 +229,7 @@ export default function (props, context) {
     ...empty,
     ...default_,
     ...nullValue,
-    ...handleChange,
+    ...handleInput,
     ...items,
     ...options,
     ...handleSelectEvents,

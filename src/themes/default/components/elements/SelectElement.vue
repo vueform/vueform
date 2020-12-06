@@ -31,14 +31,14 @@
       </select>
       <multiselect
         v-else
-        v-model="model"
+        :value="model"
         v-bind="options"
         :id="id"
         :name="String(name)"
         :options="selectOptions"
         :disabled="disabled"
         :placeholder="placeholder"
-        @input="handleChange"
+        @input="handleInput"
         @select="handleSelect"
         @remove="handleDeselect"
         @search-change="handleSearchChange"

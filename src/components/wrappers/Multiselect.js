@@ -2,6 +2,10 @@ import { ref, toRefs, computed, watch, nextTick } from 'composition-api'
 
 export default {
   name: 'Multiselect',
+  emits: [
+    'open', 'close', 'select', 'deselect', 
+    'input', 'search-change', 'tag'
+  ],
   props: {
     value: {
       required: true,
@@ -53,16 +57,31 @@ export default {
     limit: {
       type: Number,
       required: false,
-      default: 20,
+      default: -1,
     },
     maxHeight: {
       type: Number,
       required: false,
       default: 160,
     },
+    hideSelectedTag: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    createTag: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    appendNewTag: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
   },
   init(props, context) {
-    const { value, options, mode,  searchable, trackBy, limit, maxHeight, id } = toRefs(props)
+    const { value, options, mode,  searchable, trackBy, limit, maxHeight, id, hideSelectedTag, createTag, label, appendNewTag } = toRefs(props)
 
     const isOpen = ref(false)
 
@@ -74,8 +93,24 @@ export default {
 
     const pointer = ref(null)
 
+    const appendedOptions = ref([])
+
+    const resolvedOptions = ref(options.value instanceof Promise ? [] : options.value)
+
     const tabindex = computed(() => {
       return searchable.value ? -1 : 0
+    })
+
+    const tagsSearchWidth = computed(() => {
+      if (search.value) {
+        return `${search.value.length}ch`
+      }
+
+      if (!hasSelected.value) {
+        return '100%'
+      }
+
+      return '1ch'
     })
 
     const contentMaxHeight = computed(() => {
@@ -83,16 +118,58 @@ export default {
     })
 
     const filteredOptions = computed(() => {
-      if (!search.value) {
-        return options.value.slice(0, limit.value)
+      let filteredOptions = resolvedOptions.value
+
+      if (createdTag.value.length) {
+        filteredOptions = createdTag.value.concat(filteredOptions)
       }
 
-      return options.value.filter((option, index) => {
-        return option[trackBy.value].toLowerCase().trim().indexOf(
-          search.value.toLowerCase().trim()
-        ) !== -1
-      }).slice(0, limit.value)
+      if (appendedOptions.value.length) {
+        filteredOptions = filteredOptions.concat(appendedOptions.value)
+      }
+
+      if (search.value) {
+        filteredOptions = filteredOptions.filter((option) => {
+          return normalize(option[trackBy.value]).indexOf(normalize(search.value)) !== -1
+        })
+      }
+
+      if (hideSelectedTag.value) {
+        filteredOptions = filteredOptions.filter((option) => !shouldHideOption(option))
+      }
+
+      if (limit.value > 0) {
+        filteredOptions = filteredOptions.slice(0, limit.value)
+      }
+
+      return filteredOptions
     })
+
+    const createdTag = computed(() => {
+      if (createTag.value === false || !search.value) {
+        return []
+      }
+
+      return optionExistsWithTracyBy(search.value) ? [] : [{
+        [label.value]: search.value,
+        [trackBy.value]: search.value,
+        value: search.value,
+      }]
+    })
+
+    const optionExist = (option) => {
+      return _.findIndex(resolvedOptions.value.concat(appendedOptions.value), option) !== -1
+    }
+
+    const optionExistsWithTracyBy = (val) => {
+      return _.findIndex(resolvedOptions.value.concat(appendedOptions.value),
+        (option) => normalize(option[trackBy.value]) == normalize(val)
+      ) !== -1
+    }
+
+    const shouldHideOption = (option) => {
+      return mode.value === 'tags' && hideSelectedTag.value && isSelected(option)
+    }
 
     const multipleSelectionText = computed(() => {
       return value.value.length > 1
@@ -122,18 +199,34 @@ export default {
       }
     })
 
+    const appendOption = (option) => {
+      appendedOptions.value.push(option)
+    }
+
+    const normalize = (str) => {
+      if (typeof str !== 'string') {
+        return str
+      }
+
+      return str.toLowerCase().trim()
+    }
+
     const open = () => {
       isOpen.value = true
       context.emit('open')
     }
 
     const close = () => {
-      // isOpen.value = false
+      isOpen.value = false
       context.emit('close')
     }
 
     const toggle = () => {
       isOpen.value ? close() : open()
+    }
+
+    const remove = (option) => {
+      deselect(option)
     }
 
     const update = (val) => {
@@ -177,6 +270,7 @@ export default {
           clear()
           break
 
+        case 'tags':
         case 'multiple':
           update(value.value.filter((val, i) => !_.isEqual(val, option)))
           break
@@ -190,8 +284,9 @@ export default {
         case 'single':
           return _.isEqual(value.value, option)
 
+        case 'tags':
         case 'multiple':
-          return value.value.indexOf(option) !== -1
+          return _.findIndex(value.value, option) !== -1
       }
     }
 
@@ -201,6 +296,10 @@ export default {
 
     const setPointer = (option) => {
       pointer.value = option
+    }
+
+    const setPointerFirst = () => {
+      pointer.value = filteredOptions.value[0] || null
     }
 
     const clearPointer = () => {
@@ -216,13 +315,13 @@ export default {
         setPointer(filteredOptions.value[0])
       }
       else {
-        let nextIndex = filteredOptions.value.indexOf(pointer.value) + 1
+        let next = _.findIndex(filteredOptions.value, pointer.value) + 1
 
-        if (filteredOptions.value.length <= nextIndex) {
-          nextIndex = 0
+        if (filteredOptions.value.length <= next) {
+          next = 0
         }
 
-        setPointer(filteredOptions.value[nextIndex])
+        setPointer(filteredOptions.value[next])
       }
 
       nextTick(() => {
@@ -230,8 +329,8 @@ export default {
       })
     }
 
-    const backwardPointer = (option) => {
-      let prevIndex = filteredOptions.value.indexOf(pointer.value) - 1
+    const backwardPointer = () => {
+      let prevIndex = _.findIndex(filteredOptions.value, pointer.value) - 1
 
       if (prevIndex < 0) {
         prevIndex = filteredOptions.value.length - 1
@@ -245,7 +344,7 @@ export default {
     }
 
     const adjustWrapperScrollToPointer = () => {
-      let pointedOption = context.parent.$el.querySelector(`#${id.value} .is-pointed`)
+      let pointedOption = document.querySelector(`#${id.value} .is-pointed`)
       let wrapper = pointedOption.parentElement
 
       if (pointedOption.offsetTop + pointedOption.offsetHeight > wrapper.clientHeight + wrapper.scrollTop) {
@@ -279,6 +378,25 @@ export default {
           select(option)
           clearSearch()
           break
+
+        case 'tags':
+          if (isSelected(option)) {
+            deselect(option)
+            return
+          }
+
+          if (!optionExist(option) && createTag.value) {
+            context.emit('tag', option.value)
+
+            if (appendNewTag) {
+              appendOption(option)
+            }
+
+            clearSearch()
+          }
+
+          select(option)
+          break
       }
     }
 
@@ -288,7 +406,22 @@ export default {
       e.target.blur()
     }
 
+    const handleBackspace = (e) => {
+      update([...value.value].slice(0,-1))
+    }
+
+    const handleTagsSearchBackspace = (e) => {
+      if (search.value !== null) {
+        e.stopPropagation()
+      }
+
+      if (search.value === '') {
+        search.value = null
+      }
+    }
+
     watch(search, (val) => {
+      setPointerFirst()
       context.emit('search-change', val)
     })
 
@@ -303,12 +436,15 @@ export default {
       contentMaxHeight,
       pointer,
       multipleSelectionText,
+      tagsSearchWidth,
+      appendedOptions,
 
       open,
       close,
       toggle,
       select,
       deselect,
+      remove,
       clear,
       isSelected,
       clearSearch,
@@ -320,6 +456,8 @@ export default {
       forwardPointer,
       backwardPointer,
       handleOptionClick,
+      handleBackspace,
+      handleTagsSearchBackspace,
       handleEsc,
     }
   }
