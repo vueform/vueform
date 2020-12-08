@@ -1,26 +1,20 @@
-<template>
-  <button
-    :class="classes.button"
-    :disabled="disabled"
-    @click.prevent="handleClick"
-    v-html-if="{label: !isLabelComponent}"
-  >
-    <component v-if="isLabelComponent" :is="label" :button="button" />
-  </button>
-</template>
-
 <script>
   import FormButtonSubmit from './../../../components/FormButtonSubmit'
+  import FormButton from './FormButton'
 
   export default {
     name: 'FormButtonSubmit',
     mixins: [FormButtonSubmit],
+    render: FormButton.render,
     data() {
       return {
         defaultClasses: {
           button: 'btn',
           loading: 'btn-loading',
           disabled: 'btn-disabled',
+          left: 'align-left',
+          center: 'align-center',
+          right: 'align-right',
         }
       }
     }

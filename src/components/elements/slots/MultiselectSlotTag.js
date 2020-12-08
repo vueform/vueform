@@ -8,11 +8,12 @@ export default {
     option: {
       required: true
     },
-    search: {
-      required: true
-    },
     remove: {
       type: Function,
+      required: true
+    },
+    disabled: {
+      type: Boolean,
       required: true
     },
   },

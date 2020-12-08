@@ -1,19 +1,13 @@
 export default {
-  name: 'MultiselectSlotTagsSelection',
+  name: 'MultiselectSlotMultipleLabel',
   props: {
     el$: {
       type: Object,
       required: true
     },
-    search: {
-      required: true
-    },
     values: {
+      type: Array,
       required: false
-    },
-    remove: {
-      type: Function,
-      required: true
     },
   },
   methods: {

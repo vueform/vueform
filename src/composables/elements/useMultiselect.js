@@ -151,8 +151,8 @@ export default function (props, context) {
     slots: [
       'label', 'info', 'description', 'error',
       'message', 'before', 'between', 'after',
-      'beforeList', 'afterList', 'selection',
-      'noResult', 'noOptions', 'option', 
+      'beforeList', 'afterList', 'multipleLabel',
+      'noResults', 'noOptions', 'option', 
     ]
   })
 

@@ -1,7 +1,11 @@
 <template>
-  <span class="multiselect__tag">
+  <span class="multiselect-tag">
     <span v-text="option.label"></span>
-    <i aria-hidden="true" tabindex="1" @keypress.enter.prevent="remove(option)"  @mousedown.prevent="remove(option)" class="multiselect__tag-icon"></i>
+    <i
+      v-if="!disabled"
+      @click.prevent
+      @mousedown.prevent="remove(option)"
+    ></i>
   </span>
 </template>
 

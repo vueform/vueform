@@ -7,5 +7,6 @@
     name: 'TTextareaElement',
     mixins: [TTextareaElement],
     render: TextareaElement.render,
+    data: TextareaElement.data,
   }
 </script>

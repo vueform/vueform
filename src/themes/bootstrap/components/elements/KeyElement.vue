@@ -7,5 +7,6 @@
     name: 'KeyElement',
     mixins: [KeyElement],
     render: HiddenElement.render,
+    data: HiddenElement.data,
   }
 </script>

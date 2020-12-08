@@ -1,6 +1,8 @@
 <template>
-  <component :is="components.BaseElementLayout">
-    <template slot="field">
+  <component :is="layout">
+
+    <template v-slot:field>
+
       <slot name="prefix"></slot>
 
       <component :is="components.ElementLabelFloating"
@@ -8,21 +10,16 @@
         :visible="!empty"
       >{{ floating }}</component>
 
-      <span
-        v-if="placeholder && !(this.multiple && this.native)"
-        :class="classes.selectNativePlaceholder"
-      >{{ placeholder }}</span>
-
       <select
         v-if="isNative"
         v-model="model"
         :class="classes.select"
         :name="name"
         :id="id"
-        :multiple="options.multiple"
+        :multiple="options.mode === 'multiple'"
         :disabled="disabled"
         @change="handleChange"
-        ref="select$"
+        ref="input"
       >
         <option
           v-for="(option, index) in selectOptions"
@@ -32,68 +29,73 @@
           {{ option.label }}
           </option>
       </select>
-
       <multiselect
         v-else
-        v-model="model"
+        :value="model"
         v-bind="options"
         :id="id"
-        :name="String(name)"
+        :name="name"
         :options="selectOptions"
-        :placeholder="placeholder"
         :disabled="disabled"
-        @input="handleChange"
+        :placeholder="placeholder"
+        @input="handleInput"
         @select="handleSelect"
         @remove="handleDeselect"
         @search-change="handleSearchChange"
         @tag="handleTag"
         @open="handleOpen"
         @close="handleClose"
-        ref="select$"
+        ref="input"
       >
-        <slot name="option" slot="option" slot-scope="{ option, search }" :el$="el$" :option="option" :search="search">
-          <component v-if="slots.option" :is="slots.option" :el$="el$" :option="option" :search="search" />
-        </slot>
-        <slot name="beforeList" slot="beforeList" :el$="el$">
-          <component v-if="slots.beforeList" :is="slots.beforeList" :el$="el$"/>
-        </slot>
-        <slot name="afterList" slot="afterList" :el$="el$">
-          <component v-if="slots.afterList" :is="slots.afterList" :el$="el$"/>
-        </slot>
-        <slot name="singleLabel" slot="singleLabel" :el$="el$" :option="selectedOption">
-          <component v-if="slots.singleLabel" :is="slots.singleLabel" :el$="el$" :option="selectedOption"/>
-        </slot>
-        <slot name="noResult" slot="noResult" :el$="el$">
-          <component v-if="slots.noResult" :is="slots.noResult" :el$="el$"/>
-        </slot>
-        <slot name="noOptions" slot="noOptions" :el$="el$">
-          <component v-if="slots.noOptions" :is="slots.noOptions" :el$="el$"/>
-        </slot>
-        <slot name="selection" slot="selection" slot-scope="{ values, search, remove }" :el$="el$" :values="values" :search="search" :remove="remove">
-          <component v-if="slots.selection" :is="slots.selection" :el$="el$" :values="values" :search="search" :remove="remove">
-            <slot name="tag" slot="tag" slot-scope="{ option, search, remove }" :el$="el$" :option="option" :search="search" :remove="remove">
-              <component v-if="slots.tag && selectOptions.length > 0" :is="slots.tag" :el$="el$" :option="option" :search="search" :remove="remove" />
-            </slot>
-          </component>
-        </slot>
+        <template v-slot:option="{ option, search }">
+          <slot name="option" :el$="el$" :option="option" :search="search">
+            <component :is="slots.option" :el$="el$" :option="option" :search="search" />
+          </slot>
+        </template>
+        
+        <template v-if="options.mode == 'single'" v-slot:singleLabel="{ value }">
+          <slot name="singleLabel" :el$="el$" :value="value">
+            <component v-if="slots.singleLabel" :is="slots.singleLabel" :el$="el$" :value="value" />
+          </slot>
+        </template>
+        
+        <template v-if="options.mode == 'multiple'" v-slot:multipleLabel="{ values }">
+          <slot name="multipleLabel" :el$="el$" :values="values">
+            <component :is="slots.multipleLabel" :el$="el$" :values="values" />
+          </slot>
+        </template>
+
+        <template v-if="options.mode == 'tags'" v-slot:tag="{ option, remove, disabled }">
+          <slot name="tag" :el$="el$" :option="option" :remove="remove" :disabled="disabled">
+            <component :is="slots.tag" :el$="el$" :option="option" :remove="remove" :disabled="disabled" />
+          </slot>
+        </template>
+
+        <template v-slot:noResults><slot name="noResults" :el$="el$"><component :is="slots.noResults" :el$="el$" /></slot></template>
+        <template v-slot:noOptions><slot name="noOptions" :el$="el$"><component :is="slots.noOptions" :el$="el$" /></slot></template>
+        <template v-slot:beforeList><slot name="beforeList" :el$="el$"><component v-if="slots.beforeList" :is="slots.beforeList" :el$="el$" /></slot></template>
+        <template v-slot:afterList><slot name="afterList" :el$="el$"><component v-if="slots.afterList" :is="slots.afterList" :el$="el$" /></slot></template>
+
       </multiselect>
 
       <slot name="suffix"></slot>
+
     </template>
 
-    <slot slot="label" name="label" :el$="el$"></slot>
-    <slot slot="before" name="before" :el$="el$"></slot>
-    <slot slot="between" name="between" :el$="el$"></slot>
-    <slot slot="error" name="error" :el$="el$"></slot>
-    <slot slot="after" name="after" :el$="el$"></slot>
+    <template v-slot:info><slot name="info" :el$="el$"><component :is="slots.info" /></slot></template>
+    <template v-slot:before><slot name="before" :el$="el$"><component :is="slots.before" type="before" /></slot></template>
+    <template v-slot:label><slot name="label" :el$="el$"><component :is="slots.label" /></slot></template>
+    <template v-slot:between><slot name="between" :el$="el$"><component :is="slots.between" type="between" /></slot></template>
+    <template v-slot:description><slot name="description" :el$="el$"><component :is="slots.description" /></slot></template>
+    <template v-slot:error><slot name="error" :el$="el$"><component :is="slots.error" /></slot></template>
+    <template v-slot:message><slot name="message" :el$="el$"><component :is="slots.message" /></slot></template>
+    <template v-slot:after><slot name="after" :el$="el$"><component :is="slots.after" type="after" /></slot></template>
   </component>
 </template>
 
 <script>
   import SelectElement from './../../../../components/elements/SelectElement'
-
-  import Multiselect from 'vue-multiselect'
-  import 'vue-multiselect/dist/vue-multiselect.min.css'
+  import Multiselect from 'vueform-multiselect/src'
 
   export default {
     name: 'SelectElement',
@@ -104,6 +106,7 @@
     data() {
       return {
         defaultClasses: {
+          container: 'lf-select',
           select: 'form-control',
           selectNativePlaceholder: 'native-select-placeholder',
         }

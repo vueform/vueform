@@ -1,24 +1,36 @@
 <template>
-  <component :is="components.NestedElementLayout">
+  <component :is="layout">
 
-    <slot slot="prefix" name="prefix"></slot>
+    <template v-slot:field>
+      
+      <slot name="prefix"></slot>
 
-    <div :class="classes.elements" slot="elements">
-      <component
-        v-for="(element, name) in children"
-        :is="component(element)"
-        :schema="element"
-        :name="name"
-        :parent="el$"
-        :key="name"
-        ref="children$"
-      />
-    </div>
+      <div :class="classes.childrenContainer">
+        <component
+          v-for="(element, name, i) in children"
+          :is="component(element)"
+          :embed="embed"
+          :schema="element"
+          :name="name"
+          :parent="el$"
+          :key="i"
+          v-ref:child$
+          :ref="setRef(child$, i)"
+          @remove="(e) => $emit('remove', e)"
+        />
+      </div>
 
-    <slot slot="suffix" name="suffix"></slot>
+      <slot name="suffix"></slot>
 
-    <slot slot="label" name="label" :el$="el$"></slot>
-    <slot slot="error" name="error" :el$="el$"></slot>
+    </template>
+    
+    <template v-slot:info><slot name="info" :el$="el$"><component :is="slots.info" /></slot></template>
+    <template v-slot:before><slot name="before" :el$="el$"><component :is="slots.before" type="before" /></slot></template>
+    <template v-slot:label><slot name="label" :el$="el$"><component :is="slots.label" /></slot></template>
+    <template v-slot:between><slot name="between" :el$="el$"><component :is="slots.between" type="between" /></slot></template>
+    <template v-slot:description><slot name="description" :el$="el$"><component :is="slots.description" /></slot></template>
+    <template v-slot:message><slot name="message" :el$="el$"><component :is="slots.message" /></slot></template>
+    <template v-slot:after><slot name="after" :el$="el$"><component :is="slots.after" type="after" /></slot></template>
 	</component>
 </template>
 
@@ -30,7 +42,10 @@
     mixins: [ObjectElement],
     data() {
       return {
-        elements: 'row',
+        defaultClasses: {
+          container: 'lf-object',
+          childrenContainer: 'element-group',
+        }
       }
     }
   }

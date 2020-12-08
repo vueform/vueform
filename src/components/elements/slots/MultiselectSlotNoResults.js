@@ -1,5 +1,5 @@
 export default {
-  name: 'MultiselectSlotNoResult',
+  name: 'MultiselectSlotNoResults',
   props: {
     el$: {
       type: Object,

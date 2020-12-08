@@ -1,8 +1,5 @@
 <template>
-  <span
-  >
-    {{ __('laraform.elements.multiselect.noOptions') }}
-  </span>
+  <div class="multiselect-no-options" v-html="el$.noOptionsText"></div>
 </template>
 
 <script>

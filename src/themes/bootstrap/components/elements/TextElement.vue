@@ -18,7 +18,7 @@
 
         <input
           :value="model"
-          @input="model = $event.target.value"
+          @input="handleInput"
           :type="inputType"
           :name="name"
           :id="id"
@@ -27,8 +27,6 @@
           :autocomplete="autocomplete"
           :disabled="disabled"
           :readonly="readonly"
-          @keyup="handleKeyup"
-          @select="handleKeyup"
           ref="input"
         />
 
@@ -43,14 +41,14 @@
       
     </template>
     
-    <template v-slot:info><slot name="info" :el$="el$"><component v-if="slots.info" :is="slots.info" /></slot></template>
-    <template v-slot:before><slot name="before" :el$="el$"><component v-if="slots.before" :is="slots.before" type="before" /></slot></template>
-    <template v-slot:label><slot name="label" :el$="el$"><component v-if="slots.label" :is="slots.label" /></slot></template>
-    <template v-slot:between><slot name="between" :el$="el$"><component v-if="slots.between" :is="slots.between" type="between" /></slot></template>
-    <template v-slot:description><slot name="description" :el$="el$"><component v-if="slots.description" :is="slots.description" /></slot></template>
-    <template v-slot:error><slot name="error" :el$="el$"><component v-if="slots.error" :is="slots.error" /></slot></template>
-    <template v-slot:message><slot name="message" :el$="el$"><component v-if="slots.message" :is="slots.message" /></slot></template>
-    <template v-slot:after><slot name="after" :el$="el$"><component v-if="slots.after" :is="slots.after" type="after" /></slot></template>
+    <template v-slot:info><slot name="info" :el$="el$"><component :is="slots.info" /></slot></template>
+    <template v-slot:before><slot name="before" :el$="el$"><component :is="slots.before" type="before" /></slot></template>
+    <template v-slot:label><slot name="label" :el$="el$"><component :is="slots.label" /></slot></template>
+    <template v-slot:between><slot name="between" :el$="el$"><component :is="slots.between" type="between" /></slot></template>
+    <template v-slot:description><slot name="description" :el$="el$"><component :is="slots.description" /></slot></template>
+    <template v-slot:error><slot name="error" :el$="el$"><component :is="slots.error" /></slot></template>
+    <template v-slot:message><slot name="message" :el$="el$"><component :is="slots.message" /></slot></template>
+    <template v-slot:after><slot name="after" :el$="el$"><component :is="slots.after" type="after" /></slot></template>
   </component>
 </template>
 
@@ -64,8 +62,8 @@
       return {
         defaultClasses: {
           container: 'lf-text',
-          input: 'form-control',
           inputContainer: 'input-group',
+          input: 'form-control',
         }
       }
     },

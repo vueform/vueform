@@ -26,7 +26,6 @@ import ElementText from './components/ElementText'
 import DragAndDrop from './components/DragAndDrop'
 import InputAddon from './components/InputAddon'
 
-import Multiselect from './components/wrappers/Multiselect'
 import Flatpickr from './components/wrappers/Flatpickr'
 import Trix from './components/wrappers/Trix'
 
@@ -70,12 +69,11 @@ import FileSlotProgress from './components/elements/slots/FileSlotProgress'
 import FileSlotPreview from './components/elements/slots/FileSlotPreview'
 import ImageSlotPreview from './components/elements/slots/ImageSlotPreview'
 import MultiselectSlotNoOptions from './components/elements/slots/MultiselectSlotNoOptions'
-import MultiselectSlotNoResult from './components/elements/slots/MultiselectSlotNoResult'
+import MultiselectSlotNoResults from './components/elements/slots/MultiselectSlotNoResults'
 import MultiselectSlotOption from './components/elements/slots/MultiselectSlotOption'
-import MultiselectSlotSelection from './components/elements/slots/MultiselectSlotSelection'
+import MultiselectSlotMultipleLabel from './components/elements/slots/MultiselectSlotMultipleLabel'
 import MultiselectSlotSingleLabel from './components/elements/slots/MultiselectSlotSingleLabel'
 import MultiselectSlotTag from './components/elements/slots/MultiselectSlotTag'
-import MultiselectSlotTagsSelection from './components/elements/slots/MultiselectSlotTagsSelection'
 import RadiogroupSlotRadio from './components/elements/slots/RadiogroupSlotRadio'
 
 import columns from './utils/columns'
@@ -112,7 +110,6 @@ const components = {
   // Wrappers
   Flatpickr,
   Trix,
-  Multiselect,
 
   // Element slots
   CheckboxgroupSlotCheckbox,
@@ -120,12 +117,11 @@ const components = {
   FileSlotPreview,
   ImageSlotPreview,
   MultiselectSlotNoOptions,
-  MultiselectSlotNoResult,
+  MultiselectSlotNoResults,
   MultiselectSlotOption,
-  MultiselectSlotSelection,
+  MultiselectSlotMultipleLabel,
   MultiselectSlotSingleLabel,
   MultiselectSlotTag,
-  MultiselectSlotTagsSelection,
   RadiogroupSlotRadio,
 }
 

@@ -151,7 +151,7 @@ export default function useText(props, context) {
       'label', 'info', 'description', 'error',
       'message', 'before', 'between', 'after',
       'beforeList', 'afterList', 'singleLabel',
-      'noResult', 'noOptions', 'option', 
+      'noResults', 'noOptions', 'option',
     ]
   })
 

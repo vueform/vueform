@@ -1,7 +1,7 @@
 <template>
   <button
     :class="classes.button"
-    :disabled="disabled"
+    :disabled="isDisabled"
     @click.prevent="handleClick"
     v-html-if="{label: !isLabelComponent}"
   >
@@ -21,6 +21,9 @@
           button: 'btn',
           loading: 'btn-loading',
           disabled: 'btn-disabled',
+          left: 'align-left',
+          center: 'align-center',
+          right: 'align-right',
         }
       }
     }

@@ -7,5 +7,13 @@
     name: 'AddressElement',
     mixins: [AddressElement],
     render: ObjectElement.render,
+    data() {
+      return {
+        defaultClasses: {
+          container: 'lf-address',
+          childrenContainer: 'element-group',
+        }
+      }
+    }
   }
 </script>

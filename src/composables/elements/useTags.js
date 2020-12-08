@@ -152,12 +152,9 @@ export default function (props, context) {
     slots: [
       'label', 'info', 'description', 'error',
       'message', 'before', 'between', 'after',
-      'beforeList', 'afterList', 'selection',
-      'noResult', 'noOptions', 'option', 'tag',
-    ],
-    defaultSlots: {
-      selection: markRaw(components.components.value.MultiselectSlotTagsSelection)
-    }
+      'beforeList', 'afterList', 'noResults',
+      'noOptions', 'option', 'tag',
+    ]
   })
 
   const handleInput = useHandleInput(props, context, {

@@ -11,16 +11,16 @@ module.exports = {
       "^.+\\.js$": "babel-jest"
   },
   "transformIgnorePatterns": [
-      "/node_modules/(?!vue-js-toggle-button|vue-multiselect)"
+      "/node_modules/(?!vue-js-toggle-button|vueform-multiselect)"
   ],
   "modulePathIgnorePatterns": ["<rootDir>/old_tests/"],
   "moduleNameMapper": {
       "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
-      "^composition-api$": "vue-prev-composition-api",
-      "^@vue/test-utils$": "vue-prev-test-utils",
-      "^vue$": "vue-prev",
+      "^composition-api$": "<rootDir>/node_modules/vue-prev-composition-api",
+      "^@vue/test-utils$": "<rootDir>/node_modules/vue-prev-test-utils",
+      "^vue$": "<rootDir>/node_modules/vue-prev",
       '^test-helpers$': "<rootDir>/tests/helpers/vue2/index.js",
-      '^vue-jest$': "vue-prev-jest"
+      '^vue-jest$': "<rootDir>/node_modules/vue-prev-jest"
   },
   "setupFilesAfterEnv": ["<rootDir>/jest/jest.setup.js"],
   "collectCoverage": false,

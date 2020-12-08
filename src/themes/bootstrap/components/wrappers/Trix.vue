@@ -2,7 +2,6 @@
   <div>
     <input :id="`trix-input-${id}`" :value="value" type="hidden">
     <trix-editor
-      :value="value"
       :placeholder="placeholder"
       :disabled="disabled"
       :id="id"
@@ -22,7 +21,7 @@
   import 'trix/dist/trix.css'
 
   export default {
-    name: 'TrixWrapper',
+    name: 'Trix',
     mixins: [TrixWrapper],
     data() {
       return {

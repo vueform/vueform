@@ -7,10 +7,10 @@ module.exports = Object.assign({}, base, {
   },
   "moduleNameMapper": {
       "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
-      "^composition-api$": "vue-next",
-      "^@vue/test-utils$": "vue-next-test-utils",
-      "^vue$": "vue-next",
+      "^composition-api$": "<rootDir>/node_modules/vue-next",
+      "^@vue/test-utils$": "<rootDir>/node_modules/vue-next-test-utils",
+      "^vue$": "<rootDir>/node_modules/vue-next",
       '^test-helpers$': "<rootDir>/tests/helpers/index.js",
-      '^vue-jest$': "vue-next-jest"
+      '^vue-jest$': "<rootDir>/node_modules/vue-next-jest"
   },
 })

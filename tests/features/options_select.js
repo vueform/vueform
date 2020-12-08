@@ -36,6 +36,62 @@ export const maxHeight = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'maxHeight', 160, 200)
 }
 
+export const noOptionsText = function (elementType, elementName, options) {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+  testComputedOption(it, elementType, 'noOptionsText', form.vm.__('laraform.multiselect.noOptions'), 'No options')
+
+  it('should render `noOptionsText` when non-native', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          noOptionsText: 'No custom options',
+        }
+      }
+    })
+
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    
+    expect(elWrapper.html()).toContain('No custom options')
+  })
+}
+
+export const noResultsText = function (elementType, elementName, options) {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+  testComputedOption(it, elementType, 'noResultsText', form.vm.__('laraform.multiselect.noResults'), 'No results')
+
+  it('should render `noResultsText` when non-native', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          noResultsText: 'No custom results',
+        }
+      }
+    })
+
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    
+    expect(elWrapper.html()).toContain('No custom results')
+  })
+}
+
 export const isNative = function (elementType, elementName, options) {
   it('should have `isNative` "true" if "native" is true and "search" is false', () => {
     let form = createForm({

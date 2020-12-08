@@ -437,6 +437,10 @@ const select = function (props, context, dependencies)
 
   const maxHeight = computedOption('maxHeight', schema, 160)
 
+  const noOptionsText = computedOption('noOptionsText', schema, form$.value.__('laraform.multiselect.noOptions'))
+
+  const noResultsText = computedOption('noResultsText', schema, form$.value.__('laraform.multiselect.noResults'))
+
   /**
    * Determines if the native select is used.
    * 
@@ -487,6 +491,8 @@ const select = function (props, context, dependencies)
     search,
     limit,
     maxHeight,
+    noOptionsText,
+    noResultsText,
     isNative,
     options,
   }
@@ -500,7 +506,13 @@ const multiselect = function (props, context, dependencies)
 
   const form$ = dependencies.form$
 
-  const { loading, native, trackBy, search, limit, maxHeight, isNative } = select(props, context, dependencies)
+  const { loading, native, trackBy, search, limit, maxHeight, noOptionsText, noResultsText, isNative } = select(props, context, dependencies)
+
+  const multipleLabel = computedOption('multipleLabel', schema, (val) => {
+    return val && val.length > 1
+      ? form$.value.__('laraform.multiselect.multipleLabelMore', { options: val.length })
+      : form$.value.__('laraform.multiselect.multipleLabelOne') 
+  })
 
   // ============== COMPUTED ==============
 
@@ -545,6 +557,9 @@ const multiselect = function (props, context, dependencies)
     search,
     limit,
     maxHeight,
+    noOptionsText,
+    noResultsText,
+    multipleLabel,
     isNative,
     options,
   }
@@ -558,7 +573,7 @@ const tags = function (props, context, dependencies)
 
   const form$ = dependencies.form$
 
-  const { loading, trackBy, limit, maxHeight } = select(props, context, dependencies)
+  const { loading, trackBy, limit, maxHeight, noOptionsText, noResultsText } = select(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -633,6 +648,8 @@ const tags = function (props, context, dependencies)
     search,
     limit,
     maxHeight,
+    noOptionsText,
+    noResultsText,
     create,
     tagPlaceholder,
     hideSelectedTag,

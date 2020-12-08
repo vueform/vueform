@@ -1,6 +1,6 @@
 import { createForm, testComputedOption } from 'test-helpers'
 
-export { loading, trackBy, limit, maxHeight, } from './options_select'
+export { loading, trackBy, limit, maxHeight, noOptionsText, noResultsText, } from './options_select'
 
 export const hideSelectedTag = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'hideSelectedTag', false, true)

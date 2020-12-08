@@ -3,6 +3,7 @@
     :class="classes.button"
     :href="href"
     :target="target"
+    @click="handleClick"
     v-html-if="{label: !isLabelComponent}"
   >
     <component v-if="isLabelComponent" :is="label" :button="button" />
@@ -18,7 +19,12 @@
     data() {
       return {
         defaultClasses: {
-          button: 'btn'
+          button: 'btn',
+          loading: 'btn-loading',
+          disabled: 'btn-disabled',
+          left: 'align-left',
+          center: 'align-center',
+          right: 'align-right',
         }
       }
     }

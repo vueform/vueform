@@ -5,7 +5,7 @@ export default {
       type: Object,
       required: true
     },
-    option: {
+    value: {
       required: true
     },
   },

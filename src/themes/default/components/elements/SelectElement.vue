@@ -53,28 +53,28 @@
           </slot>
         </template>
         
-        <template v-slot:singleLabel="{ option }">
-          <slot name="singleLabel" :el$="el$" :option="option">
-            <component v-if="slots.singleLabel" :is="slots.singleLabel" :el$="el$" :option="option" />
+        <template v-if="options.mode == 'single'" v-slot:singleLabel="{ value }">
+          <slot name="singleLabel" :el$="el$" :value="value">
+            <component v-if="slots.singleLabel" :is="slots.singleLabel" :el$="el$" :value="value" />
           </slot>
         </template>
         
-        <template v-slot:selection="{ values, search, remove }">
-          <slot name="selection" :el$="el$" :values="values" :search="search" :remove="remove">
-            <component :is="slots.selection" :el$="el$" :values="values" :search="search" :remove="remove">
-              <template v-slot:tag="{ option, search, remove }">
-                <slot v-if="selectOptions.length" name="tag" :el$="el$" :option="option" :search="search" :remove="remove">
-                  <component v-if="slots.tag" :is="slots.tag" :el$="el$" :option="option" :search="search" :remove="remove" />
-                </slot>
-              </template>
-            </component>
+        <template v-if="options.mode == 'multiple'" v-slot:multipleLabel="{ values }">
+          <slot name="multipleLabel" :el$="el$" :values="values">
+            <component :is="slots.multipleLabel" :el$="el$" :values="values" />
           </slot>
         </template>
 
+        <template v-if="options.mode == 'tags'" v-slot:tag="{ option, remove, disabled }">
+          <slot name="tag" :el$="el$" :option="option" :remove="remove" :disabled="disabled">
+            <component :is="slots.tag" :el$="el$" :option="option" :remove="remove" :disabled="disabled" />
+          </slot>
+        </template>
+
+        <template v-slot:noResults><slot name="noResults" :el$="el$"><component :is="slots.noResults" :el$="el$" /></slot></template>
+        <template v-slot:noOptions><slot name="noOptions" :el$="el$"><component :is="slots.noOptions" :el$="el$" /></slot></template>
         <template v-slot:beforeList><slot name="beforeList" :el$="el$"><component v-if="slots.beforeList" :is="slots.beforeList" :el$="el$" /></slot></template>
         <template v-slot:afterList><slot name="afterList" :el$="el$"><component v-if="slots.afterList" :is="slots.afterList" :el$="el$" /></slot></template>
-        <template v-slot:noResult><slot name="noResult" :el$="el$"><component :is="slots.noResult" :el$="el$" /></slot></template>
-        <template v-slot:noOptions><slot name="noOptions" :el$="el$"><component :is="slots.noOptions" :el$="el$" /></slot></template>
 
       </multiselect>
 
@@ -95,8 +95,7 @@
 
 <script>
   import SelectElement from './../../../../components/elements/SelectElement'
-
-  import Multiselect from './../wrappers/Multiselect'
+  import Multiselect from 'vueform-multiselect/src/Multiselect'
 
   export default {
     name: 'SelectElement',

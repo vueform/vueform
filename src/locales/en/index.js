@@ -24,15 +24,6 @@ export default {
         add: '+ Add',
         remove: '&times;',
       },
-      multiselect: {
-        selection: ':options options selected',
-        maxElements: 'Maximum options selected.',
-        noResult: 'No options found.',
-        noOptions: 'List is empty.',
-      },
-      tags: {
-        createLabel: 'Press enter to create a tag.',
-      },
       file: {
         defaultName: 'File',
         dndTitle: 'Upload file',
@@ -78,6 +69,12 @@ export default {
       acceptedMimes: 'Accepted mimes are: :mimes',
       acceptedExtensions: 'Accepted extenions are: :extensions',
     },
+  },
+  multiselect: {
+    multipleLabelOne: '1 option selected',
+    multipleLabelMore: ':options options selected',
+    noResults: 'No options found',
+    noOptions: 'The list is empty',
   },
   defaultMessage: 'Invalid field',
   validation: {
