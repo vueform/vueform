@@ -24,7 +24,6 @@ import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
-import useItems from './features/useItems'
 import useHandleSelectEvents from './features/useHandleSelectEvents'
 import useSelect from './features/useSelect'
 import useHandleChange from './features/useHandleChange'
@@ -35,6 +34,7 @@ import { array as useNullValue } from './features/useNullValue'
 import { array as useEmpty } from './features/useEmpty'
 import { multiselect as useBaseElement } from './features/useBaseElement'
 import { select as useHandleInput } from './features/useHandleInput'
+import { select as useItems } from './features/useItems'
 
 export default function (props, context) {
   const { schema } = toRefs(props)

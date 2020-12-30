@@ -1,11 +1,5 @@
 import { createForm, testComputedOption } from 'test-helpers'
 
-export { loading, trackBy, limit, maxHeight, noOptionsText, noResultsText, } from './options_select'
-
-export const hideSelectedTag = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'hideSelectedTag', false, true)
-}
-
 export const search = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'search', false, true)
 
@@ -27,19 +21,6 @@ export const search = function (elementType, elementName, options) {
 
 export const create = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'create', false, true)
-}
-
-export const tagPlaceholder = function (elementType, elementName, options) {
-  let form = createForm({
-    schema: {
-      el: {
-        type: elementType,
-        native: true,
-      }
-    }
-  })
-
-  testComputedOption(it, elementType, 'tagPlaceholder', form.vm.__('laraform.elements.tags.createLabel'), 'Placeholder tag')
 }
 
 export const native = function (elementType, elementName, options) {
@@ -89,16 +70,11 @@ export const options = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.options).toStrictEqual({ 
-      searchable: el.search,
-      label: 'label',
-      trackBy: el.trackBy,
-      loading: el.loading,
-      limit: el.limit,
       mode: 'tags',
-      hideSelectedTag: el.hideSelectedTag,
-      maxHeight: el.maxHeight,
+      searchable: el.search,
       createTag: el.create,
-      appendNewTag: false,
+      noOptionsText: el.form$.__('laraform.multiselect.noOptions'),
+      noResultsText: el.form$.__('laraform.multiselect.noResults'),
     })
   })
   
@@ -117,16 +93,11 @@ export const options = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.options).toStrictEqual({ 
-      searchable: el.search,
-      label: 'label',
-      trackBy: el.trackBy,
-      loading: el.loading,
-      limit: el.limit,
       mode: 'tags',
-      hideSelectedTag: el.hideSelectedTag,
-      maxHeight: el.maxHeight,
+      searchable: el.search,
       createTag: el.create,
-      appendNewTag: false,
+      noOptionsText: el.form$.__('laraform.multiselect.noOptions'),
+      noResultsText: el.form$.__('laraform.multiselect.noResults'),
       custom: 'option'
     })
   })

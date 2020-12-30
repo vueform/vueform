@@ -211,7 +211,7 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
             el: {
               type: elementType,
               items: {
-                1: 'value',
+                1: 'value'
               },
               native: false,
               slots: {
@@ -228,11 +228,6 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
         })
 
         elWrapper = findAllComponents(form, { name: elementName }).at(0)
-        elWrapper.vm.load(elWrapper.vm.type == 'select' ? 1 : [1])
-
-        await nextTick()
-        await nextTick()
-
         CustomSlot = findAllComponents(elWrapper, { name: 'CustomSlot' })
 
         expect(CustomSlot.length).toBe(1)
@@ -409,9 +404,7 @@ const testDynamicSchemaSlot = function(it, elementName, elementType, slot) {
             }
           }))
         }
-
-        await nextTick()
-        el.load(el.type == 'select' ? 1 : [1])
+        
         await nextTick()
 
         CustomSlot = findAllComponents(elWrapper, { name: 'CustomSlot' })
@@ -629,8 +622,6 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
         await nextTick()
 
         el = form.vm.el$('el')
-        el.load(el.type == 'select' ? 1 : [1])
-
         elWrapper = findAllComponents(form, { name: elementName }).at(0)
         
         expect(elWrapper.html()).toContain('from inline slot value')

@@ -528,15 +528,9 @@ const tags = function (props, context, dependencies)
 
   const form$ = dependencies.form$
 
-  const { loading, trackBy, limit, maxHeight, noOptionsText, noResultsText } = select(props, context, dependencies)
-
   // ============== COMPUTED ==============
 
   const create = computedOption('create', schema, false)
-
-  const hideSelectedTag = computedOption('hideSelectedTag', schema, false)
-
-  const tagPlaceholder = computedOption('tagPlaceholder', schema, form$.value.__('laraform.elements.tags.createLabel'))
 
   const search = computed({
     get() {
@@ -568,17 +562,11 @@ const tags = function (props, context, dependencies)
   */
   const defaultOptions = computed(() => {
     return {
-      searchable: search.value,
-      label: 'label',
-      trackBy: trackBy.value,
-      loading: loading.value,
-      limit: limit.value,
       mode: 'tags',
-      hideSelectedTag: hideSelectedTag.value,
-      maxHeight: maxHeight.value,
+      searchable: search.value,
       createTag: create.value,
-      appendNewTag: false,
-      object: true,
+      noOptionsText: form$.value.__('laraform.multiselect.noOptions'),
+      noResultsText: form$.value.__('laraform.multiselect.noResults'),
     }
   })
 
@@ -598,19 +586,11 @@ const tags = function (props, context, dependencies)
   })
 
   return {
-    loading,
     native,
-    trackBy,
     search,
-    limit,
-    maxHeight,
-    noOptionsText,
-    noResultsText,
     create,
-    tagPlaceholder,
-    hideSelectedTag,
-    isNative,
     options,
+    isNative,
   }
 }
 

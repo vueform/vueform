@@ -27,13 +27,13 @@ import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
 import useEmpty from './features/useEmpty'
-import useItems from './features/useItems'
 import useHandleSelectEvents from './features/useHandleSelectEvents'
 import useHandleChange from './features/useHandleChange'
 
 import { select as useValue } from './features/useValue'
 import { select as useOptions } from './features/useOptions'
 import { select as useHandleInput } from './features/useHandleInput'
+import { select as useItems } from './features/useItems'
 
 export default function useText(props, context) {
   const { schema } = toRefs(props)

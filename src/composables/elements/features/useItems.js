@@ -5,19 +5,32 @@ const base = function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
 
+  // ============== COMPUTED ==============
+
+  const items = computedOption('items', schema, {})
+  
+
+  return {
+    items,
+  }
+}
+
+const select = function(props, context, dependencies)
+{
+  const { schema } = toRefs(props)
+
   // ============ DEPENDENCIES ============
 
   const isNative = dependencies.isNative
   const disabled = dependencies.disabled
   const input = dependencies.input
+  const { items } = base(props, context, dependencies)
 
   // ================ DATA ================
 
   const resolvedItems = ref(null)
 
   // ============== COMPUTED ==============
-
-  const items = computedOption('items', schema, {})
   
   const nativeItems = computed(() => {
     let nativeItems = []
@@ -83,6 +96,10 @@ const base = function(props, context, dependencies)
     nativeItems,
     updateItems,
   }
+}
+
+export {
+  select,
 }
 
 export default base

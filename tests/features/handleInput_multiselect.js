@@ -1,6 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, findAllComponents } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { createForm } from 'test-helpers'
 
 const valueOptions = (value, el) => {
   return _.isArray(value) ? _.map(value, (v) => el.input.getOption(v)) : el.input.getOption(value)

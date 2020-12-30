@@ -24,11 +24,9 @@ import useSlots from './features/useSlots'
 import useDebounce from './features/useDebounce'
 import useDisabled from './features/useDisabled'
 import useEvents from './../useEvents'
-import useItems from './features/useItems'
 import useHandleSelectEvents from './features/useHandleSelectEvents'
 import useHandleTag from './features/useHandleTag'
 import useSelect from './features/useSelect'
-import useTaggable from './features/useTaggable'
 
 import { tags as useOptions } from './features/useOptions'
 import { multiselect as useValue } from './features/useValue'
@@ -36,6 +34,7 @@ import { array as  useNullValue } from './features/useNullValue'
 import { array as useEmpty } from './features/useEmpty'
 import { tags as useBaseElement } from './features/useBaseElement'
 import { select as useHandleInput } from './features/useHandleInput'
+import { select as useItems } from './features/useItems'
 
 export default function (props, context) {
   const { schema } = toRefs(props)
@@ -54,7 +53,6 @@ export default function (props, context) {
   const debounce = useDebounce(props, context)
   const disabled = useDisabled(props, context)
   const nullValue = useNullValue(props, context)
-  const items = useItems(props, context)
 
   const default_ = useDefault(props, context, {
     nullValue: nullValue.nullValue
@@ -62,6 +60,12 @@ export default function (props, context) {
 
   const options = useOptions(props, context, {
     form$: form$.form$,
+  })
+
+  const items = useItems(props, context, {
+    isNative: options.isNative,
+    disabled: disabled.disabled,
+    input: input.input,
   })
 
   const value = useValue(props, context, {
@@ -152,8 +156,8 @@ export default function (props, context) {
     slots: [
       'label', 'info', 'description', 'error',
       'message', 'before', 'between', 'after',
-      'beforeList', 'afterList', 'noResults',
-      'noOptions', 'option', 'tag',
+      'beforelist', 'afterlist', 'noresults',
+      'nooptions', 'option', 'tag',
     ]
   })
 
@@ -179,17 +183,6 @@ export default function (props, context) {
   const select = useSelect(props, context, {
     value: value.value,
     updated: data.updated,
-  })
-
-  const taggable = useTaggable(props, context, {
-    form$: form$.form$,
-    selectOptions: value.selectOptions,
-    select: select.select,
-    create: options.create,
-    trackBy: options.trackBy,
-    items: items.items,
-    listeners: events.listeners,
-    on: events.on,
   })
 
   onMounted(() => {
@@ -233,6 +226,5 @@ export default function (props, context) {
     ...handleSelectEvents,
     ...select,
     ...handleTag,
-    ...taggable,
   }
 } 
