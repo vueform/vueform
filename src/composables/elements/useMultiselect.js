@@ -53,7 +53,6 @@ export default function (props, context) {
   const debounce = useDebounce(props, context)
   const disabled = useDisabled(props, context)
   const nullValue = useNullValue(props, context)
-  const items = useItems(props, context)
 
   const default_ = useDefault(props, context, {
     nullValue: nullValue.nullValue
@@ -63,13 +62,16 @@ export default function (props, context) {
     form$: form$.form$,
   })
 
+  const items = useItems(props, context, {
+    isNative: options.isNative,
+    disabled: disabled.disabled,
+    input: input.input,
+  })
+
   const value = useValue(props, context, {
     nullValue: nullValue.nullValue,
     default: default_.default,
-    isNative: options.isNative,
     items: items.items,
-    trackBy: options.trackBy,
-    loading: options.loading,
   })
 
   const conditions = useConditions(props, context, {
@@ -151,8 +153,8 @@ export default function (props, context) {
     slots: [
       'label', 'info', 'description', 'error',
       'message', 'before', 'between', 'after',
-      'beforeList', 'afterList', 'multipleLabel',
-      'noResults', 'noOptions', 'option', 
+      'beforelist', 'afterlist', 'multiplelabel',
+      'noresults', 'nooptions', 'option', 
     ]
   })
 

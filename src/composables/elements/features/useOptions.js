@@ -471,13 +471,8 @@ const multiselect = function (props, context, dependencies)
 
   const form$ = dependencies.form$
 
-  const { loading, native, trackBy, search, limit, maxHeight, noOptionsText, noResultsText, isNative } = select(props, context, dependencies)
+  const { native, search, isNative } = select(props, context, dependencies)
 
-  const multipleLabel = computedOption('multipleLabel', schema, (val) => {
-    return val && val.length > 1
-      ? form$.value.__('laraform.multiselect.multipleLabelMore', { options: val.length })
-      : form$.value.__('laraform.multiselect.multipleLabelOne') 
-  })
 
   // ============== COMPUTED ==============
 
@@ -490,14 +485,15 @@ const multiselect = function (props, context, dependencies)
   */
   const defaultOptions = computed(() => {
     return {
-      searchable: search.value,
-      label: 'label',
-      trackBy: trackBy.value,
-      loading: loading.value,
-      limit: limit.value,
       mode: 'multiple',
-      maxHeight: maxHeight.value,
-      object: true,
+      searchable: search.value,
+      noOptionsText: form$.value.__('laraform.multiselect.noOptions'),
+      noResultsText: form$.value.__('laraform.multiselect.noResults'),
+      multipleLabel: (val) => {
+        return val && val.length > 1
+          ? form$.value.__('laraform.multiselect.multipleLabelMore', { options: val.length })
+          : form$.value.__('laraform.multiselect.multipleLabelOne') 
+      },
     }
   })
 
@@ -517,17 +513,10 @@ const multiselect = function (props, context, dependencies)
   })
 
   return {
-    loading,
     native,
-    trackBy,
     search,
-    limit,
-    maxHeight,
-    noOptionsText,
-    noResultsText,
-    multipleLabel,
-    isNative,
     options,
+    isNative,
   }
 }
 

@@ -437,7 +437,7 @@ export const model = function (elementType, elementName, options) {
     destroy(form)
   })
 
-  it('should model be equal to selected option\'s value when items are async & native=false', async () => {
+  it('should model be equal to selected option\'s value when items are async & native=false object=true', async () => {
     let form = createForm({
       schema: {
         el: {

@@ -4,11 +4,11 @@ export default runElementTests('multiselect', {
   default: {
     value: [1,2],
     value2: [],
-    items: {
-      1: 'value',
-      2: 'value2',
-      3: 'value3',
-    },
+    items: [
+      { value: 1, label: 'value' },
+      { value: 2, label: 'value3' },
+      { value: 3, label: 'value2' },
+    ],
     fieldType: 'select',
   },
   events: {

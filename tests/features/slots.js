@@ -228,7 +228,7 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
         })
 
         elWrapper = findAllComponents(form, { name: elementName }).at(0)
-        elWrapper.vm.load(1)
+        elWrapper.vm.load(elWrapper.vm.type == 'select' ? 1 : [1])
 
         await nextTick()
         await nextTick()
@@ -411,7 +411,7 @@ const testDynamicSchemaSlot = function(it, elementName, elementType, slot) {
         }
 
         await nextTick()
-        el.load(1)
+        el.load(el.type == 'select' ? 1 : [1])
         await nextTick()
 
         CustomSlot = findAllComponents(elWrapper, { name: 'CustomSlot' })
@@ -629,7 +629,7 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
         await nextTick()
 
         el = form.vm.el$('el')
-        el.load(1)
+        el.load(el.type == 'select' ? 1 : [1])
 
         elWrapper = findAllComponents(form, { name: elementName }).at(0)
         

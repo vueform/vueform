@@ -1,31 +1,7 @@
 import { createForm, testComputedOption } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
-export { loading, native, trackBy, search, limit, isNative, maxHeight, noOptionsText, noResultsText, } from './options_select'
-
-export const multipleLabel = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'multipleLabel', null, (val) => val.length + ' options', false)
-
-  it('should render `multipleLabel` when non-native', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: false,
-          multipleLabel: (val) => val.length + ' options',
-          items: [1,2],
-          default: [0,1]
-        }
-      }
-    })
-
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-
-    await nextTick()
-    
-    expect(elWrapper.html()).toContain('2 options')
-  })
-}
+export { native, search, isNative, } from './options_select'
 
 export const options = function (elementType, elementName, options) {
   it('should have default `options`', () => {
@@ -39,15 +15,12 @@ export const options = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual({ 
-      searchable: el.search,
-      label: 'label',
-      trackBy: el.trackBy,
-      loading: el.loading,
-      limit: el.limit,
-      mode: 'multiple',
-      maxHeight: el.maxHeight,
-    })
+    expect(el.options.mode).toStrictEqual('multiple')
+    expect(el.options.searchable).toStrictEqual(el.search)
+    expect(el.options.noOptionsText).toStrictEqual(el.__('laraform.multiselect.noOptions'))
+    expect(el.options.noResultsText).toStrictEqual(el.__('laraform.multiselect.noResults'))
+    expect(el.options.multipleLabel([1])).toStrictEqual(el.__('laraform.multiselect.multipleLabelOne'))
+    expect(el.options.multipleLabel([1,2])).toStrictEqual(el.__('laraform.multiselect.multipleLabelMore', { options: 2 }))
   })
   
   it('should extend `options` from schema', () => {
@@ -64,16 +37,13 @@ export const options = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual({ 
-      searchable: el.search,
-      label: 'label',
-      trackBy: el.trackBy,
-      loading: el.loading,
-      limit: el.limit,
-      mode: 'multiple',
-      maxHeight: el.maxHeight,
-      custom: 'option'
-    })
+    expect(el.options.mode).toStrictEqual('multiple')
+    expect(el.options.searchable).toStrictEqual(el.search)
+    expect(el.options.noOptionsText).toStrictEqual(el.__('laraform.multiselect.noOptions'))
+    expect(el.options.noResultsText).toStrictEqual(el.__('laraform.multiselect.noResults'))
+    expect(el.options.multipleLabel([1])).toStrictEqual(el.__('laraform.multiselect.multipleLabelOne'))
+    expect(el.options.multipleLabel([1,2])).toStrictEqual(el.__('laraform.multiselect.multipleLabelMore', { options: 2 }))
+    expect(el.options.custom).toStrictEqual('option')
   })
   
   it('should set `options` to schema', () => {

@@ -408,8 +408,7 @@ const multiselect = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const isNative = dependencies.isNative
-  const { previousValue, currentValue, value, selectOptions, getOption } = select(props, context, dependencies)
+  const { previousValue, currentValue, value } = select(props, context, dependencies)
 
   // ============== COMPUTED ==============
   
@@ -421,36 +420,15 @@ const multiselect = function(props, context, dependencies)
    */
   const model = computed({
     get() {
-      let values = value.value === null ? [] : value.value
-
-      if (!isNative.value) {
-        values = []
-
-        _.each(value.value, (option) => {
-          let optionObject = getOption(option)
-
-          if (!optionObject) {
-            return
-          }
-
-          values.push(optionObject)
-        })
-      }
-
-      return values
+      return value.value
     },
     set(val) {
-      let values = val
-
-      if (!isNative.value) {
-        values = []
-
-        _.each(val, (option) => {
-          values.push(option.value)
-        })
+      if (!Array.isArray(val)) {
+        value.value = val
+        return
       }
 
-      value.value = values
+      value.value = val.map(v => normalize(v))
     }
   })
 
@@ -459,9 +437,6 @@ const multiselect = function(props, context, dependencies)
     model,
     previousValue,
     currentValue,
-    selectOptions,
-
-    getOption,
   }
 }
 

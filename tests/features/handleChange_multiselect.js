@@ -145,26 +145,4 @@ export const rendering = function (elementType, elementName, options) {
 
     expect(onChangeMock).toHaveBeenCalledWith(el.currentValue, el.previousValue)
   })
-
-  it('should trigger `handleChange` on non native change', async () => {
-    let onChangeMock = jest.fn()
-
-    let form = createForm({
-      validateOn: 'submit',
-      schema: {
-        el: {
-          type: elementType,
-          native: false,
-          items: options.items,
-          onChange: onChangeMock,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.input.select(el.getOption(options.value[0]))
-
-    expect(onChangeMock).toHaveBeenCalledWith(el.currentValue, el.previousValue)
-  })
 }
