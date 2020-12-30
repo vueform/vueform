@@ -139,7 +139,7 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
     let CustomSlot
 
     switch (slot) {
-      case 'multipleLabel':
+      case 'multiplelabel':
         form = createForm({
           schema: {
             el: {
@@ -239,7 +239,7 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
         expect(CustomSlot.at(0).html()).toContain('from schema slot value')
         break
 
-      case 'singleLabel':
+      case 'singlelabel':
         form = createForm({
           schema: {
             el: {
@@ -314,7 +314,7 @@ const testDynamicSchemaSlot = function(it, elementName, elementType, slot) {
     let CustomSlot
 
     switch (slot) {
-      case 'multipleLabel':
+      case 'multiplelabel':
         form = createForm({
           schema: {
             el: {
@@ -419,7 +419,7 @@ const testDynamicSchemaSlot = function(it, elementName, elementType, slot) {
         expect(CustomSlot.at(0).html()).toContain('from schema slot value')
         break
 
-      case 'singleLabel':
+      case 'singlelabel':
         form = createForm({
           schema: {
             el: {
@@ -498,7 +498,7 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
     let el
 
     switch (slot) {
-      case 'multipleLabel':
+      case 'multiplelabel':
         form = createForm({
           schema: {
             el: {
@@ -636,7 +636,7 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
         expect(elWrapper.html()).toContain('from inline slot value')
         break
 
-      case 'singleLabel':
+      case 'singlelabel':
         form = createForm({
           schema: {
             el: {

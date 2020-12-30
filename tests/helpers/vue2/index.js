@@ -36,6 +36,7 @@ import unselect from './../unselect'
 import createElement from './createElement'
 import createForm from './createForm'
 import createLaraformInstaller from './createLaraformInstaller'
+import destroy from './destroy'
 import findAll from './findAll'
 import findAllComponents from './findAllComponents'
 import installLaraform from './installLaraform'
@@ -51,6 +52,7 @@ export {
   createForm,
   createLaraformInstaller,
   createTrix,
+  destroy,
   findAll,
   findAllComponents,
   installLaraform,

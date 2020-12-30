@@ -22,7 +22,7 @@ export default class confirmed extends Validator {
   }
 
   check(value) {
-    if (!this.filled(value) && !this.filled(this.other$.value)) {
+    if (!this.filled(this.other$.value)) {
       return true
     }
 

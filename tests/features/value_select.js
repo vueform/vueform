@@ -1,527 +1,486 @@
-import { createForm, findAllComponents, findAll } from 'test-helpers'
+import { createForm, findAllComponents, findAll, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 
 export { currentValue, previousValue, value, rendering } from './value'
 
 export const model = function (elementType, elementName, options) {
-  it('should return plain value for `model` when native', async () => {
+  it('should model be equal to selected option\'s value when items are an array & native=true', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           native: true,
-          items: [
-            'item',
-            'item2',
-            'item3'
-          ],
-          default: 2
+          items: [1,2,3],
+          default: 0,
         }
       }
     })
-
-    let el = form.vm.el$('el')
-    
-    expect(el.model).toBe(2)
-  })
-
-  it('should return object value for `model` when not native', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: false,
-          items: [
-            'item',
-            'item2',
-            'item3'
-          ],
-          default: 2
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-    
-    expect(el.model).toStrictEqual({ value: 2, label: 'item3' })
-  })
-
-  it('should set plain value for value when setting `model` when native', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: true,
-          items: [
-            'item',
-            'item2',
-            'item3'
-          ],
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.model = 1
-    
-    expect(el.value).toBe(1)
-  })
-
-  it('should set plain value for value when setting `model` when not native', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: false,
-          items: [
-            'item',
-            'item2',
-            'item3'
-          ],
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.model = { value: 1, label: 'item2' }
-    
-    expect(el.value).toBe(1)
-  })
-
-  it('should set the select\'s value when setting `model` using native', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: true,
-          items: [
-            'item',
-            'item2',
-            'item3'
-          ],
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.model = 2
-
-    await nextTick()
-
-    expect(el.value).toBe(2)
-    expect(el.model).toBe(2)
-    expect(el.input.value).toBe('2')
-  })
-
-  it('should set `model` value when changing select using native', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: true,
-          items: [
-            'item',
-            'item2',
-            'item3'
-          ],
-        }
-      }
-    })
-
-    await nextTick()
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let select = findAll(elWrapper, `select`).at(0)
-    let option1 = findAll(select, `option`).at(1)
+    let options = findAll(select, `option`)
 
-    option1.setSelected()
+    // Default value
+    expect(el.model).toBe(0)
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
 
-    expect(el.value).toBe(1)
+    // Loaded value
+    el.load(1)
     expect(el.model).toBe(1)
-  })
-
-  it('should set the select\'s value when setting `model` using non native', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: false,
-          items: [
-            'item',
-            'item2',
-            'item3'
-          ],
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.model = { value: 1, label: 'item2' }
-
     await nextTick()
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
 
-    expect(el.input.value).toStrictEqual({ value: 1, label: 'item2' })
-    expect(el.value).toBe(1)
+    // Selected value
+    options.at(2).setSelected()
+    expect(el.model).toBe(2)
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
   })
 
-  it('should set `model` value when changing select using non-native', async () => {
+  it('should model be equal to selected option\'s value when items are an object & native=true', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          native: false,
-          items: [
-            'item',
-            'item2',
-            'item3'
-          ],
+          native: true,
+          items: {0:1,1:2,2:3},
+          default: 0,
         }
       }
     })
 
     let el = form.vm.el$('el')
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let select = findAll(elWrapper, `select`).at(0)
+    let options = findAll(select, `option`)
 
-    el.input.select({ value: 1, label: 'item2' })
+    // Default value
+    expect(el.model).toBe(0)
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
 
-    expect(el.model).toStrictEqual({ value: 1, label: 'item2' })
-    expect(el.value).toBe(1)
+    // Loaded value
+    el.load(1)
+    expect(el.model).toBe(1)
+    await nextTick()
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
+
+    // Selected value
+    options.at(2).setSelected()
+    expect(el.model).toBe(2)
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
   })
-}
 
-export const selectOptions = function (elementType, elementName, options) {
-  it('should convert an array of strings into `selectOptions`', async (done) => {
+  it('should model be equal to selected option\'s value when items are an array of objects & native=true', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
+          native: true,
+          items: [
+            { value: 0, label: 1 },
+            { value: 1, label: 2 },
+            { value: 2, label: 3 },
+          ],
+          default: 0,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let select = findAll(elWrapper, `select`).at(0)
+    let options = findAll(select, `option`)
+
+    // Default value
+    expect(el.model).toBe(0)
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
+
+    // Loaded value
+    el.load(1)
+    expect(el.model).toBe(1)
+    await nextTick()
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
+
+    // Selected value
+    options.at(2).setSelected()
+    expect(el.model).toBe(2)
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
+  })
+
+  it('should model be equal to selected option\'s value when items are async & native=true', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: true,
           items: async () => {
             return await new Promise((resolve, reject) => {
-              setTimeout(() => {
-                resolve([
-                  'item',
-                  'item2',
-                  'item3'
-                ])
-              }, 1)
+              resolve([1,2,3])
             })
-          }
+          },
+          default: 0,
         }
       }
     })
-
-    let el = form.vm.el$('el')
-
-    expect(el.selectOptions).toStrictEqual([])
 
     await flushPromises()
 
-    setTimeout(async () => {
-      expect(el.selectOptions).toStrictEqual([
-        { value: 0, label: 'item' },
-        { value: 1, label: 'item2' },
-        { value: 2, label: 'item3' },
-      ])
-      done()
-    }, 10)
+    let el = form.vm.el$('el')
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let select = findAll(elWrapper, `select`).at(0)
+    let options = findAll(select, `option`)
 
+    // Default value
+    expect(el.model).toBe(0)
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
+
+    // Loaded value
+    el.load(1)
+    expect(el.model).toBe(1)
+    await nextTick()
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
+
+    // Selected value
+    options.at(2).setSelected()
+    expect(el.model).toBe(2)
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
   })
 
-  it('should convert an array of strings into `selectOptions`', async () => {
+  it('should model be equal to selected option\'s value when items are an array & native=false', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          items: [
-            'item',
-            'item2',
-            'item3'
-          ],
+          native: false,
+          items: [1,2,3],
+          default: 0,
         }
       }
+    }, { 
+      attach: true,
     })
 
     let el = form.vm.el$('el')
+    let select = el.input
 
-    expect(el.selectOptions).toStrictEqual([
-      { value: 0, label: 'item' },
-      { value: 1, label: 'item2' },
-      { value: 2, label: 'item3' },
-    ])
+    // Default value
+    expect(el.model).toBe(0)
+    expect(select.externalValue).toBe(0)
+    expect(select.internalValue).toStrictEqual({ value: 0, label: 1 })
+
+    // Loaded value
+    el.load(1)
+    expect(el.model).toBe(1)
+    await nextTick()
+    expect(select.externalValue).toBe(1)
+    expect(select.internalValue).toStrictEqual({ value: 1, label: 2 })
+
+    // Selected value
+    select.handleOptionClick({ value: 2, label: 3 })
+    await nextTick()
+    expect(select.externalValue).toBe(2)
+    expect(select.internalValue).toStrictEqual({ value: 2, label: 3 })
+
+    destroy(form)
   })
 
-  it('should convert an array of objects into `selectOptions`', async () => {
+  it('should model be equal to selected option\'s value when items are an object & native=false', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          items: [
-            { label: 'item' },
-            { label: 'item2' },
-            { label: 'item3' },
-          ],
+          native: false,
+          items: {0:1,1:2,2:3},
+          default: 0,
         }
       }
+    }, { 
+      attach: true,
     })
 
     let el = form.vm.el$('el')
+    let select = el.input
 
-    expect(el.selectOptions).toStrictEqual([
-      { value: 0, label: 'item' },
-      { value: 1, label: 'item2' },
-      { value: 2, label: 'item3' },
-    ])
+    // Default value
+    expect(el.model).toBe(0)
+    expect(select.externalValue).toBe(0)
+    expect(select.internalValue).toStrictEqual({ value: '0', label: 1 })
+
+    // Loaded value
+    el.load(1)
+    expect(el.model).toBe(1)
+    await nextTick()
+    expect(select.externalValue).toBe(1)
+    expect(select.internalValue).toStrictEqual({ value: '1', label: 2 })
+
+    // Selected value
+    select.handleOptionClick({ value: '2', label: 3 })
+    await nextTick()
+    expect(select.externalValue).toBe(2)
+    expect(select.internalValue).toStrictEqual({ value: '2', label: 3 })
+
+    destroy(form)
   })
 
-  it('should convert an array of objects with value defined into `selectOptions`', async () => {
+  it('should model be equal to selected option\'s value when items are an array of objects & native=false', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
+          native: false,
           items: [
-            { value: 'a', label: 'item' },
-            { value: 'b', label: 'item2' },
-            { value: 'c', label: 'item3' },
+            { value: 0, label: 1 },
+            { value: 1, label: 2 },
+            { value: 2, label: 3 },
           ],
+          default: 0,
         }
       }
+    }, { 
+      attach: true,
     })
 
     let el = form.vm.el$('el')
+    let select = el.input
 
-    expect(el.selectOptions).toStrictEqual([
-      { value: 'a', label: 'item', },
-      { value: 'b', label: 'item2' },
-      { value: 'c', label: 'item3' },
-    ])
+    // Default value
+    expect(el.model).toBe(0)
+    expect(select.externalValue).toBe(0)
+    expect(select.internalValue).toStrictEqual({ value: 0, label: 1 })
+
+    // Loaded value
+    el.load(1)
+    expect(el.model).toBe(1)
+    await nextTick()
+    expect(select.externalValue).toBe(1)
+    expect(select.internalValue).toStrictEqual({ value: 1, label: 2 })
+
+    // Selected value
+    select.handleOptionClick({ value: 2, label: 3 })
+    await nextTick()
+    expect(select.externalValue).toBe(2)
+    expect(select.internalValue).toStrictEqual({ value: 2, label: 3 })
+
+    destroy(form)
   })
 
-  it('should convert an array of objects with trackBy defined into `selectOptions`', async () => {
+  it('should model be equal to selected option\'s value when items are async & native=false', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          trackBy: 'name',
-          items: [
-            { name: 'item' },
-            { name: 'item2' },
-            { name: 'item3' },
-          ],
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.selectOptions).toStrictEqual([
-      { value: 0, label: 'item', name: 'item', },
-      { value: 1, label: 'item2', name: 'item2', },
-      { value: 2, label: 'item3', name: 'item3', },
-    ])
-  })
-
-  it('should convert an object with string values into `selectOptions`', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          items: {
-            0: 'item',
-            1: 'item2',
-            2: 'item3',
+          native: false,
+          items: async () => {
+            return await new Promise((resolve, reject) => {
+              resolve([1,2,3])
+            })
           },
+          default: 0,
         }
       }
+    }, { 
+      attach: true,
     })
 
-    let el = form.vm.el$('el')
+    await flushPromises()
 
-    expect(el.selectOptions).toStrictEqual([
-      { value: 0, label: 'item', },
-      { value: 1, label: 'item2' },
-      { value: 2, label: 'item3' },
-    ])
+    let el = form.vm.el$('el')
+    let select = el.input
+
+    // Default value
+    expect(el.model).toBe(0)
+    expect(select.externalValue).toBe(0)
+    expect(select.internalValue).toStrictEqual({ value: 0, label: 1 })
+
+    // Loaded value
+    el.load(1)
+    expect(el.model).toBe(1)
+    await nextTick()
+    expect(select.externalValue).toBe(1)
+    expect(select.internalValue).toStrictEqual({ value: 1, label: 2 })
+
+    // Selected value
+    select.handleOptionClick({ value: 2, label: 3 })
+    await nextTick()
+    expect(select.externalValue).toBe(2)
+    expect(select.internalValue).toStrictEqual({ value: 2, label: 3 })
+
+    destroy(form)
   })
 
-  it('should convert an object with object values into `selectOptions`', async () => {
+  it('should model be equal to selected option\'s value when items are an array & native=false object=true', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          items: {
-            0: { label: 'item' },
-            1: { label: 'item2' },
-            2: { label: 'item3' },
+          native: false,
+          items: [1,2,3],
+          default: { value: 0, label: 1 },
+          options: {
+            object: true
+          }
+        }
+      }
+    }, { 
+      attach: true,
+    })
+
+    let el = form.vm.el$('el')
+    let select = el.input
+
+    // Default value
+    expect(el.model).toStrictEqual({ value: 0, label: 1 })
+    expect(select.externalValue).toStrictEqual({ value: 0, label: 1 })
+    expect(select.internalValue).toStrictEqual({ value: 0, label: 1 })
+
+    // Loaded value
+    el.load({ value: 1, label: 2 })
+    expect(el.model).toStrictEqual({ value: 1, label: 2 })
+    await nextTick()
+    expect(select.externalValue).toStrictEqual({ value: 1, label: 2 })
+    expect(select.internalValue).toStrictEqual({ value: 1, label: 2 })
+
+    // Selected value
+    select.handleOptionClick({ value: 2, label: 3 })
+    await nextTick()
+    expect(select.externalValue).toStrictEqual({ value: 2, label: 3 })
+    expect(select.internalValue).toStrictEqual({ value: 2, label: 3 })
+
+    destroy(form)
+  })
+
+  it('should model be equal to selected option\'s value when items are an object & native=false object=true', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          items: {0:1,1:2,2:3},
+          default: { value: '0', label: 1 },
+          options: {
+            object: true
+          }
+        }
+      }
+    }, { 
+      attach: true,
+    })
+
+    let el = form.vm.el$('el')
+    let select = el.input
+
+    // Default value
+    expect(el.model).toStrictEqual({ value: '0', label: 1 })
+    expect(select.externalValue).toStrictEqual({ value: '0', label: 1 })
+    expect(select.internalValue).toStrictEqual({ value: '0', label: 1 })
+
+    // Loaded value
+    el.load({ value: '1', label: 2 })
+    expect(el.model).toStrictEqual({ value: '1', label: 2 })
+    await nextTick()
+    expect(select.externalValue).toStrictEqual({ value: '1', label: 2 })
+    expect(select.internalValue).toStrictEqual({ value: '1', label: 2 })
+
+    // Selected value
+    select.handleOptionClick({ value: '2', label: 3 })
+    await nextTick()
+    expect(select.externalValue).toStrictEqual({ value: '2', label: 3 })
+    expect(select.internalValue).toStrictEqual({ value: '2', label: 3 })
+
+    destroy(form)
+  })
+
+  it('should model be equal to selected option\'s value when items are an array of objects & native=false object=true', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          items: [
+            { v: 0, label: 1 },
+            { v: 1, label: 2 },
+            { v: 2, label: 3 },
+          ],
+          default: { v: 0, label: 1 },
+          options: {
+            object: true,
+            valueProp: 'v'
+          }
+        }
+      }
+    }, { 
+      attach: true,
+    })
+
+    let el = form.vm.el$('el')
+    let select = el.input
+
+    // Default value
+    expect(el.model).toStrictEqual({ v: 0, label: 1 })
+    expect(select.externalValue).toStrictEqual({ v: 0, label: 1 })
+    expect(select.internalValue).toStrictEqual({ v: 0, label: 1 })
+
+    // Loaded value
+    el.load({ v: 1, label: 2 })
+    expect(el.model).toStrictEqual({ v: 1, label: 2 })
+    await nextTick()
+    expect(select.externalValue).toStrictEqual({ v: 1, label: 2 })
+    expect(select.internalValue).toStrictEqual({ v: 1, label: 2 })
+
+    // Selected value
+    select.handleOptionClick({ v: 2, label: 3 })
+    await nextTick()
+    expect(select.externalValue).toStrictEqual({ v: 2, label: 3 })
+    expect(select.internalValue).toStrictEqual({ v: 2, label: 3 })
+
+    destroy(form)
+  })
+
+  it('should model be equal to selected option\'s value when items are async & native=false', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          items: async () => {
+            return await new Promise((resolve, reject) => {
+              resolve([1,2,3])
+            })
           },
+          default: { value: 0, label: 1 },
+          options: {
+            object: true,
+          }
         }
       }
+    }, { 
+      attach: true,
     })
 
-    let el = form.vm.el$('el')
-
-    expect(el.selectOptions).toStrictEqual([
-      { value: 0, label: 'item', },
-      { value: 1, label: 'item2' },
-      { value: 2, label: 'item3' },
-    ])
-  })
-
-  it('should convert an object with object values where value is defined into `selectOptions`', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          items: {
-            0: { value: 'a', label: 'item' },
-            1: { value: 'b', label: 'item2' },
-            2: { value: 'c', label: 'item3' },
-          },
-        }
-      }
-    })
+    await flushPromises()
 
     let el = form.vm.el$('el')
+    let select = el.input
 
-    expect(el.selectOptions).toStrictEqual([
-      { value: 'a', label: 'item', },
-      { value: 'b', label: 'item2' },
-      { value: 'c', label: 'item3' },
-    ])
-  })
+    // Default value
+    expect(el.model).toStrictEqual({ value: 0, label: 1 })
+    expect(select.externalValue).toStrictEqual({ value: 0, label: 1 })
+    expect(select.internalValue).toStrictEqual({ value: 0, label: 1 })
 
-  it('should convert an object with object values where trackBy is defined instead of label into `selectOptions`', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          trackBy: 'name',
-          items: {
-            0: { value: 'a', name: 'item' },
-            1: { value: 'b', name: 'item2' },
-            2: { value: 'c', name: 'item3' },
-          },
-        }
-      }
-    })
+    // Loaded value
+    el.load({ value: 1, label: 2 })
+    expect(el.model).toStrictEqual({ value: 1, label: 2 })
+    await nextTick()
+    expect(select.externalValue).toStrictEqual({ value: 1, label: 2 })
+    expect(select.internalValue).toStrictEqual({ value: 1, label: 2 })
 
-    let el = form.vm.el$('el')
+    // Selected value
+    select.handleOptionClick({ value: 2, label: 3 })
+    await nextTick()
+    expect(select.externalValue).toStrictEqual({ value: 2, label: 3 })
+    expect(select.internalValue).toStrictEqual({ value: 2, label: 3 })
 
-    expect(el.selectOptions).toStrictEqual([
-      { value: 'a', label: 'item', name: 'item', },
-      { value: 'b', label: 'item2', name: 'item2' },
-      { value: 'c', label: 'item3', name: 'item3' },
-    ])
-  })
-}
-
-export const selectedOption = function (elementType, elementName, options) {
-  it('should `selectedOption` return the selected item\'s object', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          items: [
-            'item',
-            'item2',
-            'item3'
-          ],
-          default: 1,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.selectedOption).toStrictEqual({ value: 1, label: 'item2' })
-  })
-
-  it('should `selectedOption` return an empty object when value cannot be found', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          items: [
-            'item',
-            'item2',
-            'item3'
-          ],
-          default: 4,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.selectedOption).toStrictEqual({})
-  })
-}
-
-export const textValue = function (elementType, elementName, options) {
-  it('should `textValue` return the trackBy value (or label by default) of the selected option', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          items: [
-            { label: 'label', name: 'name' },
-            { label: 'label2', name: 'name2' },
-          ],
-          default: 1,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.textValue).toBe('label2')
-
-    el.trackBy = 'name'
-
-    expect(el.textValue).toBe('name2')
-  })
-
-  it('should `textValue` return empty string when the selected option cannot be found', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          items: [
-            { label: 'label', name: 'name' },
-            { label: 'label2', name: 'name2' },
-          ],
-          default: 4,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.textValue).toBe('')
-  })
-}
-
-export const getOption = function (elementType, elementName, options) {
-  it('should `getOption` return an select option object', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          items: [
-            { label: 'label' },
-            { label: 'label2' },
-          ],
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.getOption(0)).toStrictEqual({ value: 0, label: 'label' })
-    expect(el.getOption(1)).toStrictEqual({ value: 1, label: 'label2' })
+    destroy(form)
   })
 }

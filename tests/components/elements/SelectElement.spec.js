@@ -4,10 +4,7 @@ export default runElementTests('select', {
   default: {
     value: 1,
     value2: null,
-    items: {
-      1: 'value',
-      2: 'value2',
-    },
+    items: ['value','value2','value3'],
     fieldType: 'select',
   },
   events: {

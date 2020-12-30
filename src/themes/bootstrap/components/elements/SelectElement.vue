@@ -95,7 +95,8 @@
 
 <script>
   import SelectElement from './../../../../components/elements/SelectElement'
-  import Multiselect from 'vueform-multiselect/src'
+  import Multiselect from '@vueform/multiselect/src/Multiselect'
+  import 'vueform-multiselect/themes/default.scss'
 
   export default {
     name: 'SelectElement',

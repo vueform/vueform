@@ -1,95 +1,11 @@
 import { createForm, testComputedOption } from 'test-helpers'
 
-export const loading = function (elementType, elementName, options) {
-  it('should have `loading` "false" by default', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-    
-    expect(el.loading).toBe(false)
-  })
-}
-
 export const native = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'native', true, false)
 }
 
-export const trackBy = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'trackBy', 'label', 'name')
-}
-
 export const search = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'search', false, true)
-}
-
-export const limit = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'limit', 20, 10)
-}
-
-export const maxHeight = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'maxHeight', 160, 200)
-}
-
-export const noOptionsText = function (elementType, elementName, options) {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-  testComputedOption(it, elementType, 'noOptionsText', form.vm.__('laraform.multiselect.noOptions'), 'No options')
-
-  it('should render `noOptionsText` when non-native', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: false,
-          noOptionsText: 'No custom options',
-        }
-      }
-    })
-
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    
-    expect(elWrapper.html()).toContain('No custom options')
-  })
-}
-
-export const noResultsText = function (elementType, elementName, options) {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-  testComputedOption(it, elementType, 'noResultsText', form.vm.__('laraform.multiselect.noResults'), 'No results')
-
-  it('should render `noResultsText` when non-native', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: false,
-          noResultsText: 'No custom results',
-        }
-      }
-    })
-
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    
-    expect(elWrapper.html()).toContain('No custom results')
-  })
 }
 
 export const isNative = function (elementType, elementName, options) {
@@ -127,14 +43,11 @@ export const options = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual({ 
-      searchable: el.search,
-      label: 'label',
-      trackBy: el.trackBy,
-      loading: el.loading,
-      limit: el.limit,
+    expect(el.options).toStrictEqual({
       mode: 'single',
-      maxHeight: el.maxHeight,
+      searchable: el.search,
+      noOptionsText: el.__('laraform.multiselect.noOptions'),
+      noResultsText: el.__('laraform.multiselect.noResults'),
     })
   })
   
@@ -152,14 +65,11 @@ export const options = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual({ 
-      searchable: el.search,
-      label: 'label',
-      trackBy: el.trackBy,
-      loading: el.loading,
-      limit: el.limit,
+    expect(el.options).toStrictEqual({
       mode: 'single',
-      maxHeight: el.maxHeight,
+      searchable: el.search,
+      noOptionsText: el.__('laraform.multiselect.noOptions'),
+      noResultsText: el.__('laraform.multiselect.noResults'),
       custom: 'option'
     })
   })

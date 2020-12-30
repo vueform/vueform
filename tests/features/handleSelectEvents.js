@@ -1,4 +1,9 @@
 import { createForm } from 'test-helpers'
+import { nextTick } from 'composition-api'
+
+const valueOptions = (value, el) => {
+  return _.isArray(value) ? _.map(value, (v) => el.input.getOption(v)) : el.input.getOption(value)
+}
 
 export const select = function (elementType, elementName, options) {
   it('should trigger `select` on non-native element', async () => {
@@ -9,17 +14,17 @@ export const select = function (elementType, elementName, options) {
         el: {
           type: elementType,
           native: false,
-          items: ['a', 'b', 'c'],
-          onSelect: onSelectMock
+          items: options.items,
+          onSelect: onSelectMock,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.input.select(el.selectOptions[1])
+    el.input.select(valueOptions(options.value, el))
 
-    expect(onSelectMock).toHaveBeenCalledWith(el.selectOptions[1])
+    expect(onSelectMock).toHaveBeenCalledWith(options.value)
   })
 }
 
@@ -32,17 +37,18 @@ export const deselect = function (elementType, elementName, options) {
         el: {
           type: elementType,
           native: false,
-          items: ['a', 'b', 'c'],
-          onDeselect: onDeselectMock
+          items: options.items,
+          default: options.value,
+          onDeselect: onDeselectMock,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.input.$emit('remove', el.selectOptions[1])
+    el.input.deselect(valueOptions(options.value, el))
 
-    expect(onDeselectMock).toHaveBeenCalledWith(el.selectOptions[1])
+    expect(onDeselectMock).toHaveBeenCalledWith(options.value)
   })
 }
 
@@ -55,7 +61,7 @@ export const searchChange = function (elementType, elementName, options) {
         el: {
           type: elementType,
           native: false,
-          items: ['a', 'b', 'c'],
+          items: options.items,
           onSearchChange: onSearchChangeMock
         }
       }
@@ -63,7 +69,9 @@ export const searchChange = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.input.$emit('search-change', 'query')
+    el.input.search = 'query'
+
+    await nextTick()
 
     expect(onSearchChangeMock).toHaveBeenCalledWith('query')
   })
@@ -78,7 +86,7 @@ export const open = function (elementType, elementName, options) {
         el: {
           type: elementType,
           native: false,
-          items: ['a', 'b', 'c'],
+          items: options.items,
           onOpen: onOpenMock
         }
       }
@@ -86,7 +94,7 @@ export const open = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.input.$emit('open')
+    el.input.open()
 
     expect(onOpenMock).toHaveBeenCalled()
   })
@@ -101,7 +109,7 @@ export const close = function (elementType, elementName, options) {
         el: {
           type: elementType,
           native: false,
-          items: ['a', 'b', 'c'],
+          items: options.items,
           onClose: onCloseMock
         }
       }
@@ -109,7 +117,8 @@ export const close = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.input.$emit('close')
+    el.input.open()
+    el.input.close()
 
     expect(onCloseMock).toHaveBeenCalled()
   })

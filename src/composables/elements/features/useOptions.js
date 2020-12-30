@@ -397,10 +397,6 @@ const select = function (props, context, dependencies)
 
   const form$ = dependencies.form$
 
-  // ================ DATA ================
-
-  const loading = ref(false)
-
   // ============== COMPUTED ==============
 
   /**
@@ -412,34 +408,12 @@ const select = function (props, context, dependencies)
   const native = computedOption('native', schema, true)
 
   /**
-  * When item values are objects this object element will be used to track search.
-  * 
-  * @type {string} 
-  * @default 'label'
-  */
-  const trackBy = computedOption('trackBy', schema, 'label')
-
-  /**
   * Determines whether the select options are searchable.
   * 
   * @type {boolean} 
   * @default false
   */
   const search = computedOption('search', schema, false)
-
-  /**
-  * Maximum number of search options.
-  * 
-  * @type {number}
-  * @default 1000
-  */
-  const limit = computedOption('limit', schema, 20)
-
-  const maxHeight = computedOption('maxHeight', schema, 160)
-
-  const noOptionsText = computedOption('noOptionsText', schema, form$.value.__('laraform.multiselect.noOptions'))
-
-  const noResultsText = computedOption('noResultsText', schema, form$.value.__('laraform.multiselect.noResults'))
 
   /**
    * Determines if the native select is used.
@@ -459,13 +433,10 @@ const select = function (props, context, dependencies)
   */
   const defaultOptions = computed(() => {
     return {
-      searchable: search.value,
-      label: 'label',
-      trackBy: trackBy.value,
-      loading: loading.value,
-      limit: limit.value,
       mode: 'single',
-      maxHeight: maxHeight.value,
+      searchable: search.value,
+      noOptionsText: form$.value.__('laraform.multiselect.noOptions'),
+      noResultsText: form$.value.__('laraform.multiselect.noResults'),
     }
   })
 
@@ -485,16 +456,10 @@ const select = function (props, context, dependencies)
   })
 
   return {
-    loading,
     native,
-    trackBy,
     search,
-    limit,
-    maxHeight,
-    noOptionsText,
-    noResultsText,
-    isNative,
     options,
+    isNative,
   }
 }
 
@@ -532,6 +497,7 @@ const multiselect = function (props, context, dependencies)
       limit: limit.value,
       mode: 'multiple',
       maxHeight: maxHeight.value,
+      object: true,
     }
   })
 
@@ -623,6 +589,7 @@ const tags = function (props, context, dependencies)
       maxHeight: maxHeight.value,
       createTag: create.value,
       appendNewTag: false,
+      object: true,
     }
   })
 

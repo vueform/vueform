@@ -1,8 +1,9 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents } from 'test-helpers'
+import { nextTick } from 'composition-api'
 
 const valueOptions = (value, el) => {
-  return _.isArray(value) ? _.map(value, (v) => el.getOption(v)) : el.getOption(value)
+  return _.isArray(value) ? _.map(value, (v) => el.input.getOption(v)) : el.input.getOption(value)
 }
 
 export const handleInput = function (elementType, elementName, options) {
@@ -21,10 +22,10 @@ export const handleInput = function (elementType, elementName, options) {
     
     el.input.select(valueOptions(options.value, el))
 
-    expect(el.model).toStrictEqual(valueOptions(options.value, el))
+    expect(el.model).toStrictEqual(options.value)
   })
 
-  it('should dirt the element if input value is different than the current', () => {
+  it('should dirt the element if input value is different than the current', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -131,7 +132,7 @@ export const handleInput = function (elementType, elementName, options) {
 
     form.vm.validateOn = 'submit|change'
     
-    el.input.select(valueOptions(options.value2, el))
+    el.input.clear()
 
     await flushPromises()
 
