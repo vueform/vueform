@@ -711,6 +711,38 @@ export default {
       'view'
     ]
   },
+  slider: {
+    features: [
+      'baseElement',
+      'classes',
+      'columns',
+      'components',
+      'conditions',
+      'data',
+      'debounce',
+      'default',
+      'description',
+      'disabled',
+      'events',
+      'form$',
+      'genericName',
+      'handleChange',
+      'id',
+      'info',
+      'input',
+      'label',
+      'layout',
+      'nullValue_min',
+      'options_slider',
+      'path',
+      'readonly',
+      'slots',
+      'theme',
+      'validation_slider',
+      'value',
+      'view'
+    ]
+  },
   static: {
     features: [
       'baseElement',

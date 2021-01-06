@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testValue, setValue } from 'test-helpers'
+import { createForm, findAllComponents, testValue } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export const currentValue = function (elementType, elementName) {

@@ -48,6 +48,8 @@ const boolean = function(props, context, dependencies)
 
 const min = function(props, context, dependencies)
 {
+  const { schema } = toRefs(props)
+
   // ============ DEPENDENCIES =============
 
   const min = dependencies.min
@@ -55,7 +57,9 @@ const min = function(props, context, dependencies)
   // ============== COMPUTED ===============
 
   const nullValue = computed(() => {
-    return min.value
+    return schema.value.default !== undefined && _.isArray(schema.value.default)
+      ? schema.value.default.map(v => min.value)
+      : min.value
   })
   
   return {

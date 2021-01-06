@@ -4,9 +4,13 @@
 
       <slot name="prefix"></slot>
 
-      <!-- <VueSlider
+      <Slider
         v-model="model"
-      /> -->
+        v-bind="options"
+        :id="id"
+        @change="handleChange"
+        ref="input"
+      />
 
       <slot name="suffix"></slot>
 
@@ -26,15 +30,16 @@
 <script>
   import SliderElement from './../../../../components/elements/SliderElement'
 
-  // import VueSlider from 'vue-slider-component'
-  // import 'vue-slider-component/theme/default.css'
+  import Slider from '@vueform/slider/src/Slider'
+  import '@vueform/slider/themes/default.scss'
+  
 
   export default {
     name: 'SliderElement',
     mixins: [SliderElement],
-    // components: {
-    //   VueSlider,
-    // },
+    components: {
+      Slider,
+    },
     data() {
       return {
         defaultClasses: {
@@ -44,28 +49,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  .slider-element {
-    .row {
-      & > div:last-of-type {
-        margin-top: 5px;
-      }
-    }
-  }
-
-  .vue-slider-component {
-    .vue-slider {
-      background-color: #777
-    }
-
-    .vue-slider-tooltip {
-      border-color: #0597db;
-      background-color: #0597db;
-    }
-
-    .vue-slider-process {
-      background-color: #0597db;
-    } 
-  }
-</style>

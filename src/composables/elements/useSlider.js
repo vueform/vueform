@@ -45,7 +45,8 @@ export default function useSlider(props, context) {
   const disabled = useDisabled(props, context)
 
   const options = useOptions(props, context, {
-    disabled: disabled.disabled
+    disabled: disabled.disabled,
+    form$: form$.form$,
   })
 
   const nullValue = useNullValue(props, context, {

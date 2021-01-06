@@ -26,7 +26,7 @@ const elements = [
   'radio',
   'radiogroup',
   'select',
-  // 'slider',
+  'slider',
   'static',
   'tags',
   'textarea',

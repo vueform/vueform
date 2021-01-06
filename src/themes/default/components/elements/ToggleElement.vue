@@ -9,8 +9,8 @@
         :value="model"
         :modelValue="model"
         v-bind="options"
-        :name="String(name)"
-        :id="String(id)"
+        :name="name"
+        :id="id"
         @input="handleChange"
         ref="input"
       />

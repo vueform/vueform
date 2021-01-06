@@ -601,12 +601,27 @@ const slider = function (props, context, dependencies)
   // ============ DEPENDENCIES ============
   
   const disabled = dependencies.disabled
+  const form$ = dependencies.form$
 
   // ============== COMPUTED ==============
 
   const min = computedOption('min', schema, 0)
 
   const max = computedOption('max', schema, 100)
+  
+  const step = computedOption('step', schema, 1)
+
+  const tooltips = computedOption('tooltips', schema, true)
+
+  const merge = computedOption('merge', schema, -1)
+
+  const format = computedOption('format', schema, false)
+
+  const orientation = computedOption('orientation', schema, 'horizontal')
+
+  const direction = computedOption('direction', schema, 'ltr')
+  
+  const height = computedOption('height', schema, '300px')
 
   /**
   * Default options for vue-js-toggle-button.
@@ -619,6 +634,13 @@ const slider = function (props, context, dependencies)
     return {
       min: min.value,
       max: max.value,
+      step: step.value,
+      tooltips: tooltips.value,
+      merge: merge.value,
+      format: format.value,
+      orientation: orientation.value,
+      direction: direction.value,
+      height: height.value,
       disabled: disabled.value,
     }
   })
@@ -641,6 +663,13 @@ const slider = function (props, context, dependencies)
   return {
     min,
     max,
+    step,
+    tooltips,
+    merge,
+    format,
+    orientation,
+    direction,
+    height,
     options,
   }
 }
