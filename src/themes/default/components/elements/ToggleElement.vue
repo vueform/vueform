@@ -5,9 +5,10 @@
 
       <slot name="prefix"></slot>
 
-      <toggle-button
-        v-bind="options"
+      <Toggle
         :value="model"
+        :modelValue="model"
+        v-bind="options"
         :name="String(name)"
         :id="String(id)"
         @input="handleChange"
@@ -35,13 +36,14 @@
 <script>
   import ToggleElement from './../../../../components/elements/ToggleElement'
 
-  import ToggleButton from 'vue-js-toggle-button/src/Button.vue'
+  import Toggle from '@vueform/toggle/src/Toggle'
+  import '@vueform/toggle/themes/default.css'
 
   export default {
     name: 'ToggleElement',
     mixins: [ToggleElement],
     components: {
-      ToggleButton,
+      Toggle,
     },
     data() {
       return {
@@ -53,27 +55,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  // @import 'variables';
-
-  .vue-js-switch {
-    .v-switch-core {
-      // !!
-      background: #777777;
-    }
-
-    &.toggled {
-      .v-switch-core {
-        background: #0597db;
-      }
-    }
-  }
-
-  .toggle-text {
-    display: inline-block;
-    margin: 0px 0 0 5px;
-    position: relative;
-    top: -3px;
-  }
-</style>

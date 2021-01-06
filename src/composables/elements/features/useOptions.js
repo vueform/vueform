@@ -786,6 +786,10 @@ const toggle = function(props, context, dependencies)
   * @default false
   */
   const labels = computedOption('labels', schema, false)
+
+  const width = computedOption('width', schema, 54)
+
+  const height = computedOption('height', schema, 24)
   
   /**
   * The speed of toggle animation in milliseconds.
@@ -795,50 +799,7 @@ const toggle = function(props, context, dependencies)
   */
   const speed = computedOption('speed', schema, 300)
 
-  /**
-  * Whether the toggle should use CSS colors. Turns to `false` if `colors` is defined.
-  * 
-  * @type {boolean} 
-  * @default true
-  * @ignore
-  */
-  const cssColors = computedOption('cssColors', schema, true)
-
-  /**
-  * Dimensions of the toggle input. Default: `{ width: 50, height: 22 }`
-  * 
-  * @type {object} 
-  * @default {...}
-  */
-  const dimensions = computed({
-    get() {
-      return Object.assign({}, {
-        width: 50,
-        height: 22,
-      }, schema.value.dimensions || {})
-    },
-    set(val) {
-      form$.value.$set(schema.value, 'dimensions', val)
-    }
-  })
-
-  /**
-  * Colors of the toggle input. Default: `{ background: '#777777', handle: '#FFFFFF' }`
-  * 
-  * @type {object} 
-  * @default {...}
-  */
-  const colors = computed({
-    get() {
-      return Object.assign({}, {
-        background: '#777777',
-        handle: '#FFFFFF',
-      }, schema.value.colors || {})
-    },
-    set(val) {
-      form$.value.$set(schema.value, 'colors', val)
-    }
-  })
+  const colors = computedOption('colors', schema, {})
 
   /**
   * Default options for vue-js-toggle-button.
@@ -849,19 +810,18 @@ const toggle = function(props, context, dependencies)
   */
   const defaultOptions = computed(() => {
     return {
-      labels: labels.value,
-      speed: speed.value,
-      width: dimensions.value.width,
-      height: dimensions.value.height,
-      color: colors.value.background,
-      switchColor: colors.value.handle,
-      cssColors: cssColors.value,
       disabled: disabled.value,
+      offLabel: labels.value ? (labels.value.off || '') : '',
+      onLabel: labels.value ? (labels.value.on || '') : '',
+      width: width.value,
+      height: height.value,
+      speed: speed.value,
+      colors: colors.value,
     }
   })
 
   /**
-  * Additional [options](https://github.com/euvl/vue-js-toggle-button#properties) for vue-js-toggle-button.
+  * Additional [options](https://github.com/vueform/toggle) for @vueform/toggle.
   * 
   * @type {object} 
   * @default {}
@@ -877,9 +837,9 @@ const toggle = function(props, context, dependencies)
 
   return {
     labels,
+    width,
+    height,
     speed,
-    cssColors,
-    dimensions,
     colors,
     options,
   }
