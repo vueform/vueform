@@ -1,4 +1,5 @@
 import { computed, toRefs } from 'composition-api'
+import { invalid } from 'moment'
 import useFormComponent from './../composables/useFormComponent'
 import useLabel from './../composables/useLabel'
 
@@ -67,6 +68,10 @@ export default {
     const next = async () => {
       if (form$.value.shouldValidateOnStep) {
         await current$.value.validate()
+      }
+
+      if (current$.value.invalid) {
+        return
       }
 
       current$.value.complete()

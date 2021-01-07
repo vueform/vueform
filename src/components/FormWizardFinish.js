@@ -1,4 +1,4 @@
-import { computed, toRefs } from 'composition-api'
+import { computed, toRefs, nextTick } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useLabel from './../composables/useLabel'
 import asyncForEach from './../utils/asyncForEach'
@@ -60,9 +60,7 @@ export default {
     // =============== METHODS ==============
 
     const finish = async () => {
-      if (wizard$.value.fire('finish') === false) {
-        return
-      }
+      wizard$.value.fire('finish')
 
       wizard$.value.complete()
       wizard$.value.submit()

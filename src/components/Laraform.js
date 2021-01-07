@@ -727,9 +727,7 @@ export default {
         return
       }
       
-      if (this.fire('submit') === false) {
-        return
-      }
+      this.fire('submit')
 
       if (this.shouldValidateOnSubmit) {
         await this.validate()

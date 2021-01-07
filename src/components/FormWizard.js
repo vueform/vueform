@@ -324,6 +324,11 @@ export default {
     const submit = () => {
       context.emit('submit')
 
+      if (invalid.value) {
+        firstInvalid$.value.select()
+        return
+      }
+
       unwatchInvalid.value = watch(invalid, (isInvalid) => {
         if (isInvalid) {
           firstInvalid$.value.select()
