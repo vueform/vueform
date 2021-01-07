@@ -661,7 +661,7 @@ export default {
         this.wizard$.reset()
       }
 
-      if (!_.isEmpty(this.tabs$)) {
+      if (this.tabs$.exists) {
         this.tabs$.reset()
       }
 
@@ -683,7 +683,7 @@ export default {
         this.wizard$.reset()
       }
 
-      if (!_.isEmpty(this.tabs$)) {
+      if (this.tabs$.exists) {
         this.tabs$.reset()
       }
 

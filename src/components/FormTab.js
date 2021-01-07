@@ -33,17 +33,14 @@ export default {
       required: false,
     },
 
-    /**
-     * The [visible$](reference/frontend-tabs#prop-visible) step of formWizard$.
-     */
-    visible$: {
-      type: Object,
-      required: false,
+    index: {
+      type: Number,
+      required: true,
     },
   },
   init(props, context)
   {  
-    const { tab, elements$, name, visible$ } = toRefs(props)
+    const { tab, elements$, name } = toRefs(props)
     const { containers } = toRefs(context.data)
 
     // ============ DEPENDENCIES ============
@@ -51,11 +48,8 @@ export default {
     const { form$, theme, classes: baseClasses, components, mainClass } = useFormComponent(props, context)
     const { available, conditions } = useConditions(props, context, { form$, descriptor: tab })
     const { label, isLabelComponent } = useLabel(props, context, { form$, descriptor: tab })
-    const { events, listeners, on, off, fire, fireActive, fireInactive } = useEvents(props, context, { form$, descriptor: tab }, {
-      events: {
-        active: [], // (tab$)
-        inactive: [], // (tab$)
-      },
+    const { events, listeners, on, off, fire } = useEvents(props, context, { form$, descriptor: tab }, {
+      events: ['active', 'inactive'],
     })
 
     // ================ DATA ================
@@ -129,15 +123,6 @@ export default {
 
       return classList
     })
-
-    /**
-      * Returns the index of tab.
-      * 
-      * @type {integer}
-      */
-    const index = computed(() => {
-      return _.keys(visible$.value).indexOf(name.value)
-    })
     
     const tab$ = computed(() => {
       return form$.value.tabs$.tabs$[name.value]
@@ -178,7 +163,7 @@ export default {
         element$.activate()
       })
 
-      fireActive()
+      fire('active')
     }
 
     /**
@@ -198,7 +183,7 @@ export default {
         element$.deactivate()
       })
 
-      fireInactive()
+      fire('inactive')
     }
 
     // ============== WATCHERS ==============
@@ -250,7 +235,6 @@ export default {
       components,
       conditions,
       available,
-      index,
       label,
       isLabelComponent,
       tab$,
@@ -262,8 +246,6 @@ export default {
       on,
       off,
       fire,
-      fireActive,
-      fireInactive
     }
   },
 }

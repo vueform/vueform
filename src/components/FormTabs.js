@@ -1,4 +1,4 @@
-import { ref, computed, toRefs, watch, onMounted, nextTick } from 'composition-api'
+import { ref, computed, toRefs, watch, onMounted, onBeforeUpdate, nextTick, } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useEvents from './../composables/useEvents'
 
@@ -28,15 +28,15 @@ export default {
     // ============ DEPENDENCIES ============
 
     const { form$, theme, classes, components } = useFormComponent(props, context)
-    const { events, listeners, on, off, fire, fireChange } = useEvents(props, context, { form$ }, {
-      events: {
-        change: [], // (tab$, oldTab$)
-      },
+    const { events, listeners, on, off, fire } = useEvents(props, context, { form$ }, {
+      events: ['change']
     })
 
     // ================ DATA ================
 
     const formTabs$ = ref([])
+
+    const exists = ref(true)
 
     // ============== COMPUTED ==============
 
@@ -90,7 +90,9 @@ export default {
      * @type {object}
      */
     const first$ = computed(() => {
-      return visible$.value[_.head(_.keys(visible$.value))]
+      return _.find(visible$.value, (tab) => {
+        return tab.visible
+      })
     })
 
     /**
@@ -99,7 +101,9 @@ export default {
      * @type {tab$}
      */
     const next$ = computed(() => {
-      return visible$.value[_.keys(visible$.value)[current$.value.index + 1]]
+      return _.find(visible$.value, (tab) => {
+        return tab.index > current$.value.index && tab.visible
+      })
     })
 
     /**
@@ -108,7 +112,9 @@ export default {
      * @type {tab$}
      */
     const previous$ = computed(() => {
-      return visible$[_.keys(visible$.value)[current$.value.index - 1]]
+      return _.findLast(visible$.value, (tab) => {
+        return tab.index < current$.value.index && tab.visible
+      })
     })
 
     // =============== METHODS ==============
@@ -136,11 +142,15 @@ export default {
     const select = (tab$) => {
       let curr$ = current$.value
 
+      _.each(elements$.value, (element$) => {
+        element$.deactivate()
+      })
+
       _.each(tabs$.value, (tab$) => {
         tab$.deactivate()
       })
 
-      fireChange(tab$, curr$)
+      fire('change', tab$, curr$)
     }
 
     /**
@@ -174,17 +184,22 @@ export default {
       })
     }, { deep: false, lazy: true })
 
-    watch(tabs, () => {
-      nextTick(() => {
-        nextTick(() => {
-          if (_.isEmpty(current$.value)) {
-            first$.value.select()
-          }
-        })
-      })
+    watch(tabs, async () => {
+      await nextTick()
+      await nextTick()
+
+      if (current$.value === undefined || current$.value.index === undefined) {
+        first$.value.select()
+      }
     }, { deep: true, lazy: true })
 
     // =============== HOOKS ================
+
+    if (form$.value.$laraform.vue === 3) {
+      onBeforeUpdate(() => {
+        formTabs$.value = []
+      })
+    }
 
     onMounted(() => {
       if (_.isEmpty(tabs.value)) {
@@ -208,6 +223,7 @@ export default {
       formTabs$,
       events,
       listeners,
+      exists,
 
       // Computed
       classes,
@@ -227,7 +243,6 @@ export default {
       on,
       off,
       fire,
-      fireChange,
     }
   },
 }
