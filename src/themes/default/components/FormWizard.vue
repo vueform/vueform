@@ -1,7 +1,5 @@
 <template>
-  <ul
-    :class="classes.container"
-  >
+  <ul :class="classes.container">
     <component
       v-for="(step, name, i) in steps"
       :is="components.FormWizardStep"

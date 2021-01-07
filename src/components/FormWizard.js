@@ -1,4 +1,4 @@
-import { ref, computed, toRefs, nextTick, watch, onMounted } from 'composition-api'
+import { ref, computed, toRefs, nextTick, watch, onMounted, onBeforeUpdate } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useEvents from './../composables/useEvents'
 
@@ -395,11 +395,11 @@ export default {
 
     watch(steps, () => {
       nextTick(() => {
-        if (_.isEmpty(lastEnabled$)) {
+        if (lastEnabled$.value === undefined) {
           first$.value.enable()
         }
 
-        if (_.isEmpty(current$.value)) {
+        if (current$.value.index === undefined) {
           first$.value.select()
         }
       })

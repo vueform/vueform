@@ -1,6 +1,6 @@
 import { findAllComponents } from 'test-helpers'
 import { nextTick } from 'composition-api'
-import { asyncForEach } from './../../src/utils/asyncForEach'
+import asyncForEach from './../../src/utils/asyncForEach'
 
 export default async function testDynamics (options, type) {
   let variables = type === 'wizard'
