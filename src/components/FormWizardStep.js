@@ -34,17 +34,14 @@ export default {
       required: false,
     },
 
-    /**
-     * The [visible$](reference/frontend-wizard#prop-visible) step of formWizard$.
-     */
-    visible$: {
-      type: Object,
-      required: false,
+    index: {
+      type: Number,
+      required: true,
     },
   },
   init(props, context)
   {  
-    const { step, elements$, name, visible$ } = toRefs(props)
+    const { step, elements$, name, index } = toRefs(props)
     const { containers } = toRefs(context.data)
 
     // ============ DEPENDENCIES ============
@@ -223,15 +220,6 @@ export default {
         && validated.value
         && !invalid.value
         && !pending.value
-    })
-
-    /**
-      * Returns the index of step within the wizard.
-      * 
-      * @type {integer}
-      */
-    const index = computed(() => {
-      return _.keys(visible$.value).indexOf(name.value)
     })
 
     const step$ = computed(() => {
@@ -449,7 +437,6 @@ export default {
       validated,
       busy,
       done,
-      index,
       step$,
       label,
       isLabelComponent,

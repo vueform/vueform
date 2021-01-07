@@ -23,9 +23,18 @@ module.exports = {
       '^vue-jest$': "<rootDir>/node_modules/vue-prev-jest"
   },
   "setupFilesAfterEnv": ["<rootDir>/jest/jest.setup.js"],
-  "collectCoverage": false,
+  "collectCoverage": true,
   "collectCoverageFrom": [
-      "**/src/*.{js,vue}",
+      "**/*.{js,vue}",
+      "!**/node_modules/**",
+      "!**/build/**",
+      "!**/coverage/**",
+      "!**/config/**",
+      "!**/dist/**",
+      "!**/ignore/**",
+      "!**/old_tests/**",
+      "!**/jest/**",
+      "!**/api/**",
   ],
   "coverageReporters": [
       "html",

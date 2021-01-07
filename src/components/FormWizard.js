@@ -33,7 +33,7 @@ export default {
       events: ['next', 'previous', 'finish', 'select']
     })
 
-    // // ================ DATA ================
+    // ================ DATA ================
 
     const wizardSteps$ = ref([])
 
@@ -128,7 +128,9 @@ export default {
      * @type {wizardStep$}
      */
     const first$ = computed(() => {
-      return visible$.value[_.head(_.keys(visible$.value))]
+      return _.find(visible$.value, (step) => {
+        return step.visible
+      })
     })
 
     /**
@@ -148,7 +150,9 @@ export default {
      * @type {wizardStep$}
      */
     const next$ = computed(() => {
-      return visible$.value[_.keys(visible$.value)[current$.value.index + 1]]
+      return _.find(visible$.value, (step) => {
+        return step.index > current$.value.index && step.visible
+      })
     })
 
     /**
@@ -157,7 +161,9 @@ export default {
      * @type {wizardStep$}
      */
     const previous$ = computed(() => {
-      return visible$.value[_.keys(visible$.value)[current$.value.index - 1]]
+      return _.findLast(visible$.value, (step) => {
+        return step.index < current$.value.index && step.visible
+      })
     })
 
     /**
@@ -193,7 +199,7 @@ export default {
      * @type {boolean}
      */
     const isAtLastStep = computed(() => {
-      return _.size(visible$.value) === current$.value.index + 1
+      return _.findLast(visible$.value, { visible: true }).index === current$.value.index
     })
 
     /**
@@ -380,7 +386,7 @@ export default {
      * @returns {void}
      */
     const enableUntilLastEnabled = () => {
-      enableUntil(lastEnabled$.value.index)
+      enableUntil(lastEnabled$.value !== undefined ? lastEnabled$.value.index : first$.value.index)
     }
 
     // ============== WATCHERS ==============
@@ -407,6 +413,12 @@ export default {
 
     // =============== HOOKS ================
 
+    if (form$.value.$laraform.vue === 3) {
+      onBeforeUpdate(() => {
+        wizardSteps$.value = []
+      })
+    }
+
     onMounted(() => {
       if (_.isEmpty(steps.value)) {
         return
@@ -427,7 +439,7 @@ export default {
         // the last active should be enabled
         watch(visible$, () => {
           enableUntilLastEnabled()
-        })
+        }, { flush: 'post' })
       })
     })
 
