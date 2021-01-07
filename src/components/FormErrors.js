@@ -12,7 +12,7 @@ export default {
     // ============== COMPUTED ==============
 
     const errors = computed(() => {
-      return form$.value.messageBag.errors
+      return form$.value.errors
     })
 
     return {

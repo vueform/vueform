@@ -133,14 +133,6 @@ export default {
         components: {},
         elements: {},
       },
-        
-      /**
-       * Custom error messages.
-       * 
-       * @type {object}
-       * @default {}
-       */
-      messages: {},
       
       /**
        * Whether the form is multilingual.
@@ -412,15 +404,24 @@ export default {
      * @type {array}
      */
     errors() {
-      var errors = []
+      var errors = this.messageBag.errors
 
       _.each(_.filter(this.elements$, { available: true }), (element$) => {
-        _.each(element$.messageBag ? (element$.messageBag.errors || []) : [], (error) => {
+        _.each(element$.messageBag ? element$.messageBag.errors || [] : [], (error) => {
           errors.push(error)
         })
       })
 
       return errors
+    },
+
+    /**
+     * List of all errors within the form.
+     * 
+     * @type {array}
+     */
+    messages() {
+      return this.messageBag.messages
     },
 
     /**
@@ -473,7 +474,7 @@ export default {
      * @type {boolean}
      */
     hasErrors() {
-      return this.messageBag.errors && this.messageBag.errors.length > 0
+      return this.errors.length > 0
     },
 
     /**
@@ -483,7 +484,7 @@ export default {
      * @type {boolean}
      */
     hasMessages() {
-      return this.messageBag.messages && this.messageBag.messages.length > 0
+      return this.messages.length > 0
     },
 
     mainClass() {
@@ -1020,7 +1021,7 @@ export default {
     },
 
     $_initMessageBag() {
-      this.messageBag = new this.$laraform.services.messageBag(this.errors)
+      this.messageBag = new this.$laraform.services.messageBag([])
     }
   },
   created() {
