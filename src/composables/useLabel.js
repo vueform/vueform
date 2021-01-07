@@ -1,4 +1,4 @@
-import { computed } from 'composition-api'
+import { computed, watch } from 'composition-api'
 import isVueComponent from './../utils/isVueComponent'
 
 export default function useLabel(props, context, dependencies)

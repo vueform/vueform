@@ -1,11 +1,8 @@
 <template>
-  <label
-    :class="classes.label"
-    :for="name"
-    v-html-if="{label: !isLabelComponent}"
-  >
+  <label v-if="isLabelComponent" :class="classes.label" :for="name">
     <component v-if="isLabelComponent" :is="label" :el$="el$" />
   </label>
+  <label v-else :class="classes.label" :for="name" v-html="label"></label>
 </template>
 
 <script>

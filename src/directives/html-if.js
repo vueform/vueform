@@ -21,7 +21,9 @@ const update = function(el, binding, vnode) {
   let key = _.keys(binding.value)[0]
   let condition = binding.value[key]
 
+    console.log(condition)
   if (condition === true) {
+    console.log(vueVersion(binding, vnode) == 2 ? vnode.context[key] : binding.instance[key])
     el.innerHTML = vueVersion(binding, vnode) == 2 ? vnode.context[key] : binding.instance[key]
   }
   else {
@@ -36,6 +38,8 @@ const update = function(el, binding, vnode) {
 export default {
   bind: add,
   mounted: add,
+
   update: update,
   updated: update,
+  beforeUpdate: () => { console.log('yolo') }
 }
