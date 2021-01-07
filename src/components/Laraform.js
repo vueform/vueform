@@ -606,7 +606,7 @@ export default {
      * @returns {void}
      */
     load(data, triggerChange = false, shouldValidate = false, shouldDirt = false, format = true) {
-      if (!_.isEmpty(this.wizard$)) {
+      if (this.wizard$.exists) {
         this.wizard$.enableAllSteps()
       }
 
@@ -657,7 +657,7 @@ export default {
         element$.reset()
       })
 
-      if (!_.isEmpty(this.wizard$)) {
+      if (this.wizard$.exists) {
         this.wizard$.reset()
       }
 
@@ -679,7 +679,7 @@ export default {
         element$.clear()
       })
 
-      if (!_.isEmpty(this.wizard$)) {
+      if (this.wizard$.exists) {
         this.wizard$.reset()
       }
 
@@ -726,8 +726,8 @@ export default {
       if (this.disabled) {
         return
       }
-
-      if (this.handleSubmit() === false) {
+      
+      if (this.fire('submit') === false) {
         return
       }
 
@@ -870,7 +870,7 @@ export default {
      * @event submit
      */
     handleSubmit(){
-      return this.fire('submit')
+      this.submit()
     },
 
     /**
@@ -1048,13 +1048,16 @@ export default {
       this.wizardControls = true
     }
 
+    if (this.method === null) {
+      this.method = this.$laraform.methods.process
+    }
+
     // if the component does not have a data value
     // and receives as a form prop, set it from that
     // otherwise get the default value from config
     _.each([
       'theme', 'columns', 'validateOn', 'labels',
-      'formErrors', 'method', 'languages',
-      'language',
+      'formErrors', 'languages', 'language',
     ], (property) => {
       if (this[property] === null) {
         this[property] = this.form[property] !== undefined

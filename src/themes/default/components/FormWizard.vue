@@ -3,7 +3,7 @@
     :class="classes.container"
   >
     <component
-      v-for="(step, name) in steps"
+      v-for="(step, name, i) in steps"
       :is="components.FormWizardStep"
       :step="step"
       :name="name"
@@ -11,6 +11,7 @@
       :visible$="visible$"
       :key="name"
       @select="select"
+      :ref="setRef(wizardSteps$, i)"
       v-ref:wizardSteps$
     />
   </ul>

@@ -58,7 +58,7 @@ const Validator = class {
     else if (this.form$.messages[this.name]) {
       message = this.form$.messages[this.name]
     }
-    else if (this.name) {
+    else if (this.name !== '_class') {
       message = this.form$.__(`laraform.validation.${this.name}`)
 
       if (_.isPlainObject(message)) {

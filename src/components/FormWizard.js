@@ -4,6 +4,7 @@ import useEvents from './../composables/useEvents'
 
 export default {
   name: 'FormWizard',
+  emits: ['submit'],
   props: {
     /**
      * Steps definition.
@@ -28,36 +29,20 @@ export default {
     // ============ DEPENDENCIES ============
 
     const { form$, theme, classes, components } = useFormComponent(props, context)
-    const { events, listeners, on, off, fire, fireNext, firePrevious, fireFinish, fireSelect } = useEvents(props, context, { form$ }, {
-      events: {
-        next: [],
-        previous: [],
-        finish: [],
-        select: [], // (step$, oldStep$)
-      },
+    const { events, listeners, on, off, fire } = useEvents(props, context, { form$ }, {
+      events: ['next', 'previous', 'finish', 'select']
     })
 
     // // ================ DATA ================
 
     const wizardSteps$ = ref([])
 
+    // no export
+    const unwatchInvalid = ref(null)
+
+    const exists = ref(true)
+
     // ============== COMPUTED ==============
-
-    /**
-     * Object of wizardStep$ components.
-     * 
-     * @type {object}
-     * @default {}
-     */
-    const steps$ = computed(() => {
-      let steps$ = {}
-
-      _.each(wizardSteps$.value, (step$) => {
-        steps$[step$.name] = step$
-      })
-
-      return steps$
-    })
 
     /**
      * Determines whether the wizard has any pending elements.
@@ -102,6 +87,22 @@ export default {
      */
     const busy = computed(() => {
       return pending.value || debouncing.value
+    })
+
+    /**
+     * Object of wizardStep$ components.
+     * 
+     * @type {object}
+     * @default {}
+     */
+    const steps$ = computed(() => {
+      let steps$ = {}
+
+      _.each(wizardSteps$.value, (step$) => {
+        steps$[step$.name] = step$
+      })
+
+      return steps$
     })
 
     /**
@@ -217,7 +218,7 @@ export default {
      */
     const goTo = (step, enableUntil) => {
       if (enableUntil === undefined) {
-        let enableUntil = false
+        enableUntil = false
       }
 
       var step = visible$.value[step]
@@ -239,7 +240,7 @@ export default {
      * @returns {void}
      */
     const next = () => {
-      fireNext(next$.value)
+      fire('next', next$.value)
 
       next$.value.enable()
       next$.value.select()
@@ -252,31 +253,9 @@ export default {
      * @returns {void}
      */
     const previous = () => {
-      firePrevious(previous$.value)
+      fire('previous', previous$.value)
 
       previous$.value.select()
-    }
-
-    /**
-     * Validates all elements and if everything is fine marks all steps as complete and initiates submission. If the form is invalid it will jump to the first step which has invalid elements.
-     *
-     * @public
-     * @param {function} callback callback to call when the form is ready to submit
-     * @returns {void}
-     */
-    const finish = (callback) => {
-      if (pending.value) {
-        return waitForAsync(callback)
-      }
-
-      if (invalid.value) {
-        firstInvalid$.value.select()
-        return
-      }
-
-      complete()
-
-      callback()
     }
 
     /**
@@ -338,6 +317,14 @@ export default {
      */
     const submit = () => {
       context.emit('submit')
+
+      unwatchInvalid.value = watch(invalid, (isInvalid) => {
+        if (isInvalid) {
+          firstInvalid$.value.select()
+        }
+
+        unwatchInvalid.value()
+      })
     }
 
     /**
@@ -358,7 +345,7 @@ export default {
         step$.deactivate()
       })
 
-      fireSelect(step$, curr$)
+      fire('select', step$, curr$)
     }
 
     /**
@@ -396,20 +383,6 @@ export default {
       enableUntil(lastEnabled$.value.index)
     }
 
-    /**
-     * Waits for all async processes to finish, then invokes a callback.
-     * 
-     * @private
-     * @param {function} callback the function to invoke
-     * @returns {void}
-     */
-    const waitForAsync = (callback) => {
-      var unwatch = watch(busy, () => {
-        unwatch()
-        finish(callback)
-      })
-    }
-
     // ============== WATCHERS ==============
 
     watch(elements$, (newValue, oldValue) => {
@@ -443,7 +416,7 @@ export default {
       // only available after form is mounted,
       // which is later than the wizard mount
       nextTick(() => {
-        if (_.isEmpty(current$.value)) {
+        if (current$.value === undefined || current$.value.index === undefined) {
           first$.value.enable()
           first$.value.select()
         }
@@ -467,6 +440,7 @@ export default {
       wizardSteps$,
       events,
       listeners,
+      exists,
 
       // Computed
       classes,
@@ -492,7 +466,6 @@ export default {
       goTo,
       next,
       previous,
-      finish,
       complete,
       step$,
       reset,
@@ -502,14 +475,9 @@ export default {
       enableUntil,
       enableUntilCurrent,
       enableUntilLastEnabled,
-      waitForAsync,
       on,
       off,
       fire,
-      fireNext,
-      firePrevious,
-      fireFinish,
-      fireSelect,
     }
   },
 }

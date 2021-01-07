@@ -4,9 +4,11 @@ import useConditions from './../composables/useConditions'
 import useLabel from './../composables/useLabel'
 import useEvents from './../composables/useEvents'
 import { mergeComponentClasses } from './../utils/mergeClasses'
+import asyncForEach from './../utils/asyncForEach'
 
 export default {
   name: 'FormWizardStep',
+  emits: ['select'],
   props: {
     /**
      * Name of step within [steps](reference/frontend-form#prop-steps) object.
@@ -50,17 +52,8 @@ export default {
     const { form$, theme, classes: baseClasses, components, mainClass } = useFormComponent(props, context)
     const { available, conditions } = useConditions(props, context, { form$, descriptor: step })
     const { label, isLabelComponent } = useLabel(props, context, { form$, descriptor: step })
-    const {
-        events, listeners, on, off, fire, fireActive, fireInactive,
-        fireComplete, fireEnable, fireDisable,
-    } = useEvents(props, context, { form$, descriptor: step }, {
-      events: {
-        active: [],
-        inactive: [],
-        complete: [],
-        enable: [],
-        disable: [],
-      },
+    const { events, listeners, on, off, fire } = useEvents(props, context, { form$, descriptor: step }, {
+      events: ['active', 'inactive', 'complete', 'enable', 'disable']
     })
 
     // ================ DATA ================
@@ -254,39 +247,19 @@ export default {
      * @public
      * @returns {void}
      */
-    const validate = () => {
+    const validate = async () => {
       // only skip validation if the elements
-      // are validated and none is invalid
-      if (validated.value && !invalid.value) {
+      // are validated and none is invalid and
+      // elements get revalidated on change
+      if (validated.value && !invalid.value && form$.value.shouldValidateOnChange) {
         return 
       }
 
-      _.each(children$.value, (element$) => {
-        if ((!element$.validated || element$.invalid) && element$.available) {
-          element$.validate()
+      await asyncForEach(children$.value, async (element$) => {
+        if ((!element$.validated || element$.invalid || !form$.value.shouldValidateOnChange) && element$.available) {
+          await element$.validate()
         }
       })
-    }
-
-    /**
-      * Prepares to proceed to the next step. If [validateOn](reference/frontend-form#prop-validateOn) contains 'step' it first validates any unvalidated element and wait for async validators to finish. Only continues no elements has `invalid` status.
-      *
-      * @public
-      * @param {function} callback callback to call when the form is ready to proceed
-      * @returns {void}
-      */
-    const proceed = (callback) => {
-      if (busy.value) {
-        return waitForAsync(callback)
-      }
-
-      // prevent next only if the step has invalid
-      // elements and they should be validated on step
-      if (invalid.value && form$.value.shouldValidateOn('step')) {
-        return
-      }
-
-      callback()
     }
 
     /**
@@ -302,7 +275,7 @@ export default {
 
       active.value = true
 
-     fireActive()
+     fire('active')
     }
 
     /**
@@ -318,7 +291,7 @@ export default {
 
       active.value = false
 
-      fireInactive()
+      fire('inactive')
     }
 
     /**
@@ -334,7 +307,7 @@ export default {
 
       disabled.value = false
 
-      fireEnable()
+      fire('enable')
     }
 
     /**
@@ -350,7 +323,7 @@ export default {
       
       disabled.value = true
 
-      fireDisable()
+      fire('disable')
     }
 
     /**
@@ -366,7 +339,7 @@ export default {
 
       completed.value = true
 
-      fireComplete()
+      fire('complete')
     }
 
     /**
@@ -414,20 +387,6 @@ export default {
         _.each(step.value.conditions, (condition) => {
           element$.conditions.push(condition)
         })
-      })
-    }
-
-    /**
-      * Waits for all async processes to finish, then invokes a callback.
-      * 
-      * @private
-      * @param {function} callback the function to invoke
-      * @returns {void}
-      */
-    const waitForAsync = (callback) => {
-      var unwatch = watch(busy, () => {
-        unwatch()
-        proceed(callback)
       })
     }
 
@@ -497,7 +456,6 @@ export default {
 
       // Methods
       validate,
-      proceed,
       activate,
       deactivate,
       enable,
@@ -506,15 +464,9 @@ export default {
       uncomplete,
       select,
       forwardConditions,
-      waitForAsync,
       on,
       off,
       fire,
-      fireActive,
-      fireInactive,
-      fireComplete,
-      fireEnable,
-      fireDisable,
     }
   },
 }

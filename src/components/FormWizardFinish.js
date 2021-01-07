@@ -1,6 +1,7 @@
 import { computed, toRefs } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useLabel from './../composables/useLabel'
+import asyncForEach from './../utils/asyncForEach'
 
 export default {
   name: 'FormWizardFinish',
@@ -58,18 +59,13 @@ export default {
 
     // =============== METHODS ==============
 
-    const finish = () => {
-      wizard$.value.fireFinish()
-
-      if (form$.value.shouldValidateOnSubmit) {
-        _.each(visible$.value, (step$) => {
-          step$.validate()
-        })
+    const finish = async () => {
+      if (wizard$.value.fire('finish') === false) {
+        return
       }
 
-      wizard$.value.finish(() => {
-        wizard$.value.submit()
-      })
+      wizard$.value.complete()
+      wizard$.value.submit()
     }
 
     // ============ DEPENDENCIES ============

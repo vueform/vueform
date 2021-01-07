@@ -32,7 +32,7 @@ export default {
     })
 
     const disabled = computed(() => {
-      return !_.isEmpty(current$.value) &&
+      return current$.value !== undefined && current$.value.index !== undefined &&
         // only disable next because of invalidity
         // if element validations are triggered on
         // change, otherwise it might occur that the
@@ -64,15 +64,13 @@ export default {
 
     // =============== METHODS ==============
 
-    const next = () => {
+    const next = async () => {
       if (form$.value.shouldValidateOnStep) {
-        current$.value.validate()
+        await current$.value.validate()
       }
 
-      current$.value.proceed(() => {
-        current$.value.complete()
-        wizard$.value.next()
-      })
+      current$.value.complete()
+      wizard$.value.next()
     }
 
     // ============ DEPENDENCIES ============

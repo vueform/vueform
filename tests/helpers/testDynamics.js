@@ -1,10 +1,8 @@
-import { createLocalVue } from '@vue/test-utils'
+import { findAllComponents } from 'test-helpers'
+import { nextTick } from 'composition-api'
+import { asyncForEach } from './../../src/utils/asyncForEach'
 
-export default function testDynamics (done, options, type) {
-  let LocalVue = createLocalVue()
-
-  LocalVue.config.errorHandler = done
-
+export default async function testDynamics (options, type) {
   let variables = type === 'wizard'
     ? {
         block: 'step',
@@ -88,7 +86,7 @@ export default function testDynamics (done, options, type) {
 
   let isAtFirstBlock = (form) => {
     let first = _.keys(variables.block)[0]
-    let current = form.findComponent({ name: variables.blocksSelector }).vm.current$.name
+    let current = findAllComponents(form, { name: variables.blocksSelector }).at(0).vm.current$.name
 
     return first === current
   }
@@ -109,70 +107,66 @@ export default function testDynamics (done, options, type) {
     })
   }
 
-  LocalVue.nextTick(() => {
-    if (!_.isEmpty(addedSteps)) {
-      form.setData({
-        wizard: addedSteps
-      })
-    }
+  await nextTick()
 
-    if (!_.isEmpty(addedTabs)) {
-      form.setData({
-        tabs: addedTabs
-      })
-    }
-
-    LocalVue.nextTick(() => {
-    LocalVue.nextTick(() => {
-      if (options[variables.block]) {
-        form.findComponent({ name: variables.blocksSelector }).vm.goTo(options[variables.block])
-      }
-
-      let i = 0
-      _.each(blocks, (block) => {
-        let blockComponent = form.findAllComponents({ name: variables.blockSelector }).at(i)
-
-        expect(blockComponent.exists()).toBe(true)
-        expect(blockComponent.html()).toContain(block.label)
-
-        if (block.name === currentBlock()) {
-          expect(blockComponent.vm.active).toBe(true)
-        }
-        i++
-      })
-
-      _.each(collectElements(), (name, index) => {
-        let e = form.findAllComponents({ name: 'TextElement' }).at(index)
-
-        expect(e.exists()).toBe(true)
-        expect(e.vm.name).toBe(name)
-
-        LocalVue.nextTick(() => {
-          expect(e.vm.visible).toBe(elementShouldBeVisible(name, currentBlock()))
-        })
-      })
-
-      LocalVue.nextTick(() => {
-        LocalVue.nextTick(() => {
-          if (variables.controlSelectors) {
-            expect(form.findComponent({ name: variables.controlSelectors.previous }).vm.visible).toBe(true)
-
-            if (_.keys(steps).length == 1) {
-              expect(form.findComponent({ name: variables.controlSelectors.next }).vm.visible).toBe(false)
-              expect(form.findComponent({ name: variables.controlSelectors.finish }).vm.visible).toBe(true)
-              expect(form.findComponent({ name: variables.controlSelectors.previous }).vm.disabled).toBe(true)
-              expect(form.findComponent({ name: variables.controlSelectors.finish }).vm.disabled).toBe(false)
-            } else if (_.keys(steps).length > 1 && isAtFirstBlock(form)) {
-              expect(form.findComponent({ name: variables.controlSelectors.next }).vm.visible).toBe(true)
-              expect(form.findComponent({ name: variables.controlSelectors.finish }).vm.visible).toBe(false)
-              expect(form.findComponent({ name: variables.controlSelectors.previous }).vm.disabled).toBe(true)
-            }
-          }
-
-          done()
-        })
-      })
+  if (!_.isEmpty(addedSteps)) {
+    form.setData({
+      wizard: addedSteps
     })
+  }
+
+  if (!_.isEmpty(addedTabs)) {
+    form.setData({
+      tabs: addedTabs
     })
+  }
+
+  await nextTick()
+  await nextTick()
+
+  if (options[variables.block]) {
+    findAllComponents(form, { name: variables.blocksSelector }).at(0).vm.goTo(options[variables.block])
+  }
+
+  let i = 0
+  _.each(blocks, (block) => {
+    let blockComponent = findAllComponents(form, { name: variables.blockSelector }).at(i)
+
+    expect(blockComponent.exists()).toBe(true)
+    expect(blockComponent.html()).toContain(block.label)
+
+    if (block.name === currentBlock()) {
+      expect(blockComponent.vm.active).toBe(true)
+    }
+    i++
   })
+
+  await asyncForEach(collectElements(), async (name, index) => {
+    let e = findAllComponents(form, { name: 'TextElement' }).at(index)
+
+    expect(e.exists()).toBe(true)
+    expect(e.vm.name).toBe(name)
+
+    await nextTick()
+    
+    expect(e.vm.visible).toBe(elementShouldBeVisible(name, currentBlock()))
+  })
+
+  await nextTick()
+  await nextTick()
+
+  if (variables.controlSelectors) {
+    expect(findAllComponents(form, { name: variables.controlSelectors.previous }).at(0).vm.visible).toBe(true)
+
+    if (_.keys(steps).length == 1) {
+      expect(findAllComponents(form, { name: variables.controlSelectors.next }).at(0).vm.visible).toBe(false)
+      expect(findAllComponents(form, { name: variables.controlSelectors.finish }).at(0).vm.visible).toBe(true)
+      expect(findAllComponents(form, { name: variables.controlSelectors.previous }).at(0).vm.disabled).toBe(true)
+      expect(findAllComponents(form, { name: variables.controlSelectors.finish }).at(0).vm.disabled).toBe(false)
+    } else if (_.keys(steps).length > 1 && isAtFirstBlock(form)) {
+      expect(findAllComponents(form, { name: variables.controlSelectors.next }).at(0).vm.visible).toBe(true)
+      expect(findAllComponents(form, { name: variables.controlSelectors.finish }).at(0).vm.visible).toBe(false)
+      expect(findAllComponents(form, { name: variables.controlSelectors.previous }).at(0).vm.disabled).toBe(true)
+    }
+  }
 }

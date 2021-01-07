@@ -3,6 +3,8 @@ import replaceWildcards from './../../utils/replaceWildcards'
 import compare from './../../utils/compare'
 import _ from 'lodash'
 
+// condition - condition information [otherPath, operator, expectedValue]
+// elementPath - current
 const check = (condition, elementPath, form$) => {
   let checkGlobal = () => {
     return form$.conditions[condition](form$)
@@ -15,13 +17,19 @@ const check = (condition, elementPath, form$) => {
   let checkArray = () => {
     let { conditionPath, operator, expected } = details()
 
+    // other
     let element$ = form$.el$(conditionPath)
 
     let hasCircularCondition = false
 
+    // other && currentPath
     if (element$ && elementPath) {
       _.each(element$.conditions, (condition) => {
-        if (condition[0] == conditionPath) {
+        if (!Array.isArray(condition)) {
+          return
+        }
+
+        if (condition[0] == elementPath) {
           hasCircularCondition = true
         }
       })
@@ -30,7 +38,7 @@ const check = (condition, elementPath, form$) => {
     if (!element$ || (!hasCircularCondition && !element$.available)) {
       return false
     }
-
+    
     return compareValues(element$.value, expected, operator)
   }
 
@@ -73,13 +81,13 @@ const check = (condition, elementPath, form$) => {
 
   switch (getType(condition)) {
     case 'string':
-      return checkGlobal(condition)
+      return checkGlobal()
 
     case 'function':
-      return checkFunction(condition)
+      return checkFunction()
 
     case 'array':
-      return checkArray(condition)
+      return checkArray()
 
     default:
       throw new Error('Condition must be a string, a function or an object')
