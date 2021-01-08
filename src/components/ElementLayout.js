@@ -18,9 +18,9 @@ export default {
       let classList = baseClasses.value
 
       classList = mergeComponentClasses(classList, {
-        [containers.value.element]: el$.value.columns.classes.element || '',
-        [containers.value.label]: el$.value.columns.classes.label || '',
-        [containers.value.field]: el$.value.columns.classes.field || '',
+        [containers.value.element]: el$.value.columns.classes.element,
+        [containers.value.label]: el$.value.columns.classes.label,
+        [containers.value.field]: el$.value.columns.classes.field,
       })
 
       // Add element's main class to main class

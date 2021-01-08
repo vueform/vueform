@@ -80,6 +80,7 @@ export default {
       el$,
       form$,
       classes,
+      mainClass,
       components,
       theme,
       dragging,
