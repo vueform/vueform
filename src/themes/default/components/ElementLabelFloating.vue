@@ -1,9 +1,8 @@
 <template>
   <span
     :class="[classes.floatingLabel, {[classes.floatingLabelVisible]: visible}]"
-  >
-    <slot></slot>
-  </span>
+    v-html="floating"
+  ></span>
 </template>
 
 <script>

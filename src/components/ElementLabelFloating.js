@@ -1,3 +1,4 @@
+import { computed } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
 
   export default {
@@ -12,7 +13,14 @@ import useElementComponent from './../composables/useElementComponent'
     {    
       // ============ DEPENDENCIES ============
 
-      const { el$, form$, classes, components, theme } = useElementComponent(props, context)
+      const { el$, form$, classes, mainClass, components, theme } = useElementComponent(props, context)
+
+      // ============== COMPUTED ==============
+
+      const floating = computed(() => {
+        return el$.value.floating
+      })
+      
 
       return {
         // Inject
@@ -22,7 +30,9 @@ import useElementComponent from './../composables/useElementComponent'
 
         // Computed
         classes,
+        mainClass,
         components,
+        floating,
       }
     },
   }

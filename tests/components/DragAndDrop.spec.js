@@ -1,7 +1,7 @@
 import { createForm, findAllComponents} from 'test-helpers'
 import useElementComponent from './../composables/useElementComponent'
 
-describe('Drag And Drop', () => {
+describe('DragAndDrop', () => {
   let form = createForm({
     schema: {
       el: {

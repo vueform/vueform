@@ -14,7 +14,7 @@
           :is="components.ElementLabelFloating"
           v-if="floating"
           :visible="!empty"
-        >{{ floating }}</component>
+        />
 
         <textarea
           :value="model"

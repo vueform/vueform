@@ -1,15 +1,17 @@
 import { createForm, findAllComponents } from 'test-helpers'
 import defaultTheme from './../../src/themes/default'
 import { mergeComponentClasses, mergeClass } from './../../src/utils/mergeClasses'
+import { nextTick } from 'composition-api'
+import flushPromises from 'flush-promises'
 
 export default function (elementType, componentName, schema = {}, options = {}) {
   let defaultClasses = defaultTheme.components[componentName].data().defaultClasses
   let mainClass = _.keys(defaultClasses)[0]
   let mergeWith = options.mergeWith || {}
-  let elementName = `${_.upperFirst(elementType)}Element`
+  let execute = options.execute || null
 
   describe('form$', () => {
-    it('should return form$', () => {
+    it('should return form$', async () => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
@@ -17,6 +19,14 @@ export default function (elementType, componentName, schema = {}, options = {}) 
           }, schema)
         }
       })
+
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
@@ -25,7 +35,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
   })
 
   describe('el$', () => {
-    it('should return el$', () => {
+    it('should return el$', async () => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
@@ -35,6 +45,13 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
 
       let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.el$).toStrictEqual(el)
@@ -42,7 +59,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
   })
 
   describe('theme', () => {
-    it('should inject `theme`', () => {
+    it('should inject `theme`', async () => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
@@ -50,6 +67,14 @@ export default function (elementType, componentName, schema = {}, options = {}) 
           }, schema)
         }
       })
+
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
@@ -58,7 +83,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
   })
 
   describe('components', () => {
-    it('should equal to element components', () => {
+    it('should equal to element components', async () => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
@@ -68,6 +93,13 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
 
       let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.components).toStrictEqual(el.components)
@@ -75,7 +107,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
   })
 
   describe('mainClass', () => {
-    it('should equal to first class name of defaultClasses', () => {
+    it('should equal to first class name of defaultClasses', async () => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
@@ -85,6 +117,13 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
 
       let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.mainClass).toStrictEqual(_.keys(Component.vm.defaultClasses)[0])
@@ -92,7 +131,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
   })
 
   describe('classes', () => {
-    it('should `classes` equal to defaultClasses by default', () => {
+    it('should `classes` equal to defaultClasses by default', async () => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
@@ -101,12 +140,20 @@ export default function (elementType, componentName, schema = {}, options = {}) 
         }
       })
 
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Component.vm.defaultClasses, mergeWith))
     })
 
-    it('should classes in theme overwrite defaultClasses in `classes`, even when changes', () => {
+    it('should classes in theme overwrite defaultClasses in `classes`, even when changes', async () => {
       let overwriteClasses1 = {
         [mainClass]: 'theme-overwrite-class'
       }
@@ -130,6 +177,14 @@ export default function (elementType, componentName, schema = {}, options = {}) 
         }
       })
 
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
@@ -140,7 +195,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
     })
 
     // Form classes
-    it('should classes in form overwrite defaultClasses in `classes`, even when changes', () => {
+    it('should classes in form overwrite defaultClasses in `classes`, even when changes', async () => {
       let overwriteClasses1 = {
         [mainClass]: 'form-overwrite-class'
       }
@@ -160,6 +215,13 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
 
       let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
@@ -169,7 +231,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
 
-    it('should classes in form overwrite theme classes in `classes`, even when changes', () => {
+    it('should classes in form overwrite theme classes in `classes`, even when changes', async () => {
       let overwriteClasses1 = {
         [mainClass]: 'form-overwrite-class'
       }
@@ -199,6 +261,13 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
 
       let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
@@ -208,7 +277,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
 
-    it('should `addClasses` in form add classes in `classes`, even when changes', () => {
+    it('should `addClasses` in form add classes in `classes`, even when changes', async () => {
       let addClasses1 = {
         [mainClass]: 'form-add-class'
       }
@@ -228,6 +297,13 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
 
       let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+      
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses1[mainClass], mergeWith[mainClass] || ''))
@@ -238,7 +314,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
     })
 
     // Element classes
-    it('should classes in element overwrite defaultClasses in `classes`, even when changes', () => {
+    it('should classes in element overwrite defaultClasses in `classes`, even when changes', async () => {
       let overwriteClasses1 = {
         [mainClass]: 'element-overwrite-class'
       }
@@ -258,6 +334,13 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
 
       let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
@@ -272,7 +355,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
     })
 
-    it('should classes in element overwrite theme classes in `classes`, even when changes', () => {
+    it('should classes in element overwrite theme classes in `classes`, even when changes', async () => {
       let overwriteClasses1 = {
         [mainClass]: 'element-overwrite-class'
       }
@@ -302,6 +385,13 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
 
       let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
@@ -316,7 +406,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
     })
 
-    it('should classes in element overwrite form classes in `classes`, even when changes', () => {
+    it('should classes in element overwrite form classes in `classes`, even when changes', async () => {
       let overwriteClasses1 = {
         [mainClass]: 'element-overwrite-class'
       }
@@ -341,6 +431,13 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
 
       let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
@@ -355,7 +452,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
     })
 
-    it('should addClasses in element add classes in `classes`, even when changes', () => {
+    it('should addClasses in element add classes in `classes`, even when changes', async () => {
       let addClasses1 = {
         [mainClass]: 'element-add-class'
       }
@@ -375,6 +472,13 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
 
       let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses1[mainClass], mergeWith[mainClass] || ''))
@@ -384,7 +488,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses2[mainClass], mergeWith[mainClass] || ''))
     })
 
-    it('should addClasses in both form and element add classes in `classes`, even when changes', () => {
+    it('should addClasses in both form and element add classes in `classes`, even when changes', async () => {
       let addClassesElement1 = {
         [mainClass]: 'element-add-class'
       }
@@ -413,6 +517,13 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       })
 
       let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(
@@ -470,6 +581,14 @@ export default function (elementType, componentName, schema = {}, options = {}) 
           })
         }
       })
+
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
       

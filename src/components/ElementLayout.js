@@ -68,6 +68,7 @@ export default {
       // Computed
       components,
       classes,
+      mainClass,
       visible,
       hasLabel,
       info,
