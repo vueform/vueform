@@ -8,7 +8,6 @@ import useClasses from './features/useClasses'
 import useColumns from './features/useColumns'
 import useDescription from './features/useDescription'
 import useInfo from './features/useInfo'
-import useBaseElement from './features/useBaseElement'
 import useGenericName from './features/useGenericName'
 import useView from './features/useView'
 import useComponents from './features/useComponents'
@@ -16,6 +15,8 @@ import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
 import useEvents from './../useEvents'
 import useStatic from './features/useStatic'
+
+import { static_ as useBaseElement } from './features/useBaseElement'
 
 export default function (props, context) {
   const { schema } = toRefs(props)

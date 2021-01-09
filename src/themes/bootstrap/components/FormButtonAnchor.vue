@@ -1,12 +1,21 @@
 <template>
   <a
+    v-if="isLabelComponent"
     :class="classes.button"
     :href="href"
     :target="target"
     @click="handleClick"
-    v-html-if="{label: !isLabelComponent}"
   >
-    <component v-if="isLabelComponent" :is="label" :button="button" />
+    <component :is="label" :button="button" />
+  </a>
+  <a
+    v-else
+    v-html="label"
+    :class="classes.button"
+    :href="href"
+    :target="target"
+    @click="handleClick"
+  >
   </a>
 </template>
 

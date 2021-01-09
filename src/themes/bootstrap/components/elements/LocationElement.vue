@@ -15,7 +15,7 @@
           :is="components.ElementLabelFloating"
           v-if="floating"
           :visible="!empty"
-        >{{ floating }}</component>
+        />
 
         <input
           :name="name"

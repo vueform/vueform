@@ -13,10 +13,9 @@ import useView from './features/useView'
 import useComponents from './features/useComponents'
 import useLayout from './features/useLayout'
 import useSlots from './features/useSlots'
-import useButtons from './features/useButtons'
+import useButton from './features/useButton'
 
 import { static_ as useBaseElement } from './features/useBaseElement'
-import { buttons as useChildren } from './features/useChildren'
 
 export default function useText(props, context) {
   const { schema } = toRefs(props)
@@ -27,10 +26,6 @@ export default function useText(props, context) {
   const path = usePath(props, context)
   const description = useDescription(props, context)
   const info = useInfo(props, context)
-
-  const children = useChildren(props, context, {
-    form$: form$.form$,
-  })
 
   const conditions = useConditions(props, context, {
     form$: form$.form$,
@@ -51,7 +46,7 @@ export default function useText(props, context) {
     form$: form$.form$
   })
 
-  const buttons = useButtons(props, context, {
+  const button = useButton(props, context, {
     components: components.components,
   })
 
@@ -98,7 +93,6 @@ export default function useText(props, context) {
     ...components,
     ...layout,
     ...slots,
-    ...buttons,
-    ...children,
+    ...button,
   }
 } 

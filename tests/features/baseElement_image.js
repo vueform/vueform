@@ -1,6 +1,6 @@
 import { createForm } from 'test-helpers'
 
-export { isFileType, isArrayType } from './baseElement_file'
+export { isStatic, isFileType, isArrayType } from './baseElement_file'
 
 export const isImageType = function (elementType, elementName, options) {
   it('should return `isImageType` true', () => {

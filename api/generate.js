@@ -4,6 +4,7 @@ const basePath = './..'
 const featuresPath = '/src/composables/elements'
 const elements = [
   'address',
+  'button',
   'buttons',
   'checkbox',
   'checkboxgroup',
@@ -71,7 +72,7 @@ function getFeatures() {
       let feature = _.lowerFirst(line.match(/\/use([^']*)\'$/)[1])
 
       if (line.match(/^import { ([^ ]*)/)) {
-        feature += '_' + line.match(/^import { ([^ ]*)/)[1]
+        feature += '_' + line.match(/^import { ([^ ]*)/)[1].replace(/_$/, '')
       }
       
       features[element].push(feature)

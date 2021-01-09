@@ -9,6 +9,10 @@ const base = function(props, context, dependencies)
 
   const type = computedOption('type', schema, schema.value.type)
 
+  const isStatic = computed(() => {
+    return false
+  })
+
   /**
    * Determines if the element's value is a file.
    *
@@ -40,6 +44,7 @@ const base = function(props, context, dependencies)
 
   return {
     type,
+    isStatic,
     isFileType,
     isArrayType,
     isImageType,
@@ -48,7 +53,7 @@ const base = function(props, context, dependencies)
 
 const list = function(props, context, dependencies)
 {
-  const { type, isFileType, isImageType } = base(props, context, dependencies)
+  const { type, isStatic, isFileType, isImageType } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -63,6 +68,7 @@ const list = function(props, context, dependencies)
 
   return {
     type,
+    isStatic,
     isFileType,
     isArrayType,
     isImageType,
@@ -71,7 +77,7 @@ const list = function(props, context, dependencies)
 
 const file = function(props, context, dependencies)
 {
-  const { type, isArrayType, isImageType } = base(props, context, dependencies)
+  const { type, isStatic, isArrayType, isImageType } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -86,6 +92,7 @@ const file = function(props, context, dependencies)
 
   return {
     type,
+    isStatic,
     isFileType,
     isArrayType,
     isImageType,
@@ -94,7 +101,7 @@ const file = function(props, context, dependencies)
 
 const image = function(props, context, dependencies)
 {
-  const { type, isArrayType, isFileType } = file(props, context, dependencies)
+  const { type, isStatic, isArrayType, isFileType } = file(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -104,6 +111,26 @@ const image = function(props, context, dependencies)
 
   return {
     type,
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+  }
+}
+
+const static_ = function(props, context, dependencies)
+{
+  const { type, isArrayType, isFileType, isImageType } = base(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+
+  const isStatic = computed(() => {
+    return true
+  })
+
+  return {
+    type,
+    isStatic,
     isFileType,
     isArrayType,
     isImageType,
@@ -123,6 +150,7 @@ export {
   tags,
   file,
   image,
+  static_,
 } 
 
 export default base

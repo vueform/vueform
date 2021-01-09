@@ -359,7 +359,9 @@ export default {
      * @type {boolean}
      */
     invalid() {
-      return _.some(this.elements$, { available: true, invalid: true })
+      return _.some(this.elements$, (element$) => {
+        return element$.isStatic === false && element$.available === true && element$.invalid === true
+      })
     },
 
     /**

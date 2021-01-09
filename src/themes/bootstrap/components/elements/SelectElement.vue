@@ -5,10 +5,11 @@
 
       <slot name="prefix"></slot>
 
-      <component :is="components.ElementLabelFloating"
+      <component
+        :is="components.ElementLabelFloating"
         v-if="floating"
         :visible="!empty"
-      >{{ floating }}</component>
+      />
 
       <select
         v-if="isNative"

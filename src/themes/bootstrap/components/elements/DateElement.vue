@@ -8,7 +8,7 @@
         :is="components.ElementLabelFloating"
         v-if="floating"
         :visible="!empty"
-      >{{ floating }}</component>
+      />
       
       <component
         :is="components.Flatpickr"

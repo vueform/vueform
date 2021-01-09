@@ -1,11 +1,19 @@
 <template>
   <button
+    v-if="isLabelComponent"
     :class="classes.button"
     :disabled="isDisabled"
     @click.prevent="handleClick"
-    v-html-if="{label: !isLabelComponent}"
   >
-    <component v-if="isLabelComponent" :is="label" :button="button" />
+    <component :is="label" :button="button" />
+  </button>
+  <button
+    v-else
+    v-html="label"
+    :class="classes.button"
+    :disabled="isDisabled"
+    @click.prevent="handleClick"
+  >
   </button>
 </template>
 
