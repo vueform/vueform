@@ -404,10 +404,10 @@ export default {
      * @type {array}
      */
     errors() {
-      var errors = this.messageBag.errors
+      var errors = []
 
       _.each(_.filter(this.elements$, { available: true }), (element$) => {
-        _.each(element$.messageBag ? element$.messageBag.errors || [] : [], (error) => {
+        _.each(element$.messageBag ? (element$.messageBag.errors || []) : [], (error) => {
           errors.push(error)
         })
       })
@@ -474,7 +474,7 @@ export default {
      * @type {boolean}
      */
     hasErrors() {
-      return this.errors.length > 0
+      return this.messageBag.errors && this.messageBag.errors.length > 0
     },
 
     /**
@@ -484,7 +484,7 @@ export default {
      * @type {boolean}
      */
     hasMessages() {
-      return this.messages.length > 0
+      return this.messageBag.messages && this.messageBag.messages.length > 0
     },
 
     mainClass() {
@@ -1021,7 +1021,7 @@ export default {
     },
 
     $_initMessageBag() {
-      this.messageBag = new this.$laraform.services.messageBag([])
+      this.messageBag = new this.$laraform.services.messageBag(this.errors)
     }
   },
   created() {

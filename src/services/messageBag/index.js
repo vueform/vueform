@@ -1,6 +1,6 @@
 export default class messageBag {
-  constructor(elementErrors) {
-    this.elementErrors = elementErrors
+  constructor(baseErrors) {
+    this.baseErrors = baseErrors
     
     this.prepends = {
       errors: [],
@@ -15,7 +15,7 @@ export default class messageBag {
   get errors() {
     return _.concat(
       this.prepends.errors,
-      this.elementErrors,
+      this.baseErrors,
       this.appends.errors,
     )
   }
