@@ -1,48 +1,18 @@
-import { createForm } from 'test-helpers'
-import useElementComponent from './../composables/useElementComponent'
+import { elementComponent, label, loading, disabled, align, isDisabled, isLoading, setLoading, disable, enable, handleClick } from './FormButton'
 
-describe('ElementText', () => {
-  let form = createForm({
-    schema: {
-      el: {
-        type: 'buttons',
-        buttons: [
-          {
-            label: 'Button'
-          }
-        ]
-      }
-    }
-  })
+describe('FormButton', () => {
+  let buttonType = 'button'
+  let buttonComponent = 'FormButton'
 
-  let Button = findAllComponents(form, { name: 'FormButton' }).at(0)
-
-  useElementComponent('buttons', 'FormButton', { buttons: [{label: 'Button'}] }, {
-    mergeWith: {
-      [Button.vm.mainClass]: {
-        [Button.vm.classes[Button.vm.align.value]]: true,
-        [Button.classes.loading]: Button.vm.isLoading.value,
-        [Button.classes.disabled]: Button.vm.isDisabled.value,
-      }
-    }
-  })
-
-  // describe('rendering', () => {
-  //   it('should render', () => {
-  //     let before = 'before'
-
-  //     let form = createForm({
-  //       schema: {
-  //         el: {
-  //           type: 'text',
-  //           before,
-  //         }
-  //       }
-  //     })
-
-  //     let Text = form.findComponent({ name: 'ElementText' })
-
-  //     expect(Text.html()).toContain(before)
-  //   })
-  // })
+  elementComponent(buttonType, buttonComponent)
+  label(buttonType, buttonComponent)
+  loading(buttonType, buttonComponent)
+  disabled(buttonType, buttonComponent)
+  align(buttonType, buttonComponent)
+  isDisabled(buttonType, buttonComponent)
+  isLoading(buttonType, buttonComponent)
+  setLoading(buttonType, buttonComponent)
+  disable(buttonType, buttonComponent)
+  enable(buttonType, buttonComponent)
+  handleClick(buttonType, buttonComponent)
 })

@@ -23,7 +23,7 @@ module.exports = {
       '^vue-jest$': "<rootDir>/node_modules/vue-prev-jest"
   },
   "setupFilesAfterEnv": ["<rootDir>/jest/jest.setup.js"],
-  "collectCoverage": false,
+  "collectCoverage": true,
   "collectCoverageFrom": [
       "**/*.{js,vue}",
       "!**/node_modules/**",
@@ -33,6 +33,7 @@ module.exports = {
       "!**/dist/**",
       "!**/ignore/**",
       "!**/old_tests/**",
+      "!**/tests/**",
       "!**/jest/**",
       "!**/api/**",
   ],

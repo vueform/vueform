@@ -13,7 +13,7 @@ const base = function (props, context, dependencies)
 
   const buttonLabel = computedOption('buttonLabel', schema, '')
 
-  const buttonType = computedOption('buttonType', schema, null, [null, 'submit', 'anchor'])
+  const buttonType = computedOption('buttonType', schema, 'button', ['submit', 'anchor', 'button'])
 
   const disabled = computedOption('disabled', schema, false)
 
@@ -22,6 +22,8 @@ const base = function (props, context, dependencies)
   const href = computedOption('href', schema, null)
 
   const target = computedOption('target', schema, '_self')
+
+  const align = computedOption('align', schema, 'left')
 
   const onClick = computedOption('onClick', schema, null)
 
@@ -54,6 +56,7 @@ const base = function (props, context, dependencies)
       loading: loading.value,
       href: href.value,
       target: target.value,
+      align: align.value,
       onClick: onClick.value,
     }
   })
@@ -65,6 +68,7 @@ const base = function (props, context, dependencies)
     loading,
     href,
     target,
+    align,
     onClick,
     buttonComponent,
     button,

@@ -12,7 +12,7 @@ export default {
 
     const {
       el$, form$, theme, align, loading, disabled, mainClass, classes, components, label,
-      isLabelComponent, available, conditions, setLoading, disable, enable,
+      isLabelComponent, setLoading, disable, enable,
     } = FormButton.init(props, context)
   
     // ============== COMPUTED ==============
@@ -64,8 +64,6 @@ export default {
       components,
       label,
       isLabelComponent,
-      available,
-      conditions,
 
       // Methods
       setLoading,

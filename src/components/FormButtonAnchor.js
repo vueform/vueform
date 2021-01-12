@@ -1,4 +1,4 @@
-import { toRefs } from 'composition-api'
+import { toRefs, computed } from 'composition-api'
 import computedOption from '../utils/computedOption'
 import FormButton from './FormButton'
 
@@ -13,15 +13,18 @@ export default {
 
     const {
       el$, form$, theme, align, loading, disabled, mainClass, classes, components,
-      label, isDisabled, isLoading, isLabelComponent, available, conditions,
-      setLoading, disable, enable,
+      label, isDisabled, isLoading, isLabelComponent, setLoading, disable, enable,
     } = FormButton.init(props, context)
   
     // ============== COMPUTED ==============
 
-    const href = computedOption('href', button, '')
+    const href = computed(() => {
+      return button.value.href || ''
+    })
 
-    const target = computedOption('target', button, '_self')
+    const target = computed(() => {
+      return button.value.target || '_self'
+    })
 
     // =============== METHODS ==============
 
@@ -56,8 +59,6 @@ export default {
       components,
       label,
       isLabelComponent,
-      available,
-      conditions,
       href,
       target,
 

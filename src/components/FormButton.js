@@ -1,9 +1,7 @@
 import { computed, ref, toRefs, watch, onMounted, nextTick } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
-import useConditions from './../composables/useConditions'
 import useLabel from './../composables/useLabel'
 import { mergeComponentClasses } from './../utils/mergeClasses'
-import computedOption from '../utils/computedOption'
 
 export default {
   name: 'FormButton',
@@ -29,8 +27,7 @@ export default {
     // ============ DEPENDENCIES ============
 
     const { el$, form$, classes: baseClasses, components, theme, mainClass } = useElementComponent(props, context)
-    const { available, conditions } = useConditions(props, context, { form$, descriptor: button })
-    const { label, isLabelComponent } = useLabel(props, context, { form$, descriptor: button })
+    const { label, isLabelComponent } = useLabel(props, context, { el$, descriptor: button })
 
     // ================ DATA ================
 
@@ -40,7 +37,9 @@ export default {
 
     // ============== COMPUTED ==============
 
-    const align = computedOption('align', button, 'left', ['left', 'center', 'right'])
+    const align = computed(() => {
+      return button.value.align || 'left'
+    })
 
     const classes = computed(() => {
       let classes = _.clone(baseClasses.value)
@@ -107,8 +106,6 @@ export default {
       components,
       label,
       isLabelComponent,
-      available,
-      conditions,
 
       // Methods
       setLoading,

@@ -5,7 +5,7 @@ export const buttonLabel = function (elementType, elementName, options) {
 }
 
 export const buttonType = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'buttonType', null, 'anchor')
+  testComputedOption(it, elementType, 'buttonType', 'button', 'anchor')
 }
 
 export const disabled = function (elementType, elementName, options) {
@@ -22,6 +22,10 @@ export const href = function (elementType, elementName, options) {
 
 export const target = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'target', '_self', '_blank')
+}
+
+export const align = function (elementType, elementName, options) {
+  testComputedOption(it, elementType, 'align', 'left', 'right')
 }
 
 export const onClick = function (elementType, elementName, options) {
@@ -98,5 +102,29 @@ export const buttonComponent = function (elementType, elementName, options) {
 
     console.error = originalConsoleError
     console.warn = originalConsoleWarn
+  })
+}
+
+export const button = function (elementType, elementName, options) {
+  it('should return schema', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+    
+    expect(el.button).toStrictEqual({
+      label: el.buttonLabel,
+      disabled: el.disabled,
+      loading: el.loading,
+      href: el.href,
+      target: el.target,
+      onClick: el.onClick,
+      align: el.align,
+    })
   })
 }
