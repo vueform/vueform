@@ -44,13 +44,23 @@ export default {
     const classes = computed(() => {
       let classes = _.clone(baseClasses.value)
 
-      return mergeComponentClasses(classes, {
+      classes = mergeComponentClasses(classes, {
         [mainClass.value]: {
           [classes[align.value]]: true,
           [classes.loading]: isLoading.value,
           [classes.disabled]: isDisabled.value,
         }
       })
+
+      if (button.value.class) {
+        classes = mergeComponentClasses(classes, {
+          [mainClass.value]: {
+            [button.value.class]: true,
+          }
+        })
+      }
+
+      return classes
     })
 
     const isDisabled = computed(() => {

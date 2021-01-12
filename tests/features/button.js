@@ -8,6 +8,10 @@ export const buttonType = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'buttonType', 'button', 'anchor')
 }
 
+export const buttonClass = function (elementType, elementName, options) {
+  testComputedOption(it, elementType, 'buttonClass', null, 'btn-class')
+}
+
 export const disabled = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'disabled', false, true)
 }
@@ -119,6 +123,7 @@ export const button = function (elementType, elementName, options) {
     
     expect(el.button).toStrictEqual({
       label: el.buttonLabel,
+      class: el.buttonClass,
       disabled: el.disabled,
       loading: el.loading,
       href: el.href,

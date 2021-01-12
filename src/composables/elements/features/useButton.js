@@ -15,6 +15,8 @@ const base = function (props, context, dependencies)
 
   const buttonType = computedOption('buttonType', schema, 'button', ['submit', 'anchor', 'button'])
 
+  const buttonClass = computedOption('buttonClass', schema, null)
+
   const disabled = computedOption('disabled', schema, false)
 
   const loading = computedOption('loading', schema, false)
@@ -52,6 +54,7 @@ const base = function (props, context, dependencies)
   const button = computed(() => {
     return {
       label: buttonLabel.value,
+      class: buttonClass.value,
       disabled: disabled.value,
       loading: loading.value,
       href: href.value,
@@ -64,6 +67,7 @@ const base = function (props, context, dependencies)
   return {
     buttonLabel,
     buttonType,
+    buttonClass,
     disabled,
     loading,
     href,

@@ -14,9 +14,10 @@ export const elementComponent = (buttonType, buttonComponent) => {
 
   let Button = findAllComponents(form, { name: buttonComponent }).at(0)
 
-  useElementComponent('button', buttonComponent, { buttonType: buttonType, }, {
+  useElementComponent('button', buttonComponent, { buttonType: buttonType, buttonClass: 'btn-class' }, {
     mergeWith: {
       [Button.vm.mainClass]: {
+        'btn-class': true,
         [Button.vm.classes[Button.vm.align]]: true,
         [Button.vm.classes.loading]: Button.vm.isLoading,
         [Button.vm.classes.disabled]: Button.vm.isDisabled,
