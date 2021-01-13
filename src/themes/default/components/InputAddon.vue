@@ -1,9 +1,15 @@
 <template>
   <label
-    :class="[this.type == 'before' ? classes.addonBefore : classes.addonAfter]"
-    v-html-if="{addon: !isAddonComponent}"
+    v-if="isAddonComponent"
+    :class="classes.container"
   >
-    <component v-if="isAddonComponent" :is="addon" :el$="el$" />
+    <component :is="addon" :el$="el$" />
+  </label>
+  <label
+    v-else
+    v-html="addon"
+    :class="classes.container"
+  >
   </label>
 </template>
 
@@ -16,6 +22,7 @@
     data() {
       return {
         defaultClasses: {
+          container: 'input-addon',
           addonBefore: 'input-group-addon',
           addonAfter: 'input-group-addon',
         }

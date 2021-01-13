@@ -1,6 +1,7 @@
 import { computed, toRefs } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
 import isVueComponent from './../utils/isVueComponent'
+import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'InputAddon',
@@ -16,9 +17,20 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, el$, classes, mainClass, components, theme } = useElementComponent(props, context)
+    const { form$, el$, classes: baseClasses, mainClass, components, theme } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
+
+    const classes = computed(() => {
+      let classes = _.clone(baseClasses.value)
+
+      return mergeComponentClasses(classes, {
+        [mainClass.value]: {
+          [classes.addonBefore]: type.value === 'before',
+          [classes.addonAfter]: type.value === 'after',
+        }
+      })
+    })
 
     const baseAddon = computed(() => {
       return el$.value.addons[type.value]
