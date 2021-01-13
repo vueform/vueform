@@ -14,7 +14,7 @@ export default {
   {  
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes, components } = useFormComponent(props, context)
+    const { form$, theme, classes, mainClass, components } = useFormComponent(props, context)
 
     const { component } = useElements(props, context, { theme })
 
@@ -32,6 +32,7 @@ export default {
 
       // Computed
       classes,
+      mainClass,
       components,
 
       // Methods

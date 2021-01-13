@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="classes.formWizardControls"
+    :class="classes.container"
   >
     <component :is="components.FormWizardPrevious"
       :wizard$="wizard$"

@@ -22,7 +22,7 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes: baseClasses, components } = useFormComponent(props, context)
+    const { form$, theme, classes: baseClasses, mainClass, components } = useFormComponent(props, context)
 
     // ============== COMPUTED ==============
 
@@ -62,6 +62,7 @@ export default {
       selectedLanguage,
       selected,
       classes,
+      mainClass,
       components,
 
       // Methods

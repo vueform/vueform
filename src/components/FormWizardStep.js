@@ -46,7 +46,7 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes: baseClasses, components, mainClass } = useFormComponent(props, context)
+    const { form$, theme, classes: baseClasses, mainClass, components, } = useFormComponent(props, context)
     const { available, conditions } = useConditions(props, context, { form$, descriptor: step })
     const { label, isLabelComponent } = useLabel(props, context, { form$, descriptor: step })
     const { events, listeners, on, off, fire } = useEvents(props, context, { form$, descriptor: step }, {
@@ -427,6 +427,7 @@ export default {
       invalid,
       pending,
       classes,
+      mainClass,
       components,
       conditions,
       available,

@@ -1,7 +1,10 @@
 import { createForm, createElement } from 'test-helpers'
 import { nextTick, markRaw } from 'composition-api'
+import useFormComponent from './../composables/useFormComponent'
 
 describe('FormElement', () => {
+  useFormComponent({schema:{el:{type:'text'}}}, 'FormElements')
+
   describe('rendering', () => {
     it('should render element based on type', () => {
       let form = createForm({

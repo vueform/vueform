@@ -16,7 +16,7 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, el$, classes, components, theme } = useElementComponent(props, context)
+    const { form$, el$, classes, mainClass, components, theme } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
 
@@ -47,6 +47,7 @@ export default {
       // Computed
       components,
       classes,
+      mainClass,
       addon,
       isAddonComponent,
     }

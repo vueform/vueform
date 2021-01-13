@@ -232,6 +232,7 @@ export default {
       visible,
       invalid,
       classes,
+      mainClass,
       components,
       conditions,
       available,
