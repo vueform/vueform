@@ -1,4 +1,4 @@
-import { computed, watch } from 'composition-api'
+import { computed, ref } from 'composition-api'
 import isVueComponent from './../utils/isVueComponent'
 
 export default function useLabel(props, context, dependencies)
@@ -6,8 +6,8 @@ export default function useLabel(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const descriptor = dependencies.descriptor
-  const el$ = dependencies.el$ // optional
-  const form$ = dependencies.form$ // optional
+  const el$ = dependencies.el$ || ref(null) // optional
+  const form$ = dependencies.form$ || ref(null) // optional
 
   // ============== COMPUTED ==============
   

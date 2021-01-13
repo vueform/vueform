@@ -1,11 +1,11 @@
-import { createForm, findAllComponents, findAll } from 'test-helpers'
+import { createForm, findAllComponents, findAll, createElement } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
-import { nextTick } from 'composition-api'
+import { nextTick, markRaw } from 'composition-api'
 
 expect.extend({toBeVisible})
 
 describe('Form Tab', () => {
-  it('should render step label', () => {
+  it('should render step label', async () => {
     let form = createForm({
       tabs: {
         first: {
@@ -29,6 +29,90 @@ describe('Form Tab', () => {
 
     expect(findAllComponents(form, { name: 'FormTab' }).at(0).html()).toContain('First')
     expect(findAllComponents(form, { name: 'FormTab' }).at(1).html()).toContain('Second')
+
+    form.vm.tabs.first.label = 'Not first'
+
+    await nextTick()
+
+    expect(findAllComponents(form, { name: 'FormTab' }).at(0).html()).toContain('Not first')
+  })
+
+  it('should render step label as function', async () => {
+    let form = createForm({
+      labelVar: 'var',
+      tabs: {
+        first: {
+          label: (form$) => { return 'First'+form$.labelVar },
+          elements: ['a'],
+        },
+        second: {
+          label: (form$) => { return 'Second'+form$.labelVar },
+          elements: ['b']
+        },
+      },
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(findAllComponents(form, { name: 'FormTab' }).at(0).html()).toContain('Firstvar')
+    expect(findAllComponents(form, { name: 'FormTab' }).at(1).html()).toContain('Secondvar')
+
+    form.vm.labelVar = 'notvar'
+
+    await nextTick()
+
+    expect(findAllComponents(form, { name: 'FormTab' }).at(0).html()).toContain('Firstnotvar')
+    expect(findAllComponents(form, { name: 'FormTab' }).at(1).html()).toContain('Secondnotvar')
+  })
+
+  it('should render step label as component', async () => {
+    let form = createForm({
+      tabs: {
+        first: {
+          label: markRaw({
+            props: ['tab', 'form$'],
+            render(h) {
+              return createElement(h, 'div', this.tab.labelVar)
+            }
+          }),
+          labelVar: 'First',
+          elements: ['a']
+        },
+        second: {
+          label: markRaw({
+            props: ['tab', 'form$'],
+            render(h) {
+              return createElement(h, 'div', this.tab.labelVar)
+            }
+          }),
+          labelVar: 'Second',
+          elements: ['b']
+        },
+      },
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(findAllComponents(form, { name: 'FormTab' }).at(0).html()).toContain('First')
+    expect(findAllComponents(form, { name: 'FormTab' }).at(1).html()).toContain('Second')
+
+    form.vm.tabs.first.labelVar = 'Not first'
+
+    await nextTick()
+
+    expect(findAllComponents(form, { name: 'FormTab' }).at(0).html()).toContain('Not first')
   })
 
   it('should add class defined in schema to classes list', () => {

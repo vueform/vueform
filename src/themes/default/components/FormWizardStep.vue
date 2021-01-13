@@ -1,13 +1,20 @@
 <template>
   <li :class="classes.container" v-show="visible">
     <a
+      v-if="isLabelComponent"
       href="#"
       :class="classes.wrapper"
       @click.prevent="select"
-      v-html-if="{label: !isLabelComponent}"
     >
-      <component v-if="isLabelComponent" :is="label" :step$="step$" />
+      <component :is="label" :step="step" :form$="form$" />
     </a>
+    <a
+      v-else
+      v-html="label"
+      href="#"
+      :class="classes.wrapper"
+      @click.prevent="select"
+    ></a>
   </li>
 </template>
 

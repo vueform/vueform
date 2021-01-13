@@ -1,12 +1,12 @@
-import { createForm, findAllComponents, findAll } from 'test-helpers'
+import { createForm, findAllComponents, findAll, createElement } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
-import { nextTick } from 'composition-api'
+import { nextTick, markRaw } from 'composition-api'
 import flushPromises from 'flush-promises'
 
 expect.extend({toBeVisible})
 
 describe('Form Wizard Step', () => {
-  it('should render step', () => {
+  it('should render step label', async () => {
     let form = createForm({
       wizard: {
         first: {
@@ -30,6 +30,90 @@ describe('Form Wizard Step', () => {
 
     expect(findAllComponents(form, { name: 'FormWizardStep' }).at(0).html()).toContain('First')
     expect(findAllComponents(form, { name: 'FormWizardStep' }).at(1).html()).toContain('Second')
+
+    form.vm.wizard.first.label = 'Not first'
+
+    await nextTick()
+
+    expect(findAllComponents(form, { name: 'FormWizardStep' }).at(0).html()).toContain('Not first')
+  })
+
+  it('should render step label as function', async () => {
+    let form = createForm({
+      labelVar: 'var',
+      wizard: {
+        first: {
+          label: (form$) => { return 'First'+form$.labelVar },
+          elements: ['a'],
+        },
+        second: {
+          label: (form$) => { return 'Second'+form$.labelVar },
+          elements: ['b']
+        },
+      },
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(findAllComponents(form, { name: 'FormWizardStep' }).at(0).html()).toContain('Firstvar')
+    expect(findAllComponents(form, { name: 'FormWizardStep' }).at(1).html()).toContain('Secondvar')
+
+    form.vm.labelVar = 'notvar'
+
+    await nextTick()
+
+    expect(findAllComponents(form, { name: 'FormWizardStep' }).at(0).html()).toContain('Firstnotvar')
+    expect(findAllComponents(form, { name: 'FormWizardStep' }).at(1).html()).toContain('Secondnotvar')
+  })
+
+  it('should render step label as component', async () => {
+    let form = createForm({
+      wizard: {
+        first: {
+          label: markRaw({
+            props: ['step', 'form$'],
+            render(h) {
+              return createElement(h, 'div', this.step.labelVar)
+            }
+          }),
+          labelVar: 'First',
+          elements: ['a']
+        },
+        second: {
+          label: markRaw({
+            props: ['step', 'form$'],
+            render(h) {
+              return createElement(h, 'div', this.step.labelVar)
+            }
+          }),
+          labelVar: 'Second',
+          elements: ['b']
+        },
+      },
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text'
+        },
+      }
+    })
+
+    expect(findAllComponents(form, { name: 'FormWizardStep' }).at(0).html()).toContain('First')
+    expect(findAllComponents(form, { name: 'FormWizardStep' }).at(1).html()).toContain('Second')
+
+    form.vm.wizard.first.labelVar = 'Not first'
+
+    await nextTick()
+
+    expect(findAllComponents(form, { name: 'FormWizardStep' }).at(0).html()).toContain('Not first')
   })
   
   it('should add class defined in schema to classes list', () => {

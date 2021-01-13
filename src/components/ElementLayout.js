@@ -15,7 +15,7 @@ export default {
     // ============== COMPUTED ==============
 
     const classes = computed(() => {
-      let classList = baseClasses.value
+      let classList = _.clone(baseClasses.value)
 
       classList = mergeComponentClasses(classList, {
         [containers.value.element]: el$.value.columns.classes.element,
