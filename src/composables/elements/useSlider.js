@@ -33,7 +33,6 @@ export default function useSlider(props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
-  const baseElement = useBaseElement(props, context)
   const theme = useTheme(props, context)
   const input = useInput(props, context)
   const path = usePath(props, context)
@@ -43,6 +42,10 @@ export default function useSlider(props, context) {
   const info = useInfo(props, context)
   const debounce = useDebounce(props, context)
   const disabled = useDisabled(props, context)
+
+  const baseElement = useBaseElement(props, context, {
+    form$: form$.form$,
+  })
 
   const options = useOptions(props, context, {
     disabled: disabled.disabled,

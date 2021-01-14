@@ -29,7 +29,6 @@ export default function useObject(props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
-  const baseElement = useBaseElement(props, context)
   const theme = useTheme(props, context)
   const path = usePath(props, context)
   const description = useDescription(props, context)
@@ -37,6 +36,10 @@ export default function useObject(props, context) {
   const readonly = useReadonly(props, context)
   const disabled = useDisabled(props, context)
   const required = useRequired(props, context)
+  
+  const baseElement = useBaseElement(props, context, {
+    form$: form$.form$,
+  })
 
   const label = useLabel(props, context, {
     form$: form$.form$,

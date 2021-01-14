@@ -25,11 +25,14 @@ export default function useGroup(props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
-  const baseElement = useBaseElement(props, context)
   const theme = useTheme(props, context)
   const path = usePath(props, context)
   const description = useDescription(props, context)
   const info = useInfo(props, context)
+
+  const baseElement = useBaseElement(props, context, {
+    form$: form$.form$,
+  })
 
   const label = useLabel(props, context, {
     form$: form$.form$,

@@ -1,4 +1,4 @@
-import { ref } from 'composition-api'
+import { ref, getCurrentInstance, onMounted, onBeforeMount, createVNode, mount } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useElements from './../composables/useElements'
 
@@ -18,17 +18,10 @@ export default {
 
     const { component } = useElements(props, context, { theme })
 
-    // ================ DATA ================
-    
-    const elements$ = ref([])
-
     return {
       // Inject
       form$,
       theme,
-
-      // Data
-      elements$,
 
       // Computed
       classes,

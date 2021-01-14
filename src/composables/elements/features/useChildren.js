@@ -6,33 +6,22 @@ const list = function(props, context, dependencies)
 {
   // ================ DATA ================
   
-  const child$ = ref([])
+  const children$ = ref({})
 
   const instances = ref([])
       
   // ============== COMPUTED ==============
-
-  const children$ = computed(() => {
-    const elements$ = {}
-
-    _.each(child$.value, (element$, i) => {
-      elements$[element$.name] = element$
-    })
-
-    return elements$
-  })
   
   const handleLayoutBeforeUpdate = () => {
-    child$.value = []
+    // child$.value = []
   }
 
   return {
     // Data
-    child$,
+    children$,
     instances,
 
     // Computed
-    children$,
     handleLayoutBeforeUpdate,
   }
 }
@@ -46,8 +35,8 @@ const object = function(props, context, dependencies)
   const form$ = dependencies.form$
 
   // ================ DATA ===============
-  
-  const child$ = ref([])
+
+  const children$ = ref({})
 
   // ============== COMPUTED ==============
 
@@ -66,20 +55,9 @@ const object = function(props, context, dependencies)
     }
   })
 
-  const children$ = computed(() => {
-    const elements$ = {}
-
-    _.each(child$.value, (element$) => {
-      elements$[element$.name] = element$
-    })
-
-    return elements$
-  })
-
   return {
-    child$,
-    children,
     children$,
+    children,
   }
 }
 

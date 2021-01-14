@@ -134,6 +134,7 @@ export default function(config) {
             },
             beforeCreate() {
               this.$laraform = appOrVue.observable($laraform)
+              this.$vueVersion = 2
             }
           })
           break
@@ -142,6 +143,9 @@ export default function(config) {
           appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
 
           appOrVue.config.globalProperties.$laraform = this.options
+          appOrVue.config.globalProperties.$vueVersion = 3
+          appOrVue.provide('$laraform', this.options)
+          appOrVue.provide('$vueVersion', 3)
 
           appOrVue.directive('ref', vRef)
           appOrVue.directive('html-if', vHtmlIf)

@@ -1,9 +1,14 @@
-import { computed, toRefs } from 'composition-api'
+import { computed, toRefs, onBeforeUnmount, getCurrentInstance, provide } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
 
 const base = function(props, context, dependencies)
 {
-  const { schema } = toRefs(props)
+  const { schema, name } = toRefs(props)
+  const currentInstance = getCurrentInstance()
+
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
 
   // ============== COMPUTED ==============
 
@@ -42,7 +47,52 @@ const base = function(props, context, dependencies)
     return false
   })
 
+  const el$ = computed(() => {
+    return currentInstance.proxy
+  })
+  
+  // =============== METHODS ==============
+
+  // no export
+  const assignToParent = ($parent, assignToParent) => {
+    if ($parent.children$) {
+      form$.value.$set($parent.children$, name.value, currentInstance.proxy)
+    }
+    else if ($parent.elements$) {
+      form$.value.$set($parent.elements$, name.value, currentInstance.proxy)
+    }
+    else {
+      assignToParent($parent.$parent, assignToParent)
+    }
+  }
+
+  // no export
+  const removeFromParent = ($parent, removeFromParent) => {
+    if ($parent.children$) {
+      form$.value.$delete($parent.children$, name.value)
+    }
+    else if ($parent.elements$) {
+      form$.value.$delete($parent.elements$, name.value)
+    }
+    else {
+      removeFromParent($parent.$parent, removeFromParent)
+    }
+  }
+
+  // ============== PROVIDES ==============
+
+  provide('el$', el$)
+
+  // ================ HOOKS ===============
+
+  assignToParent(currentInstance.proxy.$parent, assignToParent)
+
+  onBeforeUnmount(() => {
+    removeFromParent(currentInstance.proxy.$parent, removeFromParent)
+  })
+
   return {
+    el$,
     type,
     isStatic,
     isFileType,
@@ -53,7 +103,7 @@ const base = function(props, context, dependencies)
 
 const list = function(props, context, dependencies)
 {
-  const { type, isStatic, isFileType, isImageType } = base(props, context, dependencies)
+  const { el$, type, isStatic, isFileType, isImageType } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -67,6 +117,7 @@ const list = function(props, context, dependencies)
   })
 
   return {
+    el$,
     type,
     isStatic,
     isFileType,
@@ -77,7 +128,7 @@ const list = function(props, context, dependencies)
 
 const file = function(props, context, dependencies)
 {
-  const { type, isStatic, isArrayType, isImageType } = base(props, context, dependencies)
+  const { el$, type, isStatic, isArrayType, isImageType } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -91,6 +142,7 @@ const file = function(props, context, dependencies)
   })
 
   return {
+    el$,
     type,
     isStatic,
     isFileType,
@@ -110,6 +162,7 @@ const image = function(props, context, dependencies)
   })
 
   return {
+    el$,
     type,
     isStatic,
     isFileType,
@@ -120,7 +173,7 @@ const image = function(props, context, dependencies)
 
 const static_ = function(props, context, dependencies)
 {
-  const { type, isArrayType, isFileType, isImageType } = base(props, context, dependencies)
+  const { el$, type, isArrayType, isFileType, isImageType } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -129,6 +182,7 @@ const static_ = function(props, context, dependencies)
   })
 
   return {
+    el$,
     type,
     isStatic,
     isFileType,

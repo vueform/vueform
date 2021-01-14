@@ -36,7 +36,6 @@ export default function useTextarea(props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
-  const baseElement = useBaseElement(props, context)
   const theme = useTheme(props, context)
   const input = useInput(props, context)
   const addons = useAddons(props, context)
@@ -50,6 +49,10 @@ export default function useTextarea(props, context) {
   const debounce = useDebounce(props, context)
   const disabled = useDisabled(props, context)
   const nullValue = useNullValue(props, context)
+
+  const baseElement = useBaseElement(props, context, {
+    form$: form$.form$,
+  })
 
   const default_ = useDefault(props, context, {
     nullValue: nullValue.nullValue

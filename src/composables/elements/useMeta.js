@@ -17,10 +17,13 @@ export default function useText(props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
-  const baseElement = useBaseElement(props, context)
   const path = usePath(props, context)
   const debounce = useDebounce(props, context)
   const nullValue = useNullValue(props, context)
+
+  const baseElement = useBaseElement(props, context, {
+    form$: form$.form$,
+  })
 
   const default_ = useDefault(props, context, {
     nullValue: nullValue.nullValue

@@ -31,7 +31,6 @@ export default function useRadiogroup (props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
-  const baseElement = useBaseElement(props, context)
   const theme = useTheme(props, context)
   const path = usePath(props, context)
   const id = useId(props, context)
@@ -40,6 +39,10 @@ export default function useRadiogroup (props, context) {
   const debounce = useDebounce(props, context)
   const nullValue = useNullValue(props, context)
   const items = useItems(props, context)
+
+  const baseElement = useBaseElement(props, context, {
+    form$: form$.form$,
+  })
 
   const disabled = useDisabled(props, context, {
     form$: form$.form$,

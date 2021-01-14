@@ -1,14 +1,5 @@
-import { computed } from 'composition-api'
-
 export default {
   name: 'BaseElement',
-  provide() {
-    return {
-      el$: computed(() => {
-        return this
-      })
-    }
-  },
   props: {
     schema: {
       type: Object,
@@ -30,11 +21,6 @@ export default {
       type: Boolean,
       required: false,
       default: false
-    }
-  },
-  computed: {
-    el$() {
-      return this
     }
   },
 }

@@ -1,4 +1,4 @@
-import { computed, ref, toRefs, inject } from 'composition-api'
+import { computed, ref, toRefs, inject, markRaw } from 'composition-api'
 import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
 import convertFormData from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'
@@ -8,7 +8,7 @@ export default function useLaraform(props, context)
 {
   const { form } = toRefs(props)
   
-  const $laraform = ref(context.parent.$laraform)
+  const $laraform = context.parent && context.parent.$laraform ? ref(context.parent.$laraform) : ref(markRaw(inject('$laraform')))
 
   // ============ DEPENDENCIES ============
 
@@ -23,9 +23,7 @@ export default function useLaraform(props, context)
 
   const configuration = ref({})
 
-  const formElements$ = ref(null)
-
-  const element$ = ref([])
+  const elements$ = ref({})
 
   const tabs$ = ref({})
 
@@ -73,29 +71,6 @@ export default function useLaraform(props, context)
   const updating = ref(false)
 
   // ============== COMPUTED ==============
-
-  const elements$ = computed(() => {
-    let elements$ = {}
-    let baseElements$ = {}
-
-    if (formElements$.value) {
-      baseElements$ = formElements$.value.elements$
-    }
-
-    if (element$.value && element$.value.length) {
-      baseElements$ = element$.value
-    }
-
-    _.each(_.keys(conf('schema')), (name) => {
-      _.each(baseElements$, (e$) => {
-        if (e$.name == name) {
-          elements$[name] = e$
-        }
-      })
-    })
-
-    return elements$
-  })
 
   /**
    * The form's data.
@@ -760,10 +735,9 @@ export default function useLaraform(props, context)
   return {
     // Data
     configuration,
-    formElements$,
-    element$,
     tabs$,
     wizard$,
+    elements$,
     validation,
     messageBag,
     submitting,
@@ -771,7 +745,6 @@ export default function useLaraform(props, context)
     updating,
 
     // Computed
-    elements$,
     data,
     filtered,
     formData,

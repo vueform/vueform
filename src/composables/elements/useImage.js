@@ -36,7 +36,6 @@ export default function (props, context) {
   const { schema } = toRefs(props)
 
   const form$ = useForm$(props, context)
-  const baseElement = useBaseElement(props, context)
   const theme = useTheme(props, context)
   const input = useInput(props, context)
   const path = usePath(props, context)
@@ -47,6 +46,10 @@ export default function (props, context) {
   const disabled = useDisabled(props, context)
   const nullValue = useNullValue(props, context)
   const removing = useRemoving(props, context)
+
+  const baseElement = useBaseElement(props, context, {
+    form$: form$.form$,
+  })
 
   const request = useRequest(props, context, {
     form$: form$.form$,

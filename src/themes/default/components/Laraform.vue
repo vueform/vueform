@@ -41,8 +41,6 @@
     <component :is="components.FormElements"
       :schema="schema"
       @updateSchema="updateSchema"
-      v-ref:formElements$
-      ref="formElements$"
     />
 
     <component :is="components.FormWizardControls"
