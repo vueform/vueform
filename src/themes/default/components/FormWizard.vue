@@ -9,8 +9,6 @@
       :key="name"
       :index="i"
       @select="select"
-      :ref="setRef(wizardSteps$, i)"
-      v-ref:wizardSteps$
     />
   </ul>
 </template>

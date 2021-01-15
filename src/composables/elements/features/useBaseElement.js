@@ -1,5 +1,6 @@
-import { computed, toRefs, onBeforeUnmount, getCurrentInstance, provide } from 'composition-api'
+import { computed, toRefs, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onUpdated, getCurrentInstance, provide } from 'composition-api'
 import computedOption from './../../../utils/computedOption'
+import normalize from './../../../utils/normalize'
 
 const base = function(props, context, dependencies)
 {
@@ -55,11 +56,8 @@ const base = function(props, context, dependencies)
 
   // no export
   const assignToParent = ($parent, assignToParent) => {
-    if ($parent.children$Map) {
-      $parent.setChild$(name.value, currentInstance.proxy)
-    }
-    else if ($parent.children$) {
-      form$.value.$set($parent.children$, name.value, currentInstance.proxy)
+    if ($parent.children$Array) {
+      $parent.children$Array.push(currentInstance.proxy)
     }
     else if ($parent.elements$) {
       form$.value.$set($parent.elements$, name.value, currentInstance.proxy)
@@ -71,11 +69,8 @@ const base = function(props, context, dependencies)
 
   // no export
   const removeFromParent = ($parent, removeFromParent) => {
-    if ($parent.children$Map) {
-      $parent.removeChild$(name.value, currentInstance.proxy)
-    }
-    else if ($parent.children$) {
-      form$.value.$delete($parent.children$, name.value)
+    if ($parent.children$Array) {
+      $parent.children$Array.splice($parent.children$Array.map(e$=>normalize(e$.name)).indexOf(normalize(name.value)), 1)
     }
     else if ($parent.elements$) {
       form$.value.$delete($parent.elements$, name.value)
@@ -91,9 +86,13 @@ const base = function(props, context, dependencies)
 
   // ================ HOOKS ===============
 
-  assignToParent(currentInstance.proxy.$parent, assignToParent)
+  onBeforeMount(() => {
+    // console.log('mounted ', name.value)
+    assignToParent(currentInstance.proxy.$parent, assignToParent)
+  })
 
   onBeforeUnmount(() => {
+    // console.log('unmounted ', name.value)
     removeFromParent(currentInstance.proxy.$parent, removeFromParent)
   })
 

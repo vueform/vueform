@@ -24,8 +24,6 @@
       v-if="hasTabs"
       :tabs="tabs"
       :elements$="elements$"
-      ref="tabs$"
-      v-ref:tabs$
     />
 
     <component
@@ -34,8 +32,6 @@
       :steps="wizard"
       :elements$="elements$"
       @submit="handleSubmit"
-      ref="wizard$"
-      v-ref:wizard$
     />
     
     <component :is="components.FormElements"

@@ -1,8 +1,8 @@
 import { createForm } from 'test-helpers'
 import { nextTick } from 'vue'
 
-export const child$ = function (elementType, elementName) {
-  it('should have `child$` as an empty array by default', () => {
+export const children$Array = function (elementType, elementName) {
+  it('should have `children$Array` as an empty array by default', () => {
     let form = createForm({
       schema: {
         el: {
@@ -13,10 +13,10 @@ export const child$ = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.child$).toStrictEqual([])
+    expect(el.children$Array).toStrictEqual([])
   })
 
-  it('should collect elements to `child$`', async () => {
+  it('should collect elements to `children$Array`', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -35,7 +35,7 @@ export const child$ = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.child$.length).toBe(2)
+    expect(el.children$Array.length).toBe(2)
   })
 }
 
@@ -157,10 +157,10 @@ export const children$ = function (elementType, elementName) {
           type: elementType,
           schema: {
             child1: {
-              type: 'text'
+              type: 'text',
             },
             child2: {
-              type: 'text'
+              type: 'text',
             },
           },
         }

@@ -41,8 +41,6 @@
           :parent="el$"
           :embed="true"
           :key="element.key"
-          :ref="setRef(children$, i)"
-          v-ref:children$
           @remove="remove"
         />
       </div>

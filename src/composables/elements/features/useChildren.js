@@ -1,6 +1,7 @@
-import { computed, toRefs, ref } from 'composition-api'
+import { computed, toRefs, ref, watch } from 'composition-api'
 import states from './../../../utils/states'
 import countries from './../../../utils/countries'
+import normalize from './../../../utils/normalize'
 
 const list = function(props, context, dependencies)
 {
@@ -8,19 +9,15 @@ const list = function(props, context, dependencies)
   
   const instances = ref([])
 
-  const children$Map = ref(new Map)
-
-  const children$Tracker = ref(0)
+  const children$Array = ref([])
       
   // ============== COMPUTED ==============
 
   const children$ = computed(() => {
-    children$Tracker.value
-
     let children$ = {}
 
-    children$Map.value.forEach((e$, key) => {
-      children$[key] = e$
+    children$Array.value.forEach((e$) => {
+      children$[e$.name] = e$
     })
 
     return children$
@@ -28,28 +25,13 @@ const list = function(props, context, dependencies)
 
   // =============== METHODS ==============
 
-  const setChild$ = (name, e$) => {
-    children$Map.value.set(name, e$)
-    children$Tracker.value++
-  }
-
-  const removeChild$ = (name) => {
-    children$Map.value.delete(name)
-    children$Tracker.value++
-  }
-
   return {
     // Data
     instances,
-    children$Map,
-    children$Tracker,
+    children$Array,
 
     // Computed
     children$,
-
-    // Methods
-    setChild$,
-    removeChild$,
   }
 }
 
@@ -63,7 +45,17 @@ const object = function(props, context, dependencies)
 
   // ================ DATA ===============
 
-  const children$ = ref({})
+  const children$Array = ref([])
+
+  const children$ = computed(() => {
+    let children$ = {}
+
+    children$Array.value.forEach((e$) => {
+      children$[e$.name] = e$
+    })
+
+    return children$
+  })
 
   // ============== COMPUTED ==============
 
@@ -82,9 +74,25 @@ const object = function(props, context, dependencies)
     }
   })
 
+  // Resort children$Array when children
+  // order changes or a child is removed
+  watch(children, (newValue) => {
+    let newChildren$Array = []
+
+    _.each(newValue, (child, name) => {
+      newChildren$Array.push(children$Array.value[children$Array.value.map(e$=>normalize(e$.name)).indexOf(normalize(name))])
+    })
+
+    children$Array.value = newChildren$Array
+  }, { flush: 'post' })
+
   return {
-    children$,
+    // Data
     children,
+    children$Array,
+
+    // Computed
+    children$,
   }
 }
 

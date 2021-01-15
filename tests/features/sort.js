@@ -128,7 +128,7 @@ export const sortable = function (elementType, elementName, options) {
 export const handleSort = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  it('should reorder child$ and children$ on `handleSort`', async () => {
+  it('should reorder children$Array and children$ on `handleSort`', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm({
         schema: {
@@ -161,9 +161,9 @@ export const handleSort = function (elementType, elementName, options) {
         replacePrototypeValue(options.childValues[i], 2),
       ])
 
-      expect(el.child$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 1))
-      expect(el.child$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
-      expect(el.child$[2].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
+      expect(el.children$Array[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 1))
+      expect(el.children$Array[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
+      expect(el.children$Array[2].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
 
       expect(el.children$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 1))
       expect(el.children$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))

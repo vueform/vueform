@@ -278,8 +278,6 @@ const list = function(props, context, dependencies)
   const { previousValue, currentValue } = base(props, context, dependencies)
 
   const children$ = dependencies.children$
-  const children$Map = dependencies.children$Map
-  const children$Tracker = dependencies.children$Tracker
 
   // ============== COMPUTED ===============
 
@@ -290,11 +288,9 @@ const list = function(props, context, dependencies)
    */
   const value = computed({
     get() {
-      children$Tracker.value
-
       let value = []
 
-      children$Map.value.forEach((element$) => {
+      _.each(children$.value, (element$) => {
         value.push(element$.value)
       })
 
@@ -446,7 +442,6 @@ const multiselect = function(props, context, dependencies)
 
 const object = function(props, context, dependencies)
 {
-
   // ============ DEPENDENCIES ============
 
   const { previousValue, currentValue } = base(props, context, dependencies)

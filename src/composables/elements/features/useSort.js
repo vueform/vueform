@@ -7,9 +7,7 @@ const base = function(props, context, dependencies, options)
 
   // ============ DEPENDENCIES ============
 
-  const children$ = dependencies.children$
-  const children$Map = dependencies.children$Map
-  const children$Tracker = dependencies.children$Tracker
+  const children$Array = dependencies.children$Array
   const disabled = dependencies.disabled
   const fire = dependencies.fire
   const updated = dependencies.updated
@@ -52,12 +50,7 @@ const base = function(props, context, dependencies, options)
     }
 
     instances.value.splice(newIndex, 0, instances.value.splice(oldIndex, 1)[0])
-
-    let children$Array = [...children$Map.value.entries()]
-    children$Array.splice(newIndex, 0, children$Array.splice(oldIndex, 1)[0])
-
-    children$Map.value = new Map(children$Array)
-    children$Tracker.value++
+    children$Array.value.splice(newIndex, 0, children$Array.value.splice(oldIndex, 1)[0])
 
     nextTick(() => {
       refreshOrderStore()

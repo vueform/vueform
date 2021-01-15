@@ -510,14 +510,7 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
                   native: false,
                 },
                 name: 'el',
-                ref: this.setRef(this.element$, 0)
               },
-              directives: [
-                {
-                  name: 'ref',
-                  arg: 'element$'
-                },
-              ],
               scopedSlots: {
                 [slot]: (props) => {
                   return createElement(h, 'div', 'from inline slot ' + props.values.length)
@@ -556,14 +549,7 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
                   native: false,
                 },
                 name: 'el',
-                ref: this.setRef(this.element$, 0)
               },
-              directives: [
-                {
-                  name: 'ref',
-                  arg: 'element$'
-                },
-              ],
               scopedSlots: {
                 [slot]: (props) => {
                   return createElement(h, 'div', 'from inline slot ' + props.option.label)
@@ -602,14 +588,7 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
                   native: false,
                 },
                 name: 'el',
-                ref: this.setRef(this.element$, 0)
               },
-              directives: [
-                {
-                  name: 'ref',
-                  arg: 'element$'
-                },
-              ],
               scopedSlots: {
                 [slot]: (props) => {
                   return createElement(h, 'div', 'from inline slot ' + props.option.label)
@@ -646,14 +625,7 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
                   native: false,
                 },
                 name: 'el',
-                ref: this.setRef(this.element$, 0)
               },
-              directives: [
-                {
-                  name: 'ref',
-                  arg: 'element$'
-                },
-              ],
               scopedSlots: {
                 [slot]: (props) => {
                   return createElement(h, 'div', 'from inline slot ' + props.value.label)
@@ -694,14 +666,7 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
                   native: false,
                 },
                 name: 'el',
-                ref: this.setRef(this.element$, 0)
               },
-              directives: [
-                {
-                  name: 'ref',
-                  arg: 'element$'
-                },
-              ],
               scopedSlots: {
                 [slot]: (props) => {
                   return createElement(h, 'div', 'from inline slot')

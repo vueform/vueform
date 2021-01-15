@@ -572,21 +572,19 @@ const list = function(props, context, dependencies, options)
     })
   }
 
-  const orderValue = function(val) {
+  const orderValue = (val) => {
     if (!order.value && !orderBy.value) {
       return val
     }
 
-    _.each(children$.value, (element$) => {
-      const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
+    const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
 
-      if (isObject.value && orderBy.value) {
-        val = desc ? _.sortBy(val, orderBy.value).reverse() : _.sortBy(val, orderBy.value)
-      }
-      else if (order.value) {
-        val = desc ? val.sort().reverse() : val.sort()
-      }
-    })
+    if (isObject.value && orderBy.value) {
+      val = desc ? _.sortBy(val, orderBy.value).reverse() : _.sortBy(val, orderBy.value)
+    }
+    else if (order.value) {
+      val = desc ? val.sort().reverse() : val.sort()
+    }
 
     return val
   }
@@ -785,8 +783,6 @@ const object = function(props, context, dependencies)
   const form$ = dependencies.form$
   const available = dependencies.available
   const children$ = dependencies.children$
-  const clean = dependencies.clean
-  const resetValidators = dependencies.resetValidators
 
   // ============== COMPUTED ===============
   /**

@@ -1,4 +1,4 @@
-import { computed, ref, toRefs, inject, markRaw } from 'composition-api'
+import { computed, ref, toRefs, inject, markRaw, getCurrentInstance, onBeforeMount } from 'composition-api'
 import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
 import convertFormData from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'
@@ -9,6 +9,32 @@ export default function useLaraform(props, context)
   const { form } = toRefs(props)
   
   const $laraform = context.parent && context.parent.$laraform ? ref(context.parent.$laraform) : ref(markRaw(inject('$laraform')))
+
+  const currentInstance = getCurrentInstance()
+
+  const $this = computed(() => {
+    return {
+      schema: currentInstance.proxy.schema,
+      tabs: currentInstance.proxy.tabs,
+      wizard: currentInstance.proxy.wizard,
+      wizardControls: currentInstance.proxy.wizardControls,
+      theme: currentInstance.proxy.theme,
+      endpoint: currentInstance.proxy.endpoint,
+      method: currentInstance.proxy.method,
+      key: currentInstance.proxy.key,
+      class: currentInstance.proxy.class,
+      classes: currentInstance.proxy.classes,
+      addClasses: currentInstance.proxy.addClasses,
+      columns: currentInstance.proxy.columns,
+      labels: currentInstance.proxy.labels,
+      override: currentInstance.proxy.override,
+      multilingual: currentInstance.proxy.multilingual,
+      languages: currentInstance.proxy.languages,
+      language: currentInstance.proxy.language,
+      formErrors: currentInstance.proxy.formErrors,
+      validateOn: currentInstance.proxy.validateOn,
+    }
+  })
 
   // ============ DEPENDENCIES ============
 
@@ -104,7 +130,7 @@ export default function useLaraform(props, context)
 
   const formData = computed(() => {
     return convertFormData({
-      key: conf('key'),
+      key: $this.value.key,
       data: filtered.value,
     })
   })
@@ -213,15 +239,15 @@ export default function useLaraform(props, context)
   })
 
   const shouldValidateOnChange = computed(() => {
-    return conf('validateOn').split('|').indexOf('change') !== -1
+    return $this.value.validateOn.split('|').indexOf('change') !== -1
   })
 
   const shouldValidateOnSubmit = computed(() => {
-    return conf('validateOn').split('|').indexOf('submit') !== -1
+    return $this.value.validateOn.split('|').indexOf('submit') !== -1
   })
 
   const shouldValidateOnStep = computed(() => {
-    return conf('validateOn').split('|').indexOf('step') !== -1
+    return $this.value.validateOn.split('|').indexOf('step') !== -1
   })
 
   /**
@@ -231,7 +257,7 @@ export default function useLaraform(props, context)
    * @type {boolean}
    */
   const hasWizard = computed(() => {
-    return !_.isEmpty(conf('wizard'))
+    return !_.isEmpty($this.value.wizard)
   })
 
   /**
@@ -241,7 +267,7 @@ export default function useLaraform(props, context)
    * @type {boolean}
    */
   const hasTabs = computed(() => {
-    return !_.isEmpty(conf('tabs'))
+    return !_.isEmpty($this.value.tabs)
   })
 
   /**
@@ -278,10 +304,10 @@ export default function useLaraform(props, context)
       extendedTheme.value.classes.Laraform
     )
 
-    classes = mergeComponentClasses(classes, conf('addClasses').Laraform || null)
+    classes = mergeComponentClasses(classes, $this.value.addClasses.Laraform || null)
 
-    if (conf('class') !== null || form.value.class) {
-      classes[mainClass.value] = mergeClass(classes[mainClass.value], conf('class') || form.value.class)
+    if ($this.value.class !== null || form.value.class) {
+      classes[mainClass.value] = mergeClass(classes[mainClass.value], $this.value.class || form.value.class)
     }
 
     return classes
@@ -298,7 +324,7 @@ export default function useLaraform(props, context)
    * @type {object}
    */
   const selectedTheme = computed(() => {
-    let theme = !_.isEmpty(conf('theme')) ? conf('theme') : (form.value.theme || $laraform.value.theme)
+    let theme = !_.isEmpty($this.value.theme) ? $this.value.theme : (form.value.theme || $laraform.value.theme)
 
     return $laraform.value.themes[theme]
   })
@@ -317,7 +343,7 @@ export default function useLaraform(props, context)
         $laraform.value.elements,
 
         // @todo
-        conf('override') && conf('override').elements ? conf('override').elements : {},
+        $this.value.override && $this.value.override.elements ? $this.value.override.elements : {},
       ),
 
       // Add registered component to theme (or overwrite)
@@ -326,13 +352,13 @@ export default function useLaraform(props, context)
         $laraform.value.components,
 
         // @todo
-        conf('override') && conf('override').components ? conf('override').components : {},
+        $this.value.override && $this.value.override.components ? $this.value.override.components : {},
       ),
       
       // Ovewrite theme classes with form's classes definition
       classes: _.merge({},
         selectedTheme.value.classes,
-        conf('classes')
+        $this.value.classes
       ),
     })
   })
@@ -344,11 +370,11 @@ export default function useLaraform(props, context)
    */
   const store = computed({
     get() {
-      if (conf('storePath') === null || !context.$store) {
+      if ($this.value.storePath === null || !context.$store) {
         return null
       }
       
-      return _.get(context.$store.state, conf('storePath'))
+      return _.get(context.$store.state, $this.value.storePath)
     },
     set(value) {
       if (!context.$store) {
@@ -357,13 +383,13 @@ export default function useLaraform(props, context)
       
       // If store is not registered with Laraform.store()
       if (!context.$store._mutations['laraform/LARAFORM_UPDATE_STORE']) {
-        _.set(context.$store.state, conf('storePath'), value)
+        _.set(context.$store.state, $this.value.storePath, value)
       } 
 
       // If store is registered properly call a mutation
       else {
         context.$store.commit('laraform/LARAFORM_UPDATE_STORE', {
-          path: conf('storePath'),
+          path: $this.value.storePath,
           value: value
         })
       }
@@ -550,7 +576,7 @@ export default function useLaraform(props, context)
     let response = {}
 
     try {
-      response = await $laraform.value.services.axios[conf('method')](conf('endpoint'), formData.value)
+      response = await $laraform.value.services.axios[$this.value.method]($this.value.endpoint, formData.value)
 
       if (response.data.payload && response.data.payload.updates) {
         update(response.data.payload.updates)
@@ -685,15 +711,15 @@ export default function useLaraform(props, context)
   }
 
   const resortSchema = () => {
-    let all = _.keys(conf('schema'))
+    let all = _.keys($this.value.schema)
     let blocks
 
-    if (!_.isEmpty(conf('wizard'))) {
-      blocks = conf('wizard')
+    if (!_.isEmpty($this.value.wizard)) {
+      blocks = $this.value.wizard
     }
 
-    if (!_.isEmpty(conf('tabs'))) {
-      blocks = conf('tabs')
+    if (!_.isEmpty($this.value.tabs)) {
+      blocks = $this.value.tabs
     }
 
     if (blocks) {
@@ -701,13 +727,13 @@ export default function useLaraform(props, context)
 
       _.each(blocks, (block) => {
         _.each(block.elements, (e) => {
-          schema[e] = conf('schema')[e]
+          schema[e] = $this.value.schema[e]
         })
       })
 
       _.each(all, (e) => {
         if (schema[e] === undefined) {
-          schema[e] = conf('schema')[e]
+          schema[e] = $this.value.schema[e]
         }
       })
 

@@ -1,5 +1,5 @@
 <template>
-  <component :is="layout" @vnode-before-update="handleLayoutBeforeUpdate">
+  <component :is="layout">
   <!-- @vnode-before-update required because of: https://forum.vuejs.org/t/vue3-onbeforeupdate-hook-not-triggered-when-contained-in-slot/106389/2 -->
 
     <template v-slot:field>

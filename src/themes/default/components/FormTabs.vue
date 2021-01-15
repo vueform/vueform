@@ -9,8 +9,6 @@
       :index="i"
       :key="name"
       @select="select"
-      :ref="setRef(formTabs$, i)"
-      v-ref:formTabs$
     />
   </ul>
 </template>

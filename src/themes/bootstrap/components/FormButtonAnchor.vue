@@ -6,7 +6,7 @@
     :target="target"
     @click="handleClick"
   >
-    <component :is="label" :button="button" />
+    <component :is="label" :el$="el$" />
   </a>
   <a
     v-else

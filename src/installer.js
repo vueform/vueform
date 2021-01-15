@@ -9,7 +9,6 @@ import condition from './services/condition'
 import i18n from './services/i18n'
 import applyExtensions from './utils/applyExtensions'
 import store from './store'
-import vRef from './directives/ref'
 import vHtmlIf from './directives/html-if'
 import init from './init'
 
@@ -124,7 +123,6 @@ export default function(config) {
 
           const $laraform = this.options
 
-          appOrVue.directive('ref', vRef)
           appOrVue.directive('html-if', vHtmlIf)
 
           appOrVue.mixin({
@@ -147,7 +145,6 @@ export default function(config) {
           appOrVue.provide('$laraform', this.options)
           appOrVue.provide('$vueVersion', 3)
 
-          appOrVue.directive('ref', vRef)
           appOrVue.directive('html-if', vHtmlIf)
 
           appOrVue.mixin({

@@ -5,7 +5,7 @@
     :disabled="isDisabled"
     @click.prevent="handleClick"
   >
-    <component :is="label" :button="button" />
+    <component :is="label" :el$="el$" />
   </button>
   <button
     v-else

@@ -71,8 +71,6 @@ export default function useList(props, context) {
 
   const value = useValue(props, context, {
     children$: children.children$,
-    children$Map: children.children$Map,
-    children$Tracker: children.children$Tracker,
     nullValue: nullValue.nullValue,
     default: default_.default,
   })
@@ -157,8 +155,7 @@ export default function useList(props, context) {
 
   const sort = useSort(props, context, {
     children$: children.children$,
-    children$Map: children.children$Map,
-    children$Tracker: children.children$Tracker,
+    children$Array: children.children$Array,
     currentValue: value.currentValue,
     fire: events.fire,
     disabled: disabled.disabled,

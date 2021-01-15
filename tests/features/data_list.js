@@ -521,7 +521,7 @@ export const remove = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child$ = el.child$[1]
+      let child$ = el.children$[1]
 
       await nextTick()
 

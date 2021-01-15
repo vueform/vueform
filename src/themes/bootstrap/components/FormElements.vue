@@ -2,13 +2,11 @@
   <div :class="classes.container">
     <div :class="classes.wrapper">
       <component
-        v-for="(element, name, i) in schema"
+        v-for="(element, name) in schema"
         :is="component(element)"
         :schema="element"
         :name="name"
         :key="name"
-        :ref="setRef(elements$, i)"
-        v-ref:elements$
       />
     </div>
   </div>

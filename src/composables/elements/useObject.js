@@ -47,7 +47,7 @@ export default function useObject(props, context) {
   })
 
   const value = useValue(props, context, {
-    children$: children.children$
+    children$: children.children$,
   })
 
   const elements = useElements(props, context, {
