@@ -35,9 +35,10 @@ const list = function(props, context, dependencies)
   }
 }
 
-const object = function(props, context, dependencies)
+const object = function(props, context, dependencies, options = {})
 {
   const { schema } = toRefs(props)
+  const schemaName = options.schemaName || 'schema'
 
   // ============ DEPENDENCIES ============
 
@@ -67,24 +68,26 @@ const object = function(props, context, dependencies)
    */
   const children = computed({
     get() {
-      return schema.value.schema
+      return schema.value[schemaName]
     },
     set(val) {
-      form$.value.$set(schema.value, 'schema', val)
+      form$.value.$set(schema.value, schemaName, val)
     }
   })
 
-  // Resort children$Array when children
-  // order changes or a child is removed
-  watch(children, (newValue) => {
-    let newChildren$Array = []
+  const watchChildren = () => {
+    // Resort children$Array when children
+    // order changes or a child is removed
+    watch(children, (newValue) => {
+      let newChildren$Array = []
 
-    _.each(newValue, (child, name) => {
-      newChildren$Array.push(children$Array.value[children$Array.value.map(e$=>normalize(e$.name)).indexOf(normalize(name))])
-    })
+      _.each(newValue, (child, name) => {
+        newChildren$Array.push(children$Array.value[children$Array.value.map(e$=>normalize(e$.name)).indexOf(normalize(name))])
+      })
 
-    children$Array.value = newChildren$Array
-  }, { flush: 'post' })
+      children$Array.value = newChildren$Array
+    }, { flush: 'post' })
+  }
 
   return {
     // Data
@@ -93,6 +96,9 @@ const object = function(props, context, dependencies)
 
     // Computed
     children$,
+
+    // Methods
+    watchChildren,
   }
 }
 
@@ -106,7 +112,7 @@ const address = function(props, context, dependencies)
   const required = dependencies.required
   const path = dependencies.path
 
-  const { children$ } = object(props, context, dependencies)
+  const { children$Array, children$ } = object(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -184,6 +190,7 @@ const address = function(props, context, dependencies)
   })
 
   return {
+    children$Array,
     children$,
     children,
     fields,
@@ -193,38 +200,16 @@ const address = function(props, context, dependencies)
 
 const buttons = function(props, context, dependencies)
 {
-  const { schema } = toRefs(props)
-
   // ============ DEPENDENCIES ============
 
-  const form$ = dependencies.form$
-  const { children$ } = object(props, context, dependencies)
-
-  // ============== COMPUTED ==============
-
-  /**
-   * Schema of child elements.
-   * 
-   * @type {object}
-   * @ignore
-   */
-  const children = computed({
-    get() {
-      return schema.value.buttons
-    },
-    set(val) {
-      form$.value.$set(schema.value, 'buttons', val)
-    }
+  const { children$Array, children$, children } = object(props, context, dependencies, {
+    schemaName: 'buttons'
   })
-  
-  const handleLayoutBeforeUpdate = () => {
-    children$.value = []
-  }
 
   return {
-    children,
+    children$Array,
     children$,
-    handleLayoutBeforeUpdate,
+    children,
   }
 }
 

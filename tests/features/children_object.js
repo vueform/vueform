@@ -149,40 +149,4 @@ export const children$ = function (elementType, elementName) {
     expect(_.keys(el.children$).length).toBe(1)
     expect(el.children$.child2.name).toBe('child2')
   })
-
-  it('should reorder `children$`', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          schema: {
-            child1: {
-              type: 'text',
-            },
-            child2: {
-              type: 'text',
-            },
-          },
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.children = {
-      child2: {
-        type: 'text'
-      },
-      child1: {
-        type: 'text'
-      },
-    }
-
-    await nextTick()
-
-    let children$Keys = _.keys(el.children$)
-
-    expect(children$Keys[0]).toBe('child2')
-    expect(children$Keys[1]).toBe('child1')
-  })
 }

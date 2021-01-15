@@ -1,6 +1,7 @@
-import { computed, ref, toRefs, watch, onMounted, nextTick } from 'composition-api'
+import { computed, ref, toRefs, onBeforeMount, onBeforeUnmount, getCurrentInstance } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
 import useLabel from './../composables/useLabel'
+import useParentAssign from './../composables/useParentAssign'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
@@ -14,6 +15,11 @@ export default {
       type: [Number, String],
       required: true
     },
+    embed: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     parent: {
       type: Object,
       required: false,
@@ -22,12 +28,14 @@ export default {
   },
   init(props, context)
   {
-    const { button } = toRefs(props)
+    const { button, embed } = toRefs(props)
+    const currentInstance = getCurrentInstance()
 
     // ============ DEPENDENCIES ============
 
     const { el$, form$, classes: baseClasses, components, theme, mainClass } = useElementComponent(props, context)
     const { label, isLabelComponent } = useLabel(props, context, { el$, descriptor: button })
+    const { assignToParent, removeFromParent } = useParentAssign(props, context, { form$ })
 
     // ================ DATA ================
 
@@ -97,6 +105,20 @@ export default {
       if (typeof button.value.onClick == 'function') {
         button.value.onClick(form$.value)
       }
+    }
+
+    // ================ HOOKS ===============
+
+    if (embed.value) {
+      onBeforeMount(() => {
+        // console.log('mounted ', name.value)
+        assignToParent(currentInstance.proxy.$parent, assignToParent)
+      })
+
+      onBeforeUnmount(() => {
+        // console.log('unmounted ', name.value)
+        removeFromParent(currentInstance.proxy.$parent, removeFromParent)
+      })
     }
 
     return {

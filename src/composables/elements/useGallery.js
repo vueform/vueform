@@ -178,6 +178,7 @@ export default function (props, context) {
 
   const sort = useSort(props, context, {
     children$: children.children$,
+    children$Array: children.children$Array,
     currentValue: value.currentValue,
     fire: events.fire,
     disabled: disabled.disabled,

@@ -1,5 +1,5 @@
 <template>
-  <component :is="layout" @vnode-before-update="handleLayoutBeforeUpdate">
+  <component :is="layout">
     <template v-slot:field>
 
       <slot name="prefix"></slot>
@@ -8,6 +8,7 @@
         <component
           v-for="(button, i) in children"
           :is="component(button)"
+          :embed="true"
           :button="button"
           :name="i"
           :parent="el$"

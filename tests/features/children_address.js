@@ -109,8 +109,8 @@ export const children = function (elementType, elementName) {
   })
 }
 
-export const child$ = function (elementType, elementName) {
-  it('should collect elements to `child$`', async () => {
+export const children$Array = function (elementType, elementName) {
+  it('should collect elements to `children$Array`', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -121,7 +121,7 @@ export const child$ = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.child$.length).toBe(_.keys(el.fields).length)
+    expect(el.children$Array.length).toBe(_.keys(el.fields).length)
   })
 }
 

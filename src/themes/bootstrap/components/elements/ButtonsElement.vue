@@ -1,5 +1,5 @@
 <template>
-  <component :is="layout" @vnode-before-update="handleLayoutBeforeUpdate">
+  <component :is="layout">
     <template v-slot:field>
 
       <slot name="prefix"></slot>

@@ -272,7 +272,6 @@ const dates = function(props, context, dependencies)
 
 const list = function(props, context, dependencies)
 {
-
   // ============ DEPENDENCIES ============
 
   const { previousValue, currentValue } = base(props, context, dependencies)

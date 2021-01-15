@@ -13,20 +13,22 @@ const base = function (props, context, dependencies)
     }
 
     let type = button.type || 'button'
+    let component
 
     switch(type) {
       case 'button':
-        return components.value.FormButton
+        component = components.value.FormButton
+        break
 
       default:
-        let component = components.value['FormButton' + _.upperFirst(type)]
+        component = components.value['FormButton' + _.upperFirst(type)]
 
         if (!component) {
           throw new TypeError('Button component not found: "FormButton' + _.upperFirst(type) + '"')
         }
-
-        return component
     }
+
+    return component
   }
 
   return {
