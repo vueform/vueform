@@ -15,8 +15,6 @@
             :name="i"
             :parent="el$"
             :key="element.key"
-            v-ref:child$
-            :ref="setRef(child$, i)"
           >
             <template v-slot:prefix>
               <a

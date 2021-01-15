@@ -9,7 +9,7 @@ const base = function(props, context, dependencies, options)
 
   const isObject = dependencies.isObject
   const storeOrder = dependencies.storeOrder
-  const child$ = dependencies.child$
+  const children$ = dependencies.children$
 
   // ============== COMPUTED ==============
 
@@ -39,7 +39,7 @@ const base = function(props, context, dependencies, options)
    */
   const refreshOrderStore = () => {
     if (isObject.value && storeOrder.value) {
-      _.each(child$.value, (element$, index) => {
+      _.each(children$.value, (element$, index) => {
         element$.update({
           [storeOrder.value]: parseInt(index) + 1
         })

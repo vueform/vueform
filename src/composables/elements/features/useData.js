@@ -378,7 +378,7 @@ const list = function(props, context, dependencies, options)
 
   const form$ = dependencies.form$
   const instances = dependencies.instances
-  const child$ = dependencies.child$
+  const children$ = dependencies.children$
   const default_ = dependencies.default
   const available = dependencies.available
   const disabled = dependencies.disabled
@@ -417,7 +417,7 @@ const list = function(props, context, dependencies, options)
     
     let filtered = []
 
-    _.each(child$.value, (element$) => {
+    _.each(children$.value, (element$) => {
       let val = element$.filtered[element$.name]
 
       if (val !== undefined) {
@@ -465,7 +465,7 @@ const list = function(props, context, dependencies, options)
     const index = insert(val)
 
     nextTick(() => {
-      fire('add', child$.value[index], index)
+      fire('add', children$.value[index], index)
       updated()
     })
 
@@ -493,7 +493,7 @@ const list = function(props, context, dependencies, options)
 
     if (val !== null) {
       nextTick(() => {
-        child$.value[index].load(val)
+        children$.value[index].load(val)
       })
     }
 
@@ -501,7 +501,7 @@ const list = function(props, context, dependencies, options)
   }
   
   const remove = (index) => {
-    fire('remove', child$.value[index], index)
+    fire('remove', children$.value[index], index)
 
     instances.value.splice(index, 1)
   
@@ -531,7 +531,7 @@ const list = function(props, context, dependencies, options)
 
     nextTick(() => {
       _.each(orderValue(formatted), (childValue, i) => {
-        child$.value[i].load(childValue, format)
+        children$.value[i].load(childValue, format)
       })
     })
 
@@ -577,7 +577,7 @@ const list = function(props, context, dependencies, options)
       return val
     }
 
-    _.each(child$.value, (element$) => {
+    _.each(children$.value, (element$) => {
       const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
 
       if (isObject.value && orderBy.value) {

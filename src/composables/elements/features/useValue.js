@@ -277,7 +277,9 @@ const list = function(props, context, dependencies)
 
   const { previousValue, currentValue } = base(props, context, dependencies)
 
-  const child$ = dependencies.child$
+  const children$ = dependencies.children$
+  const children$Map = dependencies.children$Map
+  const children$Tracker = dependencies.children$Tracker
 
   // ============== COMPUTED ===============
 
@@ -288,9 +290,11 @@ const list = function(props, context, dependencies)
    */
   const value = computed({
     get() {
+      children$Tracker.value
+
       let value = []
 
-      _.each(child$.value, (element$) => {
+      children$Map.value.forEach((element$) => {
         value.push(element$.value)
       })
 

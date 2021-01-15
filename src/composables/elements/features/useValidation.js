@@ -298,7 +298,7 @@ const list = function(props, context, dependencies)
   } = base(props, context, dependencies)
 
   const form$ = dependencies.form$
-  const child$ = dependencies.child$
+  const children$ = dependencies.children$
   const value = dependencies.value
 
   // ============== COMPUTED ==============
@@ -309,7 +309,7 @@ const list = function(props, context, dependencies)
    * @type {boolean}
    */
   const dirty = computed(() => {
-    return _.some(child$.value, { available: true, dirty: true })
+    return _.some(children$.value, { available: true, dirty: true })
       || state.value.dirty
   })
 
@@ -319,7 +319,7 @@ const list = function(props, context, dependencies)
    * @type {boolean}
    */
   const validated = computed(() => {
-    return !_.some(child$.value, { available: true, validated: false })
+    return !_.some(children$.value, { available: true, validated: false })
       && state.value.validated
   })
 
@@ -329,7 +329,7 @@ const list = function(props, context, dependencies)
    * @type {boolean}
    */
   const invalid = computed(() => {
-    return _.some(child$.value, { available: true, invalid: true })
+    return _.some(children$.value, { available: true, invalid: true })
       || _.some(Validators.value, { invalid: true })
   })
 
@@ -339,7 +339,7 @@ const list = function(props, context, dependencies)
    * @type {boolean}
    */
   const pending = computed(() => {
-    return _.some(child$.value, { available: true, pending: true })
+    return _.some(children$.value, { available: true, pending: true })
       || _.some(Validators.value, { pending: true })
   })
 
@@ -349,7 +349,7 @@ const list = function(props, context, dependencies)
    * @type {boolean}
    */
   const debouncing = computed(() => {
-    return _.some(child$.value, { available: true, debouncing: true })
+    return _.some(children$.value, { available: true, debouncing: true })
       || _.some(Validators.value, { debouncing: true })
   })
 
@@ -359,7 +359,7 @@ const list = function(props, context, dependencies)
    * @type {boolean}
    */
   const busy = computed(() => {
-    return _.some(child$.value, { available: true, busy: true })
+    return _.some(children$.value, { available: true, busy: true })
       || pending.value || debouncing.value
   })
 
@@ -375,7 +375,7 @@ const list = function(props, context, dependencies)
       errorList.push(error)
     })
 
-    _.each(child$.value, (element$) => {
+    _.each(children$.value, (element$) => {
       if (!element$.available) {
         return
       }
@@ -458,7 +458,7 @@ const list = function(props, context, dependencies)
       return
     }
 
-    _.each(child$.value, (element$) => {
+    _.each(children$.value, (element$) => {
       element$.validate()
     })
   }
@@ -470,7 +470,7 @@ const list = function(props, context, dependencies)
    * @returns {void}
    */
   const clean = () => {
-    _.each(child$.value, (element$) => {
+    _.each(children$.value, (element$) => {
       element$.clean()
     })
 
@@ -484,7 +484,7 @@ const list = function(props, context, dependencies)
    * @returns {void}
    */
   const resetValidators = () => {
-    _.each(child$.value, (element$) => {
+    _.each(children$.value, (element$) => {
       element$.resetValidators()
     })
 

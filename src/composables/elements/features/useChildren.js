@@ -6,23 +6,50 @@ const list = function(props, context, dependencies)
 {
   // ================ DATA ================
   
-  const children$ = ref({})
-
   const instances = ref([])
+
+  const children$Map = ref(new Map)
+
+  const children$Tracker = ref(0)
       
   // ============== COMPUTED ==============
-  
-  const handleLayoutBeforeUpdate = () => {
-    // child$.value = []
+
+  const children$ = computed(() => {
+    children$Tracker.value
+
+    let children$ = {}
+
+    children$Map.value.forEach((e$, key) => {
+      children$[key] = e$
+    })
+
+    return children$
+  })
+
+  // =============== METHODS ==============
+
+  const setChild$ = (name, e$) => {
+    children$Map.value.set(name, e$)
+    children$Tracker.value++
+  }
+
+  const removeChild$ = (name) => {
+    children$Map.value.delete(name)
+    children$Tracker.value++
   }
 
   return {
     // Data
-    children$,
     instances,
+    children$Map,
+    children$Tracker,
 
     // Computed
-    handleLayoutBeforeUpdate,
+    children$,
+
+    // Methods
+    setChild$,
+    removeChild$,
   }
 }
 
@@ -71,7 +98,7 @@ const address = function(props, context, dependencies)
   const required = dependencies.required
   const path = dependencies.path
 
-  const { child$, children$ } = object(props, context, dependencies)
+  const { children$ } = object(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -149,9 +176,8 @@ const address = function(props, context, dependencies)
   })
 
   return {
-    child$,
-    children,
     children$,
+    children,
     fields,
     addressId,
   }
@@ -164,7 +190,7 @@ const buttons = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
-  const { child$, children$ } = object(props, context, dependencies)
+  const { children$ } = object(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -184,11 +210,10 @@ const buttons = function(props, context, dependencies)
   })
   
   const handleLayoutBeforeUpdate = () => {
-    child$.value = []
+    children$.value = []
   }
 
   return {
-    child$,
     children,
     children$,
     handleLayoutBeforeUpdate,

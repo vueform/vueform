@@ -14,8 +14,6 @@
           :name="name"
           :parent="el$"
           :key="i"
-          v-ref:child$
-          :ref="setRef(child$, i)"
           @remove="(e) => $emit('remove', e)"
         />
       </div>

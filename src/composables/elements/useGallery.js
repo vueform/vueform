@@ -77,7 +77,7 @@ export default function (props, context) {
   })
 
   const value = useValue(props, context, {
-    child$: children.child$,
+    children$: children.children$,
     nullValue: nullValue.nullValue,
     default: default_.default,
   })
@@ -95,7 +95,7 @@ export default function (props, context) {
   const validation = useValidation(props, context, {
     form$: form$.form$,
     value: value.value,
-    child$: children.child$,
+    children$: children.children$,
     form$: form$.form$,
     path: path.path,
   })
@@ -124,13 +124,13 @@ export default function (props, context) {
 
   const order = useOrder(props, context, {
     isObject: prototype.isObject,
-    child$: children.child$,
+    children$: children.children$,
     storeOrder: storeOrder.storeOrder,
   })
 
   const data = useData(props, context, {
     form$: form$.form$,
-    child$: children.child$,
+    children$: children.children$,
     instances: children.instances,
     default: default_.default,
     nullValue: nullValue.nullValue,
@@ -177,7 +177,7 @@ export default function (props, context) {
   })
 
   const sort = useSort(props, context, {
-    child$: children.child$,
+    children$: children.children$,
     currentValue: value.currentValue,
     fire: events.fire,
     disabled: disabled.disabled,

@@ -55,7 +55,10 @@ const base = function(props, context, dependencies)
 
   // no export
   const assignToParent = ($parent, assignToParent) => {
-    if ($parent.children$) {
+    if ($parent.children$Map) {
+      $parent.setChild$(name.value, currentInstance.proxy)
+    }
+    else if ($parent.children$) {
       form$.value.$set($parent.children$, name.value, currentInstance.proxy)
     }
     else if ($parent.elements$) {
@@ -68,7 +71,10 @@ const base = function(props, context, dependencies)
 
   // no export
   const removeFromParent = ($parent, removeFromParent) => {
-    if ($parent.children$) {
+    if ($parent.children$Map) {
+      $parent.removeChild$(name.value, currentInstance.proxy)
+    }
+    else if ($parent.children$) {
       form$.value.$delete($parent.children$, name.value)
     }
     else if ($parent.elements$) {

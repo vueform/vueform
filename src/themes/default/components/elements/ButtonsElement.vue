@@ -12,8 +12,8 @@
           :name="i"
           :parent="el$"
           :key="i"
-          v-ref:child$
-          :ref="setRef(child$, i)"
+          v-ref:children$
+          :ref="setRef(children$, i)"
         />
       </div>
 
