@@ -1,5 +1,6 @@
 import flushPromises from 'flush-promises'
 import { createForm } from 'test-helpers'
+import { nextTick } from 'composition-api'
 
 export { messageBag, messages, displayError, } from './validation'
 
@@ -477,6 +478,8 @@ export const error = function (elementType, elementName, options) {
     expect(el.error).toBe('Error message')
 
     el.form$.setLanguage('fr')
+
+    await nextTick()
 
     expect(el.error).toBe('Error message')
   })

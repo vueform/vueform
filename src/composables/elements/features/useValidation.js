@@ -129,21 +129,25 @@ const base = function(props, context, dependencies)
     return pending.value || debouncing.value
   })
 
+  const validatorErrors = computed(() => {
+    let errs = []
+
+    _.each(Validators.value, (Validator) => {
+      if (Validator.failing) {
+        errs.push(Validator.message)
+      }
+    })
+
+    return errs
+  })
+
   /**
    * List of errors of failing rules.
    * 
    * @type {array}
    */
   const errors = computed(() => {
-    let errs = []
-
-    _.each(Validators.value, (Validator) => {
-      if (Validator.invalid) {
-        errs.push(Validator.message)
-      }
-    })
-
-    return errs
+    return messageBag.value.errors
   })
 
   /**
@@ -221,7 +225,7 @@ const base = function(props, context, dependencies)
    * @returns {void}
    */
   const initMessageBag = () => {
-    messageBag.value = new form$.value.$laraform.services.messageBag(errors)
+    messageBag.value = new form$.value.$laraform.services.messageBag(validatorErrors)
   }
 
   /**
@@ -363,47 +367,46 @@ const list = function(props, context, dependencies)
       || pending.value || debouncing.value
   })
 
+  const validatorErrors = computed(() => {
+    const validatorErrors = []
+
+    _.each(Validators.value, (Validator) => {
+      if (Validator.failing) {
+        validatorErrors.push(Validator.message)
+      }
+    })
+
+    return validatorErrors
+  })
+
+
+  const childrenErrors = computed(() => {
+    const childrenErrors = []
+
+    _.each(children$.value, (element$) => {
+      if (!element$.available || element$.isStatic) {
+        return
+      }
+
+      _.each(element$.errors, (error) => {
+        childrenErrors.push(error)
+      })
+    })
+
+    return childrenErrors
+  })
+
+  const baseErrors = computed(() => {
+    return validatorErrors.value.concat(childrenErrors.value)
+  })
+
   /**
    * List of errors of failing rules.
    * 
    * @type {array}
    */
   const errors = computed(() => {
-    const errorList = []
-
-    _.each(validatorErrors.value, (error) => {
-      errorList.push(error)
-    })
-
-    _.each(children$.value, (element$) => {
-      if (!element$.available) {
-        return
-      }
-
-      _.each(element$.errors, (error) => {
-        errorList.push(error)
-      })
-    })
-
-    return errorList
-  })
-
-  /**
-   * List of errors collected from failing validator rules.
-   * 
-   * @type {array}
-   * @ignore
-   */
-  const validatorErrors = computed(() => {
-    const errorList = []
-
-    _.each(Validators.value, (Validator) => {
-      if (Validator.failing) {
-        errorList.push(Validator.message)
-      }
-    })
-
-    return errorList
+    return messageBag.value.errors
   })
 
   /**
@@ -502,7 +505,7 @@ const list = function(props, context, dependencies)
    * @returns {void}
    */
   const initMessageBag = () => {
-    messageBag.value = new form$.value.$laraform.services.messageBag(errors)
+    messageBag.value = new form$.value.$laraform.services.messageBag(baseErrors)
   }
 
   return {
@@ -520,6 +523,8 @@ const list = function(props, context, dependencies)
     pending,
     debouncing,
     busy,
+    validatorErrors,
+    childrenErrors,
     errors,
     error,
     displayError,
@@ -547,7 +552,7 @@ const multilingual = function(props, context, dependencies)
   const languages = dependencies.languages
   const language = dependencies.language
   const value = dependencies.value
-  const { messageBag, messages, displayError, initMessageBag } = base(props, context, dependencies)
+  const { messageBag, messages, displayError } = base(props, context, dependencies)
 
   // ================ DATA ================
 
@@ -658,7 +663,7 @@ const multilingual = function(props, context, dependencies)
     return pending.value || debouncing.value
   })
 
-  const errors = computed(() => {
+  const validatorErrors = computed(() => {
     var errors = []
 
     _.each(Validators.value, (Validators, language) => {
@@ -670,6 +675,10 @@ const multilingual = function(props, context, dependencies)
     })
 
     return errors
+  })
+
+  const errors = computed(() => {
+    return messageBag.value.errors
   })
 
   const error = computed(() => {
@@ -781,6 +790,10 @@ const multilingual = function(props, context, dependencies)
       dirty,
       validated,
     }
+  }
+
+  const initMessageBag = () => {
+    messageBag.value = new form$.value.$laraform.services.messageBag(validatorErrors)
   }
 
   /**
@@ -918,16 +931,11 @@ const object = function(props, context, dependencies)
     return _.some(children$.value, { available: true, busy: true })
   })
 
-  /**
-   * List of errors of failing rules.
-   * 
-   * @type {array}
-   */
-  const errors = computed(() => {
+  const childrenErrors = computed(() => {
     var errors = []
 
     _.each(children$.value, (element$) => {
-      if (!element$.available) {
+      if (!element$.available || element$.isStatic) {
         return
       }
 
@@ -937,6 +945,15 @@ const object = function(props, context, dependencies)
     })
 
     return errors
+  })
+
+  /**
+   * List of errors of failing rules.
+   * 
+   * @type {array}
+   */
+  const errors = computed(() => {
+    return messageBag.value.errors
   })
 
 
@@ -979,7 +996,7 @@ const object = function(props, context, dependencies)
   }
   
   const initMessageBag = (el$) => {
-    messageBag.value = new form$.value.$laraform.services.messageBag(errors)
+    messageBag.value = new form$.value.$laraform.services.messageBag(childrenErrors)
   }
 
   return {

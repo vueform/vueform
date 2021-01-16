@@ -14,7 +14,7 @@ export default function useLaraform(props, context)
 
   // ============ DEPENDENCIES ============
 
-  const { fire, on, off } = useEvents(props, context, {}, {
+  const { fire, on, off } = useEvents(props, context, { form$: $this }, {
     events: [
       'change', 'submit', 'success', 'error',
       'language', 'reset', 'clear', 'fail'
@@ -177,16 +177,11 @@ export default function useLaraform(props, context)
     }) || submitting.value || preparing.value
   })
 
-  /**
-   * List of all errors within the form.
-   * 
-   * @type {array}
-   */
-  const errors = computed(() => {
+  const elementErrors = computed(() => {
     var errors = []
 
-    _.each(_.filter(elements$.value, { available: true }), (element$) => {
-      _.each(element$.messageBag ? element$.messageBag.errors || [] : [], (error) => {
+    _.each(_.filter(elements$.value, { available: true, isStatic: false }), (element$) => {
+      _.each(element$.errors, (error) => {
         errors.push(error)
       })
     })
@@ -199,8 +194,37 @@ export default function useLaraform(props, context)
    * 
    * @type {array}
    */
+  const errors = computed(() => {
+    return messageBag.value.errors
+  })
+
+  /**
+   * Whether the form has errors.
+   * 
+   * @ignore
+   * @type {boolean}
+   */
+  const hasErrors = computed(() => {
+    return errors.value.length > 0
+  })
+
+  /**
+   * List of all errors within the form.
+   * 
+   * @type {array}
+   */
   const messages = computed(() => {
     return messageBag.value.messages
+  })
+
+  /**
+   * Whether the form has messages.
+   * 
+   * @ignore
+   * @type {boolean}
+   */
+  const hasMessages = computed(() => {
+    return messages.value.length > 0
   })
 
   /**
@@ -244,26 +268,6 @@ export default function useLaraform(props, context)
    */
   const hasTabs = computed(() => {
     return !_.isEmpty($this.tabs)
-  })
-
-  /**
-   * Whether the form has errors.
-   * 
-   * @ignore
-   * @type {boolean}
-   */
-  const hasErrors = computed(() => {
-    return messageBag.value.errors && messageBag.value.errors.length > 0
-  })
-
-  /**
-   * Whether the form has messages.
-   * 
-   * @ignore
-   * @type {boolean}
-   */
-  const hasMessages = computed(() => {
-    return messageBag.value.messages && messageBag.value.messages.length > 0
   })
 
   const mainClass = computed(() => {
@@ -718,7 +722,7 @@ export default function useLaraform(props, context)
   }
 
   const initMessageBag = () => {
-    messageBag.value = new $laraform.value.services.messageBag(errors.value)
+    messageBag.value = new $laraform.value.services.messageBag(elementErrors)
   }
 
   const conf = (key, value) => {
