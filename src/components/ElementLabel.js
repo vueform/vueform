@@ -12,7 +12,7 @@ export default {
 
     const { label, isLabelComponent } = useLabel(props, context, { 
       descriptor: computed(() => { return el$.value.schema }),
-      el$: el$,
+      component$: el$,
      })
 
     // ============== COMPUTED ==============

@@ -34,7 +34,7 @@ export default {
     // ============ DEPENDENCIES ============
 
     const { el$, form$, classes: baseClasses, components, theme, mainClass } = useElementComponent(props, context)
-    const { label, isLabelComponent } = useLabel(props, context, { el$, descriptor: button })
+    const { label, isLabelComponent } = useLabel(props, context, { component$: el$, descriptor: button })
     const { assignToParent, removeFromParent } = useParentAssign(props, context, { form$ })
 
     // ================ DATA ================

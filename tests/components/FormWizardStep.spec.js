@@ -6,7 +6,7 @@ import useFormComponent from './../composables/useFormComponent'
 
 expect.extend({toBeVisible})
 
-describe('FormWizard', () => {
+describe('FormWizardStep', () => {
   let form = createForm({
     wizard: {
       a: {

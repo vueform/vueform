@@ -1,6 +1,7 @@
-import { ref, computed, toRefs, watch, onMounted, onBeforeUpdate, nextTick, } from 'composition-api'
+import { ref, computed, toRefs, watch, onMounted, onBeforeMount, onBeforeUnmount, onBeforeUpdate, nextTick, getCurrentInstance } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useEvents from './../composables/useEvents'
+import normalize from './../utils/normalize'
 
 export default {
   name: 'FormTabs',
@@ -24,6 +25,7 @@ export default {
   init(props, context)
   {  
     const { elements$, tabs } = toRefs(props)
+    const $this = getCurrentInstance().proxy
 
     // ============ DEPENDENCIES ============
 
@@ -34,7 +36,7 @@ export default {
 
     // ================ DATA ================
 
-    const formTabs$ = ref([])
+    const tabs$Array = ref([])
 
     const exists = ref(true)
 
@@ -49,7 +51,7 @@ export default {
     const tabs$ = computed(() => {
       let tabList$ = {}
 
-      _.each(formTabs$.value, (formTab$) => {
+      _.each(tabs$Array.value, (formTab$) => {
         tabList$[formTab$.name] = formTab$
       })
 
@@ -174,6 +176,26 @@ export default {
       first$.value.select()
     }
 
+    // no export
+    const assignToParent = ($parent, assignToParent) => {
+      if ($parent.tabs$ !== undefined) {
+        form$.value.$set($parent, 'tabs$', $this)
+      }
+      else {
+        assignToParent($parent.$parent, assignToParent)
+      }
+    }
+
+    // no export
+    const removeFromParent = ($parent, removeFromParent) => {
+      if ($parent.tabs$ !== undefined) {
+        form$.value.$set($parent, 'tabs$', null)
+      }
+      else {
+        removeFromParent($parent.$parent, removeFromParent)
+      }
+    }
+
     // ============== WATCHERS ==============
 
     watch(elements$, (newValue, oldValue) => {
@@ -193,13 +215,26 @@ export default {
       }
     }, { deep: true, lazy: true })
 
-    // =============== HOOKS ================
+    // Resort tabs$Array when tabs
+    // order changes or a tab is removed
+    watch(tabs, (newValue) => {
+      let newTabs$Array = []
 
-    if (form$.value.$laraform.vue === 3) {
-      onBeforeUpdate(() => {
-        formTabs$.value = []
+      _.each(newValue, (t, name) => {
+        newTabs$Array.push(tabs$Array.value[tabs$Array.value.map(t$=>normalize(t$.name)).indexOf(normalize(name))])
       })
-    }
+
+      tabs$Array.value = newTabs$Array
+    }, { flush: 'post' })
+
+    // =============== HOOKS ================
+    onBeforeMount(() => {
+      assignToParent($this.$parent, assignToParent)
+    })
+
+    onBeforeUnmount(() => {
+      removeFromParent($this.$parent, removeFromParent)
+    })
 
     onMounted(() => {
       if (_.isEmpty(tabs.value)) {
@@ -220,7 +255,7 @@ export default {
       theme,
 
       // Data
-      formTabs$,
+      tabs$Array,
       events,
       listeners,
       exists,

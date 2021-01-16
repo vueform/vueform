@@ -1,13 +1,19 @@
 <template>
   <button
-    v-if="visible"
+    v-if="visible && isLabelComponent"
   	:disabled="disabled"
     :class="classes.button"
   	@click.prevent="next"
-    v-html-if="{label: !isLabelComponent}"
   >
-    <component v-if="isLabelComponent" :is="label" :wizard$="wizard$" />
+    <component :is="label" :step$="current$" />
   </button>
+  <button
+    v-else-if="visible"
+    v-html="label"
+  	:disabled="disabled"
+    :class="classes.button"
+  	@click.prevent="next"
+  ></button>
 </template>
 
 <script>

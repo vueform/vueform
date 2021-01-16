@@ -1,10 +1,11 @@
-import { toRefs, ref, computed, onMounted, nextTick, watch } from 'composition-api'
+import { toRefs, ref, computed, onMounted, nextTick, watch, onBeforeMount, onBeforeUnmount, getCurrentInstance } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useConditions from './../composables/useConditions'
 import useLabel from './../composables/useLabel'
 import useEvents from './../composables/useEvents'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 import asyncForEach from './../utils/asyncForEach'
+import normalize from './../utils/normalize'
 
 export default {
   name: 'FormWizardStep',
@@ -43,12 +44,13 @@ export default {
   {  
     const { step, elements$, name, index } = toRefs(props)
     const { containers } = toRefs(context.data)
+    const $this = getCurrentInstance().proxy
 
     // ============ DEPENDENCIES ============
 
     const { form$, theme, classes: baseClasses, mainClass, components, } = useFormComponent(props, context)
     const { available, conditions } = useConditions(props, context, { form$, descriptor: step })
-    const { label, isLabelComponent } = useLabel(props, context, { form$, descriptor: step })
+    const { label, isLabelComponent } = useLabel(props, context, { component$: form$, descriptor: step })
     const { events, listeners, on, off, fire } = useEvents(props, context, { form$, descriptor: step }, {
       events: ['active', 'inactive', 'complete', 'enable', 'disable']
     })
@@ -145,7 +147,7 @@ export default {
         }
       })
 
-      // Add tabs's class to main class
+      // Add steps's class to main class
       if (class_.value !== null) {
         classList = mergeComponentClasses(classList, {
           [mainClass.value]: class_.value
@@ -378,6 +380,26 @@ export default {
       })
     }
 
+    // no export
+    const assignToParent = ($parent, assignToParent) => {
+      if ($parent.steps$Array) {
+        $parent.steps$Array.push($this)
+      }
+      else {
+        assignToParent($parent.$parent, assignToParent)
+      }
+    }
+
+    // no export
+    const removeFromParent = ($parent, removeFromParent) => {
+      if ($parent.steps$Array) {
+        $parent.steps$Array.splice($parent.steps$Array.map(t$=>normalize(t$.name)).indexOf(normalize(name.value)), 1)
+      }
+      else {
+        removeFromParent($parent.$parent, removeFromParent)
+      }
+    }
+
     // ============== WATCHERS ==============
 
     watch(visible, (val) => {
@@ -407,6 +429,14 @@ export default {
       nextTick(() => {
         forwardConditions()
       })
+    })
+    
+    onBeforeMount(() => {
+      assignToParent($this.$parent, assignToParent)
+    })
+
+    onBeforeUnmount(() => {
+      removeFromParent($this.$parent, removeFromParent)
     })
 
     return {

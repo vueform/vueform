@@ -1,6 +1,7 @@
-import { ref, computed, toRefs, nextTick, watch, onMounted, onBeforeUpdate } from 'composition-api'
+import { ref, computed, toRefs, nextTick, watch, onMounted, onBeforeMount, onBeforeUnmount, getCurrentInstance } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useEvents from './../composables/useEvents'
+import normalize from './../utils/normalize'
 
 export default {
   name: 'FormWizard',
@@ -25,6 +26,7 @@ export default {
   init(props, context)
   { 
     const { elements$, steps } = toRefs(props)
+    const $this = getCurrentInstance().proxy
 
     // ============ DEPENDENCIES ============
 
@@ -35,7 +37,7 @@ export default {
 
     // ================ DATA ================
 
-    const wizardSteps$ = ref([])
+    const steps$Array = ref([])
 
     // no export
     const unwatchInvalid = ref(null)
@@ -98,7 +100,7 @@ export default {
     const steps$ = computed(() => {
       let steps$ = {}
 
-      _.each(wizardSteps$.value, (step$) => {
+      _.each(steps$Array.value, (step$) => {
         steps$[step$.name] = step$
       })
 
@@ -394,6 +396,26 @@ export default {
       enableUntil(lastEnabled$.value !== undefined ? lastEnabled$.value.index : first$.value.index)
     }
 
+    // no export
+    const assignToParent = ($parent, assignToParent) => {
+      if ($parent.wizard$ !== undefined) {
+        form$.value.$set($parent, 'wizard$', $this)
+      }
+      else {
+        assignToParent($parent.$parent, assignToParent)
+      }
+    }
+
+    // no export
+    const removeFromParent = ($parent, removeFromParent) => {
+      if ($parent.wizard$ !== undefined) {
+        form$.value.$set($parent, 'wizard$', null)
+      }
+      else {
+        removeFromParent($parent.$parent, removeFromParent)
+      }
+    }
+
     // ============== WATCHERS ==============
 
     watch(elements$, (newValue, oldValue) => {
@@ -416,13 +438,27 @@ export default {
       })
     }, { deep: true, lazy: true })
 
+    // Resort steps$Array when steps
+    // order changes or a tab is removed
+    watch(steps, (newValue) => {
+      let newSteps$Array = []
+
+      _.each(newValue, (t, name) => {
+        newSteps$Array.push(steps$Array.value[steps$Array.value.map(t$=>normalize(t$.name)).indexOf(normalize(name))])
+      })
+
+      steps$Array.value = newSteps$Array
+    }, { flush: 'post' })
+
     // =============== HOOKS ================
 
-    if (form$.value.$laraform.vue === 3) {
-      onBeforeUpdate(() => {
-        wizardSteps$.value = []
-      })
-    }
+    onBeforeMount(() => {
+      assignToParent($this.$parent, assignToParent)
+    })
+
+    onBeforeUnmount(() => {
+      removeFromParent($this.$parent, removeFromParent)
+    })
 
     onMounted(() => {
       if (_.isEmpty(steps.value)) {
@@ -454,7 +490,7 @@ export default {
       theme,
 
       // Data
-      wizardSteps$,
+      steps$Array,
       events,
       listeners,
       exists,

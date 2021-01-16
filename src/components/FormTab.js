@@ -1,10 +1,11 @@
 // @todo: check required schema (eg. `elements` property) here and everywhere
-import { computed, ref, toRefs, watch, onMounted, nextTick } from 'composition-api'
+import { computed, ref, toRefs, watch, onMounted, onBeforeMount, onBeforeUnmount, nextTick, getCurrentInstance } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useConditions from './../composables/useConditions'
 import useLabel from './../composables/useLabel'
 import useEvents from './../composables/useEvents'
 import { mergeComponentClasses } from './../utils/mergeClasses'
+import normalize from './../utils/normalize'
 
 export default {
   name: 'FormTab',
@@ -42,12 +43,13 @@ export default {
   {  
     const { tab, elements$, name } = toRefs(props)
     const { containers } = toRefs(context.data)
+    const $this = getCurrentInstance().proxy
 
     // ============ DEPENDENCIES ============
 
     const { form$, theme, classes: baseClasses, components, mainClass } = useFormComponent(props, context)
     const { available, conditions } = useConditions(props, context, { form$, descriptor: tab })
-    const { label, isLabelComponent } = useLabel(props, context, { form$, descriptor: tab })
+    const { label, isLabelComponent } = useLabel(props, context, { component$: form$, descriptor: tab })
     const { events, listeners, on, off, fire } = useEvents(props, context, { form$, descriptor: tab }, {
       events: ['active', 'inactive'],
     })
@@ -186,6 +188,26 @@ export default {
       fire('inactive')
     }
 
+    // no export
+    const assignToParent = ($parent, assignToParent) => {
+      if ($parent.tabs$Array) {
+        $parent.tabs$Array.push($this)
+      }
+      else {
+        assignToParent($parent.$parent, assignToParent)
+      }
+    }
+
+    // no export
+    const removeFromParent = ($parent, removeFromParent) => {
+      if ($parent.tabs$Array) {
+        $parent.tabs$Array.splice($parent.tabs$Array.map(t$=>normalize(t$.name)).indexOf(normalize(name.value)), 1)
+      }
+      else {
+        removeFromParent($parent.$parent, removeFromParent)
+      }
+    }
+
     // ============== WATCHERS ==============
 
     watch(children$, () => {
@@ -215,6 +237,14 @@ export default {
           })
         })
       })
+    })
+    
+    onBeforeMount(() => {
+      assignToParent($this.$parent, assignToParent)
+    })
+
+    onBeforeUnmount(() => {
+      removeFromParent($this.$parent, removeFromParent)
     })
 
     return {

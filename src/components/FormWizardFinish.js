@@ -21,7 +21,7 @@ export default {
     // ============== COMPUTED ==============
 
     const visible = computed(() => {
-      return wizard$.value.isAtLastStep
+      return wizard$.value && wizard$.value.isAtLastStep
     })
 
 
@@ -36,11 +36,11 @@ export default {
     })
 
     const current$ = computed(() => {
-      return wizard$.value.current$
+      return wizard$.value ? wizard$.value.current$ : undefined
     })
 
     const visible$ = computed(() => {
-      return wizard$.value.visible$
+      return wizard$.value ? wizard$.value.visible$ : []
     })
 
     const baseLabel = computed(() => {
@@ -70,7 +70,7 @@ export default {
 
     const { label, isLabelComponent } = useLabel(props, context, {
       descriptor,
-      form$,
+      component$: current$,
     })
 
     return {

@@ -273,6 +273,9 @@ export default function (schema, componentName, options = {}) {
         await nextTick()
       }
 
+      await nextTick()
+      await nextTick()
+
       let Component = findAllComponents(form, { name: componentName }).at(0)
       
       expect(Component.classes('form-classes')).toBe(true)

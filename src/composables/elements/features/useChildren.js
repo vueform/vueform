@@ -75,19 +75,17 @@ const object = function(props, context, dependencies, options = {})
     }
   })
 
-  const watchChildren = () => {
-    // Resort children$Array when children
-    // order changes or a child is removed
-    watch(children, (newValue) => {
-      let newChildren$Array = []
+  // Resort children$Array when children
+  // order changes or a child is removed
+  watch(children, (newValue) => {
+    let newChildren$Array = []
 
-      _.each(newValue, (child, name) => {
-        newChildren$Array.push(children$Array.value[children$Array.value.map(e$=>normalize(e$.name)).indexOf(normalize(name))])
-      })
+    _.each(newValue, (child, name) => {
+      newChildren$Array.push(children$Array.value[children$Array.value.map(e$=>normalize(e$.name)).indexOf(normalize(name))])
+    })
 
-      children$Array.value = newChildren$Array
-    }, { flush: 'post' })
-  }
+    children$Array.value = newChildren$Array
+  }, { flush: 'post' })
 
   return {
     // Data
@@ -96,9 +94,6 @@ const object = function(props, context, dependencies, options = {})
 
     // Computed
     children$,
-
-    // Methods
-    watchChildren,
   }
 }
 

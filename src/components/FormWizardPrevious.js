@@ -28,11 +28,11 @@ export default {
     })
 
     const disabled = computed(() => {
-      return wizard$.value.isAtFirstStep
+      return wizard$.value && wizard$.value.isAtFirstStep
     })
 
     const current$ = computed(() => {
-      return wizard$.value.current$
+      return wizard$.value ? wizard$.value.current$ : undefined
     })
 
     const baseLabel = computed(() => {
@@ -59,7 +59,7 @@ export default {
 
     const { label, isLabelComponent } = useLabel(props, context, {
       descriptor,
-      form$,
+      component$: current$,
     })
 
     return {
