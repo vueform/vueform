@@ -602,7 +602,7 @@ export default function useLaraform(props, context)
   }
 
   const setLanguage = (code) => {
-    conf('language', code)
+    $this.language = code
 
     fire('language', code)
   }
