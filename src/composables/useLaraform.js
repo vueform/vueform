@@ -1,20 +1,37 @@
-import { computed, ref, toRefs, inject, markRaw, getCurrentInstance, onBeforeMount, watch, nextTick } from 'composition-api'
+import { computed, ref, toRefs, inject, markRaw, getCurrentInstance, onMounted, provide, watch, nextTick } from 'composition-api'
 import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
 import convertFormData from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'
 import useEvents from './../composables/useEvents'
 
-export default function useLaraform(props, context)
+export default function useLaraform(props, context, dependencies = {})
 {
   const { form } = toRefs(props)
-  
-  const $laraform = context.parent && context.parent.$laraform ? ref(context.parent.$laraform) : ref(markRaw(inject('$laraform')))
 
-  const $this = getCurrentInstance().proxy
+  const currentInstance = getCurrentInstance()
+
+  const $this = new Proxy(currentInstance.proxy, {
+    get(instance, prop) {
+      return dependencies[prop] ? dependencies[prop].value : instance[prop]
+    },
+    set(instance, prop, value) {
+      if (dependencies[prop] !== undefined) {
+        dependencies[prop].value = value
+        return true
+      }
+      else if (instance[prop] !== undefined) {
+        instance[prop] = value
+        return true
+      }
+      else {
+        throw new Error('Option does not exist: `'+prop+'`')
+      }
+    },
+  })
 
   // ============ DEPENDENCIES ============
 
-  const { fire, on, off } = useEvents(props, context, { form$: $this }, {
+  const { events, listeners, fire, on, off } = useEvents(props, context, { form$: $this }, {
     events: [
       'change', 'submit', 'success', 'error',
       'language', 'reset', 'clear', 'fail'
@@ -22,8 +39,6 @@ export default function useLaraform(props, context)
   })
 
   // ================ DATA ================
-
-  const configuration = ref({})
 
   const elements$ = ref({})
 
@@ -177,6 +192,7 @@ export default function useLaraform(props, context)
     }) || submitting.value || preparing.value
   })
 
+  // no export
   const elementErrors = computed(() => {
     var errors = []
 
@@ -194,7 +210,7 @@ export default function useLaraform(props, context)
    * 
    * @type {array}
    */
-  const errors = computed(() => {
+  const formErrors = computed(() => {
     return messageBag.value.errors
   })
 
@@ -205,7 +221,7 @@ export default function useLaraform(props, context)
    * @type {boolean}
    */
   const hasErrors = computed(() => {
-    return errors.value.length > 0
+    return formErrors.value.length > 0
   })
 
   /**
@@ -213,7 +229,7 @@ export default function useLaraform(props, context)
    * 
    * @type {array}
    */
-  const messages = computed(() => {
+  const formMessages = computed(() => {
     return messageBag.value.messages
   })
 
@@ -224,7 +240,7 @@ export default function useLaraform(props, context)
    * @type {boolean}
    */
   const hasMessages = computed(() => {
-    return messages.value.length > 0
+    return formMessages.value.length > 0
   })
 
   /**
@@ -233,9 +249,7 @@ export default function useLaraform(props, context)
    * @type {boolean}
    */
   const disabled = computed(() => {
-    return (invalid.value && shouldValidateOnChange.value) ||
-          busy.value ||
-          submitting.value
+    return (invalid.value && shouldValidateOnChange.value) || busy.value
   })
 
   const shouldValidateOnChange = computed(() => {
@@ -287,13 +301,15 @@ export default function useLaraform(props, context)
     classes = mergeComponentClasses(classes, $this.addClasses.Laraform || null)
 
     if ($this.class !== null || form.value.class) {
-      classes[mainClass.value] = mergeClass(classes[mainClass.value], $this.class || form.value.class)
+      classes = mergeComponentClasses(classes, {
+        [mainClass.value]: $this.class || form.value.class
+      })
     }
 
     return classes
   })
 
-  const components = computed(() => {
+  const extendedComponents = computed(() => {
     return Object.assign({}, extendedTheme.value.components, extendedTheme.value.elements)
   })
 
@@ -321,26 +337,32 @@ export default function useLaraform(props, context)
       elements: Object.assign({},
         selectedTheme.value.elements,
         $laraform.value.elements,
-
-        // @todo
-        $this.override && $this.override.elements ? $this.override.elements : {},
+        $this.elements,
       ),
 
       // Add registered component to theme (or overwrite)
       components: Object.assign({},
         selectedTheme.value.components,
         $laraform.value.components,
-
-        // @todo
-        $this.override && $this.override.components ? $this.override.components : {},
+        $this.components,
       ),
       
       // Ovewrite theme classes with form's classes definition
       classes: _.merge({},
         selectedTheme.value.classes,
-        $this.classes
+        $this.classes,
       ),
     })
+  })
+
+  // no export
+  const formatLoad = computed(() => {
+    return $this.formatLoad
+  })
+
+  // no export
+  const prepare = computed(() => {
+    return $this.prepare
   })
 
   /**
@@ -376,6 +398,15 @@ export default function useLaraform(props, context)
     }
   })
 
+  const form$ = computed(() => {
+    return currentInstance.proxy
+  })
+  
+  // no export
+  const $laraform = computed(() => {
+    return $this.$laraform
+  })
+
   // =============== METHODS ==============
 
   /**
@@ -398,20 +429,16 @@ export default function useLaraform(props, context)
    * @param {object} data data to load
    * @returns {void}
    */
-  const load = (data, triggerChange = false, shouldValidate = false, shouldDirt = false, format = true) => {
+  const load = (data, format = false) => {
     if (wizard$.value !== null) {
       wizard$.value.enableAllSteps()
     }
 
     _.each(elements$.value, (e$) => {
-      let formatted = format ? formatLoad(data) : data
+      let formatted = format && formatLoad.value !== null ? formatLoad.value(data) : data
 
-      e$.load(e$.flat ? formatted : formatted[e$.name], triggerChange, shouldValidate, shouldDirt, format)
+      e$.load(e$.flat ? formatted : formatted[e$.name], format)
     })
-  }
-
-  const formatLoad = (data) => {
-    return data
   }
 
   /**
@@ -477,18 +504,15 @@ export default function useLaraform(props, context)
    * @returns {void}
    */
   const validate = async () => {
-    let validateOnChange = shouldValidateOnChange.value
-
-    if (!invalid.value && validated.value && validateOnChange) {
+    if (!invalid.value && validated.value && shouldValidateOnChange.value) {
       return
     }
 
+    let validatableElements = Object.values(elements$.value).filter((e$) => {
+      return e$.available && !e$.isStatic && (!e$.validated || !shouldValidateOnChange.value)
+    })
     
-    await asyncForEach(Object.values(elements$.value).filter(e$ => e$.available && (!e$.validated || !e$.rules || !validateOnChange)), async (e$) => {
-      if (!e$.validate) {
-        return
-      }
-      
+    await asyncForEach(validatableElements, async (e$) => {
       await e$.validate()
     })
   }
@@ -503,8 +527,6 @@ export default function useLaraform(props, context)
     if (disabled.value) {
       return
     }
-    
-    fire('submit')
 
     if (shouldValidateOnSubmit.value) {
       await validate()
@@ -518,31 +540,20 @@ export default function useLaraform(props, context)
 
     try {
       await prepareElements()
-      await prepare()
-    } catch (e) {
-      fire('fail', e)
       
-      throw new Error(e)
+      if (typeof prepare.value === 'function') {
+        await prepare.value()
+      }
+    } catch (e) {
+      fire('error', e)
     } finally {
       preparing.value = false
     }
+    
+    fire('submit')
 
     send()
   }
-
-  const prepareElements = async () => {
-    try {
-      await asyncForEach(elements$.value, async (e$) => {
-        if (e$.prepare) {
-          await e$.prepare()
-        }
-      })
-    } catch (e) {
-      throw new Error(e)
-    }
-  }
-
-  const prepare = async () => { }
 
   /**
    * Transforms form data to [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object and sends it to the endpoint.
@@ -565,24 +576,24 @@ export default function useLaraform(props, context)
       fire('success', response)
     }
     catch (error) {
-      fire('error', error.response, error)
-
-      throw new Error(error)
+      fire('fail', error.response, error)
     }
     finally {
       submitting.value = false
     }
   }
 
-  /**
-   * Transforms form data into [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
-   * 
-   * @public
-   * @param {object} data data to transform
-   * @returns {void}
-   */
-  const createFormData = (data) => {
-    return formData(data)
+  // no export
+  const prepareElements = async () => {
+    try {
+      await asyncForEach(elements$.value, async (e$) => {
+        if (e$.prepare) {
+          await e$.prepare()
+        }
+      })
+    } catch (e) {
+      throw new Error(e)
+    }
   }
 
   /**
@@ -725,34 +736,37 @@ export default function useLaraform(props, context)
     messageBag.value = new $laraform.value.services.messageBag(elementErrors)
   }
 
-  const conf = (key, value) => {
-    if (value !== undefined) {
-      configuration.value[key] = value
-      return
-    }
-    return configuration.value[key] !== undefined ? configuration.value[key] : {}
-  }
+  // ============== PROVIDES ==============
+
+  provide('form$', form$)
+  provide('theme', extendedTheme)
 
   // ============== WATCHERS ==============
 
   // Only start watching $this props after `created`
   // to make sure `proxy` variables already exist
   nextTick(() => {
-    watch(() => { return $this.tabs }, (newValue) => {
+    watch(() => { return $this.tabs }, () => {
       resortSchema()
     }, { deep: true })
 
-    watch(() => { return $this.wizard }, (newValue) => {
+    watch(() => { return $this.wizard }, () => {
       resortSchema()
     }, { deep: true })
   })
-  
 
-  // =============== HOOKS ================
+  watch(() => { return form.value.schema }, (value) => {
+    if (_.isEmpty(value)) {
+      return
+    }
+
+    $this.schema = value
+
+    resortSchema()
+  }, { deep: true })
 
   return {
     // Data
-    configuration,
     tabs$,
     wizard$,
     elements$,
@@ -761,6 +775,8 @@ export default function useLaraform(props, context)
     submitting,
     preparing,
     updating,
+    events,
+    listeners,
 
     // Computed
     data,
@@ -772,8 +788,8 @@ export default function useLaraform(props, context)
     pending,
     validated,
     busy,
-    errors,
-    messages,
+    formErrors,
+    formMessages,
     disabled,
     shouldValidateOnChange,
     shouldValidateOnSubmit,
@@ -785,24 +801,21 @@ export default function useLaraform(props, context)
     mainClass,
     defaultClasses,
     extendedClasses,
-    components,
+    extendedComponents,
     selectedTheme,
     extendedTheme,
     store,
+    form$,
 
     // Methods
     update,
     load,
-    formatLoad,
     reset,
     clear,
     clean,
     validate,
     submit,
-    prepareElements,
-    prepare,
     send,
-    createFormData,
     disableValidation,
     enableValidation,
     setLanguage,

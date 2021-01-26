@@ -498,26 +498,28 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
               type: elementType
             }
           }
-        }, {}, function(h) {
-          return createElement(h, 'form', [
-            createElement(h, this.extendedTheme.elements[elementName], {
-              props: {
-                schema: {
-                  type: elementType,
-                  items: {
-                    1: 'value',
+        }, {}, {
+          render: function(h) {
+            return createElement(h, 'form', [
+              createElement(h, this.extendedTheme.elements[elementName], {
+                props: {
+                  schema: {
+                    type: elementType,
+                    items: {
+                      1: 'value',
+                    },
+                    native: false,
                   },
-                  native: false,
+                  name: 'el',
                 },
-                name: 'el',
-              },
-              scopedSlots: {
-                [slot]: (props) => {
-                  return createElement(h, 'div', 'from inline slot ' + props.values.length)
+                scopedSlots: {
+                  [slot]: (props) => {
+                    return createElement(h, 'div', 'from inline slot ' + props.values.length)
+                  }
                 }
-              }
-            })
-          ])
+              })
+            ])
+          }
         })
 
         el = form.vm.el$('el')

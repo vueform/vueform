@@ -8,6 +8,7 @@
         <component
           v-for="(button, i) in children"
           :is="component(button)"
+          :embed="true"
           :button="button"
           :name="i"
           :parent="el$"

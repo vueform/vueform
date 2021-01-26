@@ -30,10 +30,12 @@ export default function createForm (data, options = {}, render = null) {
   let form = LocalVue.extend(Object.assign({}, {
     mixins: [Laraform],
     setup(props, context) {
-      const laraform = useLaraform(props, context)
+      const setup = options.setup ? options.setup(props, context) : {}
+      const laraform = useLaraform(props, context, setup)
 
       return {
-        ...laraform
+        ...laraform,
+        ...setup,
       }
     },
     data() {
@@ -56,7 +58,7 @@ export default function createForm (data, options = {}, render = null) {
     locales: options.locales || {
       en: en
     }
-  })
+  }, options.config || {})
 
   let mountOptions = {
     localVue: LocalVue,

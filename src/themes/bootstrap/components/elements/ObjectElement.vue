@@ -13,7 +13,7 @@
           :schema="element"
           :name="name"
           :parent="el$"
-          :key="i"
+          :key="name"
           @remove="(e) => $emit('remove', e)"
         />
       </div>

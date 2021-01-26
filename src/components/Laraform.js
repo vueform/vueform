@@ -5,17 +5,6 @@ export default {
   render() {
     return this.extendedTheme.components.Laraform.render.apply(this, arguments)
   },
-  provide() {
-    return {
-      form$: computed(() => {
-        return this
-      }),
-
-      theme: computed(() => {
-        return this.extendedTheme
-      }),
-    }
-  },
   props: {
     form: {
       type: Object,
@@ -24,155 +13,40 @@ export default {
     }
   },
   data() {
-    return {
-      /**
-       * The schema of element contained within the form.
-       * 
-       * @type {object}
-       * @default {}
-       */
+    let data = {}
+    let defaults = {
       schema: {},
-
-      /**
-       * Form tabs definition.
-       * 
-       * @type {object}
-       * @default {}
-       */
       tabs: {},
-
-      /**
-       * Form wizard definition.
-       * 
-       * @type {object}
-       * @default {}
-       */
       wizard: {},
-
-      /**
-       * Whether wizard controls should appear when using wizard.
-       * 
-       * @type {boolean}
-       * @default true
-       */
       wizardControls: null,
-
-      /**
-       * Theme of the form.
-       * 
-       * @type {string}
-       * @default config.theme
-       */
-      theme: null,
-        
-      /**
-       * Endpoint to submit the form.
-       * 
-       * @type {string}
-       * @default config.endpoints.process
-       */
-      endpoint: null,
-
-      /**
-       * Method how the form should submit.
-       * 
-       * @type {string}
-       * @default config.method
-       */
-      method: null,
-
-      /**
-       * Form key to be sent when submitting data.
-       * 
-       * @type {string}
-       * @default null
-       */
-      key: null,
-
-      /**
-       * Form's CSS class.
-       * 
-       * @type {string}
-       * @default null
-       */
       class: null,
-
-      /**
-       * Override of [theme](style-and-theme#classes-property) classes.
-       * 
-       * @type {object}
-       * @default {}
-       */
       classes: {},
-
       addClasses: {},
-        
-      /**
-       * Default column sizes for elements.
-       * 
-       * @type {object|number}
-       * @default config.columns
-       */
+      components: {},
+      elements: {},
+      messages: {},
+      theme: null,
+      endpoint: null,
+      method: null,
+      key: null,
       columns: null,
-        
-      /**
-       * Whether label DOM should be displayed for elements without label option defined.
-       * 
-       * @type {boolean}
-       * @default config.labels
-       */
       labels: null,
-
-      override: {
-        components: {},
-        elements: {},
-      },
-      
-      /**
-       * Whether the form is multilingual.
-       * 
-       * @type {boolean}
-       * @default false
-       */
       multilingual: null,
-      
-      /**
-       * Available languages for mulitlingual form.
-       * 
-       * @type {object}
-       * @default config.languages
-       */
       languages: null,
-      
-      /**
-       * The default language of a multilingual form.
-       * 
-       * @type {string}
-       * @default config.language
-       */
       language: null,
-        
-      /**
-       * Whether errors should be displayed above form.
-       * 
-       * @type {boolean}
-       * @default config.formErrors
-       */
-      formErrors: null,
-        
-      /**
-       * List of events separated by `|` when validation should occur. Possible values: `change`, `submit`, `step`.
-       * 
-       * @type {string}
-       * @default config.validateOn
-       */
+      displayErrors: null,
       validateOn: null,
+      formatLoad: null,
+      prepare: null,
     }
-  },
-  computed: {
-    form$() {
-      return this
-    },
+
+    Object.keys(defaults).forEach((key) => {
+      if ((this._ !== undefined && !this._.setupState.hasOwnProperty(key)) || (this._ == undefined && this[key] === undefined)) {
+        data[key] = typeof defaults[key] === 'object' && defaults[key] !== null ? Object.assign({}, defaults[key]) : defaults[key]
+      }
+    })
+
+    return Object.assign({}, data)
   },
   created() {
     if (this.key === null) {
@@ -183,6 +57,22 @@ export default {
       this.class = this.form.class || null
     }
 
+    if (Object.keys(this.classes).length == 0) {
+      this.classes = this.form.classes || {}
+    }
+
+    if (Object.keys(this.addClasses).length == 0) {
+      this.addClasses = this.form.addClasses || {}
+    }
+
+    if (Object.keys(this.components).length == 0) {
+      this.components = this.form.components || {}
+    }
+
+    if (Object.keys(this.elements).length == 0) {
+      this.elements = this.form.elements || {}
+    }
+
     if (this.multilingual === null) {
       this.multilingual = this.form.multilingual !== undefined ? this.form.multilingual : false
     }
@@ -191,14 +81,18 @@ export default {
       this.endpoint = this.form.endpoint || this.$laraform.endpoints.process
     }
 
+    if (this.formatLoad === null) {
+      this.formatLoad = this.form.formatLoad || null
+    }
+
+    if (this.method === null) {
+      this.method = this.form.method || this.$laraform.methods.process
+    }
+
     if (this.form.wizardControls !== undefined && this.wizardControls === null) {
       this.wizardControls = this.form.wizardControls
     } else if (this.wizardControls === null) {
       this.wizardControls = true
-    }
-
-    if (this.method === null) {
-      this.method = this.$laraform.methods.process
     }
 
     // if the component does not have a data value
@@ -206,7 +100,7 @@ export default {
     // otherwise get the default value from config
     _.each([
       'theme', 'columns', 'validateOn', 'labels',
-      'formErrors', 'languages', 'language',
+      'displayErrors', 'languages', 'language',
     ], (property) => {
       if (this[property] === null) {
         this[property] = this.form[property] !== undefined
@@ -217,7 +111,10 @@ export default {
 
     // if the form has a property, merge it
     // with the component's existing data
-    _.each(['schema', 'tabs', 'wizard', 'messages'], (property) => {
+    _.each([
+      'elements', 'components', 'classes', 'addClasses',
+      'schema', 'tabs', 'wizard', 'messages', 
+    ], (property) => {
       if (this.form[property]) {
         this[property] = _.merge({}, 
           _.cloneDeep(this.form[property]), 
@@ -226,34 +123,12 @@ export default {
       }
     })
 
-    this.configuration = {
-      schema: this.schema,
-      tabs: this.tabs,
-      wizard: this.wizard,
-      wizardControls: this.wizardControls,
-      theme: this.theme,
-      endpoint: this.endpoint,
-      method: this.method,
-      key: this.key,
-      class: this.class,
-      classes: this.classes,
-      addClasses: this.addClasses,
-      columns: this.columns,
-      labels: this.labels,
-      override: this.override,
-      multilingual: this.multilingual,
-      languages: this.languages,
-      language: this.language,
-      formErrors: this.formErrors,
-      validateOn: this.validateOn,
-    }
-
     this.resortSchema()
     this.initMessageBag()
   },
   mounted() {
     if (!_.isEmpty(this.form.data)) {
-      this.load(this.form.data)
+      this.load(this.form.data, true)
     }
   },
 }

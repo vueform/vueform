@@ -18,6 +18,8 @@ const config = {
     }
   },
 
+  displayErrors: true,
+
   language: 'en',
 
   elements: {},
