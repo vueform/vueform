@@ -13,12 +13,29 @@ const base = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * Whether the textarea should grow.
+   * 
+   * @type {boolean}
+   * @default true
+   */
   const autogrow = computedOption('autogrow', schema, true)
 
+  /**
+   * The `rows` attribute of the textarea.
+   * 
+   * @type {number}
+   * @default 3
+   */
   const rows = computedOption('rows', schema, 3)
 
   // =============== METHODS ==============
 
+  /**
+   * Refreshes size.
+   * 
+   * @return {void}
+   */
   const autosize = () => {
     if (!autogrow.value) {
       return
@@ -55,7 +72,6 @@ const base = function(props, context, dependencies)
   return {
     autogrow,
     rows,
-
     autosize,
   }
 }
@@ -66,9 +82,23 @@ const multilingual = function(props, context, dependencies)
 
   const form$ = dependencies.form$
 
-  // ================ BASE ================
+  // ============== EXTENDS ===============
 
-  const { autogrow, rows, autosize } = base(props, context, dependencies)
+  const {
+    autosize
+  } = base(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+
+  const autogrow = computedOption('autogrow', schema, true)
+
+  /**
+   * The `rows` attribute of the textarea custom.
+   * 
+   * @type {number}
+   * @default 3
+   */
+  const rows = computedOption('rows', schema, 3)
 
   // =============== HOOKS ================
 
@@ -81,7 +111,6 @@ const multilingual = function(props, context, dependencies)
   return {
     autogrow,
     rows,
-
     autosize,
   }
 }

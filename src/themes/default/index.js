@@ -26,6 +26,8 @@ import ElementText from './components/ElementText'
 import DragAndDrop from './components/DragAndDrop'
 import InputAddon from './components/InputAddon'
 
+import TextField from './components/fields/TextField'
+
 import Flatpickr from './components/wrappers/Flatpickr'
 import Trix from './components/wrappers/Trix'
 
@@ -107,6 +109,9 @@ const components = {
   ElementText,
   DragAndDrop,
   InputAddon,
+
+  // Fields
+  TextField,
 
   // Wrappers
   Flatpickr,

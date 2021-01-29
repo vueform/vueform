@@ -17,8 +17,19 @@ const base = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {string}
+   * @default schema.type
+   */
   const type = computedOption('type', schema, schema.value.type)
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const isStatic = computed(() => {
     return false
   })
@@ -26,7 +37,7 @@ const base = function(props, context, dependencies)
   /**
    * Determines if the element's value is a file.
    *
-   * @returns {boolean}
+   * @type {boolean}
    */
   const isFileType = computed(() => {
     return false
@@ -35,8 +46,7 @@ const base = function(props, context, dependencies)
   /**
    * Determines if the element's value is an image.
    *
-   * @private
-   * @returns {boolean}
+   * @type {boolean}
    */
   const isImageType = computed(() => {
     return false
@@ -45,13 +55,17 @@ const base = function(props, context, dependencies)
   /**
    * Determines if the element's value is an array.
    *
-   * @private
-   * @returns {boolean}
+   * @type {boolean}
    */
   const isArrayType = computed(() => {
     return false
   })
 
+  /**
+   * 
+   *
+   * @type {object}
+   */
   const el$ = computed(() => {
     return currentInstance.proxy
   })
@@ -82,15 +96,18 @@ const base = function(props, context, dependencies)
 
 const list = function(props, context, dependencies)
 {
-  const { el$, type, isStatic, isFileType, isImageType } = base(props, context, dependencies)
+  // ============== EXTENDS ===============
+
+  const {
+    el$,
+    type,
+    isStatic,
+    isFileType,
+    isImageType
+  } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
-  /**
-   * Determines if the element's value is a file.
-   *
-   * @returns {boolean}
-   */
   const isArrayType = computed(() => {
     return true
   })
@@ -107,7 +124,15 @@ const list = function(props, context, dependencies)
 
 const file = function(props, context, dependencies)
 {
-  const { el$, type, isStatic, isArrayType, isImageType } = base(props, context, dependencies)
+  // ============== EXTENDS ===============
+
+  const {
+    el$,
+    type,
+    isStatic,
+    isArrayType,
+    isImageType
+  } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -132,7 +157,15 @@ const file = function(props, context, dependencies)
 
 const image = function(props, context, dependencies)
 {
-  const { el$, type, isStatic, isArrayType, isFileType } = file(props, context, dependencies)
+  // ============== EXTENDS ===============
+
+  const {
+    el$,
+    type,
+    isStatic,
+    isArrayType,
+    isFileType
+  } = file(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -152,7 +185,13 @@ const image = function(props, context, dependencies)
 
 const static_ = function(props, context, dependencies)
 {
-  const { el$, type, isArrayType, isFileType, isImageType } = base(props, context, dependencies)
+  const {
+    el$,
+    type,
+    isArrayType,
+    isFileType,
+    isImageType
+  } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
 

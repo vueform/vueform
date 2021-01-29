@@ -11,6 +11,7 @@ import applyExtensions from './utils/applyExtensions'
 import store from './store'
 import vHtmlIf from './directives/html-if'
 import init from './init'
+import fields from './components/fields'
 
 if (window._ === undefined) {
   window._ = _
@@ -104,6 +105,12 @@ export default function(config) {
       })
     }
 
+    registerFields(appOrVue) {
+      _.each(fields(), (component, name) => {
+        appOrVue.component(name, component)
+      })
+    }
+
     install(appOrVue, options) {
       if (options) {
         this.config(options)
@@ -116,6 +123,7 @@ export default function(config) {
       }
 
       this.initComponents()
+      this.registerFields(appOrVue)
 
       switch (this.options.vue) {
         case 2:

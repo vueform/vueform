@@ -6,7 +6,7 @@ import useEvents from './../composables/useEvents'
 
 export default function useLaraform(props, context, dependencies = {})
 {
-  const { form } = toRefs(props)
+  const { config, value, modelValue } = toRefs(props)
 
   const currentInstance = getCurrentInstance()
 
@@ -300,9 +300,9 @@ export default function useLaraform(props, context, dependencies = {})
 
     classes = mergeComponentClasses(classes, $this.addClasses.Laraform || null)
 
-    if ($this.class !== null || form.value.class) {
+    if ($this.class !== null || config.value.class) {
       classes = mergeComponentClasses(classes, {
-        [mainClass.value]: $this.class || form.value.class
+        [mainClass.value]: $this.class || config.value.class
       })
     }
 
@@ -320,7 +320,7 @@ export default function useLaraform(props, context, dependencies = {})
    * @type {object}
    */
   const selectedTheme = computed(() => {
-    let theme = !_.isEmpty($this.theme) ? $this.theme : (form.value.theme || $laraform.value.theme)
+    let theme = !_.isEmpty($this.theme) ? $this.theme : (config.value.theme || $laraform.value.theme)
 
     return $laraform.value.themes[theme]
   })
@@ -755,7 +755,7 @@ export default function useLaraform(props, context, dependencies = {})
     }, { deep: true })
   })
 
-  watch(() => { return form.value.schema }, (value) => {
+  watch(() => { return config.value.schema }, (value) => {
     if (_.isEmpty(value)) {
       return
     }

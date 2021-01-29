@@ -1,16 +1,26 @@
 import { computed } from 'composition-api'
+import useLaraform from './../composables/useLaraform'
 
 export default {
   name: 'Laraform',
+  setup: useLaraform,
   render() {
     return this.extendedTheme.components.Laraform.render.apply(this, arguments)
   },
   props: {
-    form: {
+    value: {
+      type: Object,
+      required: false,
+    },
+    modelValue: {
+      type: Object,
+      required: false,
+    },
+    config: {
       type: Object,
       required: false,
       default: () => ({})
-    }
+    },
   },
   data() {
     let data = {}
@@ -50,47 +60,47 @@ export default {
   },
   created() {
     if (this.key === null) {
-      this.key = this.form.key || null
+      this.key = this.config.key || null
     }
 
     if (this.class === null) {
-      this.class = this.form.class || null
+      this.class = this.config.class || null
     }
 
     if (Object.keys(this.classes).length == 0) {
-      this.classes = this.form.classes || {}
+      this.classes = this.config.classes || {}
     }
 
     if (Object.keys(this.addClasses).length == 0) {
-      this.addClasses = this.form.addClasses || {}
+      this.addClasses = this.config.addClasses || {}
     }
 
     if (Object.keys(this.components).length == 0) {
-      this.components = this.form.components || {}
+      this.components = this.config.components || {}
     }
 
     if (Object.keys(this.elements).length == 0) {
-      this.elements = this.form.elements || {}
+      this.elements = this.config.elements || {}
     }
 
     if (this.multilingual === null) {
-      this.multilingual = this.form.multilingual !== undefined ? this.form.multilingual : false
+      this.multilingual = this.config.multilingual !== undefined ? this.config.multilingual : false
     }
 
     if (this.endpoint === null) {
-      this.endpoint = this.form.endpoint || this.$laraform.endpoints.process
+      this.endpoint = this.config.endpoint || this.$laraform.endpoints.process
     }
 
     if (this.formatLoad === null) {
-      this.formatLoad = this.form.formatLoad || null
+      this.formatLoad = this.config.formatLoad || null
     }
 
     if (this.method === null) {
-      this.method = this.form.method || this.$laraform.methods.process
+      this.method = this.config.method || this.$laraform.methods.process
     }
 
-    if (this.form.wizardControls !== undefined && this.wizardControls === null) {
-      this.wizardControls = this.form.wizardControls
+    if (this.config.wizardControls !== undefined && this.wizardControls === null) {
+      this.wizardControls = this.config.wizardControls
     } else if (this.wizardControls === null) {
       this.wizardControls = true
     }
@@ -103,8 +113,8 @@ export default {
       'displayErrors', 'languages', 'language',
     ], (property) => {
       if (this[property] === null) {
-        this[property] = this.form[property] !== undefined
-          ? this.form[property]
+        this[property] = this.config[property] !== undefined
+          ? this.config[property]
           : this.$laraform[property]
       }
     })
@@ -115,9 +125,9 @@ export default {
       'elements', 'components', 'classes', 'addClasses',
       'schema', 'tabs', 'wizard', 'messages', 
     ], (property) => {
-      if (this.form[property]) {
+      if (this.config[property]) {
         this[property] = _.merge({}, 
-          _.cloneDeep(this.form[property]), 
+          _.cloneDeep(this.config[property]), 
           _.cloneDeep(this[property])
         )
       }
@@ -127,8 +137,8 @@ export default {
     this.initMessageBag()
   },
   mounted() {
-    if (!_.isEmpty(this.form.data)) {
-      this.load(this.form.data, true)
+    if (!_.isEmpty(this.config.data)) {
+      this.load(this.config.data, true)
     }
   },
 }

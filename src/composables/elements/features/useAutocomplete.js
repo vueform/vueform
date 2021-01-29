@@ -8,7 +8,7 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * The value of HTML autocomplete attribute if other than `false`. 
+   * The `autocomplete` attribute of the input field.
    * 
    * @type {boolean}
    * @default true

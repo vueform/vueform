@@ -30,6 +30,8 @@
           ref="input"
         />
 
+        yo
+
         <component :is="components.InputAddon"
           v-if="addons.after"
           type="after"

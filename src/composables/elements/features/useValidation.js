@@ -57,7 +57,7 @@ const base = function(props, context, dependencies)
    * @type {array|string|object}
    * @ignore
    */
-  const rules = computedOption('rules', schema)
+  const rules = computedOption('rules', schema, null)
 
   /**
    * Overrides default validation rule [messages](validation#custom-messages).

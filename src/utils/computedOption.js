@@ -3,7 +3,7 @@ import { reactive, inject, computed } from 'composition-api'
 export default function computedOption(name, schema, defaultValue, possibleValues = []) {
   const form$ = inject('form$')
 
-  return computed({
+  const option = computed({
     get() {
       let value = schema.value[name] !== undefined ? schema.value[name] : defaultValue
 
@@ -21,4 +21,6 @@ export default function computedOption(name, schema, defaultValue, possibleValue
       form$.value.$set(schema.value, name, value)
     },
   })
+
+  return option
 }
