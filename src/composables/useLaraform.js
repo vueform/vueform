@@ -4,7 +4,7 @@ import convertFormData from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'
 import useEvents from './../composables/useEvents'
 
-export default function useLaraform(props, context, dependencies = {})
+const base = function(props, context, dependencies = {})
 {
   const { config, value, modelValue } = toRefs(props)
 
@@ -40,10 +40,25 @@ export default function useLaraform(props, context, dependencies = {})
 
   // ================ DATA ================
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const elements$ = ref({})
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const tabs$ = ref(null)
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const wizard$ = ref(null)
 
   /**
@@ -119,6 +134,11 @@ export default function useLaraform(props, context, dependencies = {})
     return filtered
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const formData = computed(() => {
     return convertFormData({
       key: $this.key,
@@ -252,14 +272,29 @@ export default function useLaraform(props, context, dependencies = {})
     return (invalid.value && shouldValidateOnChange.value) || busy.value
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const shouldValidateOnChange = computed(() => {
     return $this.validateOn.split('|').indexOf('change') !== -1
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const shouldValidateOnSubmit = computed(() => {
     return $this.validateOn.split('|').indexOf('submit') !== -1
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const shouldValidateOnStep = computed(() => {
     return $this.validateOn.split('|').indexOf('step') !== -1
   })
@@ -284,14 +319,29 @@ export default function useLaraform(props, context, dependencies = {})
     return !_.isEmpty($this.tabs)
   })
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const mainClass = computed(() => {
     return _.keys(defaultClasses.value)[0]
   })
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const defaultClasses = computed(() => {
     return extendedTheme.value.components.Laraform.data().defaultClasses
   })
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const extendedClasses = computed(() => {
     let classes = Object.assign({},
       defaultClasses.value,
@@ -309,6 +359,11 @@ export default function useLaraform(props, context, dependencies = {})
     return classes
   })
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const extendedComponents = computed(() => {
     return Object.assign({}, extendedTheme.value.components, extendedTheme.value.elements)
   })
@@ -356,11 +411,21 @@ export default function useLaraform(props, context, dependencies = {})
   })
 
   // no export
+  /**
+   * 
+   * 
+   * @private
+   */
   const formatLoad = computed(() => {
     return $this.formatLoad
   })
 
   // no export
+  /**
+   * 
+   * 
+   * @private
+   */
   const prepare = computed(() => {
     return $this.prepare
   })
@@ -398,11 +463,21 @@ export default function useLaraform(props, context, dependencies = {})
     }
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const form$ = computed(() => {
     return currentInstance.proxy
   })
   
   // no export
+  /**
+   * 
+   * 
+   * @private
+   */
   const $laraform = computed(() => {
     return $this.$laraform
   })
@@ -584,6 +659,11 @@ export default function useLaraform(props, context, dependencies = {})
   }
 
   // no export
+  /**
+  * 
+  * 
+  * @private
+  */
   const prepareElements = async () => {
     try {
       await asyncForEach(elements$.value, async (e$) => {
@@ -616,12 +696,22 @@ export default function useLaraform(props, context, dependencies = {})
     validation.value = true
   }
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const setLanguage = (code) => {
     $this.language = code
 
     fire('language', code)
   }
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const updateSchema = (schema) => {
     $this.schema = schema
   }
@@ -701,6 +791,11 @@ export default function useLaraform(props, context, dependencies = {})
     return el$(path.match(/.*(?=\.)/)[0]).children$
   }
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const resortSchema = () => {
     let all = _.keys($this.schema)
     let blocks
@@ -732,6 +827,11 @@ export default function useLaraform(props, context, dependencies = {})
     }
   }
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const initMessageBag = () => {
     messageBag.value = new $laraform.value.services.messageBag(elementErrors)
   }
@@ -766,7 +866,6 @@ export default function useLaraform(props, context, dependencies = {})
   }, { deep: true })
 
   return {
-    // Data
     tabs$,
     wizard$,
     elements$,
@@ -777,8 +876,6 @@ export default function useLaraform(props, context, dependencies = {})
     updating,
     events,
     listeners,
-
-    // Computed
     data,
     filtered,
     formData,
@@ -806,8 +903,6 @@ export default function useLaraform(props, context, dependencies = {})
     extendedTheme,
     store,
     form$,
-
-    // Methods
     update,
     load,
     reset,
@@ -831,3 +926,5 @@ export default function useLaraform(props, context, dependencies = {})
     off,
   }
 }
+
+export default base

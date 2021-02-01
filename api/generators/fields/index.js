@@ -1,0 +1,60 @@
+const _ = require('lodash')
+const fs = require('fs')
+const elements = require('./../../elements').default
+const elementFeatures = require('./../../features/elements').default
+const componentFeatures = require('./../../features/components').default
+
+const output = __dirname + '/../../../src/components/fields/fields.js'
+
+let contents = ''
+
+contents += `export default {\n`
+
+_.each(elements, (element, elementName) => {
+  contents += `  ${elementName}: {\n`
+  contents += `    props: {\n`
+  contents += `      name: {\n`
+  contents += `        required: true,\n`
+  contents += `        type: [String, Number]\n`
+  contents += `      },\n`,
+
+  _.each(element.features, (featureName) => {
+    let base = featureName.split('_')[0]
+    let variant = featureName.split('_').length > 1 ? featureName.split('_')[1] : 'base'
+
+    let feature = elementFeatures[base] ? elementFeatures[base][variant] : componentFeatures[base][variant]
+
+    if (!feature.options) {
+      return
+    }
+
+    _.each(feature.options, (option, optionName) => {
+      let types = []
+
+      _.each(option.types, (type) => {
+        let Type
+
+        switch(type) {
+          case 'object': Type = 'Object'; break
+          case 'array': Type = 'Array'; break
+          case 'string': Type = 'String'; break
+          case 'number': Type = 'Number'; break
+          case 'component': Type = 'Object'; break
+        }
+
+        types.push(Type)
+      })
+
+      contents += `      ${optionName}: {\n`
+      contents += `        required: false,\n`
+      contents += `        type: [${types.join(', ')}]\n`
+      contents += `      },\n`
+    })
+  })
+
+  contents += `    }\n`
+  contents += `  },\n`
+})
+contents += '}'
+
+fs.writeFileSync(output, contents)

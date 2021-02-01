@@ -1,14 +1,18 @@
 import useTheme from './useTheme'
 
-export default function useElements(props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
   const { theme } = useTheme(props, context)
   
   // ============== METHODS ===============
-
   
+  /**
+  * 
+  * 
+  * @private
+  */
   const component = (element) => {
     if (element.component) {
       return element.component
@@ -29,3 +33,5 @@ export default function useElements(props, context, dependencies)
     component,
   }
 }
+
+export default base

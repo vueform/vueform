@@ -1,7 +1,7 @@
 import { toRefs, getCurrentInstance } from 'composition-api'
 import normalize from './../utils/normalize'
 
-export default function useParentAssign(props, context, dependencies, options = {})
+const base = function(props, context, dependencies, options = {})
 {
   const { name } = toRefs(props)
   const currentInstance = getCurrentInstance()
@@ -13,6 +13,11 @@ export default function useParentAssign(props, context, dependencies, options = 
   // =============== METHODS ==============
 
   // no export
+  /**
+  * 
+  * 
+  * @private
+  */
   const assignToParent = ($parent, assignToParent) => {
     if ($parent.children$Array) {
       $parent.children$Array.push(currentInstance.proxy)
@@ -26,6 +31,11 @@ export default function useParentAssign(props, context, dependencies, options = 
   }
 
   // no export
+  /**
+  * 
+  * 
+  * @private
+  */
   const removeFromParent = ($parent, removeFromParent) => {
     if ($parent.children$Array) {
       $parent.children$Array.splice($parent.children$Array.map(e$=>normalize(e$.name)).indexOf(normalize(name.value)), 1)
@@ -43,3 +53,5 @@ export default function useParentAssign(props, context, dependencies, options = 
     removeFromParent,
   }
 }
+
+export default base

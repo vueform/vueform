@@ -1,6 +1,6 @@
 import { ref } from 'composition-api'
 
-export default function useEvents(props, context, dependencies, options = {})
+const base = function(props, context, dependencies, options = {})
 {
   if (!options.events) {
     throw new Error('`events` option is required for useEvents')
@@ -90,13 +90,12 @@ export default function useEvents(props, context, dependencies, options = {})
   }
 
   return {
-    // Data
     events,
     listeners,
-
-    // Methods
     on,
     off,
     fire,
   }
 }
+
+export default base

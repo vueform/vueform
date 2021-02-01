@@ -1,7 +1,7 @@
 import { computed, ref } from 'composition-api'
 import isVueComponent from './../utils/isVueComponent'
 
-export default function useLabel(props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
@@ -10,18 +10,38 @@ export default function useLabel(props, context, dependencies)
 
   // ============== COMPUTED ==============
   
+  /**
+  * 
+  * 
+  * @private
+  */
   const baseLabel = computed(() => {
     return descriptor.value.label
   })
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const isLabelFunction = computed(() => {
     return typeof baseLabel.value === 'function' && (!baseLabel.value.prototype || !baseLabel.value.prototype.constructor || (baseLabel.value.prototype.constructor && baseLabel.value.prototype.constructor.name !== 'VueComponent'))
   })
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const isLabelComponent = computed(() => {
     return isVueComponent(baseLabel.value)
   })
   
+  /**
+  * 
+  * 
+  * @private
+  */
   const label = computed(() => {
     return isLabelFunction.value ? baseLabel.value(component$.value) : baseLabel.value || null
   })
@@ -31,3 +51,5 @@ export default function useLabel(props, context, dependencies)
     isLabelComponent,
   }
 }
+
+export default base

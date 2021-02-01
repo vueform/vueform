@@ -1,7 +1,7 @@
 import { computed, toRefs, ref } from 'composition-api'
 import computedOption from './../utils/computedOption'
 
-export default function useConditions(props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   const { parent } = toRefs(props)
 
@@ -45,3 +45,5 @@ export default function useConditions(props, context, dependencies)
     conditions,
   }
 }
+
+export default base

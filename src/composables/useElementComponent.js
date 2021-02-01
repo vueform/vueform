@@ -4,7 +4,7 @@ import useEl$ from './useEl$'
 import useTheme from './useTheme'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
-export default function useElementComponent(props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   const componentName = context.name
   const { defaultClasses } = toRefs(context.data)
@@ -17,6 +17,11 @@ export default function useElementComponent(props, context, dependencies)
   
   // ============== COMPUTED ===============
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const mergedClasses = computed(() => {
     let classes = _.merge({},
       // Default component classes
@@ -40,6 +45,11 @@ export default function useElementComponent(props, context, dependencies)
     return classes
   })
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const classes = computed({
     get() {
       return mergedClasses.value
@@ -49,23 +59,32 @@ export default function useElementComponent(props, context, dependencies)
     }
   })
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const components = computed(() => {
     return el$.value.components
   })
 
+  /**
+  * 
+  * 
+  * @private
+  */
   const mainClass = computed(() => {
     return _.keys(defaultClasses.value)[0]
   })
 
   return {
-    // Inject
     el$,
     form$,
     theme,
-
-    // Computed
     classes,
     components,
     mainClass,
   }
 }
+
+export default base

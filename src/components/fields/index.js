@@ -20,8 +20,12 @@ export default () => {
             type: name,
           }
 
-          _.each(field.options, (option) => {
-            schema[option] = propRefs[option].value
+          _.each(field.props, (propObject, propName) => {
+            if (['name', 'schema'].indexOf(propName) !== -1) {
+              return
+            }
+
+            schema[propName] = propRefs[propName].value
           })
 
           return schema

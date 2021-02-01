@@ -1,21 +1,23 @@
 const fs = require('fs')
 const _ = require('lodash')
 
-const featuresPath = process.cwd() + '/src/composables/elements/features/'
-const outputPath = process.cwd() + '/api/features.js'
-
 const files = []
 const until = null
 let untilIndex = 1000
 
 class Generator
 {
+  constructor(inputPath, outputPath) {
+    this.inputPath = inputPath
+    this.outputPath = outputPath
+  }
+
   get files() {
-    return fs.readdirSync(featuresPath).filter(f=>['.DS_Store'].indexOf(f) === -1)
+    return fs.readdirSync(this.inputPath).filter(f=>['.DS_Store', 'useTemplate.js'].indexOf(f) === -1 && f.match(/\.js$/))
   }
 
   getLines(fileName) {
-    return fs.readFileSync(featuresPath + fileName, 'UTF-8').split(/\r?\n/)
+    return fs.readFileSync(this.inputPath + fileName, 'UTF-8').split(/\r?\n/)
   }
 
   parseDocBlock(lines, i) {
@@ -177,7 +179,7 @@ class Generator
       options: /const ([^ ]*)\s?=\s?computedOption\(/,
       computed: /const ([^ ]*)\s?=\s?computed\(/,
       methods: /const ([a-zA-Z0-9_$]*)\s?=\s?(async)?\s?\(/,
-      provide: /provide\('([a-zA-Z0-9_$]*)/,
+      inject: /inject\('([a-zA-Z0-9_$]*)/,
       data: [/const (.*)\s?=\s?ref/, /const \s?([a-zA-Z0-9]*)\s?=\s?toRefs\(context\.data/],
     }
 
@@ -310,10 +312,8 @@ class Generator
     contents += JSON.stringify(features, null, 2)
     contents += ''
 
-    fs.writeFileSync(outputPath, contents)
+    fs.writeFileSync(this.outputPath, contents)
   }
 }
 
-let generator = new Generator()
-
-generator.generate()
+module.exports = Generator

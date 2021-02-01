@@ -1,6 +1,6 @@
 const fs = require('fs')
 const _ = require('lodash')
-const basePath = './..'
+const basePath = __dirname + '/../../..'
 const featuresPath = '/src/composables/elements'
 const elements = [
   'address',
@@ -102,4 +102,4 @@ function getElementsContent() {
   return content
 }
 
-fs.writeFileSync('./elements.js', getElementsContent())
+fs.writeFileSync(__dirname + '/../../elements/index.js', getElementsContent())

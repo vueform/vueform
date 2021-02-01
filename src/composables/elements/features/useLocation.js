@@ -154,7 +154,7 @@ const base = function (props, context, dependencies, options_ = {})
   }
 }
 
-const location = function (props, context, dependencies, options = {})
+const location = function (props, context, dependencies, options_ = {})
 {
   // ============ DEPENDENCIES ============
 
@@ -170,7 +170,7 @@ const location = function (props, context, dependencies, options = {})
     options,
     handleAddressChange,
     initLocationService
-  } = base(props, context, dependencies, options)
+  } = base(props, context, dependencies, options_)
   
   // =============== HOOKS ================
 
