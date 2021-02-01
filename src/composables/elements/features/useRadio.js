@@ -1,7 +1,7 @@
 import computedOption from './../../../utils/computedOption'
 import { toRefs, onMounted } from 'composition-api'
 
-const base = function useRadio (props, context, dependencies)
+const base = function (props, context, dependencies)
 {
   const { schema, name } = toRefs(props)
 
@@ -27,7 +27,6 @@ const base = function useRadio (props, context, dependencies)
   /**
    * Checks the radio.
    *
-   * @public
    * @param {boolean} triggerChange whether the element should trigger `change` event
    * @returns {void}
    */
@@ -38,7 +37,6 @@ const base = function useRadio (props, context, dependencies)
   /**
    * Unhecks the radio.
    *
-   * @public
    * @param {boolean} triggerChange whether the element should trigger `change` event
    * @returns {void}
    */

@@ -28,7 +28,6 @@ const base = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     prototype,
     isObject,
   }
@@ -50,14 +49,39 @@ const multifile = function(props, context, dependencies, options = {})
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const auto = computedOption('auto', schema, true)
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const object = computedOption('object', schema, false)
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const file = computedOption('file', schema, {})
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const fields = computedOption('fields', schema, {})
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const storeFile = computedOption('storeFile', schema, object.value || _.keys(fields.value).length || storeOrder.value ? 'file' : null)
 
   /**
@@ -105,7 +129,6 @@ const multifile = function(props, context, dependencies, options = {})
   })
 
   return {
-    // Computed
     auto,
     object,
     file,
@@ -118,12 +141,26 @@ const multifile = function(props, context, dependencies, options = {})
 
 const gallery = function(props, context, dependencies)
 {
-  const useMultifile = multifile(props, context, dependencies, {
+  const {
+    auto,
+    object,
+    file,
+    storeFile,
+    fields,
+    prototype,
+    isObject,
+  } = multifile(props, context, dependencies, {
     type: 'image'
   })
 
   return {
-    ...useMultifile,
+    auto,
+    object,
+    file,
+    storeFile,
+    fields,
+    prototype,
+    isObject,
   }
 }
 

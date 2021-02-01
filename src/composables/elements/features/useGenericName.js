@@ -15,8 +15,7 @@ const base = function(props, context, dependencies)
   /**
    * Helper property used to determine a generic name for the element.
    * 
-   * @type {object}
-   * @ignore
+   * @type {string}
    */
   const genericName = computed(() => {
     if (label && label.value) {
@@ -29,7 +28,6 @@ const base = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     genericName,
   }
 }
@@ -46,12 +44,6 @@ const file = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
-  /**
-   * Helper property used to determine a generic name for the element.
-   * 
-   * @type {object}
-   * @ignore
-   */
   const genericName = computed(() => {
     if (embed.value && filename.value) {
       return filename.value
@@ -65,7 +57,6 @@ const file = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     genericName,
   }
 }

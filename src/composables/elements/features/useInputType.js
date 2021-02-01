@@ -11,7 +11,7 @@ const base = function(props, context, dependencies)
    * The HTML type of input field (like type="text").
    * 
    * @type {string}
-   * @default 'text'
+   * @default "text"
    */
   const inputType = computedOption('inputType', schema, 'text')
 
@@ -25,10 +25,9 @@ const password = function (props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * The HTML type of input field (like type="text").
+   * 
    * 
    * @type {string}
-   * @default 'text'
    */
   const inputType = computed(() => {
     return 'password'

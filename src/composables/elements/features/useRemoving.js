@@ -4,6 +4,11 @@ const base = function (props, context, dependencies)
 {
   // ================ DATA ================
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const removing = ref(false)
 
   return {

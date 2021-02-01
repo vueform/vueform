@@ -25,6 +25,11 @@ const base = function(props, context, dependencies, options)
   */
   const sort = computedOption('sort', schema, false)
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const sortable = computed(() => {
     return {
       sort: disabled.value ? false : sort.value,
@@ -37,7 +42,6 @@ const base = function(props, context, dependencies, options)
   /**
    * Triggered when the user changes the order of the list items.
    *
-   * @public
    * @param {object} indexes an object containing `newIndex` and `oldIndex`.
    * @event sort
    */
@@ -63,11 +67,8 @@ const base = function(props, context, dependencies, options)
   }
 
   return {
-    // Computed
     sort,
     sortable,
-
-    // Methods
     handleSort,
   }
 }

@@ -7,6 +7,11 @@ const base = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const text = computedOption('text', schema, '')
 
   return {

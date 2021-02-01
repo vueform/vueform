@@ -12,9 +12,8 @@ const base = function(props, context, dependencies)
    * 
    * @type {string} 
    * @default null
-   * @ignore
    */
-  const info = computedOption('info', schema, false)
+  const info = computedOption('info', schema, null)
 
   return {
     info,

@@ -15,7 +15,7 @@ const base = function(props, context, dependencies)
   /**
   * The default value of the element.
   * 
-  * @type {boolean}
+  * @type {string|number}
   */
   const default_ = computedOption('default', schema, _.clone(nullValue.value))
 
@@ -40,7 +40,7 @@ const date = function(props, context, dependencies)
   /**
   * The default value of the element.
   * 
-  * @type {boolean}
+  * @type {string|Date}
   */
   const default_ = computed({
     get() {
@@ -60,7 +60,6 @@ const date = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     default: default_,
   }
 }
@@ -78,9 +77,9 @@ const dates = function(props, context, dependencies)
   // ============== COMPUTED ===============
 
   /**
-  * The default value of the element.
   * 
-  * @type {boolean}
+  * 
+  * @type {array}
   */
   const default_ = computed({
     get() {
@@ -102,7 +101,6 @@ const dates = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     default: default_,
   }
 }
@@ -119,9 +117,9 @@ const multilingual = function(props, context, dependencies)
   // ============== COMPUTED ===============
 
   /**
-  * The default value of the element.
   * 
-  * @type {boolean}
+  * 
+  * @type {object|string|number}
   */
   const default_ = computed({
     get() {
@@ -149,7 +147,6 @@ const multilingual = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     default: default_,
   }
 }

@@ -1,5 +1,5 @@
 import computedOption from './../../../utils/computedOption'
-import { computed, toRefs } from 'composition-api'
+import { toRefs } from 'composition-api'
 
 const base = function(props, context, dependencies)
 {

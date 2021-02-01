@@ -15,7 +15,7 @@ const base = function(props, context, dependencies)
    * Label of the element.
    * 
    * @type {string} 
-   * @default ''
+   * @default ""
    */
   const label = computedOption('label', schema, '')
 
@@ -23,8 +23,7 @@ const base = function(props, context, dependencies)
    * Helper property used to determine internally if a label should be
    * rendered for the element.
    * 
-   * @type {object}
-   * @ignore
+   * @type {boolean}
    */
   const hasLabel = computed(() => {
     return !!(form$.value.$laraform.labels || label.value)

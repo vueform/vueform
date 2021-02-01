@@ -20,14 +20,13 @@ const base = function(props, context, dependencies)
   /**
    * Available language codes.
    * 
-   * @type {string}
+   * @type {array}
    */
   const languages = computed(() => {
     return _.keys(form$.value.languages)
   })
   
   return {
-    // Computed
     language,
     languages,
   }

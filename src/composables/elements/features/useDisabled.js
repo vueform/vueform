@@ -10,7 +10,7 @@ const base = function(props, context, dependencies)
   /**
    * Whether the field should be *disabled* for user input (API updates are possible).
    * 
-   * @type {boolean} 
+   * @type {boolean}
    * @default false
    */
   const disabled = computedOption('disabled', schema, false)
@@ -21,7 +21,6 @@ const base = function(props, context, dependencies)
   /**
    * Disabled the field.
    *
-   * @public
    * @returns {void}
    */
   const disable = () => {
@@ -31,7 +30,6 @@ const base = function(props, context, dependencies)
   /**
    * Enables the field.
    *
-   * @public
    * @returns {void}
    */
   const enable = () => {
@@ -73,7 +71,7 @@ const checkboxgroup = function(props, context, dependencies)
   })
 
   /**
-   * Whether all the checkboxes are *disabled*.
+   * Whether all the items are *disabled*.
    * 
    * @type {boolean} 
    * @default false
@@ -83,10 +81,9 @@ const checkboxgroup = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Disables a checkbox or checkboxes.
+   * Disables an item or items.
    *
-   * @public
-   * @param {arr|str|num} options key of one or more checkboxes to disable.
+   * @param {array|string|number} items* Key of one or more items to disable.
    * @returns {void}
    */
   const disable = (items) => {
@@ -108,10 +105,9 @@ const checkboxgroup = function(props, context, dependencies)
   }
 
   /**
-   * Enables a checkbox or checkboxes.
+   * Enables an item or items.
    *
-   * @public
-   * @param {arr|str|num} options key of one or more checkboxes to enable.
+   * @param {array|string|number} items* Key of one or more items to enable.
    * @returns {void}
    */
   const enable = (items) => {
@@ -135,9 +131,8 @@ const checkboxgroup = function(props, context, dependencies)
   }
 
   /**
-   * Disabled all checkboxes.
+   * Disabled all items.
    *
-   * @public
    * @returns {void}
    */
   const disableAll = () => {
@@ -145,9 +140,8 @@ const checkboxgroup = function(props, context, dependencies)
   }
 
   /**
-   * Enables all checkboxes.
+   * Enables all items.
    *
-   * @public
    * @returns {void}
    */
   const enableAll = () => {

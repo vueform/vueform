@@ -1,4 +1,4 @@
-const base = function useTrix (props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
   
@@ -10,9 +10,10 @@ const base = function useTrix (props, context, dependencies)
   /**
    * Triggered when the trix editor throws an error during file upload (for example not accepted file types). If no event is attached browsers default `alert()` function will be used.
    *
-   * @public
-   * @param {string} message message to display.
-   * @event error
+   * @param {string} message* message to display.
+   * @param {Event} e* 
+   * @returns {void}
+   * @private
    */
   const handleError = (message, e) => {
     fire('error', message, e)

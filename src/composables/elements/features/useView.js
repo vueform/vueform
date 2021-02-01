@@ -27,7 +27,6 @@ const base = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
-
   /**
    * Whether the element is visible. It's `false` if `available` or `active` is `false` or `hidden` is `true`.
    * 
@@ -42,7 +41,6 @@ const base = function(props, context, dependencies)
   /**
    * Sets the `hidden` property of the element to `false`.
    *
-   * @public
    * @returns {void}
    */
   const hide = () => {
@@ -52,7 +50,6 @@ const base = function(props, context, dependencies)
   /**
    * Sets the `hidden` property of the element to `true`.
    *
-   * @public
    * @returns {void}
    */
   const show = () => {
@@ -80,14 +77,9 @@ const base = function(props, context, dependencies)
   }
 
   return {
-    // Data
     hidden,
     active,
-
-    // Computed
     visible,
-
-    // Methods
     hide,
     show,
     activate,

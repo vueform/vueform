@@ -3,7 +3,7 @@ import { computed, toRefs, ref, onMounted, watch } from 'composition-api'
 
 const base = function (props, context, dependencies)
 {
-  const { schema, name, embed } = toRefs(props)
+  const { schema, embed } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
@@ -29,22 +29,70 @@ const base = function (props, context, dependencies)
 
   // ================ DATA ================
 
+  /**
+   * 
+   * 
+   * @type {File|object|string}
+   * @default null
+   */
   const file = ref(null)
 
+  /**
+   * 
+   * 
+   * @type {string}
+   * @default null
+   */
   const base64 = ref(null)
 
+  /**
+   * 
+   * 
+   * @type {number}
+   * @default 0
+   */
   const progress = ref(0)
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   * @default false
+   */
   const preparing = ref(false)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {string|array}
+   * @default false
+   */
   const accept = computedOption('accept', schema, null)
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   * @default true
+   */
   const clickable = computedOption('clickable', schema, true)
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   * @default true
+   */
   const auto = computedOption('auto', schema, true)
 
+  /**
+   * 
+   * 
+   * @type {object}
+   * @default config.methods.file
+   */
   const methods = computed({
     get() {
       return Object.assign({}, form$.value.$laraform.methods.file, schema.value.methods || {})
@@ -54,6 +102,12 @@ const base = function (props, context, dependencies)
     }
   })
 
+  /**
+   * 
+   * 
+   * @type {object}
+   * @default config.endpoints.file
+   */
   const endpoints = computed({
     get() {
       return Object.assign({}, form$.value.$laraform.endpoints.file, schema.value.endpoints || {})
@@ -63,6 +117,11 @@ const base = function (props, context, dependencies)
     }
   })
 
+  /**
+   * 
+   * 
+   * @type {string}
+   */
   const url = computed({
     get() {
       if (schema.value.url === undefined) {
@@ -86,6 +145,11 @@ const base = function (props, context, dependencies)
     },
   })
 
+  /**
+   * 
+   * 
+   * @type {number}
+   */
   const stage = computed(() => {
     if (value.value === null) {
       return 0 // file not selected
@@ -106,6 +170,11 @@ const base = function (props, context, dependencies)
     return -1
   })
 
+  /**
+   * 
+   * 
+   * @type {string}
+   */
   const filename = computed(() => {
     switch(stage.value) {
       case 1:
@@ -122,6 +191,11 @@ const base = function (props, context, dependencies)
     }
   })
 
+  /**
+   * 
+   * 
+   * @type {string}
+   */
   const link = computed(() => {
     if (!uploaded.value || !clickable.value) {
       return
@@ -130,22 +204,47 @@ const base = function (props, context, dependencies)
     return url.value + filename.value
   })
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const uploaded = computed(() => {
     return stage.value === 3
   })
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const canRemove = computed(() => {
     return stage.value > 0 && !uploading.value && !disabled.value && !preparing.value && !removing.value
   })
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const canUploadTemp = computed(() => {
     return stage.value === 1 && !auto.value && !uploading.value
   })
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const canSelect = computed(() => {
     return !embed.value && stage.value == 0 && !disabled.value && !preparing.value
   })
 
+  /**
+   * 
+   * 
+   * @type {object}
+   */
   const previewOptions = computed(() => {
     return {
       link: link.value,
@@ -156,6 +255,11 @@ const base = function (props, context, dependencies)
 
   // =============== METHODS ==============
 
+  /**
+   * 
+   * 
+   * @returns {void}
+   */
   const uploadTemp = async () => {
     if (stage.value !== 1) {
       throw new Error('No file is selected')
@@ -199,6 +303,11 @@ const base = function (props, context, dependencies)
     }
   }
 
+  /**
+   * 
+   * 
+   * @returns {void}
+   */
   const remove = async () => {
     removing.value = true
 
@@ -230,6 +339,12 @@ const base = function (props, context, dependencies)
     fire('remove', previousValue.value)
   }
 
+  /**
+   * 
+   * 
+   * @returns {void}
+   * @private
+   */
   const prepare = async () => {
     // In selected state
     if (stage.value === 1) {
@@ -244,6 +359,12 @@ const base = function (props, context, dependencies)
     }
   }
 
+  /**
+   * 
+   * @param {Event} e* 
+   * @returns {void}
+   * @private
+   */
   const handleChange = (e) => {
     let file = e.target.files[0]
 
@@ -255,8 +376,8 @@ const base = function (props, context, dependencies)
   /**
    * Triggered when an uploader is clicked.
    *
-   * @private
    * @returns {void}
+   * @private
    */
   const handleClick = () => {
     if (disabled.value) {
@@ -266,14 +387,32 @@ const base = function (props, context, dependencies)
     input.value.click()
   }
 
+  /**
+   * 
+   * 
+   * @returns {void}
+   * @private
+   */
   const handleUploadTemp = () => {
     uploadTemp()
   }
 
+  /**
+   * 
+   * 
+   * @returns {void}
+   * @private
+   */
   const handleRemove = () => {
     remove()
   }
 
+  /**
+   * 
+   * 
+   * @returns {void}
+   * @private
+   */
   const handleAbort = () => {
     if (request.value === null) {
       return
@@ -317,14 +456,11 @@ const base = function (props, context, dependencies)
   })
 
   return {
-    // Data
     accept,
     file,
     base64,
     progress,
     preparing,
-
-    // Computed
     clickable,
     auto,
     methods,
@@ -338,8 +474,6 @@ const base = function (props, context, dependencies)
     canUploadTemp,
     canSelect,
     previewOptions,
-
-    // Methods
     uploadTemp,
     remove,
     prepare,

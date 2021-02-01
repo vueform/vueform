@@ -5,13 +5,21 @@ import { mergeComponentClasses } from './../../../utils/mergeClasses'
 const base = function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
-  const { defaultClasses } = toRefs(context.data)
   const componentName = context.name
 
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
   const theme = dependencies.theme
+
+  // ================ DATA ================
+
+  /**
+  * 
+  * 
+  * @type {object} 
+  */
+  const defaultClasses = toRefs(context.data).defaultClasses
 
   // ============== COMPUTED ==============
 
@@ -27,15 +35,14 @@ const base = function(props, context, dependencies)
   * Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object).
   * 
   * @type {string} 
-  * @default null
+  * @default ""
   */
   const class_ = computedOption('class', schema, '')
   
   /**
   * Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object).
   * 
-  * @type {string} 
-  * @default null
+  * @type {string}
   */
   const mainClass = computed(() => {
     return _.keys(defaultClasses.value)[0]

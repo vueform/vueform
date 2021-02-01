@@ -7,6 +7,12 @@ const base = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {object}
+   * @default {}
+   */
   const items = computedOption('items', schema, {})
   
 
@@ -19,19 +25,34 @@ const select = function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
 
+  const {
+    items,
+  } = base(props, context, dependencies)
+
   // ============ DEPENDENCIES ============
 
   const isNative = dependencies.isNative
   const disabled = dependencies.disabled
   const input = dependencies.input
-  const { items } = base(props, context, dependencies)
 
   // ================ DATA ================
 
+  /**
+   * 
+   * 
+   * @type {array|object}
+   * @default {}
+   * @private
+   */
   const resolvedItems = ref(null)
 
   // ============== COMPUTED ==============
   
+  /**
+   * 
+   * 
+   * @type {array}
+   */
   const nativeItems = computed(() => {
     let nativeItems = []
     
@@ -62,6 +83,12 @@ const select = function(props, context, dependencies)
 
   // =============== METHODS ==============
 
+  /**
+   * 
+   * 
+   * @param {boolean} disable* 
+   * @returns {void} 
+   */
   const updateItems = (disable = true) => {
     if (!isNative.value) {
       input.value.resolveOptions()

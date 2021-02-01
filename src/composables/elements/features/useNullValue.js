@@ -4,12 +4,16 @@ const base = function(props, context, dependencies)
 {
   // ============== COMPUTED ===============
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const nullValue = computed(() => {
     return null
   })
   
   return {
-    // Computed
     nullValue,
   }
 }
@@ -23,7 +27,6 @@ const array = function(props, context, dependencies)
   })
   
   return {
-    // Computed
     nullValue,
   }
 }
@@ -41,7 +44,6 @@ const boolean = function(props, context, dependencies)
   })
   
   return {
-    // Computed
     nullValue,
   }
 }
@@ -63,7 +65,6 @@ const min = function(props, context, dependencies)
   })
   
   return {
-    // Computed
     nullValue,
   }
 }
@@ -87,7 +88,6 @@ const multilingual = function(props, context, dependencies)
   })
   
   return {
-    // Computed
     nullValue,
   }
 }
@@ -101,7 +101,6 @@ const object = function(props, context, dependencies)
   })
   
   return {
-    // Computed
     nullValue,
   }
 }

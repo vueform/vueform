@@ -8,6 +8,11 @@ const base = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {component}
+   */
   const layout = computed({
     get() {
       return markRaw(components.value.ElementLayout)
@@ -15,7 +20,6 @@ const base = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     layout,
   }
 }

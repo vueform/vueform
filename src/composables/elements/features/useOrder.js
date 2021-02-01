@@ -48,11 +48,8 @@ const base = function(props, context, dependencies, options)
   }
 
   return {
-    // Computed
     order,
     orderBy,
-
-    // Methods
     refreshOrderStore,
   }
 }

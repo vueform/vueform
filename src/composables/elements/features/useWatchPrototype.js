@@ -17,7 +17,8 @@ const base = function(props, context, dependencies)
     })
   }, { deep: true })
 
-  return {}
+  return {
+  }
 }
 
 export default base

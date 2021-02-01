@@ -7,9 +7,9 @@ const base = function (props, context, dependencies)
   /**
    * Triggered when the user creates a tag. Only gets fired if [`create`](#option-create) is `true`.
    *
-   * @public
-   * @event tag
-   * @param {string} searchQuery the current search query.
+   * @param {string} searchQuery* the current search query.
+   * @returns {void}
+   * @private
    */
   const handleTag = (searchQuery) => {
     fire('tag', searchQuery)

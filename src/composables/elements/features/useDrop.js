@@ -14,8 +14,19 @@ const base = function(props, context, dependencies)
   
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   * @default false
+   */
   const drop = computedOption('drop', schema, false)
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const canDrop = computed(() => {
     let div = document.createElement('div')
 
@@ -27,6 +38,12 @@ const base = function(props, context, dependencies)
 
   // =============== METHODS ==============
 
+  /**
+   * 
+   * @param {Event} e 
+   * @returns {void}
+   * @private 
+   */
   const handleDrop = (e) => {
     if (disabled.value) {
       return
@@ -50,6 +67,10 @@ const base = function(props, context, dependencies)
 
 const multifile = function(props, context, dependencies)
 {
+  const {
+    drop, canDrop
+  } = base(props, context, dependencies)
+
   // ============ DEPENDENCIES =============
 
   const add = dependencies.add
@@ -57,8 +78,6 @@ const multifile = function(props, context, dependencies)
   const isObject = dependencies.isObject
   const storeFile = dependencies.storeFile
   const accept = dependencies.accept
-
-  const { drop, canDrop } = base(props, context, dependencies)
 
   // =============== METHODS ==============
 

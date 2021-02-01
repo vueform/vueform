@@ -80,30 +80,58 @@ const base = function(props, context, dependencies, options = {})
     return data.value
   })
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const changed = computed(() => {
     return !_.isEqual(currentValue.value, previousValue.value)
   })
 
   // =============== METHODS ===============
 
+  /**
+   * 
+   * 
+   * @param {string|number} value* The value to be loaded.
+   * @param {boolean} format Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.
+   * @returns {void}
+   */
   const load = (val, format = false) => {
     let formatted = format ? formatLoad.value(val, form$.value) : val
 
     setValue(available.value && formatted !== undefined ? formatted : _.clone(nullValue.value))
   }
 
+  /**
+   * 
+   * 
+   * @param {string|number} value* The value to update the field with.
+   * @returns {void}
+   */
   const update = (val) => {
     setValue(val)
 
     updated()
   }
 
+  /**
+   * 
+   * 
+   * @returns {void}
+   */
   const clear = () => {
     setValue(_.clone(nullValue.value))
 
     updated()
   }
 
+  /**
+   * 
+   * 
+   * @returns {void}
+   */
   const reset = () => {
     setValue(_.clone(default_.value))
 
@@ -114,6 +142,12 @@ const base = function(props, context, dependencies, options = {})
     }
   }
 
+  /**
+   * 
+   * 
+   * @returns {void}
+   * @private
+   */
   const updated = () => {
     if (changed.value) {
       dirt()
@@ -126,23 +160,20 @@ const base = function(props, context, dependencies, options = {})
   }
 
   /**
-   * Prepares the element for submission.
+   * 
    *
-   * @public
    * @returns {void}
+   * @private
    */
   const prepare = async () => {}
 
   return {
-    // Computed
     data,
     filtered,
     formatData,
     formatLoad,
     submit,
     changed,
-
-    // Mehtods
     load,
     update,
     updated,
@@ -154,15 +185,6 @@ const base = function(props, context, dependencies, options = {})
 
 const date = function(props, context, dependencies)
 {
-  // ============ DEPENDENCIES =============
-
-  const form$ = dependencies.form$
-  const nullValue = dependencies.nullValue
-  const valueFormat = dependencies.valueFormat
-  const value = dependencies.value
-  const available = dependencies.available
-  const loadFormat = dependencies.loadFormat
-
   const {
     submit, formatData, formatLoad, data, filtered, changed,
     update, clear, reset, updated, prepare
@@ -178,6 +200,15 @@ const date = function(props, context, dependencies)
       value.value = val instanceof Date ? val : moment(val, valueFormat.value).toDate()
     }
   })
+
+  // ============ DEPENDENCIES =============
+
+  const form$ = dependencies.form$
+  const nullValue = dependencies.nullValue
+  const valueFormat = dependencies.valueFormat
+  const value = dependencies.value
+  const available = dependencies.available
+  const loadFormat = dependencies.loadFormat
 
   // =============== METHODS ===============
 
@@ -195,15 +226,12 @@ const date = function(props, context, dependencies)
   }
 
   return {
-    // Computed
     data,
     filtered,
+    changed,
     formatData,
     formatLoad,
     submit,
-    changed,
-
-    // Mehtods
     load,
     update,
     updated,
@@ -215,18 +243,9 @@ const date = function(props, context, dependencies)
 
 const dates = function(props, context, dependencies)
 {
-  // ============ DEPENDENCIES =============
-
-  const form$ = dependencies.form$
-  const nullValue = dependencies.nullValue
-  const valueFormat = dependencies.valueFormat
-  const value = dependencies.value
-  const available = dependencies.available
-  const loadFormat = dependencies.loadFormat
-
   const {
     submit, formatData, formatLoad, data, filtered, changed,
-    update, clear, reset, updated, prepare
+    update: baseUpdate, clear, reset, updated, prepare
   } = base(props, context, dependencies, {
     setValue: (val) => {
       if (_.isEmpty(val)) {
@@ -242,8 +261,25 @@ const dates = function(props, context, dependencies)
     }
   })
 
+  // ============ DEPENDENCIES =============
+
+  const form$ = dependencies.form$
+  const nullValue = dependencies.nullValue
+  const valueFormat = dependencies.valueFormat
+  const value = dependencies.value
+  const available = dependencies.available
+  const loadFormat = dependencies.loadFormat
+
   // =============== METHODS ===============
 
+  /**
+   * 
+   * 
+   * 
+   * @param {array} value* The value to be loaded.
+   * @param {boolean} format Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.
+   * @returns {void}
+   */
   const load = (val, format = false) => {
     let formatted = format ? formatLoad.value(val, form$.value) : val
 
@@ -259,16 +295,23 @@ const dates = function(props, context, dependencies)
     })
   }
 
+  /**
+   * 
+   * 
+   * @param {array} value* The value to update the field with.
+   * @returns {void}
+   */
+  const update = (val) => {
+    return baseUpdate(val)
+  }
+
   return {
-    // Computed
     data,
     filtered,
+    changed,
     formatData,
     formatLoad,
     submit,
-    changed,
-
-    // Mehtods
     load,
     update,
     updated,
@@ -278,53 +321,21 @@ const dates = function(props, context, dependencies)
   }
 }
 
-const group = function(props, context, dependencies)
+const object = function(props, context, dependencies)
 {
-  const { schema, name } = toRefs(props)
+  const { name } = toRefs(props)
+
+  const {
+    submit, data, formatData, formatLoad, prepare
+  } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
 
-  const { submit, update, clear, reset, prepare } = object(props, context, dependencies)
-
   const form$ = dependencies.form$
-  const children$ = dependencies.children$
-  const value = dependencies.value
   const available = dependencies.available
+  const children$ = dependencies.children$
 
   // ============== COMPUTED ===============
-
-  /**
-   * A function that formats data before gets merged with form `data`.
-   * 
-   * @type {function}
-   */
-  const formatData = computedOption('formatData', schema, (name, val, form$) => {
-    return val
-  })
-
-  /**
-   * A function that formats data before [.load](#method-load) to the element.
-   * 
-   * @type {function}
-   */
-  const formatLoad = computedOption('formatLoad', schema, (val, form$) => {
-    return val
-  })
-
-  /**
-   * An object containing the element `name` as a key and its `value` as value.
-   * 
-   * @type {object}
-   */
-  const data = computed(() => {
-    return formatData.value(name.value, value.value, form$.value)
-  })
-
-  /**
-   * A function that formats data before gets merged with form `data`.
-   * 
-   * @type {function}
-   */
   
   const filtered = computed(() => {
     if (!available.value || !submit.value) {
@@ -342,7 +353,109 @@ const group = function(props, context, dependencies)
 
   // =============== METHODS ===============
 
-  // Required because of different `formatLoad`
+  /**
+   * 
+   * 
+   * 
+   * @param {object} value* The value to be loaded.
+   * @param {boolean} format Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.
+   * @returns {void}
+   */
+  const load = (val, format = false) => {
+    let formatted = format ? formatLoad.value(val, form$.value) : val
+
+    _.each(children$.value, (element$) => {
+      element$.load(element$.flat ? formatted : formatted[element$.name], format)
+    })
+  }
+
+  /**
+   * 
+   * 
+   * @param {object} value* The value to update the field with.
+   * @returns {void}
+   */
+  const update = (val) => {
+    _.each(children$.value, (element$) => {
+      if (val[element$.name] === undefined && !element$.flat) {
+        return
+      }
+
+      element$.update(element$.flat ? val : val[element$.name])
+    })
+  }
+
+  const clear = () => {
+    _.each(children$.value, (element$) => {
+      element$.clear()
+    })
+  }
+
+  const reset = () => {
+    _.each(children$.value, (element$) => {
+      element$.reset()
+    })
+  }
+
+  return {
+    data,
+    filtered,
+    formatData,
+    formatLoad,
+    submit,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  }
+}
+
+const group = function(props, context, dependencies)
+{
+  const { schema, name } = toRefs(props)
+
+  const {
+    submit, update, clear, reset, prepare
+  } = object(props, context, dependencies)
+
+  // ============ DEPENDENCIES =============
+
+  const form$ = dependencies.form$
+  const children$ = dependencies.children$
+  const value = dependencies.value
+  const available = dependencies.available
+
+  // ============== COMPUTED ===============
+
+  const formatData = computedOption('formatData', schema, (name, val, form$) => {
+    return val
+  })
+
+  const formatLoad = computedOption('formatLoad', schema, (val, form$) => {
+    return val
+  })
+
+  const data = computed(() => {
+    return formatData.value(name.value, value.value, form$.value)
+  })
+
+  const filtered = computed(() => {
+    if (!available.value || !submit.value) {
+      return {}
+    }
+    
+    let filtered = {}
+
+    _.each(children$.value, (element$) => {
+      filtered = Object.assign({}, filtered, element$.filtered)
+    })
+
+    return formatData.value(name.value, filtered, form$.value)
+  })
+
+  // =============== METHODS ===============
+
   const load = (val, format = false) => {
     let formatted = format ? formatLoad.value(val, form$.value) : val
 
@@ -352,14 +465,11 @@ const group = function(props, context, dependencies)
   }
 
   return {
-    // Computed
     data,
     filtered,
     formatData,
     formatLoad,
     submit,
-
-    // Mehtods
     load,
     update,
     clear,
@@ -372,9 +482,11 @@ const list = function(props, context, dependencies, options)
 {
   const { schema, name } = toRefs(props)
 
-  // ============ DEPENDENCIES =============
+  const {
+    submit, data, formatData, formatLoad, changed, prepare
+  } = base(props, context, dependencies)
 
-  const { submit, data, formatData, formatLoad, changed, prepare } = base(props, context, dependencies)
+  // ============ DEPENDENCIES =============
 
   const form$ = dependencies.form$
   const instances = dependencies.instances
@@ -404,11 +516,6 @@ const list = function(props, context, dependencies, options)
   const defaultInitial = options.initial
 
   // ============== COMPUTED ===============
-  /**
-   * A function that formats data before gets merged with form `data`.
-   * 
-   * @type {function}
-   */
   
   const filtered = computed(() => {
     if (!available.value || !submit.value) {
@@ -460,7 +567,13 @@ const list = function(props, context, dependencies, options)
 
   // =============== METHODS ===============
 
-  // Inserts a new element with triggering change, dirting element and validating if validateOn contains 'change'
+  /**
+   * 
+   * 
+   * 
+   * @param {object|array|string|number|boolean} value  
+   * @returns {void}
+   */
   const add = (val = null) => {
     const index = insert(val)
 
@@ -472,7 +585,13 @@ const list = function(props, context, dependencies, options)
     return index
   }
 
-  // Inserts a new element without triggering change, validating or dirt
+  /**
+   * 
+   * 
+   * 
+   * @param {object|array|string|number|boolean} value  
+   * @returns {number}
+   */
   const insert = (val = null) => {
     const index = instances.value.length
 
@@ -500,6 +619,13 @@ const list = function(props, context, dependencies, options)
     return index
   }
   
+  /**
+   * 
+   * 
+   * 
+   * @param {number} index*   
+   * @returns {void}
+   */
   const remove = (index) => {
     fire('remove', children$.value[index], index)
 
@@ -572,6 +698,14 @@ const list = function(props, context, dependencies, options)
     })
   }
 
+  /**
+   * 
+   * 
+   * 
+   * @param {array} value  
+   * @returns {array}
+   * @private
+   */
   const orderValue = (val) => {
     if (!order.value && !orderBy.value) {
       return val
@@ -604,6 +738,13 @@ const list = function(props, context, dependencies, options)
     }
   }
 
+  /**
+   * 
+   * 
+   * 
+   * @returns {void}
+   * @private
+   */
   const handleAdd = () => {
     if (disabled.value) {
       return
@@ -615,9 +756,9 @@ const list = function(props, context, dependencies, options)
   /**
    * Triggered when the user removes a list item or `.remove()` method is invoked.
    *
-   * @public
-   * @param {number} index index of child to be removed.
-   * @event remove
+   * @param {number} index* Index of child to be removed.
+   * @returns {void}
+   * @private
    */
   const handleRemove = (index) => {
     if (disabled.value) {
@@ -630,8 +771,8 @@ const list = function(props, context, dependencies, options)
   /**
    * Sets initial instances when the element is initalized.
    * 
-   * @private 
    * @returns {void}
+   * @private 
    */
   const setInitialInstances = () => {
     let count = default_.value.length > initial.value ? default_.value.length : initial.value
@@ -648,36 +789,33 @@ const list = function(props, context, dependencies, options)
   }
 
   return {
-    // Data
+    filtered,
     initial,
     next,
-
-    // Computed
     data,
-    filtered,
     formatData,
     formatLoad,
     submit,
-
-    // Mehtods
     add,
     insert,
     remove,
     load,
     update,
-    updated,
     clear,
     reset,
-    prepare,
+    updated,
     handleAdd,
     handleRemove,
     setInitialInstances,
+    prepare,
   }
 }
 
 const multilingual = function(props, context, dependencies, options = {})
 {
-  const { name } = toRefs(props)
+  const {
+    submit, formatData, formatLoad, data, filtered, changed, reset, prepare
+  } = base(props, context, dependencies, options)
 
   // ============ DEPENDENCIES =============
 
@@ -693,7 +831,6 @@ const multilingual = function(props, context, dependencies, options = {})
   const fire = dependencies.fire
   const default_ = dependencies.default
   const nullValue = dependencies.nullValue
-  const { submit, formatData, formatLoad, data, filtered, changed, reset, prepare } = base(props, context, dependencies, options)
 
   // =============== PRIVATE ===============
 
@@ -754,101 +891,16 @@ const multilingual = function(props, context, dependencies, options = {})
   }
 
   return {
-    // Computed
     data,
     filtered,
-    formatData,
-    formatLoad,
-    submit,
     changed,
-
-    // Mehtods
-    load,
-    update,
-    updated,
-    clear,
-    reset,
-    prepare,
-  }
-}
-
-const object = function(props, context, dependencies)
-{
-  const { name } = toRefs(props)
-
-  // ============ DEPENDENCIES =============
-
-  const { submit, data, formatData, formatLoad, prepare } = base(props, context, dependencies)
-
-  const form$ = dependencies.form$
-  const available = dependencies.available
-  const children$ = dependencies.children$
-
-  // ============== COMPUTED ===============
-  /**
-   * A function that formats data before gets merged with form `data`.
-   * 
-   * @type {function}
-   */
-  
-  const filtered = computed(() => {
-    if (!available.value || !submit.value) {
-      return {}
-    }
-    
-    let filtered = {}
-
-    _.each(children$.value, (element$) => {
-      filtered = Object.assign({}, filtered, element$.filtered)
-    })
-
-    return formatData.value(name.value, filtered, form$.value)
-  })
-
-  // =============== METHODS ===============
-
-  const load = (val, format = false) => {
-    let formatted = format ? formatLoad.value(val, form$.value) : val
-
-    _.each(children$.value, (element$) => {
-      element$.load(element$.flat ? formatted : formatted[element$.name], format)
-    })
-  }
-
-  const update = (val) => {
-    _.each(children$.value, (element$) => {
-      if (val[element$.name] === undefined && !element$.flat) {
-        return
-      }
-
-      element$.update(element$.flat ? val : val[element$.name])
-    })
-  }
-
-  const clear = () => {
-    _.each(children$.value, (element$) => {
-      element$.clear()
-    })
-  }
-
-  const reset = () => {
-    _.each(children$.value, (element$) => {
-      element$.reset()
-    })
-  }
-
-  return {
-    // Computed
-    data,
-    filtered,
     formatData,
     formatLoad,
     submit,
-
-    // Mehtods
     load,
     update,
     clear,
+    updated,
     reset,
     prepare,
   }
@@ -856,24 +908,51 @@ const object = function(props, context, dependencies)
 
 const multifile = function(props, context, dependencies, options = {})
 {
-  // ============ DEPENDENCIES =============
-
-  const useList = list(props, context, dependencies, options)
-
-  delete useList.initial
+  const {
+    filtered,
+    next,
+    data,
+    formatData,
+    formatLoad,
+    submit,
+    add,
+    insert,
+    remove,
+    load,
+    update,
+    clear,
+    reset,
+    updated,
+    handleAdd,
+    handleRemove,
+    setInitialInstances,
+    prepare,
+  } = list(props, context, dependencies, options)
 
   return {
-    ...useList,
+    filtered,
+    next,
+    data,
+    formatData,
+    formatLoad,
+    submit,
+    add,
+    insert,
+    remove,
+    load,
+    update,
+    clear,
+    reset,
+    updated,
+    handleAdd,
+    handleRemove,
+    setInitialInstances,
+    prepare,
   }
 }
 
 const trix = function(props, context, dependencies)
 {
-  // ============ DEPENDENCIES =============
-
-  const input = dependencies.input
-  const value = dependencies.value
-
   const {
     submit, formatData, formatLoad, data, filtered, changed,
     load, update, clear, reset, updated, prepare
@@ -887,16 +966,18 @@ const trix = function(props, context, dependencies)
     }
   })
 
+  // ============ DEPENDENCIES =============
+
+  const input = dependencies.input
+  const value = dependencies.value
+
   return {
-    // Computed
     data,
     filtered,
+    changed,
     formatData,
     formatLoad,
     submit,
-    changed,
-
-    // Mehtods
     load,
     update,
     updated,
@@ -908,13 +989,6 @@ const trix = function(props, context, dependencies)
 
 const ttrix = function(props, context, dependencies)
 {
-  // ============ DEPENDENCIES =============
-
-  const input = dependencies.input
-  const model = dependencies.model
-  const value = dependencies.value
-  const language = dependencies.language
-
   const {
     submit, formatData, formatLoad, data, filtered, changed,
     load, update, clear, reset, updated, prepare
@@ -928,6 +1002,13 @@ const ttrix = function(props, context, dependencies)
     }
   })
 
+  // ============ DEPENDENCIES =============
+
+  const input = dependencies.input
+  const model = dependencies.model
+  const value = dependencies.value
+  const language = dependencies.language
+
   // ============== WATCHERS ==============
 
   watch(language, () => {
@@ -935,15 +1016,12 @@ const ttrix = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     data,
     filtered,
+    changed,
     formatData,
     formatLoad,
     submit,
-    changed,
-
-    // Mehtods
     load,
     update,
     updated,
@@ -956,10 +1034,10 @@ const ttrix = function(props, context, dependencies)
 export {
   date,
   dates,
+  object,
   group,
   list,
   multilingual,
-  object,
   multifile,
   trix,
   ttrix,

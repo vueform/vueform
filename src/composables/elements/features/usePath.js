@@ -15,6 +15,11 @@ const base = function(props, context, dependencies)
     return parent.value && parent.value.path ? parent.value.path + '.' + name.value : name.value
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const flat = computed(() => {
     return false
   })
@@ -29,7 +34,9 @@ const group = function (props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const { path } = base(props, context, dependencies)
+  const {
+    path
+  } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
 

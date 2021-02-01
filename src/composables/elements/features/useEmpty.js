@@ -33,11 +33,6 @@ const multilingual = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
-  /**
-    * Whether the element has no value filled in.
-    * 
-    * @type {boolean}
-    */
   const empty = computed(() => {
     return value.value[language.value] == nullValue.value[language.value] || value.value[language.value] === ''
   })
@@ -56,11 +51,6 @@ const array = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
-  /**
-    * Whether the element has no value filled in.
-    * 
-    * @type {boolean}
-    */
   const empty = computed(() => {
     return _.isEqual(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1 || value.value.length == 0
   })

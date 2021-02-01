@@ -8,12 +8,27 @@ const base = function (props, context, dependencies)
 
   // ================ DATA ================
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const request = ref(null)
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const axios = ref(null)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const uploading = computed(() => {
     return request.value !== null
   })
@@ -25,11 +40,8 @@ const base = function (props, context, dependencies)
   })
 
   return {
-    // Data
     request,
     axios,
-
-    // Computed
     uploading,
   }
 }

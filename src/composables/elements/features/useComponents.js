@@ -1,8 +1,8 @@
-import { computed, ref, toRefs } from 'composition-api'
+import { computed, toRefs } from 'composition-api'
 
 const base = function(props, context, dependencies)
 {
-  const { schema, name } = toRefs(props)
+  const { schema } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
@@ -27,7 +27,6 @@ const base = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     components,
   }
 }

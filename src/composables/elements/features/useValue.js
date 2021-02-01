@@ -58,7 +58,6 @@ const base = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     value,
     model,
     previousValue,
@@ -68,11 +67,14 @@ const base = function(props, context, dependencies)
 
 const checkbox = function(props, context, dependencies)
 {
+  const {
+    previousValue, currentValue
+  } = base(props, context, dependencies)
+
   // ============ DEPENDENCIES ============
 
   const trueValue = dependencies.trueValue
   const falseValue = dependencies.falseValue
-  const { previousValue, currentValue } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -119,10 +121,17 @@ const checkboxgroup = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES =============
 
-  const { previousValue, currentValue, model } = base(props, context, dependencies)
+  const {
+    previousValue, currentValue, model
+  } = base(props, context, dependencies)
 
   // ============== PRIVATE ================
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const toStringArray = (val) => {
     return _.map(val, v => String(v))
   }
@@ -145,7 +154,6 @@ const checkboxgroup = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     value,
     model,
     previousValue,
@@ -159,11 +167,17 @@ const date = function(props, context, dependencies)
 
   const valueFormat = dependencies.valueFormat
   const nullValue = dependencies.nullValue
-  const { currentValue, previousValue } = base(props, context, dependencies)
+  const {
+    currentValue, previousValue
+  } = base(props, context, dependencies)
 
   // ============== COMPUTED ===============
 
-  // Is always a Date instance
+  /**
+   * 
+   * 
+   * @private
+   */
   const model = computed({
     get() {
       return currentValue.value
@@ -178,6 +192,11 @@ const date = function(props, context, dependencies)
     }
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const value = computed({
     get() {
       // If model is empty or no need to convert return Date instance
@@ -200,7 +219,6 @@ const date = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     value,
     model,
     previousValue,
@@ -213,11 +231,18 @@ const dates = function(props, context, dependencies)
   // ============ DEPENDENCIES =============
 
   const valueFormat = dependencies.valueFormat
-  const { currentValue, previousValue } = date(props, context, dependencies)
+  const {
+    currentValue, previousValue
+  } = date(props, context, dependencies)
 
   // ============== COMPUTED ===============
 
   // Is always a Date instance
+  /**
+   * 
+   * 
+   * @private
+   */
   const model = computed({
     get() {
       return currentValue.value
@@ -238,6 +263,11 @@ const dates = function(props, context, dependencies)
     }
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const value = computed({
     get() {
       if (valueFormat.value === false) {
@@ -262,7 +292,6 @@ const dates = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     value,
     model,
     previousValue,
@@ -274,7 +303,9 @@ const list = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const { previousValue, currentValue } = base(props, context, dependencies)
+  const {
+    previousValue, currentValue
+  } = base(props, context, dependencies)
 
   const children$ = dependencies.children$
 
@@ -370,7 +401,6 @@ const multilingual = function(props, context, dependencies)
   })
 
   return {
-    // Computed
     value,
     model,
     previousValue,
@@ -382,10 +412,17 @@ const select = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const { previousValue, currentValue, value } = base(props, context, dependencies)
+  const {
+    previousValue, currentValue, value 
+  } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
   
+  /**
+   * 
+   * 
+   * @private
+   */
   const model = computed({
     get() {
       return value.value
@@ -443,7 +480,9 @@ const object = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const { previousValue, currentValue } = base(props, context, dependencies)
+  const {
+    previousValue, currentValue
+  } = base(props, context, dependencies)
 
   const children$ = dependencies.children$
 
@@ -487,7 +526,9 @@ const radio = function(props, context, dependencies)
 
   const radioValue = dependencies.radioValue
   const nullValue = dependencies.nullValue
-  const { previousValue, currentValue } = base(props, context, dependencies)
+  const {
+    previousValue, currentValue 
+  } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
@@ -538,6 +579,11 @@ const file = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
   
+  /**
+   * 
+   * 
+   * @private
+   */
   const value = computed({
     get() {
       return currentValue.value
@@ -569,6 +615,11 @@ const location = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
   
+  /**
+   * 
+   * 
+   * @private
+   */
   const value = computed({
     get() {
       return currentValue.value

@@ -3,7 +3,9 @@ import { nextTick } from 'composition-api'
 
 export const autogrow = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'autogrow', true, false)
+}
 
+export const rows = function (elementType, elementName, options) {
   testComputedOption(it, elementType, 'rows', 3, 5)
 }
 

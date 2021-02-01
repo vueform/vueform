@@ -15,7 +15,8 @@ const base = function(props, context, dependencies)
   /**
    * Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.
    *
-   * @public
+   * @returns {void}
+   * @private
    */
   const handleChange = () => {
     if (changed.value) {
@@ -35,18 +36,16 @@ const base = function(props, context, dependencies)
 
 const checkbox = function(props, context, dependencies)
 {
+  const {
+    handleChange: baseHandleChange
+  } = base(props, context, dependencies)
+
   // ============ DEPENDENCIES ============
 
   const model = dependencies.model
-  const { handleChange: baseHandleChange } = base(props, context, dependencies)
 
   // =============== METHODS ==============
 
-  /**
-   * Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.
-   *
-   * @public
-   */
   const handleChange = (e) => {
     model.value = e.target.checked
 
@@ -60,18 +59,16 @@ const checkbox = function(props, context, dependencies)
 
 const toggle = function(props, context, dependencies)
 {
+  const {
+    handleChange: baseHandleChange
+  } = base(props, context, dependencies)
+
   // ============ DEPENDENCIES ============
 
   const model = dependencies.model
-  const { handleChange: baseHandleChange } = base(props, context, dependencies)
 
   // =============== METHODS ==============
 
-  /**
-   * Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.
-   *
-   * @public
-   */
   const handleChange = (val) => {
     model.value = val
 

@@ -17,24 +17,24 @@ const date = function(props, context, dependencies)
   /**
    * Defines how date should be formatted in the input field.
    * 
-  * @type {string|false} 
-  * @default 'from locale'
+   * @type {string|false} 
+   * @default 'from locale'
     */
   const displayFormat = computedOption('displayFormat', schema, form$.value.__('laraform.elements.date.displayFormat'))
 
   /**
    * Defines how date should be formatted in `value`. If `false` Date object will be used.
    * 
-  * @type {string|false} 
-  * @default 'YYYY-MM-DD'
+   * @type {string|false} 
+   * @default 'YYYY-MM-DD'
     */
   const valueFormat = computedOption('valueFormat', schema, 'YYYY-MM-DD')
 
   /**
    * Defines how date is formatted when using `load` or `update` method or by directly setting `value`. When using "formatLoad" this should be the output format of that.
    * 
-  * @type {string} 
-  * @default 'YYYY-MM-DD'
+   * @type {string} 
+   * @default 'YYYY-MM-DD'
     */
   const loadFormat = computedOption('loadFormat', schema, 'YYYY-MM-DD')
 
@@ -113,7 +113,6 @@ const date = function(props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
-  * @ignore
   */
   const defaultOptions = computed(() => {
     return {
@@ -199,7 +198,6 @@ const dates = function(props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
-  * @ignore
   */
   const defaultOptions = computed(() => {
     return {
@@ -271,10 +269,17 @@ const datetime = function(props, context, dependencies)
   const disabled = dependencies.disabled
   const readonly = dependencies.readonly
 
-  const { disables, min, max } = date(props, context, dependencies)
+  const {
+    disables, min, max
+  } = date(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const seconds = computedOption('seconds', schema, false)
 
   /**
@@ -282,7 +287,6 @@ const datetime = function(props, context, dependencies)
   * 
   * @type {boolean} 
   * @default false
-  * @ignore
   */
   const hour24 = computedOption('hour24', schema, true)
 
@@ -324,7 +328,6 @@ const datetime = function(props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
-  * @ignore
   */
   const defaultOptions = computed(() => {
     return {
@@ -429,7 +432,6 @@ const select = function (props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
-  * @ignore
   */
   const defaultOptions = computed(() => {
     return {
@@ -471,7 +473,9 @@ const multiselect = function (props, context, dependencies)
 
   const form$ = dependencies.form$
 
-  const { native, search, isNative } = select(props, context, dependencies)
+  const {
+    native, search, isNative
+  } = select(props, context, dependencies)
 
 
   // ============== COMPUTED ==============
@@ -481,7 +485,6 @@ const multiselect = function (props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
-  * @ignore
   */
   const defaultOptions = computed(() => {
     return {
@@ -530,8 +533,18 @@ const tags = function (props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const create = computedOption('create', schema, false)
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const search = computed({
     get() {
       if (create.value) {
@@ -545,10 +558,20 @@ const tags = function (props, context, dependencies)
     }
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const native = computed(() => {
     return false
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const isNative = computed(() => {
     return native.value && !search.value
   })
@@ -558,7 +581,6 @@ const tags = function (props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
-  * @ignore
   */
   const defaultOptions = computed(() => {
     return {
@@ -605,22 +627,67 @@ const slider = function (props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const min = computedOption('min', schema, 0)
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const max = computedOption('max', schema, 100)
   
+  /**
+   * 
+   * 
+   * @private
+   */
   const step = computedOption('step', schema, 1)
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const tooltips = computedOption('tooltips', schema, true)
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const merge = computedOption('merge', schema, -1)
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const format = computedOption('format', schema, false)
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const orientation = computedOption('orientation', schema, 'horizontal')
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const direction = computedOption('direction', schema, 'ltr')
   
+  /**
+   * 
+   * 
+   * @private
+   */
   const height = computedOption('height', schema, '300px')
 
   /**
@@ -628,7 +695,6 @@ const slider = function (props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
-  * @ignore
   */
   const defaultOptions = computed(() => {
     return {
@@ -684,10 +750,17 @@ const time = function(props, context, dependencies)
   const disabled = dependencies.disabled
   const readonly = dependencies.readonly
 
-  const { disables, min, max } = date(props, context, dependencies)
+  const {
+    disables, min, max
+  } = date(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const seconds = computedOption('seconds', schema, false)
 
   /**
@@ -695,7 +768,6 @@ const time = function(props, context, dependencies)
   * 
   * @type {boolean} 
   * @default false
-  * @ignore
   */
   const hour24 = computedOption('hour24', schema, true)
 
@@ -731,7 +803,6 @@ const time = function(props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
-  * @ignore
   */
   const defaultOptions = computed(() => {
     return {
@@ -816,8 +887,18 @@ const toggle = function(props, context, dependencies)
   */
   const labels = computedOption('labels', schema, false)
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const width = computedOption('width', schema, 54)
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const height = computedOption('height', schema, 24)
   
   /**
@@ -828,6 +909,11 @@ const toggle = function(props, context, dependencies)
   */
   const speed = computedOption('speed', schema, 300)
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const colors = computedOption('colors', schema, {})
 
   /**
@@ -835,7 +921,6 @@ const toggle = function(props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
-  * @ignore
   */
   const defaultOptions = computed(() => {
     return {

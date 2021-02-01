@@ -4,7 +4,9 @@ const _ = require('lodash')
 const featuresPath = process.cwd() + '/src/composables/elements/features/'
 const outputPath = process.cwd() + '/api/features.js'
 
-const scanFiles = [1,4]
+const files = []
+const until = null
+let untilIndex = 1000
 
 class Generator
 {
@@ -16,31 +18,88 @@ class Generator
     return fs.readFileSync(featuresPath + fileName, 'UTF-8').split(/\r?\n/)
   }
 
-  getDocBlock(lines, i) {
-    let docs = {}
+  parseDocBlock(lines, i) {
+    let docs = {
+      public: true,
+    }
+    let params = []
 
     while(lines[i] && lines[i].match(/\/\*\*/) === null) {
       i--
 
       // @default
       if (lines[i].match(/@default/)) {
-        docs.default = lines[i].match(/@default\s*(.*)/)[1]
+        docs.default = lines[i].match(/@default\s?(.*)/)[1]
       } 
 
       // @type
       if (lines[i].match(/@type/)) {
-        docs.types = lines[i].match(/{([a-z|]*)}/)[1].split('|')
+        if (lines[i].match(/</)) {
+          docs.types = [[
+            lines[i].match(/{([a-z]*)/)[1],
+            lines[i].match(/<([a-zA-Z*]*)/)[1],
+          ]]
+        } else {
+          docs.types = lines[i].match(/{([a-zA-Z|]*)}/)[1].split('|')
+        }
       }
 
-      // @type
-      if (lines[i].match(/@return/)) {
-        docs.return = lines[i].match(/{([a-z]*)}/)[1]
+      // @values
+      if (lines[i].match(/@values/)) {
+        docs.values = lines[i].match(/@values (.*)/)[1].split('|')
+      }
+
+      // @param
+      if (lines[i].match(/@param/)) {
+        let types = lines[i].match(/{(.*)}/)[1].split('|')
+        let name = lines[i].match(/} ([a-zA-Z0-9_$]*)/)[1]
+        let required = lines[i].match(/} [a-zA-Z0-9_$]*\*/) !== null
+        let description = lines[i].match(/} [a-zA-Z0-9_$*]* (.*)/)[1]
+
+        params.push([name, {
+          types,
+          required,
+          description,
+        }])
+      }
+
+      // @returns
+      if (lines[i].match(/@returns/)) {
+        if (lines[i].match(/</)) {
+          docs.returns = [[
+            lines[i].match(/{([a-z]*)/)[1],
+            lines[i].match(/<([a-zA-Z*]*)/)[1],
+          ]]
+        } else {
+          docs.returns = lines[i].match(/{([a-z]*)}/)[1]
+        }
+      }
+
+      // @private
+      if (lines[i].match(/@private/)) {
+        docs.public = false
       }
 
       // description
       if (lines[i-1].match(/\/\*\*/) !== null) {
-        docs.description = lines[i].trim().replace(/^\*/, '').trim()
+        let l = i
+        docs.description = ''
+
+        while (lines[l].match(/\*\s?$/) === null) {
+          docs.description += lines[l].trim().replace(/^\*/, '').trim() + ' '
+          l++
+        }
+
+        docs.description = docs.description.trim()
       }
+    }
+    
+    if (params.length > 0) {
+      docs.params = {}
+
+      params.reverse().forEach((param) => {
+        docs.params[param[0]] = param[1]
+      })
     }
 
     return docs
@@ -48,23 +107,62 @@ class Generator
 
   hasDocBlock(lines, i) {
     return lines[i-1].trim().match(/^\*\//) !== null
-  } 
+  }
 
-  getExports(lines, i) {
-    var exports = []
-    i++
+  // Returns info from docblock in a structured way
+  parseInfo(propType, lines, i, regex, exports, variations, variation, parent, fileName) {
+    try {
+      let line = lines[i]
 
-    while(lines[i].match(/^\s\s}/) === null) {
-      var variable = lines[i].replace(/[,_]/,'').trim()
-      
-      if (variable) {
-        exports.push(variable)
+      let name = line.match(regex)[1].replace('_', '').trim()
+
+      if (!variations[variation][propType]) {
+        variations[variation][propType] = {}
       }
 
-      i++
-    }
+      if (exports[variation].indexOf(name) === -1) {
+        return
+      }
 
-    return exports
+      if (this.hasDocBlock(lines, i)) {
+          variations[variation][propType][name] = this.parseDocBlock(lines, i)
+      } else if (parent && variations[parent][propType] && variations[parent][propType][name] !== undefined) {
+        variations[variation][propType][name] = variations[parent][propType][name]
+      } else if (!parent && variations.base[propType] && variations.base[propType][name] !== undefined) {
+        variations[variation][propType][name] = variations.base[propType][name]
+      } else {
+        throw new Error(`DocBlock missing for: ${name.trim()} (${fileName}@${(i+1)})`)
+      }
+
+      return variations
+    } catch (e) {
+      console.log(propType, fileName+'@'+i)
+      throw new Error(e)
+    }
+  }
+
+  getExports(lines, i, fileName) {
+    try {
+      var exports = []
+      i++
+
+      while(lines[i].match(/^\s\s}/) === null) {
+        if (lines[i].match(/\/\//) === null && lines[i].match(/[^ ]+/) !== null) {
+          var variable = lines[i].match(/\s?([^:]+)/)[1].replace(/[,_]/,'').trim()
+          
+          if (variable) {
+            exports.push(variable)
+          }
+        }
+
+        i++
+      }
+
+      return exports
+    } catch (e) {
+      console.log(fileName+'@'+i)
+      throw new Error(e)
+    }
   }
 
   getDetails(lines, fileName) {
@@ -72,8 +170,16 @@ class Generator
     let variations = {}
     let variation
     let parent
-    let variationRegex = /const ([a-zA-Z0-9_]*) = function\(props, context/
-    let parentRegex = /} = ([a-zA-Z_]*)\(props, context/
+    let variationRegex = /const ([a-zA-Z0-9_]*) = function\s?\(props, context/
+    let parentRegex = /} = (?!use)([a-zA-Z_]*)\(props, context/
+
+    let collect = {
+      options: /const ([^ ]*)\s?=\s?computedOption\(/,
+      computed: /const ([^ ]*)\s?=\s?computed\(/,
+      methods: /const ([a-zA-Z0-9_$]*)\s?=\s?(async)?\s?\(/,
+      provide: /provide\('([a-zA-Z0-9_$]*)/,
+      data: [/const (.*)\s?=\s?ref/, /const \s?([a-zA-Z0-9]*)\s?=\s?toRefs\(context\.data/],
+    }
 
     // Get the name of variables that are being returned
     lines.forEach((line, i) => {
@@ -83,7 +189,7 @@ class Generator
       }
 
       if (line.match(/^\s\sreturn {/)) {
-        exports[variation] = this.getExports(lines, i)
+        exports[variation] = this.getExports(lines, i, fileName)
       }
     })
 
@@ -98,73 +204,37 @@ class Generator
         parent = line.match(parentRegex)[1]
       }
 
-      // Collect computed options
-      if (line.match(/computedOption\(/)) {
-        let name = line.match(/const ([^ ]*)/)[1]
+      Object.keys(collect).forEach((propType) => {
+        let regexes = collect[propType]
 
-        if (!variations[variation].options) {
-          variations[variation].options = {}
+        if (!Array.isArray(regexes)) {
+          regexes = [regexes]
         }
 
-        if (this.hasDocBlock(lines, i)) {
-          if (exports[variation].indexOf(name) !== -1) {
-            variations[variation].options[name] = this.getDocBlock(lines, i)
+        regexes.forEach((regex) => {
+          if (line.match(regex)) {
+            this.parseInfo(propType, lines, i, regex, exports, variations, variation, parent, fileName)
           }
-        } else if (parent && variations[parent].options && variations[parent].options[name] !== undefined) {
-          variations[variation].options[name] = variations[parent].options[name]
-        } else {
-          throw new Error(`DocBlock missing for: ${name} (${fileName}@${(i+1)})`)
-        }
-      }
-
-      // Collect computed props
-      if (line.match(/computed\(\(/)) {
-        let name = line.match(/const ([^ ]*)/)[1]
-
-        if (!variations[variation].computed) {
-          variations[variation].computed = {}
-        }
-
-        if (this.hasDocBlock(lines, i)) {
-          if (exports[variation].indexOf(name) !== -1) {
-            variations[variation].computed[name] = this.getDocBlock(lines, i)
-          }
-        } else if (parent && variations[parent].computed && variations[parent].computed[name] !== undefined) {
-          variations[variation].computed[name] = variations[parent].computed[name]
-        } else {
-          throw new Error(`DocBlock missing for: ${name} (${fileName}@${(i+1)})`)
-        }
-      }
-
-      // Collect methods
-      if (line.match(/const ([a-zA-Z0-9_$]*)\s*=\s*\(/)) {
-        let name = line.match(/const ([a-zA-Z0-9_$]*)\s*=\s*\(/)[1]
-
-        if (!variations[variation].methods) {
-          variations[variation].methods = {}
-        }
-
-        if (exports[variation].indexOf(name) !== -1) {
-          variations[variation].methods[name] = this.getDocBlock(lines, i)
-        }
-      }
+        })
+      })
 
       // Collect exported variables for non-base variations
-      if (variation !== 'base') {
+      if (variation !== 'base' && parent) {
         if (line.match(/^\s\sreturn {/)) {
           var variables = this.getExports(lines, i)
           var existingVariables = []
 
+          // Get explicitly defined variables
           Object.keys(variations[variation]).forEach((propType) => {
             Object.keys(variations[variation][propType]).forEach((v) => {
               existingVariables.push(v)
             })
           })
           
+          // Get exported variables and fill them in from parent if not explicity defined
           variables.forEach((variable) => {
             if (existingVariables.indexOf(variable) === -1) {
 
-          console.log(variable)
               Object.keys(variations[parent]).forEach((propType) => {
                 if (variations[parent][propType][variable] !== undefined) {
                   if (!variations[variation][propType]) {
@@ -176,7 +246,24 @@ class Generator
               })
             }
           })
+
+          // Copy provided variables from base
+          if (variations.base && variations.base.provide) {
+            variations[variation].provide = variations.base.provide
+          }
+
+          // Copy provided variables from parent
+          if (variations[parent] && variations[parent].provide) {
+            variations[variation].provide = variations[parent].provide
+          }
         }
+      }
+
+      // Copy named variations
+      if (line.match(/^const ([a-z_]*) = ([a-z_]*)$/)) {
+        let copies = line.match(/^const ([a-z_]*) = ([a-z_]*)$/)
+
+        variations[copies[1]] = variations[copies[2]]
       }
     })
 
@@ -189,7 +276,19 @@ class Generator
     this.files.forEach((fileName, i) => {
       let name = _.lowerFirst(fileName.replace('.js', '').replace(/^use/, ''))
 
-      if (i>scanFiles[1]-1||i<scanFiles[0]-1) return 
+      if (files.length>0&&files.indexOf(name) === -1) {
+        console.log(1)
+        return
+      }
+
+      if (until&&until.indexOf(name) !== -1) {
+        untilIndex = i
+      }
+
+      if (i > untilIndex) {
+        return
+      }
+
       features[name] = this.getDetails(this.getLines(fileName), fileName)
     })
 
@@ -197,7 +296,13 @@ class Generator
   }
 
   generate() {
-    let features = this.getFeatures()
+    let features
+
+    try {
+      features = this.getFeatures()
+    } catch (e) {
+      console.log(e)
+    }
 
     let contents = ''
 
@@ -212,55 +317,3 @@ class Generator
 let generator = new Generator()
 
 generator.generate()
-
-  // getVariations(lines) {
-  //   let variations = []
-
-  //   lines.forEach((line) => {
-  //     if (line.match(/export default base/)) {
-  //       variations.push('default')
-  //     }
-  //   })
-
-  //   lines.forEach((line, i) => {
-  //     if (line.match(/export {/)) {
-  //       while(lines[i].match('}') === null) {
-  //         i++
-  //         if(lines[i].match('}') !== null) return
-  //         variations.push(lines[i].replace(',','').replace('_', '').trim())
-  //       }
-  //     }
-  //   })
-
-  //   return variations
-  // }
-
-// function getDetails(lines, i) {
-//   while(lines[i].match(/\/\*\*/) === null) {
-
-
-//     i--
-//   }
-// }
-
-// function getFeaturesContent() {
-//   let i = 0
-//   files.forEach((file) => {
-//     if (i > 3) {
-//       return
-//     }
-
-//     let content = fs.readFileSync(featuresPath + file, 'UTF-8')
-//     let lines = content.split(/\r?\n/)
-
-//     lines.forEach((line, lineIndex) => {
-      
-//     })
-
-//     i++
-//   })
-// }
-
-// getFeaturesContent()
-
-// fs.writeFileSync('./features.js', getFeaturesContent())

@@ -1,7 +1,7 @@
 import computedOption from './../../../utils/computedOption'
 import { toRefs } from 'composition-api'
 
-export default function (props, context, dependencies)
+const base = function (props, context, dependencies)
 {
   const { schema } = toRefs(props)
 
@@ -15,15 +15,19 @@ export default function (props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const accept = computedOption('accept', schema, null)
 
   // =============== METHODS ==============
 
   /**
-   * Triggered when a file is selected by the user.
-   *
+   * 
+   * 
    * @private
-   * @returns {void}
    */
   const handleChange = (e) => {
     if (!e.target || !e.target.files || e.target.files.length == 0 || disabled.value) {
@@ -38,10 +42,9 @@ export default function (props, context, dependencies)
   }
 
   /**
-   * Triggered when an uploader is clicked.
-   *
+   * 
+   * 
    * @private
-   * @returns {void}
    */
   const handleClick = () => {
     if (disabled.value) {
@@ -57,3 +60,5 @@ export default function (props, context, dependencies)
     handleClick,
   }
 }
+
+export default base

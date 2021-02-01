@@ -1,7 +1,7 @@
 import computedOption from './../../../utils/computedOption'
 import { toRefs } from 'composition-api'
 
-const base = function useTrix (props, context, dependencies)
+const base = function (props, context, dependencies)
 {
   const { schema } = toRefs(props)
 

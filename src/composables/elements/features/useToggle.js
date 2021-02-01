@@ -11,7 +11,6 @@ const base = function(props, context, dependencies)
   /**
    * Checks the checkbox.
    *
-   * @public
    * @param {boolean} triggerChange whether the element should trigger `change` event
    * @returns {void}
    */
@@ -22,7 +21,6 @@ const base = function(props, context, dependencies)
   /**
    * Unhecks the checkbox.
    *
-   * @public
    * @param {boolean} triggerChange whether the element should trigger `change` event
    * @returns {void}
    */

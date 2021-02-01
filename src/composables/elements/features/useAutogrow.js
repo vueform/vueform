@@ -34,7 +34,7 @@ const base = function(props, context, dependencies)
   /**
    * Refreshes size.
    * 
-   * @return {void}
+   * @returns {void}
    */
   const autosize = () => {
     if (!autogrow.value) {
@@ -78,27 +78,15 @@ const base = function(props, context, dependencies)
 
 const multilingual = function(props, context, dependencies)
 {
+  const {
+    autogrow,
+    rows,
+    autosize,
+  } = base(props, context, dependencies)
+
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
-
-  // ============== EXTENDS ===============
-
-  const {
-    autosize
-  } = base(props, context, dependencies)
-
-  // ============== COMPUTED ==============
-
-  const autogrow = computedOption('autogrow', schema, true)
-
-  /**
-   * The `rows` attribute of the textarea custom.
-   * 
-   * @type {number}
-   * @default 3
-   */
-  const rows = computedOption('rows', schema, 3)
 
   // =============== HOOKS ================
 

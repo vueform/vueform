@@ -3,16 +3,25 @@ import states from './../../../utils/states'
 import countries from './../../../utils/countries'
 import normalize from './../../../utils/normalize'
 
-const list = function(props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   // ================ DATA ================
-  
-  const instances = ref([])
 
+  /**
+   * 
+   * 
+   * @type {array<Element>}
+   * @private
+   */
   const children$Array = ref([])
       
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {object<Element>}
+   */
   const children$ = computed(() => {
     let children$ = {}
 
@@ -26,11 +35,32 @@ const list = function(props, context, dependencies)
   // =============== METHODS ==============
 
   return {
-    // Data
+    children$Array,
+    children$,
+  }
+}
+
+const list = function(props, context, dependencies)
+{
+  const {
+    children$Array,
+    children$
+  } = base(props, context, dependencies)
+
+  // ================ DATA ================
+  
+  /**
+   * 
+   * 
+   * @type {array}
+   */
+  const instances = ref([])
+
+  // =============== METHODS ==============
+
+  return {
     instances,
     children$Array,
-
-    // Computed
     children$,
   }
 }
@@ -40,23 +70,14 @@ const object = function(props, context, dependencies, options = {})
   const { schema } = toRefs(props)
   const schemaName = options.schemaName || 'schema'
 
+  const {
+    children$Array,
+    children$
+  } = base(props, context, dependencies)
+
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
-
-  // ================ DATA ===============
-
-  const children$Array = ref([])
-
-  const children$ = computed(() => {
-    let children$ = {}
-
-    children$Array.value.forEach((e$) => {
-      children$[e$.name] = e$
-    })
-
-    return children$
-  })
 
   // ============== COMPUTED ==============
 
@@ -64,7 +85,7 @@ const object = function(props, context, dependencies, options = {})
    * Schema of child elements.
    * 
    * @type {object}
-   * @ignore
+   * @private
    */
   const children = computed({
     get() {
@@ -88,11 +109,8 @@ const object = function(props, context, dependencies, options = {})
   }, { flush: 'post' })
 
   return {
-    // Data
     children,
     children$Array,
-
-    // Computed
     children$,
   }
 }
@@ -107,17 +125,25 @@ const address = function(props, context, dependencies)
   const required = dependencies.required
   const path = dependencies.path
 
-  const { children$Array, children$ } = object(props, context, dependencies)
+  const {
+    children$Array,
+    children$
+  } = object(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {string}
+   * @default "address-*"
+   */
   const addressId = ref(`address-${Math.floor(Math.random() * 100000000)}`)
 
   /**
    * Fields of the address. By default has the following `text` type elements: `address`, `address2`, `zip`, `city`, `state`, `country`.
    * 
-   * @type {object} 
-   * @default {...}
+   * @type {object}
    */
   const fields = computed(() => {
     let fields = {
@@ -174,12 +200,6 @@ const address = function(props, context, dependencies)
     return fields
   })
 
-  /**
-   * Schema of child elements.
-   * 
-   * @type {object}
-   * @ignore
-   */
   const children = computed(() => {
     return fields.value
   })
@@ -197,7 +217,11 @@ const buttons = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const { children$Array, children$, children } = object(props, context, dependencies, {
+  const {
+    children$Array,
+    children$,
+    children
+  } = object(props, context, dependencies, {
     schemaName: 'buttons'
   })
 
@@ -217,3 +241,5 @@ export {
   address,
   buttons,
 }
+
+export default base

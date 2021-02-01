@@ -64,7 +64,7 @@ const base = function(props, context, dependencies)
   /**
    * 
    *
-   * @type {object}
+   * @type {object<Element>}
    */
   const el$ = computed(() => {
     return currentInstance.proxy
@@ -72,6 +72,11 @@ const base = function(props, context, dependencies)
 
   // ============== PROVIDES ==============
 
+  /**
+   * 
+   *
+   * @type {component<Element>}
+   */
   provide('el$', el$)
 
   // ================ HOOKS ===============
@@ -96,14 +101,12 @@ const base = function(props, context, dependencies)
 
 const list = function(props, context, dependencies)
 {
-  // ============== EXTENDS ===============
-
   const {
     el$,
     type,
     isStatic,
     isFileType,
-    isImageType
+    isImageType,
   } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
@@ -124,23 +127,16 @@ const list = function(props, context, dependencies)
 
 const file = function(props, context, dependencies)
 {
-  // ============== EXTENDS ===============
-
   const {
     el$,
     type,
     isStatic,
     isArrayType,
-    isImageType
+    isImageType,
   } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
-  /**
-   * Determines if the element's value is a file.
-   *
-   * @returns {boolean}
-   */
   const isFileType = computed(() => {
     return true
   })
@@ -157,8 +153,6 @@ const file = function(props, context, dependencies)
 
 const image = function(props, context, dependencies)
 {
-  // ============== EXTENDS ===============
-
   const {
     el$,
     type,

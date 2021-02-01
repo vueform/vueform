@@ -10,7 +10,7 @@ const base = function(props, context, dependencies)
   /**
   * The floating label of the element.
   * 
-  * @type {string} 
+  * @type {string}
   * @default null
   */
   const floating = computedOption('floating', schema, null)

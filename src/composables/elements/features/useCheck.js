@@ -10,8 +10,7 @@ const base = function(props, context, dependencies)
   /**
    * Checks a checkbox or checkboxes.
    *
-   * @public
-   * @param {arr|str|num} options key of one or more checkboxes to check.
+   * @param {array|string|number} items* key of one or more checkboxes to check.
    * @returns {void}
    */
   const check = (items) => {
@@ -35,8 +34,7 @@ const base = function(props, context, dependencies)
   /**
    * Unchecks a checkbox or checkboxes.
    *
-   * @public
-   * @param {arr|str|num} options key of one or more checkboxes to uncheck.
+   * @param {array|string|number} items* key of one or more checkboxes to uncheck.
    * @returns {void}
    */
   const uncheck = (items) => {
@@ -62,7 +60,6 @@ const base = function(props, context, dependencies)
   /**
    * Checks all checkboxes.
    *
-   * @public
    * @returns {void}
    */
   const checkAll = () => {
@@ -72,7 +69,6 @@ const base = function(props, context, dependencies)
   /**
    * Checks all checkboxes.
    *
-   * @public
    * @returns {void}
    */
   const uncheckAll = () => {

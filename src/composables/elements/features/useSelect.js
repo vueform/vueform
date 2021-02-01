@@ -28,7 +28,6 @@ const base = function (props, context, dependencies)
   /**
    * Selects an option.
    *
-   * @public
    * @param {str|num} option the key of option to select.
    * @returns {void}
    */
@@ -55,7 +54,6 @@ const base = function (props, context, dependencies)
   /**
    * Deselects an option.
    *
-   * @public
    * @param {str|num} option the key of option to deselect.
    * @returns {void}
    */

@@ -165,7 +165,6 @@ const base = function(props, context, dependencies)
    * 
    * Validates the element.
    * 
-   * @public
    * @returns {void}
    */
   const validate = async () => {
@@ -187,7 +186,6 @@ const base = function(props, context, dependencies)
   /**
    * Set the validated state to false.
    * 
-   * @public
    * @returns {void}
    */
   const resetValidators = () => {
@@ -201,7 +199,6 @@ const base = function(props, context, dependencies)
   /**
    * Flag the element as dirty.
    * 
-   * @public
    * @returns {void}
    */
   const dirt = () => {
@@ -211,7 +208,6 @@ const base = function(props, context, dependencies)
   /**
    * Flag the element as non dirty.
    * 
-   * @public
    * @returns {void}
    */
   const clean = () => {
@@ -251,12 +247,9 @@ const base = function(props, context, dependencies)
   }
 
   return {
-    // Data
     state,
     Validators,
     messageBag,
-
-    // Computed
     rules,
     messages,
     dirty,
@@ -268,8 +261,6 @@ const base = function(props, context, dependencies)
     errors,
     error,
     displayError,
-
-    // Methods
     validate,
     dirt,
     clean,
@@ -286,17 +277,12 @@ const list = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const { 
-    // Data
     state,
     Validators,
     messageBag,
-
-    //
     rules,
     messages,
     displayError,
-
-    // Methods
     dirt,
     initValidation,
   } = base(props, context, dependencies)
@@ -367,6 +353,11 @@ const list = function(props, context, dependencies)
       || pending.value || debouncing.value
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const validatorErrors = computed(() => {
     const validatorErrors = []
 
@@ -379,7 +370,11 @@ const list = function(props, context, dependencies)
     return validatorErrors
   })
 
-
+  /**
+   * 
+   * 
+   * @private
+   */
   const childrenErrors = computed(() => {
     const childrenErrors = []
 
@@ -396,6 +391,11 @@ const list = function(props, context, dependencies)
     return childrenErrors
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const baseErrors = computed(() => {
     return validatorErrors.value.concat(childrenErrors.value)
   })
@@ -424,7 +424,6 @@ const list = function(props, context, dependencies)
   /**
    * Validates the element.
    * 
-   * @public
    * @returns {void}
    */
   const validate = () => {
@@ -469,7 +468,6 @@ const list = function(props, context, dependencies)
   /**
    * Cleans the element.
    * 
-   * @public
    * @returns {void}
    */
   const clean = () => {
@@ -483,7 +481,6 @@ const list = function(props, context, dependencies)
   /**
    * Resets validators for children.
    * 
-   * @public
    * @returns {void}
    */
   const resetValidators = () => {
@@ -509,12 +506,9 @@ const list = function(props, context, dependencies)
   }
 
   return {
-    // Data
     state,
     Validators,
     messageBag,
-
-    // Computed
     rules,
     messages,
     dirty,
@@ -528,8 +522,6 @@ const list = function(props, context, dependencies)
     errors,
     error,
     displayError,
-
-    // Methods
     validate,
     validateValidators,
     validateChildren,
@@ -552,19 +544,36 @@ const multilingual = function(props, context, dependencies)
   const languages = dependencies.languages
   const language = dependencies.language
   const value = dependencies.value
-  const { messageBag, messages, displayError } = base(props, context, dependencies)
+  const {
+    messageBag, messages, displayError
+  } = base(props, context, dependencies)
 
   // ================ DATA ================
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const state = ref({
     dirty: {},
     validated: {},
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const Validators = ref({})
 
   // ============== COMPUTED ===============
   
+  /**
+   * 
+   * 
+   * @private
+   */
   const rules = computed(() => {
     var ruleList = {}
 
@@ -663,6 +672,11 @@ const multilingual = function(props, context, dependencies)
     return pending.value || debouncing.value
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const validatorErrors = computed(() => {
     var errors = []
 
@@ -677,10 +691,20 @@ const multilingual = function(props, context, dependencies)
     return errors
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const errors = computed(() => {
     return messageBag.value.errors
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const error = computed(() => {
     var error = null
 
@@ -711,7 +735,6 @@ const multilingual = function(props, context, dependencies)
    * 
    * Validates the element.
    * 
-   * @public
    * @returns {void}
    */
   const validate = async () => {
@@ -720,6 +743,11 @@ const multilingual = function(props, context, dependencies)
     })
   }
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const validateLanguage = (lang = language.value) => {
     if (form$.value.validation === false) {
       return
@@ -739,7 +767,6 @@ const multilingual = function(props, context, dependencies)
   /**
    * Set the validated state to false.
    * 
-   * @public
    * @returns {void}
    */
   const resetValidators = () => {
@@ -757,7 +784,6 @@ const multilingual = function(props, context, dependencies)
   /**
    * Flag the element as dirty.
    * 
-   * @public
    * @returns {void}
    */
   const dirt = () => {
@@ -767,13 +793,17 @@ const multilingual = function(props, context, dependencies)
   /**
    * Flag the element as non dirty.
    * 
-   * @public
    * @returns {void}
    */
   const clean = () => {
     state.value.dirty[language.value] = false
   }
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const initState = () => {
     var dirty = {}
     var validated = {}
@@ -792,6 +822,11 @@ const multilingual = function(props, context, dependencies)
     }
   }
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const initMessageBag = () => {
     messageBag.value = new form$.value.$laraform.services.messageBag(validatorErrors)
   }
@@ -833,12 +868,9 @@ const multilingual = function(props, context, dependencies)
   }
 
   return {
-    // Data
     state,
     Validators,
     messageBag,
-
-    // Computed
     rules,
     messages,
     dirty,
@@ -850,8 +882,6 @@ const multilingual = function(props, context, dependencies)
     errors,
     error,
     displayError,
-
-    // Methods
     validate,
     validateLanguage,
     dirt,
@@ -868,7 +898,6 @@ const object = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const { 
-    // Data
     messageBag,
   } = base(props, context, dependencies)
 
@@ -931,6 +960,11 @@ const object = function(props, context, dependencies)
     return _.some(children$.value, { available: true, busy: true })
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const childrenErrors = computed(() => {
     var errors = []
 
@@ -962,7 +996,6 @@ const object = function(props, context, dependencies)
   /**
    * Validates the element.
    * 
-   * @public
    * @returns {void}
    */
   const validate = () => {
@@ -974,7 +1007,6 @@ const object = function(props, context, dependencies)
   /**
    * Cleans the element.
    * 
-   * @public
    * @returns {void}
    */
   const clean = () => {
@@ -986,7 +1018,6 @@ const object = function(props, context, dependencies)
   /**
    * Resets validators for children.
    * 
-   * @public
    * @returns {void}
    */
   const resetValidators = () => {
@@ -995,15 +1026,17 @@ const object = function(props, context, dependencies)
     })
   }
   
+  /**
+   * 
+   * 
+   * @private
+   */
   const initMessageBag = (el$) => {
     messageBag.value = new form$.value.$laraform.services.messageBag(childrenErrors)
   }
 
   return {
-    // Data
     messageBag,
-
-    // Computed
     dirty,
     validated,
     invalid,
@@ -1011,8 +1044,6 @@ const object = function(props, context, dependencies)
     debouncing,
     busy,
     errors,
-
-    // Methods
     validate,
     clean,
     resetValidators,
@@ -1037,6 +1068,11 @@ const slider = function(props, context, dependencies)
 
   // =============== METHODS ==============
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const validate = async () => {
     if (!schema.value.rules) {
       return
@@ -1065,12 +1101,9 @@ const slider = function(props, context, dependencies)
   }
 
   return {
-    // Data
     state,
     Validators,
     messageBag,
-
-    // Computed
     rules,
     messages,
     dirty,
@@ -1082,8 +1115,6 @@ const slider = function(props, context, dependencies)
     errors,
     error,
     displayError,
-
-    // Methods
     validate,
     dirt,
     clean,
@@ -1126,7 +1157,6 @@ const file = function(props, context, dependencies)
   /**
    * Validates the element. File element will only validate for `min`, `max`, `between`, `size`, `mimetypes` and `mimes` rules before the temporary files are uploaded.
    * 
-   * @public
    * @returns {void}
    */
   const validate = async () => {
@@ -1152,12 +1182,9 @@ const file = function(props, context, dependencies)
   }
 
   return {
-    // Data
     state,
     Validators,
     messageBag,
-
-    // Computed
     rules,
     messages,
     dirty,
@@ -1169,8 +1196,6 @@ const file = function(props, context, dependencies)
     errors,
     error,
     displayError,
-
-    // Methods
     validate,
     dirt,
     clean,

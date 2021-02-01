@@ -10,7 +10,7 @@ const base = function(props, context, dependencies)
   /**
    * Description of the element.
    * 
-   * @type {string} 
+   * @type {string}
    * @default null
    */
   const description = computedOption('description', schema, null)

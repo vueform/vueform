@@ -1,7 +1,7 @@
 import computedOption from './../../../utils/computedOption'
 import { toRefs } from 'composition-api'
 
-export default function (props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   const { schema } = toRefs(props)
 
@@ -13,6 +13,7 @@ export default function (props, context, dependencies)
    * [`loadFormat`](#option-loadFormat) it should be the key in the **formatted** object. Default: "formatted_address".
    * 
    * @type {string}
+   * @default "formatted_address"
    */
   const displayKey = computedOption('displayKey', schema, 'formatted_address')
 
@@ -20,3 +21,5 @@ export default function (props, context, dependencies)
     displayKey,
   }
 }
+
+export default base

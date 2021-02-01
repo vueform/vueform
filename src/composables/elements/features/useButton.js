@@ -11,24 +11,85 @@ const base = function (props, context, dependencies)
   
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {string}
+   * @default ""
+   */
   const buttonLabel = computedOption('buttonLabel', schema, '')
 
+  /**
+   * 
+   * 
+   * @type {string}
+   * @values "submit"|"anchor"|"button"
+   * @default "button"
+   */
   const buttonType = computedOption('buttonType', schema, 'button', ['submit', 'anchor', 'button'])
 
+  /**
+   * 
+   * 
+   * @type {string|array|object}
+   * @default null
+   */
   const buttonClass = computedOption('buttonClass', schema, null)
 
+  /**
+   * 
+   * 
+   * @type {function}
+   * @default false
+   */
   const disabled = computedOption('disabled', schema, false)
 
+  /**
+   * 
+   * 
+   * @type {function}
+   * @default false
+   */
   const loading = computedOption('loading', schema, false)
 
+  /**
+   * 
+   * 
+   * @type {string}
+   * @default null
+   */
   const href = computedOption('href', schema, null)
 
+  /**
+   * 
+   * 
+   * @type {string}
+   * @default "_self"
+   */
   const target = computedOption('target', schema, '_self')
 
+  /**
+   * 
+   * 
+   * @type {string}
+   * @default "left"
+   */
   const align = computedOption('align', schema, 'left')
 
+  /**
+   * 
+   * 
+   * @type {function}
+   * @default null
+   */
   const onClick = computedOption('onClick', schema, null)
 
+  /**
+   * 
+   * 
+   * @type {component<FormButton>}
+   * @private
+   */
   const buttonComponent = computed(() => {
     if (schema.value.component) {
       return schema.value.component        
@@ -51,6 +112,12 @@ const base = function (props, context, dependencies)
     }
   })
 
+  /**
+   * 
+   * 
+   * @type {object}
+   * @private
+   */
   const button = computed(() => {
     return {
       label: buttonLabel.value,

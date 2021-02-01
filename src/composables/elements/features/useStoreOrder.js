@@ -16,7 +16,6 @@ const base = function(props, context, dependencies, options)
   const storeOrder = computedOption('storeOrder', schema, null)
 
   return {
-    // Computed
     storeOrder,
   }
 }

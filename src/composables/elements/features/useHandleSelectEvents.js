@@ -9,9 +9,9 @@ const base = function (props, context, dependencies)
   /**
    * Triggered when the user selects an option using non-native element.
    *
-   * @public
-   * @event select
-   * @param {object} option the selected option object.
+   * @param {object} option* the selected option object.
+   * @returns {void}
+   * @private
    */
   const handleSelect = (option) => {
     fire('select', option)
@@ -20,9 +20,9 @@ const base = function (props, context, dependencies)
   /**
    * Triggered when the user deselects an option using non-native element. Does not trigger when an *other* element gets selected.
    *
-   * @public
-   * @event remove
-   * @param {object} option the deselected option object.
+   * @param {object} option* the deselected option object.
+   * @returns {void}
+   * @private
    */
   const handleDeselect = (option) => {
     fire('deselect', option)
@@ -31,9 +31,9 @@ const base = function (props, context, dependencies)
   /**
    * Triggered when the user changes the search criteria using non-native element.
    *
-   * @public
-   * @event searchChange
-   * @param {string} searchQuery the current search query.
+   * @param {string} searchQuery* the current search query.
+   * @returns {void}
+   * @private
    */
   const handleSearchChange = (searchQuery) => {
     fire('searchChange', searchQuery)
@@ -42,8 +42,8 @@ const base = function (props, context, dependencies)
   /**
    * Triggered when the option list is opened using non-native element.
    *
-   * @public
-   * @event open
+   * @returns {void}
+   * @private
    */
   const handleOpen = () => {
     fire('open')
@@ -52,8 +52,9 @@ const base = function (props, context, dependencies)
   /**
    * Triggered when the option list is closed using non-native element.
    *
-   * @public
    * @event close
+   * @returns {void}
+   * @private
    */
   const handleClose = () => {
     fire('close')
@@ -62,17 +63,13 @@ const base = function (props, context, dependencies)
   /**
    * Triggered when the user creates a tag using non-native element.
    *
+   * @param {string} searchQuery* the current search query.
+   * @returns {void}
    * @private
-   * @event tag
-   * @param {string} searchQuery the current search query.
    */
   const handleTag = (searchQuery) => {
     // unimplemented
   }
-
-
-  // ============== WATCHERS ==============
-  
 
   // =============== HOOKS ================
 

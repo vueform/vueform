@@ -64,7 +64,6 @@ const base = function (props, context, dependencies, options_ = {})
   * 
   * @type {object} 
   * @default {}
-  * @ignore
   */
   const defaultOptions = computed(() => {
     let providers = {
@@ -102,7 +101,6 @@ const base = function (props, context, dependencies, options_ = {})
   /**
    * Handles location service's address change.
    *
-   * @public
    * @param {object} data an object containing address data
    * @param {object} raw an object containing raw address data (based on provider)
    */
@@ -116,7 +114,6 @@ const base = function (props, context, dependencies, options_ = {})
   /**
    * Initalizes location service.
    *
-   * @public
    * @returns {void}
    */
   const initLocationService = () => {
@@ -165,7 +162,15 @@ const location = function (props, context, dependencies, options = {})
   const displayKey = dependencies.displayKey
   const input = dependencies.input
 
-  const useBase = base(props, context, dependencies, options)
+  const {
+    locationService,
+    location,
+    provider,
+    defaultOptions,
+    options,
+    handleAddressChange,
+    initLocationService
+  } = base(props, context, dependencies, options)
   
   // =============== HOOKS ================
 
@@ -178,7 +183,13 @@ const location = function (props, context, dependencies, options = {})
   })
 
   return {
-    ...useBase,
+    locationService,
+    location,
+    provider,
+    defaultOptions,
+    options,
+    handleAddressChange,
+    initLocationService
   }
 }
 
@@ -194,7 +205,6 @@ const address = function (props, context, dependencies)
   /**
    * Updates fields with address data.
    *
-   * @public
    * @param {object} data an object containing address data
    */
   const updateFields = (data) => {
@@ -226,7 +236,6 @@ const address = function (props, context, dependencies)
   /**
    * Handles location service's address change.
    *
-   * @public
    * @param {object} data an object containing address data
    * @param {object} raw an object containing raw address data (based on provider)
    */
@@ -237,7 +246,9 @@ const address = function (props, context, dependencies)
 
   // ============ DEPENDENCIES ============
 
-  const { locationService, location, provider, defaultOptions, options, initLocationService } = base(props, context, dependencies, {
+  const {
+    locationService, location, provider, defaultOptions, options, initLocationService
+  } = base(props, context, dependencies, {
     input: computed(() => {
       return document.getElementById(fields.value.address.id)
     }),

@@ -6,7 +6,12 @@ const base = function (props, context, dependencies)
   
   // ============== METHODS ===============
 
-  
+  /**
+   * 
+   * 
+   * @returns {component<FormButton>}
+   * @private
+   */
   const component = (button) => {
     if (button.component) {
       return button.component        
