@@ -41,6 +41,7 @@ const base = function (props, context, dependencies, options_ = {})
    * The Places API provider to use.
    * 
    * @type {string}
+   * @option
    */
   const provider = computed({
     get() {
@@ -86,6 +87,7 @@ const base = function (props, context, dependencies, options_ = {})
   * 
   * @type {object} 
   * @default {}
+  * @option
   */
   const options = computed({
     get() {

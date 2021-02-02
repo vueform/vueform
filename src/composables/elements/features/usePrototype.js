@@ -15,7 +15,7 @@ const base = function(props, context, dependencies)
   const prototype = computed(() => {
     return isObject.value
       ? Object.assign({}, schema.value.object, {type: 'object'})
-      : schema.value.element
+      : schema.value.element || {}
   })
 
   /**

@@ -1,4 +1,5 @@
 import { computed, toRefs, ref, watch } from 'composition-api'
+import computedOption from './../../../utils/computedOption'
 import states from './../../../utils/states'
 import countries from './../../../utils/countries'
 import normalize from './../../../utils/normalize'
@@ -68,7 +69,7 @@ const list = function(props, context, dependencies)
 const object = function(props, context, dependencies, options = {})
 {
   const { schema } = toRefs(props)
-  const schemaName = options.schemaName || 'schema'
+  const schemaName = options.schemaName || 'elements'
 
   const {
     children$Array,
@@ -80,6 +81,13 @@ const object = function(props, context, dependencies, options = {})
   const form$ = dependencies.form$
 
   // ============== COMPUTED ==============
+
+  /**
+   * 
+   * @type {object}
+   * @private
+   */
+  const elements = computedOption('elements', schema, {})
 
   /**
    * Schema of child elements.
@@ -109,6 +117,7 @@ const object = function(props, context, dependencies, options = {})
   }, { flush: 'post' })
 
   return {
+    elements,
     children,
     children$Array,
     children$,
@@ -126,6 +135,7 @@ const address = function(props, context, dependencies)
   const path = dependencies.path
 
   const {
+    elements,
     children$Array,
     children$
   } = object(props, context, dependencies)
@@ -205,6 +215,7 @@ const address = function(props, context, dependencies)
   })
 
   return {
+    elements,
     children$Array,
     children$,
     children,
@@ -215,7 +226,7 @@ const address = function(props, context, dependencies)
 
 const buttons = function(props, context, dependencies)
 {
-  // ============ DEPENDENCIES ============
+  const { schema } = toRefs(props)
 
   const {
     children$Array,
@@ -225,7 +236,17 @@ const buttons = function(props, context, dependencies)
     schemaName: 'buttons'
   })
 
+  // ============== COMPUTED ==============
+
+  /**
+   * 
+   * 
+   * @private
+   */
+  const buttons = computedOption('buttons', schema, {})
+
   return {
+    buttons,
     children$Array,
     children$,
     children,

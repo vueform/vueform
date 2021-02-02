@@ -167,6 +167,19 @@ class Generator
     }
   }
 
+  isOption(lines, i) {
+    let isOption = false
+
+    while(lines[i] && lines[i].match(/\/\*\*/) === null) {
+      i--
+      if (lines[i] && lines[i].match('@option')) {
+        isOption = true
+      }
+    }
+
+    return isOption
+  }
+
   getDetails(lines, fileName) {
     let exports = {}
     let variations = {}
@@ -211,6 +224,11 @@ class Generator
 
         if (!Array.isArray(regexes)) {
           regexes = [regexes]
+        }
+
+        // Override propType if @option is defined
+        if (propType !== 'options' && this.isOption(lines, i)) {
+          propType = 'options'
         }
 
         regexes.forEach((regex) => {
@@ -279,7 +297,6 @@ class Generator
       let name = _.lowerFirst(fileName.replace('.js', '').replace(/^use/, ''))
 
       if (files.length>0&&files.indexOf(name) === -1) {
-        console.log(1)
         return
       }
 
@@ -310,7 +327,6 @@ class Generator
 
     contents += 'export default '
     contents += JSON.stringify(features, null, 2)
-    contents += ''
 
     fs.writeFileSync(this.outputPath, contents)
   }

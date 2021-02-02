@@ -64,21 +64,21 @@ const base = function(props, context, dependencies, options = {})
   /**
    * Text or HTML to be placed before the field. If `before` slot is provided this will not appear.
    * 
-   * @type {string}
+   * @type {component}
    */
   const before = computedOption('before', schema, null)
 
   /**
    * Text or HTML to be placed between the field and it's description (if any). If `between` slot is provided this will not appear.
    * 
-   * @type {string}
+   * @type {component}
    */
   const between = computedOption('between', schema, null)
 
   /**
    * Text or HTML to be placed after the field's error message (if any). If `after` slot is provided this will not appear.
    * 
-   * @type {string}
+   * @type {component}
    */
   const after = computedOption('after', schema, null)
 
@@ -86,6 +86,7 @@ const base = function(props, context, dependencies, options = {})
    * Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.
    * 
    * @type {object}
+   * @option
    */
   const slots = computed({
     get() {

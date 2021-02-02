@@ -78,7 +78,9 @@ export default function useCheckbox(props, context) {
     form$: form$.form$,
     descriptor: schema,
   }, {
-    events: ['change'],
+    events: [
+      'change'
+    ],
   })
 
   const data = useData(props, context, {
@@ -129,6 +131,11 @@ export default function useCheckbox(props, context) {
   const slots = useSlots(props, context, {
     form$: form$.form$,
     components: components.components,
+  }, {
+    slots: [
+      'label', 'info', 'description', 'error',
+      'message', 'before', 'between', 'after'
+    ]
   })
 
   const handleChange = useHandleChange(props, context, {

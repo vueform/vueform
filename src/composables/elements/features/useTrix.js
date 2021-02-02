@@ -31,7 +31,7 @@ const base = function (props, context, dependencies)
   * Endpoint to be called to upload attachments. Defaults to config's `config.endpoints.elements`<br>`.trix.attachment`.
   * 
   * @type {string}
-  * @default '...'
+  * @default "..."
   */
   const endpoint = computedOption('endpoint', schema, form$.value.$laraform.endpoints.elements.trix.attachment)
 

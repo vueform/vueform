@@ -21,8 +21,13 @@
     "types": "types/laraform.d.ts",
     "scripts": {
         "dev": "cross-env node_modules/webpack/bin/webpack.js --progress --config webpack.config.js --watch",
-        "test-vue2": "VUE=2 jest --watchAll --verbose --config=jest/jest.config.vue2.js",
-        "test-vue3": "VUE=3 jest --watchAll --verbose --config=jest/jest.config.vue3.js"
+        "test:vue2": "VUE=2 jest --watchAll --verbose --config=jest/jest.config.vue2.js",
+        "test:vue3": "VUE=3 jest --watchAll --verbose --config=jest/jest.config.vue3.js",
+        "generate:all": "npm run generate:elements; npm run generate:features:elements; npm run generate:features:components; npm run generate:fields",
+        "generate:fields": "npx babel-node api/generators/fields/index.js --presets @babel/preset-env",
+        "generate:elements": "npx babel-node api/generators/elements/index.js --presets @babel/preset-env",
+        "generate:features:elements": "npx babel-node api/generators/features/elements.js --presets @babel/preset-env",
+        "generate:features:components": "npx babel-node api/generators/features/components.js --presets @babel/preset-env"
     },
     "devDependencies": {
         "@babel/core": "^7.2.2",

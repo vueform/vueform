@@ -143,18 +143,6 @@ export default {
           ],
           "description": ""
         }
-      },
-      "provide": {
-        "el$": {
-          "public": true,
-          "types": [
-            [
-              "component",
-              "Element"
-            ]
-          ],
-          "description": ""
-        }
       }
     },
     "list": {
@@ -196,18 +184,6 @@ export default {
             "boolean"
           ],
           "description": "Determines if the element's value is an image."
-        }
-      },
-      "provide": {
-        "el$": {
-          "public": true,
-          "types": [
-            [
-              "component",
-              "Element"
-            ]
-          ],
-          "description": ""
         }
       },
       "options": {
@@ -262,18 +238,6 @@ export default {
           "description": "Determines if the element's value is an image."
         }
       },
-      "provide": {
-        "el$": {
-          "public": true,
-          "types": [
-            [
-              "component",
-              "Element"
-            ]
-          ],
-          "description": ""
-        }
-      },
       "options": {
         "type": {
           "public": true,
@@ -324,18 +288,6 @@ export default {
             "boolean"
           ],
           "description": "Determines if the element's value is an array."
-        }
-      },
-      "provide": {
-        "el$": {
-          "public": true,
-          "types": [
-            [
-              "component",
-              "Element"
-            ]
-          ],
-          "description": ""
         }
       },
       "options": {
@@ -390,18 +342,6 @@ export default {
           "description": "Determines if the element's value is an image."
         }
       },
-      "provide": {
-        "el$": {
-          "public": true,
-          "types": [
-            [
-              "component",
-              "Element"
-            ]
-          ],
-          "description": ""
-        }
-      },
       "options": {
         "type": {
           "public": true,
@@ -452,18 +392,6 @@ export default {
             "boolean"
           ],
           "description": "Determines if the element's value is an image."
-        }
-      },
-      "provide": {
-        "el$": {
-          "public": true,
-          "types": [
-            [
-              "component",
-              "Element"
-            ]
-          ],
-          "description": ""
         }
       },
       "options": {
@@ -518,18 +446,6 @@ export default {
           "description": "Determines if the element's value is an image."
         }
       },
-      "provide": {
-        "el$": {
-          "public": true,
-          "types": [
-            [
-              "component",
-              "Element"
-            ]
-          ],
-          "description": ""
-        }
-      },
       "options": {
         "type": {
           "public": true,
@@ -582,18 +498,6 @@ export default {
           "description": "Determines if the element's value is an image."
         }
       },
-      "provide": {
-        "el$": {
-          "public": true,
-          "types": [
-            [
-              "component",
-              "Element"
-            ]
-          ],
-          "description": ""
-        }
-      },
       "options": {
         "type": {
           "public": true,
@@ -644,18 +548,6 @@ export default {
             "boolean"
           ],
           "description": "Determines if the element's value is an image."
-        }
-      },
-      "provide": {
-        "el$": {
-          "public": true,
-          "types": [
-            [
-              "component",
-              "Element"
-            ]
-          ],
-          "description": ""
         }
       },
       "options": {
@@ -925,6 +817,15 @@ export default {
       }
     },
     "object": {
+      "options": {
+        "elements": {
+          "public": false,
+          "types": [
+            "object"
+          ],
+          "description": ""
+        }
+      },
       "computed": {
         "children": {
           "public": false,
@@ -1003,9 +904,24 @@ export default {
           ],
           "description": ""
         }
+      },
+      "options": {
+        "elements": {
+          "public": false,
+          "types": [
+            "object"
+          ],
+          "description": ""
+        }
       }
     },
     "buttons": {
+      "options": {
+        "buttons": {
+          "public": false,
+          "description": ""
+        }
+      },
       "data": {
         "children$Array": {
           "public": false,
@@ -1039,6 +955,15 @@ export default {
       }
     },
     "group": {
+      "options": {
+        "elements": {
+          "public": false,
+          "types": [
+            "object"
+          ],
+          "description": ""
+        }
+      },
       "computed": {
         "children": {
           "public": false,
@@ -1099,15 +1024,6 @@ export default {
             "string"
           ],
           "description": "Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object)."
-        }
-      },
-      "computed": {
-        "mainClass": {
-          "public": true,
-          "types": [
-            "string"
-          ],
-          "description": "Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object)."
         },
         "classes": {
           "public": true,
@@ -1116,17 +1032,8 @@ export default {
           ],
           "description": "Returns the final classes of the components within the element."
         }
-      }
-    },
-    "list": {
+      },
       "computed": {
-        "classes": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`."
-        },
         "mainClass": {
           "public": true,
           "types": [
@@ -1134,8 +1041,17 @@ export default {
           ],
           "description": "Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object)."
         }
-      },
+      }
+    },
+    "list": {
       "options": {
+        "classes": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`."
+        },
         "class": {
           "public": true,
           "default": "\"\"",
@@ -1151,6 +1067,15 @@ export default {
             "object"
           ],
           "description": "Classes to be added to components within the element. Eg. `addClasses: { ElementLabel: { label: 'my-label-class' } }` will add `my-label-class` to `ElementLabel`'s `label` class list."
+        }
+      },
+      "computed": {
+        "mainClass": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object)."
         }
       },
       "data": {
@@ -1164,7 +1089,7 @@ export default {
       }
     },
     "file": {
-      "computed": {
+      "options": {
         "classes": {
           "public": true,
           "types": [
@@ -1172,15 +1097,6 @@ export default {
           ],
           "description": "Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`."
         },
-        "mainClass": {
-          "public": true,
-          "types": [
-            "string"
-          ],
-          "description": "Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object)."
-        }
-      },
-      "options": {
         "class": {
           "public": true,
           "default": "\"\"",
@@ -1196,6 +1112,15 @@ export default {
             "object"
           ],
           "description": "Classes to be added to components within the element. Eg. `addClasses: { ElementLabel: { label: 'my-label-class' } }` will add `my-label-class` to `ElementLabel`'s `label` class list."
+        }
+      },
+      "computed": {
+        "mainClass": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object)."
         }
       },
       "data": {
@@ -1211,7 +1136,7 @@ export default {
   },
   "columns": {
     "base": {
-      "computed": {
+      "options": {
         "columns": {
           "public": true,
           "types": [
@@ -1224,7 +1149,7 @@ export default {
   },
   "components": {
     "base": {
-      "computed": {
+      "options": {
         "components": {
           "public": true,
           "types": [
@@ -1755,14 +1680,6 @@ export default {
           ],
           "description": "An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`."
         },
-        "initial": {
-          "public": true,
-          "default": "1",
-          "types": [
-            "number"
-          ],
-          "description": "Initial number of child instances."
-        },
         "next": {
           "public": true,
           "types": [
@@ -1776,6 +1693,38 @@ export default {
             "object"
           ],
           "description": "An object containing the element `name` as a key and its `value` as value."
+        }
+      },
+      "options": {
+        "initial": {
+          "public": true,
+          "default": "1",
+          "types": [
+            "number"
+          ],
+          "description": "Initial number of child instances."
+        },
+        "formatData": {
+          "public": true,
+          "types": [
+            "function"
+          ],
+          "description": "A function that formats data before gets merged with form `data`."
+        },
+        "formatLoad": {
+          "public": true,
+          "types": [
+            "function"
+          ],
+          "description": "A function that formats data before [.load](#method-load) to the element."
+        },
+        "submit": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value should be submitted."
         }
       },
       "methods": {
@@ -1909,30 +1858,6 @@ export default {
           "public": false,
           "returns": "void",
           "description": ""
-        }
-      },
-      "options": {
-        "formatData": {
-          "public": true,
-          "types": [
-            "function"
-          ],
-          "description": "A function that formats data before gets merged with form `data`."
-        },
-        "formatLoad": {
-          "public": true,
-          "types": [
-            "function"
-          ],
-          "description": "A function that formats data before [.load](#method-load) to the element."
-        },
-        "submit": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value should be submitted."
         }
       }
     },
@@ -2471,7 +2396,7 @@ export default {
       }
     },
     "date": {
-      "computed": {
+      "options": {
         "default": {
           "public": true,
           "types": [
@@ -2483,7 +2408,7 @@ export default {
       }
     },
     "dates": {
-      "computed": {
+      "options": {
         "default": {
           "public": true,
           "types": [
@@ -2494,7 +2419,7 @@ export default {
       }
     },
     "multilingual": {
-      "computed": {
+      "options": {
         "default": {
           "public": true,
           "types": [
@@ -2547,7 +2472,7 @@ export default {
       }
     },
     "checkboxgroup": {
-      "computed": {
+      "options": {
         "disables": {
           "public": true,
           "default": "[]",
@@ -2555,9 +2480,7 @@ export default {
             "array"
           ],
           "description": "List of option keys to be disabled."
-        }
-      },
-      "options": {
+        },
         "disabled": {
           "public": true,
           "default": "false",
@@ -2613,7 +2536,7 @@ export default {
       }
     },
     "radiogroup": {
-      "computed": {
+      "options": {
         "disables": {
           "public": true,
           "default": "[]",
@@ -2621,9 +2544,7 @@ export default {
             "array"
           ],
           "description": "List of option keys to be disabled."
-        }
-      },
-      "options": {
+        },
         "disabled": {
           "public": true,
           "default": "false",
@@ -2867,9 +2788,7 @@ export default {
             "boolean"
           ],
           "description": ""
-        }
-      },
-      "computed": {
+        },
         "methods": {
           "public": true,
           "default": "config.methods.file",
@@ -2892,7 +2811,9 @@ export default {
             "string"
           ],
           "description": ""
-        },
+        }
+      },
+      "computed": {
         "stage": {
           "public": true,
           "types": [
@@ -3462,21 +3383,13 @@ export default {
           "description": "The raw location object of location provider (Google/Algolia)."
         }
       },
-      "computed": {
+      "options": {
         "provider": {
           "public": true,
           "types": [
             "string"
           ],
           "description": "The Places API provider to use."
-        },
-        "defaultOptions": {
-          "public": true,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Default options for flatpickr."
         },
         "options": {
           "public": true,
@@ -3485,6 +3398,16 @@ export default {
             "object"
           ],
           "description": "Additional options for [Google Places](https://developers.google.com/maps/documentation/javascript/reference/places-widget#AutocompleteOptions) or [Algolia Places](https://community.algolia.com/places/documentation.html#options) depending on the provider."
+        }
+      },
+      "computed": {
+        "defaultOptions": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Default options for flatpickr."
         }
       }
     },
@@ -3507,21 +3430,13 @@ export default {
           "description": "The raw location object of location provider (Google/Algolia)."
         }
       },
-      "computed": {
+      "options": {
         "provider": {
           "public": true,
           "types": [
             "string"
           ],
           "description": "The Places API provider to use."
-        },
-        "defaultOptions": {
-          "public": true,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Default options for flatpickr."
         },
         "options": {
           "public": true,
@@ -3530,6 +3445,16 @@ export default {
             "object"
           ],
           "description": "Additional options for [Google Places](https://developers.google.com/maps/documentation/javascript/reference/places-widget#AutocompleteOptions) or [Algolia Places](https://community.algolia.com/places/documentation.html#options) depending on the provider."
+        }
+      },
+      "computed": {
+        "defaultOptions": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Default options for flatpickr."
         }
       },
       "methods": {
@@ -3599,21 +3524,13 @@ export default {
           "description": "The raw location object of location provider (Google/Algolia)."
         }
       },
-      "computed": {
+      "options": {
         "provider": {
           "public": true,
           "types": [
             "string"
           ],
           "description": "The Places API provider to use."
-        },
-        "defaultOptions": {
-          "public": true,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Default options for flatpickr."
         },
         "options": {
           "public": true,
@@ -3622,6 +3539,16 @@ export default {
             "object"
           ],
           "description": "Additional options for [Google Places](https://developers.google.com/maps/documentation/javascript/reference/places-widget#AutocompleteOptions) or [Algolia Places](https://community.algolia.com/places/documentation.html#options) depending on the provider."
+        }
+      },
+      "computed": {
+        "defaultOptions": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Default options for flatpickr."
         }
       }
     }
@@ -3701,32 +3628,28 @@ export default {
       "options": {
         "displayFormat": {
           "public": true,
-          "default": "'from locale'",
+          "default": "\"locale.elements.date.displayFormat\"",
           "types": [
-            "string",
-            "false"
+            "string"
           ],
           "description": "Defines how date should be formatted in the input field."
         },
         "valueFormat": {
           "public": true,
-          "default": "'YYYY-MM-DD'",
+          "default": "\"YYYY-MM-DD\"",
           "types": [
-            "string",
-            "false"
+            "string"
           ],
           "description": "Defines how date should be formatted in `value`. If `false` Date object will be used."
         },
         "loadFormat": {
           "public": true,
-          "default": "'YYYY-MM-DD'",
+          "default": "\"YYYY-MM-DD\"",
           "types": [
             "string"
           ],
           "description": "Defines how date is formatted when using `load` or `update` method or by directly setting `value`. When using \"formatLoad\" this should be the output format of that."
-        }
-      },
-      "computed": {
+        },
         "disables": {
           "public": true,
           "default": "[]",
@@ -3760,7 +3683,9 @@ export default {
             "object"
           ],
           "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
-        },
+        }
+      },
+      "computed": {
         "hasDate": {
           "public": true,
           "types": [
@@ -3781,40 +3706,12 @@ export default {
       "options": {
         "mode": {
           "public": true,
-          "default": "'single'",
+          "default": "\"single\"",
           "types": [
             "string"
           ],
           "description": "Flatpickr's mode option. Possible values: `multiple` or `range`."
         },
-        "displayFormat": {
-          "public": true,
-          "default": "'from locale'",
-          "types": [
-            "string",
-            "false"
-          ],
-          "description": "Defines how date should be formatted in the input field."
-        },
-        "valueFormat": {
-          "public": true,
-          "default": "'YYYY-MM-DD'",
-          "types": [
-            "string",
-            "false"
-          ],
-          "description": "Defines how date should be formatted in `value`. If `false` Date object will be used."
-        },
-        "loadFormat": {
-          "public": true,
-          "default": "'YYYY-MM-DD'",
-          "types": [
-            "string"
-          ],
-          "description": "Defines how date is formatted when using `load` or `update` method or by directly setting `value`. When using \"formatLoad\" this should be the output format of that."
-        }
-      },
-      "computed": {
         "options": {
           "public": true,
           "default": "{}",
@@ -3823,19 +3720,29 @@ export default {
           ],
           "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
         },
-        "hasDate": {
+        "displayFormat": {
           "public": true,
+          "default": "\"locale.elements.date.displayFormat\"",
           "types": [
-            "boolean"
+            "string"
           ],
-          "description": "Helper property used to determine the element has date."
+          "description": "Defines how date should be formatted in the input field."
         },
-        "hasTime": {
+        "valueFormat": {
           "public": true,
+          "default": "\"YYYY-MM-DD\"",
           "types": [
-            "boolean"
+            "string"
           ],
-          "description": "Helper property used to determine the element has time."
+          "description": "Defines how date should be formatted in `value`. If `false` Date object will be used."
+        },
+        "loadFormat": {
+          "public": true,
+          "default": "\"YYYY-MM-DD\"",
+          "types": [
+            "string"
+          ],
+          "description": "Defines how date is formatted when using `load` or `update` method or by directly setting `value`. When using \"formatLoad\" this should be the output format of that."
         },
         "min": {
           "public": true,
@@ -3862,6 +3769,22 @@ export default {
             "array"
           ],
           "description": "List of dates to be disabled."
+        }
+      },
+      "computed": {
+        "hasDate": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has date."
+        },
+        "hasTime": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has time."
         }
       }
     },
@@ -3881,32 +3804,28 @@ export default {
         },
         "displayFormat": {
           "public": true,
-          "default": "'from locale'",
+          "default": "\"from locale\"",
           "types": [
-            "string",
-            "false"
+            "string"
           ],
           "description": "Defines how date should be formatted in the input field."
         },
         "valueFormat": {
           "public": true,
-          "default": "'YYYY-MM-DD'",
+          "default": "\"YYYY-MM-DD\"",
           "types": [
-            "string",
-            "false"
+            "string"
           ],
           "description": "Defines how date should be formatted in `value`. If `false` Date object will be used."
         },
         "loadFormat": {
           "public": true,
-          "default": "'YYYY-MM-DD'",
+          "default": "\"YYYY-MM-DD\"",
           "types": [
             "string"
           ],
           "description": "Defines how date is formatted when using `load` or `update` method or by directly setting `value`."
-        }
-      },
-      "computed": {
+        },
         "options": {
           "public": true,
           "default": "{}",
@@ -3914,20 +3833,6 @@ export default {
             "object"
           ],
           "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
-        },
-        "hasDate": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Helper property used to determine the element has date."
-        },
-        "hasTime": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Helper property used to determine the element has time."
         },
         "min": {
           "public": true,
@@ -3954,6 +3859,22 @@ export default {
             "array"
           ],
           "description": "List of dates to be disabled."
+        }
+      },
+      "computed": {
+        "hasDate": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has date."
+        },
+        "hasTime": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has time."
         }
       }
     },
@@ -3974,6 +3895,14 @@ export default {
             "boolean"
           ],
           "description": "Determines whether the select options are searchable."
+        },
+        "options": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Additional [options](https://vue-multiselect.js.org/#sub-props) for the select."
         }
       },
       "computed": {
@@ -3983,27 +3912,11 @@ export default {
             "string"
           ],
           "description": "Determines if the native select is used."
-        },
-        "options": {
-          "public": true,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Additional [options](https://vue-multiselect.js.org/#sub-props) for the select."
         }
       }
     },
     "multiselect": {
       "computed": {
-        "options": {
-          "public": true,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Additional [options](https://vue-multiselect.js.org/#sub-props) for the select."
-        },
         "isNative": {
           "public": true,
           "types": [
@@ -4013,6 +3926,14 @@ export default {
         }
       },
       "options": {
+        "options": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Additional [options](https://vue-multiselect.js.org/#sub-props) for the select."
+        },
         "native": {
           "public": true,
           "default": "true",
@@ -4036,18 +3957,8 @@ export default {
         "create": {
           "public": false,
           "description": ""
-        }
-      },
-      "computed": {
+        },
         "search": {
-          "public": false,
-          "description": ""
-        },
-        "native": {
-          "public": false,
-          "description": ""
-        },
-        "isNative": {
           "public": false,
           "description": ""
         },
@@ -4058,6 +3969,16 @@ export default {
             "object"
           ],
           "description": "Additional [options](https://vue-multiselect.js.org/#sub-props) for the select."
+        }
+      },
+      "computed": {
+        "native": {
+          "public": false,
+          "description": ""
+        },
+        "isNative": {
+          "public": false,
+          "description": ""
         }
       }
     },
@@ -4098,9 +4019,7 @@ export default {
         "height": {
           "public": false,
           "description": ""
-        }
-      },
-      "computed": {
+        },
         "options": {
           "public": true,
           "default": "{}",
@@ -4109,7 +4028,8 @@ export default {
           ],
           "description": "Additional [options](https://nightcatsama.github.io/vue-slider-component/#/api/props) for slider."
         }
-      }
+      },
+      "computed": {}
     },
     "time": {
       "options": {
@@ -4127,32 +4047,28 @@ export default {
         },
         "displayFormat": {
           "public": true,
-          "default": "'from locale'",
+          "default": "\"from locale\"",
           "types": [
-            "string",
-            "false"
+            "string"
           ],
           "description": "Defines how date should be formatted in the input field."
         },
         "valueFormat": {
           "public": true,
-          "default": "'YYYY-MM-DD'",
+          "default": "\"YYYY-MM-DD\"",
           "types": [
-            "string",
-            "false"
+            "string"
           ],
           "description": "Defines how date should be formatted in `value`. If `false` Date object will be used."
         },
         "loadFormat": {
           "public": true,
-          "default": "'YYYY-MM-DD'",
+          "default": "\"YYYY-MM-DD\"",
           "types": [
             "string"
           ],
           "description": "Defines how date is formatted when using `load` or `update` method or by directly setting `value`."
-        }
-      },
-      "computed": {
+        },
         "options": {
           "public": true,
           "default": "{}",
@@ -4160,20 +4076,6 @@ export default {
             "object"
           ],
           "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
-        },
-        "hasDate": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Helper property used to determine the element has date."
-        },
-        "hasTime": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Helper property used to determine the element has time."
         },
         "min": {
           "public": true,
@@ -4200,6 +4102,22 @@ export default {
             "array"
           ],
           "description": "List of dates to be disabled."
+        }
+      },
+      "computed": {
+        "hasDate": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has date."
+        },
+        "hasTime": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has time."
         }
       }
     },
@@ -4232,9 +4150,7 @@ export default {
         "colors": {
           "public": false,
           "description": ""
-        }
-      },
-      "computed": {
+        },
         "options": {
           "public": true,
           "default": "{}",
@@ -4243,7 +4159,8 @@ export default {
           ],
           "description": "Additional [options](https://github.com/vueform/toggle) for @vueform/toggle."
         }
-      }
+      },
+      "computed": {}
     }
   },
   "order": {
@@ -4425,7 +4342,7 @@ export default {
       "options": {
         "fieldName": {
           "public": true,
-          "default": "'=name'",
+          "default": "\"=name\"",
           "types": [
             "string"
           ],
@@ -4469,7 +4386,7 @@ export default {
       "options": {
         "radioValue": {
           "public": true,
-          "default": "'1'",
+          "default": "\"1\"",
           "types": [
             "str",
             "num",
@@ -4576,36 +4493,35 @@ export default {
   },
   "slots": {
     "base": {
-      "computed": {
-        "slots": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "Returns slots for the element. Setting the value as an object will merge the current slots with the provided values."
-        }
-      },
+      "computed": {},
       "options": {
         "before": {
           "public": true,
           "types": [
-            "string"
+            "component"
           ],
           "description": "Text or HTML to be placed before the field. If `before` slot is provided this will not appear."
         },
         "between": {
           "public": true,
           "types": [
-            "string"
+            "component"
           ],
           "description": "Text or HTML to be placed between the field and it's description (if any). If `between` slot is provided this will not appear."
         },
         "after": {
           "public": true,
           "types": [
-            "string"
+            "component"
           ],
           "description": "Text or HTML to be placed after the field's error message (if any). If `after` slot is provided this will not appear."
+        },
+        "slots": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Returns slots for the element. Setting the value as an object will merge the current slots with the provided values."
         }
       }
     }
@@ -4754,7 +4670,7 @@ export default {
         },
         "endpoint": {
           "public": true,
-          "default": "'...'",
+          "default": "\"...\"",
           "types": [
             "string"
           ],

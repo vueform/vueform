@@ -6,16 +6,18 @@
       <slot name="prefix"></slot>
 
       <div :class="classes.childrenContainer">
-        <component
-          v-for="(element, name, i) in children"
-          :is="component(element)"
-          :embed="embed"
-          :schema="element"
-          :name="name"
-          :parent="el$"
-          :key="name"
-          @remove="(e) => $emit('remove', e)"
-        />
+        <slot>
+          <component
+            v-for="(element, name, i) in children"
+            :is="component(element)"
+            :embed="embed"
+            :schema="element"
+            :name="name"
+            :parent="el$"
+            :key="name"
+            @remove="(e) => $emit('remove', e)"
+          />
+        </slot>
       </div>
 
       <slot name="suffix"></slot>

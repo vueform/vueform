@@ -52,6 +52,7 @@ const base = function(props, context, dependencies)
    * Returns the final classes of the components within the element.
    * 
    * @type {object}
+   * @option
    */
   const classes = computed({
     get() {
@@ -116,6 +117,7 @@ const list = function(props, context, dependencies)
    * Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`.
    * 
    * @type {object}
+   * @option
    */
   const classes = computed({
     get() {
@@ -166,6 +168,7 @@ const file = function(props, context, dependencies)
    * Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`.
    * 
    * @type {object}
+   * @option
    */
   const classes = computed({
     get() {

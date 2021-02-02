@@ -11,7 +11,7 @@ const base = function(props, context, dependencies)
    * Value of the radio button.
    * 
    * @type {str|num|bool}
-   * @default '1'
+   * @default "1"
    */
   const radioValue = computedOption('radioValue', schema, 1)
 

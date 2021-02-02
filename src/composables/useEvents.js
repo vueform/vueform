@@ -73,6 +73,8 @@ const base = function(props, context, dependencies, options = {})
     _.each(listeners.value[evt], (callback) => {
       callback.apply(form$.value, args)
     })
+
+    context.emit(...[evt].concat(args))
   }
 
   // =============== HOOKS ================

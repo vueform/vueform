@@ -4,6 +4,8 @@ const elements = require('./../../elements').default
 const elementFeatures = require('./../../features/elements').default
 const componentFeatures = require('./../../features/components').default
 
+const ignore = []
+
 const output = __dirname + '/../../../src/components/fields/fields.js'
 
 let contents = ''
@@ -15,7 +17,7 @@ _.each(elements, (element, elementName) => {
   contents += `    props: {\n`
   contents += `      name: {\n`
   contents += `        required: true,\n`
-  contents += `        type: [String, Number]\n`
+  contents += `        type: [String, Number],\n`
   contents += `      },\n`,
 
   _.each(element.features, (featureName) => {
@@ -29,6 +31,10 @@ _.each(elements, (element, elementName) => {
     }
 
     _.each(feature.options, (option, optionName) => {
+      if (ignore.indexOf(optionName) !== -1) {
+        return
+      }
+
       let types = []
 
       _.each(option.types, (type) => {
@@ -39,6 +45,8 @@ _.each(elements, (element, elementName) => {
           case 'array': Type = 'Array'; break
           case 'string': Type = 'String'; break
           case 'number': Type = 'Number'; break
+          case 'boolean': Type = 'Boolean'; break
+          case 'function': Type = 'Function'; break
           case 'component': Type = 'Object'; break
         }
 
@@ -47,12 +55,25 @@ _.each(elements, (element, elementName) => {
 
       contents += `      ${optionName}: {\n`
       contents += `        required: false,\n`
-      contents += `        type: [${types.join(', ')}]\n`
+      contents += `        type: [${types.join(', ')}],\n`
+      contents += `        default: undefined\n`
       contents += `      },\n`
     })
   })
+  contents += `    },\n`
 
-  contents += `    }\n`
+  if (element.slots.length > 0) {
+    contents += `    slots: ['${element.slots.join("', '")}'],\n`
+  } else {
+    contents += `    slots: [],\n`
+  }
+
+  if (element.events.length > 0) {
+    contents += `    events: ['${element.events.join("', '")}'],\n`
+  } else {
+    contents += `    events: [],\n`
+  }
+
   contents += `  },\n`
 })
 contents += '}'

@@ -43,10 +43,9 @@ const overrides = {
   key: 'hidden',
 }
 
-function getFeatures() {
-  const features = {}
-  
-  elements.forEach((element) => {
+class Generator {
+
+  getLines(element) {
     const composable = overrides[element] || element
     const path = `${basePath}${featuresPath}/use${_.upperFirst(composable)}.js`
 
@@ -60,46 +59,110 @@ function getFeatures() {
       return
     }
 
-    const lines = data.split(/\r?\n/)
+    return data.split(/\r?\n/)
+  }
 
-    features[element] = []
+  getFeatures() {
+    const features = {}
+    
+    elements.forEach((element) => {
+      features[element] = []
 
-    lines.forEach((line) => {
-      if (!line || !line.match(/\/use([^']*)\'$/)) {
-        return false
-      }
+      this.getLines(element).forEach((line) => {
+        if (!line || !line.match(/\/use([^']*)\'$/)) {
+          return false
+        }
 
-      let feature = _.lowerFirst(line.match(/\/use([^']*)\'$/)[1])
+        let feature = _.lowerFirst(line.match(/\/use([^']*)\'$/)[1])
 
-      if (line.match(/^import { ([^ ]*)/)) {
-        feature += '_' + line.match(/^import { ([^ ]*)/)[1].replace(/_$/, '')
-      }
-      
-      features[element].push(feature)
+        if (line.match(/^import { ([^ ]*)/)) {
+          feature += '_' + line.match(/^import { ([^ ]*)/)[1].replace(/_$/, '')
+        }
+        
+        features[element].push(feature)
+      })
+
+      features[element].sort()
     })
 
-    features[element].sort()
-  })
+    return features
+  }
 
-  return features
+  getSlots() {
+    const slots = {}
+    
+    elements.forEach((element) => {
+      slots[element] = []
+
+      let lines = this.getLines(element)
+
+      lines.forEach((line, i) => {
+        if (line.match(/slots:\s?\[/)) {
+          let l = i
+
+          while(lines[l].match(/\]/) === null) {
+            l++
+
+            slots[element] = slots[element].concat((lines[l].match(/([a-zA-Z]+)/g)||[]))
+          }
+        }
+      })
+    })
+
+    return slots
+  }
+
+  getEvents() {
+    const events = {}
+    
+    elements.forEach((element) => {
+      events[element] = []
+
+      let lines = this.getLines(element)
+
+      lines.forEach((line, i) => {
+        if (line.match(/events:\s?\[/) && !line.match(/events:\s?\[\]/)) {
+          let l = i
+
+          while(lines[l].match(/\]/) === null) {
+            l++
+
+            events[element] = events[element].concat((lines[l].match(/([a-zA-Z]+)/g)||[]))
+          }
+        }
+      })
+    })
+
+    return events
+  }
+
+  getElements() {
+    const features = this.getFeatures()
+    const slots = this.getSlots()
+    const events = this.getEvents()
+    const els = {}
+
+    elements.forEach((element) => {
+      els[element] = {
+        features: features[element],
+        slots: slots[element],
+        events: events[element],
+      }
+    })
+
+    return els
+  }
+
+  generate() {
+    let contents = ''
+
+    contents += 'export default '
+    contents += JSON.stringify(this.getElements(), null, 2)
+
+    fs.writeFileSync(__dirname + '/../../elements/index.js', contents)
+  }
 }
 
-function getElementsContent() {
-  const features = getFeatures()
+const generator = new Generator
 
-  let content = "export default {\n"
-
-  _.each(features, (elementFeatures, element) => {
-    content += `  ${element}: {\n`
-    content += `    features: [\n`
-    content += `      '${elementFeatures.join('\',\n      \'')}'\n`
-    content += `    ]\n`
-    content += `  },\n`
-  })
-
-  content += "}"
-
-  return content
-}
-
-fs.writeFileSync(__dirname + '/../../elements/index.js', getElementsContent())
+generator.generate()

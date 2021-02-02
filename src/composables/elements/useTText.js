@@ -95,7 +95,9 @@ export default function useTText(props, context) {
     form$: form$.form$,
     descriptor: schema,
   }, {
-    events: ['change'],
+    events: [
+      'change'
+    ],
   })
 
   const data = useData(props, context, {
@@ -154,6 +156,11 @@ export default function useTText(props, context) {
   const slots = useSlots(props, context, {
     form$: form$.form$,
     components: components.components,
+  }, {
+    slots: [
+      'label', 'info', 'description', 'error',
+      'message', 'before', 'between', 'after'
+    ]
   })
 
   const handleInput = useHandleInput(props, context, {

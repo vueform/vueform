@@ -78,7 +78,9 @@ export default function useText(props, context) {
     form$: form$.form$,
     descriptor: schema,
   }, {
-    events: ['change'],
+    events: [
+      'change'
+    ],
   })
 
   const data = useData(props, context, {

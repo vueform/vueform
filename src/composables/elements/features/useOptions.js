@@ -17,16 +17,16 @@ const date = function(props, context, dependencies)
   /**
    * Defines how date should be formatted in the input field.
    * 
-   * @type {string|false} 
-   * @default 'from locale'
+   * @type {string} 
+   * @default "locale.elements.date.displayFormat"
     */
   const displayFormat = computedOption('displayFormat', schema, form$.value.__('laraform.elements.date.displayFormat'))
 
   /**
    * Defines how date should be formatted in `value`. If `false` Date object will be used.
    * 
-   * @type {string|false} 
-   * @default 'YYYY-MM-DD'
+   * @type {string} 
+   * @default "YYYY-MM-DD"
     */
   const valueFormat = computedOption('valueFormat', schema, 'YYYY-MM-DD')
 
@@ -34,7 +34,7 @@ const date = function(props, context, dependencies)
    * Defines how date is formatted when using `load` or `update` method or by directly setting `value`. When using "formatLoad" this should be the output format of that.
    * 
    * @type {string} 
-   * @default 'YYYY-MM-DD'
+   * @default "YYYY-MM-DD"
     */
   const loadFormat = computedOption('loadFormat', schema, 'YYYY-MM-DD')
 
@@ -43,6 +43,7 @@ const date = function(props, context, dependencies)
    * 
    * @type {array} 
    * @default []
+   * @option
    */
   const disables = computed({
     get() {
@@ -71,6 +72,7 @@ const date = function(props, context, dependencies)
    * 
    * @type {string|Date} 
    * @default null
+   * @option
    */
   const min = computed({
     get() {
@@ -92,6 +94,7 @@ const date = function(props, context, dependencies)
    * 
    * @type {string|Date} 
    * @default null
+   * @option
    */
   const max = computed({
     get() {
@@ -129,6 +132,7 @@ const date = function(props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
+  * @option
   */
   const options = computed({
     get() {
@@ -189,7 +193,7 @@ const dates = function(props, context, dependencies)
   * Flatpickr's mode option. Possible values: `multiple` or `range`.
   * 
   * @type {string} 
-  * @default 'single'
+  * @default "single"
   */
   const mode = computedOption('mode', schema, 'multiple')
 
@@ -215,6 +219,7 @@ const dates = function(props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
+  * @option
   */
   const options = computed({
     get() {
@@ -293,8 +298,8 @@ const datetime = function(props, context, dependencies)
   /**
    * Defines how date should be formatted in the input field.
    * 
-  * @type {string|false} 
-  * @default 'from locale'
+  * @type {string} 
+  * @default "from locale"
     */
   const displayFormat = computedOption('displayFormat', schema, seconds.value
     ? form$.value.__('laraform.elements.datetime.secondsDisplayFormat')
@@ -304,8 +309,8 @@ const datetime = function(props, context, dependencies)
   /**
    * Defines how date should be formatted in `value`. If `false` Date object will be used.
    * 
-  * @type {string|false} 
-  * @default 'YYYY-MM-DD'
+  * @type {string} 
+  * @default "YYYY-MM-DD"
     */
   const valueFormat = computedOption('valueFormat', schema, seconds.value
     ? 'YYYY-MM-DD HH:mm:ss'
@@ -316,7 +321,7 @@ const datetime = function(props, context, dependencies)
    * Defines how date is formatted when using `load` or `update` method or by directly setting `value`.
    * 
   * @type {string} 
-  * @default 'YYYY-MM-DD'
+  * @default "YYYY-MM-DD"
     */
   const loadFormat = computedOption('loadFormat', schema, seconds.value
     ? 'YYYY-MM-DD HH:mm:ss'
@@ -347,6 +352,7 @@ const datetime = function(props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
+  * @option
   */
   const options = computed({
     get() {
@@ -447,6 +453,7 @@ const select = function (props, context, dependencies)
    * 
    * @type {object}
    * @default {}
+   * @option
    */
   const options = computed({
     get() {
@@ -505,6 +512,7 @@ const multiselect = function (props, context, dependencies)
    * 
    * @type {object}
    * @default {}
+   * @option
    */
   const options = computed({
     get() {
@@ -544,6 +552,7 @@ const tags = function (props, context, dependencies)
    * 
    * 
    * @private
+   * @option
    */
   const search = computed({
     get() {
@@ -597,6 +606,7 @@ const tags = function (props, context, dependencies)
    * 
    * @type {object}
    * @default {}
+   * @option
    */
   const options = computed({
     get() {
@@ -716,6 +726,7 @@ const slider = function (props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
+  * @option
   */
   const options = computed({
     get() {
@@ -774,8 +785,8 @@ const time = function(props, context, dependencies)
   /**
    * Defines how date should be formatted in the input field.
    * 
-  * @type {string|false} 
-  * @default 'from locale'
+  * @type {string} 
+  * @default "from locale"
     */
   const displayFormat = computedOption('displayFormat', schema, seconds.value
     ? form$.value.__('laraform.elements.time.secondsDisplayFormat')
@@ -785,8 +796,8 @@ const time = function(props, context, dependencies)
   /**
    * Defines how date should be formatted in `value`. If `false` Date object will be used.
    * 
-  * @type {string|false} 
-  * @default 'YYYY-MM-DD'
+  * @type {string} 
+  * @default "YYYY-MM-DD"
     */
   const valueFormat = computedOption('valueFormat', schema, seconds.value ? 'HH:mm:ss' : 'HH:mm')
 
@@ -794,7 +805,7 @@ const time = function(props, context, dependencies)
    * Defines how date is formatted when using `load` or `update` method or by directly setting `value`.
    * 
   * @type {string} 
-  * @default 'YYYY-MM-DD'
+  * @default "YYYY-MM-DD"
     */
   const loadFormat = computedOption('loadFormat', schema, seconds.value ? 'HH:mm:ss': 'HH:mm')
 
@@ -823,6 +834,7 @@ const time = function(props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
+  * @option
   */
   const options = computed({
     get() {
@@ -939,6 +951,7 @@ const toggle = function(props, context, dependencies)
   * 
   * @type {object} 
   * @default {}
+  * @option
   */
   const options = computed({
     get() {

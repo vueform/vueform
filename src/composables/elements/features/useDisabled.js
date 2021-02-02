@@ -58,6 +58,7 @@ const checkboxgroup = function(props, context, dependencies)
    * 
    * @type {array} 
    * @default []
+   * @option
    */
   const disables = computed({
     get() {

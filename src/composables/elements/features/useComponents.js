@@ -16,6 +16,7 @@ const base = function(props, context, dependencies)
    * Returns the components to use within the element. Setting the value will overwrite components contained in the value object. Eg. `components: { ElementLabel: MyElementLabel }` will replace `ElementLabel` component for only this element.
    * 
    * @type {object}
+   * @option
    */
   const components = computed({
     get() {

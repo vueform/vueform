@@ -540,6 +540,7 @@ const list = function(props, context, dependencies, options)
   * 
   * @type {number}
   * @default 1
+  * @option
   */
   const initial = computed({
     get() {

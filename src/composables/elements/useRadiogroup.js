@@ -72,7 +72,9 @@ export default function useRadiogroup (props, context) {
     form$: form$.form$,
     descriptor: schema,
   }, {
-    events: ['change'],
+    events: [
+      'change'
+    ],
   })
 
   const data = useData(props, context, {

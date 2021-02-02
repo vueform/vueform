@@ -41,6 +41,7 @@ const date = function(props, context, dependencies)
   * The default value of the element.
   * 
   * @type {string|Date}
+  * @option
   */
   const default_ = computed({
     get() {
@@ -80,6 +81,7 @@ const dates = function(props, context, dependencies)
   * 
   * 
   * @type {array}
+  * @option
   */
   const default_ = computed({
     get() {
@@ -120,6 +122,7 @@ const multilingual = function(props, context, dependencies)
   * 
   * 
   * @type {object|string|number}
+  * @option
   */
   const default_ = computed({
     get() {

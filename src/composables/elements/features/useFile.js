@@ -92,6 +92,7 @@ const base = function (props, context, dependencies)
    * 
    * @type {object}
    * @default config.methods.file
+   * @option
    */
   const methods = computed({
     get() {
@@ -107,6 +108,7 @@ const base = function (props, context, dependencies)
    * 
    * @type {object}
    * @default config.endpoints.file
+   * @option
    */
   const endpoints = computed({
     get() {
@@ -121,6 +123,7 @@ const base = function (props, context, dependencies)
    * 
    * 
    * @type {string}
+   * @option
    */
   const url = computed({
     get() {

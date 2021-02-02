@@ -14,6 +14,7 @@ const base = function(props, context, dependencies)
    * Calulated column sizes and classes for the element.
    * 
    * @type {object} 
+   * @option
    */
   const columns = computed({
     get() {

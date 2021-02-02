@@ -73,7 +73,9 @@ export default function (props, context) {
     form$: form$.form$,
     descriptor: schema,
   }, {
-    events: ['change', 'add', 'remove', 'sort']
+    events: [
+      'change', 'add', 'remove', 'sort'
+    ]
   })
 
   const value = useValue(props, context, {
@@ -120,6 +122,11 @@ export default function (props, context) {
   const slots = useSlots(props, context, {
     form$: form$.form$,
     components: components.components,
+  }, {
+    slots: [
+      'label', 'info', 'description', 'error',
+      'message', 'before', 'between', 'after'
+    ]
   })
 
   const order = useOrder(props, context, {

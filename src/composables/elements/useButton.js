@@ -75,8 +75,8 @@ export default function useText(props, context) {
     components: components.components,
   }, {
     slots: [
-    'label', 'info', 'description', 'before',
-    'between', 'after'
+      'label', 'info', 'description', 'before',
+      'between', 'after'
     ]
   })
 

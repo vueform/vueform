@@ -18,7 +18,7 @@ const base = function (props, context, dependencies)
   * Name of the input field.
   * 
   * @type {string} 
-  * @default '=name'
+  * @default "=name"
   */
   const fieldName = computedOption('fieldName', schema, name.value)
 

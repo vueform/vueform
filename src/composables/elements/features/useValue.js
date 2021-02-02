@@ -307,7 +307,7 @@ const list = function(props, context, dependencies)
     previousValue, currentValue
   } = base(props, context, dependencies)
 
-  const children$ = dependencies.children$
+  const children$Array = dependencies.children$Array
 
   // ============== COMPUTED ===============
 
@@ -320,7 +320,7 @@ const list = function(props, context, dependencies)
     get() {
       let value = []
 
-      _.each(children$.value, (element$) => {
+      _.each(children$Array.value, (element$) => {
         value.push(element$.value)
       })
 
