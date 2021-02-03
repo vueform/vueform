@@ -112,7 +112,7 @@ class Generator
   }
 
   // Returns info from docblock in a structured way
-  parseInfo(propType, lines, i, regex, exports, variations, variation, parent, fileName) {
+  parseInfo(propType, lines, i, regex, returns, variations, variation, parent, fileName) {
     try {
       let line = lines[i]
 
@@ -122,7 +122,7 @@ class Generator
         variations[variation][propType] = {}
       }
 
-      if (exports[variation].indexOf(name) === -1) {
+      if (returns[variation].indexOf(name) === -1) {
         return
       }
 
@@ -143,9 +143,9 @@ class Generator
     }
   }
 
-  getExports(lines, i, fileName) {
+  getReturns(lines, i, fileName) {
     try {
-      var exports = []
+      var returns = []
       i++
 
       while(lines[i].match(/^\s\s}/) === null) {
@@ -153,14 +153,14 @@ class Generator
           var variable = lines[i].match(/\s?([^:]+)/)[1].replace(/[,_]/,'').trim()
           
           if (variable) {
-            exports.push(variable)
+            returns.push(variable)
           }
         }
 
         i++
       }
 
-      return exports
+      return returns
     } catch (e) {
       console.log(fileName+'@'+i)
       throw new Error(e)
@@ -180,13 +180,31 @@ class Generator
     return isOption
   }
 
+  getUses(lines, i) {
+    let l = i - 1
+    let uses = []
+
+    while(lines[l].match(/const {/) === null) {
+      uses.push(lines[l].match(/([a-zA-Z0-9_$]+)/)[1])
+      l--
+    }
+
+    return uses
+  }
+
   getDetails(lines, fileName) {
-    let exports = {}
+    let returns = {}
+    let imports = {}
     let variations = {}
+    let uses = {}
     let variation
     let parent
+    let returnRegex = /^\s\sreturn {/
     let variationRegex = /const ([a-zA-Z0-9_]*) = function\s?\(props, context/
     let parentRegex = /} = (?!use)([a-zA-Z_]*)\(props, context/
+    let importRegex = /import (use[a-zA-Z$]+) from '([^']+)'/
+    let namedImportRegex = /import \{\s?([a-zA-Z_$]+) as (use[a-zA-Z$]+)\s?\} from '([^']+)'/
+    let useRegex = /} = (use[^(]+)\(props,\s?context/
 
     let collect = {
       options: /const ([^ ]*)\s?=\s?computedOption\(/,
@@ -203,8 +221,27 @@ class Generator
         variation = line.match(variationRegex)[1].replace('_','').trim()
       }
 
-      if (line.match(/^\s\sreturn {/)) {
-        exports[variation] = this.getExports(lines, i, fileName)
+      // Get returns
+      if (line.match(returnRegex)) {
+        returns[variation] = this.getReturns(lines, i, fileName)
+      }
+
+      // Get imports
+      if (line.match(importRegex)) {
+        let matches = line.match(importRegex)
+
+        imports[_.lowerFirst(matches[1])] = {
+          base: this.getDetails(this.getLines(matches[2].replace(/^\.\//, '')+'.js')).base
+        }
+      }
+
+      // Get named imports
+      if (line.match(namedImportRegex)) {
+        let matches = line.match(namedImportRegex)
+
+        imports[_.lowerFirst(matches[2])] = {
+          [matches[1]]: this.getDetails(this.getLines(matches[3].replace(/^\.\//, '')+'.js'))[matches[1]]
+        }
       }
     })
 
@@ -215,10 +252,20 @@ class Generator
         variations[variation] = {}
       }
 
+      // Set parent
       if (line.match(parentRegex)) {
         parent = line.match(parentRegex)[1]
       }
 
+      if (line.match(useRegex)) {
+        if (!uses[variation]) {
+          uses[variation] = {}
+        }
+
+        uses[variation][line.match(useRegex)[1]] = this.getUses(lines, i)
+      }
+
+      // Get docblocks from different props & methods
       Object.keys(collect).forEach((propType) => {
         let regexes = collect[propType]
 
@@ -233,15 +280,36 @@ class Generator
 
         regexes.forEach((regex) => {
           if (line.match(regex)) {
-            this.parseInfo(propType, lines, i, regex, exports, variations, variation, parent, fileName)
+            this.parseInfo(propType, lines, i, regex, returns, variations, variation, parent, fileName)
           }
         })
       })
 
-      // Collect exported variables for non-base variations
-      if (variation !== 'base' && parent) {
+      // Set props & methods from external composables
+      if (uses[variation]) {
+        Object.keys(uses[variation]).forEach((useName) => {
+          let useProps = uses[variation][useName]
+          useProps.forEach((propName) => {
+            if (returns[variation].indexOf(propName) !== -1) {
+              Object.keys(imports[useName]).forEach((importVariationName) => {
+                Object.keys(imports[useName][importVariationName]).forEach((propType) => {
+                  if (Object.keys(imports[useName][importVariationName][propType]).indexOf(propName) !== -1) {
+                    if (!variations[variation][propType]) {
+                      variations[variation][propType] = {}
+                    }
+
+                    variations[variation][propType][propName] = imports[useName][importVariationName][propType][propName]
+                  }
+                })
+              })
+            }
+          })
+        })
+      }
+
+      // Collect returned variables for non-base variations
+      if (parent) {
         if (line.match(/^\s\sreturn {/)) {
-          var variables = this.getExports(lines, i)
           var existingVariables = []
 
           // Get explicitly defined variables
@@ -251,8 +319,8 @@ class Generator
             })
           })
           
-          // Get exported variables and fill them in from parent if not explicity defined
-          variables.forEach((variable) => {
+          // Get returned variables which are not defined explicitly and fill them in from parent
+          returns[variation].forEach((variable) => {
             if (existingVariables.indexOf(variable) === -1) {
 
               Object.keys(variations[parent]).forEach((propType) => {
@@ -264,6 +332,7 @@ class Generator
                   variations[variation][propType][variable] = variations[parent][propType][variable]
                 }
               })
+
             }
           })
 
@@ -296,19 +365,11 @@ class Generator
     this.files.forEach((fileName, i) => {
       let name = _.lowerFirst(fileName.replace('.js', '').replace(/^use/, ''))
 
-      if (files.length>0&&files.indexOf(name) === -1) {
-        return
-      }
+      if (files.length === 0 || files.indexOf(name) !== -1) {
+        
 
-      if (until&&until.indexOf(name) !== -1) {
-        untilIndex = i
+        features[name] = this.getDetails(this.getLines(fileName), fileName)
       }
-
-      if (i > untilIndex) {
-        return
-      }
-
-      features[name] = this.getDetails(this.getLines(fileName), fileName)
     })
 
     return features

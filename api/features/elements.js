@@ -919,6 +919,9 @@ export default {
       "options": {
         "buttons": {
           "public": false,
+          "types": [
+            "array"
+          ],
           "description": ""
         }
       },
@@ -3171,7 +3174,100 @@ export default {
   },
   "image": {
     "base": {
+      "methods": {
+        "handleAbort": {
+          "public": false,
+          "returns": "void",
+          "description": ""
+        },
+        "handleRemove": {
+          "public": false,
+          "returns": "void",
+          "description": ""
+        },
+        "handleUploadTemp": {
+          "public": false,
+          "returns": "void",
+          "description": ""
+        },
+        "handleClick": {
+          "public": false,
+          "returns": "void",
+          "description": "Triggered when an uploader is clicked."
+        },
+        "handleChange": {
+          "public": false,
+          "returns": "void",
+          "description": "",
+          "params": {
+            "e": {
+              "types": [
+                "Event"
+              ],
+              "required": true,
+              "description": ""
+            }
+          }
+        },
+        "prepare": {
+          "public": false,
+          "returns": "void",
+          "description": ""
+        },
+        "remove": {
+          "public": true,
+          "returns": "void",
+          "description": ""
+        },
+        "uploadTemp": {
+          "public": true,
+          "returns": "void",
+          "description": ""
+        }
+      },
       "computed": {
+        "canSelect": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "canUploadTemp": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "canRemove": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "uploaded": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "filename": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": ""
+        },
+        "stage": {
+          "public": true,
+          "types": [
+            "number"
+          ],
+          "description": ""
+        },
         "link": {
           "public": true,
           "types": [
@@ -3190,6 +3286,84 @@ export default {
           "public": true,
           "types": [
             "object"
+          ],
+          "description": ""
+        }
+      },
+      "options": {
+        "url": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": ""
+        },
+        "endpoints": {
+          "public": true,
+          "default": "config.endpoints.file",
+          "types": [
+            "object"
+          ],
+          "description": ""
+        },
+        "methods": {
+          "public": true,
+          "default": "config.methods.file",
+          "types": [
+            "object"
+          ],
+          "description": ""
+        },
+        "auto": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "accept": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "string",
+            "array"
+          ],
+          "description": ""
+        }
+      },
+      "data": {
+        "preparing": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "progress": {
+          "public": true,
+          "default": "0",
+          "types": [
+            "number"
+          ],
+          "description": ""
+        },
+        "base64": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "string"
+          ],
+          "description": ""
+        },
+        "file": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "File",
+            "object",
+            "string"
           ],
           "description": ""
         }
@@ -3558,6 +3732,10 @@ export default {
       "options": {
         "accept": {
           "public": false,
+          "types": [
+            "string",
+            "array"
+          ],
           "description": ""
         }
       },
@@ -3792,6 +3970,9 @@ export default {
       "options": {
         "seconds": {
           "public": false,
+          "types": [
+            "boolean"
+          ],
           "description": ""
         },
         "hour24": {
@@ -3956,10 +4137,16 @@ export default {
       "options": {
         "create": {
           "public": false,
+          "types": [
+            "boolean"
+          ],
           "description": ""
         },
         "search": {
-          "public": false,
+          "public": true,
+          "types": [
+            "boolean"
+          ],
           "description": ""
         },
         "options": {
@@ -3986,38 +4173,66 @@ export default {
       "options": {
         "min": {
           "public": false,
+          "types": [
+            "number"
+          ],
           "description": ""
         },
         "max": {
           "public": false,
+          "types": [
+            "number"
+          ],
           "description": ""
         },
         "step": {
           "public": false,
+          "types": [
+            "number"
+          ],
           "description": ""
         },
         "tooltips": {
           "public": false,
+          "types": [
+            "boolean"
+          ],
           "description": ""
         },
         "merge": {
           "public": false,
+          "types": [
+            "number"
+          ],
           "description": ""
         },
         "format": {
           "public": false,
+          "types": [
+            "object",
+            "function"
+          ],
           "description": ""
         },
         "orientation": {
           "public": false,
+          "types": [
+            "string"
+          ],
           "description": ""
         },
         "direction": {
           "public": false,
+          "types": [
+            "string"
+          ],
           "description": ""
         },
         "height": {
           "public": false,
+          "types": [
+            "string"
+          ],
           "description": ""
         },
         "options": {
@@ -4035,6 +4250,9 @@ export default {
       "options": {
         "seconds": {
           "public": false,
+          "types": [
+            "boolean"
+          ],
           "description": ""
         },
         "hour24": {
@@ -4133,10 +4351,16 @@ export default {
         },
         "width": {
           "public": false,
+          "types": [
+            "number"
+          ],
           "description": ""
         },
         "height": {
           "public": false,
+          "types": [
+            "number"
+          ],
           "description": ""
         },
         "speed": {
@@ -4149,6 +4373,9 @@ export default {
         },
         "colors": {
           "public": false,
+          "types": [
+            "object"
+          ],
           "description": ""
         },
         "options": {
@@ -4195,6 +4422,10 @@ export default {
   "path": {
     "base": {
       "computed": {
+        "parent": {
+          "public": false,
+          "description": ""
+        },
         "path": {
           "public": true,
           "types": [
@@ -4206,7 +4437,8 @@ export default {
           "public": false,
           "description": ""
         }
-      }
+      },
+      "methods": {}
     },
     "group": {
       "computed": {
@@ -4276,22 +4508,37 @@ export default {
       "options": {
         "auto": {
           "public": false,
+          "types": [
+            "boolean"
+          ],
           "description": ""
         },
         "object": {
           "public": false,
+          "types": [
+            "boolean"
+          ],
           "description": ""
         },
         "file": {
           "public": false,
+          "types": [
+            "object"
+          ],
           "description": ""
         },
         "fields": {
           "public": false,
+          "types": [
+            "object"
+          ],
           "description": ""
         },
         "storeFile": {
           "public": false,
+          "types": [
+            "string"
+          ],
           "description": ""
         }
       }
@@ -4300,22 +4547,37 @@ export default {
       "options": {
         "auto": {
           "public": false,
+          "types": [
+            "boolean"
+          ],
           "description": ""
         },
         "object": {
           "public": false,
+          "types": [
+            "boolean"
+          ],
           "description": ""
         },
         "file": {
           "public": false,
+          "types": [
+            "object"
+          ],
           "description": ""
         },
         "storeFile": {
           "public": false,
+          "types": [
+            "string"
+          ],
           "description": ""
         },
         "fields": {
           "public": false,
+          "types": [
+            "object"
+          ],
           "description": ""
         }
       },
@@ -4610,6 +4872,9 @@ export default {
       "options": {
         "text": {
           "public": false,
+          "types": [
+            "string"
+          ],
           "description": ""
         }
       }

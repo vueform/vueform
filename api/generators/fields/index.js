@@ -5,6 +5,7 @@ const elementFeatures = require('./../../features/elements').default
 const componentFeatures = require('./../../features/components').default
 
 const ignore = []
+const include = []
 
 const output = __dirname + '/../../../src/components/fields/fields.js'
 
@@ -13,6 +14,10 @@ let contents = ''
 contents += `export default {\n`
 
 _.each(elements, (element, elementName) => {
+  if (include.length > 0 && include.indexOf(elementName) === -1) {
+    return
+  }
+
   contents += `  ${elementName}: {\n`
   contents += `    props: {\n`
   contents += `      name: {\n`

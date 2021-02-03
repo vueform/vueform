@@ -11,7 +11,10 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
-  const { assignToParent, removeFromParent } = useParentAssign(props, context, {
+  const {
+    assignToParent,
+    removeFromParent
+  } = useParentAssign(props, context, {
     form$,
   })
 

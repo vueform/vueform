@@ -17,7 +17,7 @@ const base = function (props, context, dependencies)
 
   /**
    * 
-   * 
+   * @type {string|array}
    * @private
    */
   const accept = computedOption('accept', schema, null)

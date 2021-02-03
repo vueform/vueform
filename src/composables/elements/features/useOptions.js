@@ -282,7 +282,7 @@ const datetime = function(props, context, dependencies)
 
   /**
    * 
-   * 
+   * @type {boolean}
    * @private
    */
   const seconds = computedOption('seconds', schema, false)
@@ -543,7 +543,7 @@ const tags = function (props, context, dependencies)
 
   /**
    * 
-   * 
+   * @type {boolean}
    * @private
    */
   const create = computedOption('create', schema, false)
@@ -551,7 +551,7 @@ const tags = function (props, context, dependencies)
   /**
    * 
    * 
-   * @private
+   * @type {boolean}
    * @option
    */
   const search = computed({
@@ -639,63 +639,63 @@ const slider = function (props, context, dependencies)
 
   /**
    * 
-   * 
+   * @type {number}
    * @private
    */
   const min = computedOption('min', schema, 0)
 
   /**
    * 
-   * 
+   * @type {number}
    * @private
    */
   const max = computedOption('max', schema, 100)
   
   /**
    * 
-   * 
+   * @type {number}
    * @private
    */
   const step = computedOption('step', schema, 1)
 
   /**
    * 
-   * 
+   * @type {boolean}
    * @private
    */
   const tooltips = computedOption('tooltips', schema, true)
 
   /**
    * 
-   * 
+   * @type {number}
    * @private
    */
   const merge = computedOption('merge', schema, -1)
 
   /**
    * 
-   * 
+   * @type {object|function}
    * @private
    */
   const format = computedOption('format', schema, false)
 
   /**
    * 
-   * 
+   * @type {string}
    * @private
    */
   const orientation = computedOption('orientation', schema, 'horizontal')
 
   /**
    * 
-   * 
+   * @type {string}
    * @private
    */
   const direction = computedOption('direction', schema, 'ltr')
   
   /**
    * 
-   * 
+   * @type {string}
    * @private
    */
   const height = computedOption('height', schema, '300px')
@@ -769,7 +769,7 @@ const time = function(props, context, dependencies)
 
   /**
    * 
-   * 
+   * @type {boolean}
    * @private
    */
   const seconds = computedOption('seconds', schema, false)
@@ -901,14 +901,14 @@ const toggle = function(props, context, dependencies)
 
   /**
    * 
-   * 
+   * @type {number}
    * @private
    */
   const width = computedOption('width', schema, 54)
 
   /**
    * 
-   * 
+   * @type {number}
    * @private
    */
   const height = computedOption('height', schema, 24)
@@ -923,7 +923,7 @@ const toggle = function(props, context, dependencies)
 
   /**
    * 
-   * 
+   * @type {object}
    * @private
    */
   const colors = computedOption('colors', schema, {})

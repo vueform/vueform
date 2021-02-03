@@ -8,26 +8,37 @@ export default {
   {    
     // ============ DEPENDENCIES ============
 
-    const { el$, form$, classes, mainClass, components, theme } = useElementComponent(props, context)
+    const {
+      el$,
+      form$,
+      classes,
+      mainClass,
+      components,
+      theme
+    } = useElementComponent(props, context)
 
-    const { label, isLabelComponent } = useLabel(props, context, { 
+    const {
+      label,
+      isLabelComponent
+    } = useLabel(props, context, { 
       descriptor: computed(() => { return el$.value.schema }),
       component$: el$,
      })
 
     // ============== COMPUTED ==============
 
+    /**
+     * 
+     * @type {string}
+     */
     const name = computed(() => {
       return el$.value.name
     })
 
     return {
-      // Inject
       el$,
       form$,
       theme,
-
-      // Computed
       classes,
       mainClass,
       components,

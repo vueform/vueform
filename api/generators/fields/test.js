@@ -1,4 +1,7 @@
-export default {
+import _ from 'lodash'
+import fields from './../../../src/components/fields/fields'
+
+const expected = {
   address: {
     props: {
       name: {
@@ -1768,31 +1771,6 @@ export default {
       id: {
         required: false,
         type: [String],
-        default: undefined
-      },
-      url: {
-        required: false,
-        type: [String],
-        default: undefined
-      },
-      endpoints: {
-        required: false,
-        type: [Object],
-        default: undefined
-      },
-      methods: {
-        required: false,
-        type: [Object],
-        default: undefined
-      },
-      auto: {
-        required: false,
-        type: [Boolean],
-        default: undefined
-      },
-      accept: {
-        required: false,
-        type: [String, Array],
         default: undefined
       },
       info: {
@@ -5060,3 +5038,5 @@ export default {
     events: ['change', 'error'],
   },
 }
+
+console.log(_.isEqual(fields, expected) ? 'Test passed' : 'Test failed')

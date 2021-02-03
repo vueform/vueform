@@ -51,35 +51,35 @@ const multifile = function(props, context, dependencies, options = {})
 
   /**
    * 
-   * 
+   * @type {boolean}
    * @private
    */
   const auto = computedOption('auto', schema, true)
 
   /**
    * 
-   * 
+   * @type {boolean}
    * @private
    */
   const object = computedOption('object', schema, false)
 
   /**
    * 
-   * 
+   * @type {object}
    * @private
    */
   const file = computedOption('file', schema, {})
 
   /**
    * 
-   * 
+   * @type {object}
    * @private
    */
   const fields = computedOption('fields', schema, {})
 
   /**
    * 
-   * 
+   * @type {string}
    * @private
    */
   const storeFile = computedOption('storeFile', schema, object.value || _.keys(fields.value).length || storeOrder.value ? 'file' : null)

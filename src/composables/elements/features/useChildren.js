@@ -240,7 +240,7 @@ const buttons = function(props, context, dependencies)
 
   /**
    * 
-   * 
+   * @type {array}
    * @private
    */
   const buttons = computedOption('buttons', schema, {})

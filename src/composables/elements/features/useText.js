@@ -9,7 +9,7 @@ const base = function(props, context, dependencies)
 
   /**
    * 
-   * 
+   * @type {string}
    * @private
    */
   const text = computedOption('text', schema, '')

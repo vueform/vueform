@@ -5,7 +5,9 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const model = dependencies.model
-  const { handleChange } = useHandleChange(props, context, dependencies)
+  const {
+    handleChange
+  } = useHandleChange(props, context, dependencies)
 
   // =============== METHODS ==============
 
@@ -29,7 +31,9 @@ const select = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const model = dependencies.model
-  const { handleChange } = useHandleChange(props, context, dependencies)
+  const {
+    handleChange
+  } = useHandleChange(props, context, dependencies)
 
   // =============== METHODS ==============
 

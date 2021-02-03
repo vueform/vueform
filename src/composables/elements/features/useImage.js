@@ -1,4 +1,4 @@
-import { computed, ref, watch } from 'composition-api'
+import { computed, watch } from 'composition-api'
 import useFile from './useFile'
 
 const base = function (props, context, dependencies)
