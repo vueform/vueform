@@ -13,7 +13,6 @@
             :embed="embed"
             :schema="element"
             :name="name"
-            :parent="el$"
             :key="name"
             @remove="(e) => $emit('remove', e)"
           />

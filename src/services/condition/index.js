@@ -43,6 +43,7 @@ const check = (condition, elementPath, form$) => {
   }
 
   let details = () => {
+
     return {
       conditionPath: elementPath ? replaceWildcards(condition[0], elementPath) : condition[0],
       operator: condition.length == 3 ? condition[1] : '=',

@@ -1,5 +1,11 @@
-import { vsprintf } from 'sprintf-js'
-
 export default function (fillable, fill) {
-  return vsprintf(fillable.replace('.*', '%s'), fill.match(/\.[0-9]/))
+  if (!fill.match(/\.([0-9]+)(?![a-zA-Z]+)/g)) {
+    return fillable
+  }
+
+  fill.match(/.([0-9]+)(?![a-zA-Z]+)/g).forEach((match) => {
+    fillable = fillable.replace('.*', match)
+  })
+
+  return fillable
 }

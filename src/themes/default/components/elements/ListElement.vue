@@ -16,7 +16,6 @@
                   :is="component(element)"
                   :schema="element"
                   :name="i"
-                  :parent="el$"
                 />
               </slot>
               <a

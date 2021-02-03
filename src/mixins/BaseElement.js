@@ -10,12 +10,6 @@ export default {
       type: [Number, String],
       required: true
     },
-
-    parent: {
-      type: Object,
-      required: false,
-      default: () => ({})
-    },
     
     embed: {
       type: Boolean,
