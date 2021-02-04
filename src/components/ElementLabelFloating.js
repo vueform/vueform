@@ -13,22 +13,31 @@ import useElementComponent from './../composables/useElementComponent'
     {    
       // ============ DEPENDENCIES ============
 
-      const { el$, form$, classes, mainClass, components, theme } = useElementComponent(props, context)
+      const {
+      el$,
+      form$,
+      classes,
+      components,
+      mainClass,
+      theme
+    } = useElementComponent(props, context)
 
       // ============== COMPUTED ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
       const floating = computed(() => {
         return el$.value.floating
       })
       
 
       return {
-        // Inject
         el$,
         form$,
         theme,
-
-        // Computed
         classes,
         mainClass,
         components,

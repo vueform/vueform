@@ -4,7 +4,9 @@ const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const { theme } = useTheme(props, context)
+  const {
+    theme
+  } = useTheme(props, context)
   
   // ============== METHODS ===============
   

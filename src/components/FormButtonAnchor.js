@@ -18,16 +18,31 @@ export default {
   
     // ============== COMPUTED ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const href = computed(() => {
       return button.value.href || ''
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const target = computed(() => {
       return button.value.target || '_self'
     })
 
     // =============== METHODS ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const handleClick = (e) => {
       if (href.value === '') {
         e.preventDefault()
@@ -43,12 +58,9 @@ export default {
     }
 
     return {
-      // Inject
       el$,
       form$,
       theme,
-
-      // Computed
       align,
       loading,
       disabled,
@@ -61,8 +73,6 @@ export default {
       isLabelComponent,
       href,
       target,
-
-      // Methods
       setLoading,
       disable,
       enable,

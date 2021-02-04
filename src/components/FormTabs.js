@@ -29,15 +29,38 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes, mainClass, components } = useFormComponent(props, context)
-    const { events, listeners, on, off, fire } = useEvents(props, context, { form$ }, {
+    const {
+      form$,
+      theme,
+      classes,
+      mainClass,
+      components
+    } = useFormComponent(props, context)
+
+    const {
+      events,
+      listeners,
+      on,
+      off,
+      fire
+    } = useEvents(props, context, { form$ }, {
       events: ['change']
     })
 
     // ================ DATA ================
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const tabs$Array = ref([])
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const exists = ref(true)
 
     // ============== COMPUTED ==============
@@ -177,6 +200,11 @@ export default {
     }
 
     // no export
+    /**
+     * 
+     * 
+     * @private
+     */
     const assignToParent = ($parent, assignToParent) => {
       if ($parent.tabs$ !== undefined) {
         form$.value.$set($parent, 'tabs$', $this)
@@ -187,6 +215,11 @@ export default {
     }
 
     // no export
+    /**
+     * 
+     * 
+     * @private
+     */
     const removeFromParent = ($parent, removeFromParent) => {
       if ($parent.tabs$ !== undefined) {
         form$.value.$set($parent, 'tabs$', null)
@@ -250,17 +283,12 @@ export default {
     })
 
     return {
-      // Inject
       form$,
       theme,
-
-      // Data
       tabs$Array,
       events,
       listeners,
       exists,
-
-      // Computed
       classes,
       mainClass,
       components,
@@ -270,8 +298,6 @@ export default {
       first$,
       next$,
       previous$,
-
-      // Methods
       goTo,
       select,
       tab$,

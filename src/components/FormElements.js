@@ -1,4 +1,3 @@
-import { ref, getCurrentInstance, onMounted, onBeforeMount, createVNode, mount } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useElements from './../composables/useElements'
 
@@ -14,21 +13,24 @@ export default {
   {  
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes, mainClass, components } = useFormComponent(props, context)
-
-    const { component } = useElements(props, context, { theme })
-
-    return {
-      // Inject
+    const {
       form$,
       theme,
+      classes,
+      mainClass,
+      components
+    } = useFormComponent(props, context)
 
-      // Computed
+    const {
+      component
+    } = useElements(props, context, { theme })
+
+    return {
+      form$,
+      theme,
       classes,
       mainClass,
       components,
-
-      // Methods
       component,
     }
   },

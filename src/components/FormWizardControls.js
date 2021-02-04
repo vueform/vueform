@@ -11,14 +11,17 @@ export default {
   {  
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes, mainClass, components } = useFormComponent(props, context)
-
-    return {
-      // Inject
+    const {
       form$,
       theme,
+      classes,
+      mainClass,
+      components
+    } = useFormComponent(props, context)
 
-      // Computed
+    return {
+      form$,
+      theme,
       classes,
       mainClass,
       components,

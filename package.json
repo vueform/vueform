@@ -24,11 +24,12 @@
         "test:vue2": "VUE=2 jest --watchAll --verbose --config=jest/jest.config.vue2.js",
         "test:vue3": "VUE=3 jest --watchAll --verbose --config=jest/jest.config.vue3.js",
         "test:fields": "npx babel-node api/generators/fields/test.js --presets @babel/preset-env",
-        "generate:all": "npm run generate:elements; npm run generate:features:elements; npm run generate:features:components; npm run generate:fields",
+        "generate:all": "npm run generate:elements; npm run generate:features:elements; npm run generate:features:common; npm run generate:fields",
         "generate:fields": "npx babel-node api/generators/fields/index.js --presets @babel/preset-env",
         "generate:elements": "npx babel-node api/generators/elements/index.js --presets @babel/preset-env",
+        "generate:components:elements": "npx babel-node api/generators/components/elements.js --presets @babel/preset-env",
         "generate:features:elements": "npx babel-node api/generators/features/elements.js --presets @babel/preset-env",
-        "generate:features:components": "npx babel-node api/generators/features/components.js --presets @babel/preset-env"
+        "generate:features:common": "npx babel-node api/generators/features/common.js --presets @babel/preset-env"
     },
     "devDependencies": {
         "@babel/core": "^7.2.2",

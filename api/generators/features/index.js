@@ -180,16 +180,21 @@ class Generator
     return isOption
   }
 
-  getUses(lines, i) {
-    let l = i - 1
-    let uses = []
+  getUses(lines, i, fileName) {
+    try {
+      let l = i - 1
+      let uses = []
 
-    while(lines[l].match(/const {/) === null) {
-      uses.push(lines[l].match(/([a-zA-Z0-9_$]+)/)[1])
-      l--
+      while(lines[l].match(/const {/) === null) {
+        uses.push(lines[l].match(/([a-zA-Z0-9_$]+)/)[1])
+        l--
+      }
+
+      return uses
+    } catch (e) {
+      console.log(fileName+'@'+i)
+      throw new Error(e)
     }
-
-    return uses
   }
 
   getDetails(lines, fileName) {
@@ -262,7 +267,7 @@ class Generator
           uses[variation] = {}
         }
 
-        uses[variation][line.match(useRegex)[1]] = this.getUses(lines, i)
+        uses[variation][line.match(useRegex)[1]] = this.getUses(lines, i, fileName)
       }
 
       // Get docblocks from different props & methods

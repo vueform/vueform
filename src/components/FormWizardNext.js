@@ -16,10 +16,21 @@ export default {
     
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes, mainClass, components } = useFormComponent(props, context)
+    const {
+      form$,
+      theme,
+      classes,
+      mainClass,
+      components
+    } = useFormComponent(props, context)
 
     // ============== COMPUTED ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const visible = computed(() => {
       if (!wizard$.value) {
         return false
@@ -36,6 +47,11 @@ export default {
       return true
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const disabled = computed(() => {
       return current$.value !== undefined && current$.value.index !== undefined &&
         // only disable next because of invalidity
@@ -49,10 +65,20 @@ export default {
         )
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const current$ = computed(() => {
       return wizard$.value ? wizard$.value.current$ : undefined
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const baseLabel = computed(() => {
       if (current$ && current$.value && current$.value.labels && current$.value.labels.next) {
         return current$.value.labels.next
@@ -61,6 +87,11 @@ export default {
       return form$.value.__('laraform.wizard.next')
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const descriptor = computed(() => {
       return {
         label: baseLabel.value
@@ -69,6 +100,11 @@ export default {
 
     // =============== METHODS ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const next = async () => {
       if (form$.value.shouldValidateOnStep) {
         await current$.value.validate()
@@ -84,17 +120,17 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { label, isLabelComponent } = useLabel(props, context, {
+    const {
+      label,
+      isLabelComponent
+    } = useLabel(props, context, {
       descriptor,
       component$: current$,
     })
 
     return {
-      // Inject
       form$,
       theme,
-
-      // Computed
       classes,
       mainClass,
       components,
@@ -103,8 +139,6 @@ export default {
       current$,
       label,
       isLabelComponent,
-
-      // Methods
       next,
     }
   },

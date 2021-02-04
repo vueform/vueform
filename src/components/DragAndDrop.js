@@ -18,16 +18,38 @@ export default {
   {
     // ============== DEPENDENCIES ==============
 
-    const { el$, form$, classes: baseClasses, components, mainClass, theme } = useElementComponent(props, context)
+    const {
+      el$,
+      form$,
+      classes: baseClasses,
+      components,
+      mainClass,
+      theme
+    } = useElementComponent(props, context)
 
     // ================ DATA ================
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const dragging = ref(false)
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const area = ref(null)
 
     // ============== COMPUTED ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const classes = computed(() => {
       let classes = _.clone(baseClasses.value)
 
@@ -40,6 +62,11 @@ export default {
 
     // =============== METHODS ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const handleClick = () => {
       context.emit('click')
     }

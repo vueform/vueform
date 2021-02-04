@@ -34,6 +34,20 @@ export default {
   },
   "elementComponent": {
     "base": {
+      "inject": {
+        "form$": {
+          "public": false,
+          "description": ""
+        },
+        "el$": {
+          "public": false,
+          "description": ""
+        },
+        "theme": {
+          "public": false,
+          "description": ""
+        }
+      },
       "computed": {
         "classes": {
           "public": false,
@@ -131,6 +145,16 @@ export default {
   },
   "formComponent": {
     "base": {
+      "inject": {
+        "form$": {
+          "public": false,
+          "description": ""
+        },
+        "theme": {
+          "public": false,
+          "description": ""
+        }
+      },
       "computed": {
         "classes": {
           "public": false,
@@ -163,7 +187,197 @@ export default {
   },
   "laraform": {
     "base": {
+      "methods": {
+        "off": {
+          "public": true,
+          "returns": "void",
+          "description": "Removes all listeners for an event.",
+          "params": {
+            "event": {
+              "types": [
+                "string"
+              ],
+              "required": false,
+              "description": "event to remove the listeners for."
+            }
+          }
+        },
+        "on": {
+          "public": true,
+          "returns": "void",
+          "description": "Adds a listener for an event.",
+          "params": {
+            "event": {
+              "types": [
+                "string"
+              ],
+              "required": false,
+              "description": "event to listen for."
+            },
+            "callback": {
+              "types": [
+                "function"
+              ],
+              "required": false,
+              "description": "callback to run when the event is triggered. The `this` variable refers to the component the listener is set for."
+            }
+          }
+        },
+        "update": {
+          "public": true,
+          "returns": "void",
+          "description": "Updates the element values which are contained in the data.",
+          "params": {
+            "data": {
+              "types": [
+                "object"
+              ],
+              "required": false,
+              "description": "data to update with"
+            }
+          }
+        },
+        "load": {
+          "public": true,
+          "returns": "void",
+          "description": "Loads data and clears any element if the element's key is not found in the `data` object. Sets all elements' `dirty` to `false`.",
+          "params": {
+            "data": {
+              "types": [
+                "object"
+              ],
+              "required": false,
+              "description": "data to load"
+            }
+          }
+        },
+        "reset": {
+          "public": true,
+          "returns": "void",
+          "description": "Resets the form to its default state."
+        },
+        "clear": {
+          "public": true,
+          "returns": "void",
+          "description": "Resets the form to null values."
+        },
+        "clean": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets all elements' `dirty` to `false`."
+        },
+        "validate": {
+          "public": true,
+          "returns": "void",
+          "description": "Validates each elements within the form."
+        },
+        "submit": {
+          "public": true,
+          "returns": "void",
+          "description": "Starts the submission process."
+        },
+        "send": {
+          "public": true,
+          "returns": "void",
+          "description": "Transforms form data to [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object and sends it to the endpoint."
+        },
+        "disableValidation": {
+          "public": true,
+          "returns": "void",
+          "description": "Disabled validation."
+        },
+        "enableValidation": {
+          "public": true,
+          "returns": "void",
+          "description": "Enables validation."
+        },
+        "setLanguage": {
+          "public": false,
+          "description": ""
+        },
+        "updateSchema": {
+          "public": false,
+          "description": ""
+        },
+        "handleChangeLanguage": {
+          "public": true,
+          "returns": "void",
+          "description": "Set the language of a multilingual form.",
+          "params": {
+            "code": {
+              "types": [
+                "string"
+              ],
+              "required": false,
+              "description": "code of language to set"
+            }
+          }
+        },
+        "handleSubmit": {
+          "public": true,
+          "description": "Triggered when the form is submitted. Can prevent further execution (element validation) if returns `false`."
+        },
+        "el$": {
+          "public": true,
+          "returns": "void",
+          "description": "Returns an element by its path.",
+          "params": {
+            "path": {
+              "types": [
+                "string"
+              ],
+              "required": false,
+              "description": "path of the element"
+            },
+            "elements": {
+              "types": [
+                "string"
+              ],
+              "required": false,
+              "description": "elements$ object to look elements for (leave blank)"
+            }
+          }
+        },
+        "siblings$": {
+          "public": true,
+          "returns": "void",
+          "description": "Returns the siblings of an element.",
+          "params": {
+            "path": {
+              "types": [
+                "string"
+              ],
+              "required": false,
+              "description": "path of the element"
+            }
+          }
+        },
+        "resortSchema": {
+          "public": false,
+          "description": ""
+        },
+        "initMessageBag": {
+          "public": false,
+          "description": ""
+        }
+      },
       "data": {
+        "listeners": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store listeners for events."
+        },
+        "events": {
+          "public": true,
+          "default": "[]",
+          "types": [
+            "array"
+          ],
+          "description": "Helper property used to store available events for the element."
+        },
         "elements$": {
           "public": false,
           "description": ""
@@ -377,145 +591,6 @@ export default {
           "description": "The value of external Vuex store state."
         },
         "form$": {
-          "public": false,
-          "description": ""
-        }
-      },
-      "methods": {
-        "update": {
-          "public": true,
-          "returns": "void",
-          "description": "Updates the element values which are contained in the data.",
-          "params": {
-            "data": {
-              "types": [
-                "object"
-              ],
-              "required": false,
-              "description": "data to update with"
-            }
-          }
-        },
-        "load": {
-          "public": true,
-          "returns": "void",
-          "description": "Loads data and clears any element if the element's key is not found in the `data` object. Sets all elements' `dirty` to `false`.",
-          "params": {
-            "data": {
-              "types": [
-                "object"
-              ],
-              "required": false,
-              "description": "data to load"
-            }
-          }
-        },
-        "reset": {
-          "public": true,
-          "returns": "void",
-          "description": "Resets the form to its default state."
-        },
-        "clear": {
-          "public": true,
-          "returns": "void",
-          "description": "Resets the form to null values."
-        },
-        "clean": {
-          "public": true,
-          "returns": "void",
-          "description": "Sets all elements' `dirty` to `false`."
-        },
-        "validate": {
-          "public": true,
-          "returns": "void",
-          "description": "Validates each elements within the form."
-        },
-        "submit": {
-          "public": true,
-          "returns": "void",
-          "description": "Starts the submission process."
-        },
-        "send": {
-          "public": true,
-          "returns": "void",
-          "description": "Transforms form data to [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object and sends it to the endpoint."
-        },
-        "disableValidation": {
-          "public": true,
-          "returns": "void",
-          "description": "Disabled validation."
-        },
-        "enableValidation": {
-          "public": true,
-          "returns": "void",
-          "description": "Enables validation."
-        },
-        "setLanguage": {
-          "public": false,
-          "description": ""
-        },
-        "updateSchema": {
-          "public": false,
-          "description": ""
-        },
-        "handleChangeLanguage": {
-          "public": true,
-          "returns": "void",
-          "description": "Set the language of a multilingual form.",
-          "params": {
-            "code": {
-              "types": [
-                "string"
-              ],
-              "required": false,
-              "description": "code of language to set"
-            }
-          }
-        },
-        "handleSubmit": {
-          "public": true,
-          "description": "Triggered when the form is submitted. Can prevent further execution (element validation) if returns `false`."
-        },
-        "el$": {
-          "public": true,
-          "returns": "void",
-          "description": "Returns an element by its path.",
-          "params": {
-            "path": {
-              "types": [
-                "string"
-              ],
-              "required": false,
-              "description": "path of the element"
-            },
-            "elements": {
-              "types": [
-                "string"
-              ],
-              "required": false,
-              "description": "elements$ object to look elements for (leave blank)"
-            }
-          }
-        },
-        "siblings$": {
-          "public": true,
-          "returns": "void",
-          "description": "Returns the siblings of an element.",
-          "params": {
-            "path": {
-              "types": [
-                "string"
-              ],
-              "required": false,
-              "description": "path of the element"
-            }
-          }
-        },
-        "resortSchema": {
-          "public": false,
-          "description": ""
-        },
-        "initMessageBag": {
           "public": false,
           "description": ""
         }

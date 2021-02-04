@@ -31,7 +31,13 @@ const base = function(props, context, dependencies = {})
 
   // ============ DEPENDENCIES ============
 
-  const { events, listeners, fire, on, off } = useEvents(props, context, { form$: $this }, {
+  const {
+    events,
+    listeners,
+    fire,
+    on,
+    off
+  } = useEvents(props, context, { form$: $this }, {
     events: [
       'change', 'submit', 'success', 'error',
       'language', 'reset', 'clear', 'fail'

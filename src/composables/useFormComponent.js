@@ -10,8 +10,13 @@ const base = function(props, context, dependencies)
 
   // =============== INJECT ===============
 
-  const { form$ } = useForm$(props, context)
-  const { theme } = useTheme(props, context)
+  const {
+    form$
+  } = useForm$(props, context)
+
+  const {
+    theme
+  } = useTheme(props, context)
   
   // ============== COMPUTED ===============
 

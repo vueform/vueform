@@ -16,15 +16,30 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes, mainClass, components } = useFormComponent(props, context)
+    const {
+      form$,
+      theme,
+      classes,
+      mainClass,
+      components
+    } = useFormComponent(props, context)
 
     // ============== COMPUTED ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const visible = computed(() => {
       return wizard$.value && wizard$.value.isAtLastStep
     })
 
-
+    /**
+     * 
+     * 
+     * @private
+     */
     const disabled = computed(() => {
       // only disable finish because of invalidity
       // if element validations are triggered on
@@ -35,14 +50,29 @@ export default {
             wizard$.value.busy || form$.value.submitting || form$.value.disabled
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const current$ = computed(() => {
       return wizard$.value ? wizard$.value.current$ : undefined
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const visible$ = computed(() => {
       return wizard$.value ? wizard$.value.visible$ : []
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const baseLabel = computed(() => {
       if (current$ && current$.value && current$.value.labels && current$.value.labels.finish) {
         return current$.value.labels.finish
@@ -51,6 +81,11 @@ export default {
       return form$.value.__('laraform.wizard.finish')
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const descriptor = computed(() => {
       return {
         label: baseLabel.value
@@ -59,6 +94,11 @@ export default {
 
     // =============== METHODS ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const finish = async () => {
       wizard$.value.fire('finish')
 
@@ -68,17 +108,17 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { label, isLabelComponent } = useLabel(props, context, {
+    const {
+      label,
+      isLabelComponent
+    } = useLabel(props, context, {
       descriptor,
       component$: current$,
     })
 
     return {
-      // Inject
       form$,
       theme,
-
-      // Computed
       classes,
       mainClass,
       components,
@@ -88,8 +128,6 @@ export default {
       visible$,
       label,
       isLabelComponent,
-
-      // Methods
       finish,
     }
   },

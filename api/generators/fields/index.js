@@ -2,7 +2,7 @@ const _ = require('lodash')
 const fs = require('fs')
 const elements = require('./../../elements').default
 const elementFeatures = require('./../../features/elements').default
-const componentFeatures = require('./../../features/components').default
+const commonFeatures = require('./../../features/common').default
 
 const ignore = []
 const include = []
@@ -29,7 +29,7 @@ _.each(elements, (element, elementName) => {
     let base = featureName.split('_')[0]
     let variant = featureName.split('_').length > 1 ? featureName.split('_')[1] : 'base'
 
-    let feature = elementFeatures[base] ? elementFeatures[base][variant] : componentFeatures[base][variant]
+    let feature = elementFeatures[base] ? elementFeatures[base][variant] : commonFeatures[base][variant]
 
     if (!feature.options) {
       return

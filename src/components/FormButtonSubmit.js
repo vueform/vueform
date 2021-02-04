@@ -17,6 +17,11 @@ export default {
   
     // ============== COMPUTED ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const isDisabled = computed(() => {
       let disabledByFunction = typeof button.value.disabled == 'function'
         ? button.value.disabled(form$.value)
@@ -25,6 +30,11 @@ export default {
       return disabledByFunction || disabled.value
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const isLoading = computed(() => {
       let loadingByFunction = typeof button.value.loading == 'function'
         ? button.value.loading(form$.value)
@@ -35,6 +45,11 @@ export default {
 
     // =============== METHODS ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const handleClick = () => {
       if (disabled.value || loading.value) {
         return
@@ -48,12 +63,9 @@ export default {
     }
 
     return {
-      // Inject
       el$,
       form$,
       theme,
-
-      // Computed
       align,
       loading,
       disabled,
@@ -64,8 +76,6 @@ export default {
       components,
       label,
       isLabelComponent,
-
-      // Methods
       setLoading,
       disable,
       enable,

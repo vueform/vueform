@@ -10,10 +10,22 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, el$, classes: baseClasses, components, mainClass, theme } = useElementComponent(props, context)
+    const {
+      form$,
+      el$,
+      classes: baseClasses,
+      components,
+      mainClass,
+      theme
+    } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const classes = computed(() => {
       let classList = _.clone(baseClasses.value)
 
@@ -31,41 +43,73 @@ export default {
       return classList
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const hasLabel = computed(() => {
       return el$.value.hasLabel
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const info = computed(() => {
       return el$.value.info
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const before = computed(() => {
       return el$.value.before
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const between = computed(() => {
       return el$.value.between
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const after = computed(() => {
       return el$.value.after
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const description = computed(() => {
       return el$.value.description
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const visible = computed(() => {
       return el$.value.visible
     })
 
     return {
-      // Inject
       el$,
       form$,
       theme,
-
-      // Computed
       components,
       classes,
       mainClass,

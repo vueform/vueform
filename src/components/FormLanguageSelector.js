@@ -8,41 +8,62 @@ export default {
   {  
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes, mainClass, components } = useFormComponent(props, context)
+    const {
+      form$,
+      theme,
+      classes,
+      mainClass,
+      components
+    } = useFormComponent(props, context)
 
     // ============== COMPUTED ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const language = computed(() => {
       return form$.value.language
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const languages = computed(() => {
       return form$.value.languages
     })
 
     // =============== METHODS ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const select = (code) => {
       context.emit('changeLanguage', code)
     }
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const handleSelect = (code) => {
       select(code)
     }
 
     return {
-      // Inject
       form$,
       theme,
-
-      // Computed
       classes,
       mainClass,
       components,
       language,
       languages,
-
-      // Methods
       select,
       handleSelect,
     }

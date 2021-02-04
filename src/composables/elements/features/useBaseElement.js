@@ -1,7 +1,6 @@
 import { computed, toRefs, onBeforeMount, onBeforeUnmount, getCurrentInstance, provide } from 'composition-api'
 import useParentAssign from './../../useParentAssign'
 import computedOption from './../../../utils/computedOption'
-import normalize from './../../../utils/normalize'
 
 const base = function(props, context, dependencies)
 {

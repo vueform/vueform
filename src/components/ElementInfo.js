@@ -8,21 +8,30 @@ export default {
   {
     // ============ DEPENDENCIES ============
 
-    const { el$, form$, classes, mainClass, components, theme } = useElementComponent(props, context)
+    const {
+      el$,
+      form$,
+      classes,
+      components,
+      mainClass,
+      theme
+    } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const info = computed(() => {
       return el$.value.info
     })
 
     return {
-      // Inject
       el$,
       form$,
       theme,
-
-      // Computed
       classes,
       mainClass,
       components,

@@ -1,7 +1,7 @@
 const Generator = require('./index')
 
 const featuresPath = process.cwd() + '/src/composables/'
-const outputPath = process.cwd() + '/api/features/components.js'
+const outputPath = process.cwd() + '/api/features/common.js'
 
 const generator = new Generator(featuresPath, outputPath)
 

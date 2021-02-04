@@ -1,4 +1,7 @@
-export default {
+import _ from 'lodash'
+import after from './elements'
+
+const before = {
   "addons": {
     "base": {
       "options": {
@@ -94,46 +97,6 @@ export default {
   },
   "baseElement": {
     "base": {
-      "computed": {
-        "el$": {
-          "public": true,
-          "types": [
-            [
-              "object",
-              "Element"
-            ]
-          ],
-          "description": ""
-        },
-        "isStatic": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        },
-        "isFileType": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Determines if the element's value is a file."
-        },
-        "isArrayType": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Determines if the element's value is an array."
-        },
-        "isImageType": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Determines if the element's value is an image."
-        }
-      },
       "options": {
         "type": {
           "public": true,
@@ -143,10 +106,57 @@ export default {
           ],
           "description": ""
         }
+      },
+      "computed": {
+        "isStatic": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "isFileType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is a file."
+        },
+        "isImageType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an image."
+        },
+        "isArrayType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an array."
+        },
+        "el$": {
+          "public": true,
+          "types": [
+            [
+              "object",
+              "Element"
+            ]
+          ],
+          "description": ""
+        }
       }
     },
     "list": {
       "computed": {
+        "isArrayType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an array."
+        },
         "el$": {
           "public": true,
           "types": [
@@ -170,13 +180,6 @@ export default {
             "boolean"
           ],
           "description": "Determines if the element's value is a file."
-        },
-        "isArrayType": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Determines if the element's value is an array."
         },
         "isImageType": {
           "public": true,
@@ -199,6 +202,13 @@ export default {
     },
     "file": {
       "computed": {
+        "isFileType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is a file."
+        },
         "el$": {
           "public": true,
           "types": [
@@ -215,13 +225,6 @@ export default {
             "boolean"
           ],
           "description": ""
-        },
-        "isFileType": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Determines if the element's value is a file."
         },
         "isArrayType": {
           "public": true,
@@ -251,6 +254,13 @@ export default {
     },
     "image": {
       "computed": {
+        "isImageType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an image."
+        },
         "el$": {
           "public": true,
           "types": [
@@ -281,13 +291,6 @@ export default {
             "boolean"
           ],
           "description": "Determines if the element's value is an array."
-        },
-        "isImageType": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Determines if the element's value is an image."
         }
       },
       "options": {
@@ -303,6 +306,13 @@ export default {
     },
     "static": {
       "computed": {
+        "isStatic": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
         "el$": {
           "public": true,
           "types": [
@@ -310,13 +320,6 @@ export default {
               "object",
               "Element"
             ]
-          ],
-          "description": ""
-        },
-        "isStatic": {
-          "public": true,
-          "types": [
-            "boolean"
           ],
           "description": ""
         },
@@ -355,6 +358,13 @@ export default {
     },
     "checkboxgroup": {
       "computed": {
+        "isArrayType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an array."
+        },
         "el$": {
           "public": true,
           "types": [
@@ -378,13 +388,6 @@ export default {
             "boolean"
           ],
           "description": "Determines if the element's value is a file."
-        },
-        "isArrayType": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Determines if the element's value is an array."
         },
         "isImageType": {
           "public": true,
@@ -407,6 +410,13 @@ export default {
     },
     "dates": {
       "computed": {
+        "isArrayType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an array."
+        },
         "el$": {
           "public": true,
           "types": [
@@ -430,13 +440,6 @@ export default {
             "boolean"
           ],
           "description": "Determines if the element's value is a file."
-        },
-        "isArrayType": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Determines if the element's value is an array."
         },
         "isImageType": {
           "public": true,
@@ -459,6 +462,13 @@ export default {
     },
     "multiselect": {
       "computed": {
+        "isArrayType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an array."
+        },
         "el$": {
           "public": true,
           "types": [
@@ -482,13 +492,6 @@ export default {
             "boolean"
           ],
           "description": "Determines if the element's value is a file."
-        },
-        "isArrayType": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Determines if the element's value is an array."
         },
         "isImageType": {
           "public": true,
@@ -511,6 +514,13 @@ export default {
     },
     "tags": {
       "computed": {
+        "isArrayType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an array."
+        },
         "el$": {
           "public": true,
           "types": [
@@ -534,13 +544,6 @@ export default {
             "boolean"
           ],
           "description": "Determines if the element's value is a file."
-        },
-        "isArrayType": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Determines if the element's value is an array."
         },
         "isImageType": {
           "public": true,
@@ -859,16 +862,15 @@ export default {
       }
     },
     "address": {
-      "options": {
-        "elements": {
-          "public": false,
+      "data": {
+        "addressId": {
+          "public": true,
+          "default": "\"address-*\"",
           "types": [
-            "object"
+            "string"
           ],
           "description": ""
-        }
-      },
-      "data": {
+        },
         "children$Array": {
           "public": false,
           "types": [
@@ -878,17 +880,23 @@ export default {
             ]
           ],
           "description": ""
-        },
-        "addressId": {
-          "public": true,
-          "default": "\"address-*\"",
-          "types": [
-            "string"
-          ],
-          "description": ""
         }
       },
       "computed": {
+        "fields": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Fields of the address. By default has the following `text` type elements: `address`, `address2`, `zip`, `city`, `state`, `country`."
+        },
+        "children": {
+          "public": false,
+          "types": [
+            "object"
+          ],
+          "description": "Schema of child elements."
+        },
         "children$": {
           "public": true,
           "types": [
@@ -898,20 +906,15 @@ export default {
             ]
           ],
           "description": ""
-        },
-        "children": {
+        }
+      },
+      "options": {
+        "elements": {
           "public": false,
           "types": [
             "object"
           ],
-          "description": "Schema of child elements."
-        },
-        "fields": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "Fields of the address. By default has the following `text` type elements: `address`, `address2`, `zip`, `city`, `state`, `country`."
+          "description": ""
         }
       }
     },
@@ -1002,7 +1005,24 @@ export default {
   },
   "classes": {
     "base": {
+      "data": {
+        "defaultClasses": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": ""
+        }
+      },
       "options": {
+        "addClasses": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Classes to be added to components within the element. Eg. `addClasses: { ElementLabel: { label: 'my-label-class' } }` will add `my-label-class` to `ElementLabel`'s `label` class list."
+        },
         "class": {
           "public": true,
           "default": "\"\"",
@@ -1017,14 +1037,6 @@ export default {
             "object"
           ],
           "description": "Returns the final classes of the components within the element."
-        },
-        "addClasses": {
-          "public": true,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Classes to be added to components within the element. Eg. `addClasses: { ElementLabel: { label: 'my-label-class' } }` will add `my-label-class` to `ElementLabel`'s `label` class list."
         }
       },
       "computed": {
@@ -1035,19 +1047,17 @@ export default {
           ],
           "description": "Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object)."
         }
-      },
-      "data": {
-        "defaultClasses": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": ""
-        }
       }
     },
     "list": {
       "options": {
+        "classes": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`."
+        },
         "class": {
           "public": true,
           "default": "\"\"",
@@ -1055,13 +1065,6 @@ export default {
             "string"
           ],
           "description": "Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object)."
-        },
-        "classes": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`."
         },
         "addClasses": {
           "public": true,
@@ -1093,6 +1096,13 @@ export default {
     },
     "file": {
       "options": {
+        "classes": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`."
+        },
         "class": {
           "public": true,
           "default": "\"\"",
@@ -1100,13 +1110,6 @@ export default {
             "string"
           ],
           "description": "Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object)."
-        },
-        "classes": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`."
         },
         "addClasses": {
           "public": true,
@@ -1165,53 +1168,6 @@ export default {
   },
   "data": {
     "base": {
-      "computed": {
-        "data": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "An object containing the element `name` as a key and its `value` as value."
-        },
-        "filtered": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`."
-        },
-        "changed": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        }
-      },
-      "options": {
-        "formatData": {
-          "public": true,
-          "types": [
-            "function"
-          ],
-          "description": "A function that formats data before gets merged with form `data`."
-        },
-        "formatLoad": {
-          "public": true,
-          "types": [
-            "function"
-          ],
-          "description": "A function that formats data before [.load](#method-load) to the element."
-        },
-        "submit": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value should be submitted."
-        }
-      },
       "methods": {
         "load": {
           "public": true,
@@ -1250,11 +1206,6 @@ export default {
             }
           }
         },
-        "updated": {
-          "public": false,
-          "returns": "void",
-          "description": ""
-        },
         "clear": {
           "public": true,
           "returns": "void",
@@ -1265,61 +1216,66 @@ export default {
           "returns": "void",
           "description": ""
         },
+        "updated": {
+          "public": false,
+          "returns": "void",
+          "description": ""
+        },
         "prepare": {
           "public": false,
           "returns": "void",
+          "description": ""
+        }
+      },
+      "options": {
+        "submit": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value should be submitted."
+        },
+        "formatData": {
+          "public": true,
+          "types": [
+            "function"
+          ],
+          "description": "A function that formats data before gets merged with form `data`."
+        },
+        "formatLoad": {
+          "public": true,
+          "types": [
+            "function"
+          ],
+          "description": "A function that formats data before [.load](#method-load) to the element."
+        }
+      },
+      "computed": {
+        "data": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "An object containing the element `name` as a key and its `value` as value."
+        },
+        "filtered": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`."
+        },
+        "changed": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
           "description": ""
         }
       }
     },
     "date": {
-      "computed": {
-        "data": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "An object containing the element `name` as a key and its `value` as value."
-        },
-        "filtered": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`."
-        },
-        "changed": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        }
-      },
-      "options": {
-        "formatData": {
-          "public": true,
-          "types": [
-            "function"
-          ],
-          "description": "A function that formats data before gets merged with form `data`."
-        },
-        "formatLoad": {
-          "public": true,
-          "types": [
-            "function"
-          ],
-          "description": "A function that formats data before [.load](#method-load) to the element."
-        },
-        "submit": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value should be submitted."
-        }
-      },
       "methods": {
         "load": {
           "public": true,
@@ -1377,57 +1333,57 @@ export default {
           "public": false,
           "returns": "void",
           "description": ""
+        }
+      },
+      "computed": {
+        "data": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "An object containing the element `name` as a key and its `value` as value."
+        },
+        "filtered": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`."
+        },
+        "changed": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        }
+      },
+      "options": {
+        "formatData": {
+          "public": true,
+          "types": [
+            "function"
+          ],
+          "description": "A function that formats data before gets merged with form `data`."
+        },
+        "formatLoad": {
+          "public": true,
+          "types": [
+            "function"
+          ],
+          "description": "A function that formats data before [.load](#method-load) to the element."
+        },
+        "submit": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value should be submitted."
         }
       }
     },
     "dates": {
-      "computed": {
-        "data": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "An object containing the element `name` as a key and its `value` as value."
-        },
-        "filtered": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`."
-        },
-        "changed": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        }
-      },
-      "options": {
-        "formatData": {
-          "public": true,
-          "types": [
-            "function"
-          ],
-          "description": "A function that formats data before gets merged with form `data`."
-        },
-        "formatLoad": {
-          "public": true,
-          "types": [
-            "function"
-          ],
-          "description": "A function that formats data before [.load](#method-load) to the element."
-        },
-        "submit": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value should be submitted."
-        }
-      },
       "methods": {
         "load": {
           "public": true,
@@ -1483,48 +1439,71 @@ export default {
           "public": false,
           "returns": "void",
           "description": ""
+        }
+      },
+      "computed": {
+        "data": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "An object containing the element `name` as a key and its `value` as value."
+        },
+        "filtered": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`."
+        },
+        "changed": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        }
+      },
+      "options": {
+        "formatData": {
+          "public": true,
+          "types": [
+            "function"
+          ],
+          "description": "A function that formats data before gets merged with form `data`."
+        },
+        "formatLoad": {
+          "public": true,
+          "types": [
+            "function"
+          ],
+          "description": "A function that formats data before [.load](#method-load) to the element."
+        },
+        "submit": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value should be submitted."
         }
       }
     },
     "object": {
       "computed": {
-        "data": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "An object containing the element `name` as a key and its `value` as value."
-        },
         "filtered": {
           "public": true,
           "types": [
             "object"
           ],
           "description": "An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`."
-        }
-      },
-      "options": {
-        "formatData": {
-          "public": true,
-          "types": [
-            "function"
-          ],
-          "description": "A function that formats data before gets merged with form `data`."
         },
-        "formatLoad": {
+        "data": {
           "public": true,
           "types": [
-            "function"
+            "object"
           ],
-          "description": "A function that formats data before [.load](#method-load) to the element."
-        },
-        "submit": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value should be submitted."
+          "description": "An object containing the element `name` as a key and its `value` as value."
         }
       },
       "methods": {
@@ -1578,24 +1557,6 @@ export default {
           "returns": "void",
           "description": ""
         }
-      }
-    },
-    "group": {
-      "computed": {
-        "data": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "An object containing the element `name` as a key and its `value` as value."
-        },
-        "filtered": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`."
-        }
       },
       "options": {
         "formatData": {
@@ -1619,6 +1580,48 @@ export default {
             "boolean"
           ],
           "description": "Whether the element's value should be submitted."
+        }
+      }
+    },
+    "group": {
+      "options": {
+        "formatData": {
+          "public": true,
+          "types": [
+            "function"
+          ],
+          "description": "A function that formats data before gets merged with form `data`."
+        },
+        "formatLoad": {
+          "public": true,
+          "types": [
+            "function"
+          ],
+          "description": "A function that formats data before [.load](#method-load) to the element."
+        },
+        "submit": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value should be submitted."
+        }
+      },
+      "computed": {
+        "data": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "An object containing the element `name` as a key and its `value` as value."
+        },
+        "filtered": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`."
         }
       },
       "methods": {
@@ -1865,53 +1868,6 @@ export default {
       }
     },
     "multilingual": {
-      "computed": {
-        "data": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "An object containing the element `name` as a key and its `value` as value."
-        },
-        "filtered": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`."
-        },
-        "changed": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        }
-      },
-      "options": {
-        "formatData": {
-          "public": true,
-          "types": [
-            "function"
-          ],
-          "description": "A function that formats data before gets merged with form `data`."
-        },
-        "formatLoad": {
-          "public": true,
-          "types": [
-            "function"
-          ],
-          "description": "A function that formats data before [.load](#method-load) to the element."
-        },
-        "submit": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value should be submitted."
-        }
-      },
       "methods": {
         "load": {
           "public": true,
@@ -1969,6 +1925,53 @@ export default {
           "public": false,
           "returns": "void",
           "description": ""
+        }
+      },
+      "computed": {
+        "data": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "An object containing the element `name` as a key and its `value` as value."
+        },
+        "filtered": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`."
+        },
+        "changed": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        }
+      },
+      "options": {
+        "formatData": {
+          "public": true,
+          "types": [
+            "function"
+          ],
+          "description": "A function that formats data before gets merged with form `data`."
+        },
+        "formatLoad": {
+          "public": true,
+          "types": [
+            "function"
+          ],
+          "description": "A function that formats data before [.load](#method-load) to the element."
+        },
+        "submit": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value should be submitted."
         }
       }
     },
@@ -2494,16 +2497,6 @@ export default {
         }
       },
       "methods": {
-        "disableAll": {
-          "public": true,
-          "returns": "void",
-          "description": "Disabled all items."
-        },
-        "enableAll": {
-          "public": true,
-          "returns": "void",
-          "description": "Enables all items."
-        },
         "disable": {
           "public": true,
           "returns": "void",
@@ -2535,6 +2528,16 @@ export default {
               "description": "Key of one or more items to enable."
             }
           }
+        },
+        "disableAll": {
+          "public": true,
+          "returns": "void",
+          "description": "Disabled all items."
+        },
+        "enableAll": {
+          "public": true,
+          "returns": "void",
+          "description": "Enables all items."
         }
       }
     },
@@ -2558,16 +2561,6 @@ export default {
         }
       },
       "methods": {
-        "disableAll": {
-          "public": true,
-          "returns": "void",
-          "description": "Disabled all items."
-        },
-        "enableAll": {
-          "public": true,
-          "returns": "void",
-          "description": "Enables all items."
-        },
         "disable": {
           "public": true,
           "returns": "void",
@@ -2599,6 +2592,16 @@ export default {
               "description": "Key of one or more items to enable."
             }
           }
+        },
+        "disableAll": {
+          "public": true,
+          "returns": "void",
+          "description": "Disabled all items."
+        },
+        "enableAll": {
+          "public": true,
+          "returns": "void",
+          "description": "Enables all items."
         }
       }
     }
@@ -2656,6 +2659,22 @@ export default {
       }
     },
     "multifile": {
+      "methods": {
+        "handleDrop": {
+          "public": false,
+          "returns": "void",
+          "description": "",
+          "params": {
+            "e": {
+              "types": [
+                "Event"
+              ],
+              "required": false,
+              "description": ""
+            }
+          }
+        }
+      },
       "options": {
         "drop": {
           "public": true,
@@ -2673,22 +2692,6 @@ export default {
             "boolean"
           ],
           "description": ""
-        }
-      },
-      "methods": {
-        "handleDrop": {
-          "public": false,
-          "returns": "void",
-          "description": "",
-          "params": {
-            "e": {
-              "types": [
-                "Event"
-              ],
-              "required": false,
-              "description": ""
-            }
-          }
         }
       }
     }
@@ -2730,6 +2733,42 @@ export default {
   },
   "file": {
     "base": {
+      "data": {
+        "file": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "File",
+            "object",
+            "string"
+          ],
+          "description": ""
+        },
+        "base64": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "string"
+          ],
+          "description": ""
+        },
+        "progress": {
+          "public": true,
+          "default": "0",
+          "types": [
+            "number"
+          ],
+          "description": ""
+        },
+        "preparing": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        }
+      },
       "options": {
         "accept": {
           "public": true,
@@ -2776,42 +2815,6 @@ export default {
           "public": true,
           "types": [
             "string"
-          ],
-          "description": ""
-        }
-      },
-      "data": {
-        "file": {
-          "public": true,
-          "default": "null",
-          "types": [
-            "File",
-            "object",
-            "string"
-          ],
-          "description": ""
-        },
-        "base64": {
-          "public": true,
-          "default": "null",
-          "types": [
-            "string"
-          ],
-          "description": ""
-        },
-        "progress": {
-          "public": true,
-          "default": "0",
-          "types": [
-            "number"
-          ],
-          "description": ""
-        },
-        "preparing": {
-          "public": true,
-          "default": "false",
-          "types": [
-            "boolean"
           ],
           "description": ""
         }
@@ -3174,164 +3177,26 @@ export default {
   },
   "image": {
     "base": {
-      "options": {
-        "accept": {
-          "public": true,
-          "default": "false",
-          "types": [
-            "string",
-            "array"
-          ],
-          "description": ""
-        },
-        "auto": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        },
-        "methods": {
-          "public": true,
-          "default": "config.methods.file",
-          "types": [
-            "object"
-          ],
-          "description": ""
-        },
-        "endpoints": {
-          "public": true,
-          "default": "config.endpoints.file",
-          "types": [
-            "object"
-          ],
-          "description": ""
-        },
-        "url": {
-          "public": true,
-          "types": [
-            "string"
-          ],
-          "description": ""
-        }
-      },
-      "data": {
-        "file": {
-          "public": true,
-          "default": "null",
-          "types": [
-            "File",
-            "object",
-            "string"
-          ],
-          "description": ""
-        },
-        "base64": {
-          "public": true,
-          "default": "null",
-          "types": [
-            "string"
-          ],
-          "description": ""
-        },
-        "progress": {
-          "public": true,
-          "default": "0",
-          "types": [
-            "number"
-          ],
-          "description": ""
-        },
-        "preparing": {
-          "public": true,
-          "default": "false",
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        }
-      },
-      "computed": {
-        "preview": {
-          "public": true,
-          "types": [
-            "string"
-          ],
-          "description": ""
-        },
-        "previewOptions": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": ""
-        },
-        "link": {
-          "public": true,
-          "types": [
-            "string"
-          ],
-          "description": ""
-        },
-        "stage": {
-          "public": true,
-          "types": [
-            "number"
-          ],
-          "description": ""
-        },
-        "filename": {
-          "public": true,
-          "types": [
-            "string"
-          ],
-          "description": ""
-        },
-        "uploaded": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        },
-        "canRemove": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        },
-        "canUploadTemp": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        },
-        "canSelect": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        }
-      },
       "methods": {
-        "uploadTemp": {
-          "public": true,
-          "returns": "void",
-          "description": ""
-        },
-        "remove": {
-          "public": true,
-          "returns": "void",
-          "description": ""
-        },
-        "prepare": {
+        "handleAbort": {
           "public": false,
           "returns": "void",
           "description": ""
+        },
+        "handleRemove": {
+          "public": false,
+          "returns": "void",
+          "description": ""
+        },
+        "handleUploadTemp": {
+          "public": false,
+          "returns": "void",
+          "description": ""
+        },
+        "handleClick": {
+          "public": false,
+          "returns": "void",
+          "description": "Triggered when an uploader is clicked."
         },
         "handleChange": {
           "public": false,
@@ -3347,24 +3212,162 @@ export default {
             }
           }
         },
-        "handleClick": {
-          "public": false,
-          "returns": "void",
-          "description": "Triggered when an uploader is clicked."
-        },
-        "handleUploadTemp": {
+        "prepare": {
           "public": false,
           "returns": "void",
           "description": ""
         },
-        "handleRemove": {
-          "public": false,
+        "remove": {
+          "public": true,
           "returns": "void",
           "description": ""
         },
-        "handleAbort": {
-          "public": false,
+        "uploadTemp": {
+          "public": true,
           "returns": "void",
+          "description": ""
+        }
+      },
+      "computed": {
+        "canSelect": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "canUploadTemp": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "canRemove": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "uploaded": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "filename": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": ""
+        },
+        "stage": {
+          "public": true,
+          "types": [
+            "number"
+          ],
+          "description": ""
+        },
+        "link": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": ""
+        },
+        "preview": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": ""
+        },
+        "previewOptions": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": ""
+        }
+      },
+      "options": {
+        "url": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": ""
+        },
+        "endpoints": {
+          "public": true,
+          "default": "config.endpoints.file",
+          "types": [
+            "object"
+          ],
+          "description": ""
+        },
+        "methods": {
+          "public": true,
+          "default": "config.methods.file",
+          "types": [
+            "object"
+          ],
+          "description": ""
+        },
+        "auto": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "accept": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "string",
+            "array"
+          ],
+          "description": ""
+        }
+      },
+      "data": {
+        "preparing": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "progress": {
+          "public": true,
+          "default": "0",
+          "types": [
+            "number"
+          ],
+          "description": ""
+        },
+        "base64": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "string"
+          ],
+          "description": ""
+        },
+        "file": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "File",
+            "object",
+            "string"
+          ],
           "description": ""
         }
       }
@@ -3436,16 +3439,7 @@ export default {
       }
     },
     "select": {
-      "options": {
-        "items": {
-          "public": true,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": ""
-        }
-      },
+      "data": {},
       "computed": {
         "nativeItems": {
           "public": true,
@@ -3469,6 +3463,16 @@ export default {
               "description": ""
             }
           }
+        }
+      },
+      "options": {
+        "items": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": ""
         }
       }
     }
@@ -3531,6 +3535,13 @@ export default {
   },
   "location": {
     "base": {
+      "methods": {
+        "initLocationService": {
+          "public": true,
+          "returns": "void",
+          "description": "Initalizes location service."
+        }
+      },
       "data": {
         "locationService": {
           "public": true,
@@ -3574,33 +3585,6 @@ export default {
             "object"
           ],
           "description": "Default options for flatpickr."
-        }
-      },
-      "methods": {
-        "handleAddressChange": {
-          "public": true,
-          "description": "Handles location service's address change.",
-          "params": {
-            "data": {
-              "types": [
-                "object"
-              ],
-              "required": false,
-              "description": "an object containing address data"
-            },
-            "raw": {
-              "types": [
-                "object"
-              ],
-              "required": false,
-              "description": "an object containing raw address data (based on provider)"
-            }
-          }
-        },
-        "initLocationService": {
-          "public": true,
-          "returns": "void",
-          "description": "Initalizes location service."
         }
       }
     },
@@ -3651,6 +3635,28 @@ export default {
         }
       },
       "methods": {
+        "initLocationService": {
+          "public": true,
+          "returns": "void",
+          "description": "Initalizes location service."
+        }
+      }
+    },
+    "address": {
+      "methods": {
+        "updateFields": {
+          "public": true,
+          "description": "Updates fields with address data.",
+          "params": {
+            "data": {
+              "types": [
+                "object"
+              ],
+              "required": false,
+              "description": "an object containing address data"
+            }
+          }
+        },
         "handleAddressChange": {
           "public": true,
           "description": "Handles location service's address change.",
@@ -3676,9 +3682,7 @@ export default {
           "returns": "void",
           "description": "Initalizes location service."
         }
-      }
-    },
-    "address": {
+      },
       "data": {
         "locationService": {
           "public": true,
@@ -3722,46 +3726,6 @@ export default {
             "object"
           ],
           "description": "Default options for flatpickr."
-        }
-      },
-      "methods": {
-        "updateFields": {
-          "public": true,
-          "description": "Updates fields with address data.",
-          "params": {
-            "data": {
-              "types": [
-                "object"
-              ],
-              "required": false,
-              "description": "an object containing address data"
-            }
-          }
-        },
-        "handleAddressChange": {
-          "public": true,
-          "description": "Handles location service's address change.",
-          "params": {
-            "data": {
-              "types": [
-                "object"
-              ],
-              "required": false,
-              "description": "an object containing address data"
-            },
-            "raw": {
-              "types": [
-                "object"
-              ],
-              "required": false,
-              "description": "an object containing raw address data (based on provider)"
-            }
-          }
-        },
-        "initLocationService": {
-          "public": true,
-          "returns": "void",
-          "description": "Initalizes location service."
         }
       }
     }
@@ -3867,6 +3831,14 @@ export default {
           ],
           "description": "Defines how date is formatted when using `load` or `update` method or by directly setting `value`. When using \"formatLoad\" this should be the output format of that."
         },
+        "disables": {
+          "public": true,
+          "default": "[]",
+          "types": [
+            "array"
+          ],
+          "description": "List of dates to be disabled."
+        },
         "min": {
           "public": true,
           "default": "null",
@@ -3884,14 +3856,6 @@ export default {
             "Date"
           ],
           "description": "Latest selectable date. Can be a string in `[loadFormat](#prop-loadFormat)` or a Date object."
-        },
-        "disables": {
-          "public": true,
-          "default": "[]",
-          "types": [
-            "array"
-          ],
-          "description": "List of dates to be disabled."
         },
         "options": {
           "public": true,
@@ -3921,6 +3885,22 @@ export default {
     },
     "dates": {
       "options": {
+        "mode": {
+          "public": true,
+          "default": "\"single\"",
+          "types": [
+            "string"
+          ],
+          "description": "Flatpickr's mode option. Possible values: `multiple` or `range`."
+        },
+        "options": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
+        },
         "displayFormat": {
           "public": true,
           "default": "\"locale.elements.date.displayFormat\"",
@@ -3945,14 +3925,6 @@ export default {
           ],
           "description": "Defines how date is formatted when using `load` or `update` method or by directly setting `value`. When using \"formatLoad\" this should be the output format of that."
         },
-        "mode": {
-          "public": true,
-          "default": "\"single\"",
-          "types": [
-            "string"
-          ],
-          "description": "Flatpickr's mode option. Possible values: `multiple` or `range`."
-        },
         "min": {
           "public": true,
           "default": "null",
@@ -3978,14 +3950,6 @@ export default {
             "array"
           ],
           "description": "List of dates to be disabled."
-        },
-        "options": {
-          "public": true,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
         }
       },
       "computed": {
@@ -4007,6 +3971,21 @@ export default {
     },
     "datetime": {
       "options": {
+        "seconds": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "hour24": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the time should use 24 hours format."
+        },
         "displayFormat": {
           "public": true,
           "default": "\"from locale\"",
@@ -4031,20 +4010,13 @@ export default {
           ],
           "description": "Defines how date is formatted when using `load` or `update` method or by directly setting `value`."
         },
-        "seconds": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        },
-        "hour24": {
+        "options": {
           "public": true,
-          "default": "false",
+          "default": "{}",
           "types": [
-            "boolean"
+            "object"
           ],
-          "description": "Determines if the time should use 24 hours format."
+          "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
         },
         "min": {
           "public": true,
@@ -4071,14 +4043,6 @@ export default {
             "array"
           ],
           "description": "List of dates to be disabled."
-        },
-        "options": {
-          "public": true,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
         }
       },
       "computed": {
@@ -4136,7 +4100,24 @@ export default {
       }
     },
     "multiselect": {
+      "computed": {
+        "isNative": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "Determines if the native select is used."
+        }
+      },
       "options": {
+        "options": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Additional [options](https://vue-multiselect.js.org/#sub-props) for the select."
+        },
         "native": {
           "public": true,
           "default": "true",
@@ -4152,6 +4133,24 @@ export default {
             "boolean"
           ],
           "description": "Determines whether the select options are searchable."
+        }
+      }
+    },
+    "tags": {
+      "options": {
+        "create": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "search": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
         },
         "options": {
           "public": true,
@@ -4162,17 +4161,6 @@ export default {
           "description": "Additional [options](https://vue-multiselect.js.org/#sub-props) for the select."
         }
       },
-      "computed": {
-        "isNative": {
-          "public": true,
-          "types": [
-            "string"
-          ],
-          "description": "Determines if the native select is used."
-        }
-      }
-    },
-    "tags": {
       "computed": {
         "native": {
           "public": false,
@@ -4181,30 +4169,6 @@ export default {
         "isNative": {
           "public": false,
           "description": ""
-        }
-      },
-      "options": {
-        "search": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        },
-        "create": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        },
-        "options": {
-          "public": true,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Additional [options](https://vue-multiselect.js.org/#sub-props) for the select."
         }
       }
     },
@@ -4282,10 +4246,26 @@ export default {
           ],
           "description": "Additional [options](https://nightcatsama.github.io/vue-slider-component/#/api/props) for slider."
         }
-      }
+      },
+      "computed": {}
     },
     "time": {
       "options": {
+        "seconds": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "hour24": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the time should use 24 hours format."
+        },
         "displayFormat": {
           "public": true,
           "default": "\"from locale\"",
@@ -4310,20 +4290,13 @@ export default {
           ],
           "description": "Defines how date is formatted when using `load` or `update` method or by directly setting `value`."
         },
-        "seconds": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": ""
-        },
-        "hour24": {
+        "options": {
           "public": true,
-          "default": "false",
+          "default": "{}",
           "types": [
-            "boolean"
+            "object"
           ],
-          "description": "Determines if the time should use 24 hours format."
+          "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
         },
         "min": {
           "public": true,
@@ -4350,14 +4323,6 @@ export default {
             "array"
           ],
           "description": "List of dates to be disabled."
-        },
-        "options": {
-          "public": true,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
         }
       },
       "computed": {
@@ -4424,7 +4389,8 @@ export default {
           ],
           "description": "Additional [options](https://github.com/vueform/toggle) for @vueform/toggle."
         }
-      }
+      },
+      "computed": {}
     }
   },
   "order": {
@@ -4474,20 +4440,21 @@ export default {
           "public": false,
           "description": ""
         }
-      }
+      },
+      "methods": {}
     },
     "group": {
       "computed": {
+        "flat": {
+          "public": false,
+          "description": ""
+        },
         "path": {
           "public": true,
           "types": [
             "string"
           ],
           "description": "The path of the element using dot `.` syntax."
-        },
-        "flat": {
-          "public": false,
-          "description": ""
         }
       }
     }
@@ -4525,6 +4492,22 @@ export default {
       }
     },
     "multifile": {
+      "computed": {
+        "prototype": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The schema of a child."
+        },
+        "isObject": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the list items are objects."
+        }
+      },
       "options": {
         "auto": {
           "public": false,
@@ -4547,35 +4530,19 @@ export default {
           ],
           "description": ""
         },
-        "storeFile": {
-          "public": false,
-          "types": [
-            "string"
-          ],
-          "description": ""
-        },
         "fields": {
           "public": false,
           "types": [
             "object"
           ],
           "description": ""
-        }
-      },
-      "computed": {
-        "prototype": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "The schema of a child."
         },
-        "isObject": {
-          "public": true,
+        "storeFile": {
+          "public": false,
           "types": [
-            "boolean"
+            "string"
           ],
-          "description": "Determines if the list items are objects."
+          "description": ""
         }
       }
     },
@@ -4791,6 +4758,7 @@ export default {
   },
   "slots": {
     "base": {
+      "computed": {},
       "options": {
         "before": {
           "public": true,
@@ -5098,6 +5066,11 @@ export default {
           "returns": "void",
           "description": ""
         },
+        "resetValidators": {
+          "public": true,
+          "returns": "void",
+          "description": "Set the validated state to false."
+        },
         "dirt": {
           "public": true,
           "returns": "void",
@@ -5107,11 +5080,6 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Flag the element as non dirty."
-        },
-        "resetValidators": {
-          "public": true,
-          "returns": "void",
-          "description": "Set the validated state to false."
         },
         "initMessageBag": {
           "public": false,
@@ -5126,59 +5094,6 @@ export default {
       }
     },
     "list": {
-      "data": {
-        "state": {
-          "public": false,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Helper property used to store the element states."
-        },
-        "Validators": {
-          "public": true,
-          "default": "[]",
-          "types": [
-            "array"
-          ],
-          "description": "An array containing all the validators of the element."
-        },
-        "messageBag": {
-          "public": true,
-          "default": "{MessageBag}",
-          "types": [
-            "MessageBag"
-          ],
-          "description": "Message bag service."
-        }
-      },
-      "options": {
-        "rules": {
-          "public": true,
-          "types": [
-            "array",
-            "string",
-            "object"
-          ],
-          "description": "Returns element rules"
-        },
-        "messages": {
-          "public": true,
-          "default": "null",
-          "types": [
-            "object"
-          ],
-          "description": "Overrides default validation rule [messages](validation#custom-messages)."
-        },
-        "displayError": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element should display it's first error, if any."
-        }
-      },
       "computed": {
         "dirty": {
           "public": true,
@@ -5261,11 +5176,6 @@ export default {
           "returns": "void",
           "description": "Validates each children."
         },
-        "dirt": {
-          "public": true,
-          "returns": "void",
-          "description": "Flag the element as dirty."
-        },
         "clean": {
           "public": true,
           "returns": "void",
@@ -5281,10 +5191,68 @@ export default {
           "returns": "void",
           "description": "Initalizes messageBag service."
         },
+        "dirt": {
+          "public": true,
+          "returns": "void",
+          "description": "Flag the element as dirty."
+        },
         "initValidation": {
           "public": false,
           "returns": "void",
           "description": "Initalizes validators."
+        }
+      },
+      "data": {
+        "state": {
+          "public": false,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element states."
+        },
+        "Validators": {
+          "public": true,
+          "default": "[]",
+          "types": [
+            "array"
+          ],
+          "description": "An array containing all the validators of the element."
+        },
+        "messageBag": {
+          "public": true,
+          "default": "{MessageBag}",
+          "types": [
+            "MessageBag"
+          ],
+          "description": "Message bag service."
+        }
+      },
+      "options": {
+        "rules": {
+          "public": true,
+          "types": [
+            "array",
+            "string",
+            "object"
+          ],
+          "description": "Returns element rules"
+        },
+        "messages": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "object"
+          ],
+          "description": "Overrides default validation rule [messages](validation#custom-messages)."
+        },
+        "displayError": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should display it's first error, if any."
         }
       }
     },
@@ -5363,6 +5331,45 @@ export default {
           "description": ""
         }
       },
+      "methods": {
+        "validate": {
+          "public": true,
+          "returns": "void",
+          "description": ""
+        },
+        "validateLanguage": {
+          "public": false,
+          "description": ""
+        },
+        "resetValidators": {
+          "public": true,
+          "returns": "void",
+          "description": "Set the validated state to false."
+        },
+        "dirt": {
+          "public": true,
+          "returns": "void",
+          "description": "Flag the element as dirty."
+        },
+        "clean": {
+          "public": true,
+          "returns": "void",
+          "description": "Flag the element as non dirty."
+        },
+        "initState": {
+          "public": false,
+          "description": ""
+        },
+        "initMessageBag": {
+          "public": false,
+          "description": ""
+        },
+        "initValidation": {
+          "public": false,
+          "returns": "void",
+          "description": "Initalizes validators."
+        }
+      },
       "options": {
         "messages": {
           "public": true,
@@ -5380,58 +5387,9 @@ export default {
           ],
           "description": "Whether the element should display it's first error, if any."
         }
-      },
-      "methods": {
-        "validate": {
-          "public": true,
-          "returns": "void",
-          "description": ""
-        },
-        "validateLanguage": {
-          "public": false,
-          "description": ""
-        },
-        "dirt": {
-          "public": true,
-          "returns": "void",
-          "description": "Flag the element as dirty."
-        },
-        "clean": {
-          "public": true,
-          "returns": "void",
-          "description": "Flag the element as non dirty."
-        },
-        "resetValidators": {
-          "public": true,
-          "returns": "void",
-          "description": "Set the validated state to false."
-        },
-        "initState": {
-          "public": false,
-          "description": ""
-        },
-        "initMessageBag": {
-          "public": false,
-          "description": ""
-        },
-        "initValidation": {
-          "public": false,
-          "returns": "void",
-          "description": "Initalizes validators."
-        }
       }
     },
     "object": {
-      "data": {
-        "messageBag": {
-          "public": true,
-          "default": "{MessageBag}",
-          "types": [
-            "MessageBag"
-          ],
-          "description": "Message bag service."
-        }
-      },
       "computed": {
         "dirty": {
           "public": true,
@@ -5503,9 +5461,50 @@ export default {
           "public": false,
           "description": ""
         }
+      },
+      "data": {
+        "messageBag": {
+          "public": true,
+          "default": "{MessageBag}",
+          "types": [
+            "MessageBag"
+          ],
+          "description": "Message bag service."
+        }
       }
     },
     "slider": {
+      "methods": {
+        "validate": {
+          "public": false,
+          "description": ""
+        },
+        "dirt": {
+          "public": true,
+          "returns": "void",
+          "description": "Flag the element as dirty."
+        },
+        "clean": {
+          "public": true,
+          "returns": "void",
+          "description": "Flag the element as non dirty."
+        },
+        "resetValidators": {
+          "public": true,
+          "returns": "void",
+          "description": "Set the validated state to false."
+        },
+        "initMessageBag": {
+          "public": false,
+          "returns": "void",
+          "description": "Initalizes messageBag service."
+        },
+        "initValidation": {
+          "public": false,
+          "returns": "void",
+          "description": "Initalizes validators."
+        }
+      },
       "data": {
         "state": {
           "public": false,
@@ -5616,94 +5615,17 @@ export default {
           ],
           "description": "The first error that should be displayed under the element."
         }
-      },
-      "methods": {
-        "validate": {
-          "public": false,
-          "description": ""
-        },
-        "dirt": {
-          "public": true,
-          "returns": "void",
-          "description": "Flag the element as dirty."
-        },
-        "clean": {
-          "public": true,
-          "returns": "void",
-          "description": "Flag the element as non dirty."
-        },
-        "resetValidators": {
-          "public": true,
-          "returns": "void",
-          "description": "Set the validated state to false."
-        },
-        "initMessageBag": {
-          "public": false,
-          "returns": "void",
-          "description": "Initalizes messageBag service."
-        },
-        "initValidation": {
-          "public": false,
-          "returns": "void",
-          "description": "Initalizes validators."
-        }
       }
     },
     "file": {
-      "data": {
-        "state": {
-          "public": false,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Helper property used to store the element states."
-        },
-        "Validators": {
+      "computed": {
+        "busy": {
           "public": true,
-          "default": "[]",
-          "types": [
-            "array"
-          ],
-          "description": "An array containing all the validators of the element."
-        },
-        "messageBag": {
-          "public": true,
-          "default": "{MessageBag}",
-          "types": [
-            "MessageBag"
-          ],
-          "description": "Message bag service."
-        }
-      },
-      "options": {
-        "rules": {
-          "public": true,
-          "types": [
-            "array",
-            "string",
-            "object"
-          ],
-          "description": "Returns element rules"
-        },
-        "messages": {
-          "public": true,
-          "default": "null",
-          "types": [
-            "object"
-          ],
-          "description": "Overrides default validation rule [messages](validation#custom-messages)."
-        },
-        "displayError": {
-          "public": true,
-          "default": "true",
           "types": [
             "boolean"
           ],
-          "description": "Whether the element should display it's first error, if any."
-        }
-      },
-      "computed": {
+          "description": "Whether the element is `pending`, `debouncing` or `uploading`."
+        },
         "dirty": {
           "public": true,
           "types": [
@@ -5738,13 +5660,6 @@ export default {
             "boolean"
           ],
           "description": "Whether the element has an ongoing debounce."
-        },
-        "busy": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is `pending`, `debouncing` or `uploading`."
         },
         "errors": {
           "public": true,
@@ -5792,10 +5707,24 @@ export default {
           "returns": "void",
           "description": "Initalizes validators."
         }
-      }
-    },
-    "group": {
+      },
       "data": {
+        "state": {
+          "public": false,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element states."
+        },
+        "Validators": {
+          "public": true,
+          "default": "[]",
+          "types": [
+            "array"
+          ],
+          "description": "An array containing all the validators of the element."
+        },
         "messageBag": {
           "public": true,
           "default": "{MessageBag}",
@@ -5805,6 +5734,35 @@ export default {
           "description": "Message bag service."
         }
       },
+      "options": {
+        "rules": {
+          "public": true,
+          "types": [
+            "array",
+            "string",
+            "object"
+          ],
+          "description": "Returns element rules"
+        },
+        "messages": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "object"
+          ],
+          "description": "Overrides default validation rule [messages](validation#custom-messages)."
+        },
+        "displayError": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should display it's first error, if any."
+        }
+      }
+    },
+    "group": {
       "computed": {
         "dirty": {
           "public": true,
@@ -5876,11 +5834,39 @@ export default {
           "public": false,
           "description": ""
         }
+      },
+      "data": {
+        "messageBag": {
+          "public": true,
+          "default": "{MessageBag}",
+          "types": [
+            "MessageBag"
+          ],
+          "description": "Message bag service."
+        }
       }
     }
   },
   "value": {
     "base": {
+      "data": {
+        "currentValue": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element value."
+        },
+        "previousValue": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element previous value."
+        }
+      },
       "computed": {
         "value": {
           "public": true,
@@ -5895,24 +5881,6 @@ export default {
             "any"
           ],
           "description": "Helper property used for tracking the field's value."
-        }
-      },
-      "data": {
-        "previousValue": {
-          "public": true,
-          "default": "null",
-          "types": [
-            "object"
-          ],
-          "description": "Helper property used to store the element previous value."
-        },
-        "currentValue": {
-          "public": true,
-          "default": "null",
-          "types": [
-            "object"
-          ],
-          "description": "Helper property used to store the element value."
         }
       }
     },
@@ -5953,6 +5921,7 @@ export default {
       }
     },
     "checkboxgroup": {
+      "methods": {},
       "computed": {
         "value": {
           "public": true,
@@ -5990,11 +5959,11 @@ export default {
     },
     "date": {
       "computed": {
-        "value": {
+        "model": {
           "public": false,
           "description": ""
         },
-        "model": {
+        "value": {
           "public": false,
           "description": ""
         }
@@ -6020,11 +5989,11 @@ export default {
     },
     "dates": {
       "computed": {
-        "value": {
+        "model": {
           "public": false,
           "description": ""
         },
-        "model": {
+        "value": {
           "public": false,
           "description": ""
         }
@@ -6078,6 +6047,24 @@ export default {
       }
     },
     "multilingual": {
+      "data": {
+        "currentValue": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element value."
+        },
+        "previousValue": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element previous value."
+        }
+      },
       "computed": {
         "value": {
           "public": true,
@@ -6093,38 +6080,20 @@ export default {
           ],
           "description": "Helper property used for tracking the field's value."
         }
-      },
-      "data": {
-        "previousValue": {
-          "public": true,
-          "default": "null",
-          "types": [
-            "object"
-          ],
-          "description": "Helper property used to store the element previous value."
-        },
-        "currentValue": {
-          "public": true,
-          "default": "null",
-          "types": [
-            "object"
-          ],
-          "description": "Helper property used to store the element value."
-        }
       }
     },
     "select": {
       "computed": {
+        "model": {
+          "public": false,
+          "description": ""
+        },
         "value": {
           "public": true,
           "types": [
             "any"
           ],
           "description": "The value of the element."
-        },
-        "model": {
-          "public": false,
-          "description": ""
         }
       },
       "data": {
@@ -6148,19 +6117,19 @@ export default {
     },
     "multiselect": {
       "computed": {
-        "value": {
-          "public": true,
-          "types": [
-            "any"
-          ],
-          "description": "The value of the element."
-        },
         "model": {
           "public": true,
           "types": [
             "any"
           ],
           "description": "Helper property used for tracking the field's value."
+        },
+        "value": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "The value of the element."
         }
       },
       "data": {
@@ -6380,19 +6349,19 @@ export default {
     },
     "tags": {
       "computed": {
-        "value": {
-          "public": true,
-          "types": [
-            "any"
-          ],
-          "description": "The value of the element."
-        },
         "model": {
           "public": true,
           "types": [
             "any"
           ],
           "description": "Helper property used for tracking the field's value."
+        },
+        "value": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "The value of the element."
         }
       },
       "data": {
@@ -6472,3 +6441,46 @@ export default {
     "base": {}
   }
 }
+
+const beforeCases = {}
+const afterCases = {}
+
+_.each(before, (variations, featureName) => {
+  beforeCases[featureName] = {}
+
+  _.each(variations, (propTypes, variation) => {
+    beforeCases[featureName][variation] = []
+
+    _.each(propTypes, (props, propType) => {
+
+      _.each(props, (info, propName) => {
+        beforeCases[featureName][variation].push(propName)
+      })
+    })
+  })
+})
+
+_.each(after, (variations, featureName) => {
+  afterCases[featureName] = {}
+
+  _.each(variations, (propTypes, variation) => {
+    afterCases[featureName][variation] = []
+
+    _.each(propTypes, (props, propType) => {
+
+      _.each(props, (info, propName) => {
+        afterCases[featureName][variation].push(propName)
+      })
+    })
+  })
+})
+
+_.each(afterCases, (variations, featureName) => {
+  _.each(variations, (props, variation) => {
+    let diff = _.difference(props, beforeCases[featureName][variation])
+
+    if (diff.length > 0) {
+      console.log(diff)
+    }
+  })
+})

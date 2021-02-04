@@ -48,10 +48,32 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes: baseClasses, mainClass, components, } = useFormComponent(props, context)
-    const { available, conditions } = useConditions(props, context, { form$, descriptor: step })
-    const { label, isLabelComponent } = useLabel(props, context, { component$: form$, descriptor: step })
-    const { events, listeners, on, off, fire } = useEvents(props, context, { form$, descriptor: step }, {
+    const {
+      form$,
+      theme,
+      classes:
+      baseClasses,
+      mainClass,
+      components,
+    } = useFormComponent(props, context)
+
+    const {
+      available,
+      conditions
+    } = useConditions(props, context, { form$, descriptor: step })
+
+    const {
+      label,
+      isLabelComponent
+    } = useLabel(props, context, { component$: form$, descriptor: step })
+
+    const {
+      events,
+      listeners,
+      on,
+      off,
+      fire
+    } = useEvents(props, context, { form$, descriptor: step }, {
       events: ['active', 'inactive', 'complete', 'enable', 'disable']
     })
 
@@ -130,6 +152,11 @@ export default {
       return step.value.class || null
     })
     
+    /**
+     * 
+     * 
+     * @private
+     */
     const classes = computed(() => {
       let classList = baseClasses.value
 
@@ -224,6 +251,11 @@ export default {
         && !pending.value
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const step$ = computed(() => {
       return form$.value.wizard$.steps$[name.value]
     })
@@ -381,6 +413,11 @@ export default {
     }
 
     // no export
+    /**
+     * 
+     * 
+     * @private
+     */
     const assignToParent = ($parent, assignToParent) => {
       if ($parent.steps$Array) {
         $parent.steps$Array.push($this)
@@ -391,6 +428,11 @@ export default {
     }
 
     // no export
+    /**
+     * 
+     * 
+     * @private
+     */
     const removeFromParent = ($parent, removeFromParent) => {
       if ($parent.steps$Array) {
         $parent.steps$Array.splice($parent.steps$Array.map(t$=>normalize(t$.name)).indexOf(normalize(name.value)), 1)
@@ -440,18 +482,13 @@ export default {
     })
 
     return {
-      // Inject
       form$,
       theme,
-
-      // Data
       active,
       disabled,
       completed,
       events,
       listeners,
-
-      // Computed
       children$,
       visible,
       invalid,
@@ -471,8 +508,6 @@ export default {
       step$,
       label,
       isLabelComponent,
-
-      // Methods
       validate,
       activate,
       deactivate,

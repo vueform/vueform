@@ -47,10 +47,32 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes: baseClasses, components, mainClass } = useFormComponent(props, context)
-    const { available, conditions } = useConditions(props, context, { form$, descriptor: tab })
-    const { label, isLabelComponent } = useLabel(props, context, { component$: form$, descriptor: tab })
-    const { events, listeners, on, off, fire } = useEvents(props, context, { form$, descriptor: tab }, {
+    const {
+      form$,
+      theme,
+      classes:
+      baseClasses,
+      components,
+      mainClass
+    } = useFormComponent(props, context)
+
+    const {
+      available,
+      conditions
+    } = useConditions(props, context, { form$, descriptor: tab })
+
+    const {
+      label,
+      isLabelComponent
+    } = useLabel(props, context, { component$: form$, descriptor: tab })
+
+    const {
+      events,
+      listeners,
+      on,
+      off,
+      fire
+    } = useEvents(props, context, { form$, descriptor: tab }, {
       events: ['active', 'inactive'],
     })
 
@@ -104,6 +126,11 @@ export default {
       return _.some(children$.value, { available: true, invalid: true })   
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const classes = computed(() => {
       let classList = _.clone(baseClasses.value)
 
@@ -126,6 +153,11 @@ export default {
       return classList
     })
     
+    /**
+     * 
+     * 
+     * @private
+     */
     const tab$ = computed(() => {
       return form$.value.tabs$.tabs$[name.value]
     })
@@ -189,6 +221,11 @@ export default {
     }
 
     // no export
+    /**
+     * 
+     * 
+     * @private
+     */
     const assignToParent = ($parent, assignToParent) => {
       if ($parent.tabs$Array) {
         $parent.tabs$Array.push($this)
@@ -199,6 +236,11 @@ export default {
     }
 
     // no export
+    /**
+     * 
+     * 
+     * @private
+     */
     const removeFromParent = ($parent, removeFromParent) => {
       if ($parent.tabs$Array) {
         $parent.tabs$Array.splice($parent.tabs$Array.map(t$=>normalize(t$.name)).indexOf(normalize(name.value)), 1)
@@ -248,16 +290,11 @@ export default {
     })
 
     return {
-      // Inject
       form$,
       theme,
-
-      // Data
       active,
       events,
       listeners,
-
-      // Computed
       children$,
       visible,
       invalid,
@@ -269,8 +306,6 @@ export default {
       label,
       isLabelComponent,
       tab$,
-
-      // Methods
       select,
       activate,
       deactivate,

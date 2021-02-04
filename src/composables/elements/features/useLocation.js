@@ -106,7 +106,12 @@ const base = function (props, context, dependencies, options_ = {})
    * @param {object} data an object containing address data
    * @param {object} raw an object containing raw address data (based on provider)
    */
-  const handleAddressChange = options_.handleAddressChange || function (data, raw) {
+  const handleAddressChange = (data, raw) => {
+    if (options_.handleAddressChange) {
+      options_.handleAddressChange(data, raw)
+      return
+    }
+
     location.value = raw
     value.value = data
 
@@ -249,7 +254,12 @@ const address = function (props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const {
-    locationService, location, provider, defaultOptions, options, initLocationService
+    locationService,
+    location,
+    provider,
+    defaultOptions,
+    options,
+    initLocationService
   } = base(props, context, dependencies, {
     input: computed(() => {
       return document.getElementById(fields.value.address.id)

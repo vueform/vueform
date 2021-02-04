@@ -30,18 +30,46 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { form$, theme, classes, mainClass, components } = useFormComponent(props, context)
-    const { events, listeners, on, off, fire } = useEvents(props, context, { form$ }, {
+    const {
+      form$,
+      theme,
+      classes,
+      mainClass,
+      components
+    } = useFormComponent(props, context)
+
+    const {
+      events,
+      listeners,
+      on,
+      off,
+      fire
+    } = useEvents(props, context, { form$ }, {
       events: ['next', 'previous', 'finish', 'select']
     })
 
     // ================ DATA ================
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const steps$Array = ref([])
 
     // no export
+    /**
+     * 
+     * 
+     * @private
+     */
     const unwatchInvalid = ref(null)
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const exists = ref(true)
 
     // ============== COMPUTED ==============
@@ -397,6 +425,11 @@ export default {
     }
 
     // no export
+    /**
+     * 
+     * 
+     * @private
+     */
     const assignToParent = ($parent, assignToParent) => {
       if ($parent.wizard$ !== undefined) {
         form$.value.$set($parent, 'wizard$', $this)
@@ -407,6 +440,11 @@ export default {
     }
 
     // no export
+    /**
+     * 
+     * 
+     * @private
+     */
     const removeFromParent = ($parent, removeFromParent) => {
       if ($parent.wizard$ !== undefined) {
         form$.value.$set($parent, 'wizard$', null)
@@ -485,17 +523,12 @@ export default {
     })
 
     return {
-      // Inject
       form$,
       theme,
-
-      // Data
       steps$Array,
       events,
       listeners,
       exists,
-
-      // Computed
       classes,
       mainClass,
       components,
@@ -515,8 +548,6 @@ export default {
       lastEnabled$,
       isAtLastStep,
       isAtFirstStep,
-
-      // Methods
       goTo,
       next,
       previous,
