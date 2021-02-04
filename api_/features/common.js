@@ -1,15 +1,6 @@
 export default {
   "conditions": {
     "base": {
-      "computed": {
-        "available": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether all element conditions are met (if any)."
-        }
-      },
       "options": {
         "conditions": {
           "public": true,
@@ -18,6 +9,15 @@ export default {
             "array"
           ],
           "description": "Conditions to be applied for the element."
+        }
+      },
+      "computed": {
+        "available": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether all element conditions are met (if any)."
         }
       }
     }
@@ -35,11 +35,11 @@ export default {
   "elementComponent": {
     "base": {
       "inject": {
-        "el$": {
+        "form$": {
           "public": false,
           "description": ""
         },
-        "form$": {
+        "el$": {
           "public": false,
           "description": ""
         },
@@ -129,11 +129,6 @@ export default {
               "description": "event to remove the listeners for."
             }
           }
-        },
-        "fire": {
-          "public": true,
-          "returns": "any",
-          "description": "Fires an event."
         }
       }
     }
@@ -179,11 +174,11 @@ export default {
   "label": {
     "base": {
       "computed": {
-        "label": {
+        "isLabelComponent": {
           "public": false,
           "description": ""
         },
-        "isLabelComponent": {
+        "label": {
           "public": false,
           "description": ""
         }
@@ -192,241 +187,42 @@ export default {
   },
   "laraform": {
     "base": {
-      "data": {
-        "tabs$": {
-          "public": false,
-          "description": ""
-        },
-        "wizard$": {
-          "public": false,
-          "description": ""
-        },
-        "elements$": {
-          "public": false,
-          "description": ""
-        },
-        "validation": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Determine if the form should validate."
-        },
-        "messageBag": {
-          "public": true,
-          "default": "{MessageBag}",
-          "types": [
-            "MessageBag"
-          ],
-          "description": "Message bag that contains computed & custom errors & messages."
-        },
-        "submitting": {
-          "public": true,
-          "default": "false",
-          "types": [
-            "boolean"
-          ],
-          "description": "Determine if the form is currently submitting."
-        },
-        "preparing": {
-          "public": true,
-          "default": "false",
-          "types": [
-            "boolean"
-          ],
-          "description": "Determine if the form is currently preparing for submission."
-        },
-        "updating": {
-          "public": false,
-          "default": "false",
-          "types": [
-            "boolean"
-          ],
-          "description": "Determine if the form's data is currently being updated for external model."
-        },
-        "events": {
-          "public": true,
-          "default": "[]",
-          "types": [
-            "array"
-          ],
-          "description": "Helper property used to store available events for the element."
-        },
-        "listeners": {
-          "public": true,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Helper property used to store listeners for events."
-        }
-      },
-      "computed": {
-        "data": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "The form's data."
-        },
-        "filtered": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "The form's data excluding elements with unmet conditions and the ones which should not submit."
-        },
-        "formData": {
-          "public": false,
-          "description": ""
-        },
-        "dirty": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the form has any dirty element."
-        },
-        "invalid": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the form has any invalid element."
-        },
-        "debouncing": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the form has any debouncing element."
-        },
-        "pending": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the form has any pending element."
-        },
-        "validated": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether each element of the form has been validated."
-        },
-        "busy": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the form has any busy element or in preparing or submitting state."
-        },
-        "formErrors": {
-          "public": true,
-          "types": [
-            "array"
-          ],
-          "description": "List of all errors within the form."
-        },
-        "formMessages": {
-          "public": true,
-          "types": [
-            "array"
-          ],
-          "description": "List of all errors within the form."
-        },
-        "disabled": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the form is disabled."
-        },
-        "shouldValidateOnChange": {
-          "public": false,
-          "description": ""
-        },
-        "shouldValidateOnSubmit": {
-          "public": false,
-          "description": ""
-        },
-        "shouldValidateOnStep": {
-          "public": false,
-          "description": ""
-        },
-        "hasWizard": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the form has wizard."
-        },
-        "hasTabs": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the form has tabs."
-        },
-        "hasErrors": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the form has errors."
-        },
-        "hasMessages": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the form has messages."
-        },
-        "mainClass": {
-          "public": false,
-          "description": ""
-        },
-        "defaultClasses": {
-          "public": false,
-          "description": ""
-        },
-        "extendedClasses": {
-          "public": false,
-          "description": ""
-        },
-        "extendedComponents": {
-          "public": false,
-          "description": ""
-        },
-        "selectedTheme": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "The theme object of the selected theme."
-        },
-        "extendedTheme": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "The selected theme's file with local extensions."
-        },
-        "store": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "The value of external Vuex store state."
-        },
-        "form$": {
-          "public": false,
-          "description": ""
-        }
-      },
       "methods": {
+        "off": {
+          "public": true,
+          "returns": "void",
+          "description": "Removes all listeners for an event.",
+          "params": {
+            "event": {
+              "types": [
+                "string"
+              ],
+              "required": false,
+              "description": "event to remove the listeners for."
+            }
+          }
+        },
+        "on": {
+          "public": true,
+          "returns": "void",
+          "description": "Adds a listener for an event.",
+          "params": {
+            "event": {
+              "types": [
+                "string"
+              ],
+              "required": false,
+              "description": "event to listen for."
+            },
+            "callback": {
+              "types": [
+                "function"
+              ],
+              "required": false,
+              "description": "callback to run when the event is triggered. The `this` variable refers to the component the listener is set for."
+            }
+          }
+        },
         "update": {
           "public": true,
           "returns": "void",
@@ -563,46 +359,240 @@ export default {
         "initMessageBag": {
           "public": false,
           "description": ""
-        },
-        "fire": {
+        }
+      },
+      "data": {
+        "listeners": {
           "public": true,
-          "returns": "any",
-          "description": "Fires an event."
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store listeners for events."
         },
-        "on": {
+        "events": {
           "public": true,
-          "returns": "void",
-          "description": "Adds a listener for an event.",
-          "params": {
-            "event": {
-              "types": [
-                "string"
-              ],
-              "required": false,
-              "description": "event to listen for."
-            },
-            "callback": {
-              "types": [
-                "function"
-              ],
-              "required": false,
-              "description": "callback to run when the event is triggered. The `this` variable refers to the component the listener is set for."
-            }
-          }
+          "default": "[]",
+          "types": [
+            "array"
+          ],
+          "description": "Helper property used to store available events for the element."
         },
-        "off": {
+        "elements$": {
+          "public": false,
+          "description": ""
+        },
+        "tabs$": {
+          "public": false,
+          "description": ""
+        },
+        "wizard$": {
+          "public": false,
+          "description": ""
+        },
+        "validation": {
           "public": true,
-          "returns": "void",
-          "description": "Removes all listeners for an event.",
-          "params": {
-            "event": {
-              "types": [
-                "string"
-              ],
-              "required": false,
-              "description": "event to remove the listeners for."
-            }
-          }
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Determine if the form should validate."
+        },
+        "messageBag": {
+          "public": true,
+          "default": "{MessageBag}",
+          "types": [
+            "MessageBag"
+          ],
+          "description": "Message bag that contains computed & custom errors & messages."
+        },
+        "submitting": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Determine if the form is currently submitting."
+        },
+        "preparing": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Determine if the form is currently preparing for submission."
+        },
+        "updating": {
+          "public": false,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Determine if the form's data is currently being updated for external model."
+        }
+      },
+      "computed": {
+        "data": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The form's data."
+        },
+        "filtered": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The form's data excluding elements with unmet conditions and the ones which should not submit."
+        },
+        "formData": {
+          "public": false,
+          "description": ""
+        },
+        "dirty": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the form has any dirty element."
+        },
+        "invalid": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the form has any invalid element."
+        },
+        "debouncing": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the form has any debouncing element."
+        },
+        "pending": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the form has any pending element."
+        },
+        "validated": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether each element of the form has been validated."
+        },
+        "busy": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the form has any busy element or in preparing or submitting state."
+        },
+        "formErrors": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "List of all errors within the form."
+        },
+        "hasErrors": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the form has errors."
+        },
+        "formMessages": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "List of all errors within the form."
+        },
+        "hasMessages": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the form has messages."
+        },
+        "disabled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the form is disabled."
+        },
+        "shouldValidateOnChange": {
+          "public": false,
+          "description": ""
+        },
+        "shouldValidateOnSubmit": {
+          "public": false,
+          "description": ""
+        },
+        "shouldValidateOnStep": {
+          "public": false,
+          "description": ""
+        },
+        "hasWizard": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the form has wizard."
+        },
+        "hasTabs": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the form has tabs."
+        },
+        "mainClass": {
+          "public": false,
+          "description": ""
+        },
+        "defaultClasses": {
+          "public": false,
+          "description": ""
+        },
+        "extendedClasses": {
+          "public": false,
+          "description": ""
+        },
+        "extendedComponents": {
+          "public": false,
+          "description": ""
+        },
+        "selectedTheme": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The theme object of the selected theme."
+        },
+        "extendedTheme": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The selected theme's file with local extensions."
+        },
+        "store": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The value of external Vuex store state."
+        },
+        "form$": {
+          "public": false,
+          "description": ""
         }
       }
     }

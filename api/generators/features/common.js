@@ -1,8 +1,27 @@
-const Generator = require('./index')
+import _ from 'lodash'
+import fs from 'fs'
+import Parser from './../../parser'
 
-const featuresPath = process.cwd() + '/src/composables/'
+const filesPath = process.cwd() + '/src/composables/'
 const outputPath = process.cwd() + '/api/features/common.js'
 
-const generator = new Generator(featuresPath, outputPath)
+const files = fs.readdirSync(filesPath).filter(f=>['.DS_Store', 'useTemplate.js'].indexOf(f) === -1 && f.match(/\.js$/))
 
-generator.generate()
+const features = {}
+
+const include = []
+
+_.each(files, (file) => {
+  let parser = new Parser(filesPath, file, false)
+  let featureName = _.lowerFirst(file.replace('.js','').replace(/^use/, '').trim())
+
+  if (include.length > 0 && include.indexOf(featureName) === -1) {
+    return
+  }
+
+  parser.init()
+
+  features[featureName] = parser.get()
+})
+
+fs.writeFileSync(outputPath, 'export default ' + JSON.stringify(features, null, 2))

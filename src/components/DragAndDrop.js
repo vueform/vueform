@@ -45,11 +45,6 @@ export default {
 
     // ============== COMPUTED ==============
 
-    /**
-     * 
-     * 
-     * @private
-     */
     const classes = computed(() => {
       let classes = _.clone(baseClasses.value)
 

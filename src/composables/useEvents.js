@@ -66,7 +66,7 @@ const base = function(props, context, dependencies, options = {})
    * @public
    * @returns {any}
    */
-  const fire = function() {
+  const fire = () => {
     let evt = arguments[0]
     let args = [].slice.call(arguments).splice(1)
 

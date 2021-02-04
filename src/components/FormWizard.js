@@ -155,7 +155,7 @@ export default {
     /**
      * Returns the first [wizardStep$](reference/frontend-wizard-step) component.
      * 
-     * @type {wizardStep$}
+     * @type {component<FormWizardStep>}
      */
     const first$ = computed(() => {
       return _.find(visible$.value, (step) => {
@@ -166,7 +166,7 @@ export default {
     /**
      * Returns the current [wizardStep$](reference/frontend-wizard-step) component.
      * 
-     * @type {wizardStep$}
+     * @type {component<FormWizardStep>}
      */
     const current$ = computed(() => {
       var current = _.find(steps$.value, { active: true })
@@ -177,7 +177,7 @@ export default {
     /**
      * Returns the next [wizardStep$](reference/frontend-wizard-step) component.
      * 
-     * @type {wizardStep$}
+     * @type {component<FormWizardStep>}
      */
     const next$ = computed(() => {
       return _.find(visible$.value, (step) => {
@@ -188,7 +188,7 @@ export default {
     /**
      * Returns the previous [wizardStep$](reference/frontend-wizard-step) component.
      * 
-     * @type {wizardStep$}
+     * @type {component<FormWizardStep>}
      */
     const previous$ = computed(() => {
       return _.findLast(visible$.value, (step) => {
@@ -199,7 +199,7 @@ export default {
     /**
      * Returns the first invalid [wizardStep$](reference/frontend-wizard-step) component.
      * 
-     * @type {wizardStep$}
+     * @type {component<FormWizardStep>}
      */
     const firstInvalid$ = computed(() => {
       return _.find(visible$.value, { invalid: true })
@@ -208,7 +208,7 @@ export default {
     /**
      * Returns the first [wizardStep$](reference/frontend-wizard-step) component which is not done yet.
      * 
-     * @type {wizardStep$}
+     * @type {component<FormWizardStep>}
      */
     const firstNonDone$ = computed(() => {
       return _.find(visible$.value, { done: false })
@@ -217,7 +217,7 @@ export default {
     /**
      * Returns the last enabled [wizardStep$](reference/frontend-wizard-step) component.
      * 
-     * @type {wizardStep$}
+     * @type {component<FormWizardStep>}
      */
     const lastEnabled$ = computed(() => {
       return _.findLast(visible$.value, { disabled: false })
@@ -311,7 +311,7 @@ export default {
      *
      * @public
      * @param {object} step key of step in [wizard](reference/frontend-form#prop-wizard)
-     * @returns {wizardStep$}
+     * @returns {component<FormWizardStep>}
      */
     const step$ = (step) => {
       return _.find(visible$.value, { name: step })

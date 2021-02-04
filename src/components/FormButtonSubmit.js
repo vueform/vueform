@@ -11,8 +11,20 @@ export default {
     // ============ DEPENDENCIES ============
 
     const {
-      el$, form$, theme, align, loading, disabled, mainClass, classes, components, label,
-      isLabelComponent, setLoading, disable, enable,
+      el$,
+      form$,
+      theme,
+      align,
+      loading,
+      disabled,
+      mainClass,
+      classes,
+      components,
+      label,
+      isLabelComponent,
+      setLoading,
+      disable,
+      enable,
     } = FormButton.init(props, context)
   
     // ============== COMPUTED ==============

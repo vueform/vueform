@@ -123,7 +123,7 @@ export default {
     /**
      * Returns the next [tab$](reference/frontend-tab) component.
      * 
-     * @type {tab$}
+     * @type {component<FormTab>}
      */
     const next$ = computed(() => {
       return _.find(visible$.value, (tab) => {
@@ -134,7 +134,7 @@ export default {
     /**
      * Returns the previous [tabs$](reference/frontend-tab) component.
      * 
-     * @type {tab$}
+     * @type {component<FormTab>}
      */
     const previous$ = computed(() => {
       return _.findLast(visible$.value, (tab) => {
@@ -183,7 +183,7 @@ export default {
      *
      * @public
      * @param {object} tab key of tab in [tabs](reference/frontend-form#prop-tabs) object
-     * @returns {wizardStep$}
+     * @returns {component<FormTab>}
      */
     const tab$ = (tab) => {
       return _.find(tabs$.value, { name: tab })

@@ -352,6 +352,214 @@ export default {
           "description": ""
         }
       }
+    },
+    "checkboxgroup": {
+      "computed": {
+        "el$": {
+          "public": true,
+          "types": [
+            [
+              "object",
+              "Element"
+            ]
+          ],
+          "description": ""
+        },
+        "isStatic": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "isFileType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is a file."
+        },
+        "isArrayType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an array."
+        },
+        "isImageType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an image."
+        }
+      },
+      "options": {
+        "type": {
+          "public": true,
+          "default": "schema.type",
+          "types": [
+            "string"
+          ],
+          "description": ""
+        }
+      }
+    },
+    "dates": {
+      "computed": {
+        "el$": {
+          "public": true,
+          "types": [
+            [
+              "object",
+              "Element"
+            ]
+          ],
+          "description": ""
+        },
+        "isStatic": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "isFileType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is a file."
+        },
+        "isArrayType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an array."
+        },
+        "isImageType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an image."
+        }
+      },
+      "options": {
+        "type": {
+          "public": true,
+          "default": "schema.type",
+          "types": [
+            "string"
+          ],
+          "description": ""
+        }
+      }
+    },
+    "multiselect": {
+      "computed": {
+        "el$": {
+          "public": true,
+          "types": [
+            [
+              "object",
+              "Element"
+            ]
+          ],
+          "description": ""
+        },
+        "isStatic": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "isFileType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is a file."
+        },
+        "isArrayType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an array."
+        },
+        "isImageType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an image."
+        }
+      },
+      "options": {
+        "type": {
+          "public": true,
+          "default": "schema.type",
+          "types": [
+            "string"
+          ],
+          "description": ""
+        }
+      }
+    },
+    "tags": {
+      "computed": {
+        "el$": {
+          "public": true,
+          "types": [
+            [
+              "object",
+              "Element"
+            ]
+          ],
+          "description": ""
+        },
+        "isStatic": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "isFileType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is a file."
+        },
+        "isArrayType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an array."
+        },
+        "isImageType": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the element's value is an image."
+        }
+      },
+      "options": {
+        "type": {
+          "public": true,
+          "default": "schema.type",
+          "types": [
+            "string"
+          ],
+          "description": ""
+        }
+      }
     }
   },
   "booleanValue": {
@@ -746,6 +954,48 @@ export default {
             "object"
           ],
           "description": "Schema of child elements."
+        }
+      }
+    },
+    "group": {
+      "options": {
+        "elements": {
+          "public": false,
+          "types": [
+            "object"
+          ],
+          "description": ""
+        }
+      },
+      "computed": {
+        "children": {
+          "public": false,
+          "types": [
+            "object"
+          ],
+          "description": "Schema of child elements."
+        },
+        "children$": {
+          "public": true,
+          "types": [
+            [
+              "object",
+              "Element"
+            ]
+          ],
+          "description": ""
+        }
+      },
+      "data": {
+        "children$Array": {
+          "public": false,
+          "types": [
+            [
+              "array",
+              "Element"
+            ]
+          ],
+          "description": ""
         }
       }
     }
@@ -2287,6 +2537,70 @@ export default {
           }
         }
       }
+    },
+    "radiogroup": {
+      "options": {
+        "disables": {
+          "public": true,
+          "default": "[]",
+          "types": [
+            "array"
+          ],
+          "description": "List of option keys to be disabled."
+        },
+        "disabled": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether all the items are *disabled*."
+        }
+      },
+      "methods": {
+        "disableAll": {
+          "public": true,
+          "returns": "void",
+          "description": "Disabled all items."
+        },
+        "enableAll": {
+          "public": true,
+          "returns": "void",
+          "description": "Enables all items."
+        },
+        "disable": {
+          "public": true,
+          "returns": "void",
+          "description": "Disables an item or items.",
+          "params": {
+            "items": {
+              "types": [
+                "array",
+                "string",
+                "number"
+              ],
+              "required": true,
+              "description": "Key of one or more items to disable."
+            }
+          }
+        },
+        "enable": {
+          "public": true,
+          "returns": "void",
+          "description": "Enables an item or items.",
+          "params": {
+            "items": {
+              "types": [
+                "array",
+                "string",
+                "number"
+              ],
+              "required": true,
+              "description": "Key of one or more items to enable."
+            }
+          }
+        }
+      }
     }
   },
   "displayKey": {
@@ -2671,6 +2985,33 @@ export default {
       }
     },
     "toggle": {
+      "methods": {
+        "handleChange": {
+          "public": false,
+          "returns": "void",
+          "description": "Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed."
+        }
+      }
+    },
+    "date": {
+      "methods": {
+        "handleChange": {
+          "public": false,
+          "returns": "void",
+          "description": "Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed."
+        }
+      }
+    },
+    "dates": {
+      "methods": {
+        "handleChange": {
+          "public": false,
+          "returns": "void",
+          "description": "Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed."
+        }
+      }
+    },
+    "radio": {
       "methods": {
         "handleChange": {
           "public": false,
@@ -3500,7 +3841,543 @@ export default {
     }
   },
   "options": {
-    "base": {
+    "date": {
+      "options": {
+        "displayFormat": {
+          "public": true,
+          "default": "\"locale.elements.date.displayFormat\"",
+          "types": [
+            "string"
+          ],
+          "description": "Defines how date should be formatted in the input field."
+        },
+        "valueFormat": {
+          "public": true,
+          "default": "\"YYYY-MM-DD\"",
+          "types": [
+            "string"
+          ],
+          "description": "Defines how date should be formatted in `value`. If `false` Date object will be used."
+        },
+        "loadFormat": {
+          "public": true,
+          "default": "\"YYYY-MM-DD\"",
+          "types": [
+            "string"
+          ],
+          "description": "Defines how date is formatted when using `load` or `update` method or by directly setting `value`. When using \"formatLoad\" this should be the output format of that."
+        },
+        "min": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "string",
+            "Date"
+          ],
+          "description": "Earliest selectable date. Can be a string in `[loadFormat](#prop-loadFormat)` or a Date object."
+        },
+        "max": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "string",
+            "Date"
+          ],
+          "description": "Latest selectable date. Can be a string in `[loadFormat](#prop-loadFormat)` or a Date object."
+        },
+        "disables": {
+          "public": true,
+          "default": "[]",
+          "types": [
+            "array"
+          ],
+          "description": "List of dates to be disabled."
+        },
+        "options": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
+        }
+      },
+      "computed": {
+        "hasDate": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has date."
+        },
+        "hasTime": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has time."
+        }
+      }
+    },
+    "dates": {
+      "options": {
+        "displayFormat": {
+          "public": true,
+          "default": "\"locale.elements.date.displayFormat\"",
+          "types": [
+            "string"
+          ],
+          "description": "Defines how date should be formatted in the input field."
+        },
+        "valueFormat": {
+          "public": true,
+          "default": "\"YYYY-MM-DD\"",
+          "types": [
+            "string"
+          ],
+          "description": "Defines how date should be formatted in `value`. If `false` Date object will be used."
+        },
+        "loadFormat": {
+          "public": true,
+          "default": "\"YYYY-MM-DD\"",
+          "types": [
+            "string"
+          ],
+          "description": "Defines how date is formatted when using `load` or `update` method or by directly setting `value`. When using \"formatLoad\" this should be the output format of that."
+        },
+        "mode": {
+          "public": true,
+          "default": "\"single\"",
+          "types": [
+            "string"
+          ],
+          "description": "Flatpickr's mode option. Possible values: `multiple` or `range`."
+        },
+        "min": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "string",
+            "Date"
+          ],
+          "description": "Earliest selectable date. Can be a string in `[loadFormat](#prop-loadFormat)` or a Date object."
+        },
+        "max": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "string",
+            "Date"
+          ],
+          "description": "Latest selectable date. Can be a string in `[loadFormat](#prop-loadFormat)` or a Date object."
+        },
+        "disables": {
+          "public": true,
+          "default": "[]",
+          "types": [
+            "array"
+          ],
+          "description": "List of dates to be disabled."
+        },
+        "options": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
+        }
+      },
+      "computed": {
+        "hasDate": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has date."
+        },
+        "hasTime": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has time."
+        }
+      }
+    },
+    "datetime": {
+      "options": {
+        "displayFormat": {
+          "public": true,
+          "default": "\"from locale\"",
+          "types": [
+            "string"
+          ],
+          "description": "Defines how date should be formatted in the input field."
+        },
+        "valueFormat": {
+          "public": true,
+          "default": "\"YYYY-MM-DD\"",
+          "types": [
+            "string"
+          ],
+          "description": "Defines how date should be formatted in `value`. If `false` Date object will be used."
+        },
+        "loadFormat": {
+          "public": true,
+          "default": "\"YYYY-MM-DD\"",
+          "types": [
+            "string"
+          ],
+          "description": "Defines how date is formatted when using `load` or `update` method or by directly setting `value`."
+        },
+        "seconds": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "hour24": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the time should use 24 hours format."
+        },
+        "min": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "string",
+            "Date"
+          ],
+          "description": "Earliest selectable date. Can be a string in `[loadFormat](#prop-loadFormat)` or a Date object."
+        },
+        "max": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "string",
+            "Date"
+          ],
+          "description": "Latest selectable date. Can be a string in `[loadFormat](#prop-loadFormat)` or a Date object."
+        },
+        "disables": {
+          "public": true,
+          "default": "[]",
+          "types": [
+            "array"
+          ],
+          "description": "List of dates to be disabled."
+        },
+        "options": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
+        }
+      },
+      "computed": {
+        "hasDate": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has date."
+        },
+        "hasTime": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has time."
+        }
+      }
+    },
+    "select": {
+      "options": {
+        "native": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines whether the native select should be used by default."
+        },
+        "search": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines whether the select options are searchable."
+        },
+        "options": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Additional [options](https://vue-multiselect.js.org/#sub-props) for the select."
+        }
+      },
+      "computed": {
+        "isNative": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "Determines if the native select is used."
+        }
+      }
+    },
+    "multiselect": {
+      "options": {
+        "native": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines whether the native select should be used by default."
+        },
+        "search": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines whether the select options are searchable."
+        },
+        "options": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Additional [options](https://vue-multiselect.js.org/#sub-props) for the select."
+        }
+      },
+      "computed": {
+        "isNative": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "Determines if the native select is used."
+        }
+      }
+    },
+    "tags": {
+      "computed": {
+        "native": {
+          "public": false,
+          "description": ""
+        },
+        "isNative": {
+          "public": false,
+          "description": ""
+        }
+      },
+      "options": {
+        "search": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "create": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "options": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Additional [options](https://vue-multiselect.js.org/#sub-props) for the select."
+        }
+      }
+    },
+    "slider": {
+      "options": {
+        "min": {
+          "public": false,
+          "types": [
+            "number"
+          ],
+          "description": ""
+        },
+        "max": {
+          "public": false,
+          "types": [
+            "number"
+          ],
+          "description": ""
+        },
+        "step": {
+          "public": false,
+          "types": [
+            "number"
+          ],
+          "description": ""
+        },
+        "tooltips": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "merge": {
+          "public": false,
+          "types": [
+            "number"
+          ],
+          "description": ""
+        },
+        "format": {
+          "public": false,
+          "types": [
+            "object",
+            "function"
+          ],
+          "description": ""
+        },
+        "orientation": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": ""
+        },
+        "direction": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": ""
+        },
+        "height": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": ""
+        },
+        "options": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Additional [options](https://nightcatsama.github.io/vue-slider-component/#/api/props) for slider."
+        }
+      }
+    },
+    "time": {
+      "options": {
+        "displayFormat": {
+          "public": true,
+          "default": "\"from locale\"",
+          "types": [
+            "string"
+          ],
+          "description": "Defines how date should be formatted in the input field."
+        },
+        "valueFormat": {
+          "public": true,
+          "default": "\"YYYY-MM-DD\"",
+          "types": [
+            "string"
+          ],
+          "description": "Defines how date should be formatted in `value`. If `false` Date object will be used."
+        },
+        "loadFormat": {
+          "public": true,
+          "default": "\"YYYY-MM-DD\"",
+          "types": [
+            "string"
+          ],
+          "description": "Defines how date is formatted when using `load` or `update` method or by directly setting `value`."
+        },
+        "seconds": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "hour24": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Determines if the time should use 24 hours format."
+        },
+        "min": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "string",
+            "Date"
+          ],
+          "description": "Earliest selectable date. Can be a string in `[loadFormat](#prop-loadFormat)` or a Date object."
+        },
+        "max": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "string",
+            "Date"
+          ],
+          "description": "Latest selectable date. Can be a string in `[loadFormat](#prop-loadFormat)` or a Date object."
+        },
+        "disables": {
+          "public": true,
+          "default": "[]",
+          "types": [
+            "array"
+          ],
+          "description": "List of dates to be disabled."
+        },
+        "options": {
+          "public": true,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Additional [options](https://flatpickr.js.org/options/) for flatpickr."
+        }
+      },
+      "computed": {
+        "hasDate": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has date."
+        },
+        "hasTime": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Helper property used to determine the element has time."
+        }
+      }
+    },
+    "toggle": {
       "options": {
         "labels": {
           "public": true,
@@ -4916,6 +5793,90 @@ export default {
           "description": "Initalizes validators."
         }
       }
+    },
+    "group": {
+      "data": {
+        "messageBag": {
+          "public": true,
+          "default": "{MessageBag}",
+          "types": [
+            "MessageBag"
+          ],
+          "description": "Message bag service."
+        }
+      },
+      "computed": {
+        "dirty": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value has been modified by the user."
+        },
+        "validated": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's input has already been validated at least once."
+        },
+        "invalid": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has any failing rules."
+        },
+        "pending": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has any async rules in progress."
+        },
+        "debouncing": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has an ongoing debounce."
+        },
+        "busy": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is `pending` or `debouncing`."
+        },
+        "errors": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "List of errors of failing rules."
+        }
+      },
+      "methods": {
+        "validate": {
+          "public": true,
+          "returns": "void",
+          "description": "Validates the element."
+        },
+        "clean": {
+          "public": true,
+          "returns": "void",
+          "description": "Cleans the element."
+        },
+        "resetValidators": {
+          "public": true,
+          "returns": "void",
+          "description": "Resets validators for children."
+        },
+        "initMessageBag": {
+          "public": false,
+          "description": ""
+        }
+      }
     }
   },
   "value": {
@@ -5324,6 +6285,107 @@ export default {
         "value": {
           "public": false,
           "description": ""
+        },
+        "model": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "Helper property used for tracking the field's value."
+        }
+      },
+      "data": {
+        "previousValue": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element previous value."
+        },
+        "currentValue": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element value."
+        }
+      }
+    },
+    "group": {
+      "computed": {
+        "value": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "The value of the element."
+        }
+      },
+      "data": {
+        "previousValue": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element previous value."
+        },
+        "currentValue": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element value."
+        }
+      }
+    },
+    "toggle": {
+      "computed": {
+        "value": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "The value of the element."
+        },
+        "model": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "Helper property used for tracking the field's value."
+        }
+      },
+      "data": {
+        "previousValue": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element previous value."
+        },
+        "currentValue": {
+          "public": true,
+          "default": "null",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element value."
+        }
+      }
+    },
+    "tags": {
+      "computed": {
+        "value": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "The value of the element."
         },
         "model": {
           "public": true,
