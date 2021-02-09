@@ -4,7 +4,7 @@ import FormButton from './FormButton'
 export default {
   name: 'FormButtonSubmit',
   mixins: [FormButton],
-  init(props, context)
+  setup(props, context)
   {
     const { button } = toRefs(props)
 
@@ -25,7 +25,7 @@ export default {
       setLoading,
       disable,
       enable,
-    } = FormButton.init(props, context)
+    } = FormButton.setup(props, context)
   
     // ============== COMPUTED ==============
 

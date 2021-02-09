@@ -1,10 +1,8 @@
 <script>
-  import FormButtonSubmit from './../../../components/FormButtonSubmit'
   import FormButton from './FormButton'
 
   export default {
     name: 'FormButtonSubmit',
-    mixins: [FormButtonSubmit],
     render: FormButton.render,
     data() {
       return {

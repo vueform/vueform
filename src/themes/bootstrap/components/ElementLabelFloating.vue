@@ -6,11 +6,8 @@
 </template>
 
 <script>
-  import ElementLabelFloating from './../../../components/ElementLabelFloating'
-
   export default {
     name: 'ElementLabelFloating',
-    mixins: [ElementLabelFloating],
     data() {
       return {
         defaultClasses: {

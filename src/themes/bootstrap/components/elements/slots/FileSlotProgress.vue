@@ -6,11 +6,8 @@
 </template>
 
 <script>
-  import FileSlotProgress from './../../../../../components/elements/slots/FileSlotProgress'
-
   export default {
     name: 'FileSlotProgress',
-    mixins: [FileSlotProgress],
     data() {
       return {
         defaultClasses: {

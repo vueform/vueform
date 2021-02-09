@@ -3,10 +3,7 @@
 </template>
 
 <script>
-  import MultiselectSlotNoResults from './../../../../../components/elements/slots/MultiselectSlotNoResults'
-
   export default {
     name: 'MultiselectSlotNoResults',
-    mixins: [MultiselectSlotNoResults],
-}
+  }
 </script>

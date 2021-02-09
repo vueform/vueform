@@ -2,29 +2,31 @@
   <component :is="layout">
 
     <template v-slot:field>
+
       <slot name="prefix"></slot>
 
       <div :class="classes.childrenContainer">
         <div :class="classes.element" v-sortable="sortable">
 
-          <component
-            v-for="(element, i) in instances"
-            :is="component(element)"
-            :schema="element"
-            :name="i"
-            :parent="el$"
-            :key="element.key"
-          >
-            <template v-slot:prefix>
+          <template v-for="(element, i) in instances">
+            <div :key="element.key">
+              <slot :index="element.key">
+                <component
+                  v-if="element.type"
+                  :is="component(element)"
+                  :schema="element"
+                  :name="i"
+                />
+              </slot>
               <a
                 href=""
                 :class="classes.remove"
                 @click.prevent="handleRemove(i)"
                 v-html="__('laraform.elements.list.remove')"
               ></a>
-            </template>
-          </component>
-
+            </div>
+          </template>
+          
         </div>
       </div>
 
@@ -50,11 +52,8 @@
 </template>
 
 <script>
-  import ListElement from './../../../../components/elements/ListElement'
-
   export default {
     name: 'ListElement',
-    mixins: [ListElement],
     data() {
       return {
         defaultClasses: {
@@ -72,6 +71,6 @@
           remove: 'remove',
         }
       }
-    }
+    },
   }
 </script>

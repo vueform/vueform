@@ -7,7 +7,7 @@ export default {
       type: Object,
     },
   },
-  init(props, context)
+  setup(props, context)
   {  
     // ============ DEPENDENCIES ============
 

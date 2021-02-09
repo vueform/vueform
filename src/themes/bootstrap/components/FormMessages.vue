@@ -13,11 +13,8 @@
 </template>
 
 <script>
-  import FormMessages from './../../../components/FormMessages'
-
   export default {
     name: 'FormMessages',
-    mixins: [FormMessages],
     data() {
       return {
         defaultClasses: {

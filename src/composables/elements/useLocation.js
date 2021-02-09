@@ -1,167 +1,163 @@
-import { toRefs, onMounted, nextTick } from 'composition-api'
-import useForm$ from './../useForm$'
-import useTheme from './../useTheme'
-import useInput from './features/useInput'
-import useAddons from './features/useAddons'
-import usePath from './features/usePath'
-import useConditions from './../useConditions'
-import useData from './features/useData'
-import useDefault from './features/useDefault'
-import useValidation from './features/useValidation'
-import useLabel from './features/useLabel'
-import usePlaceholder from './features/usePlaceholder'
-import useFloating from './features/useFloating'
-import useClasses from './features/useClasses'
-import useId from './features/useId'
-import useColumns from './features/useColumns'
-import useDescription from './features/useDescription'
-import useReadonly from './features/useReadonly'
-import useInfo from './features/useInfo'
-import useBaseElement from './features/useBaseElement'
-import useGenericName from './features/useGenericName'
-import useView from './features/useView'
-import useComponents from './features/useComponents'
-import useLayout from './features/useLayout'
-import useSlots from './features/useSlots'
-import useDebounce from './features/useDebounce'
-import useDisabled from './features/useDisabled'
-import useEvents from './../useEvents'
-import useEmpty from './features/useEmpty'
-import useDisplayKey from './features/useDisplayKey'
+import { computed, toRefs, ref, onMounted, watch, nextTick } from 'composition-api'
 
-import { location as useLocation } from './features/useLocation'
-import { location as useValue } from './features/useValue'
-import { object as useNullValue } from './features/useNullValue'
+const base = function (props, context, dependencies, options_ = {})
+{
+  const { 
+    provider,
+    options,
+  } = toRefs(props)
 
-export default function useText(props, context) {
-  const { schema } = toRefs(props)
+  // ============ DEPENDENCIES ============
 
-  const form$ = useForm$(props, context)
-  const theme = useTheme(props, context)
-  const input = useInput(props, context)
-  const addons = useAddons(props, context)
-  const path = usePath(props, context)
-  const placeholder = usePlaceholder(props, context)
-  const floating = useFloating(props, context)
-  const id = useId(props, context)
-  const description = useDescription(props, context)
-  const readonly = useReadonly(props, context)
-  const info = useInfo(props, context)
-  const debounce = useDebounce(props, context)
-  const disabled = useDisabled(props, context)
-  const nullValue = useNullValue(props, context)
-  const displayKey = useDisplayKey(props, context)
+  const form$ = dependencies.form$
+  const value = dependencies.value
+  const updated = dependencies.updated
 
-  const baseElement = useBaseElement(props, context, {
-    form$: form$.form$,
+  // ============== PRIVATE ===============
+
+  const inputElement = () => {
+    return options_.input.value
+  }
+
+  // ================ DATA ================
+
+  /**
+   * The location service that's initalized once the component is mounted.
+   * 
+   * @type {class}
+   * @default null
+   */
+  const locationService = ref(null)
+
+  /**
+   * The raw location object of location provider (Google/Algolia).
+   * 
+   * @type {class}
+   * @default null
+   */
+  const location = ref({})
+
+
+  // ============== COMPUTED ==============
+
+  /**
+  * Default options for flatpickr.
+  * 
+  * @type {object} 
+  * @default {}
+  */
+  const defaultOptions = computed(() => {
+    let providers = {
+      google: {
+        fields: ['geometry', 'formatted_address', 'address_components'],
+      },
+      algolia: {
+        type: 'address',
+        appId: form$.value.$laraform.service.algolia.app_id,
+        apiKey: form$.value.$laraform.service.algolia.api_key,
+        templates: options_.templates || {}
+      }
+    }
+
+    return providers[provider.value]
   })
 
-  const default_ = useDefault(props, context, {
-    nullValue: nullValue.nullValue
+  /**
+  * Additional options for [Google Places](https://developers.google.com/maps/documentation/javascript/reference/places-widget#AutocompleteOptions) or [Algolia Places](https://community.algolia.com/places/documentation.html#options) depending on the provider.
+  * 
+  * @type {object} 
+  * @default {}
+  * @option
+  */
+  const providerOptions = computed(() => {
+    return Object.assign({}, defaultOptions.value, options.value || {})
   })
 
-  const value = useValue(props, context, {
-    nullValue: nullValue.nullValue,
-    default: default_.default,
-    displayKey: displayKey.displayKey,
-    input: input.input,
+  // =============== METHODS ==============
+
+  /**
+   * Handles location service's address change.
+   *
+   * @param {object} data an object containing address data
+   * @param {object} raw an object containing raw address data (based on provider)
+   */
+  const handleAddressChange = (data, raw) => {
+    if (options_.handleAddressChange) {
+      options_.handleAddressChange(data, raw)
+      return
+    }
+
+    location.value = raw
+    value.value = data
+
+    updated()
+  }
+
+  /**
+   * Initalizes location service.
+   *
+   * @returns {void}
+   */
+  const initLocationService = () => {
+    locationService.value = new form$.value.$laraform.services.location[provider.value]
+    locationService.value.init(inputElement(), handleAddressChange, providerOptions.value)
+  }
+
+  // ============== WATCHERS ==============
+
+  watch(provider, () => {
+    locationService.value.destroy()
+    initLocationService()
   })
 
-  const conditions = useConditions(props, context, {
-    form$: form$.form$,
-    path: path.path,
-    descriptor: schema,
-  })
+  watch(options, () => {
+    if (_.isEqual(options.value, locationService.value.options)) {
+      return
+    }
 
-  const validation = useValidation(props, context, {
-    form$: form$.form$,
-    path: path.path,
-  })
-
-  const events = useEvents(props, context, {
-    form$: form$.form$,
-    descriptor: schema,
-  }, {
-    events: [
-      'change'
-    ],
-  })
-
-  const data = useData(props, context, {
-    form$: form$.form$,
-    available: conditions.available,
-    value: value.value,
-    currentValue: value.currentValue,
-    previousValue: value.previousValue,
-    clean: validation.clean,
-    validate: validation.validate,
-    resetValidators: validation.resetValidators,
-    fire: events.fire,
-    default: default_.default,
-    nullValue: nullValue.nullValue,
-    dirt: validation.dirt,
-  })
-
-  const location = useLocation(props, context, {
-    form$: form$.form$,
-    value: value.value,
-    input: input.input,
-    displayKey: displayKey.displayKey,
-    updated: data.updated,
-  }, {
-    input: input.input,
-  })
-
-  const empty = useEmpty(props, context, {
-    value: value.value,
-    nullValue: nullValue.nullValue,
-  })
-
-  const label = useLabel(props, context, {
-    form$: form$.form$,
-  })
-
-  const genericName = useGenericName(props, context, {
-    label: label.label,
-    placeholder: placeholder.placeholder,
-  })
+    locationService.value.init(options.value)
+  }, { deep: true })
   
-  const components = useComponents(props, context, {
-    theme: theme.theme,
-    form$: form$.form$
-  })
 
-  const layout = useLayout(props, context, {
-    components: components.components,
-  })
-
-  const classes = useClasses(props, context, {
-    form$: form$.form$,
-    theme: theme.theme,
-  })
-
-  const columns = useColumns(props, context, {
-    form$: form$.form$,
-  })
-
-  const view = useView(props, context, {
-    available: conditions.available,
-  })
-
-  const slots = useSlots(props, context, {
-    form$: form$.form$,
-    components: components.components,
-  }, {
-    slots: [
-      'label', 'info', 'description', 'error',
-      'message', 'before', 'between', 'after'
-    ]
-  })
+  // =============== HOOKS ================
 
   onMounted(() => {
-    validation.initMessageBag()
-    validation.initValidation()
+    initLocationService()
+  })
 
+  return {
+    locationService,
+    location,
+    defaultOptions,
+    providerOptions,
+    handleAddressChange,
+    initLocationService,
+  }
+}
+
+const location = function (props, context, dependencies, options_ = {})
+{
+  const {
+    displayKey
+  } = toRefs(props)
+
+  const {
+    locationService,
+    location,
+    defaultOptions,
+    providerOptions,
+    handleAddressChange,
+    initLocationService
+  } = base(props, context, dependencies, options_)
+
+  // ============ DEPENDENCIES ============
+
+  const value = dependencies.value
+  const input = dependencies.input
+  
+  // =============== HOOKS ================
+
+  onMounted(() => {
     nextTick(() => {
       if (value.value && value.value[displayKey.value]) {
         input.value = value.value[displayKey.value]
@@ -170,37 +166,100 @@ export default function useText(props, context) {
   })
 
   return {
-    ...form$,
-    ...theme,
-    ...input,
-    ...addons,
-    ...path,
-    ...conditions,
-    ...value,
-    ...validation,
-    ...label,
-    ...placeholder,
-    ...floating,
-    ...classes,
-    ...id,
-    ...columns,
-    ...description,
-    ...readonly,
-    ...info,
-    ...baseElement,
-    ...genericName,
-    ...view,
-    ...components,
-    ...layout,
-    ...slots,
-    ...debounce,
-    ...disabled,
-    ...events,
-    ...data,
-    ...empty,
-    ...default_,
-    ...nullValue,
-    ...location,
-    ...displayKey,
+    locationService,
+    location,
+    defaultOptions,
+    providerOptions,
+    handleAddressChange,
+    initLocationService
   }
-} 
+}
+
+const address = function (props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+
+  const children$ = dependencies.children$
+  const fields = dependencies.fields
+
+  // =============== METHODS ==============
+
+  /**
+   * Updates fields with address data.
+   *
+   * @param {object} data an object containing address data
+   */
+  const updateFields = (data) => {
+    if (children$.value.address) {
+      children$.value.address.update(data.address || null, true)
+    }
+
+    if (children$.value.city) {
+      children$.value.city.update(data.city || null, true)
+    }
+
+    if (children$.value.zip) {
+      children$.value.zip.update(data.zip || null, true)
+    }
+
+    if (children$.value.state) {
+      children$.value.state.update(data.state_code ? data.state_code.toUpperCase() : null, true)
+    }
+
+    if (children$.value.country) {
+      children$.value.country.update(data.country_code ? data.country_code.toUpperCase() : null, true)
+    }
+
+    if (document.getElementById(fields.value.address.id)) {
+      document.getElementById(fields.value.address.id).value = data.address || ''
+    }
+  }
+
+  /**
+   * Handles location service's address change.
+   *
+   * @param {object} data an object containing address data
+   * @param {object} raw an object containing raw address data (based on provider)
+   */
+  const handleAddressChange = (data, raw) => {
+    location.value = raw
+    updateFields(data)
+  }
+
+  // ============ DEPENDENCIES ============
+
+  const {
+    locationService,
+    location,
+    defaultOptions,
+    providerOptions,
+    initLocationService
+  } = base(props, context, dependencies, {
+    input: computed(() => {
+      return document.getElementById(fields.value.address.id)
+    }),
+    templates: {
+      value: function(suggestion) {
+        return suggestion.name;
+      }
+    },
+    handleAddressChange,
+  })
+
+  return {
+    locationService,
+    location,
+    defaultOptions,
+    providerOptions,
+    updateFields,
+    handleAddressChange,
+    initLocationService,
+  }
+}
+
+export {
+  location,
+  address,
+}
+
+export default base

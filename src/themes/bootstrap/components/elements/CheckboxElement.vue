@@ -38,11 +38,8 @@
 </template>
 
 <script>
-  import CheckboxElement from './../../../../components/elements/CheckboxElement'
-
   export default {
     name: 'CheckboxElement',
-    mixins: [CheckboxElement],
     data() {
       return {
         defaultClasses: {

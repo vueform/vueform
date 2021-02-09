@@ -83,11 +83,8 @@
 </template>
 
 <script>
-  import FileElement from './../../../../components/elements/FileElement'
-
   export default {
     name: 'FileElement',
-    mixins: [FileElement],
     data() {
       return {
         defaultClasses: {

@@ -17,11 +17,8 @@
 </template>
 
 <script>
-  import FormWizardControls from './../../../components/FormWizardControls'
-
   export default {
     name: 'FormWizardControls',
-    mixins: [FormWizardControls],
     data() {
       return {
         defaultClasses: {

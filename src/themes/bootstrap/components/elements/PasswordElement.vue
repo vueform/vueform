@@ -1,11 +1,8 @@
 <script>
-  import PasswordElement from './../../../../components/elements/PasswordElement'
-  
   import TextElement from './TextElement'
 
   export default {
     name: 'PasswordElement',
-    mixins: [PasswordElement],
     render: TextElement.render,
     data() {
       return {

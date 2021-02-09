@@ -14,11 +14,8 @@
 </template>
 
 <script>
-  import FormWizard from './../../../components/FormWizard'
-
   export default {
     name: 'FormWizard',
-    mixins: [FormWizard],
     data() {
       return {
         defaultClasses: {

@@ -39,7 +39,7 @@ export default {
       required: true,
     },
   },
-  init(props, context)
+  setup(props, context)
   {  
     const { tab, elements$, name } = toRefs(props)
     const { containers } = toRefs(context.data)

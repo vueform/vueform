@@ -3,23 +3,14 @@ import computedOption from './../utils/computedOption'
 
 const base = function(props, context, dependencies)
 {
-  const { parent } = toRefs(props)
+  const { parent, conditions } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
   const path = dependencies.path || ref(null)
-  const descriptor = dependencies.descriptor
 
   // ============== COMPUTED ==============
-
-  /**
-   * Conditions to be applied for the element.
-   * 
-   * @type {array} 
-   * @default []
-   */
-  const conditions = computedOption('conditions', descriptor, [])
 
   /**
    * Whether all element conditions are met (if any).
@@ -42,7 +33,6 @@ const base = function(props, context, dependencies)
 
   return {
     available,
-    conditions,
   }
 }
 

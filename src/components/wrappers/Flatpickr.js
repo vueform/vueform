@@ -1,11 +1,10 @@
-import clickedOutsideElement from './../../utils/clickedOutsideElement'
 import useElementComponent from '../../composables/useElementComponent'
 import flatpickr from 'flatpickr'
 import 'flatpickr/dist/themes/light.css'
 
 export default {
   name: 'Flatpickr',
-  init(props, context) {
+  setup(props, context) {
     return {
       ...useElementComponent(props, context),
     }

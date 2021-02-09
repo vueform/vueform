@@ -1,227 +1,454 @@
-import { toRefs, onMounted } from 'composition-api'
-import useForm$ from './../useForm$'
-import useTheme from './../useTheme'
-import useInput from './features/useInput'
-import usePath from './features/usePath'
-import useConditions from './../useConditions'
-import useDefault from './features/useDefault'
-import useNullValue from './features/useNullValue'
-import useLabel from './features/useLabel'
-import useId from './features/useId'
-import useColumns from './features/useColumns'
-import useDescription from './features/useDescription'
-import useInfo from './features/useInfo'
-import useView from './features/useView'
-import useComponents from './features/useComponents'
-import useLayout from './features/useLayout'
-import useSlots from './features/useSlots'
-import useDebounce from './features/useDebounce'
-import useDisabled from './features/useDisabled'
-import useEvents from './../useEvents'
-import useEmpty from './features/useEmpty'
-import useFile from './features/useFile'
-import useRequest from './features/useRequest'
-import useData from './features/useData'
-import useDrop from './features/useDrop'
-import useRemoving from './features/useRemoving'
-import useHandleError from './features/useHandleError'
+import { computed, toRefs, ref, watch } from 'composition-api'
 
-import { file as useBaseElement } from './features/useBaseElement'
-import { file as useValue } from './features/useValue'
-import { file as useValidation } from './features/useValidation'
-import { file as useGenericName } from './features/useGenericName'
-import { file as useClasses } from './features/useClasses'
+const base = function (props, context, dependencies)
+{
+  const {
+    type,
+    embed,
+    clickable,
+    auto,
+    methods,
+    endpoints,
+    url,
+    type,
+  } = toRefs(props)
 
-export default function (props, context) {
-  const { schema } = toRefs(props)
+  // ============ DEPENDENCIES ============
 
-  const form$ = useForm$(props, context)
-  const theme = useTheme(props, context)
-  const input = useInput(props, context)
-  const path = usePath(props, context)
-  const id = useId(props, context)
-  const description = useDescription(props, context)
-  const info = useInfo(props, context)
-  const debounce = useDebounce(props, context)
-  const disabled = useDisabled(props, context)
-  const nullValue = useNullValue(props, context)
-  const removing = useRemoving(props, context)
+  const form$ = dependencies.form$
+  const value = dependencies.value
+  const previousValue = dependencies.previousValue
+  const isDisabled = dependencies.isDisabled
+  const validate = dependencies.validate
+  const invalid = dependencies.invalid
+  const path = dependencies.path
+  const axios = dependencies.axios
+  const request = dependencies.request
+  const uploading = dependencies.uploading
+  const input = dependencies.input
+  const update = dependencies.update
+  const fire = dependencies.fire
+  const isImageType = dependencies.isImageType
+  const removing = dependencies.removing
+  const handleError = dependencies.handleError
 
-  const baseElement = useBaseElement(props, context, {
-    form$: form$.form$,
+  // ================ DATA ================
+
+  /**
+   * 
+   * 
+   * @type {File|object|string}
+   * @default null
+   */
+  const file = ref(null)
+
+  /**
+   * 
+   * 
+   * @type {string}
+   * @default null
+   */
+  const base64 = ref(null)
+
+  /**
+   * 
+   * 
+   * @type {number}
+   * @default 0
+   */
+  const progress = ref(0)
+
+  /**
+   * 
+   * 
+   * @type {boolean}
+   * @default false
+   */
+  const preparing = ref(false)
+
+  // ============== COMPUTED ==============
+
+  /**
+   * 
+   * 
+   * @type {object}
+   * @default config.methods.file
+   * @option
+   */
+  const fileMethods = computed(() => {
+    return Object.assign({}, form$.value.$laraform.methods.file, methods.value || {})
   })
 
-  const request = useRequest(props, context, {
-    form$: form$.form$,
+  /**
+   * 
+   * 
+   * @type {object}
+   * @default config.endpoints.file
+   * @option
+   */
+  const fileEndpoints = computed(() => {
+    return Object.assign({}, form$.value.$laraform.endpoints.file, endpoints.value || {})
   })
 
-  const default_ = useDefault(props, context, {
-    nullValue: nullValue.nullValue
+  /**
+   * 
+   * 
+   * @type {string}
+   * @option
+   */
+  const fileUrl = computed(() => {
+    if (url.value === undefined) {
+      return '/'
+    }
+
+    let fileUrl = url.value
+
+    if (!fileUrl.match(/\/$/)) {
+      fileUrl += '/'
+    }
+
+    if (!fileUrl.match(/^http/) && !fileUrl.match(/^\//)) {
+      fileUrl = '/' + fileUrl
+    }
+
+    return fileUrl
   })
 
-  const value = useValue(props, context, {
-    nullValue: nullValue.nullValue,
-    default: default_.default,
+  /**
+   * 
+   * 
+   * @type {number}
+   */
+  const stage = computed(() => {
+    if (value.value === null) {
+      return 0 // file not selected
+    }
+
+    if (value.value instanceof File) {
+      return 1 // file selected
+    }
+
+    if (_.isObject(value.value) && value.value.tmp !== undefined) {
+      return 2 // temp uploaded
+    }
+
+    if (_.isString(value.value)) {
+      return 3 // file uploaded
+    }
+
+    return -1
   })
 
-  const conditions = useConditions(props, context, {
-    form$: form$.form$,
-    path: path.path,
-    descriptor: schema,
+  /**
+   * 
+   * 
+   * @type {string}
+   */
+  const filename = computed(() => {
+    switch(stage.value) {
+      case 1:
+        return value.value.name
+
+      case 2:
+        return value.value.originalName
+
+      case 3:
+        return value.value
+
+      default:
+        return null
+    }
   })
 
-  const validation = useValidation(props, context, {
-    form$: form$.form$,
-    path: path.path,
-    value: value.value,
-    uploading: request.uploading,
-    removing: removing.removing,
+  /**
+   * 
+   * 
+   * @type {string}
+   */
+  const link = computed(() => {
+    if (!uploaded.value || !clickable.value) {
+      return
+    }
 
+    return fileUrl.value + filename.value
   })
 
-  const events = useEvents(props, context, {
-    form$: form$.form$,
-    descriptor: schema,
-  }, {
-    events: [
-      'change', 'remove', 'error',
-    ],
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
+  const uploaded = computed(() => {
+    return stage.value === 3
   })
 
-  const data = useData(props, context, {
-    form$: form$.form$,
-    available: conditions.available,
-    value: value.value,
-    currentValue: value.currentValue,
-    previousValue: value.previousValue,
-    clean: validation.clean,
-    validate: validation.validate,
-    resetValidators: validation.resetValidators,
-    fire: events.fire,
-    default: default_.default,
-    nullValue: nullValue.nullValue,
-    dirt: validation.dirt,
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
+  const canRemove = computed(() => {
+    return stage.value > 0 && !uploading.value && !isDisabled.value && !preparing.value && !removing.value
   })
 
-  const handleError = useHandleError(props, context, {
-    fire: events.fire,
-    listeners: events.listeners,
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
+  const canUploadTemp = computed(() => {
+    return stage.value === 1 && !auto.value && !uploading.value
   })
 
-  const file = useFile(props, context, {
-    form$: form$.form$,
-    value: value.value,
-    previousValue: value.previousValue,
-    disabled: disabled.disabled,
-    validate: validation.validate,
-    invalid: validation.invalid,
-    path: path.path,
-    input: input.input,
-    load: data.load,
-    update: data.update,
-    updated: data.updated,
-    fire: events.fire,
-    listeners: events.listeners,
-    uploading: request.uploading,
-    request: request.request,
-    axios: request.axios,
-    isImageType: baseElement.isImageType,
-    removing: removing.removing,
-    handleError: handleError.handleError,
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
+  const canSelect = computed(() => {
+    return !embed.value && stage.value == 0 && !isDisabled.value && !preparing.value
   })
+
+  /**
+   * 
+   * 
+   * @type {object}
+   */
+  const previewOptions = computed(() => {
+    return {
+      link: link.value,
+      clickable: clickable.value,
+      filename: filename.value,
+    }
+  })
+
+  // =============== METHODS ==============
+
+  /**
+   * 
+   * 
+   * @returns {void}
+   */
+  const uploadTemp = async () => {
+    if (stage.value !== 1) {
+      throw new Error('No file is selected')
+    }
+
+    await validate()
+
+    if (invalid.value) {
+      return
+    }
+
+    request.value = axios.value.CancelToken.source()
+
+    try {
+      let data = new FormData()
+
+      data.append('file', value.value)
+      data.append('key', form$.value.key)
+      data.append('path', path.value)
+
+      let response = await axios.value[fileMethods.value.uploadTemp](fileEndpoints.value.uploadTemp, data, {
+        onUploadProgress: (e) => {
+          progress.value = Math.round((e.loaded * 100) / e.total)
+        },
+        cancelToken: request.value.token,
+      })
+      
+      update(response.data)
+    }
+    catch (e) {
+      progress.value = 0
+
+      if (!axios.value.isCancel(e)) {
+        handleError(form$.value.__(`laraform.elements.${type.value.toLowerCase()}.uploadError`, { filename: filename.value }), e)
+      }
+
+      throw new Error(e)
+    }
+    finally {
+      request.value = null
+    }
+  }
+
+  /**
+   * 
+   * 
+   * @returns {void}
+   */
+  const remove = async () => {
+    removing.value = true
+
+    try {
+      if (stage.value === 3) {
+        if (!confirm(form$.value.__(`laraform.elements.${type.value.toLowerCase()}.removeConfirm`))) {
+          return false
+        }
+
+        await form$.value.$laraform.services.axios[fileMethods.value.remove](fileEndpoints.value.remove, { file: value.value })
+      }
+
+      else if (stage.value === 2) {
+        await form$.value.$laraform.services.axios[fileMethods.value.removeTemp](fileEndpoints.value.removeTemp, { file: value.value.tmp })
+      }
+    } catch (e) {
+      handleError(form$.value.__(`laraform.elements.${type.value.toLowerCase()}.removeError`), e)
+      return
+    } finally {
+      removing.value = false
+    }
+
+    update(null)
+
+    progress.value = 0
+
+    context.emit('remove')
+    
+    fire('remove', previousValue.value)
+  }
+
+  /**
+   * 
+   * 
+   * @returns {void}
+   * @private
+   */
+  const prepare = async () => {
+    // In selected state
+    if (stage.value === 1) {
+      preparing.value = true
+
+      try {
+        await uploadTemp()
+      }
+      finally {
+        preparing.value = false
+      }
+    }
+  }
+
+  /**
+   * 
+   * @param {Event} e* 
+   * @returns {void}
+   * @private
+   */
+  const handleChange = (e) => {
+    let file = e.target.files[0]
+
+    update(file || null)
+
+    input.value.value = ''
+  }
+
+  /**
+   * Triggered when an uploader is clicked.
+   *
+   * @returns {void}
+   * @private
+   */
+  const handleClick = () => {
+    if (isDisabled.value) {
+      return
+    }
+
+    input.value.click()
+  }
+
+  /**
+   * 
+   * 
+   * @returns {void}
+   * @private
+   */
+  const handleUploadTemp = () => {
+    uploadTemp()
+  }
+
+  /**
+   * 
+   * 
+   * @returns {void}
+   * @private
+   */
+  const handleRemove = () => {
+    remove()
+  }
+
+  /**
+   * 
+   * 
+   * @returns {void}
+   * @private
+   */
+  const handleAbort = () => {
+    if (request.value === null) {
+      return
+    }
+
+    request.value.cancel()
+  }
+
+  // ============== WATCHERS ==============
   
-  const drop = useDrop(props, context, {
-    update: data.update,
-    disabled: disabled.disabled,
-    accept: file.accept,
-  })
+  watch(file, (val) => {
+    if (!val) {
+      base64.value = null
+      return
+    }
 
-  const empty = useEmpty(props, context, {
-    value: value.value,
-    nullValue: nullValue.nullValue,
-  })
+    if (!isImageType.value) {
+      return
+    }
 
-  const label = useLabel(props, context, {
-    form$: form$.form$,
-  })
-
-  const genericName = useGenericName(props, context, {
-    form$: form$.form$,
-    label: label.label,
-    filename: file.filename,
-  })
+    let reader = new FileReader()
   
-  const components = useComponents(props, context, {
-    theme: theme.theme,
-    form$: form$.form$
+    reader.onload = (e) => {
+      base64.value = e.target.result
+    }
+    
+    reader.readAsDataURL(file.value)
   })
 
-  const layout = useLayout(props, context, {
-    components: components.components,
-  })
+  watch(value, (val) => {
+    if (val instanceof File) {
+      file.value = val
 
-  const classes = useClasses(props, context, {
-    form$: form$.form$,
-    theme: theme.theme,
-    removing: removing.removing,
-  })
-
-  const columns = useColumns(props, context, {
-    form$: form$.form$,
-  })
-
-  const view = useView(props, context, {
-    available: conditions.available,
-  })
-
-  const slots = useSlots(props, context, {
-    form$: form$.form$,
-    components: components.components,
-  }, {
-    slots: [
-      'label', 'info', 'description', 'error',
-      'message', 'before', 'between', 'after',
-      'progress', 'preview',
-    ]
-  })
-
-  onMounted(() => {
-    validation.initMessageBag()
-    validation.initValidation()
+      if (auto.value) {
+        uploadTemp()
+      }
+    }
+    else if (val === null) {
+      file.value = null
+    }
   })
 
   return {
-    ...form$,
-    ...theme,
-    ...input,
-    ...path,
-    ...conditions,
-    ...value,
-    ...validation,
-    ...label,
-    ...classes,
-    ...id,
-    ...columns,
-    ...description,
-    ...info,
-    ...baseElement,
-    ...genericName,
-    ...genericName,
-    ...view,
-    ...components,
-    ...layout,
-    ...slots,
-    ...debounce,
-    ...disabled,
-    ...events,
-    ...data,
-    ...empty,
-    ...default_,
-    ...nullValue,
-    ...file,
-    ...request,
-    ...drop,
-    ...removing,
-    ...handleError,
+    file,
+    base64,
+    progress,
+    preparing,
+    fileMethods,
+    fileEndpoints,
+    fileUrl,
+    stage,
+    filename,
+    link,
+    uploaded,
+    canRemove,
+    canUploadTemp,
+    canSelect,
+    previewOptions,
+    uploadTemp,
+    remove,
+    prepare,
+    handleChange,
+    handleClick,
+    handleUploadTemp,
+    handleRemove,
+    handleAbort,
   }
-} 
+}
+
+export default base

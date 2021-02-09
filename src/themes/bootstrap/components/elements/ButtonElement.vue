@@ -25,11 +25,8 @@
 </template>
 
 <script>
-  import ButtonElement from './../../../../components/elements/ButtonElement'
-
   export default {
     name: 'ButtonElement',
-    mixins: [ButtonElement],
     data() {
       return {
         defaultClasses: {

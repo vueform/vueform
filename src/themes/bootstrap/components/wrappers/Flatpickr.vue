@@ -9,11 +9,8 @@
 </template>
 
 <script>
-  import Flatpickr from './../../../../components/wrappers/Flatpickr'
-
   export default {
     name: 'Flatpickr',
-    mixins: [Flatpickr],
     data() {
       return {
         defaultClasses: {

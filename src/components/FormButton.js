@@ -26,7 +26,7 @@ export default {
       default: () => ({})
     },
   },
-  init(props, context)
+  setup(props, context)
   {
     const { button, embed } = toRefs(props)
     const currentInstance = getCurrentInstance()

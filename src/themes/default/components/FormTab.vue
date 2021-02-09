@@ -19,11 +19,8 @@
 </template>
 
 <script>
-  import FormTab from './../../../components/FormTab'
-
   export default {
     name: 'FormTab',
-    mixins: [FormTab],
     data() {
       return {
         defaultClasses: {

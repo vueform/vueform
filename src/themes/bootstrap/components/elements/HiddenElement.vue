@@ -9,11 +9,8 @@
 </template>
 
 <script>
-  import HiddenElement from './../../../../components/elements/HiddenElement'
-
   export default {
     name: 'HiddenElement',
-    mixins: [HiddenElement],
     data() {
       return {
         defaultClasses: {}

@@ -14,7 +14,7 @@ export default {
       required: true,
     },
   },
-  init(props, context)
+  setup(props, context)
   {
     // ============== DEPENDENCIES ==============
 

@@ -13,11 +13,9 @@
 </template>
 
 <script>
-  import FormErrors from './../../../components/FormErrors'
 
   export default {
     name: 'FormErrors',
-    mixins: [FormErrors],
     data() {
       return {
         defaultClasses: {

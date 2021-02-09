@@ -21,11 +21,8 @@
 </template>
 
 <script>
-  import RadiogroupSlotRadio from './../../../../../components/elements/slots/RadiogroupSlotRadio'
-
   export default {
     name: 'RadiogroupSlotRadio',
-    mixins: [RadiogroupSlotRadio],
     data() {
       return {
         defaultClasses: {
@@ -35,5 +32,5 @@
         }
       }
     }
-}
+  }
 </script>

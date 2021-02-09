@@ -39,7 +39,7 @@ const base = function(props, context, dependencies)
       theme.value.classes[componentName.value] || {},
 
       // Element level overwrites
-      el$.value.schema.classes ? el$.value.schema.classes[componentName.value] : {}
+      el$.value.overrideClasses[componentName.value] || {}
     )
 
     // Add form's addClasses

@@ -9,7 +9,7 @@ export default {
       required: true,
     },
   },
-  init(props, context) {
+  setup(props, context) {
     const { previewOptions } = toRefs(props)
 
     const elementComponent = useElementComponent(props, context)

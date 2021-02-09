@@ -3,7 +3,7 @@ import useElementComponent from './../composables/useElementComponent'
 
 export default {
   name: 'ElementMessage',
-  init(props, context)
+  setup(props, context)
   {    
     // ============ DEPENDENCIES ============
 

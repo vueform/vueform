@@ -34,14 +34,11 @@
 </template>
 
 <script>
-  import ToggleElement from './../../../../components/elements/ToggleElement'
-
   import Toggle from '@vueform/toggle/src/Toggle'
   import '@vueform/toggle/themes/default.css'
 
   export default {
     name: 'ToggleElement',
-    mixins: [ToggleElement],
     components: {
       Toggle,
     },

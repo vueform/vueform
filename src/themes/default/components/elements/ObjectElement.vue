@@ -34,11 +34,8 @@
 </template>
 
 <script>
-  import ObjectElement from './../../../../components/elements/ObjectElement'
-
   export default {
     name: 'ObjectElement',
-    mixins: [ObjectElement],
     data() {
       return {
         defaultClasses: {

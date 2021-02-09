@@ -17,11 +17,8 @@
 </template>
 
 <script>
-  import FormWizardPrevious from './../../../components/FormWizardPrevious'
-
   export default {
     name: 'FormWizardPrevious',
-    mixins: [FormWizardPrevious],
     data() {
       return {
         defaultClasses: {

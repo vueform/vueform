@@ -6,11 +6,8 @@
 </template>
 
 <script>
-  import FileSlotPreview from './../../../../../components/elements/slots/FileSlotPreview'
-
   export default {
     name: 'FileSlotPreview',
-    mixins: [FileSlotPreview],
     data() {
       return {
         defaultClasses: {

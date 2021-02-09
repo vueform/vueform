@@ -10,8 +10,35 @@ import i18n from './services/i18n'
 import applyExtensions from './utils/applyExtensions'
 import store from './store'
 import vHtmlIf from './directives/html-if'
-import init from './init'
-import fields from './components/fields'
+import { reactive, ref, toRefs } from 'composition-api'
+
+import TextElement from './components/elements/TextElement'
+
+import ElementDescription from './components/ElementDescription'
+import ElementError from './components/ElementError'
+import ElementInfo from './components/ElementInfo'
+import ElementLabel from './components/ElementLabel'
+import ElementLabelFloating from './components/ElementLabelFloating'
+import ElementLayout from './components/ElementLayout'
+import ElementMessage from './components/ElementMessage'
+import ElementText from './components/ElementText'
+import InputAddon from './components/InputAddon'
+
+const elements = {
+  TextElement,
+}
+
+const components = {
+  ElementDescription,
+  ElementError,
+  ElementInfo,
+  ElementLabel,
+  ElementLabelFloating,
+  ElementLayout,
+  ElementMessage,
+  ElementText,
+  InputAddon,
+}
 
 if (window._ === undefined) {
   window._ = _
@@ -80,35 +107,39 @@ export default function(config) {
     }
 
     applyExtensions() {
-      _.each(this.options.themes, (theme) => {
-        _.each(Object.assign({}, theme.components, theme.elements), (component, name) => {
-          applyExtensions(component, name, this.options.extensions)
-        })
-      })
+      // _.each(this.options.themes, (theme) => {
+      //   _.each(Object.assign({}, theme.components, theme.elements), (component, name) => {
+      //     applyExtensions(component, name, this.options.extensions)
+      //   })
+      // })
     }
 
     initI18n() {
       this.options.i18n = this.options.i18n || new i18n(this.options)
     }
 
-    initComponents() {
-      _.each(this.options.themes, (theme) => {
-        _.each(Object.assign({}, theme.components, theme.elements), (component, name) => {
-          if (!component.mixins || component.mixins[0].init === undefined) {
-            return
-          }
+    registerComponents(appOrVue, componenList = components) {
+      const theme = this.options.themes[this.options.theme]
 
-          let data = component.data ? component.data() : {}
+      _.each(componenList, (component, name) => {
+        let componentSetup = component.setup
+        let template = theme.components[name] || theme.elements[name]
 
-          component.setup = (props, context) => init(props, context, component.mixins[0], data)
-        })
+        component.setup = (props, context) => {
+          context = reactive(Object.assign({}, context, {
+            name: ref(template.name),
+            data: reactive(template.data()),
+          }))
+
+          return componentSetup(props, context)
+        }
+
+        appOrVue.component(name, component)
       })
     }
 
-    registerFields(appOrVue) {
-      _.each(fields(), (component, name) => {
-        appOrVue.component(name, component)
-      })
+    registerElements(appOrVue) {
+      this.registerComponents(appOrVue, elements)
     }
 
     install(appOrVue, options) {
@@ -122,8 +153,8 @@ export default function(config) {
         this.applyExtensions()
       }
 
-      this.initComponents()
-      this.registerFields(appOrVue)
+      this.registerComponents(appOrVue)
+      this.registerElements(appOrVue)
 
       switch (this.options.vue) {
         case 2:

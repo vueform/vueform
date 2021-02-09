@@ -6,11 +6,8 @@
 </template>
 
 <script>
-  import ImageSlotPreview from './../../../../../components/elements/slots/ImageSlotPreview'
-
   export default {
     name: 'ImageSlotPreview',
-    mixins: [ImageSlotPreview],
     data() {
       return {
         defaultClasses: {

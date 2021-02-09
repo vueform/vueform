@@ -37,11 +37,8 @@
 </template>
 
 <script>
-  import RadiogroupElement from './../../../../components/elements/RadiogroupElement'
-
   export default {
     name: 'RadiogroupElement',
-    mixins: [RadiogroupElement],
     data() {
       return {
         defaultClasses: {

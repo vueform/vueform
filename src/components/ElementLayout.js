@@ -4,7 +4,10 @@ import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'ElementLayout',
-  init(props, context)
+  render() {
+    return this.theme.components[this.$options.name].render.apply(this, arguments)
+  },
+  setup(props, context)
   {
     const { containers } = toRefs(context.data)
 
@@ -30,9 +33,9 @@ export default {
       let classList = _.clone(baseClasses.value)
 
       classList = mergeComponentClasses(classList, {
-        [containers.value.element]: el$.value.columns.classes.element,
-        [containers.value.label]: el$.value.columns.classes.label,
-        [containers.value.field]: el$.value.columns.classes.field,
+        [containers.value.element]: el$.value.columnsObject.classes.element,
+        [containers.value.label]: el$.value.columnsObject.classes.label,
+        [containers.value.field]: el$.value.columnsObject.classes.field,
       })
 
       // Add element's main class to main class

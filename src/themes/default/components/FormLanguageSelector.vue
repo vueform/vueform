@@ -11,11 +11,8 @@
   </ul>
 </template>
 <script>
-  import FormLanguageSelector from './../../../components/FormLanguageSelector'
-
   export default {
     name: 'FormLanguageSelector',
-    mixins: [FormLanguageSelector],
     data() {
       return {
         defaultClasses: {

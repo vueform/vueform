@@ -19,11 +19,8 @@
 </template>
 
 <script>
-  import StaticElement from './../../../../components/elements/StaticElement'
-
   export default {
     name: 'StaticElement',
-    mixins: [StaticElement],
     data() {
       return {
         defaultClasses: {

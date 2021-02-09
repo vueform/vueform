@@ -4,7 +4,7 @@ import useFormComponent from './../composables/useFormComponent'
 export default {
   name: 'FormLanguageSelector',
   emits: ['changeLanguage'],
-  init(props, context)
+  setup(props, context)
   {  
     // ============ DEPENDENCIES ============
 

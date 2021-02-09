@@ -40,7 +40,7 @@ export default {
       required: true,
     },
   },
-  init(props, context)
+  setup(props, context)
   {  
     const { step, elements$, name, index } = toRefs(props)
     const { containers } = toRefs(context.data)

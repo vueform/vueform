@@ -4,7 +4,7 @@ import computedOption from './../utils/computedOption'
 
 export default {
   name: 'ElementInfo',
-  init(props, context)
+  setup(props, context)
   {
     // ============ DEPENDENCIES ============
 

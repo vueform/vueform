@@ -1,101 +1,77 @@
-import { toRefs, onMounted } from 'composition-api'
-import useForm$ from './../useForm$'
-import useTheme from './../useTheme'
-import usePath from './features/usePath'
-import useConditions from './../useConditions'
-import useLabel from './features/useLabel'
-import useClasses from './features/useClasses'
-import useColumns from './features/useColumns'
-import useDescription from './features/useDescription'
-import useInfo from './features/useInfo'
-import useGenericName from './features/useGenericName'
-import useView from './features/useView'
-import useComponents from './features/useComponents'
-import useLayout from './features/useLayout'
-import useSlots from './features/useSlots'
-import useButton from './features/useButton'
+import { toRefs, computed } from 'composition-api'
 
-import { static_ as useBaseElement } from './features/useBaseElement'
+const base = function (props, context, dependencies)
+{
+  const {
+    buttonLabel,
+    buttonType,
+    buttonClass,
+    disabled,
+    loading,
+    href,
+    target,
+    align,
+    onClick,
+    component
+  } = toRefs(props)
 
-export default function useText(props, context) {
-  const { schema } = toRefs(props)
+  // ============ DEPENDENCIES ============
 
-  const form$ = useForm$(props, context)
-  const theme = useTheme(props, context)
-  const path = usePath(props, context)
-  const description = useDescription(props, context)
-  const info = useInfo(props, context)
-
-  const baseElement = useBaseElement(props, context, {
-    form$: form$.form$,
-  })
-
-  const conditions = useConditions(props, context, {
-    form$: form$.form$,
-    path: path.path,
-    descriptor: schema,
-  })
-
-  const label = useLabel(props, context, {
-    form$: form$.form$,
-  })
-
-  const genericName = useGenericName(props, context, {
-    label: label.label,
-  })
+  const components = dependencies.components
   
-  const components = useComponents(props, context, {
-    theme: theme.theme,
-    form$: form$.form$
+  // ============== COMPUTED ==============
+
+  /**
+   * 
+   * 
+   * @type {component<FormButton>}
+   * @private
+   */
+  const buttonComponent = computed(() => {
+    if (component.value) {
+      return component.value
+    }
+
+    let type = buttonType.value || 'button'
+
+    switch(type) {
+      case 'button':
+        return components.value.FormButton
+
+      default:
+        let component = components.value['FormButton' + _.upperFirst(type)]
+
+        if (!component) {
+          throw new TypeError('Button component not found: "FormButton' + _.upperFirst(type) + '"')
+        }
+
+        return component
+    }
   })
 
-  const button = useButton(props, context, {
-    components: components.components,
-  })
-
-  const layout = useLayout(props, context, {
-    components: components.components,
-  })
-
-  const classes = useClasses(props, context, {
-    form$: form$.form$,
-    theme: theme.theme,
-  })
-
-  const columns = useColumns(props, context, {
-    form$: form$.form$,
-  })
-
-  const view = useView(props, context, {
-    available: conditions.available,
-  })
-
-  const slots = useSlots(props, context, {
-    form$: form$.form$,
-    components: components.components,
-  }, {
-    slots: [
-      'label', 'info', 'description', 'before',
-      'between', 'after'
-    ]
+  /**
+   * 
+   * 
+   * @type {object}
+   * @private
+   */
+  const button = computed(() => {
+    return {
+      label: buttonLabel.value,
+      class: buttonClass.value,
+      disabled: disabled.value,
+      loading: loading.value,
+      href: href.value,
+      target: target.value,
+      align: align.value,
+      onClick: onClick.value,
+    }
   })
 
   return {
-    ...form$,
-    ...theme,
-    ...path,
-    ...conditions,
-    ...label,
-    ...classes,
-    ...columns,
-    ...description,
-    ...info,
-    ...baseElement,
-    ...genericName,
-    ...view,
-    ...components,
-    ...layout,
-    ...slots,
-    ...button,
+    buttonComponent,
+    button,
   }
-} 
+}
+
+export default base

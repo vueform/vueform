@@ -3,11 +3,8 @@
 </template>
 
 <script>
-  import ElementInfo from './../../../components/ElementInfo'
-
   export default {
     name: 'ElementInfo',
-    mixins: [ElementInfo],
     data() {
       return {
         defaultClasses: {

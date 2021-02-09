@@ -61,11 +61,8 @@
 </template>
 
 <script>
-  import MultifileElement from './../../../../components/elements/MultifileElement'
-
   export default {
     name: 'MultifileElement',
-    mixins: [MultifileElement],
     data() {
       return {
         defaultClasses: {

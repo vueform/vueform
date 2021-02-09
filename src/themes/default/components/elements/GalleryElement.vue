@@ -1,10 +1,8 @@
 <script>
-  import GalleryElement from './../../../../components/elements/GalleryElement'
   import MultifileElement from './MultifileElement'
 
   export default {
     name: 'GalleryElement',
-    mixins: [GalleryElement],
     render: MultifileElement.render,
     data() {
       return {

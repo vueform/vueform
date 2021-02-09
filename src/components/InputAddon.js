@@ -11,7 +11,7 @@ export default {
       type: String
     },
   },
-  init(props, context)
+  setup(props, context)
   { 
     const { type } = toRefs(props)
 

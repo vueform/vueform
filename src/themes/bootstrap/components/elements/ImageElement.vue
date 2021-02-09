@@ -1,10 +1,8 @@
 <script>
-  import ImageElement from './../../../../components/elements/ImageElement'
   import FileElement from './FileElement'
 
   export default {
     name: 'ImageElement',
-    mixins: [ImageElement],
     render: FileElement.render,
     data() {
       return {

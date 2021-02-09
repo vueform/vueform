@@ -11,11 +11,8 @@
 </template>
 
 <script>
-  import DragAndDrop from './../../../components/DragAndDrop'
-
   export default {
     name: 'DragAndDrop',
-    mixins: [DragAndDrop],
     data() {
       return {
         defaultClasses: {

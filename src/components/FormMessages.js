@@ -3,7 +3,7 @@ import useFormComponent from './../composables/useFormComponent'
 
 export default {
   name: 'FormMessages',
-  init(props, context)
+  setup(props, context)
   {  
     // ============ DEPENDENCIES ============
 

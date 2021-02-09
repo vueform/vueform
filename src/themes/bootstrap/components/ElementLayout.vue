@@ -24,11 +24,8 @@
 </template>
 
 <script>
-  import ElementLayout from './../../../components/ElementLayout'
-
   export default {
     name: 'ElementLayout',
-    mixins: [ElementLayout],
     data() {
       return {
         defaultClasses: {

@@ -10,10 +10,7 @@
 </template>
 
 <script>
-  import MultiselectSlotTag from './../../../../../components/elements/slots/MultiselectSlotTag'
-
   export default {
     name: 'MultiselectSlotTag',
-    mixins: [MultiselectSlotTag],
-}
+  }
 </script>

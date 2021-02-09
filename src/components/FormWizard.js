@@ -23,7 +23,7 @@ export default {
       required: true
     },
   },
-  init(props, context)
+  setup(props, context)
   { 
     const { elements$, steps } = toRefs(props)
     const $this = getCurrentInstance().proxy

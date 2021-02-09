@@ -13,11 +13,8 @@
 </template>
 
 <script>
-  import FormElements from './../../../components/FormElements'
-
   export default {
     name: 'FormElements',
-    mixins: [FormElements],
     data() {
       return {
         defaultClasses: {

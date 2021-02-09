@@ -3,7 +3,7 @@ import useFormComponent from './../composables/useFormComponent'
 
 export default {
   name: 'FormErrors',
-  init(props, context)
+  setup(props, context)
   {  
     // ============ DEPENDENCIES ============
 

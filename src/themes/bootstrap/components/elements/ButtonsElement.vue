@@ -5,15 +5,17 @@
       <slot name="prefix"></slot>
 
       <div :class="classes.buttonsContainer">
-        <component
-          v-for="(button, i) in children"
-          :is="component(button)"
-          :embed="true"
-          :button="button"
-          :name="i"
-          :parent="el$"
-          :key="i"
-        />
+        <slot>
+          <component
+            v-for="(button, i) in children"
+            :is="component(button)"
+            :embed="true"
+            :button="button"
+            :name="i"
+            :parent="el$"
+            :key="i"
+          />
+        </slot>
       </div>
 
       <slot name="suffix"></slot>
@@ -30,11 +32,8 @@
 </template>
 
 <script>
-  import ButtonsElement from './../../../../components/elements/ButtonsElement'
-
   export default {
     name: 'ButtonsElement',
-    mixins: [ButtonsElement],
     data() {
       return {
         defaultClasses: {

@@ -6,11 +6,8 @@
 </template>
 
 <script>
-  import ElementLabel from './../../../components/ElementLabel'
-
   export default {
     name: 'ElementLabel',
-    mixins: [ElementLabel],
     data() {
       return {
         defaultClasses: {

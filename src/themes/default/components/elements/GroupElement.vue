@@ -31,11 +31,8 @@
 </template>
 
 <script>
-  import GroupElement from './../../../../components/elements/GroupElement'
-
   export default {
     name: 'GroupElement',
-    mixins: [GroupElement],
     data() {
       return {
         defaultClasses: {

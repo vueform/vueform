@@ -37,11 +37,8 @@
 </template>
 
 <script>
-  import CheckboxgroupElement from './../../../../components/elements/CheckboxgroupElement'
-
   export default {
     name: 'CheckboxgroupElement',
-    mixins: [CheckboxgroupElement],
     data() {
       return {
         defaultClasses: {

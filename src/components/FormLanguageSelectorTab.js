@@ -15,7 +15,7 @@ export default {
       required: true,
     },
   },
-  init(props, context)
+  setup(props, context)
   {  
     const { code } = toRefs(props)
     const { containers } = toRefs(context.data)

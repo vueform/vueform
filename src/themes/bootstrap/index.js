@@ -26,8 +26,8 @@ import ElementText from './components/ElementText'
 import DragAndDrop from './components/DragAndDrop'
 import InputAddon from './components/InputAddon'
 
-// import Flatpickr from './components/wrappers/Flatpickr'
-// import Trix from './components/wrappers/Trix'
+import Flatpickr from './components/wrappers/Flatpickr'
+import Trix from './components/wrappers/Trix'
 
 // import AddressElement from './components/elements/AddressElement'
 // import ButtonElement from './components/elements/ButtonElement'
@@ -109,8 +109,8 @@ const components = {
   InputAddon,
 
   // Wrappers
-  // Flatpickr,
-  // Trix,
+  Flatpickr,
+  Trix,
 
   // Element slots
   CheckboxgroupSlotCheckbox,

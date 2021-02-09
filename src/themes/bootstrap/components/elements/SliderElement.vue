@@ -28,15 +28,12 @@
 </template>
 
 <script>
-  import SliderElement from './../../../../components/elements/SliderElement'
-
   import Slider from '@vueform/slider/src/Slider'
   import '@vueform/slider/themes/default.scss'
   
 
   export default {
     name: 'SliderElement',
-    mixins: [SliderElement],
     components: {
       Slider,
     },

@@ -3,11 +3,8 @@
 </template>
 
 <script>
-  import ElementText from './../../../components/ElementText'
-
   export default {
     name: 'ElementText',
-    mixins: [ElementText],
     data() {
       return {
         defaultClasses: {

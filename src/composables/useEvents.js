@@ -74,7 +74,7 @@ const base = function(props, context, dependencies, options = {})
       callback.apply(form$.value, args)
     })
 
-    context.emit(...[evt].concat(args))
+    // context.emit(...[evt].concat(args))
   }
 
   // =============== HOOKS ================

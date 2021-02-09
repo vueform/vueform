@@ -3,43 +3,38 @@
     :class="extendedClasses.form"
     @submit.prevent="submit"
   >
-    <component
-      :is="extendedComponents.FormMessages"
+    <FormMessages
       v-if="hasMessages"
     />
 
-    <component
-      :is="extendedComponents.FormErrors"
+    <FormErrors
       v-if="hasErrors && displayErrors"
     />
 
-    <component
-      :is="extendedComponents.FormLanguageSelector"
+    <FormLanguageSelector
       v-if="multilingual"
       @changeLanguage="handleChangeLanguage"
     />
 
-    <component
-      :is="extendedComponents.FormTabs"
+    <FormTabs
       v-if="hasTabs"
       :tabs="tabs"
       :elements$="elements$"
     />
 
-    <component
-      :is="extendedComponents.FormWizard"
+    <FormWizard
       v-if="hasWizard"
       :steps="wizard"
       :elements$="elements$"
       @submit="handleSubmit"
     />
     
-    <component :is="extendedComponents.FormElements"
+    <FormElements
       :schema="schema"
       @updateSchema="updateSchema"
     />
 
-    <component :is="extendedComponents.FormWizardControls"
+    <FormWizardControls
       v-if="hasWizard && wizardControls"
       :wizard$="wizard$"
     />

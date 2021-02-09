@@ -18,11 +18,8 @@
 </template>
 
 <script>
-  import FormButton from './../../../components/FormButton'
-
   export default {
     name: 'FormButton',
-    mixins: [FormButton],
     data() {
       return {
         defaultClasses: {

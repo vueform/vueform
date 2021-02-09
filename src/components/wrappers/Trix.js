@@ -37,7 +37,7 @@ export default {
       default: false
     },
   },
-  init(props, context)
+  setup(props, context)
   {
     const { value, disabled, acceptMimes, accept, endpoint } = toRefs(props)
 

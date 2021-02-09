@@ -9,7 +9,7 @@ export default {
       default: 0,
     }
   },
-  init(props, context) {
+  setup(props, context) {
     return {
       ...useElementComponent(props, context),
     }

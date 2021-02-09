@@ -9,7 +9,7 @@ import useElementComponent from './../composables/useElementComponent'
         default: false,
       }
     },
-    init(props, context)
+    setup(props, context)
     {    
       // ============ DEPENDENCIES ============
 

@@ -19,11 +19,8 @@
 </template>
 
 <script>
-  import FormWizardStep from './../../../components/FormWizardStep'
-
   export default {
     name: 'FormWizardStep',
-    mixins: [FormWizardStep],
     data() {
       return {
         defaultClasses: {

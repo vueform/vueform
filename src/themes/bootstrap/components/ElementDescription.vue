@@ -3,11 +3,8 @@
 </template>
 
 <script>
-  import ElementDescription from './../../../components/ElementDescription'
-
   export default {
     name: 'ElementDescription',
-    mixins: [ElementDescription],
     data() {
       return {
         defaultClasses: {
