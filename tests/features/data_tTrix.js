@@ -1,4 +1,4 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 import flushPromises from 'flush-promises'
 import { nextTick } from 'composition-api'
 import { update as baseUpdate, clear as baseClear, reset as baseReset, } from './data_multilingual'

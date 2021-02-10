@@ -22,13 +22,13 @@ const base = function(props, context, dependencies)
 
     let name = `${_.upperFirst(_.camelCase(element.type))}Element`
 
-    let component = theme.value.elements[name]
+    // let component = theme.value.elements[name]
 
-    if (component === undefined) {
-      throw new TypeError('[Laraform] Unknown element type: ' + element.type)
-    }
+    // if (component === undefined) {
+    //   throw new TypeError('[Laraform] Unknown element type: ' + element.type)
+    // }
 
-    return component
+    return name
   }
 
   return {

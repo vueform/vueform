@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const locationService = function (elementType, elementName, options) { 
@@ -51,7 +51,7 @@ export const location = function (elementType, elementName, options) {
 }
 
 export const provider = function (elementType, elementName, options, spies) {
-  testComputedOption(it, elementType, 'provider', 'google', 'algolia')
+  testPropDefault(it, elementType, 'provider', 'google', 'algolia')
 
   it('should destroy & reinit location service when `provider` changes', async () => {
     let placesMock = jest.fn(() => {

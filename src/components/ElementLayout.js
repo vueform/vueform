@@ -4,9 +4,6 @@ import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'ElementLayout',
-  render() {
-    return this.theme.components[this.$options.name].render.apply(this, arguments)
-  },
   setup(props, context)
   {
     const { containers } = toRefs(context.data)

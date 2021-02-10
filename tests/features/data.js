@@ -1,4 +1,4 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 const value = function(options) {
@@ -7,18 +7,6 @@ const value = function(options) {
 
 const value2 = function(options) {
   return options.value2 !== undefined ? options.value2 : 'value2'
-}
-
-export const submit = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'submit', true, false)
-}
-
-export const formatData = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'formatData', null, function() { return 'foo' }, false)
-}
-
-export const formatLoad = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'formatLoad', null, function() { return 'foo' }, false)
 }
 
 export const data = function (elementType, elementName, options) {

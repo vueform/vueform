@@ -1,11 +1,11 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 
 export const native = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'native', true, false)
+  testPropDefault(it, elementType, 'native', true, false)
 }
 
 export const search = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'search', false, true)
+  testPropDefault(it, elementType, 'search', false, true)
 }
 
 export const isNative = function (elementType, elementName, options) {

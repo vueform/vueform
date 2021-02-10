@@ -21,7 +21,7 @@ export default {
       label,
       isLabelComponent
     } = useLabel(props, context, { 
-      descriptor: computed(() => { return el$.value.schema }),
+      labelDefinition: computed(() => { return el$.value.label }),
       component$: el$,
      })
 

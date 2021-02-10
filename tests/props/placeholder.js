@@ -1,8 +1,6 @@
-import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, testAttribute } from 'test-helpers'
 
 export const placeholder = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'placeholder', null, 'Placeholder')
-
   it('should render `placeholder` attribute', () => {
     let form = createForm({
       schema: {

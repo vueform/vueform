@@ -1,8 +1,8 @@
-import { createForm, testComputedOption, createElement } from 'test-helpers'
+import { createForm, testPropDefault, createElement } from 'test-helpers'
 import { markRaw } from 'composition-api'
 
 export const wrap = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'wrap', true, false)
+  testPropDefault(it, elementType, 'wrap', true, false)
 }
 
 export const rendering = function (elementType, elementName, options) {

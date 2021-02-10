@@ -1,8 +1,6 @@
-import { createForm, testComputedOption, findAllComponents } from 'test-helpers'
+import { createForm, findAllComponents, testAttribute } from 'test-helpers'
 
-export const description = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'description', null, 'description')
-
+export const rendering = function (elementType, elementName, options) {
   it('should should render `ElementDescription`', () => {
     let form = createForm({
       schema: {

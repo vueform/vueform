@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 import { nextTick } from 'vue'
 import Validator from './../../src/services/validation/validator'
 
@@ -9,18 +9,6 @@ const value = function(options) {
 
 const value2 = function(options) {
   return options.value2 !== undefined ? options.value2 : 'value2'
-}
-
-export const rules = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'rules', undefined, 'required')
-}
-
-export const messages = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'messages', {}, {required:'Required'})
-}
-
-export const displayError = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'displayError', true, false)
 }
 
 export const dirty = function (elementType, elementName, options) {

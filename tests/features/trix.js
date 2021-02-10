@@ -1,7 +1,7 @@
-import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, testAttribute } from 'test-helpers'
 
 export const accept = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'accept', [], ['jpg', 'png'])
+  testPropDefault(it, elementType, 'accept', [], ['jpg', 'png'])
 
   it('should pass `accept` to Trix component', () => {
     let form = createForm({
@@ -22,7 +22,7 @@ export const accept = function (elementType, elementName, options) {
 }
 
 export const acceptMimes = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'acceptMimes', [], ['image/jpeg', 'image/png'])
+  testPropDefault(it, elementType, 'acceptMimes', [], ['image/jpeg', 'image/png'])
   
   it('should pass `acceptMimes` to Trix component', () => {
     let form = createForm({
@@ -51,7 +51,7 @@ export const endpoint = function (elementType, elementName, options) {
     }
   })
 
-  testComputedOption(it, elementType, 'endpoint', form.vm.$laraform.endpoints.elements.trix.attachment, 'custom-endpoint')
+  testPropDefault(it, elementType, 'endpoint', form.vm.$laraform.endpoints.elements.trix.attachment, 'custom-endpoint')
   
   it('should pass `endpoint` to Trix component', () => {
     let form = createForm({

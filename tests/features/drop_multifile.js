@@ -1,4 +1,4 @@
-import { createForm, testComputedOption, findAllComponents } from 'test-helpers'
+import { createForm, testPropDefault, findAllComponents } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export { drop, canDrop, rendering } from './drop'

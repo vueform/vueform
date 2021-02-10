@@ -1,4 +1,4 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 
 const value = (options) => {
   return _.isArray(options.value) ? options.value[0] : options.value
@@ -17,15 +17,15 @@ export const displayFormat = function (elementType, elementName, options) {
     }
   })
 
-  testComputedOption(it, elementType, 'displayFormat', form.vm.__('laraform.elements.date.displayFormat'), 'DD-MM-YYYY')
+  testPropDefault(it, elementType, 'displayFormat', form.vm.__('laraform.elements.date.displayFormat'), 'DD-MM-YYYY')
 }
 
 export const valueFormat = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'valueFormat', 'YYYY-MM-DD', 'DD-MM-YYYY')
+  testPropDefault(it, elementType, 'valueFormat', 'YYYY-MM-DD', 'DD-MM-YYYY')
 }
 
 export const loadFormat = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'loadFormat', 'YYYY-MM-DD', 'DD-MM-YYYY')
+  testPropDefault(it, elementType, 'loadFormat', 'YYYY-MM-DD', 'DD-MM-YYYY')
 }
 
 export const disables = function (elementType, elementName, options) {

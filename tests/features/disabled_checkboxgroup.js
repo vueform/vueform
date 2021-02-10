@@ -1,10 +1,10 @@
-import { createForm, testComputedOption, findAll, findAllComponents } from 'test-helpers'
+import { createForm, testPropDefault, findAll, findAllComponents } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 
 expect.extend({toBeVisible})
 
 export const disables = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'disables', [], ['1','2'])
+  testPropDefault(it, elementType, 'disables', [], ['1','2'])
 
   it('should transform integer `disables` to strings', () => {
     let form = createForm({
@@ -96,7 +96,7 @@ export const enable = function (elementType, elementName, options) {
 }
 
 export const disabled = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'disabled', false, true)
+  testPropDefault(it, elementType, 'disabled', false, true)
 
   it('should disable all items if `disabled` is true', () => {
     let form = createForm({

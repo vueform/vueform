@@ -19,7 +19,7 @@ const base = function(props, context, dependencies)
   * @type {string|number}
   */
   const defaultValue = computed(() => {
-    return default_.value !== undefined ? defaultValue.value : _.clone(nullValue.value)
+    return default_.value !== undefined ? default_.value : _.clone(nullValue.value)
   })
 
   return {
@@ -71,7 +71,6 @@ const dates = function(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
 
-  const form$ = dependencies.form$
   const nullValue = dependencies.nullValue
   const valueFormat = dependencies.valueFormat
 
@@ -110,7 +109,6 @@ const multilingual = function(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
 
-  const form$ = dependencies.form$
   const nullValue = dependencies.nullValue
 
   // ============== COMPUTED ===============

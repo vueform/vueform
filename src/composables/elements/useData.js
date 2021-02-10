@@ -115,7 +115,6 @@ const base = function(props, context, dependencies, options = {})
     setValue(_.clone(defaultValue.value))
 
     resetValidators()
-
     if (changed.value) {
       fire('change', currentValue.value, previousValue.value)
     }

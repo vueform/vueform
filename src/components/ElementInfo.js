@@ -1,6 +1,5 @@
-import { computed, ref, toRefs } from 'composition-api'
+import { computed } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
-import computedOption from './../utils/computedOption'
 
 export default {
   name: 'ElementInfo',

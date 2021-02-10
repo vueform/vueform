@@ -1,19 +1,19 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 
 export const auto = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'auto', true, false)
+  testPropDefault(it, elementType, 'auto', true, false)
 }
 
 export const object = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'object', false, true)
+  testPropDefault(it, elementType, 'object', false, true)
 }
 
 export const file = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'file', {}, { url: '/uploads/' })
+  testPropDefault(it, elementType, 'file', {}, { url: '/uploads/' })
 }
 
 export const storeFile = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'storeFile', null, 'filename')
+  testPropDefault(it, elementType, 'storeFile', null, 'filename')
 
   it('should have "file" as `storeFile` by default if object is true', () => {
     let form = createForm({
@@ -32,7 +32,7 @@ export const storeFile = function (elementType, elementName, options) {
 }
 
 export const fields = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'fields', {}, { el2: { type: 'text' } })
+  testPropDefault(it, elementType, 'fields', {}, { el2: { type: 'text' } })
 }
 
 export const prototype = function (elementType, elementName, options) {

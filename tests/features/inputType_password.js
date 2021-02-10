@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, testAttribute } from 'test-helpers'
 
 export const inputType = function (elementType, elementName, options) {
   it('should have `inputType` "password" which cannot be changed', () => {

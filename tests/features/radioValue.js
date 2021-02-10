@@ -1,5 +1,5 @@
-import { testComputedOption } from 'test-helpers'
+import { testPropDefault } from 'test-helpers'
 
 export const radioValue = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'radioValue', 1, 2)
+  testPropDefault(it, elementType, 'radioValue', 1, 2)
 }

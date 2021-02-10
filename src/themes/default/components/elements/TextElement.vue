@@ -1,5 +1,5 @@
 <template>
-  <ElementLayout>
+  <component :is="layout">
     <template v-slot:field>
 
       <slot name="prefix"></slot>
@@ -39,7 +39,17 @@
       <slot name="suffix"></slot>
       
     </template>
-  </ElementLayout>
+
+    <template
+      v-for="(component, slot) in elementSlots"
+      v-slot:[slot]
+    >
+      <slot :name="slot" :el$="el$">
+        <component :is="component" v-bind="elementSlotProps[slot]" />
+      </slot>
+    </template>
+
+  </component>
 </template>
 
 <script>

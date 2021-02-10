@@ -6,58 +6,58 @@ const base = function(props, context, dependencies, options = {})
     slots
   } = toRefs(props)
 
-  // ============ DEPENDENCIES ============
-
-  const components = dependencies.components
-
   // =============== OPTIONS ==============
 
-  const defaultSlots = computed(() => {
-    return Object.assign({}, {
-      label: markRaw(components.value.ElementLabel),
-      info: markRaw(components.value.ElementInfo),
-      description: markRaw(components.value.ElementDescription),
-      error: markRaw(components.value.ElementError),
-      message: markRaw(components.value.ElementMessage),
-      before: markRaw(components.value.ElementText),
-      between: markRaw(components.value.ElementText),
-      after: markRaw(components.value.ElementText),
-      checkbox: markRaw(components.value.CheckboxgroupSlotCheckbox),
-      radio: markRaw(components.value.RadiogroupSlotRadio),
-      option: markRaw(components.value.MultiselectSlotOption),
-      noResults: markRaw(components.value.MultiselectSlotNoResults),
-      noOptions: markRaw(components.value.MultiselectSlotNoOptions),
-      singleLabel: markRaw(components.value.MultiselectSlotSingleLabel),
-      multipleLabel: markRaw(components.value.MultiselectSlotMultipleLabel),
-      tag: markRaw(components.value.MultiselectSlotTag),
-      progress: markRaw(components.value.FileSlotProgress),
-      preview: markRaw(components.value.FileSlotPreview),
-      beforeList: null,
-      afterList: null,
-    }, options.defaultSlots || {})
-  })
+  const defaultElementSlots = {
+    label: 'ElementLabel',
+    info: 'ElementInfo',
+    description: 'ElementDescription',
+    error: 'ElementError',
+    message: 'ElementMessage',
+    before: 'ElementText',
+    between: 'ElementText',
+    after: 'ElementText',
+  }
 
-  let defaultElementSlots = options.slots || [
-    'label', 'info', 'description', 'error',
-    'message', 'before', 'between', 'after'
-  ]
+  const defaultFieldSlots = {
+    checkbox: 'CheckboxgroupSlotCheckbox',
+    radio: 'RadiogroupSlotRadio',
+    option: 'MultiselectSlotOption',
+    noResults: 'MultiselectSlotNoResults',
+    noOptions: 'MultiselectSlotNoOptions',
+    singleLabel: 'MultiselectSlotSingleLabel',
+    multipleLabel: 'MultiselectSlotMultipleLabel',
+    tag: 'MultiselectSlotTag',
+    progress: 'FileSlotProgress',
+    preview: 'FileSlotPreview',
+    beforeList: null,
+    afterList: null,
+  }
 
-  let baseSlots = computed(() => {
-    let slots = defaultElementSlots
+  if (options.defaultSlots) {
+    _.each(options.defaultSlots, (component, slot) => {
+      if (defaultElementSlots[slot]) {
+        defaultElementSlots[slot] = component
+      }
+      else {
+        defaultFieldSlots[slot] = component
+      }
+    })
+  }
 
-    if (_.isArray(defaultElementSlots)) {
-      let slotList = {}
-
-      _.each(defaultElementSlots, (name) => {
-        slotList[name] = defaultSlots.value[name]
-      })
-
-      slots = slotList
+  const elementSlotProps = computed(() => {
+    return {
+      before: {
+        type: 'before'
+      },
+      between: {
+        type: 'between'
+      },
+      after: {
+        type: 'after'
+      },
     }
-
-    return slots
   })
-
 
   // ============== COMPUTED ==============
 
@@ -65,14 +65,41 @@ const base = function(props, context, dependencies, options = {})
    * Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.
    * 
    * @type {object}
-   * @option
    */
   const elementSlots = computed(() => {
-    return Object.assign({}, baseSlots.value, slots.value || {})
+    const elementSlots = defaultElementSlots
+
+    _.each(slots.value, (component, slot) => {
+      if (elementSlots[slot]) {
+        elementSlots[slot] = component
+      }
+    })
+
+    return elementSlots
+  })
+
+  /**
+   * 
+   * 
+   * 
+   * @private
+   */
+  const fieldSlots = computed(() => {
+    const fieldSlots = defaultFieldSlots
+
+    _.each(slots.value, (component, slot) => {
+      if (fieldSlots[slot]) {
+        fieldSlots[slot] = component
+      }
+    })
+
+    return fieldSlots
   })
 
   return {
     elementSlots,
+    fieldSlots,
+    elementSlotProps,
   }
 }
 

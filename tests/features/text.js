@@ -1,8 +1,8 @@
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export const text = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'text', '', 'Element text')
+  testPropDefault(it, elementType, 'text', '', 'Element text')
 
   it('should render `text`', async () => {
     let form = createForm({

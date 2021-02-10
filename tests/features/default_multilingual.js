@@ -1,5 +1,5 @@
 import { nextTick } from 'vue'
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 export const default_ = function(elementType, elementName) {

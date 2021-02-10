@@ -1,13 +1,5 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 import { nextTick } from 'composition-api'
-
-export const autogrow = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'autogrow', true, false)
-}
-
-export const rows = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'rows', 3, 5)
-}
 
 export const autosize = function (elementType, elementName, options) {
   it('should invoke autosize\'s "updated" method on `autosize` if "autogrow" is true', async () => {

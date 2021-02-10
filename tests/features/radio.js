@@ -1,7 +1,7 @@
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
 
 export const fieldName = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'fieldName', 'radio', 'el')
+  testPropDefault(it, elementType, 'fieldName', 'radio', 'el')
 
   it('should deselect other radios with the same `fieldName`', () => {
     let form = createForm({

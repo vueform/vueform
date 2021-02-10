@@ -1,9 +1,9 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 
 export { displayFormat, valueFormat, loadFormat, disables, min, max } from './options_date'
 
 export const mode = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'mode', 'multiple', 'range')
+  testPropDefault(it, elementType, 'mode', 'multiple', 'range')
 }
 
 export const options = function (elementType, elementName, options) {

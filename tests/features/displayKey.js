@@ -1,5 +1,5 @@
-import { testComputedOption } from 'test-helpers'
+import { testPropDefault } from 'test-helpers'
 
 export const displayKey = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'displayKey', 'formatted_address', 'address')
+  testPropDefault(it, elementType, 'displayKey', 'formatted_address', 'address')
 }

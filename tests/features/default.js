@@ -1,4 +1,4 @@
-import { testComputedOption, createForm } from 'test-helpers'
+import { testPropDefault, createForm } from 'test-helpers'
 
 export const default_ = function (elementType, elementName, options) {
   let form = createForm({
@@ -11,6 +11,35 @@ export const default_ = function (elementType, elementName, options) {
   })
 
   let el = form.vm.el$('el')
+}
 
-  testComputedOption(it, elementType, 'default', el.nullValue, options.value || 'value')
+export const defaultValue = function (elementType, elementName, options) {
+  it('should be equal to defaultValue if default is defined', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          default: options.value || 'value'
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.defaultValue).toStrictEqual(options.value || 'value')
+  })
+
+  it('should be equal to nullValue if default is not defined', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.defaultValue).toStrictEqual(el.nullValue)
+  })
 }

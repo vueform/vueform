@@ -1,4 +1,4 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 
 export { disables, min, max } from './options_date'
 
@@ -11,7 +11,7 @@ export const displayFormat = function (elementType, elementName, options) {
     }
   })
 
-  testComputedOption(it, elementType, 'displayFormat', form.vm.__('laraform.elements.datetime.displayFormat'), 'DD-MM-YYYY HH:mm')
+  testPropDefault(it, elementType, 'displayFormat', form.vm.__('laraform.elements.datetime.displayFormat'), 'DD-MM-YYYY HH:mm')
 
   it('should have `displayFormat` with seconds by default if seconds is "true"', () => {
     let form = createForm({
@@ -30,7 +30,7 @@ export const displayFormat = function (elementType, elementName, options) {
 }
 
 export const valueFormat = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'valueFormat', 'YYYY-MM-DD HH:mm', 'DD-MM-YYYY HH:mm')
+  testPropDefault(it, elementType, 'valueFormat', 'YYYY-MM-DD HH:mm', 'DD-MM-YYYY HH:mm')
 
   it('should have `valueFormat` with seconds by default if seconds is "true"', () => {
     let form = createForm({
@@ -49,7 +49,7 @@ export const valueFormat = function (elementType, elementName, options) {
 }
 
 export const loadFormat = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'loadFormat', 'YYYY-MM-DD HH:mm', 'DD-MM-YYYY HH:mm')
+  testPropDefault(it, elementType, 'loadFormat', 'YYYY-MM-DD HH:mm', 'DD-MM-YYYY HH:mm')
 
   it('should have `loadFormat` with seconds by default if seconds is "true"', () => {
     let form = createForm({
@@ -68,11 +68,11 @@ export const loadFormat = function (elementType, elementName, options) {
 }
 
 export const seconds = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'seconds', false, true)
+  testPropDefault(it, elementType, 'seconds', false, true)
 }
 
 export const hour24 = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'hour24', true, false)
+  testPropDefault(it, elementType, 'hour24', true, false)
 }
 
 export const options = function (elementType, elementName, options) {

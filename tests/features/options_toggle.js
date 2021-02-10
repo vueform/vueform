@@ -1,23 +1,23 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 
 export const labels = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'labels', false, { on: 'foo', off: 'bar' })
+  testPropDefault(it, elementType, 'labels', false, { on: 'foo', off: 'bar' })
 }
 
 export const speed = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'speed', 300, 500)
+  testPropDefault(it, elementType, 'speed', 300, 500)
 }
 
 export const width = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'width', 54, 60)
+  testPropDefault(it, elementType, 'width', 54, 60)
 }
 
 export const height = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'height', 24, 30)
+  testPropDefault(it, elementType, 'height', 24, 30)
 }
 
 export const colors = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'colors', {}, {background:{on:'blue'}})
+  testPropDefault(it, elementType, 'colors', {}, {background:{on:'blue'}})
 }
 
 export const options = function (elementType, elementName, options) {

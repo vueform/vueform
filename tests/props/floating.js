@@ -1,8 +1,4 @@
-import { createForm, testComputedOption, findAllComponents } from 'test-helpers'
-
-export const floating = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'floating', null, 'floating')
-}
+import { createForm, testPropDefault, findAllComponents } from 'test-helpers'
 
 export const rendering = function (elementType, elementName, options) {
   it('should should render `ElementLabelFloating` if has floating', () => {

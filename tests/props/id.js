@@ -1,8 +1,6 @@
-import { createForm, testComputedOption, findAllComponents, testAttribute } from 'test-helpers'
+import { createForm, testPropDefault, findAllComponents, testAttribute } from 'test-helpers'
 
 export const id = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'id', elementType, 'my-id')
-
   it('should render `id` attribute', () => {
     let form = createForm({
       schema: {

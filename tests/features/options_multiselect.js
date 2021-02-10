@@ -1,4 +1,4 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export { native, search, isNative, } from './options_select'

@@ -1,39 +1,39 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 
 export const buttonLabel = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'buttonLabel', '', 'Button')
+  testPropDefault(it, elementType, 'buttonLabel', '', 'Button')
 }
 
 export const buttonType = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'buttonType', 'button', 'anchor')
+  testPropDefault(it, elementType, 'buttonType', 'button', 'anchor')
 }
 
 export const buttonClass = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'buttonClass', null, 'btn-class')
+  testPropDefault(it, elementType, 'buttonClass', null, 'btn-class')
 }
 
 export const disabled = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'disabled', false, true)
+  testPropDefault(it, elementType, 'disabled', false, true)
 }
 
 export const loading = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'loading', false, true)
+  testPropDefault(it, elementType, 'loading', false, true)
 }
 
 export const href = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'href', null, 'url')
+  testPropDefault(it, elementType, 'href', null, 'url')
 }
 
 export const target = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'target', '_self', '_blank')
+  testPropDefault(it, elementType, 'target', '_self', '_blank')
 }
 
 export const align = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'align', 'left', 'right')
+  testPropDefault(it, elementType, 'align', 'left', 'right')
 }
 
 export const onClick = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'onClick', null, 'click')
+  testPropDefault(it, elementType, 'onClick', null, 'click')
 }
 
 export const buttonComponent = function (elementType, elementName, options) {

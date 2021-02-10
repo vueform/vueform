@@ -1,8 +1,8 @@
-import { createForm, testComputedOption, findAllComponents } from 'test-helpers'
+import { createForm, testPropDefault, findAllComponents } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const drop = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'drop', false, true)
+  testPropDefault(it, elementType, 'drop', false, true)
 }
 
 export const canDrop = function (elementType, elementName, options) {

@@ -98,7 +98,7 @@ export default {
     debounce: {
       required: false,
       type: [Number],
-      default: 0
+      default: null
     },
     default: {
       required: false,
@@ -137,17 +137,17 @@ export default {
     },
     before: {
       required: false,
-      type: [Object],
+      type: [Object, String, Number],
       default: null
     },
     between: {
       required: false,
-      type: [Object],
+      type: [Object, String, Number],
       default: null
     },
     after: {
       required: false,
-      type: [Object],
+      type: [Object, String, Number],
       default: null
     },
     slots: {

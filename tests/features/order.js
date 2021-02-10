@@ -1,12 +1,12 @@
 import { nextTick } from 'vue'
-import { createForm, testComputedOption, prototypeAddOptions } from 'test-helpers'
+import { createForm, testPropDefault, prototypeAddOptions } from 'test-helpers'
 
 export const order = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'order', null, 'DESC')
+  testPropDefault(it, elementType, 'order', null, 'DESC')
 }
 
 export const orderBy = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'orderBy', null, 'order')
+  testPropDefault(it, elementType, 'orderBy', null, 'order')
 
   it('should have `orderBy` equal to storeOrder if defined', () => {
     let form = createForm({

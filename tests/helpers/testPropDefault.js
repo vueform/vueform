@@ -34,37 +34,4 @@ export default function testComputedOption (it, elementType, optionName, default
       expect(el.vm[optionName]).toStrictEqual(defaultValue)
     })
   }
-
-  it('should set `'+optionName+'` from schema', () => {
-    let form = createForm({
-      schema: {
-        [elementType]: {
-          type: elementType,
-          [optionName]: testValue
-        }
-      }
-    })
-
-    let el = findAllComponents(form, { name: elementName }).at(0)
-
-    expect(el.vm[optionName]).toStrictEqual(testValue)
-  })
-
-  it('should set `'+optionName+'` to schema', () => {
-    let form = createForm({
-      schema: {
-        [elementType]: {
-          type: elementType,
-          [optionName]: testValue
-        }
-      }
-    })
-
-    let el = findAllComponents(form, { name: elementName }).at(0)
-
-    el.vm[optionName] = testValue
-
-    expect(el.vm[optionName]).toStrictEqual(testValue)
-    expect(el.vm.schema[optionName]).toStrictEqual(testValue)
-  })
 }

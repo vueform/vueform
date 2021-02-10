@@ -1,7 +1,7 @@
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
 
 // export const ___ = function (elementType, elementName) {
-//   testComputedOption(it, elementType, '_____', defaultValue, testValue)
+//   testPropDefault(it, elementType, '_____', defaultValue, testValue)
 // }
 
 // export const ___ = function (elementType, elementName) {

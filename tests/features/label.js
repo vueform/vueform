@@ -1,8 +1,4 @@
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
-
-export const label = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'label', '', 'Label')
-}
+import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
 
 export const hasLabel = function (elementType, elementName, options) { 
   it('should have `hasLabel` equal "true" if the element has label defined & config.labels disabled', () => {

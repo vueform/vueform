@@ -32,6 +32,16 @@ export default {
       required: true,
       type: [String, Number],
     },
+    layout: {
+      required: false,
+      type: [String, Object],
+      default: 'ElementLayout'
+    },
+    component: {
+      required: false,
+      type: [Object, String],
+      default: 'TextElement'
+    },
     addons: {
       required: false,
       type: [Object],
@@ -95,7 +105,7 @@ export default {
     debounce: {
       required: false,
       type: [Number],
-      default: 0
+      default: null
     },
     default: {
       required: false,
@@ -149,17 +159,17 @@ export default {
     },
     before: {
       required: false,
-      type: [Object],
+      type: [Object, String, Number],
       default: null
     },
     between: {
       required: false,
-      type: [Object],
+      type: [Object, String, Number],
       default: null
     },
     after: {
       required: false,
-      type: [Object],
+      type: [Object, String, Number],
       default: null
     },
     slots: {
@@ -182,9 +192,11 @@ export default {
       type: [Boolean],
       default: true
     },
-  },
-  render() {
-    return this.theme.elements[this.$options.name].render.apply(this, arguments)
+    onChange: {
+      required: false,
+      type: [Function],
+      default: null,
+    }
   },
   setup(props, context) {
     const { schema } = toRefs(props)
@@ -308,23 +320,23 @@ export default {
       ...input,
       ...addons,
       ...path,
-      ...conditions,
+      ...disabled,
+      ...nullValue,
+      ...baseElement,
+      ...default_,
       ...value,
+      ...conditions,
       ...validation,
       ...label,
       ...classes,
       ...columns,
-      ...baseElement,
       ...genericName,
       ...view,
       ...components,
       ...slots,
-      ...disabled,
       ...events,
       ...data,
       ...empty,
-      ...default_,
-      ...nullValue,
       ...handleInput,
     }
   }

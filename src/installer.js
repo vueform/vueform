@@ -10,18 +10,36 @@ import i18n from './services/i18n'
 import applyExtensions from './utils/applyExtensions'
 import store from './store'
 import vHtmlIf from './directives/html-if'
-import { reactive, ref, toRefs } from 'composition-api'
+import { reactive, ref, toRefs, computed } from 'composition-api'
 
 import TextElement from './components/elements/TextElement'
 
+import Laraform from './components/Laraform'
+import FormErrors from './components/FormErrors'
+import FormMessages from './components/FormMessages'
+import FormLanguageSelector from './components/FormLanguageSelector'
+import FormLanguageSelectorTab from './components/FormLanguageSelectorTab'
+import FormTabs from './components/FormTabs'
+import FormTab from './components/FormTab'
+import FormWizard from './components/FormWizard'
+import FormWizardControls from './components/FormWizardControls'
+import FormWizardFinish from './components/FormWizardFinish'
+import FormWizardNext from './components/FormWizardNext'
+import FormWizardPrevious from './components/FormWizardPrevious'
+import FormWizardStep from './components/FormWizardStep'
+import FormElements from './components/FormElements'
+import FormButton from './components/FormButton'
+import FormButtonSubmit from './components/FormButtonSubmit'
+import FormButtonAnchor from './components/FormButtonAnchor'
+import ElementLayout from './components/ElementLayout'
+import ElementLabelFloating from './components/ElementLabelFloating'
+import ElementLabel from './components/ElementLabel'
+import ElementInfo from './components/ElementInfo'
 import ElementDescription from './components/ElementDescription'
 import ElementError from './components/ElementError'
-import ElementInfo from './components/ElementInfo'
-import ElementLabel from './components/ElementLabel'
-import ElementLabelFloating from './components/ElementLabelFloating'
-import ElementLayout from './components/ElementLayout'
 import ElementMessage from './components/ElementMessage'
 import ElementText from './components/ElementText'
+import DragAndDrop from './components/DragAndDrop'
 import InputAddon from './components/InputAddon'
 
 const elements = {
@@ -29,14 +47,32 @@ const elements = {
 }
 
 const components = {
+  Laraform,
+  FormErrors,
+  FormMessages,
+  FormLanguageSelector,
+  FormLanguageSelectorTab,
+  FormTabs,
+  FormTab,
+  FormWizard,
+  FormWizardControls,
+  FormWizardFinish,
+  FormWizardNext,
+  FormWizardPrevious,
+  FormWizardStep,
+  FormElements,
+  FormButton,
+  FormButtonSubmit,
+  FormButtonAnchor,
+  ElementLayout,
+  ElementLabelFloating,
+  ElementLabel,
+  ElementInfo,
   ElementDescription,
   ElementError,
-  ElementInfo,
-  ElementLabel,
-  ElementLabelFloating,
-  ElementLayout,
   ElementMessage,
   ElementText,
+  DragAndDrop,
   InputAddon,
 }
 
@@ -126,12 +162,18 @@ export default function(config) {
         let template = theme.components[name] || theme.elements[name]
 
         component.setup = (props, context) => {
-          context = reactive(Object.assign({}, context, {
+          context = Object.assign({}, context, {
             name: ref(template.name),
             data: reactive(template.data()),
-          }))
+          })
 
           return componentSetup(props, context)
+        }
+
+        component.render = function() {
+          let renderer = name === 'Laraform' ? this.extendedComponents[this.$options.name] : this.components[this.$options.name] || this.theme.elements[this.$options.name]
+          
+          return renderer.render.apply(this, arguments)
         }
 
         appOrVue.component(name, component)

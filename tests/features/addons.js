@@ -1,12 +1,4 @@
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
-
-export const addons = function(elementType, elementName, options) {
-  // Computed Options
-  testComputedOption(it, elementType, 'addons', {}, {
-    before: '$',
-    after: '%'
-  })
-}
+import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
 
 export const hasAddon = function(elementType, elementName, options) {
   // Computed Props

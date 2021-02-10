@@ -1,7 +1,7 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 
 export const search = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'search', false, true)
+  testPropDefault(it, elementType, 'search', false, true)
 
   it('should have `search` "true" when "create" is "true"', () => {
     let form = createForm({
@@ -20,7 +20,7 @@ export const search = function (elementType, elementName, options) {
 }
 
 export const create = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'create', false, true)
+  testPropDefault(it, elementType, 'create', false, true)
 }
 
 export const native = function (elementType, elementName, options) {

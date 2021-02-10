@@ -1,10 +1,37 @@
-import { createForm, testComputedOption, testAttribute } from 'test-helpers'
+import { createForm, testPropDefault, testAttribute } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 
 expect.extend({toBeVisible})
 
-export const disabled = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'disabled', false, true)
+export const isDisabled = function (elementType, elementName, options) {
+  it('should not be isDisabled by default', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.isDisabled).toBe(false)
+  })
+
+  it('should be isDisabled if disabled is true', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          disabled: true
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.isDisabled).toBe(true)
+  })
 }
 
 export const disable = function (elementType, elementName, options) {
@@ -19,16 +46,35 @@ export const disable = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.disabled).toBe(false)
+    expect(el.isDisabled).toBe(false)
 
     el.disable()
 
-    expect(el.disabled).toBe(true)
+    expect(el.isDisabled).toBe(true)
   })
 }
 
 export const enable = function (elementType, elementName, options) {
   it('should `enable` element', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.isDisabled).toBe(false)
+
+    el.disable()
+    el.enable()
+
+    expect(el.isDisabled).toBe(false)
+  })
+
+  it('should `enable` element even if disabled is true', () => {
     let form = createForm({
       schema: {
         el: {
@@ -40,11 +86,11 @@ export const enable = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.disabled).toBe(true)
+    expect(el.isDisabled).toBe(true)
 
     el.enable()
 
-    expect(el.disabled).toBe(false)
+    expect(el.isDisabled).toBe(false)
   })
 }
 

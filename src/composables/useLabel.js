@@ -5,7 +5,7 @@ const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const descriptor = dependencies.descriptor
+  const labelDefinition = dependencies.labelDefinition
   const component$ = dependencies.component$ || ref(null)
 
   // ============== COMPUTED ==============
@@ -16,7 +16,7 @@ const base = function(props, context, dependencies)
   * @private
   */
   const baseLabel = computed(() => {
-    return descriptor.value.label
+    return labelDefinition.value
   })
 
   /**

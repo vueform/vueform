@@ -1,12 +1,8 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import { nextTick } from 'vue'
 
 expect.extend({toBeVisible})
-
-export const conditions = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'conditions', [], [['other', 'value']])
-}  
 
 export const available = function (elementType, elementName, options) {
   it('should be `available` if has no conditions', () => {

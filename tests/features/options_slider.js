@@ -1,39 +1,39 @@
-import { createForm, testComputedOption } from 'test-helpers'
+import { createForm, testPropDefault } from 'test-helpers'
 
 export const min = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'min', 0, 10)
+  testPropDefault(it, elementType, 'min', 0, 10)
 }
 
 export const max = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'max', 100, 200)
+  testPropDefault(it, elementType, 'max', 100, 200)
 }
 
 export const step = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'step', 1, 2)
+  testPropDefault(it, elementType, 'step', 1, 2)
 }
 
 export const tooltips = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'tooltips', true, false)
+  testPropDefault(it, elementType, 'tooltips', true, false)
 }
 
 export const merge = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'merge', -1, 5)
+  testPropDefault(it, elementType, 'merge', -1, 5)
 }
 
 export const format = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'format', false, { decimals: 2 })
+  testPropDefault(it, elementType, 'format', false, { decimals: 2 })
 }
 
 export const orientation = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'orientation', 'horizontal', 'vertical')
+  testPropDefault(it, elementType, 'orientation', 'horizontal', 'vertical')
 }
 
 export const direction = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'direction', 'ltr', 'rtl')
+  testPropDefault(it, elementType, 'direction', 'ltr', 'rtl')
 }
 
 export const height = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'height', '300px', '400px')
+  testPropDefault(it, elementType, 'height', '300px', '400px')
 }
 
 export const options = function (elementType, elementName, options) {

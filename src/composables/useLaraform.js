@@ -6,7 +6,7 @@ import useEvents from './../composables/useEvents'
 
 const base = function(props, context, dependencies = {})
 {
-  const { config, value, modelValue } = toRefs(props)
+  const { form, value, modelValue } = toRefs(props)
 
   const currentInstance = getCurrentInstance()
 
@@ -356,9 +356,9 @@ const base = function(props, context, dependencies = {})
 
     classes = mergeComponentClasses(classes, $this.addClasses.Laraform || null)
 
-    if ($this.class !== null || config.value.class) {
+    if ($this.addClass !== null || form.value.addClass) {
       classes = mergeComponentClasses(classes, {
-        [mainClass.value]: $this.class || config.value.class
+        [mainClass.value]: $this.addClass || form.value.addClass
       })
     }
 
@@ -381,7 +381,7 @@ const base = function(props, context, dependencies = {})
    * @type {object}
    */
   const selectedTheme = computed(() => {
-    let theme = !_.isEmpty($this.theme) ? $this.theme : (config.value.theme || $laraform.value.theme)
+    let theme = !_.isEmpty($this.theme) ? $this.theme : (form.value.theme || $laraform.value.theme)
 
     return $laraform.value.themes[theme]
   })
@@ -411,7 +411,7 @@ const base = function(props, context, dependencies = {})
       // Ovewrite theme classes with form's classes definition
       classes: _.merge({},
         selectedTheme.value.classes,
-        $this.classes,
+        $this.overrideClasses,
       ),
     })
   })
@@ -861,7 +861,7 @@ const base = function(props, context, dependencies = {})
     }, { deep: true })
   })
 
-  watch(() => { return config.value.schema }, (value) => {
+  watch(() => { return form.value.schema }, (value) => {
     if (_.isEmpty(value)) {
       return
     }

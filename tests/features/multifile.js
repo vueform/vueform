@@ -1,8 +1,8 @@
-import { createForm, findAllComponents, testComputedOption } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const accept = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'accept', null, ['.jpg', '.png'])
+  testPropDefault(it, elementType, 'accept', null, ['.jpg', '.png'])
 }
 
 export const handleChange = function (elementType, elementName, options) { 

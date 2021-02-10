@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, findAll, testComputedOption } from 'test-helpers'
+import { createForm, findAllComponents, findAll, testPropDefault } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 export { items } from './items'

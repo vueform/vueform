@@ -1,4 +1,4 @@
-import { createForm, testComputedOption, findAllComponents, findAll } from 'test-helpers'
+import { createForm, testPropDefault, findAllComponents, findAll } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
@@ -95,15 +95,15 @@ export const preparing = function (elementType, elementName, options) {
 }
 
 export const accept = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'accept', null, ['.jpg', '.png'])
+  testPropDefault(it, elementType, 'accept', null, ['.jpg', '.png'])
 }
 
 export const clickable = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'clickable', true, false)
+  testPropDefault(it, elementType, 'clickable', true, false)
 }
 
 export const auto = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'auto', true, false)
+  testPropDefault(it, elementType, 'auto', true, false)
 }
 
 export const methods = function (elementType, elementName, options) {
@@ -115,7 +115,7 @@ export const methods = function (elementType, elementName, options) {
     }
   })
 
-  testComputedOption(it, elementType, 'methods', form.vm.$laraform.methods.file, {
+  testPropDefault(it, elementType, 'methods', form.vm.$laraform.methods.file, {
     uploadTemp: 'put',
     removeTemp: 'delete',
     remove: 'patch',
@@ -150,7 +150,7 @@ export const endpoints = function (elementType, elementName, options) {
     }
   })
 
-  testComputedOption(it, elementType, 'endpoints', form.vm.$laraform.endpoints.file, {
+  testPropDefault(it, elementType, 'endpoints', form.vm.$laraform.endpoints.file, {
     uploadTemp: 'upload-temp',
     removeTemp: 'remove-temp',
     remove: 'remove',

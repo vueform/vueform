@@ -1,8 +1,6 @@
-import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
+import { createForm, findAllComponents, testAttribute } from 'test-helpers'
 
-export const autocomplete = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'autocomplete', false, 'on')
-
+export const rendering = function (elementType, elementName, options) {
   it('should add `autocomplete` attribute to input', () => {
     let form = createForm({
       schema: {

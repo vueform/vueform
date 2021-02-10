@@ -4,12 +4,9 @@ const base = function(props, context, dependencies)
 {
   const {
     name,
-    placeholder
+    placeholder,
+    label,
   } = toRefs(props)
-
-  // ============ DEPENDENCIES ============
-
-  const label = dependencies.label || ref(null)
 
   // ============== COMPUTED ==============
 

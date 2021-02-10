@@ -1,4 +1,4 @@
-import { testComputedOption, createForm } from 'test-helpers'
+import { testPropDefault, createForm } from 'test-helpers'
 
 export const default_ = function (elementType, elementName, options) {
   it('should have "null" as `default` by default', () => {

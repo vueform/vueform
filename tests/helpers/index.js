@@ -24,7 +24,7 @@ import setInstances from './setInstances'
 import setMultiselectValue from './setMultiselectValue'
 import setValue from './setValue'
 import testAttribute from './testAttribute'
-import testComputedOption from './testComputedOption'
+import testPropDefault from './testPropDefault'
 import testDynamics from './testDynamics'
 import testNativeMultiselectModel from './testNativeMultiselectModel'
 import testNativeSelectModel from './testNativeSelectModel'
@@ -70,7 +70,7 @@ export {
   setMultiselectValue,
   setValue,
   testAttribute,
-  testComputedOption,
+  testPropDefault,
   testDynamics,
   testNativeMultiselectModel,
   testNativeSelectModel,

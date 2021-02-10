@@ -1,13 +1,13 @@
 import { nextTick } from 'vue'
 import {
-  createForm, findAllComponents, testComputedOption, prototypeAddOptions,
+  createForm, findAllComponents, testPropDefault, prototypeAddOptions,
   replacePrototypeValue
 } from 'test-helpers'
 import flushPromises from 'flush-promises'
 import asyncForEach from './../../src/utils/asyncForEach'
 
 export const sort = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'sort', false, true)
+  testPropDefault(it, elementType, 'sort', false, true)
 }
 
 export const sortable = function (elementType, elementName, options) {

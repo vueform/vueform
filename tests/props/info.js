@@ -1,8 +1,4 @@
-import { createForm, testComputedOption, findAllComponents } from 'test-helpers'
-
-export const info = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'info', false, 'info')
-}
+import { createForm, testPropDefault, findAllComponents } from 'test-helpers'
 
 export const rendering = function (elementType, elementName, options) {
   it('should should render `ElementInfo` if has label', () => {

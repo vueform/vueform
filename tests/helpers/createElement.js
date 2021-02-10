@@ -1,4 +1,4 @@
-import { h, withDirectives, resolveDirective } from 'composition-api'
+import { h, withDirectives, resolveDirective, resolveComponent } from 'composition-api'
 
 export default function createElement () {
   let args = _.values(arguments)
@@ -9,11 +9,17 @@ export default function createElement () {
   let slots = props.scopedSlots
   let directives = props.directives
 
+  let doms = ['div', 'form']
+
   if (slots) {
     children = slots
   }
 
   props = props.props
+
+  if (doms.indexOf(el) === -1) {
+    el = resolveComponent(el)
+  }
 
   let render = h(el, props, children)
 

@@ -1,8 +1,6 @@
-import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, testAttribute } from 'test-helpers'
 
 export const inputType = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'inputType', 'text', 'date')
-
   it('should render input with given `inputType`', () => {
     let form = createForm({
       schema: {

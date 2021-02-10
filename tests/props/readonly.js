@@ -1,8 +1,6 @@
-import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, testAttribute } from 'test-helpers'
 
 export const readonly = function (elementType, elementName, options) {
-  testComputedOption(it, elementType, 'readonly', false, true)
-
   it('should render `readonly` attribute', () => {
     let form = createForm({
       schema: {

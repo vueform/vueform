@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testComputedOption, testAttribute } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, testAttribute } from 'test-helpers'
 
 export const check = function (elementType, elementName, options) {
   it('should set value to "trueValue" on `check`', () => {

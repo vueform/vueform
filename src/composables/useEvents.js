@@ -9,7 +9,6 @@ const base = function(props, context, dependencies, options = {})
   // ============ DEPENDENCIES =============
 
   const form$ = dependencies.form$
-  const descriptor = dependencies.descriptor || null
 
   // ================ DATA ================
 
@@ -66,7 +65,7 @@ const base = function(props, context, dependencies, options = {})
    * @public
    * @returns {any}
    */
-  const fire = () => {
+  const fire = function() {
     let evt = arguments[0]
     let args = [].slice.call(arguments).splice(1)
 
@@ -74,22 +73,20 @@ const base = function(props, context, dependencies, options = {})
       callback.apply(form$.value, args)
     })
 
-    // context.emit(...[evt].concat(args))
+    context.emit(...[evt].concat(args))
   }
 
   // =============== HOOKS ================
 
   // If component has descriptor subscribe upfront
   // for events using `onEvent` format 
-  if (descriptor) {
-    _.each(events.value, (evt) => {
-      let callback = descriptor.value['on' + _.upperFirst(evt)]
+  _.each(events.value, (evt) => {
+    let callback = props['on' + _.upperFirst(evt)]
 
-      if (callback !== undefined) {
-        on(evt, callback)
-      }
-    })
-  }
+    if (callback) {
+      on(evt, callback)
+    }
+  })
 
   return {
     events,
