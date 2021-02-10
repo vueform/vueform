@@ -60,7 +60,7 @@ export default {
     const {
       available,
       conditions
-    } = useConditions(props, context, { form$, descriptor: step })
+    } = useConditions(props, context, { form$ })
 
     const {
       label,
@@ -73,8 +73,10 @@ export default {
       on,
       off,
       fire
-    } = useEvents(props, context, { form$, descriptor: step }, {
-      events: ['active', 'inactive', 'complete', 'enable', 'disable']
+    } = useEvents(props, context, { form$ }, {
+      events: [
+        'active', 'inactive', 'complete', 'enable', 'disable'
+      ]
     })
 
     // ================ DATA ================

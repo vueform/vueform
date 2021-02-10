@@ -1,4 +1,4 @@
-import { toRefs, onMounted } from 'composition-api'
+import { onMounted } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
 import useTheme from './../../composables/useTheme'
 import usePath from './../../composables/elements/usePath'
@@ -162,8 +162,6 @@ export default {
     },
   },
   setup(props, context) {
-    const { schema } = toRefs(props)
-
     const form$ = useForm$(props, context)
     const theme = useTheme(props, context)
     const path = usePath(props, context)
@@ -189,7 +187,6 @@ export default {
     const conditions = useConditions(props, context, {
       form$: form$.form$,
       path: path.path,
-      descriptor: schema,
     })
 
     const validation = useValidation(props, context, {
@@ -199,7 +196,6 @@ export default {
 
     const events = useEvents(props, context, {
       form$: form$.form$,
-      descriptor: schema,
     }, {
       events: [
         'change'

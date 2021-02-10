@@ -59,7 +59,7 @@ export default {
     const {
       available,
       conditions
-    } = useConditions(props, context, { form$, descriptor: tab })
+    } = useConditions(props, context, { form$ })
 
     const {
       label,
@@ -72,7 +72,7 @@ export default {
       on,
       off,
       fire
-    } = useEvents(props, context, { form$, descriptor: tab }, {
+    } = useEvents(props, context, { form$ }, {
       events: ['active', 'inactive'],
     })
 
