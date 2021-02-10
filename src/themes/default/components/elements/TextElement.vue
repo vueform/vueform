@@ -37,18 +37,13 @@
       </div>
 
       <slot name="suffix"></slot>
-      
     </template>
 
-    <template
-      v-for="(component, slot) in elementSlots"
-      v-slot:[slot]
-    >
+    <template v-for="(component, slot) in elementSlots" v-slot:[slot]>
       <slot :name="slot" :el$="el$">
         <component :is="component" v-bind="elementSlotProps[slot]" />
       </slot>
     </template>
-
   </component>
 </template>
 
