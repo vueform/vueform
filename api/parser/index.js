@@ -22,7 +22,7 @@ const Parser = class
     this.collect = {
       options: /const ([a-zA-Z0-9$]*)_?\s?=\s?computedOption\(/,
       computed: /const ([a-zA-Z0-9$]*)_?\s?=\s?computed\(/,
-      methods: /const ([a-zA-Z0-9$]*)_?\s?=\s?(async)?\s?\(/,
+      methods: /const ([a-zA-Z0-9$]*)_?\s?=\s?(async)?\s?(function)?\s?\(/,
       inject: /inject\('([a-zA-Z0-9$]*)_?/,
       data: [/const (.*)\s?=\s?ref/, /const \s?([a-zA-Z0-9]*)\s?=\s?toRefs\(context\.data/],
     }

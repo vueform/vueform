@@ -32,6 +32,17 @@ export default {
       required: true,
       type: [String, Number],
     },
+
+    /**
+     * 
+     * 
+     * @default "ElementLayout"
+     */
+    layout: {
+      required: false,
+      type: [String, Object],
+      default: 'ElementLayout'
+    },
     layout: {
       required: false,
       type: [String, Object],
@@ -196,7 +207,7 @@ export default {
       required: false,
       type: [Function],
       default: null,
-    }
+    },
   },
   setup(props, context) {
     const form$ = useForm$(props, context)

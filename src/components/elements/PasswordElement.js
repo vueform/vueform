@@ -32,6 +32,11 @@ export default {
       required: true,
       type: [String, Number],
     },
+    layout: {
+      required: false,
+      type: [String, Object],
+      default: 'ElementLayout'
+    },
     addons: {
       required: false,
       type: [Object],

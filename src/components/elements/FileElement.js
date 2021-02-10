@@ -36,6 +36,11 @@ export default {
       required: true,
       type: [String, Number],
     },
+    layout: {
+      required: false,
+      type: [String, Object],
+      default: 'ElementLayout'
+    },
     embed: {
       type: Boolean,
       required: false,

@@ -68,7 +68,7 @@ export const autosize = function (elementType, elementName, options) {
 
     expect(autosizeMock).not.toHaveBeenCalled()
 
-    el.autogrow = true
+    form.vm.schema.el.autogrow = true
 
     await nextTick()
 
@@ -93,7 +93,7 @@ export const autosize = function (elementType, elementName, options) {
 
     await nextTick()
 
-    el.autogrow = false
+    form.vm.schema.el.autogrow = false
 
     await nextTick()
 

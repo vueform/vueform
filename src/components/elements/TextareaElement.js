@@ -33,6 +33,11 @@ export default {
       required: true,
       type: [String, Number],
     },
+    layout: {
+      required: false,
+      type: [String, Object],
+      default: 'ElementLayout'
+    },
     addons: {
       required: false,
       type: [Object],
@@ -182,6 +187,11 @@ export default {
       required: false,
       type: [Boolean],
       default: true
+    },
+    onChange: {
+      required: false,
+      type: [Function],
+      default: null,
     },
   },
   setup(props, context) {

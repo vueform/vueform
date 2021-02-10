@@ -10,7 +10,6 @@ const base = function (props, context, dependencies)
     methods,
     endpoints,
     url,
-    type,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============

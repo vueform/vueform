@@ -8,24 +8,22 @@
       <div :class="classes.childrenContainer">
         <div :class="classes.element" v-sortable="sortable">
 
-          <template v-for="(element, i) in instances">
-            <div :key="element.key">
-              <slot :index="element.key">
-                <component
-                  v-if="element.type"
-                  :is="component(element)"
-                  :schema="element"
-                  :name="i"
-                />
-              </slot>
-              <a
-                href=""
-                :class="classes.remove"
-                @click.prevent="handleRemove(i)"
-                v-html="__('laraform.elements.list.remove')"
-              ></a>
-            </div>
-          </template>
+          <div v-for="(element, i) in instances" :key="element.key">
+            <slot :index="element.key">
+              <component
+                v-if="element.type"
+                :is="component(element)"
+                :schema="element"
+                :name="i"
+              />
+            </slot>
+            <a
+              href=""
+              :class="classes.remove"
+              @click.prevent="handleRemove(i)"
+              v-html="__('laraform.elements.list.remove')"
+            ></a>
+          </div>
           
         </div>
       </div>

@@ -63,7 +63,7 @@ export default function (elementType, options, elementExports) {
     })
 
     // Prop tests
-    _.each(elementsApi[elementType].props, (prop) => {
+    _.each(Object.keys(elementsApi[elementType].props), (prop) => {
       let baseProp = prop.split('_')[0]
 
       const propTest = props[`${baseProp}_${elementType}`] || props[prop] || props[baseProp]

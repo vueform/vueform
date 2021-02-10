@@ -27,7 +27,6 @@
         <component :is="component" v-bind="elementSlotProps[slot]" />
       </slot>
     </template>
-    </template>
   </component>
 </template>
 

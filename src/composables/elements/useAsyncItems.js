@@ -6,10 +6,6 @@ const base = function(props, context, dependencies)
     items
   } = toRefs(props)
 
-  const {
-    items,
-  } = base(props, context, dependencies)
-
   // ============ DEPENDENCIES ============
 
   const isNative = dependencies.isNative

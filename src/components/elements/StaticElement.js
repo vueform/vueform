@@ -1,4 +1,5 @@
-import { onMounted } from 'composition-api'import useForm$ from './../../composables/useForm$'
+import { onMounted } from 'composition-api'
+import useForm$ from './../../composables/useForm$'
 import useTheme from './../../composables/useTheme'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
@@ -22,6 +23,11 @@ export default {
     name: {
       required: true,
       type: [String, Number],
+    },
+    layout: {
+      required: false,
+      type: [String, Object],
+      default: 'ElementLayout'
     },
     type: {
       required: false,
