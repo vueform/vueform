@@ -10,6 +10,7 @@ export default runElementTests('tags', {
       3: 'value3',
     },
     fieldType: 'select',
+    default: [],
   },
   events: {
     events: [

@@ -1,5 +1,5 @@
 import checkDateFormat from './../../utils/checkDateFormat'
-import { computed, toRefs } from 'composition-api'
+import { computed, toRefs, ref } from 'composition-api'
 
 const date = function(props, context, dependencies)
 {
@@ -408,7 +408,8 @@ const tags = function (props, context, dependencies)
 {
   const {
     create,
-    search
+    search,
+    options,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -458,6 +459,7 @@ const tags = function (props, context, dependencies)
   })
 
   return {
+    native,
     fieldOptions,
     isNative,
   }
