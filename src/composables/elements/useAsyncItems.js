@@ -9,7 +9,8 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const isNative = dependencies.isNative
-  const isDisabled = dependencies.isDisabled
+  const disable = dependencies.disable
+  const enable = dependencies.enable
   const input = dependencies.input
 
   // ================ DATA ================
@@ -66,21 +67,21 @@ const base = function(props, context, dependencies)
    * @param {boolean} disable* 
    * @returns {void} 
    */
-  const updateItems = (disable = true) => {
+  const updateItems = (shouldDisable = true) => {
     if (!isNative.value) {
       input.value.resolveOptions()
       return
     }
 
-    if (disable) {
-      isDisabled.value = true
+    if (shouldDisable) {
+      disable()
     }
 
     items.value().then((response) => {
       resolvedItems.value = response
       
-      if (disable) {
-        isDisabled.value = false
+      if (shouldDisable) {
+        enable()
       }
     })
   }

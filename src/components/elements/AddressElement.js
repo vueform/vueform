@@ -29,6 +29,11 @@ export default {
       required: true,
       type: [String, Number],
     },
+    embed: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
     layout: {
       required: false,
       type: [String, Object],

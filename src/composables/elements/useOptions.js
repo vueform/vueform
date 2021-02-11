@@ -344,8 +344,6 @@ const select = function (props, context, dependencies)
   })
 
   return {
-    native,
-    search,
     fieldOptions,
     isNative,
   }
@@ -354,7 +352,8 @@ const select = function (props, context, dependencies)
 const multiselect = function (props, context, dependencies)
 {
   const {
-    options
+    options,
+    search,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -362,8 +361,6 @@ const multiselect = function (props, context, dependencies)
   const form$ = dependencies.form$
 
   const {
-    native,
-    search,
     isNative
   } = select(props, context, dependencies)
 
@@ -402,8 +399,6 @@ const multiselect = function (props, context, dependencies)
   })
 
   return {
-    native,
-    search,
     fieldOptions,
     isNative,
   }
@@ -465,7 +460,6 @@ const tags = function (props, context, dependencies)
   return {
     fieldOptions,
     isNative,
-    native,
   }
 }
 

@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 const valueOptions = (value, el) => {
@@ -90,6 +90,8 @@ export const open = function (elementType, elementName, options) {
           onOpen: onOpenMock
         }
       }
+    }, {
+      attach: true
     })
 
     let el = form.vm.el$('el')
@@ -97,6 +99,8 @@ export const open = function (elementType, elementName, options) {
     el.input.open()
 
     expect(onOpenMock).toHaveBeenCalled()
+
+    destroy(form)
   })
 }
 
@@ -113,6 +117,8 @@ export const close = function (elementType, elementName, options) {
           onClose: onCloseMock
         }
       }
+    }, {
+      attach: true
     })
 
     let el = form.vm.el$('el')
@@ -121,5 +127,7 @@ export const close = function (elementType, elementName, options) {
     el.input.close()
 
     expect(onCloseMock).toHaveBeenCalled()
+
+    destroy(form)
   })
 }

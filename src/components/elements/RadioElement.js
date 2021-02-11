@@ -172,6 +172,11 @@ export default {
       type: [Boolean],
       default: true
     },
+    onChange: {
+      required: false,
+      type: [Function],
+      default: null,
+    },
   },
   setup(props, context) {
     const form$ = useForm$(props, context)

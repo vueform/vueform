@@ -76,6 +76,18 @@ import ElementText from './components/ElementText'
 import DragAndDrop from './components/DragAndDrop'
 import InputAddon from './components/InputAddon'
 
+import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
+import FileSlotProgress from './components/elements/slots/FileSlotProgress'
+import FileSlotPreview from './components/elements/slots/FileSlotPreview'
+import ImageSlotPreview from './components/elements/slots/ImageSlotPreview'
+import MultiselectSlotNoOptions from './components/elements/slots/MultiselectSlotNoOptions'
+import MultiselectSlotNoResults from './components/elements/slots/MultiselectSlotNoResults'
+import MultiselectSlotOption from './components/elements/slots/MultiselectSlotOption'
+import MultiselectSlotMultipleLabel from './components/elements/slots/MultiselectSlotMultipleLabel'
+import MultiselectSlotSingleLabel from './components/elements/slots/MultiselectSlotSingleLabel'
+import MultiselectSlotTag from './components/elements/slots/MultiselectSlotTag'
+import RadiogroupSlotRadio from './components/elements/slots/RadiogroupSlotRadio'
+
 const elements = {
   AddressElement,
   ButtonElement,
@@ -142,6 +154,18 @@ const components = {
   ElementText,
   DragAndDrop,
   InputAddon,
+
+  CheckboxgroupSlotCheckbox,
+  FileSlotProgress,
+  FileSlotPreview,
+  ImageSlotPreview,
+  MultiselectSlotNoOptions,
+  MultiselectSlotNoResults,
+  MultiselectSlotOption,
+  MultiselectSlotMultipleLabel,
+  MultiselectSlotSingleLabel,
+  MultiselectSlotTag,
+  RadiogroupSlotRadio,
 }
 
 if (window._ === undefined) {
@@ -232,14 +256,22 @@ export default function(config) {
         component.setup = (props, context) => {
           context = Object.assign({}, context, {
             name: ref(template.name),
-            data: reactive(template.data()),
+            data: reactive(template.data ? template.data() : {}),
           })
 
           return componentSetup(props, context)
         }
 
+        component.components = template.components
+
         component.render = function() {
-          let renderer = name === 'Laraform' ? this.extendedComponents[this.$options.name] : this.components[this.$options.name] || this.theme.elements[this.$options.name]
+          let renderer
+          try {
+            renderer = name === 'Laraform' ? this.extendedComponents[this.$options.name] : this.components[this.$options.name] || this.theme.elements[this.$options.name]
+          } catch (e) {
+            console.log(1)
+            throw new Error(e)
+          }
           
           return renderer.render.apply(this, arguments)
         }

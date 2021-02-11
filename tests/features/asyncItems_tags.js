@@ -1,8 +1,6 @@
 import { createForm } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
-export { items } from './items'
-
 export const updateItems = function (elementType, elementName, options) {
   it('should update items', async () => {
     let option3 = 3

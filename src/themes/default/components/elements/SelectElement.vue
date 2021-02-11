@@ -29,9 +29,9 @@
           {{ option.label }}
           </option>
       </select>
-      <multiselect
+      <Multiselect
         v-else
-        v-bind="options"
+        v-bind="fieldOptions"
         :value="model"
         :modelValue="model"
         :id="id"
@@ -49,35 +49,35 @@
         ref="input"
       >
         <template v-slot:option="{ option, search }">
-          <slot name="option" :el$="el$" :option="option" :search="search">
-            <component :is="fieldSlots.option" :el$="el$" :option="option" :search="search" />
+          <slot name="option" :option="option" :search="search">
+            <component :is="fieldSlots.option" :option="option" :search="search" />
           </slot>
         </template>
         
         <template v-if="options.mode == 'single'" v-slot:singlelabel="{ value }">
-          <slot name="singlelabel" :el$="el$" :value="value">
-            <component v-if="fieldSlots.singlelabel" :is="fieldSlots.singlelabel" :el$="el$" :value="value" />
+          <slot name="singlelabel" :value="value">
+            <component v-if="fieldSlots.singlelabel" :is="fieldSlots.singlelabel" :value="value" />
           </slot>
         </template>
         
         <template v-if="options.mode == 'multiple'" v-slot:multiplelabel="{ values }">
-          <slot name="multiplelabel" :el$="el$" :values="values">
-            <component :is="fieldSlots.multiplelabel" :el$="el$" :values="values" />
+          <slot name="multiplelabel" :values="values">
+            <component :is="fieldSlots.multiplelabel" :values="values" />
           </slot>
         </template>
 
         <template v-if="options.mode == 'tags'" v-slot:tag="{ option, remove, disabled }">
-          <slot name="tag" :el$="el$" :option="option" :remove="remove" :disabled="disabled">
-            <component :is="fieldSlots.tag" :el$="el$" :option="option" :remove="remove" :disabled="disabled" />
+          <slot name="tag" :option="option" :remove="remove" :disabled="disabled">
+            <component :is="fieldSlots.tag" :option="option" :remove="remove" :disabled="disabled" />
           </slot>
         </template>
 
-        <template v-slot:noresults><slot name="noresults" :el$="el$"><component :is="fieldSlots.noresults" :el$="el$" /></slot></template>
-        <template v-slot:nooptions><slot name="nooptions" :el$="el$"><component :is="fieldSlots.nooptions" :el$="el$" /></slot></template>
-        <template v-slot:beforelist><slot name="beforelist" :el$="el$"><component v-if="fieldSlots.beforelist" :is="fieldSlots.beforelist" :el$="el$" /></slot></template>
-        <template v-slot:afterlist><slot name="afterlist" :el$="el$"><component v-if="fieldSlots.afterlist" :is="fieldSlots.afterlist" :el$="el$" /></slot></template>
+        <template v-slot:noresults><slot name="noresults"><component :is="fieldSlots.noresults" /></slot></template>
+        <template v-slot:nooptions><slot name="nooptions"><component :is="fieldSlots.nooptions" /></slot></template>
+        <template v-slot:beforelist><slot name="beforelist"><component v-if="fieldSlots.beforelist" :is="fieldSlots.beforelist" /></slot></template>
+        <template v-slot:afterlist><slot name="afterlist"><component v-if="fieldSlots.afterlist" :is="fieldSlots.afterlist" /></slot></template>
 
-      </multiselect>
+      </Multiselect>
 
       <slot name="suffix"></slot>
 
@@ -98,7 +98,7 @@
   export default {
     name: 'SelectElement',
     components: {
-      Multiselect,
+      Multiselect: Multiselect,
     },
     data() {
       return {

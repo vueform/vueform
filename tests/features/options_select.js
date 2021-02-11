@@ -1,15 +1,8 @@
 import { createForm, testPropDefault } from 'test-helpers'
-
-export const native = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'native', true, false)
-}
-
-export const search = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'search', false, true)
-}
+import { nextTick } from 'composition-api'
 
 export const isNative = function (elementType, elementName, options) {
-  it('should have `isNative` "true" if "native" is true and "search" is false', () => {
+  it('should have `isNative` "true" if "native" is true and "search" is false', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -22,17 +15,19 @@ export const isNative = function (elementType, elementName, options) {
     
     expect(el.isNative).toBe(true)
 
-    el.native = false
+    el.$set(form.vm.schema.el, 'native', false)
+    await nextTick()
     expect(el.isNative).toBe(false)
 
-    el.native = true
-    el.search = true
+    el.$set(form.vm.schema.el, 'native', true)
+    el.$set(form.vm.schema.el, 'search', true)
+    await nextTick()
     expect(el.isNative).toBe(false)
   })
 }
 
-export const options = function (elementType, elementName, options) {
-  it('should have default `options`', () => {
+export const fieldOptions = function (elementType, elementName, options) {
+  it('should have default `fieldOptions`', () => {
     let form = createForm({
       schema: {
         el: {
@@ -43,7 +38,7 @@ export const options = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual({
+    expect(el.fieldOptions).toStrictEqual({
       mode: 'single',
       searchable: el.search,
       noOptionsText: el.__('laraform.multiselect.noOptions'),
@@ -51,7 +46,7 @@ export const options = function (elementType, elementName, options) {
     })
   })
   
-  it('should extend `options` from schema', () => {
+  it('should extend `fieldOptions` from schema', () => {
     let form = createForm({
       schema: {
         el: {
@@ -65,31 +60,11 @@ export const options = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual({
+    expect(el.fieldOptions).toStrictEqual({
       mode: 'single',
       searchable: el.search,
       noOptionsText: el.__('laraform.multiselect.noOptions'),
       noResultsText: el.__('laraform.multiselect.noResults'),
-      custom: 'option'
-    })
-  })
-  
-  it('should set `options` to schema', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.options = {
-      custom: 'option'
-    }
-
-    expect(el.schema.options).toStrictEqual({
       custom: 'option'
     })
   })
@@ -107,8 +82,8 @@ export const options = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let Multiselect = findAllComponents(elWrapper, { name: 'Multiselect' }).at(0)
-    
-    _.each(el.options, (value, key) => {
+
+    _.each(el.fieldOptions, (value, key) => {
       expect(Multiselect.props(key)).toStrictEqual(value)
     })
   })

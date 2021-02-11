@@ -1,10 +1,8 @@
+import useElementComponent from './../../../composables/useElementComponent'
+
 export default {
   name: 'MultiselectSlotSingleLabel',
   props: {
-    el$: {
-      type: Object,
-      required: true
-    },
     value: {
       required: true
     },
@@ -13,5 +11,10 @@ export default {
     __(expr, data) {
       return this.el$.__(expr, data)
     }
-  }
+  },
+  setup(props, context) {
+    return {
+      ...useElementComponent(props, context),
+    }
+  },
 }

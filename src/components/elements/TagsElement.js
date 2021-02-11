@@ -129,7 +129,7 @@ export default {
     },
     items: {
       required: false,
-      type: [Object],
+      type: [Object, Array, Function],
       default: () => ({})
     },
     label: {
@@ -197,6 +197,41 @@ export default {
       type: [Boolean],
       default: true
     },
+    onChange: {
+      required: false,
+      type: [Function],
+      default: null,
+    },
+    onSelect: {
+      required: false,
+      type: [Function],
+      default: null,
+    },
+    onDeselect: {
+      required: false,
+      type: [Function],
+      default: null,
+    },
+    onSearchChange: {
+      required: false,
+      type: [Function],
+      default: null,
+    },
+    onOpen: {
+      required: false,
+      type: [Function],
+      default: null,
+    },
+    onClose: {
+      required: false,
+      type: [Function],
+      default: null,
+    },
+    onTag: {
+      required: false,
+      type: [Function],
+      default: null,
+    },
   },
   setup(props, context) {
     const form$ = useForm$(props, context)
@@ -220,8 +255,9 @@ export default {
 
     const asyncItems = useAsyncItems(props, context, {
       isNative: options.isNative,
-      isDisabled: disabled.isDisabled,
       input: input.input,
+      disable: disabled.disable,
+      enable: disabled.enable,
     })
 
     const value = useValue(props, context, {

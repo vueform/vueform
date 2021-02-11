@@ -1,7 +1,5 @@
-import { createForm, findAllComponents, findAll, testPropDefault } from 'test-helpers'
+import { createForm, findAllComponents, findAll } from 'test-helpers'
 import flushPromises from 'flush-promises'
-
-export { items } from './items'
 
 export const nativeItems = function (elementType, elementName, options) {
   it('should render select options when items are an array', async () => {

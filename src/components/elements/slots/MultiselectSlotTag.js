@@ -1,10 +1,8 @@
+import useElementComponent from './../../../composables/useElementComponent'
+
 export default {
   name: 'MultiselectSlotTag',
   props: {
-    el$: {
-      type: Object,
-      required: true
-    },
     option: {
       required: true
     },
@@ -21,5 +19,10 @@ export default {
     __(expr, data) {
       return this.el$.__(expr, data)
     }
-  }
+  },
+  setup(props, context) {
+    return {
+      ...useElementComponent(props, context),
+    }
+  },
 }

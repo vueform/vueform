@@ -92,15 +92,17 @@ const object = function(props, context, dependencies, options = {})
 
   // Resort children$Array when children
   // order changes or a child is removed
-  watch(schema, (newValue) => {
-    let newChildren$Array = []
+  if (schema) {
+    watch(schema, (newValue) => {
+      let newChildren$Array = []
 
-    _.each(newValue, (child, name) => {
-      newChildren$Array.push(children$Array.value[children$Array.value.map(e$=>normalize(e$.name)).indexOf(normalize(name))])
-    })
+      _.each(newValue, (child, name) => {
+        newChildren$Array.push(children$Array.value[children$Array.value.map(e$=>normalize(e$.name)).indexOf(normalize(name))])
+      })
 
-    children$Array.value = newChildren$Array
-  }, { flush: 'post', deep: true })
+      children$Array.value = newChildren$Array
+    }, { flush: 'post', deep: true })
+  }
 
   return {
     children,

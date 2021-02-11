@@ -1,10 +1,8 @@
+import useElementComponent from './../../../composables/useElementComponent'
+
 export default {
   name: 'RadiogroupSlotRadio',
   props: {
-    el$: {
-      type: Object,
-      required: true
-    },
     item: {
       type: [Object, String, Number, Array],
       required: true
@@ -13,5 +11,10 @@ export default {
       type: [Object, String, Number, Array],
       required: true
     },
+  },
+  setup(props, context) {
+    return {
+      ...useElementComponent(props, context),
+    }
   },
 }
