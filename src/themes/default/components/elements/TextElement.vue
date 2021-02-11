@@ -20,7 +20,7 @@
           @input="handleInput"
           :type="inputType"
           :name="name"
-          :id="id"
+          :id="fieldId"
           :class="classes.input"
           :placeholder="placeholder" 
           :autocomplete="autocomplete"

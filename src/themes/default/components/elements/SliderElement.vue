@@ -7,7 +7,7 @@
       <Slider
         v-model="model"
         v-bind="options"
-        :id="id"
+        :id="fieldId"
         @change="handleChange"
         ref="input"
       />

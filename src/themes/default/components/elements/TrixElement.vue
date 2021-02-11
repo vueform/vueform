@@ -7,7 +7,7 @@
       <Trix
         :value="model"
         :placeholder="placeholder"
-        :id="id"
+        :id="fieldId"
         :accept="accept"
         :accept-mimes="acceptMimes"
         :endpoint="endpoint"

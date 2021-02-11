@@ -11,7 +11,7 @@
             :checked="model"
             :class="classes.checkbox"
             :name="name"
-            :id="id"
+            :id="fieldId"
             :true-value="true"
             :false-value="false"
             :disabled="disabled"

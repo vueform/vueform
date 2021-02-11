@@ -26,7 +26,7 @@
         v-if="canSelect"
         v-show="false"
         type="file"
-        :id="id"
+        :id="fieldId"
         :accept="accept"
         @change="handleChange"
         ref="input"

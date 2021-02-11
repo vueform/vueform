@@ -1,14 +1,11 @@
 import { createForm } from 'test-helpers'
-import { submit, formatData, formatLoad, data, filtered, update, reset, clear, changed, updated, onCreated } from './data'
+import { data, filtered, update, reset, clear, changed, updated, onCreated } from './data'
 
 const value = function(options) {
   return options.value !== undefined ? options.value : 'value'
 }
 
 export { 
-  submit,
-  formatData,
-  formatLoad,
   data,
   filtered,
   update,

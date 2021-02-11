@@ -12,7 +12,7 @@
       <Flatpick
         :value="model"
         :options="options"
-        :id="id"
+        :id="fieldId"
         :class="classes.input"
         :placeholder="placeholder"
         :disabled="disabled"

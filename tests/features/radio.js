@@ -1,8 +1,6 @@
-import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
+import { createForm, findAllComponents, destroy } from 'test-helpers'
 
 export const fieldName = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'fieldName', 'radio', 'el')
-
   it('should deselect other radios with the same `fieldName`', () => {
     let form = createForm({
       schema: {
@@ -40,6 +38,8 @@ export const fieldName = function (elementType, elementName, options) {
     // Works fine but not in Vue3 test
     // expect(el.value).toBe(null)
     // expect(el2.value).toBe(2)
+
+    destroy(form)
   })
 }
 

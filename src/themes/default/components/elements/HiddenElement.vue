@@ -3,7 +3,7 @@
     type="hidden"
     v-model="model"
     :name="name"
-    :id="id"
+    :id="fieldId"
     ref="input"
   />
 </template>

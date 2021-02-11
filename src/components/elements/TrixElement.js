@@ -1,5 +1,6 @@
 import { onMounted } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
+import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
 import useInput from './../../composables/elements/useInput'
 import usePath from './../../composables/elements/usePath'
@@ -192,6 +193,7 @@ export default {
   },
   setup(props, context) {
     const form$ = useForm$(props, context)
+    const fieldId = useFieldId(props, context)
     const theme = useTheme(props, context)
     const input = useInput(props, context)
     const path = usePath(props, context)
@@ -313,6 +315,7 @@ export default {
 
     return {
       ...form$,
+      ...fieldId,
       ...theme,
       ...input,
       ...path,

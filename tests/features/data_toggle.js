@@ -1,7 +1,4 @@
 export { 
-  submit,
-  formatData,
-  formatLoad,
   data,
   filtered,
   load,

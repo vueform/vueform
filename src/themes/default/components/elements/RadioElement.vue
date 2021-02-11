@@ -16,7 +16,7 @@
             :value="radioValue"
             :class="classes.radio"
             :name="fieldName"
-            :id="id"
+            :id="fieldId"
             :disabled="disabled"
             @change="handleChange"
             ref="input"

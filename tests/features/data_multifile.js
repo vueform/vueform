@@ -2,7 +2,7 @@ import { nextTick } from 'vue'
 import { createForm } from 'test-helpers'
 import asyncForEach from './../../src/utils/asyncForEach'
 
-export { submit, data, formatData, formatLoad, next, add, insert, remove, load, update, clear, reset, updated } from './data_list'
+export { data, next, add, insert, remove, load, update, clear, reset, updated } from './data_list'
 
 export const filtered = function (elementType, elementName, options) {
   const prototypes = options.prototypes

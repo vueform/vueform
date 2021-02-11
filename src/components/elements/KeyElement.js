@@ -1,5 +1,6 @@
 import { onMounted } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
+import useFieldId from './../../composables/elements/useFieldId'
 import useInput from './../../composables/elements/useInput'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
@@ -90,6 +91,7 @@ export default {
   },
   setup(props, context) {
     const form$ = useForm$(props, context)
+    const fieldId = useFieldId(props, context)
     const input = useInput(props, context)
     const path = usePath(props, context)
     const nullValue = useNullValue(props, context)
@@ -153,6 +155,7 @@ export default {
 
     return {
       ...form$,
+      ...fieldId,
       ...input,
       ...path,
       ...nullValue,

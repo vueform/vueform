@@ -2,24 +2,24 @@ export default {
   "address": {
     "features": [
       "baseElement",
-      // "children_address",
-      // "classes",
-      // "columns",
-      // "components",
-      // "conditions",
-      // "data_object",
-      // "disabled",
-      // "elements",
-      // "form$",
-      // "genericName",
-      // "label",
-      // "location_address",
-      // "path",
-      // "slots",
-      // "theme",
-      // "validation_object",
-      // "value_object",
-      // "view"
+      "children_address",
+      "classes",
+      "columns",
+      "components",
+      "conditions",
+      "data_object",
+      "disabled",
+      "elements",
+      "form$",
+      "genericName",
+      "label",
+      "location_address",
+      "path",
+      "slots",
+      "theme",
+      "validation_object",
+      "value_object",
+      "view"
     ],
     "slots": [
       "label",
@@ -37,6 +37,12 @@ export default {
         "types": [
           "string",
           "number"
+        ]
+      },
+      "embed": {
+        "required": "false",
+        "types": [
+          "boolean"
         ]
       },
       "layout": {
@@ -533,6 +539,7 @@ export default {
       "default",
       "disabled",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleChange_checkbox",
@@ -752,6 +759,12 @@ export default {
         "required": "false",
         "types": [
           "boolean"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
         ]
       }
     }
@@ -975,6 +988,12 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -990,6 +1009,7 @@ export default {
       "disabled",
       "empty",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleChange_date",
@@ -1249,6 +1269,12 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -1264,6 +1290,7 @@ export default {
       "disabled",
       "empty",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleChange_dates",
@@ -1528,6 +1555,12 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -1543,6 +1576,7 @@ export default {
       "disabled",
       "empty",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleChange_date",
@@ -1808,6 +1842,12 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -1824,6 +1864,7 @@ export default {
       "drop",
       "empty",
       "events",
+      "fieldId",
       "file",
       "form$",
       "genericName_file",
@@ -2076,6 +2117,24 @@ export default {
         "required": "false",
         "types": [
           "boolean"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onRemove": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onError": {
+        "required": "false",
+        "types": [
+          "function"
         ]
       }
     }
@@ -2357,6 +2416,30 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onAdd": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onRemove": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onSort": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -2396,6 +2479,12 @@ export default {
         "types": [
           "string",
           "number"
+        ]
+      },
+      "schema": {
+        "required": "false",
+        "types": [
+          "object"
         ]
       },
       "layout": {
@@ -2526,6 +2615,7 @@ export default {
       "default",
       "empty",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "input",
@@ -2621,6 +2711,12 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -2637,6 +2733,7 @@ export default {
       "drop",
       "empty",
       "events",
+      "fieldId",
       "form$",
       "genericName_file",
       "handleError",
@@ -2884,6 +2981,24 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onRemove": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onError": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -2895,6 +3010,7 @@ export default {
       "default",
       "empty",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "input",
@@ -2989,6 +3105,12 @@ export default {
         "required": "false",
         "types": [
           "boolean"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
         ]
       }
     }
@@ -3230,6 +3352,42 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "object": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "element": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onAdd": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onRemove": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onSort": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -3246,6 +3404,7 @@ export default {
       "disabled",
       "empty",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "input",
@@ -3483,6 +3642,12 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -3581,6 +3746,12 @@ export default {
         "required": "false",
         "types": [
           "boolean"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
         ]
       }
     }
@@ -3856,6 +4027,30 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onAdd": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onRemove": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onSort": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -3872,6 +4067,7 @@ export default {
       "disabled",
       "empty_array",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleChange",
@@ -4036,7 +4232,9 @@ export default {
       "items": {
         "required": "false",
         "types": [
-          "object"
+          "object",
+          "array",
+          "function"
         ]
       },
       "label": {
@@ -4099,6 +4297,12 @@ export default {
           "object"
         ]
       },
+      "native": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "rules": {
         "required": "false",
         "types": [
@@ -4117,6 +4321,42 @@ export default {
         "required": "false",
         "types": [
           "boolean"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onSelect": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onDeselect": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onSearchChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onOpen": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onClose": {
+        "required": "false",
+        "types": [
+          "function"
         ]
       }
     }
@@ -4157,6 +4397,18 @@ export default {
         "types": [
           "string",
           "number"
+        ]
+      },
+      "schema": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "embed": {
+        "required": "false",
+        "types": [
+          "boolean"
         ]
       },
       "layout": {
@@ -4290,6 +4542,7 @@ export default {
       "default",
       "disabled",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleChange_radio",
@@ -4506,6 +4759,12 @@ export default {
         "required": "false",
         "types": [
           "boolean"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
         ]
       }
     }
@@ -4729,6 +4988,12 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -4745,6 +5010,7 @@ export default {
       "disabled",
       "empty",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleChange",
@@ -4873,7 +5139,8 @@ export default {
         "required": "false",
         "types": [
           "string",
-          "number"
+          "number",
+          "object"
         ]
       },
       "description": {
@@ -4909,7 +5176,9 @@ export default {
       "items": {
         "required": "false",
         "types": [
-          "object"
+          "object",
+          "array",
+          "function"
         ]
       },
       "label": {
@@ -4997,6 +5266,42 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onSelect": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onDeselect": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onSearchChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onOpen": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onClose": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -5011,6 +5316,7 @@ export default {
       "default",
       "disabled",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleChange",
@@ -5275,6 +5581,12 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -5433,6 +5745,7 @@ export default {
       "disabled",
       "empty_array",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleInput_select",
@@ -5598,7 +5911,9 @@ export default {
       "items": {
         "required": "false",
         "types": [
-          "object"
+          "object",
+          "array",
+          "function"
         ]
       },
       "label": {
@@ -5686,6 +6001,48 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onSelect": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onDeselect": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onSearchChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onOpen": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onClose": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onTag": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -5703,6 +6060,7 @@ export default {
       "disabled",
       "empty",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleInput",
@@ -5957,6 +6315,7 @@ export default {
       "disabled",
       "empty",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleInput",
@@ -6516,6 +6875,12 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -6530,6 +6895,7 @@ export default {
       "default",
       "disabled",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleChange_toggle",
@@ -6787,6 +7153,12 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -6802,6 +7174,7 @@ export default {
       "disabled",
       "empty",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleError",
@@ -7025,6 +7398,18 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onError": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -7042,6 +7427,7 @@ export default {
       "disabled",
       "empty_multilingual",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleInput",
@@ -7268,6 +7654,12 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -7284,6 +7676,7 @@ export default {
       "disabled",
       "empty_multilingual",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleInput",
@@ -7511,6 +7904,12 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
       }
     }
   },
@@ -7526,6 +7925,7 @@ export default {
       "disabled",
       "empty_multilingual",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleError",
@@ -7742,6 +8142,18 @@ export default {
         "required": "false",
         "types": [
           "boolean"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onError": {
+        "required": "false",
+        "types": [
+          "function"
         ]
       }
     }

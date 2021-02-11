@@ -1,7 +1,7 @@
 import { createForm } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
-export { submit, formatData, formatLoad, data, filtered, clear, onCreated, } from './data'
+export { data, filtered, clear, onCreated, } from './data'
 
 export const load = function (elementType, elementName, options) {
   it('should set string value on `load` according to loadFormat', async () => {

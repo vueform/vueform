@@ -3,7 +3,7 @@ import flushPromises from 'flush-promises'
 import { nextTick } from 'composition-api'
 import { update as baseUpdate, clear as baseClear, reset as baseReset, } from './data'
 
-export { submit, formatData, formatLoad, data, filtered, changed, updated, onCreated, } from './data'
+export { data, filtered, changed, updated, onCreated, } from './data'
 
 export const load = function (elementType, elementName, options) {
   it('should set value if provided value is not "undefined" on `load`', async () => {

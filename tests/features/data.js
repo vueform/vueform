@@ -179,7 +179,7 @@ export const load = function (elementType, elementName, options) {
 }
 
 export const update = function (elementType, elementName, options) {
-  it('should set value to provided value `update`', async () => {
+  it('should set value to provided value on `update`', async () => {
     let form = createForm({
       schema: {
         el: {

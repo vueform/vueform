@@ -10,7 +10,7 @@
         :modelValue="model"
         v-bind="options"
         :name="name"
-        :id="id"
+        :id="fieldId"
         @input="handleChange"
         ref="input"
       />

@@ -23,7 +23,6 @@ const elements = [
   'multifile',
   'multiselect',
   'object',
-  'password',
   'radio',
   'radiogroup',
   'select',

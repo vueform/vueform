@@ -19,7 +19,7 @@
           :value="model"
           @input="handleInput"
           :name="name"
-          :id="id"
+          :id="fieldId"
           :class="classes.textarea"
           :placeholder="placeholder"
           :disabled="disabled"

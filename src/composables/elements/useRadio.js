@@ -1,11 +1,10 @@
-import { toRefs, onMounted } from 'composition-api'
+import { toRefs, onMounted, computed } from 'composition-api'
 
 const base = function (props, context, dependencies)
 {
   const {
     fieldName,
     name,
-    id,
     radioValue,
   } = toRefs(props)
 
@@ -13,6 +12,7 @@ const base = function (props, context, dependencies)
 
   const update = dependencies.update
   const nullValue = dependencies.nullValue
+  const fieldId = dependencies.fieldId
 
   // =============== METHODS ==============
 
@@ -41,7 +41,7 @@ const base = function (props, context, dependencies)
   onMounted(() => {
     document.getElementsByName(fieldName.value || name.value).forEach((element) => {
       element.addEventListener('change', () => {
-        if (element.id != id.value) {
+        if (element.id != fieldId.value) {
           update(nullValue.value)
         }
       })

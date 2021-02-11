@@ -1,7 +1,7 @@
 import { createForm } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
-export { submit, formatData, formatLoad, data, filtered, clear, changed, updated, onCreated, } from './data'
+export { data, filtered, clear, changed, updated, onCreated, } from './data'
 
 const value = function(options) {
   return options.value !== undefined ? options.value : 'value'

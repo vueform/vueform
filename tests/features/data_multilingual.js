@@ -1,6 +1,6 @@
 import { createForm } from 'test-helpers'
 import flushPromises from 'flush-promises'
-export { submit, formatData, formatLoad, data, filtered, changed, clear, reset, onCreated } from './data'
+export { data, filtered, changed, clear, reset, onCreated } from './data'
 
 export const load = function(elementType, elementName) {
   it('should set value to null if provided value is "undefined" on `load`', async () => {
