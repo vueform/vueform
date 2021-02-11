@@ -320,6 +320,8 @@ const object = function(props, context, dependencies)
   const {
     name,
     formatLoad,
+    formatData,
+    submit,
   } = toRefs(props)
 
   const {
@@ -411,11 +413,11 @@ const group = function(props, context, dependencies)
   const {
     name,
     formatData,
-    formatLoad
+    formatLoad,
+    submit,
   } = toRefs(props)
 
   const {
-    submit,
     update,
     clear,
     reset,

@@ -100,7 +100,7 @@ const object = function(props, context, dependencies, options = {})
     })
 
     children$Array.value = newChildren$Array
-  }, { flush: 'post' })
+  }, { flush: 'post', deep: true })
 
   return {
     children,

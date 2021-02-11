@@ -43,15 +43,10 @@ export default {
       type: [String, Object],
       default: 'ElementLayout'
     },
-    layout: {
-      required: false,
-      type: [String, Object],
-      default: 'ElementLayout'
-    },
     component: {
       required: false,
       type: [Object, String],
-      default: 'TextElement'
+      default: null
     },
     addons: {
       required: false,

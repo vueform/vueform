@@ -67,7 +67,13 @@ const base = function(props, context, dependencies, options = {})
    * @type {object}
    */
   const elementSlots = computed(() => {
-    const elementSlots = defaultElementSlots
+    const elementSlots = {}
+
+    _.each(options.slots, (slot) => {
+      if (defaultElementSlots[slot]) {
+        elementSlots[slot] = defaultElementSlots[slot]
+      }
+    })
 
     _.each(slots.value, (component, slot) => {
       if (elementSlots[slot]) {
@@ -85,7 +91,13 @@ const base = function(props, context, dependencies, options = {})
    * @private
    */
   const fieldSlots = computed(() => {
-    const fieldSlots = defaultFieldSlots
+    const fieldSlots = {}
+
+    _.each(options.slots, (slot) => {
+      if (defaultFieldSlots[slot]) {
+        fieldSlots[slot] = defaultFieldSlots[slot]
+      }
+    })
 
     _.each(slots.value, (component, slot) => {
       if (fieldSlots[slot]) {

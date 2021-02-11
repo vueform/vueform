@@ -27,6 +27,11 @@ export default {
       required: true,
       type: [String, Number],
     },
+    schema: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
     layout: {
       required: false,
       type: [String, Object],

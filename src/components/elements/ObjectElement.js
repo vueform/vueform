@@ -27,6 +27,16 @@ export default {
       required: true,
       type: [String, Number],
     },
+    schema: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    embed: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
     layout: {
       required: false,
       type: [String, Object],

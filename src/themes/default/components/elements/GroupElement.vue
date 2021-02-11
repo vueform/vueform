@@ -8,10 +8,9 @@
       <div :class="classes.childrenContainer">
         <component
           v-for="(element, name, i) in children"
-          :is="component(element)"
-          :schema="element"
+          v-bind="element"
+          :is="elementComponent(element)"
           :name="name"
-          :parent="el$"
           :key="i"
         />
       </div>

@@ -8,10 +8,10 @@
       <div :class="classes.childrenContainer">
         <slot>
           <component
-            v-for="(element, name, i) in children"
-            :is="component(element)"
+            v-for="(element, name) in children"
+            v-bind="element"
+            :is="elementComponent(element)"
             :embed="embed"
-            :schema="element"
             :name="name"
             :key="name"
             @remove="(e) => $emit('remove', e)"

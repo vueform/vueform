@@ -4,7 +4,7 @@
       <component
         v-for="(element, name) in schema"
         v-bind="element"
-        :is="component(element)"
+        :is="elementComponent(element)"
         :name="name"
         :key="name"
       />

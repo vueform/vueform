@@ -1,8 +1,6 @@
 import { createForm } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
-export { submit, formatData, formatLoad } from './data'
-
 export const data = function (elementType, elementName) {
   it('should have "data" as an object with values of children', () => {
     let form = createForm({
