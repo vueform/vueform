@@ -177,6 +177,11 @@ export default {
       type: [Object],
       default: () => ({})
     },
+    native: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
     rules: {
       required: false,
       type: [Array, String, Object],

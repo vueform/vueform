@@ -10,6 +10,7 @@ export default runElementTests('multiselect', {
       { value: 3, label: 'value2' },
     ],
     fieldType: 'select',
+    default: []
   },
   events: {
     events: [

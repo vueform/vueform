@@ -16,7 +16,7 @@
         :class="classes.select"
         :name="name"
         :id="id"
-        :multiple="options.mode === 'multiple'"
+        :multiple="fieldOptions.mode === 'multiple'"
         :disabled="disabled"
         @change="handleChange"
         ref="input"

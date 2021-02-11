@@ -1,6 +1,5 @@
 import { createForm } from 'test-helpers'
-export { submit, formatData, formatLoad, data, filtered, update, reset, clear, changed, updated, onCreated } from './data'
-import { nextTick } from 'composition-api'
+export { data, filtered, update, reset, clear, changed, updated, onCreated } from './data'
 
 const value = function(options) {
   return options.value !== undefined ? options.value : 'value'
