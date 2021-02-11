@@ -22,7 +22,7 @@ export default {
     } = useFormComponent(props, context)
 
     const {
-      elementComponent
+      component
     } = useElements(props, context, { theme })
 
     return {
@@ -31,7 +31,7 @@ export default {
       classes,
       mainClass,
       components,
-      elementComponent,
+      component,
     }
   },
 }

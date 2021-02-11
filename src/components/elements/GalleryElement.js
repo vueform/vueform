@@ -327,6 +327,7 @@ export default {
 
       isObject: prototype.isObject,
       prototype: prototype.prototype,
+      orderByName: order.orderByName,
 
       fire: events.fire,
     }, {
@@ -363,7 +364,6 @@ export default {
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
-      sort: sort.sort,
       isDisabled: disabled.isDisabled,
     })
 

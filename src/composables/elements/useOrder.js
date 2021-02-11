@@ -1,10 +1,11 @@
-import { toRefs } from 'composition-api'
+import { toRefs, computed } from 'composition-api'
 
 const base = function(props, context, dependencies, options)
 {
   const {
-    storeOrder
-  } = toRefs(storeOrder)
+    storeOrder,
+    orderBy,
+  } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
@@ -29,8 +30,13 @@ const base = function(props, context, dependencies, options)
     }
   }
 
+  const orderByName = computed(() => {
+    return orderBy.value || storeOrder.value
+  })
+
   return {
     refreshOrderStore,
+    orderByName,
   }
 }
 

@@ -17,9 +17,9 @@ export const watcher = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let child = form.vm.el$('el.0')
 
-    expect(child.label).toBe(prototypes[0].label || '')
+    expect(child.label).toBe(prototypes[0].label || null)
 
-    el.$set(el.schema.element, 'label', 'new label')
+    el.$set(form.vm.schema.el.element, 'label', 'new label')
 
     await nextTick()
 
@@ -39,9 +39,9 @@ export const watcher = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let child = form.vm.el$('el.0')
 
-    expect(child.label).toBe(prototypes[0].label || '')
+    expect(child.label).toBe(prototypes[0].label || null)
 
-    el.$set(el.schema.object, 'label', 'new label')
+    el.$set(form.vm.schema.el.object, 'label', 'new label')
 
     await nextTick()
     await nextTick()

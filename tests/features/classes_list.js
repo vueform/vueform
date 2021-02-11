@@ -1,7 +1,7 @@
 import { createForm } from 'test-helpers'
 import { classes as baseClasses } from './classes'
 
-export { addClasses, class_, mainClass, rendering } from './classes'
+export { mainClass, rendering } from './classes'
 
 export const classes = function (elementType, elementName, options) {
   let form = createForm({
@@ -20,10 +20,10 @@ export const classes = function (elementType, elementName, options) {
         [el.classes.sortable]: el.sort
       },
       [el.containers.add]: {
-        [el.classes.disabled]: el.disabled
+        [el.classes.disabled]: el.isDisabled
       },
       [el.containers.remove]: {
-        [el.classes.disabled]: el.disabled
+        [el.classes.disabled]: el.isDisabled
       },
     }
   }))

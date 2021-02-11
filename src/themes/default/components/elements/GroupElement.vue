@@ -9,7 +9,7 @@
         <component
           v-for="(element, name, i) in children"
           v-bind="element"
-          :is="elementComponent(element)"
+          :is="component(element)"
           :name="name"
           :key="i"
         />

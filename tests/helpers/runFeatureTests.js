@@ -3,7 +3,12 @@ export default function (elementType, options, featureExports, spies) {
 
   return () => {
     _.each(featureExports, (suite) => {
-      suite(elementType, elementName, options, spies)
+      // try {
+        suite(elementType, elementName, options, spies)
+      // } catch (e) {
+      //   console.log(featureExports, suite)
+      //   throw new Error(e)
+      // }
     })
   }
 }

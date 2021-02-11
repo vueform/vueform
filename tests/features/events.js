@@ -65,3 +65,39 @@ export const off = function (elementType, elementName, options) {
     expect(onEventMock).not.toHaveBeenCalled()
   })
 }
+
+export const onCreated = function (elementType, elementName, options) {
+  it('should subscribe to element `events`', () => {
+    let schema = {
+        el: {
+          type: elementType,
+        }
+      }
+
+    let form = createForm({
+      schema,
+    })
+
+    let el = form.vm.el$('el')
+
+    let mocks = {}
+
+    el.events.forEach((event) => {
+      mocks[event] = jest.fn()
+      schema.el[`on${_.upperFirst(event)}`] = mocks[event]
+    })
+
+    form = createForm({schema})
+
+    el = form.vm.el$('el')
+
+    el.events.forEach((event) => {
+      el.fire(event)
+    })
+
+    el.events.forEach((event) => {
+      expect(mocks[event]).toHaveBeenCalled()
+    })
+    
+  })
+}

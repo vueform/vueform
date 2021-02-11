@@ -1,6 +1,5 @@
 <template>
   <component :is="layout">
-
     <template v-slot:field>
 
       <slot name="prefix"></slot>
@@ -11,9 +10,9 @@
           <div v-for="(element, i) in instances" :key="element.key">
             <slot :index="element.key">
               <component
-                v-if="element.type"
                 :is="component(element)"
-                :schema="element"
+                v-if="element.type"
+                v-bind="element"
                 :name="i"
               />
             </slot>
@@ -43,6 +42,7 @@
         <component :is="component" v-bind="elementSlotProps[slot]" />
       </slot>
     </template>
+
   </component>
 </template>
 

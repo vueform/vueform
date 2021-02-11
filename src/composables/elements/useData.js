@@ -479,14 +479,15 @@ const list = function(props, context, dependencies, options)
     name,
     storeOrder,
     formatLoad,
+    formatData,
     order,
-    orderBy,
+    submit,
   } = toRefs(props)
 
   const {
     data,
     changed,
-    prepare
+    prepare,
   } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
@@ -504,6 +505,7 @@ const list = function(props, context, dependencies, options)
   const dirt = dependencies.dirt
   const refreshOrderStore = dependencies.refreshOrderStore
   const isObject = dependencies.isObject
+  const orderByName = dependencies.orderByName
   const prototype = dependencies.prototype
   const fire = dependencies.fire
 
@@ -699,14 +701,14 @@ const list = function(props, context, dependencies, options)
    * @private
    */
   const orderValue = (val) => {
-    if (!order.value && !orderBy.value) {
+    if (!order.value && !orderByName.value) {
       return val
     }
 
     const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
 
-    if (isObject.value && orderBy.value) {
-      val = desc ? _.sortBy(val, orderBy.value).reverse() : _.sortBy(val, orderBy.value)
+    if (isObject.value && orderByName.value) {
+      val = desc ? _.sortBy(val, orderByName.value).reverse() : _.sortBy(val, orderByName.value)
     }
     else if (order.value) {
       val = desc ? val.sort().reverse() : val.sort()

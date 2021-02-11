@@ -185,6 +185,36 @@ export default {
       type: [Boolean],
       default: true
     },
+    object: {
+      required: false,
+      type: [Object],
+      default: null
+    },
+    element: {
+      required: false,
+      type: [Object],
+      default: null
+    },
+    onChange: {
+      required: false,
+      type: [Function],
+      default: null,
+    },
+    onAdd: {
+      required: false,
+      type: [Function],
+      default: null,
+    },
+    onRemove: {
+      required: false,
+      type: [Function],
+      default: null,
+    },
+    onSort: {
+      required: false,
+      type: [Function],
+      default: null,
+    },
   },
   setup(props, context) {
     const form$ = useForm$(props, context)
@@ -293,6 +323,7 @@ export default {
 
       isObject: prototype.isObject,
       prototype: prototype.prototype,
+      orderByName: order.orderByName,
 
       fire: events.fire,
     }, {
@@ -313,7 +344,6 @@ export default {
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
-      sort: sort.sort,
       isDisabled: disabled.isDisabled,
     })
 

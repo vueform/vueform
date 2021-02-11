@@ -33,7 +33,7 @@ export const children$Array = function (elementType, elementName, options) {
       let el = form.vm.el$('el')
 
       expect(el.children$Array.length).toBe(1)
-      expect(el.children$Array[0].schema.type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.children$Array[0].type).toStrictEqual(prototypeChildType(prototype))
     })
   })
 }
@@ -70,7 +70,7 @@ export const children$ = function (elementType, elementName, options) {
       let el = form.vm.el$('el')
 
       expect(_.keys(el.children$).length).toBe(1)
-      expect(el.children$[0].schema.type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.children$[0].type).toStrictEqual(prototypeChildType(prototype))
     })
   })
 }
@@ -83,6 +83,10 @@ export const instances = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          initial: 0,
+          element: {
+            type: 'text'
+          }
         }
       }
     })

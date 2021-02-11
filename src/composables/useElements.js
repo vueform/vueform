@@ -9,12 +9,12 @@ const base = function(props, context, dependencies)
   * 
   * @private
   */
-  const elementComponent = (element) => {
+  const component = (element) => {
     return `${_.upperFirst(_.camelCase(element.type))}Element`
   }
 
   return {
-    elementComponent,
+    component,
   }
 }
 

@@ -484,6 +484,7 @@ const list = function(props, context, dependencies)
   return {
     state,
     Validators,
+    messageBag,
     dirty,
     validated,
     invalid,

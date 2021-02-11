@@ -1,13 +1,15 @@
 import flushPromises from 'flush-promises'
 import { createForm, prototypeChildType, prototypeAddChildOptions, prototypeChildName } from 'test-helpers'
+
 import {
   dirty as baseDirty, validated as baseValidated, pending as basePending, debouncing as baseDebouncing,
   busy as baseBusy, errors as baseErrors, error as baseError
 } from './validation'
+
 import asyncForEach from './../../src/utils/asyncForEach'
 import { nextTick } from 'vue'
 
-export { rules, messages, displayError, dirt, messageBag, Validators } from './validation'
+export { dirt, messageBag, Validators } from './validation'
 
 export const dirty = function (elementType, elementName, options) {
   const prototypes = options.prototypes

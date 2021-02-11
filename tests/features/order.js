@@ -1,26 +1,36 @@
 import { nextTick } from 'vue'
-import { createForm, testPropDefault, prototypeAddOptions } from 'test-helpers'
+import { createForm, prototypeAddOptions, replacePrototypeValue } from 'test-helpers'
 
-export const order = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'order', null, 'DESC')
-}
-
-export const orderBy = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'orderBy', null, 'order')
-
-  it('should have `orderBy` equal to storeOrder if defined', () => {
+export const orderByName = function (elementType, elementName, options) {
+  it('should be equal to orderBy if defined', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          storeOrder: 'order',
+          orderBy: 'orderBy',
+          storeOrder: 'storeOrder',
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.orderBy).toBe(el.storeOrder)
+    expect(el.orderByName).toBe('orderBy')
+  })
+
+  it('should be equal to storeOrder if orderBy is not defined', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          storeOrder: 'storeOrder',
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.orderByName).toBe('storeOrder')
   })
 }
 
@@ -44,15 +54,15 @@ export const refreshOrderStore = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.add()
-    el.add()
-    el.add()
+    el.add(replacePrototypeValue(options.childValues[1], 0))
+    el.add(replacePrototypeValue(options.childValues[1], 1))
+    el.add(replacePrototypeValue(options.childValues[1], 2))
 
     await nextTick()
 
-    let child0 = form.vm.el$('el.0')
-    let child1 = form.vm.el$('el.1')
-    let child2 = form.vm.el$('el.2')
+    let child0 = form.vm.el$('el.0.child')
+    let child1 = form.vm.el$('el.1.child')
+    let child2 = form.vm.el$('el.2.child')
     let order0 = form.vm.el$('el.0.order')
     let order1 = form.vm.el$('el.1.order')
     let order2 = form.vm.el$('el.2.order')
@@ -60,22 +70,22 @@ export const refreshOrderStore = function (elementType, elementName, options) {
     expect(order0.value).toBe(1)
     expect(order1.value).toBe(2)
     expect(order2.value).toBe(3)
-    expect(child0.schema.key).toBe(0)
-    expect(child1.schema.key).toBe(1)
-    expect(child2.schema.key).toBe(2)
+    expect(child0.value).toBe(replacePrototypeValue(options.childValues[1], 0)['child'])
+    expect(child1.value).toBe(replacePrototypeValue(options.childValues[1], 1)['child'])
+    expect(child2.value).toBe(replacePrototypeValue(options.childValues[1], 2)['child'])
 
     el.remove(1)
 
     await nextTick()
 
-    child0 = form.vm.el$('el.0')
-    child1 = form.vm.el$('el.1')
+    child0 = form.vm.el$('el.0.child')
+    child1 = form.vm.el$('el.1.child')
     order0 = form.vm.el$('el.0.order')
     order1 = form.vm.el$('el.1.order')
 
     expect(order0.value).toBe(1)
     expect(order1.value).toBe(2)
-    expect(child0.schema.key).toBe(0)
-    expect(child1.schema.key).toBe(2)
+    expect(child0.value).toBe(replacePrototypeValue(options.childValues[1], 0)['child'])
+    expect(child1.value).toBe(replacePrototypeValue(options.childValues[1], 2)['child'])
   })
 }

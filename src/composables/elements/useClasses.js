@@ -25,6 +25,13 @@ const base = function(props, context, dependencies)
   */
   const defaultClasses = toRefs(context.data).defaultClasses
 
+  /**
+  * 
+  * 
+  * @type {object} 
+  */
+  const containers = toRefs(context.data).containers || {}
+
   // ============== COMPUTED ==============
   
   /**
@@ -76,24 +83,25 @@ const base = function(props, context, dependencies)
     classes,
     mainClass,
     defaultClasses,
+    containers,
   }
 }
 
 const list = function(props, context, dependencies)
 {
   const {
-    containers
-  } = toRefs(context.data)
-
-  // ============ DEPENDENCIES ============
+    sort,
+  } = toRefs(props)
 
   const {
     mainClass,
     classes: baseClasses,
-    defaultClasses
+    defaultClasses,
+    containers
   } = base(props, context, dependencies)
 
-  const sort = dependencies.sort
+  // ============ DEPENDENCIES ============
+
   const isDisabled = dependencies.isDisabled
 
   // ============== COMPUTED ==============
@@ -126,6 +134,7 @@ const list = function(props, context, dependencies)
     classes,
     mainClass,
     defaultClasses,
+    containers,
   }
 }
 
@@ -136,7 +145,8 @@ const file = function(props, context, dependencies)
   const {
     mainClass,
     classes: baseClasses,
-    defaultClasses
+    defaultClasses,
+    containers
   } = base(props, context, dependencies)
 
   const removing = dependencies.removing
@@ -165,6 +175,7 @@ const file = function(props, context, dependencies)
     classes,
     mainClass,
     defaultClasses,
+    containers
   }
 }
 

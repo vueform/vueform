@@ -3,7 +3,7 @@ import { toBeVisible } from '@testing-library/jest-dom/matchers'
 
 expect.extend({toBeVisible})
 
-export { disabled, disable, enable } from './disabled'
+export { isDisabled, disable, enable } from './disabled'
 
 export const rendering = function (elementType, elementName, options) {
   const prototypes = options.prototypes
@@ -21,10 +21,9 @@ export const rendering = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let childWrapper = findAllComponents(elWrapper, { name: `${_.upperFirst(prototypeChildType(prototypes[0]))}Element` }).at(0)
 
     expect(elWrapper.vm.$el.querySelector(`.${el.defaultClasses.add}`).classList.contains(el.defaultClasses.disabled)).toBe(false)
-    expect(childWrapper.vm.$el.querySelector(`.${el.defaultClasses.remove}`).classList.contains(el.defaultClasses.disabled)).toBe(false)
+    expect(elWrapper.vm.$el.querySelector(`.${el.defaultClasses.remove}`).classList.contains(el.defaultClasses.disabled)).toBe(false)
   })
   
   it('should not render `add` and `remove` if disabled', () => {
@@ -41,9 +40,8 @@ export const rendering = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let childWrapper = findAllComponents(elWrapper, { name: `${_.upperFirst(prototypeChildType(prototypes[0]))}Element` }).at(0)
 
     expect(elWrapper.vm.$el.querySelector(`.${el.defaultClasses.add}`).classList.contains(el.defaultClasses.disabled)).toBe(true)
-    expect(childWrapper.vm.$el.querySelector(`.${el.defaultClasses.remove}`).classList.contains(el.defaultClasses.disabled)).toBe(true)
+    expect(elWrapper.vm.$el.querySelector(`.${el.defaultClasses.remove}`).classList.contains(el.defaultClasses.disabled)).toBe(true)
   })
 }

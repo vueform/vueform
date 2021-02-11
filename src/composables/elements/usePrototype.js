@@ -26,7 +26,7 @@ const base = function(props, context, dependencies)
    * @type {boolean}
    */
   const isObject = computed(() => {
-    return object.value
+    return !!object.value
   })
 
   return {

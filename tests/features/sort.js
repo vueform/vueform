@@ -90,7 +90,7 @@ export const sortable = function (elementType, elementName, options) {
 
     expect(el.sortableInstance.el).toBeTruthy()
 
-    el.sort = false
+    form.vm.schema.el.sort = false
 
     await nextTick()
 
@@ -111,13 +111,13 @@ export const sortable = function (elementType, elementName, options) {
 
     expect(el.sortableInstance.el).toBeTruthy()
 
-    el.sort = false
+    form.vm.schema.el.sort = false
 
     await nextTick()
 
     expect(el.sortableInstance.el).toBe(null)
 
-    el.sort = true
+    form.vm.schema.el.sort = true
 
     await nextTick()
 
@@ -188,15 +188,15 @@ export const handleSort = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.add()
-    el.add()
-    el.add()
+    el.add(replacePrototypeValue(options.childValues[1], 0))
+    el.add(replacePrototypeValue(options.childValues[1], 1))
+    el.add(replacePrototypeValue(options.childValues[1], 2))
 
     await nextTick()
 
-    let child0 = form.vm.el$('el.0')
-    let child1 = form.vm.el$('el.1')
-    let child2 = form.vm.el$('el.2')
+    let child0 = form.vm.el$('el.0.child')
+    let child1 = form.vm.el$('el.1.child')
+    let child2 = form.vm.el$('el.2.child')
     let order0 = form.vm.el$('el.0.order')
     let order1 = form.vm.el$('el.1.order')
     let order2 = form.vm.el$('el.2.order')
@@ -204,9 +204,9 @@ export const handleSort = function (elementType, elementName, options) {
     expect(order0.value).toBe(1)
     expect(order1.value).toBe(2)
     expect(order2.value).toBe(3)
-    expect(child0.schema.key).toBe(0)
-    expect(child1.schema.key).toBe(1)
-    expect(child2.schema.key).toBe(2)
+    expect(child0.value).toBe(replacePrototypeValue(options.childValues[1], 0)['child'])
+    expect(child1.value).toBe(replacePrototypeValue(options.childValues[1], 1)['child'])
+    expect(child2.value).toBe(replacePrototypeValue(options.childValues[1], 2)['child'])
 
     el.handleSort({
       oldIndex: 1,
@@ -215,9 +215,9 @@ export const handleSort = function (elementType, elementName, options) {
 
     await nextTick()
 
-    child0 = form.vm.el$('el.0')
-    child1 = form.vm.el$('el.1')
-    child2 = form.vm.el$('el.2')
+    child0 = form.vm.el$('el.0.child')
+    child1 = form.vm.el$('el.1.child')
+    child2 = form.vm.el$('el.2.child')
     order0 = form.vm.el$('el.0.order')
     order1 = form.vm.el$('el.1.order')
     order2 = form.vm.el$('el.2.order')
@@ -225,9 +225,9 @@ export const handleSort = function (elementType, elementName, options) {
     expect(order0.value).toBe(1)
     expect(order1.value).toBe(2)
     expect(order2.value).toBe(3)
-    expect(child0.schema.key).toBe(1)
-    expect(child1.schema.key).toBe(0)
-    expect(child2.schema.key).toBe(2)
+    expect(child0.value).toBe(replacePrototypeValue(options.childValues[1], 1)['child'])
+    expect(child1.value).toBe(replacePrototypeValue(options.childValues[1], 0)['child'])
+    expect(child2.value).toBe(replacePrototypeValue(options.childValues[1], 2)['child'])
   })
 
   it('should fire "sort" event with "value" on `handleSort`', async () => {
