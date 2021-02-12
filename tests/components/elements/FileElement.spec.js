@@ -5,6 +5,7 @@ export default runElementTests('file', {
     value: 'value',
     value2: new File([''], 'filename.jpg'),
     fieldType: 'input',
+    default: 'filename.jpg'
   },
   events: {
     events: ['change', 'remove', 'error']

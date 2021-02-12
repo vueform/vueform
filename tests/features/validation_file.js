@@ -4,8 +4,8 @@ import { createForm } from 'test-helpers'
 import { validate as baseValidate } from './validation'
 import flushPromises from 'flush-promises'
 
-export { messageBag, Validators, rules, messages, dirty, validated, invalid, pending,
-         debouncing, errors, error, displayError, dirt, clean, resetValidators, } from './validation'
+export { messageBag, Validators, dirty, validated, invalid, pending,
+         debouncing, errors, error, dirt, clean, resetValidators, } from './validation'
 
 export const busy = function (elementType, elementName, options) {
   baseBusy(elementType, elementName, options)

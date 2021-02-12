@@ -1,13 +1,16 @@
 import checkFileType from './../../utils/checkFileType'
-import { computed } from 'composition-api'
+import { computed, toRefs } from 'composition-api'
 
 const base = function(props, context, dependencies)
 {
+  const {
+    accept
+  } = toRefs(props)
+
   // ============ DEPENDENCIES =============
 
   const update = dependencies.update
   const isDisabled = dependencies.isDisabled
-  const accept = dependencies.accept
   
   // ============== COMPUTED ==============
 

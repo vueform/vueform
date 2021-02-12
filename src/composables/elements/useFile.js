@@ -10,6 +10,7 @@ const base = function (props, context, dependencies)
     methods,
     endpoints,
     url,
+    image,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -175,6 +176,19 @@ const base = function (props, context, dependencies)
   /**
    * 
    * 
+   * @type {string}
+   */
+  const preview = computed(() => {
+    if (!image.value) {
+      return null
+    }
+
+    return uploaded.value ? link.value : base64.value
+  })
+
+  /**
+   * 
+   * 
    * @type {boolean}
    */
   const uploaded = computed(() => {
@@ -218,6 +232,7 @@ const base = function (props, context, dependencies)
       link: link.value,
       clickable: clickable.value,
       filename: filename.value,
+      preview: preview.value,
     }
   })
 
@@ -397,7 +412,7 @@ const base = function (props, context, dependencies)
       return
     }
 
-    if (!isImageType.value) {
+    if (!isImageType.value || !(file.value instanceof Blob)) {
       return
     }
 
@@ -434,6 +449,7 @@ const base = function (props, context, dependencies)
     stage,
     filename,
     link,
+    preview,
     uploaded,
     canRemove,
     canUploadTemp,

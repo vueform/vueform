@@ -43,7 +43,12 @@ export default {
       default: 'ElementLayout'
     },
     embed: {
-      type: Boolean,
+      type: [Boolean],
+      required: false,
+      default: false
+    },
+    image: {
+      type: [Boolean],
       required: false,
       default: false
     },
@@ -150,7 +155,7 @@ export default {
     url: {
       required: false,
       type: [String],
-      default: null
+      default: '/'
     },
     id: {
       required: false,
@@ -326,7 +331,6 @@ export default {
 
     const genericName = useGenericName(props, context, {
       form$: form$.form$,
-      label: label.label,
       filename: file.filename,
     })
     

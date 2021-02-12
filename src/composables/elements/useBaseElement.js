@@ -1,4 +1,4 @@
-import { computed, onBeforeMount, onBeforeUnmount, getCurrentInstance, provide } from 'composition-api'
+import { computed, onBeforeMount, onBeforeUnmount, getCurrentInstance, provide, toRefs } from 'composition-api'
 import useParentAssign from './../useParentAssign'
 
 const base = function(props, context, dependencies)
@@ -118,10 +118,13 @@ const list = function(props, context, dependencies)
 const file = function(props, context, dependencies)
 {
   const {
+    image,
+  } = toRefs(props)
+
+  const {
     el$,
     isStatic,
     isArrayType,
-    isImageType,
   } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
@@ -130,28 +133,8 @@ const file = function(props, context, dependencies)
     return true
   })
 
-  return {
-    el$,
-    isStatic,
-    isFileType,
-    isArrayType,
-    isImageType,
-  }
-}
-
-const image = function(props, context, dependencies)
-{
-  const {
-    el$,
-    isStatic,
-    isArrayType,
-    isFileType
-  } = file(props, context, dependencies)
-
-  // ============== COMPUTED ==============
-
   const isImageType = computed(() => {
-    return true
+    return image.value
   })
 
   return {
@@ -199,7 +182,6 @@ export {
   multiselect,
   tags,
   file,
-  image,
   static_,
 } 
 

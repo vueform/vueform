@@ -34,13 +34,13 @@ const file = function(props, context, dependencies)
 {
   const {
     name,
-    embed
+    embed,
+    label
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
-  const label = dependencies.label || ref(null)
   const filename = dependencies.filename || ref(null)
 
   // ============== COMPUTED ==============

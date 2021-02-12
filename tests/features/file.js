@@ -1,9 +1,97 @@
-import { createForm, testPropDefault, findAllComponents, findAll } from 'test-helpers'
+import { createForm, findAllComponents, findAll } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 
 expect.extend({toBeVisible})
+
+export const base64 = function (elementType, elementName, options) {
+  it('should `base64` be null by default', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.base64).toBe(null)
+  })
+
+  // @todo: need to mock FileReader to test completeley
+  it('should not set `base64` when file changes if isImage is false', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.load(new File([''], 'a'))
+
+    await nextTick()
+
+    expect(el.base64).toBe(null)
+  })
+}
+
+export const preview = function (elementType, elementName, options) {
+  it('should `preview` be equal to "base64" when not uploaded and image', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          image: true,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.base64 = 'base64'
+
+    expect(el.preview).toBe(el.base64)
+  })
+
+  it('should `preview` be equal to "link" when uploaded and image', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          image: true,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.value = 'filename.jpg'
+
+    expect(el.preview).toBe(el.link)
+  })
+
+  it('should `preview` be null when not image', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.value = 'filename.jpg'
+
+    expect(el.preview).toBe(null)
+  })
+}
 
 export const file = function (elementType, elementName, options) {
   it('should `file` be null by default', () => {
@@ -94,34 +182,9 @@ export const preparing = function (elementType, elementName, options) {
   })
 }
 
-export const accept = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'accept', null, ['.jpg', '.png'])
-}
 
-export const clickable = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'clickable', true, false)
-}
-
-export const auto = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'auto', true, false)
-}
-
-export const methods = function (elementType, elementName, options) {
-  let form = createForm({
-    schema: {
-      el: {
-        type: elementType,
-      }
-    }
-  })
-
-  testPropDefault(it, elementType, 'methods', form.vm.$laraform.methods.file, {
-    uploadTemp: 'put',
-    removeTemp: 'delete',
-    remove: 'patch',
-  })
-
-  it('should merge `methods` with config methods', () => {
+export const fileMethods = function (elementType, elementName, options) {
+  it('should merge `fileMethods` with config methods', () => {
     let form = createForm({
       schema: {
         el: {
@@ -135,28 +198,14 @@ export const methods = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.methods).toStrictEqual(Object.assign({}, el.$laraform.methods.file, {
+    expect(el.fileMethods).toStrictEqual(Object.assign({}, el.$laraform.methods.file, {
       uploadTemp: 'put'
     }))
   })
 }
 
-export const endpoints = function (elementType, elementName, options) {
-  let form = createForm({
-    schema: {
-      el: {
-        type: elementType,
-      }
-    }
-  })
-
-  testPropDefault(it, elementType, 'endpoints', form.vm.$laraform.endpoints.file, {
-    uploadTemp: 'upload-temp',
-    removeTemp: 'remove-temp',
-    remove: 'remove',
-  })
-
-  it('should merge `endpoints` with config methods', () => {
+export const fileEndpoints = function (elementType, elementName, options) {
+  it('should merge `fileEndpoints` with config methods', () => {
     let form = createForm({
       schema: {
         el: {
@@ -170,14 +219,14 @@ export const endpoints = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.endpoints).toStrictEqual(Object.assign({}, el.$laraform.endpoints.file, {
+    expect(el.fileEndpoints).toStrictEqual(Object.assign({}, el.$laraform.endpoints.file, {
       uploadTemp: 'upload-temp',
     }))
   })
 }
 
-export const url = function (elementType, elementName, options) {
-  it('should have "/" as default `url`', () => {
+export const fileUrl = function (elementType, elementName, options) {
+  it('should have "/" as default `fileUrl`', () => {
     let form = createForm({
       schema: {
         el: {
@@ -188,10 +237,10 @@ export const url = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.url).toStrictEqual('/')
+    expect(el.fileUrl).toStrictEqual('/')
   })
 
-  it('should set `url` from schema', () => {
+  it('should set `fileUrl` from schema', () => {
     let form = createForm({
       schema: {
         el: {
@@ -203,10 +252,10 @@ export const url = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.url).toStrictEqual('/uploads/')
+    expect(el.fileUrl).toStrictEqual('/uploads/')
   })
 
-  it('should prefix `url` without starting /', () => {
+  it('should prefix `fileUrl` without starting /', () => {
     let form = createForm({
       schema: {
         el: {
@@ -218,10 +267,10 @@ export const url = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.url).toStrictEqual('/uploads/')
+    expect(el.fileUrl).toStrictEqual('/uploads/')
   })
 
-  it('should not prefix `url` if starts with http', () => {
+  it('should not prefix `fileUrl` if starts with http', () => {
     let form = createForm({
       schema: {
         el: {
@@ -233,10 +282,10 @@ export const url = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.url).toStrictEqual('https://domain.com/')
+    expect(el.fileUrl).toStrictEqual('https://domain.com/')
   })
 
-  it('should suffix `url` without ending /', () => {
+  it('should suffix `fileUrl` without ending /', () => {
     let form = createForm({
       schema: {
         el: {
@@ -248,23 +297,7 @@ export const url = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.url).toStrictEqual('/uploads/')
-  })
-
-  it('should set `url` to schema', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.url = '/uploads/'
-
-    expect(el.url).toStrictEqual('/uploads/')
+    expect(el.fileUrl).toStrictEqual('/uploads/')
   })
 }
 
@@ -438,7 +471,7 @@ export const link = function (elementType, elementName, options) {
     expect(el.link).toStrictEqual(undefined)
   })
 
-  it('should undefined for `link` if `clickable` is false', () => {
+  it('should undefined for `link` if `clickable` is false', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -453,7 +486,9 @@ export const link = function (elementType, elementName, options) {
 
     expect(el.link).toStrictEqual('/a.jpg')
 
-    el.clickable = false
+    el.$set(form.vm.schema.el, 'clickable', false)
+
+    await nextTick()
 
     expect(el.link).toStrictEqual(undefined)
   })
@@ -671,27 +706,24 @@ export const canUploadTemp = function (elementType, elementName, options) {
     expect(el.canUploadTemp).toStrictEqual(false)
 
     el.load(new File([''], 'filename'))
-
+    await nextTick()
     expect(el.canUploadTemp).toStrictEqual(true)
 
     el.request = {}
-
     expect(el.canUploadTemp).toStrictEqual(false)
 
     el.request = null
-
     expect(el.canUploadTemp).toStrictEqual(true)
 
-    el.auto = true
-    
+    el.$set(form.vm.schema.el, 'auto', true)
+    await nextTick()
     expect(el.canUploadTemp).toStrictEqual(false)
 
-    el.auto = false
-
+    el.$set(form.vm.schema.el, 'auto', false)
+    await nextTick()
     expect(el.canUploadTemp).toStrictEqual(true)
 
     el.load('filename')
-
     expect(el.canUploadTemp).toStrictEqual(false)
   })
 }
@@ -712,6 +744,7 @@ export const previewOptions = function (elementType, elementName, options) {
       link: el.link,
       clickable: el.clickable,
       filename: el.filename,
+      preview: el.preview,
     })
   })
 }

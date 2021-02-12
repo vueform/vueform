@@ -1,1 +1,1 @@
-export { disabled, disable, enable } from './disabled'
+export { isDisabled, disable, enable } from './disabled'

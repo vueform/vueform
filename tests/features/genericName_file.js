@@ -45,15 +45,7 @@ export const genericName = function (elementType, elementName, options) {
 
     expect(el.genericName).toStrictEqual('File')
 
-    const originalConsoleError = console.error
-    const originalConsoleWarn = console.warn
-    console.error = () => {}
-    console.warn = () => {}
-
-    el.$props.embed = true
-
-    console.error = originalConsoleError
-    console.warn = originalConsoleWarn
+    el.$set(form.vm.schema.el, 'embed', true)
 
     expect(el.genericName).toStrictEqual('File')
   })
@@ -71,20 +63,12 @@ export const genericName = function (elementType, elementName, options) {
 
     expect(el.genericName).toStrictEqual('El')
 
-    const originalConsoleError = console.error
-    const originalConsoleWarn = console.warn
-    console.error = () => {}
-    console.warn = () => {}
-
-    el.$props.embed = true
-
-    console.error = originalConsoleError
-    console.warn = originalConsoleWarn
+    el.$set(form.vm.schema.el, 'embed', true)
 
     expect(el.genericName).toStrictEqual('El')
   })
 
-  it('should have `genericName` equal to default name fromn label if embedded & filename & label does not exist or not embedded', async () => {
+  it('should be equal to defaultName if nothing else works', async () => {
     let form = createForm({
       schema: {
         0: {
@@ -97,15 +81,7 @@ export const genericName = function (elementType, elementName, options) {
 
     expect(el.genericName).toStrictEqual(el.__('laraform.elements.file.defaultName'))
 
-    const originalConsoleError = console.error
-    const originalConsoleWarn = console.warn
-    console.error = () => {}
-    console.warn = () => {}
-
-    el.$props.embed = true
-
-    console.error = originalConsoleError
-    console.warn = originalConsoleWarn
+    el.$set(form.vm.schema[0], 'embed', true)
 
     expect(el.genericName).toStrictEqual(el.__('laraform.elements.file.defaultName'))
   })

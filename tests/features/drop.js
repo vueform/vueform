@@ -1,10 +1,6 @@
 import { createForm, testPropDefault, findAllComponents } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
-export const drop = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'drop', false, true)
-}
-
 export const canDrop = function (elementType, elementName, options) {
   it('should return true for `canDrop` if browser supports dragging', () => {
     let form = createForm({
@@ -138,7 +134,7 @@ export const rendering = function (elementType, elementName, options) {
 
     expect(DragAndDrop.length).toBe(0)
 
-    el.drop = true
+    el.$set(form.vm.schema.el, 'drop', true)
 
     await nextTick()
 
