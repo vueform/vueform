@@ -2,10 +2,6 @@ import { nextTick } from 'vue'
 import { markRaw } from 'composition-api'
 import { createForm, findAllComponents, createElement, testPropDefault } from 'test-helpers'
 
-export const overrideComponents = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'overrideComponents', {})
-}
-
 export const components = function (elementType, elementName, options) {
   // Computed Porps
   it('should return theme components for `components` by default', () => {

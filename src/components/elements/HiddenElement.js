@@ -1,6 +1,7 @@
 import { onMounted } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
+import useTheme from './../../composables/useTheme'
 import useInput from './../../composables/elements/useInput'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
@@ -13,6 +14,7 @@ import useBaseElement from './../../composables/elements/useBaseElement'
 import useGenericName from './../../composables/elements/useGenericName'
 import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
+import useComponents from './../../composables/elements/useComponents'
 
 export default {
   name: 'HiddenElement',
@@ -92,10 +94,16 @@ export default {
   setup(props, context) {
     const form$ = useForm$(props, context)
     const fieldId = useFieldId(props, context)
+    const theme = useTheme(props, context)
     const input = useInput(props, context)
     const path = usePath(props, context)
     const nullValue = useNullValue(props, context)
     const genericName = useGenericName(props, context)
+    
+    const components = useComponents(props, context, {
+      theme: theme.theme,
+      form$: form$.form$
+    })
 
     const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
@@ -156,6 +164,7 @@ export default {
     return {
       ...form$,
       ...fieldId,
+      ...theme,
       ...input,
       ...path,
       ...nullValue,
@@ -168,6 +177,7 @@ export default {
       ...empty,
       ...baseElement,
       ...genericName,
+      ...components,
     }
   } 
 }

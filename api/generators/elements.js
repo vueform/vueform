@@ -15,8 +15,6 @@ const elements = [
   'gallery',
   'group',
   'hidden',
-  'image',
-  'key',
   'list',
   'location',
   'meta',

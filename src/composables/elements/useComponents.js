@@ -20,7 +20,11 @@ const base = function(props, context, dependencies)
    * @option
    */
   const components = computed(() => {
-    return Object.assign({}, theme.value.components, Object.keys(overrideComponents.value).length > 0 ? overrideComponents.value : {})
+    return Object.assign({}, theme.value.components,
+      overrideComponents && overrideComponents.value && Object.keys(overrideComponents.value).length > 0
+        ? overrideComponents.value 
+        : {}
+    )
   })
 
   return {

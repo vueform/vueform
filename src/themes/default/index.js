@@ -41,7 +41,6 @@ import FileElement from './components/elements/FileElement'
 import GalleryElement from './components/elements/GalleryElement'
 import GroupElement from './components/elements/GroupElement'
 import HiddenElement from './components/elements/HiddenElement'
-import KeyElement from './components/elements/KeyElement'
 import ListElement from './components/elements/ListElement'
 import LocationElement from './components/elements/LocationElement'
 import MetaElement from './components/elements/MetaElement'
@@ -139,7 +138,6 @@ export default {
     GroupElement,
     GalleryElement,
     HiddenElement,
-    KeyElement,
     ListElement,
     LocationElement,
     MetaElement,

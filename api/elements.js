@@ -1915,8 +1915,13 @@ export default {
       },
       "embed": {
         "types": [
-          "boolean",
-          ""
+          "boolean"
+        ],
+        "required": "false"
+      },
+      "image": {
+        "types": [
+          "boolean"
         ],
         "required": "false"
       },
@@ -2610,119 +2615,7 @@ export default {
   "hidden": {
     "features": [
       "baseElement",
-      "conditions",
-      "data",
-      "default",
-      "empty",
-      "events",
-      "fieldId",
-      "form$",
-      "genericName",
-      "input",
-      "nullValue",
-      "path",
-      "validation",
-      "value"
-    ],
-    "slots": [],
-    "events": [
-      "change"
-    ],
-    "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object"
-        ]
-      },
-      "type": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
-        ]
-      },
-      "default": {
-        "required": "false",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "id": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      }
-    }
-  },
-  "key": {
-    "features": [
-      "baseElement",
+      "components",
       "conditions",
       "data",
       "default",

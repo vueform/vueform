@@ -1,4 +1,4 @@
-import { onMounted } from 'composition-api'
+import { onMounted, toRefs } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
@@ -224,6 +224,8 @@ export default {
     },
   },
   setup(props, context) {
+    const { image } = toRefs(props)
+
     const form$ = useForm$(props, context)
     const fieldId = useFieldId(props, context)
     const theme = useTheme(props, context)
@@ -361,7 +363,10 @@ export default {
         'label', 'info', 'description', 'error',
         'message', 'before', 'between', 'after',
         'progress', 'preview',
-      ]
+      ],
+      defaultSlots: {
+        preview: image.value ? 'ImageSlotPreview' : 'FileSlotPreview',
+      }
     })
 
     onMounted(() => {
