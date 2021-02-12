@@ -72,7 +72,7 @@ const dates = function(props, context, dependencies)
   // ============ DEPENDENCIES =============
 
   const nullValue = dependencies.nullValue
-  const valueFormat = dependencies.valueFormat
+  const valueDateFormat = dependencies.valueDateFormat
 
   // ============== COMPUTED ===============
 
@@ -83,7 +83,7 @@ const dates = function(props, context, dependencies)
   * @option
   */
   const defaultValue = computed(() => {
-    let val = default_.value !== undefined ? default_ : nullValue.value
+    let val = default_.value !== undefined ? default_.value : nullValue.value
 
     if (_.isEqual(val, nullValue.value)) {
       return val

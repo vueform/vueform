@@ -141,7 +141,6 @@ const dates = function(props, context, dependencies)
 {
   const { 
     mode,
-    displayFormat,
     options,
     readonly,
   } = toRefs(props)
@@ -155,6 +154,7 @@ const dates = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const isDisabled = dependencies.isDisabled
+  const displayDateFormat = dependencies.displayDateFormat
 
   // ============== COMPUTED ==============
 
@@ -207,94 +207,9 @@ const dates = function(props, context, dependencies)
   })
 
   return {
-    displayFormat,
     minDate,
     maxDate,
     disabledDates,
-    fieldOptions,
-    hasDate,
-    hasTime,
-  }
-}
-
-const datetime = function(props, context, dependencies)
-{
-  const {
-    seconds,
-    hour24,
-    options,
-    readonly,
-  } = toRefs(props)
-
-  // ============ DEPENDENCIES ============
-
-  const form$ = dependencies.form$
-  const isDisabled = dependencies.isDisabled
-
-  const {
-    disabledDates,
-    minDate,
-    maxDate
-  } = date(props, context, dependencies)
-
-  // ============== COMPUTED ==============
-
-  /**
-  * Default options for flatpickr.
-  * 
-  * @type {object} 
-  * @default {}
-  */
-  const defaultOptions = computed(() => {
-    let displayFormat
-
-    return {
-      dateFormat: displayDateFormat.value || (seconds.value
-        ? form$.value.__('laraform.elements.datetime.secondsDisplayFormat')
-        : form$.value.__('laraform.elements.datetime.displayFormat')
-      ),
-      minDate: minDate.value,
-      maxDate: maxDate.value,
-      disable: disabledDates.value,
-      clickOpens: !isDisabled.value && !readonly.value,
-      time_24hr: hour24.value,
-      enableTime: true,
-      enableSeconds: seconds.value,
-    }
-  })
-
-  /**
-  * Additional [options](https://flatpickr.js.org/options/) for flatpickr.
-  * 
-  * @type {object} 
-  * @default {}
-  * @option
-  */
-  const fieldOptions = computed(() => {
-    return Object.assign({}, defaultOptions.value, options.value || {})
-  })
-
-  /**
-   * Helper property used to determine the element has date.
-   * 
-   * @type {boolean}
-   * @ignore
-   */
-  const hasDate = computed(() => {
-    return true
-  })
-
-  /**
-   * Helper property used to determine the element has time.
-   * 
-   * @type {boolean}
-   * @ignore
-   */
-  const hasTime = computed(() => {
-    return true
-  })
-
-  return {
     fieldOptions,
     hasDate,
     hasTime,
@@ -529,93 +444,6 @@ const slider = function (props, context, dependencies)
   }
 }
 
-const time = function(props, context, dependencies)
-{
-  const { 
-    seconds,
-    hour24,
-    readonly,
-  } = toRefs(props)
-
-  // ============ DEPENDENCIES ============
-
-  const form$ = dependencies.form$
-  const isDisabled = dependencies.isDisabled
-
-  const {
-    disabledDates,
-    minDate,
-    maxDate,
-  } = date(props, context, dependencies)
-
-  // ============== COMPUTED ==============
-
-  /**
-  * Default options for flatpickr.
-  * 
-  * @type {object} 
-  * @default {}
-  */
-  const defaultOptions = computed(() => {
-    return {
-      dateFormat: displayDateFormat.value || (seconds.value
-        ? form$.value.__('laraform.elements.time.secondsDisplayFormat')
-        : form$.value.__('laraform.elements.time.displayFormat')
-      ),
-      minDate: minDate.value,
-      maxDate: maxDate.value,
-      disable: disabledDates.value,
-      clickOpens: !isDisabled.value && !readonly.value,
-      time_24hr: hour24.value,
-      enableTime: true,
-      enableSeconds: seconds.value,
-      noCalendar: true,
-
-      
-    }
-  })
-
-  /**
-  * Additional [options](https://flatpickr.js.org/options/) for flatpickr.
-  * 
-  * @type {object} 
-  * @default {}
-  * @option
-  */
-  const fieldOptions = computed(() => {
-    return Object.assign({}, defaultOptions.value, options.value || {})
-  })
-
-  /**
-   * Helper property used to determine the element has date.
-   * 
-   * @type {boolean}
-   * @ignore
-   */
-  const hasDate = computed(() => {
-    return false
-  })
-
-  /**
-   * Helper property used to determine the element has time.
-   * 
-   * @type {boolean}
-   * @ignore
-   */
-  const hasTime = computed(() => {
-    return true
-  })
-
-  return {
-    minDate,
-    maxDate,
-    disabledDates,
-    fieldOptions,
-    hasDate,
-    hasTime,
-  }
-}
-
 const toggle = function(props, context, dependencies)
 {
   const { 
@@ -669,11 +497,9 @@ const toggle = function(props, context, dependencies)
 export {
   date,
   dates,
-  datetime,
   multiselect,
   select,
   slider,
   tags,
-  time,
   toggle,
 }

@@ -257,10 +257,10 @@ const dates = function(props, context, dependencies)
 
   const form$ = dependencies.form$
   const nullValue = dependencies.nullValue
-  const valueFormat = dependencies.valueFormat
+  const valueDateFormat = dependencies.valueDateFormat
   const value = dependencies.value
   const available = dependencies.available
-  const loadFormat = dependencies.loadFormat
+  const loadDateFormat = dependencies.loadDateFormat
 
   // =============== METHODS ===============
 

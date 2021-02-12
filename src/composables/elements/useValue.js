@@ -228,12 +228,14 @@ const date = function(props, context, dependencies)
 
 const dates = function(props, context, dependencies)
 {
+  const {
+    currentValue,
+    previousValue
+  } = date(props, context, dependencies)
+
   // ============ DEPENDENCIES =============
 
-  const valueFormat = dependencies.valueFormat
-  const {
-    currentValue, previousValue
-  } = date(props, context, dependencies)
+  const valueDateFormat = dependencies.valueDateFormat
 
   // ============== COMPUTED ===============
 

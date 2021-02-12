@@ -85,4 +85,52 @@ const base = function(props, context, dependencies)
   }
 }
 
+const dates = function(props, context, dependencies)
+{
+  const {
+    displayFormat,
+    valueFormat,
+    loadFormat,
+  } = toRefs(props)
+
+  // ============ DEPENDENCIES =============
+
+  const form$ = dependencies.form$
+
+  // =============== PRIVATE ===============
+
+  /**
+   * 
+   * 
+   * @private
+   */
+  const defaultFormat = computed(() => {
+    return form$.value.__(`laraform.dateFormats.date`)
+  })
+
+  // ============== COMPUTED ===============
+
+  const displayDateFormat = computed(() => {
+    return displayFormat.value !== null ? displayFormat.value : defaultFormat.value
+  })
+
+  const valueDateFormat = computed(() => {
+    return valueFormat.value !== null ? valueFormat.value : defaultFormat.value
+  })
+
+  const loadDateFormat = computed(() => {
+    return loadFormat.value !== null ? loadFormat.value : defaultFormat.value
+  })
+
+  return {
+    displayDateFormat,
+    valueDateFormat,
+    loadDateFormat,
+  }
+}
+
+export {
+  dates,
+}
+
 export default base
