@@ -2627,6 +2627,7 @@ export default {
       "input",
       "nullValue",
       "path",
+      "theme",
       "validation",
       "value"
     ],
@@ -2640,13 +2641,6 @@ export default {
         "types": [
           "string",
           "number"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object"
         ]
       },
       "type": {
@@ -2712,7 +2706,7 @@ export default {
           "object"
         ]
       },
-      "displayError": {
+      "meta": {
         "required": "false",
         "types": [
           "boolean"
@@ -3232,111 +3226,6 @@ export default {
         "required": "false",
         "types": [
           "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      }
-    }
-  },
-  "meta": {
-    "features": [
-      "baseElement",
-      "conditions",
-      "data",
-      "default",
-      "empty",
-      "events",
-      "form$",
-      "genericName",
-      "nullValue",
-      "path",
-      "validation",
-      "value"
-    ],
-    "slots": [],
-    "events": [
-      "change"
-    ],
-    "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object"
-        ]
-      },
-      "type": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
-        ]
-      },
-      "default": {
-        "required": "false",
-        "types": [
-          "string",
-          "number"
         ]
       },
       "rules": {

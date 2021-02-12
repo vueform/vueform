@@ -26,7 +26,6 @@ import GroupElement from './components/elements/GroupElement'
 import HiddenElement from './components/elements/HiddenElement'
 import ListElement from './components/elements/ListElement'
 import LocationElement from './components/elements/LocationElement'
-import MetaElement from './components/elements/MetaElement'
 import MultifileElement from './components/elements/MultifileElement'
 import MultiselectElement from './components/elements/MultiselectElement'
 import ObjectElement from './components/elements/ObjectElement'
@@ -100,7 +99,6 @@ const elements = {
   HiddenElement,
   ListElement,
   LocationElement,
-  MetaElement,
   MultifileElement,
   MultiselectElement,
   ObjectElement,

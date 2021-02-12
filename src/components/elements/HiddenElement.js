@@ -25,11 +25,6 @@ export default {
       required: true,
       type: [String, Number],
     },
-    layout: {
-      required: false,
-      type: [String, Object],
-      default: 'ElementLayout'
-    },
     type: {
       required: false,
       type: [String],
@@ -80,10 +75,10 @@ export default {
       type: [Object],
       default: () => ({})
     },
-    displayError: {
+    meta: {
       required: false,
       type: [Boolean],
-      default: true
+      default: false
     },
     onChange: {
       required: false,
