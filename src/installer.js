@@ -19,7 +19,6 @@ import CheckboxElement from './components/elements/CheckboxElement'
 import CheckboxgroupElement from './components/elements/CheckboxgroupElement'
 import DateElement from './components/elements/DateElement'
 import DatesElement from './components/elements/DatesElement'
-import DatetimeElement from './components/elements/DatetimeElement'
 import FileElement from './components/elements/FileElement'
 import GalleryElement from './components/elements/GalleryElement'
 import GroupElement from './components/elements/GroupElement'
@@ -37,7 +36,6 @@ import StaticElement from './components/elements/StaticElement'
 import TagsElement from './components/elements/TagsElement'
 import TextareaElement from './components/elements/TextareaElement'
 import TextElement from './components/elements/TextElement'
-import TimeElement from './components/elements/TimeElement'
 import ToggleElement from './components/elements/ToggleElement'
 import TrixElement from './components/elements/TrixElement'
 import TTextareaElement from './components/elements/TTextareaElement'
@@ -72,6 +70,9 @@ import ElementText from './components/ElementText'
 import DragAndDrop from './components/DragAndDrop'
 import InputAddon from './components/InputAddon'
 
+import Flatpickr from './components/wrappers/Flatpickr'
+import Trix from './components/wrappers/Trix'
+
 import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
 import FileSlotProgress from './components/elements/slots/FileSlotProgress'
 import FileSlotPreview from './components/elements/slots/FileSlotPreview'
@@ -92,7 +93,6 @@ const elements = {
   CheckboxgroupElement,
   DateElement,
   DatesElement,
-  DatetimeElement,
   FileElement,
   GalleryElement,
   GroupElement,
@@ -110,7 +110,6 @@ const elements = {
   TagsElement,
   TextareaElement,
   TextElement,
-  TimeElement,
   ToggleElement,
   TrixElement,
   TTextareaElement,
@@ -146,6 +145,9 @@ const components = {
   ElementText,
   DragAndDrop,
   InputAddon,
+
+  Flatpickr,
+  Trix,
 
   CheckboxgroupSlotCheckbox,
   FileSlotProgress,

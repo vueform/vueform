@@ -161,8 +161,6 @@ const base = function(props, context, dependencies, options = {})
 const date = function(props, context, dependencies)
 {
   const {
-    submit,
-    formatData,
     formatLoad,
   } = toRefs(props)
 
@@ -182,9 +180,9 @@ const date = function(props, context, dependencies)
         return
       }
 
-      checkDateFormat(valueFormat.value, val)
+      checkDateFormat(valueDateFormat.value, val)
 
-      value.value = val instanceof Date ? val : moment(val, valueFormat.value).toDate()
+      value.value = val instanceof Date ? val : moment(val, valueDateFormat.value).toDate()
     }
   })
 
@@ -192,10 +190,10 @@ const date = function(props, context, dependencies)
 
   const form$ = dependencies.form$
   const nullValue = dependencies.nullValue
-  const valueFormat = dependencies.valueFormat
   const value = dependencies.value
   const available = dependencies.available
-  const loadFormat = dependencies.loadFormat
+  const valueDateFormat = dependencies.valueDateFormat
+  const loadDateFormat = dependencies.loadDateFormat
 
   // =============== METHODS ===============
 
@@ -207,18 +205,15 @@ const date = function(props, context, dependencies)
       return
     }
 
-    checkDateFormat(loadFormat.value, formatted)
+    checkDateFormat(loadDateFormat.value, formatted)
 
-    value.value = formatted instanceof Date ? formatted : moment(formatted, loadFormat.value).toDate()
+    value.value = formatted instanceof Date ? formatted : moment(formatted, loadDateFormat.value).toDate()
   }
 
   return {
     data,
     filtered,
     changed,
-    formatData,
-    formatLoad,
-    submit,
     load,
     update,
     updated,
@@ -251,9 +246,9 @@ const dates = function(props, context, dependencies)
       }
 
       value.value = _.map(val, (v) => {
-        checkDateFormat(valueFormat.value, v)
+        checkDateFormat(valueDateFormat.value, v)
 
-        return v instanceof Date ? v : moment(v, valueFormat.value).toDate()
+        return v instanceof Date ? v : moment(v, valueDateFormat.value).toDate()
       })
     }
   })
@@ -286,9 +281,9 @@ const dates = function(props, context, dependencies)
     }
 
     value.value = _.map(formatted, (v) => {
-      checkDateFormat(loadFormat.value, v)
+      checkDateFormat(loadDateFormat.value, v)
 
-      return v instanceof Date ? v : moment(v, loadFormat.value).toDate()
+      return v instanceof Date ? v : moment(v, loadDateFormat.value).toDate()
     })
   }
 

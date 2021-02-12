@@ -18,6 +18,7 @@ import useSlots from './../../composables/elements/useSlots'
 import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
+import useDateFormat from './../../composables/elements/useDateFormat'
 
 import { date as useValue } from './../../composables/elements/useValue'
 import { date as useData } from './../../composables/elements/useData'
@@ -136,13 +137,33 @@ export default {
     },
     valueFormat: {
       required: false,
-      type: [String],
-      default: 'YY-MM-DD'
+      type: [String, Boolean],
+      default: null
     },
     loadFormat: {
       required: false,
-      type: [String],
-      default: 'YY-MM-DD'
+      type: [String, Boolean],
+      default: null
+    },
+    date: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    time: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    seconds: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    hour24: {
+      required: false,
+      type: [Boolean],
+      default: true
     },
     min: {
       required: false,
@@ -223,6 +244,10 @@ export default {
     const path = usePath(props, context)
     const disabled = useDisabled(props, context)
     const nullValue = useNullValue(props, context)
+    
+    const dateFormat = useDateFormat(props, context, {
+      form$: form$.form$
+    })
 
     const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
@@ -231,18 +256,20 @@ export default {
     const options = useOptions(props, context, {
       form$: form$.form$,
       isDisabled: disabled.isDisabled,
+      valueDateFormat: dateFormat.valueDateFormat,
+      displayDateFormat: dateFormat.displayDateFormat,
     })
 
     const default_ = useDefault(props, context, {
       form$: form$.form$,
       nullValue: nullValue.nullValue,
-      valueFormat: options.valueFormat,
+      valueDateFormat: dateFormat.valueDateFormat,
     })
 
     const value = useValue(props, context, {
       nullValue: nullValue.nullValue,
       defaultValue: default_.defaultValue,
-      valueFormat: options.valueFormat,
+      valueDateFormat: dateFormat.valueDateFormat,
     })
 
     const conditions = useConditions(props, context, {
@@ -276,8 +303,8 @@ export default {
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
       dirt: validation.dirt,
-      valueFormat: options.valueFormat,
-      loadFormat: options.loadFormat,
+      valueDateFormat: dateFormat.valueDateFormat,
+      loadDateFormat: dateFormat.loadDateFormat,
     })
 
     const empty = useEmpty(props, context, {
@@ -362,6 +389,7 @@ export default {
       ...nullValue,
       ...handleChange,
       ...options,
+      ...dateFormat,
     }
   } 
 }

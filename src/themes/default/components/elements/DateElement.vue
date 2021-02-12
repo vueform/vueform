@@ -9,9 +9,9 @@
         :visible="!empty"
       />
       
-      <Flatpick
+      <Flatpickr
         :value="model"
-        :options="options"
+        :options="fieldOptions"
         :id="fieldId"
         :class="classes.input"
         :placeholder="placeholder"

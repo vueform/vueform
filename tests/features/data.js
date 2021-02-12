@@ -492,7 +492,7 @@ export const onCreated = function (elementType, elementName, options) {
     expect(el.previousValue).toStrictEqual(el.nullValue)
   })
 
-  it('should set `currentValue` to "default" on mounted', async () => {
+  it('should set `currentValue` to "defaultValue" on mounted', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -504,6 +504,6 @@ export const onCreated = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.currentValue).toStrictEqual(el.default)
+    expect(el.currentValue).toStrictEqual(el.defaultValue)
   })
 }

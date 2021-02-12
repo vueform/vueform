@@ -162,13 +162,14 @@ const checkboxgroup = function(props, context, dependencies)
 
 const date = function(props, context, dependencies)
 {
-  // ============ DEPENDENCIES =============
-
-  const valueFormat = dependencies.valueFormat
-  const nullValue = dependencies.nullValue
   const {
     currentValue, previousValue
   } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES =============
+
+  const nullValue = dependencies.nullValue
+  const valueDateFormat = dependencies.valueDateFormat
 
   // ============== COMPUTED ===============
 
@@ -199,11 +200,11 @@ const date = function(props, context, dependencies)
   const value = computed({
     get() {
       // If model is empty or no need to convert return Date instance
-      if (!model.value || valueFormat.value === false) {
+      if (!model.value || valueDateFormat.value === false) {
         return model.value
       }
 
-      return moment(model.value).format(valueFormat.value)
+      return moment(model.value).format(valueDateFormat.value)
     },
     set(val) {
       if (_.isEmpty(val) && !(val instanceof Date)) {
@@ -211,9 +212,9 @@ const date = function(props, context, dependencies)
         return
       }
 
-      checkDateFormat(valueFormat.value, val)
+      checkDateFormat(valueDateFormat.value, val)
 
-      model.value = val instanceof Date ? val : moment(val, valueFormat.value, true).toDate()
+      model.value = val instanceof Date ? val : moment(val, valueDateFormat.value, true).toDate()
     }
   })
 
@@ -269,12 +270,12 @@ const dates = function(props, context, dependencies)
    */
   const value = computed({
     get() {
-      if (valueFormat.value === false) {
+      if (valueDateFormat.value === false) {
         return model.value
       }
 
       return _.map(model.value, (val) => {
-        return moment(val).format(valueFormat.value)
+        return moment(val).format(valueDateFormat.value)
       })
     },
     set(val) {
@@ -283,9 +284,9 @@ const dates = function(props, context, dependencies)
       }
 
       model.value = _.map(val, (v) => {
-        checkDateFormat(valueFormat.value, v)
+        checkDateFormat(valueDateFormat.value, v)
 
-        return v instanceof Date ? v : moment(v, valueFormat.value, true).toDate()
+        return v instanceof Date ? v : moment(v, valueDateFormat.value, true).toDate()
       })
     }
   })

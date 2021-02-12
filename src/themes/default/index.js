@@ -36,7 +36,6 @@ import CheckboxElement from './components/elements/CheckboxElement'
 import CheckboxgroupElement from './components/elements/CheckboxgroupElement'
 import DateElement from './components/elements/DateElement'
 import DatesElement from './components/elements/DatesElement'
-import DatetimeElement from './components/elements/DatetimeElement'
 import FileElement from './components/elements/FileElement'
 import GalleryElement from './components/elements/GalleryElement'
 import GroupElement from './components/elements/GroupElement'
@@ -54,7 +53,6 @@ import StaticElement from './components/elements/StaticElement'
 import TagsElement from './components/elements/TagsElement'
 import TextareaElement from './components/elements/TextareaElement'
 import TextElement from './components/elements/TextElement'
-import TimeElement from './components/elements/TimeElement'
 import ToggleElement from './components/elements/ToggleElement'
 import TrixElement from './components/elements/TrixElement'
 import TTextareaElement from './components/elements/TTextareaElement'
@@ -132,7 +130,6 @@ export default {
     CheckboxgroupElement,
     DateElement,
     DatesElement,
-    DatetimeElement,
     FileElement,
     GroupElement,
     GalleryElement,
@@ -150,7 +147,6 @@ export default {
     TagsElement,
     TextareaElement,
     TextElement,
-    TimeElement,
     ToggleElement,
     TrixElement,
     TTextareaElement,

@@ -4,19 +4,22 @@ import { computed, toRefs, ref } from 'composition-api'
 const date = function(props, context, dependencies)
 {
   const { 
-    displayFormat,
-    valueFormat,
     disables,
     min,
     max,
     options,
     readonly,
+    hour24,
+    seconds,
+    date,
+    time,
    } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
-  const form$ = dependencies.form$
   const isDisabled = dependencies.isDisabled
+  const displayDateFormat = dependencies.displayDateFormat
+  const valueDateFormat = dependencies.valueDateFormat
 
   // ============== COMPUTED ==============
 
@@ -33,9 +36,9 @@ const date = function(props, context, dependencies)
     }
 
     return _.map(disables.value, (disabledDate) => {
-      checkDateFormat(valueFormat.value, disabledDate)
+      checkDateFormat(valueDateFormat.value, disabledDate)
 
-      return disabledDate instanceof Date ? disabledDate : moment(disabledDate, valueFormat.value, true).toDate()
+      return disabledDate instanceof Date ? disabledDate : moment(disabledDate, valueDateFormat.value, true).toDate()
     })
   })
 
@@ -47,13 +50,13 @@ const date = function(props, context, dependencies)
    * @option
    */
   const minDate = computed(() => {
-    if (min.value === undefined) {
+    if (!min.value) {
       return null
     }
 
-    checkDateFormat(valueFormat.value, min.value)
+    checkDateFormat(valueDateFormat.value, min.value)
 
-    return min.value instanceof Date ? min.value : moment(min.value, valueFormat.value, true).toDate()
+    return min.value instanceof Date ? min.value : moment(min.value, valueDateFormat.value, true).toDate()
   })
 
   /**
@@ -64,13 +67,13 @@ const date = function(props, context, dependencies)
    * @option
    */
   const maxDate = computed(() => {
-    if (max.value === undefined) {
+    if (!max.value) {
       return null
     }
 
-    checkDateFormat(valueFormat.value, max.value)
+    checkDateFormat(valueDateFormat.value, max.value)
 
-    return max.value instanceof Date ? max.value : moment(max.value, valueFormat.value, true).toDate()
+    return max.value instanceof Date ? max.value : moment(max.value, valueDateFormat.value, true).toDate()
   })
 
   /**
@@ -81,11 +84,15 @@ const date = function(props, context, dependencies)
   */
   const defaultOptions = computed(() => {
     return {
-      dateFormat: displayFormat.value || form$.value.__('laraform.elements.date.displayFormat'),
-      minDate: min.value,
-      maxDate: max.value,
+      dateFormat: displayDateFormat.value,
+      minDate: minDate.value,
+      maxDate: maxDate.value,
       disable: disables.value,
       clickOpens: !isDisabled.value && !readonly.value,
+      time_24hr: hour24.value,
+      enableTime: time.value,
+      enableSeconds: seconds.value,
+      noCalendar: !date.value,
     }
   })
 
@@ -160,7 +167,7 @@ const dates = function(props, context, dependencies)
   const defaultOptions = computed(() => {
     return {
       mode: mode.value,
-      dateFormat: displayFormat.value,
+      dateFormat: displayDateFormat.value,
       minDate: minDate.value,
       maxDate: maxDate.value,
       disable: disabledDates.value,
@@ -242,7 +249,7 @@ const datetime = function(props, context, dependencies)
     let displayFormat
 
     return {
-      dateFormat: displayFormat.value || (seconds.value
+      dateFormat: displayDateFormat.value || (seconds.value
         ? form$.value.__('laraform.elements.datetime.secondsDisplayFormat')
         : form$.value.__('laraform.elements.datetime.displayFormat')
       ),
@@ -551,7 +558,7 @@ const time = function(props, context, dependencies)
   */
   const defaultOptions = computed(() => {
     return {
-      dateFormat: displayFormat.value || (seconds.value
+      dateFormat: displayDateFormat.value || (seconds.value
         ? form$.value.__('laraform.elements.time.secondsDisplayFormat')
         : form$.value.__('laraform.elements.time.displayFormat')
       ),
@@ -563,6 +570,8 @@ const time = function(props, context, dependencies)
       enableTime: true,
       enableSeconds: seconds.value,
       noCalendar: true,
+
+      
     }
   })
 

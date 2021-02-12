@@ -1005,6 +1005,7 @@ export default {
       "components",
       "conditions",
       "data_date",
+      "dateFormat",
       "default_date",
       "disabled",
       "empty",
@@ -1173,13 +1174,33 @@ export default {
       "valueFormat": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "boolean"
         ]
       },
       "loadFormat": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "boolean"
+        ]
+      },
+      "date": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "time": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "seconds": {
+        "required": "false",
+        "types": [
+          "boolean"
         ]
       },
       "min": {
@@ -1466,293 +1487,6 @@ export default {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "min": {
-        "required": "false",
-        "types": [
-          "string",
-          "Date"
-        ]
-      },
-      "max": {
-        "required": "false",
-        "types": [
-          "string",
-          "Date"
-        ]
-      },
-      "disables": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "options": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "placeholder": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "readonly": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      }
-    }
-  },
-  "datetime": {
-    "features": [
-      "baseElement",
-      "classes",
-      "columns",
-      "components",
-      "conditions",
-      "data_date",
-      "default_date",
-      "disabled",
-      "empty",
-      "events",
-      "fieldId",
-      "form$",
-      "genericName",
-      "handleChange_date",
-      "input",
-      "label",
-      "nullValue",
-      "options_datetime",
-      "path",
-      "slots",
-      "theme",
-      "validation",
-      "value_date",
-      "view"
-    ],
-    "slots": [
-      "label",
-      "info",
-      "description",
-      "error",
-      "message",
-      "before",
-      "between",
-      "after"
-    ],
-    "events": [
-      "change"
-    ],
-    "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object"
-        ]
-      },
-      "type": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
-        ]
-      },
-      "default": {
-        "required": "false",
-        "types": [
-          "string",
-          "Date"
-        ]
-      },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "disabled": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "floating": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "id": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "displayFormat": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "valueFormat": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "loadFormat": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "seconds": {
-        "required": "false",
-        "types": [
-          "boolean"
         ]
       },
       "min": {
@@ -3226,6 +2960,111 @@ export default {
         "required": "false",
         "types": [
           "object"
+        ]
+      },
+      "rules": {
+        "required": "false",
+        "types": [
+          "array",
+          "string",
+          "object"
+        ]
+      },
+      "messages": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "displayError": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      }
+    }
+  },
+  "meta": {
+    "features": [
+      "baseElement",
+      "conditions",
+      "data",
+      "default",
+      "empty",
+      "events",
+      "form$",
+      "genericName",
+      "nullValue",
+      "path",
+      "validation",
+      "value"
+    ],
+    "slots": [],
+    "events": [
+      "change"
+    ],
+    "props": {
+      "name": {
+        "required": "true",
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "layout": {
+        "required": "false",
+        "types": [
+          "string",
+          "object"
+        ]
+      },
+      "type": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "conditions": {
+        "required": "false",
+        "types": [
+          "array"
+        ]
+      },
+      "formatData": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "formatLoad": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "submit": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "debounce": {
+        "required": "false",
+        "types": [
+          "number"
+        ]
+      },
+      "default": {
+        "required": "false",
+        "types": [
+          "string",
+          "number"
         ]
       },
       "rules": {
@@ -6095,292 +5934,6 @@ export default {
           "function"
         ],
         "default": "\"ElementLayout\""
-      }
-    }
-  },
-  "time": {
-    "features": [
-      "baseElement",
-      "classes",
-      "columns",
-      "components",
-      "conditions",
-      "data_date",
-      "default_date",
-      "disabled",
-      "empty",
-      "events",
-      "form$",
-      "genericName",
-      "handleChange_date",
-      "input",
-      "label",
-      "nullValue",
-      "options_time",
-      "path",
-      "slots",
-      "theme",
-      "validation",
-      "value_date",
-      "view"
-    ],
-    "slots": [
-      "label",
-      "info",
-      "description",
-      "error",
-      "message",
-      "before",
-      "between",
-      "after"
-    ],
-    "events": [
-      "change"
-    ],
-    "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object"
-        ]
-      },
-      "type": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
-        ]
-      },
-      "default": {
-        "required": "false",
-        "types": [
-          "string",
-          "Date"
-        ]
-      },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "disabled": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "floating": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "id": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "displayFormat": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "valueFormat": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "loadFormat": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "seconds": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "min": {
-        "required": "false",
-        "types": [
-          "string",
-          "Date"
-        ]
-      },
-      "max": {
-        "required": "false",
-        "types": [
-          "string",
-          "Date"
-        ]
-      },
-      "disables": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "options": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "placeholder": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "readonly": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
       }
     }
   },

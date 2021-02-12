@@ -30,13 +30,13 @@ const base = function(props, context, dependencies)
 const date = function(props, context, dependencies)
 {
   const {
-    default: default_
+    default: default_,
   } = toRefs(props)
 
   // ============ DEPENDENCIES =============
 
   const nullValue = dependencies.nullValue
-  const valueFormat = dependencies.valueFormat
+  const valueDateFormat = dependencies.valueDateFormat
 
   // ============== COMPUTED ===============
 
@@ -53,9 +53,9 @@ const date = function(props, context, dependencies)
       return val
     }
 
-    checkDateFormat(valueFormat.value, val)
+    checkDateFormat(valueDateFormat.value, val)
 
-    return val instanceof Date ? val : moment(val, valueFormat.value, true).toDate()
+    return val instanceof Date ? val : moment(val, valueDateFormat.value, true).toDate()
   })
 
   return {
@@ -90,9 +90,9 @@ const dates = function(props, context, dependencies)
     }
 
     return _.map(val, (v) => {
-      checkDateFormat(valueFormat.value, v)
+      checkDateFormat(valueDateFormat.value, v)
 
-      return v instanceof Date ? v : moment(v, valueFormat.value, true).toDate()
+      return v instanceof Date ? v : moment(v, valueDateFormat.value, true).toDate()
     })
   })
 

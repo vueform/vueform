@@ -1,4 +1,5 @@
 import { createForm, testPropDefault } from 'test-helpers'
+import { nextTick } from 'composition-api'
 
 const value = (options) => {
   return _.isArray(options.value) ? options.value[0] : options.value
@@ -8,27 +9,7 @@ const value2 = (options) => {
   return _.isArray(options.value2) ? options.value2[0] : options.value2
 }
 
-export const displayFormat = function (elementType, elementName, options) {
-  let form = createForm({
-    schema: {
-      el: {
-        type: elementType
-      }
-    }
-  })
-
-  testPropDefault(it, elementType, 'displayFormat', form.vm.__('laraform.elements.date.displayFormat'), 'DD-MM-YYYY')
-}
-
-export const valueFormat = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'valueFormat', 'YYYY-MM-DD', 'DD-MM-YYYY')
-}
-
-export const loadFormat = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'loadFormat', 'YYYY-MM-DD', 'DD-MM-YYYY')
-}
-
-export const disables = function (elementType, elementName, options) {
+export const disabledDates = function (elementType, elementName, options) {
   it('should have "[]" as `disables` by default', () => {
     let form = createForm({
       schema: {
@@ -40,10 +21,10 @@ export const disables = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.disables).toStrictEqual([])
+    expect(el.disabledDates).toStrictEqual([])
   })
 
-  it('should set `disables` from schema', () => {
+  it('should set `disabledDates` from schema', () => {
     let form = createForm({
       schema: {
         el: {
@@ -56,35 +37,15 @@ export const disables = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.disables).toStrictEqual([
+    expect(el.disabledDates).toStrictEqual([
       moment(value(options), options.valueFormat).toDate(),
       moment(value2(options), options.valueFormat2).toDate(),
     ])
   })
-
-  it('should set `disables` to schema', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          valueFormat: options.valueFormat,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.disables = [value(options), moment(value2(options), options.valueFormat2).toDate()]
-
-    expect(el.schema.disables).toStrictEqual([
-      value(options),
-      moment(value2(options), options.valueFormat2).format(options.valueFormat),
-    ])
-  })
 }
 
-export const min = function (elementType, elementName, options) {
-  it('should have "null" as `min` by default', () => {
+export const minDate = function (elementType, elementName, options) {
+  it('should have "null" as `minDate` by default', () => {
     let form = createForm({
       schema: {
         el: {
@@ -95,10 +56,10 @@ export const min = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.min).toBe(null)
+    expect(el.minDate).toBe(null)
   })
 
-  it('should set `min` from schema', () => {
+  it('should set `minDate` from schema', () => {
     let dateObj = moment(value(options), options.valueFormat).toDate()
 
     let form = createForm({
@@ -113,10 +74,10 @@ export const min = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.min).toStrictEqual(dateObj)
+    expect(el.minDate).toStrictEqual(dateObj)
   })
 
-  it('should set `min` as a string from schema', () => {
+  it('should set `minDate` as a string from schema', () => {
     let date = value(options)
 
     let form = createForm({
@@ -131,30 +92,11 @@ export const min = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.min).toStrictEqual(moment(date, options.valueFormat).toDate())
-  })
-
-  it('should set `min` to schema', () => {
-    let date = value(options)
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          valueFormat: options.valueFormat,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.min = date
-
-    expect(el.schema.min).toBe(date)
+    expect(el.minDate).toStrictEqual(moment(date, options.valueFormat).toDate())
   })
 }
 
-export const max = function (elementType, elementName, options) {
+export const maxDate = function (elementType, elementName, options) {
   it('should have "null" as `max` by default', () => {
     let form = createForm({
       schema: {
@@ -166,10 +108,10 @@ export const max = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.max).toBe(null)
+    expect(el.maxDate).toBe(null)
   })
 
-  it('should set `max` from schema', () => {
+  it('should set `maxDate` from schema', () => {
     let dateObj = moment(value(options), options.valueFormat).toDate()
 
     let form = createForm({
@@ -184,10 +126,10 @@ export const max = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.max).toStrictEqual(dateObj)
+    expect(el.maxDate).toStrictEqual(dateObj)
   })
 
-  it('should set `max` as a string from schema', () => {
+  it('should set `maxDate` as a string from schema', () => {
     let date = value(options)
 
     let form = createForm({
@@ -202,31 +144,12 @@ export const max = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.max).toStrictEqual(moment(date, options.valueFormat).toDate())
-  })
-
-  it('should set `max` to schema', () => {
-    let date = value(options)
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          valueFormat: options.valueFormat,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.max = date
-
-    expect(el.schema.max).toBe(date)
+    expect(el.maxDate).toStrictEqual(moment(date, options.valueFormat).toDate())
   })
 }
 
-export const options = function (elementType, elementName, options) {
-  it('should have default `options`', () => {
+export const fieldOptions = function (elementType, elementName, options) {
+  it('should have default `fieldOptions`', () => {
     let form = createForm({
       schema: {
         el: {
@@ -237,16 +160,20 @@ export const options = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual({ 
-      dateFormat: el.displayFormat,
-      minDate: el.min,
-      maxDate: el.max,
+    expect(el.fieldOptions).toStrictEqual({ 
+      dateFormat: el.displayDateFormat,
+      minDate: el.minDate,
+      maxDate: el.maxDate,
       disable: el.disables,
-      clickOpens: !el.disabled && !el.readonly,
+      clickOpens: !el.isDisabled && !el.readonly,
+      time_24hr: el.hour24,
+      enableTime: el.time,
+      enableSeconds: el.seconds,
+      noCalendar: !el.date,
     })
   })
   
-  it('should extend `options` from schema', () => {
+  it('should extend `fieldOptions` from schema', () => {
     let form = createForm({
       schema: {
         el: {
@@ -260,32 +187,16 @@ export const options = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual({ 
-      dateFormat: el.displayFormat,
-      minDate: el.min,
-      maxDate: el.max,
+    expect(el.fieldOptions).toStrictEqual({ 
+      dateFormat: el.displayDateFormat,
+      minDate: el.minDate,
+      maxDate: el.maxDate,
       disable: el.disables,
-      clickOpens: !el.disabled && !el.readonly,
-      custom: 'option'
-    })
-  })
-  
-  it('should set `options` to schema', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.options = {
-      custom: 'option'
-    }
-
-    expect(el.schema.options).toStrictEqual({
+      clickOpens: !el.isDisabled && !el.readonly,
+      time_24hr: el.hour24,
+      enableTime: el.time,
+      enableSeconds: el.seconds,
+      noCalendar: !el.date,
       custom: 'option'
     })
   })
@@ -303,6 +214,6 @@ export const options = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let Flatpickr = findAllComponents(elWrapper, { name: 'Flatpickr' }).at(0)
     
-    expect(Flatpickr.props('options')).toStrictEqual(el.options)
+    expect(Flatpickr.props('options')).toStrictEqual(el.fieldOptions)
   })
 }

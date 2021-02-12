@@ -1,5 +1,4 @@
 import { ref, watch, onMounted, toRefs } from 'composition-api'
-import { trix } from '../../composables/elements/features/useData'
 import useElementComponent from './../../composables/useElementComponent'
 
 export default {

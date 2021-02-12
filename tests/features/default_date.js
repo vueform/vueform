@@ -1,6 +1,7 @@
 import { testPropDefault, createForm } from 'test-helpers'
+import { nextTick } from 'composition-api'
 
-export const default_ = function (elementType, elementName, options) {
+export const defaultValue = function (elementType, elementName, options) {
   it('should have "null" as `default` by default', () => {
     let form = createForm({
       schema: {
@@ -12,24 +13,7 @@ export const default_ = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.default).toBe(null)
-  })
-
-  it('should set `default` to schema', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          valueFormat: options.valueFormat,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.default = options.value
-
-    expect(el.schema.default).toBe(options.value)
+    expect(el.defaultValue).toBe(null)
   })
 
   it('should convert string date to date object according to valueFormat in `default`', () => {
@@ -45,7 +29,7 @@ export const default_ = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.default).toStrictEqual(moment(options.value, options.valueFormat).toDate())
+    expect(el.defaultValue).toStrictEqual(moment(options.value, options.valueFormat).toDate())
   })
 
   it('should return date object in `default`', () => {
@@ -60,10 +44,10 @@ export const default_ = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.default).toStrictEqual(moment(options.value, options.valueFormat).toDate())
+    expect(el.defaultValue).toStrictEqual(moment(options.value, options.valueFormat).toDate())
   })
 
-  it('should throw an error if `default` is not provided according to valueFormat', () => {
+  it('should throw an error if `default` is not provided according to valueFormat', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -75,14 +59,26 @@ export const default_ = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(() => {
-      el.default = options.value
-      el.default
-    }).toThrowError()
+    let errors = 0
 
-    expect(() => {
-      el.default = options.value2
-      el.default
-    }).not.toThrowError()
+    try {
+      el.$set(form.vm.schema.el, 'default', options.value)
+      await nextTick()
+      el.defaultValue
+    } catch (e) {
+      errors++
+    }
+
+    expect(errors).toBe(1)
+
+    try {
+      el.$set(form.vm.schema.el, 'default', options.value2)
+      await nextTick()
+      el.defaultValue
+    } catch (e) {
+      errors++
+    }
+
+    expect(errors).toBe(1)
   })
 }
