@@ -13,7 +13,7 @@ export const currentValue = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.currentValue).toStrictEqual(el.default || null)
+    expect(el.currentValue).toStrictEqual(el.defaultValue || null)
   })
 }
 

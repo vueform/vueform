@@ -59,6 +59,10 @@ const base = function(props, context, dependencies)
 const multifile = function(props, context, dependencies)
 {
   const {
+    accept
+  } = toRefs(props)
+  
+  const {
     canDrop
   } = base(props, context, dependencies)
 
@@ -68,7 +72,6 @@ const multifile = function(props, context, dependencies)
   const isDisabled = dependencies.isDisabled
   const isObject = dependencies.isObject
   const storeFileName = dependencies.storeFileName
-  const accept = dependencies.accept
 
   // =============== METHODS ==============
 

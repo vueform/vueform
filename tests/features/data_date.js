@@ -266,7 +266,7 @@ export const reset = function (elementType, elementName, options) {
     el.update(options.value)
     el.reset()
 
-    expect(onChangeMock).toHaveBeenCalledWith(el.default, el.previousValue)
+    expect(onChangeMock).toHaveBeenCalledWith(el.defaultValue, el.previousValue)
   })
 
   it('should not trigger "change" on `reset` if value has not changed', async () => {

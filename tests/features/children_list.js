@@ -1,5 +1,6 @@
 import { createForm, prototypeChildType } from 'test-helpers'
 import asyncForEach from './../../src/utils/asyncForEach'
+import { nextTick } from 'composition-api'
 
 export const children$Array = function (elementType, elementName, options) {
   const prototypes = options.prototypes
@@ -25,12 +26,16 @@ export const children$Array = function (elementType, elementName, options) {
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            initial: 1,
+            initial: 0,
           }, prototype)
         }
       })
 
       let el = form.vm.el$('el')
+
+      el.add()
+
+      await nextTick()
 
       expect(el.children$Array.length).toBe(1)
       expect(el.children$Array[0].type).toStrictEqual(prototypeChildType(prototype))
@@ -62,12 +67,16 @@ export const children$ = function (elementType, elementName, options) {
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            initial: 1,
+            initial: 0,
           }, prototype)
         }
       })
 
       let el = form.vm.el$('el')
+
+      el.add()
+
+      await nextTick()
 
       expect(_.keys(el.children$).length).toBe(1)
       expect(el.children$[0].type).toStrictEqual(prototypeChildType(prototype))

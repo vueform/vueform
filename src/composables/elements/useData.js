@@ -536,11 +536,11 @@ const list = function(props, context, dependencies, options)
   * @option
   */
   const initialInstances = computed(() => {
-    if (defaultValue.value && defaultValue.value.length > (initial.value || defaultInitial)) {
+    if (defaultValue.value && defaultValue.value.length > (initial !== undefined ? initial.value : defaultInitial)) {
       return defaultValue.value.length
     }
 
-    return initial.value !== undefined ? initial.value : defaultInitial
+    return initial && initial.value !== undefined ? initial.value : defaultInitial
   })
 
   /**

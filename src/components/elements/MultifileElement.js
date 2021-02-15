@@ -213,6 +213,11 @@ export default {
       type: [Boolean],
       default: true
     },
+    object: {
+      required: false,
+      type: [Boolean],
+      default: null
+    },
     onChange: {
       required: false,
       type: [Function],
@@ -269,7 +274,7 @@ export default {
     })
 
     const value = useValue(props, context, {
-      children$: children.children$,
+      children$Array: children.children$Array,
       nullValue: nullValue.nullValue,
       defaultValue: default_.defaultValue,
     })

@@ -843,12 +843,16 @@ export const clear = function (elementType, elementName, options) {
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            initial: 3,
+            initial: 0,
           }, prototype)
         }
       })
 
       let el = form.vm.el$('el')
+
+      el.add()
+      el.add()
+      el.add()
 
       await nextTick()
       

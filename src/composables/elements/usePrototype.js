@@ -101,7 +101,8 @@ const multifile = function(props, context, dependencies, options = {})
         // Order
         storeOrder.value ? {
           [storeOrder.value]: {
-            type: 'meta'
+            type: 'hidden',
+            meta: true
           }
         } : {},
 

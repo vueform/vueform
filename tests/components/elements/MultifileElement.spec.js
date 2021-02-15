@@ -4,22 +4,26 @@ export default runElementTests('multifile', {
   default: {
     initial: 0,
     fileType: 'file',
+    childName: 'file',
     prototypes: [
       {
         auto: false,
-        element: {
-          type: 'file'
-        }
+        // Required because of tests
+        // element: {
+        //   type: 'file'
+        // }
       },
       {
         auto: false,
-        object: {
-          schema: {
-            file: {
-              type: 'file'
-            }
-          }
-        },
+        // Required because of tests
+        object: true,
+        // object: {
+        //   schema: {
+        //     file: {
+        //       type: 'file'
+        //     }
+        //   }
+        // },
       }
     ],
     childValues: [
@@ -27,6 +31,8 @@ export default runElementTests('multifile', {
       { file: new File([''], 'filename{i}.jpg') }
     ],
     childNulls: [null, { file: null }],
+    value: [],
+    default: [],
   },
   events: {
     events: ['change', 'add', 'remove', 'sort']

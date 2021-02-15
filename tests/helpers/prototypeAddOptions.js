@@ -6,11 +6,13 @@ export default function prototypeAddOptions(prototype, options) {
       element: Object.assign({}, prototype.element, options)
     }
   }
-  else {
+  else if (typeof prototype.object !== 'boolean') {
     return {
       object: {
         schema: _.merge({}, prototype.object.schema, options)
       }
     }
+  } else {
+    return {}
   }
 }

@@ -264,7 +264,7 @@ export const reset = function (elementType, elementName, options) {
 
     el.reset()
 
-    expect(el.value).toStrictEqual(el.default)
+    expect(el.value).toStrictEqual(el.defaultValue)
   })
 
   it('should reset validators on `reset`', async () => {
@@ -306,7 +306,7 @@ export const reset = function (elementType, elementName, options) {
     el.update(value(options))
     el.reset()
 
-    expect(onChangeMock).toHaveBeenCalledWith(el.default, el.previousValue)
+    expect(onChangeMock).toHaveBeenCalledWith(el.defaultValue, el.previousValue)
   })
 
   it('should not trigger "change" on `reset` if value has not changed', async () => {

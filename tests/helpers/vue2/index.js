@@ -8,6 +8,7 @@ import prototypeChildName from './../prototypeChildName'
 import prototypeChildSchema from './../prototypeChildSchema'
 import prototypeChildType from './../prototypeChildType'
 import prototypeInputType from './../prototypeInputType'
+import prototypeWithInitial from './../prototypeWithInitial'
 import replacePrototypeValue from './../replacePrototypeValue'
 import runElementTests from './../runElementTests'
 import runFeatureTests from './../runFeatureTests'
@@ -62,6 +63,7 @@ export {
   prototypeChildSchema,
   prototypeChildType,
   prototypeInputType,
+  prototypeWithInitial,
   replacePrototypeValue,
   runElementTests,
   runFeatureTests,

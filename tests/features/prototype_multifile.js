@@ -1,21 +1,8 @@
 import { createForm, testPropDefault } from 'test-helpers'
+import { nextTick } from 'composition-api'
 
-export const auto = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'auto', true, false)
-}
-
-export const object = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'object', false, true)
-}
-
-export const file = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'file', {}, { url: '/uploads/' })
-}
-
-export const storeFile = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'storeFile', null, 'filename')
-
-  it('should have "file" as `storeFile` by default if object is true', () => {
+export const storeFileName = function (elementType, elementName, options) {
+  it('should have "file" as `storeFileName` by default if object is true', () => {
     let form = createForm({
       schema: {
         el: {
@@ -27,12 +14,8 @@ export const storeFile = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.storeFile).toBe('file')
+    expect(el.storeFileName).toBe('file')
   })
-}
-
-export const fields = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'fields', {}, { el2: { type: 'text' } })
 }
 
 export const prototype = function (elementType, elementName, options) {
@@ -169,7 +152,8 @@ export const prototype = function (elementType, elementName, options) {
           auto: el.auto,
         },
         order: {
-          type: 'meta'
+          type: 'hidden',
+          meta: true
         }
       }
     })
@@ -208,7 +192,7 @@ export const prototype = function (elementType, elementName, options) {
 }
 
 export const isObject = function (elementType, elementName, options) {
-  it('should have `isObject` true if "object" true or "storeFile" / "storeOrder" / "fields" exists', () => {
+  it('should have `isObject` true if "object" true or "storeFile" / "storeOrder" / "fields" exists', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -221,26 +205,31 @@ export const isObject = function (elementType, elementName, options) {
 
     expect(el.isObject).toBe(false)
 
-    el.object = true
+    el.$set(form.vm.schema.el, 'object', true)
+    await nextTick()
 
     expect(el.isObject).toBe(true)
 
-    el.object = false
-    el.storeFile = 'filename'
+    el.$delete(form.vm.schema.el, 'object')
+    el.$set(form.vm.schema.el, 'storeFile', 'filename')
+    await nextTick()
     
     expect(el.isObject).toBe(true)
 
-    el.storeFile = null
-    el.storeOrder = 'order'
+    el.$delete(form.vm.schema.el, 'storeFile')
+    el.$set(form.vm.schema.el, 'storeOrder', 'order')
+    await nextTick()
     
     expect(el.isObject).toBe(true)
 
-    el.storeOrder = null
-    el.fields = { child: { type: 'text' } }
+    el.$delete(form.vm.schema.el, 'storeOrder')
+    el.$set(form.vm.schema.el, 'fields', { child: { type: 'text' }})
+    await nextTick()
     
     expect(el.isObject).toBe(true)
 
-    el.fields = {}
+    el.$set(form.vm.schema.el, 'fields', {})
+    await nextTick()
 
     expect(el.isObject).toBe(false)
   })

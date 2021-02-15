@@ -2,7 +2,7 @@ import { nextTick } from 'vue'
 import { createForm } from 'test-helpers'
 import asyncForEach from './../../src/utils/asyncForEach'
 
-export { data, next, add, insert, remove, load, update, clear, reset, updated } from './data_list'
+export { data, next, add, insert, remove, load, update, clear, updated } from './data_list'
 
 export const filtered = function (elementType, elementName, options) {
   const prototypes = options.prototypes
@@ -131,6 +131,66 @@ export const filtered = function (elementType, elementName, options) {
           el: el.value
         }
       })
+    })
+  })
+}
+
+export const reset = function (elementType, elementName, options) {
+  const prototypes = options.prototypes
+
+  it('should set default instances on `reset`', async () => {
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            default: [new File([''], 'a.jpg'), new File([''], 'b.jpg'), new File([''], 'c.jpg')],
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+
+      el.add()
+      el.add()
+      
+      el.reset()
+
+      await nextTick()
+
+      expect(el.instances.length).toBe(3)
+    })
+  })
+
+  it('should trigger "change" event on `reset` if value changed', async () => {
+    let onChangeMock = jest.fn()
+
+    await asyncForEach(prototypes, async (prototype, i) => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType,
+            default: [new File([''], 'a.jpg'), new File([''], 'b.jpg'), new File([''], 'c.jpg')],
+            onChange: onChangeMock,
+          }, prototype)
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      await nextTick()
+
+      el.add()
+      el.add()
+      
+      el.reset()
+
+      await nextTick()
+      await nextTick()
+
+      expect(onChangeMock).toHaveBeenCalled()
     })
   })
 }
@@ -293,7 +353,7 @@ export const handleAdd = function (elementType, elementName, options) {
 
       expect(el.instances.length).toBe(1)
 
-      el.disabled = true
+      el.disable()
 
       el.handleAdd()
 
@@ -324,7 +384,7 @@ export const handleRemove = function (elementType, elementName, options) {
 
       expect(el.instances.length).toBe(2)
 
-      el.disabled = true
+      el.disable()
 
       el.handleRemove(1)
 

@@ -9,6 +9,9 @@ export const watcher = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          file: {
+            label: 'label'
+          }
         }
       }
     })
@@ -21,10 +24,9 @@ export const watcher = function (elementType, elementName, options) {
 
     let child = form.vm.el$('el.0')
 
-    el.file = {
-      label: 'new label'
-    }
+    el.$set(form.vm.schema.el.file, 'label', 'new label')
 
+    await nextTick()
     await nextTick()
 
     expect(child.label).toBe('new label')
@@ -36,6 +38,9 @@ export const watcher = function (elementType, elementName, options) {
         el: {
           type: elementType,
           object: true,
+          file: {
+            label: 'label'
+          }
         }
       }
     })
@@ -48,10 +53,9 @@ export const watcher = function (elementType, elementName, options) {
 
     let child = form.vm.el$('el.0.file')
 
-    el.file = {
-      label: 'new label'
-    }
+    el.$set(form.vm.schema.el.file, 'label', 'new label')
 
+    await nextTick()
     await nextTick()
 
     expect(child.label).toBe('new label')

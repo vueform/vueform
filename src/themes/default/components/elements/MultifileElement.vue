@@ -6,7 +6,7 @@
 
       <!-- Drag n drop -->
       <DragAndDrop
-        v-if="drop && canDrop && !disabled"
+        v-if="drop && canDrop && !isDisabled"
         :title="__(`laraform.elements.${type}.dndTitle`)"
         :description="__(`laraform.elements.${type}.dndDescription`)"
         @click="handleClick"
@@ -14,7 +14,7 @@
       />
       <!-- Upload button -->
       <a
-        v-else-if="!disabled"
+        v-else-if="!isDisabled"
         href=""
         :class="classes.selectButton"
         @click.prevent="handleClick"
@@ -27,17 +27,16 @@
         type="file"
         @change="handleChange"
         :accept="accept"
-        :disabled="disabled"
+        :disabled="isDisabled"
         ref="input" 
       />
 
       <div v-sortable="sortable" :class="classes.element">
-        <component
+        <component :is="component(element)"
           v-for="(element, i) in instances"
-          :is="component(element)"
-          :schema="element"
+          v-bind="element"
+          :disabled="isDisabled"
           :name="i"
-          :parent="el$"
           :embed="true"
           :key="element.key"
           @remove="remove"

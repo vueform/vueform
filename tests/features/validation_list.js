@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, prototypeChildType, prototypeAddChildOptions, prototypeChildName } from 'test-helpers'
+import { createForm, prototypeChildType, prototypeAddChildOptions, prototypeChildName, prototypeWithInitial } from 'test-helpers'
 
 import {
   dirty as baseDirty, validated as baseValidated, pending as basePending, debouncing as baseDebouncing,
@@ -17,13 +17,12 @@ export const dirty = function (elementType, elementName, options) {
   baseDirty(elementType, elementName, options)
 
   it('should be `dirty` if any of the children is dirty', async () => {
-    await asyncForEach(prototypes, async (prototype, i) => {
+    await asyncForEach([prototypes[0]], async (prototype, i) => {
       let form = createForm({
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            initial: 1,
-          }, prototype)
+          }, prototypeWithInitial(1, options, i))
         }
       })
 
@@ -33,7 +32,7 @@ export const dirty = function (elementType, elementName, options) {
 
       await nextTick()
 
-      let child = form.vm.el$(`el.${childType == 'object' ? `0.${prototypeChildName(prototype)}` : '0'}`)
+      let child = form.vm.el$(`el.${childType == 'object' ? `0.${options.childName || 'child'}` : '0'}`)
 
       expect(el.dirty).toBe(false)
 
@@ -55,8 +54,7 @@ export const validated = function (elementType, elementName, options) {
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            initial: 2,
-          }, prototypeAddChildOptions(prototype, { rules: 'required' }))
+          }, prototypeAddChildOptions(prototypeWithInitial(2, options, i), { rules: 'required' }))
         }
       })
 
@@ -86,8 +84,7 @@ export const validated = function (elementType, elementName, options) {
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            initial: 2,
-          }, prototypeAddChildOptions(prototype, { rules: 'required' }))
+          }, prototypeAddChildOptions(prototypeWithInitial(2, options, i), { rules: 'required' }))
         }
       })
 
@@ -119,9 +116,8 @@ export const invalid = function (elementType, elementName, options) {
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            initial: 2,
             rules: 'min:3|max:5'
-          }, prototype)
+          }, prototypeWithInitial(2, options, i))
         }
       })
 

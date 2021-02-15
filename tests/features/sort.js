@@ -178,7 +178,7 @@ export const handleSort = function (elementType, elementName, options) {
           type: elementType,
           initial: 0,
           storeOrder: 'order',
-        }, prototypeAddOptions(prototypes[1], {
+        }, prototypes[1], prototypeAddOptions(prototypes[1], {
           order: {
             type: 'text'
           }
@@ -194,9 +194,9 @@ export const handleSort = function (elementType, elementName, options) {
 
     await nextTick()
 
-    let child0 = form.vm.el$('el.0.child')
-    let child1 = form.vm.el$('el.1.child')
-    let child2 = form.vm.el$('el.2.child')
+    let child0 = form.vm.el$('el.0.' + (options.childName || 'child'))
+    let child1 = form.vm.el$('el.1.' + (options.childName || 'child'))
+    let child2 = form.vm.el$('el.2.' + (options.childName || 'child'))
     let order0 = form.vm.el$('el.0.order')
     let order1 = form.vm.el$('el.1.order')
     let order2 = form.vm.el$('el.2.order')
@@ -204,9 +204,9 @@ export const handleSort = function (elementType, elementName, options) {
     expect(order0.value).toBe(1)
     expect(order1.value).toBe(2)
     expect(order2.value).toBe(3)
-    expect(child0.value).toBe(replacePrototypeValue(options.childValues[1], 0)['child'])
-    expect(child1.value).toBe(replacePrototypeValue(options.childValues[1], 1)['child'])
-    expect(child2.value).toBe(replacePrototypeValue(options.childValues[1], 2)['child'])
+    expect(child0.value).toStrictEqual(replacePrototypeValue(options.childValues[1], 0)[(options.childName || 'child')])
+    expect(child1.value).toStrictEqual(replacePrototypeValue(options.childValues[1], 1)[(options.childName || 'child')])
+    expect(child2.value).toStrictEqual(replacePrototypeValue(options.childValues[1], 2)[(options.childName || 'child')])
 
     el.handleSort({
       oldIndex: 1,
@@ -215,9 +215,9 @@ export const handleSort = function (elementType, elementName, options) {
 
     await nextTick()
 
-    child0 = form.vm.el$('el.0.child')
-    child1 = form.vm.el$('el.1.child')
-    child2 = form.vm.el$('el.2.child')
+    child0 = form.vm.el$('el.0.' + (options.childName || 'child'))
+    child1 = form.vm.el$('el.1.' + (options.childName || 'child'))
+    child2 = form.vm.el$('el.2.' + (options.childName || 'child'))
     order0 = form.vm.el$('el.0.order')
     order1 = form.vm.el$('el.1.order')
     order2 = form.vm.el$('el.2.order')
@@ -225,9 +225,9 @@ export const handleSort = function (elementType, elementName, options) {
     expect(order0.value).toBe(1)
     expect(order1.value).toBe(2)
     expect(order2.value).toBe(3)
-    expect(child0.value).toBe(replacePrototypeValue(options.childValues[1], 1)['child'])
-    expect(child1.value).toBe(replacePrototypeValue(options.childValues[1], 0)['child'])
-    expect(child2.value).toBe(replacePrototypeValue(options.childValues[1], 2)['child'])
+    expect(child0.value).toStrictEqual(replacePrototypeValue(options.childValues[1], 1)[(options.childName || 'child')])
+    expect(child1.value).toStrictEqual(replacePrototypeValue(options.childValues[1], 0)[(options.childName || 'child')])
+    expect(child2.value).toStrictEqual(replacePrototypeValue(options.childValues[1], 2)[(options.childName || 'child')])
   })
 
   it('should fire "sort" event with "value" on `handleSort`', async () => {

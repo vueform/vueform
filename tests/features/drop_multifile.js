@@ -1,7 +1,7 @@
 import { createForm, testPropDefault, findAllComponents } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
-export { drop, canDrop, rendering } from './drop'
+export { canDrop, rendering } from './drop'
 
 export const handleDrop = function (elementType, elementName, options) {
   it('should add files on `handleDrop` when it is a single element', async () => {
