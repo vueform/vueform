@@ -1,8 +1,6 @@
 import { createForm, findAllComponents, testPropDefault, testAttribute } from 'test-helpers'
 
 export const accept = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'accept', [], ['jpg', 'png'])
-
   it('should pass `accept` to Trix component', () => {
     let form = createForm({
       schema: {
@@ -22,8 +20,6 @@ export const accept = function (elementType, elementName, options) {
 }
 
 export const acceptMimes = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'acceptMimes', [], ['image/jpeg', 'image/png'])
-  
   it('should pass `acceptMimes` to Trix component', () => {
     let form = createForm({
       schema: {
@@ -42,16 +38,20 @@ export const acceptMimes = function (elementType, elementName, options) {
   })
 }
 
-export const endpoint = function (elementType, elementName, options) {
-  let form = createForm({
-    schema: {
-      el: {
-        type: elementType,
+export const trixEndpoint = function (elementType, elementName, options) {
+  it('should equal to config value by default', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
       }
-    }
-  })
+    })
 
-  testPropDefault(it, elementType, 'endpoint', form.vm.$laraform.endpoints.elements.trix.attachment, 'custom-endpoint')
+    let el = form.vm.el$('el')
+
+    expect(el.trixEndpoint).toStrictEqual(form.vm.$laraform.endpoints.elements.trix.attachment)
+  })
   
   it('should pass `endpoint` to Trix component', () => {
     let form = createForm({
@@ -66,6 +66,6 @@ export const endpoint = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let Trix = findAllComponents(elWrapper, { name: 'Trix' }).at(0)
 
-    expect(Trix.props('endpoint')).toStrictEqual(el.endpoint)
+    expect(Trix.props('endpoint')).toStrictEqual(el.trixEndpoint)
   })
 }

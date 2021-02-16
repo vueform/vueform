@@ -1,7 +1,7 @@
 import flushPromises from 'flush-promises'
 import { createForm } from 'test-helpers'
 
-export { rules, messages, displayError, dirty, validated, pending, debouncing, busy,
+export { dirty, validated, pending, debouncing, busy,
          errors, error, validate, resetValidators, dirt, clean, messageBag, Validators } from './validation'
 
 export const invalid = function (elementType, elementName, options) {

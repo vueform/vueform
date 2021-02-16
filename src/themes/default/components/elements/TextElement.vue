@@ -24,7 +24,7 @@
           :class="classes.input"
           :placeholder="placeholder" 
           :autocomplete="autocomplete"
-          :disabled="disabled"
+          :disabled="isDisabled"
           :readonly="readonly"
           ref="input"
         />

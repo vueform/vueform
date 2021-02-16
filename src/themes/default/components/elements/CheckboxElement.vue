@@ -14,7 +14,7 @@
             :id="fieldId"
             :true-value="true"
             :false-value="false"
-            :disabled="disabled"
+            :disabled="isDisabled"
             @change="handleChange"
             ref="input"
           />

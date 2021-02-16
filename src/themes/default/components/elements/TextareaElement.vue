@@ -22,7 +22,7 @@
           :id="fieldId"
           :class="classes.textarea"
           :placeholder="placeholder"
-          :disabled="disabled"
+          :disabled="isDisabled"
           :readonly="readonly"
           :rows="rows"
           ref="input"

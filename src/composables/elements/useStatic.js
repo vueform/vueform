@@ -3,7 +3,7 @@ import { computed, toRefs } from 'composition-api'
 const base = function (props, context, dependencies)
 {
   const {
-    content
+    content,
   } = toRefs(props)
 
   // ============== COMPUTED ==============
@@ -18,7 +18,6 @@ const base = function (props, context, dependencies)
   })
 
   return {
-    content,
     isHtml,
   }
 }

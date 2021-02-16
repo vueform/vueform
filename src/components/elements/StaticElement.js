@@ -104,6 +104,11 @@ export default {
       type: [Boolean],
       default: true
     },
+    content: {
+      required: false,
+      type: [String, Object],
+      default: ''
+    },
   },
   setup(props, context) {
     const form$ = useForm$(props, context)

@@ -17,7 +17,7 @@
         :name="name"
         :id="fieldId"
         :multiple="fieldOptions.mode === 'multiple'"
-        :disabled="disabled"
+        :disabled="isDisabled"
         @change="handleChange"
         ref="input"
       >
@@ -37,7 +37,7 @@
         :id="fieldId"
         :name="name"
         :options="items"
-        :disabled="disabled"
+        :disabled="isDisabled"
         :placeholder="placeholder"
         @input="handleInput"
         @select="handleSelect"

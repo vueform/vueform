@@ -15,7 +15,7 @@
         :id="fieldId"
         :class="classes.input"
         :placeholder="placeholder"
-        :disabled="disabled"
+        :disabled="isDisabled"
         :readonly="readonly"
         @change="handleChange"
         ref="input"
