@@ -37,6 +37,7 @@ const base = function(props, context, dependencies)
   }
 
   return {
+    localDisabled,
     isDisabled,
     disable,
     enable,
@@ -47,16 +48,14 @@ const checkboxgroup = function(props, context, dependencies)
 {
   const { 
     disables,
-    disabled,
   } = toRefs(props)
-
-  // ============ DEPENDENCIES ============
-
-  const form$ = dependencies.form$
+  
+  const {
+    localDisabled,
+    isDisabled,
+  } = base(props, context, dependencies)
 
   // ================ DATA ================
-
-  const localDisabled = ref(null)
 
   /**
    * List of option keys to be disabled.
@@ -145,7 +144,7 @@ const checkboxgroup = function(props, context, dependencies)
 
   return {
     disabledItems,
-    disabled,
+    isDisabled,
     disableAll,
     enableAll,
     disable,

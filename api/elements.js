@@ -781,6 +781,7 @@ export default {
       "default",
       "disabled_checkboxgroup",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleChange",
@@ -1307,6 +1308,7 @@ export default {
       "components",
       "conditions",
       "data_dates",
+      "dateFormat_dates",
       "default_dates",
       "disabled",
       "empty",
@@ -1474,13 +1476,15 @@ export default {
       "valueFormat": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "boolean"
         ]
       },
       "loadFormat": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "boolean"
         ]
       },
       "mode": {
@@ -2686,111 +2690,6 @@ export default {
       }
     }
   },
-  "meta": {
-    "features": [
-      "baseElement",
-      "conditions",
-      "data",
-      "default",
-      "empty",
-      "events",
-      "form$",
-      "genericName",
-      "nullValue",
-      "path",
-      "validation",
-      "value"
-    ],
-    "slots": [],
-    "events": [
-      "change"
-    ],
-    "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object"
-        ]
-      },
-      "type": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
-        ]
-      },
-      "default": {
-        "required": "false",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      }
-    }
-  },
   "multifile": {
     "features": [
       "baseElement_list",
@@ -2845,6 +2744,12 @@ export default {
           "string",
           "number"
         ]
+      },
+      "image": {
+        "types": [
+          "boolean"
+        ],
+        "required": "false"
       },
       "layout": {
         "required": "false",
@@ -3058,6 +2963,12 @@ export default {
         ]
       },
       "displayError": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "object": {
         "required": "false",
         "types": [
           "boolean"
@@ -3815,6 +3726,7 @@ export default {
       "default",
       "disabled_radiogroup",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "handleChange",
@@ -5390,14 +5302,6 @@ export default {
         "types": [
           "string",
           "object"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "component": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
         ],
         "default": "\"ElementLayout\""
       },

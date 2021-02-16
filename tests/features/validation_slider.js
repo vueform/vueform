@@ -4,7 +4,7 @@ import { createForm } from 'test-helpers'
 import { validate as baseValidate } from './validation'
 
 export { 
-  rules, messages, displayError, dirty, validated, invalid, pending, debouncing, 
+  dirty, validated, invalid, pending, debouncing, 
   busy, errors, error, resetValidators, dirt, clean, messageBag, Validators } from './validation'
 
 export const validate = function (elementType, elementName, options) {

@@ -6,14 +6,14 @@ export const defaultValue = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          default: options.default || 'value'
+          default: options.default !== undefined ? options.default : 'value'
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.defaultValue).toStrictEqual(options.default || 'value')
+    expect(el.defaultValue).toStrictEqual(options.default !== undefined ? options.default : 'value')
   })
 
   it('should be equal to nullValue if default is not defined', () => {

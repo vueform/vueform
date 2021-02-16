@@ -2,7 +2,7 @@
   <div :class="el$.classes.checkboxContainer">
     <label 
       :class="el$.classes.checkboxLabel"
-      :for="`${el$.id}-${value}`"
+      :for="`${el$.fieldId}-${value}`"
     >
       <input
         type="checkbox"
@@ -10,8 +10,8 @@
         :value="value"
         :class="el$.classes.checkbox"
         :name="`${el$.name}-${value}`"
-        :id="`${el$.id}-${value}`"
-        :disabled="el$.disabled || el$.disables.indexOf(value) !== -1"
+        :id="`${el$.fieldId}-${value}`"
+        :disabled="el$.isDisabled || el$.disabledItems.indexOf(value) !== -1"
         @change="el$.handleChange"
       />
     

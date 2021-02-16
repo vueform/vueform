@@ -96,7 +96,7 @@ export default {
     default: {
       required: false,
       type: [Number, Array],
-      default: 30
+      default: 0
     },
     description: {
       required: false,

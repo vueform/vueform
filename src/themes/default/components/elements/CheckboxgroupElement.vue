@@ -2,7 +2,6 @@
   <component :is="layout">
 
     <template v-slot:field>
-
       <slot name="prefix"></slot>
 
       <div :class="classes.checkboxGroup">
@@ -11,7 +10,6 @@
           <slot name="checkbox" :el$="el$" :item="item" :value="value">
             <component
               :is="fieldSlots.checkbox"
-              :el$="el$"
               :item="item"
               :value="value"
             />
@@ -21,7 +19,6 @@
       </div>
 
       <slot name="suffix"></slot>
-
     </template>
 
     <template v-for="(component, slot) in elementSlots" v-slot:[slot]>

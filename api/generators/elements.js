@@ -15,7 +15,6 @@ const elements = [
   'hidden',
   'list',
   'location',
-  'meta',
   'multifile',
   'multiselect',
   'object',

@@ -5,6 +5,7 @@ export default runElementTests('checkboxgroup', {
     value: ['1','2'],
     value2: [],
     fieldType: 'checkbox',
+    default: []
   },
   events: {
     events: ['change'],

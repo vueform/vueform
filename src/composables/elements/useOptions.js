@@ -399,6 +399,7 @@ const slider = function (props, context, dependencies)
     orientation,
     direction,
     height,
+    options,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============

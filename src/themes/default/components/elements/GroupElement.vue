@@ -6,13 +6,14 @@
       <slot name="prefix"></slot>
 
       <div :class="classes.childrenContainer">
-        <component
-          v-for="(element, name, i) in children"
-          v-bind="element"
-          :is="component(element)"
-          :name="name"
-          :key="i"
-        />
+        <slot>
+          <component :is="component(element)"
+            v-for="(element, name, i) in children"
+            v-bind="element"
+            :name="name"
+            :key="i"
+          />
+        </slot>
       </div>
 
       <slot name="suffix"></slot>

@@ -1,43 +1,7 @@
 import { createForm, testPropDefault } from 'test-helpers'
 
-export const min = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'min', 0, 10)
-}
-
-export const max = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'max', 100, 200)
-}
-
-export const step = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'step', 1, 2)
-}
-
-export const tooltips = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'tooltips', true, false)
-}
-
-export const merge = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'merge', -1, 5)
-}
-
-export const format = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'format', false, { decimals: 2 })
-}
-
-export const orientation = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'orientation', 'horizontal', 'vertical')
-}
-
-export const direction = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'direction', 'ltr', 'rtl')
-}
-
-export const height = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'height', '300px', '400px')
-}
-
-export const options = function (elementType, elementName, options) {
-  it('should have default `options`', () => {
+export const fieldOptions = function (elementType, elementName, options) {
+  it('should have default `fieldOptions`', () => {
     let form = createForm({
       schema: {
         el: {
@@ -51,7 +15,7 @@ export const options = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual({
+    expect(el.fieldOptions).toStrictEqual({
       min: el.min,
       max: el.max,
       step: el.step,
@@ -61,11 +25,11 @@ export const options = function (elementType, elementName, options) {
       orientation: el.orientation,
       direction: el.direction,
       height: el.height,
-      disabled: el.disabled,
+      disabled: el.isDisabled,
     })
   })
   
-  it('should extend `options` from schema', () => {
+  it('should extend `fieldOptions` from schema', () => {
     let form = createForm({
       schema: {
         el: {
@@ -82,7 +46,7 @@ export const options = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual({
+    expect(el.fieldOptions).toStrictEqual({
       min: el.min,
       max: el.max,
       step: el.step,
@@ -92,32 +56,12 @@ export const options = function (elementType, elementName, options) {
       orientation: el.orientation,
       direction: el.direction,
       height: el.height,
-      disabled: el.disabled,
+      disabled: el.isDisabled,
       custom: 'option'
     })
   })
   
-  it('should set `options` to schema', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.options = {
-      custom: 'option'
-    }
-
-    expect(el.schema.options).toStrictEqual({
-      custom: 'option'
-    })
-  })
-  
-  it('should bind `options` to slider', () => {
+  it('should bind `fieldOptions` to slider', () => {
     let form = createForm({
       schema: {
         el: {
@@ -130,7 +74,7 @@ export const options = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let Slider = findAllComponents(elWrapper, { name: 'Slider' }).at(0)
     
-    _.each(el.options, (value, key) => {
+    _.each(el.fieldOptions, (value, key) => {
       expect(Slider.props(key)).toStrictEqual(value)
     })
   })

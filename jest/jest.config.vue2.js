@@ -5,7 +5,7 @@ module.exports = {
       "json",
       "vue"
   ],
-  "testTimeout": 1000,
+  "testTimeout": 5000,
   "transform": {
       ".*\\.(vue)$": "vue-prev-jest",
       "^.+\\.js$": "babel-jest"

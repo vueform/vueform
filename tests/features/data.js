@@ -126,8 +126,8 @@ export const load = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.load('value')
-    expect(el.value).toBe('value')
+    el.load(value(options))
+    expect(el.value).toBe(value(options))
 
     el.load(null)
     expect(el.value).toBe(null)
@@ -142,12 +142,16 @@ export const load = function (elementType, elementName, options) {
   })
 
   it('should should format data if "formatLoad" is set on `load`', async () => {
+    let formatLoadMock = jest.fn()
+
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           formatLoad(value) {
-            return `${value}-formatted`
+            formatLoadMock()
+
+            return value
           }
         }
       }
@@ -155,9 +159,9 @@ export const load = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.load('value', true)
+    el.load(value(options), true)
 
-    expect(el.value).toBe('value-formatted')
+    expect(formatLoadMock).toHaveBeenCalled()
   })
 
   it('should set value to null if value is "undefined" on `load`', async () => {
@@ -165,7 +169,7 @@ export const load = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          default: 'value',
+          default: options.default !== undefined ? options.default : 'value',
         }
       }
     })

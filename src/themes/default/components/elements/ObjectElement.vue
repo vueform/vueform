@@ -7,10 +7,9 @@
 
       <div :class="classes.childrenContainer">
         <slot>
-          <component
+          <component :is="component(element)"
             v-for="(element, name) in children"
             v-bind="element"
-            :is="component(element)"
             :embed="embed"
             :name="name"
             :key="name"

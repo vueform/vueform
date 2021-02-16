@@ -49,25 +49,25 @@
         ref="input"
       >
         <template v-slot:option="{ option, search }">
-          <slot name="option" :option="option" :search="search">
+          <slot name="option" :option="option" :search="search" :el$="el$">
             <component :is="fieldSlots.option" :option="option" :search="search" />
           </slot>
         </template>
         
         <template v-if="options.mode == 'single'" v-slot:singlelabel="{ value }">
-          <slot name="singlelabel" :value="value">
+          <slot name="singlelabel" :value="value" :el$="el$">
             <component v-if="fieldSlots.singlelabel" :is="fieldSlots.singlelabel" :value="value" />
           </slot>
         </template>
         
         <template v-if="options.mode == 'multiple'" v-slot:multiplelabel="{ values }">
-          <slot name="multiplelabel" :values="values">
+          <slot name="multiplelabel" :values="values" :el$="el$">
             <component :is="fieldSlots.multiplelabel" :values="values" />
           </slot>
         </template>
 
         <template v-if="options.mode == 'tags'" v-slot:tag="{ option, remove, disabled }">
-          <slot name="tag" :option="option" :remove="remove" :disabled="disabled">
+          <slot name="tag" :option="option" :remove="remove" :disabled="disabled" :el$="el$">
             <component :is="fieldSlots.tag" :option="option" :remove="remove" :disabled="disabled" />
           </slot>
         </template>

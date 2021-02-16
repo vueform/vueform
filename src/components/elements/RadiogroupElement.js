@@ -18,6 +18,7 @@ import useComponents from './../../composables/elements/useComponents'
 import useSlots from './../../composables/elements/useSlots'
 import useEvents from './../../composables/useEvents'
 import useHandleChange from './../../composables/elements/useHandleChange'
+import useFieldId from './../../composables/elements/useFieldId'
 
 import { radiogroup as useDisabled } from './../../composables/elements/useDisabled'
 
@@ -174,6 +175,7 @@ export default {
   setup(props, context) {
     const form$ = useForm$(props, context)
     const theme = useTheme(props, context)
+    const fieldId = useFieldId(props, context)
     const path = usePath(props, context)
     const nullValue = useNullValue(props, context)
 
@@ -282,6 +284,7 @@ export default {
     return {
       ...form$,
       ...theme,
+      ...fieldId,
       ...path,
       ...conditions,
       ...value,

@@ -2,7 +2,7 @@
   <div :class="el$.classes.radioContainer">
     <label 
       :class="el$.classes.radioLabel"
-      :for="`${el$.id}-${value}`"
+      :for="`${el$.fieldId}-${value}`"
     >
       <input
         type="radio"
@@ -10,8 +10,8 @@
         :value="value"
         :class="el$.classes.radio"
         :name="el$.name"
-        :id="`${el$.id}-${value}`"
-        :disabled="el$.disabled || el$.disables.indexOf(value) !== -1"
+        :id="`${el$.fieldId}-${value}`"
+        :disabled="el$.isDisabled || el$.disabledItems.indexOf(value) !== -1"
         @change="el$.handleChange"
       />
     

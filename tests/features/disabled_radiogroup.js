@@ -1,1 +1,1 @@
-export { disables, disabled, disable, enable, disableAll, enableAll } from './disabled_checkboxgroup'
+export { disabledItems, isDisabled, disable, enable, disableAll, enableAll } from './disabled_checkboxgroup'

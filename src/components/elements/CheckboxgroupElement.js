@@ -16,6 +16,7 @@ import useSlots from './../../composables/elements/useSlots'
 import useEvents from './../../composables/useEvents'
 import useHandleChange from './../../composables/elements/useHandleChange'
 import useCheck from './../../composables/elements/useCheck'
+import useFieldId from './../../composables/elements/useFieldId'
 
 import { checkboxgroup as useValue } from './../../composables/elements/useValue'
 import { checkboxgroup as useDisabled } from './../../composables/elements/useDisabled'
@@ -175,6 +176,7 @@ export default {
   setup(props, context) {
     const form$ = useForm$(props, context)
     const theme = useTheme(props, context)
+    const fieldId = useFieldId(props, context)
     const path = usePath(props, context)
     const nullValue = useNullValue(props, context)
 
@@ -196,7 +198,6 @@ export default {
     })
 
     const check = useCheck(props, context, {
-      items: items.items,
       value: value.value,
     })
 
@@ -288,6 +289,7 @@ export default {
     return {
       ...form$,
       ...theme,
+      ...fieldId,
       ...path,
       ...conditions,
       ...value,

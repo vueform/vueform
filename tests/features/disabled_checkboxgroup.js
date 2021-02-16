@@ -1,11 +1,10 @@
 import { createForm, testPropDefault, findAll, findAllComponents } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
+import { nextTick } from 'composition-api'
 
 expect.extend({toBeVisible})
 
-export const disables = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'disables', [], ['1','2'])
-
+export const disabledItems = function (elementType, elementName, options) {
   it('should transform integer `disables` to strings', () => {
     let form = createForm({
       schema: {
@@ -18,7 +17,7 @@ export const disables = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.disables).toStrictEqual(['1', '2'])
+    expect(el.disabledItems).toStrictEqual(['1', '2'])
   })
 
   it('should disable items contained in `disables`', () => {
@@ -62,10 +61,10 @@ export const disable = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     el.disable(1)
-    expect(el.disables).toStrictEqual(['1'])
+    expect(el.disabledItems).toStrictEqual(['1'])
 
     el.disable(['2', 3])
-    expect(el.disables).toStrictEqual(['1', '2', '3'])
+    expect(el.disabledItems).toStrictEqual(['1', '2', '3'])
   })
 }
 
@@ -88,16 +87,14 @@ export const enable = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     el.enable(1)
-    expect(el.disables).toStrictEqual(['2', '3'])
+    expect(el.disabledItems).toStrictEqual(['2', '3'])
 
     el.enable(['2', 3])
-    expect(el.disables).toStrictEqual([])
+    expect(el.disabledItems).toStrictEqual([])
   })
 }
 
-export const disabled = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'disabled', false, true)
-
+export const isDisabled = function (elementType, elementName, options) {
   it('should disable all items if `disabled` is true', () => {
     let form = createForm({
       schema: {
@@ -122,38 +119,60 @@ export const disabled = function (elementType, elementName, options) {
 }
 
 export const disableAll = function (elementType, elementName, options) {
-  it('should `disableAll` set disabled to "true"', () => {
+  it('should `disableAll` set disabled to "true"', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
+          items: {
+            1: 'value',
+            2: 'value2',
+          }
         }
       }
     })
 
     let el = form.vm.el$('el')
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let checkbox1 = findAll(elWrapper, `input[type="${options.fieldType}"]`).at(0)
+    let checkbox2 = findAll(elWrapper, `input[type="${options.fieldType}"]`).at(1)
     
     el.disableAll()
 
-    expect(el.disabled).toBe(true)
+    await nextTick()
+
+    expect(el.isDisabled).toBe(true)
+    expect(checkbox1.attributes('disabled') !== undefined).toBe(true)
+    expect(checkbox2.attributes('disabled') !== undefined).toBe(true)
   })
 }
 
 export const enableAll = function (elementType, elementName, options) {
-  it('should `enableAll` set disabled to "false"', () => {
+  it('should `enableAll` set disabled to "false"', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           disabled: true,
+          items: {
+            1: 'value',
+            2: 'value2',
+          }
         }
       }
     })
 
     let el = form.vm.el$('el')
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let checkbox1 = findAll(elWrapper, `input[type="${options.fieldType}"]`).at(0)
+    let checkbox2 = findAll(elWrapper, `input[type="${options.fieldType}"]`).at(1)
     
     el.enableAll()
 
-    expect(el.disabled).toBe(false)
+    await nextTick()
+
+    expect(el.isDisabled).toBe(false)
+    expect(checkbox1.attributes('disabled') !== undefined).toBe(false)
+    expect(checkbox2.attributes('disabled') !== undefined).toBe(false)
   })
 }

@@ -339,7 +339,7 @@ export const busy = function (elementType, elementName, options) {
 
     expect(el.busy).toBe(true)
 
-    jest.advanceTimersByTime(1)
+    await flushPromises()
     
     expect(el.busy).toBe(false)
   })

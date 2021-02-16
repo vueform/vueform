@@ -44,11 +44,6 @@ export default {
       type: [String, Object],
       default: 'ElementLayout'
     },
-    component: {
-      required: false,
-      type: [Object, String],
-      default: null
-    },
     addons: {
       required: false,
       type: [Object],
