@@ -20,7 +20,7 @@ export const addressId = function (elementType, elementName) {
 }
 
 export const fields = function (elementType, elementName) {
-  it('should `fields` be fields of address', () => {
+  it('should `fields` be fields of address', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -76,7 +76,9 @@ export const fields = function (elementType, elementName) {
 
     expect(el.fields).toStrictEqual(fields)
 
-    el.required = true
+    el.$set(form.vm.schema.el, 'required', true)
+
+    await nextTick()
 
     fields.address.rules = 'required'
     fields.zip.rules = 'required'

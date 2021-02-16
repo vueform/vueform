@@ -1,4 +1,4 @@
-export { locationService, location, provider, options } from './location'
+export { locationService, location, provider, providerOptions } from './location'
 
 export const handleAddressChange = function (elementType, elementName, options) { 
   it('should set location, update fields & input field value on `handleAddressChange`', async () => {
