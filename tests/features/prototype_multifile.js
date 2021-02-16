@@ -19,7 +19,7 @@ export const storeFileName = function (elementType, elementName, options) {
 }
 
 export const prototype = function (elementType, elementName, options) {
-  it('should have `prototype` as a single element when not object', () => {
+  it('should have `prototype` as a single element when not object image=false', () => {
     let form = createForm({
       schema: {
         el: {
@@ -31,7 +31,26 @@ export const prototype = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.prototype).toStrictEqual({
-      type: options.fileType,
+      type: 'file',
+      image: false,
+      auto: el.auto,
+    })
+  })
+  it('should have `prototype` as a single element when not object image=true', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          image: true,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.prototype).toStrictEqual({
+      type: 'file',
+      image: true,
       auto: el.auto,
     })
   })
@@ -51,13 +70,14 @@ export const prototype = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.prototype).toStrictEqual({
-      type: options.fileType,
+      type: 'file',
+      image: false,
       auto: el.auto,
       url: '/uploads/'
     })
   })
 
-  it('should have `prototype` as an object element isObject true', () => {
+  it('should have `prototype` as an object element isObject true image=false', () => {
     let form = createForm({
       schema: {
         el: {
@@ -73,7 +93,33 @@ export const prototype = function (elementType, elementName, options) {
       type: 'object',
       schema: {
         file: {
-          type: options.fileType,
+          type: 'file',
+          image: false,
+          auto: el.auto,
+        }
+      }
+    })
+  })
+
+  it('should have `prototype` as an object element isObject true image=true', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          object: true,
+          image: true,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.prototype).toStrictEqual({
+      type: 'object',
+      schema: {
+        file: {
+          type: 'file',
+          image: true,
           auto: el.auto,
         }
       }
@@ -97,7 +143,8 @@ export const prototype = function (elementType, elementName, options) {
       type: 'object',
       schema: {
         filename: {
-          type: options.fileType,
+          type: 'file',
+          image: false,
           auto: el.auto,
         }
       }
@@ -123,8 +170,9 @@ export const prototype = function (elementType, elementName, options) {
       type: 'object',
       schema: {
         file: {
-          type: options.fileType,
+          type: 'file',
           auto: el.auto,
+          image: false,
           url: '/uploads/',
         }
       }
@@ -148,7 +196,8 @@ export const prototype = function (elementType, elementName, options) {
       type: 'object',
       schema: {
         file: {
-          type: options.fileType,
+          type: 'file',
+          image: false,
           auto: el.auto,
         },
         order: {
@@ -180,7 +229,8 @@ export const prototype = function (elementType, elementName, options) {
       type: 'object',
       schema: {
         file: {
-          type: options.fileType,
+          type: 'file',
+          image: false,
           auto: el.auto,
         },
         label: {

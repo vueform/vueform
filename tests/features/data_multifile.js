@@ -7,22 +7,22 @@ export { data, next, add, insert, remove, load, update, clear, reset, updated } 
 export const filtered = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  it('should "filtered" contained filtered data of children if prototype is a single element', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          initial: 2,
-          auto: false,
-          file: {
-            conditions: [
-              ['el2', 'value2']
-            ]
-          },
+  it('should "filtered" contained filtered data of children if prototype is a single element', async () => {
+    let form = createForm(listSchema(options, 0, {
+      type: elementType,
+      initial: 0,
+      parent: {
+        auto: false, 
+        file: {
           conditions: [
-            ['el3', 'value3']
+            ['el2', 'value2']
           ]
         },
+        conditions: [
+          ['el3', 'value3']
+        ]
+      },
+      schema: {
         el2: {
           type: 'text',
         },
@@ -30,12 +30,11 @@ export const filtered = function (elementType, elementName, options) {
           type: 'text',
         },
       }
-    })
+    }))
 
     let el = form.vm.el$('el')
     let el2 = form.vm.el$('el2')
     let el3 = form.vm.el$('el3')
-    let child0_1 = form.vm.el$('el.0')
 
     expect(el.filtered).toStrictEqual({})
 
@@ -45,16 +44,15 @@ export const filtered = function (elementType, elementName, options) {
       el: []
     })
 
+    el.add(listChildValue(options, 0, 0))
+    el.add(listChildValue(options, 0, 1))
+
+    await nextTick()
+
     el2.update('value2')
 
     expect(el.filtered).toStrictEqual({
-      el: [null, null]
-    })
-
-    child0_1.update('child1-value')
-
-    expect(el.filtered).toStrictEqual({
-      el: ['child1-value', null]
+      el: [listChildValue(options, 0, 0), listChildValue(options, 0, 1)]
     })
   })
 

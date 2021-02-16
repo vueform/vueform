@@ -4,6 +4,8 @@ import { nextTick } from 'composition-api'
 
 export { messageBag, messages, displayError, } from './validation'
 
+jest.useFakeTimers()
+
 export const state = function (elementType, elementName, options) {
   it('should have `state` "dirty" and "validated" for each language', async () => {
     let form = createForm({
@@ -263,7 +265,7 @@ export const pending = function (elementType, elementName, options) {
 }
 
 export const debouncing = function (elementType, elementName, options) {
-  it('should be `debouncing` if any validator is debouncing', async (done) => {
+  it('should be `debouncing` if any validator is debouncing', async () => {
     let form = createForm({
       languages: {
         en: {
@@ -292,10 +294,9 @@ export const debouncing = function (elementType, elementName, options) {
 
     await flushPromises()
 
-    setTimeout(() => {
-      expect(el.debouncing).toBe(false)
-      done()
-    }, 1)
+    jest.advanceTimersByTime(1)
+
+    expect(el.debouncing).toBe(false)      
   })
 }
 
@@ -335,7 +336,7 @@ export const busy = function (elementType, elementName, options) {
     expect(el.busy).toBe(false)
   })
 
-  it('should `busy` if debouncing', async (done) => {
+  it('should `busy` if debouncing', async () => {
     let form = createForm({
       languages: {
         en: {
@@ -364,10 +365,8 @@ export const busy = function (elementType, elementName, options) {
 
     await flushPromises()
 
-    setTimeout(() => {
-      expect(el.busy).toBe(false)
-      done()
-    }, 1)
+    jest.advanceTimersByTime(1)
+    expect(el.busy).toBe(false)
   })
 }
 

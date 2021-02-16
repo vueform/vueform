@@ -80,7 +80,7 @@ const base = function(props, context, dependencies, options = {})
   const load = (val, format = false) => {
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
 
-    setValue(available.value && formatted !== undefined ? formatted : _.clone(nullValue.value))
+    setValue(formatted !== undefined ? formatted : _.clone(nullValue.value))
   }
 
   /**
@@ -200,7 +200,7 @@ const date = function(props, context, dependencies)
   const load = (val, format = false) => {
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
 
-    if (!available.value || formatted === undefined || (_.isEmpty(formatted) && !(formatted instanceof Date))) {
+    if (!formatted === undefined || (_.isEmpty(formatted) && !(formatted instanceof Date))) {
       value.value =  _.clone(nullValue.value)
       return
     }
@@ -275,7 +275,7 @@ const dates = function(props, context, dependencies)
   const load = (val, format = false) => {
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
 
-    if (!available.value || formatted === undefined || _.isEmpty(formatted)) {
+    if (formatted === undefined || _.isEmpty(formatted)) {
       value.value =  _.clone(nullValue.value)
       return
     }
@@ -632,7 +632,7 @@ const list = function(props, context, dependencies, options)
 
     instances.value = []
 
-    if (!available.value || formatted === undefined) {
+    if (formatted === undefined) {
       return
     }
 
@@ -839,7 +839,7 @@ const multilingual = function(props, context, dependencies, options = {})
   const load = (val, format = false) => {
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
 
-    if (!available.value || formatted === undefined) {
+    if (formatted === undefined) {
       value.value = _.clone(nullValue.value)
       return
     }

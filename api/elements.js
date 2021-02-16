@@ -1878,310 +1878,6 @@ export default {
       }
     }
   },
-  "gallery": {
-    "features": [
-      "baseElement_list",
-      "children_list",
-      "classes_list",
-      "columns",
-      "components",
-      "conditions",
-      "data_multifile",
-      "default",
-      "disabled",
-      "drop_multifile",
-      "elements",
-      "events",
-      "form$",
-      "genericName",
-      "input",
-      "label",
-      "multifile",
-      "nullValue_array",
-      "order",
-      "path",
-      "prototype_gallery",
-      "slots",
-      "sort",
-      "theme",
-      "validation_list",
-      "value_list",
-      "view",
-      "watchPrototype"
-    ],
-    "slots": [
-      "label",
-      "info",
-      "description",
-      "error",
-      "message",
-      "before",
-      "between",
-      "after"
-    ],
-    "events": [
-      "change",
-      "add",
-      "remove",
-      "sort"
-    ],
-    "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object"
-        ]
-      },
-      "type": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
-        ]
-      },
-      "default": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "disabled": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "drop": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "accept": {
-        "required": "false",
-        "types": [
-          "string",
-          "array"
-        ]
-      },
-      "order": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "orderBy": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "auto": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "object": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "file": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "storeFile": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "fields": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "sort": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "storeOrder": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "onAdd": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "onRemove": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "onSort": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      }
-    }
-  },
   "group": {
     "features": [
       "baseElement",
@@ -3097,34 +2793,34 @@ export default {
   },
   "multifile": {
     "features": [
-      // "baseElement_list",
-      // "children_list",
-      // "classes_list",
-      // "columns",
-      // "components",
-      // "conditions",
-      // // "data_multifile",
-      // "default",
-      // "disabled",
-      // "drop_multifile",
-      // "elements",
-      // "events",
-      // "form$",
-      // "genericName",
-      // "input",
-      // "label",
-      // "multifile",
-      // "nullValue_array",
-      // "order",
-      // "path",
-      // "prototype_multifile",
-      // "slots",
-      // "sort",
-      // "theme",
+      "baseElement_list",
+      "children_list",
+      "classes_list",
+      "columns",
+      "components",
+      "conditions",
+      "data_multifile",
+      "default",
+      "disabled",
+      "drop_multifile",
+      "elements",
+      "events",
+      "form$",
+      "genericName",
+      "input",
+      "label",
+      "multifile",
+      "nullValue_array",
+      "order",
+      "path",
+      "prototype_multifile",
+      "slots",
+      "sort",
+      "theme",
       "validation_list",
-      // "value_list",
-      // "view",
-      // "watchPrototype"
+      "value_list",
+      "view",
+      "watchPrototype"
     ],
     "slots": [
       "label",

@@ -3,6 +3,8 @@ import { createForm, testPropDefault } from 'test-helpers'
 import { nextTick } from 'vue'
 import Validator from './../../src/services/validation/validator'
 
+jest.useFakeTimers()
+
 const value = function(options) {
   return options.value !== undefined ? options.value : 'value'
 }
@@ -186,7 +188,7 @@ export const pending = function (elementType, elementName, options) {
 }
 
 export const debouncing = function (elementType, elementName, options) {
-  it('should have `debouncing` "true" if any of the validators is debouncing and "false" when async it finishes', async (done) => {
+  it('should have `debouncing` "true" if any of the validators is debouncing and "false" when async it finishes', async () => {
     let axiosPostMock = jest.fn(() => Promise.resolve({ data: {} }))
 
     let form = createForm({
@@ -207,10 +209,9 @@ export const debouncing = function (elementType, elementName, options) {
 
     expect(el.debouncing).toBe(true)
 
-    setTimeout(() => {
-      expect(el.debouncing).toBe(false)
-      done()
-    }, 1)
+    jest.advanceTimersByTime(1)
+
+    expect(el.debouncing).toBe(false)
   })
 }
 
@@ -240,7 +241,7 @@ export const busy = function (elementType, elementName, options) {
     expect(el.busy).toBe(false)
   })
 
-  it('should have `busy` "true" if any of the validators is debouncing and "false" when async it finishes', async (done) => {
+  it('should have `busy` "true" if any of the validators is debouncing and "false" when async it finishes', async () => {
     let axiosPostMock = jest.fn(() => Promise.resolve({ data: {} }))
 
     let form = createForm({
@@ -261,10 +262,9 @@ export const busy = function (elementType, elementName, options) {
 
     expect(el.busy).toBe(true)
 
-    setTimeout(() => {
-      expect(el.busy).toBe(false)
-      done()
-    }, 1)
+    jest.advanceTimersByTime(1)
+
+    expect(el.busy).toBe(false)
   })
 }
 

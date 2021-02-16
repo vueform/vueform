@@ -20,7 +20,6 @@ import CheckboxgroupElement from './components/elements/CheckboxgroupElement'
 import DateElement from './components/elements/DateElement'
 import DatesElement from './components/elements/DatesElement'
 import FileElement from './components/elements/FileElement'
-import GalleryElement from './components/elements/GalleryElement'
 import GroupElement from './components/elements/GroupElement'
 import HiddenElement from './components/elements/HiddenElement'
 import ListElement from './components/elements/ListElement'
@@ -94,7 +93,6 @@ const elements = {
   DateElement,
   DatesElement,
   FileElement,
-  GalleryElement,
   GroupElement,
   HiddenElement,
   ListElement,

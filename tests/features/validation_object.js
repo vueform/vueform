@@ -1,6 +1,8 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents } from 'test-helpers'
 
+jest.useFakeTimers()
+
 export const dirty = function (elementType, elementName, options) {
   it('should be not `dirty` if none of the children is dirty', () => {
     let form = createForm({
@@ -278,9 +280,9 @@ export const debouncing = function (elementType, elementName, options) {
 
     expect(el.debouncing).toBe(true)
 
-    setTimeout(() => {
-      expect(el.debouncing).toBe(false)
-    }, 1)
+    jest.advanceTimersByTime(1)
+
+    expect(el.debouncing).toBe(false)
   })
 }
 
@@ -337,9 +339,9 @@ export const busy = function (elementType, elementName, options) {
 
     expect(el.busy).toBe(true)
 
-    setTimeout(() => {
-      expect(el.busy).toBe(false)
-    }, 1)
+    jest.advanceTimersByTime(1)
+    
+    expect(el.busy).toBe(false)
   })
 }
 

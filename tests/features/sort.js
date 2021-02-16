@@ -1,14 +1,9 @@
 import { nextTick } from 'vue'
 import {
-  createForm, findAllComponents, testPropDefault, prototypeAddOptions,
-  replacePrototypeValue
+  createForm, findAllComponents, testPropDefault, listSchema, listChildValue, listChild
 } from 'test-helpers'
 import flushPromises from 'flush-promises'
 import asyncForEach from './../../src/utils/asyncForEach'
-
-export const sort = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'sort', false, true)
-}
 
 export const sortable = function (elementType, elementName, options) {
   it('should return `sortable` object if "sort" is "true"', () => {
@@ -130,20 +125,15 @@ export const handleSort = function (elementType, elementName, options) {
 
   it('should reorder children$Array and children$ on `handleSort`', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 0,
-          }, prototype)
-        }
-      })
+      let form = createForm(listSchema(options, i, {
+        initial: 0
+      }))
 
       let el = form.vm.el$('el')
       
-      el.add(replacePrototypeValue(options.childValues[i], 0))
-      el.add(replacePrototypeValue(options.childValues[i], 1))
-      el.add(replacePrototypeValue(options.childValues[i], 2))
+      el.add(listChildValue(options, i, 0))
+      el.add(listChildValue(options, i, 1))
+      el.add(listChildValue(options, i, 2))
 
       await nextTick()
 
@@ -156,47 +146,41 @@ export const handleSort = function (elementType, elementName, options) {
       await nextTick()
 
       expect(el.value).toStrictEqual([
-        replacePrototypeValue(options.childValues[i], 1),
-        replacePrototypeValue(options.childValues[i], 0),
-        replacePrototypeValue(options.childValues[i], 2),
+        listChildValue(options, i, 1),
+        listChildValue(options, i, 0),
+        listChildValue(options, i, 2)
       ])
 
-      expect(el.children$Array[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 1))
-      expect(el.children$Array[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
-      expect(el.children$Array[2].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
+      expect(el.children$Array[0].value).toStrictEqual(listChildValue(options, i, 1),)
+      expect(el.children$Array[1].value).toStrictEqual(listChildValue(options, i, 0),)
+      expect(el.children$Array[2].value).toStrictEqual(listChildValue(options, i, 2))
 
-      expect(el.children$[0].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 1))
-      expect(el.children$[1].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 0))
-      expect(el.children$[2].value).toStrictEqual(replacePrototypeValue(options.childValues[i], 2))
+      expect(el.children$[0].value).toStrictEqual(listChildValue(options, i, 1),)
+      expect(el.children$[1].value).toStrictEqual(listChildValue(options, i, 0),)
+      expect(el.children$[2].value).toStrictEqual(listChildValue(options, i, 2))
     })
   })
 
   it('should refresh order store on `handleSort` if object', async () => {
-    let form = createForm({
-      schema: {
-        el: Object.assign({}, {
-          type: elementType,
-          initial: 0,
-          storeOrder: 'order',
-        }, prototypes[1], prototypeAddOptions(prototypes[1], {
-          order: {
-            type: 'text'
-          }
-        }))
-      }
-    })
+    let form = createForm(listSchema(options, 1, {
+      initial: 0,
+      parent: {
+        storeOrder: 'order',
+      },
+      orderField: true
+    }))
 
     let el = form.vm.el$('el')
 
-    el.add(replacePrototypeValue(options.childValues[1], 0))
-    el.add(replacePrototypeValue(options.childValues[1], 1))
-    el.add(replacePrototypeValue(options.childValues[1], 2))
+    el.add(listChildValue(options, 1, 0))
+    el.add(listChildValue(options, 1, 1))
+    el.add(listChildValue(options, 1, 2))
 
     await nextTick()
 
-    let child0 = form.vm.el$('el.0.' + (options.childName || 'child'))
-    let child1 = form.vm.el$('el.1.' + (options.childName || 'child'))
-    let child2 = form.vm.el$('el.2.' + (options.childName || 'child'))
+    let child0 = listChild(el, options, 0)
+    let child1 = listChild(el, options, 1)
+    let child2 = listChild(el, options, 2)
     let order0 = form.vm.el$('el.0.order')
     let order1 = form.vm.el$('el.1.order')
     let order2 = form.vm.el$('el.2.order')
@@ -204,9 +188,9 @@ export const handleSort = function (elementType, elementName, options) {
     expect(order0.value).toBe(1)
     expect(order1.value).toBe(2)
     expect(order2.value).toBe(3)
-    expect(child0.value).toStrictEqual(replacePrototypeValue(options.childValues[1], 0)[(options.childName || 'child')])
-    expect(child1.value).toStrictEqual(replacePrototypeValue(options.childValues[1], 1)[(options.childName || 'child')])
-    expect(child2.value).toStrictEqual(replacePrototypeValue(options.childValues[1], 2)[(options.childName || 'child')])
+    expect(child0.value).toStrictEqual(listChildValue(options, 1, 0)[options.childName])
+    expect(child1.value).toStrictEqual(listChildValue(options, 1, 1)[options.childName])
+    expect(child2.value).toStrictEqual(listChildValue(options, 1, 2)[options.childName])
 
     el.handleSort({
       oldIndex: 1,
@@ -215,9 +199,9 @@ export const handleSort = function (elementType, elementName, options) {
 
     await nextTick()
 
-    child0 = form.vm.el$('el.0.' + (options.childName || 'child'))
-    child1 = form.vm.el$('el.1.' + (options.childName || 'child'))
-    child2 = form.vm.el$('el.2.' + (options.childName || 'child'))
+    child0 = listChild(el, options, 0)
+    child1 = listChild(el, options, 1)
+    child2 = listChild(el, options, 2)
     order0 = form.vm.el$('el.0.order')
     order1 = form.vm.el$('el.1.order')
     order2 = form.vm.el$('el.2.order')
@@ -225,30 +209,25 @@ export const handleSort = function (elementType, elementName, options) {
     expect(order0.value).toBe(1)
     expect(order1.value).toBe(2)
     expect(order2.value).toBe(3)
-    expect(child0.value).toStrictEqual(replacePrototypeValue(options.childValues[1], 1)[(options.childName || 'child')])
-    expect(child1.value).toStrictEqual(replacePrototypeValue(options.childValues[1], 0)[(options.childName || 'child')])
-    expect(child2.value).toStrictEqual(replacePrototypeValue(options.childValues[1], 2)[(options.childName || 'child')])
+    expect(child0.value).toStrictEqual(listChildValue(options, 1, 1)[options.childName])
+    expect(child1.value).toStrictEqual(listChildValue(options, 1, 0)[options.childName])
+    expect(child2.value).toStrictEqual(listChildValue(options, 1, 2)[options.childName])
   })
 
   it('should fire "sort" event with "value" on `handleSort`', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let onSortMock = jest.fn()
 
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 0,
-            onSort: onSortMock,
-          }, prototype)
-        }
-      })
+      let form = createForm(listSchema(options, i, {
+        initial: 0,
+        parent: { onSort: onSortMock, }
+      }))
 
       let el = form.vm.el$('el')
       
-      el.add(replacePrototypeValue(options.childValues[i], 0))
-      el.add(replacePrototypeValue(options.childValues[i], 1))
-      el.add(replacePrototypeValue(options.childValues[i], 2))
+      el.add(listChildValue(options, i, 0))
+      el.add(listChildValue(options, i, 1))
+      el.add(listChildValue(options, i, 2))
 
       await nextTick()
 
@@ -261,9 +240,9 @@ export const handleSort = function (elementType, elementName, options) {
       await nextTick()
 
       expect(onSortMock).toHaveBeenCalledWith([
-        replacePrototypeValue(options.childValues[i], 1),
-        replacePrototypeValue(options.childValues[i], 0),
-        replacePrototypeValue(options.childValues[i], 2),
+        listChildValue(options, i, 1),
+        listChildValue(options, i, 0),
+        listChildValue(options, i, 2),
       ])
     })
   })
@@ -272,21 +251,16 @@ export const handleSort = function (elementType, elementName, options) {
     await asyncForEach(prototypes, async (prototype, i) => {
       let onChangeMock = jest.fn()
 
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 0,
-            onChange: onChangeMock,
-          }, prototype)
-        }
-      })
+      let form = createForm(listSchema(options, i, {
+        initial: 0,
+        parent: { onChange: onChangeMock, }
+      }))
 
       let el = form.vm.el$('el')
       
-      el.insert(replacePrototypeValue(options.childValues[i], 0))
-      el.insert(replacePrototypeValue(options.childValues[i], 1))
-      el.insert(replacePrototypeValue(options.childValues[i], 2))
+      el.insert(listChildValue(options, i, 0))
+      el.insert(listChildValue(options, i, 1))
+      el.insert(listChildValue(options, i, 2))
 
       await nextTick()
       await nextTick()
@@ -302,33 +276,28 @@ export const handleSort = function (elementType, elementName, options) {
       await nextTick()
 
       expect(onChangeMock).toHaveBeenCalledWith([
-        replacePrototypeValue(options.childValues[i], 1),
-        replacePrototypeValue(options.childValues[i], 0),
-        replacePrototypeValue(options.childValues[i], 2),
+        listChildValue(options, i, 1),
+        listChildValue(options, i, 0),
+        listChildValue(options, i, 2),
       ], [
-        replacePrototypeValue(options.childValues[i], 0),
-        replacePrototypeValue(options.childValues[i], 1),
-        replacePrototypeValue(options.childValues[i], 2),
+        listChildValue(options, i, 0),
+        listChildValue(options, i, 1),
+        listChildValue(options, i, 2),
       ])
     })
   })
 
   it('should dirt  on `handleSort`', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 0,
-          }, prototype)
-        }
-      })
+      let form = createForm(listSchema(options, i, {
+        initial: 0
+      }))
 
       let el = form.vm.el$('el')
       
-      el.insert(replacePrototypeValue(options.childValues[i], 0))
-      el.insert(replacePrototypeValue(options.childValues[i], 1))
-      el.insert(replacePrototypeValue(options.childValues[i], 2))
+      el.insert(listChildValue(options, i, 0))
+      el.insert(listChildValue(options, i, 1))
+      el.insert(listChildValue(options, i, 2))
 
       await nextTick()
 
@@ -351,23 +320,20 @@ export const handleSort = function (elementType, elementName, options) {
     await asyncForEach(prototypes, async (prototype, i) => {
       let onChangeMock = jest.fn()
 
-      let form = createForm({
-        validateOn: 'submit',
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 0,
-            rules: 'required',
-            onChange: onChangeMock,
-          }, prototype)
-        }
-      })
+      let form = createForm(listSchema(options, i, {
+        initial: 1,
+        parent: {
+          onChange: onChangeMock,
+          rules: 'required',
+        },
+        form: { validateOn: 'submit', }
+      }))
 
       let el = form.vm.el$('el')
       
-      el.insert(replacePrototypeValue(options.childValues[i], 0))
-      el.insert(replacePrototypeValue(options.childValues[i], 1))
-      el.insert(replacePrototypeValue(options.childValues[i], 2))
+      el.insert(listChildValue(options, i, 0))
+      el.insert(listChildValue(options, i, 1))
+      el.insert(listChildValue(options, i, 2))
 
       await nextTick()
 

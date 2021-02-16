@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, prototypeChildType } from 'test-helpers'
+import { createForm, findAllComponents } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 
 expect.extend({toBeVisible})

@@ -11,7 +11,6 @@ const elements = [
   'date',
   'dates',
   'file',
-  'gallery',
   'group',
   'hidden',
   'list',

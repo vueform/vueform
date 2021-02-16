@@ -1,4 +1,4 @@
-import { createForm, replacePrototypeValue} from 'test-helpers'
+import { createForm, listSchema, listChild, listChildValue } from 'test-helpers'
 import { nextTick } from 'vue'
 import asyncForEach from './../../src/utils/asyncForEach'
 
@@ -10,9 +10,9 @@ export const value = function (elementType, elementName, options) {
   it('should have `value` equal to an array of child values', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let values = [
-        replacePrototypeValue(options.childValues[i], 0),
-        replacePrototypeValue(options.childValues[i], 1),
-        replacePrototypeValue(options.childValues[i], 2),
+        listChildValue(options, i, 0),
+        listChildValue(options, i, 1),
+        listChildValue(options, i, 2),
       ]
 
       let form = createForm({

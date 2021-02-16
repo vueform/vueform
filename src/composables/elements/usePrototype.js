@@ -44,6 +44,7 @@ const multifile = function(props, context, dependencies, options = {})
     fields,
     storeFile,
     storeOrder,
+    image,
    } = toRefs(props)
 
   // =============== PRIVATE ==============
@@ -86,6 +87,7 @@ const multifile = function(props, context, dependencies, options = {})
       return Object.assign({}, {
         type: type.value,
         auto: auto.value,
+        image: image.value,
       }, file.value)
     }
 
@@ -96,6 +98,7 @@ const multifile = function(props, context, dependencies, options = {})
         {[storeFileName.value]: Object.assign({}, {
           type: type.value,
           auto: auto.value,
+          image: image.value,
         }, file.value)},
 
         // Order
@@ -119,26 +122,8 @@ const multifile = function(props, context, dependencies, options = {})
   }
 }
 
-const gallery = function(props, context, dependencies)
-{
-  const {
-    storeFileName,
-    isObject,
-    prototype,
-  } = multifile(props, context, dependencies, {
-    type: 'image'
-  })
-
-  return {
-    storeFileName,
-    isObject,
-    prototype,
-  }
-}
-
 export {
   multifile,
-  gallery,
 }
 
 export default base

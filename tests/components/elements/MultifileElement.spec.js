@@ -3,27 +3,15 @@ import { runElementTests } from 'test-helpers'
 export default runElementTests('multifile', {
   default: {
     initial: 0,
-    fileType: 'file',
-    childName: 'file',
     prototypes: [
       {
+        type: 'multifile',
         auto: false,
-        // Required because of tests
-        // element: {
-        //   type: 'file'
-        // }
       },
       {
+        type: 'multifile',
         auto: false,
-        // Required because of tests
         object: true,
-        // object: {
-        //   schema: {
-        //     file: {
-        //       type: 'file'
-        //     }
-        //   }
-        // },
       }
     ],
     childValues: [
@@ -31,6 +19,12 @@ export default runElementTests('multifile', {
       { file: new File([''], 'filename{i}.jpg') }
     ],
     childNulls: [null, { file: null }],
+
+    // The name of the child input when object
+    childName: 'file',
+
+    elementType: 'multifile',
+
     value: [],
     default: [],
   },

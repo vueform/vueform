@@ -43,6 +43,11 @@ export default {
       required: true,
       type: [String, Number],
     },
+    image: {
+      type: [Boolean],
+      required: false,
+      default: false
+    },
     layout: {
       required: false,
       type: [String, Object],

@@ -6,17 +6,12 @@ import createForm from './createForm'
 import createLaraformInstaller from './createLaraformInstaller'
 import createTrix from './createTrix'
 import destroy from './destroy'
+import listChild from './listChild'
+import listChildValue from './listChildValue'
+import listSchema from './listSchema'
 import findAllComponents from './findAllComponents'
 import findAll from './findAll'
 import installLaraform from './installLaraform'
-import prototypeAddOptions from './prototypeAddOptions'
-import prototypeAddChildOptions from './prototypeAddChildOptions'
-import prototypeChildName from './prototypeChildName'
-import prototypeChildSchema from './prototypeChildSchema'
-import prototypeChildType from './prototypeChildType'
-import prototypeInputType from './prototypeInputType'
-import prototypeWithInitial from './prototypeWithInitial'
-import replacePrototypeValue from './replacePrototypeValue'
 import runElementTests from './runElementTests'
 import runFeatureTests from './runFeatureTests'
 import select from './select'
@@ -36,8 +31,6 @@ import testThemeComponents from './testThemeComponents'
 import testThemeElements from './testThemeElements'
 import testValue from './testValue'
 import triggerEvent from './triggerEvent'
-import tryInputValue from './tryInputValue'
-import tryInputValues from './tryInputValues'
 import uncheck from './uncheck'
 import unselect from './unselect'
 
@@ -53,17 +46,12 @@ export {
   createLaraformInstaller,
   createTrix,
   destroy,
+  listChild,
+  listChildValue,
+  listSchema,
   findAllComponents,
   findAll,
   installLaraform,
-  prototypeAddOptions,
-  prototypeAddChildOptions,
-  prototypeChildName,
-  prototypeChildSchema,
-  prototypeChildType,
-  prototypeInputType,
-  prototypeWithInitial,
-  replacePrototypeValue,
   runElementTests,
   runFeatureTests,
   select,
@@ -83,8 +71,6 @@ export {
   testThemeElements,
   testValue,
   triggerEvent,
-  tryInputValue,
-  tryInputValues,
   uncheck,
   unselect,
 }

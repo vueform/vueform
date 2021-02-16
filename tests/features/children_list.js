@@ -38,7 +38,7 @@ export const children$Array = function (elementType, elementName, options) {
       await nextTick()
 
       expect(el.children$Array.length).toBe(1)
-      expect(el.children$Array[0].type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.children$Array[0].type).toStrictEqual(el.isObject ? 'object' : (options.prototypes[i].element ? options.prototypes[i].element.type : 'file'))
     })
   })
 }
@@ -79,7 +79,7 @@ export const children$ = function (elementType, elementName, options) {
       await nextTick()
 
       expect(_.keys(el.children$).length).toBe(1)
-      expect(el.children$[0].type).toStrictEqual(prototypeChildType(prototype))
+      expect(el.children$[0].type).toStrictEqual(el.isObject ? 'object' : (options.prototypes[i].element ? options.prototypes[i].element.type : 'file'))
     })
   })
 }
