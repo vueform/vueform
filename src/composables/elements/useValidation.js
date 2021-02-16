@@ -510,7 +510,7 @@ const list = function(props, context, dependencies)
 const multilingual = function(props, context, dependencies)
 {
   const {
-    rules
+    rules,
   } = toRefs(props)
 
    // ============ DEPENDENCIES ============

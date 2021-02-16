@@ -175,6 +175,11 @@ export default {
       type: [Object],
       default: () => ({})
     },
+    rules: {
+      required: false,
+      type: [Array, String, Object],
+      default: null
+    },
     messages: {
       required: false,
       type: [Object],

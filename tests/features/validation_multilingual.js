@@ -2,7 +2,7 @@ import flushPromises from 'flush-promises'
 import { createForm } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
-export { messageBag, messages, displayError, } from './validation'
+export { messageBag, } from './validation'
 
 jest.useFakeTimers()
 
@@ -41,7 +41,7 @@ export const state = function (elementType, elementName, options) {
   })
 }
 
-export const rules = function (elementType, elementName, options) {
+export const validationRules = function (elementType, elementName, options) {
   it('should return empty object is `rules` are not defined', async () => {
     let form = createForm({
       languages: {
@@ -63,7 +63,7 @@ export const rules = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     
-    expect(el.rules).toStrictEqual({})
+    expect(el.validationRules).toStrictEqual({})
   })
 
   it('should return same `rules` for each language', async () => {
@@ -88,7 +88,7 @@ export const rules = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     
-    expect(el.rules).toStrictEqual({
+    expect(el.validationRules).toStrictEqual({
       en: 'required',
       fr: 'required'
     })
@@ -118,7 +118,7 @@ export const rules = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     
-    expect(el.rules).toStrictEqual({
+    expect(el.validationRules).toStrictEqual({
       en: 'required',
       fr: null,
     })

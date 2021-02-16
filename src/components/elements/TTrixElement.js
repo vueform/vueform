@@ -166,6 +166,11 @@ export default {
       type: [String],
       default: null
     },
+    rules: {
+      required: false,
+      type: [Array, String, Object],
+      default: null
+    },
     messages: {
       required: false,
       type: [Object],

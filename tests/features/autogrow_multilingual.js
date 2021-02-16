@@ -1,8 +1,6 @@
 import { nextTick } from 'composition-api'
 import { autosize as baseAutosize } from './autogrow'
 
-export { autogrow } from './autogrow'
-
 export const autosize = function (elementType, elementName, options) {
   baseAutosize(elementType, elementName, options)
 
