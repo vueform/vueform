@@ -105,19 +105,10 @@ const base = function (props, context, dependencies, options_ = {})
 
   // ============== WATCHERS ==============
 
-  watch(provider, () => {
+  watch([provider, providerOptions], () => {
     locationService.value.destroy()
     initLocationService()
   })
-
-  watch(options, () => {
-    if (_.isEqual(options.value, locationService.value.options)) {
-      return
-    }
-
-    locationService.value.init(options.value)
-  }, { deep: true })
-  
 
   // =============== HOOKS ================
 
@@ -160,7 +151,7 @@ const location = function (props, context, dependencies, options_ = {})
   onMounted(() => {
     nextTick(() => {
       if (value.value && value.value[displayKey.value]) {
-        input.value = value.value[displayKey.value]
+        input.value.value = value.value[displayKey.value]
       }
     })
   })

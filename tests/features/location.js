@@ -14,7 +14,7 @@ export const locationService = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.locationService).not.toStrictEqual(new el.$laraform.services.location.google)
-    expect(el.locationService.options).toStrictEqual(el.options)
+    expect(el.locationService.options).toStrictEqual(el.providerOptions)
   })
 
   it('should init `locationService` with algolia', async () => {
@@ -30,7 +30,7 @@ export const locationService = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.locationService).not.toStrictEqual(new el.$laraform.services.location.algolia)
-    expect(el.locationService.options).toStrictEqual(el.options)
+    expect(el.locationService.options).toStrictEqual(el.providerOptions)
   })
 }
 
@@ -97,7 +97,7 @@ export const provider = function (elementType, elementName, options, spies) {
     expect(googleRemoveListenerMock.mock.calls.length).toBe(0)
     expect(placesMock.mock.calls.length).toBe(0)
 
-    el.provider = 'algolia'
+    el.$set(form.vm.schema.el, 'provider', 'algolia')
 
     await nextTick()
 
@@ -107,8 +107,8 @@ export const provider = function (elementType, elementName, options, spies) {
   })
 }
 
-export const options = function (elementType, elementName, options, spies) {
-  it('should have default `options` when google', () => {
+export const providerOptions = function (elementType, elementName, options, spies) {
+  it('should have default `providerOptions` when google', () => {
     let form = createForm({
       schema: {
         el: {
@@ -120,10 +120,10 @@ export const options = function (elementType, elementName, options, spies) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual(el.defaultOptions)
+    expect(el.providerOptions).toStrictEqual(el.defaultOptions)
   })
 
-  it('should have default `options` when algolia', () => {
+  it('should have default `providerOptions` when algolia', () => {
     let form = createForm({
       schema: {
         el: {
@@ -135,10 +135,10 @@ export const options = function (elementType, elementName, options, spies) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual(el.defaultOptions)
+    expect(el.providerOptions).toStrictEqual(el.defaultOptions)
   })
   
-  it('should extend `options` from schema', () => {
+  it('should extend `providerOptions` from schema', () => {
     let form = createForm({
       schema: {
         el: {
@@ -152,37 +152,20 @@ export const options = function (elementType, elementName, options, spies) {
 
     let el = form.vm.el$('el')
 
-    expect(el.options).toStrictEqual(Object.assign({}, el.defaultOptions, { 
+    expect(el.providerOptions).toStrictEqual(Object.assign({}, el.defaultOptions, { 
       custom: 'option'
     }))
   })
   
-  it('should set `options` to schema', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
 
-    let el = form.vm.el$('el')
-
-    el.options = {
-      custom: 'option'
-    }
-
-    expect(el.schema.options).toStrictEqual({
-      custom: 'option'
-    })
-  })
-
-  it('should reinit location service when options changes', async () => {
+  it('should destroy & reinit location service when options changes', async () => {
     let autocompleteMock = jest.fn(() => {
       return {
         addListener: () => {},
       }
     })
+
+    let googleRemoveListenerMock = jest.fn()
 
     spies.window.mockImplementation(() => ({
       google: {
@@ -190,6 +173,10 @@ export const options = function (elementType, elementName, options, spies) {
           places: {
             Autocomplete: autocompleteMock
           },
+          event: {
+            removeListener: googleRemoveListenerMock,
+            clearInstanceListeners: () => {},
+          }
         }
       },
     }))
@@ -198,6 +185,9 @@ export const options = function (elementType, elementName, options, spies) {
       schema: {
         el: {
           type: elementType,
+          options: {
+            description: 'a'
+          }
         }
       }
     })
@@ -205,14 +195,15 @@ export const options = function (elementType, elementName, options, spies) {
     let el = form.vm.el$('el')
 
     expect(autocompleteMock.mock.calls.length).toBe(1)
+    expect(googleRemoveListenerMock.mock.calls.length).toBe(0)
 
-    el.options = {
-      description: 'a'
-    }
+    el.options.description = 'b'
 
     await nextTick()
 
     expect(autocompleteMock.mock.calls.length).toBe(2)
+    expect(googleRemoveListenerMock.mock.calls.length).toBe(1)
+    expect(el.locationService.options).toStrictEqual(el.providerOptions)
   })
 }
 

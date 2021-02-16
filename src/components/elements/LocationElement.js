@@ -101,8 +101,8 @@ export default {
     },
     default: {
       required: false,
-      type: [String, Number],
-      default: null
+      type: [String, Number, Object],
+      default: () => ({})
     },
     description: {
       required: false,
@@ -312,12 +312,6 @@ export default {
     onMounted(() => {
       validation.initMessageBag()
       validation.initValidation()
-
-      nextTick(() => {
-        if (value.value && value.value[displayKey.value]) {
-          input.value = value.value[displayKey.value]
-        }
-      })
     })
 
     return {
