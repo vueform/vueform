@@ -452,7 +452,8 @@ const toggle = function(props, context, dependencies)
     width,
     height,
     speed,
-    colors,  
+    colors,
+    options,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============

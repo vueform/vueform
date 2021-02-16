@@ -47,12 +47,12 @@ export default {
     trueValue: {
       required: false,
       type: [Boolean, String, Number],
-      default: 1
+      default: true
     },
     falseValue: {
       required: false,
       type: [Boolean, String, Number],
-      default: 0
+      default: false
     },
     addClass: {
       required: false,
