@@ -1,8 +1,8 @@
 import { nextTick } from 'vue'
-import { createForm } from 'test-helpers'
+import { createForm, listSchema, listChildValue } from 'test-helpers'
 import asyncForEach from './../../src/utils/asyncForEach'
 
-export { data, next, add, insert, remove, load, update, clear, updated } from './data_list'
+export { data, next, add, insert, remove, load, update, clear, reset, updated } from './data_list'
 
 export const filtered = function (elementType, elementName, options) {
   const prototypes = options.prototypes
@@ -135,79 +135,14 @@ export const filtered = function (elementType, elementName, options) {
   })
 }
 
-export const reset = function (elementType, elementName, options) {
-  const prototypes = options.prototypes
-
-  it('should set default instances on `reset`', async () => {
-    await asyncForEach(prototypes, async (prototype, i) => {
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            default: [new File([''], 'a.jpg'), new File([''], 'b.jpg'), new File([''], 'c.jpg')],
-          }, prototype)
-        }
-      })
-
-      let el = form.vm.el$('el')
-
-      await nextTick()
-
-      el.add()
-      el.add()
-      
-      el.reset()
-
-      await nextTick()
-
-      expect(el.instances.length).toBe(3)
-    })
-  })
-
-  it('should trigger "change" event on `reset` if value changed', async () => {
-    let onChangeMock = jest.fn()
-
-    await asyncForEach(prototypes, async (prototype, i) => {
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            default: [new File([''], 'a.jpg'), new File([''], 'b.jpg'), new File([''], 'c.jpg')],
-            onChange: onChangeMock,
-          }, prototype)
-        }
-      })
-
-      let el = form.vm.el$('el')
-
-      await nextTick()
-
-      el.add()
-      el.add()
-      
-      el.reset()
-
-      await nextTick()
-      await nextTick()
-
-      expect(onChangeMock).toHaveBeenCalled()
-    })
-  })
-}
-
 export const orderValue = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
   it('should `orderValue` "ASC" if "order" is "ASC" using single element', async () => {
-    let form = createForm({
-      schema: {
-        el: Object.assign({}, {
-          type: elementType,
-          initial: 0,
-          order: 'ASC',
-        }, prototypes[0])
-      }
-    })
+    let form = createForm(listSchema(options, 0, {
+      initial: 0,
+      parent: { order: 'ASC' }
+    }))
 
     let el = form.vm.el$('el')
 
@@ -221,15 +156,10 @@ export const orderValue = function (elementType, elementName, options) {
   })
 
   it('should `orderValue` "DESC" if "order" is "DESC" using single element', async () => {
-    let form = createForm({
-      schema: {
-        el: Object.assign({}, {
-          type: elementType,
-          initial: 0,
-          order: 'DESC',
-        }, prototypes[0])
-      }
-    })
+    let form = createForm(listSchema(options, 0, {
+      initial: 0,
+      parent: { order: 'DESC' }
+    }))
 
     let el = form.vm.el$('el')
 
@@ -243,17 +173,14 @@ export const orderValue = function (elementType, elementName, options) {
   })
 
   it('should `orderValue` by "orderBy" "ASC" if "orderBy" is defined using object element', async () => {
-    let form = createForm({
-      schema: {
-        el: Object.assign({}, {
-          type: elementType,
-          initial: 0,
-          orderBy: 'order',
-          order: 'ASC',
-          storeOrder: 'order',
-        })
+    let form = createForm(listSchema(options, 1, {
+      initial: 0,
+      parent: {
+        orderBy: 'order',
+        order: 'ASC',
+        storeOrder: 'order',
       }
-    })
+    }))
 
     let el = form.vm.el$('el')
 
@@ -287,17 +214,14 @@ export const orderValue = function (elementType, elementName, options) {
   })
 
   it('should `orderValue` by "orderBy" "DESC" if "orderBy" is defined and "order" is "DESC" using object element', async () => {
-    let form = createForm({
-      schema: {
-        el: Object.assign({}, {
-          type: elementType,
-          initial: 0,
-          orderBy: 'order',
-          order: 'DESC',
-          storeOrder: 'order'
-        })
+    let form = createForm(listSchema(options, 1, {
+      initial: 0,
+      parent: {
+        orderBy: 'order',
+        order: 'DESC',
+        storeOrder: 'order'
       }
-    })
+    }))
 
     let el = form.vm.el$('el')
 
@@ -336,14 +260,9 @@ export const handleAdd = function (elementType, elementName, options) {
 
   it('should trigger add on `handleAdd` if not disabled', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 0,
-          }, prototype)
-        }
-      })
+      let form = createForm(listSchema(options, i, {
+        initial: 0,
+      }))
 
       let el = form.vm.el$('el')
 
@@ -367,14 +286,9 @@ export const handleRemove = function (elementType, elementName, options) {
 
   it('should trigger remove on `handleRemove` if not disabled', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 3,
-          }, prototype)
-        }
-      })
+      let form = createForm(listSchema(options, i, {
+        initial: 3,
+      }))
 
       let el = form.vm.el$('el')
 
@@ -394,14 +308,9 @@ export const handleRemove = function (elementType, elementName, options) {
 
   it('should trigger remove on `handleRemove` when clicking "Remove" button', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
-      let form = createForm({
-        schema: {
-          el: Object.assign({}, {
-            type: elementType,
-            initial: 3,
-          }, prototype)
-        }
-      })
+      let form = createForm(listSchema(options, i, {
+        initial: 3,
+      }))
 
       let el = form.vm.el$('el')
       let child = form.vm.el$('el.0')
