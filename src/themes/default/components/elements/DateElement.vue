@@ -9,7 +9,7 @@
         :visible="!empty"
       />
       
-      <Flatpickr
+      <FlatpickrWrapper
         :value="model"
         :options="fieldOptions"
         :id="fieldId"

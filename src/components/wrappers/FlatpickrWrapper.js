@@ -3,7 +3,7 @@ import flatpickr from 'flatpickr'
 import 'flatpickr/dist/themes/light.css'
 
 export default {
-  name: 'Flatpickr',
+  name: 'FlatpickrWrapper',
   setup(props, context) {
     return {
       ...useElementComponent(props, context),

@@ -58,7 +58,7 @@ export const fieldOptions = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let Flatpickr = findAllComponents(elWrapper, { name: 'Flatpickr' }).at(0)
+    let Flatpickr = findAllComponents(elWrapper, { name: 'FlatpickrWrapper' }).at(0)
     
     expect(Flatpickr.props('options')).toStrictEqual(el.fieldOptions)
   })

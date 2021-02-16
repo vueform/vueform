@@ -2,7 +2,7 @@ import { ref, watch, onMounted, toRefs } from 'composition-api'
 import useElementComponent from './../../composables/useElementComponent'
 
 export default {
-  name: 'Trix',
+  name: 'TrixWrapper',
   props: {
     value: {
       default: null

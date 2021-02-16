@@ -69,8 +69,8 @@ import ElementText from './components/ElementText'
 import DragAndDrop from './components/DragAndDrop'
 import InputAddon from './components/InputAddon'
 
-import Flatpickr from './components/wrappers/Flatpickr'
-import Trix from './components/wrappers/Trix'
+import FlatpickrWrapper from './components/wrappers/FlatpickrWrapper'
+import TrixWrapper from './components/wrappers/TrixWrapper'
 
 import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
 import FileSlotProgress from './components/elements/slots/FileSlotProgress'
@@ -144,8 +144,8 @@ const components = {
   DragAndDrop,
   InputAddon,
 
-  Flatpickr,
-  Trix,
+  FlatpickrWrapper,
+  TrixWrapper,
 
   CheckboxgroupSlotCheckbox,
   FileSlotProgress,

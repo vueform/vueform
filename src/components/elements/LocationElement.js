@@ -101,7 +101,7 @@ export default {
     },
     default: {
       required: false,
-      type: [String, Number, Object],
+      type: [Object],
       default: () => ({})
     },
     description: {

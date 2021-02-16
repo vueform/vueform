@@ -24,7 +24,7 @@ export default function testAttribute (el, fieldType, attribute, expectedValue) 
       break
 
     case 'trix':
-      expect(expectedValue.indexOf(findAllComponents(el, { name: 'Trix' }).at(0).props(attribute)) !== -1).toBeTruthy()
+      expect(expectedValue.indexOf(findAllComponents(el, { name: 'TrixWrapper' }).at(0).props(attribute)) !== -1).toBeTruthy()
       break
   }
 } 

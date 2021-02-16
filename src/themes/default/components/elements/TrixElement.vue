@@ -4,7 +4,7 @@
 
       <slot name="prefix"></slot>
 
-      <Trix
+      <TrixWrapper
         :value="model"
         :placeholder="placeholder"
         :id="fieldId"
