@@ -1,116 +1,183 @@
-import { createForm, testPropDefault } from 'test-helpers'
+import { createForm, createElement, findAll } from 'test-helpers'
+import { nextTick, markRaw } from 'composition-api'
+import flushPromises from 'flush-promises'
 
-export const buttonLabel = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'buttonLabel', '', 'Button')
-}
-
-export const buttonType = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'buttonType', 'button', 'anchor')
-}
-
-export const buttonClass = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'buttonClass', null, 'btn-class')
-}
-
-export const disabled = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'disabled', false, true)
-}
-
-export const loading = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'loading', false, true)
-}
-
-export const href = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'href', null, 'url')
-}
-
-export const target = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'target', '_self', '_blank')
-}
-
-export const align = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'align', 'left', 'right')
-}
-
-export const onClick = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'onClick', null, 'click')
-}
-
-export const buttonComponent = function (elementType, elementName, options) {
-  it('should return FormButton by default if button type is not defined', () => {
+export const isLoading = function (elementType, elementName, options) {
+  it('should be equal to loading value if boolean', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          buttonLabel: 'Button'
         }
       }
     })
 
     let el = form.vm.el$('el')
-    
-    expect(el.buttonComponent).toStrictEqual(el.components.FormButton)
+
+    expect(el.isLoading).toBe(false)
+
+    el.$set(form.vm.schema.el, 'loading', true)
+
+    await nextTick()
+
+    expect(el.isLoading).toBe(true)
   })
 
-  it('should return anchor button if button type is anchor', () => {
+  it('should be equal to loading value if function', async () => {
+    let form = createForm({
+      loading: false,
+      schema: {
+        el: {
+          type: elementType,
+          loading(form$) {
+            return form$.loading
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.isLoading).toBe(false)
+
+    el.$set(form.vm, 'loading', true)
+
+    await nextTick()
+
+    expect(el.isLoading).toBe(true)
+  })
+}
+
+export const isButtonLabelComponent = function (elementType, elementName, options) {
+  it('should return true & render component if label is a component buttonType=button', async() => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          buttonLabel: 'String'
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.isButtonLabelComponent).toBe(false)
+    expect(findAll(form, 'button').at(0).element.innerHTML).toBe('String')
+
+    el.$set(form.vm.schema.el, 'buttonLabel', null)
+    await nextTick()
+    expect(el.isButtonLabelComponent).toBe(false)
+
+    el.$set(form.vm.schema.el, 'buttonLabel', markRaw({
+      props: ['el$'],
+      render(h) {
+        return createElement(h, 'div', 'hello')
+      }
+    }))
+    await nextTick()
+    expect(el.isButtonLabelComponent).toBe(true)
+    expect(findAll(form, 'button').at(0).element.innerHTML).toBe('<div>hello</div>')
+  })
+
+  it('should return true & render component if label is a component buttonType=anchor', async() => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           buttonType: 'anchor',
-          buttonLabel: 'Button'
+          buttonLabel: 'String'
         }
       }
     })
 
     let el = form.vm.el$('el')
-    
-    expect(el.buttonComponent).toStrictEqual(el.components.FormButtonAnchor)
-  })
 
-  it('should return submit button if button type is submit', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          buttonType: 'submit',
-          buttonLabel: 'Button'
-        }
+    expect(el.isButtonLabelComponent).toBe(false)
+    expect(findAll(form, 'a').at(0).element.innerHTML).toBe('String')
+
+    el.$set(form.vm.schema.el, 'buttonLabel', null)
+    await nextTick()
+    expect(el.isButtonLabelComponent).toBe(false)
+
+    el.$set(form.vm.schema.el, 'buttonLabel', markRaw({
+      props: ['el$'],
+      render(h) {
+        return createElement(h, 'div', 'hello')
       }
-    })
-
-    let el = form.vm.el$('el')
-    
-    expect(el.buttonComponent).toStrictEqual(el.components.FormButtonSubmit)
-  })
-
-  it('should throw error for `component` if button type not found', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          buttonLabel: 'Button'
-        }
-      }
-    })
-    let el = form.vm.el$('el')
-
-    const originalConsoleError = console.error
-    const originalConsoleWarn = console.warn
-    console.error = () => {}
-    console.warn = () => {}
-
-    expect(() => {
-      el.buttonType = 'unknown'
-    }).toThrowError()
-
-    console.error = originalConsoleError
-    console.warn = originalConsoleWarn
+    }))
+    await nextTick()
+    expect(el.isButtonLabelComponent).toBe(true)
+    expect(findAll(form, 'a').at(0).element.innerHTML).toBe('<div>hello</div>')
   })
 }
 
 export const button = function (elementType, elementName, options) {
-  it('should return schema', () => {
+  it('should include href & target when anchor and assign to a', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          buttonType: 'anchor',
+          buttonLabel: 'String',
+          href: 'href',
+          target: 'target',
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.button).toStrictEqual({
+      href: 'href',
+      target: 'target'
+    })
+    expect(findAll(form, 'a').at(0).element.href).toContain('href')
+    expect(findAll(form, 'a').at(0).element.target).toBe('target')
+
+    el.$set(form.vm.schema.el, 'buttonLabel', markRaw({
+      props: ['el$'],
+      render(h) {
+        return createElement(h, 'div', 'hello')
+      }
+    }))
+    await nextTick()
+    expect(findAll(form, 'a').at(0).element.href).toContain('href')
+    expect(findAll(form, 'a').at(0).element.target).toBe('target')
+  })
+
+  it('should include disabled when button and assign to button', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          buttonType: 'button',
+          buttonLabel: 'String',
+          disabled: true
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.button).toStrictEqual({
+      disabled: true
+    })
+    expect(findAll(form, 'button').at(0).element.disabled).toBeTruthy()
+
+    el.$set(form.vm.schema.el, 'buttonLabel', markRaw({
+      props: ['el$'],
+      render(h) {
+        return createElement(h, 'div', 'hello')
+      }
+    }))
+    await nextTick()
+    expect(findAll(form, 'button').at(0).element.disabled).toBeTruthy()
+  })
+}
+export const handleClick = function (elementType, elementName, options) {
+  it('should prevent if href.length > 0', async () => {
+    let preventMock = jest.fn()
+
     let form = createForm({
       schema: {
         el: {
@@ -120,16 +187,155 @@ export const button = function (elementType, elementName, options) {
     })
 
     let el = form.vm.el$('el')
-    
-    expect(el.button).toStrictEqual({
-      label: el.buttonLabel,
-      class: el.buttonClass,
-      disabled: el.disabled,
-      loading: el.loading,
-      href: el.href,
-      target: el.target,
-      onClick: el.onClick,
-      align: el.align,
+
+    el.handleClick({ preventDefault: preventMock, })
+    expect(preventMock).not.toHaveBeenCalled()
+
+    el.$set(form.vm.schema.el, 'href', 'href')
+    await nextTick()
+    el.handleClick({ preventDefault: preventMock, })
+    expect(preventMock).toHaveBeenCalled()
+  })
+
+  it('should return if disabled or loading and call onClick with form$ if not', async () => {
+    let onClickMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          onClick: onClickMock,
+          disabled: true,
+          loading: true,
+        }
+      }
     })
+
+    let el = form.vm.el$('el')
+
+    el.handleClick()
+    expect(onClickMock).not.toHaveBeenCalled()
+
+    el.$set(form.vm.schema.el, 'disabled', false)
+    await nextTick()
+    el.handleClick()
+    expect(onClickMock).not.toHaveBeenCalled()
+
+    el.$set(form.vm.schema.el, 'loading', false)
+    el.$set(form.vm.schema.el, 'disabled', true)
+    await nextTick()
+    el.handleClick()
+    expect(onClickMock).not.toHaveBeenCalled()
+
+    el.$set(form.vm.schema.el, 'disabled', false)
+    await nextTick()
+    el.handleClick()
+    expect(onClickMock).toHaveBeenCalledWith(el.form$)
+  })
+
+  it('should reset on click if resets true', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          resets: true,
+        },
+        el2: {
+          type: 'text'
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+    let el2 = form.vm.el$('el2')
+
+    el2.load('value')
+
+    el.handleClick()
+
+    expect(el2.value).toBe(el2.nullValue)
+  })
+
+  it('should submit on click if submits true', async () => {
+    let postMock = jest.fn(() => ({ data: {} }))
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          submits: true,
+        },
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    form.vm.$laraform.services.axios.post = postMock
+
+    el.handleClick()
+
+    await flushPromises()
+
+    expect(postMock).toHaveBeenCalled()
+  })
+
+  it('should trigger on click buttonType=anchor', async () => {
+    let onClickMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          buttonType: 'anchor',
+          label: 'String',
+          onClick: onClickMock,
+        },
+      }
+    })
+
+    let a = findAll(form, 'a').at(0)
+
+    a.trigger('click')
+    expect(onClickMock).toHaveBeenCalled()
+
+    form.vm.$set(form.vm.schema.el, 'label', markRaw({
+      props: ['el$'],
+      render(h) {
+        return createElement(h, 'div', 'hello')
+      }
+    }))
+    await nextTick()
+    a.trigger('click')
+    expect(onClickMock).toHaveBeenCalledTimes(2)
+  })
+
+  it('should trigger on click buttonType=button', async () => {
+    let onClickMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          buttonType: 'button',
+          label: 'String',
+          onClick: onClickMock,
+        },
+      }
+    })
+
+    let button = findAll(form, 'button').at(0)
+
+    button.trigger('click')
+    expect(onClickMock).toHaveBeenCalled()
+
+    form.vm.$set(form.vm.schema.el, 'label', markRaw({
+      props: ['el$'],
+      render(h) {
+        return createElement(h, 'div', 'hello')
+      }
+    }))
+    await nextTick()
+    button.trigger('click')
+    expect(onClickMock).toHaveBeenCalledTimes(2)
   })
 }

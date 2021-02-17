@@ -12,10 +12,11 @@ import FormWizardNext from './components/FormWizardNext'
 import FormWizardPrevious from './components/FormWizardPrevious'
 import FormWizardStep from './components/FormWizardStep'
 import FormElements from './components/FormElements'
-import FormButton from './components/FormButton'
-import FormButtonSubmit from './components/FormButtonSubmit'
-import FormButtonAnchor from './components/FormButtonAnchor'
+// import FormButton from './components/FormButton'
+// import FormButtonSubmit from './components/FormButtonSubmit'
+// import FormButtonAnchor from './components/FormButtonAnchor'
 import ElementLayout from './components/ElementLayout'
+import ElementLayoutInline from './components/ElementLayoutInline'
 import ElementLabelFloating from './components/ElementLabelFloating'
 import ElementLabel from './components/ElementLabel'
 import ElementInfo from './components/ElementInfo'
@@ -31,7 +32,7 @@ import TrixWrapper from './components/wrappers/TrixWrapper'
 
 import AddressElement from './components/elements/AddressElement'
 import ButtonElement from './components/elements/ButtonElement'
-import ButtonsElement from './components/elements/ButtonsElement'
+// import ButtonsElement from './components/elements/ButtonsElement'
 import CheckboxElement from './components/elements/CheckboxElement'
 import CheckboxgroupElement from './components/elements/CheckboxgroupElement'
 import DateElement from './components/elements/DateElement'
@@ -87,10 +88,11 @@ const components = {
   FormWizardPrevious,
   FormWizardStep,
   FormElements,
-  FormButton,
-  FormButtonSubmit,
-  FormButtonAnchor,
+  // FormButton,
+  // FormButtonSubmit,
+  // FormButtonAnchor,
   ElementLayout,
+  ElementLayoutInline,
   ElementLabelFloating,
   ElementLabel,
   ElementInfo,
@@ -124,7 +126,7 @@ export default {
   elements: {
     AddressElement,
     ButtonElement,
-    ButtonsElement,
+    // ButtonsElement,
     CheckboxElement,
     CheckboxgroupElement,
     DateElement,
@@ -151,8 +153,7 @@ export default {
     TTextElement,
     TTrixElement,
   },
-  classes: {
-  },
+  classes: {},
   utils: {
     columns,
   },

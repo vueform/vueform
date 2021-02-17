@@ -1,5 +1,5 @@
 <template>
-  <component :is="layout">
+  <component :is="elementLayout">
 
     <template v-slot:field>
       
@@ -8,10 +8,10 @@
       <div :class="classes.childrenContainer">
         <slot>
           <component :is="component(element)"
-            v-for="(element, name, i) in children"
+            v-for="(element, name) in children"
             v-bind="element"
             :name="name"
-            :key="i"
+            :key="name"
           />
         </slot>
       </div>

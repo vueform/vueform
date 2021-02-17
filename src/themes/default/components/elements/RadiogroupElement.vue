@@ -1,5 +1,5 @@
 <template>
-  <component :is="layout">
+  <component :is="elementLayout">
 
     <template v-slot:field>
       <slot name="prefix"></slot>

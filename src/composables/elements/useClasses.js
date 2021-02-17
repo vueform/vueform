@@ -179,9 +179,65 @@ const file = function(props, context, dependencies)
   }
 }
 
+const button = function(props, context, dependencies)
+{
+  const {
+    buttonClass,
+    align,
+  } = toRefs(props)
+
+  const {
+    mainClass,
+    classes: baseClasses,
+    defaultClasses,
+    containers
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES ============
+
+  const isLoading = dependencies.isLoading
+  const isDisabled = dependencies.isDisabled
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`.
+   * 
+   * @type {object}
+   * @option
+   */
+  const classes = computed(() => {
+    let classes = _.clone(baseClasses.value)
+
+    classes = mergeComponentClasses(classes, {
+      [containers.value.button]: {
+        [classes[containers.value[align.value]]]: true,
+        [classes[containers.value.loading]]: isLoading.value,
+        [classes[containers.value.disabled]]: isDisabled.value,
+      }
+    })
+
+    if (buttonClass.value) {
+      classes = mergeComponentClasses(classes, {
+        [containers.value.button]: buttonClass.value
+      })
+    }
+
+    return classes
+  })
+
+  return {
+    classes,
+    mainClass,
+    defaultClasses,
+    containers
+  }
+}
+
 export {
   list,
   file,
+  button,
 }
 
 export default base

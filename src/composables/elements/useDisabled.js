@@ -152,11 +152,33 @@ const checkboxgroup = function(props, context, dependencies)
   }
 }
 
+const button = function(props, context, dependencies)
+{
+  const {
+    disabled,
+  } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
+
+  // ============== COMPUTED ==============
+
+  const isDisabled = computed(() => {
+    return typeof disabled.value === 'function' ? disabled.value(form$.value) : disabled.value
+  })
+
+  return {
+    isDisabled,
+  }
+}
+
 const radiogroup = checkboxgroup
 
 export {
   checkboxgroup,
   radiogroup,
+  button,
 }
 
 export default base

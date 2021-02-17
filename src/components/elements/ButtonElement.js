@@ -3,14 +3,16 @@ import useTheme from './../../composables/useTheme'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
 import useLabel from './../../composables/elements/useLabel'
-import useClasses from './../../composables/elements/useClasses'
 import useColumns from './../../composables/elements/useColumns'
 import useGenericName from './../../composables/elements/useGenericName'
 import useView from './../../composables/elements/useView'
 import useComponents from './../../composables/elements/useComponents'
 import useSlots from './../../composables/elements/useSlots'
 import useButton from './../../composables/elements/useButton'
+import useLayout from './../../composables/elements/useLayout'
 
+import { button as useDisabled } from './../../composables/elements/useDisabled'
+import { button as useClasses } from './../../composables/elements/useClasses'
 import { static_ as useBaseElement } from './../../composables/elements/useBaseElement'
 
 export default {
@@ -22,9 +24,14 @@ export default {
       required: true,
       type: [String, Number],
     },
+    inline: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
     layout: {
       required: false,
-      type: [String, Object],
+      type: [String, Object, Boolean],
       default: 'ElementLayout'
     },
     type: {
@@ -34,13 +41,13 @@ export default {
     },
     buttonLabel: {
       required: false,
-      type: [String],
+      type: [String, Object, Function],
       default: null
     },
     buttonType: {
       required: false,
       type: [String],
-      default: 'button'
+      default: 'button' // button|anchor
     },
     buttonClass: {
       required: false,
@@ -49,18 +56,18 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Function],
+      type: [Function, Boolean],
       default: false
     },
     loading: {
       required: false,
-      type: [Function],
+      type: [Function, Boolean],
       default: false
     },
     href: {
       required: false,
       type: [String],
-      default: null
+      default: ''
     },
     target: {
       required: false,
@@ -76,6 +83,16 @@ export default {
       required: false,
       type: [Function],
       default: null
+    },
+    resets: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    submits: {
+      required: false,
+      type: [Boolean],
+      default: false
     },
     addClass: {
       required: false,
@@ -119,7 +136,7 @@ export default {
     },
     label: {
       required: false,
-      type: [String],
+      type: [String, Object, Function],
       default: null
     },
     before: {
@@ -146,7 +163,12 @@ export default {
   setup(props, context) {
     const form$ = useForm$(props, context)
     const theme = useTheme(props, context)
+    const layout = useLayout(props, context)
     const path = usePath(props, context)
+    
+    const disabled = useDisabled(props, context, {
+      form$: form$.form$
+    })
 
     const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
@@ -171,12 +193,15 @@ export default {
     })
 
     const button = useButton(props, context, {
-      components: components.components,
+      form$: form$.form$,
+      isDisabled: disabled.isDisabled,
     })
 
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
+      isLoading: button.isLoading,
+      isDisabled: disabled.isDisabled,
     })
 
     const columns = useColumns(props, context, {
@@ -200,6 +225,7 @@ export default {
     return {
       ...form$,
       ...theme,
+      ...layout,
       ...path,
       ...conditions,
       ...label,
@@ -211,6 +237,7 @@ export default {
       ...components,
       ...slots,
       ...button,
+      ...disabled,
     }
   }
 }

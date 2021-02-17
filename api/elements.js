@@ -13,6 +13,7 @@ export default {
       "form$",
       "genericName",
       "label",
+      "layout",
       "location_address",
       "path",
       "slots",
@@ -39,6 +40,12 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "embed": {
         "required": "false",
         "types": [
@@ -49,7 +56,8 @@ export default {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -136,7 +144,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "provider": {
@@ -199,13 +209,15 @@ export default {
     "features": [
       "baseElement_static",
       "button",
-      "classes",
+      "classes_button",
       "columns",
       "components",
       "conditions",
+      "disabled_button",
       "form$",
       "genericName",
       "label",
+      "layout",
       "path",
       "slots",
       "theme",
@@ -228,11 +240,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -244,7 +263,9 @@ export default {
       "buttonLabel": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "buttonType": {
@@ -264,13 +285,15 @@ export default {
       "disabled": {
         "required": "false",
         "types": [
-          "function"
+          "function",
+          "boolean"
         ]
       },
       "loading": {
         "required": "false",
         "types": [
-          "function"
+          "function",
+          "boolean"
         ]
       },
       "href": {
@@ -297,146 +320,16 @@ export default {
           "function"
         ]
       },
-      "addClass": {
+      "resets": {
         "required": "false",
         "types": [
-          "string",
-          "array",
-          "object"
+          "boolean"
         ]
       },
-      "overrideClasses": {
+      "submits": {
         "required": "false",
         "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      }
-    }
-  },
-  "buttons": {
-    "features": [
-      "baseElement_static",
-      "buttons",
-      "children_buttons",
-      "classes",
-      "columns",
-      "components",
-      "conditions",
-      "form$",
-      "genericName",
-      "label",
-      "path",
-      "slots",
-      "theme",
-      "view"
-    ],
-    "slots": [
-      "label",
-      "info",
-      "description",
-      "before",
-      "between",
-      "after"
-    ],
-    "events": [],
-    "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object"
-        ]
-      },
-      "type": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "buttons": {
-        "required": "false",
-        "types": [
-          "array"
+          "boolean"
         ]
       },
       "addClass": {
@@ -493,7 +386,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "before": {
@@ -545,6 +440,7 @@ export default {
       "handleChange_checkbox",
       "input",
       "label",
+      "layout",
       "nullValue_boolean",
       "path",
       "slots",
@@ -575,11 +471,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -786,6 +689,7 @@ export default {
       "genericName",
       "handleChange",
       "label",
+      "layout",
       "nullValue_array",
       "path",
       "slots",
@@ -816,11 +720,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -937,7 +848,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "before": {
@@ -1017,6 +930,7 @@ export default {
       "handleChange_date",
       "input",
       "label",
+      "layout",
       "nullValue",
       "options_date",
       "path",
@@ -1047,11 +961,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -1163,7 +1084,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "displayFormat": {
@@ -1319,6 +1242,7 @@ export default {
       "handleChange_dates",
       "input",
       "label",
+      "layout",
       "nullValue_array",
       "options_dates",
       "path",
@@ -1349,11 +1273,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -1464,7 +1395,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "displayFormat": {
@@ -1609,6 +1542,7 @@ export default {
       "handleError",
       "input",
       "label",
+      "layout",
       "nullValue",
       "path",
       "removing",
@@ -1644,11 +1578,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "embed": {
@@ -1809,7 +1750,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "before": {
@@ -1895,6 +1838,7 @@ export default {
       "form$",
       "genericName",
       "label",
+      "layout",
       "path_group",
       "slots",
       "theme",
@@ -1920,17 +1864,25 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "schema": {
         "required": "false",
         "types": [
-          "object"
+          "object",
+          "array"
         ]
       },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -2011,7 +1963,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "before": {
@@ -2059,6 +2013,7 @@ export default {
       "form$",
       "genericName",
       "input",
+      "layout",
       "nullValue",
       "path",
       "theme",
@@ -2075,6 +2030,12 @@ export default {
         "types": [
           "string",
           "number"
+        ]
+      },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
         ]
       },
       "type": {
@@ -2170,6 +2131,7 @@ export default {
       "form$",
       "genericName",
       "label",
+      "layout",
       "nullValue_array",
       "order",
       "path",
@@ -2206,11 +2168,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -2315,7 +2284,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "order": {
@@ -2448,6 +2419,7 @@ export default {
       "genericName",
       "input",
       "label",
+      "layout",
       "location_location",
       "path",
       "slots",
@@ -2477,11 +2449,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "addons": {
@@ -2562,8 +2541,7 @@ export default {
       "default": {
         "required": "false",
         "types": [
-          "string",
-          "number"
+          "object"
         ]
       },
       "description": {
@@ -2605,7 +2583,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "provider": {
@@ -2708,6 +2688,7 @@ export default {
       "genericName",
       "input",
       "label",
+      "layout",
       "multifile",
       "nullValue_array",
       "order",
@@ -2745,6 +2726,12 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "image": {
         "types": [
           "boolean"
@@ -2755,7 +2742,8 @@ export default {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -2860,7 +2848,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "accept": {
@@ -3021,6 +3011,7 @@ export default {
       "handleSelectEvents",
       "input",
       "label",
+      "layout",
       "nullValue_array",
       "options_multiselect",
       "path",
@@ -3063,11 +3054,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -3186,7 +3184,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "search": {
@@ -3320,6 +3320,7 @@ export default {
       "form$",
       "genericName",
       "label",
+      "layout",
       "path",
       "slots",
       "theme",
@@ -3345,10 +3346,17 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "schema": {
         "required": "false",
         "types": [
-          "object"
+          "object",
+          "array"
         ]
       },
       "embed": {
@@ -3361,7 +3369,8 @@ export default {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -3442,7 +3451,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "before": {
@@ -3494,6 +3505,7 @@ export default {
       "handleChange_radio",
       "input",
       "label",
+      "layout",
       "nullValue",
       "path",
       "radio",
@@ -3524,11 +3536,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -3634,7 +3653,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "fieldName": {
@@ -3731,6 +3752,7 @@ export default {
       "genericName",
       "handleChange",
       "label",
+      "layout",
       "nullValue",
       "path",
       "slots",
@@ -3761,11 +3783,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -3883,7 +3912,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "before": {
@@ -3965,6 +3996,7 @@ export default {
       "handleSelectEvents",
       "input",
       "label",
+      "layout",
       "nullValue",
       "options_select",
       "path",
@@ -4006,11 +4038,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -4131,7 +4170,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "native": {
@@ -4269,6 +4310,7 @@ export default {
       "handleChange",
       "input",
       "label",
+      "layout",
       "nullValue_min",
       "options_slider",
       "path",
@@ -4299,11 +4341,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -4409,7 +4458,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "min": {
@@ -4548,6 +4599,7 @@ export default {
       "form$",
       "genericName",
       "label",
+      "layout",
       "path",
       "slots",
       "static",
@@ -4571,11 +4623,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -4638,7 +4697,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "before": {
@@ -4676,6 +4737,13 @@ export default {
         "types": [
           "boolean"
         ]
+      },
+      "content": {
+        "required": "false",
+        "types": [
+          "string",
+          "object"
+        ]
       }
     }
   },
@@ -4700,6 +4768,7 @@ export default {
       "handleTag",
       "input",
       "label",
+      "layout",
       "nullValue_array",
       "options_tags",
       "path",
@@ -4743,11 +4812,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -4866,7 +4942,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "search": {
@@ -5013,6 +5091,7 @@ export default {
       "handleInput",
       "input",
       "label",
+      "layout",
       "nullValue",
       "path",
       "slots",
@@ -5042,11 +5121,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "addons": {
@@ -5176,7 +5262,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "placeholder": {
@@ -5268,6 +5356,7 @@ export default {
       "handleInput",
       "input",
       "label",
+      "layout",
       "nullValue",
       "path",
       "slots",
@@ -5297,11 +5386,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ],
         "default": "\"ElementLayout\""
       },
@@ -5453,7 +5549,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ],
         "default": "\"ElementLayout\""
       },
@@ -5554,6 +5652,7 @@ export default {
       "handleChange_toggle",
       "input",
       "label",
+      "layout",
       "nullValue_boolean",
       "options_toggle",
       "path",
@@ -5585,11 +5684,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -5712,7 +5818,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "labels": {
@@ -5834,6 +5942,7 @@ export default {
       "handleInput",
       "input",
       "label",
+      "layout",
       "nullValue",
       "path",
       "slots",
@@ -5865,11 +5974,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -5975,7 +6091,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "placeholder": {
@@ -6087,6 +6205,7 @@ export default {
       "input",
       "label",
       "languages",
+      "layout",
       "nullValue_multilingual",
       "path",
       "slots",
@@ -6116,11 +6235,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "addons": {
@@ -6251,7 +6377,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "placeholder": {
@@ -6296,6 +6424,14 @@ export default {
           "object"
         ]
       },
+      "rules": {
+        "required": "false",
+        "types": [
+          "array",
+          "string",
+          "object"
+        ]
+      },
       "messages": {
         "required": "false",
         "types": [
@@ -6336,6 +6472,7 @@ export default {
       "input",
       "label",
       "languages",
+      "layout",
       "nullValue_multilingual",
       "path",
       "slots",
@@ -6365,11 +6502,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "addons": {
@@ -6501,7 +6645,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "placeholder": {
@@ -6546,6 +6692,14 @@ export default {
           "object"
         ]
       },
+      "rules": {
+        "required": "false",
+        "types": [
+          "array",
+          "string",
+          "object"
+        ]
+      },
       "messages": {
         "required": "false",
         "types": [
@@ -6586,6 +6740,7 @@ export default {
       "input",
       "label",
       "languages",
+      "layout",
       "nullValue_multilingual",
       "path",
       "slots",
@@ -6617,11 +6772,18 @@ export default {
           "number"
         ]
       },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "layout": {
         "required": "false",
         "types": [
           "string",
-          "object"
+          "object",
+          "boolean"
         ]
       },
       "type": {
@@ -6728,7 +6890,9 @@ export default {
       "label": {
         "required": "false",
         "types": [
-          "string"
+          "string",
+          "object",
+          "function"
         ]
       },
       "placeholder": {
@@ -6783,6 +6947,14 @@ export default {
         "required": "false",
         "types": [
           "string"
+        ]
+      },
+      "rules": {
+        "required": "false",
+        "types": [
+          "array",
+          "string",
+          "object"
         ]
       },
       "messages": {

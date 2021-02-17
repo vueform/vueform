@@ -1,6 +1,7 @@
 import { onMounted } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
 import useTheme from './../../composables/useTheme'
+import useLayout from './../../composables/elements/useLayout'
 import useConditions from './../../composables/useConditions'
 import useLabel from './../../composables/elements/useLabel'
 import useColumns from './../../composables/elements/useColumns'
@@ -43,6 +44,11 @@ export default {
       required: true,
       type: [String, Number],
     },
+    inline: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
     image: {
       type: [Boolean],
       required: false,
@@ -50,7 +56,7 @@ export default {
     },
     layout: {
       required: false,
-      type: [String, Object],
+      type: [String, Object, Boolean],
       default: 'ElementLayout'
     },
     type: {
@@ -135,7 +141,7 @@ export default {
     },
     label: {
       required: false,
-      type: [String],
+      type: [String, Object, Function],
       default: null
     },
     accept: {
@@ -247,6 +253,7 @@ export default {
   setup(props, context) {
     const form$ = useForm$(props, context)
     const theme = useTheme(props, context)
+    const layout = useLayout(props, context)
     const path = usePath(props, context)
     const disabled = useDisabled(props, context)
     const nullValue = useNullValueArray(props, context)
@@ -408,6 +415,7 @@ export default {
     return {
       ...form$,
       ...theme,
+      ...layout,
       ...path,
       ...disabled,
       ...nullValue,

@@ -1,76 +1,78 @@
 import { toRefs, computed } from 'composition-api'
+import { mergeComponentClasses } from './../../utils/mergeClasses'
 
 const base = function (props, context, dependencies)
 {
   const {
     buttonLabel,
     buttonType,
-    buttonClass,
-    disabled,
-    loading,
     href,
     target,
-    align,
+    loading,
     onClick,
-    component
+    resets,
+    submits,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
-  const components = dependencies.components
-  
+  const form$ = dependencies.form$
+  const isDisabled = dependencies.isDisabled
+
   // ============== COMPUTED ==============
 
-  /**
-   * 
-   * 
-   * @type {component<FormButton>}
-   * @private
-   */
-  const buttonComponent = computed(() => {
-    if (component.value) {
-      return component.value
-    }
-
-    let type = buttonType.value || 'button'
-
-    switch(type) {
-      case 'button':
-        return components.value.FormButton
-
-      default:
-        let component = components.value['FormButton' + _.upperFirst(type)]
-
-        if (!component) {
-          throw new TypeError('Button component not found: "FormButton' + _.upperFirst(type) + '"')
-        }
-
-        return component
-    }
+  const isLoading = computed(() => {
+    return typeof loading.value === 'function' ? loading.value(form$.value) : loading.value
   })
 
-  /**
-   * 
-   * 
-   * @type {object}
-   * @private
-   */
+  const isButtonLabelComponent = computed(() => {
+    return buttonLabel.value !== null && typeof buttonLabel.value === 'object'
+  })
+
   const button = computed(() => {
-    return {
-      label: buttonLabel.value,
-      class: buttonClass.value,
-      disabled: disabled.value,
-      loading: loading.value,
-      href: href.value,
-      target: target.value,
-      align: align.value,
-      onClick: onClick.value,
+    const button = {}
+
+    switch (buttonType.value) {
+      case 'anchor':
+        button.href = href.value
+        button.target = target.value
+        break
+
+      case 'button':
+        button.disabled = isDisabled.value
+        break
     }
+
+    return button
   })
+
+  const handleClick = (e) => {
+    if (href.value.length > 0) {
+      e.preventDefault()
+    }
+
+    if (isDisabled.value || isLoading.value) {
+      return
+    }
+
+    if (resets.value) {
+      form$.value.reset()
+    }
+
+    if (submits.value) {
+      form$.value.submit()
+    }
+
+    if (typeof onClick.value == 'function') {
+      onClick.value(form$.value)
+    }
+  }
 
   return {
-    buttonComponent,
+    isButtonLabelComponent,
     button,
+    isLoading,
+    handleClick,
   }
 }
 

@@ -2,6 +2,7 @@ import { onMounted } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
+import useLayout from './../../composables/elements/useLayout'
 import useInput from './../../composables/elements/useInput'
 import useAddons from './../../composables/elements/useAddons'
 import usePath from './../../composables/elements/usePath'
@@ -36,9 +37,14 @@ export default {
       required: true,
       type: [String, Number],
     },
+    inline: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
     layout: {
       required: false,
-      type: [String, Object],
+      type: [String, Object, Boolean],
       default: 'ElementLayout'
     },
     addons: {
@@ -143,7 +149,7 @@ export default {
     },
     label: {
       required: false,
-      type: [String],
+      type: [String, Object, Function],
       default: null
     },
     placeholder: {
@@ -201,6 +207,7 @@ export default {
     const form$ = useForm$(props, context)
     const fieldId = useFieldId(props, context)
     const theme = useTheme(props, context)
+    const layout = useLayout(props, context)
     const input = useInput(props, context)
     const addons = useAddons(props, context)
     const path = usePath(props, context)
@@ -335,6 +342,7 @@ export default {
       ...form$,
       ...fieldId,
       ...theme,
+      ...layout,
       ...input,
       ...addons,
       ...path,

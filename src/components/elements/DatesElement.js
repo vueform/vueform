@@ -2,6 +2,7 @@ import { onMounted } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
+import useLayout from './../../composables/elements/useLayout'
 import useInput from './../../composables/elements/useInput'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
@@ -35,9 +36,14 @@ export default {
       required: true,
       type: [String, Number],
     },
+    inline: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
     layout: {
       required: false,
-      type: [String, Object],
+      type: [String, Object, Boolean],
       default: 'ElementLayout'
     },
     type: {
@@ -127,7 +133,7 @@ export default {
     },
     label: {
       required: false,
-      type: [String],
+      type: [String, Object, Function],
       default: null
     },
     displayFormat: {
@@ -225,6 +231,7 @@ export default {
     const form$ = useForm$(props, context)
     const fieldId = useFieldId(props, context)
     const theme = useTheme(props, context)
+    const layout = useLayout(props, context)
     const input = useInput(props, context)
     const path = usePath(props, context)
     const disabled = useDisabled(props, context)
@@ -352,6 +359,7 @@ export default {
       ...form$,
       ...fieldId,
       ...theme,
+      ...layout,
       ...input,
       ...path,
       ...conditions,
