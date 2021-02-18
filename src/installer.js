@@ -50,9 +50,7 @@ import FormTabs from './components/FormTabs'
 import FormTab from './components/FormTab'
 import FormWizard from './components/FormWizard'
 import FormWizardControls from './components/FormWizardControls'
-import FormWizardFinish from './components/FormWizardFinish'
-import FormWizardNext from './components/FormWizardNext'
-import FormWizardPrevious from './components/FormWizardPrevious'
+import FormWizardControl from './components/FormWizardControl'
 import FormWizardStep from './components/FormWizardStep'
 import FormElements from './components/FormElements'
 // import FormButton from './components/FormButton'
@@ -126,9 +124,7 @@ const components = {
   FormTab,
   FormWizard,
   FormWizardControls,
-  FormWizardFinish,
-  FormWizardNext,
-  FormWizardPrevious,
+  FormWizardControl,
   FormWizardStep,
   FormElements,
   // FormButton,

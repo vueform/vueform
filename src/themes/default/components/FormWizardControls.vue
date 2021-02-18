@@ -1,8 +1,8 @@
 <template>
   <div :class="classes.container">
-    <FormWizardPrevious />
-    <FormWizardNext />
-    <FormWizardFinish />
+    <FormWizardControl type="previous" />
+    <FormWizardControl type="next" />
+    <FormWizardControl type="finish" />
   </div>
 </template>
 
