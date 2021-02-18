@@ -1,7 +1,7 @@
 import useFormComponent from './../composables/useFormComponent'
 
 export default {
-  name: 'FormWizardControls',
+  name: 'FormStepsControls',
   setup(props, context)
   {  
     // ============ DEPENDENCIES ============

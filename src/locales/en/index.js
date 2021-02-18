@@ -47,7 +47,7 @@ export default {
         dndDescription: 'Drop images or click here to upload',
       },
     },
-    wizard: {
+    steps: {
       finish: 'Finish',
       next: 'Next',
       previous: 'Previous',

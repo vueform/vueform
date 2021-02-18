@@ -17,7 +17,7 @@ const base = function(props, context, dependencies)
   const hidden = ref(false)
 
   /**
-   * Whether the element is hidden internally by other components, like tabs or wizard steps.
+   * Whether the element is hidden internally by other components, like tabs or steps steps.
    * 
    * @type {boolean} 
    * @default true

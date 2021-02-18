@@ -4,7 +4,7 @@ import useEvents from './../composables/useEvents'
 import normalize from './../utils/normalize'
 
 export default {
-  name: 'FormWizard',
+  name: 'FormSteps',
   emits: ['submit'],
   props: {
     /**
@@ -74,7 +74,7 @@ export default {
     })
 
     /**
-     * Determines whether the wizard has any pending elements.
+     * Determines whether the steps has any pending elements.
      * 
      * @type {boolean}
      */
@@ -83,7 +83,7 @@ export default {
     })
 
     /**
-     * Determines whether the wizard has any debouncing elements.
+     * Determines whether the steps has any debouncing elements.
      * 
      * @type {boolean}
      */
@@ -92,7 +92,7 @@ export default {
     })
 
     /**
-     * Determines whether the wizard has any invalid elements.
+     * Determines whether the steps has any invalid elements.
      * 
      * @type {boolean}
      */
@@ -110,7 +110,7 @@ export default {
     })
 
     /**
-     * Determines whether the wizard has any pending or debouncing elements.
+     * Determines whether the steps has any pending or debouncing elements.
      * 
      * @type {boolean}
      */
@@ -119,7 +119,7 @@ export default {
     })
 
     /**
-     * Object of wizardStep$ components.
+     * Object of stepsStep$ components.
      * 
      * @type {object}
      * @default {}
@@ -135,7 +135,7 @@ export default {
     })
 
     /**
-     * Returns the visible [wizardStep$](reference/frontend-wizard-step) components.
+     * Returns the visible [stepsStep$](reference/frontend-steps-step) components.
      * 
      * @type {object}
      */
@@ -152,9 +152,9 @@ export default {
     })
 
     /**
-     * Returns the first [wizardStep$](reference/frontend-wizard-step) component.
+     * Returns the first [stepsStep$](reference/frontend-steps-step) component.
      * 
-     * @type {component<FormWizardStep>}
+     * @type {component<FormStep>}
      */
     const first$ = computed(() => {
       return _.find(visible$.value, (step) => {
@@ -163,9 +163,9 @@ export default {
     })
 
     /**
-     * Returns the current [wizardStep$](reference/frontend-wizard-step) component.
+     * Returns the current [stepsStep$](reference/frontend-steps-step) component.
      * 
-     * @type {component<FormWizardStep>}
+     * @type {component<FormStep>}
      */
     const current$ = computed(() => {
       var current = _.find(steps$.value, { active: true })
@@ -174,9 +174,9 @@ export default {
     })
 
     /**
-     * Returns the next [wizardStep$](reference/frontend-wizard-step) component.
+     * Returns the next [stepsStep$](reference/frontend-steps-step) component.
      * 
-     * @type {component<FormWizardStep>}
+     * @type {component<FormStep>}
      */
     const next$ = computed(() => {
       return _.find(visible$.value, (step) => {
@@ -185,9 +185,9 @@ export default {
     })
 
     /**
-     * Returns the previous [wizardStep$](reference/frontend-wizard-step) component.
+     * Returns the previous [stepsStep$](reference/frontend-steps-step) component.
      * 
-     * @type {component<FormWizardStep>}
+     * @type {component<FormStep>}
      */
     const previous$ = computed(() => {
       return _.findLast(visible$.value, (step) => {
@@ -196,34 +196,34 @@ export default {
     })
 
     /**
-     * Returns the first invalid [wizardStep$](reference/frontend-wizard-step) component.
+     * Returns the first invalid [stepsStep$](reference/frontend-steps-step) component.
      * 
-     * @type {component<FormWizardStep>}
+     * @type {component<FormStep>}
      */
     const firstInvalid$ = computed(() => {
       return _.find(visible$.value, { invalid: true })
     })
 
     /**
-     * Returns the first [wizardStep$](reference/frontend-wizard-step) component which is not done yet.
+     * Returns the first [stepsStep$](reference/frontend-steps-step) component which is not done yet.
      * 
-     * @type {component<FormWizardStep>}
+     * @type {component<FormStep>}
      */
     const firstNonDone$ = computed(() => {
       return _.find(visible$.value, { done: false })
     })
 
     /**
-     * Returns the last enabled [wizardStep$](reference/frontend-wizard-step) component.
+     * Returns the last enabled [stepsStep$](reference/frontend-steps-step) component.
      * 
-     * @type {component<FormWizardStep>}
+     * @type {component<FormStep>}
      */
     const lastEnabled$ = computed(() => {
       return _.findLast(visible$.value, { disabled: false })
     })
 
     /**
-     * Determines whether the wizard is at the last step.
+     * Determines whether the steps is at the last step.
      * 
      * @type {boolean}
      */
@@ -232,7 +232,7 @@ export default {
     })
 
     /**
-     * Determines whether the wizard is at the first step.
+     * Determines whether the steps is at the first step.
      * 
      * @type {boolean}
      */
@@ -247,7 +247,7 @@ export default {
      * Moves to a step. If it is disabled, enables it.
      *
      * @public
-     * @param {object} step key of step in [wizard](reference/frontend-form#prop-wizard)
+     * @param {object} step key of step in [steps](reference/frontend-form#prop-steps)
      * @param {boolean} enableUntil whether steps should be enabled before destination step (default: false)
      * @returns {void}
      */
@@ -294,7 +294,7 @@ export default {
     }
 
     /**
-     * Marks each [wizardStep$](reference/frontend-wizard-step) as complete.
+     * Marks each [stepsStep$](reference/frontend-steps-step) as complete.
      *
      * @public
      * @returns {void}
@@ -306,11 +306,11 @@ export default {
     }
 
     /**
-     * Returns a specific [wizardStep$](reference/frontend-wizard-step).
+     * Returns a specific [stepsStep$](reference/frontend-steps-step).
      *
      * @public
-     * @param {object} step key of step in [wizard](reference/frontend-form#prop-wizard)
-     * @returns {component<FormWizardStep>}
+     * @param {object} step key of step in [steps](reference/frontend-form#prop-steps)
+     * @returns {component<FormStep>}
      */
     const step$ = (step) => {
       return _.find(visible$.value, { name: step })
@@ -430,8 +430,8 @@ export default {
      * @private
      */
     const assignToParent = ($parent, assignToParent) => {
-      if ($parent.wizard$ !== undefined) {
-        form$.value.$set($parent, 'wizard$', $this)
+      if ($parent.steps$ !== undefined) {
+        form$.value.$set($parent, 'steps$', $this)
       }
       else {
         assignToParent($parent.$parent, assignToParent)
@@ -445,8 +445,8 @@ export default {
      * @private
      */
     const removeFromParent = ($parent, removeFromParent) => {
-      if ($parent.wizard$ !== undefined) {
-        form$.value.$set($parent, 'wizard$', null)
+      if ($parent.steps$ !== undefined) {
+        form$.value.$set($parent, 'steps$', null)
       }
       else {
         removeFromParent($parent.$parent, removeFromParent)
@@ -500,7 +500,7 @@ export default {
     onMounted(() => {
       // nextTick is required because elements$
       // only available after form is mounted,
-      // which is later than the wizard mount
+      // which is later than the steps mount
       nextTick(() => {
         if (current$.value === undefined || current$.value.index === undefined) {
           first$.value.enable()

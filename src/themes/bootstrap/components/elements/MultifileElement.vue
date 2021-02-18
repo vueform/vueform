@@ -1,13 +1,12 @@
 <template>
-  <component :is="layout">
+  <component :is="elementLayout">
     
     <template v-slot:field>
       <slot name="prefix"></slot>
 
       <!-- Drag n drop -->
-      <component
-        v-if="drop && canDrop && !disabled"
-        :is="components.DragAndDrop"
+      <DragAndDrop
+        v-if="drop && canDrop && !isDisabled"
         :title="__(`laraform.elements.${type}.dndTitle`)"
         :description="__(`laraform.elements.${type}.dndDescription`)"
         @click="handleClick"
@@ -15,7 +14,7 @@
       />
       <!-- Upload button -->
       <a
-        v-else-if="!disabled"
+        v-else-if="!isDisabled"
         href=""
         :class="classes.selectButton"
         @click.prevent="handleClick"
@@ -28,34 +27,34 @@
         type="file"
         @change="handleChange"
         :accept="accept"
-        :disabled="disabled"
+        :disabled="isDisabled"
         ref="input" 
       />
 
       <div v-sortable="sortable" :class="classes.element">
-        <component
-          v-for="(element, i) in instances"
-          :is="component(element)"
-          :schema="element"
-          :name="i"
-          :parent="el$"
-          :embed="true"
-          :key="element.key"
-          @remove="remove"
-        />
+        <div v-for="(element, i) in instances" :key="element.key">
+          <slot :index="element.key" :disabled="isDisabled" :file="isObject?prototype.schema[storeFileName]:{}" :remove="remove">
+            <component :is="component(element)"
+              v-for="(element, i) in instances"
+              v-bind="element"
+              :disabled="isDisabled"
+              :name="i"
+              :embed="true"
+              :key="element.key"
+              @remove="remove"
+            />
+          </slot>
+        </div>
       </div>
 
       <slot name="suffix"></slot>
     </template>
-    
-    <template v-slot:info><slot name="info" :el$="el$"><component :is="slots.info" /></slot></template>
-    <template v-slot:before><slot name="before" :el$="el$"><component :is="slots.before" type="before" /></slot></template>
-    <template v-slot:label><slot name="label" :el$="el$"><component :is="slots.label" /></slot></template>
-    <template v-slot:between><slot name="between" :el$="el$"><component :is="slots.between" type="between" /></slot></template>
-    <template v-slot:description><slot name="description" :el$="el$"><component :is="slots.description" /></slot></template>
-    <template v-slot:error><slot name="error" :el$="el$"><component :is="slots.error" /></slot></template>
-    <template v-slot:message><slot name="message" :el$="el$"><component :is="slots.message" /></slot></template>
-    <template v-slot:after><slot name="after" :el$="el$"><component :is="slots.after" type="after" /></slot></template>
+
+    <template v-for="(component, slot) in elementSlots" v-slot:[slot]>
+      <slot :name="slot" :el$="el$">
+        <component :is="component" v-bind="elementSlotProps[slot]" />
+      </slot>
+    </template>
 
   </component>
 </template>

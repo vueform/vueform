@@ -18,7 +18,7 @@
 
 <script>
   export default {
-    name: 'FormWizardControl',
+    name: 'FormStepsControl',
     data() {
       return {
         defaultClasses: {

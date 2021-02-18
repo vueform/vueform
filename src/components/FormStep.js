@@ -8,7 +8,7 @@ import asyncForEach from './../utils/asyncForEach'
 import normalize from './../utils/normalize'
 
 export default {
-  name: 'FormWizardStep',
+  name: 'FormStep',
   emits: ['select'],
   props: {
     name: {
@@ -125,8 +125,8 @@ export default {
 
     // ============== COMPUTED ==============
     
-    const wizard$ = computed(() => {
-      return form$.value.wizard$
+    const steps$ = computed(() => {
+      return form$.value.steps$
     })
     
     const elements$ = computed(() => {
@@ -134,7 +134,7 @@ export default {
     })
 
     const index = computed(() => {
-      return Object.keys(wizard$.value.steps$).indexOf(name.value)
+      return Object.keys(steps$.value.steps$).indexOf(name.value)
     })
 
     /**
@@ -271,7 +271,7 @@ export default {
      * @private
      */
     const step$ = computed(() => {
-      return form$.value.wizard$.steps$[name.value]
+      return form$.value.steps$.steps$[name.value]
     })
 
     // =============== METHODS ==============
@@ -399,7 +399,7 @@ export default {
         return
       }
 
-      wizard$.value.select(step$.value)
+      steps$.value.select(step$.value)
 
       _.each(children$.value, (element$) => {
         element$.activate()
@@ -461,7 +461,7 @@ export default {
     watch(visible, (val) => {
       // if a revealed step is earlier than the
       // current step, it should be enabled
-      if (val && index.value < form$.value.wizard$.current$.index) {
+      if (val && index.value < form$.value.steps$.current$.index) {
         enable()
       }
     })
@@ -481,7 +481,7 @@ export default {
     onMounted(() => {
       // nextTick is required because elements$
       // only available after form is mounted,
-      // which is later than the wizard mount
+      // which is later than the steps mount
       nextTick(() => {
         forwardConditions()
       })
@@ -498,7 +498,7 @@ export default {
     return {
       form$,
       theme,
-      wizard$,
+      steps$,
       elements$,
       active,
       disabled,

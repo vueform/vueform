@@ -48,10 +48,10 @@ import FormLanguageSelector from './components/FormLanguageSelector'
 import FormLanguageSelectorTab from './components/FormLanguageSelectorTab'
 import FormTabs from './components/FormTabs'
 import FormTab from './components/FormTab'
-import FormWizard from './components/FormWizard'
-import FormWizardControls from './components/FormWizardControls'
-import FormWizardControl from './components/FormWizardControl'
-import FormWizardStep from './components/FormWizardStep'
+import FormSteps from './components/FormSteps'
+import FormStepsControls from './components/FormStepsControls'
+import FormStepsControl from './components/FormStepsControl'
+import FormStep from './components/FormStep'
 import FormElements from './components/FormElements'
 // import FormButton from './components/FormButton'
 // import FormButtonSubmit from './components/FormButtonSubmit'
@@ -122,10 +122,10 @@ const components = {
   FormLanguageSelectorTab,
   FormTabs,
   FormTab,
-  FormWizard,
-  FormWizardControls,
-  FormWizardControl,
-  FormWizardStep,
+  FormSteps,
+  FormStepsControls,
+  FormStepsControl,
+  FormStep,
   FormElements,
   // FormButton,
   // FormButtonSubmit,

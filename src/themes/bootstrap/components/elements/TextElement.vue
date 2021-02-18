@@ -1,5 +1,5 @@
 <template>
-  <ElementLayout>
+  <component :is="elementLayout">
     <template v-slot:field>
 
       <slot name="prefix"></slot>
@@ -20,11 +20,11 @@
           @input="handleInput"
           :type="inputType"
           :name="name"
-          :id="id"
+          :id="fieldId"
           :class="classes.input"
           :placeholder="placeholder" 
           :autocomplete="autocomplete"
-          :disabled="disabled"
+          :disabled="isDisabled"
           :readonly="readonly"
           ref="input"
         />
@@ -37,9 +37,14 @@
       </div>
 
       <slot name="suffix"></slot>
-      
     </template>
-  </ElementLayout>
+
+    <template v-for="(component, slot) in elementSlots" v-slot:[slot]>
+      <slot :name="slot" :el$="el$">
+        <component :is="component" v-bind="elementSlotProps[slot]" />
+      </slot>
+    </template>
+  </component>
 </template>
 
 <script>

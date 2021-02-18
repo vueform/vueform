@@ -3,7 +3,7 @@
     v-if="visible && isLabelComponent"
   	:disabled="disabled"
     :class="classes.button"
-  	@click.prevent="finish"
+  	@click.prevent="handleClick"
   >
     <component :is="label" :step$="current$" />
   </button>
@@ -12,17 +12,17 @@
     v-html="label"
   	:disabled="disabled"
     :class="classes.button"
-  	@click.prevent="finish"
+  	@click.prevent="handleClick"
   ></button>
 </template>
 
 <script>
   export default {
-    name: 'FormWizardFinish',
+    name: 'FormStepsControl',
     data() {
       return {
         defaultClasses: {
-          button: 'btn btn-primary',
+          button: 'btn btn-secondary',
         }
       }
     }

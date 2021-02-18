@@ -1,26 +1,31 @@
 <template>
-  <component :is="layout">
+  <component :is="elementLayout">
     <template v-slot:field>
 
       <slot name="prefix"></slot>
 
-      <component
-        :is="buttonComponent"
-        :name="name"
-        :button="button"
-        :parent="el$"
-      />
+      <template v-if="buttonType === 'button'">
+        <button v-if="isButtonLabelComponent" v-bind="button" :class="classes.button" @click.prevent="handleClick">
+          <component :is="buttonLabel" :el$="el$" />
+        </button>
+        <button v-else :class="classes.button" v-bind="button" v-html="buttonLabel" @click.prevent="handleClick" />
+      </template>
+      <template v-else>
+        <a v-if="isButtonLabelComponent" v-bind="button" :class="classes.button" @click="handleClick">
+          <component :is="buttonLabel" :el$="el$" />
+        </a>
+        <a v-else :class="classes.button" v-bind="button" v-html="buttonLabel"  @click="handleClick"/>
+      </template>
 
       <slot name="suffix"></slot>
       
     </template>
 
-    <template v-slot:info><slot name="info" :el$="el$"><component :is="slots.info" /></slot></template>
-    <template v-slot:before><slot name="before" :el$="el$"><component :is="slots.before" type="before" /></slot></template>
-    <template v-slot:label><slot name="label" :el$="el$"><component :is="slots.label" /></slot></template>
-    <template v-slot:between><slot name="between" :el$="el$"><component :is="slots.between" type="between" /></slot></template>
-    <template v-slot:description><slot name="description" :el$="el$"><component :is="slots.description" /></slot></template>
-    <template v-slot:after><slot name="after" :el$="el$"><component :is="slots.after" type="after" /></slot></template>
+    <template v-for="(component, slot) in elementSlots" v-slot:[slot]>
+      <slot :name="slot" :el$="el$">
+        <component :is="component" v-bind="elementSlotProps[slot]" />
+      </slot>
+    </template>
   </component>
 </template>
 
@@ -31,6 +36,20 @@
       return {
         defaultClasses: {
           container: 'lf-button',
+          button: 'lf-btn',
+          loading: 'btn-loading',
+          disabled: 'btn-disabled',
+          left: 'align-left',
+          center: 'align-center',
+          right: 'align-right',
+        },
+        containers: {
+          button: 'button',
+          loading: 'loading',
+          disabled: 'disabled',
+          left: 'left',
+          center: 'center',
+          right: 'right',
         }
       }
     }

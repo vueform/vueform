@@ -1,9 +1,10 @@
 <template>
   <input
-    type="hidden"
+    v-if="!meta"
     v-model="model"
+    type="hidden"
     :name="name"
-    :id="id"
+    :id="fieldId"
     ref="input"
   />
 </template>

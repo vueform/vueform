@@ -3,7 +3,7 @@ import useFormComponent from './../composables/useFormComponent'
 import useLabel from './../composables/useLabel'
 
 export default {
-  name: 'FormWizardControl',
+  name: 'FormStepsControl',
   emits: ['click'],
   props: {
     type: {
@@ -29,8 +29,8 @@ export default {
 
     // ============== COMPUTED ==============
 
-    const wizard$ = computed(() => {
-      return form$.value.wizard$
+    const steps$ = computed(() => {
+      return form$.value.steps$
     })
 
     /**
@@ -39,7 +39,7 @@ export default {
      * @private
      */
     const current$ = computed(() => {
-      return wizard$.value ? wizard$.value.current$ : undefined
+      return steps$.value ? steps$.value.current$ : undefined
     })
 
     /**
@@ -65,10 +65,10 @@ export default {
           return !buttons ? true : buttons.previous !== false
 
         case 'next':
-          return wizard$.value && !wizard$.value.isAtLastStep && (!buttons || buttons.next !== false)
+          return steps$.value && !steps$.value.isAtLastStep && (!buttons || buttons.next !== false)
 
         case 'finish':
-          return wizard$.value && wizard$.value.isAtLastStep
+          return steps$.value && steps$.value.isAtLastStep
       }
     })
 
@@ -80,7 +80,7 @@ export default {
     const disabled = computed(() => {
       switch (type.value) {
         case 'previous':
-          return wizard$.value && wizard$.value.isAtFirstStep
+          return steps$.value && steps$.value.isAtFirstStep
 
         case 'next':
           return current$.value !== undefined && current$.value.index !== undefined &&
@@ -100,8 +100,8 @@ export default {
           // change, otherwise it might occur that the
           // form has invalid fields, which values have
           // changed to valid, but still marked as invalid
-          return (wizard$.value.invalid && form$.value.shouldValidateOnChange) ||
-                wizard$.value.busy || form$.value.submitting || form$.value.disabled
+          return (steps$.value.invalid && form$.value.shouldValidateOnChange) ||
+                steps$.value.busy || form$.value.submitting || form$.value.disabled
       }
     })
 
@@ -115,11 +115,11 @@ export default {
 
       switch (type.value) {
         case 'previous':
-          return labels && labels.previous ? labels.previous : form$.value.__('laraform.wizard.previous')
+          return labels && labels.previous ? labels.previous : form$.value.__('laraform.steps.previous')
         case 'next':
-          return labels && labels.next ? labels.next : form$.value.__('laraform.wizard.next')
+          return labels && labels.next ? labels.next : form$.value.__('laraform.steps.next')
         case 'finish':
-          return labels && labels.finish ? labels.finish : form$.value.__('laraform.wizard.finish')
+          return labels && labels.finish ? labels.finish : form$.value.__('laraform.steps.finish')
       }
     })
 
@@ -131,7 +131,7 @@ export default {
      * @private
      */
     const previous = () => {
-      wizard$.value.previous()
+      steps$.value.previous()
     }
     /**
      * 
@@ -148,7 +148,7 @@ export default {
       }
 
       current$.value.complete()
-      wizard$.value.next()
+      steps$.value.next()
     }
 
     /**
@@ -157,10 +157,10 @@ export default {
      * @private
      */
     const finish = async () => {
-      wizard$.value.fire('finish')
+      steps$.value.fire('finish')
 
-      wizard$.value.complete()
-      wizard$.value.submit()
+      steps$.value.complete()
+      steps$.value.submit()
     }
 
     /**
@@ -185,7 +185,7 @@ export default {
     return {
       form$,
       theme,
-      wizard$,
+      steps$,
       classes,
       mainClass,
       components,

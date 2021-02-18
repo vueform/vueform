@@ -1,7 +1,7 @@
 <template>
   <ul :class="classes.container">
     <slot>
-      <FormWizardStep
+      <FormStep
         v-for="(step, name) in steps"
         v-bind="step"
         :name="name"
@@ -13,11 +13,11 @@
 
 <script>
   export default {
-    name: 'FormWizard',
+    name: 'FormSteps',
     data() {
       return {
         defaultClasses: {
-          container: 'form-wizard',
+          container: 'form-steps',
         }
       }
     },

@@ -19,7 +19,7 @@
   import 'trix/dist/trix.css'
 
   export default {
-    name: 'Trix',
+    name: 'TrixWrapper',
     data() {
       return {
         defaultClasses: {

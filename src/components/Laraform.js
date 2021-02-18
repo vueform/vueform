@@ -27,8 +27,8 @@ export default {
     let defaults = {
       schema: {},
       tabs: {},
-      wizard: {},
-      wizardControls: null,
+      steps: {},
+      stepsControls: null,
       addClass: null,
       overrideClasses: {},
       addClasses: {},
@@ -99,10 +99,10 @@ export default {
       this.method = this.form.method || this.$laraform.methods.process
     }
 
-    if (this.form.wizardControls !== undefined && this.wizardControls === null) {
-      this.wizardControls = this.form.wizardControls
-    } else if (this.wizardControls === null) {
-      this.wizardControls = true
+    if (this.form.stepsControls !== undefined && this.stepsControls === null) {
+      this.stepsControls = this.form.stepsControls
+    } else if (this.stepsControls === null) {
+      this.stepsControls = true
     }
 
     // if the component does not have a data value
@@ -123,7 +123,7 @@ export default {
     // with the component's existing data
     _.each([
       'elements', 'components', 'classes', 'addClasses',
-      'schema', 'tabs', 'wizard', 'messages', 
+      'schema', 'tabs', 'steps', 'messages', 
     ], (property) => {
       if (this.form[property]) {
         this[property] = _.merge({}, 

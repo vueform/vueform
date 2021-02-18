@@ -6,7 +6,7 @@
       :class="classes.wrapper"
       @click.prevent="select"
     >
-      <component :is="label" :step="step" :form$="form$" />
+      <component :is="label" :form$="form$" />
     </a>
     <a
       v-else
@@ -20,21 +20,21 @@
 
 <script>
   export default {
-    name: 'FormWizardStep',
+    name: 'FormStep',
     data() {
       return {
         defaultClasses: {
-          container: 'wizard-step',
+          container: 'steps-step',
           wrapper: '',
-          active: 'wizard-step-active',
+          active: 'steps-step-active',
           inactive: '',
-          invalid: 'wizard-step-errors',
+          invalid: 'steps-step-errors',
           valid: '',
-          disabled: 'wizard-step-disabled',
+          disabled: 'steps-step-disabled',
           enabled: '',
-          completed: 'wizard-step-completed',
+          completed: 'steps-step-completed',
           incompleted: '',
-          pending: 'wizard-step-pending',
+          pending: 'steps-step-pending',
         },
         containers: {
           state: 'container'
@@ -45,10 +45,10 @@
 </script>
 
 <style>
-.wizard-step-active {
+.steps-step-active {
   font-weight: bold;
 }
-.wizard-step-disabled {
+.steps-step-disabled {
   opacity: 0.3;
 }
 </style>

@@ -3,8 +3,8 @@
     <div :class="classes.wrapper">
       <component
         v-for="(element, name) in schema"
+        v-bind="element"
         :is="component(element)"
-        :schema="element"
         :name="name"
         :key="name"
       />

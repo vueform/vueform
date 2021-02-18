@@ -14,7 +14,7 @@ export default {
     //   deep: true,
     //   immediate: false
     // },
-    // wizard: {
+    // steps: {
     //   handler() {
     //     this.$_resortSchema()
     //   },

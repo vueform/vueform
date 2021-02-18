@@ -65,7 +65,7 @@ const base = function(props, context, dependencies = {})
   * 
   * @private
   */
-  const wizard$ = ref(null)
+  const steps$ = ref(null)
 
   /**
    * Determine if the form should validate.
@@ -306,13 +306,13 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form has wizard.
+   * Whether the form has steps.
    * 
    * @ignore
    * @type {boolean}
    */
-  const hasWizard = computed(() => {
-    return !_.isEmpty($this.wizard)
+  const hasSteps = computed(() => {
+    return !_.isEmpty($this.steps)
   })
 
   /**
@@ -511,8 +511,8 @@ const base = function(props, context, dependencies = {})
    * @returns {void}
    */
   const load = (data, format = false) => {
-    if (wizard$.value !== null) {
-      wizard$.value.enableAllSteps()
+    if (steps$.value !== null) {
+      steps$.value.enableAllSteps()
     }
 
     _.each(elements$.value, (e$) => {
@@ -537,8 +537,8 @@ const base = function(props, context, dependencies = {})
       e$.reset()
     })
 
-    if (wizard$.value !== null) {
-      wizard$.value.reset()
+    if (steps$.value !== null) {
+      steps$.value.reset()
     }
 
     if (tabs$.value !== null) {
@@ -559,8 +559,8 @@ const base = function(props, context, dependencies = {})
       e$.clear()
     })
 
-    if (wizard$.value !== null) {
-      wizard$.value.reset()
+    if (steps$.value !== null) {
+      steps$.value.reset()
     }
 
     if (tabs$.value !== null) {
@@ -810,8 +810,8 @@ const base = function(props, context, dependencies = {})
     let all = _.keys($this.schema)
     let blocks
 
-    if (!_.isEmpty($this.wizard)) {
-      blocks = $this.wizard
+    if (!_.isEmpty($this.steps)) {
+      blocks = $this.steps
     }
 
     if (!_.isEmpty($this.tabs)) {
@@ -860,7 +860,7 @@ const base = function(props, context, dependencies = {})
       resortSchema()
     }, { deep: true })
 
-    watch(() => { return $this.wizard }, () => {
+    watch(() => { return $this.steps }, () => {
       resortSchema()
     }, { deep: true })
   })
@@ -877,7 +877,7 @@ const base = function(props, context, dependencies = {})
 
   return {
     tabs$,
-    wizard$,
+    steps$,
     elements$,
     validation,
     messageBag,
@@ -901,7 +901,7 @@ const base = function(props, context, dependencies = {})
     shouldValidateOnChange,
     shouldValidateOnSubmit,
     shouldValidateOnStep,
-    hasWizard,
+    hasSteps,
     hasTabs,
     hasErrors,
     hasMessages,
