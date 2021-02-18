@@ -32,15 +32,19 @@
       />
 
       <div v-sortable="sortable" :class="classes.element">
-        <component :is="component(element)"
-          v-for="(element, i) in instances"
-          v-bind="element"
-          :disabled="isDisabled"
-          :name="i"
-          :embed="true"
-          :key="element.key"
-          @remove="remove"
-        />
+        <div v-for="(element, i) in instances" :key="element.key">
+          <slot :index="element.key" :disabled="isDisabled" :file="isObject?prototype.schema[storeFileName]:{}" :remove="remove">
+            <component :is="component(element)"
+              v-for="(element, i) in instances"
+              v-bind="element"
+              :disabled="isDisabled"
+              :name="i"
+              :embed="true"
+              :key="element.key"
+              @remove="remove"
+            />
+          </slot>
+        </div>
       </div>
 
       <slot name="suffix"></slot>

@@ -12,20 +12,15 @@ export default {
      */
     steps: {
       type: Object,
-      required: true
-    },
-
-    /**
-     * Form element components.
-     */
-    elements$: {
-      type: Object,
-      required: true
+      required: false
     },
   },
   setup(props, context)
   { 
-    const { elements$, steps } = toRefs(props)
+    const {
+      steps
+    } = toRefs(props)
+    
     const $this = getCurrentInstance().proxy
 
     // ============ DEPENDENCIES ============
@@ -73,6 +68,10 @@ export default {
     const exists = ref(true)
 
     // ============== COMPUTED ==============
+
+    const elements$ = computed(() => {
+      return form$.value.elements$
+    })
 
     /**
      * Determines whether the wizard has any pending elements.
@@ -499,10 +498,6 @@ export default {
     })
 
     onMounted(() => {
-      if (_.isEmpty(steps.value)) {
-        return
-      }
-
       // nextTick is required because elements$
       // only available after form is mounted,
       // which is later than the wizard mount
@@ -525,6 +520,7 @@ export default {
     return {
       form$,
       theme,
+      elements$,
       steps$Array,
       events,
       listeners,

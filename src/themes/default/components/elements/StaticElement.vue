@@ -2,8 +2,10 @@
   <component v-if="wrap" :is="layout">
 
     <template v-slot:field>
-      <component v-if="!isHtml" :is="content" :el$="el$" />
-      <div v-else v-html="content"></div>
+      <slot>
+        <component v-if="!isHtml" :is="content" :el$="el$" />
+        <div v-else v-html="content"></div>
+      </slot>
     </template>
 
     <template v-for="(component, slot) in elementSlots" v-slot:[slot]>

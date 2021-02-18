@@ -129,7 +129,7 @@ export default {
     },
     items: {
       required: false,
-      type: [Object],
+      type: [Object, Array],
       default: () => ({})
     },
     label: {

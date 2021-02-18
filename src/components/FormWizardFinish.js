@@ -5,15 +5,8 @@ import asyncForEach from './../utils/asyncForEach'
 
 export default {
   name: 'FormWizardFinish',
-  props: {
-    wizard$: {
-      type: Object,
-    },
-  },
   setup(props, context)
-  {  
-    const { wizard$ } = toRefs(props)
-
+  {
     // ============ DEPENDENCIES ============
 
     const {
@@ -25,6 +18,10 @@ export default {
     } = useFormComponent(props, context)
 
     // ============== COMPUTED ==============
+
+    const wizard$ = computed(() => {
+      return form$.value.wizard$
+    })
 
     /**
      * 
@@ -73,7 +70,7 @@ export default {
      * 
      * @private
      */
-    const baseLabel = computed(() => {
+    const label = computed(() => {
       if (current$ && current$.value && current$.value.labels && current$.value.labels.finish) {
         return current$.value.labels.finish
       }
@@ -86,10 +83,8 @@ export default {
      * 
      * @private
      */
-    const descriptor = computed(() => {
-      return {
-        label: baseLabel.value
-      }
+    const isLabelComponent = computed(() => {
+      return label.value !== null && typeof label.value === 'object'
     })
 
     // =============== METHODS ==============
@@ -106,19 +101,10 @@ export default {
       wizard$.value.submit()
     }
 
-    // ============ DEPENDENCIES ============
-
-    const {
-      label,
-      isLabelComponent
-    } = useLabel(props, context, {
-      descriptor,
-      component$: current$,
-    })
-
     return {
       form$,
       theme,
+      wizard$,
       classes,
       mainClass,
       components,

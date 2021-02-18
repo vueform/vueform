@@ -19,13 +19,11 @@
     <FormTabs
       v-if="hasTabs"
       :tabs="tabs"
-      :elements$="elements$"
     />
 
     <FormWizard
       v-if="hasWizard"
       :steps="wizard"
-      :elements$="elements$"
       @submit="handleSubmit"
     />
     
@@ -36,7 +34,6 @@
 
     <FormWizardControls
       v-if="hasWizard && wizardControls"
-      :wizard$="wizard$"
     />
   </form>
 </template>

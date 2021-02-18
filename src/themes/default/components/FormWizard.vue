@@ -1,15 +1,13 @@
 <template>
   <ul :class="classes.container">
-    <component
-      v-for="(step, name, i) in steps"
-      :is="components.FormWizardStep"
-      :step="step"
-      :name="name"
-      :elements$="elements$"
-      :key="name"
-      :index="i"
-      @select="select"
-    />
+    <slot>
+      <FormWizardStep
+        v-for="(step, name) in steps"
+        v-bind="step"
+        :name="name"
+        :key="name"
+      />
+    </slot>
   </ul>
 </template>
 

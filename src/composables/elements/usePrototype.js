@@ -99,6 +99,7 @@ const multifile = function(props, context, dependencies, options = {})
           type: type.value,
           auto: auto.value,
           image: image.value,
+          embed: true,
         }, file.value)},
 
         // Order

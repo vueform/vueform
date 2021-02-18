@@ -1,18 +1,8 @@
 <template>
-  <div
-    :class="classes.container"
-  >
-    <component :is="components.FormWizardPrevious"
-      :wizard$="wizard$"
-    />
-
-    <component :is="components.FormWizardNext"
-      :wizard$="wizard$"
-    />
-
-    <component :is="components.FormWizardFinish"
-      :wizard$="wizard$"
-    />
+  <div :class="classes.container">
+    <FormWizardPrevious />
+    <FormWizardNext />
+    <FormWizardFinish />
   </div>
 </template>
 

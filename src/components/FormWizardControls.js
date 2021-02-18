@@ -2,11 +2,6 @@ import useFormComponent from './../composables/useFormComponent'
 
 export default {
   name: 'FormWizardControls',
-  props: {
-    wizard$: {
-      type: Object,
-    },
-  },
   setup(props, context)
   {  
     // ============ DEPENDENCIES ============

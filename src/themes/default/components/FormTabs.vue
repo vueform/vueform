@@ -1,15 +1,14 @@
 <template>
   <ul :class="classes.container">
-    <component
-      v-for="(tab, name, i) in tabs"
-      :is="components.FormTab"
-      :tab="tab"
-      :name="name"
-      :elements$="elements$"
-      :index="i"
-      :key="name"
-      @select="select"
-    />
+    <slot>
+      <FormTab
+        v-for="(tab, name, i) in tabs"
+        v-bind="tab"
+        :name="name"
+        :index="i"
+        :key="name"
+      />
+    </slot>
   </ul>
 </template>
 

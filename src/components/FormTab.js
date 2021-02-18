@@ -18,30 +18,39 @@ export default {
       required: true,
     },
 
-    /**
-     * Tab schema within [tabs](reference/frontend-form#prop-tabs) object.
-     */
-    tab: {
-      type: Object,
-      required: true,
-    },
-
-    /**
-     * Form element components.
-     */
-    elements$: {
-      type: Object,
+    label: {
+      type: [String, Object, Function],
       required: false,
+      default: null
     },
 
-    index: {
-      type: Number,
-      required: true,
+    elements: {
+      type: [Array],
+      required: false,
+      default: () => ([])
+    },
+
+    conditions: {
+      type: [Array],
+      required: false,
+      default: () => ([])
+    },
+
+    tabClass: {
+      type: [String, Array, Object],
+      required: false,
+      default: null,
     },
   },
   setup(props, context)
   {  
-    const { tab, elements$, name } = toRefs(props)
+    const { 
+      name,
+      label,
+      elements,
+      conditions,
+      tabClass,
+    } = toRefs(props)
     const { containers } = toRefs(context.data)
     const $this = getCurrentInstance().proxy
 
@@ -58,13 +67,11 @@ export default {
 
     const {
       available,
-      conditions
     } = useConditions(props, context, { form$ })
 
     const {
-      label,
       isLabelComponent
-    } = useLabel(props, context, { component$: form$, descriptor: tab })
+    } = useLabel(props, context, { component$: form$, labelDefinition: label })
 
     const {
       events,
@@ -88,6 +95,14 @@ export default {
 
     // ============== COMPUTED ==============
 
+    const elements$ = computed(() => {
+      return form$.value.elements$
+    })
+
+    const tabs$ = computed(() => {
+      return form$.value.tabs$
+    })
+
     /**
      * Returns the components of elements within the tab.
      * 
@@ -95,7 +110,7 @@ export default {
      */
     const children$ = computed(() => {
       return _.filter(elements$.value, (element$, key) => {
-        return tab.value.elements.indexOf(key) !== -1
+        return elements.value.indexOf(key) !== -1
       })
     })
 
@@ -114,7 +129,7 @@ export default {
      * @type {string|array|object}
      */
     const class_ = computed(() => {
-      return tab.value.class || null
+      return tabClass.value || null
     })
 
     /**
@@ -175,7 +190,7 @@ export default {
         return
       }
 
-      context.emit('select', tab$.value)
+      tabs$.value.select(tab$.value)
 
       activate()
     }
@@ -274,7 +289,7 @@ export default {
         }
 
         _.each(children$.value, (element$) => {
-          _.each(tab.value.conditions, (condition) => {
+          _.each(conditions.value, (condition) => {
             element$.conditions.push(condition)
           })
         })
@@ -292,6 +307,7 @@ export default {
     return {
       form$,
       theme,
+      elements$,
       active,
       events,
       listeners,
@@ -301,9 +317,7 @@ export default {
       classes,
       mainClass,
       components,
-      conditions,
       available,
-      label,
       isLabelComponent,
       tab$,
       select,

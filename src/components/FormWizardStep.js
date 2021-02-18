@@ -11,38 +11,58 @@ export default {
   name: 'FormWizardStep',
   emits: ['select'],
   props: {
-    /**
-     * Name of step within [steps](reference/frontend-form#prop-steps) object.
-     */
     name: {
       type: [String, Number],
       required: true,
     },
 
-    /**
-     * Step schema within [steps](reference/frontend-form#prop-steps) object.
-     */
-    step: {
-      type: Object,
-      required: true,
-    },
-
-    /**
-     * Form element components.
-     */
-    elements$: {
-      type: Object,
+    label: {
+      type: [String, Object, Function],
       required: false,
+      default: null
     },
 
-    index: {
-      type: Number,
-      required: true,
+    labels: {
+      type: [Object],
+      required: false,
+      default: () => ({})
+    },
+
+    buttons: {
+      type: [Object],
+      required: false,
+      default: () => ({})
+    },
+
+    elements: {
+      type: [Array],
+      required: false,
+      default: () => ([])
+    },
+
+    conditions: {
+      type: [Array],
+      required: false,
+      default: () => ([])
+    },
+
+    stepClass: {
+      type: [String, Array, Object],
+      required: false,
+      default: null,
     },
   },
   setup(props, context)
   {  
-    const { step, elements$, name, index } = toRefs(props)
+    const { 
+      name,
+      label,
+      labels,
+      buttons,
+      elements,
+      conditions,
+      stepClass,
+    } = toRefs(props)
     const { containers } = toRefs(context.data)
     const $this = getCurrentInstance().proxy
 
@@ -59,13 +79,11 @@ export default {
 
     const {
       available,
-      conditions
     } = useConditions(props, context, { form$ })
 
     const {
-      label,
       isLabelComponent
-    } = useLabel(props, context, { component$: form$, descriptor: step })
+    } = useLabel(props, context, { component$: form$, labelDefinition: label })
 
     const {
       events,
@@ -106,6 +124,18 @@ export default {
     const completed = ref(false)
 
     // ============== COMPUTED ==============
+    
+    const wizard$ = computed(() => {
+      return form$.value.wizard$
+    })
+    
+    const elements$ = computed(() => {
+      return form$.value.elements$
+    })
+
+    const index = computed(() => {
+      return Object.keys(wizard$.value.steps$).indexOf(name.value)
+    })
 
     /**
       * Returns the components of elements within the step.
@@ -114,7 +144,7 @@ export default {
       */
     const children$ = computed(() => {
       return _.filter(elements$.value, (element$, key) => {
-        return step.value.elements.indexOf(key) !== -1
+        return elements.value.indexOf(key) !== -1
       })
     })
 
@@ -151,7 +181,7 @@ export default {
      * @type {string|array|object}
      */
     const class_ = computed(() => {
-      return step.value.class || null
+      return stepClass.value || null
     })
     
     /**
@@ -193,25 +223,7 @@ export default {
      * @type {string}
      */
     const baseLabel = computed(() => {
-      return step.value.label
-    })
-
-    /**
-     * Returns the labels object of step schema.
-     * 
-     * @type {object}
-     */
-    const labels = computed(() => {
-      return step.value.labels || {}
-    })
-
-    /**
-      * Returns the buttons object of step schema.
-      * 
-      * @type {object}
-      */
-    const buttons = computed(() => {
-      return step.value.buttons || {}
+      return label.value
     })
 
     /**
@@ -387,7 +399,7 @@ export default {
         return
       }
 
-      context.emit('select', step$.value)
+      wizard$.value.select(step$.value)
 
       _.each(children$.value, (element$) => {
         element$.activate()
@@ -408,7 +420,7 @@ export default {
       }
 
       _.each(children$.value, (element$) => {
-        _.each(step.value.conditions, (condition) => {
+        _.each(conditions.value, (condition) => {
           element$.conditions.push(condition)
         })
       })
@@ -486,6 +498,8 @@ export default {
     return {
       form$,
       theme,
+      wizard$,
+      elements$,
       active,
       disabled,
       completed,
@@ -498,18 +512,15 @@ export default {
       classes,
       mainClass,
       components,
-      conditions,
       available,
       baseLabel,
-      labels,
-      buttons,
       debouncing,
       validated,
       busy,
       done,
       step$,
-      label,
       isLabelComponent,
+      index,
       validate,
       activate,
       deactivate,

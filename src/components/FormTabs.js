@@ -11,20 +11,15 @@ export default {
      */
     tabs: {
       type: Object,
-      required: true,
-    },
-
-    /**
-     * Form element components.
-     */
-    elements$: {
-      type: Object,
-      required: true,
+      required: false
     },
   },
   setup(props, context)
   {  
-    const { elements$, tabs } = toRefs(props)
+    const {
+      tabs,
+    } = toRefs(props)
+
     const $this = getCurrentInstance().proxy
 
     // ============ DEPENDENCIES ============
@@ -64,6 +59,10 @@ export default {
     const exists = ref(true)
 
     // ============== COMPUTED ==============
+
+    const elements$ = computed(() => {
+      return form$.value.elements$
+    })
 
     /**
      * Object of tab$ components.
@@ -261,6 +260,7 @@ export default {
     }, { flush: 'post' })
 
     // =============== HOOKS ================
+    
     onBeforeMount(() => {
       assignToParent($this.$parent, assignToParent)
     })
@@ -270,21 +270,17 @@ export default {
     })
 
     onMounted(() => {
-      if (_.isEmpty(tabs.value)) {
-        return
-      }
-
-      // nextTick is required because elements$
-      // only available after form is mounted,
-      // which is later than the tabs mount
       nextTick(() => {
-        first$.value.select()
+        if (!_.find(tabs$.value, { active: true })) {
+          first$.value.select()
+        }
       })
     })
 
     return {
       form$,
       theme,
+      elements$,
       tabs$Array,
       events,
       listeners,
