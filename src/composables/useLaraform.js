@@ -727,17 +727,6 @@ const base = function(props, context, dependencies = {})
   }
 
   /**
-   * Set the language of a multilingual form.
-   * 
-   * @public
-   * @param {string} code code of language to set
-   * @returns {void}
-   */
-  const handleChangeLanguage = (code) => {
-    setLanguage(code)
-  }
-
-  /**
    * Triggered when the form is submitted. Can prevent further execution (element validation) if returns `false`.
    *
    * @public
@@ -925,7 +914,6 @@ const base = function(props, context, dependencies = {})
     enableValidation,
     setLanguage,
     updateSchema,
-    handleChangeLanguage,
     handleSubmit,
     el$,
     siblings$,

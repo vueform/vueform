@@ -1,8 +1,7 @@
 <template>
   <ul :class="classes.container">
-    <component
+    <FormLanguageSelectorTab
       v-for="(lang, code, key) in languages"
-      :is="components.FormLanguageSelectorTab" 
       :language="lang"
       :code="code"
       :key="key"

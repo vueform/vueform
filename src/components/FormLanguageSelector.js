@@ -44,7 +44,7 @@ export default {
      * @private
      */
     const select = (code) => {
-      context.emit('changeLanguage', code)
+      form$.value.setLanguage(code)
     }
 
     /**

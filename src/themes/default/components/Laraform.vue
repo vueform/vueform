@@ -13,7 +13,6 @@
 
     <FormLanguageSelector
       v-if="multilingual"
-      @changeLanguage="handleChangeLanguage"
     />
 
     <FormTabs
