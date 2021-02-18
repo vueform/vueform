@@ -28,7 +28,7 @@ import useEmpty from './../../composables/elements/useEmpty'
 export default {
   name: 'TextElement',
   emits: ['change'],
-  slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
+  slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after', 'addonBefore', 'addonAfter'],
   props: {
     name: {
       required: true,
@@ -300,7 +300,8 @@ export default {
     }, {
       slots: [
         'label', 'info', 'description', 'error',
-        'message', 'before', 'between', 'after'
+        'message', 'before', 'between', 'after',
+        'addonBefore', 'addonAfter',
       ]
     })
 

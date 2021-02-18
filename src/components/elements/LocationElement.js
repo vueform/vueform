@@ -29,7 +29,7 @@ import { object as useNullValue } from './../../composables/elements/useNullValu
 export default {
   name: 'LocationElement',
   emits: ['change'],
-  slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
+  slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after', 'addonBefore', 'addonAfter'],
   props: {
     name: {
       required: true,
@@ -312,7 +312,8 @@ export default {
     }, {
       slots: [
         'label', 'info', 'description', 'error',
-        'message', 'before', 'between', 'after'
+        'message', 'before', 'between', 'after',
+        'addonBefore', 'addonAfter'
       ]
     })
 

@@ -4,11 +4,13 @@
 
       <slot name="prefix"></slot>
 
-      <div :class="[{[classes.inputContainer]: hasAddon}]">
-        <InputAddon
-          v-if="addons.before"
-          type="before"
-        />
+      <div :class="classes.inputContainer">
+        <slot name="addon-before">
+          <component :is="fieldSlots.addonBefore"
+            v-if="addons.before"
+            type="before"
+          />
+        </slot>
 
         <ElementLabelFloating
           v-if="floating"
@@ -27,11 +29,13 @@
           :rows="rows"
           ref="input"
         />
-        
-        <InputAddon
-          v-if="addons.after"
-          type="after"
-        />
+
+        <slot name="addon-after">
+          <component :is="fieldSlots.addonAfter"
+            v-if="addons.after"
+            type="after"
+          />
+        </slot>
 
       </div>
       

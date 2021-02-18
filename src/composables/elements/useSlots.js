@@ -20,6 +20,8 @@ const base = function(props, context, dependencies, options = {})
   }
 
   const defaultFieldSlots = {
+    addonBefore: 'InputAddon',
+    addonAfter: 'InputAddon',
     checkbox: 'CheckboxgroupSlotCheckbox',
     radio: 'RadiogroupSlotRadio',
     option: 'MultiselectSlotOption',
