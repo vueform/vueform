@@ -6,51 +6,27 @@ import useEvents from './../composables/useEvents'
 
 const base = function(props, context, dependencies = {})
 {
-  const {
-    value: v,
-    modelValue: mv,
-    schema,
-    tabs,
-    steps,
-    overrideClasses,
-    addClasses,
-    components,
-    elements,
-    messages,
-    columns,
-    languages,
-    addClass,
-    formKey,
-    theme,
-    endpoint,
-    method,
-    language,
-    validateOn,
-    labels,
-    multilingual,
-    stepsControls,
-    displayErrors,
-    formatLoad,
-    prepare,
-    fill,
-  } = toRefs(props)
+  const { form, value: v, modelValue: mv } = toRefs(props)
 
-  const $this = getCurrentInstance().proxy
+  const currentInstance = getCurrentInstance()
 
-  const form$ = computed(() => {
-    return $this
-  })
-
-  const userConfig = computed(() => {
-    return $this.laraform || {}
-  })
-
-  const baseConfig = computed(() => {
-    return $this.$laraform
-  })
-
-  const services = computed(() => {
-    return $this.$laraform.services
+  const $this = new Proxy(currentInstance.proxy, {
+    get(instance, prop) {
+      return dependencies[prop] ? dependencies[prop].value : instance[prop]
+    },
+    set(instance, prop, value) {
+      if (dependencies[prop] !== undefined) {
+        dependencies[prop].value = value
+        return true
+      }
+      else if (instance[prop] !== undefined) {
+        instance[prop] = value
+        return true
+      }
+      else {
+        throw new Error('Option does not exist: `'+prop+'`')
+      }
+    },
   })
 
   const value = context.expose !== undefined ? mv : v
@@ -134,52 +110,8 @@ const base = function(props, context, dependencies = {})
    */
   const updating = ref(false)
 
-  /**
-   * Determine if the form's data is currently being updated for external model.
-   * 
-   * @private
-   * @type {boolean}
-   * @default false
-   */
-  const selectedLanguage = ref(null)
-
   // ============== COMPUTED ==============
 
-  const options = computed(() => {
-    const options = {
-      schema: schema.value || userConfig.value.schema || {},
-      tabs: tabs.value || userConfig.value.tabs || {},
-      steps: steps.value || userConfig.value.steps || {},
-      overrideClasses: overrideClasses.value || userConfig.value.overrideClasses || {},
-      addClasses: addClasses.value || userConfig.value.addClasses || {},
-      components: components.value || userConfig.value.components || {},
-      elements: elements.value || userConfig.value.elements || {},
-      messages,
-      columns,
-      languages: languages.value || userConfig.value.languages || baseConfig.value.languages,
-      addClass: addClass.value || userConfig.value.addClass || null,
-      formKey: formKey.value || userConfig.value.formKey || null,
-      theme: theme.value || userConfig.value.theme || baseConfig.value.theme,
-      endpoint: endpoint.value || userConfig.value.endpoint || baseConfig.value.endpoints.process,
-      method: method.value || userConfig.value.method || baseConfig.value.methods.process,
-      language: language.value || userConfig.value.language || baseConfig.value.language,
-      validateOn: validateOn.value || userConfig.value.validateOn || baseConfig.value.validateOn,
-      multilingual: multilingual.value || userConfig.value.multilingual || false,
-      stepsControls: stepsControls.value !== null ? stepsControls.value : (userConfig.value.stepsControls !== undefined ? userConfig.value.stepsControls : baseConfig.value.stepsControls),
-      displayErrors: displayErrors.value !== null ? displayErrors.value : (userConfig.value.displayErrors !== undefined ? userConfig.value.displayErrors : baseConfig.value.displayErrors),
-      labels: labels.value !== null ? labels.value : (userConfig.value.labels !== undefined ? userConfig.value.labels : baseConfig.value.labels),
-      formatLoad: formatLoad.value || userConfig.value.formatLoad || null,
-      prepare: prepare.value || userConfig.value.prepare || null,
-    }
-
-    return options
-  })
-
-  const isMultilingual = computed(() => {
-    return options.value.multilingual
-  })
-
-  // @todo: formatData
   /**
    * The form's data.
    * 
@@ -217,7 +149,7 @@ const base = function(props, context, dependencies = {})
    */
   const formData = computed(() => {
     return convertFormData({
-      formKey: options.value.formKey,
+      key: $this.key,
       data: filtered.value,
     })
   })
@@ -354,7 +286,7 @@ const base = function(props, context, dependencies = {})
    * @private
    */
   const shouldValidateOnChange = computed(() => {
-    return options.value.validateOn.split('|').indexOf('change') !== -1
+    return $this.validateOn.split('|').indexOf('change') !== -1
   })
 
   /**
@@ -363,7 +295,7 @@ const base = function(props, context, dependencies = {})
    * @private
    */
   const shouldValidateOnSubmit = computed(() => {
-    return options.value.validateOn.split('|').indexOf('submit') !== -1
+    return $this.validateOn.split('|').indexOf('submit') !== -1
   })
 
   /**
@@ -372,7 +304,7 @@ const base = function(props, context, dependencies = {})
    * @private
    */
   const shouldValidateOnStep = computed(() => {
-    return options.value.validateOn.split('|').indexOf('step') !== -1
+    return $this.validateOn.split('|').indexOf('step') !== -1
   })
 
   /**
@@ -382,7 +314,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const hasSteps = computed(() => {
-    return !_.isEmpty(steps.value)
+    return !_.isEmpty($this.steps)
   })
 
   /**
@@ -392,7 +324,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const hasTabs = computed(() => {
-    return !_.isEmpty(tabs.value)
+    return !_.isEmpty($this.tabs)
   })
 
   /**
@@ -424,11 +356,11 @@ const base = function(props, context, dependencies = {})
       extendedTheme.value.classes.Laraform
     )
 
-    classes = mergeComponentClasses(classes, options.value.addClasses.Laraform || null)
+    classes = mergeComponentClasses(classes, $this.addClasses.Laraform || null)
 
-    if (options.value.addClass !== null) {
+    if ($this.addClass !== null || form.value.addClass) {
       classes = mergeComponentClasses(classes, {
-        [mainClass.value]: options.value.addClass
+        [mainClass.value]: $this.addClass || form.value.addClass
       })
     }
 
@@ -451,7 +383,9 @@ const base = function(props, context, dependencies = {})
    * @type {object}
    */
   const selectedTheme = computed(() => {
-    return baseConfig.value.themes[options.value.theme]
+    let theme = !_.isEmpty($this.theme) ? $this.theme : (form.value.theme || $laraform.value.theme)
+
+    return $laraform.value.themes[theme]
   })
 
   /**
@@ -465,23 +399,43 @@ const base = function(props, context, dependencies = {})
       // Add registered elements to theme elements (or overwrite)
       elements: Object.assign({},
         selectedTheme.value.elements,
-        baseConfig.value.elements,
-        options.value.elements || {},
+        $laraform.value.elements,
+        $this.elements,
       ),
 
       // Add registered component to theme (or overwrite)
       components: Object.assign({},
         selectedTheme.value.components,
-        baseConfig.value.components,
-        options.value.components || {},
+        $laraform.value.components,
+        $this.components,
       ),
       
       // Ovewrite theme classes with form's classes definition
       classes: _.merge({},
         selectedTheme.value.classes,
-        options.value.overrideClasses,
+        $this.overrideClasses,
       ),
     })
+  })
+
+  // no export
+  /**
+   * 
+   * 
+   * @private
+   */
+  const formatLoad = computed(() => {
+    return $this.formatLoad
+  })
+
+  // no export
+  /**
+   * 
+   * 
+   * @private
+   */
+  const prepare = computed(() => {
+    return $this.prepare
   })
 
   /**
@@ -516,6 +470,26 @@ const base = function(props, context, dependencies = {})
       }
     }
   })
+
+  /**
+   * 
+   * 
+   * @private
+   */
+  const form$ = computed(() => {
+    return currentInstance.proxy
+  })
+  
+  // no export
+  /**
+   * 
+   * 
+   * @private
+   */
+  const $laraform = computed(() => {
+    return $this.$laraform
+  })
+
   // =============== METHODS ==============
 
   /**
@@ -538,7 +512,7 @@ const base = function(props, context, dependencies = {})
    * @param {object} data data to load
    * @returns {void}
    */
-  const load = (data, format = false, sort = true) => {
+  const load = (data, format = false) => {
     if (steps$.value !== null) {
       steps$.value.enableAllSteps()
     }
@@ -548,14 +522,14 @@ const base = function(props, context, dependencies = {})
         return
       }
 
-      let formatted = format && options.value.formatLoad !== null ? options.value.formatLoad(data) : data
-      let loadValue = e$.flat ? formatted : formatted[e$.name]
+      let formatted = format && formatLoad.value !== null ? formatLoad.value(data) : data
+      let loadValue = e$.flat ? formatted : formatted[e$.name], format
 
       if (loadValue === undefined) {
         return
       }
 
-      e$.load(loadValue, format, sort)
+      e$.load(loadValue)
     })
   }
 
@@ -663,8 +637,8 @@ const base = function(props, context, dependencies = {})
     try {
       await prepareElements()
       
-      if (typeof options.value.prepare === 'function') {
-        await options.value.prepare(form$)
+      if (typeof prepare.value === 'function') {
+        await prepare.value()
       }
     } catch (e) {
       fire('error', e)
@@ -689,7 +663,7 @@ const base = function(props, context, dependencies = {})
     let response = {}
 
     try {
-      response = await services.value.axios[options.value.method](options.value.endpoint, formData.value)
+      response = await $laraform.value.services.axios[$this.method]($this.endpoint, formData.value)
 
       if (response.data.payload && response.data.payload.updates) {
         update(response.data.payload.updates)
@@ -749,8 +723,7 @@ const base = function(props, context, dependencies = {})
   * @private
   */
   const setLanguage = (code) => {
-    // @todo
-    selectedLanguage.value = code
+    $this.language = code
 
     fire('language', code)
   }
@@ -761,7 +734,6 @@ const base = function(props, context, dependencies = {})
   * @private
   */
   const updateSchema = (schema) => {
-    // @todo
     $this.schema = schema
   }
 
@@ -835,15 +807,15 @@ const base = function(props, context, dependencies = {})
   * @private
   */
   const resortSchema = () => {
-    let all = _.keys(options.value.schema)
+    let all = _.keys($this.schema)
     let blocks
 
-    if (!_.isEmpty(options.value.steps)) {
-      blocks = options.value.steps
+    if (!_.isEmpty($this.steps)) {
+      blocks = $this.steps
     }
 
-    if (!_.isEmpty(options.value.tabs)) {
-      blocks = options.value.tabs
+    if (!_.isEmpty($this.tabs)) {
+      blocks = $this.tabs
     }
 
     if (blocks) {
@@ -851,13 +823,13 @@ const base = function(props, context, dependencies = {})
 
       _.each(blocks, (block) => {
         _.each(block.elements, (e) => {
-          schema[e] = options.value.schema[e]
+          schema[e] = $this.schema[e]
         })
       })
 
       _.each(all, (e) => {
         if (schema[e] === undefined) {
-          schema[e] = options.value.schema[e]
+          schema[e] = $this.schema[e]
         }
       })
 
@@ -871,7 +843,7 @@ const base = function(props, context, dependencies = {})
   * @private
   */
   const initMessageBag = () => {
-    messageBag.value = new services.value.messageBag(elementErrors)
+    messageBag.value = new $laraform.value.services.messageBag(elementErrors)
   }
 
   // ============== PROVIDES ==============
@@ -884,71 +856,62 @@ const base = function(props, context, dependencies = {})
   // Only start watching $this props after `created`
   // to make sure `proxy` variables already exist
   nextTick(() => {
-    watch(() => { return options.value.tabs }, () => {
+    watch(() => { return $this.tabs }, () => {
       resortSchema()
     }, { deep: true })
 
-    watch(() => { return options.value.steps }, () => {
+    watch(() => { return $this.steps }, () => {
       resortSchema()
     }, { deep: true })
   })
 
-  watch(data, (newValue, oldValue) => {
-    fire('change', newValue, oldValue)
-  })
+  watch(() => { return form.value.schema }, (value) => {
+    if (_.isEmpty(value)) {
+      return
+    }
+
+    $this.schema = value
+
+    resortSchema()
+  }, { deep: true })
+
+  // watch(value, (newValue) => {
+  //   if (_.isEqual(newValue, data.value)) {
+  //     return
+  //   }
+
+  //   load(Object.assign({}, newValue))
+  // }, { deep: true, flush: 'sync' })
 
   // ================ HOOKS ===============
 
-  initMessageBag()
-  setLanguage(options.value.language)
+  // onMounted(() => {
+  //   if (value.value && typeof value.value === 'object') {
+  //     load(_.clone(value.value))
+  //   } 
+  // })
 
   onMounted(() => {
-    if (value.value) {
-      load(Object.assign({}, {
-        list: _.clone(value.value.list)
-      }))
+    if (value.value && typeof value.value === 'object') {
+      load(_.clone(value.value))
+
+      nextTick(() => {
+        context.emit('input', data.value)
+      })
     }
-
-    if (fill.value) {
-      load(Object.assign({}, {
-        list: _.clone(fill.value.list)
-      }), true)
-    }
-
-    watch(data, (newValue, oldValue) => {
-      // c('form data changed from ', JSON.stringify(oldValue.list), 'to ', JSON.stringify(newValue.list), '(form value: ', JSON.stringify(value.value.list), ')', (new Date).getTime())
-      if (_.isEqual(newValue, value.value)) {
-        // c('not changing form value because it equals to form data')
-        return
-      }
-      // c('changing form value from ', JSON.stringify(value.value.list), 'to ', JSON.stringify(newValue.list))
-      context.emit('input', Object.assign({}, {
-        list: _.clone(newValue.list)
-      }))
-    }, { deep: true, flush: 'post', immediate: false })
-
-    watch(value, (newValue, oldValue) => {
-      // c('form value changed from ', JSON.stringify(oldValue.list), 'to ', JSON.stringify(newValue.list), '(form data: ', JSON.stringify(data.value.list), ')', (new Date).getTime())
-      if (_.isEqual(newValue, data.value)) {
-        // c('but not updating form value because it equals to form value')
-        return
-      }
-
-      // c('and changes form data from ', JSON.stringify(data.value.list), 'to ', JSON.stringify(newValue.list))
-      load(Object.assign({}, {
-        list: _.clone(newValue.list)
-      }), false, false)
-    }, { deep: true, flush: 'post', immediate: false })
   })
+
+  watch(data, (newValue) => {
+    console.log(111)
+    context.emit('input', newValue)
+  }, { deep: true, flush: 'pre', lazy: true })
 
   return {
     tabs$,
     steps$,
     elements$,
-    options,
     validation,
     messageBag,
-    selectedLanguage,
     submitting,
     preparing,
     updating,
@@ -973,7 +936,6 @@ const base = function(props, context, dependencies = {})
     hasTabs,
     hasErrors,
     hasMessages,
-    isMultilingual,
     mainClass,
     defaultClasses,
     extendedClasses,
@@ -981,7 +943,6 @@ const base = function(props, context, dependencies = {})
     selectedTheme,
     extendedTheme,
     store,
-    options,
     form$,
     v: value,
     update,

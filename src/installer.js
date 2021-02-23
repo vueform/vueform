@@ -44,8 +44,8 @@ import TTrixElement from './components/elements/TTrixElement'
 import Laraform from './components/Laraform'
 import FormErrors from './components/FormErrors'
 import FormMessages from './components/FormMessages'
-import FormLanguageSelector from './components/FormLanguageSelector'
-import FormLanguageSelectorTab from './components/FormLanguageSelectorTab'
+import FormLanguages from './components/FormLanguages'
+import FormLanguage from './components/FormLanguage'
 import FormTabs from './components/FormTabs'
 import FormTab from './components/FormTab'
 import FormSteps from './components/FormSteps'
@@ -83,6 +83,8 @@ import MultiselectSlotSingleLabel from './components/elements/slots/MultiselectS
 import MultiselectSlotTag from './components/elements/slots/MultiselectSlotTag'
 import RadiogroupSlotRadio from './components/elements/slots/RadiogroupSlotRadio'
 
+window.c = console.log
+
 const elements = {
   AddressElement,
   ButtonElement,
@@ -118,8 +120,8 @@ const components = {
   Laraform,
   FormErrors,
   FormMessages,
-  FormLanguageSelector,
-  FormLanguageSelectorTab,
+  FormLanguages,
+  FormLanguage,
   FormTabs,
   FormTab,
   FormSteps,

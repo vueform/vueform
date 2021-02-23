@@ -515,16 +515,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguageSelector.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguages.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--0!./node_modules/vue-loader/lib??vue-loader-options!./src/themes/default/components/FormLanguageSelector.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--0!./node_modules/vue-loader/lib??vue-loader-options!./src/themes/default/components/FormLanguages.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_FormLanguageSelector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../components/FormLanguageSelector */ "./src/components/FormLanguageSelector.js");
+/* harmony import */ var _components_FormLanguageSelector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../components/FormLanguages */ "./src/components/FormLanguages.js");
 //
 //
 //
@@ -539,7 +539,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'FormLanguageSelector',
+  name: 'FormLanguages',
   mixins: [_components_FormLanguageSelector__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
     return {
@@ -552,16 +552,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguageSelectorTab.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguage.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--0!./node_modules/vue-loader/lib??vue-loader-options!./src/themes/default/components/FormLanguageSelectorTab.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--0!./node_modules/vue-loader/lib??vue-loader-options!./src/themes/default/components/FormLanguage.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_FormLanguageSelectorTab__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../components/FormLanguageSelectorTab */ "./src/components/FormLanguageSelectorTab.js");
+/* harmony import */ var _components_FormLanguageSelectorTab__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../components/FormLanguage */ "./src/components/FormLanguage.js");
 //
 //
 //
@@ -576,7 +576,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'FormLanguageSelectorTab',
+  name: 'FormLanguage',
   mixins: [_components_FormLanguageSelectorTab__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
     return {
@@ -6145,9 +6145,9 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguageSelector.vue?vue&type=template&id=a8ceef8c&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguages.vue?vue&type=template&id=a8ceef8c&":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/themes/default/components/FormLanguageSelector.vue?vue&type=template&id=a8ceef8c& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/themes/default/components/FormLanguages.vue?vue&type=template&id=a8ceef8c& ***!
   \*****************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -6164,7 +6164,7 @@ var render = function() {
     "ul",
     { class: _vm.classes.container },
     _vm._l(_vm.languages, function(lang, code, key) {
-      return _c(_vm.components.FormLanguageSelectorTab, {
+      return _c(_vm.components.FormLanguage, {
         key: key,
         tag: "component",
         attrs: { language: lang, code: code },
@@ -6181,9 +6181,9 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguageSelectorTab.vue?vue&type=template&id=feee32aa&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguage.vue?vue&type=template&id=feee32aa&":
 /*!********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/themes/default/components/FormLanguageSelectorTab.vue?vue&type=template&id=feee32aa& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/themes/default/components/FormLanguage.vue?vue&type=template&id=feee32aa& ***!
   \********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -8643,9 +8643,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/components/FormLanguageSelector.js":
+/***/ "./src/components/FormLanguages.js":
 /*!************************************************!*\
-  !*** ./src/components/FormLanguageSelector.js ***!
+  !*** ./src/components/FormLanguages.js ***!
   \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -8658,7 +8658,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'FormLanguageSelector',
+  name: 'FormLanguages',
   init: function init(props, context) {
     // ============ DEPENDENCIES ============
     var _useFormComponent = Object(_composables_useFormComponent__WEBPACK_IMPORTED_MODULE_1__["default"])(props, context),
@@ -8696,9 +8696,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/components/FormLanguageSelectorTab.js":
+/***/ "./src/components/FormLanguage.js":
 /*!***************************************************!*\
-  !*** ./src/components/FormLanguageSelectorTab.js ***!
+  !*** ./src/components/FormLanguage.js ***!
   \***************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -8715,7 +8715,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'FormLanguageSelectorTab',
+  name: 'FormLanguage',
   init: function init(props, context) {
     var _toRefs = Object(composition_api__WEBPACK_IMPORTED_MODULE_0__["toRefs"])(props.code),
         code = _toRefs.code;
@@ -15016,17 +15016,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/themes/default/components/FormLanguageSelector.vue":
+/***/ "./src/themes/default/components/FormLanguages.vue":
 /*!****************************************************************!*\
-  !*** ./src/themes/default/components/FormLanguageSelector.vue ***!
+  !*** ./src/themes/default/components/FormLanguages.vue ***!
   \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _FormLanguageSelector_vue_vue_type_template_id_a8ceef8c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormLanguageSelector.vue?vue&type=template&id=a8ceef8c& */ "./src/themes/default/components/FormLanguageSelector.vue?vue&type=template&id=a8ceef8c&");
-/* harmony import */ var _FormLanguageSelector_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormLanguageSelector.vue?vue&type=script&lang=js& */ "./src/themes/default/components/FormLanguageSelector.vue?vue&type=script&lang=js&");
+/* harmony import */ var _FormLanguageSelector_vue_vue_type_template_id_a8ceef8c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormLanguages.vue?vue&type=template&id=a8ceef8c& */ "./src/themes/default/components/FormLanguages.vue?vue&type=template&id=a8ceef8c&");
+/* harmony import */ var _FormLanguageSelector_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormLanguages.vue?vue&type=script&lang=js& */ "./src/themes/default/components/FormLanguages.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -15048,35 +15048,35 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "src/themes/default/components/FormLanguageSelector.vue"
+component.options.__file = "src/themes/default/components/FormLanguages.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./src/themes/default/components/FormLanguageSelector.vue?vue&type=script&lang=js&":
+/***/ "./src/themes/default/components/FormLanguages.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************!*\
-  !*** ./src/themes/default/components/FormLanguageSelector.vue?vue&type=script&lang=js& ***!
+  !*** ./src/themes/default/components/FormLanguages.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelector_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--0!../../../../node_modules/vue-loader/lib??vue-loader-options!./FormLanguageSelector.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguageSelector.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelector_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--0!../../../../node_modules/vue-loader/lib??vue-loader-options!./FormLanguages.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguages.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelector_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./src/themes/default/components/FormLanguageSelector.vue?vue&type=template&id=a8ceef8c&":
+/***/ "./src/themes/default/components/FormLanguages.vue?vue&type=template&id=a8ceef8c&":
 /*!***********************************************************************************************!*\
-  !*** ./src/themes/default/components/FormLanguageSelector.vue?vue&type=template&id=a8ceef8c& ***!
+  !*** ./src/themes/default/components/FormLanguages.vue?vue&type=template&id=a8ceef8c& ***!
   \***********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelector_vue_vue_type_template_id_a8ceef8c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./FormLanguageSelector.vue?vue&type=template&id=a8ceef8c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguageSelector.vue?vue&type=template&id=a8ceef8c&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelector_vue_vue_type_template_id_a8ceef8c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./FormLanguages.vue?vue&type=template&id=a8ceef8c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguages.vue?vue&type=template&id=a8ceef8c&");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelector_vue_vue_type_template_id_a8ceef8c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelector_vue_vue_type_template_id_a8ceef8c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
@@ -15085,17 +15085,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/themes/default/components/FormLanguageSelectorTab.vue":
+/***/ "./src/themes/default/components/FormLanguage.vue":
 /*!*******************************************************************!*\
-  !*** ./src/themes/default/components/FormLanguageSelectorTab.vue ***!
+  !*** ./src/themes/default/components/FormLanguage.vue ***!
   \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _FormLanguageSelectorTab_vue_vue_type_template_id_feee32aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormLanguageSelectorTab.vue?vue&type=template&id=feee32aa& */ "./src/themes/default/components/FormLanguageSelectorTab.vue?vue&type=template&id=feee32aa&");
-/* harmony import */ var _FormLanguageSelectorTab_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormLanguageSelectorTab.vue?vue&type=script&lang=js& */ "./src/themes/default/components/FormLanguageSelectorTab.vue?vue&type=script&lang=js&");
+/* harmony import */ var _FormLanguageSelectorTab_vue_vue_type_template_id_feee32aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormLanguage.vue?vue&type=template&id=feee32aa& */ "./src/themes/default/components/FormLanguage.vue?vue&type=template&id=feee32aa&");
+/* harmony import */ var _FormLanguageSelectorTab_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormLanguage.vue?vue&type=script&lang=js& */ "./src/themes/default/components/FormLanguage.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -15117,35 +15117,35 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "src/themes/default/components/FormLanguageSelectorTab.vue"
+component.options.__file = "src/themes/default/components/FormLanguage.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./src/themes/default/components/FormLanguageSelectorTab.vue?vue&type=script&lang=js&":
+/***/ "./src/themes/default/components/FormLanguage.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************!*\
-  !*** ./src/themes/default/components/FormLanguageSelectorTab.vue?vue&type=script&lang=js& ***!
+  !*** ./src/themes/default/components/FormLanguage.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelectorTab_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--0!../../../../node_modules/vue-loader/lib??vue-loader-options!./FormLanguageSelectorTab.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguageSelectorTab.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelectorTab_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--0!../../../../node_modules/vue-loader/lib??vue-loader-options!./FormLanguage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguage.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelectorTab_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./src/themes/default/components/FormLanguageSelectorTab.vue?vue&type=template&id=feee32aa&":
+/***/ "./src/themes/default/components/FormLanguage.vue?vue&type=template&id=feee32aa&":
 /*!**************************************************************************************************!*\
-  !*** ./src/themes/default/components/FormLanguageSelectorTab.vue?vue&type=template&id=feee32aa& ***!
+  !*** ./src/themes/default/components/FormLanguage.vue?vue&type=template&id=feee32aa& ***!
   \**************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelectorTab_vue_vue_type_template_id_feee32aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./FormLanguageSelectorTab.vue?vue&type=template&id=feee32aa& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguageSelectorTab.vue?vue&type=template&id=feee32aa&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelectorTab_vue_vue_type_template_id_feee32aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./FormLanguage.vue?vue&type=template&id=feee32aa& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/themes/default/components/FormLanguage.vue?vue&type=template&id=feee32aa&");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelectorTab_vue_vue_type_template_id_feee32aa___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormLanguageSelectorTab_vue_vue_type_template_id_feee32aa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
@@ -16841,8 +16841,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Laraform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Laraform */ "./src/themes/default/components/Laraform.vue");
 /* harmony import */ var _components_FormErrors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/FormErrors */ "./src/themes/default/components/FormErrors.vue");
 /* harmony import */ var _components_FormMessages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/FormMessages */ "./src/themes/default/components/FormMessages.vue");
-/* harmony import */ var _components_FormLanguageSelector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/FormLanguageSelector */ "./src/themes/default/components/FormLanguageSelector.vue");
-/* harmony import */ var _components_FormLanguageSelectorTab__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/FormLanguageSelectorTab */ "./src/themes/default/components/FormLanguageSelectorTab.vue");
+/* harmony import */ var _components_FormLanguageSelector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/FormLanguages */ "./src/themes/default/components/FormLanguages.vue");
+/* harmony import */ var _components_FormLanguageSelectorTab__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/FormLanguage */ "./src/themes/default/components/FormLanguage.vue");
 /* harmony import */ var _components_FormTabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/FormTabs */ "./src/themes/default/components/FormTabs.vue");
 /* harmony import */ var _components_FormTab__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/FormTab */ "./src/themes/default/components/FormTab.vue");
 /* harmony import */ var _components_FormWizard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/FormWizard */ "./src/themes/default/components/FormWizard.vue");
@@ -16948,8 +16948,8 @@ var components = {
   Laraform: _components_Laraform__WEBPACK_IMPORTED_MODULE_0__["default"],
   FormErrors: _components_FormErrors__WEBPACK_IMPORTED_MODULE_1__["default"],
   FormMessages: _components_FormMessages__WEBPACK_IMPORTED_MODULE_2__["default"],
-  FormLanguageSelector: _components_FormLanguageSelector__WEBPACK_IMPORTED_MODULE_3__["default"],
-  FormLanguageSelectorTab: _components_FormLanguageSelectorTab__WEBPACK_IMPORTED_MODULE_4__["default"],
+  FormLanguages: _components_FormLanguageSelector__WEBPACK_IMPORTED_MODULE_3__["default"],
+  FormLanguage: _components_FormLanguageSelectorTab__WEBPACK_IMPORTED_MODULE_4__["default"],
   FormTabs: _components_FormTabs__WEBPACK_IMPORTED_MODULE_5__["default"],
   FormTab: _components_FormTab__WEBPACK_IMPORTED_MODULE_6__["default"],
   FormWizard: _components_FormWizard__WEBPACK_IMPORTED_MODULE_7__["default"],

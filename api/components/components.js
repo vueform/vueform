@@ -622,7 +622,7 @@ export default {
       }
     }
   },
-  "FormLanguageSelector": {
+  "FormLanguages": {
     "inject": {
       "form$": {
         "public": false,
@@ -666,7 +666,7 @@ export default {
       }
     }
   },
-  "FormLanguageSelectorTab": {
+  "FormLanguage": {
     "inject": {
       "form$": {
         "public": false,

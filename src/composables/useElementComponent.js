@@ -43,8 +43,8 @@ const base = function(props, context, dependencies)
     )
 
     // Add form's addClasses
-    if (form$.value.addClasses[componentName.value] !== undefined) {
-      classes = mergeComponentClasses(classes, form$.value.addClasses[componentName.value] || null)
+    if (form$.value.options.addClasses[componentName.value] !== undefined) {
+      classes = mergeComponentClasses(classes, form$.value.options.addClasses[componentName.value] || null)
     }
 
     // Add element's addClasses options

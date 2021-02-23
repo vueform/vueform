@@ -12,7 +12,7 @@ jest.mock("axios", () => ({
 }))
 
 let setLanguage = function(code, form) {
-  _.each(findAllComponents(form, { name: 'FormLanguageSelectorTab' }).wrappers, (tab$) => {
+  _.each(findAllComponents(form, { name: 'FormLanguage' }).wrappers, (tab$) => {
     if (tab$.vm.code == code) {
       tab$.get('a').trigger('click')
     }

@@ -1,8 +1,8 @@
 import Laraform from './components/Laraform'
 import FormErrors from './components/FormErrors'
 import FormMessages from './components/FormMessages'
-import FormLanguageSelector from './components/FormLanguageSelector'
-import FormLanguageSelectorTab from './components/FormLanguageSelectorTab'
+import FormLanguages from './components/FormLanguages'
+import FormLanguage from './components/FormLanguage'
 import FormTabs from './components/FormTabs'
 import FormTab from './components/FormTab'
 import FormSteps from './components/FormSteps'
@@ -75,8 +75,8 @@ const components = {
   Laraform,
   FormErrors,
   FormMessages,
-  FormLanguageSelector,
-  FormLanguageSelectorTab,
+  FormLanguages,
+  FormLanguage,
   FormTabs,
   FormTab,
   FormSteps,

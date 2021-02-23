@@ -1,14 +1,9 @@
+import { computed } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useElements from './../composables/useElements'
 
 export default {
   name: 'FormElements',
-  props: {
-    schema: {
-      type: Object,
-      required: true
-    },
-  },
   setup(props, context)
   {  
     // ============ DEPENDENCIES ============
@@ -25,12 +20,19 @@ export default {
       component
     } = useElements(props, context, { theme })
 
+    // ============ computed ============
+
+    const schema = computed(() => {
+      return form$.value.options.schema
+    })
+
     return {
       form$,
       theme,
       classes,
       mainClass,
       components,
+      schema,
       component,
     }
   },

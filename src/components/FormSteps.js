@@ -6,21 +6,8 @@ import normalize from './../utils/normalize'
 export default {
   name: 'FormSteps',
   emits: ['submit'],
-  props: {
-    /**
-     * Steps definition.
-     */
-    steps: {
-      type: Object,
-      required: false
-    },
-  },
   setup(props, context)
   { 
-    const {
-      steps
-    } = toRefs(props)
-    
     const $this = getCurrentInstance().proxy
 
     // ============ DEPENDENCIES ============
@@ -68,6 +55,10 @@ export default {
     const exists = ref(true)
 
     // ============== COMPUTED ==============
+
+    const steps = computed(() => {
+      return form$.value.options.steps
+    })
 
     const elements$ = computed(() => {
       return form$.value.elements$
@@ -351,7 +342,9 @@ export default {
      * @returns {void}
      */
     const submit = () => {
-      context.emit('submit')
+      // manually triggering form's submit event
+      let form = form$.value.$el.nodeName === 'FORM' ? form$.value.$el : form$.value.$el.querySelector('form')
+      form.dispatchEvent(new Event('submit'))
 
       if (invalid.value) {
         firstInvalid$.value.select()
@@ -520,6 +513,7 @@ export default {
     return {
       form$,
       theme,
+      steps,
       elements$,
       steps$Array,
       events,

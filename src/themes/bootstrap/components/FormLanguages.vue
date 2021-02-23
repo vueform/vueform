@@ -1,8 +1,7 @@
 <template>
   <ul :class="classes.container">
-    <component
+    <FormLanguage
       v-for="(lang, code, key) in languages"
-      :is="components.FormLanguageSelectorTab" 
       :language="lang"
       :code="code"
       :key="key"
@@ -12,7 +11,7 @@
 </template>
 <script>
   export default {
-    name: 'FormLanguageSelector',
+    name: 'FormLanguages',
     data() {
       return {
         defaultClasses: {

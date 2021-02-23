@@ -1970,7 +1970,7 @@ describe('Laraform Events', () => {
 
     expect(form.vm.language).toBe('en')
 
-    findAllComponents(form, { name: 'FormLanguageSelectorTab' }).at(1).get('a').trigger('click')
+    findAllComponents(form, { name: 'FormLanguage' }).at(1).get('a').trigger('click')
 
     expect(form.vm.language).toBe('de')
     

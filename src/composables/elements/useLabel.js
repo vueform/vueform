@@ -19,7 +19,7 @@ const base = function(props, context, dependencies)
    * @type {boolean}
    */
   const hasLabel = computed(() => {
-    return !!(form$.value.$laraform.labels || label.value)
+    return !!(form$.value.options.labels || label.value)
   })
 
   return {

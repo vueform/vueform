@@ -260,7 +260,7 @@ const base = function (props, context, dependencies)
       let data = new FormData()
 
       data.append('file', value.value)
-      data.append('key', form$.value.key)
+      data.append('formKey', form$.value.options.formKey)
       data.append('path', path.value)
 
       let response = await axios.value[fileMethods.value.uploadTemp](fileEndpoints.value.uploadTemp, data, {

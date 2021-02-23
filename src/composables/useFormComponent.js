@@ -35,7 +35,7 @@ const base = function(props, context, dependencies)
     )
 
     // Add form's addClasses
-    classes = mergeComponentClasses(classes, form$.value.addClasses[componentName.value] || null)
+    classes = mergeComponentClasses(classes, form$.value.options.addClasses[componentName.value] || null)
 
     return classes
   })

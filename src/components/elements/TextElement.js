@@ -1,4 +1,4 @@
-import { onMounted } from 'composition-api'
+import { onMounted, onBeforeUnmount, toRefs } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
@@ -200,6 +200,11 @@ export default {
       type: [Boolean],
       default: true
     },
+    fill: {
+      required: false,
+      type: [Number, String],
+      default: null
+    },
     onChange: {
       required: false,
       type: [Function],
@@ -261,6 +266,7 @@ export default {
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
       dirt: validation.dirt,
+      path: path.path,
     })
 
     const empty = useEmpty(props, context, {

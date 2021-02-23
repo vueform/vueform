@@ -1,8 +1,8 @@
 import Laraform from './components/Laraform'
 import FormErrors from './components/FormErrors'
 import FormMessages from './components/FormMessages'
-import FormLanguageSelector from './components/FormLanguageSelector'
-import FormLanguageSelectorTab from './components/FormLanguageSelectorTab'
+import FormLanguages from './components/FormLanguages'
+import FormLanguage from './components/FormLanguage'
 import FormTabs from './components/FormTabs'
 import FormTab from './components/FormTab'
 import FormSteps from './components/FormSteps'
@@ -10,6 +10,9 @@ import FormStepsControls from './components/FormStepsControls'
 import FormStepsControl from './components/FormStepsControl'
 import FormStep from './components/FormStep'
 import FormElements from './components/FormElements'
+// import FormButton from './components/FormButton'
+// import FormButtonSubmit from './components/FormButtonSubmit'
+// import FormButtonAnchor from './components/FormButtonAnchor'
 import ElementLayout from './components/ElementLayout'
 import ElementLayoutInline from './components/ElementLayoutInline'
 import ElementLabelFloating from './components/ElementLabelFloating'
@@ -27,6 +30,7 @@ import TrixWrapper from './components/wrappers/TrixWrapper'
 
 import AddressElement from './components/elements/AddressElement'
 import ButtonElement from './components/elements/ButtonElement'
+// import ButtonsElement from './components/elements/ButtonsElement'
 import CheckboxElement from './components/elements/CheckboxElement'
 import CheckboxgroupElement from './components/elements/CheckboxgroupElement'
 import DateElement from './components/elements/DateElement'
@@ -71,8 +75,8 @@ const components = {
   Laraform,
   FormErrors,
   FormMessages,
-  FormLanguageSelector,
-  FormLanguageSelectorTab,
+  FormLanguages,
+  FormLanguage,
   FormTabs,
   FormTab,
   FormSteps,
@@ -80,6 +84,9 @@ const components = {
   FormStepsControl,
   FormStep,
   FormElements,
+  // FormButton,
+  // FormButtonSubmit,
+  // FormButtonAnchor,
   ElementLayout,
   ElementLayoutInline,
   ElementLabelFloating,
@@ -115,6 +122,7 @@ export default {
   elements: {
     AddressElement,
     ButtonElement,
+    // ButtonsElement,
     CheckboxElement,
     CheckboxgroupElement,
     DateElement,

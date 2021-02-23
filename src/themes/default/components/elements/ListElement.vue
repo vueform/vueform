@@ -8,7 +8,7 @@
         <div :class="classes.element" v-sortable="sortable">
 
           <div v-for="(element, i) in instances" :key="element.key">
-            <slot :index="element.key">
+            <slot :child="Object.assign({}, element, {name:i})">
               <component
                 :is="component(element)"
                 v-if="element.type"

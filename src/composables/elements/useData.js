@@ -1,4 +1,4 @@
-import { computed, nextTick, toRefs, watch } from 'composition-api'
+import { computed, nextTick, toRefs, watch, ref, onMounted, onBeforeUpdate, onUnmounted } from 'composition-api'
 import computedOption from './../../utils/computedOption'
 import checkDateFormat from './../../utils/checkDateFormat'
 
@@ -8,7 +8,8 @@ const base = function(props, context, dependencies, options = {})
     submit,
     formatData,
     formatLoad,
-    name
+    name,
+    fill,
   } = toRefs(props)
 
   // ============ DEPENDENCIES =============
@@ -24,6 +25,7 @@ const base = function(props, context, dependencies, options = {})
   const fire = dependencies.fire
   const defaultValue = dependencies.defaultValue
   const nullValue = dependencies.nullValue
+  const path = dependencies.path
 
   // =============== PRIVATE ===============
 
@@ -145,6 +147,22 @@ const base = function(props, context, dependencies, options = {})
    */
   const prepare = async () => {}
 
+  if (fill && fill.value !== null) {
+    load(fill.value)
+  }
+
+  watch(() => {return fill ? fill.value : undefined}, (newValue, oldValue) => {
+    // console.log('text (', name.value, ') fill changed from', oldValue, 'to', newValue, (new Date).getTime())
+
+    if (_.isEqual(newValue, value.value)) {
+      // console.log('but it does not update itself because already has value: ', value.value)
+      return
+    }
+
+    // console.log('and it loads new fill value to itself ', newValue)
+    load(newValue)
+  }, { flush: 'sync' })
+
   return {
     data,
     filtered,
@@ -154,6 +172,329 @@ const base = function(props, context, dependencies, options = {})
     updated,
     clear,
     reset,
+    prepare,
+  }
+}
+
+const list = function(props, context, dependencies, options)
+{
+
+  const {
+    initial,
+    name,
+    storeOrder,
+    formatLoad,
+    formatData,
+    order,
+    submit,
+  } = toRefs(props)
+
+  const {
+    data,
+    changed,
+    prepare,
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES =============
+
+  const form$ = dependencies.form$
+  const instances = dependencies.instances
+  const children$ = dependencies.children$
+  const defaultValue = dependencies.defaultValue
+  const available = dependencies.available
+  const isDisabled = dependencies.isDisabled
+  const currentValue = dependencies.currentValue
+  const previousValue = dependencies.previousValue
+  const resetValidators = dependencies.resetValidators
+  const validateValidators = dependencies.validateValidators
+  const dirt = dependencies.dirt
+  const refreshOrderStore = dependencies.refreshOrderStore
+  const isObject = dependencies.isObject
+  const orderByName = dependencies.orderByName
+  const prototype = dependencies.prototype
+  const fire = dependencies.fire
+  const path = dependencies.path
+
+  // ============== OPTIONS ===============
+
+  const defaultInitial = options.initial
+
+  // ============== COMPUTED ===============
+  
+  const filtered = computed(() => {
+    if (!available.value || !submit.value) {
+      return {}
+    }
+    
+    let filtered = []
+
+    _.each(children$.value, (element$) => {
+      let val = element$.filtered[element$.name]
+
+      if (val !== undefined) {
+        filtered.push(val)
+      }
+    })
+
+    return formatData.value ? formatData.value(name.value, filtered, form$.value) : {[name.value]: filtered}
+  })
+
+  /**
+  * Initial number of child instances.
+  * 
+  * @type {number}
+  * @default 1
+  * @option
+  */
+  const initialInstances = computed(() => {
+    if (defaultValue.value && defaultValue.value.length > (initial !== undefined ? initial.value : defaultInitial)) {
+      return defaultValue.value.length
+    }
+
+    return initial && initial.value !== undefined ? initial.value : defaultInitial
+  })
+
+  /**
+   * Helper method used to retrieve the next key for a new instance.
+   *
+   * @type {number}
+   */
+  const next = computed(() => {
+    return instances.value.length
+      ? _.max(_.map(_.keys(_.keyBy(instances.value, 'key')), Number)) + 1
+      : 0
+  })
+
+  // =============== METHODS ===============
+
+  /**
+   * 
+   * 
+   * 
+   * @param {object|array|string|number|boolean} value  
+   * @returns {void}
+   */
+  const add = (val = null) => {
+    const index = insert(val)
+
+    nextTick(() => {
+      fire('add', children$.value[index], index)
+      updated()
+    })
+
+    return index
+  }
+
+  /**
+   * 
+   * 
+   * 
+   * @param {object|array|string|number|boolean} value  
+   * @returns {number}
+   */
+  const insert = (val = null, keys = []) => {
+    const index = instances.value.length
+
+    // Add order to data
+    if (isObject.value && storeOrder.value) {
+      val = Object.assign({}, val || {}, {
+        [storeOrder.value]: index + 1
+      })
+    }
+
+    const schema = computed(() => {
+      return Object.assign({}, prototype.value, {
+        key: keys[index] !== undefined ? keys[index] : next.value,
+      }, val !== null ? {
+        fill: _.clone(val),
+      } : {})
+    })
+
+    instances.value.push(schema.value)
+
+    return index
+  }
+  
+  /**
+   * 
+   * 
+   * 
+   * @param {number} index*   
+   * @returns {void}
+   */
+  const remove = (index) => {
+    fire('remove', children$.value[index], index)
+
+    instances.value.splice(index, 1)
+  
+    nextTick(() => {
+      // refreshOrderStore()
+
+      // updated()
+    })
+  }
+
+  const load = (val, format = false, sort = true) => {
+    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
+
+    if (sort) {
+      formatted = orderValue(formatted)
+    }
+
+    let keys = instances.value.map(i=>i.key)
+
+    instances.value = []
+
+    if (formatted === undefined) {
+      return
+    }
+
+    for (let i = 0; i < _.keys(formatted).length; i++) {
+      insert(formatted[i], keys)
+    }
+  }
+  
+  const update = (val) => {
+    instances.value = []
+
+    for (let i = 0; i < _.keys(val).length; i++) {
+      insert(val[i])
+    }
+
+    nextTick(() => {
+      updated()
+    })
+  }
+
+  const clear = () => {
+    instances.value = []
+
+    nextTick(() => {
+      updated()
+    })
+  }
+
+  const reset = () => {
+    instances.value = []
+    resetValidators()
+
+    nextTick(() => {
+      setInitialInstances()
+
+      nextTick(() => {
+        if (changed.value) {
+          fire('change', currentValue.value, previousValue.value)
+        }
+      })
+    })
+  }
+
+  /**
+   * 
+   * 
+   * 
+   * @param {array} value  
+   * @returns {array}
+   * @private
+   */
+  const orderValue = (val) => {
+    if ((!order.value && !orderByName.value) || (!val)) {
+      return val
+    }
+
+    const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
+
+    if (isObject.value && orderByName.value) {
+      val = desc ? _.sortBy(val, orderByName.value).reverse() : _.sortBy(val, orderByName.value)
+    }
+    else if (order.value) {
+      val = desc ? val.sort().reverse() : val.sort()
+    }
+
+    return val
+  }
+
+  const updated = () => {
+    // Required because currentValue & previousValue are only updated
+    // on nextTick when then value changes (because of watch)
+    nextTick(() => {
+      if (changed.value) {
+        dirt()
+        fire('change', currentValue.value, previousValue.value)
+      }
+    })
+
+    if (form$.value.shouldValidateOnChange) {
+      validateValidators()
+    }
+  }
+
+  /**
+   * 
+   * 
+   * 
+   * @returns {void}
+   * @private
+   */
+  const handleAdd = () => {
+    if (isDisabled.value) {
+      return
+    }
+
+    add()
+  }
+
+  /**
+   * Triggered when the user removes a list item or `.remove()` method is invoked.
+   *
+   * @param {number} index* Index of child to be removed.
+   * @returns {void}
+   * @private
+   */
+  const handleRemove = (index) => {
+    if (isDisabled.value) {
+      return
+    }
+
+    remove(index)
+  }
+
+  /**
+   * Sets initial instances when the element is initalized.
+   * 
+   * @returns {void}
+   * @private 
+   */
+  const setInitialInstances = () => {
+    let count = defaultValue.value.length > initialInstances.value ? defaultValue.value.length : initialInstances.value
+
+    for (let i = 0; i < count; i++) {
+      insert(defaultValue.value && defaultValue.value[i] ? defaultValue.value[i] : null, false, false, false)
+    }
+  }
+
+  // ================ HOOKS ===============
+
+  if (prototype.value !== undefined) {
+    setInitialInstances()
+  }
+
+  return {
+    filtered,
+    initialInstances,
+    next,
+    data,
+    add,
+    insert,
+    remove,
+    load,
+    update,
+    clear,
+    reset,
+    updated,
+    handleAdd,
+    handleRemove,
+    setInitialInstances,
     prepare,
   }
 }
@@ -463,336 +804,6 @@ const group = function(props, context, dependencies)
     update,
     clear,
     reset,
-    prepare,
-  }
-}
-
-const list = function(props, context, dependencies, options)
-{
-  const {
-    initial,
-    name,
-    storeOrder,
-    formatLoad,
-    formatData,
-    order,
-    submit,
-  } = toRefs(props)
-
-  const {
-    data,
-    changed,
-    prepare,
-  } = base(props, context, dependencies)
-
-  // ============ DEPENDENCIES =============
-
-  const form$ = dependencies.form$
-  const instances = dependencies.instances
-  const children$ = dependencies.children$
-  const defaultValue = dependencies.defaultValue
-  const available = dependencies.available
-  const isDisabled = dependencies.isDisabled
-  const currentValue = dependencies.currentValue
-  const previousValue = dependencies.previousValue
-  const resetValidators = dependencies.resetValidators
-  const validateValidators = dependencies.validateValidators
-  const dirt = dependencies.dirt
-  const refreshOrderStore = dependencies.refreshOrderStore
-  const isObject = dependencies.isObject
-  const orderByName = dependencies.orderByName
-  const prototype = dependencies.prototype
-  const fire = dependencies.fire
-
-  // ============== OPTIONS ===============
-
-  const defaultInitial = options.initial
-
-  // ============== COMPUTED ===============
-  
-  const filtered = computed(() => {
-    if (!available.value || !submit.value) {
-      return {}
-    }
-    
-    let filtered = []
-
-    _.each(children$.value, (element$) => {
-      let val = element$.filtered[element$.name]
-
-      if (val !== undefined) {
-        filtered.push(val)
-      }
-    })
-
-    return formatData.value ? formatData.value(name.value, filtered, form$.value) : {[name.value]: filtered}
-  })
-
-  /**
-  * Initial number of child instances.
-  * 
-  * @type {number}
-  * @default 1
-  * @option
-  */
-  const initialInstances = computed(() => {
-    if (defaultValue.value && defaultValue.value.length > (initial !== undefined ? initial.value : defaultInitial)) {
-      return defaultValue.value.length
-    }
-
-    return initial && initial.value !== undefined ? initial.value : defaultInitial
-  })
-
-  /**
-   * Helper method used to retrieve the next key for a new instance.
-   *
-   * @type {number}
-   */
-  const next = computed(() => {
-    return instances.value.length
-      ? _.max(_.map(_.keys(_.keyBy(instances.value, 'key')), Number)) + 1
-      : 0
-  })
-
-  // =============== METHODS ===============
-
-  /**
-   * 
-   * 
-   * 
-   * @param {object|array|string|number|boolean} value  
-   * @returns {void}
-   */
-  const add = (val = null) => {
-    const index = insert(val)
-
-    nextTick(() => {
-      fire('add', children$.value[index], index)
-      updated()
-    })
-
-    return index
-  }
-
-  /**
-   * 
-   * 
-   * 
-   * @param {object|array|string|number|boolean} value  
-   * @returns {number}
-   */
-  const insert = (val = null) => {
-    const index = instances.value.length
-
-    const schema = computed(() => {
-      return Object.assign({}, prototype.value, {
-        key: next.value,
-      })
-    })
-
-    instances.value.push(schema.value)
-
-    // Add order to data
-    if (isObject.value && storeOrder.value) {
-      val = Object.assign({}, val || {}, {
-        [storeOrder.value]: instances.value.length
-      })
-    }
-
-    if (val !== null) {
-      nextTick(() => {
-        children$.value[index].load(val)
-      })
-    }
-
-    return index
-  }
-  
-  /**
-   * 
-   * 
-   * 
-   * @param {number} index*   
-   * @returns {void}
-   */
-  const remove = (index) => {
-    fire('remove', children$.value[index], index)
-
-    instances.value.splice(index, 1)
-  
-    nextTick(() => {
-      refreshOrderStore()
-
-      updated()
-    })
-  }
-
-  const load = (val, format = false) => {
-    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
-
-    instances.value = []
-
-    if (formatted === undefined) {
-      return
-    }
-
-    for (let i = 0; i < _.keys(formatted).length; i++) {
-      insert()
-    }
-
-    if (!formatted.length) {
-      return
-    }
-
-    nextTick(() => {
-      _.each(orderValue(formatted), (childValue, i) => {
-        children$.value[i].load(childValue, format)
-      })
-    })
-
-  }
-  
-  const update = (val) => {
-    instances.value = []
-
-    for (let i = 0; i < _.keys(val).length; i++) {
-      insert(val[i])
-    }
-
-    nextTick(() => {
-      updated()
-    })
-  }
-
-  const clear = () => {
-    instances.value = []
-
-    nextTick(() => {
-      updated()
-    })
-  }
-
-  const reset = () => {
-    instances.value = []
-    resetValidators()
-
-    nextTick(() => {
-      setInitialInstances()
-
-      nextTick(() => {
-        if (changed.value) {
-          fire('change', currentValue.value, previousValue.value)
-        }
-      })
-    })
-  }
-
-  /**
-   * 
-   * 
-   * 
-   * @param {array} value  
-   * @returns {array}
-   * @private
-   */
-  const orderValue = (val) => {
-    if (!order.value && !orderByName.value) {
-      return val
-    }
-
-    const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
-
-    if (isObject.value && orderByName.value) {
-      val = desc ? _.sortBy(val, orderByName.value).reverse() : _.sortBy(val, orderByName.value)
-    }
-    else if (order.value) {
-      val = desc ? val.sort().reverse() : val.sort()
-    }
-
-    return val
-  }
-
-  const updated = () => {
-    // Required because currentValue & previousValue are only updated
-    // on nextTick when then value changes (because of watch)
-    nextTick(() => {
-      if (changed.value) {
-        dirt()
-        fire('change', currentValue.value, previousValue.value)
-      }
-    })
-
-    if (form$.value.shouldValidateOnChange) {
-      validateValidators()
-    }
-  }
-
-  /**
-   * 
-   * 
-   * 
-   * @returns {void}
-   * @private
-   */
-  const handleAdd = () => {
-    if (isDisabled.value) {
-      return
-    }
-
-    add()
-  }
-
-  /**
-   * Triggered when the user removes a list item or `.remove()` method is invoked.
-   *
-   * @param {number} index* Index of child to be removed.
-   * @returns {void}
-   * @private
-   */
-  const handleRemove = (index) => {
-    if (isDisabled.value) {
-      return
-    }
-
-    remove(index)
-  }
-
-  /**
-   * Sets initial instances when the element is initalized.
-   * 
-   * @returns {void}
-   * @private 
-   */
-  const setInitialInstances = () => {
-    let count = defaultValue.value.length > initialInstances.value ? defaultValue.value.length : initialInstances.value
-
-    for (let i = 0; i < count; i++) {
-      insert(defaultValue.value && defaultValue.value[i] ? defaultValue.value[i] : null, false, false, false)
-    }
-  }
-
-  // ================ HOOKS ===============
-
-  if (prototype.value !== undefined) {
-    setInitialInstances()
-  }
-
-  return {
-    filtered,
-    initialInstances,
-    next,
-    data,
-    add,
-    insert,
-    remove,
-    load,
-    update,
-    clear,
-    reset,
-    updated,
-    handleAdd,
-    handleRemove,
-    setInitialInstances,
     prepare,
   }
 }

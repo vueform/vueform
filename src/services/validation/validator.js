@@ -55,8 +55,8 @@ const Validator = class {
     if (this.element$.messages[this.name]) {
       message = this.element$.messages[this.name]
     }
-    else if (this.form$.messages[this.name]) {
-      message = this.form$.messages[this.name]
+    else if (this.form$.options.messages[this.name]) {
+      message = this.form$.options.messages[this.name]
     }
     else if (this.name !== '_class') {
       message = this.form$.__(`laraform.validation.${this.name}`)

@@ -3,37 +3,35 @@
     :class="extendedClasses.form"
     @submit.prevent="submit"
   >
-    <FormMessages
-      v-if="hasMessages"
-    />
+    <slot>
+      <FormMessages
+        v-if="hasMessages"
+      />
 
-    <FormErrors
-      v-if="hasErrors && displayErrors"
-    />
+      <FormErrors
+        v-if="hasErrors && displayErrors"
+      />
 
-    <FormLanguageSelector
-      v-if="multilingual"
-    />
+      <FormLanguages
+        v-if="isMultilingual"
+      />
 
-    <FormTabs
-      v-if="hasTabs"
-      :tabs="tabs"
-    />
+      <FormTabs
+        v-if="hasTabs"
+      />
 
-    <FormSteps
-      v-if="hasSteps"
-      :steps="steps"
-      @submit="handleSubmit"
-    />
-    
-    <FormElements
-      :schema="schema"
-      @updateSchema="updateSchema"
-    />
+      <FormSteps
+        v-if="hasSteps"
+      />
+      
+      <FormElements
+        @updateSchema="updateSchema"
+      />
 
-    <FormStepsControls
-      v-if="hasSteps && stepsControls"
-    />
+      <FormStepsControls
+        v-if="hasSteps && stepsControls"
+      />
+    </slot>
   </form>
 </template>
 

@@ -5,21 +5,8 @@ import normalize from './../utils/normalize'
 
 export default {
   name: 'FormTabs',
-  props: {
-    /**
-     * Tabs definition.
-     */
-    tabs: {
-      type: Object,
-      required: false
-    },
-  },
   setup(props, context)
   {  
-    const {
-      tabs,
-    } = toRefs(props)
-
     const $this = getCurrentInstance().proxy
 
     // ============ DEPENDENCIES ============
@@ -62,6 +49,10 @@ export default {
 
     const elements$ = computed(() => {
       return form$.value.elements$
+    })
+
+    const tabs = computed(() => {
+      return form$.value.options.tabs
     })
 
     /**
@@ -280,6 +271,7 @@ export default {
     return {
       form$,
       theme,
+      tabs,
       elements$,
       tabs$Array,
       events,

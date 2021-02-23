@@ -2,7 +2,7 @@ import { computed } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 
 export default {
-  name: 'FormLanguageSelector',
+  name: 'FormLanguages',
   emits: ['changeLanguage'],
   setup(props, context)
   {  

@@ -3,6 +3,7 @@ import useLaraform from './../composables/useLaraform'
 
 export default {
   name: 'Laraform',
+  emits: ['input', 'update:modelValue'],
   setup: useLaraform,
   render() {
     return this.extendedTheme.components.Laraform.render.apply(this, arguments)
@@ -16,129 +17,125 @@ export default {
       type: Object,
       required: false,
     },
-    form: {
+    schema: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: null
     },
-  },
-  data() {
-    let data = {}
-    let defaults = {
-      schema: {},
-      tabs: {},
-      steps: {},
-      stepsControls: null,
-      addClass: null,
-      overrideClasses: {},
-      addClasses: {},
-      components: {},
-      elements: {},
-      messages: {},
-      theme: null,
-      endpoint: null,
-      method: null,
-      key: null,
-      columns: null,
-      labels: null,
-      multilingual: null,
-      languages: null,
-      language: null,
-      displayErrors: null,
-      validateOn: null,
-      formatLoad: null,
-      prepare: null,
-    }
-
-    Object.keys(defaults).forEach((key) => {
-      if ((this._ !== undefined && !this._.setupState.hasOwnProperty(key)) || (this._ == undefined && this[key] === undefined)) {
-        data[key] = typeof defaults[key] === 'object' && defaults[key] !== null ? Object.assign({}, defaults[key]) : defaults[key]
-      }
-    })
-
-    return Object.assign({}, data)
-  },
-  created() {
-    if (this.key === null) {
-      this.key = this.form.key || null
-    }
-
-    if (this.addClass === null) {
-      this.addClass = this.form.addClass || null
-    }
-
-    if (Object.keys(this.overrideClasses).length == 0) {
-      this.overrideClasses = this.form.overrideClasses || {}
-    }
-
-    if (Object.keys(this.addClasses).length == 0) {
-      this.addClasses = this.form.addClasses || {}
-    }
-
-    if (Object.keys(this.components).length == 0) {
-      this.components = this.form.components || {}
-    }
-
-    if (Object.keys(this.elements).length == 0) {
-      this.elements = this.form.elements || {}
-    }
-
-    if (this.multilingual === null) {
-      this.multilingual = this.form.multilingual !== undefined ? this.form.multilingual : false
-    }
-
-    if (this.endpoint === null) {
-      this.endpoint = this.form.endpoint || this.$laraform.endpoints.process
-    }
-
-    if (this.formatLoad === null) {
-      this.formatLoad = this.form.formatLoad || null
-    }
-
-    if (this.method === null) {
-      this.method = this.form.method || this.$laraform.methods.process
-    }
-
-    if (this.form.stepsControls !== undefined && this.stepsControls === null) {
-      this.stepsControls = this.form.stepsControls
-    } else if (this.stepsControls === null) {
-      this.stepsControls = true
-    }
-
-    // if the component does not have a data value
-    // and receives as a form prop, set it from that
-    // otherwise get the default value from config
-    _.each([
-      'theme', 'columns', 'validateOn', 'labels',
-      'displayErrors', 'languages', 'language',
-    ], (property) => {
-      if (this[property] === null) {
-        this[property] = this.form[property] !== undefined
-          ? this.form[property]
-          : this.$laraform[property]
-      }
-    })
-
-    // if the form has a property, merge it
-    // with the component's existing data
-    _.each([
-      'elements', 'components', 'classes', 'addClasses',
-      'schema', 'tabs', 'steps', 'messages', 
-    ], (property) => {
-      if (this.form[property]) {
-        this[property] = _.merge({}, 
-          _.cloneDeep(this.form[property]), 
-          _.cloneDeep(this[property])
-        )
-      }
-    })
-
-    this.resortSchema()
-    this.initMessageBag()
-  },
-  mounted() {
-    if (!_.isEmpty(this.form.data)) {
-      this.load(this.form.data, true)
-    }
+    tabs: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    steps: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    overrideClasses: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    addClasses: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    components: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    elements: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    messages: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    columns: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    languages: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    addClass: {
+      type: [String, Array, Object],
+      required: false,
+      default: null
+    },
+    formKey: {
+      type: [String, Number],
+      required: false,
+      default: null
+    },
+    theme: {
+      type: String,
+      required: false,
+      default: null
+    },
+    endpoint: {
+      type: String,
+      required: false,
+      default: null
+    },
+    method: {
+      type: String,
+      required: false,
+      default: null
+    },
+    language: {
+      type: String,
+      required: false,
+      default: null
+    },
+    validateOn: {
+      type: String,
+      required: false,
+      default: null
+    },
+    labels: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    multilingual: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    stepsControls: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    displayErrors: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    formatLoad: {
+      type: Function,
+      required: false,
+      default: null
+    },
+    prepare: {
+      type: Function,
+      required: false,
+      default: null
+    },
+    fill: {
+      type: Object,
+      required: false,
+      default: null
+    },
   },
 }

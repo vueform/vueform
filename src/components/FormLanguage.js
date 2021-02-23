@@ -3,7 +3,7 @@ import useFormComponent from './../composables/useFormComponent'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
-  name: 'FormLanguageSelectorTab',
+  name: 'FormLanguage',
   emits: ['select'],
   props: {
     language: {

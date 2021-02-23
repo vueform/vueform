@@ -1,8 +1,8 @@
 import { createForm, findAllComponents, findAll } from 'test-helpers'
 import useFormComponent from './../composables/useFormComponent'
 
-describe('FormLanguageSelector', () => { 
-  useFormComponent({multilingual:true,schema:{el:{type:'text'}}}, 'FormLanguageSelector')
+describe('FormLanguages', () => { 
+  useFormComponent({multilingual:true,schema:{el:{type:'text'}}}, 'FormLanguages')
 
   describe('select', () => {
     it('should select form language by clicking tab', () => {
@@ -28,8 +28,8 @@ describe('FormLanguageSelector', () => {
 
       expect(form.vm.language).toBe('en')
 
-      let tab = findAllComponents(form, { name: 'FormLanguageSelectorTab' }).at(1)
-      let languageSelector = form.findComponent({ name: 'FormLanguageSelector' })
+      let tab = findAllComponents(form, { name: 'FormLanguage' }).at(1)
+      let languageSelector = form.findComponent({ name: 'FormLanguages' })
 
       findAll(tab, 'a').last().trigger('click')
 

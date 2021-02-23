@@ -12,7 +12,7 @@
 
 <script>
   export default {
-    name: 'FormLanguageSelectorTab',
+    name: 'FormLanguage',
     data() {
       return {
         defaultClasses: {

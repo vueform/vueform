@@ -30,7 +30,7 @@ describe('Multilingual Element Mixin', () => {
 
     text.get('input').setValue('en')
 
-    let hu = findAllComponents(form, { name: 'FormLanguageSelectorTab' }).at(1)
+    let hu = findAllComponents(form, { name: 'FormLanguage' }).at(1)
 
     hu.get('a').trigger('click')
 

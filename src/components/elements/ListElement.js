@@ -139,7 +139,7 @@ export default {
     order: {
       required: false,
       type: [String],
-      default: 'ASC'
+      default: null
     },
     orderBy: {
       required: false,
@@ -333,6 +333,7 @@ export default {
       orderByName: order.orderByName,
 
       fire: events.fire,
+      path: path.path,
     }, {
       initial: 1
     })

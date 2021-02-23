@@ -14,7 +14,7 @@ const base = function(props, context, dependencies)
    * @type {string}
    */
   const language = computed(() => {
-    return form$.value.language
+    return form$.value.selectedLanguage
   })
 
   /**
@@ -23,7 +23,7 @@ const base = function(props, context, dependencies)
    * @type {array}
    */
   const languages = computed(() => {
-    return _.keys(form$.value.languages)
+    return _.keys(form$.value.options.languages)
   })
   
   return {
