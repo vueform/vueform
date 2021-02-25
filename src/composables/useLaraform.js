@@ -209,11 +209,14 @@ const base = function(props, context, dependencies = {})
       context.emit('input', n)
     }, { deep: true, immediate: false, })
 
-    if (value.value) {
-      watch(valueClone, (n, o) => {
+    // Watching valueClone to track old/new values
+    watch(valueClone, (n, o) => {
+      fire('change', n, o)
+
+      if (value.value) {
         data.value = n
-      }, { deep: true, immediate: false, })
-    }
+      }
+    }, { deep: true, immediate: false, })
   })
 
   // // @todo: formatData
@@ -929,10 +932,6 @@ const base = function(props, context, dependencies = {})
       resortSchema()
     }, { deep: true })
   })
-
-  // watch(data, (newValue, oldValue) => {
-  //   fire('change', newValue, oldValue)
-  // })
 
   // ================ HOOKS ===============
 
