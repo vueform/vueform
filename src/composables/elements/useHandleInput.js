@@ -4,7 +4,7 @@ const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const model = dependencies.model
+  const value = dependencies.value
   const {
     handleChange
   } = useHandleChange(props, context, dependencies)
@@ -16,7 +16,7 @@ const base = function(props, context, dependencies)
    *
    */
   const handleInput = (e) => {
-    model.value = e.target.value
+    value.value = e.target.value
 
     handleChange()
   }

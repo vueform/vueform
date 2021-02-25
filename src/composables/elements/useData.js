@@ -67,7 +67,7 @@ const base = function(props, context, dependencies, options = {})
    * @type {boolean}
    */
   const changed = computed(() => {
-    return !_.isEqual(currentValue.value, previousValue.value)
+    // return !_.isEqual(currentValue.value, previousValue.value)
   })
 
   // =============== METHODS ===============
@@ -129,14 +129,14 @@ const base = function(props, context, dependencies, options = {})
    * @private
    */
   const updated = () => {
-    if (changed.value) {
-      dirt()
-      fire('change', currentValue.value, previousValue.value)
-    }
+    // if (changed.value) {
+    //   dirt()
+    //   fire('change', currentValue.value, previousValue.value)
+    // }
 
-    if (form$.value.shouldValidateOnChange) {
-      validate()
-    }
+    // if (form$.value.shouldValidateOnChange) {
+    //   validate()
+    // }
   }
 
   /**
@@ -146,22 +146,6 @@ const base = function(props, context, dependencies, options = {})
    * @private
    */
   const prepare = async () => {}
-
-  if (fill && fill.value !== null) {
-    load(fill.value)
-  }
-
-  watch(() => {return fill ? fill.value : undefined}, (newValue, oldValue) => {
-    // console.log('text (', name.value, ') fill changed from', oldValue, 'to', newValue, (new Date).getTime())
-
-    if (_.isEqual(newValue, value.value)) {
-      // console.log('but it does not update itself because already has value: ', value.value)
-      return
-    }
-
-    // console.log('and it loads new fill value to itself ', newValue)
-    load(newValue)
-  }, { flush: 'sync' })
 
   return {
     data,

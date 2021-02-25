@@ -1,4 +1,4 @@
-import { computed, ref, toRefs, inject, markRaw, getCurrentInstance, onMounted, provide, watch, nextTick } from 'composition-api'
+import { computed, ref, toRefs, inject, markRaw, getCurrentInstance, onMounted, onBeforeMount, provide, watch, nextTick, reactive } from 'composition-api'
 import { mergeClass, mergeComponentClasses } from './../utils/mergeClasses'
 import convertFormData from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'
@@ -32,17 +32,18 @@ const base = function(props, context, dependencies = {})
     displayErrors,
     formatLoad,
     prepare,
-    fill,
   } = toRefs(props)
 
-  const $this = getCurrentInstance().proxy
+  const $this = reactive(getCurrentInstance().proxy)
 
   const form$ = computed(() => {
     return $this
   })
 
-  const userConfig = computed(() => {
-    return $this.laraform || {}
+  const userConfig = ref({})
+
+  onBeforeMount(() => {
+    userConfig.value = $this.laraform
   })
 
   const baseConfig = computed(() => {
@@ -179,21 +180,57 @@ const base = function(props, context, dependencies = {})
     return options.value.multilingual
   })
 
-  // @todo: formatData
-  /**
-   * The form's data.
-   * 
-   * @type {object}
-   */
-  const data = computed(() => {
-    let data = {}
+  const intermediaryValue = ref(value.value ? _.cloneDeep(value.value) : null)
 
-    _.each(elements$.value, (e$) => {
-      data = Object.assign({}, data, e$.data)
-    })
-
-    return data
+  const valueClone = computed(() => {
+    return _.cloneDeep(value.value || data.value)
   })
+
+  const data = ref(value.value ? valueClone.value : {})
+
+  const updateModel = (path, val) => {
+    if (value.value) {
+      let parts = path.split('.')
+      let element = parts.pop()
+      let parent = parts.join('.') || null
+
+      // We are setting intermediaryValue to collect changes in a tick which will later be emitted in `input`
+      $this.$set(parent ? _.get(intermediaryValue.value, parent) : intermediaryValue.value, element, val)
+    } else {
+      // We need a different clone than this.valueValue clone to not effect children watching valueClone
+      let valueClone = _.cloneDeep(value.value || data.value)
+      _.set(valueClone, path, val)
+      data.value = valueClone
+    }
+  }
+
+  onMounted(() => {
+    watch(intermediaryValue, (n, o) => {
+      context.emit('input', n)
+    }, { deep: true, immediate: false, })
+
+    if (value.value) {
+      watch(valueClone, (n, o) => {
+        data.value = n
+      }, { deep: true, immediate: false, })
+    }
+  })
+
+  // // @todo: formatData
+  // /**
+  //  * The form's data.
+  //  * 
+  //  * @type {object}
+  //  */
+  // const data = computed(() => {
+  //   let data = {}
+
+  //   _.each(elements$.value, (e$) => {
+  //     data = Object.assign({}, data, e$.data)
+  //   })
+
+  //   return data
+  // })
 
   /**
    * The form's data excluding elements with unmet conditions and the ones which should not submit.
@@ -203,9 +240,9 @@ const base = function(props, context, dependencies = {})
   const filtered = computed(() => {
     var filtered = {}
 
-    _.each(elements$.value, (e$) => {
-      filtered = Object.assign({}, filtered, e$.filtered)
-    })
+    // _.each(elements$.value, (e$) => {
+    //   filtered = Object.assign({}, filtered, e$.filtered)
+    // })
 
     return filtered
   })
@@ -491,29 +528,29 @@ const base = function(props, context, dependencies = {})
    */
   const store = computed({
     get() {
-      if ($this.storePath === null || !context.$store) {
-        return null
-      }
+      // if ($this.storePath === null || !context.$store) {
+      //   return null
+      // }
       
-      return _.get(context.$store.state, $this.storePath)
+      // return _.get(context.$store.state, $this.storePath)
     },
     set(value) {
-      if (!context.$store) {
-        return
-      }
+      // if (!context.$store) {
+      //   return
+      // }
       
-      // If store is not registered with Laraform.store()
-      if (!context.$store._mutations['laraform/LARAFORM_UPDATE_STORE']) {
-        _.set(context.$store.state, $this.storePath, value)
-      } 
+      // // If store is not registered with Laraform.store()
+      // if (!context.$store._mutations['laraform/LARAFORM_UPDATE_STORE']) {
+      //   _.set(context.$store.state, $this.storePath, value)
+      // } 
 
-      // If store is registered properly call a mutation
-      else {
-        context.$store.commit('laraform/LARAFORM_UPDATE_STORE', {
-          path: $this.storePath,
-          value: value
-        })
-      }
+      // // If store is registered properly call a mutation
+      // else {
+      //   context.$store.commit('laraform/LARAFORM_UPDATE_STORE', {
+      //     path: $this.storePath,
+      //     value: value
+      //   })
+      // }
     }
   })
   // =============== METHODS ==============
@@ -893,53 +930,14 @@ const base = function(props, context, dependencies = {})
     }, { deep: true })
   })
 
-  watch(data, (newValue, oldValue) => {
-    fire('change', newValue, oldValue)
-  })
+  // watch(data, (newValue, oldValue) => {
+  //   fire('change', newValue, oldValue)
+  // })
 
   // ================ HOOKS ===============
 
   initMessageBag()
   setLanguage(options.value.language)
-
-  onMounted(() => {
-    if (value.value) {
-      load(Object.assign({}, {
-        list: _.clone(value.value.list)
-      }))
-    }
-
-    if (fill.value) {
-      load(Object.assign({}, {
-        list: _.clone(fill.value.list)
-      }), true)
-    }
-
-    watch(data, (newValue, oldValue) => {
-      // c('form data changed from ', JSON.stringify(oldValue.list), 'to ', JSON.stringify(newValue.list), '(form value: ', JSON.stringify(value.value.list), ')', (new Date).getTime())
-      if (_.isEqual(newValue, value.value)) {
-        // c('not changing form value because it equals to form data')
-        return
-      }
-      // c('changing form value from ', JSON.stringify(value.value.list), 'to ', JSON.stringify(newValue.list))
-      context.emit('input', Object.assign({}, {
-        list: _.clone(newValue.list)
-      }))
-    }, { deep: true, flush: 'post', immediate: false })
-
-    watch(value, (newValue, oldValue) => {
-      // c('form value changed from ', JSON.stringify(oldValue.list), 'to ', JSON.stringify(newValue.list), '(form data: ', JSON.stringify(data.value.list), ')', (new Date).getTime())
-      if (_.isEqual(newValue, data.value)) {
-        // c('but not updating form value because it equals to form value')
-        return
-      }
-
-      // c('and changes form data from ', JSON.stringify(data.value.list), 'to ', JSON.stringify(newValue.list))
-      load(Object.assign({}, {
-        list: _.clone(newValue.list)
-      }), false, false)
-    }, { deep: true, flush: 'post', immediate: false })
-  })
 
   return {
     tabs$,
@@ -983,7 +981,10 @@ const base = function(props, context, dependencies = {})
     store,
     options,
     form$,
-    v: value,
+    valueClone,
+    intermediaryValue,
+    userConfig,
+    updateModel,
     update,
     load,
     reset,

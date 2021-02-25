@@ -18,7 +18,7 @@
         />
 
         <input
-          :value="model"
+          :value="value"
           @input="handleInput"
           :type="inputType"
           :name="name"

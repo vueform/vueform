@@ -12,10 +12,12 @@ export default {
     value: {
       type: Object,
       required: false,
+      default: undefined
     },
     modelValue: {
       type: Object,
       required: false,
+      default: undefined
     },
     schema: {
       type: Object,
