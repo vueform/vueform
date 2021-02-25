@@ -238,14 +238,6 @@ export default {
       nullValue: nullValue.nullValue
     })
 
-    const value = useValue(props, context, {
-      nullValue: nullValue.nullValue,
-      defaultValue: default_.defaultValue,
-      path: path.path,
-      form$: form$.form$,
-      fire: events.fire,
-    })
-
     const conditions = useConditions(props, context, {
       form$: form$.form$,
       path: path.path,
@@ -256,18 +248,22 @@ export default {
       path: path.path,
     })
 
+    const value = useValue(props, context, {
+      defaultValue: default_.defaultValue,
+      path: path.path,
+      form$: form$.form$,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
+    })
+
     const data = useData(props, context, {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      clean: validation.clean,
-      validate: validation.validate,
       resetValidators: validation.resetValidators,
-      fire: events.fire,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      dirt: validation.dirt,
-      path: path.path,
     })
 
     const empty = useEmpty(props, context, {
@@ -313,12 +309,7 @@ export default {
     })
 
     const handleInput = useHandleInput(props, context, {
-      form$: form$.form$,
       value: value.value,
-      changed: data.changed,
-      dirt: validation.dirt,
-      validate: validation.validate,
-      fire: events.fire,
     })
 
     onMounted(() => {

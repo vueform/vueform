@@ -14,7 +14,7 @@ const base = function(props, context, dependencies, options)
   const updated = dependencies.updated
   const refreshOrderStore = dependencies.refreshOrderStore
   const instances = dependencies.instances
-  const currentValue = dependencies.currentValue
+  const value = dependencies.value
 
   // ============== COMPUTED ==============
 
@@ -39,24 +39,24 @@ const base = function(props, context, dependencies, options)
    * @event sort
    */
   const handleSort = (indexes) => {
-    let oldIndex = indexes.oldIndex
-    let newIndex = indexes.newIndex
+    // let oldIndex = indexes.oldIndex
+    // let newIndex = indexes.newIndex
 
-    if (isDisabled.value) {
-      return
-    }
+    // if (isDisabled.value) {
+    //   return
+    // }
 
-    instances.value.splice(newIndex, 0, instances.value.splice(oldIndex, 1)[0])
-    children$Array.value.splice(newIndex, 0, children$Array.value.splice(oldIndex, 1)[0])
+    // instances.value.splice(newIndex, 0, instances.value.splice(oldIndex, 1)[0])
+    // children$Array.value.splice(newIndex, 0, children$Array.value.splice(oldIndex, 1)[0])
 
-    nextTick(() => {
-      refreshOrderStore()
+    // nextTick(() => {
+    //   refreshOrderStore()
       
-      nextTick(() => {
-        fire('sort', currentValue.value)
-        updated()
-      })
-    })
+    //   nextTick(() => {
+    //     fire('sort', value.value)
+    //     updated()
+    //   })
+    // })
   }
 
   return {

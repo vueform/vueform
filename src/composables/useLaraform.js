@@ -32,29 +32,21 @@ const base = function(props, context, dependencies = {})
     displayErrors,
     formatLoad,
     prepare,
+    initial,
   } = toRefs(props)
 
-  const $this = reactive(getCurrentInstance().proxy)
+  const $this = getCurrentInstance().proxy
 
-  const form$ = computed(() => {
-    return $this
+  const externalValue = context.expose !== undefined ? mv : v
+
+  /**
+   * Clone value of model container: v-model or internal data
+   * 
+   * @private
+   */
+  const model = computed(() => {
+    return _.cloneDeep(externalValue.value || data.value)
   })
-
-  const userConfig = ref({})
-
-  onBeforeMount(() => {
-    userConfig.value = $this.laraform
-  })
-
-  const baseConfig = computed(() => {
-    return $this.$laraform
-  })
-
-  const services = computed(() => {
-    return $this.$laraform.services
-  })
-
-  const value = context.expose !== undefined ? mv : v
 
   // ============ DEPENDENCIES ============
 
@@ -70,6 +62,7 @@ const base = function(props, context, dependencies = {})
       'language', 'reset', 'clear', 'fail'
     ]
   })
+
 
   // ================ DATA ================
 
@@ -144,7 +137,40 @@ const base = function(props, context, dependencies = {})
    */
   const selectedLanguage = ref(null)
 
+  /**
+   * 
+   * 
+   * @private
+   */
+  const userConfig = ref({})
+
+  /**
+   * If v-model is defined it is always equal to that. Otherwise used as model container.
+   * 
+   * @private
+   */
+  const data = ref(externalValue.value ? model.value : {})
+
+  /**
+   * 
+   * 
+   * @private
+   */
+  const intermediaryValue = ref(externalValue.value ? _.cloneDeep(externalValue.value) : null)
+
   // ============== COMPUTED ==============
+
+  const form$ = computed(() => {
+    return $this
+  })
+
+  const baseConfig = computed(() => {
+    return $this.$laraform
+  })
+
+  const services = computed(() => {
+    return $this.$laraform.services
+  })
 
   const options = computed(() => {
     const options = {
@@ -176,65 +202,6 @@ const base = function(props, context, dependencies = {})
     return options
   })
 
-  const isMultilingual = computed(() => {
-    return options.value.multilingual
-  })
-
-  const intermediaryValue = ref(value.value ? _.cloneDeep(value.value) : null)
-
-  const valueClone = computed(() => {
-    return _.cloneDeep(value.value || data.value)
-  })
-
-  const data = ref(value.value ? valueClone.value : {})
-
-  const updateModel = (path, val) => {
-    if (value.value) {
-      let parts = path.split('.')
-      let element = parts.pop()
-      let parent = parts.join('.') || null
-
-      // We are setting intermediaryValue to collect changes in a tick which will later be emitted in `input`
-      $this.$set(parent ? _.get(intermediaryValue.value, parent) : intermediaryValue.value, element, val)
-    } else {
-      // We need a different clone than this.valueValue clone to not effect children watching valueClone
-      let valueClone = _.cloneDeep(value.value || data.value)
-      _.set(valueClone, path, val)
-      data.value = valueClone
-    }
-  }
-
-  onMounted(() => {
-    watch(intermediaryValue, (n, o) => {
-      context.emit('input', n)
-    }, { deep: true, immediate: false, })
-
-    // Watching valueClone to track old/new values
-    watch(valueClone, (n, o) => {
-      fire('change', n, o)
-
-      if (value.value) {
-        data.value = n
-      }
-    }, { deep: true, immediate: false, })
-  })
-
-  // // @todo: formatData
-  // /**
-  //  * The form's data.
-  //  * 
-  //  * @type {object}
-  //  */
-  // const data = computed(() => {
-  //   let data = {}
-
-  //   _.each(elements$.value, (e$) => {
-  //     data = Object.assign({}, data, e$.data)
-  //   })
-
-  //   return data
-  // })
-
   /**
    * The form's data excluding elements with unmet conditions and the ones which should not submit.
    * 
@@ -243,9 +210,9 @@ const base = function(props, context, dependencies = {})
   const filtered = computed(() => {
     var filtered = {}
 
-    // _.each(elements$.value, (e$) => {
-    //   filtered = Object.assign({}, filtered, e$.filtered)
-    // })
+    _.each(elements$.value, (e$) => {
+      filtered = Object.assign({}, filtered, e$.filtered)
+    })
 
     return filtered
   })
@@ -393,6 +360,15 @@ const base = function(props, context, dependencies = {})
    * 
    * @private
    */
+  const isMultilingual = computed(() => {
+    return options.value.multilingual
+  })
+
+  /**
+   * 
+   * 
+   * @private
+   */
   const shouldValidateOnChange = computed(() => {
     return options.value.validateOn.split('|').indexOf('change') !== -1
   })
@@ -524,39 +500,28 @@ const base = function(props, context, dependencies = {})
     })
   })
 
-  /**
-   * The value of external Vuex store state.
-   * 
-   * @type {object}
-   */
-  const store = computed({
-    get() {
-      // if ($this.storePath === null || !context.$store) {
-      //   return null
-      // }
-      
-      // return _.get(context.$store.state, $this.storePath)
-    },
-    set(value) {
-      // if (!context.$store) {
-      //   return
-      // }
-      
-      // // If store is not registered with Laraform.store()
-      // if (!context.$store._mutations['laraform/LARAFORM_UPDATE_STORE']) {
-      //   _.set(context.$store.state, $this.storePath, value)
-      // } 
-
-      // // If store is registered properly call a mutation
-      // else {
-      //   context.$store.commit('laraform/LARAFORM_UPDATE_STORE', {
-      //     path: $this.storePath,
-      //     value: value
-      //   })
-      // }
-    }
-  })
   // =============== METHODS ==============
+
+  /**
+   * 
+   * 
+   * @private
+   */
+  const updateModel = (path, val) => {
+    if (externalValue.value) {
+      let parts = path.split('.')
+      let element = parts.pop()
+      let parent = parts.join('.') || null
+
+      // We are setting intermediaryValue to collect changes in a tick which will later be emitted in `input`
+      $this.$set(parent ? _.get(intermediaryValue.value, parent) : intermediaryValue.value, element, val)
+    } else {
+      // We need a different clone than this.valueValue clone to not effect children watching model
+      let model = _.cloneDeep(externalValue.value || data.value)
+      _.set(model, path, val)
+      data.value = model
+    }
+  }
 
   /**
    * Updates the element values which are contained in the data.
@@ -565,7 +530,12 @@ const base = function(props, context, dependencies = {})
    * @param {object} data data to update with
    * @returns {void}
    */
-  const update = (data) => {
+  const update = (data, path = null) => {
+    if (path) {
+      el$(path).update(data)
+      return
+    }
+
     _.each(data, (value, key) => {
       elements$.value[key].update(value)
     })
@@ -578,11 +548,11 @@ const base = function(props, context, dependencies = {})
    * @param {object} data data to load
    * @returns {void}
    */
-  const load = (data, format = false, sort = true) => {
+  const load = (data, format = false) => {
     if (steps$.value !== null) {
       steps$.value.enableAllSteps()
     }
-
+    
     _.each(elements$.value, (e$) => {
       if (e$.isStatic) {
         return
@@ -592,10 +562,11 @@ const base = function(props, context, dependencies = {})
       let loadValue = e$.flat ? formatted : formatted[e$.name]
 
       if (loadValue === undefined) {
+        e$.clear()
         return
       }
 
-      e$.load(loadValue, format, sort)
+      e$.load(loadValue, format)
     })
   }
 
@@ -933,10 +904,38 @@ const base = function(props, context, dependencies = {})
     }, { deep: true })
   })
 
+  // Watching model to track old/new values
+  watch(model, (n, o) => {
+    fire('change', n, o)
+
+    if (externalValue.value) {
+      data.value = n
+    }
+  }, { deep: true, immediate: false, })
+
+  watch(intermediaryValue, (n, o) => {
+    context.emit('input', n)
+  }, { deep: true, immediate: false })
+
   // ================ HOOKS ===============
 
   initMessageBag()
   setLanguage(options.value.language)
+
+  onBeforeMount(() => {
+    userConfig.value = $this.laraform
+  })
+
+  onMounted(() => {
+    // Load initial value
+    if (initial.value) {
+      load(initial.value, true)
+
+      nextTick(() => {
+        clean()
+      })
+    }
+  })
 
   return {
     tabs$,
@@ -977,10 +976,9 @@ const base = function(props, context, dependencies = {})
     extendedComponents,
     selectedTheme,
     extendedTheme,
-    store,
     options,
     form$,
-    valueClone,
+    model,
     intermediaryValue,
     userConfig,
     updateModel,

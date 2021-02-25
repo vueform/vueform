@@ -7,12 +7,12 @@
       <div :class="classes.childrenContainer">
         <div :class="classes.element" v-sortable="sortable">
 
-          <div v-for="(element, i) in instances" :key="element.key">
-            <slot :child="Object.assign({}, element, {name:i})">
+          <div v-for="(val, i) in value" :key="i">
+            <slot :index="i">
               <component
-                :is="component(element)"
-                v-if="element.type"
-                v-bind="element"
+                :is="component(prototype)"
+                v-if="prototype.type"
+                v-bind="prototype"
                 :name="i"
               />
             </slot>

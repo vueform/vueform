@@ -7,16 +7,17 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES =============
 
   const defaultValue = dependencies.defaultValue
-  const nullValue = dependencies.nullValue
   const path = dependencies.path
   const form$ = dependencies.form$
   const fire = dependencies.fire
+  const dirt = dependencies.dirt
+  const validate = dependencies.validate
 
   // ============== COMPUTED ===============
 
   const value = computed({
     get() {
-      return _.get(form$.value.valueClone, path.value)
+      return _.get(form$.value.model, path.value)
     },
     set(val) {
       form$.value.updateModel(path.value, val)
@@ -29,12 +30,62 @@ const base = function(props, context, dependencies)
 
   onMounted(() => {
     watch(value, (n, o) => {
+      if (_.isEqual(n,o)) {
+        return
+      }
+
       fire('change', n, o)
-    }, { immediate: false })
+      dirt()
+      validate()
+    }, { immediate: false, deep: true, flush: 'sync' })
   })
 
   return {
     value,
+  }
+}
+
+const list = function(props, context, dependencies)
+{
+  const {
+    value,
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES ============
+
+  const children$Array = dependencies.children$Array
+
+  // ============== COMPUTED ===============
+
+  // /**
+  //  * The value of the element.
+  //  * 
+  //  * @type {any}
+  //  */
+  // const value = computed({
+  //   get() {
+  //     let value = []
+
+  //     _.each(children$Array.value, (element$) => {
+  //       value.push(element$.value)
+  //     })
+
+  //     return value
+  //   },
+  //   set(val) {
+  //     throw new Error('A list element\'s value cannot be set directly. Use .update() or .load() method.')
+  //   }
+  // })
+
+  // watch(value, (newValue, oldValue) => {
+  //   currentValue.value = newValue
+  //   previousValue.value = oldValue
+  // }, { flush: 'post' })
+
+  return {
+    value,
+    // previousValue,
+    // currentValue,
   }
 }
 
@@ -270,50 +321,6 @@ const dates = function(props, context, dependencies)
   return {
     value,
     model,
-    previousValue,
-    currentValue,
-  }
-}
-
-const list = function(props, context, dependencies)
-{
-  const {
-    previousValue, currentValue
-  } = base(props, context, dependencies)
-
-  // ============ DEPENDENCIES ============
-
-  const children$Array = dependencies.children$Array
-
-  // ============== COMPUTED ===============
-
-  /**
-   * The value of the element.
-   * 
-   * @type {any}
-   */
-  const value = computed({
-    get() {
-      let value = []
-
-      _.each(children$Array.value, (element$) => {
-        value.push(element$.value)
-      })
-
-      return value
-    },
-    set(val) {
-      throw new Error('A list element\'s value cannot be set directly. Use .update() or .load() method.')
-    }
-  })
-
-  watch(value, (newValue, oldValue) => {
-    currentValue.value = newValue
-    previousValue.value = oldValue
-  }, { flush: 'post' })
-
-  return {
-    value,
     previousValue,
     currentValue,
   }

@@ -19,6 +19,11 @@ export default {
       required: false,
       default: undefined
     },
+    initial: {
+      type: Object,
+      required: false,
+      default: null
+    },
     schema: {
       type: Object,
       required: false,

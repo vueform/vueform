@@ -236,6 +236,14 @@ export default {
       form$: form$.form$,
     })
 
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change', 'add', 'remove', 'sort'
+      ]
+    })
+
     const default_ = useDefault(props, context, {
       nullValue: nullValue.nullValue
     })
@@ -248,18 +256,13 @@ export default {
       label: label.label,
     })
 
-    const events = useEvents(props, context, {
-      form$: form$.form$,
-    }, {
-      events: [
-        'change', 'add', 'remove', 'sort'
-      ]
-    })
-
     const value = useValue(props, context, {
       children$Array: children.children$Array,
       nullValue: nullValue.nullValue,
       defaultValue: default_.defaultValue,
+      path: path.path,
+      fire: events.fire,
+      form$: form$.form$,
     })
 
     const elements = useElements(props, context, {
@@ -317,8 +320,6 @@ export default {
       isDisabled: disabled.isDisabled,
 
       value: value.value,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
 
       dirt: validation.dirt,
       validate: validation.validate,
@@ -341,7 +342,7 @@ export default {
     const sort = useSort(props, context, {
       children$: children.children$,
       children$Array: children.children$Array,
-      currentValue: value.currentValue,
+      value: value.value,
       fire: events.fire,
       isDisabled: disabled.isDisabled,
       updated: data.updated,
