@@ -16,7 +16,7 @@ const base = function(props, context, dependencies)
    */
   const parent = computed(() => {
     const getParent = (parent, getParent) => {
-      if (parent && ((context.expose !== undefined && parent.$options.name.match(/^[a-zA-Z\-]*Element$/)) || (context.expose === undefined && parent.hasOwnProperty('el$')))) {
+      if (parent && ((context.expose !== undefined && parent.$options.name && parent.$options.name.match(/^[a-zA-Z\-]*Element$/)) || (context.expose === undefined && parent.hasOwnProperty('el$')))) {
         return parent.el$
       } else if (parent.$parent) {
         return getParent(parent.$parent, getParent)

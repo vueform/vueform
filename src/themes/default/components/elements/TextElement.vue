@@ -20,6 +20,7 @@
         <input
           :value="value"
           @input="handleInput"
+          @select="handleInput"
           :type="inputType"
           :name="name"
           :id="fieldId"

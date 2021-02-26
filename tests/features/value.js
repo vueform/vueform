@@ -1,40 +1,8 @@
-import { createForm, findAllComponents, testValue } from 'test-helpers'
+import { createForm, findAllComponents, testValue, createInlineForm } from 'test-helpers'
 import { nextTick } from 'vue'
 
-export const currentValue = function (elementType, elementName) {
-  it('should have `currentValue`', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.currentValue).toStrictEqual(el.defaultValue || null)
-  })
-}
-
-export const previousValue = function (elementType, elementName) {
-  it('should have `previousValue`', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.previousValue).toStrictEqual(el.nullValue || null)
-  })
-}
-
 export const value = function (elementType, elementName, options) {
-  it('should return currentValue for `value`', () => {
+  it('should be nullValue by default', () => {
     let form = createForm({
       schema: {
         el: {
@@ -45,63 +13,120 @@ export const value = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.currentValue = options.value || 'value'
-
-    expect(el.value).toBe(el.currentValue)
+    expect(el.value).toStrictEqual(el.nullValue)
   })
 
-  it('should set currentValue as previousValue and passed over value as current value when setting `value`', () => {
+  it('should be default if defined', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
+          default: options.default
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    el.currentValue = options.value || 'value'
+    expect(el.value).toStrictEqual(options.default)
+  })
 
-    el.value = options.value2 || 'value2'
+  it('should fill in v-model with default field value if v-model is an empty object', async () => {
+    let { form, app } = createInlineForm({
+      model: {},
+      props: {
+        schema: {
+          el: {
+            type: elementType,
+            default: options.default
+          }
+        },
+      }
+    })
 
-    expect(el.previousValue).toStrictEqual(options.value || 'value')
-    expect(el.currentValue).toStrictEqual(options.value2 || 'value2')
-    expect(el.value).toStrictEqual(options.value2 || 'value2')
+    let el = form.vm.el$('el')
+
+    await nextTick()
+
+    // Default
+    expect(el.value).toStrictEqual(options.default)
+    expect(app.vm.data.el).toStrictEqual(options.default)
+  })
+
+  it('should be equal to v-model value if v-model has value for element', async () => {
+    let { form, app } = createInlineForm({
+      model: {
+        el: options.default,
+      },
+      props: {
+        schema: {
+          el: {
+            type: elementType,
+            default: options.value
+          }
+        },
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    // Default 
+    expect(el.value).toStrictEqual(options.default)
+
+    // Setting element value
+    el.value = options.value
+    await nextTick()
+    expect(app.vm.data.el).toStrictEqual(options.value)
+    expect(el.value).toStrictEqual(options.value)
+
+    // Setting v-model value
+    app.vm.data.el = options.value2
+    await nextTick()
+    expect(el.value).toStrictEqual(options.value2)
+  })
+
+  it('should fill form data with default field value if v-model is not defined and data is empty', async () => {
+    let { form, app } = createInlineForm({
+      props: {
+        schema: {
+          el: {
+            type: elementType,
+            default: options.default
+          }
+        },
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    await nextTick()
+
+    // Default
+    expect(el.value).toStrictEqual(options.default)
+    expect(form.vm.data.el).toStrictEqual(options.default)
   })
 }
 
-export const model = function (elementType, elementName, options) {
-  it('should return value for `model`', () => {
+export const watchers = function (elementType, elementName, options) {
+  it('should not trigger change by default', async () => {
+    let formChangeMock = jest.fn()
+    let elChangeMock = jest.fn()
+
     let form = createForm({
       schema: {
         el: {
           type: elementType,
+          onChange: elChangeMock,
         }
       }
     })
 
-    let el = form.vm.el$('el')
+    form.vm.on('change', formChangeMock)
 
-    el.value = 'value'
+    await nextTick()
 
-    expect(el.model).toBe(el.value)
-  })
-
-  it('should return set value when setting `model`', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.model = 'value'
-
-    expect(el.value).toBe(el.model)
+    // expect(formChangeMock).not.toHaveBeenCalled()
+    expect(elChangeMock).not.toHaveBeenCalled()
   })
 }
 

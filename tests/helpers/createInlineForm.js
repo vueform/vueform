@@ -1,4 +1,5 @@
 import { mount } from '@vue/test-utils'
+import { h, resolveComponent } from 'composition-api'
 
 // Core
 import { Laraform, useLaraform } from './../../src/index'
@@ -18,7 +19,7 @@ import _ from 'lodash'
 import axios from 'axios'
 
 // Helpers
-import { installLaraform } from './index'
+import { installLaraform, createElement } from './index'
 
 // Mocks
 import TrixEditor from './../mocks/TrixEditor'
@@ -26,22 +27,20 @@ import TrixEditor from './../mocks/TrixEditor'
 export default function createForm (data, options = {}, render = null) {
   let { LaraformInstaller, config, store } = installLaraform(options)
 
-  let form = Object.assign({}, {
-    mixins: [Laraform],
-    setup(props, context) {
-      const setup = options.setup ? options.setup(props, context) : {}
-      const laraform = useLaraform(props, context, setup)
-
-      return {
-        ...laraform,
-        ...setup,
-      }
-    },
+  let app = Object.assign({}, {
     data() {
       return {
-        laraform: data
+        data: data.model,
       }
-    }
+    },
+    render() {
+      return h('div', [
+        h(resolveComponent('Laraform'), Object.assign({}, data.props, data.model ? {
+          modelValue: this.data,
+          'onUpdate:modelValue': (value) => { this.data = value }
+        } : {}))
+      ])
+    },
   }, render ? {
     render,
   } : {})
@@ -75,8 +74,8 @@ export default function createForm (data, options = {}, render = null) {
       mixins: [$laraformMixin],
       plugins: [LaraformInstaller],
       components: {
-        TrixEditor
-      } ,
+        TrixEditor,
+      },
     }
   }
 
@@ -84,5 +83,10 @@ export default function createForm (data, options = {}, render = null) {
     mountOptions.attachTo = document.querySelector('body')
   }
 
-  return mount(form, mountOptions)
+  const wrapper = mount(app, mountOptions)
+
+  return {
+    app: wrapper,
+    form: wrapper.findComponent({ name: 'Laraform' }),
+  }
 }

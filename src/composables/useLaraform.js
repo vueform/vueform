@@ -915,6 +915,7 @@ const base = function(props, context, dependencies = {})
 
   watch(intermediaryValue, (n, o) => {
     context.emit('input', n)
+    context.emit('update:modelValue', n)
   }, { deep: true, immediate: false })
 
   // ================ HOOKS ===============
@@ -923,7 +924,7 @@ const base = function(props, context, dependencies = {})
   setLanguage(options.value.language)
 
   onBeforeMount(() => {
-    userConfig.value = $this.laraform
+    userConfig.value = $this.laraform || {}
   })
 
   onMounted(() => {

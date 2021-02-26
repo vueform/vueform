@@ -29,6 +29,7 @@ import unselect from './../unselect'
 
 import createElement from './createElement'
 import createForm from './createForm'
+import createInlineForm from './createInlineForm'
 import createLaraformInstaller from './createLaraformInstaller'
 import destroy from './destroy'
 import findAll from './findAll'
@@ -44,6 +45,7 @@ export {
   confirmSelectOptions,
   createElement,
   createForm,
+  createInlineForm,
   createLaraformInstaller,
   createTrix,
   destroy,

@@ -3,6 +3,7 @@ import check from './check'
 import confirmSelectOptions from './confirmSelectOptions'
 import createElement from './createElement'
 import createForm from './createForm'
+import createInlineForm from './createInlineForm'
 import createLaraformInstaller from './createLaraformInstaller'
 import createTrix from './createTrix'
 import destroy from './destroy'
@@ -43,6 +44,7 @@ export {
   confirmSelectOptions,
   createElement,
   createForm,
+  createInlineForm,
   createLaraformInstaller,
   createTrix,
   destroy,

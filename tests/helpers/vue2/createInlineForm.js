@@ -27,25 +27,30 @@ export default function createForm (data, options = {}, render = null) {
 
   LocalVue.component(TrixEditor.name, TrixEditor)
 
-  let form = LocalVue.extend(Object.assign({}, {
-    mixins: [Laraform],
-    setup(props, context) {
-      const setup = options.setup ? options.setup(props, context) : {}
-      const laraform = useLaraform(props, context, setup)
-
-      return {
-        ...laraform,
-        ...setup,
-      }
+  let app = Object.assign({}, {
+    components: {
+      Laraform,
     },
     data() {
       return {
-        laraform: data
+        data: data.model,
       }
-    }
+    },
+    render(h) {
+      return h('div', [
+        h('laraform', {
+          props: Object.assign({}, data.props, data.model ? {
+            value: this.data
+          } : {}),
+          on: {
+            input: (value) => { this.data = value }
+          }
+        }),
+      ])
+    },
   }, render ? {
     render,
-  } : {}))
+  } : {})
 
   let $laraform = Object.assign({}, config, {
     extensions: config.extensions,
@@ -77,5 +82,10 @@ export default function createForm (data, options = {}, render = null) {
     mountOptions.attachTo = document.querySelector('body')
   }
 
-  return mount(form, mountOptions)
+  const wrapper = mount(app, mountOptions)
+
+  return {
+    app: wrapper,
+    form: wrapper.findComponent({ name: 'Laraform' }),
+  }
 }

@@ -96,7 +96,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-    el.form$.overrideClasses[elementName] = overwriteClasses2
+    el.form$.options.overrideClasses[elementName] = overwriteClasses2
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
   })
@@ -134,7 +134,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-    el.form$.overrideClasses[elementName] = overwriteClasses2
+    el.form$.options.overrideClasses[elementName] = overwriteClasses2
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
   })
@@ -162,7 +162,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses1[mainClass], mergeWith[mainClass] || ''))
 
-    el.form$.addClasses[elementName] = addClasses2
+    el.form$.options.addClasses[elementName] = addClasses2
 
     expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses2[mainClass], mergeWith[mainClass] || ''))
   })
@@ -330,7 +330,7 @@ export const classes = function (elementType, elementName, options) {
       mergeWith[mainClass] || ''
     ))
 
-    el.form$.addClasses[elementName] = addClassesForm2
+    el.form$.options.addClasses[elementName] = addClassesForm2
     el.addClasses[elementName] = addClassesElement2
 
     expect(el.classes[mainClass]).toStrictEqual(mergeClass(
@@ -382,7 +382,7 @@ export const rendering = function (elementType, elementName, options) {
     expect(elWrapper.classes('element-add-class')).toBe(true)
     expect(elWrapper.classes('form-add-class')).toBe(true)
 
-    form.vm.overrideClasses[elementName][mainClass] = 'form-add-class2'
+    form.vm.options.overrideClasses[elementName][mainClass] = 'form-add-class2'
 
     await nextTick()
 
@@ -440,7 +440,7 @@ export const rendering = function (elementType, elementName, options) {
     expect(elWrapper.classes('element-add-class')).toBe(true)
     expect(elWrapper.classes('form-add-class')).toBe(true)
 
-    form.vm.addClasses[elementName][mainClass] = 'form-add-class2'
+    form.vm.options.addClasses[elementName][mainClass] = 'form-add-class2'
 
     await nextTick()
 
@@ -508,7 +508,7 @@ export const rendering = function (elementType, elementName, options) {
       [mainClass]: 'element-add-classes2'
     }
 
-    form.vm.addClasses[elementName] = {
+    form.vm.options.addClasses[elementName] = {
       [mainClass]: 'form-add-classes2'
     }
 

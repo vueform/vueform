@@ -200,11 +200,6 @@ export default {
       type: [Boolean],
       default: true
     },
-    fill: {
-      required: false,
-      type: [Number, String],
-      default: null
-    },
     onChange: {
       required: false,
       type: [Function],

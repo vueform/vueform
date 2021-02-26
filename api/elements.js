@@ -842,7 +842,8 @@ export default {
       "items": {
         "required": "false",
         "types": [
-          "object"
+          "object",
+          "array"
         ]
       },
       "label": {
@@ -2013,7 +2014,6 @@ export default {
       "form$",
       "genericName",
       "input",
-      "layout",
       "nullValue",
       "path",
       "theme",
@@ -2436,7 +2436,9 @@ export default {
       "message",
       "before",
       "between",
-      "after"
+      "after",
+      "addonBefore",
+      "addonAfter"
     ],
     "events": [
       "change"
@@ -3906,7 +3908,8 @@ export default {
       "items": {
         "required": "false",
         "types": [
-          "object"
+          "object",
+          "array"
         ]
       },
       "label": {
@@ -5108,7 +5111,9 @@ export default {
       "message",
       "before",
       "between",
-      "after"
+      "after",
+      "addonBefore",
+      "addonAfter"
     ],
     "events": [
       "change"
@@ -5339,31 +5344,31 @@ export default {
   },
   "text": {
     "features": [
-      "addons",
-      "baseElement",
-      "classes",
-      "columns",
-      "components",
-      "conditions",
-      "data",
-      "default",
-      "disabled",
-      "empty",
-      "events",
-      "fieldId",
-      "form$",
-      "genericName",
-      "handleInput",
-      "input",
-      "label",
-      "layout",
-      "nullValue",
-      "path",
-      "slots",
-      "theme",
-      "validation",
+      // "addons",
+      // "baseElement",
+      // "classes",
+      // "columns",
+      // "components",
+      // // "conditions",
+      // // "data",
+      // "default",
+      // "disabled",
+      // "empty",
+      // "events",
+      // "fieldId",
+      // "form$",
+      // "genericName",
+      // // "handleInput",
+      // "input",
+      // "label",
+      // "layout",
+      // "nullValue",
+      // "path",
+      // "slots",
+      // "theme",
+      // // "validation",
       "value",
-      "view"
+      // "view"
     ],
     "slots": [
       "label",
@@ -5373,7 +5378,9 @@ export default {
       "message",
       "before",
       "between",
-      "after"
+      "after",
+      "addonBefore",
+      "addonAfter"
     ],
     "events": [
       "change"
@@ -5623,6 +5630,14 @@ export default {
         "required": "false",
         "types": [
           "boolean"
+        ],
+        "default": "\"ElementLayout\""
+      },
+      "fill": {
+        "required": "false",
+        "types": [
+          "number",
+          "string"
         ],
         "default": "\"ElementLayout\""
       },
@@ -6222,7 +6237,9 @@ export default {
       "message",
       "before",
       "between",
-      "after"
+      "after",
+      "addonBefore",
+      "addonAfter"
     ],
     "events": [
       "change"
@@ -6489,7 +6506,9 @@ export default {
       "message",
       "before",
       "between",
-      "after"
+      "after",
+      "addonBefore",
+      "addonAfter"
     ],
     "events": [
       "change"
