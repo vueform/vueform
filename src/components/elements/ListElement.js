@@ -18,13 +18,13 @@ import useOrder from './../../composables/elements/useOrder'
 import usePrototype from './../../composables/elements/usePrototype'
 import useWatchPrototype from './../../composables/elements/useWatchPrototype'
 import usePath from './../../composables/elements/usePath'
+import useValue from './../../composables/elements/useValue'
 
-import { list as useValue } from './../../composables/elements/useValue'
 import { list as useData } from './../../composables/elements/useData'
 import { list as useClasses } from './../../composables/elements/useClasses'
 import { list as useChildren } from './../../composables/elements/useChildren'
 import { list as useValidation } from './../../composables/elements/useValidation'
-import { array as useNullValueArray } from './../../composables/elements/useNullValue'
+import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { list as useBaseElement } from './../../composables/elements/useBaseElement'
 
 import SortableDirective from './../../directives/sortable'
@@ -228,7 +228,7 @@ export default {
     const layout = useLayout(props, context)
     const path = usePath(props, context)
     const disabled = useDisabled(props, context)
-    const nullValue = useNullValueArray(props, context)
+    const nullValue = useNullValue(props, context)
     const prototype = usePrototype(props, context)
     const children = useChildren(props, context)
 
@@ -256,15 +256,6 @@ export default {
       label: label.label,
     })
 
-    const value = useValue(props, context, {
-      children$Array: children.children$Array,
-      nullValue: nullValue.nullValue,
-      defaultValue: default_.defaultValue,
-      path: path.path,
-      fire: events.fire,
-      form$: form$.form$,
-    })
-
     const elements = useElements(props, context, {
       theme: theme.theme,
     })
@@ -276,10 +267,18 @@ export default {
 
     const validation = useValidation(props, context, {
       form$: form$.form$,
-      value: value.value,
       children$: children.children$,
       form$: form$.form$,
       path: path.path,
+    })
+
+    const value = useValue(props, context, {
+      defaultValue: default_.defaultValue,
+      path: path.path,
+      form$: form$.form$,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     const columns = useColumns(props, context, {

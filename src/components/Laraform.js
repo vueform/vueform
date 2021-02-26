@@ -19,7 +19,7 @@ export default {
       required: false,
       default: undefined
     },
-    initial: {
+    default: {
       type: Object,
       required: false,
       default: null

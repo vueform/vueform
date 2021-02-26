@@ -2,7 +2,7 @@ import { computed, ref, watch, toRefs, onMounted } from 'composition-api'
 import checkDateFormat from '../../utils/checkDateFormat'
 import normalize from './../../utils/normalize'
 
-const base = function(props, context, dependencies)
+const base = function(props, context, dependencies, options = {})
 {
   // ============ DEPENDENCIES =============
 
@@ -15,17 +15,40 @@ const base = function(props, context, dependencies)
 
   // ============== COMPUTED ===============
 
-  const value = computed({
+  const initialValue = ref(_.get(form$.value.model, path.value))
+  const formDefaultValue = ref(_.get(form$.value.options.default, path.value))
+
+  const value = computed(options.value || {
     get() {
-      return _.get(form$.value.model, path.value)
+      let value = _.get(form$.value.model, path.value)
+
+      // If value is undefined first try to return form default value
+      if (value === undefined && formDefaultValue.value !== undefined) {
+        value = _.cloneDeep(formDefaultValue.value)
+      }
+
+      // If value is still undefined return element default value
+      if (value === undefined) {
+        value = _.cloneDeep(defaultValue.value)
+      }
+
+      return value
     },
     set(val) {
       form$.value.updateModel(path.value, val)
     }
   })
 
-  if (value.value === undefined) {
-    value.value = defaultValue.value
+  // If element's value was undefined initially (not found in v-model/data) then we need to set it's value
+  if (initialValue.value === undefined) {
+    // First we try to set from form defaults
+    if (formDefaultValue.value !== undefined) {
+      value.value = _.cloneDeep(formDefaultValue.value)
+
+    // If not found set from element default
+    } else {
+      value.value = _.cloneDeep(defaultValue.value)
+    }
   }
 
   onMounted(() => {
@@ -35,8 +58,14 @@ const base = function(props, context, dependencies)
       }
 
       fire('change', n, o)
-      dirt()
-      validate()
+
+      if (dirt) {
+        dirt()
+      }
+
+      if (validate) {
+        validate()
+      }
     }, { immediate: false, deep: true, flush: 'sync' })
   })
 
@@ -45,209 +74,31 @@ const base = function(props, context, dependencies)
   }
 }
 
-const list = function(props, context, dependencies)
-{
-  const {
-    value,
-  } = base(props, context, dependencies)
-
-  // ============ DEPENDENCIES ============
-
-  const children$Array = dependencies.children$Array
-
-  // ============== COMPUTED ===============
-
-  // /**
-  //  * The value of the element.
-  //  * 
-  //  * @type {any}
-  //  */
-  // const value = computed({
-  //   get() {
-  //     let value = []
-
-  //     _.each(children$Array.value, (element$) => {
-  //       value.push(element$.value)
-  //     })
-
-  //     return value
-  //   },
-  //   set(val) {
-  //     throw new Error('A list element\'s value cannot be set directly. Use .update() or .load() method.')
-  //   }
-  // })
-
-  // watch(value, (newValue, oldValue) => {
-  //   currentValue.value = newValue
-  //   previousValue.value = oldValue
-  // }, { flush: 'post' })
-
-  return {
-    value,
-    // previousValue,
-    // currentValue,
-  }
-}
-
-const checkbox = function(props, context, dependencies)
-{
-  const {
-    falseValue,
-    trueValue
-  } = toRefs(props)
-
-  const {
-    previousValue, currentValue
-  } = base(props, context, dependencies)
-
-  // ============== COMPUTED ==============
-
-  /**
-   * The value of the element.
-   * 
-   * @type {any}
-   */
-  const value = computed({
-    get() {
-      return model.value ? trueValue.value : falseValue.value
-    },
-    set(val) {
-      model.value = val == trueValue.value
-    }
-  })
-
-  /**
-   * Helper property used for tracking the field's value.
-   * 
-   * @type {any}
-   * @ignore
-   */
-  const model = computed({
-    get() {
-      return currentValue.value == trueValue.value
-    },
-    set(val) {
-      previousValue.value = _.clone(currentValue.value)
-
-      currentValue.value = val ? trueValue.value : falseValue.value
-    }
-  })
-
-  return {
-    value,
-    model,
-    previousValue,
-    currentValue,
-  }
-}
-
-const checkboxgroup = function(props, context, dependencies)
-{
-  // ============ DEPENDENCIES =============
-
-  const {
-    previousValue, currentValue, model
-  } = base(props, context, dependencies)
-
-  // ============== PRIVATE ================
-
-  /**
-   * 
-   * 
-   * @private
-   */
-  const toStringArray = (val) => {
-    return _.map(val, v => String(v))
-  }
-
-  // ============== COMPUTED ===============
-
-  /**
-   * The value of the element.
-   * 
-   * @type {any}
-   */
-  const value = computed({
-    get() {
-      return toStringArray(currentValue.value)
-    },
-    set(val) {
-      previousValue.value = toStringArray(currentValue.value)
-      currentValue.value = toStringArray(val)
-    }
-  })
-
-  return {
-    value,
-    model,
-    previousValue,
-    currentValue,
-  }
-}
-
 const date = function(props, context, dependencies)
 {
-  const {
-    currentValue, previousValue
-  } = base(props, context, dependencies)
-
   // ============ DEPENDENCIES =============
 
-  const nullValue = dependencies.nullValue
   const valueDateFormat = dependencies.valueDateFormat
+  const path = dependencies.path
+  const form$ = dependencies.form$
 
-  // ============== COMPUTED ===============
+  // ================ DATA =================
 
-  /**
-   * 
-   * 
-   * @private
-   */
-  const model = computed({
-    get() {
-      return currentValue.value
-    },
-    set(val) {
-      if (!_.isEmpty(val) && !(val instanceof Date)) {
-        throw new Error('Date model must be an instance of `Date`')
+  const {
+    value
+  } = base(props, context, dependencies, {
+    value: {
+      get() {
+        return _.get(form$.value.model, path.value)
+      },
+      set(val) {
+        form$.value.updateModel(path.value, val && val instanceof Date ? moment(val).format(valueDateFormat.value) : val)
       }
-      
-      previousValue.value = _.clone(currentValue.value)
-      currentValue.value = val
-    }
-  })
-
-  /**
-   * 
-   * 
-   * @private
-   */
-  const value = computed({
-    get() {
-      // If model is empty or no need to convert return Date instance
-      if (!model.value || valueDateFormat.value === false) {
-        return model.value
-      }
-
-      return moment(model.value).format(valueDateFormat.value)
-    },
-    set(val) {
-      if (_.isEmpty(val) && !(val instanceof Date)) {
-        model.value = nullValue.value
-        return
-      }
-
-      checkDateFormat(valueDateFormat.value, val)
-
-      model.value = val instanceof Date ? val : moment(val, valueDateFormat.value, true).toDate()
     }
   })
 
   return {
     value,
-    model,
-    previousValue,
-    currentValue,
   }
 }
 
@@ -459,50 +310,6 @@ const multiselect = function(props, context, dependencies)
   }
 }
 
-const object = function(props, context, dependencies)
-{
-  // ============ DEPENDENCIES ============
-
-  const {
-    previousValue, currentValue
-  } = base(props, context, dependencies)
-
-  const children$ = dependencies.children$
-
-  // ============== COMPUTED ===============
-
-  /**
-   * The value of the element.
-   * 
-   * @type {any}
-   */
-  const value = computed({
-    get() {
-      var value = {}
-
-      _.each(children$.value, (element$) => {
-        value = Object.assign({}, value, element$.data)
-      })
-
-      return value
-    },
-    set(val) {
-      throw new Error('A nested element\'s value cannot be set directly. Use .update() or .load() method.')
-    }
-  })
-
-  watch(value, (newValue, oldValue) => {
-    currentValue.value = newValue
-    previousValue.value = oldValue
-  }, { flush: 'sync' })
-
-  return {
-    value,
-    previousValue,
-    currentValue,
-  }
-}
-
 const radio = function(props, context, dependencies)
 {
   const {
@@ -630,24 +437,16 @@ const location = function(props, context, dependencies)
   }
 }
 
-const group = object
-const toggle = checkbox
 const tags = multiselect
 
 export {
-  checkbox,
-  checkboxgroup,
   date,
   dates,
-  group,
   multilingual,
   multiselect,
-  list,
-  object,
   radio,
   select,
   tags,
-  toggle,
   file,
   location,
 }

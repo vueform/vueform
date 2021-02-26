@@ -6,13 +6,12 @@
     >
       <input
         type="checkbox"
-        v-model="el$.model"
+        v-model="el$.value"
         :value="value"
         :class="el$.classes.checkbox"
         :name="`${el$.name}-${value}`"
         :id="`${el$.fieldId}-${value}`"
         :disabled="el$.isDisabled || el$.disabledItems.indexOf(value) !== -1"
-        @change="el$.handleChange"
       />
     
       <span>{{ item }}</span>

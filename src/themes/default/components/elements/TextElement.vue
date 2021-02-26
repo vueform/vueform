@@ -19,8 +19,6 @@
 
         <input
           :value="value"
-          @input="handleInput"
-          @select="handleInput"
           :type="inputType"
           :name="name"
           :id="fieldId"
@@ -29,6 +27,8 @@
           :autocomplete="autocomplete"
           :disabled="isDisabled"
           :readonly="readonly"
+          @input="handleInput"
+          @select="handleInput"
           ref="input"
         />
 

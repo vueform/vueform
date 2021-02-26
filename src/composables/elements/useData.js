@@ -178,32 +178,6 @@ const list = function(props, context, dependencies, options)
     return formatData.value ? formatData.value(name.value, filtered, form$.value) : {[name.value]: filtered}
   })
 
-  /**
-  * Initial number of child instances.
-  * 
-  * @type {number}
-  * @default 1
-  * @option
-  */
-  const initialInstances = computed(() => {
-    // if (defaultValue.value && defaultValue.value.length > (initial !== undefined ? initial.value : defaultInitial)) {
-    //   return defaultValue.value.length
-    // }
-
-    // return initial && initial.value !== undefined ? initial.value : defaultInitial
-  })
-
-  /**
-   * Helper method used to retrieve the next key for a new instance.
-   *
-   * @type {number}
-   */
-  const next = computed(() => {
-    // return instances.value.length
-    //   ? _.max(_.map(_.keys(_.keyBy(instances.value, 'key')), Number)) + 1
-    //   : 0
-  })
-
   // =============== METHODS ===============
 
   /**
@@ -213,40 +187,10 @@ const list = function(props, context, dependencies, options)
    * @param {object|array|string|number|boolean} value  
    * @returns {void}
    */
-  const add = (val = null) => {
-    value.value = value.value.concat([undefined])
+  const add = (val = undefined) => {
+    value.value = value.value.concat([val])
     
     return value.value.length - 1
-  }
-
-  /**
-   * 
-   * 
-   * 
-   * @param {object|array|string|number|boolean} value  
-   * @returns {number}
-   */
-  const insert = (val = null, keys = []) => {
-    // const index = instances.value.length
-
-    // // Add order to data
-    // if (isObject.value && storeOrder.value) {
-    //   val = Object.assign({}, val || {}, {
-    //     [storeOrder.value]: index + 1
-    //   })
-    // }
-
-    // const schema = computed(() => {
-    //   return Object.assign({}, prototype.value, {
-    //     key: keys[index] !== undefined ? keys[index] : next.value,
-    //   }, val !== null ? {
-    //     fill: _.clone(val),
-    //   } : {})
-    // })
-
-    // instances.value.push(schema.value)
-
-    // return index
   }
   
   /**
@@ -258,15 +202,6 @@ const list = function(props, context, dependencies, options)
    */
   const remove = (index) => {
     value.value = value.value.filter((v,i)=>i!==index)
-    // fire('remove', children$.value[index], index)
-
-    // instances.value.splice(index, 1)
-  
-    // nextTick(() => {
-    //   // refreshOrderStore()
-
-    //   // updated()
-    // })
   }
 
   const load = (val, format = false, sort = true) => {
@@ -275,8 +210,6 @@ const list = function(props, context, dependencies, options)
     // if (sort) {
     //   formatted = orderValue(formatted)
     // }
-
-    // let keys = instances.value.map(i=>i.key)
 
     // instances.value = []
 
@@ -302,26 +235,12 @@ const list = function(props, context, dependencies, options)
   }
 
   const clear = () => {
-    // instances.value = []
-
-    // nextTick(() => {
-    //   updated()
-    // })
+    value.value = _.cloneDeep([])
   }
 
   const reset = () => {
-    // instances.value = []
-    // resetValidators()
-
-    // nextTick(() => {
-    //   setInitialInstances()
-
-    //   nextTick(() => {
-    //     if (changed.value) {
-    //       fire('change', currentValue.value, previousValue.value)
-    //     }
-    //   })
-    // })
+    value.value = _.cloneDeep(default_.value)
+    resetValidators()
   }
 
   /**
@@ -347,21 +266,6 @@ const list = function(props, context, dependencies, options)
     }
 
     return val
-  }
-
-  const updated = () => {
-    // // Required because currentValue & previousValue are only updated
-    // // on nextTick when then value changes (because of watch)
-    // nextTick(() => {
-    //   if (changed.value) {
-    //     dirt()
-    //     fire('change', currentValue.value, previousValue.value)
-    //   }
-    // })
-
-    // if (form$.value.shouldValidateOnChange) {
-    //   validateValidators()
-    // }
   }
 
   /**
@@ -394,42 +298,19 @@ const list = function(props, context, dependencies, options)
     remove(index)
   }
 
-  /**
-   * Sets initial instances when the element is initalized.
-   * 
-   * @returns {void}
-   * @private 
-   */
-  const setInitialInstances = () => {
-    // let count = defaultValue.value.length > initialInstances.value ? defaultValue.value.length : initialInstances.value
-
-    // for (let i = 0; i < count; i++) {
-    //   insert(defaultValue.value && defaultValue.value[i] ? defaultValue.value[i] : null, false, false, false)
-    // }
-  }
-
   // ================ HOOKS ===============
-
-  if (prototype.value !== undefined) {
-    // setInitialInstances()
-  }
 
   return {
     filtered,
-    initialInstances,
-    next,
     data,
     add,
-    insert,
     remove,
     load,
     update,
     clear,
     reset,
-    updated,
     handleAdd,
     handleRemove,
-    setInitialInstances,
     prepare,
   }
 }
@@ -447,7 +328,6 @@ const date = function(props, context, dependencies)
     update,
     clear,
     reset,
-    updated,
     prepare
   } = base(props, context, dependencies, {
     setValue: (val) => {

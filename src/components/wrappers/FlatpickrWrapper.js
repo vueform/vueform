@@ -76,9 +76,11 @@ export default {
   },
   methods: {
     update(value) {
-      value = this.mode == 'single' ? (value[0] || null) : value
-
-      this.$emit('change', value)
+      this.$emit('input', {
+        target: {
+          value: this.mode == 'single' ? (value[0] || null) : value
+        }
+      })
     },
     $_setFlatpickrId() {
       this.flatpickr$.input.parentElement.id = 'flatpickr-' + this.id
@@ -96,11 +98,11 @@ export default {
       },
       // creating a date object from a string date provided in displayFormat (to value)
       parseDate: (dateStr, format) => {
-        return moment(dateStr, format, true).toDate();
+        return moment(dateStr, format, true).toDate()
       },
       // creating a date string according to displayFormat (to display)
       formatDate: (date, format) => {
-        return moment(date).format(format);
+        return moment(date).format(format)
       }
     }))
 

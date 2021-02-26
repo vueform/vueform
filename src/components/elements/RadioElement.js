@@ -23,7 +23,7 @@ import useEvents from './../../composables/useEvents'
 import useRadio from './../../composables/elements/useRadio'
 
 import { radio as useValue } from './../../composables/elements/useValue'
-import { radio as useHandleChange } from './../../composables/elements/useHandleChange'
+// import { radio as useHandleChange } from './../../composables/elements/useHandleChange'
 
 export default {
   name: 'RadioElement',

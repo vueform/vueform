@@ -16,7 +16,7 @@ import useElements from './../../composables/useElements'
 import { group as usePath } from './../../composables/elements/usePath'
 import { group as useValidation } from './../../composables/elements/useValidation'
 import { group as useChildren } from './../../composables/elements/useChildren'
-import { group as useValue } from './../../composables/elements/useValue'
+// import { group as useValue } from './../../composables/elements/useValue'
 import { group as useData } from './../../composables/elements/useData'
 
 export default {

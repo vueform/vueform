@@ -13,8 +13,11 @@ import useView from './../../composables/elements/useView'
 import useComponents from './../../composables/elements/useComponents'
 import useSlots from './../../composables/elements/useSlots'
 import useElements from './../../composables/useElements'
+import useValue from './../../composables/elements/useValue'
+import useDefault from './../../composables/elements/useDefault'
+import useEvents from './../../composables/useEvents'
 
-import { object as useValue } from './../../composables/elements/useValue'
+import { object as useNullValue } from './../../composables/elements/useNullValue'
 import { object as useData } from './../../composables/elements/useData'
 import { object as useChildren } from './../../composables/elements/useChildren'
 import { object as useValidation } from './../../composables/elements/useValidation'
@@ -98,6 +101,11 @@ export default {
       type: [Boolean],
       default: true
     },
+    default: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
     description: {
       required: false,
       type: [String],
@@ -139,9 +147,22 @@ export default {
     const theme = useTheme(props, context)
     const layout = useLayout(props, context)
     const path = usePath(props, context)
+    const nullValue = useNullValue(props, context)
 
     const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
+    })
+
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change'
+      ]
+    })
+
+    const default_ = useDefault(props, context, {
+      nullValue: nullValue.nullValue
     })
 
     const label = useLabel(props, context, {
@@ -156,10 +177,6 @@ export default {
       form$: form$.form$,
     })
 
-    const value = useValue(props, context, {
-      children$: children.children$,
-    })
-
     const elements = useElements(props, context, {
       theme: theme.theme,
     })
@@ -171,9 +188,16 @@ export default {
 
     const validation = useValidation(props, context, {
       form$: form$.form$,
-      value: value.value,
       children$: children.children$,
       form$: form$.form$,
+      path: path.path,
+    })
+
+    const value = useValue(props, context, {
+      defaultValue: default_.defaultValue,
+      path: path.path,
+      form$: form$.form$,
+      fire: events.fire,
     })
 
     const classes = useClasses(props, context, {
@@ -208,7 +232,6 @@ export default {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      previousValue: value.previousValue,
       clean: validation.clean,
       validate: validation.validate,
       resetValidators: validation.resetValidators,
@@ -238,6 +261,9 @@ export default {
       ...children,
       ...elements,
       ...validation,
+      ...nullValue,
+      ...default_,
+      ...events,
     }
   } 
 }

@@ -8,14 +8,13 @@
         <label :class="classes.checkboxLabel">
           <input
             type="checkbox"
-            :checked="model"
+            v-model="value"
             :class="classes.checkbox"
             :name="name"
             :id="fieldId"
-            :true-value="true"
-            :false-value="false"
+            :true-value="trueValue"
+            :false-value="falseValue"
             :disabled="isDisabled"
-            @change="handleChange"
             ref="input"
           />
         

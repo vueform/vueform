@@ -32,7 +32,7 @@ const base = function(props, context, dependencies = {})
     displayErrors,
     formatLoad,
     prepare,
-    initial,
+    default: default_,
   } = toRefs(props)
 
   const $this = getCurrentInstance().proxy
@@ -197,6 +197,7 @@ const base = function(props, context, dependencies = {})
       labels: labels.value !== null ? labels.value : (userConfig.value.labels !== undefined ? userConfig.value.labels : baseConfig.value.labels),
       formatLoad: formatLoad.value || userConfig.value.formatLoad || null,
       prepare: prepare.value || userConfig.value.prepare || null,
+      default: default_.value || userConfig.value.default || {},
     }
 
     return options
@@ -508,6 +509,7 @@ const base = function(props, context, dependencies = {})
    * @private
    */
   const updateModel = (path, val) => {
+    // When using v-model as model
     if (externalValue.value) {
       let parts = path.split('.')
       let element = parts.pop()
@@ -515,6 +517,8 @@ const base = function(props, context, dependencies = {})
 
       // We are setting intermediaryValue to collect changes in a tick which will later be emitted in `input`
       $this.$set(parent ? _.get(intermediaryValue.value, parent) : intermediaryValue.value, element, val)
+
+    // When using this.data as model
     } else {
       // We need a different clone than this.valueValue clone to not effect children watching model
       let model = _.cloneDeep(externalValue.value || data.value)
@@ -916,7 +920,7 @@ const base = function(props, context, dependencies = {})
   watch(intermediaryValue, (n, o) => {
     context.emit('input', n)
     context.emit('update:modelValue', n)
-  }, { deep: true, immediate: false })
+  }, { deep: true, immediate: false, flush: 'sync' })
 
   // ================ HOOKS ===============
 
@@ -925,17 +929,6 @@ const base = function(props, context, dependencies = {})
 
   onBeforeMount(() => {
     userConfig.value = $this.laraform || {}
-  })
-
-  onMounted(() => {
-    // Load initial value
-    if (initial.value) {
-      load(initial.value, true)
-
-      nextTick(() => {
-        clean()
-      })
-    }
   })
 
   return {

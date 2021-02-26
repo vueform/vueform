@@ -20,11 +20,12 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
 import useDateFormat from './../../composables/elements/useDateFormat'
+import useHandleInput from './../../composables/elements/useHandleInput'
+
+import useData from './../../composables/elements/useData'
+import useDefault from './../../composables/elements/useDefault'
 
 import { date as useValue } from './../../composables/elements/useValue'
-import { date as useData } from './../../composables/elements/useData'
-import { date as useDefault } from './../../composables/elements/useDefault'
-import { date as useHandleChange } from './../../composables/elements/useHandleChange'
 import { date as useOptions } from './../../composables/elements/useOptions'
 
 export default {
@@ -260,6 +261,14 @@ export default {
       form$: form$.form$,
     })
 
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change'
+      ],
+    })
+
     const options = useOptions(props, context, {
       form$: form$.form$,
       isDisabled: disabled.isDisabled,
@@ -273,12 +282,6 @@ export default {
       valueDateFormat: dateFormat.valueDateFormat,
     })
 
-    const value = useValue(props, context, {
-      nullValue: nullValue.nullValue,
-      defaultValue: default_.defaultValue,
-      valueDateFormat: dateFormat.valueDateFormat,
-    })
-
     const conditions = useConditions(props, context, {
       form$: form$.form$,
       path: path.path,
@@ -289,27 +292,23 @@ export default {
       path: path.path,
     })
 
-    const events = useEvents(props, context, {
+    const value = useValue(props, context, {
+      valueDateFormat: dateFormat.valueDateFormat,
+      defaultValue: default_.defaultValue,
+      path: path.path,
       form$: form$.form$,
-    }, {
-      events: [
-        'change'
-      ],
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     const data = useData(props, context, {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      clean: validation.clean,
-      validate: validation.validate,
       resetValidators: validation.resetValidators,
-      fire: events.fire,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      dirt: validation.dirt,
       valueDateFormat: dateFormat.valueDateFormat,
       loadDateFormat: dateFormat.loadDateFormat,
     })
@@ -355,15 +354,8 @@ export default {
       ]
     })
 
-    const handleChange = useHandleChange(props, context, {
-      form$: form$.form$,
-      model: value.model,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      changed: data.changed,
-      dirt: validation.dirt,
-      validate: validation.validate,
-      fire: events.fire,
+    const handleInput = useHandleInput(props, context, {
+      value: value.value,
     })
 
     onMounted(() => {
@@ -395,9 +387,9 @@ export default {
       ...empty,
       ...default_,
       ...nullValue,
-      ...handleChange,
       ...options,
       ...dateFormat,
+      ...handleInput,
     }
   } 
 }

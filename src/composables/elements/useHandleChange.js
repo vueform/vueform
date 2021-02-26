@@ -34,29 +34,6 @@ const base = function(props, context, dependencies)
   }
 }
 
-const checkbox = function(props, context, dependencies)
-{
-  const {
-    handleChange: baseHandleChange
-  } = base(props, context, dependencies)
-
-  // ============ DEPENDENCIES ============
-
-  const model = dependencies.model
-
-  // =============== METHODS ==============
-
-  const handleChange = (e) => {
-    model.value = e.target.checked
-
-    baseHandleChange()
-  }
-
-  return {
-    handleChange,
-  }
-}
-
 const toggle = function(props, context, dependencies)
 {
   const {
@@ -82,13 +59,10 @@ const toggle = function(props, context, dependencies)
 
 const date = toggle
 const dates = date
-const radio = checkbox
 
 export {
-  checkbox,
   date,
   dates,
-  radio,
   toggle,
 } 
 

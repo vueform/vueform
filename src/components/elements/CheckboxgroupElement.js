@@ -15,13 +15,12 @@ import useView from './../../composables/elements/useView'
 import useComponents from './../../composables/elements/useComponents'
 import useSlots from './../../composables/elements/useSlots'
 import useEvents from './../../composables/useEvents'
-import useHandleChange from './../../composables/elements/useHandleChange'
 import useCheck from './../../composables/elements/useCheck'
 import useFieldId from './../../composables/elements/useFieldId'
+import useValue from './../../composables/elements/useValue'
 
-import { checkboxgroup as useValue } from './../../composables/elements/useValue'
-import { checkboxgroup as useDisabled } from './../../composables/elements/useDisabled'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
+import { checkboxgroup as useDisabled } from './../../composables/elements/useDisabled'
 import { checkboxgroup as useBaseElement } from './../../composables/elements/useBaseElement'
 
 export default {
@@ -191,21 +190,20 @@ export default {
       form$: form$.form$,
     })
 
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change'
+      ],
+    })
+
     const disabled = useDisabled(props, context, {
       form$: form$.form$,
     })
 
     const default_ = useDefault(props, context, {
       nullValue: nullValue.nullValue
-    })
-
-    const value = useValue(props, context, {
-      nullValue: nullValue.nullValue,
-      defaultValue: default_.defaultValue,
-    })
-
-    const check = useCheck(props, context, {
-      value: value.value,
     })
 
     const conditions = useConditions(props, context, {
@@ -218,27 +216,26 @@ export default {
       path: path.path,
     })
 
-    const events = useEvents(props, context, {
+    const value = useValue(props, context, {
+      defaultValue: default_.defaultValue,
+      path: path.path,
       form$: form$.form$,
-    }, {
-      events: [
-        'change'
-      ],
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
+    })
+
+    const check = useCheck(props, context, {
+      value: value.value,
     })
 
     const data = useData(props, context, {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      clean: validation.clean,
-      validate: validation.validate,
       resetValidators: validation.resetValidators,
-      fire: events.fire,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      dirt: validation.dirt,
     })
 
     const label = useLabel(props, context, {
@@ -278,16 +275,6 @@ export default {
       ]
     })
 
-    const handleChange = useHandleChange(props, context, {
-      form$: form$.form$,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      changed: data.changed,
-      dirt: validation.dirt,
-      validate: validation.validate,
-      fire: events.fire,
-    })
-
     onMounted(() => {
       validation.initMessageBag()
       validation.initValidation()
@@ -315,7 +302,6 @@ export default {
       ...data,
       ...default_,
       ...nullValue,
-      ...handleChange,
       ...check,
     }
   } 
