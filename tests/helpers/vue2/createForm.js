@@ -42,6 +42,11 @@ export default function createForm (data, options = {}, render = null) {
       return {
         laraform: data
       }
+    },
+    mounted() {
+      if (options.mounted) {
+        options.mounted.call(this)
+      }
     }
   }, render ? {
     render,

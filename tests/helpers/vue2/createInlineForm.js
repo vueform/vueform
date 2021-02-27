@@ -1,4 +1,5 @@
 import { mount } from '@vue/test-utils'
+import { h, resolveComponent, ref } from 'composition-api'
 
 // Core
 import { Laraform, useLaraform } from './../../../src/index'
@@ -31,6 +32,13 @@ export default function createForm (data, options = {}, render = null) {
     components: {
       Laraform,
     },
+    setup() {
+      const form = ref(null)
+
+      return {
+        form,
+      }
+    },
     data() {
       return {
         data: data.model,
@@ -42,12 +50,18 @@ export default function createForm (data, options = {}, render = null) {
           props: Object.assign({}, data.props, data.model ? {
             value: this.data
           } : {}),
+          ref: 'form',
           on: {
             input: (value) => { this.data = value }
           }
         }),
       ])
     },
+    mounted() {
+      if (options.mounted) {
+        options.mounted.call(this.form)
+      }
+    }
   }, render ? {
     render,
   } : {})

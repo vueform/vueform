@@ -1,4 +1,5 @@
 import { mount } from '@vue/test-utils'
+import { onMounted } from 'composition-api'
 
 // Core
 import { Laraform, useLaraform } from './../../src/index'
@@ -40,6 +41,11 @@ export default function createForm (data, options = {}, render = null) {
     data() {
       return {
         laraform: data
+      }
+    },
+    mounted() {
+      if (options.mounted) {
+        options.mounted.call(this)
       }
     }
   }, render ? {

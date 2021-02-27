@@ -17,7 +17,6 @@ const base = function (props, context, dependencies)
 
   const form$ = dependencies.form$
   const value = dependencies.value
-  const previousValue = dependencies.previousValue
   const isDisabled = dependencies.isDisabled
   const validate = dependencies.validate
   const invalid = dependencies.invalid
@@ -319,7 +318,8 @@ const base = function (props, context, dependencies)
 
     context.emit('remove')
     
-    fire('remove', previousValue.value)
+    // @todo: previous value
+    fire('remove')
   }
 
   /**

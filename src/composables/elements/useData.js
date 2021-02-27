@@ -223,19 +223,11 @@ const list = function(props, context, dependencies, options)
   }
   
   const update = (val) => {
-    // instances.value = []
-
-    // for (let i = 0; i < _.keys(val).length; i++) {
-    //   insert(val[i])
-    // }
-
-    // nextTick(() => {
-    //   updated()
-    // })
+    value.value = _.cloneDeep(val)
   }
 
   const clear = () => {
-    value.value = _.cloneDeep([])
+    value.value = []
   }
 
   const reset = () => {

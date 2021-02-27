@@ -22,9 +22,9 @@ import useData from './../../composables/elements/useData'
 import useDrop from './../../composables/elements/useDrop'
 import useRemoving from './../../composables/elements/useRemoving'
 import useHandleError from './../../composables/elements/useHandleError'
+import useValue from './../../composables/elements/useValue'
 
 import { file as useBaseElement } from './../../composables/elements/useBaseElement'
-import { file as useValue } from './../../composables/elements/useValue'
 import { file as useValidation } from './../../composables/elements/useValidation'
 import { file as useGenericName } from './../../composables/elements/useGenericName'
 import { file as useClasses } from './../../composables/elements/useClasses'
@@ -246,17 +246,20 @@ export default {
       form$: form$.form$,
     })
 
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change', 'remove', 'error',
+      ],
+    })
+
     const request = useRequest(props, context, {
       form$: form$.form$,
     })
 
     const default_ = useDefault(props, context, {
       nullValue: nullValue.nullValue
-    })
-
-    const value = useValue(props, context, {
-      nullValue: nullValue.nullValue,
-      defaultValue: default_.defaultValue,
     })
 
     const conditions = useConditions(props, context, {
@@ -267,26 +270,23 @@ export default {
     const validation = useValidation(props, context, {
       form$: form$.form$,
       path: path.path,
-      value: value.value,
       uploading: request.uploading,
       removing: removing.removing,
-
     })
 
-    const events = useEvents(props, context, {
+    const value = useValue(props, context, {
+      defaultValue: default_.defaultValue,
+      path: path.path,
       form$: form$.form$,
-    }, {
-      events: [
-        'change', 'remove', 'error',
-      ],
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     const data = useData(props, context, {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
       clean: validation.clean,
       validate: validation.validate,
       resetValidators: validation.resetValidators,
@@ -304,7 +304,6 @@ export default {
     const file = useFile(props, context, {
       form$: form$.form$,
       value: value.value,
-      previousValue: value.previousValue,
       isDisabled: disabled.isDisabled,
       validate: validation.validate,
       invalid: validation.invalid,
