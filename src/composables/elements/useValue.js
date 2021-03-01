@@ -4,8 +4,6 @@ import normalize from './../../utils/normalize'
 
 const base = function(props, context, dependencies, options = {})
 {
-  const { name } = toRefs(props)
-
   // ============ DEPENDENCIES =============
 
   const defaultValue = dependencies.defaultValue
@@ -22,17 +20,17 @@ const base = function(props, context, dependencies, options = {})
 
   const value = computed(options.value || {
     get() {
-      let value = form$.value.model[name.value]
+      let value = _.get(form$.value.model, path.value)
 
-      // // If value is undefined first try to return form default value
-      // if (value === undefined && formDefaultValue.value !== undefined) {
-      //   value = _.cloneDeep(formDefaultValue.value)
-      // }
+      // If value is undefined first try to return form default value
+      if (value === undefined && formDefaultValue.value !== undefined) {
+        value = _.cloneDeep(formDefaultValue.value)
+      }
 
-      // // If value is still undefined return element default value
-      // if (value === undefined) {
-      //   value = _.cloneDeep(defaultValue.value)
-      // }
+      // If value is still undefined return element default value
+      if (value === undefined) {
+        value = _.cloneDeep(defaultValue.value)
+      }
 
       return value
     },

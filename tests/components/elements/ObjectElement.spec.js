@@ -1,3 +1,6 @@
 import { runElementTests } from 'test-helpers'
 
-export default runElementTests('object', {})
+export default runElementTests('object', {
+  default: {
+  }
+})
