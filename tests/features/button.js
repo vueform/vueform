@@ -16,7 +16,7 @@ export const isLoading = function (elementType, elementName, options) {
 
     expect(el.isLoading).toBe(false)
 
-    el.$set(form.vm.schema.el, 'loading', true)
+    el.$set(form.vm.options.schema.el, 'loading', true)
 
     await nextTick()
 
@@ -29,8 +29,8 @@ export const isLoading = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          loading(form$) {
-            return form$.loading
+          loading(form$, el$) {
+            return form$.laraform.loading
           }
         }
       }
@@ -40,7 +40,7 @@ export const isLoading = function (elementType, elementName, options) {
 
     expect(el.isLoading).toBe(false)
 
-    el.$set(form.vm, 'loading', true)
+    el.$set(form.vm.laraform, 'loading', true)
 
     await nextTick()
 
@@ -64,11 +64,11 @@ export const isButtonLabelComponent = function (elementType, elementName, option
     expect(el.isButtonLabelComponent).toBe(false)
     expect(findAll(form, 'button').at(0).element.innerHTML).toBe('String')
 
-    el.$set(form.vm.schema.el, 'buttonLabel', null)
+    el.$set(form.vm.options.schema.el, 'buttonLabel', null)
     await nextTick()
     expect(el.isButtonLabelComponent).toBe(false)
 
-    el.$set(form.vm.schema.el, 'buttonLabel', markRaw({
+    el.$set(form.vm.options.schema.el, 'buttonLabel', markRaw({
       props: ['el$'],
       render(h) {
         return createElement(h, 'div', 'hello')
@@ -95,11 +95,11 @@ export const isButtonLabelComponent = function (elementType, elementName, option
     expect(el.isButtonLabelComponent).toBe(false)
     expect(findAll(form, 'a').at(0).element.innerHTML).toBe('String')
 
-    el.$set(form.vm.schema.el, 'buttonLabel', null)
+    el.$set(form.vm.options.schema.el, 'buttonLabel', null)
     await nextTick()
     expect(el.isButtonLabelComponent).toBe(false)
 
-    el.$set(form.vm.schema.el, 'buttonLabel', markRaw({
+    el.$set(form.vm.options.schema.el, 'buttonLabel', markRaw({
       props: ['el$'],
       render(h) {
         return createElement(h, 'div', 'hello')
@@ -134,7 +134,7 @@ export const button = function (elementType, elementName, options) {
     expect(findAll(form, 'a').at(0).element.href).toContain('href')
     expect(findAll(form, 'a').at(0).element.target).toBe('target')
 
-    el.$set(form.vm.schema.el, 'buttonLabel', markRaw({
+    el.$set(form.vm.options.schema.el, 'buttonLabel', markRaw({
       props: ['el$'],
       render(h) {
         return createElement(h, 'div', 'hello')
@@ -164,7 +164,7 @@ export const button = function (elementType, elementName, options) {
     })
     expect(findAll(form, 'button').at(0).element.disabled).toBeTruthy()
 
-    el.$set(form.vm.schema.el, 'buttonLabel', markRaw({
+    el.$set(form.vm.options.schema.el, 'buttonLabel', markRaw({
       props: ['el$'],
       render(h) {
         return createElement(h, 'div', 'hello')
@@ -191,7 +191,7 @@ export const handleClick = function (elementType, elementName, options) {
     el.handleClick({ preventDefault: preventMock, })
     expect(preventMock).not.toHaveBeenCalled()
 
-    el.$set(form.vm.schema.el, 'href', 'href')
+    el.$set(form.vm.options.schema.el, 'href', 'href')
     await nextTick()
     el.handleClick({ preventDefault: preventMock, })
     expect(preventMock).toHaveBeenCalled()
@@ -216,18 +216,18 @@ export const handleClick = function (elementType, elementName, options) {
     el.handleClick()
     expect(onClickMock).not.toHaveBeenCalled()
 
-    el.$set(form.vm.schema.el, 'disabled', false)
+    el.$set(form.vm.options.schema.el, 'disabled', false)
     await nextTick()
     el.handleClick()
     expect(onClickMock).not.toHaveBeenCalled()
 
-    el.$set(form.vm.schema.el, 'loading', false)
-    el.$set(form.vm.schema.el, 'disabled', true)
+    el.$set(form.vm.options.schema.el, 'loading', false)
+    el.$set(form.vm.options.schema.el, 'disabled', true)
     await nextTick()
     el.handleClick()
     expect(onClickMock).not.toHaveBeenCalled()
 
-    el.$set(form.vm.schema.el, 'disabled', false)
+    el.$set(form.vm.options.schema.el, 'disabled', false)
     await nextTick()
     el.handleClick()
     expect(onClickMock).toHaveBeenCalledWith(el.form$)
@@ -298,7 +298,7 @@ export const handleClick = function (elementType, elementName, options) {
     a.trigger('click')
     expect(onClickMock).toHaveBeenCalled()
 
-    form.vm.$set(form.vm.schema.el, 'label', markRaw({
+    form.vm.$set(form.vm.options.schema.el, 'label', markRaw({
       props: ['el$'],
       render(h) {
         return createElement(h, 'div', 'hello')
@@ -328,7 +328,7 @@ export const handleClick = function (elementType, elementName, options) {
     button.trigger('click')
     expect(onClickMock).toHaveBeenCalled()
 
-    form.vm.$set(form.vm.schema.el, 'label', markRaw({
+    form.vm.$set(form.vm.options.schema.el, 'label', markRaw({
       props: ['el$'],
       render(h) {
         return createElement(h, 'div', 'hello')

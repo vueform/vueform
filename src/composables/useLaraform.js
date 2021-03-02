@@ -195,6 +195,10 @@ const base = function(props, context, dependencies = {})
     var data = {}
 
     _.each(elements$.value, (e$) => {
+      if (e$.isStatic) {
+        return
+      }
+
       data = Object.assign({}, data, e$.data)
     })
 
@@ -210,6 +214,10 @@ const base = function(props, context, dependencies = {})
     var filtered = {}
 
     _.each(elements$.value, (e$) => {
+      if (e$.isStatic) {
+        return
+      }
+      
       filtered = Object.assign({}, filtered, e$.filtered)
     })
 

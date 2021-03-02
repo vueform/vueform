@@ -165,13 +165,14 @@ export default {
     const theme = useTheme(props, context)
     const layout = useLayout(props, context)
     const path = usePath(props, context)
-    
-    const disabled = useDisabled(props, context, {
-      form$: form$.form$
-    })
 
     const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
+    })
+    
+    const disabled = useDisabled(props, context, {
+      form$: form$.form$,
+      el$: baseElement.el$,
     })
 
     const conditions = useConditions(props, context, {
@@ -195,6 +196,7 @@ export default {
     const button = useButton(props, context, {
       form$: form$.form$,
       isDisabled: disabled.isDisabled,
+      el$: baseElement.el$,
     })
 
     const classes = useClasses(props, context, {

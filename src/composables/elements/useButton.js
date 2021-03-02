@@ -18,11 +18,12 @@ const base = function (props, context, dependencies)
 
   const form$ = dependencies.form$
   const isDisabled = dependencies.isDisabled
+  const el$ = dependencies.el$
 
   // ============== COMPUTED ==============
 
   const isLoading = computed(() => {
-    return typeof loading.value === 'function' ? loading.value(form$.value) : loading.value
+    return typeof loading.value === 'function' ? loading.value(form$.value, el$.value) : loading.value
   })
 
   const isButtonLabelComponent = computed(() => {

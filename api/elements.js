@@ -1,4 +1,222 @@
 export default {
+  "button": {
+    "features": [
+      "baseElement_static",
+      "button",
+      "classes_button",
+      "columns",
+      "components",
+      "conditions",
+      "disabled_button",
+      "form$",
+      "genericName",
+      "label",
+      "layout",
+      "path",
+      "slots",
+      "theme",
+      "view"
+    ],
+    "slots": [
+      "label",
+      "info",
+      "description",
+      "before",
+      "between",
+      "after"
+    ],
+    "events": [],
+    "props": {
+      "name": {
+        "required": "true",
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "layout": {
+        "required": "false",
+        "types": [
+          "string",
+          "object",
+          "boolean"
+        ]
+      },
+      "type": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "buttonLabel": {
+        "required": "false",
+        "types": [
+          "string",
+          "object",
+          "function"
+        ]
+      },
+      "buttonType": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "buttonClass": {
+        "required": "false",
+        "types": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "disabled": {
+        "required": "false",
+        "types": [
+          "function",
+          "boolean"
+        ]
+      },
+      "loading": {
+        "required": "false",
+        "types": [
+          "function",
+          "boolean"
+        ]
+      },
+      "href": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "target": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "align": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "onClick": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "resets": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "submits": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "addClass": {
+        "required": "false",
+        "types": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "overrideClasses": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "addClasses": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "columns": {
+        "required": "false",
+        "types": [
+          "object",
+          "string"
+        ]
+      },
+      "overrideComponents": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "conditions": {
+        "required": "false",
+        "types": [
+          "array"
+        ]
+      },
+      "description": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "info": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "label": {
+        "required": "false",
+        "types": [
+          "string",
+          "object",
+          "function"
+        ]
+      },
+      "before": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "between": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "after": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "slots": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      }
+    }
+  },
   "checkbox": {
     "features": [
       "baseElement",

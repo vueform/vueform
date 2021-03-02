@@ -161,11 +161,12 @@ const button = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
+  const el$ = dependencies.el$
 
   // ============== COMPUTED ==============
 
   const isDisabled = computed(() => {
-    return typeof disabled.value === 'function' ? disabled.value(form$.value) : disabled.value
+    return typeof disabled.value === 'function' ? disabled.value(form$.value, el$.value) : disabled.value
   })
 
   return {

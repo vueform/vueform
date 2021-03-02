@@ -4,7 +4,7 @@ const basePath = __dirname + '/../..'
 const featuresPath = '/src/components/elements'
 const elements = [
   // 'address',
-  // 'button',
+  'button',
   'checkbox',
   'checkboxgroup',
   // 'date',
