@@ -12,13 +12,12 @@
         >
           <input
             type="radio"
-            :checked="model"
+            v-model="value"
             :value="radioValue"
             :class="classes.radio"
             :name="fieldName"
             :id="fieldId"
             :disabled="isDisabled"
-            @change="handleChange"
             ref="input"
           />
         

@@ -21,9 +21,7 @@ import useSlots from './../../composables/elements/useSlots'
 import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useRadio from './../../composables/elements/useRadio'
-
-import { radio as useValue } from './../../composables/elements/useValue'
-// import { radio as useHandleChange } from './../../composables/elements/useHandleChange'
+import useValue from './../../composables/elements/useValue'
 
 export default {
   name: 'RadioElement',
@@ -198,18 +196,20 @@ export default {
       form$: form$.form$,
     })
 
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change'
+      ],
+    })
+
     const nullValue = useNullValue(props, context)
 
     const default_ = useDefault(props, context, {
       nullValue: nullValue.nullValue,
       form$: form$.form$,
       path: path.path,
-    })
-
-    const value = useValue(props, context, {
-      nullValue: nullValue.nullValue,
-      nullValue: nullValue.nullValue,
-      defaultValue: default_.defaultValue,
     })
 
     const conditions = useConditions(props, context, {
@@ -222,27 +222,22 @@ export default {
       path: path.path,
     })
 
-    const events = useEvents(props, context, {
+    const value = useValue(props, context, {
+      defaultValue: default_.defaultValue,
+      path: path.path,
       form$: form$.form$,
-    }, {
-      events: [
-        'change'
-      ],
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     const data = useData(props, context, {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      clean: validation.clean,
-      validate: validation.validate,
       resetValidators: validation.resetValidators,
-      fire: events.fire,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      dirt: validation.dirt,
     })
 
     const label = useLabel(props, context, {
@@ -281,17 +276,6 @@ export default {
       ]
     })
 
-    const handleChange = useHandleChange(props, context, {
-      form$: form$.form$,
-      model: value.model,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      changed: data.changed,
-      dirt: validation.dirt,
-      validate: validation.validate,
-      fire: events.fire,
-    })
-
     const radio = useRadio(props, context, {
       update: data.update,
       nullValue: nullValue.nullValue,
@@ -326,7 +310,6 @@ export default {
       ...data,
       ...default_,
       ...nullValue,
-      ...handleChange,
       ...radio,
     }
   } 

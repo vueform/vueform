@@ -17,7 +17,7 @@ const elements = [
   // 'multifile',
   // 'multiselect',
   // 'object',
-  // 'radio',
+  'radio',
   // 'radiogroup',
   // 'select',
   // 'slider',
