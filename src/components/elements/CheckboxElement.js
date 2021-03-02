@@ -212,7 +212,9 @@ export default {
     })
 
     const default_ = useDefault(props, context, {
-      nullValue: nullValue.nullValue
+      nullValue: nullValue.nullValue,
+      form$: form$.form$,
+      path: path.path,
     })
 
     const conditions = useConditions(props, context, {

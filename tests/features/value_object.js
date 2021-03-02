@@ -264,7 +264,7 @@ export const value = function (elementType, elementName, options) {
       }, app)
     })
 
-    it('should element default + form default if form default, element default', async () => {
+    it('should be element default + form default if form default, element default', async () => {
       let mocks = {
         formChangeMock: jest.fn(),
         elChangeMock: jest.fn(),

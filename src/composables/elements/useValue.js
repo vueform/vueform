@@ -16,23 +16,12 @@ const base = function(props, context, dependencies, options = {})
   // ============== COMPUTED ===============
 
   const initialValue = ref(_.get(form$.value.model, path.value))
-  const formDefaultValue = ref(_.get(form$.value.options.default, path.value))
 
   const value = computed(options.value || {
     get() {
       let value = _.get(form$.value.model, path.value)
 
-      // If value is undefined first try to return form default value
-      if (value === undefined && formDefaultValue.value !== undefined) {
-        value = _.cloneDeep(formDefaultValue.value)
-      }
-
-      // If value is still undefined return element default value
-      if (value === undefined) {
-        value = _.cloneDeep(defaultValue.value)
-      }
-
-      return value
+      return value !== undefined ? value : defaultValue.value
     },
     set(val) {
       form$.value.updateModel(path.value, val)
@@ -41,14 +30,7 @@ const base = function(props, context, dependencies, options = {})
 
   // If element's value was undefined initially (not found in v-model/data) then we need to set it's value
   if (initialValue.value === undefined) {
-    // First we try to set from form defaults
-    if (formDefaultValue.value !== undefined) {
-      value.value = _.cloneDeep(formDefaultValue.value)
-
-    // If not found set from element default
-    } else {
-      value.value = _.cloneDeep(defaultValue.value)
-    }
+    value.value = defaultValue.value
   }
 
   onMounted(() => {

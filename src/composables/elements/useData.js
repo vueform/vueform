@@ -205,21 +205,9 @@ const list = function(props, context, dependencies, options)
   }
 
   const load = (val, format = false, sort = true) => {
-    // let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
+    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
 
-    // if (sort) {
-    //   formatted = orderValue(formatted)
-    // }
-
-    // instances.value = []
-
-    // if (formatted === undefined) {
-    //   return
-    // }
-
-    // for (let i = 0; i < _.keys(formatted).length; i++) {
-    //   insert(formatted[i], keys)
-    // }
+    value.value = formatted
   }
   
   const update = (val) => {

@@ -15,6 +15,7 @@ import setValue from './../setValue'
 import testAttribute from './../testAttribute'
 import testPropDefault from './../testPropDefault'
 import testDynamics from './../testDynamics'
+import testModelCases from './../testModelCases'
 import testNativeMultiselectModel from './../testNativeMultiselectModel'
 import testNativeSelectModel from './../testNativeSelectModel'
 import testNonNativeMultiselectModel from './../testNonNativeMultiselectModel'
@@ -65,6 +66,7 @@ export {
   testAttribute,
   testPropDefault,
   testDynamics,
+  testModelCases,
   testNativeMultiselectModel,
   testNativeSelectModel,
   testNonNativeMultiselectModel,

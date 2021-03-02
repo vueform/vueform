@@ -10,6 +10,8 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES =============
 
   const nullValue = dependencies.nullValue
+  const form$ = dependencies.form$
+  const path = dependencies.path
 
   // ============== COMPUTED ===============
 
@@ -19,7 +21,13 @@ const base = function(props, context, dependencies)
   * @type {string|number}
   */
   const defaultValue = computed(() => {
-    return default_.value !== undefined ? default_.value : _.clone(nullValue.value)
+    let formDefaultValue = _.get(form$.value.options.default, path.value)
+
+    if (formDefaultValue !== undefined) {
+      return _.cloneDeep(formDefaultValue)
+    }
+
+    return default_.value !== undefined ? default_.value : _.cloneDeep(nullValue.value)
   })
 
   return {
