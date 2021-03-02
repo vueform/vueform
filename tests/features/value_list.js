@@ -451,11 +451,11 @@ export const value = function (elementType, elementName, options) {
   })
 }
 
-const testChangesObject = async (form, mocks, options, initial, app = null) => {
-  await testChanges(form, mocks, options, initial, app = null, 'object')
+const testChangesObject = async (form, mocks, options, useModel, initial, app = null) => {
+  await testChanges(form, mocks, options, useModel, initial, app, 'object')
 }
 
-const testChanges = async (form, mocks, options, initial, app = null, type = 'element') => {
+const testChanges = async (form, mocks, options, useModel, initial, app = null, type = 'element') => {
   let {
     formChangeMock,
     elChangeMock,
@@ -478,18 +478,32 @@ const testChanges = async (form, mocks, options, initial, app = null, type = 'el
   expect(el2.value).toStrictEqual(initial.el2)
   expect(form.vm.data).toStrictEqual({ el: initial.el, el2: initial.el2, })
 
+  if (app) {
+    expect(app.vm.data).toStrictEqual({ el: initial.el, el2: initial.el2, })
+  }
+
   // No events should've been fired so far
   expect(formChangeMock).not.toHaveBeenCalled()
   expect(elChangeMock).not.toHaveBeenCalled()
   expect(el2ChangeMock).not.toHaveBeenCalled()
 
-  // Update an element
-  el.update(value())
+  if (useModel) {
+    await nextTick()
+
+    app.vm.$set(app.vm.data, 'el', value())
+  } else {
+    // Update an element
+    el.update(value())
+  }
 
   // Element and form should change instantly
   expect(el.value).toStrictEqual(value())
   expect(el2.value).toStrictEqual(initial.el2)
   expect(form.vm.data).toStrictEqual({ el: value(), el2: initial.el2, })
+
+  if (app) {
+    expect(app.vm.data).toStrictEqual({ el: value(), el2: initial.el2, })
+  }
   
   // Watchers kick in
   await nextTick()
@@ -504,15 +518,30 @@ const testChanges = async (form, mocks, options, initial, app = null, type = 'el
   await nextTick()
 
   // Update the whole form
-  form.vm.update({
-    el: value2(),
-    el2: value(),
-  })
+  if (useModel) {
+    await nextTick()
+    
+    app.vm.$set(app.vm, 'data', {
+      el: value2(),
+      el2: value(),
+    })
+
+    await nextTick()
+  } else {
+    form.vm.update({
+      el: value2(),
+      el2: value(),
+    })
+  }
 
   // Element and form should change instantly
   expect(el.value).toStrictEqual(value2())
   expect(el2.value).toStrictEqual(value())
   expect(form.vm.data).toStrictEqual({ el: value2(), el2: value(), })
+
+  if (app) {
+    expect(app.vm.data).toStrictEqual({ el: value2(), el2: value(), })
+  }
   
   // Watchers kick in
   await nextTick()

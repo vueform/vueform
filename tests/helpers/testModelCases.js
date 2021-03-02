@@ -64,7 +64,7 @@ export default function (cases, elementType, options, baseSchema, testChanges) {
             form = inline.form
           }
 
-          await testChanges(form, mocks, options, i === 2 ? c.initialWithModel : c.initial, app)
+          await testChanges(form, mocks, options, i === 2, i === 2 ? c.initialWithModel : c.initial, app)
         })
       })
     }
