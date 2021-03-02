@@ -1,12 +1,11 @@
-import { createForm, testPropDefault } from 'test-helpers'
-import flushPromises from 'flush-promises'
+import { createForm } from 'test-helpers'
 import { nextTick } from 'composition-api'
-import { update as baseUpdate, clear as baseClear, reset as baseReset, } from './data'
+import flushPromises from 'flush-promises'
 
-export { data, filtered, changed, updated, onCreated, } from './data'
+export { data, filtered, } from './data'
 
 export const load = function (elementType, elementName, options) {
-  it('should set value if provided value is not "undefined" on `load`', async () => {
+  it('should set value on `load`', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -23,32 +22,19 @@ export const load = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input.trix$.value).toBe('<div>value</div>')
-    expect(el.dirty).toBe(true)
-
-    el.clean()
-
-    el.load('<div>value2</div>')
-    expect(el.value).toBe('<div>value2</div>')
-
-    expect(el.dirty).toBe(false)
-
-    el.load(null)
-    expect(el.value).toBe(null)
-
-    el.load(0)
-    expect(el.value).toBe(0)
-
-    el.load('')
-    expect(el.value).toBe('')
   })
 
   it('should should format data if "formatLoad" is set on `load`', async () => {
+    let formatLoadMock = jest.fn()
+
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           formatLoad(value) {
-            return `${value}-formatted`
+            formatLoadMock()
+
+            return value
           }
         }
       }
@@ -56,33 +42,14 @@ export const load = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.load('value', true)
+    el.load(options.value, true)
 
-    expect(el.value).toBe('value-formatted')
-  })
-
-  it('should set value to null if value is "undefined" on `load`', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          default: 'value',
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.load(undefined)
-
-    expect(el.value).toStrictEqual(el.nullValue)
+    expect(formatLoadMock).toHaveBeenCalled()
   })
 }
 
 export const update = function (elementType, elementName, options) {
-  baseUpdate(elementType, elementName, options)
-
-  it('should update trix value on `update`', async () => {
+  it('should update value on update', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -93,51 +60,22 @@ export const update = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.update('value')
+    el.update(options.value)
+    expect(el.value).toBe(options.value)
 
     await nextTick()
 
-    expect(el.input.trix$.value).toBe('<div>value</div>')
-  })
-}
-
-export const reset = function (elementType, elementName, options) {
-  baseUpdate(elementType, elementName, options)
-
-  it('should update trix value on `reset`', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.update('value')
-
-    await nextTick()
-
-    expect(el.input.trix$.value).toBe('<div>value</div>')
-
-    el.reset()
-
-    await nextTick()
-
-    expect(el.input.trix$.value).toBe('')
+    expect(el.input.trix$.value).toBe(options.value)
   })
 }
 
 export const clear = function (elementType, elementName, options) {
-  baseUpdate(elementType, elementName, options)
-
-  it('should update trix value on `clear`', async () => {
+  it('should set value to null on `clear`', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          default: 'value',
+          default: options.default,
         }
       }
     })
@@ -146,8 +84,57 @@ export const clear = function (elementType, elementName, options) {
 
     el.clear()
 
+    expect(el.value).toStrictEqual(el.nullValue)
+
     await nextTick()
 
     expect(el.input.trix$.value).toBe('')
+  })
+}
+
+export const reset = function (elementType, elementName, options) {
+  it('should set value to default on `reset`', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          default: options.default,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.update(options.value)
+
+    el.reset()
+
+    expect(el.value).toStrictEqual(options.default)
+
+    await nextTick()
+
+    expect(el.input.trix$.value).toBe(options.default)
+  })
+
+  it('should reset validators on `reset`', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          rules: 'required'
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.validate()
+
+    await flushPromises()
+
+    el.reset()
+
+    expect(el.validated).toBe(false)
+    expect(el.invalid).toBe(false)
   })
 }

@@ -701,41 +701,41 @@ const multilingual = function(props, context, dependencies, options = {})
 
 const multifile = function(props, context, dependencies, options = {})
 {
-  const {
-    filtered,
-    next,
-    data,
-    add,
-    insert,
-    remove,
-    load,
-    update,
-    clear,
-    reset,
-    updated,
-    handleAdd,
-    handleRemove,
-    setInitialInstances,
-    prepare,
-  } = list(props, context, dependencies, options)
+  // const {
+  //   filtered,
+  //   next,
+  //   data,
+  //   add,
+  //   insert,
+  //   remove,
+  //   load,
+  //   update,
+  //   clear,
+  //   reset,
+  //   updated,
+  //   handleAdd,
+  //   handleRemove,
+  //   setInitialInstances,
+  //   prepare,
+  // } = list(props, context, dependencies, options)
 
-  return {
-    filtered,
-    next,
-    data,
-    add,
-    insert,
-    remove,
-    load,
-    update,
-    clear,
-    reset,
-    updated,
-    handleAdd,
-    handleRemove,
-    setInitialInstances,
-    prepare,
-  }
+  // return {
+  //   filtered,
+  //   next,
+  //   data,
+  //   add,
+  //   insert,
+  //   remove,
+  //   load,
+  //   update,
+  //   clear,
+  //   reset,
+  //   updated,
+  //   handleAdd,
+  //   handleRemove,
+  //   setInitialInstances,
+  //   prepare,
+  // }
 }
 
 const trix = function(props, context, dependencies)
@@ -743,12 +743,10 @@ const trix = function(props, context, dependencies)
   const {
     data,
     filtered,
-    changed,
     load,
     update,
     clear,
     reset,
-    updated,
     prepare
   } = base(props, context, dependencies, {
     setValue: (val) => {
@@ -768,10 +766,8 @@ const trix = function(props, context, dependencies)
   return {
     data,
     filtered,
-    changed,
     load,
     update,
-    updated,
     clear,
     reset,
     prepare,
@@ -780,50 +776,50 @@ const trix = function(props, context, dependencies)
 
 const ttrix = function(props, context, dependencies)
 {
-  const {
-    data,
-    filtered,
-    changed,
-    load,
-    update,
-    clear,
-    reset,
-    updated,
-    prepare
-  } = multilingual(props, context, dependencies, {
-    setValue: (val) => {
-      value.value = val
+  // const {
+  //   data,
+  //   filtered,
+  //   changed,
+  //   load,
+  //   update,
+  //   clear,
+  //   reset,
+  //   updated,
+  //   prepare
+  // } = multilingual(props, context, dependencies, {
+  //   setValue: (val) => {
+  //     value.value = val
 
-      nextTick(() => {
-        input.value.update(val[language.value])
-      })
-    }
-  })
+  //     nextTick(() => {
+  //       input.value.update(val[language.value])
+  //     })
+  //   }
+  // })
 
-  // ============ DEPENDENCIES =============
+  // // ============ DEPENDENCIES =============
 
-  const input = dependencies.input
-  const model = dependencies.model
-  const value = dependencies.value
-  const language = dependencies.language
+  // const input = dependencies.input
+  // const model = dependencies.model
+  // const value = dependencies.value
+  // const language = dependencies.language
 
-  // ============== WATCHERS ==============
+  // // ============== WATCHERS ==============
 
-  watch(language, () => {
-    input.value.update(model.value)
-  })
+  // watch(language, () => {
+  //   input.value.update(model.value)
+  // })
 
-  return {
-    data,
-    filtered,
-    changed,
-    load,
-    update,
-    updated,
-    clear,
-    reset,
-    prepare,
-  }
+  // return {
+  //   data,
+  //   filtered,
+  //   changed,
+  //   load,
+  //   update,
+  //   updated,
+  //   clear,
+  //   reset,
+  //   prepare,
+  // }
 }
 
 export {

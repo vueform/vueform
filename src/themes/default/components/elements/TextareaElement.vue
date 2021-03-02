@@ -18,8 +18,7 @@
         />
 
         <textarea
-          :value="model"
-          @input="handleInput"
+          :value="value"
           :name="name"
           :id="fieldId"
           :class="classes.textarea"
@@ -27,6 +26,7 @@
           :disabled="isDisabled"
           :readonly="readonly"
           :rows="rows"
+          @input="handleInput"
           ref="input"
         />
 

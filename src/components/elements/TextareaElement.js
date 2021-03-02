@@ -31,175 +31,40 @@ export default {
   emits: ['change'],
   slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after', 'addonBefore', 'addonAfter'],
   props: {
-    name: {
-      required: true,
-      type: [String, Number],
-    },
-    inline: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    layout: {
-      required: false,
-      type: [String, Object, Boolean],
-      default: 'ElementLayout'
-    },
-    addons: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    autogrow: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    rows: {
-      required: false,
-      type: [Number],
-      default: 3
-    },
-    type: {
-      required: false,
-      type: [String],
-      default: 'textarea'
-    },
-    addClass: {
-      required: false,
-      type: [String, Array, Object],
-      default: null
-    },
-    overrideClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    addClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    columns: {
-      required: false,
-      type: [Object, String],
-      default: null
-    },
-    overrideComponents: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    conditions: {
-      required: false,
-      type: [Array],
-      default: () => ([])
-    },
-    formatData: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    formatLoad: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    submit: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    debounce: {
-      required: false,
-      type: [Number],
-      default: null
-    },
-    default: {
-      required: false,
-      type: [String, Number],
-      default: null
-    },
-    description: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    disabled: {
-      required: false,
-      type: [Boolean],
-      default: false
-    },
-    floating: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    id: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    info: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    label: {
-      required: false,
-      type: [String, Object, Function],
-      default: null
-    },
-    placeholder: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    readonly: {
-      required: false,
-      type: [Boolean],
-      default: false
-    },
-    before: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    between: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    after: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    slots: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    rules: {
-      required: false,
-      type: [Array, String, Object],
-      default: null
-    },
-    messages: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    displayError: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    onChange: {
-      required: false,
-      type: [Function],
-      default: null,
-    },
+    name: { required: true, type: [String, Number], },
+    inline: { required: false, type: [Boolean], default: false, },
+    layout: { required: false, type: [String, Object, Boolean], default: 'ElementLayout' },
+    addons: { required: false, type: [Object], default: () => ({}) },
+    autogrow: { required: false, type: [Boolean], default: true },
+    rows: { required: false, type: [Number], default: 3 },
+    type: { required: false, type: [String], default: 'textarea' },
+    addClass: { required: false, type: [String, Array, Object], default: null },
+    overrideClasses: { required: false, type: [Object], default: () => ({}) },
+    addClasses: { required: false, type: [Object], default: () => ({}) },
+    columns: { required: false, type: [Object, String], default: null },
+    overrideComponents: { required: false, type: [Object], default: () => ({}) },
+    conditions: { required: false, type: [Array], default: () => ([]) },
+    formatData: { required: false, type: [Function], default: null },
+    formatLoad: { required: false, type: [Function], default: null },
+    submit: { required: false, type: [Boolean], default: true },
+    debounce: { required: false, type: [Number], default: null },
+    default: { required: false, type: [String, Number], default: null },
+    description: { required: false, type: [String], default: null },
+    disabled: { required: false, type: [Boolean], default: false },
+    floating: { required: false, type: [String], default: null },
+    id: { required: false, type: [String], default: null },
+    info: { required: false, type: [String], default: null },
+    label: { required: false, type: [String, Object, Function], default: null },
+    placeholder: { required: false, type: [String], default: null },
+    readonly: { required: false, type: [Boolean], default: false },
+    before: { required: false, type: [Object, String, Number], default: null },
+    between: { required: false, type: [Object, String, Number], default: null },
+    after: { required: false, type: [Object, String, Number], default: null },
+    slots: { required: false, type: [Object], default: () => ({}) },
+    rules: { required: false, type: [Array, String, Object], default: null },
+    messages: { required: false, type: [Object], default: () => ({}) },
+    displayError: { required: false, type: [Boolean], default: true },
+    onChange: { required: false, type: [Function], default: null, },
   },
   setup(props, context) {
     const form$ = useForm$(props, context)
@@ -216,15 +81,18 @@ export default {
       form$: form$.form$,
     })
 
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change'
+      ],
+    })
+
     const default_ = useDefault(props, context, {
       nullValue: nullValue.nullValue,
       form$: form$.form$,
       path: path.path,
-    })
-
-    const value = useValue(props, context, {
-      nullValue: nullValue.nullValue,
-      defaultValue: default_.defaultValue,
     })
 
     const conditions = useConditions(props, context, {
@@ -237,27 +105,22 @@ export default {
       path: path.path,
     })
 
-    const events = useEvents(props, context, {
+    const value = useValue(props, context, {
+      defaultValue: default_.defaultValue,
+      path: path.path,
       form$: form$.form$,
-    }, {
-      events: [
-        'change'
-      ],
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     const data = useData(props, context, {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      clean: validation.clean,
-      validate: validation.validate,
       resetValidators: validation.resetValidators,
-      fire: events.fire,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      dirt: validation.dirt,
     })
 
     const empty = useEmpty(props, context, {
@@ -298,19 +161,12 @@ export default {
       slots: [
         'label', 'info', 'description', 'error',
         'message', 'before', 'between', 'after',
-        'addonBefore', 'addonAfter'
+        'addonBefore', 'addonAfter',
       ]
     })
 
     const handleInput = useHandleInput(props, context, {
-      form$: form$.form$,
-      model: value.model,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      changed: data.changed,
-      dirt: validation.dirt,
-      validate: validation.validate,
-      fire: events.fire,
+      value: value.value,
     })
 
     const autogrow = useAutogrow(props, context, {

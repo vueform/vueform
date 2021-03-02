@@ -1,4 +1,4 @@
-import { createForm, testPropDefault } from 'test-helpers'
+import { createForm } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 export const data = function (elementType, elementName, options) {
@@ -199,7 +199,7 @@ export const reset = function (elementType, elementName, options) {
 
     el.reset()
 
-    expect(el.value).toStrictEqual(el.defaultValue)
+    expect(el.value).toStrictEqual(options.default)
   })
 
   it('should reset validators on `reset`', async () => {

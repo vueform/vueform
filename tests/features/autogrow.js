@@ -68,7 +68,7 @@ export const autosize = function (elementType, elementName, options) {
 
     expect(autosizeMock).not.toHaveBeenCalled()
 
-    form.vm.schema.el.autogrow = true
+    form.vm.laraform.schema.el.autogrow = true
 
     await nextTick()
 
@@ -93,7 +93,7 @@ export const autosize = function (elementType, elementName, options) {
 
     await nextTick()
 
-    form.vm.schema.el.autogrow = false
+    form.vm.laraform.schema.el.autogrow = false
 
     await nextTick()
 
