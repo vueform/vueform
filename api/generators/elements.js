@@ -25,7 +25,7 @@ const elements = [
   // 'tags',
   'textarea',
   'text',
-  // 'toggle',
+  'toggle',
   'trix',
   // 'tTextarea',
   // 'tText',

@@ -6,8 +6,8 @@
       <slot name="prefix"></slot>
 
       <Toggle
-        :value="model"
-        :modelValue="model"
+        :value="value"
+        :modelValue="value"
         v-bind="options"
         :name="name"
         :id="fieldId"
