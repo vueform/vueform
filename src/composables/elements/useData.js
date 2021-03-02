@@ -63,9 +63,7 @@ const base = function(props, context, dependencies, options = {})
    * @returns {void}
    */
   const load = (val, format = false) => {
-    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
-
-    setValue(formatted !== undefined ? formatted : _.clone(nullValue.value))
+    setValue(format && formatLoad.value ? formatLoad.value(val, form$.value) : val)
   }
 
   /**
@@ -84,7 +82,7 @@ const base = function(props, context, dependencies, options = {})
    * @returns {void}
    */
   const clear = () => {
-    setValue(_.clone(nullValue.value))
+    setValue(_.cloneDeep(nullValue.value))
   }
 
   /**
@@ -93,7 +91,7 @@ const base = function(props, context, dependencies, options = {})
    * @returns {void}
    */
   const reset = () => {
-    setValue(_.clone(defaultValue.value))
+    setValue(_.cloneDeep(defaultValue.value))
     resetValidators()
   }
 
