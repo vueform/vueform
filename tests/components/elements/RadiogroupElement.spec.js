@@ -2,9 +2,12 @@ import { runElementTests } from 'test-helpers'
 
 export default runElementTests('radiogroup', {
   default: {
-    value: 1,
-    value2: null,
     fieldType: 'radio',
+    value: 1,
+    value2: 2,
+    default: 3,
+    default2: 4,
+    nullValue: null,
   },
   events: {
     events: ['change'],

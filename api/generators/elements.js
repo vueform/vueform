@@ -18,7 +18,7 @@ const elements = [
   // 'multiselect',
   // 'object',
   'radio',
-  // 'radiogroup',
+  'radiogroup',
   // 'select',
   // 'slider',
   // 'static',

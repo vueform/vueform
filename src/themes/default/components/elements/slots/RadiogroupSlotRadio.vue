@@ -6,13 +6,12 @@
     >
       <input
         type="radio"
-        v-model="el$.model"
+        v-model="el$.value"
         :value="value"
         :class="el$.classes.radio"
         :name="el$.name"
         :id="`${el$.fieldId}-${value}`"
         :disabled="el$.isDisabled || el$.disabledItems.indexOf(value) !== -1"
-        @change="el$.handleChange"
       />
     
       <span>{{ item }}</span>
