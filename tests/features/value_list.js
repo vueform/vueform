@@ -451,11 +451,11 @@ export const value = function (elementType, elementName, options) {
   })
 }
 
-const testChangesObject = async (form, mocks, options, useModel, initial, app = null) => {
-  await testChanges(form, mocks, options, useModel, initial, app, 'object')
+const testChangesObject = async (form, mocks, options, updateModel, initial, app = null) => {
+  await testChanges(form, mocks, options, updateModel, initial, app, 'object')
 }
 
-const testChanges = async (form, mocks, options, useModel, initial, app = null, type = 'element') => {
+const testChanges = async (form, mocks, options, updateModel, initial, app = null, type = 'element') => {
   let {
     formChangeMock,
     elChangeMock,
@@ -487,7 +487,7 @@ const testChanges = async (form, mocks, options, useModel, initial, app = null, 
   expect(elChangeMock).not.toHaveBeenCalled()
   expect(el2ChangeMock).not.toHaveBeenCalled()
 
-  if (useModel) {
+  if (updateModel) {
     await nextTick()
 
     app.vm.$set(app.vm.data, 'el', value())
@@ -518,7 +518,7 @@ const testChanges = async (form, mocks, options, useModel, initial, app = null, 
   await nextTick()
 
   // Update the whole form
-  if (useModel) {
+  if (updateModel) {
     await nextTick()
     
     app.vm.$set(app.vm, 'data', {

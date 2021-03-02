@@ -1,356 +1,42 @@
-import { loadOptions } from '@babel/core'
-import { createForm, findAllComponents, testValue, createInlineForm } from 'test-helpers'
+import { testModelCases } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export const value = function (elementType, elementName, options) {
-  describe('no v-model', () => {
-    it('should be nullValue if no form default, no element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-      }
+  let cases = [
+    {
+      initial: { el: null, el2: null },
 
-      let form = createForm({
-        schema: baseSchema(mocks, elementType)
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-      
-      await testChanges(form, mocks, options, {
-        el: null,
-        el2: null
-      })
-    })
+      model: { el: options.default },
+      initialWithModel: { el: options.default, el2: null },
+    },
+    {
+      initial: { el: options.default, el2: options.default2, },
+      formDefault: { el: options.default, el2: options.default2, },
 
-    it('should be form default if form default, no element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-      }
+      model: { el: options.default2, },
+      initialWithModel: { el: options.default2, el2: options.default2, },
+    },
+    {
+      initial: { el: options.default, el2: options.default2, },
+      elementDefault: { el: options.default, el2: options.default2, },
 
-      let form = createForm({
-        schema: baseSchema(mocks, elementType),
-        default: {
-          el: options.default
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-      
-      await testChanges(form, mocks, options, {
-        el: options.default,
-        el2: null
-      })
-    })
+      model: { el: options.default2, },
+      initialWithModel: { el: options.default2, el2: options.default2, },
+    },
+    {
+      initial: { el: options.default2, el2: options.default2, },
+      elementDefault: { el: options.default },
+      formDefault: { el: options.default2, el2: options.default2, },
 
-    it('should be element default if no form default, element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-      }
+      model: { el: options.default, },
+      initialWithModel: { el: options.default, el2: options.default2, },
+    },
+  ]
 
-      let schema = baseSchema(mocks, elementType)
-
-      schema.el.default = options.default
-
-      let form = createForm({
-        schema,
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-      
-      await testChanges(form, mocks, options, {
-        el: options.default,
-        el2: null
-      })
-    })
-
-    it('should be element + form default if form default, element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-      }
-
-      let schema = baseSchema(mocks, elementType)
-
-      schema.el.default = options.default
-
-      let form = createForm({
-        schema,
-        default: {
-          el: options.default2,
-          el2: options.default2,
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-      
-      await testChanges(form, mocks, options, {
-        el: options.default2,
-        el2: options.default2
-      })
-    })
-  })
-
-  describe('empty v-model', () => {
-    it('should be nullValue if no form default, no element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-      }
-
-      let { app, form } = createInlineForm({
-        model: {},
-        props: {
-          schema: baseSchema(mocks, elementType)
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-      
-      await testChanges(form, mocks, options, {
-        el: null,
-        el2: null
-      }, app)
-    })
-
-    it('should be form default if form default, no element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-      }
-
-      let { app, form } = createInlineForm({
-        model: {},
-        props: {
-          schema: baseSchema(mocks, elementType),
-          default: {
-            el: options.default,
-          }
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-      
-      await testChanges(form, mocks, options, {
-        el: options.default,
-        el2: null
-      }, app)
-    })
-
-    it('should be element default if no form default, element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-      }
-
-      let schema = baseSchema(mocks, elementType)
-
-      schema.el.default = options.default
-
-      let { app, form } = createInlineForm({
-        model: {},
-        props: {
-          schema,
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-      
-      await testChanges(form, mocks, options, {
-        el: options.default,
-        el2: null
-      }, app)
-    })
-
-    it('should be element default if no form default, element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-      }
-
-      let schema = baseSchema(mocks, elementType)
-
-      schema.el.default = options.default
-
-      let { app, form } = createInlineForm({
-        model: {},
-        props: {
-          schema,
-          default: {
-            el: options.default2,
-            el2: options.default2,
-          }
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-      
-      await testChanges(form, mocks, options, {
-        el: options.default2,
-        el2: options.default2,
-      }, app)
-    })
-  })
-
-  describe('v-model with value', () => {
-    it('should be v-model value if no form default, no element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-      }
-
-      let { app, form } = createInlineForm({
-        model: {
-          el: options.default,
-          el2: options.default2,
-        },
-        props: {
-          schema: baseSchema(mocks, elementType)
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-      
-      await testChanges(form, mocks, options, {
-        el: options.default,
-        el2: options.default2,
-      }, app)
-    })
-
-    it('should be v-model value + form default if form default, no element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-      }
-
-      let { app, form } = createInlineForm({
-        model: {
-          el: options.default,
-        },
-        props: {
-          schema: baseSchema(mocks, elementType),
-          default: {
-            el: options.default2,
-            el2: options.default2,
-          }
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-      
-      await testChanges(form, mocks, options, {
-        el: options.default,
-        el2: options.default2,
-      }, app)
-    })
-
-    it('should be v-model value + element default if no form default, element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-      }
-
-      let schema = baseSchema(mocks, elementType)
-
-      schema.el.default = options.default2
-      schema.el2.default = options.default2
-
-      let { app, form } = createInlineForm({
-        model: {
-          el: options.default,
-        },
-        props: {
-          schema,
-          default: {
-            el: options.default,
-            el2: options.default2,
-          }
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-      
-      await testChanges(form, mocks, options, {
-        el: options.default,
-        el2: options.default2,
-      }, app)
-    })
-
-    it('should be v-model value + form + element default if form default, element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-      }
-
-      let schema = baseSchema(mocks, elementType)
-
-      // 3
-      schema.el.default = options.default
-      schema.el2.default = options.default2
-
-      let { app, form } = createInlineForm({
-        // 1
-        model: {
-          el: options.default,
-        },
-        props: {
-          schema,
-          // 2
-          default: {
-            el: options.default2,
-            el2: options.default2,
-          }
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-      
-      await testChanges(form, mocks, options, {
-        el: options.default,
-        el2: options.default2,
-      }, app)
-    })
-  })
+  testModelCases(cases, elementType, options, baseSchema, testChanges)
 }
 
-const testChanges = async (form, mocks, options, initial, app = null) => {
+const testChanges = async (form, mocks, options, updateModel, initial, app = null) => {
   let {
     formChangeMock,
     elChangeMock,
@@ -375,7 +61,13 @@ const testChanges = async (form, mocks, options, initial, app = null) => {
   expect(el2ChangeMock).not.toHaveBeenCalled()
 
   // Update an element
-  el.update(options.value)
+  if (updateModel) {
+    await nextTick()
+
+    app.vm.$set(app.vm.data, 'el', options.value)
+  } else {
+    el.update(options.value)
+  }
 
   // Element and form should change instantly
   expect(el.value).toStrictEqual(options.value)
@@ -399,10 +91,21 @@ const testChanges = async (form, mocks, options, initial, app = null) => {
   await nextTick()
 
   // Update the whole form
-  form.vm.update({
-    el: options.value2,
-    el2: options.value,
-  })
+  if (updateModel) {
+    await nextTick()
+
+    app.vm.$set(app.vm, 'data', {
+      el: options.value2,
+      el2: options.value,
+    })
+
+    await nextTick()
+  } else {
+    form.vm.update({
+      el: options.value2,
+      el2: options.value,
+    })
+  }
 
   // Element and form should change instantly
   expect(el.value).toStrictEqual(options.value2)
