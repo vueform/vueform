@@ -26,9 +26,7 @@ const base = function(props, context, dependencies)
     const values = _.clone(value.value)
 
     _.each(items, (item) => {
-      item = String(item)
-      
-      if (values.indexOf(item) === -1) {
+      if (values.indexOf(String(item)) === -1 && values.indexOf(Number(item)) === -1) {
         values.push(item)
       }
     })
@@ -50,9 +48,11 @@ const base = function(props, context, dependencies)
     const values = _.clone(value.value)
 
     _.each(items, (item) => {
-      item = String(item)
-      
-      var index = values.indexOf(item)
+      let index = values.indexOf(String(item))
+
+      if (index === -1) {
+        index = values.indexOf(Number(item))
+      }
 
       if (index !== -1) {
         values.splice(index, 1)

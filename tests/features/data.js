@@ -119,7 +119,7 @@ export const load = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     el.load(options.value)
-    expect(el.value).toBe(options.value)
+    expect(el.value).toStrictEqual(options.value)
   })
 
   it('should should format data if "formatLoad" is set on `load`', async () => {
@@ -159,7 +159,7 @@ export const update = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     el.update(options.value)
-    expect(el.value).toBe(options.value)
+    expect(el.value).toStrictEqual(options.value)
   })
 }
 

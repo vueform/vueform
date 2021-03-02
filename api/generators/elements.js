@@ -6,7 +6,7 @@ const elements = [
   // 'address',
   // 'button',
   'checkbox',
-  // 'checkboxgroup',
+  'checkboxgroup',
   // 'date',
   // 'dates',
   // 'file',
