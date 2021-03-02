@@ -7,6 +7,7 @@ export default runElementTests('trix', {
     default2: '<div>default2</div>',
     value: '<div>value</div>',
     value2: '<div>value2</div>',
+    nullValue: null,
   },
   events: {
     events: ['change', 'error']

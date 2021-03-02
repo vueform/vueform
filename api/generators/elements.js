@@ -5,7 +5,7 @@ const featuresPath = '/src/components/elements'
 const elements = [
   // 'address',
   // 'button',
-  // 'checkbox',
+  'checkbox',
   // 'checkboxgroup',
   // 'date',
   // 'dates',

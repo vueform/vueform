@@ -4,10 +4,10 @@ import { nextTick } from 'vue'
 export const value = function (elementType, elementName, options) {
   let cases = [
     {
-      initial: { el: null, el2: null },
+      initial: { el: options.nullValue, el2: options.nullValue },
 
       model: { el: options.default },
-      initialWithModel: { el: options.default, el2: null },
+      initialWithModel: { el: options.default, el2: options.nullValue },
     },
     {
       initial: { el: options.default, el2: options.default2, },

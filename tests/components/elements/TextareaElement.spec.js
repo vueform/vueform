@@ -7,6 +7,7 @@ export default runElementTests('textarea', {
     default2: 'default2',
     value: 'value',
     value2: 'value2',
+    nullValue: null,
   },
   events: {
     events: ['change'],
