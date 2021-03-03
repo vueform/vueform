@@ -16,7 +16,7 @@ const elements = [
   // 'location',
   // 'multifile',
   'multiselect',
-  // 'object',
+  'object',
   'radio',
   'radiogroup',
   'select',

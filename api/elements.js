@@ -1441,6 +1441,205 @@ export default {
       }
     }
   },
+  "object": {
+    "features": [
+      "baseElement",
+      "children_object",
+      "classes",
+      "columns",
+      "components",
+      "conditions",
+      "data_object",
+      "default",
+      "elements",
+      "events",
+      "form$",
+      "genericName",
+      "label",
+      "layout",
+      "nullValue_object",
+      "path",
+      "slots",
+      "theme",
+      "validation_object",
+      "value",
+      "view",
+      "watchValue"
+    ],
+    "slots": [
+      "label",
+      "info",
+      "description",
+      "message",
+      "before",
+      "between",
+      "after"
+    ],
+    "events": [
+      "change"
+    ],
+    "props": {
+      "name": {
+        "required": "true",
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "schema": {
+        "required": "false",
+        "types": [
+          "object",
+          "array"
+        ]
+      },
+      "embed": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "layout": {
+        "required": "false",
+        "types": [
+          "string",
+          "object",
+          "boolean"
+        ]
+      },
+      "type": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "addClass": {
+        "required": "false",
+        "types": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "overrideClasses": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "addClasses": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "columns": {
+        "required": "false",
+        "types": [
+          "object",
+          "string"
+        ]
+      },
+      "overrideComponents": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "conditions": {
+        "required": "false",
+        "types": [
+          "array"
+        ]
+      },
+      "formatData": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "formatLoad": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "submit": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "default": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "description": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "info": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "label": {
+        "required": "false",
+        "types": [
+          "string",
+          "object",
+          "function"
+        ]
+      },
+      "before": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "between": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "after": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "slots": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      }
+    }
+  },
   "radio": {
     "features": [
       "baseElement",

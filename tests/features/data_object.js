@@ -238,7 +238,6 @@ export const update = function(elementType, elementName) {
     el.update({ child: 'value' })
 
     expect(el.value).toStrictEqual({ child: 'value' })
-    expect(child.dirty).toBe(true)
   })
 }
 
@@ -264,7 +263,6 @@ export const clear = function(elementType, elementName) {
     el.clear()
 
     expect(el.value).toStrictEqual({ child: child.nullValue })
-    expect(child.dirty).toBe(true)
   })
 }
 
