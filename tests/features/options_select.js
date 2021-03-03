@@ -15,12 +15,12 @@ export const isNative = function (elementType, elementName, options) {
     
     expect(el.isNative).toBe(true)
 
-    el.$set(form.vm.schema.el, 'native', false)
+    el.$set(form.vm.laraform.schema.el, 'native', false)
     await nextTick()
     expect(el.isNative).toBe(false)
 
-    el.$set(form.vm.schema.el, 'native', true)
-    el.$set(form.vm.schema.el, 'search', true)
+    el.$set(form.vm.laraform.schema.el, 'native', true)
+    el.$set(form.vm.laraform.schema.el, 'search', true)
     await nextTick()
     expect(el.isNative).toBe(false)
   })

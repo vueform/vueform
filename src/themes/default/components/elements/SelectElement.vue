@@ -12,13 +12,12 @@
 
       <select
         v-if="isNative"
-        v-model="model"
+        v-model="value"
         :class="classes.select"
         :name="name"
         :id="fieldId"
         :multiple="fieldOptions.mode === 'multiple'"
         :disabled="isDisabled"
-        @change="handleChange"
         ref="input"
       >
         <option
@@ -32,14 +31,12 @@
       <Multiselect
         v-else
         v-bind="fieldOptions"
-        :value="model"
-        :modelValue="model"
+        v-model="value"
         :id="fieldId"
         :name="name"
         :options="items"
         :disabled="isDisabled"
         :placeholder="placeholder"
-        @input="handleInput"
         @select="handleSelect"
         @deselect="handleDeselect"
         @search-change="handleSearchChange"

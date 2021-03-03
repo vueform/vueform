@@ -19,7 +19,7 @@ const elements = [
   // 'object',
   'radio',
   'radiogroup',
-  // 'select',
+  'select',
   // 'slider',
   'static',
   // 'tags',

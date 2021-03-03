@@ -2,10 +2,12 @@ import { createForm, findAllComponents, findAll, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 
-export { currentValue, previousValue, value, rendering } from './value'
+import { value as baseValue } from './value'
 
-export const model = function (elementType, elementName, options) {
-  it('should model be equal to selected option\'s value when items are an array & native=true', async () => {
+export const value = function (elementType, elementName, options) {
+  baseValue(elementType, elementName, options)
+
+  it('should value be equal to selected option\'s value when items are an array & native=true', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -23,22 +25,22 @@ export const model = function (elementType, elementName, options) {
     let options = findAll(select, `option`)
 
     // Default value
-    expect(el.model).toBe(0)
+    expect(el.value).toBe(0)
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
 
     // Loaded value
     el.load(1)
-    expect(el.model).toBe(1)
+    expect(el.value).toBe(1)
     await nextTick()
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
 
     // Selected value
     options.at(2).setSelected()
-    expect(el.model).toBe(2)
+    expect(el.value).toBe(2)
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
   })
 
-  it('should model be equal to selected option\'s value when items are an object & native=true', async () => {
+  it('should value be equal to selected option\'s value when items are an object & native=true', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -56,22 +58,22 @@ export const model = function (elementType, elementName, options) {
     let options = findAll(select, `option`)
 
     // Default value
-    expect(el.model).toBe(0)
+    expect(el.value).toBe(0)
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
 
     // Loaded value
     el.load(1)
-    expect(el.model).toBe(1)
+    expect(el.value).toBe(1)
     await nextTick()
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
 
     // Selected value
     options.at(2).setSelected()
-    expect(el.model).toBe(2)
+    expect(el.value).toBe('2')
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
   })
 
-  it('should model be equal to selected option\'s value when items are an array of objects & native=true', async () => {
+  it('should value be equal to selected option\'s value when items are an array of objects & native=true', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -93,22 +95,22 @@ export const model = function (elementType, elementName, options) {
     let options = findAll(select, `option`)
 
     // Default value
-    expect(el.model).toBe(0)
+    expect(el.value).toBe(0)
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
 
     // Loaded value
     el.load(1)
-    expect(el.model).toBe(1)
+    expect(el.value).toBe(1)
     await nextTick()
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
 
     // Selected value
     options.at(2).setSelected()
-    expect(el.model).toBe(2)
+    expect(el.value).toBe(2)
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
   })
 
-  it('should model be equal to selected option\'s value when items are async & native=true', async () => {
+  it('should value be equal to selected option\'s value when items are async & native=true', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -132,22 +134,22 @@ export const model = function (elementType, elementName, options) {
     let options = findAll(select, `option`)
 
     // Default value
-    expect(el.model).toBe(0)
+    expect(el.value).toBe(0)
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
 
     // Loaded value
     el.load(1)
-    expect(el.model).toBe(1)
+    expect(el.value).toBe(1)
     await nextTick()
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
 
     // Selected value
     options.at(2).setSelected()
-    expect(el.model).toBe(2)
+    expect(el.value).toBe(2)
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
   })
 
-  it('should model be equal to selected option\'s value when items are an array & native=false', async () => {
+  it('should value be equal to selected option\'s value when items are an array & native=false', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -165,13 +167,13 @@ export const model = function (elementType, elementName, options) {
     let select = el.input
 
     // Default value
-    expect(el.model).toBe(0)
+    expect(el.value).toBe(0)
     expect(select.externalValue).toBe(0)
     expect(select.internalValue).toStrictEqual({ value: 0, label: 1 })
 
     // Loaded value
     el.load(1)
-    expect(el.model).toBe(1)
+    expect(el.value).toBe(1)
     await nextTick()
     expect(select.externalValue).toBe(1)
     expect(select.internalValue).toStrictEqual({ value: 1, label: 2 })
@@ -185,7 +187,7 @@ export const model = function (elementType, elementName, options) {
     destroy(form)
   })
 
-  it('should model be equal to selected option\'s value when items are an object & native=false', async () => {
+  it('should value be equal to selected option\'s value when items are an object & native=false', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -203,13 +205,13 @@ export const model = function (elementType, elementName, options) {
     let select = el.input
 
     // Default value
-    expect(el.model).toBe(0)
+    expect(el.value).toBe(0)
     expect(select.externalValue).toBe(0)
     expect(select.internalValue).toStrictEqual({ value: '0', label: 1 })
 
     // Loaded value
     el.load(1)
-    expect(el.model).toBe(1)
+    expect(el.value).toBe(1)
     await nextTick()
     expect(select.externalValue).toBe(1)
     expect(select.internalValue).toStrictEqual({ value: '1', label: 2 })
@@ -217,13 +219,13 @@ export const model = function (elementType, elementName, options) {
     // Selected value
     select.handleOptionClick({ value: '2', label: 3 })
     await nextTick()
-    expect(select.externalValue).toBe(2)
+    expect(select.externalValue).toBe('2')
     expect(select.internalValue).toStrictEqual({ value: '2', label: 3 })
 
     destroy(form)
   })
 
-  it('should model be equal to selected option\'s value when items are an array of objects & native=false', async () => {
+  it('should value be equal to selected option\'s value when items are an array of objects & native=false', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -245,13 +247,13 @@ export const model = function (elementType, elementName, options) {
     let select = el.input
 
     // Default value
-    expect(el.model).toBe(0)
+    expect(el.value).toBe(0)
     expect(select.externalValue).toBe(0)
     expect(select.internalValue).toStrictEqual({ value: 0, label: 1 })
 
     // Loaded value
     el.load(1)
-    expect(el.model).toBe(1)
+    expect(el.value).toBe(1)
     await nextTick()
     expect(select.externalValue).toBe(1)
     expect(select.internalValue).toStrictEqual({ value: 1, label: 2 })
@@ -265,7 +267,7 @@ export const model = function (elementType, elementName, options) {
     destroy(form)
   })
 
-  it('should model be equal to selected option\'s value when items are async & native=false', async () => {
+  it('should value be equal to selected option\'s value when items are async & native=false', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -289,13 +291,13 @@ export const model = function (elementType, elementName, options) {
     let select = el.input
 
     // Default value
-    expect(el.model).toBe(0)
+    expect(el.value).toBe(0)
     expect(select.externalValue).toBe(0)
     expect(select.internalValue).toStrictEqual({ value: 0, label: 1 })
 
     // Loaded value
     el.load(1)
-    expect(el.model).toBe(1)
+    expect(el.value).toBe(1)
     await nextTick()
     expect(select.externalValue).toBe(1)
     expect(select.internalValue).toStrictEqual({ value: 1, label: 2 })
@@ -309,7 +311,7 @@ export const model = function (elementType, elementName, options) {
     destroy(form)
   })
 
-  it('should model be equal to selected option\'s value when items are an array & native=false object=true', async () => {
+  it('should value be equal to selected option\'s value when items are an array & native=false object=true', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -330,13 +332,13 @@ export const model = function (elementType, elementName, options) {
     let select = el.input
 
     // Default value
-    expect(el.model).toStrictEqual({ value: 0, label: 1 })
+    expect(el.value).toStrictEqual({ value: 0, label: 1 })
     expect(select.externalValue).toStrictEqual({ value: 0, label: 1 })
     expect(select.internalValue).toStrictEqual({ value: 0, label: 1 })
 
     // Loaded value
     el.load({ value: 1, label: 2 })
-    expect(el.model).toStrictEqual({ value: 1, label: 2 })
+    expect(el.value).toStrictEqual({ value: 1, label: 2 })
     await nextTick()
     expect(select.externalValue).toStrictEqual({ value: 1, label: 2 })
     expect(select.internalValue).toStrictEqual({ value: 1, label: 2 })
@@ -350,7 +352,7 @@ export const model = function (elementType, elementName, options) {
     destroy(form)
   })
 
-  it('should model be equal to selected option\'s value when items are an object & native=false object=true', async () => {
+  it('should value be equal to selected option\'s value when items are an object & native=false object=true', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -371,13 +373,13 @@ export const model = function (elementType, elementName, options) {
     let select = el.input
 
     // Default value
-    expect(el.model).toStrictEqual({ value: '0', label: 1 })
+    expect(el.value).toStrictEqual({ value: '0', label: 1 })
     expect(select.externalValue).toStrictEqual({ value: '0', label: 1 })
     expect(select.internalValue).toStrictEqual({ value: '0', label: 1 })
 
     // Loaded value
     el.load({ value: '1', label: 2 })
-    expect(el.model).toStrictEqual({ value: '1', label: 2 })
+    expect(el.value).toStrictEqual({ value: '1', label: 2 })
     await nextTick()
     expect(select.externalValue).toStrictEqual({ value: '1', label: 2 })
     expect(select.internalValue).toStrictEqual({ value: '1', label: 2 })
@@ -391,7 +393,7 @@ export const model = function (elementType, elementName, options) {
     destroy(form)
   })
 
-  it('should model be equal to selected option\'s value when items are an array of objects & native=false object=true', async () => {
+  it('should value be equal to selected option\'s value when items are an array of objects & native=false object=true', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -417,13 +419,13 @@ export const model = function (elementType, elementName, options) {
     let select = el.input
 
     // Default value
-    expect(el.model).toStrictEqual({ v: 0, label: 1 })
+    expect(el.value).toStrictEqual({ v: 0, label: 1 })
     expect(select.externalValue).toStrictEqual({ v: 0, label: 1 })
     expect(select.internalValue).toStrictEqual({ v: 0, label: 1 })
 
     // Loaded value
     el.load({ v: 1, label: 2 })
-    expect(el.model).toStrictEqual({ v: 1, label: 2 })
+    expect(el.value).toStrictEqual({ v: 1, label: 2 })
     await nextTick()
     expect(select.externalValue).toStrictEqual({ v: 1, label: 2 })
     expect(select.internalValue).toStrictEqual({ v: 1, label: 2 })
@@ -437,7 +439,7 @@ export const model = function (elementType, elementName, options) {
     destroy(form)
   })
 
-  it('should model be equal to selected option\'s value when items are async & native=false object=true', async () => {
+  it('should value be equal to selected option\'s value when items are async & native=false object=true', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -464,13 +466,13 @@ export const model = function (elementType, elementName, options) {
     let select = el.input
 
     // Default value
-    expect(el.model).toStrictEqual({ value: 0, label: 1 })
+    expect(el.value).toStrictEqual({ value: 0, label: 1 })
     expect(select.externalValue).toStrictEqual({ value: 0, label: 1 })
     expect(select.internalValue).toStrictEqual({ value: 0, label: 1 })
 
     // Loaded value
     el.load({ value: 1, label: 2 })
-    expect(el.model).toStrictEqual({ value: 1, label: 2 })
+    expect(el.value).toStrictEqual({ value: 1, label: 2 })
     await nextTick()
     expect(select.externalValue).toStrictEqual({ value: 1, label: 2 })
     expect(select.internalValue).toStrictEqual({ value: 1, label: 2 })
