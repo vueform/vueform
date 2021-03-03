@@ -10,14 +10,14 @@
       />
       
       <FlatpickrWrapper
-        :value="value"
+        :value="model"
         :options="fieldOptions"
         :id="fieldId"
         :class="classes.input"
         :placeholder="placeholder"
         :disabled="isDisabled"
         :readonly="readonly"
-        @input="handleInput"
+        @change="handleChange"
         ref="input"
       />
 

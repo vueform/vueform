@@ -1,7 +1,8 @@
 import { createForm } from 'test-helpers'
+import { nextTick } from 'composition-api'
 
 export const handleChange = function (elementType, elementName, options) {
-  it('should set value on change', () => {
+  it('should set value on change', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -17,7 +18,13 @@ export const handleChange = function (elementType, elementName, options) {
       case 'toggle':
         el.input.update(options.value)
         break
+
+      case 'date':
+        el.input.update([options.value])
+        break
     }
+
+    await nextTick()
 
     expect(el.value).toBe(options.value)
   })

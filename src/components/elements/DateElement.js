@@ -20,12 +20,11 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
 import useDateFormat from './../../composables/elements/useDateFormat'
-import useHandleInput from './../../composables/elements/useHandleInput'
+import useHandleChange from './../../composables/elements/useHandleChange'
 import useWatchValue from './../../composables/elements/useWatchValue'
-
-import useData from './../../composables/elements/useData'
 import useDefault from './../../composables/elements/useDefault'
 
+import { date as useData } from './../../composables/elements/useData'
 import { date as useValue } from './../../composables/elements/useValue'
 import { date as useOptions } from './../../composables/elements/useOptions'
 
@@ -150,7 +149,7 @@ export default {
     },
     loadFormat: {
       required: false,
-      type: [String, Boolean],
+      type: [String],
       default: null
     },
     date: {
@@ -280,6 +279,7 @@ export default {
     const default_ = useDefault(props, context, {
       form$: form$.form$,
       nullValue: nullValue.nullValue,
+      path: path.path,
       valueDateFormat: dateFormat.valueDateFormat,
     })
 
@@ -355,7 +355,7 @@ export default {
       ]
     })
 
-    const handleInput = useHandleInput(props, context, {
+    const handleChange = useHandleChange(props, context, {
       value: value.value,
     })
     
@@ -398,7 +398,7 @@ export default {
       ...nullValue,
       ...options,
       ...dateFormat,
-      ...handleInput,
+      ...handleChange,
     }
   } 
 }

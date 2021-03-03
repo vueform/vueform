@@ -302,31 +302,16 @@ const date = function(props, context, dependencies)
   const {
     data,
     filtered,
-    changed,
     update,
     clear,
     reset,
     prepare
-  } = base(props, context, dependencies, {
-    setValue: (val) => {
-      if (_.isEmpty(val) && !(val instanceof Date)) {
-        value.value =  _.clone(nullValue.value)
-        return
-      }
-
-      checkDateFormat(valueDateFormat.value, val)
-
-      value.value = val instanceof Date ? val : moment(val, valueDateFormat.value).toDate()
-    }
-  })
+  } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
 
   const form$ = dependencies.form$
-  const nullValue = dependencies.nullValue
   const value = dependencies.value
-  const available = dependencies.available
-  const valueDateFormat = dependencies.valueDateFormat
   const loadDateFormat = dependencies.loadDateFormat
 
   // =============== METHODS ===============
@@ -334,23 +319,16 @@ const date = function(props, context, dependencies)
   const load = (val, format = false) => {
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
 
-    if (!formatted === undefined || (_.isEmpty(formatted) && !(formatted instanceof Date))) {
-      value.value =  _.clone(nullValue.value)
-      return
-    }
-
     checkDateFormat(loadDateFormat.value, formatted)
 
-    value.value = formatted instanceof Date ? formatted : moment(formatted, loadDateFormat.value).toDate()
+    value.value = formatted instanceof Date || !formatted ? formatted : moment(formatted, loadDateFormat.value).toDate()
   }
 
   return {
     data,
     filtered,
-    changed,
     load,
     update,
-    updated,
     clear,
     reset,
     prepare,

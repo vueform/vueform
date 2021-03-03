@@ -225,19 +225,4 @@ export const valueDateFormat = function (elementType, elementName, options) {
 export const loadDateFormat = function (elementType, elementName, options) {
   testDefinition(elementType, 'loadFormat', 'loadDateFormat')
   testDefaults(elementType, 'loadFormat', 'loadDateFormat')
-
-  it('should be false if displayFormat is false', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          loadFormat: false
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.loadFormat).toBe(false)
-  })
 }

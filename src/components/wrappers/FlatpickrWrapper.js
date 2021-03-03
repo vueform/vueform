@@ -4,6 +4,7 @@ import 'flatpickr/dist/themes/light.css'
 
 export default {
   name: 'FlatpickrWrapper',
+  emits: ['change'],
   setup(props, context) {
     return {
       ...useElementComponent(props, context),
@@ -76,11 +77,7 @@ export default {
   },
   methods: {
     update(value) {
-      this.$emit('input', {
-        target: {
-          value: this.mode == 'single' ? (value[0] || null) : value
-        }
-      })
+      this.$emit('change', this.mode == 'single' ? (value[0] || null) : value)
     },
     $_setFlatpickrId() {
       this.flatpickr$.input.parentElement.id = 'flatpickr-' + this.id

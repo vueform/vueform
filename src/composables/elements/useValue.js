@@ -1,4 +1,5 @@
 import { computed, ref, watch, toRefs, onMounted } from 'composition-api'
+import { textChangeRangeIsUnchanged } from 'typescript'
 import checkDateFormat from '../../utils/checkDateFormat'
 import normalize from './../../utils/normalize'
 
@@ -53,13 +54,28 @@ const date = function(props, context, dependencies)
         return _.get(form$.value.model, path.value)
       },
       set(val) {
-        form$.value.updateModel(path.value, val && val instanceof Date ? moment(val).format(valueDateFormat.value) : val)
+        // If the value is not a Date object check if it is matching the value format
+        if (!_.isEmpty(val) && !(val instanceof Date) && valueDateFormat.value !== false) {
+          checkDateFormat(valueDateFormat.value, val)
+        }
+
+        form$.value.updateModel(path.value, val && val instanceof Date && valueDateFormat.value !== false
+          ? moment(val).format(valueDateFormat.value)
+          : val
+        )
       }
     }
   })
 
+  // ============== COMPUTED ===============
+
+  const model = computed(() => {
+    return value.value instanceof Date || !value.value ? value.value : moment(value.value, valueDateFormat.value).toDate()
+  })
+
   return {
     value,
+    model,
   }
 }
 

@@ -2,13 +2,12 @@ import { runElementTests } from 'test-helpers'
 
 export default runElementTests('date', {
   default: {
-    value: '2020-12-30',
-    value2: '30-12-2020',
-    loadFormat: 'YYYY-MM-DD',
-    loadFormat2: 'DD-MM-YYYY',
-    valueFormat: 'YYYY-MM-DD',
-    valueFormat2: 'DD-MM-YYYY',
-    fieldType: 'input',
+    fieldType: 'date',
+    default: '2020-12-24',
+    default2: '2020-12-25',
+    value: '2020-12-26',
+    value2: '2020-12-27',
+    nullValue: null,
   },
   events: {
     events: ['change']

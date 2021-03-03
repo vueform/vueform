@@ -66,7 +66,7 @@ const base = function(props, context, dependencies)
    * @private
    */
   const valueDateFormat = computed(() => {
-    return valueFormat.value !== null ? valueFormat.value : defaultFormat.value
+    return valueFormat.value !== null || valueFormat.value === false ? valueFormat.value : defaultFormat.value
   })
 
   /**
