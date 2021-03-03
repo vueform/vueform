@@ -19,6 +19,7 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useHandleInput from './../../composables/elements/useHandleInput'
 import useLanguages from './../../composables/elements/useLanguages'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { multilingual as useValue } from './../../composables/elements/useValue'
 import { multilingual as useData } from './../../composables/elements/useData'
@@ -333,6 +334,13 @@ export default {
       form$: form$.form$,
       input: input.input,
       value: value.value,
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

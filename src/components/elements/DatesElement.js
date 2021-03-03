@@ -17,6 +17,7 @@ import useSlots from './../../composables/elements/useSlots'
 import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { dates as useValue } from './../../composables/elements/useValue'
 import { dates as useData } from './../../composables/elements/useData'
@@ -348,6 +349,13 @@ export default {
       dirt: validation.dirt,
       validate: validation.validate,
       fire: events.fire,
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

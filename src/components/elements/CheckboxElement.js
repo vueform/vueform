@@ -21,6 +21,7 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useToggle from './../../composables/elements/useToggle'
 import useValue from './../../composables/elements/useValue'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { boolean as useNullValue } from './../../composables/elements/useNullValue'
 
@@ -231,9 +232,6 @@ export default {
       defaultValue: default_.defaultValue,
       path: path.path,
       form$: form$.form$,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
     })
 
     const data = useData(props, context, {
@@ -283,6 +281,13 @@ export default {
 
     const toggle = useToggle(props, context, {
       update: data.update,
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

@@ -23,6 +23,7 @@ import useHandleTag from './../../composables/elements/useHandleTag'
 import useSelect from './../../composables/elements/useSelect'
 import useAsyncItems from './../../composables/elements/useAsyncItems'
 import useValue from './../../composables/elements/useValue'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { tags as useOptions } from './../../composables/elements/useOptions'
 import { array as  useNullValue } from './../../composables/elements/useNullValue'
@@ -288,9 +289,6 @@ export default {
       defaultValue: default_.defaultValue,
       path: path.path,
       form$: form$.form$,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
     })
 
     const conditions = useConditions(props, context, {
@@ -361,6 +359,13 @@ export default {
     const select = useSelect(props, context, {
       value: value.value,
       updated: data.updated,
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

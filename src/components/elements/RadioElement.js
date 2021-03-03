@@ -22,6 +22,7 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useRadio from './../../composables/elements/useRadio'
 import useValue from './../../composables/elements/useValue'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 export default {
   name: 'RadioElement',
@@ -226,9 +227,6 @@ export default {
       defaultValue: default_.defaultValue,
       path: path.path,
       form$: form$.form$,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
     })
 
     const data = useData(props, context, {
@@ -280,6 +278,13 @@ export default {
       update: data.update,
       nullValue: nullValue.nullValue,
       fieldId: fieldId.fieldId,
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

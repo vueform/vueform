@@ -15,6 +15,7 @@ import useGenericName from './../../composables/elements/useGenericName'
 import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
 import useComponents from './../../composables/elements/useComponents'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 export default {
   name: 'HiddenElement',
@@ -137,9 +138,6 @@ export default {
       defaultValue: default_.defaultValue,
       path: path.path,
       form$: form$.form$,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
     })
 
     const data = useData(props, context, {
@@ -154,6 +152,13 @@ export default {
     const empty = useEmpty(props, context, {
       value: value.value,
       nullValue: nullValue.nullValue,
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

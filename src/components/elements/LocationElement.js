@@ -21,6 +21,7 @@ import useSlots from './../../composables/elements/useSlots'
 import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { location as useLocation } from './../../composables/elements/useLocation'
 import { location as useValue } from './../../composables/elements/useValue'
@@ -317,6 +318,13 @@ export default {
         'message', 'before', 'between', 'after',
         'addonBefore', 'addonAfter'
       ]
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

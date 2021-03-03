@@ -19,6 +19,7 @@ import useWatchPrototype from './../../composables/elements/useWatchPrototype'
 import usePath from './../../composables/elements/usePath'
 import useInput from './../../composables/elements/useInput'
 import useMultifile from './../../composables/elements/useMultifile'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { multifile as usePrototype } from './../../composables/elements/usePrototype'
 import { multifile as useDrop } from './../../composables/elements/useDrop'
@@ -407,6 +408,13 @@ export default {
       clear: data.clear,
       insert: children.insert,
       instances: children.instances,
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

@@ -19,6 +19,7 @@ import usePrototype from './../../composables/elements/usePrototype'
 import useWatchPrototype from './../../composables/elements/useWatchPrototype'
 import usePath from './../../composables/elements/usePath'
 import useValue from './../../composables/elements/useValue'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { list as useData } from './../../composables/elements/useData'
 import { list as useClasses } from './../../composables/elements/useClasses'
@@ -278,9 +279,6 @@ export default {
       defaultValue: default_.defaultValue,
       path: path.path,
       form$: form$.form$,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
     })
 
     const columns = useColumns(props, context, {
@@ -363,6 +361,13 @@ export default {
       clear: data.clear,
       insert: children.insert,
       instances: children.instances,
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

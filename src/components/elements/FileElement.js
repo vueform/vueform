@@ -23,6 +23,7 @@ import useDrop from './../../composables/elements/useDrop'
 import useRemoving from './../../composables/elements/useRemoving'
 import useHandleError from './../../composables/elements/useHandleError'
 import useValue from './../../composables/elements/useValue'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { file as useBaseElement } from './../../composables/elements/useBaseElement'
 import { file as useValidation } from './../../composables/elements/useValidation'
@@ -280,9 +281,6 @@ export default {
       defaultValue: default_.defaultValue,
       path: path.path,
       form$: form$.form$,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
     })
 
     const data = useData(props, context, {
@@ -375,6 +373,13 @@ export default {
       defaultSlots: {
         preview: image.value ? 'ImageSlotPreview' : 'FileSlotPreview',
       }
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

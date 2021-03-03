@@ -19,6 +19,7 @@ import useComponents from './../../composables/elements/useComponents'
 import useSlots from './../../composables/elements/useSlots'
 import useEvents from './../../composables/useEvents'
 import useFieldId from './../../composables/elements/useFieldId'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { radiogroup as useDisabled } from './../../composables/elements/useDisabled'
 
@@ -221,9 +222,6 @@ export default {
       defaultValue: default_.defaultValue,
       path: path.path,
       form$: form$.form$,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
     })
 
     const data = useData(props, context, {
@@ -270,6 +268,13 @@ export default {
         'message', 'before', 'between', 'after',
         'radio',
       ]
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

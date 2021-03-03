@@ -21,6 +21,7 @@ import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
 import useDateFormat from './../../composables/elements/useDateFormat'
 import useHandleInput from './../../composables/elements/useHandleInput'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import useData from './../../composables/elements/useData'
 import useDefault from './../../composables/elements/useDefault'
@@ -356,6 +357,13 @@ export default {
 
     const handleInput = useHandleInput(props, context, {
       value: value.value,
+    })
+    
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

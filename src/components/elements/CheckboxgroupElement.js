@@ -18,6 +18,7 @@ import useEvents from './../../composables/useEvents'
 import useCheck from './../../composables/elements/useCheck'
 import useFieldId from './../../composables/elements/useFieldId'
 import useValue from './../../composables/elements/useValue'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { checkboxgroup as useDisabled } from './../../composables/elements/useDisabled'
@@ -222,9 +223,6 @@ export default {
       defaultValue: default_.defaultValue,
       path: path.path,
       form$: form$.form$,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
     })
 
     const check = useCheck(props, context, {
@@ -275,6 +273,13 @@ export default {
         'message', 'before', 'between', 'after',
         'checkbox',
       ]
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

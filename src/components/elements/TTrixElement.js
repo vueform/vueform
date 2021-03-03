@@ -20,6 +20,7 @@ import useHandleInput from './../../composables/elements/useHandleInput'
 import useHandleError from './../../composables/elements/useHandleError'
 import useLanguages from './../../composables/elements/useLanguages'
 import useTrix from './../../composables/elements/useTrix'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { ttrix as useData } from './../../composables/elements/useData'
 import { multilingual as useNullValue } from './../../composables/elements/useNullValue'
@@ -331,6 +332,13 @@ export default {
 
     const trix = useTrix(props, context, {
       form$: form$.form$,
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

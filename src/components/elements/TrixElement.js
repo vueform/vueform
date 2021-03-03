@@ -24,6 +24,7 @@ import useHandleInput from './../../composables/elements/useHandleInput'
 import useEmpty from './../../composables/elements/useEmpty'
 import useTrix from './../../composables/elements/useTrix'
 import useHandleError from './../../composables/elements/useHandleError'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { trix as useData } from './../../composables/elements/useData'
 
@@ -239,9 +240,6 @@ export default {
       defaultValue: default_.defaultValue,
       path: path.path,
       form$: form$.form$,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
     })
 
     const data = useData(props, context, {
@@ -306,6 +304,13 @@ export default {
 
     const trix = useTrix(props, context, {
       form$: form$.form$,
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

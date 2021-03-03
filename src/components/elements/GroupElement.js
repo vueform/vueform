@@ -12,6 +12,7 @@ import useView from './../../composables/elements/useView'
 import useComponents from './../../composables/elements/useComponents'
 import useSlots from './../../composables/elements/useSlots'
 import useElements from './../../composables/useElements'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { group as usePath } from './../../composables/elements/usePath'
 import { group as useValidation } from './../../composables/elements/useValidation'
@@ -209,6 +210,12 @@ export default {
       children$: children.children$,
     })
     
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
+    })
     onMounted(() => {
       validation.initMessageBag()  
     })

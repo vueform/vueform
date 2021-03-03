@@ -24,6 +24,7 @@ import useEmpty from './../../composables/elements/useEmpty'
 import useHandleSelectEvents from './../../composables/elements/useHandleSelectEvents'
 import useAsyncItems from './../../composables/elements/useAsyncItems'
 import useValue from './../../composables/elements/useValue'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { select as useOptions } from './../../composables/elements/useOptions'
 
@@ -281,9 +282,6 @@ export default {
       defaultValue: default_.defaultValue,
       path: path.path,
       form$: form$.form$,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
     })
 
     const conditions = useConditions(props, context, {
@@ -345,6 +343,13 @@ export default {
 
     const handleSelectEvents = useHandleSelectEvents(props, context, {
       fire: events.fire,
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

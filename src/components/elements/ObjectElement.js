@@ -16,6 +16,7 @@ import useElements from './../../composables/useElements'
 import useValue from './../../composables/elements/useValue'
 import useDefault from './../../composables/elements/useDefault'
 import useEvents from './../../composables/useEvents'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { object as useNullValue } from './../../composables/elements/useNullValue'
 import { object as useData } from './../../composables/elements/useData'
@@ -245,6 +246,12 @@ export default {
       children$: children.children$,
     })
     
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
+    })
     onMounted(() => {
       validation.initMessageBag()  
     })
