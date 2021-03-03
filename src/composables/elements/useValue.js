@@ -9,9 +9,6 @@ const base = function(props, context, dependencies, options = {})
   const defaultValue = dependencies.defaultValue
   const path = dependencies.path
   const form$ = dependencies.form$
-  const fire = dependencies.fire
-  const dirt = dependencies.dirt
-  const validate = dependencies.validate
 
   // ============== COMPUTED ===============
 
@@ -32,24 +29,6 @@ const base = function(props, context, dependencies, options = {})
   if (initialValue.value === undefined) {
     value.value = defaultValue.value
   }
-
-  onMounted(() => {
-    watch(value, (n, o) => {
-      if (_.isEqual(n,o)) {
-        return
-      }
-
-      fire('change', n, o)
-
-      if (dirt) {
-        dirt()
-      }
-
-      if (validate) {
-        validate()
-      }
-    }, { immediate: false, deep: true })
-  })
 
   return {
     value,

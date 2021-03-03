@@ -5,11 +5,12 @@
       <slot name="prefix"></slot>
 
       <Slider
-        v-model="model"
+        :value="value"
+        :modelValue="value"
         v-bind="options"
         :id="fieldId"
-        @change="handleChange"
         ref="input"
+        @change="handleChange"
       />
 
       <slot name="suffix"></slot>

@@ -24,6 +24,7 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useHandleInput from './../../composables/elements/useHandleInput'
 import useEmpty from './../../composables/elements/useEmpty'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 export default {
   name: 'TextElement',
@@ -249,9 +250,6 @@ export default {
       defaultValue: default_.defaultValue,
       path: path.path,
       form$: form$.form$,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
     })
 
     const data = useData(props, context, {
@@ -307,6 +305,13 @@ export default {
 
     const handleInput = useHandleInput(props, context, {
       value: value.value,
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

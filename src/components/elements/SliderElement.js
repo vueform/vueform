@@ -19,6 +19,7 @@ import useComponents from './../../composables/elements/useComponents'
 import useSlots from './../../composables/elements/useSlots'
 import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
+import useWatchValue from './../../composables/elements/useWatchValue'
 import useHandleChange from './../../composables/elements/useHandleChange'
 
 import { slider as useValidation } from './../../composables/elements/useValidation'
@@ -239,6 +240,14 @@ export default {
       form$: form$.form$,
     })
 
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change'
+      ],
+    })
+
     const options = useOptions(props, context, {
       isDisabled: disabled.isDisabled,
       form$: form$.form$,
@@ -251,8 +260,15 @@ export default {
     })
 
     const value = useValue(props, context, {
-      nullValue: nullValue.nullValue,
       defaultValue: default_.defaultValue,
+      path: path.path,
+      form$: form$.form$,
+    })
+
+    const validation = useValidation(props, context, {
+      form$: form$.form$,
+      path: path.path,
+      value: value.value,
     })
 
     const conditions = useConditions(props, context, {
@@ -260,34 +276,13 @@ export default {
       path: path.path,
     })
 
-    const validation = useValidation(props, context, {
-      form$: form$.form$,
-      path: path.path,
-      value: value.value,
-      model: value.model,
-    })
-
-    const events = useEvents(props, context, {
-      form$: form$.form$,
-    }, {
-      events: [
-        'change'
-      ],
-    })
-
     const data = useData(props, context, {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      clean: validation.clean,
-      validate: validation.validate,
       resetValidators: validation.resetValidators,
-      fire: events.fire,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      dirt: validation.dirt,
     })
 
     const label = useLabel(props, context, {
@@ -327,14 +322,14 @@ export default {
     })
 
     const handleChange = useHandleChange(props, context, {
-      form$: form$.form$,
-      model: value.model,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      changed: data.changed,
+      value: value.value,
+    })
+
+    useWatchValue(props, context, {
+      value: value.value,
+      fire: events.fire,
       dirt: validation.dirt,
       validate: validation.validate,
-      fire: events.fire,
     })
 
     onMounted(() => {
@@ -365,8 +360,8 @@ export default {
       ...data,
       ...default_,
       ...nullValue,
-      ...handleChange,
       ...options,
+      ...handleChange,
     }
   } 
 }

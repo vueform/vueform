@@ -2,9 +2,12 @@ import { runElementTests } from 'test-helpers'
 
 export default runElementTests('slider', {
   default: {
-    value: 5,
-    value2: 10,
-    default: 0
+    fieldType: 'slider',
+    default: 5,
+    default2: 10,
+    value: 20,
+    value2: 30,
+    nullValue: 0,
   },
   events: {
     events: ['change']

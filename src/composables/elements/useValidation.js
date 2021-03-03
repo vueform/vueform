@@ -1030,7 +1030,6 @@ const slider = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const model = dependencies.model
   const value = dependencies.value
 
   const { 
@@ -1068,9 +1067,9 @@ const slider = function(props, context, dependencies)
     if (_.isArray(value.value)) {
       // going through each value of the slider
       // and validate them all for the same field
-      await asyncForEach(model.value, async (modelValue) => {
+      await asyncForEach(value.value, async (val) => {
         await asyncForEach(Validators.value, async (Validator) => {
-          await Validator.validate(modelValue)
+          await Validator.validate(val)
         })
 
         if (invalid.value) {
@@ -1080,7 +1079,7 @@ const slider = function(props, context, dependencies)
     }
     else {
       await asyncForEach(Validators.value, async (Validator) => {
-        await Validator.validate(model.value)
+        await Validator.validate(value.value)
       })
     }
 
