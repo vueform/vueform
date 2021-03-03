@@ -11,7 +11,7 @@ const elements = [
   // 'dates',
   // 'file',
   // 'group',
-  // 'hidden',
+  'hidden',
   // 'list',
   // 'location',
   // 'multifile',
