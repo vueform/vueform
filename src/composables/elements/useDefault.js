@@ -24,10 +24,14 @@ const base = function(props, context, dependencies)
     let formDefaultValue = _.get(form$.value.options.default, path.value)
 
     if (formDefaultValue !== undefined) {
-      return _.cloneDeep(formDefaultValue)
+      return formDefaultValue instanceof File ? new File([formDefaultValue], formDefaultValue.name) : _.cloneDeep(formDefaultValue)
     }
 
-    return default_.value !== undefined ? default_.value : _.cloneDeep(nullValue.value)
+    if (default_.value !== undefined) {
+      return default_.value instanceof File ? new File([default_.value], default_.value.name) : _.cloneDeep(default_.value)
+    }
+
+    return _.cloneDeep(nullValue.value)
   })
 
   return {

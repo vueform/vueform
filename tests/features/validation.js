@@ -143,7 +143,8 @@ export const invalid = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          rules: 'required'
+          rules: 'required',
+          auto: false, // for files
         }
       }
     })
@@ -355,7 +356,7 @@ export const validate = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          rules: 'url'
+          rules: 'url',
         }
       }
     })

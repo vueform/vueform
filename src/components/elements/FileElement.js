@@ -270,30 +270,27 @@ export default {
       path: path.path,
     })
 
-    const validation = useValidation(props, context, {
-      form$: form$.form$,
-      path: path.path,
-      uploading: request.uploading,
-      removing: removing.removing,
-    })
-
     const value = useValue(props, context, {
       defaultValue: default_.defaultValue,
       path: path.path,
       form$: form$.form$,
     })
 
+    const validation = useValidation(props, context, {
+      form$: form$.form$,
+      path: path.path,
+      uploading: request.uploading,
+      removing: removing.removing,
+      value: value.value,
+    })
+
     const data = useData(props, context, {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      clean: validation.clean,
-      validate: validation.validate,
       resetValidators: validation.resetValidators,
-      fire: events.fire,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      dirt: validation.dirt,
     })
 
     const handleError = useHandleError(props, context, {
@@ -376,10 +373,10 @@ export default {
     })
 
     useWatchValue(props, context, {
+      form$: form$.form$,
       value: value.value,
       fire: events.fire,
       dirt: validation.dirt,
-      validate: validation.validate,
     })
 
     onMounted(() => {

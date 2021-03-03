@@ -295,7 +295,7 @@ const base = function (props, context, dependencies)
 
     try {
       if (stage.value === 3) {
-        if (!confirm(form$.value.__(`laraform.elements.${type.value.toLowerCase()}.removeConfirm`))) {
+        if (!confirm(form$.value.__(`laraform.elements.file.removeConfirm`))) {
           return false
         }
 
@@ -306,7 +306,7 @@ const base = function (props, context, dependencies)
         await form$.value.$laraform.services.axios[fileMethods.value.removeTemp](fileEndpoints.value.removeTemp, { file: value.value.tmp })
       }
     } catch (e) {
-      handleError(form$.value.__(`laraform.elements.${type.value.toLowerCase()}.removeError`), e)
+      handleError(form$.value.__(`laraform.elements.file.removeError`), e)
       return
     } finally {
       removing.value = false
@@ -315,11 +315,12 @@ const base = function (props, context, dependencies)
     update(null)
 
     progress.value = 0
-
-    context.emit('remove')
     
-    // @todo: previous value
     fire('remove')
+
+    if (form$.value.shouldValidateOnChange) {
+      validate()
+    }
   }
 
   /**
@@ -354,6 +355,10 @@ const base = function (props, context, dependencies)
     update(file || null)
 
     input.value.value = ''
+
+    if (form$.value.shouldValidateOnChange) {
+      validate()
+    }
   }
 
   /**

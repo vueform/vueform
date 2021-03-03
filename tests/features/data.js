@@ -112,6 +112,7 @@ export const load = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          auto: false, // for files
         }
       }
     })
@@ -129,6 +130,7 @@ export const load = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          auto: false, // for files
           formatLoad(value) {
             formatLoadMock()
 
@@ -152,6 +154,7 @@ export const update = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          auto: false, // for files
         }
       }
     })
@@ -170,6 +173,7 @@ export const clear = function (elementType, elementName, options) {
         el: {
           type: elementType,
           default: options.default,
+          auto: false, // for files
         }
       }
     })
@@ -189,6 +193,7 @@ export const reset = function (elementType, elementName, options) {
         el: {
           type: elementType,
           default: options.default,
+          auto: false, // for files
         }
       }
     })
@@ -207,7 +212,8 @@ export const reset = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          rules: 'required'
+          rules: 'required',
+          auto: false, // for files
         }
       }
     })

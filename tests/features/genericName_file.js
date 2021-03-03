@@ -45,7 +45,7 @@ export const genericName = function (elementType, elementName, options) {
 
     expect(el.genericName).toStrictEqual('File')
 
-    el.$set(form.vm.schema.el, 'embed', true)
+    el.$set(form.vm.laraform.schema.el, 'embed', true)
 
     expect(el.genericName).toStrictEqual('File')
   })
@@ -63,7 +63,7 @@ export const genericName = function (elementType, elementName, options) {
 
     expect(el.genericName).toStrictEqual('El')
 
-    el.$set(form.vm.schema.el, 'embed', true)
+    el.$set(form.vm.laraform.schema.el, 'embed', true)
 
     expect(el.genericName).toStrictEqual('El')
   })
@@ -81,7 +81,7 @@ export const genericName = function (elementType, elementName, options) {
 
     expect(el.genericName).toStrictEqual(el.__('laraform.elements.file.defaultName'))
 
-    el.$set(form.vm.schema[0], 'embed', true)
+    el.$set(form.vm.laraform.schema[0], 'embed', true)
 
     expect(el.genericName).toStrictEqual(el.__('laraform.elements.file.defaultName'))
   })

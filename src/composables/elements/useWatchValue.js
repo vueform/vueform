@@ -4,6 +4,7 @@ const base = function(props, context, dependencies, options = {})
 {
   // ============ DEPENDENCIES =============
 
+  const form$ = dependencies.form$
   const fire = dependencies.fire
   const dirt = dependencies.dirt
   const validate = dependencies.validate
@@ -23,7 +24,7 @@ const base = function(props, context, dependencies, options = {})
         dirt()
       }
 
-      if (validate) {
+      if (validate && form$.value.shouldValidateOnChange) {
         validate()
       }
     }, { immediate: false, deep: true })

@@ -138,10 +138,12 @@ const baseSchema = (mocks, elementType) => {
     el: {
       type: elementType,
       onChange: elChangeMock,
+      auto: false // for files
     },
     el2: {
       type: elementType,
       onChange: el2ChangeMock,
+      auto: false // for files
     },
   }
 

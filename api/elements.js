@@ -241,7 +241,8 @@ export default {
       "toggle",
       "validation",
       "value",
-      "view"
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
@@ -488,7 +489,8 @@ export default {
       "theme",
       "validation",
       "value",
-      "view"
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
@@ -704,6 +706,310 @@ export default {
       }
     }
   },
+  "file": {
+    "features": [
+      "baseElement_file",
+      "classes_file",
+      "columns",
+      "components",
+      "conditions",
+      "data",
+      "default",
+      "disabled",
+      "drop",
+      "empty",
+      "events",
+      "fieldId",
+      "file",
+      "form$",
+      "genericName_file",
+      "handleError",
+      "input",
+      "label",
+      "layout",
+      "nullValue",
+      "path",
+      "removing",
+      "request",
+      "slots",
+      "theme",
+      "validation_file",
+      "value",
+      "view",
+      "watchValue"
+    ],
+    "slots": [
+      "label",
+      "info",
+      "description",
+      "error",
+      "message",
+      "before",
+      "between",
+      "after",
+      "progress",
+      "preview"
+    ],
+    "events": [
+      "change",
+      "remove",
+      "error"
+    ],
+    "props": {
+      "name": {
+        "required": "true",
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "layout": {
+        "required": "false",
+        "types": [
+          "string",
+          "object",
+          "boolean"
+        ]
+      },
+      "embed": {
+        "types": [
+          "boolean"
+        ],
+        "required": "false"
+      },
+      "image": {
+        "types": [
+          "boolean"
+        ],
+        "required": "false"
+      },
+      "type": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "addClass": {
+        "required": "false",
+        "types": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "overrideClasses": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "addClasses": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "columns": {
+        "required": "false",
+        "types": [
+          "object",
+          "string"
+        ]
+      },
+      "overrideComponents": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "conditions": {
+        "required": "false",
+        "types": [
+          "array"
+        ]
+      },
+      "formatData": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "formatLoad": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "submit": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "debounce": {
+        "required": "false",
+        "types": [
+          "number"
+        ]
+      },
+      "default": {
+        "required": "false",
+        "types": [
+          "string",
+          "File"
+        ]
+      },
+      "description": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "disabled": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "drop": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "accept": {
+        "required": "false",
+        "types": [
+          "string",
+          "array"
+        ]
+      },
+      "clickable": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "auto": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "methods": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "endpoints": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "url": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "id": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "info": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "label": {
+        "required": "false",
+        "types": [
+          "string",
+          "object",
+          "function"
+        ]
+      },
+      "before": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "between": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "after": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "slots": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "rules": {
+        "required": "false",
+        "types": [
+          "array",
+          "string",
+          "object"
+        ]
+      },
+      "messages": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "displayError": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onRemove": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onError": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      }
+    }
+  },
   "hidden": {
     "features": [
       "baseElement",
@@ -721,7 +1027,8 @@ export default {
       "path",
       "theme",
       "validation",
-      "value"
+      "value",
+      "watchValue"
     ],
     "slots": [],
     "events": [
@@ -846,7 +1153,8 @@ export default {
       "theme",
       "validation",
       "value",
-      "view"
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
@@ -1157,7 +1465,8 @@ export default {
       "theme",
       "validation",
       "value",
-      "view"
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
@@ -1402,7 +1711,8 @@ export default {
       "theme",
       "validation",
       "value",
-      "view"
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
@@ -1646,7 +1956,8 @@ export default {
       "theme",
       "validation",
       "value",
-      "view"
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
@@ -1949,6 +2260,7 @@ export default {
       "fieldId",
       "form$",
       "genericName",
+      "handleChange",
       "input",
       "label",
       "layout",
@@ -1959,7 +2271,8 @@ export default {
       "theme",
       "validation_slider",
       "value",
-      "view"
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
@@ -2417,7 +2730,8 @@ export default {
       "theme",
       "validation",
       "value",
-      "view"
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
@@ -2738,7 +3052,8 @@ export default {
       "theme",
       "validation",
       "value",
-      "view"
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
@@ -2783,7 +3098,8 @@ export default {
       "theme",
       "validation",
       "value",
-      "view"
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
@@ -3083,7 +3399,8 @@ export default {
       "toggle",
       "validation",
       "value",
-      "view"
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
@@ -3372,7 +3689,8 @@ export default {
       "trix",
       "validation",
       "value",
-      "view"
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",

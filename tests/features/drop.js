@@ -39,7 +39,6 @@ export const handleDrop = function (elementType, elementName, options) {
     })
 
     expect(el.value).toStrictEqual(file)
-    expect(el.dirty).toBe(true)
   })
 
   it('should trigger `handleDrop` when a file is being dropped', () => {
@@ -65,7 +64,6 @@ export const handleDrop = function (elementType, elementName, options) {
     })
 
     expect(el.value).toStrictEqual(file)
-    expect(el.dirty).toBe(true)
   })
 
   it('should not update file on `handleDrop` when disabled', () => {
@@ -134,7 +132,7 @@ export const rendering = function (elementType, elementName, options) {
 
     expect(DragAndDrop.length).toBe(0)
 
-    el.$set(form.vm.schema.el, 'drop', true)
+    el.$set(form.vm.laraform.schema.el, 'drop', true)
 
     await nextTick()
 

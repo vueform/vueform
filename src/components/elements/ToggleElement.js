@@ -320,6 +320,7 @@ export default {
     })
 
     useWatchValue(props, context, {
+      form$: form$.form$,
       value: value.value,
       fire: events.fire,
       dirt: validation.dirt,

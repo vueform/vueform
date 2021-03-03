@@ -3,7 +3,7 @@ import { createForm, findAllComponents } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const handleChange = function (elementType, elementName, options) {
-  it('should set model on change when not range', () => {
+  it('should set value on change when not range', () => {
     let form = createForm({
       schema: {
         el: {
@@ -16,10 +16,10 @@ export const handleChange = function (elementType, elementName, options) {
     
     el.input.update(5)
 
-    expect(el.model).toBe(5)
+    expect(el.value).toBe(5)
   })
 
-  it('should set model on change when not range', () => {
+  it('should set value on change when not range', () => {
     let form = createForm({
       schema: {
         el: {
@@ -33,7 +33,7 @@ export const handleChange = function (elementType, elementName, options) {
     
     el.input.update([15,20])
 
-    expect(el.model).toStrictEqual([15,20])
+    expect(el.value).toStrictEqual([15,20])
   })
 
   it('should not dirt the element if input value is not different than the current when not range', () => {
@@ -55,7 +55,7 @@ export const handleChange = function (elementType, elementName, options) {
     expect(el.dirty).toBe(false)
   })
 
-  it('should dirt the element if input value is different than the current when not range', () => {
+  it('should dirt the element if input value is different than the current when not range', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -70,6 +70,8 @@ export const handleChange = function (elementType, elementName, options) {
     expect(el.dirty).toBe(false)
 
     el.input.update(10)
+
+    await nextTick()
 
     expect(el.dirty).toBe(true)
   })
@@ -93,7 +95,7 @@ export const handleChange = function (elementType, elementName, options) {
     expect(el.dirty).toStrictEqual(false)
   })
 
-  it('should dirt the element if input value is different than the current when range', () => {
+  it('should dirt the element if input value is different than the current when range', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -108,6 +110,8 @@ export const handleChange = function (elementType, elementName, options) {
     expect(el.dirty).toBe(false)
 
     el.input.update([6, 10])
+
+    await nextTick()
 
     expect(el.dirty).toStrictEqual(true)
   })
@@ -152,7 +156,7 @@ export const handleChange = function (elementType, elementName, options) {
     expect(onChangeMock).not.toHaveBeenCalled()
   })
 
-  it('should trigger "change" event if value changed', () => {
+  it('should trigger "change" event if value changed', async () => {
     let onChangeMock = jest.fn()
 
     let form = createForm({
@@ -169,10 +173,12 @@ export const handleChange = function (elementType, elementName, options) {
 
     el.input.update(10)
 
+    await nextTick()
+
     expect(onChangeMock).toHaveBeenCalledWith(10, 5)
   })
 
-  it('should trigger "change" event if value changed when range', () => {
+  it('should trigger "change" event if value changed when range', async () => {
     let onChangeMock = jest.fn()
 
     let form = createForm({
@@ -188,6 +194,8 @@ export const handleChange = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     el.input.update([15, 20])
+
+    await nextTick()
 
     expect(onChangeMock).toHaveBeenCalledWith([15, 20], [5, 10])
   })
@@ -212,7 +220,7 @@ export const handleChange = function (elementType, elementName, options) {
 
     expect(el.validated).toBe(false)
 
-    form.vm.validateOn = 'submit|change'
+    form.vm.laraform.validateOn = 'submit|change'
 
     el.input.update(15)
 

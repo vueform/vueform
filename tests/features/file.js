@@ -486,7 +486,7 @@ export const link = function (elementType, elementName, options) {
 
     expect(el.link).toStrictEqual('/a.jpg')
 
-    el.$set(form.vm.schema.el, 'clickable', false)
+    el.$set(form.vm.laraform.schema.el, 'clickable', false)
 
     await nextTick()
 
@@ -715,11 +715,11 @@ export const canUploadTemp = function (elementType, elementName, options) {
     el.request = null
     expect(el.canUploadTemp).toStrictEqual(true)
 
-    el.$set(form.vm.schema.el, 'auto', true)
+    el.$set(form.vm.laraform.schema.el, 'auto', true)
     await nextTick()
     expect(el.canUploadTemp).toStrictEqual(false)
 
-    el.$set(form.vm.schema.el, 'auto', false)
+    el.$set(form.vm.laraform.schema.el, 'auto', false)
     await nextTick()
     expect(el.canUploadTemp).toStrictEqual(true)
 
@@ -812,7 +812,7 @@ export const uploadTemp = function (elementType, elementName, options) {
 
   it('should send file to upload endpoint & update with return value in `uploadTemp`', async () => {
     let form = createForm({
-      key: 'key',
+      formKey: 'key',
       schema: {
         el: {
           type: elementType,
@@ -855,7 +855,7 @@ export const uploadTemp = function (elementType, elementName, options) {
 
     expect(axiosMock.mock.calls[0][1] instanceof FormData).toBe(true)
     expect(axiosMock.mock.calls[0][1].get('file')).toStrictEqual(file)
-    expect(axiosMock.mock.calls[0][1].get('key')).toStrictEqual('key')
+    expect(axiosMock.mock.calls[0][1].get('formKey')).toStrictEqual('key')
     expect(axiosMock.mock.calls[0][1].get('path')).toStrictEqual('el')
 
     expect(el.value).toStrictEqual(tmp)
@@ -1024,7 +1024,6 @@ export const uploadTemp = function (elementType, elementName, options) {
 
     await flushPromises()
 
-    expect(el.dirty).toStrictEqual(true)
     expect(onChangeMock).toHaveBeenCalledWith(tmp, file)
   })
 }
@@ -1369,11 +1368,14 @@ export const remove = function (elementType, elementName, options) {
     let file = new File([''], 'filename.jpg')
 
     el.value = file
+    
+    await nextTick()
 
     el.remove()
 
-    expect(el.dirty).toBe(true)
-    expect(onChangeMock).toHaveBeenCalledWith(null, file)
+    await nextTick()
+
+    expect(onChangeMock).toHaveBeenLastCalledWith(null, file)
   })
 
   it('should `remove` trigger "remove" event', async () => {
@@ -1398,8 +1400,10 @@ export const remove = function (elementType, elementName, options) {
     await nextTick()
 
     el.remove()
+
+    await nextTick()
     
-    expect(onRemoveMock).toHaveBeenCalledWith(file)
+    expect(onRemoveMock).toHaveBeenCalled()
   })
 }
 
@@ -1696,8 +1700,6 @@ export const handleChange = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let file = new File([''], 'filename.jpg')
     
-    expect(el.dirty).toBe(false)
-
     el.handleChange({
       target: {
         files: [
@@ -1706,7 +1708,7 @@ export const handleChange = function (elementType, elementName, options) {
       }
     })
 
-    expect(el.dirty).toBe(true)
+    await nextTick()
 
     expect(onChangeMock).toHaveBeenCalledWith(file, null)
   })
