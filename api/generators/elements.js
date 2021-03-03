@@ -21,7 +21,7 @@ const elements = [
   'radiogroup',
   // 'select',
   // 'slider',
-  // 'static',
+  'static',
   // 'tags',
   'textarea',
   'text',
