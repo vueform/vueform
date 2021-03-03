@@ -2,15 +2,13 @@ import { runElementTests } from 'test-helpers'
 
 export default runElementTests('tags', {
   default: {
-    value: [1,2],
-    value2: [],
-    items: {
-      1: 'value',
-      2: 'value2',
-      3: 'value3',
-    },
     fieldType: 'select',
-    default: [],
+    default: [0],
+    default2: [1],
+    value: [2,3],
+    value2: [4,5],
+    items: [1,2,3,4,5,6],
+    nullValue: [],
   },
   events: {
     events: [

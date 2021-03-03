@@ -1,4 +1,5 @@
 import { createForm } from 'test-helpers'
+import { nextTick } from 'composition-api'
 
 export const select = function (elementType, elementName, options) {
   it('should `select` single option', async () => {
@@ -52,8 +53,10 @@ export const select = function (elementType, elementName, options) {
     
     el.select(options.value)
 
-    expect(el.dirty).toBe(true)
+    await nextTick()
+
     expect(onChangeMock).toHaveBeenCalledWith(options.value, [])
+    expect(el.dirty).toBe(true)
   })
 
   it('should `select` not add existing values', async () => {
@@ -152,6 +155,8 @@ export const deselect = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     el.deselect([2,4,1,2,8])
+
+    await nextTick()
 
     expect(el.dirty).toBe(true)
     expect(onChangeMock).toHaveBeenCalledWith([0,3,5], [0,1,2,3,4,5])

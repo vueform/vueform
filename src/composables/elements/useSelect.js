@@ -6,7 +6,6 @@ const base = function (props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const value = dependencies.value
-  const updated = dependencies.updated
 
 
   // =============== PRIVATE ==============
@@ -45,8 +44,6 @@ const base = function (props, context, dependencies)
     })
 
     value.value = val
-
-    updated()
   }
 
   /**
@@ -74,8 +71,6 @@ const base = function (props, context, dependencies)
     })
 
     value.value = spliceMultiple(val, indexes)
-
-    updated()
   }
 
   return {

@@ -2,15 +2,13 @@ import { runElementTests } from 'test-helpers'
 
 export default runElementTests('multiselect', {
   default: {
-    value: [1,2],
-    value2: [],
-    items: [
-      { value: 1, label: 'value' },
-      { value: 2, label: 'value3' },
-      { value: 3, label: 'value2' },
-    ],
     fieldType: 'select',
-    default: []
+    default: [0],
+    default2: [1],
+    value: [2,3],
+    value2: [4,5],
+    items: [1,2,3,4,5,6],
+    nullValue: [],
   },
   events: {
     events: [

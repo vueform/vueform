@@ -20,15 +20,13 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useHandleSelectEvents from './../../composables/elements/useHandleSelectEvents'
 import useSelect from './../../composables/elements/useSelect'
-import useHandleChange from './../../composables/elements/useHandleChange'
 import useAsyncItems from './../../composables/elements/useAsyncItems'
+import useValue from './../../composables/elements/useValue'
 
-import { multiselect as useValue } from './../../composables/elements/useValue'
 import { multiselect as useOptions } from './../../composables/elements/useOptions'
+import { multiselect as useBaseElement } from './../../composables/elements/useBaseElement'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
-import { multiselect as useBaseElement } from './../../composables/elements/useBaseElement'
-import { select as useHandleInput } from './../../composables/elements/useHandleInput'
 
 export default {
   name: 'MultiselectElement',
@@ -249,6 +247,15 @@ export default {
       form$: form$.form$,
     })
 
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change', 'select', 'deselect', 'searchChange',
+        'open', 'close',
+      ],
+    })
+
     const default_ = useDefault(props, context, {
       nullValue: nullValue.nullValue,
       form$: form$.form$,
@@ -266,9 +273,18 @@ export default {
       enable: disabled.enable,
     })
 
+    const validation = useValidation(props, context, {
+      form$: form$.form$,
+      path: path.path,
+    })
+
     const value = useValue(props, context, {
-      nullValue: nullValue.nullValue,
       defaultValue: default_.defaultValue,
+      path: path.path,
+      form$: form$.form$,
+      fire: events.fire,
+      dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     const conditions = useConditions(props, context, {
@@ -276,33 +292,13 @@ export default {
       path: path.path,
     })
 
-    const validation = useValidation(props, context, {
-      form$: form$.form$,
-      path: path.path,
-    })
-
-    const events = useEvents(props, context, {
-      form$: form$.form$,
-    }, {
-      events: [
-        'change', 'select', 'deselect', 'searchChange',
-        'open', 'close',
-      ],
-    })
-
     const data = useData(props, context, {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      clean: validation.clean,
-      validate: validation.validate,
       resetValidators: validation.resetValidators,
-      fire: events.fire,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      dirt: validation.dirt,
     })
 
     const empty = useEmpty(props, context, {
@@ -348,35 +344,12 @@ export default {
       ]
     })
 
-    const handleInput = useHandleInput(props, context, {
-      form$: form$.form$,
-      model: value.model,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      changed: data.changed,
-      dirt: validation.dirt,
-      validate: validation.validate,
-      fire: events.fire,
-    })
-
-    const handleChange = useHandleChange(props, context, {
-      form$: form$.form$,
-      model: value.model,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      changed: data.changed,
-      dirt: validation.dirt,
-      validate: validation.validate,
-      fire: events.fire,
-    })
-
     const handleSelectEvents = useHandleSelectEvents(props, context, {
       fire: events.fire,
     })
 
     const select = useSelect(props, context, {
       value: value.value,
-      updated: data.updated,
     })
 
     onMounted(() => {
@@ -408,12 +381,10 @@ export default {
       ...empty,
       ...default_,
       ...nullValue,
-      ...handleInput,
       ...asyncItems,
       ...options,
       ...handleSelectEvents,
       ...select,
-      ...handleChange,
     }
   } 
 }

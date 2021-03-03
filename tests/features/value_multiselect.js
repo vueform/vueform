@@ -1,14 +1,13 @@
 import { createForm, setMultiselectValue, findAllComponents, findAll, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
-import { model as baseModel } from './value_tags'
 
-export { previousValue, currentValue, value } from './value_select'
+import { value as baseValue } from './value_tags'
 
-export const model = function (elementType, elementName, options) {
-  baseModel(elementType, elementName, options)
+export const value = function (elementType, elementName, options) {
+  baseValue(elementType, elementName, options)
 
-  it('should model be equal to selected options\' value when items are an array & native=true', async () => {
+  it('should value be equal to selected options\' value when items are an array & native=true', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -25,22 +24,22 @@ export const model = function (elementType, elementName, options) {
     let select = findAll(elWrapper, `select`).at(0)
 
     // Default value
-    expect(el.model).toStrictEqual([0])
+    expect(el.value).toStrictEqual([0])
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
 
     // Loaded value
     el.load([1])
-    expect(el.model).toStrictEqual([1])
+    expect(el.value).toStrictEqual([1])
     await nextTick()
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
 
     // Selected value
     setMultiselectValue(select, [2])
-    expect(el.model).toStrictEqual([2])
+    expect(el.value).toStrictEqual([2])
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
   })
   
-  it('should model be equal to selected options\' value when items are an object & native=true', async () => {
+  it('should value be equal to selected options\' value when items are an object & native=true', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -57,22 +56,22 @@ export const model = function (elementType, elementName, options) {
     let select = findAll(elWrapper, `select`).at(0)
 
     // Default value
-    expect(el.model).toStrictEqual([0])
+    expect(el.value).toStrictEqual([0])
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
 
     // Loaded value
     el.load([1])
-    expect(el.model).toStrictEqual([1])
+    expect(el.value).toStrictEqual([1])
     await nextTick()
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
 
     // Selected value
     setMultiselectValue(select, [2])
-    expect(el.model).toStrictEqual([2])
+    expect(el.value).toStrictEqual(['2'])
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
   })
 
-  it('should model be equal to selected options\' value when items are an array of objects & native=true', async () => {
+  it('should value be equal to selected options\' value when items are an array of objects & native=true', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -93,22 +92,22 @@ export const model = function (elementType, elementName, options) {
     let select = findAll(elWrapper, `select`).at(0)
 
     // Default value
-    expect(el.model).toStrictEqual([0])
+    expect(el.value).toStrictEqual([0])
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
 
     // Loaded value
     el.load([1])
-    expect(el.model).toStrictEqual([1])
+    expect(el.value).toStrictEqual([1])
     await nextTick()
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
 
     // Selected value
     setMultiselectValue(select, [2])
-    expect(el.model).toStrictEqual([2])
+    expect(el.value).toStrictEqual([2])
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
   })
 
-  it('should model be equal to selected options\' value when items are async & native=true', async () => {
+  it('should value be equal to selected options\' value when items are async & native=true', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -131,18 +130,18 @@ export const model = function (elementType, elementName, options) {
     let select = findAll(elWrapper, `select`).at(0)
 
     // Default value
-    expect(el.model).toStrictEqual([0])
+    expect(el.value).toStrictEqual([0])
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
 
     // Loaded value
     el.load([1])
-    expect(el.model).toStrictEqual([1])
+    expect(el.value).toStrictEqual([1])
     await nextTick()
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
 
     // Selected value
     setMultiselectValue(select, [2])
-    expect(el.model).toStrictEqual([2])
+    expect(el.value).toStrictEqual([2])
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
   })
 }
