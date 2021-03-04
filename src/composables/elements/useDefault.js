@@ -1,5 +1,4 @@
 import { computed, toRefs } from 'composition-api'
-import checkDateFormat from './../../utils/checkDateFormat'
 
 const base = function(props, context, dependencies)
 {

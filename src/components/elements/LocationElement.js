@@ -21,11 +21,11 @@ import useSlots from './../../composables/elements/useSlots'
 import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
-import useWatchValue from './../../composables/elements/useWatchValue'
+import useValue from './../../composables/elements/useValue'
+import useLocation from './../../composables/elements/useLocation'
 
-import { location as useLocation } from './../../composables/elements/useLocation'
-import { location as useValue } from './../../composables/elements/useValue'
-import { object as useNullValue } from './../../composables/elements/useNullValue' 
+import { location as useWatchValue } from './../../composables/elements/useWatchValue'
+import { location as useNullValue } from './../../composables/elements/useNullValue' 
 
 export default {
   name: 'LocationElement',
@@ -109,7 +109,18 @@ export default {
     default: {
       required: false,
       type: [Object],
-      default: () => ({})
+      default: () => ({
+        country: null,
+        country_code: null,
+        state: null,
+        state_code: null,
+        city: null,
+        zip: null,
+        address: null,
+        formatted_address: null,
+        lat: null,
+        lng: null
+      })
     },
     description: {
       required: false,
@@ -224,19 +235,16 @@ export default {
       form$: form$.form$,
     })
 
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change'
+      ],
+    })
+
     const default_ = useDefault(props, context, {
       nullValue: nullValue.nullValue,
-      form$: form$.form$,
-      path: path.path,
-    })
-
-    const value = useValue(props, context, {
-      nullValue: nullValue.nullValue,
-      defaultValue: default_.defaultValue,
-      input: input.input,
-    })
-
-    const conditions = useConditions(props, context, {
       form$: form$.form$,
       path: path.path,
     })
@@ -246,34 +254,30 @@ export default {
       path: path.path,
     })
 
-    const events = useEvents(props, context, {
+    const value = useValue(props, context, {
+      defaultValue: default_.defaultValue,
+      path: path.path,
       form$: form$.form$,
-    }, {
-      events: [
-        'change'
-      ],
+    })
+
+    const conditions = useConditions(props, context, {
+      form$: form$.form$,
+      path: path.path,
     })
 
     const data = useData(props, context, {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      clean: validation.clean,
-      validate: validation.validate,
       resetValidators: validation.resetValidators,
-      fire: events.fire,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      dirt: validation.dirt,
     })
 
     const location = useLocation(props, context, {
       form$: form$.form$,
       value: value.value,
       input: input.input,
-      updated: data.updated,
     }, {
       input: input.input,
     })
@@ -320,12 +324,19 @@ export default {
       ]
     })
 
+    onMounted(() => {
+      if (value.value.value[displayKey.value]) {
+        input.input.value.value = value.value.value[displayKey.value]
+      }
+    })
+
     useWatchValue(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
       dirt: validation.dirt,
       validate: validation.validate,
+      input: input.input,
     })
 
     onMounted(() => {

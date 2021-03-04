@@ -2,8 +2,6 @@ import { createForm, findAllComponents, testValue, setValue } from 'test-helpers
 import { nextTick } from 'vue'
 import { value as baseValue } from './value'
 
-export { previousValue, currentValue, model } from './value'
-
 export const value = function (elementType, elementName, options) {
   baseValue(elementType, elementName, options)
 
@@ -21,10 +19,14 @@ export const value = function (elementType, elementName, options) {
     el.value = {
       [el.displayKey]: 'value'
     }
+    
+    await nextTick()
 
     expect(el.input.value).toBe('value')
 
     el.value = {}
+
+    await nextTick()
 
     expect(el.input.value).toBe('')
   })

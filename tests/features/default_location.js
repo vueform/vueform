@@ -11,7 +11,16 @@ export const defaultValue = function (elementType, elementName, options) {
         el: {
           type: elementType,
           default: {
-            formatted_address: 'Budapest'
+            country: 'Hungary',
+            country_code: 'HU',
+            state: null,
+            state_code: null,
+            city: 'Budapest',
+            zip: null,
+            address: null,
+            formatted_address: 'Budapest, Hungary',
+            lat: 47.497912,
+            lng: 19.040235
           }
         }
       }
@@ -21,6 +30,6 @@ export const defaultValue = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.input.value).toBe('Budapest')
+    expect(el.input.value).toBe('Budapest, Hungary')
   })
 }

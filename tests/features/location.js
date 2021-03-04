@@ -97,7 +97,7 @@ export const provider = function (elementType, elementName, options, spies) {
     expect(googleRemoveListenerMock.mock.calls.length).toBe(0)
     expect(placesMock.mock.calls.length).toBe(0)
 
-    el.$set(form.vm.schema.el, 'provider', 'algolia')
+    el.$set(form.vm.laraform.schema.el, 'provider', 'algolia')
 
     await nextTick()
 
@@ -223,6 +223,5 @@ export const handleAddressChange = function (elementType, elementName, options) 
 
     expect(el.value).toBe('value')
     expect(el.location).toBe('location')
-    expect(el.dirty).toBe(true)
   })
 }

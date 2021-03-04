@@ -3,14 +3,6 @@ import flushPromises from 'flush-promises'
 
 export { data, filtered, clear } from './data'
 
-const value = function(options) {
-  return options.value !== undefined ? options.value : 'value'
-}
-
-const value2 = function(options) {
-  return options.value2 !== undefined ? options.value2 : 'value2'
-}
-
 export const load = function (elementType, elementName, options) {
   it('should set string value on `load` according to loadFormat', async () => {
     let form = createForm({

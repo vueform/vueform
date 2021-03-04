@@ -13,7 +13,7 @@ const elements = [
   'group',
   'hidden',
   // 'list',
-  // 'location',
+  'location',
   // 'multifile',
   'multiselect',
   'object',

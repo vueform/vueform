@@ -11,7 +11,6 @@ const base = function (props, context, dependencies, options_ = {})
 
   const form$ = dependencies.form$
   const value = dependencies.value
-  const updated = dependencies.updated
 
   // ============== PRIVATE ===============
 
@@ -89,8 +88,6 @@ const base = function (props, context, dependencies, options_ = {})
 
     location.value = raw
     value.value = data
-
-    updated()
   }
 
   /**
@@ -123,46 +120,6 @@ const base = function (props, context, dependencies, options_ = {})
     providerOptions,
     handleAddressChange,
     initLocationService,
-  }
-}
-
-const location = function (props, context, dependencies, options_ = {})
-{
-  const {
-    displayKey
-  } = toRefs(props)
-
-  const {
-    locationService,
-    location,
-    defaultOptions,
-    providerOptions,
-    handleAddressChange,
-    initLocationService
-  } = base(props, context, dependencies, options_)
-
-  // ============ DEPENDENCIES ============
-
-  const value = dependencies.value
-  const input = dependencies.input
-  
-  // =============== HOOKS ================
-
-  onMounted(() => {
-    nextTick(() => {
-      if (value.value && value.value[displayKey.value]) {
-        input.value.value = value.value[displayKey.value]
-      }
-    })
-  })
-
-  return {
-    locationService,
-    location,
-    defaultOptions,
-    providerOptions,
-    handleAddressChange,
-    initLocationService
   }
 }
 
@@ -249,7 +206,6 @@ const address = function (props, context, dependencies)
 }
 
 export {
-  location,
   address,
 }
 

@@ -105,12 +105,37 @@ const object = function(props, context, dependencies)
   }
 }
 
+const location = function(props, context, dependencies)
+{
+  // ============== COMPUTED ===============
+
+  const nullValue = computed(() => {
+    return {
+      country: null,
+      country_code: null,
+      state: null,
+      state_code: null,
+      city: null,
+      zip: null,
+      address: null,
+      formatted_address: null,
+      lat: null,
+      lng: null
+    }
+  })
+  
+  return {
+    nullValue,
+  }
+}
+
 export {
   array,
   boolean,
   min,
   multilingual,
   object,
+  location,
 }
 
 export default base
