@@ -18,11 +18,11 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useDefault from './../../composables/elements/useDefault'
+import useHandleChange from './../../composables/elements/useHandleChange'
 
 import { dates as useValue } from './../../composables/elements/useValue'
 import { dates as useData } from './../../composables/elements/useData'
-import { dates as useDefault } from './../../composables/elements/useDefault'
-import { dates as useHandleChange } from './../../composables/elements/useHandleChange'
 import { dates as useOptions } from './../../composables/elements/useOptions'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { dates as useBaseElement } from './../../composables/elements/useBaseElement'
@@ -246,6 +246,14 @@ export default {
       form$: form$.form$,
     })
 
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change'
+      ],
+    })
+
     const options = useOptions(props, context, {
       form$: form$.form$,
       isDisabled: disabled.isDisabled,
@@ -255,13 +263,14 @@ export default {
     const default_ = useDefault(props, context, {
       form$: form$.form$,
       nullValue: nullValue.nullValue,
-      valueDateFormat: dateFormat.valueDateFormat,
+      path: path.path,
     })
 
     const value = useValue(props, context, {
-      nullValue: nullValue.nullValue,
-      defaultValue: default_.defaultValue,
       valueDateFormat: dateFormat.valueDateFormat,
+      defaultValue: default_.defaultValue,
+      path: path.path,
+      form$: form$.form$,
     })
 
     const conditions = useConditions(props, context, {
@@ -274,28 +283,13 @@ export default {
       path: path.path,
     })
 
-    const events = useEvents(props, context, {
-      form$: form$.form$,
-    }, {
-      events: [
-        'change'
-      ],
-    })
-
     const data = useData(props, context, {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      clean: validation.clean,
-      validate: validation.validate,
       resetValidators: validation.resetValidators,
-      fire: events.fire,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      dirt: validation.dirt,
-      valueDateFormat: dateFormat.valueDateFormat,
       loadDateFormat: dateFormat.loadDateFormat,
     })
 
@@ -341,14 +335,7 @@ export default {
     })
 
     const handleChange = useHandleChange(props, context, {
-      form$: form$.form$,
-      model: value.model,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      changed: data.changed,
-      dirt: validation.dirt,
-      validate: validation.validate,
-      fire: events.fire,
+      value: value.value,
     })
 
     useWatchValue(props, context, {

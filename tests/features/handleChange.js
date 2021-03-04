@@ -16,6 +16,7 @@ export const handleChange = function (elementType, elementName, options) {
     
     switch (options.fieldType) {
       case 'toggle':
+      case 'dates':
         el.input.update(options.value)
         break
 
@@ -26,6 +27,6 @@ export const handleChange = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.value).toBe(options.value)
+    expect(el.value).toStrictEqual(options.value)
   })
 }

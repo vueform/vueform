@@ -1,7 +1,7 @@
 import { createForm } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
-export { data, filtered, clear, changed, updated, onCreated, } from './data'
+export { data, filtered, clear } from './data'
 
 const value = function(options) {
   return options.value !== undefined ? options.value : 'value'
@@ -64,33 +64,6 @@ export const load = function (elementType, elementName, options) {
     expect(() => {
       el.load(['30-12-2020'])
     }).not.toThrowError()
-  })
-
-  it('should set "null" on `load` if value is empty or undefined', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.load(null)
-    expect(el.value).toStrictEqual(el.nullValue)
-
-    el.load(0)
-    expect(el.value).toStrictEqual(el.nullValue)
-
-    el.load('')
-    expect(el.value).toStrictEqual(el.nullValue)
-
-    el.load(undefined)
-    expect(el.value).toStrictEqual(el.nullValue)
-
-    el.load([])
-    expect(el.value).toStrictEqual(el.nullValue)
   })
 
   it('should should format data if "formatLoad" is set on `load`', async () => {
@@ -167,49 +140,6 @@ export const update = function (elementType, elementName, options) {
       el.update(['30-12-2020'])
     }).not.toThrowError()
   })
-
-  it('should set nullValue on `update` if value is empty', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.update(0)
-    expect(el.value).toStrictEqual(el.nullValue)
-
-    el.update('')
-    expect(el.value).toStrictEqual(el.nullValue)
-
-    el.update(null)
-    expect(el.value).toStrictEqual(el.nullValue)
-
-    el.update(undefined)
-    expect(el.value).toStrictEqual(el.nullValue)
-
-    el.update([])
-    expect(el.value).toStrictEqual(el.nullValue)
-  })
-
-  it('should trigger "updated" on `update`', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.update(['2020-12-30'])
-
-    expect(el.dirty).toStrictEqual(true)
-  })
 }
 
 export const reset = function (elementType, elementName, options) {
@@ -252,44 +182,5 @@ export const reset = function (elementType, elementName, options) {
 
     expect(el.validated).toStrictEqual(false)
     expect(el.invalid).toStrictEqual(false)
-  })
-
-  it('should trigger "change" on `reset` if value changed', async () => {
-    let onChangeMock = jest.fn()
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          onChange: onChangeMock,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.update(value(options))
-    el.reset()
-
-    expect(onChangeMock).toHaveBeenCalledWith(el.defaultValue, el.previousValue)
-  })
-
-  it('should not trigger "change" on `reset` if value has not changed', async () => {
-    let onChangeMock = jest.fn()
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          onChange: onChangeMock,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.reset()
-
-    expect(onChangeMock).not.toHaveBeenCalled()
   })
 }

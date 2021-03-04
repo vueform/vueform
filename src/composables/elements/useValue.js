@@ -81,76 +81,50 @@ const date = function(props, context, dependencies)
 
 const dates = function(props, context, dependencies)
 {
-  const {
-    currentValue,
-    previousValue
-  } = date(props, context, dependencies)
-
   // ============ DEPENDENCIES =============
 
   const valueDateFormat = dependencies.valueDateFormat
+  const path = dependencies.path
+  const form$ = dependencies.form$
 
-  // ============== COMPUTED ===============
+  // ================ DATA =================
 
-  // Is always a Date instance
-  /**
-   * 
-   * 
-   * @private
-   */
-  const model = computed({
-    get() {
-      return currentValue.value
-    },
-    set(val) {
-      if (!_.isArray(val)) {
-        throw new Error('Dates model must an array')
-      }
-
-      _.each(val, (v) => {
-        if (!_.isEmpty(v) && !(v instanceof Date)) {
-          throw new Error('Date model must be an array of `Date` instances')
+  const {
+    value
+  } = base(props, context, dependencies, {
+    value: {
+      get() {
+        return _.get(form$.value.model, path.value)
+      },
+      set(val) {
+        if (!Array.isArray(val)) {
+          val = [val]
         }
-      })
-      
-      previousValue.value = _.clone(currentValue.value)
-      currentValue.value = val
+
+        form$.value.updateModel(path.value, val.map((v) => {
+          if (!_.isEmpty(v) && !(v instanceof Date) && valueDateFormat.value !== false) {
+            checkDateFormat(valueDateFormat.value, v)
+          }
+
+          return v && v instanceof Date && valueDateFormat.value !== false
+            ? moment(v).format(valueDateFormat.value)
+            : v
+        }))
+      }
     }
   })
 
-  /**
-   * 
-   * 
-   * @private
-   */
-  const value = computed({
-    get() {
-      if (valueDateFormat.value === false) {
-        return model.value
-      }
+  // ============== COMPUTED ===============
 
-      return _.map(model.value, (val) => {
-        return moment(val).format(valueDateFormat.value)
-      })
-    },
-    set(val) {
-      if (!_.isArray(val)) {
-        throw new Error('Dates value must an array')
-      }
-
-      model.value = _.map(val, (v) => {
-        checkDateFormat(valueDateFormat.value, v)
-
-        return v instanceof Date ? v : moment(v, valueDateFormat.value, true).toDate()
-      })
-    }
+  const model = computed(() => {
+    return value.value.map((v) => {
+      return v instanceof Date || !v ? v : moment(v, valueDateFormat.value).toDate()
+    })
   })
 
   return {
     value,
     model,
-    previousValue,
-    currentValue,
   }
 }
 

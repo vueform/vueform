@@ -344,34 +344,16 @@ const dates = function(props, context, dependencies)
   const {
     data,
     filtered,
-    changed,
-    update: baseUpdate,
+    update,
     clear,
     reset,
-    updated,
     prepare
-  } = base(props, context, dependencies, {
-    setValue: (val) => {
-      if (_.isEmpty(val)) {
-        value.value =  _.clone(nullValue.value)
-        return
-      }
-
-      value.value = _.map(val, (v) => {
-        checkDateFormat(valueDateFormat.value, v)
-
-        return v instanceof Date ? v : moment(v, valueDateFormat.value).toDate()
-      })
-    }
-  })
+  } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
 
   const form$ = dependencies.form$
-  const nullValue = dependencies.nullValue
-  const valueDateFormat = dependencies.valueDateFormat
   const value = dependencies.value
-  const available = dependencies.available
   const loadDateFormat = dependencies.loadDateFormat
 
   // =============== METHODS ===============
@@ -387,11 +369,6 @@ const dates = function(props, context, dependencies)
   const load = (val, format = false) => {
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
 
-    if (formatted === undefined || _.isEmpty(formatted)) {
-      value.value =  _.clone(nullValue.value)
-      return
-    }
-
     value.value = _.map(formatted, (v) => {
       checkDateFormat(loadDateFormat.value, v)
 
@@ -399,23 +376,11 @@ const dates = function(props, context, dependencies)
     })
   }
 
-  /**
-   * 
-   * 
-   * @param {array} value* The value to update the field with.
-   * @returns {void}
-   */
-  const update = (val) => {
-    return baseUpdate(val)
-  }
-
   return {
     data,
     filtered,
-    changed,
     load,
     update,
-    updated,
     clear,
     reset,
     prepare,

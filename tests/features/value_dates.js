@@ -1,78 +1,10 @@
 import { createForm } from 'test-helpers'
 
-export { currentValue, previousValue } from './value'
-
-export const model = function (elementType, elementName, options) {
-  it('should return currentValue for `model`', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.currentValue = [
-      moment('2020-12-30').toDate(),
-    ]
-
-    expect(el.model).toStrictEqual(el.currentValue)
-  })
-
-  it('should set currentValue as previousValue and passed over value as current value when setting `model`', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.currentValue = [moment('2020-12-29').toDate()]
-    el.model = [moment('2020-12-30').toDate()]
-
-    expect(el.currentValue).toStrictEqual([moment('2020-12-30').toDate()])
-    expect(el.previousValue).toStrictEqual([moment('2020-12-29').toDate()])
-  })
-
-  it('should throw error when setting `model` with not a Date instance', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(() => {
-      el.model = ['2020-12-30']
-    }).toThrowError()
-  })
-
-  it('should throw error when setting `model` with not an array', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(() => {
-      el.model = moment('2020-12-30').toDate()
-    }).toThrowError()
-  })
-}
+import { value as baseValue } from './value'
 
 export const value = function (elementType, elementName, options) {
+  baseValue(elementType, elementName, options)
+
   it('should format `value` according to valueFormat', () => {
     let form = createForm({
       schema: {
@@ -85,9 +17,9 @@ export const value = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.value = [moment('2020-12-30').toDate()]
+    el.value = moment('2020-11-20').toDate()
 
-    expect(el.value).toStrictEqual(['30-12-2020'])
+    expect(el.value).toStrictEqual(['20-11-2020'])
   })
 
   it('should return Date instance for `value` if valueFormat is false', () => {
@@ -102,49 +34,9 @@ export const value = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.value = [moment('2020-12-30').toDate()]
+    el.value = [moment('2020-11-20').toDate()]
 
-    expect(el.value).toStrictEqual([moment('2020-12-30').toDate()])
-  })
-
-  it('should set `value` to model', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.value = [moment('2020-12-30').toDate()]
-
-    expect(el.model).toStrictEqual([moment('2020-12-30').toDate()])
-
-    el.value = ['2020-12-29']
-
-    expect(el.model).toStrictEqual([moment('2020-12-29').toDate()])
-  })
-
-  it('should throw error when setting `value` with not an array', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(() => {
-      el.value = '2020-12-30'
-    }).toThrowError()
-
-    expect(() => {
-      el.value = ['2020-12-30']
-    }).not.toThrowError()
+    expect(el.value).toStrictEqual([moment('2020-11-20').toDate()])
   })
 
   it('should throw error when setting `value` with string date that does not have valueFormat', () => {
@@ -160,11 +52,30 @@ export const value = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(() => {
-      el.value = ['2020-12-30']
+      el.value = ['2020-11-20']
     }).toThrowError()
 
     expect(() => {
-      el.value = ['30-12-2020']
+      el.value = ['20-11-2020']
     }).not.toThrowError()
+  })
+}
+
+export const model = function (elementType, elementName, options) {
+  it('should should be the Date object representation of value', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          valueFormat: 'DD-MM-YYYY'
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.value = '20-11-2020'
+
+    expect(el.model).toStrictEqual([moment('2020-11-20').toDate()])
   })
 }

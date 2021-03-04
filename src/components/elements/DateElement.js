@@ -280,7 +280,6 @@ export default {
       form$: form$.form$,
       nullValue: nullValue.nullValue,
       path: path.path,
-      valueDateFormat: dateFormat.valueDateFormat,
     })
 
     const conditions = useConditions(props, context, {
@@ -298,9 +297,6 @@ export default {
       defaultValue: default_.defaultValue,
       path: path.path,
       form$: form$.form$,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
     })
 
     const data = useData(props, context, {
@@ -310,7 +306,6 @@ export default {
       resetValidators: validation.resetValidators,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      valueDateFormat: dateFormat.valueDateFormat,
       loadDateFormat: dateFormat.loadDateFormat,
     })
 

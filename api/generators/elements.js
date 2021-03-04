@@ -8,7 +8,7 @@ const elements = [
   'checkbox',
   'checkboxgroup',
   'date',
-  // 'dates',
+  'dates',
   'file',
   'group',
   'hidden',

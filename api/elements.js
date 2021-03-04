@@ -713,7 +713,7 @@ export default {
       "columns",
       "components",
       "conditions",
-      "data",
+      "data_date",
       "dateFormat",
       "default",
       "disabled",
@@ -920,6 +920,306 @@ export default {
         "required": "false",
         "types": [
           "boolean"
+        ]
+      },
+      "min": {
+        "required": "false",
+        "types": [
+          "string",
+          "Date"
+        ]
+      },
+      "max": {
+        "required": "false",
+        "types": [
+          "string",
+          "Date"
+        ]
+      },
+      "disables": {
+        "required": "false",
+        "types": [
+          "array"
+        ]
+      },
+      "options": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "placeholder": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "readonly": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "before": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "between": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "after": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "slots": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "rules": {
+        "required": "false",
+        "types": [
+          "array",
+          "string",
+          "object"
+        ]
+      },
+      "messages": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "displayError": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      }
+    }
+  },
+  "dates": {
+    "features": [
+      "baseElement_dates",
+      "classes",
+      "columns",
+      "components",
+      "conditions",
+      "data_dates",
+      "dateFormat_dates",
+      "default",
+      "disabled",
+      "empty",
+      "events",
+      "fieldId",
+      "form$",
+      "genericName",
+      "handleChange",
+      "input",
+      "label",
+      "layout",
+      "nullValue_array",
+      "options_dates",
+      "path",
+      "slots",
+      "theme",
+      "validation",
+      "value_dates",
+      "view",
+      "watchValue"
+    ],
+    "slots": [
+      "label",
+      "info",
+      "description",
+      "error",
+      "message",
+      "before",
+      "between",
+      "after"
+    ],
+    "events": [
+      "change"
+    ],
+    "props": {
+      "name": {
+        "required": "true",
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "layout": {
+        "required": "false",
+        "types": [
+          "string",
+          "object",
+          "boolean"
+        ]
+      },
+      "type": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "addClass": {
+        "required": "false",
+        "types": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "overrideClasses": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "addClasses": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "columns": {
+        "required": "false",
+        "types": [
+          "object",
+          "string"
+        ]
+      },
+      "overrideComponents": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "conditions": {
+        "required": "false",
+        "types": [
+          "array"
+        ]
+      },
+      "formatData": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "formatLoad": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "submit": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "debounce": {
+        "required": "false",
+        "types": [
+          "number"
+        ]
+      },
+      "default": {
+        "required": "false",
+        "types": [
+          "array"
+        ]
+      },
+      "description": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "disabled": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "floating": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "id": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "info": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "label": {
+        "required": "false",
+        "types": [
+          "string",
+          "object",
+          "function"
+        ]
+      },
+      "displayFormat": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "valueFormat": {
+        "required": "false",
+        "types": [
+          "string",
+          "boolean"
+        ]
+      },
+      "loadFormat": {
+        "required": "false",
+        "types": [
+          "string",
+          "boolean"
+        ]
+      },
+      "mode": {
+        "required": "false",
+        "types": [
+          "string"
         ]
       },
       "min": {
