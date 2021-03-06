@@ -223,7 +223,7 @@ export default {
     const default_ = useDefault(props, context, {
       nullValue: nullValue.nullValue,
       form$: form$.form$,
-      path: path.path,
+      dataPath: path.dataPath,
     })
 
     const value = useValue(props, context, {

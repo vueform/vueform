@@ -295,7 +295,7 @@ export default {
     const value = useValue(props, context, {
       valueDateFormat: dateFormat.valueDateFormat,
       defaultValue: default_.defaultValue,
-      path: path.path,
+      dataPath: path.dataPath,
       form$: form$.form$,
     })
 

@@ -13,10 +13,11 @@ import useView from './../../composables/elements/useView'
 import useComponents from './../../composables/elements/useComponents'
 import useSlots from './../../composables/elements/useSlots'
 import useElements from './../../composables/useElements'
-import useValue from './../../composables/elements/useValue'
-import useDefault from './../../composables/elements/useDefault'
 import useEvents from './../../composables/useEvents'
 import useWatchValue from './../../composables/elements/useWatchValue'
+
+import { object as useDefault } from './../../composables/elements/useDefault'
+import { object as useValue } from './../../composables/elements/useValue'
 
 import { object as useNullValue } from './../../composables/elements/useNullValue'
 import { object as useData } from './../../composables/elements/useData'
@@ -170,7 +171,13 @@ export default {
     const default_ = useDefault(props, context, {
       nullValue: nullValue.nullValue,
       form$: form$.form$,
-      path: path.path,
+      parent: path.parent,
+    })
+
+    const value = useValue(props, context, {
+      defaultValue: default_.defaultValue,
+      dataPath: path.dataPath,
+      form$: form$.form$,
     })
 
     const label = useLabel(props, context, {
@@ -197,15 +204,7 @@ export default {
     const validation = useValidation(props, context, {
       form$: form$.form$,
       children$: children.children$,
-      form$: form$.form$,
       path: path.path,
-    })
-
-    const value = useValue(props, context, {
-      defaultValue: default_.defaultValue,
-      path: path.path,
-      form$: form$.form$,
-      fire: events.fire,
     })
 
     const classes = useClasses(props, context, {

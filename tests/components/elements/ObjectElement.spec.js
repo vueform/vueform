@@ -2,11 +2,11 @@ import { runElementTests } from 'test-helpers'
 
 export default runElementTests('object', {
   default: {
-    default: { el: 'value', el2: 'value2' },
-    default2: { el: 'value3', el2: 'value4' },
-    value: { el: 'value5', el2: 'value6' },
-    value2: { el: 'value7', el2: 'value8' },
-    nullValue: {},
+    default: { child: null, child2: 'value2' },
+    default2: { child: 'value3', child2: null },
+    value: { child: 'value5', child2: 'value6' },
+    value2: { child: 'value7', child2: 'value8' },
+    nullValue: { child: null, child2: null },
   },
   events: {
     events: ['change']

@@ -7,33 +7,49 @@ export const defaultValue = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          default: options.default
+          default: {
+            child: 'value',
+            child2: 'value2',
+          },
+          schema: {
+            child: { type: 'text' },
+            child2: { type: 'text', default: 'not-value2' },
+          }
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.defaultValue).toStrictEqual(options.default)
+    expect(el.defaultValue).toStrictEqual({
+      child: 'value',
+      child2: 'value2',
+    })
   })
 
   it('should be equal to form default if form default is defined', async () => {
     let form = createForm({
+      default: {
+        child2: 'not-value2'
+      },
       schema: {
         el: {
           type: elementType,
-          default: options.default,
-        }
+          default: {
+            child: 'value',
+            child2: 'value2',
+          },
+          schema: {
+            child: { type: 'text' },
+            child2: { type: 'text' },
+          }
+        },
       },
-      // Group default will not have a key for group element
-      default: {
-        el: options.default2,
-      }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.defaultValue).toStrictEqual(options.default2)
+    expect(el.defaultValue).toStrictEqual({child:'value',child2:'not-value2'})
   })
 
   it('should be equal to nullValue if default is not defined', () => {
@@ -41,6 +57,10 @@ export const defaultValue = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          schema: {
+            child: { type: 'text' },
+            child2: { type: 'text' },
+          }
         }
       }
     })

@@ -1624,25 +1624,28 @@ export default {
   },
   "group": {
     "features": [
-      "baseElement",
-      "children_group",
-      "classes",
-      "columns",
-      "components",
-      "conditions",
-      "data_group",
-      "elements",
-      "form$",
-      "genericName",
-      "label",
-      "layout",
-      "path_group",
-      "slots",
-      "theme",
-      "validation_group",
-      "value",
-      "view",
-      "watchValue"
+      // "baseElement",
+      // "children_group",
+      // "classes",
+      // "columns",
+      // "components",
+      // "conditions",
+      // "data_group",
+      // "default",
+      // "elements",
+      // "events",
+      // "form$",
+      // "genericName",
+      // "label",
+      // "layout",
+      // "nullValue_object",
+      // "path_group",
+      // "slots",
+      // "theme",
+      // "validation_group",
+      "value_group",
+      // "view",
+      // "watchValue"
     ],
     "slots": [
       "label",
@@ -1653,7 +1656,9 @@ export default {
       "between",
       "after"
     ],
-    "events": [],
+    "events": [
+      "change"
+    ],
     "props": {
       "name": {
         "required": "true",
@@ -1746,6 +1751,12 @@ export default {
           "boolean"
         ]
       },
+      "default": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
       "description": {
         "required": "false",
         "types": [
@@ -1794,6 +1805,12 @@ export default {
         "required": "false",
         "types": [
           "object"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
         ]
       }
     }

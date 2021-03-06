@@ -114,6 +114,204 @@ const base = function(props, context, dependencies, options = {})
   }
 }
 
+const object = function(props, context, dependencies)
+{
+  const {
+    name,
+    formatLoad,
+    formatData,
+    submit,
+  } = toRefs(props)
+
+  const {
+    prepare
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES =============
+
+  const form$ = dependencies.form$
+  const available = dependencies.available
+  const children$ = dependencies.children$
+
+  // ============== COMPUTED ===============
+  
+  const data = computed(() => {
+    let data = {}
+
+    _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+
+      data = Object.assign({}, data, element$.data)
+    })
+
+    return formatData.value ? formatData.value(name.value, data, form$.value) : {[name.value]: data}
+  })
+  
+  const filtered = computed(() => {
+    if (!available.value || !submit.value) {
+      return {}
+    }
+    
+    let filtered = {}
+
+    _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+
+      filtered = Object.assign({}, filtered, element$.filtered)
+    })
+
+    return formatData.value ? formatData.value(name.value, filtered, form$.value) : {[name.value]: filtered}
+  })
+
+  // =============== METHODS ===============
+
+  /**
+   * 
+   * 
+   * 
+   * @param {object} value* The value to be loaded.
+   * @param {boolean} format Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.
+   * @returns {void}
+   */
+  const load = (val, format = false) => {
+    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
+
+    _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+      
+      if (!element$.flat && formatted[element$.name] === undefined) {
+        element$.clear()
+        return
+      }
+
+      element$.load(element$.flat ? formatted : formatted[element$.name], format)
+    })
+  }
+
+  /**
+   * 
+   * 
+   * @param {object} value* The value to update the field with.
+   * @returns {void}
+   */
+  const update = (val) => {
+    _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+
+      if (val[element$.name] === undefined && !element$.flat) {
+        return
+      }
+
+      element$.update(element$.flat ? val : val[element$.name])
+    })
+  }
+
+  const clear = () => {
+    _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+
+      element$.clear()
+    })
+  }
+
+  const reset = () => {
+    _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+      
+      element$.reset()
+    })
+  }
+
+  return {
+    data,
+    filtered,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  }
+}
+
+const group = function(props, context, dependencies)
+{
+  const {
+    name,
+    formatData,
+    submit,
+  } = toRefs(props)
+
+  const {
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  } = object(props, context, dependencies)
+
+  // ============ DEPENDENCIES =============
+
+  const form$ = dependencies.form$
+  const children$ = dependencies.children$
+  const available = dependencies.available
+
+  // ============== COMPUTED ===============
+
+  const data = computed(() => {
+    let data = {}
+
+    _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+
+      data = Object.assign({}, data, element$.data)
+    })
+
+    return formatData.value ? formatData.value(name.value, data, form$.value) : data
+  })
+
+  const filtered = computed(() => {
+    if (!available.value || !submit.value) {
+      return {}
+    }
+    
+    let filtered = {}
+
+    _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+
+      filtered = Object.assign({}, filtered, element$.filtered)
+    })
+
+    return formatData.value ? formatData.value(name.value, filtered, form$.value) : filtered
+  })
+
+  return {
+    data,
+    filtered,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  }
+}
+
 const list = function(props, context, dependencies, options)
 {
 
@@ -373,163 +571,6 @@ const dates = function(props, context, dependencies)
       checkDateFormat(loadDateFormat.value, v)
 
       return v instanceof Date ? v : moment(v, loadDateFormat.value).toDate()
-    })
-  }
-
-  return {
-    data,
-    filtered,
-    load,
-    update,
-    clear,
-    reset,
-    prepare,
-  }
-}
-
-const object = function(props, context, dependencies)
-{
-  const {
-    name,
-    formatLoad,
-    formatData,
-    submit,
-  } = toRefs(props)
-
-  const {
-    data,
-    prepare
-  } = base(props, context, dependencies)
-
-  // ============ DEPENDENCIES =============
-
-  const form$ = dependencies.form$
-  const available = dependencies.available
-  const children$ = dependencies.children$
-
-  // ============== COMPUTED ===============
-  
-  const filtered = computed(() => {
-    if (!available.value || !submit.value) {
-      return {}
-    }
-    
-    let filtered = {}
-
-    _.each(children$.value, (element$) => {
-      filtered = Object.assign({}, filtered, element$.filtered)
-    })
-
-    return formatData.value ? formatData.value(name.value, filtered, form$.value) : {[name.value]: filtered}
-  })
-
-  // =============== METHODS ===============
-
-  /**
-   * 
-   * 
-   * 
-   * @param {object} value* The value to be loaded.
-   * @param {boolean} format Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.
-   * @returns {void}
-   */
-  const load = (val, format = false) => {
-    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
-
-    _.each(children$.value, (element$) => {
-      element$.load(element$.flat ? formatted : formatted[element$.name], format)
-    })
-  }
-
-  /**
-   * 
-   * 
-   * @param {object} value* The value to update the field with.
-   * @returns {void}
-   */
-  const update = (val) => {
-    _.each(children$.value, (element$) => {
-      if (val[element$.name] === undefined && !element$.flat) {
-        return
-      }
-
-      element$.update(element$.flat ? val : val[element$.name])
-    })
-  }
-
-  const clear = () => {
-    _.each(children$.value, (element$) => {
-      element$.clear()
-    })
-  }
-
-  const reset = () => {
-    _.each(children$.value, (element$) => {
-      element$.reset()
-    })
-  }
-
-  return {
-    data,
-    filtered,
-    load,
-    update,
-    clear,
-    reset,
-    prepare,
-  }
-}
-
-const group = function(props, context, dependencies)
-{
-  const {
-    name,
-    formatData,
-    formatLoad,
-    submit,
-  } = toRefs(props)
-
-  const {
-    update,
-    clear,
-    reset,
-    prepare
-  } = object(props, context, dependencies)
-
-  // ============ DEPENDENCIES =============
-
-  const form$ = dependencies.form$
-  const children$ = dependencies.children$
-  const value = dependencies.value
-  const available = dependencies.available
-
-  // ============== COMPUTED ===============
-
-  const data = computed(() => {
-    return formatData.value ? formatData.value(name.value, value.value, form$.value) : value.value
-  })
-
-  const filtered = computed(() => {
-    if (!available.value || !submit.value) {
-      return {}
-    }
-    
-    let filtered = {}
-
-    _.each(children$.value, (element$) => {
-      filtered = Object.assign({}, filtered, element$.filtered)
-    })
-
-    return formatData.value ? formatData.value(name.value, filtered, form$.value) : filtered
-  })
-
-  // =============== METHODS ===============
-
-  const load = (val, format = false) => {
-    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
-
-    _.each(children$.value, (element$) => {
-      element$.load(element$.flat ? formatted : formatted[element$.name], format)
     })
   }
 

@@ -26,7 +26,7 @@ export default function (props, context, dependencies)
    * 
    * @private
    */
-  const internalData = ref(externalValue.value ? model.value : {})
+  const internalData = ref({})
 
   /**
    * 
@@ -43,21 +43,42 @@ export default function (props, context, dependencies)
   const updateModel = (path, val) => {
     // When using v-model as model
     if (externalValue.value) {
-      let parts = path.split('.')
-      let element = parts.pop()
-      let parent = parts.join('.') || null
+      // Non-flat elements
+      if (path) {
+        let parts = path.split('.')
+        let element = parts.pop()
+        let parent = parts.join('.') || null
 
-      // We are setting externalValue (v-model) to instantly reflect changes in field value
-      $this.$set(parent ? _.get(externalValue.value, parent) : externalValue.value, element, val)
+        // We are setting externalValue (v-model) to instantly reflect changes in field value
+        $this.$set(parent ? _.get(externalValue.value, parent) : externalValue.value, element, val)
 
-      // We are setting intermediaryValue to collect changes in a tick which will later be emitted in `input`
-      $this.$set(parent ? _.get(intermediaryValue.value, parent) : intermediaryValue.value, element, val)
+        // We are setting intermediaryValue to collect changes in a tick which will later be emitted in `input`
+        $this.$set(parent ? _.get(intermediaryValue.value, parent) : intermediaryValue.value, element, val)
+      }
+
+      // Group element
+      else {
+        _.each(val, (v, key) => {
+          $this.$set(externalValue.value, key, v)
+        })
+        
+        intermediaryValue.value = val
+      }
 
     // When using this.data as model
     } else {
       // We need a different clone than this.valueValue clone to not effect children watching model
       let model = _.cloneDeep(externalValue.value || internalData.value)
-      _.set(model, path, val)
+
+      // Non-flat elements
+      if (path) {
+        _.set(model, path, val)
+
+      // Group element
+      } else {
+        model = val
+      }
+
       internalData.value = model
     }
   }
@@ -88,6 +109,7 @@ export default function (props, context, dependencies)
     model,
     internalData,
     intermediaryValue,
+    externalValue,
     updateModel,
   }
 }

@@ -522,8 +522,16 @@ const base = function(props, context, dependencies = {})
       return
     }
 
-    _.each(data, (value, key) => {
-      elements$.value[key].update(value)
+    _.each(elements$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+
+      if (data[element$.name] === undefined && !element$.flat) {
+        return
+      }
+
+      element$.update(element$.flat ? data : data[element$.name])
     })
   }
 

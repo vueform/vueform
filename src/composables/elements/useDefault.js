@@ -3,14 +3,15 @@ import { computed, toRefs } from 'composition-api'
 const base = function(props, context, dependencies)
 {
   const {
-    default: default_
+    default: default_,
+    name,
   } = toRefs(props)
 
   // ============ DEPENDENCIES =============
 
   const nullValue = dependencies.nullValue
   const form$ = dependencies.form$
-  const path = dependencies.path
+  const parent = dependencies.parent
 
   // ============== COMPUTED ===============
 
@@ -20,14 +21,53 @@ const base = function(props, context, dependencies)
   * @type {string|number}
   */
   const defaultValue = computed(() => {
-    let formDefaultValue = _.get(form$.value.options.default, path.value)
+    let parentDefaultValue = parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
 
-    if (formDefaultValue !== undefined) {
-      return formDefaultValue instanceof File ? new File([formDefaultValue], formDefaultValue.name) : _.cloneDeep(formDefaultValue)
+    if (parentDefaultValue !== undefined) {
+      return _.cloneDeep(parentDefaultValue)
     }
 
     if (default_.value !== undefined) {
-      return default_.value instanceof File ? new File([default_.value], default_.value.name) : _.cloneDeep(default_.value)
+      return _.cloneDeep(default_.value)
+    }
+
+    return _.cloneDeep(nullValue.value)
+  })
+
+  return {
+    defaultValue,
+  }
+}
+
+const object = function(props, context, dependencies)
+{
+  const {
+    default: default_,
+    name,
+  } = toRefs(props)
+
+  // ============ DEPENDENCIES =============
+
+  const nullValue = dependencies.nullValue
+  const form$ = dependencies.form$
+  const parent = dependencies.parent
+
+  // ============== COMPUTED ===============
+
+  /**
+  * The default value of the element.
+  * 
+  * @type {string|number}
+  */
+  const defaultValue = computed(() => {
+    let parentDefaultValue = parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
+
+    if (parentDefaultValue !== undefined) {
+      return _.cloneDeep(_.merge({}, default_.value || nullValue.value, parentDefaultValue))
+    }
+
+    if (default_.value !== undefined) {
+      return _.cloneDeep(default_.value)
     }
 
     return _.cloneDeep(nullValue.value)
@@ -83,6 +123,7 @@ const multilingual = function(props, context, dependencies)
 
 export {
   multilingual,
+  object,
 }
 
 export default base

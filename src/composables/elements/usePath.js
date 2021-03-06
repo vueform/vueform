@@ -16,7 +16,7 @@ const base = function(props, context, dependencies)
    */
   const parent = computed(() => {
     const getParent = (parent, getParent) => {
-      if (parent && ((context.expose !== undefined && parent.$options.name && parent.$options.name.match(/^[a-zA-Z\-]*Element$/)) || (context.expose === undefined && parent.hasOwnProperty('el$')))) {
+      if (parent && ((context.expose !== undefined && parent.$options.name && parent.$options.name.match(/^[a-zA-Z\-]*Element$/)) || (context.expose === undefined && parent.hasOwnProperty('el$') && typeof parent.el$ !== 'function'))) {
         return parent.el$
       } else if (parent.$parent) {
         return getParent(parent.$parent, getParent)
@@ -41,6 +41,15 @@ const base = function(props, context, dependencies)
   /**
    * 
    * 
+   * @type {string} 
+   */
+  const dataPath = computed(() => {
+    return parent.value && parent.value.dataPath ? parent.value.dataPath + '.' + name.value : name.value
+  })
+
+  /**
+   * 
+   * 
    * @private
    */
   const flat = computed(() => {
@@ -50,6 +59,7 @@ const base = function(props, context, dependencies)
   return {
     parent,
     path,
+    dataPath,
     flat,
   }
 }
@@ -59,10 +69,21 @@ const group = function (props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const {
-    path
+    path,
+    parent,
   } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
+
+  /**
+   * 
+   * 
+   * @type {string} 
+   */
+  const dataPath = computed(() => {
+
+    return parent.value && parent.value.dataPath ? parent.value.dataPath : null
+  })
 
   const flat = computed(() => {
     return true
@@ -70,7 +91,9 @@ const group = function (props, context, dependencies)
 
   return {
     path,
+    dataPath,
     flat,
+    parent,
   }
 }
 

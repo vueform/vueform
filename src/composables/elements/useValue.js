@@ -8,27 +8,67 @@ const base = function(props, context, dependencies, options = {})
   // ============ DEPENDENCIES =============
 
   const defaultValue = dependencies.defaultValue
-  const path = dependencies.path
+  const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
+
+  // ================ DATA =================
+
+  const initialValue = ref(_.get(form$.value.model, dataPath.value))
 
   // ============== COMPUTED ===============
 
-  const initialValue = ref(_.get(form$.value.model, path.value))
-
   const value = computed(options.value || {
     get() {
-      let value = _.get(form$.value.model, path.value)
+      let value = _.get(form$.value.model, dataPath.value)
 
       return value !== undefined ? value : defaultValue.value
     },
     set(val) {
-      form$.value.updateModel(path.value, val)
+      form$.value.updateModel(dataPath.value, val)
     }
   })
+
 
   // If element's value was undefined initially (not found in v-model/data) then we need to set it's value
   if (initialValue.value === undefined) {
     value.value = defaultValue.value
+  }
+
+  return {
+    value,
+  }
+}
+
+const object = function(props, context, dependencies, options = {})
+{
+  // ============ DEPENDENCIES =============
+
+  const defaultValue = dependencies.defaultValue
+  const dataPath = dependencies.dataPath
+  const form$ = dependencies.form$
+
+  // ================ DATA =================
+
+  const initialValue = ref(_.get(form$.value.model, dataPath.value))
+
+  // ============== COMPUTED ===============
+
+  const value = computed(options.value || {
+    get() {
+      let value = _.get(form$.value.model, dataPath.value)
+
+      return value !== undefined ? value : defaultValue.value
+    },
+    set(val) {
+      form$.value.updateModel(dataPath.value, val)
+    }
+  })
+
+
+  if (initialValue.value === undefined) {
+    value.value = defaultValue.value
+  } else {
+    value.value = Object.assign({}, defaultValue.value, value.value)
   }
 
   return {
@@ -41,7 +81,7 @@ const date = function(props, context, dependencies)
   // ============ DEPENDENCIES =============
 
   const valueDateFormat = dependencies.valueDateFormat
-  const path = dependencies.path
+  const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
 
   // ================ DATA =================
@@ -51,7 +91,7 @@ const date = function(props, context, dependencies)
   } = base(props, context, dependencies, {
     value: {
       get() {
-        return _.get(form$.value.model, path.value)
+        return _.get(form$.value.model, dataPath.value)
       },
       set(val) {
         // If the value is not a Date object check if it is matching the value format
@@ -59,7 +99,7 @@ const date = function(props, context, dependencies)
           checkDateFormat(valueDateFormat.value, val)
         }
 
-        form$.value.updateModel(path.value, val && val instanceof Date && valueDateFormat.value !== false
+        form$.value.updateModel(dataPath.value, val && val instanceof Date && valueDateFormat.value !== false
           ? moment(val).format(valueDateFormat.value)
           : val
         )
@@ -84,7 +124,7 @@ const dates = function(props, context, dependencies)
   // ============ DEPENDENCIES =============
 
   const valueDateFormat = dependencies.valueDateFormat
-  const path = dependencies.path
+  const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
 
   // ================ DATA =================
@@ -94,14 +134,14 @@ const dates = function(props, context, dependencies)
   } = base(props, context, dependencies, {
     value: {
       get() {
-        return _.get(form$.value.model, path.value)
+        return _.get(form$.value.model, dataPath.value)
       },
       set(val) {
         if (!Array.isArray(val)) {
           val = [val]
         }
 
-        form$.value.updateModel(path.value, val.map((v) => {
+        form$.value.updateModel(dataPath.value, val.map((v) => {
           if (!_.isEmpty(v) && !(v instanceof Date) && valueDateFormat.value !== false) {
             checkDateFormat(valueDateFormat.value, v)
           }
@@ -400,6 +440,7 @@ export {
   tags,
   file,
   location,
+  object,
 }
 
 

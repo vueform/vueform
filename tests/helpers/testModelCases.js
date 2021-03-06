@@ -1,6 +1,6 @@
 import { createForm, createInlineForm } from 'test-helpers'
 
-export default function (cases, elementType, options, baseSchema, testChanges) {
+export default function (cases, elementType, options, mockList, baseSchema, testChanges) {
   _.each(cases, (c) => {
     for(let i = 0; i < 3; i++) {
       let describeName = ''
@@ -25,11 +25,11 @@ export default function (cases, elementType, options, baseSchema, testChanges) {
         name += c.elementDefault ? ', element default' : ', no element default'
 
         it(name, async () => {
-          let mocks = {
-            formChangeMock: jest.fn(),
-            elChangeMock: jest.fn(),
-            el2ChangeMock: jest.fn(),
-          }
+          let mocks = {}
+
+          mockList.forEach((m) => {
+            mocks[m] = jest.fn()
+          })
 
           let config = {
             mounted() {
@@ -42,7 +42,18 @@ export default function (cases, elementType, options, baseSchema, testChanges) {
 
           if (c.elementDefault) {
             _.each(c.elementDefault, (elDefault, el) => {
-              schema[el].default = elDefault
+              if (schema[el] !== undefined) {
+                schema[el].default = elDefault
+              }
+              // Thinking about Group elements
+              else {
+                // set to `el` or `el2`
+                if (Object.keys(schema.el.schema).indexOf(el) !== -1) {
+                  schema.el.schema[el].default = elDefault
+                } else {
+                  schema.el2.schema[el].default = elDefault
+                }
+              }
             })
           }
 
@@ -64,7 +75,7 @@ export default function (cases, elementType, options, baseSchema, testChanges) {
             form = inline.form
           }
 
-          await testChanges(form, mocks, options, i === 2, i === 2 ? c.initialWithModel : c.initial, app)
+          await testChanges(form, mocks, options, i === 2, i === 2 ? _.cloneDeep(c.initialWithModel) : _.cloneDeep(c.initial), app)
         })
       })
     }

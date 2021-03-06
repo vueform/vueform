@@ -2,6 +2,8 @@ import { testModelCases } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export const value = function (elementType, elementName, options) {
+  let mocks = ['formChangeMock', 'elChangeMock', 'el2ChangeMock']
+
   let cases = [
     {
       initial: { el: options.nullValue, el2: options.nullValue },
@@ -33,7 +35,7 @@ export const value = function (elementType, elementName, options) {
     },
   ]
 
-  testModelCases(cases, elementType, options, baseSchema, testChanges)
+  testModelCases(cases, elementType, options, mocks, baseSchema, testChanges)
 }
 
 const testChanges = async (form, mocks, options, updateModel, initial, app = null) => {

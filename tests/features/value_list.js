@@ -2,6 +2,7 @@ import { createForm, testModelCases } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export const value = function (elementType, elementName, options) {
+  let mocks = ['formChangeMock', 'elChangeMock', 'el2ChangeMock']
 
   let elementCases = [
     {
@@ -66,7 +67,7 @@ export const value = function (elementType, elementName, options) {
   ]
 
   describe('element child', () => {
-    testModelCases(elementCases, elementType, options, elementSchema, testChanges)
+    testModelCases(elementCases, elementType, options, mocks, elementSchema, testChanges)
 
     it('should fire the right events when child values change', async () => {
       let formChangeMock = jest.fn()
@@ -166,7 +167,7 @@ export const value = function (elementType, elementName, options) {
   })
   
   describe('object child', () => {
-    testModelCases(objectCases, elementType, options, objectSchema, testChangesObject)
+    testModelCases(objectCases, elementType, options, mocks, objectSchema, testChangesObject)
 
     it('should fire the right events when child values change', async () => {
       let formChangeMock = jest.fn()

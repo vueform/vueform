@@ -215,7 +215,7 @@ export default {
     const default_ = useDefault(props, context, {
       nullValue: nullValue.nullValue,
       form$: form$.form$,
-      path: path.path,
+      dataPath: path.dataPath,
     })
 
     const conditions = useConditions(props, context, {
@@ -230,7 +230,7 @@ export default {
 
     const value = useValue(props, context, {
       defaultValue: default_.defaultValue,
-      path: path.path,
+      dataPath: path.dataPath,
       form$: form$.form$,
     })
 

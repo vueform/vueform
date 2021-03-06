@@ -1,526 +1,332 @@
-import { createForm, createInlineForm } from 'test-helpers'
+import { testModelCases, createInlineForm } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export const value = function (elementType, elementName, options) {
-  describe('no v-model', () => {
-    it('should be nullValue if no form default, no element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-        elChildChangeMock: jest.fn(),
-        elChild2ChangeMock: jest.fn(),
-        el2ChildChangeMock: jest.fn(),
-        el2Child2ChangeMock: jest.fn(),
-      }
+  let mocks = [ 'formChangeMock', 'elChangeMock', 'el2ChangeMock', 'elChildChangeMock', 'elChild2ChangeMock', 'el2ChildChangeMock', 'el2Child2ChangeMock' ]
 
-      let form = createForm({
-        schema: baseSchema(mocks, elementType)
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
+  let cases = [
+    {
+      initial: { el: _.cloneDeep(options.nullValue), el2: _.cloneDeep(options.nullValue) },
 
-      await testChanges(form, mocks, {
+      model: { el: _.cloneDeep(options.default) },
+      initialWithModel: { el: _.cloneDeep(options.default), el2: _.cloneDeep(options.nullValue) },
+    },
+    {
+      initial: { el: _.cloneDeep(options.default), el2: _.cloneDeep(options.default2), },
+      formDefault: { el: _.cloneDeep(options.default), el2: _.cloneDeep(options.default2), },
+
+      model: { el: _.cloneDeep(options.default2), },
+      initialWithModel: { el: _.cloneDeep(options.default2), el2: _.cloneDeep(options.default2), },
+    },
+    {
+      initial: { el: _.cloneDeep(options.default), el2: _.cloneDeep(options.default2), },
+      elementDefault: { el: _.cloneDeep(options.default), el2: _.cloneDeep(options.default2), },
+
+      model: { el: _.cloneDeep(options.default2), },
+      initialWithModel: { el: _.cloneDeep(options.default2), el2: _.cloneDeep(options.default2), },
+    },
+    {
+      initial: { el: _.cloneDeep(options.default2), el2: _.cloneDeep(options.default2), },
+      elementDefault: { el: _.cloneDeep(options.default) },
+      formDefault: { el: _.cloneDeep(options.default2), el2: _.cloneDeep(options.default2), },
+
+      model: { el: _.cloneDeep(options.default), },
+      initialWithModel: { el: _.cloneDeep(options.default), el2: _.cloneDeep(options.default2), },
+    },
+  ]
+
+  testModelCases(cases, elementType, options, mocks, baseSchema, testChanges)
+
+  it('should have set defaults when not inline', () => {
+    let form = createForm({
+      default: {
         el: {
-          child: null,
-          child2: null,
+          child: {
+            subchild: 'form-a this',
+          },
+          child2: {
+          },
         },
         el2: {
-          child: null,
-          child2: null,
-        }
-      })
-    })
-
-    it('should be form default if form default, no element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-        elChildChangeMock: jest.fn(),
-        elChild2ChangeMock: jest.fn(),
-        el2ChildChangeMock: jest.fn(),
-        el2Child2ChangeMock: jest.fn(),
-      }
-
-      let form = createForm({
-        schema: baseSchema(mocks, elementType),
-        default: {
-          el: {
-            child: 'el_child'
+          child3: {
+            subchild5: 'form-e this',
+          },
+          child4: {
           }
         }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-
-      await testChanges(form, mocks, {
+      },
+      schema: {
         el: {
-          child: 'el_child',
-          child2: null,
+          type: 'object',
+          default: {
+            child: {
+              subchild: 'el-a',
+              subchild2: 'el-b this',
+            },
+            child2: {
+            }
+          },
+          schema: {
+            child: {
+              type: 'object',
+              default: {
+                subchild: 'child-a',
+                subchild2: 'child-b',
+              },
+              schema: {
+                subchild: {
+                  type: 'text',
+                  default: 'subchild-a',
+                },
+                subchild2: {
+                  type: 'text',
+                  default: 'subchild2-b',
+                },
+              },
+            },
+            child2: {
+              type: 'object',
+              default: {
+                subchild3: 'child2-c this',
+              },
+              schema: {
+                subchild3: {
+                  type: 'text',
+                  default: 'subchild3-c',
+                },
+                subchild4: {
+                  type: 'text',
+                  default: 'subchild4-d this',
+                },
+              },
+            },
+          }
         },
         el2: {
-          child: null,
-          child2: null,
-        }
-      })
+          type: 'object',
+          default: {
+            child3: {
+              subchild6: 'el2-f this',
+            },
+            child4: {
+            }
+          },
+          schema: {
+            child3: {
+              type: 'object',
+              default: {
+                subchild5: 'child3-e',
+                subchild6: 'child3-f',
+              },
+              schema: {
+                subchild5: {
+                  type: 'text',
+                  default: 'subchild5-e',
+                },
+                subchild6: {
+                  type: 'text',
+                  default: 'subchild6-f',
+                },
+              },
+            },
+            child4: {
+              type: 'object',
+              default: {
+                subchild7: 'child4-g this',
+              },
+              schema: {
+                subchild7: {
+                  type: 'text',
+                  default: 'subchild7-g',
+                },
+                subchild8: {
+                  type: 'text',
+                  default: 'subchild8-h this',
+                },
+              },
+            },
+          }
+        },
+      },
     })
 
-    it('should be element default if no form default, element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-        elChildChangeMock: jest.fn(),
-        elChild2ChangeMock: jest.fn(),
-        el2ChildChangeMock: jest.fn(),
-        el2Child2ChangeMock: jest.fn(),
-      }
-
-      let schema = baseSchema(mocks, elementType)
-
-      schema.el.schema.child.default = 'el_child'
-
-      let form = createForm({
-        schema,
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-
-      await testChanges(form, mocks, {
-        el: {
-          child: 'el_child',
-          child2: null,
+    expect(form.vm.data).toStrictEqual({
+      el: {
+        child: {
+          subchild: 'form-a this',
+          subchild2: 'el-b this',
         },
-        el2: {
-          child: null,
-          child2: null,
-        }
-      })
-    })
-
-    it('should be form default + element default if form default, element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-        elChildChangeMock: jest.fn(),
-        elChild2ChangeMock: jest.fn(),
-        el2ChildChangeMock: jest.fn(),
-        el2Child2ChangeMock: jest.fn(),
-      }
-
-      let schema = baseSchema(mocks, elementType)
-
-      schema.el.schema.child.default = 'el_child'
-      schema.el.schema.child2.default = 'el_child2'
-      schema.el2.schema.child.default = 'el_child'
-
-      let form = createForm({
-        schema,
-        default: {
-          el: {
-            child: 'not_el_child',
-          },
-          el2: {
-            child: null,
-            child2: 'el2_child2',
-          },
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-
-      await testChanges(form, mocks, {
-        el: {
-          child: 'not_el_child',
-          child2: 'el_child2',
+        child2: {
+          subchild3: 'child2-c this',
+          subchild4: 'subchild4-d this',
         },
-        el2: {
-          child: null,
-          child2: 'el2_child2',
-        }
-      })
+      },
+      el2: {
+        child3: {
+          subchild5: 'form-e this',
+          subchild6: 'el2-f this',
+        },
+        child4: {
+          subchild7: 'child4-g this',
+          subchild8: 'subchild8-h this',
+        },
+      },
     })
   })
 
-  describe('empty v-model', () => {
-    it('should be nullValue if no form default, no element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-        elChildChangeMock: jest.fn(),
-        elChild2ChangeMock: jest.fn(),
-        el2ChildChangeMock: jest.fn(),
-        el2Child2ChangeMock: jest.fn(),
-      }
-
-      let { app, form } = createInlineForm({
-        model: {},
-        props: {
-          schema: baseSchema(mocks, elementType)
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-
-      await testChanges(form, mocks, {
-        el: {
-          child: null,
-          child2: null,
-        },
+  it('should have set defaults when inline', () => {
+    let { form } = createInlineForm({
+      model: {
+        el: {},
         el2: {
-          child: null,
-          child2: null,
+          child3: {
+            subchild5: 'v-model-e this',
+          },
+          child4: {
+          },
         }
-      }, app)
-    })
-
-    it('should be form default if form default, no element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-        elChildChangeMock: jest.fn(),
-        elChild2ChangeMock: jest.fn(),
-        el2ChildChangeMock: jest.fn(),
-        el2Child2ChangeMock: jest.fn(),
-      }
-
-      let { app, form } = createInlineForm({
-        model: {},
-        props: {
-          schema: baseSchema(mocks, elementType),
-          default: {
-            el: {
-              child: 'el_child'
+      },
+      props: {
+        default: {
+          el: {
+            child: {
+              subchild: 'form-a this',
+            },
+            child2: {
+            },
+          },
+          el2: {
+            child3: {
+              subchild5: 'form-e this',
+            },
+            child4: {
             }
           }
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-
-      await testChanges(form, mocks, {
-        el: {
-          child: 'el_child',
-          child2: null,
         },
-        el2: {
-          child: null,
-          child2: null,
-        }
-      }, app)
-    })
-
-    it('should be element default if no form default, element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-        elChildChangeMock: jest.fn(),
-        elChild2ChangeMock: jest.fn(),
-        el2ChildChangeMock: jest.fn(),
-        el2Child2ChangeMock: jest.fn(),
-      }
-
-      let schema = baseSchema(mocks, elementType)
-
-      schema.el.schema.child.default = 'el_child'
-
-      let { app, form } = createInlineForm({
-        model: {},
-        props: {
-          schema,
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-
-      await testChanges(form, mocks, {
-        el: {
-          child: 'el_child',
-          child2: null,
-        },
-        el2: {
-          child: null,
-          child2: null,
-        }
-      }, app)
-    })
-
-    it('should be element default + form default if form default, element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-        elChildChangeMock: jest.fn(),
-        elChild2ChangeMock: jest.fn(),
-        el2ChildChangeMock: jest.fn(),
-        el2Child2ChangeMock: jest.fn(),
-      }
-
-      let schema = baseSchema(mocks, elementType)
-
-      schema.el.schema.child.default = 'el_child'
-      schema.el.schema.child2.default = 'el_child2'
-      schema.el2.schema.child.default = 'el_child'
-
-      let { app, form } = createInlineForm({
-        model: {},
-        props: {
-          schema,
-          default: {
-            el: {
-              child: 'not_el_child',
-            },
-            el2: {
-              child: null,
-              child2: 'el2_child2',
-            },
-          }
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-
-      await testChanges(form, mocks, {
-        el: {
-          child: 'not_el_child',
-          child2: 'el_child2',
-        },
-        el2: {
-          child: null,
-          child2: 'el2_child2',
-        }
-      }, app)
-    })
-  })
-
-  describe('v-model with value', () => {
-    it('should be v-model value if no form default, no element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-        elChildChangeMock: jest.fn(),
-        elChild2ChangeMock: jest.fn(),
-        el2ChildChangeMock: jest.fn(),
-        el2Child2ChangeMock: jest.fn(),
-      }
-
-      let { app, form } = createInlineForm({
-        model: {
+        schema: {
           el: {
-            child: 'el_child',
-            child2: 'el_child2',
-          },
-          el2: {
-            child2: 'el2_child2',
-          },
-        },
-        props: {
-          schema: baseSchema(mocks, elementType)
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-
-      await testChanges(form, mocks, {
-        el: {
-          child: 'el_child',
-          child2: 'el_child2',
-        },
-        el2: {
-          child: null,
-          child2: 'el2_child2',
-        },
-      }, app)
-    })
-
-    it('should be v-model + form default value if form default, no element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-        elChildChangeMock: jest.fn(),
-        elChild2ChangeMock: jest.fn(),
-        el2ChildChangeMock: jest.fn(),
-        el2Child2ChangeMock: jest.fn(),
-      }
-
-      let { app, form } = createInlineForm({
-        model: {
-          el: {
-            child: 'el_child',
-            child2: 'el_child2',
-          },
-          el2: {
-            child2: 'el2_child2',
-          },
-        },
-        props: {
-          schema: baseSchema(mocks, elementType),
-          default: {
-            el: {
-              child: null,
-              child2: null,
+            type: 'object',
+            default: {
+              child: {
+                subchild: 'el-a',
+                subchild2: 'el-b this',
+              },
+              child2: {
+              }
             },
-            el2: {
-              child: 'not_el2_child',
-              child2: 'not_el2_child2',
+            schema: {
+              child: {
+                type: 'object',
+                default: {
+                  subchild: 'child-a',
+                  subchild2: 'child-b',
+                },
+                schema: {
+                  subchild: {
+                    type: 'text',
+                    default: 'subchild-a',
+                  },
+                  subchild2: {
+                    type: 'text',
+                    default: 'subchild2-b',
+                  },
+                },
+              },
+              child2: {
+                type: 'object',
+                default: {
+                  subchild3: 'child2-c this',
+                },
+                schema: {
+                  subchild3: {
+                    type: 'text',
+                    default: 'subchild3-c',
+                  },
+                  subchild4: {
+                    type: 'text',
+                    default: 'subchild4-d this',
+                  },
+                },
+              },
             }
-          }
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-
-      await testChanges(form, mocks, {
-        el: {
-            child: 'el_child',
-            child2: 'el_child2',
-        },
-        el2: {
-          child: 'not_el2_child',
-          child2: 'el2_child2',
-        }
-      }, app)
-    })
-
-    it('should be v-model value + element default if no form default, element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-        elChildChangeMock: jest.fn(),
-        elChild2ChangeMock: jest.fn(),
-        el2ChildChangeMock: jest.fn(),
-        el2Child2ChangeMock: jest.fn(),
-      }
-
-      let schema = baseSchema(mocks, elementType)
-
-      schema.el.schema.child2.default = 'el_child2'
-      schema.el2.schema.child.default = 'el2_child'
-
-      let { app, form } = createInlineForm({
-        model: {
-          el: {
-            child: 'el_child',
           },
           el2: {
-            child: null,
-            child2: 'el2_child2',
+            type: 'object',
+            default: {
+              child3: {
+                subchild6: 'el2-f this',
+              },
+              child4: {
+              }
+            },
+            schema: {
+              child3: {
+                type: 'object',
+                default: {
+                  subchild5: 'child3-e',
+                  subchild6: 'child3-f',
+                },
+                schema: {
+                  subchild5: {
+                    type: 'text',
+                    default: 'subchild5-e',
+                  },
+                  subchild6: {
+                    type: 'text',
+                    default: 'subchild6-f',
+                  },
+                },
+              },
+              child4: {
+                type: 'object',
+                default: {
+                  subchild7: 'child4-g this',
+                },
+                schema: {
+                  subchild7: {
+                    type: 'text',
+                    default: 'subchild7-g',
+                  },
+                  subchild8: {
+                    type: 'text',
+                    default: 'subchild8-h this',
+                  },
+                },
+              },
+            }
           },
         },
-        props: {
-          schema,
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-
-      await testChanges(form, mocks, {
-        el: {
-            child: 'el_child',
-            child2: 'el_child2',
-        },
-        el2: {
-          child: null,
-          child2: 'el2_child2',
-        }
-      }, app)
+      }
     })
 
-    it('should be v-model value + element default + form default if form default, element default', async () => {
-      let mocks = {
-        formChangeMock: jest.fn(),
-        elChangeMock: jest.fn(),
-        el2ChangeMock: jest.fn(),
-        elChildChangeMock: jest.fn(),
-        elChild2ChangeMock: jest.fn(),
-        el2ChildChangeMock: jest.fn(),
-        el2Child2ChangeMock: jest.fn(),
-      }
-
-      let schema = baseSchema(mocks, elementType)
-
-      // 3
-      schema.el.schema.child.default = 'el_child'
-      schema.el.schema.child2.default = 'el_child2'
-      schema.el2.schema.child.default = 'el2_child' // this
-      schema.el2.schema.child2.default = 'el2_child2'
-
-      let { app, form } = createInlineForm({
-        // 1
-        model: {
-          el: {
-            child: 'not_el_child', // this
-          },
-          el2: {
-            child2: null, // this
-          },
+    expect(form.vm.data).toStrictEqual({
+      el: {
+        child: {
+          subchild: 'form-a this',
+          subchild2: 'el-b this',
         },
-        // 2
-        props: {
-          schema,
-          default: {
-            el: {
-              child: 'not_not_el_child',
-              child2: 'not_not_el_child2', // this
-            },
-            el2: {
-              child2: 'not_not_el2_child2',
-            },
-          }
-        }
-      }, {
-        mounted() {
-          this.on('change', mocks.formChangeMock)
-        }
-      })
-
-      await testChanges(form, mocks, {
-        el: {
-          child: 'not_el_child',
-          child2: 'not_not_el_child2',
+        child2: {
+          subchild3: 'child2-c this',
+          subchild4: 'subchild4-d this',
         },
-        el2: {
-          child: 'el2_child',
-          child2: null,
-        }
-      }, app)
+      },
+      el2: {
+        child3: {
+          subchild5: 'v-model-e this',
+          subchild6: 'el2-f this',
+        },
+        child4: {
+          subchild7: 'child4-g this',
+          subchild8: 'subchild8-h this',
+        },
+      },
     })
   })
 }
 
 // ============= HELPERS =============
 
-const testChanges = async (form, mocks, initial, app = null) => {
+const testChanges = async (form, mocks, options, updateModel, initial, app = null) => {
   let {
     formChangeMock,
     elChangeMock,
@@ -563,7 +369,13 @@ const testChanges = async (form, mocks, initial, app = null) => {
   expect(el2Child2ChangeMock).not.toHaveBeenCalled()
 
   // Update a sub-child
-  el_child.update('el_child_value')
+  if (updateModel) {
+    await nextTick()
+
+    app.vm.$set(app.vm.data.el, 'child', 'el_child_value')
+  } else {
+    el_child.update('el_child_value')
+  }
 
   // Element and form should change instantly
   expect(el.value).toStrictEqual({ child: 'el_child_value', child2: initial.el.child2 })
@@ -607,13 +419,20 @@ const testChanges = async (form, mocks, initial, app = null) => {
   await nextTick()
 
   // Update a child
-  el.update({
-    child: 'el_child_value2'
-  })
+  if (updateModel) {
+    await nextTick()
 
-  el2.update({
-    child2: 'el2_child2_value'
-  })
+    app.vm.$set(app.vm.data.el, 'child', 'el_child_value2')
+    app.vm.$set(app.vm.data.el2, 'child2', 'el2_child2_value')
+  } else {
+    el.update({
+      child: 'el_child_value2'
+    })
+
+    el2.update({
+      child2: 'el2_child2_value'
+    })
+  }
 
   // Element and form should change instantly
   expect(el.value).toStrictEqual({ child: 'el_child_value2', child2: initial.el.child2 })
@@ -664,16 +483,33 @@ const testChanges = async (form, mocks, initial, app = null) => {
   await nextTick()
 
   // Update the whole form
-  form.vm.update({
-    el: {
-      child: 'el_child_value2',
-      child2: 'el_child2_value', // change
-    },
-    el2: {
-      child: 'el2_child_value', // change
-      child2: 'el2_child2_value',
-    },
-  })
+  if (updateModel) {
+    await nextTick()
+
+    app.vm.$set(app.vm, 'data', {
+      el: {
+        child: 'el_child_value2',
+        child2: 'el_child2_value', // change
+      },
+      el2: {
+        child: 'el2_child_value', // change
+        child2: 'el2_child2_value',
+      },
+    })
+
+    await nextTick()
+  } else {
+    form.vm.update({
+      el: {
+        child: 'el_child_value2',
+        child2: 'el_child2_value', // change
+      },
+      el2: {
+        child: 'el2_child_value', // change
+        child2: 'el2_child2_value',
+      },
+    })
+  }
 
   // Element and form should change instantly
   expect(el.value).toStrictEqual({ child: 'el_child_value2', child2: 'el_child2_value' })
