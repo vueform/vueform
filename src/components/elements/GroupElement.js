@@ -15,8 +15,8 @@ import useElements from './../../composables/useElements'
 import useEvents from './../../composables/useEvents'
 import useWatchValue from './../../composables/elements/useWatchValue'
 
-import { object as useDefault } from './../../composables/elements/useDefault'
-import { object as useValue } from './../../composables/elements/useValue'
+import { group as useValue } from './../../composables/elements/useValue'
+import { group as useDefault } from './../../composables/elements/useDefault'
 import { group as usePath } from './../../composables/elements/usePath'
 import { group as useValidation } from './../../composables/elements/useValidation'
 import { group as useChildren } from './../../composables/elements/useChildren'
@@ -154,6 +154,10 @@ export default {
       form$: form$.form$,
     })
 
+    const children = useChildren(props, context, {
+      form$: form$.form$,
+    })
+
     const events = useEvents(props, context, {
       form$: form$.form$,
     }, {
@@ -163,9 +167,8 @@ export default {
     })
 
     const default_ = useDefault(props, context, {
-      nullValue: nullValue.nullValue,
       form$: form$.form$,
-      dataPath: path.dataPath,
+      parent: path.parent,
     })
 
     const label = useLabel(props, context, {
@@ -176,10 +179,6 @@ export default {
       label: label.label,
     })
 
-    const children = useChildren(props, context, {
-      form$: form$.form$,
-    })
-
     const validation = useValidation(props, context, {
       form$: form$.form$,
       children$: children.children$,
@@ -187,7 +186,6 @@ export default {
     })
 
     const value = useValue(props, context, {
-      defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
       children$Array: children.children$Array,

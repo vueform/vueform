@@ -1,4 +1,4 @@
-import { testModelCases } from 'test-helpers'
+import { testModelCases, createInlineForm } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export const value = function (elementType, elementName, options) {
@@ -45,6 +45,221 @@ export const value = function (elementType, elementName, options) {
   ]
 
   testModelCases(cases, elementType, options, mocks, baseSchema, testChanges)
+
+  it('should have set defaults when not inline', () => {
+    let form = createForm({
+      default: {
+        subchild: 'form-a this',
+        subchild5: 'form-e this',
+      },
+      schema: {
+        el: {
+          type: 'group',
+          default: {
+            subchild: 'el-a',
+            subchild2: 'el-b this',
+          },
+          schema: {
+            child: {
+              type: 'group',
+              default: {
+                subchild: 'child-a',
+                subchild2: 'child-b',
+              },
+              schema: {
+                subchild: {
+                  type: 'text',
+                  default: 'subchild-a',
+                },
+                subchild2: {
+                  type: 'text',
+                  default: 'subchild2-b',
+                },
+              },
+            },
+            child2: {
+              type: 'group',
+              default: {
+                subchild3: 'child2-c this',
+              },
+              schema: {
+                subchild3: {
+                  type: 'text',
+                  default: 'subchild3-c',
+                },
+                subchild4: {
+                  type: 'text',
+                  default: 'subchild4-d this',
+                },
+              },
+            },
+          }
+        },
+        el2: {
+          type: 'group',
+          default: {
+            subchild6: 'el2-f this',
+          },
+          schema: {
+            child3: {
+              type: 'group',
+              default: {
+                subchild5: 'child3-e',
+                subchild6: 'child3-f',
+              },
+              schema: {
+                subchild5: {
+                  type: 'text',
+                  default: 'subchild5-e',
+                },
+                subchild6: {
+                  type: 'text',
+                  default: 'subchild6-f',
+                },
+              },
+            },
+            child4: {
+              type: 'group',
+              default: {
+                subchild7: 'child4-g this',
+              },
+              schema: {
+                subchild7: {
+                  type: 'text',
+                  default: 'subchild7-g',
+                },
+                subchild8: {
+                  type: 'text',
+                  default: 'subchild8-h this',
+                },
+              },
+            },
+          }
+        },
+      },
+    })
+
+    expect(form.vm.data).toStrictEqual({
+      subchild: 'form-a this',
+      subchild2: 'el-b this',
+      subchild3: 'child2-c this',
+      subchild4: 'subchild4-d this',
+      subchild5: 'form-e this',
+      subchild6: 'el2-f this',
+      subchild7: 'child4-g this',
+      subchild8: 'subchild8-h this',
+    })
+  })
+
+  it('should have set defaults when inline', () => {
+    let { form } = createInlineForm({
+      model: {
+        subchild5: 'v-model-e this',
+      },
+      props: {
+        default: {
+          subchild: 'form-a this',
+          subchild5: 'form-e this',
+        },
+        schema: {
+          el: {
+            type: 'group',
+            default: {
+              subchild: 'el-a',
+              subchild2: 'el-b this',
+            },
+            schema: {
+              child: {
+                type: 'group',
+                default: {
+                  subchild: 'child-a',
+                  subchild2: 'child-b',
+                },
+                schema: {
+                  subchild: {
+                    type: 'text',
+                    default: 'subchild-a',
+                  },
+                  subchild2: {
+                    type: 'text',
+                    default: 'subchild2-b',
+                  },
+                },
+              },
+              child2: {
+                type: 'group',
+                default: {
+                  subchild3: 'child2-c this',
+                },
+                schema: {
+                  subchild3: {
+                    type: 'text',
+                    default: 'subchild3-c',
+                  },
+                  subchild4: {
+                    type: 'text',
+                    default: 'subchild4-d this',
+                  },
+                },
+              },
+            }
+          },
+          el2: {
+            type: 'group',
+            default: {
+              subchild6: 'el2-f this',
+            },
+            schema: {
+              child3: {
+                type: 'group',
+                default: {
+                  subchild5: 'child3-e',
+                  subchild6: 'child3-f',
+                },
+                schema: {
+                  subchild5: {
+                    type: 'text',
+                    default: 'subchild5-e',
+                  },
+                  subchild6: {
+                    type: 'text',
+                    default: 'subchild6-f',
+                  },
+                },
+              },
+              child4: {
+                type: 'group',
+                default: {
+                  subchild7: 'child4-g this',
+                },
+                schema: {
+                  subchild7: {
+                    type: 'text',
+                    default: 'subchild7-g',
+                  },
+                  subchild8: {
+                    type: 'text',
+                    default: 'subchild8-h this',
+                  },
+                },
+              },
+            }
+          },
+        },
+      }
+    })
+
+    expect(form.vm.data).toStrictEqual({
+      subchild: 'form-a this',
+      subchild2: 'el-b this',
+      subchild3: 'child2-c this',
+      subchild4: 'subchild4-d this',
+      subchild5: 'v-model-e this',
+      subchild6: 'el2-f this',
+      subchild7: 'child4-g this',
+      subchild8: 'subchild8-h this',
+    })
+  })
 }
 
 // ============= HELPERS =============
@@ -335,14 +550,9 @@ const baseSchema = (mocks, elementType) => {
           type: 'text',
           onChange: el2Child3ChangeMock,
         },
-        el2group: {
-          type: 'group',
-          schema: {
-            child4: {
-              type: 'text',
-              onChange: el2Child4ChangeMock,
-            }
-          },
+        child4: {
+          type: 'text',
+          onChange: el2Child4ChangeMock,
         },
       },
       onChange: el2ChangeMock,

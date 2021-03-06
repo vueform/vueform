@@ -78,6 +78,35 @@ const object = function(props, context, dependencies)
   }
 }
 
+const group = function(props, context, dependencies)
+{
+  const {
+    default: default_,
+  } = toRefs(props)
+
+  // ============ DEPENDENCIES =============
+
+  const form$ = dependencies.form$
+  const parent = dependencies.parent
+
+  // ============== COMPUTED ===============
+
+  /**
+  * The default value of the element.
+  * 
+  * @type {string|number}
+  */
+  const defaultValue = computed(() => {
+    let parentDefaultValue = parent.value ? parent.value.defaultValue : form$.value.options.default
+
+    return _.cloneDeep(_.merge({}, default_.value, parentDefaultValue))
+  })
+
+  return {
+    defaultValue,
+  }
+}
+
 const multilingual = function(props, context, dependencies)
 {
   const {
@@ -124,6 +153,7 @@ const multilingual = function(props, context, dependencies)
 export {
   multilingual,
   object,
+  group,
 }
 
 export default base

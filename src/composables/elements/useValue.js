@@ -5,6 +5,8 @@ import normalize from './../../utils/normalize'
 
 const base = function(props, context, dependencies, options = {})
 {
+  const { name } = toRefs(props)
+
   // ============ DEPENDENCIES =============
 
   const defaultValue = dependencies.defaultValue
@@ -64,12 +66,46 @@ const object = function(props, context, dependencies, options = {})
     }
   })
 
-
   if (initialValue.value === undefined) {
     value.value = defaultValue.value
   } else {
     value.value = Object.assign({}, defaultValue.value, value.value)
   }
+
+  return {
+    value,
+  }
+}
+
+const group = function(props, context, dependencies, options = {})
+{
+  // ============ DEPENDENCIES =============
+
+  const dataPath = dependencies.dataPath
+  const children$Array = dependencies.children$Array
+  const parent = dependencies.parent
+  const form$ = dependencies.form$
+
+  // ============== COMPUTED ===============
+
+  const value = computed(options.value || {
+    get() {
+      let value = {}
+
+      _.each(children$Array.value, (child$) => {
+        if (child$.flat) {
+          value = Object.assign({}, value, child$.value)
+        } else {
+          value[child$.name] = child$.value
+        }
+      })
+
+      return value
+    },
+    set(val) {
+      form$.value.updateModel(dataPath.value, val)
+    }
+  })
 
   return {
     value,
@@ -441,6 +477,7 @@ export {
   file,
   location,
   object,
+  group,
 }
 
 

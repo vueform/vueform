@@ -62,7 +62,7 @@ export default function (props, context, dependencies)
           $this.$set(externalValue.value, key, v)
         })
         
-        intermediaryValue.value = val
+        intermediaryValue.value = Object.assign({}, intermediaryValue.value, val)
       }
 
     // When using this.data as model
@@ -76,7 +76,7 @@ export default function (props, context, dependencies)
 
       // Group element
       } else {
-        model = val
+        model = Object.assign({}, model, val)
       }
 
       internalData.value = model
