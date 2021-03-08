@@ -5,12 +5,8 @@ const base = function(props, context, dependencies, options)
   const {
     storeOrder,
     orderBy,
+    order,
   } = toRefs(props)
-
-  // ============ DEPENDENCIES ============
-
-  const isObject = dependencies.isObject
-  const children$ = dependencies.children$
 
   // =============== METHODS ==============
 
@@ -20,14 +16,18 @@ const base = function(props, context, dependencies, options)
    * @private
    * @returns {void}
    */
-  const refreshOrderStore = () => {
-    if (isObject.value && storeOrder.value) {
-      _.each(children$.value, (element$, index) => {
-        element$.update({
-          [storeOrder.value]: parseInt(index) + 1
-        })
+  const refreshOrderStore = (value) => {
+    if (storeOrder.value) {
+        
+      _.each(value, (val, index) => {
+        val[storeOrder.value] = order.value && order.value.toUpperCase() === 'DESC'
+          ? value.length - index
+          : parseInt(index) + 1
       })
     }
+
+    return value
+
   }
 
   const orderByName = computed(() => {

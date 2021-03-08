@@ -1,35 +1,46 @@
-import Sortable from 'sortablejs'
+import dragula from 'dragula'
 
-const vueVersion = function(binding, vnode) {
-  if (vnode.context && vnode.context.$laraform && vnode.context.$laraform.vue == 2) {
-    return 2
-  }
+let drake
 
-  return 3
+const init = (element, onUpdate) => {
+  let oldIndex
+  let newIndex
+
+  drake = dragula([element])
+
+  drake.on('drag', (el, source) => {
+    oldIndex = [].slice.call(el.parentNode.childNodes).findIndex((item) => el === item)
+  })
+
+  drake.on('dragend', (el) => {
+    newIndex = [].slice.call(el.parentNode.childNodes).findIndex((item) => el === item)
+
+    // Revert ordering
+    let e = element.childNodes[newIndex]
+    element.childNodes[newIndex].remove()
+    element.insertBefore(e, element.childNodes[oldIndex])
+
+    onUpdate(oldIndex, newIndex)
+  })
 }
 
-const component = function(binding, vnode) {
-  return vueVersion(binding, vnode) == 2 ? vnode.context : binding.instance
+const destroy = () => {
+  drake.destroy()
+  drake = undefined
 }
 
 const add = function (el, binding, vnode) {
-  if (binding.value && binding.value.sort === false) {
-    return
+  if (binding.value.sort) {
+    init(el, binding.value.onUpdate)
   }
-
-  component(binding, vnode).sortableInstance = Sortable.create(el, binding.value || {})
 }
 
 const update = function (el, binding, vnode) {
-  let enabled = binding.value.sort == true
-  let parent = component(binding, vnode)
-  let sortableInstance = parent.sortableInstance
-
-  if (enabled && (sortableInstance === undefined || sortableInstance.el === null)) {
-    parent.sortableInstance = Sortable.create(el, binding.value || {})
+  if (binding.value.sort && !drake) {
+    init(el, binding.value.onUpdate)
   }
-  else if (!enabled && sortableInstance !== undefined && sortableInstance.el !== null) {
-    parent.sortableInstance.destroy()
+  else if (!binding.value.sort && drake) {
+    destroy()
   }
 }
 

@@ -49,20 +49,36 @@ export default function (props, context, dependencies)
         let element = parts.pop()
         let parent = parts.join('.') || null
 
-        // We are setting externalValue (v-model) to instantly reflect changes in field value
-        $this.$set(parent ? _.get(externalValue.value, parent) : externalValue.value, element, val)
+        let externalValueObject = parent ? _.get(externalValue.value, parent) : externalValue.value
 
-        // We are setting intermediaryValue to collect changes in a tick which will later be emitted in `input`
-        $this.$set(parent ? _.get(intermediaryValue.value, parent) : intermediaryValue.value, element, val)
+        // Thinking about cases when it tries to to set an element 
+        // which no longer exists in the same tick (eg. when removing
+        // a list element with order and tries to refresh its order field)
+        if (externalValueObject !== undefined) {
+          // We are setting externalValue (v-model) to instantly reflect changes in field value
+          $this.$set(externalValueObject, element, val)
+        }
+
+        let intermediaryValueObject = parent ? _.get(intermediaryValue.value, parent) : intermediaryValue.value
+
+        // Same thing here with intermediaryValue
+        if (intermediaryValueObject !== undefined) {
+          // We are setting intermediaryValue to collect changes in a tick which will later be emitted in `input` 
+          $this.$set(intermediaryValueObject, element, val)
+        }
       }
 
       // Group element
       else {
         _.each(val, (v, key) => {
-          $this.$set(externalValue.value, key, v)
+          if (externalValue.value !== undefined) {
+            $this.$set(externalValue.value, key, v)
+          }
+
+          if (intermediaryValue.value !== undefined) {
+            $this.$set(intermediaryValue.value, key, v)
+          }
         })
-        
-        intermediaryValue.value = Object.assign({}, intermediaryValue.value, val)
       }
 
     // When using this.data as model

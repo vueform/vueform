@@ -1,5 +1,4 @@
 import { computed, ref, watch, toRefs, onMounted } from 'composition-api'
-import { textChangeRangeIsUnchanged } from 'typescript'
 import checkDateFormat from '../../utils/checkDateFormat'
 import normalize from './../../utils/normalize'
 

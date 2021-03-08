@@ -40,31 +40,6 @@ const base = function(props, context, dependencies)
   }
 }
 
-const list = function(props, context, dependencies)
-{
-  const {
-    children$Array,
-    children$
-  } = base(props, context, dependencies)
-
-  // ================ DATA ================
-  
-  /**
-   * 
-   * 
-   * @type {array}
-   */
-  const instances = ref([])
-
-  // =============== METHODS ==============
-
-  return {
-    instances,
-    children$Array,
-    children$,
-  }
-}
-
 const object = function(props, context, dependencies, options = {})
 {
   const schemaName = options.schemaName || 'schema'
@@ -233,7 +208,6 @@ const group = object
 
 export {
   group,
-  list,
   object,
   address,
   buttons,

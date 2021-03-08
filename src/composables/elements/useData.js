@@ -316,45 +316,52 @@ const list = function(props, context, dependencies, options)
 {
 
   const {
-    initial,
     name,
     storeOrder,
     formatLoad,
     formatData,
     order,
     submit,
+    initial,
+    default: default_,
   } = toRefs(props)
 
   const {
-    data,
-    changed,
+    update,
+    clear,
+    reset,
     prepare,
   } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
 
   const form$ = dependencies.form$
-  const instances = dependencies.instances
   const children$ = dependencies.children$
-  const defaultValue = dependencies.defaultValue
   const available = dependencies.available
   const isDisabled = dependencies.isDisabled
   const value = dependencies.value
-  const resetValidators = dependencies.resetValidators
-  const validateValidators = dependencies.validateValidators
-  const dirt = dependencies.dirt
-  const refreshOrderStore = dependencies.refreshOrderStore
-  const isObject = dependencies.isObject
   const orderByName = dependencies.orderByName
-  const prototype = dependencies.prototype
-  const fire = dependencies.fire
-  const path = dependencies.path
-
-  // ============== OPTIONS ===============
-
-  const defaultInitial = options.initial
+  const refreshOrderStore = dependencies.refreshOrderStore
 
   // ============== COMPUTED ===============
+
+  const parentDefaultValue = computed(() => {
+    return parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
+  })
+  
+  const data = computed(() => {
+    let data = []
+
+    _.each(children$.value, (element$) => {
+      let val = element$.data[element$.name]
+
+      if (val !== undefined) {
+        data.push(val)
+      }
+    })
+
+    return formatData.value ? formatData.value(name.value, data, form$.value) : {[name.value]: data}
+  })
   
   const filtered = computed(() => {
     if (!available.value || !submit.value) {
@@ -384,7 +391,11 @@ const list = function(props, context, dependencies, options)
    * @returns {void}
    */
   const add = (val = undefined) => {
-    value.value = value.value.concat([val])
+    value.value = value.value.concat([storeOrder.value ? Object.assign({}, val || {}, {
+      [storeOrder.value]: order.value && order.value.toUpperCase() === 'DESC' ? 1 : value.value.length + 1
+    }) : val])
+
+    value.value = refreshOrderStore(value.value)
     
     return value.value.length - 1
   }
@@ -398,25 +409,17 @@ const list = function(props, context, dependencies, options)
    */
   const remove = (index) => {
     value.value = value.value.filter((v,i)=>i!==index)
+
+    refreshOrderStore(value.value)
   }
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const load = (val, format = false, sort = true) => {
-    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
-
-    value.value = formatted
-  }
-  
-  const update = (val) => {
-    value.value = _.cloneDeep(val)
-  }
-
-  const clear = () => {
-    value.value = []
-  }
-
-  const reset = () => {
-    value.value = _.cloneDeep(default_.value)
-    resetValidators()
+    value.value = orderValue(format && formatLoad.value ? formatLoad.value(val, form$.value) : val)
   }
 
   /**
@@ -434,7 +437,7 @@ const list = function(props, context, dependencies, options)
 
     const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
 
-    if (isObject.value && orderByName.value) {
+    if (orderByName.value) {
       val = desc ? _.sortBy(val, orderByName.value).reverse() : _.sortBy(val, orderByName.value)
     }
     else if (order.value) {
@@ -475,6 +478,12 @@ const list = function(props, context, dependencies, options)
   }
 
   // ================ HOOKS ===============
+
+  if (parentDefaultValue.value === undefined && default_.value.length === 0 && initial.value > 0) {
+    for (let i = 0; i < initial.value; i++) {
+      add()
+    }
+  }
 
   return {
     filtered,

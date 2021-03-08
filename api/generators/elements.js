@@ -12,7 +12,7 @@ const elements = [
   'file',
   'group',
   'hidden',
-  // 'list',
+  'list',
   'location',
   // 'multifile',
   'multiselect',

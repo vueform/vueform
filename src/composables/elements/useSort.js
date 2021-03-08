@@ -38,25 +38,20 @@ const base = function(props, context, dependencies, options)
    * @param {object} indexes an object containing `newIndex` and `oldIndex`.
    * @event sort
    */
-  const handleSort = (indexes) => {
-    // let oldIndex = indexes.oldIndex
-    // let newIndex = indexes.newIndex
+  const handleSort = (oldIndex, newIndex) => {
+    if (isDisabled.value) {
+      return
+    }
 
-    // if (isDisabled.value) {
-    //   return
-    // }
+    let valueClone = _.cloneDeep(value.value)
 
-    // instances.value.splice(newIndex, 0, instances.value.splice(oldIndex, 1)[0])
-    // children$Array.value.splice(newIndex, 0, children$Array.value.splice(oldIndex, 1)[0])
+    valueClone.splice(newIndex, 0, valueClone.splice(oldIndex, 1)[0])
 
-    // nextTick(() => {
-    //   refreshOrderStore()
-      
-    //   nextTick(() => {
-    //     fire('sort', value.value)
-    //     updated()
-    //   })
-    // })
+    value.value = valueClone
+
+    fire('sort', value.value)
+
+    refreshOrderStore(value.value)
   }
 
   return {

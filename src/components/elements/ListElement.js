@@ -11,7 +11,6 @@ import useComponents from './../../composables/elements/useComponents'
 import useSlots from './../../composables/elements/useSlots'
 import useElements from './../../composables/useElements'
 import useDisabled from './../../composables/elements/useDisabled'
-import useDefault from './../../composables/elements/useDefault'
 import useEvents from './../../composables/useEvents'
 import useSort from './../../composables/elements/useSort'
 import useOrder from './../../composables/elements/useOrder'
@@ -20,10 +19,11 @@ import useWatchPrototype from './../../composables/elements/useWatchPrototype'
 import usePath from './../../composables/elements/usePath'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useChildren from './../../composables/elements/useChildren'
 
+import { list as useDefault } from './../../composables/elements/useDefault'
 import { list as useData } from './../../composables/elements/useData'
 import { list as useClasses } from './../../composables/elements/useClasses'
-import { list as useChildren } from './../../composables/elements/useChildren'
 import { list as useValidation } from './../../composables/elements/useValidation'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { list as useBaseElement } from './../../composables/elements/useBaseElement'
@@ -92,6 +92,11 @@ export default {
       type: [Number],
       default: 1
     },
+    default: {
+      required: false,
+      type: [Array],
+      default: () => ([])
+    },
     formatData: {
       required: false,
       type: [Function],
@@ -111,11 +116,6 @@ export default {
       required: false,
       type: [Number],
       default: null
-    },
-    default: {
-      required: false,
-      type: [Array],
-      default: () => ([])
     },
     description: {
       required: false,
@@ -137,12 +137,32 @@ export default {
       type: [String, Object, Function],
       default: null
     },
+    /**
+     * This goes for initial ordering, when data is loaded, nothing else.
+     * 
+     * @private
+     */
     order: {
       required: false,
       type: [String],
       default: null
     },
+    /**
+     * Same here.
+     * 
+     * @private
+     */
     orderBy: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    /**
+     * If provided it will automatically be filled with order, and refreshed upon add / removal. If order is 'DESC', this will be desc too.
+     * 
+     * @private
+     */
+    storeOrder: {
       required: false,
       type: [String],
       default: null
@@ -171,11 +191,6 @@ export default {
       required: false,
       type: [Boolean],
       default: false
-    },
-    storeOrder: {
-      required: false,
-      type: [String],
-      default: null
     },
     rules: {
       required: false,
@@ -232,6 +247,7 @@ export default {
     const nullValue = useNullValue(props, context)
     const prototype = usePrototype(props, context)
     const children = useChildren(props, context)
+    const order = useOrder(props, context)
 
     const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
@@ -304,38 +320,17 @@ export default {
       ]
     })
 
-    const order = useOrder(props, context, {
-      isObject: prototype.isObject,
-      children$: children.children$,
-    })
-
     const data = useData(props, context, {
       form$: form$.form$,
-      children$: children.children$,
-      instances: children.instances,
+      available: conditions.available,
+      value: value.value,
+      resetValidators: validation.resetValidators,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      available: conditions.available,
+      children$: children.children$,
       isDisabled: disabled.isDisabled,
-
-      value: value.value,
-
-      dirt: validation.dirt,
-      validate: validation.validate,
-      validateValidators: validation.validateValidators,
-      resetValidators: validation.resetValidators,
-
-      nullValue: nullValue.nullValue,
-      refreshOrderStore: order.refreshOrderStore,
-
-      isObject: prototype.isObject,
-      prototype: prototype.prototype,
       orderByName: order.orderByName,
-
-      fire: events.fire,
-      path: path.path,
-    }, {
-      initial: 1
+      refreshOrderStore: order.refreshOrderStore,
     })
 
     const sort = useSort(props, context, {
