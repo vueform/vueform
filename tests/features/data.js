@@ -2,7 +2,7 @@ import { createForm } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 export const data = function (elementType, elementName, options) {
-  it('should have "data" as an object with element name as property and element value as value by default', () => {
+  it('should have "data" as an object with element name as property and element value as value by default', async () => {
     let form = createForm({
       schema: {
         el: {

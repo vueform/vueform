@@ -15,13 +15,12 @@ import useEvents from './../../composables/useEvents'
 import useSort from './../../composables/elements/useSort'
 import useOrder from './../../composables/elements/useOrder'
 import usePrototype from './../../composables/elements/usePrototype'
-import useWatchPrototype from './../../composables/elements/useWatchPrototype'
 import usePath from './../../composables/elements/usePath'
-import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useChildren from './../../composables/elements/useChildren'
+import useDefault from './../../composables/elements/useDefault'
+import useValue from './../../composables/elements/useValue'
 
-import { list as useDefault } from './../../composables/elements/useDefault'
 import { list as useData } from './../../composables/elements/useData'
 import { list as useClasses } from './../../composables/elements/useClasses'
 import { list as useValidation } from './../../composables/elements/useValidation'
@@ -95,7 +94,7 @@ export default {
     default: {
       required: false,
       type: [Array],
-      default: () => ([])
+      default: undefined,
     },
     formatData: {
       required: false,
@@ -295,7 +294,7 @@ export default {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
-    })
+    }, { init: false })
 
     const columns = useColumns(props, context, {
       form$: form$.form$,
@@ -331,31 +330,23 @@ export default {
       isDisabled: disabled.isDisabled,
       orderByName: order.orderByName,
       refreshOrderStore: order.refreshOrderStore,
+      dataPath: path.dataPath,
+      nullValue: nullValue.nullValue,
+      defaultValue: default_.defaultValue,
+      fire: events.fire,
     })
 
     const sort = useSort(props, context, {
-      children$: children.children$,
-      children$Array: children.children$Array,
-      value: value.value,
-      fire: events.fire,
       isDisabled: disabled.isDisabled,
-      updated: data.updated,
+      fire: events.fire,
       refreshOrderStore: order.refreshOrderStore,
-      instances: children.instances,
+      value: value.value,
     })
 
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       isDisabled: disabled.isDisabled,
-    })
-
-    const watchPrototype = useWatchPrototype(props, context, {
-      prototype: prototype.prototype,
-      value: value.value,
-      clear: data.clear,
-      insert: children.insert,
-      instances: children.instances,
     })
 
     useWatchValue(props, context, {
@@ -394,7 +385,6 @@ export default {
       ...data,
       ...events,
       ...sort,
-      ...watchPrototype,
       ...default_,
       ...order,
       ...prototype,

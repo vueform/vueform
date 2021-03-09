@@ -83,25 +83,3 @@ export const children$ = function (elementType, elementName, options) {
     })
   })
 }
-
-export const instances = function (elementType, elementName, options) {
-  const prototypes = options.prototypes
-
-  it('should `instances` be an empty array by default', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          initial: 0,
-          element: {
-            type: 'text'
-          }
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.instances).toStrictEqual([])
-  })
-}

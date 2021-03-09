@@ -15,7 +15,6 @@ import useDefault from './../../composables/elements/useDefault'
 import useEvents from './../../composables/useEvents'
 import useSort from './../../composables/elements/useSort'
 import useOrder from './../../composables/elements/useOrder'
-import useWatchPrototype from './../../composables/elements/useWatchPrototype'
 import usePath from './../../composables/elements/usePath'
 import useInput from './../../composables/elements/useInput'
 import useMultifile from './../../composables/elements/useMultifile'
@@ -402,14 +401,6 @@ export default {
       isDisabled: disabled.isDisabled,
     })
 
-    const watchPrototype = useWatchPrototype(props, context, {
-      prototype: prototype.prototype,
-      value: value.value,
-      clear: data.clear,
-      insert: children.insert,
-      instances: children.instances,
-    })
-
     useWatchValue(props, context, {
       form$: form$.form$,
       value: value.value,
@@ -446,7 +437,6 @@ export default {
       ...data,
       ...events,
       ...sort,
-      ...watchPrototype,
       ...default_,
       ...order,
       ...prototype,

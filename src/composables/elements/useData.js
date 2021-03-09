@@ -30,14 +30,9 @@ const base = function(props, context, dependencies, options = {})
   }
 
   // ============== COMPUTED ===============
-
-  /**
-   * An object containing the element `name` as a key and its `value` as value.
-   * 
-   * @type {object}
-   */
+  
   const data = computed(() => {
-    return formatData.value ? formatData.value(name.value, value.value, form$.value) : {[name.value]: value.value}
+    return {[name.value]: value.value}
   })
   
   /**
@@ -50,7 +45,7 @@ const base = function(props, context, dependencies, options = {})
       return {}
     }
 
-    return data.value
+    return formatData.value ? formatData.value(name.value, value.value, form$.value) : {[name.value]: value.value}
   })
 
   // =============== METHODS ===============
@@ -124,6 +119,7 @@ const object = function(props, context, dependencies)
   } = toRefs(props)
 
   const {
+    data,
     prepare
   } = base(props, context, dependencies)
 
@@ -134,20 +130,6 @@ const object = function(props, context, dependencies)
   const children$ = dependencies.children$
 
   // ============== COMPUTED ===============
-  
-  const data = computed(() => {
-    let data = {}
-
-    _.each(children$.value, (element$) => {
-      if (element$.isStatic) {
-        return
-      }
-
-      data = Object.assign({}, data, element$.data)
-    })
-
-    return formatData.value ? formatData.value(name.value, data, form$.value) : {[name.value]: data}
-  })
   
   const filtered = computed(() => {
     if (!available.value || !submit.value) {
@@ -270,17 +252,7 @@ const group = function(props, context, dependencies)
   // ============== COMPUTED ===============
 
   const data = computed(() => {
-    let data = {}
-
-    _.each(children$.value, (element$) => {
-      if (element$.isStatic) {
-        return
-      }
-
-      data = Object.assign({}, data, element$.data)
-    })
-
-    return formatData.value ? formatData.value(name.value, data, form$.value) : data
+    return value.value
   })
 
   const filtered = computed(() => {
@@ -314,7 +286,6 @@ const group = function(props, context, dependencies)
 
 const list = function(props, context, dependencies, options)
 {
-
   const {
     name,
     storeOrder,
@@ -331,6 +302,7 @@ const list = function(props, context, dependencies, options)
     clear,
     reset,
     prepare,
+    data,
   } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
@@ -342,25 +314,19 @@ const list = function(props, context, dependencies, options)
   const value = dependencies.value
   const orderByName = dependencies.orderByName
   const refreshOrderStore = dependencies.refreshOrderStore
+  const dataPath = dependencies.dataPath
+  const nullValue = dependencies.nullValue
+  const defaultValue = dependencies.defaultValue
+  const fire = dependencies.fire
+
+  // ================ DATA =================
+
+  const initialValue = ref(_.get(form$.value.model, dataPath.value))
 
   // ============== COMPUTED ===============
 
   const parentDefaultValue = computed(() => {
     return parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
-  })
-  
-  const data = computed(() => {
-    let data = []
-
-    _.each(children$.value, (element$) => {
-      let val = element$.data[element$.name]
-
-      if (val !== undefined) {
-        data.push(val)
-      }
-    })
-
-    return formatData.value ? formatData.value(name.value, data, form$.value) : {[name.value]: data}
   })
   
   const filtered = computed(() => {
@@ -391,13 +357,19 @@ const list = function(props, context, dependencies, options)
    * @returns {void}
    */
   const add = (val = undefined) => {
-    value.value = value.value.concat([storeOrder.value ? Object.assign({}, val || {}, {
-      [storeOrder.value]: order.value && order.value.toUpperCase() === 'DESC' ? 1 : value.value.length + 1
-    }) : val])
+    let newValue = storeOrder.value ? Object.assign({}, val || {}, {
+      [storeOrder.value]: val ? val[storeOrder.value] : undefined
+    }) : val
+
+    value.value = value.value.concat([newValue])
 
     value.value = refreshOrderStore(value.value)
+
+    let index = value.value.length - 1
+
+    fire('add', newValue, index, value.value)
     
-    return value.value.length - 1
+    return index
   }
   
   /**
@@ -411,6 +383,8 @@ const list = function(props, context, dependencies, options)
     value.value = value.value.filter((v,i)=>i!==index)
 
     refreshOrderStore(value.value)
+
+    fire('remove', index, value.value)
   }
 
   /**
@@ -418,8 +392,22 @@ const list = function(props, context, dependencies, options)
    * 
    * @private
    */
-  const load = (val, format = false, sort = true) => {
-    value.value = orderValue(format && formatLoad.value ? formatLoad.value(val, form$.value) : val)
+  const load = async (val, format = false, sort = true) => {
+    let values = sortValue(format && formatLoad.value ? formatLoad.value(val, form$.value) : val)
+
+    clear()
+
+    await nextTick()
+
+    for(let i = 0; i < values.length; i++) {
+      add(values[i])
+    }
+    
+    await nextTick()
+
+    _.each(children$.value, (child$, i) => {
+      child$.load(values[i])
+    })
   }
 
   /**
@@ -430,7 +418,7 @@ const list = function(props, context, dependencies, options)
    * @returns {array}
    * @private
    */
-  const orderValue = (val) => {
+  const sortValue = (val) => {
     if ((!order.value && !orderByName.value) || (!val)) {
       return val
     }
@@ -479,10 +467,16 @@ const list = function(props, context, dependencies, options)
 
   // ================ HOOKS ===============
 
-  if (parentDefaultValue.value === undefined && default_.value.length === 0 && initial.value > 0) {
-    for (let i = 0; i < initial.value; i++) {
-      add()
+  if (initialValue.value === undefined && parentDefaultValue.value === undefined && default_.value === undefined) {
+    if (initial.value > 0) {
+      for (let i = 0; i < initial.value; i++) {
+        add()
+      }
+    } else {
+      value.value = nullValue.value
     }
+  } else if (initialValue.value === undefined) {
+    value.value = defaultValue.value
   }
 
   return {

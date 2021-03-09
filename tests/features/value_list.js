@@ -6,10 +6,10 @@ export const value = function (elementType, elementName, options) {
 
   let elementCases = [
     {
-      initial: { el: [], el2: [], },
+      initial: { el: [null], el2: [null], },
 
       model: { el: options.default, },
-      initialWithModel: { el: options.default, el2: [], },
+      initialWithModel: { el: options.default, el2: [null], },
     },
     {
       initial: { el: options.default, el2: options.default2, },
@@ -37,10 +37,10 @@ export const value = function (elementType, elementName, options) {
 
   let objectCases = [
     {
-      initial: { el: [], el2: [], },
+      initial: { el: [{child:null, child2: null}], el2: [{child:null, child2: null}], },
 
       model: { el: options.defaultObject, },
-      initialWithModel: { el: options.defaultObject, el2: [], },
+      initialWithModel: { el: options.defaultObject, el2: [{child:null, child2: null}], },
     },
     {
       initial: { el: options.defaultObject, el2: options.defaultObject2, },
@@ -80,6 +80,7 @@ export const value = function (elementType, elementName, options) {
         schema: {
           el: {
             type: elementType,
+            initial: 0,
             element: {
               type: 'text',
               onChange: elChildChangeMock,
@@ -88,6 +89,7 @@ export const value = function (elementType, elementName, options) {
           },
           el2: {
             type: elementType,
+            initial: 0,
             element: {
               type: 'text',
               onChange: el2ChildChangeMock,
@@ -184,6 +186,7 @@ export const value = function (elementType, elementName, options) {
         schema: {
           el: {
             type: elementType,
+            initial: 0,
             object: {
               schema: {
                 child: {
@@ -201,6 +204,7 @@ export const value = function (elementType, elementName, options) {
           },
           el2: {
             type: elementType,
+            initial: 0,
             object: {
               schema: {
                 child: {

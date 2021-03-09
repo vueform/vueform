@@ -8,12 +8,9 @@ const base = function(props, context, dependencies, options)
 
   // ============ DEPENDENCIES ============
 
-  const children$Array = dependencies.children$Array
   const isDisabled = dependencies.isDisabled
   const fire = dependencies.fire
-  const updated = dependencies.updated
   const refreshOrderStore = dependencies.refreshOrderStore
-  const instances = dependencies.instances
   const value = dependencies.value
 
   // ============== COMPUTED ==============

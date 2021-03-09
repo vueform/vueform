@@ -1,11 +1,9 @@
-import { computed, ref, watch, toRefs, onMounted } from 'composition-api'
+import { computed, ref, toRefs, onUpdated } from 'composition-api'
 import checkDateFormat from '../../utils/checkDateFormat'
-import normalize from './../../utils/normalize'
 
 const base = function(props, context, dependencies, options = {})
 {
   const { name } = toRefs(props)
-
   // ============ DEPENDENCIES =============
 
   const defaultValue = dependencies.defaultValue
@@ -29,10 +27,11 @@ const base = function(props, context, dependencies, options = {})
     }
   })
 
-
-  // If element's value was undefined initially (not found in v-model/data) then we need to set it's value
-  if (initialValue.value === undefined) {
-    value.value = defaultValue.value
+  if (options.init === undefined || options.init !== false) {
+    // If element's value was undefined initially (not found in v-model/data) then we need to set it's value
+    if (initialValue.value === undefined) {
+      value.value = defaultValue.value
+    }
   }
 
   return {
@@ -65,10 +64,12 @@ const object = function(props, context, dependencies, options = {})
     }
   })
 
-  if (initialValue.value === undefined) {
-    value.value = defaultValue.value
-  } else {
-    value.value = Object.assign({}, defaultValue.value, value.value)
+  if (options.init === undefined || options.init !== false) {
+    if (initialValue.value === undefined) {
+      value.value = defaultValue.value
+    } else {
+      value.value = Object.assign({}, defaultValue.value, value.value)
+    }
   }
 
   return {
@@ -122,7 +123,7 @@ const date = function(props, context, dependencies)
   // ================ DATA =================
 
   const {
-    value
+    value,
   } = base(props, context, dependencies, {
     value: {
       get() {
@@ -165,7 +166,7 @@ const dates = function(props, context, dependencies)
   // ================ DATA =================
 
   const {
-    value
+    value,
   } = base(props, context, dependencies, {
     value: {
       get() {
@@ -268,213 +269,10 @@ const multilingual = function(props, context, dependencies)
   }
 }
 
-const select = function(props, context, dependencies)
-{
-  // ============ DEPENDENCIES ============
-
-  const {
-    previousValue, currentValue, value 
-  } = base(props, context, dependencies)
-
-  // ============== COMPUTED ==============
-  
-  /**
-   * 
-   * 
-   * @private
-   */
-  const model = computed({
-    get() {
-      return value.value
-    },
-    set(val) {
-      value.value = normalize(val)
-    }
-  })
-
-  return {
-    value,
-    model,
-    previousValue,
-    currentValue,
-  }
-}
-
-const multiselect = function(props, context, dependencies)
-{
-  // ============ DEPENDENCIES ============
-
-  const { previousValue, currentValue, value } = select(props, context, dependencies)
-
-  // ============== COMPUTED ==============
-  
-  /**
-   * Helper property used for tracking the field's value.
-   * 
-   * @type {any}
-   * @ignore
-   */
-  const model = computed({
-    get() {
-      return value.value
-    },
-    set(val) {
-      if (!Array.isArray(val)) {
-        value.value = val
-        return
-      }
-
-      value.value = val.map(v => normalize(v))
-    }
-  })
-
-  return {
-    value,
-    model,
-    previousValue,
-    currentValue,
-  }
-}
-
-const radio = function(props, context, dependencies)
-{
-  const {
-    radioValue
-  } = toRefs(props)
-
-  const {
-    previousValue, currentValue 
-  } = base(props, context, dependencies)
-
-  // ============ DEPENDENCIES ============
-
-  const nullValue = dependencies.nullValue
-
-  // ============== COMPUTED ==============
-
-  /**
-   * The value of the element.
-   * 
-   * @type {any}
-   */
-  const value = computed({
-    get() {
-      return model.value ? radioValue.value : nullValue.value
-    },
-    set(val) {
-      model.value = val == radioValue.value
-    }
-  })
-
-  /**
-   * Helper property used for tracking the field's value.
-   * 
-   * @type {any}
-   * @ignore
-   */
-  const model = computed({
-    get() {
-      return currentValue.value == radioValue.value
-    },
-    set(val) {
-      previousValue.value = _.clone(currentValue.value)
-
-      currentValue.value = val ? radioValue.value : nullValue.value
-    }
-  })
-
-  return {
-    value,
-    model,
-    previousValue,
-    currentValue,
-  }
-}
-
-const file = function(props, context, dependencies)
-{
-  // ============ DEPENDENCIES ============
-
-  const { previousValue, currentValue, model } = base(props, context, dependencies)
-
-  // ============== COMPUTED ==============
-  
-  /**
-   * 
-   * 
-   * @private
-   */
-  const value = computed({
-    get() {
-      return currentValue.value
-    },
-    set(value) {
-      previousValue.value = currentValue.value && currentValue.value instanceof File
-        ? new File([currentValue.value], currentValue.value.name)
-        : _.clone(currentValue.value)
-
-      currentValue.value = value
-    }
-  })
-
-  return {
-    value,
-    model,
-    previousValue,
-    currentValue,
-  }
-}
-
-const location = function(props, context, dependencies)
-{
-  const {
-    displayKey,
-  } = toRefs(props)
-
-  // ============ DEPENDENCIES ============
-
-  const input = dependencies.input
-  const { previousValue, currentValue, model } = base(props, context, dependencies)
-
-  // ============== COMPUTED ==============
-  
-  /**
-   * 
-   * 
-   * @private
-   */
-  const value = computed({
-    get() {
-      return currentValue.value
-    },
-    set(val) {
-      previousValue.value = _.clone(currentValue.value)
-      currentValue.value = val
-
-      input.value.value = input.value && val && val[displayKey.value] !== undefined ? val[displayKey.value] : ''
-    }
-  })
-
-  return {
-    value,
-    model,
-    previousValue,
-    currentValue,
-  }
-}
-
-const tags = multiselect
-
 export {
   date,
   dates,
   multilingual,
-  multiselect,
-  radio,
-  select,
-  tags,
-  file,
-  location,
   object,
   group,
 }

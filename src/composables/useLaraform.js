@@ -542,12 +542,13 @@ const base = function(props, context, dependencies = {})
    * @param {object} data data to load
    * @returns {void}
    */
-  const load = (data, format = false) => {
+  const load = async (data, format = false) => {
     if (steps$.value !== null) {
       steps$.value.enableAllSteps()
     }
-    
-    _.each(elements$.value, (e$) => {
+
+
+    await asyncForEach(elements$.value, async (e$) => {
       if (e$.isStatic) {
         return
       }
@@ -560,7 +561,7 @@ const base = function(props, context, dependencies = {})
         return
       }
 
-      e$.load(loadValue, format)
+      await e$.load(loadValue, format)
     })
   }
 

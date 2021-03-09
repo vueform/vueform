@@ -59,6 +59,7 @@ export default function (props, context, dependencies)
           $this.$set(externalValueObject, element, val)
         }
 
+
         let intermediaryValueObject = parent ? _.get(intermediaryValue.value, parent) : intermediaryValue.value
 
         // Same thing here with intermediaryValue
@@ -78,6 +79,7 @@ export default function (props, context, dependencies)
           if (intermediaryValue.value !== undefined) {
             $this.$set(intermediaryValue.value, key, v)
           }
+
         })
       }
 
@@ -101,11 +103,19 @@ export default function (props, context, dependencies)
 
   if (externalValue.value) {
     watch(intermediaryValue, (n, o) => {
+      if (_.isEqual(n, o)) {
+        return
+      }
+
       context.emit('input', n)
       context.emit('update:modelValue', n)
     }, { deep: true, immediate: false })
     
     watch(model, (n, o) => {
+      if (_.isEqual(n, o)) {
+        return
+      }
+
       internalData.value = n
     }, { deep: true, immediate: false })
   }
