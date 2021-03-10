@@ -1,11 +1,16 @@
-import dragula from 'dragula'
+import Sortable from 'sortablejs'
 import { computed, toRefs, nextTick, ref, watch, onMounted } from 'composition-api'
 
 const base = function(props, context, dependencies, options)
 {
   const {
     sort,
+    name,
   } = toRefs(props)
+
+  const defaultClasses = toRefs(context.data).defaultClasses
+
+  const containers = toRefs(context.data).containers
 
   // ============ DEPENDENCIES ============
 
@@ -34,27 +39,9 @@ const base = function(props, context, dependencies, options)
   // =============== METHODS ==============
 
   const initSortable = () => {
-    let oldIndex
-    let newIndex
-
-    sortable.value = dragula([list.value])
-
-    sortable.value.on('drag', (el) => {
-      oldIndex = [].slice.call(el.parentNode.children).findIndex((item) => el === item)
-    })
-
-    sortable.value.on('dragend', (el) => {
-      newIndex = [].slice.call(el.parentNode.children).findIndex((item) => el === item)
-
-      if (oldIndex === newIndex) {
-        return
-      }
-
-      // Revert ordering
-      list.value.children[newIndex].remove()
-      list.value.insertBefore(el, list.value.children[oldIndex])
-
-      handleSort(oldIndex, newIndex)
+    sortable.value = new Sortable(list.value, {
+      handle: `.${defaultClasses.value[containers.value.handle]}`,
+      onEnd: handleSort,
     })
   }
 
@@ -69,10 +56,13 @@ const base = function(props, context, dependencies, options)
    * @param {object} indexes an object containing `newIndex` and `oldIndex`.
    * @event sort
    */
-  const handleSort = (oldIndex, newIndex) => {
-    if (isDisabled.value) {
+  const handleSort = ({ oldIndex, newIndex, item }) => {
+    if (oldIndex === newIndex || isDisabled.value) {
       return
     }
+    
+    list.value.children[newIndex].remove()
+    list.value.insertBefore(item, list.value.children[oldIndex])
 
     let valueClone = _.cloneDeep(value.value)
 

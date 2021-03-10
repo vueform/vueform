@@ -6,7 +6,7 @@
 
       <div :class="classes.childrenContainer">
         <div :class="classes.element" ref="list">
-          <div v-for="(val, i) in value" :key="i" :name="i">
+          <div v-for="(val, i) in value" :key="i">
             <slot :index="i">
               <component
                 :is="component(prototype)"
@@ -22,6 +22,7 @@
               @click.prevent="handleRemove(i)"
               v-html="__('laraform.elements.list.remove')"
             ></a>
+            <span :class="classes.handle">[-{{ name }}]</span>
           </div>
           
         </div>
@@ -60,11 +61,13 @@
           remove: 'list-remove',
           add: 'list-add',
           disabled: 'disabled',
+          handle: 'handle',
         },
         containers: {
           sortable: 'element',
           add: 'add',
           remove: 'remove',
+          handle: 'handle',
         }
       }
     },

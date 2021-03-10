@@ -296,12 +296,14 @@ export const onMounted = function (elementType, elementName, options) {
 const imitateSort = (el, from, to) => {
   let item = el.list.children[from]
 
-  el.sortable.start(item)
-
   el.list.children[from].remove()
   el.list.insertBefore(item, el.list.children[to])
 
-  el.sortable.end()
+  el.handleSort({
+    oldIndex: from,
+    newIndex: to,
+    item: item
+  })
 }
 
 const checkChildNode = (el, index) => {
