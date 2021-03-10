@@ -5,8 +5,8 @@
       <slot name="prefix"></slot>
 
       <div :class="classes.childrenContainer">
-        <div :class="classes.element" v-sortable="sortable">
-          <div v-for="(val, i) in value" :key="i">
+        <div :class="classes.element" ref="list">
+          <div v-for="(val, i) in value" :key="i" :name="i">
             <slot :index="i">
               <component
                 :is="component(prototype)"

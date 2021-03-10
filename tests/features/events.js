@@ -56,13 +56,11 @@ export const off = function (elementType, elementName, options) {
 
     el.on('event', onEventMock)
 
-    expect(onEventMock).not.toHaveBeenCalled()
+    expect(el.listeners.event[0]).toStrictEqual(onEventMock)
 
     el.off('event')
 
-    el.fire('event')
-
-    expect(onEventMock).not.toHaveBeenCalled()
+    expect(el.listeners.event).toBe(undefined)
   })
 }
 

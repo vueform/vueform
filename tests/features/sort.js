@@ -1,367 +1,367 @@
 import { nextTick } from 'vue'
 import {
-  createForm, findAllComponents, testPropDefault, listSchema, listChildValue, listChild
+  createForm, destroy
 } from 'test-helpers'
-import flushPromises from 'flush-promises'
-import asyncForEach from './../../src/utils/asyncForEach'
 
-export const sortable = function (elementType, elementName, options) {
-  it('should return `sortable` object if "sort" is "true"', () => {
+export const list = function (elementType, elementName, options) {
+  it('should be the reference to list items container', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          sort: true,
+          initial: 3,
+          element: {
+            type: 'text'
+          }
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.sortable.sort).toBe(true)
-    // expect(typeof el.sortable.onUpdate).toBe('function')
+    let textsBefore = 0
+
+    // Fix for Vue3 adding `text` nodes to v-for
+    _.each([...el.list.childNodes], (node) => {
+      if (node.nodeType === node.TEXT_NODE) {
+        textsBefore++
+      } else {
+        return false
+      }
+    })
+
+    expect(el.list.childNodes[1 + textsBefore].children[0]).toStrictEqual(el.children$[1].$el)
   })
-
-  // it('should return `sortable` object if "sort" is "false"', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       el: {
-  //         type: elementType,
-  //         sort: false,
-  //       }
-  //     }
-  //   })
-
-  //   let el = form.vm.el$('el')
-
-  //   expect(el.sortable.sort).toBe(false)
-  //   expect(typeof el.sortable.onUpdate).toBe('function')
-  // })
-
-  // it('should return `sortable` object if "disabled"', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       el: {
-  //         type: elementType,
-  //         sort: true,
-  //         disabled: true,
-  //       }
-  //     }
-  //   })
-
-  //   let el = form.vm.el$('el')
-
-  //   expect(el.sortable.sort).toBe(false)
-  //   expect(typeof el.sortable.onUpdate).toBe('function')
-  // })
-
-  // it('should init `sortable` directive on list', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       el: {
-  //         type: elementType,
-  //         sort: true,
-  //       }
-  //     }
-  //   })
-
-  //   let el = form.vm.el$('el')
-  //   let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-
-  //   expect(el.sortableInstance.el).toStrictEqual(elWrapper.find(`.${el.defaultClasses.element}`).element)
-  // })
-
-  // it('should destroy `sortableInstance` when sort becomes "false"', async () => {
-  //   let form = createForm({
-  //     schema: {
-  //       el: {
-  //         type: elementType,
-  //         sort: true,
-  //       }
-  //     }
-  //   })
-
-  //   let el = form.vm.el$('el')
-
-  //   expect(el.sortableInstance.el).toBeTruthy()
-
-  //   form.vm.schema.el.sort = false
-
-  //   await nextTick()
-
-  //   expect(el.sortableInstance.el).toBe(null)
-  // })
-
-  // it('should reinit `sortableInstance` when "sort" becomes "true" again after destroy', async () => {
-  //   let form = createForm({
-  //     schema: {
-  //       el: {
-  //         type: elementType,
-  //         sort: true,
-  //       }
-  //     }
-  //   })
-
-  //   let el = form.vm.el$('el')
-
-  //   expect(el.sortableInstance.el).toBeTruthy()
-
-  //   form.vm.schema.el.sort = false
-
-  //   await nextTick()
-
-  //   expect(el.sortableInstance.el).toBe(null)
-
-  //   form.vm.schema.el.sort = true
-
-  //   await nextTick()
-
-  //   expect(el.sortableInstance.el).toBeTruthy()
-  // })
 }
 
-// export const handleSort = function (elementType, elementName, options) {
-//   const prototypes = options.prototypes
+export const sortable = function (elementType, elementName, options) {
+  it('should be null by default', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          element: {
+            type: 'text'
+          }
+        }
+      }
+    })
 
-//   it('should reorder children$Array and children$ on `handleSort`', async () => {
-//     await asyncForEach(prototypes, async (prototype, i) => {
-//       let form = createForm(listSchema(options, i, {
-//         initial: 0
-//       }))
+    let el = form.vm.el$('el')
+    
+    expect(el.sortable).toBe(null)
+  })
+}
 
-//       let el = form.vm.el$('el')
-      
-//       el.add(listChildValue(options, i, 0))
-//       el.add(listChildValue(options, i, 1))
-//       el.add(listChildValue(options, i, 2))
+export const isSortable = function (elementType, elementName, options) {
+  it('should be false if sort is not set', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          element: {
+            type: 'text'
+          }
+        }
+      }
+    })
 
-//       await nextTick()
+    let el = form.vm.el$('el')
+    
+    expect(el.isSortable).toBe(false)
+  })
 
-//       el.handleSort({
-//         oldIndex: 1,
-//         newIndex: 0,
-//       })
+  it('should be true if sort is true', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          sort: true,
+          element: {
+            type: 'text'
+          }
+        }
+      }
+    })
 
-//       await nextTick()
-//       await nextTick()
+    let el = form.vm.el$('el')
+    
+    expect(el.isSortable).toBe(true)
+  })
 
-//       expect(el.value).toStrictEqual([
-//         listChildValue(options, i, 1),
-//         listChildValue(options, i, 0),
-//         listChildValue(options, i, 2)
-//       ])
+  it('should be false if sort is true && disabled', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          sort: true,
+          disabled: true,
+          element: {
+            type: 'text'
+          }
+        }
+      }
+    })
 
-//       expect(el.children$Array[0].value).toStrictEqual(listChildValue(options, i, 1),)
-//       expect(el.children$Array[1].value).toStrictEqual(listChildValue(options, i, 0),)
-//       expect(el.children$Array[2].value).toStrictEqual(listChildValue(options, i, 2))
+    let el = form.vm.el$('el')
+    
+    expect(el.isSortable).toBe(false)
+  })
+}
 
-//       expect(el.children$[0].value).toStrictEqual(listChildValue(options, i, 1),)
-//       expect(el.children$[1].value).toStrictEqual(listChildValue(options, i, 0),)
-//       expect(el.children$[2].value).toStrictEqual(listChildValue(options, i, 2))
-//     })
-//   })
+export const initSortable = function (elementType, elementName, options) {
+  it('should init sortable', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          element: {
+            type: 'text'
+          }
+        }
+      }
+    })
 
-//   it('should refresh order store on `handleSort` if object', async () => {
-//     let form = createForm(listSchema(options, 1, {
-//       initial: 0,
-//       parent: {
-//         storeOrder: 'order',
-//       },
-//       orderField: true
-//     }))
+    let el = form.vm.el$('el')
+    
+    expect(el.sortable).toBe(null)
 
-//     let el = form.vm.el$('el')
+    el.initSortable()
 
-//     el.add(listChildValue(options, 1, 0))
-//     el.add(listChildValue(options, 1, 1))
-//     el.add(listChildValue(options, 1, 2))
+    expect(el.sortable).not.toBe(null)
+  })
+}
 
-//     await nextTick()
+export const destroySortable = function (elementType, elementName, options) {
+  it('should destroy sortable', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          sort: true,
+          element: {
+            type: 'text'
+          }
+        }
+      }
+    })
 
-//     let child0 = listChild(el, options, 0)
-//     let child1 = listChild(el, options, 1)
-//     let child2 = listChild(el, options, 2)
-//     let order0 = form.vm.el$('el.0.order')
-//     let order1 = form.vm.el$('el.1.order')
-//     let order2 = form.vm.el$('el.2.order')
+    let el = form.vm.el$('el')
+    
+    expect(el.sortable).not.toBe(null)
 
-//     expect(order0.value).toBe(1)
-//     expect(order1.value).toBe(2)
-//     expect(order2.value).toBe(3)
-//     expect(child0.value).toStrictEqual(listChildValue(options, 1, 0)[options.childName])
-//     expect(child1.value).toStrictEqual(listChildValue(options, 1, 1)[options.childName])
-//     expect(child2.value).toStrictEqual(listChildValue(options, 1, 2)[options.childName])
+    el.destroySortable()
 
-//     el.handleSort({
-//       oldIndex: 1,
-//       newIndex: 0,
-//     })
+    expect(el.sortable).toBe(null)
+  })
+}
 
-//     await nextTick()
+export const handleSort = function (elementType, elementName, options) {
+  it('should reposition from 0 to 1', async () => {
+    await testSort(0, 1, [
+      {child:'b',order:1},
+      {child:'a',order:2},
+      {child:'c',order:3}
+    ], elementType)
+  })
 
-//     child0 = listChild(el, options, 0)
-//     child1 = listChild(el, options, 1)
-//     child2 = listChild(el, options, 2)
-//     order0 = form.vm.el$('el.0.order')
-//     order1 = form.vm.el$('el.1.order')
-//     order2 = form.vm.el$('el.2.order')
+  it('should reposition from 1 to 0', async () => {
+    await testSort(1, 0, [
+      {child:'b',order:1},
+      {child:'a',order:2},
+      {child:'c',order:3}
+    ], elementType)
+  })
 
-//     expect(order0.value).toBe(1)
-//     expect(order1.value).toBe(2)
-//     expect(order2.value).toBe(3)
-//     expect(child0.value).toStrictEqual(listChildValue(options, 1, 1)[options.childName])
-//     expect(child1.value).toStrictEqual(listChildValue(options, 1, 0)[options.childName])
-//     expect(child2.value).toStrictEqual(listChildValue(options, 1, 2)[options.childName])
-//   })
+  it('should reposition from 0 to 2', async () => {
+    await testSort(0, 2, [
+      {child:'b',order:1},
+      {child:'c',order:2},
+      {child:'a',order:3},
+    ], elementType)
+  })
 
-//   it('should fire "sort" event with "value" on `handleSort`', async () => {
-//     await asyncForEach(prototypes, async (prototype, i) => {
-//       let onSortMock = jest.fn()
+  it('should reposition from 2 to 0', async () => {
+    await testSort(2, 0, [
+      {child:'c',order:1},
+      {child:'a',order:2},
+      {child:'b',order:3},
+    ], elementType)
+  })
 
-//       let form = createForm(listSchema(options, i, {
-//         initial: 0,
-//         parent: { onSort: onSortMock, }
-//       }))
+  it('should reposition from 1 to 2', async () => {
+    await testSort(1, 2, [
+      {child:'a',order:1},
+      {child:'c',order:2},
+      {child:'b',order:3},
+    ], elementType)
+  })
 
-//       let el = form.vm.el$('el')
-      
-//       el.add(listChildValue(options, i, 0))
-//       el.add(listChildValue(options, i, 1))
-//       el.add(listChildValue(options, i, 2))
+  it('should reposition from 2 to 1', async () => {
+    await testSort(2, 1, [
+      {child:'a',order:1},
+      {child:'c',order:2},
+      {child:'b',order:3},
+    ], elementType)
+  })
+}
 
-//       await nextTick()
+export const watchers = function (elementType, elementName, options) {
+  it('should init sortable if sort becomes true', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          sort: false,
+          element: {
+            type: 'text'
+          }
+        }
+      }
+    })
 
-//       el.handleSort({
-//         oldIndex: 1,
-//         newIndex: 0,
-//       })
+    let el = form.vm.el$('el')
+    
+    expect(el.sortable).toBe(null)
+    
+    form.vm.$set(form.vm.laraform.schema.el, 'sort', true)
 
-//       await nextTick()
-//       await nextTick()
+    await nextTick()
 
-//       expect(onSortMock).toHaveBeenCalledWith([
-//         listChildValue(options, i, 1),
-//         listChildValue(options, i, 0),
-//         listChildValue(options, i, 2),
-//       ])
-//     })
-//   })
+    expect(el.sortable).not.toBe(null)
+  })
 
-//   it('should trigger "change" event `handleSort`', async () => {
-//     await asyncForEach(prototypes, async (prototype, i) => {
-//       let onChangeMock = jest.fn()
+  it('should destroy sortable if sort becomes false', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          sort: true,
+          element: {
+            type: 'text'
+          }
+        }
+      }
+    })
 
-//       let form = createForm(listSchema(options, i, {
-//         initial: 0,
-//         parent: { onChange: onChangeMock, }
-//       }))
+    let el = form.vm.el$('el')
+    
+    expect(el.sortable).not.toBe(null)
+    
+    form.vm.$set(form.vm.laraform.schema.el, 'sort', false)
 
-//       let el = form.vm.el$('el')
-      
-//       el.insert(listChildValue(options, i, 0))
-//       el.insert(listChildValue(options, i, 1))
-//       el.insert(listChildValue(options, i, 2))
+    await nextTick()
 
-//       await nextTick()
-//       await nextTick()
+    expect(el.sortable).toBe(null)
+  })
+}
 
-//       el.handleSort({
-//         oldIndex: 1,
-//         newIndex: 0,
-//       })
+export const onMounted = function (elementType, elementName, options) {
+  it('should init sortable if sort is true', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          sort: true,
+          element: {
+            type: 'text'
+          }
+        }
+      }
+    })
 
-//       await nextTick()
-//       await nextTick()
-//       await nextTick()
-//       await nextTick()
+    let el = form.vm.el$('el')
+    
+    expect(el.sortable).not.toBe(null)
+  })
 
-//       expect(onChangeMock).toHaveBeenCalledWith([
-//         listChildValue(options, i, 1),
-//         listChildValue(options, i, 0),
-//         listChildValue(options, i, 2),
-//       ], [
-//         listChildValue(options, i, 0),
-//         listChildValue(options, i, 1),
-//         listChildValue(options, i, 2),
-//       ])
-//     })
-//   })
+  it('should not init sortable if sort is not true', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          element: {
+            type: 'text'
+          }
+        }
+      }
+    })
 
-//   it('should dirt  on `handleSort`', async () => {
-//     await asyncForEach(prototypes, async (prototype, i) => {
-//       let form = createForm(listSchema(options, i, {
-//         initial: 0
-//       }))
+    let el = form.vm.el$('el')
+    
+    expect(el.sortable).toBe(null)
+  })
+}
 
-//       let el = form.vm.el$('el')
-      
-//       el.insert(listChildValue(options, i, 0))
-//       el.insert(listChildValue(options, i, 1))
-//       el.insert(listChildValue(options, i, 2))
+const imitateSort = (el, from, to) => {
+  let item = el.list.children[from]
 
-//       await nextTick()
+  el.sortable.start(item)
 
-//       expect(el.dirty).toBe(false)
+  el.list.children[from].remove()
+  el.list.insertBefore(item, el.list.children[to])
 
-//       el.handleSort({
-//         oldIndex: 1,
-//         newIndex: 0,
-//       })
+  el.sortable.end()
+}
 
-//       await nextTick()
-//       await nextTick()
-//       await nextTick()
+const checkChildNode = (el, index) => {
+  expect(el.list.children[index].children[0].innerHTML).toContain(el.children$[index].label(el.children$[index]))
+}
 
-//       expect(el.dirty).toBe(true)
-//     })
-//   })
+const testSort = async (from, to, value, elementType) => {
+  let formChangeMock = jest.fn()
 
-//   it('should validate on `handleSort` if validateOn contains "change"', async () => {
-//     await asyncForEach(prototypes, async (prototype, i) => {
-//       let onChangeMock = jest.fn()
+  let form = createForm({
+    schema: {
+      el: {
+        type: elementType,
+        sort: true,
+        default: [
+          {child:'a',order:1},
+          {child:'b',order:2},
+          {child:'c',order:3}
+        ],
+        orderBy: 'order',
+        order: 'ASC',
+        storeOrder: 'order',
+        object: {
+          label(el$) {
+            return 'label-' + el$.name
+          },
+          schema: {
+            child: {
+              type: 'text',
+            },
+            order: {
+              type: 'text'
+            }
+          }
+        }
+      },
+    }
+  }, {
+    attach: true,
+  })
 
-//       let form = createForm(listSchema(options, i, {
-//         initial: 1,
-//         parent: {
-//           onChange: onChangeMock,
-//           rules: 'required',
-//         },
-//         form: { validateOn: 'submit', }
-//       }))
+  form.vm.on('change', formChangeMock)
 
-//       let el = form.vm.el$('el')
-      
-//       el.insert(listChildValue(options, i, 0))
-//       el.insert(listChildValue(options, i, 1))
-//       el.insert(listChildValue(options, i, 2))
+  let el = form.vm.el$('el')
+  
+  imitateSort(el, from, to)
 
-//       await nextTick()
+  await nextTick()
 
-//       expect(el.validated).toBe(false)
+  expect(el.value).toStrictEqual(value)
 
-//       el.handleSort({
-//         oldIndex: 1,
-//         newIndex: 0,
-//       })
+  expect(formChangeMock).toHaveBeenCalledTimes(1)
+  expect(formChangeMock).toHaveBeenLastCalledWith(
+    {el:value},
+    {el:[{child:'a',order:1},{child:'b',order:2},{child:'c',order:3}]},
+  )
 
-//       await nextTick()
-//       await nextTick()
-//       await flushPromises()
+  checkChildNode(el, 0)
+  checkChildNode(el, 1)
+  checkChildNode(el, 2)
 
-//       expect(el.validated).toBe(false)
-
-//       form.vm.validateOn = 'submit|change'
-
-//       el.handleSort({
-//         oldIndex: 1,
-//         newIndex: 0,
-//       })
-
-//       await nextTick()
-//       await nextTick()
-//       await flushPromises()
-
-//       expect(el.validated).toBe(true)
-//     })
-//   })
-// }
+  destroy(form)
+}
