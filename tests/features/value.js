@@ -151,3 +151,7 @@ const baseSchema = (mocks, elementType) => {
 
   return schema
 }
+
+export {
+  testChanges,
+}

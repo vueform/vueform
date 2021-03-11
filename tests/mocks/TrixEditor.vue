@@ -7,6 +7,7 @@
 
   export default {
     name: 'TrixEditor',
+    emits: ['trix-change'],
     setup(props, context) {
       const value = ref(null)
 

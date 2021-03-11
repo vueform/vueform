@@ -1,139 +1,59 @@
-import { createForm } from 'test-helpers'
+import { testModelCases } from 'test-helpers'
+import { testChanges } from './value'
 
-export { currentValue, previousValue } from './value'
+export const value = function (elementType, elementName, options) {
+  let mocks = ['formChangeMock', 'elChangeMock', 'el2ChangeMock']
 
-export const value = function (elementType, elementName) {
-  it('should `value` equal to an object of language values', () => {
-    let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
-      schema: {
-        el: {
-          type: elementType,
-          default: {
-            en: 'value-en',
-            fr: 'value-fr',
-          }
-        }
-      }
-    })
+  let cases = [
+    {
+      initial: { el: options.nullValue, el2: options.nullValue },
 
-    let el = form.vm.el$('el')
+      model: { el: options.default },
+      initialWithModel: { el: options.default, el2: options.nullValue },
+    },
+    {
+      initial: { el: { en: options.default.en, fr: options.nullValue.fr }, el2: options.default2, },
+      formDefault: { el: { en: options.default.en }, el2: options.default2, },
 
-    expect(el.value).toStrictEqual({
-      en: 'value-en',
-      fr: 'value-fr',
-    })
-  })
+      model: { el: options.default2, },
+      initialWithModel: { el: options.default2, el2: options.default2, },
+    },
+    {
+      initial: { el: options.default, el2: options.default2, },
+      elementDefault: { el: options.default, el2: options.default2, },
 
-  it('should update "previousValue" and "currentValue" when `value` is being set', () => {
-    let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
+      model: { el: options.default2, },
+      initialWithModel: { el: options.default2, el2: options.default2, },
+    },
+    {
+      initial: { el: options.default2, el2: options.default2, },
+      elementDefault: { el: options.default },
+      formDefault: { el: options.default2, el2: options.default2, },
 
-    let el = form.vm.el$('el')
+      model: { el: options.default, },
+      initialWithModel: { el: options.default, el2: options.default2, },
+    },
+  ]
 
-    el.update('value-en')
-
-    expect(el.previousValue).toStrictEqual(el.nullValue)
-
-    expect(el.currentValue).toStrictEqual({
-      en: 'value-en',
-      fr: el.nullValue.fr,
-    })
-  })
+  testModelCases(cases, elementType, options, mocks, baseSchema, testChanges)
 }
 
-export const model = function (elementType, elementName, options) {
-  it('should return current language value for `model`', () => {
-    let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
-      schema: {
-        el: {
-          type: elementType,
-          default: {
-            en: 'value-en',
-            fr: 'value-fr',
-          }
-        }
-      }
-    })
+const baseSchema = (mocks, elementType) => {
+  let {
+    elChangeMock,
+    el2ChangeMock,
+  } = mocks
 
-    let el = form.vm.el$('el')
+  let schema = {
+    el: {
+      type: elementType,
+      onChange: elChangeMock,
+    },
+    el2: {
+      type: elementType,
+      onChange: el2ChangeMock,
+    },
+  }
 
-    expect(el.model).toBe('value-en')
-
-    form.vm.setLanguage('fr')
-
-    expect(el.model).toBe('value-fr')
-  })
-
-  it('should set current language value when setting `model`', () => {
-    let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.model = 'value-en'
-
-    expect(el.value).toStrictEqual({
-      en: 'value-en',
-      fr: el.nullValue.fr,
-    })
-
-    form.vm.setLanguage('fr')
-
-    el.model = 'value-fr'
-
-    expect(el.value).toStrictEqual({
-      en: 'value-en',
-      fr: 'value-fr'
-    })
-  })
+  return schema
 }

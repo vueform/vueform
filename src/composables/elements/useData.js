@@ -731,50 +731,46 @@ const trix = function(props, context, dependencies)
 
 const ttrix = function(props, context, dependencies)
 {
-  // const {
-  //   data,
-  //   filtered,
-  //   changed,
-  //   load,
-  //   update,
-  //   clear,
-  //   reset,
-  //   updated,
-  //   prepare
-  // } = multilingual(props, context, dependencies, {
-  //   setValue: (val) => {
-  //     value.value = val
+  const {
+    data,
+    filtered,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  } = multilingual(props, context, dependencies, {
+    setValue: (val) => {
+      value.value = val
 
-  //     nextTick(() => {
-  //       input.value.update(val[language.value])
-  //     })
-  //   }
-  // })
+      nextTick(() => {
+        input.value.update(val[language.value])
+      })
+    }
+  })
 
-  // // ============ DEPENDENCIES =============
+  // ============ DEPENDENCIES =============
 
-  // const input = dependencies.input
-  // const model = dependencies.model
-  // const value = dependencies.value
-  // const language = dependencies.language
+  const input = dependencies.input
+  const model = dependencies.model
+  const value = dependencies.value
+  const language = dependencies.language
 
-  // // ============== WATCHERS ==============
+  // ============== WATCHERS ==============
 
-  // watch(language, () => {
-  //   input.value.update(model.value)
-  // })
+  watch(language, () => {
+    input.value.update(model.value)
+  })
 
-  // return {
-  //   data,
-  //   filtered,
-  //   changed,
-  //   load,
-  //   update,
-  //   updated,
-  //   clear,
-  //   reset,
-  //   prepare,
-  // }
+  return {
+    data,
+    filtered,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  }
 }
 
 export {

@@ -3,6 +3,7 @@ import useElementComponent from './../../composables/useElementComponent'
 
 export default {
   name: 'TrixWrapper',
+  emits: ['input'],
   props: {
     value: {
       default: null

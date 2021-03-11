@@ -3,7 +3,7 @@ import flushPromises from 'flush-promises'
 import { nextTick } from 'composition-api'
 import { update as baseUpdate, clear as baseClear, reset as baseReset, } from './data_multilingual'
 
-export { data, filtered, changed, updated, onCreated } from './data_multilingual'
+export { data, filtered } from './data_multilingual'
 
 export const load = function (elementType, elementName, options) {
   it('should `load` data', async () => {
@@ -54,23 +54,6 @@ export const load = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input.trix$.value).toBe('<div>value-en-2</div>')
-  })
-
-  it('should set value to null if provided value is "undefined" on `load`', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          default: 'value'
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.load(undefined)
-
-    expect(el.value).toStrictEqual(el.nullValue)
   })
 
   it('should format data if "formatLoad" is set on `load`', async () => {

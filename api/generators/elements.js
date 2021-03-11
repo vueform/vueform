@@ -29,7 +29,7 @@ const elements = [
   'trix',
   'tTextarea',
   'tText',
-  // 'tTrix',
+  'tTrix',
 ]
 const overrides = {
   key: 'hidden',
