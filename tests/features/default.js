@@ -7,7 +7,8 @@ export const defaultValue = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          default: options.default
+          default: options.default,
+          auto: false, // for files
         }
       }
     })
@@ -23,6 +24,7 @@ export const defaultValue = function (elementType, elementName, options) {
         el: {
           type: elementType,
           default: options.default,
+          auto: false, // for files
         }
       },
       // Group default will not have a key for group element

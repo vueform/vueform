@@ -20,23 +20,18 @@ import useInput from './../../composables/elements/useInput'
 import useMultifile from './../../composables/elements/useMultifile'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useChildren from './../../composables/elements/useChildren'
+import useValue from './../../composables/elements/useValue'
 
 import { multifile as usePrototype } from './../../composables/elements/usePrototype'
 import { multifile as useDrop } from './../../composables/elements/useDrop'
-import { multifile as useData } from './../../composables/elements/useData'
-// import { list as useValue } from './../../composables/elements/useValue'
+import { list as useData } from './../../composables/elements/useData'
 import { list as useClasses } from './../../composables/elements/useClasses'
 import { list as useValidation } from './../../composables/elements/useValidation'
 import { list as useBaseElement } from './../../composables/elements/useBaseElement'
-import { array as useNullValueArray } from './../../composables/elements/useNullValue'
-
-import SortableDirective from './../../directives/sortable'
+import { array as useNullValue } from './../../composables/elements/useNullValue'
 
 export default {
   name: 'MultifileElement',
-  directives: {
-    sortable: SortableDirective
-  },
   emits: ['change', 'add', 'remove', 'sort'],
   slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {
@@ -113,6 +108,11 @@ export default {
       required: false,
       type: [Number],
       default: null
+    },
+    initial: {
+      required: false,
+      type: [Number],
+      default: 1
     },
     default: {
       required: false,
@@ -256,13 +256,21 @@ export default {
     const layout = useLayout(props, context)
     const path = usePath(props, context)
     const disabled = useDisabled(props, context)
-    const nullValue = useNullValueArray(props, context)
+    const nullValue = useNullValue(props, context)
     const children = useChildren(props, context)
     const input = useInput(props, context)
     const prototype = usePrototype(props, context)
 
     const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
+    })
+
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change', 'add', 'remove', 'sort'
+      ]
     })
 
     const default_ = useDefault(props, context, {
@@ -279,33 +287,24 @@ export default {
       label: label.label,
     })
 
-    const events = useEvents(props, context, {
+    const validation = useValidation(props, context, {
       form$: form$.form$,
-    }, {
-      events: [
-        'change', 'add', 'remove', 'sort'
-      ]
+      children$: children.children$,
+      form$: form$.form$,
+      path: path.path,
     })
 
     const value = useValue(props, context, {
-      children$Array: children.children$Array,
-      nullValue: nullValue.nullValue,
       defaultValue: default_.defaultValue,
-    })
+      dataPath: path.dataPath,
+      form$: form$.form$,
+    }, { init: false })
 
     const elements = useElements(props, context, {
       theme: theme.theme,
     })
 
     const conditions = useConditions(props, context, {
-      form$: form$.form$,
-      path: path.path,
-    })
-
-    const validation = useValidation(props, context, {
-      form$: form$.form$,
-      value: value.value,
-      children$: children.children$,
       form$: form$.form$,
       path: path.path,
     })
@@ -340,32 +339,19 @@ export default {
 
     const data = useData(props, context, {
       form$: form$.form$,
-      children$: children.children$,
-      instances: children.instances,
+      available: conditions.available,
+      value: value.value,
+      resetValidators: validation.resetValidators,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      available: conditions.available,
+      children$: children.children$,
       isDisabled: disabled.isDisabled,
-
-      value: value.value,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-
-      dirt: validation.dirt,
-      validate: validation.validate,
-      validateValidators: validation.validateValidators,
-      resetValidators: validation.resetValidators,
-
-      nullValue: nullValue.nullValue,
-      refreshOrderStore: order.refreshOrderStore,
-
-      isObject: prototype.isObject,
-      prototype: prototype.prototype,
       orderByName: order.orderByName,
-
+      refreshOrderStore: order.refreshOrderStore,
+      dataPath: path.dataPath,
+      nullValue: nullValue.nullValue,
+      defaultValue: default_.defaultValue,
       fire: events.fire,
-    }, {
-      initial: 0
     })
 
     const multifile = useMultifile(props, context, {
@@ -385,14 +371,10 @@ export default {
     })
 
     const sort = useSort(props, context, {
-      children$: children.children$,
-      children$Array: children.children$Array,
-      currentValue: value.currentValue,
-      fire: events.fire,
       isDisabled: disabled.isDisabled,
-      updated: data.updated,
+      fire: events.fire,
       refreshOrderStore: order.refreshOrderStore,
-      instances: children.instances,
+      value: value.value,
     })
 
     const classes = useClasses(props, context, {

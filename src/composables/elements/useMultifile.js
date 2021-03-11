@@ -27,6 +27,8 @@ const base = function (props, context, dependencies)
         [storeFileName.value]: file
       } : file)
     })
+
+    input.value.value = ''
   }
 
   /**

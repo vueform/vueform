@@ -2,7 +2,7 @@ import { nextTick } from 'vue'
 import { createForm, listSchema, listChildValue } from 'test-helpers'
 import asyncForEach from './../../src/utils/asyncForEach'
 
-export { data, next, add, insert, remove, load, update, clear, reset, updated } from './data_list'
+export { data, add, remove, load, update, clear, reset, } from './data_list'
 
 export const filtered = function (elementType, elementName, options) {
   const prototypes = options.prototypes
@@ -133,10 +133,10 @@ export const filtered = function (elementType, elementName, options) {
   })
 }
 
-export const orderValue = function (elementType, elementName, options) {
+export const sortValue = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  it('should `orderValue` "ASC" if "order" is "ASC" using single element', async () => {
+  it('should `sortValue` "ASC" if "order" is "ASC" using single element', async () => {
     let form = createForm(listSchema(options, 0, {
       initial: 0,
       parent: { order: 'ASC' }
@@ -144,16 +144,12 @@ export const orderValue = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    await nextTick()
-
-    el.load([3,2,4])
-
-    await nextTick()
+    await el.load([3,2,4])
 
     expect(el.value).toStrictEqual([2,3,4])
   })
 
-  it('should `orderValue` "DESC" if "order" is "DESC" using single element', async () => {
+  it('should `sortValue` "DESC" if "order" is "DESC" using single element', async () => {
     let form = createForm(listSchema(options, 0, {
       initial: 0,
       parent: { order: 'DESC' }
@@ -161,16 +157,12 @@ export const orderValue = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    await nextTick()
-
-    el.load([3,2,4])
-
-    await nextTick()
+    await el.load([3,2,4])
 
     expect(el.value).toStrictEqual([4,3,2])
   })
 
-  it('should `orderValue` by "orderBy" "ASC" if "orderBy" is defined using object element', async () => {
+  it('should `sortValue` by "orderBy" "ASC" if "orderBy" is defined using object element', async () => {
     let form = createForm(listSchema(options, 1, {
       initial: 0,
       parent: {
@@ -182,9 +174,7 @@ export const orderValue = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    await nextTick()
-
-    el.load([
+    await el.load([
       {
         order: 3
       },
@@ -195,8 +185,6 @@ export const orderValue = function (elementType, elementName, options) {
         order: 4
       },
     ])
-
-    await nextTick()
 
     expect(el.value).toStrictEqual([
       Object.assign({}, options.childNulls[1], {
@@ -211,7 +199,7 @@ export const orderValue = function (elementType, elementName, options) {
     ])
   })
 
-  it('should `orderValue` by "orderBy" "DESC" if "orderBy" is defined and "order" is "DESC" using object element', async () => {
+  it('should `sortValue` by "orderBy" "DESC" if "orderBy" is defined and "order" is "DESC" using object element', async () => {
     let form = createForm(listSchema(options, 1, {
       initial: 0,
       parent: {
@@ -223,9 +211,7 @@ export const orderValue = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    await nextTick()
-
-    el.load([
+    await el.load([
       {
         order: 3
       },
@@ -236,8 +222,6 @@ export const orderValue = function (elementType, elementName, options) {
         order: 4
       },
     ])
-
-    await nextTick()
 
     expect(el.value).toStrictEqual([
       Object.assign({}, options.childNulls[1], {
@@ -264,17 +248,15 @@ export const handleAdd = function (elementType, elementName, options) {
 
       let el = form.vm.el$('el')
 
-      await nextTick()
-
       el.handleAdd()
 
-      expect(el.instances.length).toBe(1)
+      expect(el.value.length).toBe(1)
 
       el.disable()
 
       el.handleAdd()
 
-      expect(el.instances.length).toBe(1)
+      expect(el.value.length).toBe(1)
     })
   })
 }
@@ -290,17 +272,15 @@ export const handleRemove = function (elementType, elementName, options) {
 
       let el = form.vm.el$('el')
 
-      await nextTick()
-
       el.handleRemove(1)
 
-      expect(el.instances.length).toBe(2)
+      expect(el.value.length).toBe(2)
 
       el.disable()
 
       el.handleRemove(1)
 
-      expect(el.instances.length).toBe(2)
+      expect(el.value.length).toBe(2)
     })
   })
 
@@ -317,7 +297,7 @@ export const handleRemove = function (elementType, elementName, options) {
 
       child.$emit('remove')
 
-      expect(el.instances.length).toBe(2)
+      expect(el.value.length).toBe(2)
     })
   })
 }

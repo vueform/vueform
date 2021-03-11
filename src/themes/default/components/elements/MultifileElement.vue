@@ -31,19 +31,18 @@
         ref="input" 
       />
 
-      <div v-sortable="sortable" :class="classes.element">
-        <div v-for="(element, i) in instances" :key="element.key">
-          <slot :index="element.key" :disabled="isDisabled" :file="isObject?prototype.schema[storeFileName]:{}" :remove="remove">
-            <component :is="component(element)"
-              v-for="(element, i) in instances"
-              v-bind="element"
-              :disabled="isDisabled"
-              :name="i"
-              :embed="true"
-              :key="element.key"
-              @remove="remove"
-            />
-          </slot>
+      <div :class="classes.element" ref="list">
+        <div v-for="(val, i) in value" :key="i">
+          <component
+            :is="component(prototype)"
+            v-if="prototype.type"
+            v-bind="prototype"
+            :disabled="isDisabled"
+            :embed="true"
+            :name="i"
+            @remove="remove(i)"
+          />
+          <span :class="classes.handle">[-{{ name }}]</span>
         </div>
       </div>
 

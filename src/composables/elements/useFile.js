@@ -441,7 +441,7 @@ const base = function (props, context, dependencies)
     else if (val === null) {
       file.value = null
     }
-  })
+  }, { immediate: true })
 
   return {
     file,

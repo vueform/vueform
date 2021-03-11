@@ -25,7 +25,7 @@ import { object as useValidation } from './../../composables/elements/useValidat
 
 export default {
   name: 'ObjectElement',
-  emits: [],
+  emits: ['remove'],
   slots: ['label', 'info', 'description', 'message', 'before', 'between', 'after'],
   props: {
     name: {

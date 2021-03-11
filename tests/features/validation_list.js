@@ -21,7 +21,7 @@ export const dirty = function (elementType, elementName, options) {
   it('should be `dirty` if any of the children is dirty', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm(listSchema(options, i, {
-        initial: 1
+        initial: 1,
       }))
 
       let el = form.vm.el$('el')
@@ -96,7 +96,7 @@ export const validated = function (elementType, elementName, options) {
 export const invalid = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  it('should be `invalid` if any of the validators is invalid', async () => {
+  it('shoulÍd be `invalid` if any of the validators is invalid', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm(listSchema(options, i, {
         initial: 2,

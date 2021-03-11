@@ -14,7 +14,7 @@ const elements = [
   'hidden',
   'list',
   'location',
-  // 'multifile',
+  'multifile',
   'multiselect',
   'object',
   'radio',

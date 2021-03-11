@@ -95,6 +95,7 @@ export const prototype = function (elementType, elementName, options) {
         file: {
           type: 'file',
           image: false,
+          embed: true,
           auto: el.auto,
         }
       }
@@ -120,6 +121,7 @@ export const prototype = function (elementType, elementName, options) {
         file: {
           type: 'file',
           image: true,
+          embed: true,
           auto: el.auto,
         }
       }
@@ -145,6 +147,7 @@ export const prototype = function (elementType, elementName, options) {
         filename: {
           type: 'file',
           image: false,
+          embed: true,
           auto: el.auto,
         }
       }
@@ -173,6 +176,7 @@ export const prototype = function (elementType, elementName, options) {
           type: 'file',
           auto: el.auto,
           image: false,
+          embed: true,
           url: '/uploads/',
         }
       }
@@ -198,6 +202,7 @@ export const prototype = function (elementType, elementName, options) {
         file: {
           type: 'file',
           image: false,
+          embed: true,
           auto: el.auto,
         },
         order: {
@@ -231,6 +236,7 @@ export const prototype = function (elementType, elementName, options) {
         file: {
           type: 'file',
           image: false,
+          embed: true,
           auto: el.auto,
         },
         label: {
@@ -255,30 +261,30 @@ export const isObject = function (elementType, elementName, options) {
 
     expect(el.isObject).toBe(false)
 
-    el.$set(form.vm.schema.el, 'object', true)
+    el.$set(form.vm.laraform.schema.el, 'object', true)
     await nextTick()
 
     expect(el.isObject).toBe(true)
 
-    el.$delete(form.vm.schema.el, 'object')
-    el.$set(form.vm.schema.el, 'storeFile', 'filename')
-    await nextTick()
-    
-    expect(el.isObject).toBe(true)
-
-    el.$delete(form.vm.schema.el, 'storeFile')
-    el.$set(form.vm.schema.el, 'storeOrder', 'order')
+    el.$delete(form.vm.laraform.schema.el, 'object')
+    el.$set(form.vm.laraform.schema.el, 'storeFile', 'filename')
     await nextTick()
     
     expect(el.isObject).toBe(true)
 
-    el.$delete(form.vm.schema.el, 'storeOrder')
-    el.$set(form.vm.schema.el, 'fields', { child: { type: 'text' }})
+    el.$delete(form.vm.laraform.schema.el, 'storeFile')
+    el.$set(form.vm.laraform.schema.el, 'storeOrder', 'order')
     await nextTick()
     
     expect(el.isObject).toBe(true)
 
-    el.$set(form.vm.schema.el, 'fields', {})
+    el.$delete(form.vm.laraform.schema.el, 'storeOrder')
+    el.$set(form.vm.laraform.schema.el, 'fields', { child: { type: 'text' }})
+    await nextTick()
+    
+    expect(el.isObject).toBe(true)
+
+    el.$set(form.vm.laraform.schema.el, 'fields', {})
     await nextTick()
 
     expect(el.isObject).toBe(false)

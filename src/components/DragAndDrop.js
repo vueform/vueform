@@ -4,6 +4,7 @@ import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'DragAndDrop',
+  emits: ['click'],
   props: {
     title: {
       type: String,

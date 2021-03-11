@@ -61,6 +61,14 @@ export default function (options, i, extend) {
               })
             }
           })
+        } else if (isObject && isFile) {
+          prototype = Object.assign({}, prototype, {
+            fields: Object.assign({}, prototype.fields || {}, {
+              order: {
+                type: 'text'
+              }
+            })
+          })
         }
         break
 

@@ -2712,6 +2712,332 @@ export default {
       }
     }
   },
+  "multifile": {
+    "features": [
+      "baseElement_list",
+      "children",
+      "classes_list",
+      "columns",
+      "components",
+      "conditions",
+      "data_list",
+      "default",
+      "disabled",
+      "drop_multifile",
+      "elements",
+      "events",
+      "form$",
+      "genericName",
+      "input",
+      "label",
+      "layout",
+      "multifile",
+      "nullValue_array",
+      "order",
+      "path",
+      "prototype_multifile",
+      "slots",
+      "sort",
+      "theme",
+      "validation_list",
+      "value",
+      "view",
+      "watchValue"
+    ],
+    "slots": [
+      "label",
+      "info",
+      "description",
+      "error",
+      "message",
+      "before",
+      "between",
+      "after"
+    ],
+    "events": [
+      "change",
+      "add",
+      "remove",
+      "sort"
+    ],
+    "props": {
+      "name": {
+        "required": "true",
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "image": {
+        "types": [
+          "boolean"
+        ],
+        "required": "false"
+      },
+      "layout": {
+        "required": "false",
+        "types": [
+          "string",
+          "object",
+          "boolean"
+        ]
+      },
+      "type": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "addClass": {
+        "required": "false",
+        "types": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "overrideClasses": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "addClasses": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "columns": {
+        "required": "false",
+        "types": [
+          "object",
+          "string"
+        ]
+      },
+      "overrideComponents": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "conditions": {
+        "required": "false",
+        "types": [
+          "array"
+        ]
+      },
+      "formatData": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "formatLoad": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "submit": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "debounce": {
+        "required": "false",
+        "types": [
+          "number"
+        ]
+      },
+      "initial": {
+        "required": "false",
+        "types": [
+          "number"
+        ]
+      },
+      "default": {
+        "required": "false",
+        "types": [
+          "array"
+        ]
+      },
+      "description": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "disabled": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "drop": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "info": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "label": {
+        "required": "false",
+        "types": [
+          "string",
+          "object",
+          "function"
+        ]
+      },
+      "accept": {
+        "required": "false",
+        "types": [
+          "string",
+          "array"
+        ]
+      },
+      "order": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "orderBy": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "auto": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "file": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "storeFile": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "fields": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "before": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "between": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "after": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "slots": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "sort": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "storeOrder": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "rules": {
+        "required": "false",
+        "types": [
+          "array",
+          "string",
+          "object"
+        ]
+      },
+      "messages": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "displayError": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "object": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onAdd": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onRemove": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "onSort": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      }
+    }
+  },
   "multiselect": {
     "features": [
       "asyncItems",
@@ -4860,32 +5186,32 @@ export default {
   },
   "text": {
     "features": [
-      // "addons",
+      "addons",
       "baseElement",
-      // "classes",
-      // "columns",
-      // "components",
-      // "conditions",
-      // "data",
-      // "default",
-      // "disabled",
-      // "empty",
-      // "events",
-      // "fieldId",
-      // "form$",
-      // "genericName",
-      // "handleInput",
-      // "input",
-      // "label",
-      // "layout",
-      // "nullValue",
-      // "path",
-      // "slots",
-      // "theme",
-      // "validation",
-      // "value",
-      // "view",
-      // "watchValue"
+      "classes",
+      "columns",
+      "components",
+      "conditions",
+      "data",
+      "default",
+      "disabled",
+      "empty",
+      "events",
+      "fieldId",
+      "form$",
+      "genericName",
+      "handleInput",
+      "input",
+      "label",
+      "layout",
+      "nullValue",
+      "path",
+      "slots",
+      "theme",
+      "validation",
+      "value",
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",

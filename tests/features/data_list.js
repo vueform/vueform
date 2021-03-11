@@ -12,6 +12,7 @@ export const data = function (elementType, elementName, options) {
         el: {
           type: elementType,
           default: options.default,
+          auto: false, // for files
           element: {
             type: 'text'
           }

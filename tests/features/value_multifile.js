@@ -1,15 +1,17 @@
 import { createForm, testModelCases } from 'test-helpers'
 import { nextTick } from 'vue'
 
+import { testChanges, testChangesObject } from './value_list'
+
 export const value = function (elementType, elementName, options) {
   let mocks = ['formChangeMock', 'elChangeMock', 'el2ChangeMock']
 
   let elementCases = [
     {
-      initial: { el: [null], el2: [null], },
+      initial: { el: [], el2: [], },
 
       model: { el: options.default, },
-      initialWithModel: { el: options.default, el2: [null], },
+      initialWithModel: { el: options.default, el2: [], },
     },
     {
       initial: { el: options.default, el2: options.default2, },
@@ -37,10 +39,10 @@ export const value = function (elementType, elementName, options) {
 
   let objectCases = [
     {
-      initial: { el: [{child:null, child2: null}], el2: [{child:null, child2: null}], },
+      initial: { el: [], el2: [], },
 
       model: { el: options.defaultObject, },
-      initialWithModel: { el: options.defaultObject, el2: [{child:null, child2: null}], },
+      initialWithModel: { el: options.defaultObject, el2: [], },
     },
     {
       initial: { el: options.defaultObject, el2: options.defaultObject2, },
@@ -81,8 +83,7 @@ export const value = function (elementType, elementName, options) {
           el: {
             type: elementType,
             initial: 0,
-            element: {
-              type: 'text',
+            file: {
               onChange: elChildChangeMock,
             },
             onChange: elChangeMock,
@@ -90,8 +91,7 @@ export const value = function (elementType, elementName, options) {
           el2: {
             type: elementType,
             initial: 0,
-            element: {
-              type: 'text',
+            file: {
               onChange: el2ChildChangeMock,
             },
             onChange: el2ChangeMock,
@@ -175,8 +175,6 @@ export const value = function (elementType, elementName, options) {
       let formChangeMock = jest.fn()
       let elChangeMock = jest.fn()
       let el2ChangeMock = jest.fn()
-      let elChildChangeMock = jest.fn()
-      let el2ChildChangeMock = jest.fn()
       let elChildTextChangeMock = jest.fn()
       let elChildText2ChangeMock = jest.fn()
       let el2ChildTextChangeMock = jest.fn()
@@ -187,36 +185,32 @@ export const value = function (elementType, elementName, options) {
           el: {
             type: elementType,
             initial: 0,
-            object: {
-              schema: {
-                child: {
-                  type: 'text',
-                  onChange: elChildTextChangeMock,
-                },
-                child2: {
-                  type: 'text',
-                  onChange: elChildText2ChangeMock,
-                },
+            storeFile: 'child',
+            fields: {
+              child: {
+                type: 'text',
+                onChange: elChildTextChangeMock,
               },
-              onChange: elChildChangeMock,
+              child2: {
+                type: 'text',
+                onChange: elChildText2ChangeMock,
+              },
             },
             onChange: elChangeMock,
           },
           el2: {
             type: elementType,
             initial: 0,
-            object: {
-              schema: {
-                child: {
-                  type: 'text',
-                  onChange: el2ChildTextChangeMock,
-                },
-                child2: {
-                  type: 'text',
-                  onChange: el2ChildText2ChangeMock,
-                },
+            storeFile: 'child',
+            fields: {
+              child: {
+                type: 'text',
+                onChange: el2ChildTextChangeMock,
               },
-              onChange: el2ChildChangeMock,
+              child2: {
+                type: 'text',
+                onChange: el2ChildText2ChangeMock,
+              },
             },
             onChange: el2ChangeMock,
           },
@@ -231,8 +225,6 @@ export const value = function (elementType, elementName, options) {
       expect(formChangeMock).not.toHaveBeenCalled()
       expect(elChangeMock).not.toHaveBeenCalled()
       expect(el2ChangeMock).not.toHaveBeenCalled()
-      expect(elChildChangeMock).not.toHaveBeenCalled()
-      expect(el2ChildChangeMock).not.toHaveBeenCalled()
       expect(elChildTextChangeMock).not.toHaveBeenCalled()
       expect(elChildText2ChangeMock).not.toHaveBeenCalled()
       expect(el2ChildTextChangeMock).not.toHaveBeenCalled()
@@ -290,10 +282,6 @@ export const value = function (elementType, elementName, options) {
       expect(el2ChangeMock).toHaveBeenCalledTimes(1)
       expect(el2ChangeMock).toHaveBeenNthCalledWith(1, [{ child: 'e', child2: 'f' }, { child: 'g', child2: 'h' }], [])
 
-      // Abstract child
-      expect(elChildChangeMock).not.toHaveBeenCalled()
-      expect(el2ChildChangeMock).not.toHaveBeenCalled()
-
       // Abstract sub-child
       expect(elChildTextChangeMock).not.toHaveBeenCalled()
       expect(elChildText2ChangeMock).not.toHaveBeenCalled()
@@ -339,14 +327,6 @@ export const value = function (elementType, elementName, options) {
         [{ child: 'a', child2: 'b' }, { child: 'c', child2: 'd' }],
       )
       expect(el2ChangeMock).toHaveBeenCalledTimes(1)
-
-      // Abstract child
-      expect(elChildChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChildChangeMock).toHaveBeenNthCalledWith(1,
-        { child: 'not-a', child2: 'b' },
-        { child: 'a', child2: 'b' },
-      )
-      expect(el2ChildChangeMock).not.toHaveBeenCalled()
 
       // Abstract sub-child
       expect(elChildTextChangeMock).toHaveBeenCalledTimes(1)
@@ -403,18 +383,6 @@ export const value = function (elementType, elementName, options) {
       )
       expect(el2ChangeMock).toHaveBeenCalledTimes(1)
 
-      // Abstract child
-      expect(elChildChangeMock).toHaveBeenCalledTimes(3)
-      expect(elChildChangeMock).toHaveBeenNthCalledWith(2,
-        { child: 'c', child2: 'd' },
-        { child: 'not-a', child2: 'b' },
-      )
-      expect(elChildChangeMock).toHaveBeenNthCalledWith(3,
-        { child: 'not-a', child2: 'b' },
-        { child: 'c', child2: 'd' },
-      )
-      expect(el2ChildChangeMock).not.toHaveBeenCalled()
-
       // Abstract sub-child
       expect(elChildTextChangeMock).toHaveBeenCalledTimes(3)
       expect(elChildTextChangeMock).toHaveBeenNthCalledWith(2, 'c', 'not-a')
@@ -456,110 +424,6 @@ export const value = function (elementType, elementName, options) {
   })
 }
 
-const testChangesObject = async (form, mocks, options, updateModel, initial, app = null) => {
-  await testChanges(form, mocks, options, updateModel, initial, app, 'object')
-}
-
-const testChanges = async (form, mocks, options, updateModel, initial, app = null, type = 'element') => {
-  let {
-    formChangeMock,
-    elChangeMock,
-    el2ChangeMock,
-  } = mocks
-
-  let value = () => {
-    return type === 'element' ? options.value : options.valueObject
-  }
-
-  let value2 = (t) => {
-    return type === 'element' ? options.value2 : options.valueObject2
-  }
-
-  let el = form.vm.el$('el')
-  let el2 = form.vm.el$('el2')
-
-  // Expect nullValues
-  expect(el.value).toStrictEqual(initial.el)
-  expect(el2.value).toStrictEqual(initial.el2)
-  expect(form.vm.data).toStrictEqual({ el: initial.el, el2: initial.el2, })
-
-  if (app) {
-    expect(app.vm.data).toStrictEqual({ el: initial.el, el2: initial.el2, })
-  }
-
-  // No events should've been fired so far
-  expect(formChangeMock).not.toHaveBeenCalled()
-  expect(elChangeMock).not.toHaveBeenCalled()
-  expect(el2ChangeMock).not.toHaveBeenCalled()
-
-  if (updateModel) {
-    await nextTick()
-
-    app.vm.$set(app.vm.data, 'el', value())
-  } else {
-    // Update an element
-    el.update(value())
-  }
-
-  // Element and form should change instantly
-  expect(el.value).toStrictEqual(value())
-  expect(el2.value).toStrictEqual(initial.el2)
-  expect(form.vm.data).toStrictEqual({ el: value(), el2: initial.el2, })
-
-  if (app) {
-    expect(app.vm.data).toStrictEqual({ el: value(), el2: initial.el2, })
-  }
-  
-  // Watchers kick in
-  await nextTick()
-
-  expect(formChangeMock).toHaveBeenCalledTimes(1)
-  expect(formChangeMock).toHaveBeenNthCalledWith(1, { el: value(), el2: initial.el2, }, { el: initial.el, el2: initial.el2, })
-  expect(elChangeMock).toHaveBeenCalledTimes(1)
-  expect(elChangeMock).toHaveBeenNthCalledWith(1, value(), initial.el)
-  expect(el2ChangeMock).not.toHaveBeenCalled()
-
-  // Wait an other tick to make sure everything settles down
-  await nextTick()
-
-  // Update the whole form
-  if (updateModel) {
-    await nextTick()
-    
-    app.vm.$set(app.vm, 'data', {
-      el: value2(),
-      el2: value(),
-    })
-
-    await nextTick()
-  } else {
-    form.vm.update({
-      el: value2(),
-      el2: value(),
-    })
-  }
-
-  // Element and form should change instantly
-  expect(el.value).toStrictEqual(value2())
-  expect(el2.value).toStrictEqual(value())
-  expect(form.vm.data).toStrictEqual({ el: value2(), el2: value(), })
-
-  if (app) {
-    expect(app.vm.data).toStrictEqual({ el: value2(), el2: value(), })
-  }
-  
-  // Watchers kick in
-  await nextTick()
-
-  // Events should trigger accordingly
-  expect(formChangeMock).toHaveBeenCalledTimes(2)
-  expect(formChangeMock).toHaveBeenNthCalledWith(2, { el: value2(), el2: value(), }, { el: value(), el2: initial.el2, })
-  expect(elChangeMock).toHaveBeenCalledTimes(2)
-  expect(elChangeMock).toHaveBeenNthCalledWith(2, value2(), value())
-  expect(el2ChangeMock).toHaveBeenCalledTimes(1)
-  expect(el2ChangeMock).toHaveBeenNthCalledWith(1, value(), initial.el2)
-}
-
 const objectSchema = (mocks, elementType) => {
   let {
     elChangeMock,
@@ -569,29 +433,27 @@ const objectSchema = (mocks, elementType) => {
   let schema = {
     el: {
       type: elementType,
-      object: {
-        schema: {
-          child: {
-            type: 'text'
-          },
-          child2: {
-            type: 'text'
-          },
-        }
+      storeFile: 'child',
+      fields: {
+        child: {
+          type: 'text'
+        },
+        child2: {
+          type: 'text'
+        },
       },
       onChange: elChangeMock,
     },
     el2: {
       type: elementType,
-      object: {
-        schema: {
-          child: {
-            type: 'text'
-          },
-          child2: {
-            type: 'text'
-          },
-        }
+      storeFile: 'child',
+      fields: {
+        child: {
+          type: 'text'
+        },
+        child2: {
+          type: 'text'
+        },
       },
       onChange: el2ChangeMock,
     },
@@ -626,9 +488,4 @@ const elementSchema = (mocks, elementType) => {
   }
 
   return schema
-}
-
-export {
-  testChanges,
-  testChangesObject,
 }

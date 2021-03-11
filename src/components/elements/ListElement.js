@@ -24,16 +24,11 @@ import useValue from './../../composables/elements/useValue'
 import { list as useData } from './../../composables/elements/useData'
 import { list as useClasses } from './../../composables/elements/useClasses'
 import { list as useValidation } from './../../composables/elements/useValidation'
-import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { list as useBaseElement } from './../../composables/elements/useBaseElement'
-
-import SortableDirective from './../../directives/sortable'
+import { array as useNullValue } from './../../composables/elements/useNullValue'
 
 export default {
   name: 'ListElement',
-  directives: {
-    sortable: SortableDirective
-  },
   emits: ['change', 'add', 'remove', 'sort'],
   slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {

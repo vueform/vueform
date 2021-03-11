@@ -9,7 +9,8 @@ export const list = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          initial: 3,
+          default: options.default,
+          auto: false, // for files
           element: {
             type: 'text'
           }
@@ -19,18 +20,7 @@ export const list = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    let textsBefore = 0
-
-    // Fix for Vue3 adding `text` nodes to v-for
-    _.each([...el.list.childNodes], (node) => {
-      if (node.nodeType === node.TEXT_NODE) {
-        textsBefore++
-      } else {
-        return false
-      }
-    })
-
-    expect(el.list.childNodes[1 + textsBefore].children[0]).toStrictEqual(el.children$[1].$el)
+    expect(el.list.children[1].children[0]).toStrictEqual(el.children$[1].$el)
   })
 }
 
