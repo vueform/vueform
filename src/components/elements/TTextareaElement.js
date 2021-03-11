@@ -218,6 +218,14 @@ export default {
       form$: form$.form$,
     })
 
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change'
+      ],
+    })
+
     const languages = useLanguages(props, context, {
       form$: form$.form$,
     })
@@ -229,13 +237,14 @@ export default {
     const default_ = useDefault(props, context, {
       nullValue: nullValue.nullValue,
       form$: form$.form$,
-      dataPath: path.dataPath,
+      parent: path.parent,
     })
 
     const value = useValue(props, context, {
-      nullValue: nullValue.nullValue,
       defaultValue: default_.defaultValue,
       language: languages.language,
+      dataPath: path.dataPath,
+      form$: form$.form$,
     })
 
     const conditions = useConditions(props, context, {
@@ -251,27 +260,13 @@ export default {
       value: value.value,
     })
 
-    const events = useEvents(props, context, {
-      form$: form$.form$,
-    }, {
-      events: [
-        'change'
-      ],
-    })
-
     const data = useData(props, context, {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      clean: validation.clean,
-      validateLanguage: validation.validateLanguage,
       resetValidators: validation.resetValidators,
-      fire: events.fire,
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue,
-      dirt: validation.dirt,
       language: languages.language,
     })
 
@@ -319,15 +314,7 @@ export default {
     })
 
     const handleInput = useHandleInput(props, context, {
-      form$: form$.form$,
       model: value.model,
-      currentValue: value.currentValue,
-      previousValue: value.previousValue,
-      changed: data.changed,
-      dirt: validation.dirt,
-      validate: validation.validateLanguage,
-      fire: events.fire,
-      language: languages.language,
     })
 
     const autogrow = useAutogrow(props, context, {

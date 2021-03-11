@@ -27,7 +27,7 @@ const elements = [
   'text',
   'toggle',
   'trix',
-  // 'tTextarea',
+  'tTextarea',
   'tText',
   // 'tTrix',
 ]

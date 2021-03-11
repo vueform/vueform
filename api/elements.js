@@ -6036,6 +6036,277 @@ export default {
       }
     }
   },
+  "tTextarea": {
+    "features": [
+      "addons",
+      "autogrow_multilingual",
+      "baseElement",
+      "classes",
+      "columns",
+      "components",
+      "conditions",
+      "data_multilingual",
+      "default_multilingual",
+      "disabled",
+      "empty_multilingual",
+      "events",
+      "fieldId",
+      "form$",
+      "genericName",
+      "handleInput",
+      "input",
+      "label",
+      "languages",
+      "layout",
+      "nullValue_multilingual",
+      "path",
+      "slots",
+      "theme",
+      "validation_multilingual",
+      "value_multilingual",
+      "view",
+      "watchValue"
+    ],
+    "slots": [
+      "label",
+      "info",
+      "description",
+      "error",
+      "message",
+      "before",
+      "between",
+      "after",
+      "addonBefore",
+      "addonAfter"
+    ],
+    "events": [
+      "change"
+    ],
+    "props": {
+      "name": {
+        "required": "true",
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "inline": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "layout": {
+        "required": "false",
+        "types": [
+          "string",
+          "object",
+          "boolean"
+        ]
+      },
+      "addons": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "autogrow": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "rows": {
+        "required": "false",
+        "types": [
+          "number"
+        ]
+      },
+      "type": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "addClass": {
+        "required": "false",
+        "types": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "overrideClasses": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "addClasses": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "columns": {
+        "required": "false",
+        "types": [
+          "object",
+          "string"
+        ]
+      },
+      "overrideComponents": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "conditions": {
+        "required": "false",
+        "types": [
+          "array"
+        ]
+      },
+      "formatData": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "formatLoad": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      },
+      "submit": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "debounce": {
+        "required": "false",
+        "types": [
+          "number"
+        ]
+      },
+      "default": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "description": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "disabled": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "floating": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "id": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "info": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "label": {
+        "required": "false",
+        "types": [
+          "string",
+          "object",
+          "function"
+        ]
+      },
+      "placeholder": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "readonly": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "before": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "between": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "after": {
+        "required": "false",
+        "types": [
+          "object",
+          "string",
+          "number"
+        ]
+      },
+      "slots": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "rules": {
+        "required": "false",
+        "types": [
+          "array",
+          "string",
+          "object"
+        ]
+      },
+      "messages": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "displayError": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "onChange": {
+        "required": "false",
+        "types": [
+          "function"
+        ]
+      }
+    }
+  },
   "tText": {
     "features": [
       "addons",
