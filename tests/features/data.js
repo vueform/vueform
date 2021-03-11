@@ -18,32 +18,6 @@ export const data = function (elementType, elementName, options) {
       el: el.value
     })
   })
-
-  it('should have "data" according to `formatData` if it is set', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          default: options.default,
-          formatData(name, val) {
-            return {
-              custom: {
-                [name]: val
-              }
-            }
-          }
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.data).toStrictEqual({
-      custom: {
-        el: el.value
-      }
-    })
-  })
 }
 
 export const filtered = function (elementType, elementName, options) {

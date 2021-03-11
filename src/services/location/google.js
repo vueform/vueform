@@ -7,7 +7,7 @@ export default class {
 
   init(container, onChange, options) {
     if (window.google === undefined || window.google.maps === undefined || window.google.maps.places === undefined || window.google.maps.places.Autocomplete === undefined) {
-      throw new Error('Google Places API missing. Please include script from https://developers.google.com/maps/documentation/javascript/places-autocomplete#loading-the-library.')
+      // throw new Error('Google Places API missing. Please include script from https://developers.google.com/maps/documentation/javascript/places-autocomplete#loading-the-library.')
     }
 
     this.options = options

@@ -129,6 +129,26 @@ const location = function(props, context, dependencies)
   }
 }
 
+const address = function(props, context, dependencies)
+{
+  // ============== COMPUTED ===============
+
+  const nullValue = computed(() => {
+    return {
+      address: null,
+      address2: null,
+      zip: null,
+      city: null,
+      state: null,
+      country: null,
+    }
+  })
+  
+  return {
+    nullValue,
+  }
+}
+
 export {
   array,
   boolean,
@@ -136,6 +156,7 @@ export {
   multilingual,
   object,
   location,
+  address,
 }
 
 export default base

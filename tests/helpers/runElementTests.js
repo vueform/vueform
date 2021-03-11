@@ -4,8 +4,11 @@ import props from './../props'
 import elements from './../elements'
 
 const mockPlaces = (spy = null) => {
+  let ShadowRoot = window.ShadowRoot
+
   spy = jest.spyOn(global, 'window', 'get')
   spy.mockImplementation(() => ({
+    ShadowRoot,
     google: {
       maps: {
         places: {

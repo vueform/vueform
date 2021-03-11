@@ -293,7 +293,10 @@ export default function(config) {
               __: (expr, data) => this.options.i18n.$t(expr, data)
             },
             beforeCreate() {
-              this.$laraform = appOrVue.observable($laraform)
+              // might exist as test mock
+              if (!this.$laraform) {
+                this.$laraform = appOrVue.observable($laraform)
+              }
               this.$vueVersion = 2
             }
           })

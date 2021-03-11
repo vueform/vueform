@@ -3,7 +3,7 @@ const _ = require('lodash')
 const basePath = __dirname + '/../..'
 const featuresPath = '/src/components/elements'
 const elements = [
-  // 'address',
+  'address',
   'button',
   'checkbox',
   'checkboxgroup',

@@ -68,7 +68,10 @@ export const provider = function (elementType, elementName, options, spies) {
       }
     })
 
+    let ShadowRoot = window.ShadowRoot
+
     spies.window.mockImplementation(() => ({
+      ShadowRoot,
       google: {
         maps: {
           places: {
@@ -167,7 +170,10 @@ export const providerOptions = function (elementType, elementName, options, spie
 
     let googleRemoveListenerMock = jest.fn()
 
+    let ShadowRoot = window.ShadowRoot
+
     spies.window.mockImplementation(() => ({
+      ShadowRoot,
       google: {
         maps: {
           places: {

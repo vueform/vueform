@@ -38,40 +38,6 @@ export const data = function (elementType, elementName) {
       })
     }
   })
-
-  it('should have "data" according to `formatData` if it is set', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          schema: {
-            child1: {
-              type: 'text',
-              default: 'value',
-            },
-            child2: {
-              type: 'text',
-              default: 'value2',
-            },
-          },
-          formatData(name, value) {
-            return {
-              custom: value
-            }
-          }
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.data).toStrictEqual({
-      custom: {
-        child1: 'value',
-        child2: 'value2',
-      }
-    })
-  })
 }
 
 
@@ -184,7 +150,6 @@ export const load = function(elementType, elementName) {
     el.load({ child: 'value' })
 
     expect(el.value).toStrictEqual({ child: 'value' })
-    expect(child.dirty).toBe(false)
   })
 
   it('should should format data if "formatData" is "true" on `load`', async () => {

@@ -153,6 +153,7 @@ const address = function(props, context, dependencies)
         conditions: [[path.value + '.country', ['us', 'US']]],
         disabled: disabled.value,
         readonly: readonly.value,
+        search: form$.value.$laraform.test ? false : true,
       },
       country: {
         type: 'select',
@@ -160,6 +161,7 @@ const address = function(props, context, dependencies)
         items: countries,
         disabled: disabled.value,
         readonly: readonly.value,
+        search: form$.value.$laraform.test ? false : true,
       },
     }
 

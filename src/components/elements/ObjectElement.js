@@ -18,7 +18,6 @@ import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { object as useDefault } from './../../composables/elements/useDefault'
 import { object as useValue } from './../../composables/elements/useValue'
-
 import { object as useNullValue } from './../../composables/elements/useNullValue'
 import { object as useData } from './../../composables/elements/useData'
 import { object as useChildren } from './../../composables/elements/useChildren'
@@ -252,6 +251,7 @@ export default {
       dirt: validation.dirt,
       validate: validation.validate,
     })
+    
     onMounted(() => {
       validation.initMessageBag()  
     })

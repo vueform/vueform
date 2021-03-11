@@ -17,27 +17,6 @@ export const data = function (elementType, elementName) {
       el: el.value,
     })
   })
-
-  it('should have "data" according to `formatData` if it is set', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          formatData(name, value) {
-            return {
-              custom: value
-            }
-          }
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.data).toStrictEqual({
-      custom: el.value,
-    })
-  })
 }
 
 export const filtered = function(elementType, elementName) {
@@ -102,7 +81,6 @@ export const load = function(elementType, elementName) {
     })
 
     expect(el.value.address).toStrictEqual('value')
-    expect(address.dirty).toBe(false)
   })
 
   it('should should format data if "formatData" is "true" on `load`', async () => {
@@ -161,7 +139,6 @@ export const update = function(elementType, elementName) {
       state: null,
       zip: null,
     })
-    expect(address.dirty).toBe(true)
   })
 }
 
@@ -192,7 +169,6 @@ export const clear = function(elementType, elementName) {
       state: null,
       zip: null,
     })
-    expect(address.dirty).toBe(true)
   })
 }
 

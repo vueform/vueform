@@ -66,7 +66,7 @@ const object = function(props, context, dependencies)
       return _.cloneDeep(_.merge({}, default_.value || nullValue.value, parentDefaultValue))
     }
 
-    if (default_.value !== undefined) {
+    if (Object.keys(default_.value).length > 0) {
       return _.cloneDeep(default_.value)
     }
 

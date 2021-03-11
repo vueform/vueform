@@ -32,6 +32,7 @@
         v-if="hasSteps && stepsControls"
       />
       {{ data }}
+      {{ filtered }}
     </slot>
   </form>
 </template>

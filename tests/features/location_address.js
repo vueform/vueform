@@ -1,4 +1,5 @@
 export { locationService, location, provider, providerOptions } from './location'
+import { nextTick } from 'composition-api'
 
 export const handleAddressChange = function (elementType, elementName, options) { 
   it('should set location, update fields & input field value on `handleAddressChange`', async () => {
@@ -32,7 +33,10 @@ export const handleAddressChange = function (elementType, elementName, options) 
       state: 'AL',
     })
     expect(el.location).toBe('location')
-    expect(el.dirty).toBe(true)
     expect(el.children$.address.input.value).toBe('address')
+
+    await nextTick()
+
+    expect(el.dirty).toBe(true)
   })
 }

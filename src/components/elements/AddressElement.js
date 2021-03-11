@@ -14,11 +14,14 @@ import useComponents from './../../composables/elements/useComponents'
 import useSlots from './../../composables/elements/useSlots'
 import useDisabled from './../../composables/elements/useDisabled'
 import useElements from './../../composables/useElements'
+import useEvents from './../../composables/useEvents'
 import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { address as useLocation } from './../../composables/elements/useLocation'
 import { address as useChildren } from './../../composables/elements/useChildren'
-// import { object as useValue } from './../../composables/elements/useValue'
+import { address as useNullValue } from './../../composables/elements/useNullValue'
+import { object as useDefault } from './../../composables/elements/useDefault'
+import { object as useValue } from './../../composables/elements/useValue'
 import { object as useData } from './../../composables/elements/useData'
 import { object as useValidation } from './../../composables/elements/useValidation'
 
@@ -96,6 +99,11 @@ export default {
       type: [Boolean],
       default: true
     },
+    default: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
     description: {
       required: false,
       type: [String],
@@ -156,6 +164,11 @@ export default {
       type: [Object],
       default: () => ({})
     },
+    onChange: {
+      required: false,
+      type: [Function],
+      default: null,
+    },
   },
   setup(props, context) {
     const form$ = useForm$(props, context)
@@ -163,8 +176,29 @@ export default {
     const layout = useLayout(props, context)
     const path = usePath(props, context)
     const disabled = useDisabled(props, context)
+    const nullValue = useNullValue(props, context)
     
     const baseElement = useBaseElement(props, context, {
+      form$: form$.form$,
+    })
+
+    const events = useEvents(props, context, {
+      form$: form$.form$,
+    }, {
+      events: [
+        'change'
+      ]
+    })
+
+    const default_ = useDefault(props, context, {
+      nullValue: nullValue.nullValue,
+      form$: form$.form$,
+      parent: path.parent,
+    })
+
+    const value = useValue(props, context, {
+      defaultValue: default_.defaultValue,
+      dataPath: path.dataPath,
       form$: form$.form$,
     })
 
@@ -181,10 +215,6 @@ export default {
       path: path.path,
     })
 
-    const value = useValue(props, context, {
-      children$: children.children$
-    })
-
     const elements = useElements(props, context, {
       theme: theme.theme,
     })
@@ -198,7 +228,6 @@ export default {
       form$: form$.form$,
       value: value.value,
       children$: children.children$,
-      form$: form$.form$,
     })
 
     const classes = useClasses(props, context, {
@@ -233,7 +262,6 @@ export default {
       form$: form$.form$,
       available: conditions.available,
       value: value.value,
-      previousValue: value.previousValue,
       clean: validation.clean,
       validate: validation.validate,
       resetValidators: validation.resetValidators,
@@ -281,6 +309,9 @@ export default {
       ...validation,
       ...location,
       ...disabled,
+      ...default_,
+      ...events,
+      ...nullValue,
     }
   }
 }

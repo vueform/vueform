@@ -392,7 +392,7 @@ const list = function(props, context, dependencies, options)
    * 
    * @private
    */
-  const load = async (val, format = false, sort = true) => {
+  const load = async (val, format = false) => {
     let values = sortValue(format && formatLoad.value ? formatLoad.value(val, form$.value) : val)
 
     clear()
@@ -400,13 +400,13 @@ const list = function(props, context, dependencies, options)
     await nextTick()
 
     for(let i = 0; i < values.length; i++) {
-      add(values[i])
+      add()
     }
     
     await nextTick()
 
     _.each(children$.value, (child$, i) => {
-      child$.load(values[i])
+      child$.load(values[i], format)
     })
   }
 

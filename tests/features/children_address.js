@@ -27,6 +27,10 @@ export const fields = function (elementType, elementName) {
           type: elementType,
         }
       }
+    }, {
+      config: {
+        test: true
+      }
     })
 
     let el = form.vm.el$('el')
@@ -64,6 +68,7 @@ export const fields = function (elementType, elementName) {
         conditions: [[el.path + '.country', ['us', 'US']]],
         disabled: el.disabled,
         readonly: el.readonly,
+        search: false,
       },
       country: {
         type: 'select',
@@ -71,12 +76,13 @@ export const fields = function (elementType, elementName) {
         items: countries,
         disabled: el.disabled,
         readonly: el.readonly,
+        search: false,
       },
     }
 
     expect(el.fields).toStrictEqual(fields)
 
-    el.$set(form.vm.schema.el, 'required', true)
+    el.$set(form.vm.laraform.schema.el, 'required', true)
 
     await nextTick()
 
