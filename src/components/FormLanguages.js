@@ -24,7 +24,7 @@ export default {
      * @private
      */
     const language = computed(() => {
-      return form$.value.language
+      return form$.value.options.language
     })
 
     /**
@@ -33,7 +33,7 @@ export default {
      * @private
      */
     const languages = computed(() => {
-      return form$.value.languages
+      return form$.value.options.languages
     })
 
     // =============== METHODS ==============

@@ -164,7 +164,7 @@ export default {
     })
 
     const handleInput = useHandleInput(props, context, {
-      value: value.value,
+      model: value.model,
     })
 
     const autogrow = useAutogrow(props, context, {

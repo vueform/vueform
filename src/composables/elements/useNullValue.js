@@ -69,29 +69,6 @@ const min = function(props, context, dependencies)
   }
 }
 
-const multilingual = function(props, context, dependencies)
-{
-  // ============ DEPENDENCIES ============
-
-  const languages = dependencies.languages
-
-  // ============== COMPUTED ===============
-
-  const nullValue = computed(() => {
-    var value = {}
-
-    _.each(languages.value, (code) => {
-      value[code] = null
-    })
-
-    return value
-  })
-  
-  return {
-    nullValue,
-  }
-}
-
 const object = function(props, context, dependencies)
 {
   // ============== COMPUTED ===============
@@ -142,6 +119,29 @@ const address = function(props, context, dependencies)
       state: null,
       country: null,
     }
+  })
+  
+  return {
+    nullValue,
+  }
+}
+
+const multilingual = function(props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+
+  const languages = dependencies.languages
+
+  // ============== COMPUTED ===============
+
+  const nullValue = computed(() => {
+    var value = {}
+
+    _.each(languages.value, (code) => {
+      value[code] = null
+    })
+
+    return value
   })
   
   return {

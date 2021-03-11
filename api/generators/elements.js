@@ -28,7 +28,7 @@ const elements = [
   'toggle',
   'trix',
   // 'tTextarea',
-  // 'tText',
+  'tText',
   // 'tTrix',
 ]
 const overrides = {

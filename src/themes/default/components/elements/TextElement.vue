@@ -18,7 +18,7 @@
         />
 
         <input
-          :value="value"
+          :value="model"
           :type="inputType"
           :name="name"
           :id="fieldId"

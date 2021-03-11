@@ -1,5 +1,6 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents } from 'test-helpers'
+import { nextTick } from 'composition-api'
 
 export const handleInput = function (elementType, elementName, options) {
   it('should set model on input', () => {
@@ -29,7 +30,7 @@ export const handleInput = function (elementType, elementName, options) {
     expect(el.model).toBe('value')
   })
 
-  it('should dirt the element if input value is different than the current', () => {
+  it('should dirt the element if input value is different than the current', async () => {
     let form = createForm({
       languages: {
         en: {
@@ -54,6 +55,8 @@ export const handleInput = function (elementType, elementName, options) {
     expect(el.dirty).toBe(false)
 
     elWrapper.get(options.fieldType).setValue('value')
+
+    await nextTick()
 
     expect(el.dirty).toBe(true)
   })
@@ -88,7 +91,7 @@ export const handleInput = function (elementType, elementName, options) {
     expect(el.dirty).toBe(false)
   })
 
-  it('should trigger "change" event if value changed', () => {
+  it('should trigger "change" event if value changed', async () => {
     let onChangeMock = jest.fn()
 
     let form = createForm({
@@ -113,6 +116,8 @@ export const handleInput = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
     elWrapper.get(options.fieldType).setValue('value')
+
+    await nextTick()
 
     expect(onChangeMock).toHaveBeenCalled()
   })
@@ -177,7 +182,7 @@ export const handleInput = function (elementType, elementName, options) {
 
     expect(el.state.validated.en).toBe(false)
 
-    form.vm.validateOn = 'submit|change'
+    form.vm.laraform.validateOn = 'submit|change'
 
     elWrapper.get(options.fieldType).setValue('value2')
 

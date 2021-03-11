@@ -4,7 +4,7 @@ const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
-  const value = dependencies.value
+  const model = dependencies.model
 
   // =============== METHODS ==============
 
@@ -13,7 +13,7 @@ const base = function(props, context, dependencies)
    *
    */
   const handleInput = (e) => {
-    value.value = e.target.value
+    model.value = e.target.value
   }
 
   return {

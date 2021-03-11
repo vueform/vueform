@@ -5,7 +5,7 @@
       <slot name="prefix"></slot>
 
       <TrixWrapper
-        :value="value"
+        :value="model"
         :placeholder="placeholder"
         :id="fieldId"
         :accept="accept"

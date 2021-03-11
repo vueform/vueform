@@ -18,7 +18,7 @@
         />
 
         <textarea
-          :value="value"
+          :value="model"
           :name="name"
           :id="fieldId"
           :class="classes.textarea"

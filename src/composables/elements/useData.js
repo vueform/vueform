@@ -591,28 +591,22 @@ const dates = function(props, context, dependencies)
 const multilingual = function(props, context, dependencies, options = {})
 {
   const {
-    formatLoad
+    formatLoad,
   } = toRefs(props)
 
   const {
     data,
     filtered,
-    changed,
+    clear,
     reset,
-    prepare
+    prepare,
   } = base(props, context, dependencies, options)
 
   // ============ DEPENDENCIES =============
 
   const form$ = dependencies.form$
-  const available = dependencies.available
   const value = dependencies.value
-  const currentValue = dependencies.currentValue
-  const previousValue = dependencies.previousValue
-  const dirt = dependencies.dirt
-  const validateLanguage = dependencies.validateLanguage
   const language = dependencies.language
-  const fire = dependencies.fire
   const nullValue = dependencies.nullValue
 
   // =============== PRIVATE ===============
@@ -629,11 +623,6 @@ const multilingual = function(props, context, dependencies, options = {})
 
   const load = (val, format = false) => {
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
-
-    if (formatted === undefined) {
-      value.value = _.clone(nullValue.value)
-      return
-    }
 
     if (!_.isPlainObject(formatted)) {
       throw new Error('Multilingual element requires an object to load')
@@ -652,35 +641,14 @@ const multilingual = function(props, context, dependencies, options = {})
     }
     
     setValue(Object.assign({}, value.value, updateValue))
-
-    updated()
-  }
-
-  const clear = () => {
-    setValue(_.clone(nullValue.value))
-
-    updated()
-  }
-
-  const updated = () => {
-    if (changed.value) {
-      dirt()
-      fire('change', currentValue.value, previousValue.value)
-    }
-
-    if (form$.value.shouldValidateOnChange) {
-      validateLanguage(language.value)
-    }
   }
 
   return {
     data,
     filtered,
-    changed,
     load,
     update,
     clear,
-    updated,
     reset,
     prepare,
   }

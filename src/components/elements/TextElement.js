@@ -233,7 +233,6 @@ export default {
     const default_ = useDefault(props, context, {
       nullValue: nullValue.nullValue,
       form$: form$.form$,
-      dataPath: path.dataPath,
       parent: path.parent,
     })
 
@@ -305,7 +304,7 @@ export default {
     })
 
     const handleInput = useHandleInput(props, context, {
-      value: value.value,
+      model: value.model,
     })
 
     useWatchValue(props, context, {

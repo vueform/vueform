@@ -178,7 +178,7 @@ export const reset = function (elementType, elementName, options) {
 
     el.reset()
 
-    expect(el.value).toStrictEqual(options.default)
+    expect(el.value).toStrictEqual(el.defaultValue)
   })
 
   it('should reset validators on `reset`', async () => {
