@@ -30,6 +30,7 @@ export const empty = function (elementType, elementName, options) {
           type: elementType,
           valueFormat: options.valueFormat,
           default: value(options),
+          auto: false, // for files
         }
       }
     })

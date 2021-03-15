@@ -43,6 +43,7 @@ export const defaultValue = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          auto: false, // for files
         }
       }
     })

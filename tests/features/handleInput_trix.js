@@ -13,9 +13,9 @@ export const handleInput = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     
-    el.input.trix$ = { value: options.value.en }
+    el.input.trix$ = { value: options.value }
     el.input.handleChange()
 
-    expect(el.model).toBe(options.value.en)
+    expect(el.model).toBe(options.value )
   })
 }

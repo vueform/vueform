@@ -39,6 +39,10 @@ export const value = function (elementType, elementName, options) {
 }
 
 const testChanges = async (form, mocks, options, updateModel, initial, app = null) => {
+  if (!form.vm) {
+    return
+  }
+
   let {
     formChangeMock,
     elChangeMock,

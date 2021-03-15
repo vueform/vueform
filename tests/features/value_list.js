@@ -461,6 +461,10 @@ const testChangesObject = async (form, mocks, options, updateModel, initial, app
 }
 
 const testChanges = async (form, mocks, options, updateModel, initial, app = null, type = 'element') => {
+  if (!form.vm) {
+    return
+  }
+
   let {
     formChangeMock,
     elChangeMock,

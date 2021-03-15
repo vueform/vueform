@@ -248,6 +248,7 @@ const group = function(props, context, dependencies)
   const form$ = dependencies.form$
   const children$ = dependencies.children$
   const available = dependencies.available
+  const value = dependencies.value
 
   // ============== COMPUTED ===============
 

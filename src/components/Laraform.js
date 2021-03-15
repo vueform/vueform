@@ -3,7 +3,7 @@ import useLaraform from './../composables/useLaraform'
 
 export default {
   name: 'Laraform',
-  emits: ['input', 'update:modelValue', 'language', 'change'],
+  emits: ['input', 'update:modelValue', 'language', 'change', 'submit', 'success', 'fail', 'reset', 'clear', 'error'],
   setup: useLaraform,
   render() {
     return this.extendedTheme.components.Laraform.render.apply(this, arguments)

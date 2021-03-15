@@ -1788,6 +1788,8 @@ export const handleUploadTemp = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
+    el.$laraform.services.axios.post = jest.fn(() => ({data:{}}))
+
     el.load(new File([], 'filename.jpg'))
 
     await nextTick()
