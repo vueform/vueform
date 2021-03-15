@@ -1,3 +1,4 @@
+import { toRefs, watch, computed, ref, onMounted } from 'composition-api'
 import useElementComponent from '../../composables/useElementComponent'
 import flatpickr from 'flatpickr'
 import 'flatpickr/dist/themes/light.css'
@@ -5,18 +6,16 @@ import 'flatpickr/dist/themes/light.css'
 export default {
   name: 'FlatpickrWrapper',
   emits: ['change'],
-  setup(props, context) {
-    return {
-      ...useElementComponent(props, context),
-    }
-  },
   props: {
+    value: {
+      required: true,
+    },
+    modelValue: {
+      required: true,
+    },
     options: {
       type: [Object],
       required: true
-    },
-    value: {
-      required: true,
     },
     id: {
       type: [Number, String],
@@ -27,40 +26,39 @@ export default {
       required: false
     },
   },
-  data() {
-    return {
-      flatpickr$: null,
-    }
-  },
-  watch: {
-    value(value) {
-      this.flatpickr$.setDate(value, false)
-    },
-    id: {
-      handler(value) {
-        this.$_setFlatpickrId()
-      },
-      immediate: false
-    },
-    options: {
-      handler() {
-        _.each(this.config, (value, option) => {
-          this.flatpickr$.set(option, value)
-        })
-      },
-      deep: true
-    }
-  },
-  computed: {
-    mode() {
-      return this.options.mode || 'single'
-    },
-    config() {
-      var config = {}
+  setup(props, context)
+  {
+    const {
+      id,
+      options,
+      value: v,
+      modelValue: mv,
+    } = toRefs(props)
 
-      _.each(this.options, (value, option) => {
-        if (value !== null && value !== undefined) {
-          config[option] = value
+    // ============ DEPENDENCIES ============
+
+    const { el$, form$, classes, components, theme } = useElementComponent(props, context)
+
+    // ================ DATA ================
+
+    const flatpickr$ = ref(null)
+
+    const input = ref(null)
+
+    const value = context.expose !== undefined ? mv : v
+
+    // ============== COMPITED ==============
+
+    const mode = computed(() => {
+      return options.value.mode || 'single'
+    })
+
+    const config = computed(() => {
+      const config = {}
+
+      _.each(options.value, (val, option) => {
+        if (val !== null && val !== undefined) {
+          config[option] = val
         }
       })
 
@@ -73,45 +71,66 @@ export default {
       config.static = true
 
       return config
-    }
-  },
-  methods: {
-    update(value) {
-      this.$emit('change', this.mode == 'single' ? (value[0] || null) : value)
-    },
-    $_setFlatpickrId() {
-      this.flatpickr$.input.parentElement.id = 'flatpickr-' + this.id
-    }
-  },
-  mounted() {
-    this.flatpickr$ = flatpickr(this.$refs.input, Object.assign({}, this.config, {
-      onChange: (value) => {
-        this.update(value)
-      },
-      onClose: (value) => {
-        value = this.mode == 'range' && value.length < 2 ? [] : value
+    })
 
-        this.update(value)
-      },
-      // creating a date object from a string date provided in displayFormat (to value)
-      parseDate: (dateStr, format) => {
-        return moment(dateStr, format, true).toDate()
-      },
-      // creating a date string according to displayFormat (to display)
-      formatDate: (date, format) => {
-        return moment(date).format(format)
+    // =============== METHODS ==============
+
+    const update = (val) => {
+      context.emit('change', mode.value == 'single' ? (val[0] || null) : val)
+    }
+  
+    const setFlatpickrId = () => {
+      flatpickr$.value.input.parentElement.id = 'flatpickr-' + id.value
+    }
+
+    // ============== WATCHERS ==============
+
+    watch(value, (n,o) => {
+      flatpickr$.value.setDate(n, false)
+    })
+
+    watch(id, (n,o) => {
+      setFlatpickrId()
+    }, { immediate: false })
+
+    watch(options, (n,o) => {
+      _.each(config.value, (val, option) => {
+        flatpickr$.value.set(option, val)
+      })
+    }, { deep: true })
+
+    // ================ HOOKS ===============
+
+    onMounted(() => {
+      flatpickr$.value = flatpickr(input.value, Object.assign({}, config.value, {
+        onChange: (val) => {
+          update(val)
+        },
+        onClose: (val) => {
+          val = mode.value == 'range' && val.length < 2 ? [] : val
+
+          update(val)
+        },
+        // creating a date object from a string date provided in displayFormat (to value)
+        parseDate: (dateStr, format) => {
+          return moment(dateStr, format, true).toDate()
+        },
+        // creating a date string according to displayFormat (to display)
+        formatDate: (date, format) => {
+          return moment(date).format(format)
+        }
+      }))
+
+      if (flatpickr$.value.calendarContainer) {
+        flatpickr$.value.calendarContainer.classList.add(classes.value.calendarContainer)
       }
-    }))
 
-    if (this.flatpickr$.calendarContainer) {
-      this.flatpickr$.calendarContainer.classList.add(this.classes.calendarContainer)
-    }
+      setFlatpickrId()
 
-    this.$_setFlatpickrId()
-
-    if (this.value !== null) {
-      this.flatpickr$.setDate(this.value, false)
-    }
+      if (value.value !== null) {
+        flatpickr$.value.setDate(value.value, false)
+      }
+    })
 
     // // Required because if static == true the picker does
     // // not close properly when clicking outside of it.
@@ -122,5 +141,18 @@ export default {
     //     }
     //   }
     // })
+
+    return {
+      el$,
+      form$,
+      theme,
+      classes,
+      components,
+      flatpickr$,
+      input,
+      config,
+      mode,
+      update,
+    }
   },
 }
