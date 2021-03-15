@@ -224,6 +224,8 @@ const base = function(props, context, dependencies)
 
     validatorFactory.value = new form$.value.$laraform.services.validation.factory(path.value, form$.value)
 
+    Validators.value = []
+
     _.each(validatorFactory.value.makeAll(validationRules.value), (Validator) => {
       Validators.value.push(Validator)
     })

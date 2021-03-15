@@ -33,6 +33,8 @@ import testThemeComponents from './testThemeComponents'
 import testThemeElements from './testThemeElements'
 import testValue from './testValue'
 import triggerEvent from './triggerEvent'
+import tryInputValue from './tryInputValue'
+import tryInputValues from './tryInputValues'
 import uncheck from './uncheck'
 import unselect from './unselect'
 
@@ -75,6 +77,8 @@ export {
   testThemeElements,
   testValue,
   triggerEvent,
+  tryInputValue,
+  tryInputValues,
   uncheck,
   unselect,
 }
