@@ -1,1 +1,0 @@
-export { handleInput } from './handleInput_multiselect'
