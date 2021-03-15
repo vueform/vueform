@@ -655,45 +655,6 @@ const multilingual = function(props, context, dependencies, options = {})
   }
 }
 
-const multifile = function(props, context, dependencies, options = {})
-{
-  // const {
-  //   filtered,
-  //   next,
-  //   data,
-  //   add,
-  //   insert,
-  //   remove,
-  //   load,
-  //   update,
-  //   clear,
-  //   reset,
-  //   updated,
-  //   handleAdd,
-  //   handleRemove,
-  //   setInitialInstances,
-  //   prepare,
-  // } = list(props, context, dependencies, options)
-
-  // return {
-  //   filtered,
-  //   next,
-  //   data,
-  //   add,
-  //   insert,
-  //   remove,
-  //   load,
-  //   update,
-  //   clear,
-  //   reset,
-  //   updated,
-  //   handleAdd,
-  //   handleRemove,
-  //   setInitialInstances,
-  //   prepare,
-  // }
-}
-
 const trix = function(props, context, dependencies)
 {
   const {
@@ -781,7 +742,6 @@ export {
   group,
   list,
   multilingual,
-  multifile,
   trix,
   ttrix,
 }

@@ -21,30 +21,4 @@ const base = function(props, context, dependencies)
   }
 }
 
-const select = function(props, context, dependencies)
-{
-  // ============ DEPENDENCIES ============
-
-  const model = dependencies.model
-  const {
-    handleChange
-  } = useHandleChange(props, context, dependencies)
-
-  // =============== METHODS ==============
-
-  const handleInput = (val) => {
-    model.value = val
-
-    handleChange()
-  }
-
-  return {
-    handleInput,
-  }
-}
-
-export {
-  select,
-}
-
 export default base

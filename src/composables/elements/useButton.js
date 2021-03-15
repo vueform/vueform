@@ -1,5 +1,4 @@
 import { toRefs, computed } from 'composition-api'
-import { mergeComponentClasses } from './../../utils/mergeClasses'
 
 const base = function (props, context, dependencies)
 {

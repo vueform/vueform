@@ -37,6 +37,43 @@ export const children$Array = function (elementType, elementName) {
 
     expect(el.children$Array.length).toBe(2)
   })
+
+  it('should update `children$Array` when schema changes', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          schema: {
+            child1: {
+              type: 'text'
+            },
+            child2: {
+              type: 'text'
+            },
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.children$Array[0]).toStrictEqual(form.vm.el$('el.child1'))
+    expect(el.children$Array[1]).toStrictEqual(form.vm.el$('el.child2'))
+
+    form.vm.$set(form.vm.laraform.schema.el, 'schema', {
+      child2: {
+        type: 'text'
+      },
+      child1: {
+        type: 'text'
+      },
+    })
+
+    await nextTick()
+
+    expect(el.children$Array[0]).toStrictEqual(form.vm.el$('el.child2'))
+    expect(el.children$Array[1]).toStrictEqual(form.vm.el$('el.child1'))
+  })
 }
 
 export const children = function (elementType, elementName) {

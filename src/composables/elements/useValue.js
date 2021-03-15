@@ -3,7 +3,6 @@ import checkDateFormat from '../../utils/checkDateFormat'
 
 const base = function(props, context, dependencies, options = {})
 {
-  const { name } = toRefs(props)
   // ============ DEPENDENCIES =============
 
   const defaultValue = dependencies.defaultValue
@@ -49,32 +48,37 @@ const base = function(props, context, dependencies, options = {})
   }
 }
 
-const multilingual = function(props, context, dependencies)
+const group = function(props, context, dependencies, options = {})
 {
-  const {
-    value,
-  } = base(props, context, dependencies)
-  
   // ============ DEPENDENCIES =============
 
-  const language = dependencies.language
+  const dataPath = dependencies.dataPath
+  const children$Array = dependencies.children$Array
+  const form$ = dependencies.form$
 
   // ============== COMPUTED ===============
 
-  const model = computed({
+  const value = computed(options.value || {
     get() {
-      return value.value[language.value]
+      let value = {}
+
+      _.each(children$Array.value, (child$) => {
+        if (child$.flat) {
+          value = Object.assign({}, value, child$.value)
+        } else {
+          value[child$.name] = child$.value
+        }
+      })
+
+      return value
     },
     set(val) {
-      value.value = Object.assign({}, value.value, {
-        [language.value]: val
-      })
+      form$.value.updateModel(dataPath.value, val)
     }
   })
 
   return {
     value,
-    model,
   }
 }
 
@@ -116,38 +120,32 @@ const object = function(props, context, dependencies, options = {})
   }
 }
 
-const group = function(props, context, dependencies, options = {})
+const multilingual = function(props, context, dependencies)
 {
+  const {
+    value,
+  } = base(props, context, dependencies)
+  
   // ============ DEPENDENCIES =============
 
-  const dataPath = dependencies.dataPath
-  const children$Array = dependencies.children$Array
-  const parent = dependencies.parent
-  const form$ = dependencies.form$
+  const language = dependencies.language
 
   // ============== COMPUTED ===============
 
-  const value = computed(options.value || {
+  const model = computed({
     get() {
-      let value = {}
-
-      _.each(children$Array.value, (child$) => {
-        if (child$.flat) {
-          value = Object.assign({}, value, child$.value)
-        } else {
-          value[child$.name] = child$.value
-        }
-      })
-
-      return value
+      return value.value[language.value]
     },
     set(val) {
-      form$.value.updateModel(dataPath.value, val)
+      value.value = Object.assign({}, value.value, {
+        [language.value]: val
+      })
     }
   })
 
   return {
     value,
+    model,
   }
 }
 
