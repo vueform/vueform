@@ -25,7 +25,7 @@ describe('FormTab', () => {
   useFormComponent({tabs:{a:{label:'a',elements:['el'],class:'tab-class'}},schema:{el:{type:'text'}}}, 'FormTab', {
     mergeWith: {
       [FormTab.vm.mainClass]: 'tab-class',
-      [FormTab.vm.containers.state]: {
+      [FormTab.vm.classKeys.state]: {
         [FormTab.vm.defaultClasses.active]: FormTab.vm.active,
         [FormTab.vm.defaultClasses.inactive]: !FormTab.vm.active,
         [FormTab.vm.defaultClasses.valid]: !FormTab.vm.invalid,

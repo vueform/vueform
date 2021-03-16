@@ -25,7 +25,7 @@ describe('FormWizardStep', () => {
 
   useFormComponent({wizard:{a:{label:'a',elements:['el'],class:'step-class'}},schema:{el:{type:'text'}}}, 'FormWizardStep', {
     mergeWith: {
-      [FormWizardStep.vm.containers.state]: {
+      [FormWizardStep.vm.classKeys.state]: {
         [FormWizardStep.vm.defaultClasses.active]: FormWizardStep.vm.active,
         [FormWizardStep.vm.defaultClasses.inactive]: !FormWizardStep.vm.active,
         [FormWizardStep.vm.defaultClasses.disabled]: FormWizardStep.vm.disabled,

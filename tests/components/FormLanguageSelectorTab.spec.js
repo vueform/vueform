@@ -15,7 +15,7 @@ describe('FormLanguage', () => {
 
   useFormComponent({multilingual:true,schema:{el:{type:'text'}}}, 'FormLanguage', {
     mergeWith: {
-      [FormLanguage.vm.containers.state]: {
+      [FormLanguage.vm.classKeys.state]: {
         [FormLanguage.vm.defaultClasses.active]: FormLanguage.vm.selected,
         [FormLanguage.vm.defaultClasses.inactive]: !FormLanguage.vm.selected,
       }

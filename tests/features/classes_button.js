@@ -16,7 +16,7 @@ export const classes = function (elementType, elementName, options) {
 
   baseClasses(elementType, elementName, Object.assign({}, options, {
     mergeWith: {
-      [el.containers.button]: {
+      [el.classKeys.button]: {
         [el.classes.left]: true,
         [el.classes.loading]: el.isLoading,
         [el.classes.disabled]: el.isDisabled,

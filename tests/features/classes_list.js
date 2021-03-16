@@ -16,13 +16,13 @@ export const classes = function (elementType, elementName, options) {
 
   baseClasses(elementType, elementName, Object.assign({}, options, {
     mergeWith: {
-      [el.containers.sortable]: {
+      [el.classKeys.sortable]: {
         [el.classes.sortable]: el.sort
       },
-      [el.containers.add]: {
+      [el.classKeys.add]: {
         [el.classes.disabled]: el.isDisabled
       },
-      [el.containers.remove]: {
+      [el.classKeys.remove]: {
         [el.classes.disabled]: el.isDisabled
       },
     }
