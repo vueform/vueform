@@ -16,94 +16,18 @@ import useStatic from './../../composables/elements/useStatic'
 
 import { static_ as useBaseElement } from './../../composables/elements/useBaseElement'
 
+import BaseElement from './../../mixins/BaseElement'
+import HasView from './../../mixins/HasView'
+
 export default {
   name: 'StaticElement',
-  emits: [],
+  mixins: [BaseElement, HasView],
   slots: ['label', 'info', 'description', 'before', 'between', 'after'],
   props: {
-    name: {
-      required: true,
-      type: [String, Number],
-    },
-    inline: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    layout: {
-      required: false,
-      type: [String, Object, Boolean],
-      default: 'ElementLayout'
-    },
     type: {
       required: false,
       type: [String],
       default: 'static'
-    },
-    addClass: {
-      required: false,
-      type: [String, Array, Object],
-      default: null
-    },
-    overrideClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    addClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    columns: {
-      required: false,
-      type: [Object, String],
-      default: null
-    },
-    overrideComponents: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    conditions: {
-      required: false,
-      type: [Array],
-      default: () => ([])
-    },
-    description: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    info: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    label: {
-      required: false,
-      type: [String, Object, Function],
-      default: null
-    },
-    before: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    between: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    after: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    slots: {
-      required: false,
-      type: [Object],
-      default: () => ({})
     },
     wrap: {
       required: false,

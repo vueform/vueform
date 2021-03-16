@@ -30,79 +30,32 @@ import { list as useValidation } from './../../composables/elements/useValidatio
 import { list as useBaseElement } from './../../composables/elements/useBaseElement'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 
+import BaseElement from './../../mixins/BaseElement'
+import HasView from './../../mixins/HasView'
+import HasChange from './../../mixins/HasChange'
+import HasData from './../../mixins/HasData'
+import HasValidation from './../../mixins/HasValidation'
+
 export default {
   name: 'MultifileElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'add', 'remove', 'sort'],
   slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {
-    name: {
-      required: true,
-      type: [String, Number],
-    },
-    inline: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    image: {
-      type: [Boolean],
-      required: false,
-      default: false
-    },
-    layout: {
-      required: false,
-      type: [String, Object, Boolean],
-      default: 'ElementLayout'
-    },
     type: {
       required: false,
       type: [String],
       default: 'multifile'
     },
-    addClass: {
-      required: false,
-      type: [String, Array, Object],
-      default: null
-    },
-    overrideClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    addClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    columns: {
-      required: false,
-      type: [Object, String],
-      default: null
-    },
-    overrideComponents: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    conditions: {
+    default: {
       required: false,
       type: [Array],
       default: () => ([])
     },
-    formatData: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    formatLoad: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    submit: {
-      required: false,
+    image: {
       type: [Boolean],
-      default: true
+      required: false,
+      default: false
     },
     debounce: {
       required: false,
@@ -114,16 +67,6 @@ export default {
       type: [Number],
       default: 1
     },
-    default: {
-      required: false,
-      type: [Array],
-      default: () => ([])
-    },
-    description: {
-      required: false,
-      type: [String],
-      default: null
-    },
     disabled: {
       required: false,
       type: [Boolean],
@@ -133,16 +76,6 @@ export default {
       required: false,
       type: [Boolean],
       default: false
-    },
-    info: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    label: {
-      required: false,
-      type: [String, Object, Function],
-      default: null
     },
     accept: {
       required: false,
@@ -179,26 +112,6 @@ export default {
       type: [Object],
       default: () => ({})
     },
-    before: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    between: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    after: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    slots: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
     sort: {
       required: false,
       type: [Boolean],
@@ -209,30 +122,10 @@ export default {
       type: [String],
       default: null
     },
-    rules: {
-      required: false,
-      type: [Array, String, Object],
-      default: null
-    },
-    messages: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    displayError: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
     object: {
       required: false,
       type: [Boolean],
       default: null
-    },
-    onChange: {
-      required: false,
-      type: [Function],
-      default: null,
     },
     onAdd: {
       required: false,

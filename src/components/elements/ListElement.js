@@ -27,109 +27,42 @@ import { list as useValidation } from './../../composables/elements/useValidatio
 import { list as useBaseElement } from './../../composables/elements/useBaseElement'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 
+import BaseElement from './../../mixins/BaseElement'
+import HasView from './../../mixins/HasView'
+import HasChange from './../../mixins/HasChange'
+import HasData from './../../mixins/HasData'
+import HasValidation from './../../mixins/HasValidation'
+
 export default {
   name: 'ListElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'add', 'remove', 'sort'],
   slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {
-    name: {
-      required: true,
-      type: [String, Number],
-    },
-    inline: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    layout: {
-      required: false,
-      type: [String, Object, Boolean],
-      default: 'ElementLayout'
-    },
     type: {
       required: false,
       type: [String],
       default: 'list'
-    },
-    addClass: {
-      required: false,
-      type: [String, Array, Object],
-      default: null
-    },
-    overrideClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    addClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    columns: {
-      required: false,
-      type: [Object, String],
-      default: null
-    },
-    overrideComponents: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    conditions: {
-      required: false,
-      type: [Array],
-      default: () => ([])
-    },
-    initial: {
-      required: false,
-      type: [Number],
-      default: 1
     },
     default: {
       required: false,
       type: [Array],
       default: undefined,
     },
-    formatData: {
+    initial: {
       required: false,
-      type: [Function],
-      default: null
-    },
-    formatLoad: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    submit: {
-      required: false,
-      type: [Boolean],
-      default: true
+      type: [Number],
+      default: 1
     },
     debounce: {
       required: false,
       type: [Number],
       default: null
     },
-    description: {
-      required: false,
-      type: [String],
-      default: null
-    },
     disabled: {
       required: false,
       type: [Boolean],
       default: false
-    },
-    info: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    label: {
-      required: false,
-      type: [String, Object, Function],
-      default: null
     },
     /**
      * This goes for initial ordering, when data is loaded, nothing else.
@@ -161,45 +94,10 @@ export default {
       type: [String],
       default: null
     },
-    before: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    between: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    after: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    slots: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
     sort: {
       required: false,
       type: [Boolean],
       default: false
-    },
-    rules: {
-      required: false,
-      type: [Array, String, Object],
-      default: null
-    },
-    messages: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    displayError: {
-      required: false,
-      type: [Boolean],
-      default: true
     },
     object: {
       required: false,
@@ -210,11 +108,6 @@ export default {
       required: false,
       type: [Object],
       default: null
-    },
-    onChange: {
-      required: false,
-      type: [Function],
-      default: null,
     },
     onAdd: {
       required: false,

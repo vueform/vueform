@@ -27,29 +27,27 @@ import useWatchValue from './../../composables/elements/useWatchValue'
 import { toggle as useOptions } from './../../composables/elements/useOptions'
 import { boolean as useNullValue } from './../../composables/elements/useNullValue'
 
+import BaseElement from './../../mixins/BaseElement'
+import HasView from './../../mixins/HasView'
+import HasChange from './../../mixins/HasChange'
+import HasData from './../../mixins/HasData'
+import HasValidation from './../../mixins/HasValidation'
+
 export default {
   name: 'ToggleElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change'],
   slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {
-    name: {
-      required: true,
-      type: [String, Number],
-    },
-    inline: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    layout: {
-      required: false,
-      type: [String, Object, Boolean],
-      default: 'ElementLayout'
-    },
     type: {
       required: false,
       type: [String],
       default: 'toggle'
+    },
+    default: {
+      required: false,
+      type: [String, Number, Boolean],
+      default: undefined // falseValue
     },
     trueValue: {
       required: false,
@@ -61,64 +59,9 @@ export default {
       type: [Boolean, String, Number],
       default: false
     },
-    addClass: {
-      required: false,
-      type: [String, Array, Object],
-      default: null
-    },
-    overrideClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    addClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    columns: {
-      required: false,
-      type: [Object, String],
-      default: null
-    },
-    overrideComponents: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    conditions: {
-      required: false,
-      type: [Array],
-      default: () => ([])
-    },
-    formatData: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    formatLoad: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    submit: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
     debounce: {
       required: false,
       type: [Number],
-      default: null
-    },
-    default: {
-      required: false,
-      type: [String, Number, Boolean],
-      default: undefined // falseValue
-    },
-    description: {
-      required: false,
-      type: [String],
       default: null
     },
     disabled: {
@@ -129,16 +72,6 @@ export default {
     id: {
       required: false,
       type: [String],
-      default: null
-    },
-    info: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    label: {
-      required: false,
-      type: [String, Object, Function],
       default: null
     },
     labels: {
@@ -171,50 +104,10 @@ export default {
       type: [Object],
       default: () => ({})
     },
-    before: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    between: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    after: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    slots: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
     text: {
       required: false,
       type: [String],
       default: null
-    },
-    rules: {
-      required: false,
-      type: [Array, String, Object],
-      default: null
-    },
-    messages: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    displayError: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    onChange: {
-      required: false,
-      type: [Function],
-      default: null,
     },
   },
   setup(props, context) {

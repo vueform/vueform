@@ -1,4 +1,4 @@
-import { toRefs, onMounted, markRaw } from 'composition-api'
+import { onMounted, watch } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
@@ -30,88 +30,31 @@ import { array as  useNullValue } from './../../composables/elements/useNullValu
 import { array as useEmpty } from './../../composables/elements/useEmpty'
 import { tags as useBaseElement } from './../../composables/elements/useBaseElement'
 
+import BaseElement from './../../mixins/BaseElement'
+import HasView from './../../mixins/HasView'
+import HasChange from './../../mixins/HasChange'
+import HasData from './../../mixins/HasData'
+import HasValidation from './../../mixins/HasValidation'
+
 export default {
   name: 'TagsElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'select', 'deselect', 'searchChange', 'open', 'close', 'tag'],
   slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after', 'beforelist', 'afterlist', 'noresults', 'nooptions', 'option', 'tag'],
   props: {
-    name: {
-      required: true,
-      type: [String, Number],
-    },
-    inline: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    layout: {
-      required: false,
-      type: [String, Object, Boolean],
-      default: 'ElementLayout'
-    },
     type: {
       required: false,
       type: [String],
       default: 'tags'
-    },
-    addClass: {
-      required: false,
-      type: [String, Array, Object],
-      default: null
-    },
-    overrideClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    addClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    columns: {
-      required: false,
-      type: [Object, String],
-      default: null
-    },
-    overrideComponents: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    conditions: {
-      required: false,
-      type: [Array],
-      default: () => ([])
-    },
-    formatData: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    formatLoad: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    submit: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    debounce: {
-      required: false,
-      type: [Number],
-      default: null
     },
     default: {
       required: false,
       type: [Array],
       default: () => ([])
     },
-    description: {
+    debounce: {
       required: false,
-      type: [String],
+      type: [Number],
       default: null
     },
     disabled: {
@@ -129,20 +72,10 @@ export default {
       type: [String],
       default: null
     },
-    info: {
-      required: false,
-      type: [String],
-      default: null
-    },
     items: {
       required: false,
       type: [Object, Array, Function],
       default: () => ({})
-    },
-    label: {
-      required: false,
-      type: [String, Object, Function],
-      default: null
     },
     search: {
       required: false,
@@ -168,46 +101,6 @@ export default {
       required: false,
       type: [Boolean],
       default: false
-    },
-    before: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    between: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    after: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    slots: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    rules: {
-      required: false,
-      type: [Array, String, Object],
-      default: null
-    },
-    messages: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    displayError: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    onChange: {
-      required: false,
-      type: [Function],
-      default: null,
     },
     onSelect: {
       required: false,

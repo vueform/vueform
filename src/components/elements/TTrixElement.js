@@ -29,88 +29,31 @@ import { multilingual as useDefault } from './../../composables/elements/useDefa
 import { multilingual as useValidation } from './../../composables/elements/useValidation'
 import { multilingual as useEmpty } from './../../composables/elements/useEmpty'
 
+import BaseElement from './../../mixins/BaseElement'
+import HasView from './../../mixins/HasView'
+import HasChange from './../../mixins/HasChange'
+import HasData from './../../mixins/HasData'
+import HasValidation from './../../mixins/HasValidation'
+
 export default {
   name: 'TTrixElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'error'],
   slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {
-    name: {
-      required: true,
-      type: [String, Number],
-    },
-    inline: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    layout: {
-      required: false,
-      type: [String, Object, Boolean],
-      default: 'ElementLayout'
-    },
     type: {
       required: false,
       type: [String],
       default: 'tTrix'
-    },
-    addClass: {
-      required: false,
-      type: [String, Array, Object],
-      default: null
-    },
-    overrideClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    addClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    columns: {
-      required: false,
-      type: [Object, String],
-      default: null
-    },
-    overrideComponents: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    conditions: {
-      required: false,
-      type: [Array],
-      default: () => ([])
-    },
-    formatData: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    formatLoad: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    submit: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    debounce: {
-      required: false,
-      type: [Number],
-      default: null
     },
     default: {
       required: false,
       type: [Object, String, Number],
       default: null
     },
-    description: {
+    debounce: {
       required: false,
-      type: [String],
+      type: [Number],
       default: null
     },
     disabled: {
@@ -123,40 +66,10 @@ export default {
       type: [String],
       default: null
     },
-    info: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    label: {
-      required: false,
-      type: [String, Object, Function],
-      default: null
-    },
     placeholder: {
       required: false,
       type: [String],
       default: null
-    },
-    before: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    between: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    after: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    slots: {
-      required: false,
-      type: [Object],
-      default: () => ({})
     },
     accept: {
       required: false,
@@ -172,26 +85,6 @@ export default {
       required: false,
       type: [String],
       default: null
-    },
-    rules: {
-      required: false,
-      type: [Array, String, Object],
-      default: null
-    },
-    messages: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    displayError: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    onChange: {
-      required: false,
-      type: [Function],
-      default: null,
     },
     onError: {
       required: false,

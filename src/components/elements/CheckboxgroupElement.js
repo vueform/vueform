@@ -24,106 +24,29 @@ import { array as useNullValue } from './../../composables/elements/useNullValue
 import { checkboxgroup as useDisabled } from './../../composables/elements/useDisabled'
 import { checkboxgroup as useBaseElement } from './../../composables/elements/useBaseElement'
 
+import BaseElement from './../../mixins/BaseElement'
+import HasView from './../../mixins/HasView'
+import HasChange from './../../mixins/HasChange'
+import HasData from './../../mixins/HasData'
+import HasValidation from './../../mixins/HasValidation'
+
 export default {
   name: 'CheckboxgroupElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change'],
   slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after', 'checkbox'],
   props: {
-    name: {
-      required: true,
-      type: [String, Number],
-    },
-    inline: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    layout: {
-      required: false,
-      type: [String, Object, Boolean],
-      default: 'ElementLayout'
-    },
     type: {
       required: false,
       type: [String],
       default: 'checkboxgroup'
-    },
-    addClass: {
-      required: false,
-      type: [String, Array, Object],
-      default: null
-    },
-    overrideClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    addClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    columns: {
-      required: false,
-      type: [Object, String],
-      default: null
-    },
-    overrideComponents: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    conditions: {
-      required: false,
-      type: [Array],
-      default: () => ([])
-    },
-    formatData: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    formatLoad: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    submit: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    debounce: {
-      required: false,
-      type: [Number],
-      default: null
     },
     default: {
       required: false,
       type: [Array],
       default: () => ([])
     },
-    description: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    disables: {
-      required: false,
-      type: [Array],
-      default: () => ([])
-    },
-    disabled: {
-      required: false,
-      type: [Boolean],
-      default: false
-    },
     id: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    info: {
       required: false,
       type: [String],
       default: null
@@ -133,50 +56,20 @@ export default {
       type: [Object, Array],
       default: () => ({})
     },
-    label: {
-      required: false,
-      type: [String, Object, Function],
-      default: null
-    },
-    before: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    between: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    after: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    slots: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    rules: {
-      required: false,
-      type: [Array, String, Object],
-      default: null
-    },
-    messages: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    displayError: {
+    disabled: {
       required: false,
       type: [Boolean],
-      default: true
+      default: false
     },
-    onChange: {
+    disables: {
       required: false,
-      type: [Function],
-      default: null,
+      type: [Array],
+      default: () => ([])
+    },
+    debounce: {
+      required: false,
+      type: [Number],
+      default: null
     },
   },
   setup(props, context) {

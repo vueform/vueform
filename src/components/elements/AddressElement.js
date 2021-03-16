@@ -25,104 +25,30 @@ import { object as useValue } from './../../composables/elements/useValue'
 import { object as useData } from './../../composables/elements/useData'
 import { object as useValidation } from './../../composables/elements/useValidation'
 
+import BaseElement from './../../mixins/BaseElement'
+import HasView from './../../mixins/HasView'
+import HasChange from './../../mixins/HasChange'
+import HasData from './../../mixins/HasData'
+
 export default {
   name: 'AddressElement',
-  events: [],
+  mixins: [BaseElement, HasView, HasChange, HasData],
   slots: ['label', 'info', 'description', 'message', 'before', 'between', 'after'],
   props: {
-    name: {
-      required: true,
-      type: [String, Number],
-    },
-    inline: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    embed: {
-      required: false,
-      type: [Boolean],
-      default: false
-    },
-    layout: {
-      required: false,
-      type: [String, Object, Boolean],
-      default: 'ElementLayout'
-    },
     type: {
       required: false,
       type: [String],
       default: 'address'
-    },
-    addClass: {
-      required: false,
-      type: [String, Array, Object],
-      default: null
-    },
-    overrideClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    addClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    columns: {
-      required: false,
-      type: [Object, String],
-      default: null
-    },
-    overrideComponents: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    conditions: {
-      required: false,
-      type: [Array],
-      default: () => ([])
-    },
-    formatData: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    formatLoad: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    submit: {
-      required: false,
-      type: [Boolean],
-      default: true
     },
     default: {
       required: false,
       type: [Object],
       default: () => ({})
     },
-    description: {
-      required: false,
-      type: [String],
-      default: null
-    },
     disabled: {
       required: false,
       type: [Boolean],
       default: false
-    },
-    info: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    label: {
-      required: false,
-      type: [String, Object, Function],
-      default: null
     },
     provider: {
       required: false,
@@ -143,31 +69,6 @@ export default {
       required: false,
       type: [Boolean],
       default: false
-    },
-    before: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    between: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    after: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    slots: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    onChange: {
-      required: false,
-      type: [Function],
-      default: null,
     },
   },
   setup(props, context) {

@@ -23,19 +23,26 @@ import { object as useData } from './../../composables/elements/useData'
 import { object as useChildren } from './../../composables/elements/useChildren'
 import { object as useValidation } from './../../composables/elements/useValidation'
 
+import BaseElement from './../../mixins/BaseElement'
+import HasView from './../../mixins/HasView'
+import HasChange from './../../mixins/HasChange'
+import HasData from './../../mixins/HasData'
+
 export default {
   name: 'ObjectElement',
-  emits: ['remove'],
+  mixins: [BaseElement, HasView, HasChange, HasData],
+  emits: ['change', 'remove'],
   slots: ['label', 'info', 'description', 'message', 'before', 'between', 'after'],
   props: {
-    name: {
-      required: true,
-      type: [String, Number],
-    },
-    inline: {
+    type: {
       required: false,
-      type: [Boolean],
-      default: false,
+      type: [String],
+      default: 'object'
+    },
+    default: {
+      required: false,
+      type: [Object],
+      default: () => ({})
     },
     schema: {
       required: false,
@@ -46,106 +53,6 @@ export default {
       required: false,
       type: [Boolean],
       default: false
-    },
-    layout: {
-      required: false,
-      type: [String, Object, Boolean],
-      default: 'ElementLayout'
-    },
-    type: {
-      required: false,
-      type: [String],
-      default: 'object'
-    },
-    addClass: {
-      required: false,
-      type: [String, Array, Object],
-      default: null
-    },
-    overrideClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    addClasses: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    columns: {
-      required: false,
-      type: [Object, String],
-      default: null
-    },
-    overrideComponents: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    conditions: {
-      required: false,
-      type: [Array],
-      default: () => ([])
-    },
-    formatData: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    formatLoad: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    submit: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    default: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    description: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    info: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    label: {
-      required: false,
-      type: [String, Object, Function],
-      default: null
-    },
-    before: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    between: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    after: {
-      required: false,
-      type: [Object, String, Number],
-      default: null
-    },
-    slots: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    onChange: {
-      required: false,
-      type: [Function],
-      default: null,
     },
   },
   setup(props, context) {

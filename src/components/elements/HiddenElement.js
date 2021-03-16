@@ -17,53 +17,31 @@ import useEmpty from './../../composables/elements/useEmpty'
 import useComponents from './../../composables/elements/useComponents'
 import useWatchValue from './../../composables/elements/useWatchValue'
 
+
+import BaseElement from './../../mixins/BaseElement'
+import HasChange from './../../mixins/HasChange'
+import HasData from './../../mixins/HasData'
+import HasValidation from './../../mixins/HasValidation'
+
 export default {
   name: 'HiddenElement',
+  mixins: [BaseElement, HasChange, HasData, HasValidation],
   emits: ['change'],
   slots: [],
   props: {
-    name: {
-      required: true,
-      type: [String, Number],
-    },
-    inline: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
     type: {
       required: false,
       type: [String],
       default: 'hidden'
     },
-    conditions: {
+    default: {
       required: false,
-      type: [Array],
-      default: () => ([])
-    },
-    formatData: {
-      required: false,
-      type: [Function],
+      type: [String, Number],
       default: null
-    },
-    formatLoad: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    submit: {
-      required: false,
-      type: [Boolean],
-      default: true
     },
     debounce: {
       required: false,
       type: [Number],
-      default: null
-    },
-    default: {
-      required: false,
-      type: [String, Number],
       default: null
     },
     id: {
@@ -71,25 +49,10 @@ export default {
       type: [String],
       default: null
     },
-    rules: {
-      required: false,
-      type: [Array, String, Object],
-      default: null
-    },
-    messages: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
     meta: {
       required: false,
       type: [Boolean],
       default: false
-    },
-    onChange: {
-      required: false,
-      type: [Function],
-      default: null,
     },
   },
   setup(props, context) {
