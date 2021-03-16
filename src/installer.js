@@ -8,7 +8,6 @@ import location from './services/location'
 import condition from './services/condition'
 import i18n from './services/i18n'
 import applyExtensions from './utils/applyExtensions'
-import store from './store'
 import { reactive, ref, toRefs, computed } from 'composition-api'
 
 import AddressElement from './components/elements/AddressElement'
@@ -174,10 +173,6 @@ export default function(config) {
       })
     }
 
-    store(Store) {
-      Store.registerModule('laraform', store)
-    }
-
     locale(locale) {
       this.options.locale = locale
     }
@@ -211,10 +206,6 @@ export default function(config) {
             this.options[attr] = config[attr]
           }
       })
-
-      if (config.store) {
-        this.store(config.store)
-      }
     }
 
     applyExtensions() {

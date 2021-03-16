@@ -801,3 +801,42 @@ export const Validators = function (elementType, elementName, options) {
     expect(el.Validators.fr[0].name).toBe('min')
   })
 }
+
+export const watchers = function (elementType, elementName, options) {
+  it('should update Validators when rules change', async () => {
+    let form = createForm({
+      languages: {
+        en: {
+          label: 'English',
+          code: 'en'
+        },
+        fr: {
+          label: 'French',
+          code: 'fr'
+        },
+      },
+      schema: {
+        el: {
+          type: elementType,
+          rules: 'required'
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.Validators.en.length).toBe(1)
+    expect(el.Validators.en[0].name).toBe('required')
+    expect(el.Validators.fr[0].name).toBe('required')
+
+    form.vm.laraform.schema.el.rules = 'email|required'
+
+    await nextTick()
+
+    expect(el.Validators.en.length).toBe(2)
+    expect(el.Validators.en[0].name).toBe('email')
+    expect(el.Validators.fr[0].name).toBe('email')
+    expect(el.Validators.en[1].name).toBe('required')
+    expect(el.Validators.fr[1].name).toBe('required')
+  })
+}

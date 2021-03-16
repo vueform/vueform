@@ -5,7 +5,7 @@ import { validate as baseValidate } from './validation'
 
 export { 
   dirty, validated, invalid, pending, debouncing, 
-  busy, errors, error, resetValidators, dirt, clean, messageBag, Validators } from './validation'
+  busy, errors, error, resetValidators, dirt, clean, messageBag, Validators, watchers } from './validation'
 
 export const validate = function (elementType, elementName, options) {
   baseValidate(elementType, elementName, options)

@@ -829,6 +829,8 @@ const multilingual = function(props, context, dependencies)
 
     var factory = new form$.value.$laraform.services.validation.factory(path.value, form$.value)
 
+    Validators.value = {}
+
     _.each(validationRules.value, (languageRules, lang) => {
       if (languageRules === null) {
         return

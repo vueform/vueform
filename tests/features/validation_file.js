@@ -5,7 +5,7 @@ import { validate as baseValidate } from './validation'
 import flushPromises from 'flush-promises'
 
 export { messageBag, Validators, dirty, validated, invalid, pending,
-         debouncing, errors, error, dirt, clean, resetValidators, } from './validation'
+         debouncing, errors, error, dirt, clean, resetValidators, watchers } from './validation'
 
 export const busy = function (elementType, elementName, options) {
   baseBusy(elementType, elementName, options)

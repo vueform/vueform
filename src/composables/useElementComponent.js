@@ -85,8 +85,6 @@ const base = function(props, context, dependencies)
     return _.keys(defaultClasses.value)[0]
   })
 
-  const __ = el$.value.__
-
   return {
     el$,
     form$,
@@ -94,7 +92,6 @@ const base = function(props, context, dependencies)
     classes,
     components,
     mainClass,
-    __,
   }
 }
 

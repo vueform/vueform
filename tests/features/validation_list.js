@@ -11,7 +11,7 @@ import { nextTick } from 'vue'
 
 jest.useFakeTimers()
 
-export { dirt, messageBag, Validators } from './validation'
+export { dirt, messageBag, Validators, watchers } from './validation'
 
 export const dirty = function (elementType, elementName, options) {
   const prototypes = options.prototypes

@@ -1,4 +1,4 @@
-import { onMounted } from 'composition-api'
+import { onMounted, watch } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
@@ -319,6 +319,10 @@ export default {
       validation.initMessageBag()
       validation.initValidation()
     })
+
+    watch(validation.validationRules, () => {
+      validation.initValidation()
+    }, { deep: true })
 
     return {
       ...form$,
