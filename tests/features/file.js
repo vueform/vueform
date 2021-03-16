@@ -810,14 +810,17 @@ export const uploadTemp = function (elementType, elementName, options) {
     expect(axiosMock).not.toHaveBeenCalled()
   })
 
-  it('should send file to upload endpoint & update with return value in `uploadTemp`', async () => {
+  it('should send file to upload endpoint with params & update with return value in `uploadTemp`', async () => {
     let form = createForm({
       formKey: 'key',
       schema: {
         el: {
           type: elementType,
           auto: false,
-          rules: 'required'
+          rules: 'required',
+          params: {
+            param: 'value'
+          }
         }
       }
     })
@@ -857,6 +860,7 @@ export const uploadTemp = function (elementType, elementName, options) {
     expect(axiosMock.mock.calls[0][1].get('file')).toStrictEqual(file)
     expect(axiosMock.mock.calls[0][1].get('formKey')).toStrictEqual('key')
     expect(axiosMock.mock.calls[0][1].get('path')).toStrictEqual('el')
+    expect(axiosMock.mock.calls[0][1].get('param')).toStrictEqual('value')
 
     expect(el.value).toStrictEqual(tmp)
   })
@@ -1181,12 +1185,15 @@ export const remove = function (elementType, elementName, options) {
     expect(elWrapper.emitted().remove).toBeTruthy()
   })
 
-  it('should call remove temp endpoint when removed in stage 2', async () => {
+  it('should call remove temp endpoint with params when removed in stage 2', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           auto: false,
+          params: {
+            param: 'value'
+          }
         }
       }
     })
@@ -1210,9 +1217,11 @@ export const remove = function (elementType, elementName, options) {
 
     await flushPromises()
 
-    expect(axiosMock).toHaveBeenCalled()
-    expect(axiosMock.mock.calls[0][1]).toStrictEqual({
-      file: tmp.tmp
+    expect(axiosMock).toHaveBeenLastCalledWith(el.fileEndpoints.removeTemp, {
+      file: tmp.tmp,
+      formKey: null,
+      path: 'el',
+      param: 'value'
     })
   })
 
@@ -1255,12 +1264,15 @@ export const remove = function (elementType, elementName, options) {
     expect(el.progress).toStrictEqual(100)
   })
 
-  it('should call remove file endpoint when removed in stage 3', () => {
+  it('should call remove file endpoint with params when removed in stage 3', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           auto: false,
+          params: {
+            param: 'value'
+          }
         }
       }
     })
@@ -1279,9 +1291,11 @@ export const remove = function (elementType, elementName, options) {
 
     el.remove()
 
-    expect(axiosMock).toHaveBeenCalled()
-    expect(axiosMock.mock.calls[0][1]).toStrictEqual({
-      file: file
+    expect(axiosMock).toHaveBeenLastCalledWith(el.fileEndpoints.remove, {
+      file: file,
+      formKey: null,
+      path: 'el',
+      param: 'value'
     })
   })
 

@@ -1,4 +1,5 @@
 import { computed, toRefs, ref, watch } from 'composition-api'
+import convertFormData from './../../utils/convertFormData'
 
 const base = function (props, context, dependencies)
 {
@@ -11,6 +12,7 @@ const base = function (props, context, dependencies)
     endpoints,
     url,
     image,
+    params,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -256,11 +258,11 @@ const base = function (props, context, dependencies)
     request.value = axios.value.CancelToken.source()
 
     try {
-      let data = new FormData()
-
-      data.append('file', value.value)
-      data.append('formKey', form$.value.options.formKey)
-      data.append('path', path.value)
+      let data = convertFormData(Object.assign({}, params.value, {
+        file: value.value,
+        formKey: form$.value.options.formKey,
+        path: path.value,
+      }))
 
       let response = await axios.value[fileMethods.value.uploadTemp](fileEndpoints.value.uploadTemp, data, {
         onUploadProgress: (e) => {
@@ -299,11 +301,23 @@ const base = function (props, context, dependencies)
           return false
         }
 
-        await form$.value.$laraform.services.axios[fileMethods.value.remove](fileEndpoints.value.remove, { file: value.value })
+        await form$.value.$laraform.services.axios[fileMethods.value.remove](fileEndpoints.value.remove,
+          Object.assign({}, params.value, {
+            file: value.value,
+            formKey: form$.value.options.formKey,
+            path: path.value,
+          })
+        )
       }
 
       else if (stage.value === 2) {
-        await form$.value.$laraform.services.axios[fileMethods.value.removeTemp](fileEndpoints.value.removeTemp, { file: value.value.tmp })
+        await form$.value.$laraform.services.axios[fileMethods.value.removeTemp](fileEndpoints.value.removeTemp,
+          Object.assign({}, params.value, {
+            file: value.value.tmp,
+            formKey: form$.value.options.formKey,
+            path: path.value,
+          })
+        )
       }
     } catch (e) {
       handleError(form$.value.__(`laraform.elements.file.removeError`), e)

@@ -159,6 +159,11 @@ export default {
       type: [Object],
       default: () => ({})
     },
+    params: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
     url: {
       required: false,
       type: [String],
