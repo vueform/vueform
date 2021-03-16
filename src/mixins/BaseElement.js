@@ -49,20 +49,5 @@ export default {
       type: [Function],
       default: null,
     },
-    onErrorCaptured: {
-      required: false,
-      type: [Function],
-      default: null,
-    },
-    onRenderTracked: {
-      required: false,
-      type: [Function],
-      default: null,
-    },
-    onRenderTriggered: {
-      required: false,
-      type: [Function],
-      default: null,
-    },
   }
 }

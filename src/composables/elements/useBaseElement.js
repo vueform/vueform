@@ -21,9 +21,6 @@ const base = function(props, context, dependencies)
     onUpdated,
     onBeforeUnmount,
     onUnmounted,
-    onErrorCaptured,
-    onRenderTracked,
-    onRenderTriggered,
   }
 
   const currentInstance = getCurrentInstance()
