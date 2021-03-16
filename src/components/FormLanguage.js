@@ -18,7 +18,7 @@ export default {
   setup(props, context)
   {  
     const { code } = toRefs(props)
-    const { containers } = toRefs(context.data)
+    const { classKeys } = toRefs(context.data)
 
     // ============ DEPENDENCIES ============
 
@@ -59,7 +59,7 @@ export default {
       let classList = baseClasses.value
 
       classList = mergeComponentClasses(classList, {
-        [containers.value.state]: {
+        [classKeys.value.state]: {
           [classList.active]: selected.value,
           [classList.inactive]: !selected.value,
         }

@@ -60,7 +60,7 @@
           add: 'list-add',
           disabled: 'disabled',
         },
-        containers: {
+        classKeys: {
           sortable: 'element',
           add: 'add',
           remove: 'remove',

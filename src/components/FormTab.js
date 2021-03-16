@@ -51,7 +51,7 @@ export default {
       conditions,
       tabClass,
     } = toRefs(props)
-    const { containers } = toRefs(context.data)
+    const { classKeys } = toRefs(context.data)
     const $this = getCurrentInstance().proxy
 
     // ============ DEPENDENCIES ============
@@ -150,7 +150,7 @@ export default {
       let classList = _.clone(baseClasses.value)
 
       classList = mergeComponentClasses(classList, {
-        [containers.value.state]: {
+        [classKeys.value.state]: {
           [classList.active]: active.value,
           [classList.inactive]: !active.value,
           [classList.valid]: !invalid.value,

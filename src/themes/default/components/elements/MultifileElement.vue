@@ -70,7 +70,7 @@
           disabled: 'disabled',
           selectButton: 'btn btn-light btn-select-file',
         },
-        containers: {
+        classKeys: {
           sortable: 'element',
           add: 'add',
           remove: 'remove',

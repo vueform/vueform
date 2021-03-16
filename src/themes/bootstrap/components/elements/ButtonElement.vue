@@ -43,7 +43,7 @@
           center: 'align-center',
           right: 'align-right',
         },
-        containers: {
+        classKeys: {
           button: 'button',
           loading: 'loading',
           disabled: 'disabled',

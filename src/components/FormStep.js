@@ -63,7 +63,7 @@ export default {
       conditions,
       stepClass,
     } = toRefs(props)
-    const { containers } = toRefs(context.data)
+    const { classKeys } = toRefs(context.data)
     const $this = getCurrentInstance().proxy
 
     // ============ DEPENDENCIES ============
@@ -193,7 +193,7 @@ export default {
       let classList = baseClasses.value
 
       classList = mergeComponentClasses(classList, {
-        [containers.value.state]: {
+        [classKeys.value.state]: {
           [classList.active]: active.value,
           [classList.inactive]: !active.value,
           [classList.disabled]: disabled.value,

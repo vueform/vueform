@@ -30,7 +30,7 @@ const base = function(props, context, dependencies)
   * 
   * @type {object} 
   */
-  const containers = toRefs(context.data).containers || {}
+  const classKeys = toRefs(context.data).classKeys || {}
 
   // ============== COMPUTED ==============
   
@@ -83,7 +83,7 @@ const base = function(props, context, dependencies)
     classes,
     mainClass,
     defaultClasses,
-    containers,
+    classKeys,
   }
 }
 
@@ -97,7 +97,7 @@ const list = function(props, context, dependencies)
     mainClass,
     classes: baseClasses,
     defaultClasses,
-    containers
+    classKeys
   } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES ============
@@ -116,13 +116,13 @@ const list = function(props, context, dependencies)
     let classes = _.clone(baseClasses.value)
 
     classes = mergeComponentClasses(classes, {
-      [containers.value.sortable]: {
+      [classKeys.value.sortable]: {
         [classes.sortable]: sort.value
       },
-      [containers.value.add]: {
+      [classKeys.value.add]: {
         [classes.disabled]: isDisabled.value
       },
-      [containers.value.remove]: {
+      [classKeys.value.remove]: {
         [classes.disabled]: isDisabled.value
       },
     })
@@ -134,7 +134,7 @@ const list = function(props, context, dependencies)
     classes,
     mainClass,
     defaultClasses,
-    containers,
+    classKeys,
   }
 }
 
@@ -146,7 +146,7 @@ const file = function(props, context, dependencies)
     mainClass,
     classes: baseClasses,
     defaultClasses,
-    containers
+    classKeys
   } = base(props, context, dependencies)
 
   const removing = dependencies.removing
@@ -175,7 +175,7 @@ const file = function(props, context, dependencies)
     classes,
     mainClass,
     defaultClasses,
-    containers
+    classKeys
   }
 }
 
@@ -190,7 +190,7 @@ const button = function(props, context, dependencies)
     mainClass,
     classes: baseClasses,
     defaultClasses,
-    containers
+    classKeys
   } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES ============
@@ -210,16 +210,16 @@ const button = function(props, context, dependencies)
     let classes = _.clone(baseClasses.value)
 
     classes = mergeComponentClasses(classes, {
-      [containers.value.button]: {
-        [classes[containers.value[align.value]]]: true,
-        [classes[containers.value.loading]]: isLoading.value,
-        [classes[containers.value.disabled]]: isDisabled.value,
+      [classKeys.value.button]: {
+        [classes[classKeys.value[align.value]]]: true,
+        [classes[classKeys.value.loading]]: isLoading.value,
+        [classes[classKeys.value.disabled]]: isDisabled.value,
       }
     })
 
     if (buttonClass.value) {
       classes = mergeComponentClasses(classes, {
-        [containers.value.button]: buttonClass.value
+        [classKeys.value.button]: buttonClass.value
       })
     }
 
@@ -230,7 +230,7 @@ const button = function(props, context, dependencies)
     classes,
     mainClass,
     defaultClasses,
-    containers
+    classKeys
   }
 }
 

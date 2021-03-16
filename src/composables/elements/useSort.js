@@ -10,7 +10,7 @@ const base = function(props, context, dependencies, options)
 
   const defaultClasses = toRefs(context.data).defaultClasses
 
-  const containers = toRefs(context.data).containers
+  const classKeys = toRefs(context.data).classKeys
 
   // ============ DEPENDENCIES ============
 
@@ -40,7 +40,7 @@ const base = function(props, context, dependencies, options)
 
   const initSortable = () => {
     sortable.value = new Sortable(list.value, {
-      handle: `.${defaultClasses.value[containers.value.handle]}`,
+      handle: `.${defaultClasses.value[classKeys.value.handle]}`,
       onEnd: handleSort,
     })
   }

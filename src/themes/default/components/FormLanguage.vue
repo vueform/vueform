@@ -21,7 +21,7 @@
           active: 'active',
           inactive: 'inactive'
         },
-        containers: {
+        classKeys: {
           state: 'wrapper'
         }
       }

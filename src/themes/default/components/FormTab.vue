@@ -31,7 +31,7 @@
           invalid: 'has-error',
           wrapper: 'nav-link',
         },
-        containers: {
+        classKeys: {
           state: 'wrapper'
         }
       }

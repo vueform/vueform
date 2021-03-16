@@ -35,7 +35,7 @@
           labelWrapper: 'lf-label-container',	
           fieldWrapper: 'lf-field-container',
         },
-        containers: {
+        classKeys: {
           element: 'container',
           label: 'labelWrapper',
           field: 'fieldWrapper',

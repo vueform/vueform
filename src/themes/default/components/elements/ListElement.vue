@@ -63,7 +63,7 @@
           disabled: 'disabled',
           handle: 'handle',
         },
-        containers: {
+        classKeys: {
           sortable: 'element',
           add: 'add',
           remove: 'remove',

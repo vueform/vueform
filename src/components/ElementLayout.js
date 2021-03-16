@@ -6,7 +6,7 @@ export default {
   name: 'ElementLayout',
   setup(props, context)
   {
-    const { containers } = toRefs(context.data)
+    const { classKeys } = toRefs(context.data)
 
     // ============ DEPENDENCIES ============
 
@@ -30,9 +30,9 @@ export default {
       let classList = _.clone(baseClasses.value)
 
       classList = mergeComponentClasses(classList, {
-        [containers.value.element]: el$.value.columnsObject.classes.element,
-        [containers.value.label]: el$.value.columnsObject.classes.label,
-        [containers.value.field]: el$.value.columnsObject.classes.field,
+        [classKeys.value.element]: el$.value.columnsObject.classes.element,
+        [classKeys.value.label]: el$.value.columnsObject.classes.label,
+        [classKeys.value.field]: el$.value.columnsObject.classes.field,
       })
 
       // Add element's main class to main class

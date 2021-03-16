@@ -36,7 +36,7 @@
           incompleted: '',
           pending: 'steps-step-pending',
         },
-        containers: {
+        classKeys: {
           state: 'container'
         }
       }
