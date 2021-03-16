@@ -1,8 +1,31 @@
-import { computed, onBeforeMount, onBeforeUnmount, getCurrentInstance, provide, toRefs } from 'composition-api'
+import {
+  computed, getCurrentInstance, provide, toRefs, onBeforeMount, onMounted, onBeforeUpdate,
+  onUpdated, onBeforeUnmount, onUnmounted, onErrorCaptured, onRenderTracked, onRenderTriggered,
+} from 'composition-api'
+
 import useParentAssign from './../useParentAssign'
 
 const base = function(props, context, dependencies)
 {
+  const propRefs = toRefs(props)
+
+  const instantHooks = [
+    'onBeforeCreate',
+    'onCreated',
+  ]
+
+  const hooks = {
+    onBeforeMount,
+    onMounted,
+    onBeforeUpdate,
+    onUpdated,
+    onBeforeUnmount,
+    onUnmounted,
+    onErrorCaptured,
+    onRenderTracked,
+    onRenderTriggered,
+  }
+
   const currentInstance = getCurrentInstance()
 
   // ============ DEPENDENCIES ============
@@ -80,6 +103,20 @@ const base = function(props, context, dependencies)
 
   onBeforeUnmount(() => {
     removeFromParent(currentInstance.proxy.$parent, removeFromParent)
+  })
+
+  Object.values(instantHooks).forEach((hook) => {
+    if (propRefs[hook].value) {
+      propRefs[hook].value.apply(currentInstance.proxy)
+    }
+  })
+
+  Object.keys(hooks).forEach((hook) => {
+    if (propRefs[hook].value) {
+      hooks[hook](() => {
+        propRefs[hook].value.call(currentInstance.proxy)
+      })
+    }
   })
 
   return {

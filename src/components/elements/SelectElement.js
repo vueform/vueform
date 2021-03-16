@@ -38,7 +38,7 @@ export default {
   name: 'SelectElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'select', 'deselect', 'searchChange', 'open', 'close'],
-  slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after', 'beforelist', 'afterlist', 'singlelabel', 'noresults', 'nooptions', 'option'],
+  // slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after', 'beforelist', 'afterlist', 'singlelabel', 'noresults', 'nooptions', 'option'],
   props: {
     type: {
       required: false,

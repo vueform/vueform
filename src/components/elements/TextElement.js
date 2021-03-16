@@ -26,7 +26,6 @@ import useHandleInput from './../../composables/elements/useHandleInput'
 import useEmpty from './../../composables/elements/useEmpty'
 import useWatchValue from './../../composables/elements/useWatchValue'
 
-
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
 import HasChange from './../../mixins/HasChange'
@@ -37,7 +36,7 @@ export default {
   name: 'TextElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change'],
-  slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after', 'addonBefore', 'addonAfter'],
+  // slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after', 'addonBefore', 'addonAfter'],
   props: {
     type: {
       required: false,

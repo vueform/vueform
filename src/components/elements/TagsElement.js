@@ -26,7 +26,7 @@ import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { tags as useOptions } from './../../composables/elements/useOptions'
-import { array as  useNullValue } from './../../composables/elements/useNullValue'
+import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
 import { tags as useBaseElement } from './../../composables/elements/useBaseElement'
 
@@ -40,7 +40,7 @@ export default {
   name: 'TagsElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'select', 'deselect', 'searchChange', 'open', 'close', 'tag'],
-  slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after', 'beforelist', 'afterlist', 'noresults', 'nooptions', 'option', 'tag'],
+  // slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after', 'beforelist', 'afterlist', 'noresults', 'nooptions', 'option', 'tag'],
   props: {
     type: {
       required: false,

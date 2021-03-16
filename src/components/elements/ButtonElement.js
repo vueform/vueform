@@ -20,7 +20,7 @@ import HasView from './../../mixins/HasView'
 
 export default {
   name: 'ButtonElement',
-  slots: ['label', 'info', 'description', 'before', 'between', 'after'],
+  // slots: ['label', 'info', 'description', 'before', 'between', 'after'],
   mixins: [BaseElement, HasView],
   props: {
     type: {

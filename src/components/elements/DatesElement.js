@@ -38,7 +38,7 @@ export default {
   name: 'DatesElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change'],
-  slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
+  // slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {
     type: {
       required: false,

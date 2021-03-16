@@ -40,7 +40,7 @@ export default {
   name: 'MultifileElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'add', 'remove', 'sort'],
-  slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
+  // slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {
     type: {
       required: false,
