@@ -58,15 +58,11 @@ export default function (props, context, dependencies)
           // We are setting externalValue (v-model) to instantly reflect changes in field value
           $this.$set(externalValueObject, element, val)
         }
-
-
-        let intermediaryValueObject = parent ? _.get(intermediaryValue.value, parent) : intermediaryValue.value
-
-        // Same thing here with intermediaryValue
-        if (intermediaryValueObject !== undefined) {
-          // We are setting intermediaryValue to collect changes in a tick which will later be emitted in `input` 
-          $this.$set(intermediaryValueObject, element, val)
-        }
+        
+        // Setting directly because externalValue might contain changes
+        // that intermediary does not have yet, so it would overwrite
+        // external model with old value
+        intermediaryValue.value = _.cloneDeep(externalValue.value)
       }
 
       // Group element
@@ -103,10 +99,6 @@ export default function (props, context, dependencies)
 
   if (externalValue.value) {
     watch(intermediaryValue, (n, o) => {
-      if (_.isEqual(n, o)) {
-        return
-      }
-
       context.emit('input', n)
       context.emit('update:modelValue', n)
     }, { deep: true, immediate: false })

@@ -327,6 +327,7 @@ const testChanges = async (form, mocks, options, updateModel, initial, app = nul
   })
 
   if (app) {
+    await nextTick()
     expect(app.vm.data).toStrictEqual({
       child: 'el_child_value',
       child2: initial.child2,

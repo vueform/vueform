@@ -488,6 +488,7 @@ const testChanges = async (form, mocks, options, updateModel, initial, app = nul
   expect(form.vm.plainData).toStrictEqual({ el: initial.el, el2: initial.el2, })
 
   if (app) {
+    await nextTick()
     expect(app.vm.data).toStrictEqual({ el: initial.el, el2: initial.el2, })
   }
 
