@@ -55,7 +55,7 @@ const testChanges = async (form, mocks, options, updateModel, initial, app = nul
   // Expect nullValues
   expect(el.value).toStrictEqual(initial.el)
   expect(el2.value).toStrictEqual(initial.el2)
-  expect(form.vm.data).toStrictEqual({ el: initial.el, el2: initial.el2, })
+  expect(form.vm.plainData).toStrictEqual({ el: initial.el, el2: initial.el2, })
 
   if (app) {
     expect(app.vm.data).toStrictEqual({ el: initial.el, el2: initial.el2, })
@@ -78,10 +78,10 @@ const testChanges = async (form, mocks, options, updateModel, initial, app = nul
   // Element and form should change instantly
   expect(el.value).toStrictEqual(options.value)
   expect(el2.value).toStrictEqual(initial.el2)
-  expect(form.vm.data).toStrictEqual({ el: options.value, el2: initial.el2, })
+  expect(form.vm.plainData).toStrictEqual({ el: options.value, el2: initial.el2, })
 
   if (app) {
-    expect(form.vm.data).toStrictEqual({ el: options.value, el2: initial.el2, })
+    expect(form.vm.plainData).toStrictEqual({ el: options.value, el2: initial.el2, })
   }
   
   // Watchers kick in
@@ -116,10 +116,10 @@ const testChanges = async (form, mocks, options, updateModel, initial, app = nul
   // Element and form should change instantly
   expect(el.value).toStrictEqual(options.value2)
   expect(el2.value).toStrictEqual(options.value)
-  expect(form.vm.data).toStrictEqual({ el: options.value2, el2: options.value, })
+  expect(form.vm.plainData).toStrictEqual({ el: options.value2, el2: options.value, })
 
   if (app) {
-    expect(form.vm.data).toStrictEqual({ el: options.value2, el2: options.value, })
+    expect(form.vm.plainData).toStrictEqual({ el: options.value2, el2: options.value, })
   }
   
   // Watchers kick in

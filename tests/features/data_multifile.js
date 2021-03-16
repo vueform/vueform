@@ -2,12 +2,12 @@ import { nextTick } from 'vue'
 import { createForm, listSchema, listChildValue } from 'test-helpers'
 import asyncForEach from './../../src/utils/asyncForEach'
 
-export { data, add, remove, load, update, clear, reset, } from './data_list'
+export { plainData, add, remove, load, update, clear, reset, } from './data_list'
 
-export const filtered = function (elementType, elementName, options) {
+export const data = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  it('should "filtered" contained filtered data of children if prototype is a single element', async () => {
+  it('should "data" contained data data of children if prototype is a single element', async () => {
     let form = createForm(listSchema(options, 0, {
       type: elementType,
       initial: 0,
@@ -36,11 +36,11 @@ export const filtered = function (elementType, elementName, options) {
     let el2 = form.vm.el$('el2')
     let el3 = form.vm.el$('el3')
 
-    expect(el.filtered).toStrictEqual({})
+    expect(el.data).toStrictEqual({})
 
     el3.update('value3')
 
-    expect(el.filtered).toStrictEqual({
+    expect(el.data).toStrictEqual({
       el: []
     })
 
@@ -51,12 +51,12 @@ export const filtered = function (elementType, elementName, options) {
 
     el2.update('value2')
 
-    expect(el.filtered).toStrictEqual({
+    expect(el.data).toStrictEqual({
       el: [listChildValue(options, 0, 0), listChildValue(options, 0, 1)]
     })
   })
 
-  it('should "filtered" contained filtered data of children prototype is an object', async () => {
+  it('should "data" contained data data of children prototype is an object', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -84,7 +84,7 @@ export const filtered = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.filtered).toStrictEqual({
+    expect(el.data).toStrictEqual({
       el: [
         {
           file: null,
@@ -94,7 +94,7 @@ export const filtered = function (elementType, elementName, options) {
 
     el2.load('value2')
 
-    expect(el.filtered).toStrictEqual({
+    expect(el.data).toStrictEqual({
       el: [
         {
           file: null,
@@ -104,7 +104,7 @@ export const filtered = function (elementType, elementName, options) {
     })
   })
 
-  it('should have "filtered" according to `formatData` if it is set', async () => {
+  it('should have "data" according to `formatData` if it is set', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm({
         schema: {
@@ -124,7 +124,7 @@ export const filtered = function (elementType, elementName, options) {
 
       let el = form.vm.el$('el')
 
-      expect(el.filtered).toStrictEqual({
+      expect(el.data).toStrictEqual({
         custom: {
           el: el.value
         }

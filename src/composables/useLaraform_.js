@@ -132,14 +132,14 @@ const base = function(props, context, dependencies = {})
    * 
    * @type {object}
    */
-  const filtered = computed(() => {
-    var filtered = {}
+  const data = computed(() => {
+    var data = {}
 
     _.each(elements$.value, (e$) => {
-      filtered = Object.assign({}, filtered, e$.filtered)
+      data = Object.assign({}, data, e$.data)
     })
 
-    return filtered
+    return data
   })
 
   /**
@@ -150,7 +150,7 @@ const base = function(props, context, dependencies = {})
   const formData = computed(() => {
     return convertFormData({
       key: $this.key,
-      data: filtered.value,
+      data: data.value,
     })
   })
 
@@ -918,7 +918,7 @@ const base = function(props, context, dependencies = {})
     events,
     listeners,
     data,
-    filtered,
+    data,
     formData,
     dirty,
     invalid,

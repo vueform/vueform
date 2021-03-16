@@ -1,8 +1,8 @@
 import { createForm } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
-export const data = function (elementType, elementName, options) {
-  it('should have "data" as an object with element name as property and element value as value by default', async () => {
+export const plainData = function (elementType, elementName, options) {
+  it('should have "plainData" as an object with element name as property and element value as value by default', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -14,14 +14,14 @@ export const data = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual({
+    expect(el.plainData).toStrictEqual({
       el: el.value
     })
   })
 }
 
-export const filtered = function (elementType, elementName, options) {
-  it('should have `filtered` equal to `data` if there are no conditions', () => {
+export const data = function (elementType, elementName, options) {
+  it('should have `data` equal to `plainData` if there are no conditions', () => {
     let form = createForm({
       schema: {
         el: {
@@ -33,10 +33,10 @@ export const filtered = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.filtered).toStrictEqual(el.data)
+    expect(el.data).toStrictEqual(el.plainData)
   })
 
-  it('should have `filtered` equal to `data` if there are met conditions', () => {
+  it('should have `data` equal to `plainData` if there are met conditions', () => {
     let form = createForm({
       schema: {
         el: {
@@ -55,10 +55,10 @@ export const filtered = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.filtered).toStrictEqual(el.data)
+    expect(el.data).toStrictEqual(el.plainData)
   })
 
-  it('should have empty object for `filtered` if there are unmet conditions', () => {
+  it('should have empty object for `data` if there are unmet conditions', () => {
     let form = createForm({
       schema: {
         el: {
@@ -76,7 +76,7 @@ export const filtered = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.filtered).toStrictEqual({})
+    expect(el.data).toStrictEqual({})
   })
 }
 

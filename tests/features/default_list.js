@@ -127,7 +127,7 @@ export const defaultValue = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let el2 = form.vm.el$('el2')
 
-    expect(el.data).toStrictEqual({
+    expect(el.plainData).toStrictEqual({
       el: [
         {
           child: [
@@ -152,7 +152,7 @@ export const defaultValue = function (elementType, elementName, options) {
       ]
     })
 
-    expect(el2.data).toStrictEqual({
+    expect(el2.plainData).toStrictEqual({
       el2: [
         {
           child3: [
@@ -204,7 +204,7 @@ export const defaultValue = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual({
+    expect(el.plainData).toStrictEqual({
       el: [
         {
           child: [
@@ -244,7 +244,7 @@ export const defaultValue = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual({
+    expect(el.plainData).toStrictEqual({
       el: [
         {
           child: [
@@ -287,7 +287,7 @@ export const defaultValue = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual({
+    expect(el.plainData).toStrictEqual({
       el: [
         {
           child: [
@@ -333,7 +333,7 @@ export const defaultValue = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual({
+    expect(el.plainData).toStrictEqual({
       el: [
         {
           child: [
@@ -382,7 +382,7 @@ export const defaultValue = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual({
+    expect(el.plainData).toStrictEqual({
       el: [
         {
           child: [
@@ -436,7 +436,7 @@ export const defaultValue = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual({
+    expect(el.plainData).toStrictEqual({
       el: [
         {
           child: [
@@ -497,7 +497,7 @@ export const defaultValue = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual({
+    expect(el.plainData).toStrictEqual({
       el: [
         {
           child: [

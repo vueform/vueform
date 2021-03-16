@@ -31,8 +31,8 @@
       <FormStepsControls
         v-if="hasSteps && stepsControls"
       />
+      {{ plainData }}
       {{ data }}
-      {{ filtered }}
     </slot>
   </form>
 </template>

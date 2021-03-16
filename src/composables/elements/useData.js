@@ -31,7 +31,7 @@ const base = function(props, context, dependencies, options = {})
 
   // ============== COMPUTED ===============
   
-  const data = computed(() => {
+  const plainData = computed(() => {
     return {[name.value]: value.value}
   })
   
@@ -40,7 +40,7 @@ const base = function(props, context, dependencies, options = {})
    * 
    * @type {object}
    */
-  const filtered = computed(() => {
+  const data = computed(() => {
     if (!available.value || !submit.value) {
       return {}
     }
@@ -99,8 +99,8 @@ const base = function(props, context, dependencies, options = {})
   const prepare = async () => {}
 
   return {
+    plainData,
     data,
-    filtered,
     load,
     update,
     clear,
@@ -119,7 +119,7 @@ const object = function(props, context, dependencies)
   } = toRefs(props)
 
   const {
-    data,
+    plainData,
     prepare
   } = base(props, context, dependencies)
 
@@ -131,22 +131,22 @@ const object = function(props, context, dependencies)
 
   // ============== COMPUTED ===============
   
-  const filtered = computed(() => {
+  const data = computed(() => {
     if (!available.value || !submit.value) {
       return {}
     }
     
-    let filtered = {}
+    let data = {}
 
     _.each(children$.value, (element$) => {
       if (element$.isStatic) {
         return
       }
 
-      filtered = Object.assign({}, filtered, element$.filtered)
+      data = Object.assign({}, data, element$.data)
     })
 
-    return formatData.value ? formatData.value(name.value, filtered, form$.value) : {[name.value]: filtered}
+    return formatData.value ? formatData.value(name.value, data, form$.value) : {[name.value]: data}
   })
 
   // =============== METHODS ===============
@@ -217,8 +217,8 @@ const object = function(props, context, dependencies)
   }
 
   return {
+    plainData,
     data,
-    filtered,
     load,
     update,
     clear,
@@ -252,31 +252,31 @@ const group = function(props, context, dependencies)
 
   // ============== COMPUTED ===============
 
-  const data = computed(() => {
+  const plainData = computed(() => {
     return value.value
   })
 
-  const filtered = computed(() => {
+  const data = computed(() => {
     if (!available.value || !submit.value) {
       return {}
     }
     
-    let filtered = {}
+    let data = {}
 
     _.each(children$.value, (element$) => {
       if (element$.isStatic) {
         return
       }
 
-      filtered = Object.assign({}, filtered, element$.filtered)
+      data = Object.assign({}, data, element$.data)
     })
 
-    return formatData.value ? formatData.value(name.value, filtered, form$.value) : filtered
+    return formatData.value ? formatData.value(name.value, data, form$.value) : data
   })
 
   return {
+    plainData,
     data,
-    filtered,
     load,
     update,
     clear,
@@ -303,7 +303,7 @@ const list = function(props, context, dependencies, options)
     clear,
     reset,
     prepare,
-    data,
+    plainData,
   } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
@@ -330,22 +330,22 @@ const list = function(props, context, dependencies, options)
     return parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
   })
   
-  const filtered = computed(() => {
+  const data = computed(() => {
     if (!available.value || !submit.value) {
       return {}
     }
     
-    let filtered = []
+    let data = []
 
     _.each(children$.value, (element$) => {
-      let val = element$.filtered[element$.name]
+      let val = element$.data[element$.name]
 
       if (val !== undefined) {
-        filtered.push(val)
+        data.push(val)
       }
     })
 
-    return formatData.value ? formatData.value(name.value, filtered, form$.value) : {[name.value]: filtered}
+    return formatData.value ? formatData.value(name.value, data, form$.value) : {[name.value]: data}
   })
 
   // =============== METHODS ===============
@@ -481,8 +481,8 @@ const list = function(props, context, dependencies, options)
   }
 
   return {
-    filtered,
     data,
+    plainData,
     add,
     remove,
     load,
@@ -502,8 +502,8 @@ const date = function(props, context, dependencies)
   } = toRefs(props)
 
   const {
+    plainData,
     data,
-    filtered,
     update,
     clear,
     reset,
@@ -527,8 +527,8 @@ const date = function(props, context, dependencies)
   }
 
   return {
+    plainData,
     data,
-    filtered,
     load,
     update,
     clear,
@@ -544,8 +544,8 @@ const dates = function(props, context, dependencies)
   } = toRefs(props)
 
   const {
+    plainData,
     data,
-    filtered,
     update,
     clear,
     reset,
@@ -579,8 +579,8 @@ const dates = function(props, context, dependencies)
   }
 
   return {
+    plainData,
     data,
-    filtered,
     load,
     update,
     clear,
@@ -596,8 +596,8 @@ const multilingual = function(props, context, dependencies, options = {})
   } = toRefs(props)
 
   const {
+    plainData,
     data,
-    filtered,
     clear,
     reset,
     prepare,
@@ -645,8 +645,8 @@ const multilingual = function(props, context, dependencies, options = {})
   }
 
   return {
+    plainData,
     data,
-    filtered,
     load,
     update,
     clear,
@@ -658,8 +658,8 @@ const multilingual = function(props, context, dependencies, options = {})
 const trix = function(props, context, dependencies)
 {
   const {
+    plainData,
     data,
-    filtered,
     load,
     update,
     clear,
@@ -681,8 +681,8 @@ const trix = function(props, context, dependencies)
   const value = dependencies.value
 
   return {
+    plainData,
     data,
-    filtered,
     load,
     update,
     clear,
@@ -694,8 +694,8 @@ const trix = function(props, context, dependencies)
 const ttrix = function(props, context, dependencies)
 {
   const {
+    plainData,
     data,
-    filtered,
     load,
     update,
     clear,
@@ -725,8 +725,8 @@ const ttrix = function(props, context, dependencies)
   })
 
   return {
+    plainData,
     data,
-    filtered,
     load,
     update,
     clear,

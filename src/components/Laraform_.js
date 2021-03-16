@@ -30,7 +30,7 @@ export default {
     // },
     // store: {
     //   handler(value) {
-    //     if (_.isEqual(value, this.filtered)) {
+    //     if (_.isEqual(value, this.data)) {
     //       return
     //     }
         
@@ -41,8 +41,8 @@ export default {
     // data: {
       // @todo
     //   handler(value) {
-    //     this.$emit('change', this.filtered)
-    //     this.handleChange(this.filtered)
+    //     this.$emit('change', this.data)
+    //     this.handleChange(this.data)
 
     //     if (this.storePath === null) {
     //       return
@@ -52,7 +52,7 @@ export default {
     //       return
     //     }
         
-    //     this.store = this.filtered
+    //     this.store = this.data
     //   },
     //   deep: true
     // }

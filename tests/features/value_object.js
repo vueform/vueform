@@ -150,7 +150,7 @@ export const value = function (elementType, elementName, options) {
       },
     })
 
-    expect(form.vm.data).toStrictEqual({
+    expect(form.vm.plainData).toStrictEqual({
       el: {
         child: {
           subchild: 'form-a this',
@@ -299,7 +299,7 @@ export const value = function (elementType, elementName, options) {
       }
     })
 
-    expect(form.vm.data).toStrictEqual({
+    expect(form.vm.plainData).toStrictEqual({
       el: {
         child: {
           subchild: 'form-a this',
@@ -347,7 +347,7 @@ const testChanges = async (form, mocks, options, updateModel, initial, app = nul
   // Expect initial
   expect(el.value).toStrictEqual({ child: initial.el.child, child2: initial.el.child2 })
   expect(el2.value).toStrictEqual({ child: initial.el2.child, child2: initial.el2.child2 })
-  expect(form.vm.data).toStrictEqual({
+  expect(form.vm.plainData).toStrictEqual({
     el: { child: initial.el.child, child2: initial.el.child2 },
     el2: { child: initial.el2.child, child2: initial.el2.child2 }
   })
@@ -380,7 +380,7 @@ const testChanges = async (form, mocks, options, updateModel, initial, app = nul
   // Element and form should change instantly
   expect(el.value).toStrictEqual({ child: 'el_child_value', child2: initial.el.child2 })
   expect(el2.value).toStrictEqual({ child: initial.el2.child, child2: initial.el2.child2 })
-  expect(form.vm.data).toStrictEqual({
+  expect(form.vm.plainData).toStrictEqual({
     el: { child: 'el_child_value', child2: initial.el.child2 },
     el2: { child: initial.el2.child, child2: initial.el2.child2 }
   })
@@ -437,7 +437,7 @@ const testChanges = async (form, mocks, options, updateModel, initial, app = nul
   // Element and form should change instantly
   expect(el.value).toStrictEqual({ child: 'el_child_value2', child2: initial.el.child2 })
   expect(el2.value).toStrictEqual({ child: initial.el2.child, child2: 'el2_child2_value' })
-  expect(form.vm.data).toStrictEqual({
+  expect(form.vm.plainData).toStrictEqual({
     el: { child: 'el_child_value2', child2: initial.el.child2 },
     el2: { child: initial.el2.child, child2: 'el2_child2_value' }
   })
@@ -514,7 +514,7 @@ const testChanges = async (form, mocks, options, updateModel, initial, app = nul
   // Element and form should change instantly
   expect(el.value).toStrictEqual({ child: 'el_child_value2', child2: 'el_child2_value' })
   expect(el2.value).toStrictEqual({ child: 'el2_child_value', child2: 'el2_child2_value' })
-  expect(form.vm.data).toStrictEqual({
+  expect(form.vm.plainData).toStrictEqual({
     el: { child: 'el_child_value2', child2: 'el_child2_value', },
     el2: { child: 'el2_child_value', child2: 'el2_child2_value', },
   })

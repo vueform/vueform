@@ -8,7 +8,7 @@ export default class distinct extends Validator {
     let attributeName = attribute.replace(/\d+(?!\d+)/, '*')
     let rootVariable = attribute.match(/^[\w-]+/)[0]
     let attributeData = {
-      [rootVariable]: this.form$.data[rootVariable]
+      [rootVariable]: this.form$.plainData[rootVariable]
     }
 
     let pattern = pregQuote(attributeName, '#').replace('\\*', '[^.]+')

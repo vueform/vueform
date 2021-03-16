@@ -191,18 +191,18 @@ const base = function(props, context, dependencies = {})
    * 
    * @type {object}
    */
-  const data = computed(() => {
-    var data = {}
+  const plainData = computed(() => {
+    var plainData = {}
 
     _.each(elements$.value, (e$) => {
       if (e$.isStatic) {
         return
       }
 
-      data = Object.assign({}, data, e$.data)
+      plainData = Object.assign({}, plainData, e$.plainData)
     })
 
-    return data
+    return plainData
   })
 
   /**
@@ -210,18 +210,18 @@ const base = function(props, context, dependencies = {})
    * 
    * @type {object}
    */
-  const filtered = computed(() => {
-    var filtered = {}
+  const data = computed(() => {
+    var data = {}
 
     _.each(elements$.value, (e$) => {
       if (e$.isStatic) {
         return
       }
       
-      filtered = Object.assign({}, filtered, e$.filtered)
+      data = Object.assign({}, data, e$.data)
     })
 
-    return filtered
+    return data
   })
 
   /**
@@ -232,7 +232,7 @@ const base = function(props, context, dependencies = {})
   const formData = computed(() => {
     return convertFormData({
       formKey: options.value.formKey,
-      data: filtered.value,
+      data: data.value,
     })
   })
 
@@ -922,8 +922,8 @@ const base = function(props, context, dependencies = {})
     events,
     listeners,
     internalData,
+    plainData,
     data,
-    filtered,
     formData,
     dirty,
     invalid,

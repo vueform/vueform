@@ -18,7 +18,7 @@ const Validator = class {
     this.watchers = []
     
     if (this.condition && this.dependent) {
-      this.form$.$watch('data.' + this.dependent, () => {
+      this.form$.$watch('plainData.' + this.dependent, () => {
         if (this.element$.validated) {
 
           // we need to revalidate the whole element
