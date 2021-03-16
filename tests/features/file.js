@@ -1225,6 +1225,41 @@ export const remove = function (elementType, elementName, options) {
     })
   })
 
+  it('should not call remove temp endpoint when removed in stage 2 softRemove=true', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+          softRemove: true,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    let axiosMock = jest.fn()
+
+    let tmp = {
+      tmp: 'tmp123',
+      originalName: 'filename.jpg'
+    }
+
+    el.axios.post = axiosMock
+
+    el.load(tmp)
+
+    expect(el.stage).toBe(2)
+
+    el.remove()
+
+    await flushPromises()
+
+    expect(axiosMock).not.toHaveBeenCalled()
+
+    expect(el.value).toBe(null)
+  })
+
   it('should not remove file and null progress when removed in stage 2 with error', async () => {
     let errorMock = jest.fn()
 
@@ -1297,6 +1332,39 @@ export const remove = function (elementType, elementName, options) {
       path: 'el',
       param: 'value'
     })
+  })
+
+  it('should not call remove file endpoint when removed in stage 3 softRemove=true', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+          softRemove: true,
+          params: {
+            param: 'value'
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    let axiosMock = jest.fn()
+
+    let file = 'filename.jpg'
+
+    el.axios.post = axiosMock
+
+    el.load(file)
+
+    expect(el.stage).toBe(3)
+
+    el.remove()
+
+    expect(axiosMock).not.toHaveBeenCalled()
+
+    expect(el.value).toBe(null)
   })
 
   it('should not call remove file endpoint when removed and does not confirm in stage 3', () => {

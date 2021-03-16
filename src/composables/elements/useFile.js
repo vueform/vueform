@@ -13,6 +13,7 @@ const base = function (props, context, dependencies)
     url,
     image,
     params,
+    softRemove,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -296,7 +297,7 @@ const base = function (props, context, dependencies)
     removing.value = true
 
     try {
-      if (stage.value === 3) {
+      if (stage.value === 3 && !softRemove.value) {
         if (!confirm(form$.value.__(`laraform.elements.file.removeConfirm`))) {
           return false
         }
@@ -310,7 +311,7 @@ const base = function (props, context, dependencies)
         )
       }
 
-      else if (stage.value === 2) {
+      else if (stage.value === 2 && !softRemove.value) {
         await form$.value.$laraform.services.axios[fileMethods.value.removeTemp](fileEndpoints.value.removeTemp,
           Object.assign({}, params.value, {
             file: value.value.tmp,

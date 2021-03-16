@@ -164,6 +164,11 @@ export default {
       type: [Object],
       default: () => ({})
     },
+    softRemove: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
     url: {
       required: false,
       type: [String],
