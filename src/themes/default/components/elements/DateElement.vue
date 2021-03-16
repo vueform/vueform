@@ -2,8 +2,6 @@
   <component :is="elementLayout">
     <template v-slot:field>
 
-      <slot name="prefix"></slot>
-
       <ElementLabelFloating
         v-if="floating"
         :visible="!empty"
@@ -22,8 +20,6 @@
         ref="input"
       />
 
-      <slot name="suffix"></slot>
-      
     </template>
 
     <template v-for="(component, slot) in elementSlots" v-slot:[slot]>

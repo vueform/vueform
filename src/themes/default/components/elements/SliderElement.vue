@@ -2,8 +2,6 @@
   <component :is="elementLayout">
     <template v-slot:field>
 
-      <slot name="prefix"></slot>
-
       <Slider
         :value="value"
         :modelValue="value"
@@ -12,8 +10,6 @@
         ref="input"
         @change="handleChange"
       />
-
-      <slot name="suffix"></slot>
 
     </template>
 

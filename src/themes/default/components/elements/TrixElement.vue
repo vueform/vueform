@@ -2,8 +2,6 @@
   <component :is="elementLayout">
     <template v-slot:field>
 
-      <slot name="prefix"></slot>
-
       <TrixWrapper
         :value="model"
         :placeholder="placeholder"
@@ -17,8 +15,6 @@
         @alert="handleError"
         ref="input"
       />
-
-      <slot name="suffix"></slot>
 
     </template>
 

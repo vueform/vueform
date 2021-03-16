@@ -3,8 +3,6 @@
 
     <template v-slot:field>
 
-      <slot name="prefix"></slot>
-
       <!-- Drag n drop -->
       <DragAndDrop
         v-if="drop && canDrop && canSelect"
@@ -66,8 +64,6 @@
         @click.prevent="handleAbort"
       >{{ __(`laraform.elements.${type}.abort`) }}</a>
         
-      <slot name="suffix"></slot>
-
     </template>
 
     <template v-for="(component, slot) in elementSlots" v-slot:[slot]>

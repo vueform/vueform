@@ -2,7 +2,6 @@
   <component :is="elementLayout">
     
     <template v-slot:field>
-      <slot name="prefix"></slot>
 
       <!-- Drag n drop -->
       <DragAndDrop
@@ -46,7 +45,6 @@
         </div>
       </div>
 
-      <slot name="suffix"></slot>
     </template>
 
     <template v-for="(component, slot) in elementSlots" v-slot:[slot]>

@@ -3,8 +3,6 @@
 
     <template v-slot:field>
 
-      <slot name="prefix"></slot>
-
       <ElementLabelFloating
         v-if="floating"
         :visible="!empty"
@@ -75,8 +73,6 @@
         <template v-slot:afterlist><slot name="afterlist"><component v-if="fieldSlots.afterlist" :is="fieldSlots.afterlist" /></slot></template>
 
       </Multiselect>
-
-      <slot name="suffix"></slot>
 
     </template>
 

@@ -2,8 +2,6 @@
   <component :is="elementLayout">
     <template v-slot:field>
 
-      <slot name="prefix"></slot>
-
       <div :class="classes.childrenContainer">
         <div :class="classes.element" ref="list">
           <div v-for="(val, i) in value" :key="i">
@@ -36,7 +34,6 @@
         v-html="__('laraform.elements.list.add')"
       ></a>
 
-      <slot name="suffix"></slot>
     </template>
 
     <template v-for="(component, slot) in elementSlots" v-slot:[slot]>

@@ -3,8 +3,6 @@
 
     <template v-slot:field>
 
-      <slot name="prefix"></slot>
-
       <Toggle
         :value="value"
         :modelValue="value"
@@ -16,8 +14,6 @@
       />
 
       <span v-if="text" :class="classes.toggleText" v-html="text"></span>
-
-      <slot name="suffix"></slot>
 
     </template>
 
