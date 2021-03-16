@@ -11,6 +11,7 @@ const base = function (props, context, dependencies, options_ = {})
 
   const form$ = dependencies.form$
   const value = dependencies.value
+  const clear = dependencies.clear
 
   // ============== PRIVATE ===============
 
@@ -90,6 +91,20 @@ const base = function (props, context, dependencies, options_ = {})
     value.value = data
   }
 
+  /* istanbul ignore next */
+  /**
+   * 
+   *
+   * @private
+   */
+  const handleLocationBlur = () => {
+    if (inputElement().value.length) {
+      inputElement().value = value.value.formatted_address
+    } else {
+      clear()
+    }
+  }
+
   /**
    * Initalizes location service.
    *
@@ -119,6 +134,7 @@ const base = function (props, context, dependencies, options_ = {})
     defaultOptions,
     providerOptions,
     handleAddressChange,
+    handleLocationBlur,
     initLocationService,
   }
 }

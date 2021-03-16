@@ -1,4 +1,4 @@
-import { toRefs, onMounted, nextTick } from 'composition-api'
+import { toRefs, onMounted, watch } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
@@ -278,6 +278,7 @@ export default {
       form$: form$.form$,
       value: value.value,
       input: input.input,
+      clear: data.clear,
     }, {
       input: input.input,
     })

@@ -26,6 +26,7 @@
           :disabled="isDisabled"
           :readonly="readonly"
           ref="input"
+          @blur="handleLocationBlur"
         />
 
         <slot name="addon-after">
