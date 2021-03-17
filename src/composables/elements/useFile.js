@@ -78,7 +78,7 @@ const base = function (props, context, dependencies)
    * @option
    */
   const fileMethods = computed(() => {
-    return Object.assign({}, form$.value.$laraform.methods.file, methods.value || {})
+    return Object.assign({}, form$.value.$laraform.config.methods.file, methods.value || {})
   })
 
   /**
@@ -89,7 +89,7 @@ const base = function (props, context, dependencies)
    * @option
    */
   const fileEndpoints = computed(() => {
-    return Object.assign({}, form$.value.$laraform.endpoints.file, endpoints.value || {})
+    return Object.assign({}, form$.value.$laraform.config.endpoints.file, endpoints.value || {})
   })
 
   /**

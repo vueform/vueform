@@ -148,7 +148,7 @@ const base = function(props, context, dependencies = {})
   })
 
   const baseConfig = computed(() => {
-    return $this.$laraform
+    return $this.$laraform.config
   })
 
   const services = computed(() => {

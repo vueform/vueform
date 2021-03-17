@@ -31,7 +31,7 @@ export default class exists extends Validator {
   async check(value) {
     var name = this.element$.name
 
-    var res = await this.form$.$laraform.services.axios.post(this.form$.$laraform.endpoints.validators.exists, {
+    var res = await this.form$.$laraform.services.axios.post(this.form$.$laraform.config.endpoints.validators.exists, {
       params: this.requestParams,
       [name]: value,
       laraformFieldName: name

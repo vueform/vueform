@@ -6,7 +6,7 @@ export default class active_url extends Validator {
   }
 
   async check(value) {
-    var res = await this.form$.$laraform.services.axios.post(this.form$.$laraform.endpoints.validators.active_url, {
+    var res = await this.form$.$laraform.services.axios.post(this.form$.$laraform.config.endpoints.validators.active_url, {
       url: value
     })
     

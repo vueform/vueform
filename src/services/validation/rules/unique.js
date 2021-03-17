@@ -29,7 +29,7 @@ export default class unique extends Validator {
   }
   
   async check(value) {
-    var res = await this.form$.$laraform.services.axios.post(this.form$.$laraform.endpoints.validators.unique, {
+    var res = await this.form$.$laraform.services.axios.post(this.form$.$laraform.config.endpoints.validators.unique, {
       params: this.requestParams,
       value: value
     })

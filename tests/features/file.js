@@ -219,7 +219,7 @@ export const fileEndpoints = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.fileEndpoints).toStrictEqual(Object.assign({}, el.$laraform.endpoints.file, {
+    expect(el.fileEndpoints).toStrictEqual(Object.assign({}, el.$laraform.config.endpoints.file, {
       uploadTemp: 'upload-temp',
     }))
   })

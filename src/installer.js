@@ -161,7 +161,8 @@ if (window.moment === undefined) {
 export default function(config) {
   const Laraform = class {
     constructor() {
-      this.options = Object.assign({}, config, {
+      this.options = {
+        config: config,
         services: {
           validation,
           axios,
@@ -170,7 +171,7 @@ export default function(config) {
           location,
           condition,
         }
-      })
+      }
     }
 
     locale(locale) {
@@ -184,7 +185,7 @@ export default function(config) {
         'elements', 'components', 'rules', 'services',
       ], (attr) => {
           if (config[attr] !== undefined) {
-            this.options[attr] = Object.assign({}, this.config[attr], config[attr])
+            this.options.config[attr] = Object.assign({}, this.config[attr], config[attr])
           }
       })
 
@@ -193,7 +194,7 @@ export default function(config) {
         'endpoints'
       ], (attr) => {
           if (config[attr] !== undefined) {
-            this.options[attr] = _.merge({}, this.options[attr], config[attr])
+            this.options.config[attr] = _.merge({}, this.options.config[attr], config[attr])
           }
       })
       
@@ -203,7 +204,7 @@ export default function(config) {
         'columns', 'validateOn', 'method', 'vue',
       ], (attr) => {
           if (config[attr] !== undefined) {
-            this.options[attr] = config[attr]
+            this.options.config[attr] = config[attr]
           }
       })
     }
@@ -217,11 +218,11 @@ export default function(config) {
     }
 
     initI18n() {
-      this.options.i18n = this.options.i18n || new i18n(this.options)
+      this.options.i18n = this.options.i18n || new i18n(this.options.config)
     }
 
     registerComponents(appOrVue, componenList = components) {
-      const theme = this.options.themes[this.options.theme]
+      const theme = this.options.config.themes[this.options.config.theme]
 
       _.each(componenList, (component, name) => {
         let componentSetup = component.setup
@@ -265,14 +266,14 @@ export default function(config) {
 
       this.initI18n()
 
-      if (this.options.extensions && this.options.extensions.length) {
+      if (this.options.config.extensions && this.options.config.extensions.length) {
         this.applyExtensions()
       }
 
       this.registerComponents(appOrVue)
       this.registerElements(appOrVue)
 
-      switch (this.options.vue) {
+      switch (this.options.config.vue) {
         case 2:
           appOrVue.config.ignoredElements = ['trix-editor']
 

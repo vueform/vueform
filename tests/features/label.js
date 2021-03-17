@@ -17,7 +17,7 @@ export const hasLabel = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(form.vm.$laraform.labels).toBe(false)
+    expect(form.vm.$laraform.config.labels).toBe(false)
     expect(el.hasLabel).toBe(true)
   })
 
@@ -36,7 +36,7 @@ export const hasLabel = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(form.vm.$laraform.labels).toBe(true)
+    expect(form.vm.$laraform.config.labels).toBe(true)
     expect(el.hasLabel).toBe(true)
   })
 
@@ -55,7 +55,7 @@ export const hasLabel = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(form.vm.$laraform.labels).toBe(false)
+    expect(form.vm.$laraform.config.labels).toBe(false)
     expect(el.hasLabel).toBe(false)
   })
 }

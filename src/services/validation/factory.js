@@ -11,7 +11,7 @@ const Factory = class {
   }
 
   get rules() {
-    return Object.assign({}, this.form$.$laraform.services.validation.rules, this.form$.$laraform.rules)
+    return Object.assign({}, this.form$.$laraform.services.validation.rules, this.form$.$laraform.config.rules)
   }
  
   makeAll(rules) {

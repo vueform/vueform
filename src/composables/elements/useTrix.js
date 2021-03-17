@@ -19,7 +19,7 @@ const base = function (props, context, dependencies)
   * @default "..."
   */
   const trixEndpoint = computed(() => {
-    return endpoint.value || form$.value.$laraform.endpoints.elements.trix.attachment
+    return endpoint.value || form$.value.$laraform.config.endpoints.elements.trix.attachment
   })
 
   return {

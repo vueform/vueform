@@ -50,7 +50,7 @@ export const trixEndpoint = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.trixEndpoint).toStrictEqual(form.vm.$laraform.endpoints.elements.trix.attachment)
+    expect(el.trixEndpoint).toStrictEqual(form.vm.$laraform.config.endpoints.elements.trix.attachment)
   })
   
   it('should pass `endpoint` to Trix component', () => {

@@ -291,7 +291,7 @@ describe('Laraform', () => {
         config: { themes: { bootstrap, default: defaultTheme } },
       })
 
-      expect(form.vm.theme).toStrictEqual(form.vm.$laraform.theme)
+      expect(form.vm.theme).toStrictEqual(form.vm.$laraform.config.theme)
     })
   })
 
@@ -305,7 +305,7 @@ describe('Laraform', () => {
     it('should have config.endpoints.process as default', () => {
       let form = createForm({})
 
-      expect(form.vm.endpoint).toStrictEqual(form.vm.$laraform.endpoints.process)
+      expect(form.vm.endpoint).toStrictEqual(form.vm.$laraform.config.endpoints.process)
     })
   })
 
@@ -319,7 +319,7 @@ describe('Laraform', () => {
     it('should have config.methods.process as default', () => {
       let form = createForm({})
 
-      expect(form.vm.method).toStrictEqual(form.vm.$laraform.methods.process)
+      expect(form.vm.method).toStrictEqual(form.vm.$laraform.config.methods.process)
     })
   })
 
@@ -565,7 +565,7 @@ describe('Laraform', () => {
     it('should have config.columns as default', () => {
       let form = createForm({})
 
-      expect(form.vm.columns).toStrictEqual(form.vm.$laraform.columns)
+      expect(form.vm.columns).toStrictEqual(form.vm.$laraform.config.columns)
     })
   })
 
@@ -579,7 +579,7 @@ describe('Laraform', () => {
     it('should have null as default', () => {
       let form = createForm({})
 
-      expect(form.vm.labels).toStrictEqual(form.vm.$laraform.labels)
+      expect(form.vm.labels).toStrictEqual(form.vm.$laraform.config.labels)
     })
   })
 
@@ -607,7 +607,7 @@ describe('Laraform', () => {
     it('should have config.languages as default', () => {
       let form = createForm({})
 
-      expect(form.vm.languages).toStrictEqual(form.vm.$laraform.languages)
+      expect(form.vm.languages).toStrictEqual(form.vm.$laraform.config.languages)
     })
   })
 
@@ -621,7 +621,7 @@ describe('Laraform', () => {
     it('should have config.language as default', () => {
       let form = createForm({})
 
-      expect(form.vm.language).toStrictEqual(form.vm.$laraform.language)
+      expect(form.vm.language).toStrictEqual(form.vm.$laraform.config.language)
     })
   })
 
@@ -686,7 +686,7 @@ describe('Laraform', () => {
     it('should have null as default', () => {
       let form = createForm({})
 
-      expect(form.vm.displayErrors).toStrictEqual(form.vm.$laraform.displayErrors)
+      expect(form.vm.displayErrors).toStrictEqual(form.vm.$laraform.config.displayErrors)
     })
   })
 
@@ -700,7 +700,7 @@ describe('Laraform', () => {
     it('should have null as default', () => {
       let form = createForm({})
 
-      expect(form.vm.validateOn).toStrictEqual(form.vm.$laraform.validateOn)
+      expect(form.vm.validateOn).toStrictEqual(form.vm.$laraform.config.validateOn)
     })
   })
 

@@ -53,8 +53,8 @@ const base = function (props, context, dependencies, options_ = {})
       },
       algolia: {
         type: 'address',
-        appId: form$.value.$laraform.service.algolia.app_id,
-        apiKey: form$.value.$laraform.service.algolia.api_key,
+        appId: form$.value.$laraform.config.services.algolia.app_id,
+        apiKey: form$.value.$laraform.config.services.algolia.api_key,
         templates: options_.templates || {}
       }
     }
