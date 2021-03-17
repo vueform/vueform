@@ -1391,20 +1391,6 @@ describe('Laraform', () => {
     })
   })
 
-  describe('shouldValidateOnSubmit', () => {
-    it('should be true if validateOn contains submit', async () => {
-      let form = createForm({
-        validateOn: 'submit|change',
-      })
-
-      expect(form.vm.shouldValidateOnSubmit).toBe(true)
-
-      form.vm.validateOn = 'change'
-
-      expect(form.vm.shouldValidateOnSubmit).toBe(false)
-    })
-  })
-
   describe('shouldValidateOnStep', () => {
     it('should be true if validateOn contains step', async () => {
       let form = createForm({

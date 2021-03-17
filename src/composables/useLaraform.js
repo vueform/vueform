@@ -385,15 +385,6 @@ const base = function(props, context, dependencies = {})
    * 
    * @private
    */
-  const shouldValidateOnSubmit = computed(() => {
-    return options.value.validateOn.split('|').indexOf('submit') !== -1
-  })
-
-  /**
-   * 
-   * 
-   * @private
-   */
   const shouldValidateOnStep = computed(() => {
     return options.value.validateOn.split('|').indexOf('step') !== -1
   })
@@ -655,10 +646,8 @@ const base = function(props, context, dependencies = {})
     if (disabled.value) {
       return
     }
-
-    if (shouldValidateOnSubmit.value) {
-      await validate()
-    }
+    
+    await validate()
 
     if (invalid.value) {
       return
@@ -935,7 +924,6 @@ const base = function(props, context, dependencies = {})
     formMessages,
     disabled,
     shouldValidateOnChange,
-    shouldValidateOnSubmit,
     shouldValidateOnStep,
     hasSteps,
     hasTabs,

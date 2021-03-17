@@ -156,6 +156,7 @@ const button = function(props, context, dependencies)
 {
   const {
     disabled,
+    submits,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -166,7 +167,15 @@ const button = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   const isDisabled = computed(() => {
-    return typeof disabled.value === 'function' ? disabled.value(form$.value, el$.value) : disabled.value
+    if (typeof disabled.value === 'function') {
+      return disabled.value(form$.value, el$.value)
+    }
+    
+    if (submits.value && (form$.value.invalid || form$.value.busy)) {
+      return true
+    }
+    
+    return disabled.value
   })
 
   return {

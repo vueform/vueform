@@ -9,7 +9,7 @@
       />
 
       <FormErrors
-        v-if="hasErrors && displayErrors"
+        v-if="hasErrors && options.displayErrors"
       />
 
       <FormLanguages
