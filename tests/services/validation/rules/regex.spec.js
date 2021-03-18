@@ -1,4 +1,5 @@
 import { createForm, findAllComponents, change } from 'test-helpers'
+import flushPromises from 'flush-promises'
 
 describe('Regex Rule', () => {
   it('should validate regex', async () => {
@@ -14,9 +15,11 @@ describe('Regex Rule', () => {
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, 'asdf')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
 
     change(a, 'ASDF')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
   })
 })

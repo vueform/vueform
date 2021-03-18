@@ -28,7 +28,7 @@ describe('Size Rule', () => {
       '-3': true,
     }
     
-    tryInputValues(values, a, done)
+    await tryInputValues(values, a)
   })
 
   it('should check if integer value is lower or equal than minimum', async () => {
@@ -57,7 +57,7 @@ describe('Size Rule', () => {
       '-3': true,
     }
     
-    tryInputValues(values, a, done)
+    await tryInputValues(values, a)
   })
 
   it('should check if string length is lower or equal than minimum', async () => {
@@ -73,52 +73,61 @@ describe('Size Rule', () => {
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
     
     change(a, 'a')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
     
     change(a, 'as')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
     
     change(a, 'asd')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
     
     change(a, 'a吧')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
     
     change(a, 'Ру')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
     
     change(a, ' ')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
     
     change(a, '  ')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
     
     change(a, '1')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
     
     change(a, '2')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
     
     change(a, '4')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
     
     change(a, '12')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
     
     change(a, '%!')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
   })
 
   it('should check if array length equals size (v<size)', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
           type: 'list',
           rules: 'array|size:2',
+          initial: 1,
           element: {
             type: 'text'
           }
@@ -128,26 +137,18 @@ describe('Size Rule', () => {
 
     let a = findAllComponents(form, { name: 'ListElement' }).at(0)
     
-    setInstances(a, 1)
-
-    LocalVue.nextTick(() => {
-      a.vm.validate()
-      expect(a.vm.invalid).toBe(true)
-
-      done()
-    })
+    a.vm.validate()
+    await flushPromises()
+    expect(a.vm.invalid).toBe(true)
   })
 
   it('should check if array length equals size (v=size)', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
           type: 'list',
           rules: 'array|size:2',
+          initial: 2,
           element: {
             type: 'text'
           }
@@ -157,26 +158,18 @@ describe('Size Rule', () => {
 
     let a = findAllComponents(form, { name: 'ListElement' }).at(0)
     
-    setInstances(a, 2)
-
-    LocalVue.nextTick(() => {
-      a.vm.validate()
-      expect(a.vm.invalid).toBe(false)
-
-      done()
-    })
+    a.vm.validate()
+    await flushPromises()
+    expect(a.vm.invalid).toBe(false)
   })
 
   it('should check if array length equals size (v>size)', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
           type: 'list',
           rules: 'array|size:2',
+          initial: 3,
           element: {
             type: 'text'
           }
@@ -186,13 +179,8 @@ describe('Size Rule', () => {
 
     let a = findAllComponents(form, { name: 'ListElement' }).at(0)
     
-    setInstances(a, 3)
-
-    LocalVue.nextTick(() => {
-      a.vm.validate()
-      expect(a.vm.invalid).toBe(true)
-
-      done()
-    })
+    a.vm.validate()
+    await flushPromises()
+    expect(a.vm.invalid).toBe(true)
   })
 })

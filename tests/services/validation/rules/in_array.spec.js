@@ -3,10 +3,6 @@ import { createForm, findAllComponents, change } from 'test-helpers'
 
 describe('In Array Rule', () => {
   it('should check if a value exists in an other elements array of values', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-    
     let form = createForm({
       schema: {
         a: {
@@ -26,20 +22,16 @@ describe('In Array Rule', () => {
     let b = findAllComponents(form, { name: 'ListElement' }).at(0)
 
     a.get('input').setValue('aaa')
-    a.get('input').trigger('keyup')
+    a.get('input').trigger('input')
+
+    await flushPromises()
 
     expect(a.vm.invalid).toBe(true)
 
-    setTimeout(() => {
-      b.vm.add('aaa')
+    b.vm.add('aaa')
 
-      LocalVue.nextTick(() => {
-      LocalVue.nextTick(() => {
-        expect(a.vm.invalid).toBe(false)
+    await flushPromises()
 
-        done()
-      })
-      })
-    }, 1)
+    expect(a.vm.invalid).toBe(false)
   })
 })

@@ -15,9 +15,11 @@ describe('JSON Rule', () => {
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, '{"a":"aaa"}')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
 
     change(a, '{a:"aaa"}')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
   })
 })

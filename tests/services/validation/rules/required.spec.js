@@ -15,32 +15,35 @@ describe('Required Rule', () => {
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, '')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
 
     change(a, ' ')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
     
     change(a, '    ')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
     
     change(a, 'null')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
     
     change(a, '.')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
     
     change(a, 'asdf')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
     
     change(a, '1')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
   })
 
   it('should be validate if value is filled for array', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
@@ -56,27 +59,17 @@ describe('Required Rule', () => {
 
     let a = findAllComponents(form, { name: 'ListElement' }).at(0)
 
-    setInstances(a, 0)
+    a.vm.validate()
+    await flushPromises()
+    expect(a.vm.invalid).toBe(true)
 
-    LocalVue.nextTick(() => {
-      a.vm.validate()
-      expect(a.vm.invalid).toBe(true)
-
-      setInstances(a, 1)
-      LocalVue.nextTick(() => {
-        a.vm.validate()
-        expect(a.vm.invalid).toBe(false)
-
-        done()
-      })
-    })
+    a.vm.add()
+    a.vm.validate()
+    await flushPromises()
+    expect(a.vm.invalid).toBe(false)
   })
 
   it('should be validate if value is filled for checkbox', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
@@ -91,11 +84,11 @@ describe('Required Rule', () => {
     let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     check(a)
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
 
     uncheck(a)
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
-    
-    done()
   })
 })

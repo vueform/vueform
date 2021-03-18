@@ -3,10 +3,6 @@ import { createForm, findAllComponents, change, setInstances } from 'test-helper
 
 describe('Greater Than Equal Rule', () => {
   it('should validate if the element\'s value is greater than or equal an other field\'s if value is string', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
@@ -19,24 +15,22 @@ describe('Greater Than Equal Rule', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
 
-    change(a, 'aa')
-    change(b, 'aa')
+    a.update('aa')
+    b.update('aa')
+    await flushPromises()
 
-    expect(a.vm.invalid).toBe(false)
+    expect(a.invalid).toBe(false)
 
-    change(a, 'a')
+    a.update('a')
+    await flushPromises()
 
-    expect(a.vm.invalid).toBe(true)
+    expect(a.invalid).toBe(true)
   })
 
   it('should validate if the element\'s value is greater than or equal an other field\'s if value is numeric', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
@@ -50,36 +44,28 @@ describe('Greater Than Equal Rule', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
 
-    change(a, '3')
-    change(b, '3')
+    a.update('3')
+    b.update('3')
+    await flushPromises()
 
+    expect(a.invalid).toBe(false)
 
-    setTimeout(() => {
-      expect(a.vm.invalid).toBe(false)
+    a.update('2')
+    await flushPromises()
 
-      change(a, '2')
-
-      setTimeout(() => {
-        expect(a.vm.invalid).toBe(true)
-
-        done()
-      }, 1)
-    }, 1)
+    expect(a.invalid).toBe(true)
   })
 
   it('should validate if the element\'s value is greater than or equal an other field\'s if value is array', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
           type: 'list',
           rules: 'array|gte:b',
+          initial: 3,
           element: {
             type: 'text'
           }
@@ -87,6 +73,7 @@ describe('Greater Than Equal Rule', () => {
         b: {
           type: 'list',
           rules: 'array',
+          initial: 3,
           element: {
             type: 'text'
           }
@@ -94,26 +81,19 @@ describe('Greater Than Equal Rule', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
-    let b = findAllComponents(form, { name: 'ListElement' }).at(1)
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
 
-    setInstances(a, 3)
-    setInstances(b, 3)
+    a.validate()
+    await flushPromises()
 
-    LocalVue.nextTick(() => {
-      a.vm.validate()
+    expect(a.invalid).toBe(false)
 
-      expect(a.vm.invalid).toBe(false)
+    a.remove(0)
 
-      setInstances(a, 2)
+    a.validate()
+    await flushPromises()
 
-      LocalVue.nextTick(() => {
-        a.vm.validate()
-
-        expect(a.vm.invalid).toBe(true)
-
-        done()
-      })
-    })
+    expect(a.invalid).toBe(true)
   })
 })

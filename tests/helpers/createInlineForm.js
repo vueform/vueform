@@ -59,9 +59,10 @@ export default function createForm (data, options = {}, render = null) {
     render,
   } : {})
 
-  let $laraform = Object.assign({}, config, {
+  let $laraform = {
     test: true,
     extensions: config.extensions,
+    config: Object.assign({}, config, options.config || {}),
     services: {
       condition,
       validation,
@@ -73,7 +74,7 @@ export default function createForm (data, options = {}, render = null) {
     locales: options.locales || {
       en: en
     }
-  }, options.config || {})
+  }
 
   let $laraformMixin = {
     data() {

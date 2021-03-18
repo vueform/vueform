@@ -1,5 +1,6 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, change } from 'test-helpers'
+import { nextTick } from 'composition-api'
 
 describe('Same Rule', () => {
   it('should be invalid if values do not match', async () => {
@@ -15,13 +16,15 @@ describe('Same Rule', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
 
-    change(a, 'aaa')
-    change(b, 'bbb')
+    a.update('aaa')
+    b.update('bbb')
 
-    expect(b.vm.invalid).toBe(true)
+    await flushPromises()
+
+    expect(b.invalid).toBe(true)
   })
 
   it('should be valid if values match', async () => {
@@ -37,20 +40,18 @@ describe('Same Rule', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
 
-    change(a, 'aaa')
-    change(b, 'aaa')
+    a.update('aaa')
+    b.update('aaa')
 
-    expect(b.vm.invalid).toBe(false)
+    await flushPromises()
+
+    expect(b.invalid).toBe(false)
   })
 
   it('should watch the change of the other field', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
@@ -63,30 +64,28 @@ describe('Same Rule', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
 
-    LocalVue.nextTick(() => {
-      change(a, 'aaa')
-      change(b, 'bbb')
+    a.update('aaa')
+    b.update('bbb')
 
-      expect(b.vm.invalid).toBe(true)
+    await flushPromises()
 
-      setTimeout(() => {
-        a.get('input').setValue('bbb')
+    expect(b.invalid).toBe(true)
 
-        LocalVue.nextTick(() => {
-          expect(b.vm.invalid).toBe(false)
+    a.$el.querySelector('input').value = 'bbb'
+    a.$el.querySelector('input').dispatchEvent(new Event('input'))
 
-          a.get('input').setValue('aaa')
+    await nextTick()
 
-          LocalVue.nextTick(() => {
-            expect(b.vm.invalid).toBe(true)
+    expect(b.invalid).toBe(false)
 
-            done()
-          })
-        })
-      }, 1)
-    })
+    a.$el.querySelector('input').value = 'aaa'
+    a.$el.querySelector('input').dispatchEvent(new Event('input'))
+
+    await nextTick()
+
+    expect(b.invalid).toBe(true)
   })
 })

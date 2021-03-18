@@ -15,15 +15,19 @@ describe('String Rule', () => {
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, 'asdf')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
 
     change(a, '1234')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
 
     change(a, ' ')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
 
     change(a, '...')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
   })
 
@@ -42,9 +46,11 @@ describe('String Rule', () => {
     let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     check(a)
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
 
     uncheck(a)
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
   })
 })

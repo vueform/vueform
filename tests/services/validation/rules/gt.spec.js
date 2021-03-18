@@ -1,12 +1,9 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, change, setInstances } from 'test-helpers'
+import { nextTick } from 'composition-api'
 
 describe('Greater Than Rule', () => {
   it('should validate if the element\'s value is greater than an other field\'s if value is string', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
@@ -19,24 +16,24 @@ describe('Greater Than Rule', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
 
-    change(a, 'aaa')
-    change(b, 'aa')
+    await nextTick()
 
-    expect(a.vm.invalid).toBe(false)
+    a.update('aaa')
+    b.update('aa')
+    await flushPromises()
 
-    change(a, 'aa')
+    expect(a.invalid).toBe(false)
 
-    expect(a.vm.invalid).toBe(true)
+    a.update('aa')
+    await flushPromises()
+
+    expect(a.invalid).toBe(true)
   })
 
   it('should validate if the element\'s value is greater than an other field\'s if value is numeric', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
@@ -50,35 +47,28 @@ describe('Greater Than Rule', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
 
-    change(a, '5')
-    change(b, '3')
+    a.update('5')
+    b.update('3')
+    await flushPromises()
 
-    setTimeout(() => {
-      expect(a.vm.invalid).toBe(false)
+    expect(a.invalid).toBe(false)
 
-      change(a, '3')
+    a.update('3')
+    await flushPromises()
 
-      setTimeout(() => {
-        expect(a.vm.invalid).toBe(true)
-
-        done()
-      }, 1)
-    }, 1)
+    expect(a.invalid).toBe(true)
   })
 
   it('should validate if the element\'s value is greater than an other field\'s if value is array', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
           type: 'list',
           rules: 'array|gt:b',
+          initial: 5,
           element: {
             type: 'text'
           }
@@ -86,6 +76,7 @@ describe('Greater Than Rule', () => {
         b: {
           type: 'list',
           rules: 'array',
+          initial: 3,
           element: {
             type: 'text'
           }
@@ -93,34 +84,24 @@ describe('Greater Than Rule', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'ListElement' }).at(0)
-    let b = findAllComponents(form, { name: 'ListElement' }).at(1)
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
 
-    setInstances(a, 5)
-    setInstances(b, 3)
+    a.validate()
+    await flushPromises()
 
-    LocalVue.nextTick(() => {
-      a.vm.validate()
+    expect(a.invalid).toBe(false)
 
-      expect(a.vm.invalid).toBe(false)
+    a.remove(0)
+    a.remove(0)
 
-      setInstances(a, 3)
+    a.validate()
+    await flushPromises()
 
-      LocalVue.nextTick(() => {
-        a.vm.validate()
-
-        expect(a.vm.invalid).toBe(true)
-
-        done()
-      })
-    })
+    expect(a.invalid).toBe(true)
   })
 
   it('should watch for change in other field\'s value', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
@@ -133,33 +114,22 @@ describe('Greater Than Rule', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
 
-    LocalVue.nextTick(() => {
-      change(a, 'aaa')
-      change(b, 'aa')
+    a.update('aaa')
+    b.update('aa')
+    await flushPromises()
 
-      expect(a.vm.invalid).toBe(false)
+    expect(a.invalid).toBe(false)
 
-      setTimeout(() => {
-        change(b, 'aaaa')
+    b.update('aaaa')
+    await flushPromises()
 
-        setTimeout(() => {
-          expect(a.vm.invalid).toBe(true)
-
-          done()
-        }, 1)
-      }, 1)
-
-    })
+    expect(a.invalid).toBe(true)
   })
 
   it('should include other field\'s size in error message', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
@@ -172,21 +142,18 @@ describe('Greater Than Rule', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
 
-    change(b, 'aaaaa')
-    change(a, 'aaa')
+    b.update('aaaaa')
+    a.update('aaa')
+    await flushPromises()
 
-    expect(a.vm.invalid).toBe(true)
-    expect(a.vm.error).toContain(5)
+    expect(a.invalid).toBe(true)
+    expect(a.error).toContain(5)
   })
 
   it('should watch other field\'s size in error message', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
@@ -199,21 +166,19 @@ describe('Greater Than Rule', () => {
       }
     })
 
-    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
 
-    change(b, 'aaaaa')
-    change(a, 'aaa')
+    b.update('aaaaa')
+    a.update('aaa')
+    await flushPromises()
 
-    expect(a.vm.invalid).toBe(true)
-    expect(a.vm.error).toContain(5)
+    expect(a.invalid).toBe(true)
+    expect(a.error).toContain(5)
 
-    change(b, 'aaaaaaa')
+    b.update('aaaaaaa')
+    await flushPromises()
 
-    LocalVue.nextTick(() => {
-      expect(a.vm.error).toContain(7)
-
-      done()
-    })
+    expect(a.error).toContain(7)
   })
 })

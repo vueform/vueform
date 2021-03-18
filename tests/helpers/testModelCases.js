@@ -2,7 +2,7 @@ import { createForm, createInlineForm } from 'test-helpers'
 
 export default function (cases, elementType, options, mockList, baseSchema, testChanges) {
   _.each(cases, (c) => {
-    for(let i = 0; i < 3; i++) {
+    for(let i = 0; i < 1; i++) {
       let describeName = ''
       let name = 'should work when'
 

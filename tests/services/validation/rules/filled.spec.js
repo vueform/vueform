@@ -1,3 +1,4 @@
+import { createLocalVue } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, change, setInstances, check, uncheck } from 'test-helpers'
 
@@ -15,32 +16,35 @@ describe('Filled Rule', () => {
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
     change(a, '')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
 
     change(a, ' ')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
     
     change(a, '    ')
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
     
     change(a, 'null')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
     
     change(a, '.')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
     
     change(a, 'asdf')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
     
     change(a, '1')
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
   })
 
   it('should be validate if value is filled for array', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
@@ -58,25 +62,19 @@ describe('Filled Rule', () => {
 
     setInstances(a, 0)
 
-    LocalVue.nextTick(() => {
-      a.vm.validate()
-      expect(a.vm.invalid).toBe(true)
+    a.vm.validate()
 
-      setInstances(a, 1)
-      LocalVue.nextTick(() => {
-        a.vm.validate()
-        expect(a.vm.invalid).toBe(false)
+    await flushPromises()
+    expect(a.vm.invalid).toBe(true)
 
-        done()
-      })
-    })
+    setInstances(a, 1)
+
+    a.vm.validate()
+    await flushPromises()
+    expect(a.vm.invalid).toBe(false)
   })
 
   it('should be validate if value is filled for checkbox', async () => {
-    const LocalVue = createLocalVue()
-
-    LocalVue.config.errorHandler = done
-
     let form = createForm({
       schema: {
         a: {
@@ -91,11 +89,11 @@ describe('Filled Rule', () => {
     let a = findAllComponents(form, { name: 'CheckboxElement' }).at(0)
 
     check(a)
+    await flushPromises()
     expect(a.vm.invalid).toBe(true)
 
     uncheck(a)
+    await flushPromises()
     expect(a.vm.invalid).toBe(false)
-    
-    done()
   })
 })
