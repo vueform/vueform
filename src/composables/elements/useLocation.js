@@ -126,6 +126,17 @@ const base = function (props, context, dependencies, options_ = {})
 
   onMounted(() => {
     initLocationService()
+
+    // Replacing autocomplete attribute on input
+    let attrObserver = new MutationObserver(() => {
+      attrObserver.disconnect();
+      inputElement().setAttribute('autocomplete', 'not-address')
+    });
+
+    attrObserver.observe(inputElement(), {
+      attributes: true,
+      attributeFilter: ['autocomplete']
+    });
   })
 
   return {
