@@ -280,6 +280,7 @@ export default {
       value: value.value,
       fire: events.fire,
       dirt: validation.dirt,
+      validate: validation.validate,
     })
 
     onMounted(() => {

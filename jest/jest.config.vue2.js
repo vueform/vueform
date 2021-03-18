@@ -10,6 +10,7 @@ module.exports = {
       ".*\\.(vue)$": "vue-prev-jest",
       "^.+\\.js$": "babel-jest"
   },
+  "testEnvironmentOptions": { "resources": "usable" },
   "transformIgnorePatterns": [
       "/node_modules/(?!vue-js-toggle-button|vueform-multiselect)"
   ],

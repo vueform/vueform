@@ -332,10 +332,6 @@ const base = function (props, context, dependencies)
     progress.value = 0
     
     fire('remove')
-
-    if (form$.value.shouldValidateOnChange) {
-      validate()
-    }
   }
 
   /**

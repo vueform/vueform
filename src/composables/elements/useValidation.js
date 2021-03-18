@@ -1167,10 +1167,13 @@ const file = function(props, context, dependencies)
       return
     }
 
-    let restricted = ['min', 'max', 'between', 'size', 'mimetypes', 'mimes']
+    let restricted = [
+      'min', 'max', 'between', 'size', 'mimetypes', 'mimes',
+      'dimensions', 'file', 'image', 'gt', 'gte', 'lt', 'lte',
+    ]
 
     await asyncForEach(Validators.value, async (Validator) => {
-      if (!(value.value instanceof File) && restricted.indexOf(Validator.name) !== -1) {
+      if (!(value.value instanceof File) && !!value.value && restricted.indexOf(Validator.name) !== -1) {
         return
       }
       
