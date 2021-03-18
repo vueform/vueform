@@ -91,4 +91,37 @@ describe('Required Rule', () => {
     await flushPromises()
     expect(a.vm.invalid).toBe(false)
   })
+
+  it('should be validate if value is filled for file', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: 'file',
+          rules: 'required',
+          auto: false,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    await el.validate()
+    expect(el.invalid).toBe(true)
+
+    el.update({ tmp: 'asdf123.jpg', originalName: 'filename.jpg' })
+    await el.validate()
+    expect(el.invalid).toBe(false)
+
+    el.update('filename.jpg')
+    await el.validate()
+    expect(el.invalid).toBe(false)
+
+    el.update(new File(['file'], 'filename.jpg'))
+    await el.validate()
+    expect(el.invalid).toBe(false)
+
+    el.update(null)
+    await el.validate()
+    expect(el.invalid).toBe(true)
+  })
 })

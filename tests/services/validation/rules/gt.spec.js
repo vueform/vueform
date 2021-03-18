@@ -181,4 +181,50 @@ describe('Greater Than Rule', () => {
 
     expect(a.error).toContain(7)
   })
+
+  it('should check for file', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: 'file',
+          rules: 'gt:el2',
+          auto: false,
+        },
+        el2: {
+          type: 'file',
+          auto: false,
+        },
+      }
+    })
+
+    let el = form.vm.el$('el')
+    let el2 = form.vm.el$('el2')
+
+    await el.validate()
+    expect(el.invalid).toBe(false)
+
+    let file1 = new File([''], 'file1.jpg')
+    Object.defineProperty(file1, 'size', { value: 500 })
+    el.update(file1)
+    await el.validate()
+    expect(el.invalid).toBe(false)
+
+    let file2 = new File([''], 'file2.jpg')
+    Object.defineProperty(file2, 'size', { value: 1000 })
+    el2.update(file2)
+    await el.validate()
+    expect(el.invalid).toBe(true)
+
+    file1 = new File([''], 'file1.jpg')
+    Object.defineProperty(file1, 'size', { value: 1000 })
+    el.update(file1)
+    await el.validate()
+    expect(el.invalid).toBe(true)
+
+    file1 = new File([''], 'file1.jpg')
+    Object.defineProperty(file1, 'size', { value: 2000 })
+    el.update(file1)
+    await el.validate()
+    expect(el.invalid).toBe(false)
+  })
 })

@@ -242,7 +242,7 @@ const Validator = class {
       return value
     }
     else if (this.isFile) {
-      return value.size / 1000
+      return value ? value.size / 1000 : 0
     }
     else if (this.isArray) {
       return value.length

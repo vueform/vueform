@@ -183,4 +183,39 @@ describe('Max Rule', () => {
     await flushPromises()
     expect(a.vm.invalid).toBe(true)
   })
+
+  it('should check for file', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: 'file',
+          rules: 'max:2',
+          auto: false,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    await el.validate()
+    expect(el.invalid).toBe(false)
+
+    let file = new File([''], 'file.jpg')
+    Object.defineProperty(file, 'size', { value: 1000 })
+    el.update(file)
+    await el.validate()
+    expect(el.invalid).toBe(false)
+
+    file = new File([''], 'file.jpg')
+    Object.defineProperty(file, 'size', { value: 2000 })
+    el.update(file)
+    await el.validate()
+    expect(el.invalid).toBe(false)
+
+    file = new File([''], 'file.jpg')
+    Object.defineProperty(file, 'size', { value: 3000 })
+    el.update(file)
+    await el.validate()
+    expect(el.invalid).toBe(true)
+  })
 })
