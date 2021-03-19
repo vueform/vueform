@@ -57,8 +57,6 @@ export default {
     const { 
       name,
       label,
-      labels,
-      buttons,
       elements,
       conditions,
       stepClass,
@@ -75,6 +73,7 @@ export default {
       baseClasses,
       mainClass,
       components,
+      defaultClasses,
     } = useFormComponent(props, context)
 
     const {
@@ -511,6 +510,7 @@ export default {
       pending,
       classes,
       mainClass,
+      defaultClasses,
       components,
       available,
       baseLabel,

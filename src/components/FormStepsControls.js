@@ -11,7 +11,8 @@ export default {
       theme,
       classes,
       mainClass,
-      components
+      components,
+      defaultClasses,
     } = useFormComponent(props, context)
 
     return {
@@ -19,6 +20,7 @@ export default {
       theme,
       classes,
       mainClass,
+      defaultClasses,
       components,
     }
   },

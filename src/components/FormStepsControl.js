@@ -24,7 +24,8 @@ export default {
       theme,
       classes,
       mainClass,
-      components
+      components,
+      defaultClasses,
     } = useFormComponent(props, context)
 
     // ============== COMPUTED ==============
@@ -188,6 +189,7 @@ export default {
       steps$,
       classes,
       mainClass,
+      defaultClasses,
       components,
       visible,
       disabled,

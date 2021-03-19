@@ -14,7 +14,8 @@ export default {
       classes,
       mainClass,
       components,
-      theme
+      theme,
+      defaultClasses,
     } = useElementComponent(props, context)
 
     const {
@@ -41,6 +42,7 @@ export default {
       theme,
       classes,
       mainClass,
+      defaultClasses,
       components,
       label,
       isLabelComponent,

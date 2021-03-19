@@ -14,7 +14,8 @@ export default {
       classes: baseClasses,
       components,
       mainClass,
-      theme
+      theme,
+      defaultClasses,
     } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
@@ -40,6 +41,15 @@ export default {
      * 
      * @private
      */
+    const hasLabel = computed(() => {
+      return el$.value.hasLabel
+    })
+
+    /**
+     * 
+     * 
+     * @private
+     */
     const visible = computed(() => {
       return el$.value.visible
     })
@@ -49,8 +59,10 @@ export default {
       form$,
       theme,
       components,
+      defaultClasses,
       classes,
       mainClass,
+      hasLabel,
       visible,
     }
   },

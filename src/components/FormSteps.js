@@ -17,7 +17,8 @@ export default {
       theme,
       classes,
       mainClass,
-      components
+      components,
+      defaultClasses,
     } = useFormComponent(props, context)
 
     const {
@@ -521,6 +522,7 @@ export default {
       exists,
       classes,
       mainClass,
+      defaultClasses,
       components,
       steps$,
       pending,

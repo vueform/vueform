@@ -13,7 +13,8 @@ export default {
       theme,
       classes,
       mainClass,
-      components
+      components,
+      defaultClasses,
     } = useFormComponent(props, context)
 
     const {
@@ -31,6 +32,7 @@ export default {
       theme,
       classes,
       mainClass,
+      defaultClasses,
       components,
       schema,
       component,

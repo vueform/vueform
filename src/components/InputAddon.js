@@ -23,7 +23,8 @@ export default {
       classes: baseClasses,
       mainClass,
       components,
-      theme
+      theme,
+      defaultClasses,
     } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
@@ -89,6 +90,7 @@ export default {
       components,
       classes,
       mainClass,
+      defaultClasses,
       addon,
       isAddonComponent,
     }

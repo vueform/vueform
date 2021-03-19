@@ -209,7 +209,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
             type: elementType
           }, schema)
         },
-        classes: {
+        overrideClasses: {
           [componentName]: overwriteClasses1
         }
       })
@@ -226,7 +226,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.form$.classes[componentName] = overwriteClasses2
+      el.form$.options.overrideClasses[componentName] = overwriteClasses2
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
@@ -245,7 +245,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
             type: elementType
           }, schema)
         },
-        classes: {
+        overrideClasses: {
           [componentName]: overwriteClasses1
         }
       }, {
@@ -272,7 +272,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.form$.classes[componentName] = overwriteClasses2
+      el.form$.options.overrideClasses[componentName] = overwriteClasses2
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
@@ -308,7 +308,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses1[mainClass], mergeWith[mainClass] || ''))
 
-      el.form$.addClasses[componentName] = addClasses2
+      el.form$.options.addClasses[componentName] = addClasses2
 
       expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses2[mainClass], mergeWith[mainClass] || ''))
     })
@@ -326,7 +326,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            classes: {
+            overrideClasses: {
               [componentName]: overwriteClasses1
             }
           }, schema)
@@ -345,14 +345,9 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.classes = {
-        [componentName]: overwriteClasses2
-      }
+      el.overrideClasses[componentName] = overwriteClasses2
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
-      expect(el.schema.classes).toStrictEqual({
-        [componentName]: overwriteClasses2
-      })
     })
 
     it('should classes in element overwrite theme classes in `classes`, even when changes', async () => {
@@ -367,7 +362,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            classes: {
+            overrideClasses: {
               [componentName]: overwriteClasses1
             }
           }, schema)
@@ -396,14 +391,9 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.classes = {
-        [componentName]: overwriteClasses2
-      }
+      el.overrideClasses[componentName] = overwriteClasses2
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
-      expect(el.schema.classes).toStrictEqual({
-        [componentName]: overwriteClasses2
-      })
     })
 
     it('should classes in element overwrite form classes in `classes`, even when changes', async () => {
@@ -418,12 +408,12 @@ export default function (elementType, componentName, schema = {}, options = {}) 
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            classes: {
+            overrideClasses: {
               [componentName]: overwriteClasses1
             }
           }, schema)
         },
-        classes: {
+        overrideClasses: {
           [componentName]: {
             [mainClass]: 'form-overwrite-class'
           }
@@ -442,14 +432,9 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.classes = {
-        [componentName]: overwriteClasses2
-      }
+      el.overrideClasses[componentName] = overwriteClasses2
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
-      expect(el.schema.classes).toStrictEqual({
-        [componentName]: overwriteClasses2
-      })
     })
 
     it('should addClasses in element add classes in `classes`, even when changes', async () => {
@@ -531,7 +516,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
         mergeWith[mainClass] || ''
       ))
 
-      el.form$.addClasses[componentName] = addClassesForm2
+      el.form$.options.addClasses[componentName] = addClassesForm2
       el.addClasses[componentName] = addClassesElement2
 
       expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(
@@ -552,7 +537,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            classes: {
+            overrideClasses: {
               [componentName]: {
                 [mainClass]: 'element-classes'
               }
@@ -564,7 +549,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
             },
           }, schema)
         },
-        classes: {
+        overrideClasses: {
           [componentName]: {
             [mainClass]: 'form-classes'
           }

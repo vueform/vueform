@@ -62,7 +62,8 @@ export default {
       classes:
       baseClasses,
       components,
-      mainClass
+      mainClass,
+      defaultClasses,
     } = useFormComponent(props, context)
 
     const {
@@ -316,6 +317,7 @@ export default {
       invalid,
       classes,
       mainClass,
+      defaultClasses,
       components,
       available,
       isLabelComponent,

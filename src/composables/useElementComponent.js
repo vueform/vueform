@@ -92,6 +92,7 @@ const base = function(props, context, dependencies)
     classes,
     components,
     mainClass,
+    defaultClasses,
   }
 }
 

@@ -6,6 +6,7 @@ import { mergeComponentClasses } from './../utils/mergeClasses'
 const base = function(props, context, dependencies)
 {
   const componentName = context.name
+  
   const { defaultClasses } = toRefs(context.data)
 
   // =============== INJECT ===============
@@ -78,6 +79,7 @@ const base = function(props, context, dependencies)
     classes,
     components,
     mainClass,
+    defaultClasses,
   }
 }
 

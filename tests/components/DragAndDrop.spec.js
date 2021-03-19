@@ -16,7 +16,7 @@ describe('DragAndDrop', () => {
   useElementComponent('file', 'DragAndDrop', { drop: true }, {
     mergeWith: {
       [Drag.vm.mainClass]: {
-        [Drag.vm.classes.active]: Drag.vm.dragging,
+        [Drag.vm.defaultClasses.active]: Drag.vm.dragging,
       }
     }
   })

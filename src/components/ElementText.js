@@ -21,7 +21,8 @@ export default {
       classes,
       components,
       mainClass,
-      theme
+      theme,
+      defaultClasses,
     } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
@@ -41,6 +42,7 @@ export default {
       theme,
       classes,
       mainClass,
+      defaultClasses,
       components,
       content,
     }

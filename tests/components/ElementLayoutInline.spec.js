@@ -1,23 +1,22 @@
 import { createForm, findAllComponents} from 'test-helpers'
 import useElementComponent from './../composables/useElementComponent'
 
-describe('ElementLayout', () => {
+describe('ElementLayoutInline', () => {
   let form = createForm({
     schema: {
       el: {
         type: 'text',
+        inline: true,
       }
     }
   })
 
   let el = form.vm.el$('el')
-  let Layout = findAllComponents(form, { name: 'ElementLayout' }).at(0)
+  let Layout = findAllComponents(form, { name: 'ElementLayoutInline' }).at(0)
 
-  useElementComponent('text', 'ElementLayout', { addClass: 'element-class' }, {
+  useElementComponent('text', 'ElementLayoutInline', { addClass: 'element-class', inline: true }, {
     mergeWith: {
-      [Layout.vm.classKeys.element]: `${el.columnsObject.classes.element} ${el.classes[el.mainClass]} element-class`,
-      [Layout.vm.classKeys.label]: el.columnsObject.classes.label,
-      [Layout.vm.classKeys.field]: el.columnsObject.classes.field,
+      [Layout.vm.mainClass]: `${el.classes[el.mainClass]} element-class`,
     }
   })
 
@@ -27,7 +26,8 @@ describe('ElementLayout', () => {
         schema: {
           name: {
             type: 'text',
-            label: 'Name'
+            label: 'Name',
+            inline: true,
           }
         }
       }, {
@@ -44,6 +44,7 @@ describe('ElementLayout', () => {
         schema: {
           name: {
             type: 'text',
+            inline: true,
           }
         }
       }, {
@@ -60,6 +61,7 @@ describe('ElementLayout', () => {
         schema: {
           name: {
             type: 'text',
+            inline: true,
           }
         }
       }, {
@@ -76,7 +78,8 @@ describe('ElementLayout', () => {
         schema: {
           name: {
             type: 'text',
-            label: 'Name'
+            label: 'Name',
+            inline: true,
           }
         }
       }, {
@@ -99,6 +102,7 @@ describe('ElementLayout', () => {
             before: '<div>before</div>',
             after: '<div>after</div>',
             between: '<div>between</div>',
+            inline: true,
           }
         }
       })

@@ -25,7 +25,8 @@ export default {
       classes: baseClasses,
       components,
       mainClass,
-      theme
+      theme,
+      defaultClasses,
     } = useElementComponent(props, context)
 
     // ================ DATA ================
@@ -104,6 +105,7 @@ export default {
       form$,
       classes,
       mainClass,
+      defaultClasses,
       components,
       theme,
       dragging,

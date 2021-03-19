@@ -26,7 +26,7 @@ describe('ElementLabel', () => {
             type: 'text',
             labelVar: 'Name Var',
             label: (el$) => {
-              return el$.schema.labelVar
+              return el$.form$.laraform.schema.name.labelVar
             }
           }
         }
@@ -42,7 +42,7 @@ describe('ElementLabel', () => {
             type: 'text',
             labelVar: 'Name Var',
             label: (el$) => {
-              return el$.schema.labelVar
+              return el$.form$.laraform.schema.name.labelVar
             }
           }
         }
@@ -50,7 +50,7 @@ describe('ElementLabel', () => {
 
       expect(form.findComponent({name: 'ElementLabel'}).html()).toContain('Name Var')
 
-      form.vm.schema.name.labelVar = 'Name Var Updated'
+      form.vm.laraform.schema.name.labelVar = 'Name Var Updated'
 
       await nextTick()
       expect(form.findComponent({name: 'ElementLabel'}).html()).toContain('Name Var Updated')
@@ -65,7 +65,7 @@ describe('ElementLabel', () => {
             label: markRaw({
               props: ['el$'],
               render(h) {
-                return createElement(h, 'div', this.el$.schema.labelVar)
+                return createElement(h, 'div', this.el$.form$.laraform.schema.name.labelVar)
               }
             })
           }
