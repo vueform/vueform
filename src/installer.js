@@ -60,7 +60,7 @@ import ElementError from './components/ElementError'
 import ElementMessage from './components/ElementMessage'
 import ElementText from './components/ElementText'
 import DragAndDrop from './components/DragAndDrop'
-import InputAddon from './components/InputAddon'
+import ElementAddon from './components/ElementAddon'
 
 import FlatpickrWrapper from './components/wrappers/FlatpickrWrapper'
 // import TrixWrapper from './components/wrappers/TrixWrapper'
@@ -132,7 +132,7 @@ const components = {
   ElementMessage,
   ElementText,
   DragAndDrop,
-  InputAddon,
+  ElementAddon,
 
   FlatpickrWrapper,
   // TrixWrapper,

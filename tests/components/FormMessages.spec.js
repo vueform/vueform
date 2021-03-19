@@ -3,6 +3,10 @@ import { nextTick } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 
 describe('FormMessages', () => {
+  useFormComponent({schema:{el:{type:'text',rules:'required'}}}, 'FormMessages', {
+    execute: (el) => { el.form$.messageBag.append('Message', 'message') }
+  })
+
   describe('rendering', () => {
     it('should display all messages', async () => {
       let form = createForm({

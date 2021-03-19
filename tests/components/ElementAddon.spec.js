@@ -6,7 +6,7 @@ import useElementComponent from './../composables/useElementComponent'
 
 expect.extend({toBeVisible})
 
-describe('InputAddon', () => {
+describe('ElementAddon', () => {
   let form = createForm({
     schema: {
       el: {
@@ -18,13 +18,13 @@ describe('InputAddon', () => {
     }
   })
 
-  let InputAddon = findAllComponents(form, { name: 'InputAddon' }).at(0)
+  let ElementAddon = findAllComponents(form, { name: 'ElementAddon' }).at(0)
 
-  useElementComponent('text', 'InputAddon', { addons:{before:'before'} }, {
+  useElementComponent('text', 'ElementAddon', { addons:{before:'before'} }, {
     mergeWith: {
-      [InputAddon.vm.mainClass]: {
-        [InputAddon.vm.defaultClasses.addonBefore]: InputAddon.vm.type === 'before',
-        [InputAddon.vm.defaultClasses.addonAfter]: InputAddon.vm.type === 'after',
+      [ElementAddon.vm.mainClass]: {
+        [ElementAddon.vm.defaultClasses.addonBefore]: ElementAddon.vm.type === 'before',
+        [ElementAddon.vm.defaultClasses.addonAfter]: ElementAddon.vm.type === 'after',
       }
     }
   })
@@ -42,13 +42,13 @@ describe('InputAddon', () => {
         }
       })
 
-      expect(form.findComponent({name: 'InputAddon'}).html()).toContain('before')
+      expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('before')
 
-      form.vm.schema.el.addons.before = 'not before'
+      form.vm.laraform.schema.el.addons.before = 'not before'
 
       await nextTick()
 
-      expect(form.findComponent({name: 'InputAddon'}).html()).toContain('not before')
+      expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('not before')
     })
 
     it('should render the value of a function', async () => {
@@ -59,20 +59,20 @@ describe('InputAddon', () => {
             beforeVar: 'before var',
             addons: {
               before: (el$) => {
-                return el$.schema.beforeVar
+                return el$.form$.laraform.schema.el.beforeVar
               }
             }
           }
         }
       })
 
-      expect(form.findComponent({name: 'InputAddon'}).html()).toContain('before var')
+      expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('before var')
 
-      form.vm.schema.el.beforeVar = 'not before var'
+      form.vm.laraform.schema.el.beforeVar = 'not before var'
 
       await nextTick()
 
-      expect(form.findComponent({name: 'InputAddon'}).html()).toContain('not before var')
+      expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('not before var')
     })
 
     it('should render as a component', async () => {
@@ -85,7 +85,7 @@ describe('InputAddon', () => {
               before: markRaw({
                 props: ['el$'],
                 render(h) {
-                  return createElement(h, 'div', this.el$.schema.beforeVar)
+                  return createElement(h, 'div', this.el$.form$.laraform.schema.el.beforeVar)
                 }
               })
             } 
@@ -93,13 +93,13 @@ describe('InputAddon', () => {
         }
       })
 
-      expect(form.findComponent({name: 'InputAddon'}).html()).toContain('before var')
+      expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('before var')
 
-      form.vm.schema.el.beforeVar = 'not before var'
+      form.vm.laraform.schema.el.beforeVar = 'not before var'
 
       await nextTick()
 
-      expect(form.findComponent({name: 'InputAddon'}).html()).toContain('not before var')
+      expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('not before var')
     })
   })
 })

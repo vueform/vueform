@@ -53,7 +53,7 @@ export const hasAddon = function(elementType, elementName, options) {
 
 export const rendering = function(elementType, elementName, options) {
   // Template
-  it('should not have InputAddon if not defined', () => {
+  it('should not have ElementAddon if not defined', () => {
     let form = createForm({
       schema: {
         el: {
@@ -63,12 +63,12 @@ export const rendering = function(elementType, elementName, options) {
     })
 
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let InputAddon = findAllComponents(elWrapper, { name: 'InputAddon' })
+    let ElementAddon = findAllComponents(elWrapper, { name: 'ElementAddon' })
 
-    expect(InputAddon.length).toBe(0)
+    expect(ElementAddon.length).toBe(0)
   })
 
-  it('should render InputAddon "before" if it is defined', () => {
+  it('should render ElementAddon "before" if it is defined', () => {
     let form = createForm({
       schema: {
         el: {
@@ -81,12 +81,12 @@ export const rendering = function(elementType, elementName, options) {
     })
 
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let InputAddon = findAllComponents(elWrapper, { name: 'InputAddon' }).at(0)
+    let ElementAddon = findAllComponents(elWrapper, { name: 'ElementAddon' }).at(0)
 
-    expect(InputAddon.vm.type).toBe('before')
+    expect(ElementAddon.vm.type).toBe('before')
   })
 
-  it('should render InputAddon "after" if it is defined', () => {
+  it('should render ElementAddon "after" if it is defined', () => {
     let form = createForm({
       schema: {
         el: {
@@ -99,8 +99,8 @@ export const rendering = function(elementType, elementName, options) {
     })
 
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let InputAddon = findAllComponents(elWrapper, { name: 'InputAddon' }).at(0)
+    let ElementAddon = findAllComponents(elWrapper, { name: 'ElementAddon' }).at(0)
 
-    expect(InputAddon.vm.type).toBe('after')
+    expect(ElementAddon.vm.type).toBe('after')
   })
 }

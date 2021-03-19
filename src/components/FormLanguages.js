@@ -1,4 +1,4 @@
-import { computed } from 'composition-api'
+import { computed, toRefs } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 
 export default {
@@ -25,7 +25,7 @@ export default {
      * @private
      */
     const language = computed(() => {
-      return form$.value.options.language
+      return form$.value.selectedLanguage
     })
 
     /**

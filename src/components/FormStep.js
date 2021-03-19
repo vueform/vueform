@@ -9,7 +9,7 @@ import normalize from './../utils/normalize'
 
 export default {
   name: 'FormStep',
-  emits: ['select'],
+  emits: ['select', 'active', 'inactive', 'enable', 'disable', 'complete'],
   props: {
     name: {
       type: [String, Number],

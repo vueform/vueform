@@ -3,7 +3,7 @@ import { nextTick, markRaw } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 
 describe('FormElement', () => {
-  useFormComponent({schema:{el:{type:'text'}}}, 'FormElements')
+  // useFormComponent({schema:{el:{type:'text'}}}, 'FormElements')
 
   describe('rendering', () => {
     it('should render element based on type', () => {
@@ -18,26 +18,9 @@ describe('FormElement', () => {
       expect(form.findComponent({name: 'TextElement'}).exists()).toBe(true)
     })
 
-    it('should render element based on component', () => {
+    it('should render elements in order of steps `elements`', async () => {
       let form = createForm({
-        schema: {
-          name: {
-            component: markRaw({
-              name: 'CustomElement',
-              render(h) {
-                return createElement(h, 'div', 'Custom Element')
-              }
-            })
-          }
-        }
-      })
-
-      expect(form.findComponent({name: 'CustomElement'}).exists()).toBe(true)
-    })
-
-    it('should render elements in order of wizard `elements`', async () => {
-      let form = createForm({
-        wizard: {
+        steps: {
           first: {
             elements: ['a', 'b']
           },

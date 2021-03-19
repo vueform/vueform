@@ -44,7 +44,7 @@ describe('FormLanguage', () => {
         }
       })
 
-      expect(form.vm.language).toBe('en')
+      expect(form.vm.selectedLanguage).toBe('en')
 
       let tab = findAllComponents(form, { name: 'FormLanguage' }).at(1)
       let languageSelector = form.findComponent({ name: 'FormLanguages' })

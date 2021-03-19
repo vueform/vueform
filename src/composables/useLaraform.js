@@ -157,7 +157,7 @@ const base = function(props, context, dependencies = {})
 
   const options = computed(() => {
     const options = {
-      schema: schema.value || userConfig.value.schema || {},
+      schema: orderedSchema.value,
       tabs: tabs.value || userConfig.value.tabs || {},
       steps: steps.value || userConfig.value.steps || {},
       overrideClasses: overrideClasses.value || userConfig.value.overrideClasses || {},
@@ -184,6 +184,45 @@ const base = function(props, context, dependencies = {})
     }
 
     return options
+  })
+
+  /**
+  * 
+  * 
+  * @private
+  */
+  const orderedSchema = computed(() => {
+    let userSchema = schema.value || userConfig.value.schema || {}
+    let userTabs = tabs.value || userConfig.value.tabs || {}
+    let userSteps = steps.value || userConfig.value.steps || {}
+    let orderedSchema = userSchema
+    let blocks
+
+    if (Object.keys(userSteps).length > 0) {
+      blocks = userSteps
+    }
+
+    if (Object.keys(userTabs).length > 0) {
+      blocks = userTabs
+    }
+
+    if (blocks) {
+      orderedSchema = {}
+
+      _.each(blocks, (block) => {
+        _.each(block.elements, (name) => {
+          orderedSchema[name] = userSchema[name]
+        })
+      })
+
+      _.each(Object.keys(userSchema), (name) => {
+        if (orderedSchema[name] === undefined) {
+          orderedSchema[name] = userSchema[name]
+        }
+      })
+    }
+
+    return orderedSchema
   })
 
   /**
@@ -396,7 +435,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const hasSteps = computed(() => {
-    return !_.isEmpty(steps.value)
+    return !_.isEmpty(options.value.steps)
   })
 
   /**
@@ -406,7 +445,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const hasTabs = computed(() => {
-    return !_.isEmpty(tabs.value)
+    return !_.isEmpty(options.value.tabs)
   })
 
   /**
@@ -757,6 +796,7 @@ const base = function(props, context, dependencies = {})
   */
   const updateSchema = (schema) => {
     // @todo
+    c(JSON.stringify(schema))
     $this.schema = schema
   }
 
@@ -829,42 +869,6 @@ const base = function(props, context, dependencies = {})
   * 
   * @private
   */
-  const resortSchema = () => {
-    let all = _.keys(options.value.schema)
-    let blocks
-
-    if (!_.isEmpty(options.value.steps)) {
-      blocks = options.value.steps
-    }
-
-    if (!_.isEmpty(options.value.tabs)) {
-      blocks = options.value.tabs
-    }
-
-    if (blocks) {
-      let schema = {}
-
-      _.each(blocks, (block) => {
-        _.each(block.elements, (e) => {
-          schema[e] = options.value.schema[e]
-        })
-      })
-
-      _.each(all, (e) => {
-        if (schema[e] === undefined) {
-          schema[e] = options.value.schema[e]
-        }
-      })
-
-      updateSchema(schema)
-    }
-  }
-
-  /**
-  * 
-  * 
-  * @private
-  */
   const initMessageBag = () => {
     messageBag.value = new services.value.messageBag(elementErrors)
   }
@@ -873,20 +877,6 @@ const base = function(props, context, dependencies = {})
 
   provide('form$', form$)
   provide('theme', extendedTheme)
-
-  // ============== WATCHERS ==============
-
-  // Only start watching $this props after `created`
-  // to make sure `proxy` variables already exist
-  nextTick(() => {
-    watch(() => { return options.value.tabs }, () => {
-      resortSchema()
-    }, { deep: true })
-
-    watch(() => { return options.value.steps }, () => {
-      resortSchema()
-    }, { deep: true })
-  })
 
   // ================ HOOKS ===============
 
@@ -957,7 +947,6 @@ const base = function(props, context, dependencies = {})
     handleSubmit,
     el$,
     siblings$,
-    resortSchema,
     initMessageBag,
     fire,
     on,

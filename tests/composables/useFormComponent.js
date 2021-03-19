@@ -144,7 +144,7 @@ export default function (schema, componentName, options = {}) {
       }
 
       let form = createForm(Object.assign({}, schema, {
-        classes: {
+        overrideClasses: {
           [componentName]: overwriteClasses1
         }
       }))
@@ -161,7 +161,7 @@ export default function (schema, componentName, options = {}) {
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.form$.classes[componentName] = overwriteClasses2
+      el.form$.options.overrideClasses[componentName] = overwriteClasses2
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
@@ -175,7 +175,7 @@ export default function (schema, componentName, options = {}) {
       }
 
       let form = createForm(Object.assign({}, schema, {
-        classes: {
+        overrideClasses: {
           [componentName]: overwriteClasses1
         }
       }), {
@@ -202,7 +202,7 @@ export default function (schema, componentName, options = {}) {
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.form$.classes[componentName] = overwriteClasses2
+      el.form$.options.overrideClasses[componentName] = overwriteClasses2
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
@@ -233,7 +233,7 @@ export default function (schema, componentName, options = {}) {
 
       expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses1[mainClass], mergeWith[mainClass] || ''))
 
-      el.form$.addClasses[componentName] = addClasses2
+      el.form$.options.addClasses[componentName] = addClasses2
 
       expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses2[mainClass], mergeWith[mainClass] || ''))
     })
@@ -247,7 +247,7 @@ export default function (schema, componentName, options = {}) {
       }
 
       let form = createForm(Object.assign({}, schema, {
-        classes: {
+        overrideClasses: {
           [componentName]: {
             [mainClass]: 'form-classes'
           }

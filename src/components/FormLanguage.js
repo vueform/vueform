@@ -88,6 +88,7 @@ export default {
       classes,
       mainClass,
       defaultClasses,
+      classKeys,
       components,
       select,
     }

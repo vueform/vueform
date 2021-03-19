@@ -15,7 +15,7 @@
 
 <script>
   export default {
-    name: 'InputAddon',
+    name: 'ElementAddon',
     data() {
       return {
         defaultClasses: {

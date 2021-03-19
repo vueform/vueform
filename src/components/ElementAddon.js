@@ -4,7 +4,7 @@ import isVueComponent from './../utils/isVueComponent'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
-  name: 'InputAddon',
+  name: 'ElementAddon',
   props: {
     type: {
       required: true,
