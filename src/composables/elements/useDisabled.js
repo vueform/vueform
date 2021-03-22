@@ -134,6 +134,7 @@ const checkboxgroup = function(props, context, dependencies)
    */
   const enableAll = () => {
     localDisabled.value = false
+    disabledItems.value = []
   }
 
   // ================ HOOKS ===============
