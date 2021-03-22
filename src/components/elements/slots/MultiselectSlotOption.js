@@ -10,9 +10,26 @@ export default {
       required: false
     },
   },
-  setup(props, context) {
+  setup(props, context)
+  {
+    const {
+      el$,
+      form$,
+      classes,
+      mainClass,
+      defaultClasses,
+      components,
+      theme,
+    } = useElementComponent(props, context)
+
     return {
-      ...useElementComponent(props, context),
+      el$,
+      form$,
+      classes,
+      mainClass,
+      defaultClasses,
+      components,
+      theme,
     }
   },
 }

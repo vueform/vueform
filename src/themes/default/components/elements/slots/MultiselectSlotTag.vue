@@ -1,5 +1,5 @@
 <template>
-  <span class="multiselect-tag">
+  <span :class="classes.container">
     <span v-text="option.label"></span>
     <i
       v-if="!disabled"
@@ -12,5 +12,12 @@
 <script>
   export default {
     name: 'MultiselectSlotTag',
+    data() {
+      return {
+        defaultClasses: {
+          container: 'multiselect-tag'
+        }
+      }
+    }
   }
 </script>

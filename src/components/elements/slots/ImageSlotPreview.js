@@ -10,9 +10,19 @@ export default {
     },
   },
   setup(props, context) {
-    const { previewOptions } = toRefs(props)
+    const {
+      previewOptions
+    } = toRefs(props)
 
-    const elementComponent = useElementComponent(props, context)
+    const {
+      el$,
+      form$,
+      classes,
+      mainClass,
+      defaultClasses,
+      components,
+      theme,
+    } = useElementComponent(props, context)
 
     const link = computed(() => {
       return previewOptions.value.link
@@ -31,7 +41,13 @@ export default {
     })
 
     return {
-      ...elementComponent,
+      el$,
+      form$,
+      classes,
+      mainClass,
+      defaultClasses,
+      components,
+      theme,
       link,
       preview,
       uploaded,

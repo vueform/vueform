@@ -25,15 +25,15 @@ const base = function(props, context, dependencies, options = {})
     checkbox: 'CheckboxgroupSlotCheckbox',
     radio: 'RadiogroupSlotRadio',
     option: 'MultiselectSlotOption',
-    noResults: 'MultiselectSlotNoResults',
-    noOptions: 'MultiselectSlotNoOptions',
-    singleLabel: 'MultiselectSlotSingleLabel',
-    multipleLabel: 'MultiselectSlotMultipleLabel',
+    noresults: 'MultiselectSlotNoResults',
+    nooptions: 'MultiselectSlotNoOptions',
+    singlelabel: 'MultiselectSlotSingleLabel',
+    multiplelabel: 'MultiselectSlotMultipleLabel',
     tag: 'MultiselectSlotTag',
     progress: 'FileSlotProgress',
     preview: 'FileSlotPreview',
-    beforeList: null,
-    afterList: null,
+    beforelist: null,
+    afterlist: null,
   }
 
   if (options.defaultSlots) {

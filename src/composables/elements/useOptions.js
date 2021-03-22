@@ -222,6 +222,8 @@ const select = function (props, context, dependencies)
     native,
     search,
     options,
+    noOptionsText,
+    noResultsText,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -249,8 +251,8 @@ const select = function (props, context, dependencies)
     return {
       mode: 'single',
       searchable: search.value,
-      noOptionsText: form$.value.__('laraform.multiselect.noOptions'),
-      noResultsText: form$.value.__('laraform.multiselect.noResults'),
+      noOptionsText: noOptionsText.value || form$.value.__('laraform.multiselect.noOptions'),
+      noResultsText: noResultsText.value || form$.value.__('laraform.multiselect.noResults'),
     }
   })
 
