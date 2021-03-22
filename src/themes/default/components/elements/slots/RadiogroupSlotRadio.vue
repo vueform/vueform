@@ -1,17 +1,17 @@
 <template>
-  <div :class="el$.classes.radioContainer">
+  <div :class="classes.container">
     <label 
-      :class="el$.classes.radioLabel"
+      :class="classes.label"
       :for="`${el$.fieldId}-${value}`"
     >
       <input
         type="radio"
         v-model="el$.value"
         :value="value"
-        :class="el$.classes.radio"
+        :class="classes.radio"
         :name="el$.name"
         :id="`${el$.fieldId}-${value}`"
-        :disabled="el$.isDisabled || el$.disabledItems.indexOf(value) !== -1"
+        :disabled="isDisabled"
       />
     
       <span>{{ item }}</span>
@@ -25,9 +25,9 @@
     data() {
       return {
         defaultClasses: {
-          radioContainer: 'radio',
-          radio: '',
-          radioLabel: '',
+          container: 'radio-container',
+          label: 'label',
+          radio: 'radio',
         }
       }
     }
