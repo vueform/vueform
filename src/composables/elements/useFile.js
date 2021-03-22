@@ -235,6 +235,7 @@ const base = function (props, context, dependencies)
       clickable: clickable.value,
       filename: filename.value,
       preview: preview.value,
+      uploaded: uploaded.value,
     }
   })
 
@@ -437,7 +438,7 @@ const base = function (props, context, dependencies)
     reader.onload = (e) => {
       base64.value = e.target.result
     }
-    
+
     reader.readAsDataURL(file.value)
   })
 

@@ -19,6 +19,12 @@ export default {
       components,
       theme,
     } = useElementComponent(props, context)
+      
+    // ============== METHODS ===============
+
+    const label = (values) => {
+      return el$.value.fieldOptions.multipleLabel(values)
+    }
 
     return {
       el$,
@@ -28,6 +34,7 @@ export default {
       defaultClasses,
       components,
       theme,
+      label,
     }
   },
 }

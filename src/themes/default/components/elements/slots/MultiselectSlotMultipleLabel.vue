@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes.container" v-html="el$.multipleLabel(values)"></div>
+  <div :class="classes.container" v-html="label(values)"></div>
 </template>
 
 <script>

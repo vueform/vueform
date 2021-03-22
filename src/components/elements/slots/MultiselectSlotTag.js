@@ -6,7 +6,7 @@ export default {
     option: {
       required: true
     },
-    remove: {
+    handleTagRemove: {
       type: Function,
       required: true
     },
