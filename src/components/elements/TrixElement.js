@@ -73,12 +73,12 @@ export default {
     accept: {
       required: false,
       type: [Array],
-      default: null
+      default: () => ([])
     },
     acceptMimes: {
       required: false,
       type: [Array],
-      default: null
+      default: () => ([])
     },
     endpoint: {
       required: false,

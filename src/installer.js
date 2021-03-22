@@ -33,10 +33,10 @@ import TagsElement from './components/elements/TagsElement'
 import TextareaElement from './components/elements/TextareaElement'
 import TextElement from './components/elements/TextElement'
 import ToggleElement from './components/elements/ToggleElement'
-// import TrixElement from './components/elements/TrixElement'
+import TrixElement from './components/elements/TrixElement'
 import TTextareaElement from './components/elements/TTextareaElement'
 import TTextElement from './components/elements/TTextElement'
-// import TTrixElement from './components/elements/TTrixElement'
+import TTrixElement from './components/elements/TTrixElement'
 
 import Laraform from './components/Laraform'
 import FormErrors from './components/FormErrors'
@@ -63,7 +63,7 @@ import DragAndDrop from './components/DragAndDrop'
 import ElementAddon from './components/ElementAddon'
 
 import FlatpickrWrapper from './components/wrappers/FlatpickrWrapper'
-// import TrixWrapper from './components/wrappers/TrixWrapper'
+import TrixWrapper from './components/wrappers/TrixWrapper'
 
 import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
 import FileSlotProgress from './components/elements/slots/FileSlotProgress'
@@ -103,10 +103,10 @@ const elements = {
   TextareaElement,
   TextElement,
   ToggleElement,
-  // TrixElement,
+  TrixElement,
   TTextareaElement,
   TTextElement,
-  // TTrixElement,
+  TTrixElement,
 }
 
 const components = {
@@ -135,7 +135,7 @@ const components = {
   ElementAddon,
 
   FlatpickrWrapper,
-  // TrixWrapper,
+  TrixWrapper,
 
   CheckboxgroupSlotCheckbox,
   FileSlotProgress,

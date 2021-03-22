@@ -37,7 +37,15 @@ export default {
 
     // ============ DEPENDENCIES ============
 
-    const { el$, form$, classes, components, theme } = useElementComponent(props, context)
+    const {
+      el$,
+      form$,
+      classes,
+      components,
+      theme,
+      defaultClasses,
+      mainClass,
+    } = useElementComponent(props, context)
 
     // ================ DATA ================
 
@@ -45,6 +53,7 @@ export default {
 
     const input = ref(null)
 
+    /* istanbul ignore next */
     const value = context.expose !== undefined ? mv : v
 
     // ============== COMPITED ==============
@@ -147,6 +156,8 @@ export default {
       form$,
       theme,
       classes,
+      defaultClasses,
+      mainClass,
       components,
       flatpickr$,
       input,

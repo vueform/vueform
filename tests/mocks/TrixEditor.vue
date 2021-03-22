@@ -11,6 +11,14 @@
     setup(props, context) {
       const value = ref(null)
 
+      const contentEditable = ref(true)
+
+      const option = ref(null)
+
+      const setOption = (v) => {
+        option.value = v
+      }
+
       const editor = ref({
         loadHTML: (val) => {
           if (val === null) {
@@ -32,6 +40,9 @@
       return {
         value,
         editor,
+        contentEditable,
+        option,
+        setOption,
       }
     },
   }

@@ -3,47 +3,67 @@ import useElementComponent from './../../composables/useElementComponent'
 
 export default {
   name: 'TrixWrapper',
-  emits: ['input'],
+  emits: ['input', 'alert'],
   props: {
     value: {
+      required: false,
       default: null
     },
     placeholder: {
+      required: false,
       type: [String, Number],
       default: null
     },
     name: {
+      required: false,
       type: [String, Number],
       default: null
     },
     id: {
+      required: false,
       type: [String, Number],
       default: null
     },
     accept: {
+      required: false,
       type: Array,
-      default: []
+      default: () => ([])
     },
     acceptMimes: {
+      required: false,
       type: Array,
-      default: []
+      default: () => ([])
     },
     endpoint: {
+      required: false,
       type: String,
       default: null
     },
     disabled: {
+      required: false,
       type: Boolean,
       default: false
     },
   },
   setup(props, context)
   {
-    const { value, disabled, acceptMimes, accept, endpoint } = toRefs(props)
+    const {
+      value,
+      disabled,
+      acceptMimes,
+      accept,
+      endpoint
+    } = toRefs(props)
 
     // ============ DEPENDENCIES ============
 
-    const { el$, form$, classes, components, theme } = useElementComponent(props, context)
+    const {
+      el$,
+      form$,
+      classes,
+      components,
+      theme
+    } = useElementComponent(props, context)
 
     // ================ DATA ================
 
@@ -119,7 +139,7 @@ export default {
       data.append('Content-Type', e.attachment.file.type)
       data.append('file', e.attachment.file)
 
-      $laraform.value.services.axios.post(endpoint.value, data, {
+      el$.value.$laraform.services.axios.post(endpoint.value, data, {
         onUploadProgress: (progress) => {
           e.attachment.setUploadProgress(
             Math.round((progress.loaded * 100) / progress.total)

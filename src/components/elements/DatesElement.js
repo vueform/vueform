@@ -70,6 +70,11 @@ export default {
       type: [String],
       default: null
     },
+    range: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
     displayFormat: {
       required: false,
       type: [String],
