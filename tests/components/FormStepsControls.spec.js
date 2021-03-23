@@ -3,8 +3,8 @@ import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 import useFormComponent from './../composables/useFormComponent'
 
-describe('FormWizardControls', () => {
-  useFormComponent({steps:{a:{label:'a',elements:['el']}},schema:{el:{type:'text'}}}, 'FormWizardControls')
+describe('FormStepsControls', () => {
+  useFormComponent({steps:{a:{label:'a',elements:['el']}},schema:{el:{type:'text'}}}, 'FormStepsControls')
 
   describe('misc', () => {
     it('should disable previous button on first step', async () => {
@@ -270,7 +270,9 @@ describe('FormWizardControls', () => {
       
       findAll(finish, 'button').last().trigger('click')
 
-      expect(steps.emitted('submit')).toBeTruthy()
+      await nextTick()
+
+      expect(steps.emitted('finish')).toBeTruthy()
 
       await flushPromises()
     })

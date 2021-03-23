@@ -27,6 +27,29 @@ export default {
       defaultClasses,
     } = useFormComponent(props, context)
 
+    /**
+     * 
+     * 
+     * @private
+     */
+    const baseLabel = computed(() => {
+      let labels = current$ && current$.value ? current$.value.labels : null
+
+      switch (type.value) {
+        case 'previous':
+          return labels && labels.previous ? labels.previous : form$.value.__('laraform.steps.previous')
+        case 'next':
+          return labels && labels.next ? labels.next : form$.value.__('laraform.steps.next')
+        case 'finish':
+          return labels && labels.finish ? labels.finish : form$.value.__('laraform.steps.finish')
+      }
+    })
+
+    const {
+      isLabelComponent,
+      label,
+    } = useLabel(props, context, { component$: form$, labelDefinition: baseLabel })
+
     // ============== COMPUTED ==============
 
     const steps$ = computed(() => {
@@ -41,16 +64,6 @@ export default {
     const current$ = computed(() => {
       return steps$.value ? steps$.value.current$ : undefined
     })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const isLabelComponent = computed(() => {
-      return label.value !== null && typeof label.value === 'object'
-    })
-
 
     /**
      * 
@@ -102,24 +115,6 @@ export default {
           // changed to valid, but still marked as invalid
           return (steps$.value.invalid && form$.value.shouldValidateOnChange) ||
                 steps$.value.busy || form$.value.submitting || form$.value.disabled
-      }
-    })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const label = computed(() => {
-      let labels = current$ && current$.value ? current$.value.labels : null
-
-      switch (type.value) {
-        case 'previous':
-          return labels && labels.previous ? labels.previous : form$.value.__('laraform.steps.previous')
-        case 'next':
-          return labels && labels.next ? labels.next : form$.value.__('laraform.steps.next')
-        case 'finish':
-          return labels && labels.finish ? labels.finish : form$.value.__('laraform.steps.finish')
       }
     })
 
