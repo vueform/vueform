@@ -22,7 +22,7 @@ describe('FormTab', () => {
 
   let FormTab = findAllComponents(form, { name: 'FormTab' }).at(0)
 
-  useFormComponent({tabs:{a:{label:'a',elements:['el'],class:'tab-class'}},schema:{el:{type:'text'}}}, 'FormTab', {
+  useFormComponent({tabs:{a:{label:'a',elements:['el'],tabClass:'tab-class'}},schema:{el:{type:'text'}}}, 'FormTab', {
     mergeWith: {
       [FormTab.vm.mainClass]: 'tab-class',
       [FormTab.vm.classKeys.state]: {
@@ -60,7 +60,7 @@ describe('FormTab', () => {
       expect(findAllComponents(form, { name: 'FormTab' }).at(0).html()).toContain('First')
       expect(findAllComponents(form, { name: 'FormTab' }).at(1).html()).toContain('Second')
 
-      form.vm.tabs.first.label = 'Not first'
+      form.vm.laraform.tabs.first.label = 'Not first'
 
       await nextTick()
 
@@ -72,11 +72,11 @@ describe('FormTab', () => {
         labelVar: 'var',
         tabs: {
           first: {
-            label: (form$) => { return 'First'+form$.labelVar },
+            label: (form$) => { return 'First'+form$.laraform.labelVar },
             elements: ['a'],
           },
           second: {
-            label: (form$) => { return 'Second'+form$.labelVar },
+            label: (form$) => { return 'Second'+form$.laraform.labelVar },
             elements: ['b']
           },
         },
@@ -93,7 +93,7 @@ describe('FormTab', () => {
       expect(findAllComponents(form, { name: 'FormTab' }).at(0).html()).toContain('Firstvar')
       expect(findAllComponents(form, { name: 'FormTab' }).at(1).html()).toContain('Secondvar')
 
-      form.vm.labelVar = 'notvar'
+      form.vm.laraform.labelVar = 'notvar'
 
       await nextTick()
 
@@ -108,7 +108,7 @@ describe('FormTab', () => {
             label: markRaw({
               props: ['tab', 'form$'],
               render(h) {
-                return createElement(h, 'div', this.tab.labelVar)
+                return createElement(h, 'div', this.form$.laraform.tabs.first.labelVar)
               }
             }),
             labelVar: 'First',
@@ -118,7 +118,7 @@ describe('FormTab', () => {
             label: markRaw({
               props: ['tab', 'form$'],
               render(h) {
-                return createElement(h, 'div', this.tab.labelVar)
+                return createElement(h, 'div', this.form$.laraform.tabs.first.labelVar)
               }
             }),
             labelVar: 'Second',
@@ -138,7 +138,7 @@ describe('FormTab', () => {
       expect(findAllComponents(form, { name: 'FormTab' }).at(0).html()).toContain('First')
       expect(findAllComponents(form, { name: 'FormTab' }).at(1).html()).toContain('Second')
 
-      form.vm.tabs.first.labelVar = 'Not first'
+      form.vm.laraform.tabs.first.labelVar = 'Not first'
 
       await nextTick()
 
@@ -152,7 +152,7 @@ describe('FormTab', () => {
         tabs: {
           first: {
             label: 'First',
-            class: 'class-a',
+            tabClass: 'class-a',
             elements: ['a']
           },
           second: {
@@ -389,7 +389,7 @@ describe('FormTab', () => {
   })
 
   describe('events', () => {
-    it('should trigger `active` event when selected', () => {
+    it('should trigger `active` event when selected', async () => {
       let onActiveMock = jest.fn(() => {})
 
       let form = createForm({
@@ -421,6 +421,9 @@ describe('FormTab', () => {
       expect(onActiveMock.mock.calls.length).toBe(0)
 
       findAll(second, 'a').last().trigger('click')
+
+      await nextTick()
+      await nextTick()
 
       expect(onActiveMock.mock.calls.length).toBe(1)
     })
@@ -458,6 +461,8 @@ describe('FormTab', () => {
 
       await nextTick()
       findAll(second, 'a').last().trigger('click')
+
+      await nextTick()
       
       expect(onInactiveMock.mock.calls.length).toBe(1)
     })

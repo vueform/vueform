@@ -6,11 +6,11 @@
       :class="classes.wrapper"
       @click.prevent="select"
     >
-      <component :is="label" :form$="form$" />
+      <component :is="tabLabel" :form$="form$" />
     </a>
     <a
       v-else
-      v-html="label"
+      v-html="tabLabel"
       href="#"
       :class="classes.wrapper"
       @click.prevent="select"

@@ -42,6 +42,18 @@ export default {
       required: false,
       default: null,
     },
+
+    onActive: {
+      type: [Function],
+      required: false,
+      default: null,
+    },
+
+    onInactive: {
+      type: [Function],
+      required: false,
+      default: null,
+    },
   },
   setup(props, context)
   {  
@@ -72,7 +84,8 @@ export default {
     } = useConditions(props, context, { form$ })
 
     const {
-      isLabelComponent
+      isLabelComponent,
+      label: tabLabel,
     } = useLabel(props, context, { component$: form$, labelDefinition: label })
 
     const {
@@ -324,9 +337,11 @@ export default {
       classes,
       mainClass,
       defaultClasses,
+      classKeys,
       components,
       available,
       isLabelComponent,
+      tabLabel,
       tab$,
       select,
       activate,

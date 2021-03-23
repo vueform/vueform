@@ -511,6 +511,7 @@ export default {
       classes,
       mainClass,
       defaultClasses,
+      classKeys,
       components,
       available,
       baseLabel,
