@@ -6,12 +6,12 @@ import useFormComponent from './../composables/useFormComponent'
 expect.extend({toBeVisible})
 
 describe('FormWizardFinish', () => {
-  useFormComponent({wizard:{a:{label:'a',elements:['el']}},schema:{el:{type:'text'}}}, 'FormWizardFinish', )
+  useFormComponent({steps:{a:{label:'a',elements:['el']}},schema:{el:{type:'text'}}}, 'FormWizardFinish', )
 
   describe('label', () => {
     it('should render string label', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -32,7 +32,7 @@ describe('FormWizardFinish', () => {
 
       expect(findAllComponents(form, { name: 'FormWizardFinish' }).at(0).html()).toContain('Finish')
 
-      form.vm.wizard.first.labels.finish = 'Not finish'
+      form.vm.steps.first.labels.finish = 'Not finish'
 
       await nextTick()
 
@@ -41,7 +41,7 @@ describe('FormWizardFinish', () => {
 
     it('should render function label', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             elements: ['a'],
             labelVar: 'var',
@@ -65,7 +65,7 @@ describe('FormWizardFinish', () => {
 
       expect(findAllComponents(form, { name: 'FormWizardFinish' }).at(0).html()).toContain('Finishvar')
 
-      form.vm.wizard.first.labelVar = 'notvar'
+      form.vm.steps.first.labelVar = 'notvar'
 
       await nextTick()
 
@@ -74,7 +74,7 @@ describe('FormWizardFinish', () => {
 
     it('should render component label', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             elements: ['a'],
             labelVar: 'Finish',
@@ -103,7 +103,7 @@ describe('FormWizardFinish', () => {
 
       expect(findAllComponents(form, { name: 'FormWizardFinish' }).at(0).html()).toContain('Finish')
 
-      form.vm.wizard.first.labelVar = 'Not finish'
+      form.vm.steps.first.labelVar = 'Not finish'
 
       await nextTick()
 

@@ -197,8 +197,8 @@ describe('Laraform', () => {
     })
   })
 
-  describe('wizard', () => {
-    let wizard = {
+  describe('steps', () => {
+    let steps = {
       first: { label: 'First', elements: ['el'], },
       second: { label: 'Second', elements: ['el2'] },
     }
@@ -209,29 +209,29 @@ describe('Laraform', () => {
       el3: { type: 'text', },
     }
 
-    tests.wizard({ wizard, schema }, {}, 'Options API')
-    tests.wizard({}, {setup: () => ({ schema: ref(schema), wizard: ref(wizard), })}, 'Composition API')
-    tests.wizard({}, { propsData: { form: { wizard, schema }}}, ':form prop', )
+    tests.steps({ steps, schema }, {}, 'Options API')
+    tests.steps({}, {setup: () => ({ schema: ref(schema), steps: ref(steps), })}, 'Composition API')
+    tests.steps({}, { propsData: { form: { steps, schema }}}, ':form prop', )
 
     it('should have {} as default', () => {
       let form = createForm({})
 
-      expect(form.vm.wizard).toStrictEqual({})
+      expect(form.vm.steps).toStrictEqual({})
     })
 
     it('should merge deep Options API schema to :form prop schema', () => {
       let form = createForm({
-        wizard: { first: { label: 'First', buttons: { previous: true } } },
+        steps: { first: { label: 'First', buttons: { previous: true } } },
         schema: { el: { type: 'text' }, }
       }, {
         propsData: {
           form: {
-            wizard: { first: { label: 'Not first', elements: ['el'], buttons: { previous: false, next: true } } },
+            steps: { first: { label: 'Not first', elements: ['el'], buttons: { previous: false, next: true } } },
           }
         }
       })
 
-      expect(form.vm.wizard).toStrictEqual({
+      expect(form.vm.steps).toStrictEqual({
         first: {
           label: 'First',
           elements: ['el'],
@@ -244,18 +244,18 @@ describe('Laraform', () => {
       let form = createForm({}, {
         setup(props, context) {
           return {
-            wizard: ref({ first: { label: 'First', buttons: { previous: true } } }),
+            steps: ref({ first: { label: 'First', buttons: { previous: true } } }),
             schema: ref({ el: { type: 'text' }, })
           }
         },
         propsData: {
           form: {
-            wizard: { first: { label: 'Not first', elements: ['el'], buttons: { previous: false, next: true } } },
+            steps: { first: { label: 'Not first', elements: ['el'], buttons: { previous: false, next: true } } },
           }
         }
       })
 
-      expect(form.vm.wizard).toStrictEqual({
+      expect(form.vm.steps).toStrictEqual({
         first: {
           label: 'First',
           elements: ['el'],
@@ -265,17 +265,17 @@ describe('Laraform', () => {
     })
   })
 
-  describe('wizardControls', () => {
-    let wizardControls = false
+  describe('stepsControls', () => {
+    let stepsControls = false
 
-    tests.wizardControls({ wizardControls }, {}, 'Options API')
-    tests.wizardControls({}, {setup: () => ({ wizardControls: ref(wizardControls) })}, 'Composition API')
-    tests.wizardControls({}, { propsData: { form: { wizardControls }}}, ':form prop', )
+    tests.stepsControls({ stepsControls }, {}, 'Options API')
+    tests.stepsControls({}, {setup: () => ({ stepsControls: ref(stepsControls) })}, 'Composition API')
+    tests.stepsControls({}, { propsData: { form: { stepsControls }}}, ':form prop', )
 
     it('should have true as default', () => {
       let form = createForm({})
 
-      expect(form.vm.wizardControls).toStrictEqual(true)
+      expect(form.vm.stepsControls).toStrictEqual(true)
     })
   })
 
@@ -897,10 +897,10 @@ describe('Laraform', () => {
     })
   })
 
-  describe('wizard$', () => {
-    it('should contain FormWizard when using default template', async () => {
+  describe('steps$', () => {
+    it('should contain FormSteps when using default template', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['el']
@@ -920,14 +920,14 @@ describe('Laraform', () => {
         }
       })
 
-      let wizardWrapper = findAllComponents(form, { name: 'FormWizard' }).at(0)
+      let stepsWrapper = findAllComponents(form, { name: 'FormSteps' }).at(0)
       
-      expect(form.vm.wizard$).toStrictEqual(wizardWrapper.vm)
+      expect(form.vm.steps$).toStrictEqual(stepsWrapper.vm)
     })
 
-    it('should contain FormWizard when using custom template', async () => {
+    it('should contain FormSteps when using custom template', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['el']
@@ -948,9 +948,9 @@ describe('Laraform', () => {
       }, {}, function(h) {
         return createElement(h, 'form', [
           createElement(h, 'div', [
-            createElement(h, this.extendedTheme.components.FormWizard, {
+            createElement(h, this.extendedTheme.components.FormSteps, {
               props: {
-                steps: this.wizard,
+                steps: this.steps,
                 elements$: this.elements$
               }
             })
@@ -970,9 +970,9 @@ describe('Laraform', () => {
         ])
       })
 
-      let wizardWrapper = findAllComponents(form, { name: 'FormWizard' }).at(0)
+      let stepsWrapper = findAllComponents(form, { name: 'FormSteps' }).at(0)
       
-      expect(form.vm.wizard$).toStrictEqual(wizardWrapper.vm)
+      expect(form.vm.steps$).toStrictEqual(stepsWrapper.vm)
     })
   })
 
@@ -1406,7 +1406,7 @@ describe('Laraform', () => {
   })
 
   describe('hasWizard', () => {
-    it('should be false if wizard is not defined', async () => {
+    it('should be false if steps is not defined', async () => {
       let form = createForm({
         schema: {
           el: { type: 'text' }
@@ -1416,9 +1416,9 @@ describe('Laraform', () => {
       expect(form.vm.hasWizard).toBe(false)
     })
 
-    it('should be true if wizard is defined', async () => {
+    it('should be true if steps is defined', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: { elements: ['el'] }
         },
         schema: {
@@ -2135,9 +2135,9 @@ describe('Laraform', () => {
       })
     })
 
-    it('should enable all wizard steps on load', async () => {
+    it('should enable all steps steps on load', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             elements: ['el']
           },
@@ -2158,8 +2158,8 @@ describe('Laraform', () => {
 
       await nextTick()
 
-      expect(form.vm.wizard$.steps$.first.disabled).toBe(false)
-      expect(form.vm.wizard$.steps$.second.disabled).toBe(false)
+      expect(form.vm.steps$.steps$.first.disabled).toBe(false)
+      expect(form.vm.steps$.steps$.second.disabled).toBe(false)
     })
   })
 
@@ -2185,9 +2185,9 @@ describe('Laraform', () => {
       })
     })
 
-    it('should reset wizard', async () => {
+    it('should reset steps', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             elements: ['el']
           },
@@ -2210,15 +2210,15 @@ describe('Laraform', () => {
 
       await nextTick()
 
-      expect(form.vm.wizard$.steps$.first.disabled).toBe(false)
-      expect(form.vm.wizard$.steps$.second.disabled).toBe(false)
+      expect(form.vm.steps$.steps$.first.disabled).toBe(false)
+      expect(form.vm.steps$.steps$.second.disabled).toBe(false)
 
       form.vm.reset()
 
       await nextTick()
 
-      expect(form.vm.wizard$.steps$.first.disabled).toBe(false)
-      expect(form.vm.wizard$.steps$.second.disabled).toBe(true)
+      expect(form.vm.steps$.steps$.first.disabled).toBe(false)
+      expect(form.vm.steps$.steps$.second.disabled).toBe(true)
     })
 
     it('should reset tabs', async () => {
@@ -2292,9 +2292,9 @@ describe('Laraform', () => {
       })
     })
 
-    it('should clear wizard', async () => {
+    it('should clear steps', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             elements: ['el']
           },
@@ -2317,15 +2317,15 @@ describe('Laraform', () => {
 
       await nextTick()
 
-      expect(form.vm.wizard$.steps$.first.disabled).toBe(false)
-      expect(form.vm.wizard$.steps$.second.disabled).toBe(false)
+      expect(form.vm.steps$.steps$.first.disabled).toBe(false)
+      expect(form.vm.steps$.steps$.second.disabled).toBe(false)
 
       form.vm.clear()
 
       await nextTick()
 
-      expect(form.vm.wizard$.steps$.first.disabled).toBe(false)
-      expect(form.vm.wizard$.steps$.second.disabled).toBe(true)
+      expect(form.vm.steps$.steps$.first.disabled).toBe(false)
+      expect(form.vm.steps$.steps$.second.disabled).toBe(true)
     })
 
     it('should clear tabs', async () => {

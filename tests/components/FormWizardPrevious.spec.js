@@ -6,12 +6,12 @@ import useFormComponent from './../composables/useFormComponent'
 expect.extend({toBeVisible})
 
 describe('FormWizardPrevious', () => {
-  useFormComponent({wizard:{a:{label:'a',elements:['el']},b:{label:'b',elements:['el2']}},schema:{el:{type:'text'},el2:{type:'text'}}}, 'FormWizardPrevious', )
+  useFormComponent({steps:{a:{label:'a',elements:['el']},b:{label:'b',elements:['el2']}},schema:{el:{type:'text'},el2:{type:'text'}}}, 'FormWizardPrevious', )
 
   describe('label', () => {
     it('should render string label', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -39,7 +39,7 @@ describe('FormWizardPrevious', () => {
 
       expect(findAllComponents(form, { name: 'FormWizardPrevious' }).at(0).html()).toContain('Previous')
 
-      form.vm.wizard.first.labels.previous = 'Not previous'
+      form.vm.steps.first.labels.previous = 'Not previous'
 
       await nextTick()
 
@@ -48,7 +48,7 @@ describe('FormWizardPrevious', () => {
 
     it('should render function label', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             elements: ['a'],
             labelVar: 'var',
@@ -76,7 +76,7 @@ describe('FormWizardPrevious', () => {
 
       expect(findAllComponents(form, { name: 'FormWizardPrevious' }).at(0).html()).toContain('Previousvar')
 
-      form.vm.wizard.first.labelVar = 'notvar'
+      form.vm.steps.first.labelVar = 'notvar'
 
       await nextTick()
 
@@ -85,7 +85,7 @@ describe('FormWizardPrevious', () => {
 
     it('should render component label', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             elements: ['a'],
             labelVar: 'Previous',
@@ -118,7 +118,7 @@ describe('FormWizardPrevious', () => {
 
       expect(findAllComponents(form, { name: 'FormWizardPrevious' }).at(0).html()).toContain('Previous')
 
-      form.vm.wizard.first.labelVar = 'Not previous'
+      form.vm.steps.first.labelVar = 'Not previous'
 
       await nextTick()
 

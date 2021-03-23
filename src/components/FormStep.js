@@ -51,6 +51,30 @@ export default {
       required: false,
       default: null,
     },
+
+    onActive: {
+      type: [Function],
+      required: false,
+      default: null,
+    },
+
+    onInactive: {
+      type: [Function],
+      required: false,
+      default: null,
+    },
+
+    onDisable: {
+      type: [Function],
+      required: false,
+      default: null,
+    },
+
+    onEnable: {
+      type: [Function],
+      required: false,
+      default: null,
+    },
   },
   setup(props, context)
   {  
@@ -81,7 +105,8 @@ export default {
     } = useConditions(props, context, { form$ })
 
     const {
-      isLabelComponent
+      isLabelComponent,
+      label: stepLabel,
     } = useLabel(props, context, { component$: form$, labelDefinition: label })
 
     const {
@@ -521,6 +546,7 @@ export default {
       done,
       step$,
       isLabelComponent,
+      stepLabel,
       index,
       validate,
       activate,

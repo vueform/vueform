@@ -6,12 +6,12 @@ import useFormComponent from './../composables/useFormComponent'
 expect.extend({toBeVisible})
 
 describe('FormWizardNext', () => {
-  useFormComponent({wizard:{a:{label:'a',elements:['el']},b:{label:'b',elements:['el2']}},schema:{el:{type:'text'},el2:{type:'text'}}}, 'FormWizardNext', )
+  useFormComponent({steps:{a:{label:'a',elements:['el']},b:{label:'b',elements:['el2']}},schema:{el:{type:'text'},el2:{type:'text'}}}, 'FormWizardNext', )
 
   describe('label', () => {
     it('should render string label', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -39,7 +39,7 @@ describe('FormWizardNext', () => {
 
       expect(findAllComponents(form, { name: 'FormWizardNext' }).at(0).html()).toContain('Next')
 
-      form.vm.wizard.first.labels.next = 'Not next'
+      form.vm.steps.first.labels.next = 'Not next'
 
       await nextTick()
 
@@ -48,7 +48,7 @@ describe('FormWizardNext', () => {
 
     it('should render function label', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             elements: ['a'],
             labelVar: 'var',
@@ -76,7 +76,7 @@ describe('FormWizardNext', () => {
 
       expect(findAllComponents(form, { name: 'FormWizardNext' }).at(0).html()).toContain('Nextvar')
 
-      form.vm.wizard.first.labelVar = 'notvar'
+      form.vm.steps.first.labelVar = 'notvar'
 
       await nextTick()
 
@@ -85,7 +85,7 @@ describe('FormWizardNext', () => {
 
     it('should render component label', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             elements: ['a'],
             labelVar: 'Next',
@@ -118,7 +118,7 @@ describe('FormWizardNext', () => {
 
       expect(findAllComponents(form, { name: 'FormWizardNext' }).at(0).html()).toContain('Next')
 
-      form.vm.wizard.first.labelVar = 'Not next'
+      form.vm.steps.first.labelVar = 'Not next'
 
       await nextTick()
 

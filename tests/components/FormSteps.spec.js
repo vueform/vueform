@@ -4,43 +4,43 @@ import { dynamicsTesting } from './FormBlocks.spec'
 import flushPromises from 'flush-promises'
 import useFormComponent from './../composables/useFormComponent'
 
-describe('FormWizard', () => {
-  useFormComponent({wizard:{a:{label:'a',elements:['el']}},schema:{el:{type:'text'}}}, 'FormWizard')
+describe('FormSteps', () => {
+  // useFormComponent({steps:{a:{label:'a',elements:['el']}},schema:{el:{type:'text'}}}, 'FormSteps')
 
-  describe('rendering', () => {
-    it('should render steps', () => {
-      let form = createForm({
-        wizard: {
-          first: {
-            label: 'First',
-            elements: ['a'],
-          },
-          second: {
-            label: 'Second',
-            elements: ['b'],
-          },
-        },
-        schema: {
-          a: {
-            type: 'text'
-          },
-          b: {
-            type: 'text'
-          },
-        }
-      })
+  // describe('rendering', () => {
+  //   it('should render steps', () => {
+  //     let form = createForm({
+  //       steps: {
+  //         first: {
+  //           label: 'First',
+  //           elements: ['a'],
+  //         },
+  //         second: {
+  //           label: 'Second',
+  //           elements: ['b'],
+  //         },
+  //       },
+  //       schema: {
+  //         a: {
+  //           type: 'text'
+  //         },
+  //         b: {
+  //           type: 'text'
+  //         },
+  //       }
+  //     })
 
-      expect(form.html()).toContain('First')
-      expect(form.html()).toContain('Second')
-      expect(findAllComponents(form, { name: 'FormWizardStep' }).length).toBe(2)
-    })
-  })
+  //     expect(form.html()).toContain('First')
+  //     expect(form.html()).toContain('Second')
+  //     expect(findAllComponents(form, { name: 'FormStep' }).length).toBe(2)
+  //   })
+  // })
 
   describe('computed', () => {
     it('should be pending if has any pending elements', async () => {
       let form = createForm({
         validateOn: 'change|submit',
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -62,23 +62,23 @@ describe('FormWizard', () => {
       })
 
       let a = form.vm.el$('a')
-      let wizard = form.findComponent({ name: 'FormWizard' })
+      let steps = form.findComponent({ name: 'FormSteps' })
 
       a.$laraform.services.axios.post = jest.fn(() => { return {  } })
 
       await nextTick()
-      wizard.vm.goTo('second')
+      steps.vm.goTo('second')
 
       await nextTick()
-      let finish = form.findComponent({ name: 'FormWizardFinish' })
+      let finish = findAllComponents(form, { name: 'FormStepsControl' }).at(2)
 
-      expect(wizard.vm.pending).toBe(false)
+      expect(steps.vm.pending).toBe(false)
       
       findAll(finish, 'button').last().trigger('click')
 
       await nextTick()
 
-      expect(wizard.vm.pending).toBe(true)
+      expect(steps.vm.pending).toBe(true)
 
       await flushPromises()
     })
@@ -86,7 +86,7 @@ describe('FormWizard', () => {
     it('should be invalid if has any invalid elements', async () => {
       let form = createForm({
         validateOn: 'change|step|submit',
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -107,26 +107,26 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
+      let steps = form.findComponent({ name: 'FormSteps' })
 
       await nextTick()
-      wizard.vm.goTo('second')
+      steps.vm.goTo('second')
 
       await nextTick()
-      let finish = form.findComponent({ name: 'FormWizardFinish' })
+      let finish = findAllComponents(form, { name: 'FormStepsControl' }).at(2)
 
-      expect(wizard.vm.invalid).toBe(false)
+      expect(steps.vm.invalid).toBe(false)
       
       findAll(finish, 'button').last().trigger('click')
 
       await nextTick()
-      expect(wizard.vm.invalid).toBe(true)
+      expect(steps.vm.invalid).toBe(true)
     })
 
     it('should be debouncing if has any debouncing elements', async () => {
       let form = createForm({
         validateOn: 'change|step|submit',
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -139,7 +139,7 @@ describe('FormWizard', () => {
         schema: {
           a: {
             type: 'text',
-            rules: 'required:debounce=3000'
+            rules: 'required:debounce=10'
           },
           b: {
             type: 'text'
@@ -147,22 +147,23 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
+      let steps = form.findComponent({ name: 'FormSteps' })
 
       let a = findAllComponents(form, { name: 'TextElement' }).at(0)
       expect(a.vm.name).toBe('a')
 
       await nextTick()
       findAll(a, 'input').at(0).trigger('input')
+      await nextTick()
 
       expect(a.vm.debouncing).toBe(true)
-      expect(wizard.vm.debouncing).toBe(true)
+      expect(steps.vm.debouncing).toBe(true)
     })
 
     it('should not be done if has any steps which are not done', () => {
       let form = createForm({
         validateOn: 'change|step|submit',
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -182,15 +183,15 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
+      let steps = form.findComponent({ name: 'FormSteps' })
 
-      expect(wizard.vm.done).toBe(false)
+      expect(steps.vm.done).toBe(false)
     })
 
     it('should be done if all steps are done', () => {
       let form = createForm({
         validateOn: 'change|step|submit',
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -210,20 +211,20 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
+      let steps = form.findComponent({ name: 'FormSteps' })
 
-      let first = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
-      let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
+      let first = findAllComponents(form, { name: 'FormStep' }).at(0)
+      let second = findAllComponents(form, { name: 'FormStep' }).at(1)
 
       first.vm.complete()
       second.vm.complete()
 
-      expect(wizard.vm.done).toBe(true)
+      expect(steps.vm.done).toBe(true)
     })
 
     it('should return current step for current$', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -243,25 +244,25 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
-      let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
-      let next = form.findComponent({ name: 'FormWizardNext' })
+      let steps = form.findComponent({ name: 'FormSteps' })
+      let second = findAllComponents(form, { name: 'FormStep' }).at(1)
+      let next = findAllComponents(form, { name: 'FormStepsControl' }).at(1)
 
       expect(second.vm.name).toBe('second')
 
       await nextTick()
-      expect(wizard.vm.current$.name).toBe('first')
+      expect(steps.vm.current$.name).toBe('first')
 
       findAll(next, 'button').last().trigger('click')
 
       await flushPromises()
 
-      expect(wizard.vm.current$.name).toBe('second')
+      expect(steps.vm.current$.name).toBe('second')
     })
 
     it('should return first step for first$', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -281,15 +282,15 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
+      let steps = form.findComponent({ name: 'FormSteps' })
 
       await nextTick()
-      expect(wizard.vm.first$.name).toBe('first')
+      expect(steps.vm.first$.name).toBe('first')
     })
 
     it('should return next step for next$', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -309,15 +310,15 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
+      let steps = form.findComponent({ name: 'FormSteps' })
 
       await nextTick()
-      expect(wizard.vm.next$.name).toBe('second')
+      expect(steps.vm.next$.name).toBe('second')
     })
 
     it('should return previous step for previous$', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -337,25 +338,25 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
-      let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
-      let next = form.findComponent({ name: 'FormWizardNext' })
+      let steps = form.findComponent({ name: 'FormSteps' })
+      let second = findAllComponents(form, { name: 'FormStep' }).at(1)
+      let next = findAllComponents(form, { name: 'FormStepsControl' }).at(1)
 
       expect(second.vm.name).toBe('second')
 
       await nextTick()
-      expect(wizard.vm.previous$).toBe(undefined)
+      expect(steps.vm.previous$).toBe(undefined)
 
       findAll(next, 'button').last().trigger('click')
 
       await flushPromises()
 
-      expect(wizard.vm.previous$.name).toBe('first')
+      expect(steps.vm.previous$.name).toBe('first')
     })
 
     it('should return first invalid step for firstInvalid$', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -385,7 +386,7 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
+      let steps = form.findComponent({ name: 'FormSteps' })
 
       let a = findAllComponents(form, { name: 'TextElement' }).at(0)
       let b = findAllComponents(form, { name: 'TextElement' }).at(1)
@@ -400,12 +401,12 @@ describe('FormWizard', () => {
       c.vm.update('', true)
 
       await nextTick()
-      expect(wizard.vm.firstInvalid$.name).toBe('second')
+      expect(steps.vm.firstInvalid$.name).toBe('second')
     })
 
     it('should return first non done step for firstNonDone$', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -432,8 +433,8 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
-      let next = form.findComponent({ name: 'FormWizardNext' })
+      let steps = form.findComponent({ name: 'FormSteps' })
+      let next = findAllComponents(form, { name: 'FormStepsControl' }).at(1)
 
       let a = findAllComponents(form, { name: 'TextElement' }).at(0)
       let b = findAllComponents(form, { name: 'TextElement' }).at(1)
@@ -449,12 +450,12 @@ describe('FormWizard', () => {
       await flushPromises()
 
       await nextTick()
-      expect(wizard.vm.firstNonDone$.name).toBe('second')
+      expect(steps.vm.firstNonDone$.name).toBe('second')
     })
 
     it('should return last enabled step for lastEnabled$', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -481,8 +482,8 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
-      let next = form.findComponent({ name: 'FormWizardNext' })
+      let steps = form.findComponent({ name: 'FormSteps' })
+      let next = findAllComponents(form, { name: 'FormStepsControl' }).at(1)
 
       let a = findAllComponents(form, { name: 'TextElement' }).at(0)
       let b = findAllComponents(form, { name: 'TextElement' }).at(1)
@@ -498,12 +499,12 @@ describe('FormWizard', () => {
       await flushPromises()
       await nextTick()
 
-      expect(wizard.vm.lastEnabled$.name).toBe('second')
+      expect(steps.vm.lastEnabled$.name).toBe('second')
     })
 
     it('should enable step when becomes available but already passed', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -533,9 +534,9 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
+      let steps = form.findComponent({ name: 'FormSteps' })
 
-      let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
+      let second = findAllComponents(form, { name: 'FormStep' }).at(1)
       expect(second.vm.name).toBe('second')
 
       let a = findAllComponents(form, { name: 'TextElement' }).at(0)
@@ -543,7 +544,7 @@ describe('FormWizard', () => {
 
       expect(second.vm.disabled).toBe(true)
 
-      wizard.vm.goTo('third')
+      steps.vm.goTo('third')
 
       await nextTick()
       a.vm.update(1)
@@ -556,7 +557,7 @@ describe('FormWizard', () => {
   describe('methods', () => {
     it('goTo should go to a step', () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -583,16 +584,16 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
+      let steps = form.findComponent({ name: 'FormSteps' })
 
-      wizard.vm.goTo('second')
+      steps.vm.goTo('second')
 
-      expect(wizard.vm.current$.name).toBe('second')
+      expect(steps.vm.current$.name).toBe('second')
     })
 
     it('should complete all steps with complete() method', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -612,12 +613,12 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
-      let first = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
-      let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
+      let steps = form.findComponent({ name: 'FormSteps' })
+      let first = findAllComponents(form, { name: 'FormStep' }).at(0)
+      let second = findAllComponents(form, { name: 'FormStep' }).at(1)
 
       await nextTick()
-      wizard.vm.complete()
+      steps.vm.complete()
 
       expect(first.vm.completed).toBe(true)
       expect(second.vm.completed).toBe(true)
@@ -625,7 +626,7 @@ describe('FormWizard', () => {
 
     it('should enable all steps with enableAllSteps() method', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -645,12 +646,12 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
-      let first = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
-      let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
+      let steps = form.findComponent({ name: 'FormSteps' })
+      let first = findAllComponents(form, { name: 'FormStep' }).at(0)
+      let second = findAllComponents(form, { name: 'FormStep' }).at(1)
 
       await nextTick()
-      wizard.vm.enableAllSteps()
+      steps.vm.enableAllSteps()
 
       expect(first.vm.disabled).toBe(false)
       expect(second.vm.disabled).toBe(false)
@@ -658,7 +659,7 @@ describe('FormWizard', () => {
 
     it('should enable all steps when data is loaded', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -678,8 +679,8 @@ describe('FormWizard', () => {
         }
       })
 
-      let first = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
-      let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
+      let first = findAllComponents(form, { name: 'FormStep' }).at(0)
+      let second = findAllComponents(form, { name: 'FormStep' }).at(1)
 
       form.vm.load({
         a: 1,
@@ -693,7 +694,7 @@ describe('FormWizard', () => {
 
     it('should go to first step and disable all others when form is resetted', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -720,20 +721,20 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
-      let first = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
-      let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
-      let third = findAllComponents(form, { name: 'FormWizardStep' }).at(2)
+      let steps = form.findComponent({ name: 'FormSteps' })
+      let first = findAllComponents(form, { name: 'FormStep' }).at(0)
+      let second = findAllComponents(form, { name: 'FormStep' }).at(1)
+      let third = findAllComponents(form, { name: 'FormStep' }).at(2)
 
       await nextTick()
       expect(first.vm.disabled).toBe(false)
       expect(second.vm.disabled).toBe(true)
       expect(third.vm.disabled).toBe(true)
 
-      wizard.vm.goTo('third', true)
+      steps.vm.goTo('third', true)
 
       await nextTick()
-      expect(wizard.vm.current$.name).toBe('third')
+      expect(steps.vm.current$.name).toBe('third')
       expect(first.vm.disabled).toBe(false)
       expect(second.vm.disabled).toBe(false)
       expect(third.vm.disabled).toBe(false)
@@ -741,7 +742,7 @@ describe('FormWizard', () => {
       form.vm.reset()
       
       await nextTick()
-      expect(wizard.vm.current$.name).toBe('first')
+      expect(steps.vm.current$.name).toBe('first')
       expect(first.vm.disabled).toBe(false)
       expect(second.vm.disabled).toBe(true)
       expect(third.vm.disabled).toBe(true)
@@ -749,7 +750,7 @@ describe('FormWizard', () => {
 
     it('should go to first step and disable all others when form is cleared', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -776,20 +777,20 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
-      let first = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
-      let second = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
-      let third = findAllComponents(form, { name: 'FormWizardStep' }).at(2)
+      let steps = form.findComponent({ name: 'FormSteps' })
+      let first = findAllComponents(form, { name: 'FormStep' }).at(0)
+      let second = findAllComponents(form, { name: 'FormStep' }).at(1)
+      let third = findAllComponents(form, { name: 'FormStep' }).at(2)
 
       await nextTick()
       expect(first.vm.disabled).toBe(false)
       expect(second.vm.disabled).toBe(true)
       expect(third.vm.disabled).toBe(true)
 
-      wizard.vm.goTo('third', true)
+      steps.vm.goTo('third', true)
 
       await nextTick()
-      expect(wizard.vm.current$.name).toBe('third')
+      expect(steps.vm.current$.name).toBe('third')
       expect(first.vm.disabled).toBe(false)
       expect(second.vm.disabled).toBe(false)
       expect(third.vm.disabled).toBe(false)
@@ -797,14 +798,14 @@ describe('FormWizard', () => {
       form.vm.clear()
       
       await nextTick()
-      expect(wizard.vm.current$.name).toBe('first')
+      expect(steps.vm.current$.name).toBe('first')
       expect(first.vm.disabled).toBe(false)
       expect(second.vm.disabled).toBe(true)
     })
 
     it('should find step by name', () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -824,14 +825,14 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
+      let steps = form.findComponent({ name: 'FormSteps' })
 
-      expect(wizard.vm.step$('second').name).toBe('second')
+      expect(steps.vm.step$('second').name).toBe('second')
     })
 
     it('should switch to first step and disable/uncomplete everything else on reset', async () => {
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -851,23 +852,23 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
-      let next = form.findComponent({ name: 'FormWizardNext' })
+      let steps = form.findComponent({ name: 'FormSteps' })
+      let next = findAllComponents(form, { name: 'FormStepsControl' }).at(1)
 
       await nextTick()
       findAll(next, 'button').last().trigger('click')
 
       await flushPromises()
 
-      expect(wizard.vm.current$.name).toBe('second')
+      expect(steps.vm.current$.name).toBe('second')
 
-      wizard.vm.reset()
+      steps.vm.reset()
 
-      expect(wizard.vm.current$.name).toBe('first')
-      expect(wizard.vm.current$.disabled).toBe(false)
-      expect(wizard.vm.current$.completed).toBe(false)
-      expect(wizard.vm.next$.disabled).toBe(true)
-      expect(wizard.vm.next$.completed).toBe(false)
+      expect(steps.vm.current$.name).toBe('first')
+      expect(steps.vm.current$.disabled).toBe(false)
+      expect(steps.vm.current$.completed).toBe(false)
+      expect(steps.vm.next$.disabled).toBe(true)
+      expect(steps.vm.next$.completed).toBe(false)
     })
   })
 
@@ -876,7 +877,7 @@ describe('FormWizard', () => {
       let onNextMock = jest.fn(() => {})
 
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -896,10 +897,10 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
-      wizard.vm.on('next', onNextMock)
+      let steps = form.findComponent({ name: 'FormSteps' })
+      steps.vm.on('next', onNextMock)
 
-      let next = form.findComponent({ name: 'FormWizardNext' })
+      let next = findAllComponents(form, { name: 'FormStepsControl' }).at(1)
 
       expect(onNextMock.mock.calls.length).toBe(0)
 
@@ -916,7 +917,7 @@ describe('FormWizard', () => {
       let onPreviousMock = jest.fn(() => {})
 
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -936,11 +937,11 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
-      wizard.vm.on('previous', onPreviousMock)
+      let steps = form.findComponent({ name: 'FormSteps' })
+      steps.vm.on('previous', onPreviousMock)
 
-      let next = form.findComponent({ name: 'FormWizardNext' })
-      let previous = form.findComponent({ name: 'FormWizardPrevious' })
+      let next = findAllComponents(form, { name: 'FormStepsControl' }).at(1)
+      let previous = findAllComponents(form, { name: 'FormStepsControl' }).at(0)
 
       expect(onPreviousMock.mock.calls.length).toBe(0)
 
@@ -958,7 +959,7 @@ describe('FormWizard', () => {
       let onSelectMock = jest.fn(() => {})
 
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -978,16 +979,16 @@ describe('FormWizard', () => {
         }
       })
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
-      wizard.vm.on('select', onSelectMock)
+      let steps = form.findComponent({ name: 'FormSteps' })
+      steps.vm.on('select', onSelectMock)
 
-      let next = form.findComponent({ name: 'FormWizardNext' })
-      let previous = form.findComponent({ name: 'FormWizardPrevious' })
+      let next = findAllComponents(form, { name: 'FormStepsControl' }).at(1)
+      let previous = findAllComponents(form, { name: 'FormStepsControl' }).at(0)
 
       expect(onSelectMock.mock.calls.length).toBe(0)
 
       await nextTick()
-      wizard.vm.goTo('second')
+      steps.vm.goTo('second')
       
       expect(onSelectMock.mock.calls.length).toBe(2)
     })
@@ -996,7 +997,7 @@ describe('FormWizard', () => {
       let onFinishMock = jest.fn(() => {})
 
       let form = createForm({
-        wizard: {
+        steps: {
           first: {
             label: 'First',
             elements: ['a'],
@@ -1020,16 +1021,16 @@ describe('FormWizard', () => {
         post: () => ({data:{}})
       }
 
-      let wizard = form.findComponent({ name: 'FormWizard' })
-      wizard.vm.on('finish', onFinishMock)
+      let steps = form.findComponent({ name: 'FormSteps' })
+      steps.vm.on('finish', onFinishMock)
 
       expect(onFinishMock.mock.calls.length).toBe(0)
 
       await nextTick()
-      wizard.vm.goTo('second')
+      steps.vm.goTo('second')
 
       await nextTick()
-      let finish = form.findComponent({ name: 'FormWizardFinish' })
+      let finish = findAllComponents(form, { name: 'FormStepsControl' }).at(2)
       
       findAll(finish, 'button').last().trigger('click')
 
@@ -1043,16 +1044,12 @@ describe('FormWizard', () => {
     suiteName: 'Form Wizard Dynamics',
     existingBlocks: 'existingSteps',
     addedBlocks: 'addedSteps',
-    blocks: 'wizard',
+    blocks: 'steps',
     block: 'step',
-    blocksKeyword: 'wizard',
+    blocksKeyword: 'steps',
     blockKeyword: 'step',
-    blocksSelector: 'FormWizard',
-    blockSelector: 'FormWizardStep',
-    controlSelectors: {
-      previous: 'FormWizardPrevious',
-      next: 'FormWizardNext',
-      finish: 'FormWizardFinish',
-    }
+    blocksSelector: 'FormSteps',
+    blockSelector: 'FormStep',
+    controls: 'FormStepsControl'
   })
 })

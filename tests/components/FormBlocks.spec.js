@@ -2,7 +2,7 @@ import { createForm, findAllComponents, testDynamics } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 describe('Form Blocks', () => {
-  it('helper spec to test wizard & tabs collectively', async () => {
+  it('helper spec to test steps & tabs collectively', async () => {
 
   })
 })
@@ -18,7 +18,7 @@ const dynamicsTesting = (options) => {
     blockKeyword,
     blocksSelector,
     blockSelector,
-    controlSelectors,
+    controls,
   } = options
 
   describe(suiteName, () => {
@@ -188,12 +188,12 @@ const dynamicsTesting = (options) => {
 
       await nextTick()
       
-      if (controlSelectors) {
-        expect(form.findComponent({ name: controlSelectors.previous }).vm.visible).toBe(true)
-        expect(form.findComponent({ name: controlSelectors.next }).vm.visible).toBe(false)
-        expect(form.findComponent({ name: controlSelectors.finish }).vm.visible).toBe(true)
-        expect(form.findComponent({ name: controlSelectors.previous }).vm.disabled).toBe(true)
-        expect(form.findComponent({ name: controlSelectors.finish }).vm.disabled).toBe(false)
+      if (controls) {
+        expect(findAllComponents(form, { name: controls }).at(0).vm.visible).toBe(true)
+        expect(findAllComponents(form, { name: controls }).at(1).vm.visible).toBe(false)
+        expect(findAllComponents(form, { name: controls }).at(2).vm.visible).toBe(true)
+        expect(findAllComponents(form, { name: controls }).at(0).vm.disabled).toBe(true)
+        expect(findAllComponents(form, { name: controls }).at(2).vm.disabled).toBe(false)
       }
     })
 

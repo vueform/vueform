@@ -29,7 +29,7 @@
       />
 
       <FormStepsControls
-        v-if="hasSteps && stepsControls"
+        v-if="hasSteps && options.stepsControls"
       />
       {{ plainData }}
       {{ data }}

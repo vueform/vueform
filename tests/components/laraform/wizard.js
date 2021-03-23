@@ -2,12 +2,12 @@ import { createForm, findAllComponents } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export default function (data, options, name) {
-  it(`should render wizard when defined with ${name}`, async () => {
+  it(`should render steps when defined with ${name}`, async () => {
     let form = createForm(data, options || {})
 
     // Render
-    let stepWrapper = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
-    let step2Wrapper = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
+    let stepWrapper = findAllComponents(form, { name: 'FormStep' }).at(0)
+    let step2Wrapper = findAllComponents(form, { name: 'FormStep' }).at(1)
     let step3Wrapper
     let stepWrappers
 
@@ -15,7 +15,7 @@ export default function (data, options, name) {
     expect(step2Wrapper.exists()).toBe(true)
 
     // Add
-    form.vm.wizard = {
+    form.vm.steps = {
       first: { label: 'First', elements: ['el'], },
       second: { label: 'Second', elements: ['el2'] },
       third: { label: 'Third', elements: ['el3'] },
@@ -23,16 +23,16 @@ export default function (data, options, name) {
 
     await nextTick()
 
-    stepWrapper = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
-    step2Wrapper = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
-    step3Wrapper = findAllComponents(form, { name: 'FormWizardStep' }).at(2)
+    stepWrapper = findAllComponents(form, { name: 'FormStep' }).at(0)
+    step2Wrapper = findAllComponents(form, { name: 'FormStep' }).at(1)
+    step3Wrapper = findAllComponents(form, { name: 'FormStep' }).at(2)
 
     expect(stepWrapper.vm.name).toBe('first')
     expect(step2Wrapper.vm.name).toBe('second')
     expect(step3Wrapper.vm.name).toBe('third')
 
     // Reorder
-    form.vm.wizard = {
+    form.vm.steps = {
       third: { label: 'Third', elements: ['el3'] },
       first: { label: 'First', elements: ['el'], },
       second: { label: 'Second', elements: ['el2'] },
@@ -40,25 +40,25 @@ export default function (data, options, name) {
 
     await nextTick()
 
-    stepWrapper = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
-    step2Wrapper = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
-    step3Wrapper = findAllComponents(form, { name: 'FormWizardStep' }).at(2)
+    stepWrapper = findAllComponents(form, { name: 'FormStep' }).at(0)
+    step2Wrapper = findAllComponents(form, { name: 'FormStep' }).at(1)
+    step3Wrapper = findAllComponents(form, { name: 'FormStep' }).at(2)
 
     expect(stepWrapper.vm.name).toBe('third')
     expect(step2Wrapper.vm.name).toBe('first')
     expect(step3Wrapper.vm.name).toBe('second')
 
     // Remove
-    form.vm.wizard = {
+    form.vm.steps = {
       third: { label: 'Third', elements: ['el3'] },
       second: { label: 'Second', elements: ['el2'] },
     }
 
     await nextTick()
 
-    stepWrappers = findAllComponents(form, { name: 'FormWizardStep' })
-    stepWrapper = findAllComponents(form, { name: 'FormWizardStep' }).at(0)
-    step2Wrapper = findAllComponents(form, { name: 'FormWizardStep' }).at(1)
+    stepWrappers = findAllComponents(form, { name: 'FormStep' })
+    stepWrapper = findAllComponents(form, { name: 'FormStep' }).at(0)
+    step2Wrapper = findAllComponents(form, { name: 'FormStep' }).at(1)
 
     expect(stepWrapper.vm.name).toBe('third')
     expect(step2Wrapper.vm.name).toBe('second')

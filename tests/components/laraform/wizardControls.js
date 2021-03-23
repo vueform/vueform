@@ -1,13 +1,13 @@
 import { createForm } from 'test-helpers'
 
 export default function (data, options, name) {
-  it(`should set wizardControls with ${name}`, async () => {
+  it(`should set stepsControls with ${name}`, async () => {
     let form = createForm(data, options || {})
 
-    expect(form.vm.wizardControls).toBe(false)
+    expect(form.vm.stepsControls).toBe(false)
 
-    form.vm.wizardControls = true
+    form.vm.stepsControls = true
 
-    expect(form.vm.wizardControls).toBe(true)
+    expect(form.vm.stepsControls).toBe(true)
   })
 }

@@ -175,7 +175,7 @@ const base = function(props, context, dependencies = {})
       language: language.value || userConfig.value.language || baseConfig.value.language,
       validateOn: validateOn.value || userConfig.value.validateOn || baseConfig.value.validateOn,
       multilingual: multilingual.value || userConfig.value.multilingual || false,
-      stepsControls: stepsControls.value !== null ? stepsControls.value : (userConfig.value.stepsControls !== undefined ? userConfig.value.stepsControls : baseConfig.value.stepsControls),
+      stepsControls: stepsControls.value !== null ? stepsControls.value : (userConfig.value.stepsControls !== undefined ? userConfig.value.stepsControls : true),
       displayErrors: displayErrors.value !== null ? displayErrors.value : (userConfig.value.displayErrors !== undefined ? userConfig.value.displayErrors : baseConfig.value.displayErrors),
       labels: labels.value !== null ? labels.value : (userConfig.value.labels !== undefined ? userConfig.value.labels : baseConfig.value.labels),
       formatLoad: formatLoad.value || userConfig.value.formatLoad || null,

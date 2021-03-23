@@ -4,7 +4,6 @@ import useLabel from './../composables/useLabel'
 
 export default {
   name: 'FormStepsControl',
-  emits: ['click'],
   props: {
     type: {
       type: [String],
@@ -112,7 +111,7 @@ export default {
      * @private
      */
     const label = computed(() => {
-      let labels = current$ && current$.value ? current$.value.buttons : null
+      let labels = current$ && current$.value ? current$.value.labels : null
 
       switch (type.value) {
         case 'previous':
