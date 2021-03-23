@@ -163,8 +163,10 @@ const dynamicsTesting = (options) => {
 
       await nextTick()
 
-      form.vm.$delete(form.vm.schema, 'b')
+      form.vm.$delete(form.vm.laraform.schema, 'b')
 
+      await nextTick()
+      await nextTick()
       await nextTick()
 
       let a = findAllComponents(form, { name: 'TextElement' }).at(0)
@@ -316,7 +318,7 @@ const dynamicsTesting = (options) => {
 
       expect(blocksComponent.vm.current$.name).toBe('first')
 
-      form.vm.$delete(form.vm[blocks], 'first')
+      form.vm.$delete(form.vm.laraform[blocks], 'first')
 
       await nextTick()
       await nextTick()
@@ -363,7 +365,7 @@ const dynamicsTesting = (options) => {
 
       expect(blocksComponent.vm.next$.name).toBe('second')
 
-      form.vm.$delete(form.vm[blocks], 'second')
+      form.vm.$delete(form.vm.laraform[blocks], 'second')
 
       await nextTick()
       await nextTick()
@@ -416,7 +418,7 @@ const dynamicsTesting = (options) => {
       
       expect(blocksComponent.vm.previous$.name).toBe('first')
 
-      form.vm.$delete(form.vm[blocks], 'first')
+      form.vm.$delete(form.vm.laraform[blocks], 'first')
 
       await nextTick()
       await nextTick()
@@ -469,7 +471,7 @@ const dynamicsTesting = (options) => {
 
       expect(blocksComponent.vm.current$.name).toBe('second')
 
-      form.vm.$delete(form.vm[blocks], 'second')
+      form.vm.$delete(form.vm.laraform[blocks], 'second')
 
       await nextTick()
       await nextTick()
@@ -523,7 +525,7 @@ const dynamicsTesting = (options) => {
 
       expect(blocksComponent.vm.next$.name).toBe('third')
 
-      form.vm.$delete(form.vm[blocks], 'third')
+      form.vm.$delete(form.vm.laraform[blocks], 'third')
 
       await nextTick()
       await nextTick()
@@ -576,7 +578,7 @@ const dynamicsTesting = (options) => {
 
       expect(blocksComponent.vm.previous$.name).toBe('second')
 
-      form.vm.$delete(form.vm[blocks], 'second')
+      form.vm.$delete(form.vm.laraform[blocks], 'second')
 
       await nextTick()
       await nextTick()
@@ -628,7 +630,7 @@ const dynamicsTesting = (options) => {
 
       expect(blocksComponent.vm.previous$.name).toBe('second')
 
-      form.vm.$delete(form.vm[blocks], 'third')
+      form.vm.$delete(form.vm.laraform[blocks], 'third')
 
       await nextTick()
       await nextTick()

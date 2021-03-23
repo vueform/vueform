@@ -211,7 +211,9 @@ const base = function(props, context, dependencies = {})
 
       _.each(blocks, (block) => {
         _.each(block.elements, (name) => {
-          orderedSchema[name] = userSchema[name]
+          if (userSchema[name]) {
+            orderedSchema[name] = userSchema[name]
+          }
         })
       })
 

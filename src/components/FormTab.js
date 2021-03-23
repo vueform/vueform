@@ -105,6 +105,10 @@ export default {
       return form$.value.tabs$
     })
 
+    const index = computed(() => {
+      return Object.keys(tabs$.value.tabs$).indexOf(name.value)
+    })
+
     /**
      * Returns the components of elements within the tab.
      * 
@@ -310,6 +314,7 @@ export default {
       form$,
       theme,
       elements$,
+      index,
       active,
       events,
       listeners,
