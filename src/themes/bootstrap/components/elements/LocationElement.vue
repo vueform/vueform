@@ -3,8 +3,6 @@
 
     <template v-slot:field>
 
-      <slot name="prefix"></slot>
-
       <div :class="classes.inputContainer">
         <slot name="addon-before">
           <component :is="fieldSlots.addonBefore"
@@ -26,6 +24,7 @@
           :disabled="isDisabled"
           :readonly="readonly"
           ref="input"
+          @blur="handleLocationBlur"
         />
 
         <slot name="addon-after">
@@ -37,8 +36,6 @@
 
       </div>
 
-      <slot name="suffix"></slot>
-      
     </template>
 
     <template v-for="(component, slot) in elementSlots" v-slot:[slot]>

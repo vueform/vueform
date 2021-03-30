@@ -10,7 +10,7 @@
 
 <script>
   export default {
-    name: 'Flatpickr',
+    name: 'FlatpickrWrapper',
     data() {
       return {
         defaultClasses: {

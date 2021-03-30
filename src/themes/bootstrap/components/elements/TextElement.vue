@@ -2,8 +2,6 @@
   <component :is="elementLayout">
     <template v-slot:field>
 
-      <slot name="prefix"></slot>
-
       <div :class="classes.inputContainer">
         <slot name="addon-before">
           <component :is="fieldSlots.addonBefore"
@@ -19,7 +17,6 @@
 
         <input
           :value="model"
-          @input="handleInput"
           :type="inputType"
           :name="name"
           :id="fieldId"
@@ -28,6 +25,8 @@
           :autocomplete="autocomplete"
           :disabled="isDisabled"
           :readonly="readonly"
+          @input="handleInput"
+          @select="handleInput"
           ref="input"
         />
 
@@ -40,7 +39,6 @@
 
       </div>
 
-      <slot name="suffix"></slot>
     </template>
 
     <template v-for="(component, slot) in elementSlots" v-slot:[slot]>

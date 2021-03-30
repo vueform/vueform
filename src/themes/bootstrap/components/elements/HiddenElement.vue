@@ -1,7 +1,7 @@
 <template>
   <input
     v-if="!meta"
-    v-model="model"
+    v-model="value"
     type="hidden"
     :name="name"
     :id="fieldId"

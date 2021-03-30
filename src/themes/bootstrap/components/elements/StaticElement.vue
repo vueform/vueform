@@ -1,5 +1,5 @@
 <template>
-  <component v-if="wrap" :is="layout">
+  <component v-if="wrap" :is="elementLayout">
 
     <template v-slot:field>
       <slot>

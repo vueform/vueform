@@ -4,10 +4,10 @@ export default function (data, options, name) {
   it(`should set displayErrors with ${name}`, async () => {
     let form = createForm(data, options || {})
 
-    expect(form.vm.displayErrors).toBe(false)
+    expect(form.vm.options.displayErrors).toBe(false)
 
-    form.vm.displayErrors = true
+    form.vm.options.displayErrors = true
 
-    expect(form.vm.displayErrors).toBe(true)
+    expect(form.vm.options.displayErrors).toBe(true)
   })
 }

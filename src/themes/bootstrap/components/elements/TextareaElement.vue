@@ -2,8 +2,6 @@
   <component :is="elementLayout">
     <template v-slot:field>
 
-      <slot name="prefix"></slot>
-
       <div :class="classes.inputContainer">
         <slot name="addon-before">
           <component :is="fieldSlots.addonBefore"
@@ -19,7 +17,6 @@
 
         <textarea
           :value="model"
-          @input="handleInput"
           :name="name"
           :id="fieldId"
           :class="classes.textarea"
@@ -27,6 +24,7 @@
           :disabled="isDisabled"
           :readonly="readonly"
           :rows="rows"
+          @input="handleInput"
           ref="input"
         />
 
@@ -39,8 +37,6 @@
 
       </div>
       
-      <slot name="suffix"></slot>
-
     </template>
 
     <template v-for="(component, slot) in elementSlots" v-slot:[slot]>

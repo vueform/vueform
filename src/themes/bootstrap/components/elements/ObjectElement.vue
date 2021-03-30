@@ -3,8 +3,6 @@
 
     <template v-slot:field>
       
-      <slot name="prefix"></slot>
-
       <div :class="classes.childrenContainer">
         <slot>
           <component :is="component(element)"
@@ -17,8 +15,6 @@
           />
         </slot>
       </div>
-
-      <slot name="suffix"></slot>
 
     </template>
 

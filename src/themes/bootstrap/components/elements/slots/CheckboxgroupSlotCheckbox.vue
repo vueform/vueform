@@ -1,18 +1,17 @@
 <template>
-  <div :class="el$.classes.checkboxContainer">
+  <div :class="classes.container">
     <label 
-      :class="el$.classes.checkboxLabel"
+      :class="classes.label"
       :for="`${el$.fieldId}-${value}`"
     >
       <input
         type="checkbox"
         v-model="el$.model"
         :value="value"
-        :class="el$.classes.checkbox"
+        :class="classes.checkbox"
         :name="`${el$.name}-${value}`"
         :id="`${el$.fieldId}-${value}`"
-        :disabled="el$.isDisabled || el$.disabledItems.indexOf(value) !== -1"
-        @change="el$.handleChange"
+        :disabled="isDisabled"
       />
     
       <span>{{ item }}</span>
@@ -26,9 +25,9 @@
     data() {
       return {
         defaultClasses: {
-          checkboxContainer: 'checkbox',
-          checkboxLabel: '',
-          checkbox: '',
+          container: 'checkbox-container',
+          label: 'label',
+          checkbox: 'checkbox',
         }
       }
     }

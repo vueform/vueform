@@ -172,7 +172,7 @@ const button = function(props, context, dependencies)
       return disabled.value(form$.value, el$.value)
     }
     
-    if (submits.value && (form$.value.invalid || form$.value.busy)) {
+    if (submits.value && ((form$.value.invalid && form$.value.shouldValidateOnChange) || form$.value.busy)) {
       return true
     }
     

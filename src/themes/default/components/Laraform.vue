@@ -24,9 +24,7 @@
         v-if="hasSteps"
       />
       
-      <FormElements
-        @updateSchema="updateSchema"
-      />
+      <FormElements />
 
       <FormStepsControls
         v-if="hasSteps && options.stepsControls"

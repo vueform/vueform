@@ -4,10 +4,10 @@ export default function (data, options, name) {
   it(`should set stepsControls with ${name}`, async () => {
     let form = createForm(data, options || {})
 
-    expect(form.vm.stepsControls).toBe(false)
+    expect(form.vm.options.stepsControls).toBe(false)
 
-    form.vm.stepsControls = true
+    form.vm.options.stepsControls = true
 
-    expect(form.vm.stepsControls).toBe(true)
+    expect(form.vm.options.stepsControls).toBe(true)
   })
 }

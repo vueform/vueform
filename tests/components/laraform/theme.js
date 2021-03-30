@@ -4,10 +4,10 @@ export default function (data, options, name) {
   it(`should set theme with ${name}`, async () => {
     let form = createForm(data, options || {})
 
-    expect(form.vm.theme).toBe('bootstrap')
+    expect(form.vm.options.theme).toBe('bootstrap')
 
-    form.vm.theme = 'default'
+    form.vm.options.theme = 'default'
 
-    expect(form.vm.theme).toBe('default')
+    expect(form.vm.options.theme).toBe('default')
   })
 }

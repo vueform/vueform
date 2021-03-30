@@ -30,6 +30,7 @@ const base = function(props, context, dependencies = {})
     stepsControls,
     displayErrors,
     formatLoad,
+    formatData,
     prepare,
     default: default_,
   } = toRefs(props)
@@ -158,30 +159,52 @@ const base = function(props, context, dependencies = {})
   const options = computed(() => {
     const options = {
       schema: orderedSchema.value,
-      tabs: tabs.value || userConfig.value.tabs || {},
-      steps: steps.value || userConfig.value.steps || {},
-      overrideClasses: overrideClasses.value || userConfig.value.overrideClasses || {},
-      addClasses: addClasses.value || userConfig.value.addClasses || {},
-      components: components.value || userConfig.value.components || {},
-      elements: elements.value || userConfig.value.elements || {},
-      messages,
-      columns,
-      languages: languages.value || userConfig.value.languages || baseConfig.value.languages,
-      addClass: addClass.value || userConfig.value.addClass || null,
-      formKey: formKey.value || userConfig.value.formKey || null,
-      theme: theme.value || userConfig.value.theme || baseConfig.value.theme,
-      endpoint: endpoint.value || userConfig.value.endpoint || baseConfig.value.endpoints.process,
-      method: method.value || userConfig.value.method || baseConfig.value.methods.process,
-      language: language.value || userConfig.value.language || baseConfig.value.language,
-      validateOn: validateOn.value || userConfig.value.validateOn || baseConfig.value.validateOn,
-      multilingual: multilingual.value || userConfig.value.multilingual || false,
-      stepsControls: stepsControls.value !== null ? stepsControls.value : (userConfig.value.stepsControls !== undefined ? userConfig.value.stepsControls : true),
-      displayErrors: displayErrors.value !== null ? displayErrors.value : (userConfig.value.displayErrors !== undefined ? userConfig.value.displayErrors : baseConfig.value.displayErrors),
-      labels: labels.value !== null ? labels.value : (userConfig.value.labels !== undefined ? userConfig.value.labels : baseConfig.value.labels),
-      formatLoad: formatLoad.value || userConfig.value.formatLoad || null,
-      prepare: prepare.value || userConfig.value.prepare || null,
-      default: default_.value || userConfig.value.default || {},
+      tabs: formTabs.value,
+      steps: formSteps.value,
     }
+
+    const override = {
+      columns, languages, language, theme, endpoint, method, validateOn,
+      overrideClasses, addClasses, components, elements, messages, addClass,
+      formKey, multilingual, formatLoad, formatData, prepare, default: default_ 
+    }
+
+    const ifNotUndefined = {
+      stepsControls, displayErrors, labels
+    }
+
+    const defaults = {
+      columns: baseConfig.value.columns,
+      languages: baseConfig.value.languages,
+      language: baseConfig.value.language,
+      theme: baseConfig.value.theme,
+      endpoint: baseConfig.value.endpoints.process,
+      method: baseConfig.value.methods.process,
+      validateOn: baseConfig.value.validateOn,
+      displayErrors: baseConfig.value.displayErrors,
+      labels: baseConfig.value.labels,
+      overrideClasses: {},
+      addClasses: {},
+      components: {},
+      elements: {},
+      messages: {},
+      default: {},
+      addClass: null,
+      formKey: null,
+      formatLoad: null,
+      formatData: null,
+      prepare: null,
+      multilingual: false,
+      stepsControls: true,
+    }
+
+    _.each(override, (val, key) => {
+      options[key] = userConfig.value[key] || val.value || defaults[key]
+    })
+
+    _.each(ifNotUndefined, (val, key) => {
+      options[key] = userConfig.value[key] !== undefined ? userConfig.value[key] : (val.value !== null ? val.value : defaults[key])
+    })
 
     return options
   })
@@ -192,18 +215,15 @@ const base = function(props, context, dependencies = {})
   * @private
   */
   const orderedSchema = computed(() => {
-    let userSchema = schema.value || userConfig.value.schema || {}
-    let userTabs = tabs.value || userConfig.value.tabs || {}
-    let userSteps = steps.value || userConfig.value.steps || {}
-    let orderedSchema = userSchema
     let blocks
+    let orderedSchema = formSchema.value
 
-    if (Object.keys(userSteps).length > 0) {
-      blocks = userSteps
+    if (Object.keys(formSteps.value).length > 0) {
+      blocks = formSteps.value
     }
 
-    if (Object.keys(userTabs).length > 0) {
-      blocks = userTabs
+    if (Object.keys(formTabs.value).length > 0) {
+      blocks = formTabs.value
     }
 
     if (blocks) {
@@ -211,20 +231,32 @@ const base = function(props, context, dependencies = {})
 
       _.each(blocks, (block) => {
         _.each(block.elements, (name) => {
-          if (userSchema[name]) {
-            orderedSchema[name] = userSchema[name]
+          if (formSchema.value[name]) {
+            orderedSchema[name] = formSchema.value[name]
           }
         })
       })
 
-      _.each(Object.keys(userSchema), (name) => {
+      _.each(Object.keys(formSchema.value), (name) => {
         if (orderedSchema[name] === undefined) {
-          orderedSchema[name] = userSchema[name]
+          orderedSchema[name] = formSchema.value[name]
         }
       })
     }
 
     return orderedSchema
+  })
+
+  const formSchema = computed(() => {
+    return _.merge({}, schema.value || {}, userConfig.value.schema || {})
+  })
+
+  const formTabs = computed(() => {
+    return _.merge({}, tabs.value || {}, userConfig.value.tabs || {})
+  })
+
+  const formSteps = computed(() => {
+    return _.merge({}, steps.value || {}, userConfig.value.steps || {})
   })
 
   /**
@@ -262,7 +294,7 @@ const base = function(props, context, dependencies = {})
       data = Object.assign({}, data, e$.data)
     })
 
-    return data
+    return formatData.value ? formatData.value(data) : data
   })
 
   /**
@@ -580,12 +612,13 @@ const base = function(props, context, dependencies = {})
     }
 
 
+    let formatted = format && options.value.formatLoad !== null ? options.value.formatLoad(data) : data
+
     await asyncForEach(elements$.value, async (e$) => {
       if (e$.isStatic) {
         return
       }
 
-      let formatted = format && options.value.formatLoad !== null ? options.value.formatLoad(data) : data
       let loadValue = e$.flat ? formatted : formatted[e$.name]
 
       if (loadValue === undefined) {
@@ -792,17 +825,6 @@ const base = function(props, context, dependencies = {})
   }
 
   /**
-  * 
-  * 
-  * @private
-  */
-  const updateSchema = (schema) => {
-    // @todo
-    c(JSON.stringify(schema))
-    $this.schema = schema
-  }
-
-  /**
    * Triggered when the form is submitted. Can prevent further execution (element validation) if returns `false`.
    *
    * @public
@@ -945,7 +967,6 @@ const base = function(props, context, dependencies = {})
     disableValidation,
     enableValidation,
     setLanguage,
-    updateSchema,
     handleSubmit,
     el$,
     siblings$,

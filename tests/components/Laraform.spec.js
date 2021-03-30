@@ -27,14 +27,14 @@ describe('Laraform', () => {
   describe('schema', () => {
     let schema = { el: { type: 'text', } }
 
-    tests.schema({ schema }, {}, 'Options API')
-    tests.schema({}, {setup: () => ({ schema: ref(schema), })}, 'Composition API')
-    tests.schema({}, { propsData: { form: { schema }}}, ':form prop', )
+    tests.schema({ schema }, { }, 'Options API')
+    tests.schema({}, {setup: () => ({ laraform: ref({ schema, }) })}, 'Composition API')
+    tests.schema({}, { propsData: { schema }}, ':form prop', )
 
     it('should have {} as default', () => {
       let form = createForm({})
 
-      expect(form.vm.schema).toStrictEqual({})
+      expect(form.vm.options.schema).toStrictEqual({})
     })
 
     it('should merge deep Options API schema to :form prop schema', () => {
@@ -51,15 +51,13 @@ describe('Laraform', () => {
         }
       }, {
         propsData: {
-          form: {
-            schema: {
-              el: {
-                type: 'object',
-                schema: {
-                  child: {
-                    type: 'text',
-                    placeholder: 'Not child'
-                  }
+          schema: {
+            el: {
+              type: 'object',
+              schema: {
+                child: {
+                  type: 'text',
+                  placeholder: 'Not child'
                 }
               }
             }
@@ -67,7 +65,7 @@ describe('Laraform', () => {
         }
       })
 
-      expect(form.vm.schema).toStrictEqual({
+      expect(form.vm.options.schema).toStrictEqual({
         el: {
           type: 'object',
           schema: {
@@ -85,28 +83,28 @@ describe('Laraform', () => {
       let form = createForm({}, {
         setup() {
           return {
-            schema: ref({
-              el: {
-                schema: {
-                  child: {
-                    label: 'Child',
-                    placeholder: 'Child',
+            laraform: {
+              schema: ref({
+                el: {
+                  schema: {
+                    child: {
+                      label: 'Child',
+                      placeholder: 'Child',
+                    }
                   }
                 }
-              }
-            })
+              })
+            }
           }
         },
         propsData: {
-          form: {
-            schema: {
-              el: {
-                type: 'object',
-                schema: {
-                  child: {
-                    type: 'text',
-                    placeholder: 'Not child'
-                  }
+          schema: {
+            el: {
+              type: 'object',
+              schema: {
+                child: {
+                  type: 'text',
+                  placeholder: 'Not child'
                 }
               }
             }
@@ -114,7 +112,7 @@ describe('Laraform', () => {
         }
       })
 
-      expect(form.vm.schema).toStrictEqual({
+      expect(form.vm.options.schema).toStrictEqual({
         el: {
           type: 'object',
           schema: {
@@ -142,13 +140,13 @@ describe('Laraform', () => {
     }
 
     tests.tabs({ tabs, schema }, {}, 'Options API')
-    tests.tabs({}, {setup: () => ({ schema: ref(schema), tabs: ref(tabs), })}, 'Composition API')
-    tests.tabs({}, { propsData: { form: { tabs, schema }}}, ':form prop', )
+    tests.tabs({}, {setup: () => ({ laraform:ref({schema, tabs}) })}, 'Composition API')
+    tests.tabs({}, { propsData: { tabs, schema }}, ':form prop', )
 
     it('should have {} as default', () => {
       let form = createForm({})
 
-      expect(form.vm.tabs).toStrictEqual({})
+      expect(form.vm.options.tabs).toStrictEqual({})
     })
 
     it('should merge deep Options API schema to :form prop schema', () => {
@@ -157,13 +155,11 @@ describe('Laraform', () => {
         schema: { el: { type: 'text' }, }
       }, {
         propsData: {
-          form: {
-            tabs: { first: { label: 'Not first', elements: ['el'], buttons: { previous: false, next: true } } },
-          }
+          tabs: { first: { label: 'Not first', elements: ['el'], buttons: { previous: false, next: true } } },
         }
       })
 
-      expect(form.vm.tabs).toStrictEqual({
+      expect(form.vm.options.tabs).toStrictEqual({
         first: {
           label: 'First',
           elements: ['el'],
@@ -176,18 +172,18 @@ describe('Laraform', () => {
       let form = createForm({}, {
         setup(props, context) {
           return {
-            tabs: ref({ first: { label: 'First', buttons: { previous: true } } }),
-            schema: ref({ el: { type: 'text' }, })
+            laraform: {
+              tabs: ref({ first: { label: 'First', buttons: { previous: true } } }),
+              schema: ref({ el: { type: 'text' }, })
+            }
           }
         },
         propsData: {
-          form: {
-            tabs: { first: { label: 'Not first', elements: ['el'], buttons: { previous: false, next: true } } },
-          }
+          tabs: { first: { label: 'Not first', elements: ['el'], buttons: { previous: false, next: true } } },
         }
       })
 
-      expect(form.vm.tabs).toStrictEqual({
+      expect(form.vm.options.tabs).toStrictEqual({
         first: {
           label: 'First',
           elements: ['el'],
@@ -210,13 +206,13 @@ describe('Laraform', () => {
     }
 
     tests.steps({ steps, schema }, {}, 'Options API')
-    tests.steps({}, {setup: () => ({ schema: ref(schema), steps: ref(steps), })}, 'Composition API')
-    tests.steps({}, { propsData: { form: { steps, schema }}}, ':form prop', )
+    tests.steps({}, {setup: () => ({ laraform:ref({schema, steps}) })}, 'Composition API')
+    tests.steps({}, { propsData: { steps, schema }}, ':form prop', )
 
     it('should have {} as default', () => {
       let form = createForm({})
 
-      expect(form.vm.steps).toStrictEqual({})
+      expect(form.vm.options.steps).toStrictEqual({})
     })
 
     it('should merge deep Options API schema to :form prop schema', () => {
@@ -225,13 +221,11 @@ describe('Laraform', () => {
         schema: { el: { type: 'text' }, }
       }, {
         propsData: {
-          form: {
-            steps: { first: { label: 'Not first', elements: ['el'], buttons: { previous: false, next: true } } },
-          }
+          steps: { first: { label: 'Not first', elements: ['el'], buttons: { previous: false, next: true } } },
         }
       })
 
-      expect(form.vm.steps).toStrictEqual({
+      expect(form.vm.options.steps).toStrictEqual({
         first: {
           label: 'First',
           elements: ['el'],
@@ -244,18 +238,18 @@ describe('Laraform', () => {
       let form = createForm({}, {
         setup(props, context) {
           return {
-            steps: ref({ first: { label: 'First', buttons: { previous: true } } }),
-            schema: ref({ el: { type: 'text' }, })
+            laraform: {
+              steps: ref({ first: { label: 'First', buttons: { previous: true } } }),
+              schema: ref({ el: { type: 'text' }, })
+            }
           }
         },
         propsData: {
-          form: {
-            steps: { first: { label: 'Not first', elements: ['el'], buttons: { previous: false, next: true } } },
-          }
+          steps: { first: { label: 'Not first', elements: ['el'], buttons: { previous: false, next: true } } },
         }
       })
 
-      expect(form.vm.steps).toStrictEqual({
+      expect(form.vm.options.steps).toStrictEqual({
         first: {
           label: 'First',
           elements: ['el'],
@@ -265,442 +259,77 @@ describe('Laraform', () => {
     })
   })
 
-  describe('stepsControls', () => {
-    let stepsControls = false
+  let form = createForm({})
 
-    tests.stepsControls({ stepsControls }, {}, 'Options API')
-    tests.stepsControls({}, {setup: () => ({ stepsControls: ref(stepsControls) })}, 'Composition API')
-    tests.stepsControls({}, { propsData: { form: { stepsControls }}}, ':form prop', )
+  let config = form.vm.$laraform.config
 
-    it('should have true as default', () => {
-      let form = createForm({})
+  const overrides = {
+    columns: [config.columns, { element: 9, label: 3, field: 9 }, { element: 12, label: 12, field: 12 }],
+    languages: [config.languages, { en: { code: 'en', label: 'English' }, de: { code: 'de', label: 'German' } }, { it: { code: 'it', label: 'Italian' } }],
+    language: [config.language, 'de', 'it'],
+    theme: [config.theme, 'bootstrap', 'default'],
+    endpoint: [config.endpoints.process, '/my/process', '/not/my/process'],
+    method: [config.methods.process, 'GET', 'PUT'],
+    validateOn: [config.validateOn, 'submit', 'step'],
+    displayErrors: [config.displayErrors, false, true],
+    labels: [config.labels, true, false],
+    overrideClasses: [{}, { TextElement: { container: 'text' } }, { TextareaElement: { container: 'textarea' } }],
+    addClasses: [{}, { TextElement: { container: 'text' } }, { TextareaElement: { container: 'textarea' } }],
+    components: [{}, { FormButton: {} }, { FormButton: {name:'NotFormButton'} }],
+    elements: [{}, { TextElement: {} }, { TextElement: {name:'NotTextElement'} }],
+    messages: [{}, { required: 'Required' }, { required: 'Not required' }],
+    default: [{}, { el: 1 }, { el: 2 }],
+    addClass: [null, 'form-class', 'not-form-class'],
+    formKey: [null, '1234', '12345'],
+    formatLoad: [null, () => ({ el: 1 }), () => ({ el: 2 })],
+    formatData: [null, () => ({ el: 1 }), () => ({ el: 2 })],
+    prepare: [null, () => ({ el: 1 }), () => ({ el: 2 })],
+    multilingual: [false, true, false],
+    stepsControls: [true, false, true],
+  }
 
-      expect(form.vm.stepsControls).toStrictEqual(true)
-    })
-  })
+  _.each(overrides, (values, key) => {
+    describe(key, () => {
+      tests[key]({[key]:values[1]}, { config: { themes: { bootstrap, default: defaultTheme }} }, 'Options API')
+      tests[key]({}, { setup: () => ({ laraform: { [key]: values[1] } }), config: { themes: { bootstrap, default: defaultTheme }}}, 'Composition API')
+      tests[key]({}, { propsData: { [key]: values[1] }, config: { themes: { bootstrap, default: defaultTheme }} }, ':form prop')
 
-  describe('theme', () => {
-    let theme = 'bootstrap'
+      it('should have correct default value', () => {
+        let form = createForm({})
 
-    tests.theme({ theme }, { config: { themes: { bootstrap, default: defaultTheme } } }, 'Options API')
-    tests.theme({}, {setup: () => ({ theme: ref(theme) }), config: { themes: { bootstrap, default: defaultTheme } }}, 'Composition API')
-    tests.theme({}, { propsData: { form: { theme }}, config: { themes: { bootstrap, default: defaultTheme } }}, ':form prop', )
-
-    it('should have config.theme as default', () => {
-      let form = createForm({}, {
-        config: { themes: { bootstrap, default: defaultTheme } },
+        expect(form.vm.options[key]).toStrictEqual(values[0])
       })
 
-      expect(form.vm.theme).toStrictEqual(form.vm.$laraform.config.theme)
-    })
-  })
-
-  describe('endpoint', () => {
-    let endpoint = '/my/process'
-
-    tests.endpoint({ endpoint }, {}, 'Options API')
-    tests.endpoint({}, {setup: () => ({ endpoint: ref(endpoint) })}, 'Composition API')
-    tests.endpoint({}, { propsData: { form: { endpoint }}}, ':form prop', )
-
-    it('should have config.endpoints.process as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.endpoint).toStrictEqual(form.vm.$laraform.config.endpoints.process)
-    })
-  })
-
-  describe('method', () => {
-    let method = 'GET'
-
-    tests.method({ method }, {}, 'Options API')
-    tests.method({}, {setup: () => ({ method: ref(method) })}, 'Composition API')
-    tests.method({}, { propsData: { form: { method }}}, ':form prop', )
-
-    it('should have config.methods.process as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.method).toStrictEqual(form.vm.$laraform.config.methods.process)
-    })
-  })
-
-  describe('key', () => {
-    let key = '1234'
-
-    tests.key({ key }, {}, 'Options API')
-    tests.key({}, {setup: () => ({ key: ref(key) })}, 'Composition API')
-    tests.key({}, { propsData: { form: { key }}}, ':form prop', )
-
-    it('should have null as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.key).toStrictEqual(null)
-    })
-  })
-
-  describe('class', () => {
-    let class_ = 'form-class'
-
-    tests.class({ class:class_ }, {}, 'Options API')
-    tests.class({}, {setup: () => ({ class: ref(class_) })}, 'Composition API')
-    tests.class({}, { propsData: { form: { class:class_ }}}, ':form prop', )
-
-    it('should have null as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.class).toStrictEqual(null)
-    })
-  })
-
-  describe('classes', () => {
-    let classes = { TextElement: { container: 'text' } }
-
-    tests.classes({ classes }, {}, 'Options API')
-    tests.classes({}, {setup: () => ({ classes: ref(classes) })}, 'Composition API')
-    tests.classes({}, { propsData: { form: { classes }}}, ':form prop', )
-
-    it('should have {} as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.classes).toStrictEqual({})
-    })
-
-    it('should merge deep Options API schema to :form prop schema', () => {
-      let form = createForm({
-        schema: {},
-        classes: { TextElement: { container: 'text', placeholder: 'placeholder' } }
-      }, {
-        propsData: {
-          form: {
-            classes: { TextElement: { container: 'not-text', label: 'label' } }
+      it('should have local definition preference over prop value when using Options API', () => {
+        let form = createForm({
+          [key]: values[1]
+        }, {
+          config: { themes: { bootstrap, default: defaultTheme }},
+          propsData: {
+            [key]: values[2]
           }
-        }
+        })
+
+        expect(form.vm.options[key]).toStrictEqual(values[1])
       })
 
-      expect(form.vm.classes).toStrictEqual({
-        TextElement: { container: 'text', label: 'label', placeholder: 'placeholder' }
+      it('should have local definition preference over prop value when using Composition API', () => {
+        let form = createForm({}, {
+          setup() {
+            return {
+              laraform: {
+                [key]: values[1]
+              }
+            }
+          },
+          propsData: {
+            [key]: values[2]
+          },
+          config: { themes: { bootstrap, default: defaultTheme }}
+        })
+
+        expect(form.vm.options[key]).toStrictEqual(values[1])
       })
-    })
-
-    it('should merge deep Composition API schema to :form prop schema', () => {
-      let form = createForm({}, {
-        setup(props, context) {
-          return {
-            schema: ref({}),
-            classes: ref({ TextElement: { container: 'text', placeholder: 'placeholder' } })
-          }
-        },
-        propsData: {
-          form: {
-            classes: { TextElement: { container: 'not-text', label: 'label' } }
-          }
-        }
-      })
-
-      expect(form.vm.classes).toStrictEqual({
-        TextElement: { container: 'text', label: 'label', placeholder: 'placeholder' }
-      })
-    })
-  })
-
-  describe('addClasses', () => {
-    let addClasses = { TextElement: { container: 'text' } }
-
-    tests.addClasses({ addClasses }, {}, 'Options API')
-    tests.addClasses({}, {setup: () => ({ addClasses: ref(addClasses) })}, 'Composition API')
-    tests.addClasses({}, { propsData: { form: { addClasses }}}, ':form prop', )
-
-    it('should have {} as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.addClasses).toStrictEqual({})
-    })
-
-    it('should merge deep Options API schema to :form prop schema', () => {
-      let form = createForm({
-        schema: {},
-        addClasses: { TextElement: { container: 'text', placeholder: 'placeholder' } }
-      }, {
-        propsData: {
-          form: {
-            addClasses: { TextElement: { container: 'not-text', label: 'label' } }
-          }
-        }
-      })
-
-      expect(form.vm.addClasses).toStrictEqual({
-        TextElement: { container: 'text', label: 'label', placeholder: 'placeholder' }
-      })
-    })
-
-    it('should merge deep Composition API schema to :form prop schema', () => {
-      let form = createForm({}, {
-        setup(props, context) {
-          return {
-            schema: ref({}),
-            addClasses: ref({ TextElement: { container: 'text', placeholder: 'placeholder' } })
-          }
-        },
-        propsData: {
-          form: {
-            addClasses: { TextElement: { container: 'not-text', label: 'label' } }
-          }
-        }
-      })
-
-      expect(form.vm.addClasses).toStrictEqual({
-        TextElement: { container: 'text', label: 'label', placeholder: 'placeholder' }
-      })
-    })
-  })
-
-  describe('elements', () => {
-    let elements = { TextElement: markRaw({}) }
-
-    tests.elements({ elements }, {}, 'Options API')
-    tests.elements({}, {setup: () => ({ elements: ref(elements) })}, 'Composition API')
-    tests.elements({}, { propsData: { form: { elements }}}, ':form prop', )
-
-    it('should have {} as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.elements).toStrictEqual({})
-    })
-
-    it('should merge deep Options API schema to :form prop schema', () => {
-      let form = createForm({
-        schema: {},
-        elements: { TextElement: markRaw({ name: 'Text', label: 'label' }) }
-      }, {
-        propsData: {
-          form: {
-            elements: { TextElement: markRaw({ name: 'NotText', placeholder: 'placeholder' }) }
-          }
-        }
-      })
-
-      expect(form.vm.elements).toStrictEqual({
-        TextElement: markRaw({ name: 'Text', placeholder: 'placeholder', label: 'label' })
-      })
-    })
-
-    it('should merge deep Composition API schema to :form prop schema', () => {
-      let form = createForm({}, {
-        setup(props, context) {
-          return {
-            schema: ref({}),
-            elements: ref({ TextElement: markRaw({ name: 'Text', label: 'label' }) })
-          }
-        },
-        propsData: {
-          form: {
-            elements: { TextElement: markRaw({ name: 'NotText', placeholder: 'placeholder' }) }
-          }
-        }
-      })
-
-      expect(form.vm.elements).toStrictEqual({
-        TextElement: markRaw({ name: 'Text', placeholder: 'placeholder', label: 'label' })
-      })
-    })
-  })
-
-  describe('components', () => {
-    let components = { FormButton: markRaw({}) }
-
-    tests.components({ components }, {}, 'Options API')
-    tests.components({}, {setup: () => ({ components: ref(components) })}, 'Composition API')
-    tests.components({}, { propsData: { form: { components }}}, ':form prop', )
-
-    it('should have {} as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.components).toStrictEqual({})
-    })
-
-    it('should merge deep Options API schema to :form prop schema', () => {
-      let form = createForm({
-        schema: {},
-        components: { ElementText: markRaw({ name: 'Text', label: 'label' }) }
-      }, {
-        propsData: {
-          form: {
-            components: { ElementText: markRaw({ name: 'NotText', placeholder: 'placeholder' }) }
-          }
-        }
-      })
-
-      expect(form.vm.components).toStrictEqual({
-        ElementText: markRaw({ name: 'Text', placeholder: 'placeholder', label: 'label' })
-      })
-    })
-
-    it('should merge deep Composition API schema to :form prop schema', () => {
-      let form = createForm({}, {
-        setup(props, context) {
-          return {
-            schema: ref({}),
-            components: ref({ ElementText: markRaw({ name: 'Text', label: 'label' }) })
-          }
-        },
-        propsData: {
-          form: {
-            components: { ElementText: markRaw({ name: 'NotText', placeholder: 'placeholder' }) }
-          }
-        }
-      })
-
-      expect(form.vm.components).toStrictEqual({
-        ElementText: markRaw({ name: 'Text', placeholder: 'placeholder', label: 'label' })
-      })
-    })
-  })
-
-  describe('columns', () => {
-    let columns = { element: 9, label: 3, field: 9 }
-
-    tests.columns({ columns }, {}, 'Options API')
-    tests.columns({}, {setup: () => ({ columns: ref(columns) })}, 'Composition API')
-    tests.columns({}, { propsData: { form: { columns }}}, ':form prop', )
-
-    it('should have config.columns as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.columns).toStrictEqual(form.vm.$laraform.config.columns)
-    })
-  })
-
-  describe('labels', () => {
-    let labels = true
-
-    tests.labels({ labels }, {}, 'Options API')
-    tests.labels({}, {setup: () => ({ labels: ref(labels) })}, 'Composition API')
-    tests.labels({}, { propsData: { form: { labels }}}, ':form prop', )
-
-    it('should have null as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.labels).toStrictEqual(form.vm.$laraform.config.labels)
-    })
-  })
-
-  describe('multilingual', () => {
-    let multilingual = true
-
-    tests.multilingual({ multilingual }, {}, 'Options API')
-    tests.multilingual({}, {setup: () => ({ multilingual: ref(multilingual) })}, 'Composition API')
-    tests.multilingual({}, { propsData: { form: { multilingual }}}, ':form prop', )
-
-    it('should have false as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.multilingual).toStrictEqual(false)
-    })
-  })
-
-  describe('languages', () => {
-    let languages = { en: { code: 'en', label: 'English' }, de: { code: 'de', label: 'German' } }
-
-    tests.languages({ languages }, {}, 'Options API')
-    tests.languages({}, {setup: () => ({ languages: ref(languages) })}, 'Composition API')
-    tests.languages({}, { propsData: { form: { languages }}}, ':form prop', )
-
-    it('should have config.languages as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.languages).toStrictEqual(form.vm.$laraform.config.languages)
-    })
-  })
-
-  describe('language', () => {
-    let language = 'de'
-
-    tests.language({ language }, {}, 'Options API')
-    tests.language({}, {setup: () => ({ language: ref(language) })}, 'Composition API')
-    tests.language({}, { propsData: { form: { language }}}, ':form prop', )
-
-    it('should have config.language as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.language).toStrictEqual(form.vm.$laraform.config.language)
-    })
-  })
-
-  describe('messages', () => {
-    let messages = { required: 'Required' }
-
-    tests.messages({ messages }, {}, 'Options API')
-    tests.messages({}, {setup: () => ({ messages: ref(messages) })}, 'Composition API')
-    tests.messages({}, { propsData: { form: { messages }}}, ':form prop', )
-
-    it('should have {} as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.messages).toStrictEqual({})
-    })
-
-    it('should merge deep Options API schema to :form prop schema', () => {
-      let form = createForm({
-        schema: {},
-        messages: { required: 'required', email: 'email' }
-      }, {
-        propsData: {
-          form: {
-            messages: { required: 'not required' }
-          }
-        }
-      })
-
-      expect(form.vm.messages).toStrictEqual({
-        required: 'required', email: 'email'
-      })
-    })
-
-    it('should merge deep Composition API schema to :form prop schema', () => {
-      let form = createForm({}, {
-        setup() {
-          return {
-            schema: ref({}),
-            messages: ref({ required: 'required', email: 'email' })
-          }
-        },
-        propsData: {
-          form: {
-            messages: { required: 'not required' }
-          }
-        }
-      })
-
-      expect(form.vm.messages).toStrictEqual({
-        required: 'required', email: 'email'
-      })
-    })
-  })
-
-  describe('displayErrors', () => {
-    let displayErrors = false
-
-    tests.displayErrors({ displayErrors }, {}, 'Options API')
-    tests.displayErrors({}, {setup: () => ({ displayErrors: ref(displayErrors) })}, 'Composition API')
-    tests.displayErrors({}, { propsData: { form: { displayErrors }}}, ':form prop', )
-
-    it('should have null as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.displayErrors).toStrictEqual(form.vm.$laraform.config.displayErrors)
-    })
-  })
-
-  describe('validateOn', () => {
-    let validateOn = 'submit'
-
-    tests.validateOn({ validateOn }, {}, 'Options API')
-    tests.validateOn({}, {setup: () => ({ validateOn: ref(validateOn) })}, 'Composition API')
-    tests.validateOn({}, { propsData: { form: { validateOn }}}, ':form prop', )
-
-    it('should have null as default', () => {
-      let form = createForm({})
-
-      expect(form.vm.validateOn).toStrictEqual(form.vm.$laraform.config.validateOn)
     })
   })
 
@@ -777,7 +406,7 @@ describe('Laraform', () => {
       })
     })
 
-    it('should contain child elements when using inline elements', () => {
+    it('should contain child elements when using inline elements', async () => {
       let form = createForm({
         schema: {
           el: {
@@ -790,16 +419,14 @@ describe('Laraform', () => {
       }, {}, function(h) {
         return createElement(h, 'form', [
           createElement(h, 'div', [
-            createElement(h, this.extendedTheme.elements.TextElement, {
+            createElement(h, 'TextElement', {
               props: {
-                schema: this.schema.el,
                 name: 'el'
               }
             }),
             createElement(h, 'div', [
-              createElement(h, this.extendedTheme.elements.TextElement, {
+              createElement(h, 'TextElement', {
                 props: {
-                  schema: this.schema.el2,
                   name: 'el2'
                 }
               })
@@ -810,6 +437,8 @@ describe('Laraform', () => {
 
       let elWrapper = findAllComponents(form, { name: 'TextElement' }).at(0)
       let el2Wrapper = findAllComponents(form, { name: 'TextElement' }).at(1)
+
+      await nextTick()
       
       expect(form.vm.elements$).toStrictEqual({
         el: elWrapper.vm,
@@ -869,22 +498,15 @@ describe('Laraform', () => {
       }, {}, function(h) {
         return createElement(h, 'form', [
           createElement(h, 'div', [
-            createElement(h, this.extendedTheme.components.FormTabs, {
-              props: {
-                tabs: this.tabs,
-                elements$: this.elements$
-              }
-            })
+            createElement(h, 'FormTabs', {})
           ]),
-          createElement(h, this.extendedTheme.elements.TextElement, {
+          createElement(h, 'TextElement', {
             props: {
-              schema: this.schema.el,
               name: 'el'
             }
           }),
-          createElement(h, this.extendedTheme.elements.TextElement, {
+          createElement(h, 'TextElement', {
             props: {
-              schema: this.schema.el2,
               name: 'el2'
             }
           }),
@@ -948,22 +570,15 @@ describe('Laraform', () => {
       }, {}, function(h) {
         return createElement(h, 'form', [
           createElement(h, 'div', [
-            createElement(h, this.extendedTheme.components.FormSteps, {
-              props: {
-                steps: this.steps,
-                elements$: this.elements$
-              }
-            })
+            createElement(h, 'FormSteps', {})
           ]),
-          createElement(h, this.extendedTheme.elements.TextElement, {
+          createElement(h, 'TextElement', {
             props: {
-              schema: this.schema.el,
               name: 'el'
             }
           }),
-          createElement(h, this.extendedTheme.elements.TextElement, {
+          createElement(h, 'TextElement', {
             props: {
-              schema: this.schema.el2,
               name: 'el2'
             }
           }),
@@ -1037,7 +652,7 @@ describe('Laraform', () => {
   describe('formData', () => {
     it('should transform data to FormData with key and data props', async () => {
       let form = createForm({
-        key: '1234',
+        formKey: '1234',
         schema: {
           el: { type: 'text', default: 'value' },
           el2: { type: 'text', default: 'value2' },
@@ -1045,7 +660,7 @@ describe('Laraform', () => {
       })
 
       let formData = new FormData()
-      formData.append('key', '1234')
+      formData.append('formKey', '1234')
       formData.append('data[el]', 'value')
       formData.append('data[el2]', 'value2')
       
@@ -1385,7 +1000,7 @@ describe('Laraform', () => {
 
       expect(form.vm.shouldValidateOnChange).toBe(true)
 
-      form.vm.validateOn = 'submit'
+      form.vm.laraform.validateOn = 'submit'
 
       expect(form.vm.shouldValidateOnChange).toBe(false)
     })
@@ -1399,13 +1014,13 @@ describe('Laraform', () => {
 
       expect(form.vm.shouldValidateOnStep).toBe(true)
 
-      form.vm.validateOn = 'submit'
+      form.vm.laraform.validateOn = 'submit'
 
       expect(form.vm.shouldValidateOnStep).toBe(false)
     })
   })
 
-  describe('hasWizard', () => {
+  describe('hasSteps', () => {
     it('should be false if steps is not defined', async () => {
       let form = createForm({
         schema: {
@@ -1413,7 +1028,7 @@ describe('Laraform', () => {
         }
       })
 
-      expect(form.vm.hasWizard).toBe(false)
+      expect(form.vm.hasSteps).toBe(false)
     })
 
     it('should be true if steps is defined', async () => {
@@ -1426,7 +1041,7 @@ describe('Laraform', () => {
         }
       })
 
-      expect(form.vm.hasWizard).toBe(true)
+      expect(form.vm.hasSteps).toBe(true)
     })
   })
 
@@ -1517,14 +1132,14 @@ describe('Laraform', () => {
       }
 
       let form = createForm({
-        classes: {
+        overrideClasses: {
           Laraform: overwriteClasses1
         }
       })
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
-      form.vm.classes.Laraform = overwriteClasses2
+      form.vm.laraform.overrideClasses.Laraform = overwriteClasses2
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     })
@@ -1540,16 +1155,20 @@ describe('Laraform', () => {
       let form = createForm({}, {
         setup() {
           return {
-            classes: ref({
-              Laraform: overwriteClasses1
-            })
+            laraform: {
+              overrideClasses: ref({
+                Laraform: overwriteClasses1
+              })
+            }
           }
         }
       })
 
+      await nextTick()
+
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
-      form.vm.classes.Laraform = overwriteClasses2
+      form.vm.options.overrideClasses.Laraform = overwriteClasses2
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     })
@@ -1564,17 +1183,15 @@ describe('Laraform', () => {
 
       let form = createForm({}, {
         propsData: {
-          form: {
-            classes: {
-              Laraform: overwriteClasses1
-            }
+          overrideClasses: {
+            Laraform: overwriteClasses1
           }
         }
       })
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
-      form.vm.classes.Laraform = overwriteClasses2
+      form.vm.options.overrideClasses.Laraform = overwriteClasses2
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     })
@@ -1588,7 +1205,7 @@ describe('Laraform', () => {
       }
 
       let form = createForm({
-        classes: {
+        overrideClasses: {
           Laraform: overwriteClasses1
         }
       }, {
@@ -1605,7 +1222,7 @@ describe('Laraform', () => {
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
-      form.vm.classes.Laraform = overwriteClasses2
+      form.vm.options.overrideClasses.Laraform = overwriteClasses2
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     })
@@ -1626,7 +1243,7 @@ describe('Laraform', () => {
 
       expect(form.vm.extendedClasses[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses1[mainClass])
 
-      form.vm.addClasses.Laraform = addClasses2
+      form.vm.options.addClasses.Laraform = addClasses2
 
       expect(form.vm.extendedClasses[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses2[mainClass])
     })
@@ -1642,16 +1259,18 @@ describe('Laraform', () => {
       let form = createForm({}, {
         setup() {
           return {
-            addClasses: ref({
-              Laraform: addClasses1
-            })
+            laraform: {
+              addClasses: ref({
+                Laraform: addClasses1
+              })
+            }
           }
         }
       })
 
       expect(form.vm.extendedClasses[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses1[mainClass])
 
-      form.vm.addClasses.Laraform = addClasses2
+      form.vm.options.addClasses.Laraform = addClasses2
 
       expect(form.vm.extendedClasses[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses2[mainClass])
     })
@@ -1666,17 +1285,15 @@ describe('Laraform', () => {
 
       let form = createForm({}, {
         propsData: {
-          form: {
-            addClasses: {
-              Laraform: addClasses1
-            }
+          addClasses: {
+            Laraform: addClasses1
           }
         }
       })
 
       expect(form.vm.extendedClasses[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses1[mainClass])
 
-      form.vm.addClasses.Laraform = addClasses2
+      form.vm.options.addClasses.Laraform = addClasses2
 
       expect(form.vm.extendedClasses[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses2[mainClass])
     })
@@ -1687,12 +1304,12 @@ describe('Laraform', () => {
       let class2 = ['form-class2-a', 'form-class2-b']
 
       let form = createForm({
-        class: class1
+        addClass: class1
       })
 
       expect(form.vm.extendedClasses).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses), { [mainClass]: class1 }))
 
-      form.vm.class = class2
+      form.vm.$set(form.vm.laraform, 'addClass', class2)
 
       expect(form.vm.extendedClasses).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses), { [mainClass]: class2 }))
     })
@@ -1705,36 +1322,32 @@ describe('Laraform', () => {
       let form = createForm({}, {
         setup() {
           return {
-            class: ref(class1)
+            laraform: ref({
+              addClass: class1
+            })
           }
         }
       })
 
       expect(form.vm.extendedClasses).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses), { [mainClass]: class1 }))
 
-      form.vm.class = class2
+      form.vm.$set(form.vm.laraform, 'addClass', class2)
 
       expect(form.vm.extendedClasses).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses), { [mainClass]: class2 }))
     })
 
-    it('should have class add classes, even when changes using :form prop', async () => {
+    it('should have class add classes when using :form prop', async () => {
       let class1 = 'form-class'
 
       let class2 = ['form-class2-a', 'form-class2-b']
 
       let form = createForm({}, {
         propsData: {
-          form: {
-            class: class1,
-          }
+          addClass: class1,
         }
       })
 
       expect(form.vm.extendedClasses).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses), { [mainClass]: class1 }))
-
-      form.vm.class = class2
-
-      expect(form.vm.extendedClasses).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses), { [mainClass]: class2 }))
     })
 
     // Rendering
@@ -1746,12 +1359,12 @@ describe('Laraform', () => {
       }
 
       let form = createForm({
-        classes: {
+        overrideClasses: {
           Laraform: {
             [mainClass]: 'form-classes'
           }
         },
-        class: 'form-class',
+        addClass: 'form-class',
         addClasses: {
           Laraform: {
             [mainClass]: 'form-add-classes'
@@ -1799,14 +1412,12 @@ describe('Laraform', () => {
       expect(form.vm.selectedTheme).toStrictEqual(bootstrap)
     })
 
-    it('should be equal to form theme value when defined with Options API', async () => {
+    it('should be equal to prop theme value when also defined with Options API', async () => {
       let form = createForm({
         theme: 'default'
       }, {
         propsData: {
-          form: {
-            theme: 'not-default'
-          }
+          theme: 'not-default'
         },
         config: {
           theme: 'bootstrap'
@@ -1820,20 +1431,20 @@ describe('Laraform', () => {
       expect(form.vm.selectedTheme).toStrictEqual(defaultTheme)
     })
 
-    it('should be equal to form theme value when defined with Composition API', async () => {
+    it('should be equal to prop theme value when also defined with Composition API', async () => {
       let form = createForm({}, {
         setup() {
           return {
-            theme: ref('default')
+            laraform: {
+              theme: 'default'
+            }
           }
         },
         propsData: {
-          form: {
-            theme: 'not-default'
-          }
+          theme: 'not-default'
         },
         config: {
-          theme: 'bootstrap'
+          theme: 'default'
         },
         themes: {
           default: defaultTheme,
@@ -1847,9 +1458,7 @@ describe('Laraform', () => {
     it('should be equal to :form prop theme value when defined', async () => {
       let form = createForm({}, {
         propsData: {
-          form: {
-            theme: 'default'
-          }
+          theme: 'default'
         },
         config: {
           theme: 'bootstrap'
@@ -1907,7 +1516,7 @@ describe('Laraform', () => {
 
     it('should merge deep theme classes with local classes', async () => {
       let form = createForm({
-        classes: {
+        overrideClasses: {
           Laraform: {
             form: 'form-form',
             buttons: 'form-button',
@@ -1970,7 +1579,7 @@ describe('Laraform', () => {
     })
   })
 
-  describe('update', () => {
+  describe('load', () => {
     it('should load to children without formatting by default', async () => {
       let form = createForm({
         schema: {
@@ -2007,8 +1616,6 @@ describe('Laraform', () => {
         el2: 'value2',
         child: 'value-child',
       })
-
-      expect(form.vm.el$('el').dirty).toBe(false)
     })
 
     it('should load to children with formatting if true using Options API', async () => {
@@ -2050,29 +1657,30 @@ describe('Laraform', () => {
     })
 
     it('should load to children with formatting if true using Composition API', async () => {
-      let form = createForm({
-        schema: {
-          el: { type: 'text' },
-          el2: { type: 'text' },
-          group: {
-            type: 'group',
-            schema: {
-              child: {
-                type: 'text'
-              }
-            }
-          }
-        }
-      }, {
+      let form = createForm({}, {
         setup() {
           return {
-            formatLoad: ref((data) => {
-              return {
-                el: data.el + '-formatted',
-                el2: data.el2 + '-formatted',
-                child: data.child + '-formatted',
+            laraform: {
+              schema: {
+                el: { type: 'text' },
+                el2: { type: 'text' },
+                group: {
+                  type: 'group',
+                  schema: {
+                    child: {
+                      type: 'text'
+                    }
+                  }
+                },
+              },
+              formatLoad: (data) => {
+                return {
+                  el: data.el + '-formatted',
+                  el2: data.el2 + '-formatted',
+                  child: data.child + '-formatted',
+                }
               }
-            })
+            }
           }
         }
       })
@@ -2108,13 +1716,11 @@ describe('Laraform', () => {
         }
       }, {
         propsData: {
-          form:{
-            formatLoad(data) {
-              return {
-                el: data.el + '-formatted',
-                el2: data.el2 + '-formatted',
-                child: data.child + '-formatted',
-              }
+          formatLoad(data) {
+            return {
+              el: data.el + '-formatted',
+              el2: data.el2 + '-formatted',
+              child: data.child + '-formatted',
             }
           }
         }
@@ -2377,7 +1983,7 @@ describe('Laraform', () => {
     })
   })
 
-  describe('clear', () => {
+  describe('clean', () => {
     it('should clear children', async () => {
       let form = createForm({
         schema: {
@@ -2417,27 +2023,49 @@ describe('Laraform', () => {
     })
 
     it('should not validate if not invalid, validated and validates on change', async () => {
-      let form = createForm({
-        validateOn: 'change|submit',
+       let form = createForm({
         schema: {
-          el: { type: 'text', rules: 'required', default: 'value' },
+          el: { type: 'text', rules: 'unique' },
         }
       })
 
+      form.vm.$laraform.services.axios.post = () => ({ data: true })
+      
       let el = form.vm.el$('el')
 
       el.validate()
-
+      expect(form.vm.pending).toBe(true)
       await flushPromises()
-
-      el.model = null
-      
-      form.vm.validate()
-
-      await flushPromises()
-
+      expect(form.vm.pending).toBe(false)
       expect(form.vm.validated).toBe(true)
       expect(form.vm.invalid).toBe(false)
+
+      form.vm.validate()
+      expect(form.vm.pending).toBe(false)
+    })
+
+    it('should validate if invalid, validated and does not validate on change', async () => {
+       let form = createForm({
+        validateOn: 'submit',
+        schema: {
+          el: { type: 'text', rules: 'unique' },
+        }
+      })
+
+      form.vm.$laraform.services.axios.post = () => ({ data: false })
+      
+      let el = form.vm.el$('el')
+
+      el.validate()
+      expect(form.vm.pending).toBe(true)
+      await flushPromises()
+      expect(form.vm.pending).toBe(false)
+      expect(form.vm.validated).toBe(true)
+      expect(form.vm.invalid).toBe(true)
+
+      form.vm.validate()
+      expect(form.vm.pending).toBe(true)
+      await flushPromises()
     })
 
     it('should not validate unavailable elements', async () => {
@@ -2472,51 +2100,51 @@ describe('Laraform', () => {
     })
 
     it('should not validate validated elements if validates on change', async () => {
-      let form = createForm({
-        validateOn: 'change|submit',
+       let form = createForm({
+        validateOn: 'change',
         schema: {
-          el: { type: 'text', rules: 'required', default: 'value' },
+          el: { type: 'text', rules: 'unique' },
         }
       })
 
-      let el = form.vm.el$('el')
+      form.vm.$laraform.services.axios.post = () => ({ data: false })
       
+      let el = form.vm.el$('el')
+
       el.validate()
-
+      expect(el.pending).toBe(true)
       await flushPromises()
-
-      el.model = null
+      expect(el.pending).toBe(false)
+      expect(el.validated).toBe(true)
+      expect(el.invalid).toBe(true)
 
       form.vm.validate()
-
+      expect(el.pending).toBe(false)
       await flushPromises()
-
-      expect(form.vm.el$('el').validated).toBe(true)
-      expect(form.vm.el$('el').invalid).toBe(false)
     })
 
-    it('should validate validated elements if doesn\'t validate on change', async () => {
-      let form = createForm({
+    it('should validate validated elements if does not validate on change', async () => {
+       let form = createForm({
         validateOn: 'submit',
         schema: {
-          el: { type: 'text', rules: 'required', default: 'value' },
+          el: { type: 'text', rules: 'unique' },
         }
       })
 
-      let el = form.vm.el$('el')
+      form.vm.$laraform.services.axios.post = () => ({ data: false })
       
+      let el = form.vm.el$('el')
+
       el.validate()
-
+      expect(el.pending).toBe(true)
       await flushPromises()
-
-      el.model = null
+      expect(el.pending).toBe(false)
+      expect(el.validated).toBe(true)
+      expect(el.invalid).toBe(true)
 
       form.vm.validate()
-
+      expect(el.pending).toBe(true)
       await flushPromises()
-
-      expect(form.vm.el$('el').validated).toBe(true)
-      expect(form.vm.el$('el').invalid).toBe(true)
     })
 
     it('should run all element validators', async () => {
@@ -2554,11 +2182,10 @@ describe('Laraform', () => {
       expect(onSubmitMock).not.toHaveBeenCalled()
     })
 
-    it('should validate if should validate on submit and return if invalid', async () => {
+    it('should return if invalid', async () => {
       let onSubmitMock = jest.fn()
 
       let form = createForm({
-        validateOn: 'submit|change',
         schema: {
           el: { type: 'text', rules: 'required' },
         }
@@ -2574,36 +2201,20 @@ describe('Laraform', () => {
       expect(onSubmitMock).not.toHaveBeenCalled()
     })
 
-    it('should not validate if should not validate on submit', async () => {
-      let onSubmitMock = jest.fn()
-
-      let form = createForm({
-        validateOn: 'change',
-        schema: {
-          el: { type: 'text', rules: 'required' },
-        }
-      })
-
-      form.vm.$laraform.services.axios.post = () => ({ data: {} })
-
-      form.vm.on('submit', onSubmitMock)
-
-      form.vm.submit()
-
-      await flushPromises()
-
-      expect(form.vm.invalid).toBe(false)
-      expect(onSubmitMock).toHaveBeenCalled()
-    })
-
     it('should set preparing', async () => {
       let form = createForm({
-        validateOn: 'change',
         schema: {
           el: {
             type: 'text',
           },
         },
+        prepare: async () => {
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve(true)
+            }, 1);
+          })
+        }
       })
 
 
@@ -2611,8 +2222,14 @@ describe('Laraform', () => {
 
       form.vm.submit()
 
+      await flushPromises()
       expect(form.vm.preparing).toBe(true)
 
+      // prepareElements
+      await flushPromises()
+      // options.prepare timeout
+      jest.advanceTimersByTime(1)
+      // options.prepare await flush
       await flushPromises()
 
       expect(form.vm.preparing).toBe(false)
@@ -2693,8 +2310,12 @@ describe('Laraform', () => {
             type: 'text',
           },
         },
-        prepare() {
-          throw Error('Failed')
+        prepare: async () => {
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              reject()
+            }, 1)
+          })
         },
       })
 
@@ -2705,8 +2326,15 @@ describe('Laraform', () => {
 
       form.vm.submit()
 
+      await flushPromises()
+
       expect(form.vm.preparing).toBe(true)
     
+      // prepareElements
+      await flushPromises()
+      // options.prepare timeout
+      jest.advanceTimersByTime(1)
+      // options.prepare await flush
       await flushPromises()
 
       expect(errorMock).toHaveBeenCalled()
@@ -2900,7 +2528,7 @@ describe('Laraform', () => {
 
       form.vm.setLanguage('de')
 
-      expect(form.vm.language).toBe('de')
+      expect(form.vm.selectedLanguage).toBe('de')
     })
 
     it('should fire langauge', async () => {
@@ -2918,39 +2546,6 @@ describe('Laraform', () => {
       form.vm.setLanguage('de')
 
       expect(languageMock).toHaveBeenCalledWith('de')
-    })
-  })
-
-  describe('updateSchema', () => {
-    it('should update schema', async () => {
-      let form = createForm({
-        schema: {
-          el: { type: 'text' },
-        }
-      })
-
-      form.vm.updateSchema({
-        el2: { type: 'text' },
-      })
-
-      expect(form.vm.schema).toStrictEqual({
-        el2: { type: 'text' },
-      })
-    })
-  })
-
-  describe('handleChangeLanguage', () => {
-    it('should set language', async () => {
-      let form = createForm({
-        language: 'en',
-        schema: {
-          el: { type: 'text' },
-        }
-      })
-
-      form.vm.handleChangeLanguage('de')
-
-      expect(form.vm.language).toBe('de')
     })
   })
 
@@ -3202,32 +2797,6 @@ describe('Laraform', () => {
 
       expect(_.keys(form.vm.siblings$('el.1'))).toStrictEqual(['0','1','2'])
       expect(_.keys(form.vm.siblings$('el.1.child'))).toStrictEqual(['child', 'child2', 'child3'])
-    })
-  })
-
-  describe('mounted', () => {
-    it('should load data when :form has data prop', async () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: 'text'
-          },
-        }
-      }, {
-        propsData: {
-          form: {
-            data: {
-              el: 'value'
-            }
-          }
-        }
-      })
-
-      await nextTick()
-
-      expect(form.vm.plainData).toStrictEqual({
-        el: 'value'
-      })
     })
   })
 })

@@ -9,7 +9,7 @@
       />
 
       <FormErrors
-        v-if="hasErrors && displayErrors"
+        v-if="hasErrors && options.displayErrors"
       />
 
       <FormLanguages
@@ -24,13 +24,13 @@
         v-if="hasSteps"
       />
       
-      <FormElements
-        @updateSchema="updateSchema"
-      />
+      <FormElements />
 
       <FormStepsControls
-        v-if="hasSteps && stepsControls"
+        v-if="hasSteps && options.stepsControls"
       />
+      {{ plainData }}
+      {{ data }}
     </slot>
   </form>
 </template>

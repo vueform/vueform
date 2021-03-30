@@ -2,13 +2,11 @@
   <component :is="elementLayout">
     <template v-slot:field>
 
-      <slot name="prefix"></slot>
-
       <template v-if="buttonType === 'button'">
-        <button v-if="isButtonLabelComponent" v-bind="button" :class="classes.button" @click.prevent="handleClick">
+        <button v-if="isButtonLabelComponent" v-bind="button" :disabled="isDisabled" :class="classes.button" @click.prevent="handleClick">
           <component :is="buttonLabel" :el$="el$" />
         </button>
-        <button v-else :class="classes.button" v-bind="button" v-html="buttonLabel" @click.prevent="handleClick" />
+        <button v-else :class="classes.button" v-bind="button" v-html="buttonLabel" :disabled="isDisabled" @click.prevent="handleClick" />
       </template>
       <template v-else>
         <a v-if="isButtonLabelComponent" v-bind="button" :class="classes.button" @click="handleClick">
@@ -17,8 +15,6 @@
         <a v-else :class="classes.button" v-bind="button" v-html="buttonLabel"  @click="handleClick"/>
       </template>
 
-      <slot name="suffix"></slot>
-      
     </template>
 
     <template v-for="(component, slot) in elementSlots" v-slot:[slot]>

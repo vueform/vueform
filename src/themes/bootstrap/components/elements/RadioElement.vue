@@ -1,7 +1,6 @@
 <template>
   <component :is="elementLayout">
     <template v-slot:field>
-      <slot name="prefix"></slot>
       
       <div
         :class="classes.radioContainer"
@@ -12,13 +11,12 @@
         >
           <input
             type="radio"
-            :checked="model"
+            v-model="value"
             :value="radioValue"
             :class="classes.radio"
             :name="fieldName"
             :id="fieldId"
             :disabled="isDisabled"
-            @change="handleChange"
             ref="input"
           />
         
@@ -26,7 +24,6 @@
         </label>
       </div>
 
-      <slot name="suffix"></slot>
     </template>
 
     <template v-for="(component, slot) in elementSlots" v-slot:[slot]>

@@ -4,10 +4,10 @@ export default function (data, options, name) {
   it(`should set elements with ${name}`, async () => {
     let form = createForm(data, options || {})
 
-    expect(form.vm.elements).toStrictEqual({ TextElement: {} })
+    expect(form.vm.options.elements).toStrictEqual({ TextElement: {} })
 
-    form.vm.elements = { TextElement: {name:'NotText'} }
+    form.vm.options.elements = { TextElement: {name:'NotText'} }
 
-    expect(form.vm.elements).toStrictEqual({ TextElement: {name:'NotText'} })
+    expect(form.vm.options.elements).toStrictEqual({ TextElement: {name:'NotText'} })
   })
 }

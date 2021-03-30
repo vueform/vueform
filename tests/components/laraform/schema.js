@@ -11,15 +11,20 @@ export default function (data, options, name) {
 
     expect(elWrapper.exists()).toBe(true)
 
+    // Do not run change tests when using :props options
+    if (!form.vm.laraform) {
+      return
+    }
+
     // Add
-    form.vm.schema = {
+    form.vm.$set(form.vm.laraform, 'schema', {
       el: {
         type: 'text',
       },
       el2: {
         type: 'text',
       },
-    }
+    })
 
     await nextTick()
 
@@ -30,14 +35,14 @@ export default function (data, options, name) {
     expect(el2Wrapper.vm.name).toBe('el2')
 
     // Reorder
-    form.vm.schema = {
+    form.vm.$set(form.vm.laraform, 'schema', {
       el2: {
         type: 'text',
       },
       el: {
         type: 'text',
       },
-    }
+    })
 
     await nextTick()
 
@@ -48,11 +53,11 @@ export default function (data, options, name) {
     expect(el2Wrapper.vm.name).toBe('el')
 
     // Remove
-    form.vm.schema = {
+    form.vm.$set(form.vm.laraform, 'schema', {
       el: {
         type: 'text',
       },
-    }
+    })
 
     await nextTick()
 

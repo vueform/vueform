@@ -4,10 +4,10 @@ export default function (data, options, name) {
   it(`should set messages with ${name}`, async () => {
     let form = createForm(data, options || {})
 
-    expect(form.vm.messages).toStrictEqual({ required: 'Required' })
+    expect(form.vm.options.messages).toStrictEqual({ required: 'Required' })
 
-    form.vm.messages = { required: 'Is required' }
+    form.vm.options.messages = { required: 'Is required' }
 
-    expect(form.vm.messages).toStrictEqual({ required: 'Is required' })
+    expect(form.vm.options.messages).toStrictEqual({ required: 'Is required' })
   })
 }

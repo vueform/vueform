@@ -4,10 +4,10 @@ export default function (data, options, name) {
   it(`should set components with ${name}`, async () => {
     let form = createForm(data, options || {})
 
-    expect(form.vm.components).toStrictEqual({ FormButton: {} })
+    expect(form.vm.options.components).toStrictEqual({ FormButton: {} })
 
-    form.vm.components = { FormButton: {name:'NotButton'} }
+    form.vm.options.components = { FormButton: {name:'NotButton'} }
 
-    expect(form.vm.components).toStrictEqual({ FormButton: {name:'NotButton'} })
+    expect(form.vm.options.components).toStrictEqual({ FormButton: {name:'NotButton'} })
   })
 }

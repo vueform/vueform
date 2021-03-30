@@ -4,10 +4,10 @@ export default function (data, options, name) {
   it(`should set labels with ${name}`, async () => {
     let form = createForm(data, options || {})
 
-    expect(form.vm.labels).toBe(true)
+    expect(form.vm.options.labels).toBe(true)
 
-    form.vm.labels = false
+    form.vm.options.labels = false
 
-    expect(form.vm.labels).toBe(false)
+    expect(form.vm.options.labels).toBe(false)
   })
 }

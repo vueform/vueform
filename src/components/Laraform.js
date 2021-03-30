@@ -134,6 +134,11 @@ export default {
       required: false,
       default: null
     },
+    formatData: {
+      type: Function,
+      required: false,
+      default: null
+    },
     prepare: {
       type: Function,
       required: false,

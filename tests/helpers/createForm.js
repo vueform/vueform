@@ -39,9 +39,9 @@ export default function createForm (data, options = {}, render = null) {
       }
     },
     data() {
-      return {
+      return Object.keys(data).length ? {
         laraform: data
-      }
+      } : {}
     },
     mounted() {
       if (options.mounted) {

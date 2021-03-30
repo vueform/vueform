@@ -14,12 +14,17 @@ export default function (data, options, name) {
     expect(tabWrapper.exists()).toBe(true)
     expect(tab2Wrapper.exists()).toBe(true)
 
+    // Do not run change tests when using :props options
+    if (!form.vm.laraform) {
+      return
+    }
+
     // Add
-    form.vm.tabs = {
+    form.vm.$set(form.vm.laraform, 'tabs', {
       first: { label: 'First', elements: ['el'], },
       second: { label: 'Second', elements: ['el2'] },
       third: { label: 'Third', elements: ['el3'] },
-    }
+    })
 
     await nextTick()
 
@@ -32,11 +37,11 @@ export default function (data, options, name) {
     expect(tab3Wrapper.vm.name).toBe('third')
 
     // Reorder
-    form.vm.tabs = {
+    form.vm.$set(form.vm.laraform, 'tabs', {
       third: { label: 'Third', elements: ['el3'] },
       first: { label: 'First', elements: ['el'], },
       second: { label: 'Second', elements: ['el2'] },
-    }
+    })
 
     await nextTick()
 
@@ -49,10 +54,10 @@ export default function (data, options, name) {
     expect(tab3Wrapper.vm.name).toBe('second')
 
     // Remove
-    form.vm.tabs = {
+    form.vm.$set(form.vm.laraform, 'tabs', {
       third: { label: 'Third', elements: ['el3'] },
       second: { label: 'Second', elements: ['el2'] },
-    }
+    })
 
     await nextTick()
 
