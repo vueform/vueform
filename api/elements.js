@@ -16,7 +16,7 @@ export default {
       "genericName",
       "label",
       "layout",
-      "location_address",
+      // "location_address",
       "nullValue_address",
       "path",
       "slots",
