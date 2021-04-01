@@ -1,4 +1,4 @@
-import { createForm, testPropDefault } from 'test-helpers'
+import { createForm, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export { isNative, } from './options_select'
@@ -63,5 +63,7 @@ export const fieldOptions = function (elementType, elementName, options) {
     _.each(el.fieldOptions, (value, key) => {
       expect(Multiselect.props(key)).toStrictEqual(value)
     })
+
+    // destroy() // teardown
   })
 }

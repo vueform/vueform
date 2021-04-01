@@ -1,4 +1,4 @@
-import { createForm, testPropDefault } from 'test-helpers'
+import { createForm, testPropDefault, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
 import { nextTick } from 'composition-api'
 import { update as baseUpdate, clear as baseClear, reset as baseReset, } from './data_multilingual'
@@ -54,6 +54,8 @@ export const load = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input.trix$.value).toBe('<div>value-en-2</div>')
+    
+    // destroy(form) // teardown
   })
 
   it('should format data if "formatLoad" is set on `load`', async () => {
@@ -93,6 +95,8 @@ export const load = function (elementType, elementName, options) {
       en: 'value-en-formatted',
       fr: 'value-fr-formatted',
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -125,6 +129,8 @@ export const update = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input.trix$.value).toBe('<div>value</div>')
+
+    // destroy() // teardown
   })
 }
 
@@ -163,6 +169,8 @@ export const reset = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input.trix$.value).toBe('')
+
+    // destroy() // teardown
   })
 }
 
@@ -196,5 +204,7 @@ export const clear = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input.trix$.value).toBe('')
+
+    // destroy() // teardown
   })
 }

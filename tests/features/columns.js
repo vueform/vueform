@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, destroy } from 'test-helpers'
 
 export const columns = function (elementType, elementName, options) {
 }

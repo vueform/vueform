@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const request = function (elementType, elementName, options) {
   it('should `request` be null by default', async () => {
@@ -13,6 +13,8 @@ export const request = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.request).toBe(null)
+
+    // destroy() // teardown
   })
 }
 
@@ -29,6 +31,8 @@ export const axios = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.axios.get).toBeTruthy()
+
+    // destroy() // teardown
   })
 }
 
@@ -49,5 +53,7 @@ export const uploading = function (elementType, elementName, options) {
     el.request = {}
 
     expect(el.uploading).toBe(true)
+
+    // destroy() // teardown
   })
 }

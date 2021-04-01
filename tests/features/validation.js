@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, testPropDefault } from 'test-helpers'
+import { createForm, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
 import Validator from './../../src/services/validation/validator'
 
@@ -29,6 +29,8 @@ export const dirty = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.dirty).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should have `dirty` "true" if state.dirty is true', () => {
@@ -61,6 +63,8 @@ export const dirty = function (elementType, elementName, options) {
     el.state.dirty = false
 
     expect(el.dirty).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -77,6 +81,8 @@ export const validated = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.validated).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should be `validated` "false" if has rules by default', async () => {
@@ -113,6 +119,8 @@ export const validated = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.validated).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -159,6 +167,8 @@ export const invalid = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.invalid).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -186,6 +196,8 @@ export const pending = function (elementType, elementName, options) {
     await flushPromises()
     
     expect(el.pending).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -214,6 +226,8 @@ export const debouncing = function (elementType, elementName, options) {
     jest.advanceTimersByTime(1)
 
     expect(el.debouncing).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -241,6 +255,8 @@ export const busy = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.busy).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should have `busy` "true" if any of the validators is debouncing and "false" when async it finishes', async () => {
@@ -267,6 +283,8 @@ export const busy = function (elementType, elementName, options) {
     jest.advanceTimersByTime(1)
 
     expect(el.busy).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -288,6 +306,8 @@ export const errors = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.errors.length).toBe(2)
+
+    // destroy() // teardown
   })
 }
 
@@ -309,6 +329,8 @@ export const error = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.error).toBe(el.errors[0])
+
+    // destroy() // teardown
   })
 }
 
@@ -332,6 +354,8 @@ export const validate = function (elementType, elementName, options) {
     el.validate()
 
     expect(el.validated).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should not `validate` if element has no rules', async () => {
@@ -350,6 +374,8 @@ export const validate = function (elementType, elementName, options) {
     el.validate()
 
     expect(el.validated).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should `validate` & set `validated` "true"', async () => {
@@ -373,6 +399,8 @@ export const validate = function (elementType, elementName, options) {
 
     expect(el.invalid).toBe(true)
     expect(el.validated).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -398,6 +426,8 @@ export const resetValidators = function (elementType, elementName, options) {
     el.resetValidators()
 
     expect(el.errors.length).toBe(0)
+    
+    // destroy(form) // teardown
   })
 
   it('should set `validated` "true" on `resetValidators` if has no rules', async () => {
@@ -420,6 +450,8 @@ export const resetValidators = function (elementType, elementName, options) {
     el.resetValidators()
 
     expect(el.validated).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should set `validated` false on `resetValidators` if has rules', async () => {
@@ -445,6 +477,8 @@ export const resetValidators = function (elementType, elementName, options) {
     el.resetValidators()
 
     expect(el.validated).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -463,6 +497,8 @@ export const dirt = function (elementType, elementName, options) {
     el.dirt()
     
     expect(el.dirty).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -485,6 +521,8 @@ export const clean = function (elementType, elementName, options) {
     el.clean()
 
     expect(el.dirty).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -501,6 +539,8 @@ export const messageBag = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.messageBag instanceof el.$laraform.services.messageBag).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -522,6 +562,8 @@ export const Validators = function (elementType, elementName, options) {
     expect(el.Validators[1] instanceof Validator).toBe(true)
     expect(el.Validators[0].name).toBe('required')
     expect(el.Validators[1].name).toBe('email')
+
+    // destroy() // teardown
   })
 }
 
@@ -552,5 +594,7 @@ export const watchers = function (elementType, elementName, options) {
     expect(el.Validators[1] instanceof Validator).toBe(true)
     expect(el.Validators[0].name).toBe('email')
     expect(el.Validators[1].name).toBe('required')
+
+    // destroy() // teardown
   })
 }

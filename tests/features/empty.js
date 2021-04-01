@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 const value = function(options) {
   return options.value !== undefined ? options.value : 'value'
@@ -21,6 +21,8 @@ export const empty = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.empty).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should have `empty` false when value is not empty', () => {
@@ -38,5 +40,7 @@ export const empty = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.empty).toBe(false)
+
+    // destroy() // teardown
   })
 }

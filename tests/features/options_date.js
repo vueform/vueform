@@ -1,4 +1,4 @@
-import { createForm, testPropDefault } from 'test-helpers'
+import { createForm, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 const value = (options) => {
@@ -22,6 +22,8 @@ export const disabledDates = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.disabledDates).toStrictEqual([])
+    
+    // destroy(form) // teardown
   })
 
   it('should set `disabledDates` from schema', () => {
@@ -41,6 +43,8 @@ export const disabledDates = function (elementType, elementName, options) {
       moment(value(options), options.valueFormat).toDate(),
       moment(value2(options), options.valueFormat2).toDate(),
     ])
+
+    // destroy() // teardown
   })
 }
 
@@ -57,6 +61,8 @@ export const minDate = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.minDate).toBe(null)
+    
+    // destroy(form) // teardown
   })
 
   it('should set `minDate` from schema', () => {
@@ -75,6 +81,8 @@ export const minDate = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.minDate).toStrictEqual(dateObj)
+    
+    // destroy(form) // teardown
   })
 
   it('should set `minDate` as a string from schema', () => {
@@ -93,6 +101,8 @@ export const minDate = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.minDate).toStrictEqual(moment(date, options.valueFormat).toDate())
+
+    // destroy() // teardown
   })
 }
 
@@ -109,6 +119,8 @@ export const maxDate = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.maxDate).toBe(null)
+    
+    // destroy(form) // teardown
   })
 
   it('should set `maxDate` from schema', () => {
@@ -127,6 +139,8 @@ export const maxDate = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.maxDate).toStrictEqual(dateObj)
+    
+    // destroy(form) // teardown
   })
 
   it('should set `maxDate` as a string from schema', () => {
@@ -145,6 +159,8 @@ export const maxDate = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.maxDate).toStrictEqual(moment(date, options.valueFormat).toDate())
+
+    // destroy() // teardown
   })
 }
 
@@ -215,5 +231,7 @@ export const fieldOptions = function (elementType, elementName, options) {
     let Flatpickr = findAllComponents(elWrapper, { name: 'FlatpickrWrapper' }).at(0)
     
     expect(Flatpickr.props('options')).toStrictEqual(el.fieldOptions)
+
+    // destroy() // teardown
   })
 }

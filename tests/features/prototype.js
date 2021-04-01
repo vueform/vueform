@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const prototype = function (elementType, elementName, options) {
   let prototypes = options.prototypes
@@ -15,6 +15,8 @@ export const prototype = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.prototype).toStrictEqual(prototypes[0].element)
+    
+    // destroy(form) // teardown
   })
 
   it('should return object schema when object for `prototype`', () => {
@@ -31,6 +33,8 @@ export const prototype = function (elementType, elementName, options) {
     expect(el.prototype).toStrictEqual(Object.assign({}, prototypes[1].object, {
       type: 'object'
     }))
+
+    // destroy() // teardown
   })
 }
 
@@ -49,6 +53,8 @@ export const isObject = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isObject).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should return "true" for `isObject` when object', () => {
@@ -63,5 +69,7 @@ export const isObject = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isObject).toBe(true)
+
+    // destroy() // teardown
   })
 }

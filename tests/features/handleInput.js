@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, findAllComponents } from 'test-helpers'
+import { createForm, findAllComponents, destroy } from 'test-helpers'
 
 export const handleInput = function (elementType, elementName, options) {
   it('should set value on input', () => {
@@ -17,5 +17,7 @@ export const handleInput = function (elementType, elementName, options) {
     elWrapper.get(options.fieldType).setValue('value')
 
     expect(el.value).toBe('value')
+
+    // destroy() // teardown
   })
 }

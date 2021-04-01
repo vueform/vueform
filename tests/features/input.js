@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const input = function (elementType, elementName, options) {
   it('should set ref input DOM to `input` prop', () => {
@@ -21,5 +21,7 @@ export const input = function (elementType, elementName, options) {
         expect(el.input instanceof HTMLTextAreaElement).toBe(true)
         break
     }
+
+    // destroy() // teardown
   })
 }

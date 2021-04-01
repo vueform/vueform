@@ -70,6 +70,11 @@ export default {
       type: [Boolean],
       default: false
     },
+    embed: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
   },
   setup(props, context) {
     const form$ = useForm$(props, context)

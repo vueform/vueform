@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, findAllComponents } from 'test-helpers'
+import { createForm, findAllComponents, destroy } from 'test-helpers'
 
 jest.useFakeTimers()
 
@@ -24,6 +24,8 @@ export const dirty = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.dirty).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should be `dirty` if any of the children is dirty', () => {
@@ -49,6 +51,8 @@ export const dirty = function (elementType, elementName, options) {
     child1.dirt()
 
     expect(el.dirty).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -110,6 +114,8 @@ export const validated = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.validated).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -164,6 +170,8 @@ export const invalid = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.invalid).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -188,6 +196,8 @@ export const pending = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.pending).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should be `pending` if any of the children is pending', async () => {
@@ -223,6 +233,8 @@ export const pending = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.pending).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -247,6 +259,8 @@ export const debouncing = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.debouncing).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should be `debouncing` if any of the children is debouncing', async () => {
@@ -283,6 +297,8 @@ export const debouncing = function (elementType, elementName, options) {
     jest.advanceTimersByTime(1)
 
     expect(el.debouncing).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -307,6 +323,8 @@ export const busy = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.busy).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should be `busy` if any of the children is busy', async () => {
@@ -342,6 +360,8 @@ export const busy = function (elementType, elementName, options) {
     await flushPromises()
     
     expect(el.busy).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -385,6 +405,8 @@ export const errors = function (elementType, elementName, options) {
     child3.vm.validate()
 
     expect(el.errors.length).toBe(2)
+
+    // destroy() // teardown
   })
 }
 
@@ -426,6 +448,8 @@ export const validate = function (elementType, elementName, options) {
     _.each(el.children$, (child$) => {
       expect(child$.validated).toBe(true)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -458,6 +482,8 @@ export const clean = function (elementType, elementName, options) {
     _.each(el.children$, (child$) => {
       expect(child$.dirty).toBe(false)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -497,6 +523,8 @@ export const resetValidators = function (elementType, elementName, options) {
       
       expect(child$.validated).toBe(false)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -513,5 +541,7 @@ export const messageBag = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.messageBag instanceof el.$laraform.services.messageBag).toBe(true)
+
+    // destroy() // teardown
   })
 }

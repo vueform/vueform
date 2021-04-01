@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const events = function (elementType, elementName, options) {
   it('should have "' + options.events.join('", "') + '" `events`', () => {
@@ -13,6 +13,8 @@ export const events = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.events).toStrictEqual(options.events)
+
+    // destroy() // teardown
   })
 }
 
@@ -37,6 +39,8 @@ export const on = function (elementType, elementName, options) {
     el.fire('event', 'a', 'b')
 
     expect(onEventMock).toHaveBeenLastCalledWith('a', 'b')
+
+    // destroy() // teardown
   })
 }
 
@@ -61,6 +65,8 @@ export const off = function (elementType, elementName, options) {
     el.off('event')
 
     expect(el.listeners.event).toBe(undefined)
+
+    // destroy() // teardown
   })
 }
 
@@ -97,5 +103,7 @@ export const onCreated = function (elementType, elementName, options) {
       expect(mocks[event]).toHaveBeenCalled()
     })
     
+
+    // destroy() // teardown
   })
 }

@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export const children$Array = function (elementType, elementName) {
@@ -13,7 +13,9 @@ export const children$Array = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.children$Array).toStrictEqual([])
+    expect(el.children$Array).toStrictEqual([])    
+    
+    // destroy(form) // teardown
   })
 
   it('should collect elements to `children$Array`', async () => {
@@ -36,6 +38,10 @@ export const children$Array = function (elementType, elementName) {
     let el = form.vm.el$('el')
 
     expect(el.children$Array.length).toBe(2)
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -62,6 +68,10 @@ export const children = function (elementType, elementName) {
     let el = form.vm.el$('el')
 
     expect(el.children).toStrictEqual(childrenSchema)
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -86,7 +96,9 @@ export const children$ = function (elementType, elementName) {
     let el = form.vm.el$('el')
 
     expect(el.children$[0].name).toBe(0)
-    expect(el.children$[1].name).toBe(1)
+    expect(el.children$[1].name).toBe(1)    
+    
+    // destroy(form) // teardown
   })
 
   it('should add new child to `children$`', async () => {
@@ -116,7 +128,9 @@ export const children$ = function (elementType, elementName) {
 
     expect(el.children$[0].name).toBe(0)
     expect(el.children$[1].name).toBe(1)
-    expect(el.children$[2].name).toBe(2)
+    expect(el.children$[2].name).toBe(2)    
+    
+    // destroy(form) // teardown
   })
 
   it('should remove child from `children$`', async () => {
@@ -147,7 +161,9 @@ export const children$ = function (elementType, elementName) {
     await nextTick()
 
     expect(_.keys(el.children$).length).toBe(1)
-    expect(el.children$[0].label).toBe('Button2')
+    expect(el.children$[0].label).toBe('Button2')    
+    
+    // destroy(form) // teardown
   })
 
   it('should reorder `children$`', async () => {
@@ -182,5 +198,7 @@ export const children$ = function (elementType, elementName) {
 
     expect(el.children$[0].label).toBe('Button2')
     expect(el.children$[1].label).toBe('Button')
+    
+    // destroy(form) // teardown
   })
 }

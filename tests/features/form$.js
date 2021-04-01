@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const form$ = function (elementType, elementName, options) {
   it('should inject `form$`', () => {
@@ -13,5 +13,7 @@ export const form$ = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.form$).toStrictEqual(form.vm)
+
+    // destroy() // teardown
   })
 }

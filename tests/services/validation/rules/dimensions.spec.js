@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 const getCanvasBlob = (canvas) => {
   return new Promise(function(resolve, reject) {
@@ -19,6 +19,8 @@ const testDimensions = async (el, width, height, expected) => {
   el.update(new File([file], 'file.jpg'))
   await el.validate()
   expect(el.invalid).toBe(!expected)
+
+  file = null
 }
 
 describe('Dimensions Rule', () => {
@@ -163,6 +165,8 @@ describe('Dimensions Rule', () => {
     await testDimensions(el, 3000, 2000, true)
     await testDimensions(el, 2, 3, false)
     await testDimensions(el, 2000, 3000, false)
+
+    destroy(form)
   })
 
   it('should be valid if ratio match when ratio 2/3', async () => {
@@ -182,6 +186,8 @@ describe('Dimensions Rule', () => {
     await testDimensions(el, 2000, 3000, true)
     await testDimensions(el, 3, 2, false)
     await testDimensions(el, 3000, 2000, false)
+
+    destroy(form)
   })
 
   it('should be valid if ratio match when ratio 0.25', async () => {
@@ -201,6 +207,8 @@ describe('Dimensions Rule', () => {
     await testDimensions(el, 1000, 2000, false)
     await testDimensions(el, 10, 40, true)
     await testDimensions(el, 1000, 4000, true)
+
+    destroy(form)
   })
 
   it('should be valid if ratio match when ratio 4', async () => {
@@ -220,5 +228,7 @@ describe('Dimensions Rule', () => {
     await testDimensions(el, 1000, 4000, false)
     await testDimensions(el, 40, 10, true)
     await testDimensions(el, 4000, 1000, true)
+
+    destroy(form)
   })
 })

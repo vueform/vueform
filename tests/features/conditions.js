@@ -1,4 +1,4 @@
-import { createForm, testPropDefault } from 'test-helpers'
+import { createForm, testPropDefault, destroy } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import { nextTick } from 'vue'
 
@@ -17,6 +17,8 @@ export const available = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.available).toBe(true)
+    
+    // destroy(form) // teardown
   })
   
   it('should be `available` if has conditions which are met', () => {
@@ -38,6 +40,8 @@ export const available = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.available).toBe(true)
+    
+    // destroy(form) // teardown
   })
   
   it('should not be `available` if has conditions which are not met', () => {
@@ -58,6 +62,10 @@ export const available = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.available).toBe(false)
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -81,7 +89,9 @@ export const rendering = function (elementType, elementName, options) {
 
     if (el.visible !== undefined) {
       expect(el.$el).not.toBeVisible()
-    }
+    }    
+    
+    // destroy(form) // teardown
   })
 
   it('should not hide element if `available`', async () => {
@@ -107,5 +117,7 @@ export const rendering = function (elementType, elementName, options) {
     if (el.visible !== undefined) {
       expect(el.$el).toBeVisible()
     }
+    
+    // destroy(form) // teardown
   })
 }

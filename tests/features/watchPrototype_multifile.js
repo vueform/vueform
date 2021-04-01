@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const watcher = function (elementType, elementName, options) {
@@ -30,6 +30,8 @@ export const watcher = function (elementType, elementName, options) {
     await nextTick()
 
     expect(child.label).toBe('new label')
+    
+    // destroy(form) // teardown
   })
 
   it('should update instance schemas when `prototype` changes using object', async () => {
@@ -59,5 +61,7 @@ export const watcher = function (elementType, elementName, options) {
     await nextTick()
 
     expect(child.label).toBe('new label')
+
+    // destroy() // teardown
   })
 }

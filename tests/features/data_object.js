@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 export const plainData = function (elementType, elementName) {
@@ -67,7 +67,9 @@ export const data = function(elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual({})
+    expect(el.data).toStrictEqual({})    
+    
+    // destroy(form) // teardown
   })
 
   it('should have `data` equal to available children data values', async () => {
@@ -126,6 +128,8 @@ export const data = function(elementType, elementName) {
         }
       })
     }
+
+    // destroy() // teardown
   })
 }
 
@@ -149,7 +153,9 @@ export const load = function(elementType, elementName) {
 
     el.load({ child: 'value' })
 
-    expect(el.value).toStrictEqual({ child: 'value' })
+    expect(el.value).toStrictEqual({ child: 'value' })    
+    
+    // destroy(form) // teardown
   })
 
   it('should should format data if "formatData" is "true" on `load`', async () => {
@@ -179,6 +185,8 @@ export const load = function(elementType, elementName) {
     el.load({ child: 'value' }, true)
     
     expect(el.value).toStrictEqual({ child: 'pre-value-formatted' })
+
+    // destroy() // teardown
   })
 }
 
@@ -203,6 +211,8 @@ export const update = function(elementType, elementName) {
     el.update({ child: 'value' })
 
     expect(el.value).toStrictEqual({ child: 'value' })
+
+    // destroy() // teardown
   })
 }
 
@@ -228,6 +238,8 @@ export const clear = function(elementType, elementName) {
     el.clear()
 
     expect(el.value).toStrictEqual({ child: child.nullValue })
+
+    // destroy() // teardown
   })
 }
 

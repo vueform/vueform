@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const handleChange = function (elementType, elementName, options) {
@@ -28,5 +28,7 @@ export const handleChange = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.value).toStrictEqual(options.value)
+
+    // destroy() // teardown
   })
 }

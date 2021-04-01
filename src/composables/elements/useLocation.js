@@ -120,7 +120,7 @@ const base = function (props, context, dependencies, options_ = {})
   watch([provider, providerOptions], () => {
     locationService.value.destroy()
     initLocationService()
-  })
+  }, { deep: true, immediate: false })
 
   // =============== HOOKS ================
 

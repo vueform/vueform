@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const accept = function (elementType, elementName, options) {
@@ -30,6 +30,8 @@ export const handleChange = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.value).toStrictEqual([file, file2])
+    
+    // destroy(form) // teardown
   })
 
   it('should add files on `handleChange` when it is an object element', async () => {
@@ -60,6 +62,8 @@ export const handleChange = function (elementType, elementName, options) {
       { file: file },
       { file: file2 }
     ])
+    
+    // destroy(form) // teardown
   })
 
   it('should not add files on `handleChange` when disabled', async () => {
@@ -87,6 +91,8 @@ export const handleChange = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.value).toStrictEqual(el.nullValue)
+
+    // destroy() // teardown
   })
 }
 
@@ -117,6 +123,8 @@ export const handleClick = function (elementType, elementName, options) {
     await nextTick()
 
     expect(clickMock).toHaveBeenCalled()
+    
+    // destroy(form) // teardown
   })
 
   it('should not click input element when upload button is clicked & disabled in `handleClick`', async () => {
@@ -145,5 +153,7 @@ export const handleClick = function (elementType, elementName, options) {
     await nextTick()
 
     expect(clickMock).not.toHaveBeenCalled()
+
+    // destroy() // teardown
   })
 }

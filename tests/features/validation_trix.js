@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export { dirty, validated, pending, debouncing, busy,
          errors, error, validate, resetValidators, dirt, clean, messageBag, Validators, watchers } from './validation'
@@ -47,5 +47,7 @@ export const invalid = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.invalid).toBe(false)
+
+    // destroy() // teardown
   })
 }

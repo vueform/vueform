@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import countries from './../../src/utils/countries'
 import states from './../../src/utils/states'
 import { nextTick } from 'vue'
@@ -16,6 +16,10 @@ export const addressId = function (elementType, elementName) {
     let el = form.vm.el$('el')
 
     expect(/^address-\d*$/g.test(el.addressId)).toBe(true)
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -68,7 +72,7 @@ export const fields = function (elementType, elementName) {
         conditions: [[el.path + '.country', ['us', 'US']]],
         disabled: el.disabled,
         readonly: el.readonly,
-        search: false,
+        search: true,
       },
       country: {
         type: 'select',
@@ -76,7 +80,7 @@ export const fields = function (elementType, elementName) {
         items: countries,
         disabled: el.disabled,
         readonly: el.readonly,
-        search: false,
+        search: true,
       },
     }
 
@@ -93,6 +97,10 @@ export const fields = function (elementType, elementName) {
     fields.country.rules = 'required'
 
     expect(el.fields).toStrictEqual(fields)
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -114,6 +122,10 @@ export const children = function (elementType, elementName) {
     let el = form.vm.el$('el')
 
     expect(el.children).toStrictEqual(el.fields)
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -130,6 +142,10 @@ export const children$Array = function (elementType, elementName) {
     let el = form.vm.el$('el')
 
     expect(el.children$Array.length).toBe(_.keys(el.fields).length)
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -151,5 +167,7 @@ export const children$ = function (elementType, elementName) {
     expect(el.children$.state.name).toBe('state')
     expect(el.children$.country.name).toBe('country')
     expect(el.children$.zip.name).toBe('zip')
+    
+    // destroy(form) // teardown
   })
 }

@@ -1,4 +1,4 @@
-import { testPropDefault, createForm } from 'test-helpers'
+import { testPropDefault, createForm, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 const testDefinition = (elementType, input, output) => {
@@ -32,6 +32,8 @@ const testDefaults = (elementType, input, output) => {
     let el = form.vm.el$('el')
 
     expect(el[output]).toBe('DD-MM-YYYY')
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to `datetimeSeconds24` when displayFormat=null, date=true, time=true, seconds=true, hour24=true', () => {
@@ -50,6 +52,8 @@ const testDefaults = (elementType, input, output) => {
     let el = form.vm.el$('el')
 
     expect(el[output]).toBe(el.__('laraform.dateFormats.datetimeSeconds24'))
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to `datetimeSeconds12` when displayFormat=null, date=true, time=true, seconds=true, hour24=false', () => {
@@ -68,6 +72,8 @@ const testDefaults = (elementType, input, output) => {
     let el = form.vm.el$('el')
 
     expect(el[output]).toBe(el.__('laraform.dateFormats.datetimeSeconds12'))
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to `datetime24` when displayFormat=null, date=true, time=true, seconds=false, hour24=true', () => {
@@ -86,6 +92,8 @@ const testDefaults = (elementType, input, output) => {
     let el = form.vm.el$('el')
 
     expect(el[output]).toBe(el.__('laraform.dateFormats.datetime24'))
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to `datetime12` when displayFormat=null, date=true, time=true, seconds=false, hour24=false', () => {
@@ -104,6 +112,8 @@ const testDefaults = (elementType, input, output) => {
     let el = form.vm.el$('el')
 
     expect(el[output]).toBe(el.__('laraform.dateFormats.datetime12'))
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to `timeSeconds24` when displayFormat=null, date=false, time=true, seconds=true, hour24=true', () => {
@@ -122,6 +132,8 @@ const testDefaults = (elementType, input, output) => {
     let el = form.vm.el$('el')
 
     expect(el[output]).toBe(el.__('laraform.dateFormats.timeSeconds24'))
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to `timeSeconds12` when displayFormat=null, date=false, time=true, seconds=true, hour24=false', () => {
@@ -140,6 +152,8 @@ const testDefaults = (elementType, input, output) => {
     let el = form.vm.el$('el')
 
     expect(el[output]).toBe(el.__('laraform.dateFormats.timeSeconds12'))
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to `time24` when displayFormat=null, date=false, time=true, seconds=false, hour24=true', () => {
@@ -158,6 +172,8 @@ const testDefaults = (elementType, input, output) => {
     let el = form.vm.el$('el')
 
     expect(el[output]).toBe(el.__('laraform.dateFormats.time24'))
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to `time12` when displayFormat=null, date=false, time=true, seconds=false, hour24=false', () => {
@@ -176,6 +192,8 @@ const testDefaults = (elementType, input, output) => {
     let el = form.vm.el$('el')
 
     expect(el[output]).toBe(el.__('laraform.dateFormats.time12'))
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to `date` when displayFormat=null, date=true, time=false, seconds=false, hour24=false', () => {
@@ -194,6 +212,8 @@ const testDefaults = (elementType, input, output) => {
     let el = form.vm.el$('el')
 
     expect(el[output]).toBe(el.__('laraform.dateFormats.date'))
+
+    // destroy() // teardown
   })
 }
 
@@ -219,6 +239,8 @@ export const valueDateFormat = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.valueFormat).toBe(false)
+
+    // destroy() // teardown
   })
 }
 

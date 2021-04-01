@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const empty = function(elementType, elementName) {
   it('should have `empty` "true" if current language\'s value is empty', async () => {
@@ -30,5 +30,7 @@ export const empty = function(elementType, elementName) {
     })
     
     expect(el.empty).toBe(false)
+
+    // destroy() // teardown
   })
 }

@@ -1,4 +1,4 @@
-import { createForm, findAll, createElement } from 'test-helpers'
+import { createForm, findAll, createElement, destroy } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import { nextTick, markRaw } from 'composition-api'
 
@@ -17,6 +17,8 @@ export const isDisabled = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isDisabled).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should be isDisabled if disabled is true', () => {
@@ -32,6 +34,8 @@ export const isDisabled = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isDisabled).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should be isDisabled if disabled returns true', () => {
@@ -54,6 +58,8 @@ export const isDisabled = function (elementType, elementName, options) {
     form.vm.laraform.isTrue = false
 
     expect(el.isDisabled).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should add disabled prop to to button', async () => {
@@ -94,5 +100,7 @@ export const isDisabled = function (elementType, elementName, options) {
     form.vm.$set(form.vm.laraform.schema.el, 'disabled', false)
     await nextTick()
     expect(Button.element.disabled).toBeFalsy()
+
+    // destroy() // teardown
   })
 }

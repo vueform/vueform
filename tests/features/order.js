@@ -1,5 +1,5 @@
 import { nextTick } from 'vue'
-import { createForm, listSchema, listChildValue, listChild } from 'test-helpers'
+import { createForm, listSchema, listChildValue, listChild, destroy } from 'test-helpers'
 
 export const orderByName = function (elementType, elementName, options) {
   it('should be equal to orderBy if defined', () => {
@@ -16,6 +16,8 @@ export const orderByName = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.orderByName).toBe('orderBy')
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to storeOrder if orderBy is not defined', () => {
@@ -31,6 +33,8 @@ export const orderByName = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.orderByName).toBe('storeOrder')
+
+    // destroy() // teardown
   })
 }
 
@@ -81,5 +85,7 @@ export const refreshOrderStore = function (elementType, elementName, options) {
     expect(order1.value).toBe(2)
     expect(child0.value).toStrictEqual(listChildValue(options, 1, 0)[options.childName])
     expect(child1.value).toStrictEqual(listChildValue(options, 1, 2)[options.childName])
+
+    // destroy() // teardown
   })
 }

@@ -1,4 +1,4 @@
-import { createForm, prototypeChildType } from 'test-helpers'
+import { createForm, prototypeChildType, destroy } from 'test-helpers'
 import asyncForEach from './../../src/utils/asyncForEach'
 import { nextTick } from 'composition-api'
 
@@ -17,7 +17,9 @@ export const children$Array = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.children$Array.length).toBe(0)
+    expect(el.children$Array.length).toBe(0)    
+    
+    // destroy(form) // teardown
   })
 
   it('should `children$Array` contain instances of child components', async () => {
@@ -39,7 +41,11 @@ export const children$Array = function (elementType, elementName, options) {
 
       expect(el.children$Array.length).toBe(1)
       expect(el.children$Array[0].type).toStrictEqual(el.isObject ? 'object' : (options.prototypes[i].element ? options.prototypes[i].element.type : 'file'))
+    
+      // destroy(form) // teardown
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -58,7 +64,9 @@ export const children$ = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(_.keys(el.children$).length).toBe(0)
+    expect(_.keys(el.children$).length).toBe(0)    
+    
+    // destroy(form) // teardown
   })
 
   it('should `children$` contain instances of child components', async () => {
@@ -80,6 +88,8 @@ export const children$ = function (elementType, elementName, options) {
 
       expect(_.keys(el.children$).length).toBe(1)
       expect(el.children$[0].type).toStrictEqual(el.isObject ? 'object' : (options.prototypes[i].element ? options.prototypes[i].element.type : 'file'))
+    
+      // destroy(form) // teardown
     })
   })
 }

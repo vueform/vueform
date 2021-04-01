@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 
@@ -22,6 +22,8 @@ export const load = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input.trix$.value).toBe('<div>value</div>')
+    
+    // destroy(form) // teardown
   })
 
   it('should should format data if "formatLoad" is set on `load`', async () => {
@@ -45,6 +47,8 @@ export const load = function (elementType, elementName, options) {
     el.load(options.value, true)
 
     expect(formatLoadMock).toHaveBeenCalled()
+
+    // destroy() // teardown
   })
 }
 
@@ -66,6 +70,8 @@ export const update = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input.trix$.value).toBe(options.value)
+
+    // destroy() // teardown
   })
 }
 
@@ -89,6 +95,8 @@ export const clear = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input.trix$.value).toBe('')
+
+    // destroy() // teardown
   })
 }
 
@@ -114,6 +122,8 @@ export const reset = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input.trix$.value).toBe(options.default)
+    
+    // destroy(form) // teardown
   })
 
   it('should reset validators on `reset`', async () => {
@@ -136,5 +146,7 @@ export const reset = function (elementType, elementName, options) {
 
     expect(el.validated).toBe(false)
     expect(el.invalid).toBe(false)
+
+    // destroy() // teardown
   })
 }

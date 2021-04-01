@@ -1,4 +1,4 @@
-import { createForm, findAllComponents } from 'test-helpers'
+import { createForm, findAllComponents, destroy } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 
 expect.extend({toBeVisible})
@@ -43,5 +43,7 @@ export const rendering = function (elementType, elementName, options) {
 
     expect(elWrapper.vm.$el.querySelectorAll(`.${el.defaultClasses.add}`).length).toBe(0)
     expect(elWrapper.vm.$el.querySelectorAll(`.${el.defaultClasses.remove}`).length).toBe(0)
+
+    // destroy() // teardown
   })
 }

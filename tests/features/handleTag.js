@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const handleTag = function (elementType, elementName, options) {
   it('should trigger `tag` on non-native element', async () => {
@@ -19,5 +19,7 @@ export const handleTag = function (elementType, elementName, options) {
     el.input.$emit('tag', 'query')
 
     expect(onTagMock).toHaveBeenCalledWith('query')
+
+    // destroy() // teardown
   })
 }

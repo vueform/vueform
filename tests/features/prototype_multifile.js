@@ -1,4 +1,4 @@
-import { createForm, testPropDefault } from 'test-helpers'
+import { createForm, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const storeFileName = function (elementType, elementName, options) {
@@ -15,6 +15,8 @@ export const storeFileName = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.storeFileName).toBe('file')
+
+    // destroy() // teardown
   })
 }
 
@@ -53,6 +55,8 @@ export const prototype = function (elementType, elementName, options) {
       image: true,
       auto: el.auto,
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should extend single element `prototype` with "file" object', () => {
@@ -75,6 +79,8 @@ export const prototype = function (elementType, elementName, options) {
       auto: el.auto,
       url: '/uploads/'
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should have `prototype` as an object element isObject true image=false', () => {
@@ -100,6 +106,8 @@ export const prototype = function (elementType, elementName, options) {
         }
       }
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should have `prototype` as an object element isObject true image=true', () => {
@@ -126,6 +134,8 @@ export const prototype = function (elementType, elementName, options) {
         }
       }
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should have object `prototype` with custom storeFile', () => {
@@ -152,6 +162,8 @@ export const prototype = function (elementType, elementName, options) {
         }
       }
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should have object `prototype` with file extension', () => {
@@ -181,6 +193,8 @@ export const prototype = function (elementType, elementName, options) {
         }
       }
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should have object `prototype` with storeOrder', () => {
@@ -211,6 +225,8 @@ export const prototype = function (elementType, elementName, options) {
         }
       }
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should have object `prototype` with fields', () => {
@@ -244,6 +260,8 @@ export const prototype = function (elementType, elementName, options) {
         }
       }
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -288,5 +306,7 @@ export const isObject = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.isObject).toBe(false)
+
+    // destroy() // teardown
   })
 }

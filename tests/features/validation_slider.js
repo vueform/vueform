@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 import { validate as baseValidate } from './validation'
 
@@ -30,5 +30,7 @@ export const validate = function (elementType, elementName, options) {
     el.update([15, 25])
     await flushPromises()
     expect(el.invalid).toBe(true)
+
+    // destroy() // teardown
   })
 }

@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const component = function (elementType, elementName, options) {
   it('should return element component name by default', () => {
@@ -13,5 +13,7 @@ export const component = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.component(form.vm.laraform.schema.el)).toStrictEqual(`${_.upperFirst(_.camelCase(elementType))}Element`)
+
+    // destroy() // teardown
   })
 }

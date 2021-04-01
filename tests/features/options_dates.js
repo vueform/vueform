@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const fieldOptions = function (elementType, elementName, options) {
   it('should have default `fieldOptions`', () => {
@@ -61,5 +61,7 @@ export const fieldOptions = function (elementType, elementName, options) {
     let Flatpickr = findAllComponents(elWrapper, { name: 'FlatpickrWrapper' }).at(0)
     
     expect(Flatpickr.props('options')).toStrictEqual(el.fieldOptions)
+
+    // destroy() // teardown
   })
 }

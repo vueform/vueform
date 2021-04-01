@@ -1,4 +1,4 @@
-import { createForm, testModelCases } from 'test-helpers'
+import { createForm, testModelCases, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export const value = function (elementType, elementName, options) {

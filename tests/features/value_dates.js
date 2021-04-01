@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 import { value as baseValue } from './value'
 
@@ -20,6 +20,8 @@ export const value = function (elementType, elementName, options) {
     el.value = moment('2020-11-20').toDate()
 
     expect(el.value).toStrictEqual(['20-11-2020'])
+    
+    // destroy(form) // teardown
   })
 
   it('should return Date instance for `value` if valueFormat is false', () => {
@@ -37,6 +39,8 @@ export const value = function (elementType, elementName, options) {
     el.value = [moment('2020-11-20').toDate()]
 
     expect(el.value).toStrictEqual([moment('2020-11-20').toDate()])
+    
+    // destroy(form) // teardown
   })
 
   it('should throw error when setting `value` with string date that does not have valueFormat', () => {
@@ -58,6 +62,8 @@ export const value = function (elementType, elementName, options) {
     expect(() => {
       el.value = ['20-11-2020']
     }).not.toThrowError()
+
+    // destroy() // teardown
   })
 }
 
@@ -77,5 +83,7 @@ export const model = function (elementType, elementName, options) {
     el.value = '20-11-2020'
 
     expect(el.model).toStrictEqual([moment('2020-11-20').toDate()])
+
+    // destroy() // teardown
   })
 }

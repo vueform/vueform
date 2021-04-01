@@ -1,4 +1,4 @@
-import { createForm, testPropDefault, findAllComponents, testAttribute } from 'test-helpers'
+import { createForm, testPropDefault, findAllComponents, testAttribute, destroy } from 'test-helpers'
 
 export const id = function (elementType, elementName, options) {
   testPropDefault(it, elementType, 'id', elementType, 'my-id')
@@ -23,5 +23,7 @@ export const id = function (elementType, elementName, options) {
 
     testAttribute(CheckboxgroupSlotCheckbox0, options.fieldType, 'id', 'my-id-0')
     testAttribute(CheckboxgroupSlotCheckbox1, options.fieldType, 'id', 'my-id-1')
+
+    // destroy() // teardown
   })
 }

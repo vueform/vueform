@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const component = function (elementType, elementName, options) {
   it('should return FormButton by default for `component` if button type is not defined', () => {
@@ -12,7 +12,9 @@ export const component = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     
-    expect(el.component({ label: 'Button' })).toStrictEqual(el.components.FormButton)
+    expect(el.component({ label: 'Button' })).toStrictEqual(el.components.FormButton)    
+    
+    // destroy(form) // teardown
   })
 
   it('should return anchor or submit for `component` if button type is defined', () => {
@@ -34,7 +36,9 @@ export const component = function (elementType, elementName, options) {
     expect(el.component({
       label: 'Button',
       type: 'submit'
-    })).toStrictEqual(el.components.FormButtonSubmit)
+    })).toStrictEqual(el.components.FormButtonSubmit)    
+    
+    // destroy(form) // teardown
   })
 
   it('should throw error for `component` if button type not founc', () => {
@@ -54,5 +58,7 @@ export const component = function (elementType, elementName, options) {
         type: 'not-button'
       })
     }).toThrowError()
+    
+    // destroy(form) // teardown
   })
 }

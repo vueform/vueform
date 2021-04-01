@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 export const updateItems = function (elementType, elementName, options) {
@@ -40,5 +40,7 @@ export const updateItems = function (elementType, elementName, options) {
       { value: 1, label: 2 },
       { value: 2, label: 4 }
     ])
+    
+    // destroy(form) // teardown
   })
 }

@@ -1,4 +1,4 @@
-import { testModelCases, createInlineForm } from 'test-helpers'
+import { testModelCases, createInlineForm, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export const value = function (elementType, elementName, options) {
@@ -172,6 +172,8 @@ export const value = function (elementType, elementName, options) {
         },
       },
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should have set defaults when inline', () => {

@@ -1,6 +1,6 @@
-import { createForm, findAllComponents, findAll } from 'test-helpers'
+import { createForm, findAllComponents, findAll, destroy } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
-import { nextTick } from 'composition-api'
+import { nextTick, markRaw } from 'composition-api'
 import flushPromises from 'flush-promises'
 
 expect.extend({toBeVisible})
@@ -36,8 +36,11 @@ export const base64 = function (elementType, elementName, options) {
     el.load(new File([''], 'a'))
 
     await nextTick()
+    await flushPromises()
 
     expect(el.base64).toBe(null)
+
+    // destroy() // teardown
   })
 }
 
@@ -48,6 +51,14 @@ export const preview = function (elementType, elementName, options) {
         el: {
           type: elementType,
           image: true,
+          slots: {
+            preview: markRaw({
+              props: ['previewOptions'],
+              render() {
+                return '<div>Preview</div>'
+              }
+            })
+          }
         }
       }
     })
@@ -57,14 +68,25 @@ export const preview = function (elementType, elementName, options) {
     el.base64 = 'base64'
 
     expect(el.preview).toBe(el.base64)
+    
+    // destroy(form) // teardown
   })
 
-  it('should `preview` be equal to "link" when uploaded and image', () => {
+  it('should `preview` be equal to "link" when uploaded and image', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
+          auto: false,
           image: true,
+          slots: {
+            preview: markRaw({
+              props: ['previewOptions'],
+              render() {
+                return '<div>Preview</div>'
+              }
+            })
+          }
         }
       }
     })
@@ -74,6 +96,10 @@ export const preview = function (elementType, elementName, options) {
     el.value = 'filename.jpg'
 
     expect(el.preview).toBe(el.link)
+
+    await flushPromises()
+    
+    destroy(form) // teardown
   })
 
   it('should `preview` be null when not image', () => {
@@ -81,6 +107,7 @@ export const preview = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          auto: false,
         }
       }
     })
@@ -90,6 +117,8 @@ export const preview = function (elementType, elementName, options) {
     el.value = 'filename.jpg'
 
     expect(el.preview).toBe(null)
+
+    // destroy() // teardown
   })
 }
 
@@ -106,6 +135,8 @@ export const file = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.file).toBe(null)
+    
+    // destroy(form) // teardown
   })
 
   it('should set `file` when `value` changes to a File object', async () => {
@@ -127,6 +158,8 @@ export const file = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.file).not.toBe(null)
+    
+    // destroy(form) // teardown
   })
 
   it('should set `file` to null when value changes to something else than a File object', async () => {
@@ -134,6 +167,7 @@ export const file = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          auto: false,
         }
       }
     })
@@ -147,6 +181,8 @@ export const file = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.file).toBe(null)
+
+    // destroy() // teardown
   })
 }
 
@@ -163,6 +199,8 @@ export const progress = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.progress).toBe(0)
+
+    // destroy() // teardown
   })
 }
 
@@ -182,7 +220,6 @@ export const preparing = function (elementType, elementName, options) {
   })
 }
 
-
 export const fileMethods = function (elementType, elementName, options) {
   it('should merge `fileMethods` with config methods', () => {
     let form = createForm({
@@ -198,9 +235,11 @@ export const fileMethods = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.fileMethods).toStrictEqual(Object.assign({}, el.$laraform.methods.file, {
+    expect(el.fileMethods).toStrictEqual(Object.assign({}, el.$laraform.config.methods.file, {
       uploadTemp: 'put'
     }))
+
+    // destroy() // teardown
   })
 }
 
@@ -222,6 +261,8 @@ export const fileEndpoints = function (elementType, elementName, options) {
     expect(el.fileEndpoints).toStrictEqual(Object.assign({}, el.$laraform.config.endpoints.file, {
       uploadTemp: 'upload-temp',
     }))
+
+    // destroy() // teardown
   })
 }
 
@@ -238,6 +279,8 @@ export const fileUrl = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.fileUrl).toStrictEqual('/')
+    
+    // destroy(form) // teardown
   })
 
   it('should set `fileUrl` from schema', () => {
@@ -253,6 +296,8 @@ export const fileUrl = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.fileUrl).toStrictEqual('/uploads/')
+    
+    // destroy(form) // teardown
   })
 
   it('should prefix `fileUrl` without starting /', () => {
@@ -268,6 +313,8 @@ export const fileUrl = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.fileUrl).toStrictEqual('/uploads/')
+    
+    // destroy(form) // teardown
   })
 
   it('should not prefix `fileUrl` if starts with http', () => {
@@ -283,6 +330,8 @@ export const fileUrl = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.fileUrl).toStrictEqual('https://domain.com/')
+    
+    // destroy(form) // teardown
   })
 
   it('should suffix `fileUrl` without ending /', () => {
@@ -298,6 +347,8 @@ export const fileUrl = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.fileUrl).toStrictEqual('/uploads/')
+
+    // destroy() // teardown
   })
 }
 
@@ -314,6 +365,8 @@ export const stage = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.stage).toStrictEqual(0)
+    
+    // destroy(form) // teardown
   })
 
   it('should return 1 for `stage` if file is instance of File', () => {
@@ -331,6 +384,8 @@ export const stage = function (elementType, elementName, options) {
     el.load(new File([''], 'filename'))
 
     expect(el.stage).toStrictEqual(1)
+    
+    // destroy(form) // teardown
   })
 
   it('should return 2 for `stage` if value is a tmp object', () => {
@@ -350,6 +405,8 @@ export const stage = function (elementType, elementName, options) {
     })
 
     expect(el.stage).toStrictEqual(2)
+    
+    // destroy(form) // teardown
   })
 
   it('should return 3 for `stage` if value is a string', () => {
@@ -366,6 +423,8 @@ export const stage = function (elementType, elementName, options) {
     el.load('filename.jpg')
 
     expect(el.stage).toStrictEqual(3)
+    
+    // destroy(form) // teardown
   })
 
   it('should -1 for `stage` if value is an unknown format', () => {
@@ -382,6 +441,8 @@ export const stage = function (elementType, elementName, options) {
     el.load(['a'])
 
     expect(el.stage).toBe(-1)
+
+    // destroy() // teardown
   })
 }
 
@@ -398,6 +459,8 @@ export const filename = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.filename).toStrictEqual(null)
+    
+    // destroy(form) // teardown
   })
 
   it('should return `filename` in stage 1', () => {
@@ -416,6 +479,8 @@ export const filename = function (elementType, elementName, options) {
 
     expect(el.stage).toStrictEqual(1)
     expect(el.filename).toStrictEqual('filename')
+    
+    // destroy(form) // teardown
   })
 
   it('should return `filename` in stage 2', () => {
@@ -436,6 +501,8 @@ export const filename = function (elementType, elementName, options) {
 
     expect(el.stage).toStrictEqual(2)
     expect(el.filename).toStrictEqual('filename')
+    
+    // destroy(form) // teardown
   })
 
   it('should return `filename` in stage 3', () => {
@@ -453,6 +520,8 @@ export const filename = function (elementType, elementName, options) {
 
     expect(el.stage).toStrictEqual(3)
     expect(el.filename).toStrictEqual('filename')
+
+    // destroy() // teardown
   })
 }
 
@@ -469,6 +538,8 @@ export const link = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.link).toStrictEqual(undefined)
+    
+    // destroy(form) // teardown
   })
 
   it('should undefined for `link` if `clickable` is false', async () => {
@@ -491,6 +562,8 @@ export const link = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.link).toStrictEqual(undefined)
+
+    // destroy() // teardown
   })
 }
 
@@ -514,6 +587,8 @@ export const uploaded = function (elementType, elementName, options) {
 
     expect(el.stage).toStrictEqual(3)
     expect(el.uploaded).toStrictEqual(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -530,6 +605,8 @@ export const canRemove = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.canRemove).toStrictEqual(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should true for `canRemove` if stage is > 0 & not uploading', async () => {
@@ -560,6 +637,8 @@ export const canRemove = function (elementType, elementName, options) {
     el.load('filename')
     
     expect(el.canRemove).toStrictEqual(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should false for `canRemove` if stage is > 0 & uploading', async () => {
@@ -592,6 +671,8 @@ export const canRemove = function (elementType, elementName, options) {
     el.load('filename')
     
     expect(el.canRemove).toStrictEqual(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should false for `canRemove` if stage is > 0 & disabled', async () => {
@@ -623,6 +704,8 @@ export const canRemove = function (elementType, elementName, options) {
     el.load('filename')
     
     expect(el.canRemove).toStrictEqual(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should false for `canRemove` if stage is > 0 & preparing', async () => {
@@ -655,6 +738,8 @@ export const canRemove = function (elementType, elementName, options) {
     el.load('filename')
     
     expect(el.canRemove).toStrictEqual(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should false for `canRemove` if stage is > 0 & removing', async () => {
@@ -687,6 +772,8 @@ export const canRemove = function (elementType, elementName, options) {
     el.load('filename')
     
     expect(el.canRemove).toStrictEqual(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -725,6 +812,8 @@ export const canUploadTemp = function (elementType, elementName, options) {
 
     el.load('filename')
     expect(el.canUploadTemp).toStrictEqual(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -745,7 +834,10 @@ export const previewOptions = function (elementType, elementName, options) {
       clickable: el.clickable,
       filename: el.filename,
       preview: el.preview,
+      uploaded: el.uploaded,
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -778,6 +870,8 @@ export const uploadTemp = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(catchMock).toHaveBeenCalled()
+    
+    // destroy(form) // teardown
   })
 
   it('should abort `uploadTemp` if invalid', async () => {
@@ -808,6 +902,9 @@ export const uploadTemp = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(axiosMock).not.toHaveBeenCalled()
+    axiosMock.mockRestore()
+    
+    // destroy(form) // teardown
   })
 
   it('should send file to upload endpoint with params & update with return value in `uploadTemp`', async () => {
@@ -863,6 +960,9 @@ export const uploadTemp = function (elementType, elementName, options) {
     expect(axiosMock.mock.calls[0][1].get('param')).toStrictEqual('value')
 
     expect(el.value).toStrictEqual(tmp)
+    axiosMock.mockRestore()
+    
+    // destroy(form) // teardown
   })
 
   it('should set `progress` during `uploadTemp`', async () => {
@@ -909,6 +1009,8 @@ export const uploadTemp = function (elementType, elementName, options) {
 
     expect(el.progress).toBe(80)
     axiosMock.mockRestore()
+    
+    // destroy(form) // teardown
   })
 
   it('should set progress to 0 on `uploadTemp` if the response is an error', async () => {
@@ -940,6 +1042,9 @@ export const uploadTemp = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(catchMock).toHaveBeenCalled()
+    catchMock.mockRestore()
+    
+    // destroy(form) // teardown
   })
 
   it('should upload temp when `value` changes to a File object & auto is true', async () => {
@@ -966,6 +1071,9 @@ export const uploadTemp = function (elementType, elementName, options) {
     await flushPromises() // because of async validate
 
     expect(postMock).toHaveBeenCalled()
+    postMock.mockRestore()
+    
+    // destroy(form) // teardown
   })
 
   it('should not upload temp when `value` changes to a File object & auto is true', async () => {
@@ -991,6 +1099,8 @@ export const uploadTemp = function (elementType, elementName, options) {
     await nextTick()
 
     expect(postMock).not.toHaveBeenCalled()
+    
+    // destroy(form) // teardown
   })
 
   it('should call "updated" on successful `uploadTemp`', async () => {
@@ -1029,6 +1139,8 @@ export const uploadTemp = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(onChangeMock).toHaveBeenCalledWith(tmp, file)
+
+    // destroy() // teardown
   })
 }
 
@@ -1036,6 +1148,8 @@ export const remove = function (elementType, elementName, options) {
   beforeEach(() => {
     jest.spyOn(window, 'alert').mockImplementation(() => {})
     jest.spyOn(window, 'confirm').mockImplementation(() => true)
+    
+    // destroy(form) // teardown
   })
 
   it('should set file null on `remove` in stage 1', () => {
@@ -1060,6 +1174,8 @@ export const remove = function (elementType, elementName, options) {
     el.remove()
 
     expect(el.value).toStrictEqual(null)
+    
+    // destroy(form) // teardown
   })
 
   it('should validate file when `remove` if `validateOn` contains "change"', async () => {
@@ -1069,7 +1185,8 @@ export const remove = function (elementType, elementName, options) {
         el: {
           type: elementType,
           auto: false,
-          rules: 'required'
+          rules: 'required',
+          default: new File(['filename.jpg'], 'filename.jpg'),
         }
       }
     })
@@ -1083,6 +1200,8 @@ export const remove = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.validated).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should not validate file when `remove` if `validateOn` does not contain "change"', async () => {
@@ -1106,6 +1225,8 @@ export const remove = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.validated).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should set `progress` to 0 on `remove`', async () => {
@@ -1127,6 +1248,8 @@ export const remove = function (elementType, elementName, options) {
     el.remove()
 
     expect(el.progress).toBe(0)
+    
+    // destroy(form) // teardown
   })
 
   it('should set "removing" true when `remove` starts and false when finishes even with an error', async () => {
@@ -1165,6 +1288,8 @@ export const remove = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.removing).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should emit `remove` event on `remove`', () => {
@@ -1183,6 +1308,8 @@ export const remove = function (elementType, elementName, options) {
     el.remove()
 
     expect(elWrapper.emitted().remove).toBeTruthy()
+    
+    // destroy(form) // teardown
   })
 
   it('should call remove temp endpoint with params when removed in stage 2', async () => {
@@ -1223,6 +1350,8 @@ export const remove = function (elementType, elementName, options) {
       path: 'el',
       param: 'value'
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should not call remove temp endpoint when removed in stage 2 softRemove=true', async () => {
@@ -1258,6 +1387,8 @@ export const remove = function (elementType, elementName, options) {
     expect(axiosMock).not.toHaveBeenCalled()
 
     expect(el.value).toBe(null)
+    
+    // destroy(form) // teardown
   })
 
   it('should not remove file and null progress when removed in stage 2 with error', async () => {
@@ -1297,6 +1428,8 @@ export const remove = function (elementType, elementName, options) {
     
     expect(el.value).toStrictEqual(tmp)
     expect(el.progress).toStrictEqual(100)
+    
+    // destroy(form) // teardown
   })
 
   it('should call remove file endpoint with params when removed in stage 3', () => {
@@ -1332,6 +1465,8 @@ export const remove = function (elementType, elementName, options) {
       path: 'el',
       param: 'value'
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should not call remove file endpoint when removed in stage 3 softRemove=true', () => {
@@ -1365,6 +1500,8 @@ export const remove = function (elementType, elementName, options) {
     expect(axiosMock).not.toHaveBeenCalled()
 
     expect(el.value).toBe(null)
+    
+    // destroy(form) // teardown
   })
 
   it('should not call remove file endpoint when removed and does not confirm in stage 3', () => {
@@ -1394,6 +1531,8 @@ export const remove = function (elementType, elementName, options) {
     el.remove()
 
     expect(axiosMock).not.toHaveBeenCalled()
+    
+    // destroy(form) // teardown
   })
 
   it('should not remove file and null progress when removed in stage 2 with error', async () => {
@@ -1430,6 +1569,8 @@ export const remove = function (elementType, elementName, options) {
     
     expect(el.value).toStrictEqual(tmp)
     expect(el.progress).toStrictEqual(100)
+    
+    // destroy(form) // teardown
   })
 
   it('should call "updated" when `handleChange` updates value', async () => {
@@ -1458,6 +1599,8 @@ export const remove = function (elementType, elementName, options) {
     await nextTick()
 
     expect(onChangeMock).toHaveBeenLastCalledWith(null, file)
+    
+    // destroy(form) // teardown
   })
 
   it('should `remove` trigger "remove" event', async () => {
@@ -1486,6 +1629,8 @@ export const remove = function (elementType, elementName, options) {
     await nextTick()
     
     expect(onRemoveMock).toHaveBeenCalled()
+
+    // destroy() // teardown
   })
 }
 
@@ -1508,6 +1653,10 @@ export const prepare = function (elementType, elementName, options) {
       originalName: 'filename.jpg'
     }
 
+    let postMock = jest.fn()
+
+    el.axios.post = postMock
+
     el.load(tmp)
 
     expect(el.validated).toBe(false)
@@ -1518,7 +1667,9 @@ export const prepare = function (elementType, elementName, options) {
 
     await flushPromises()
 
-    expect(el.validated).toBe(false)
+    expect(postMock).not.toHaveBeenCalled()
+    
+    // destroy(form) // teardown
   })
 
   it('should call `uploadTemp` in `prepare` if stage is 1', async () => {
@@ -1554,6 +1705,8 @@ export const prepare = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.validated).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should set `preparing` to true when `prepare` and set to false after', async () => {
@@ -1591,6 +1744,8 @@ export const prepare = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.preparing).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should set preparing to false element if `prepare` fails', async () => {
@@ -1650,6 +1805,8 @@ export const prepare = function (elementType, elementName, options) {
       
       expect(el.preparing).toBe(false)
     }
+
+    // destroy() // teardown
   })
 }
 
@@ -1679,6 +1836,8 @@ export const handleChange = function (elementType, elementName, options) {
     })
 
     expect(el.value).toStrictEqual(file)
+    
+    // destroy(form) // teardown
   })
 
   it('should validate when `handleChange` is triggered and `validateOn` contains "change"', async () => {
@@ -1710,6 +1869,8 @@ export const handleChange = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.validated).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should not validate when `handleChange` is triggered and `validateOn` does not contain "change"', async () => {
@@ -1741,6 +1902,8 @@ export const handleChange = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.validated).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should trigger `handleChange` when file input changes', async () => {
@@ -1763,6 +1926,8 @@ export const handleChange = function (elementType, elementName, options) {
     elWrapper.find('input').trigger('change')
 
     expect(el.value).toBe(null)
+    
+    // destroy(form) // teardown
   })
 
   it('should call "updated" when `handleChange` updates value', async () => {
@@ -1793,6 +1958,8 @@ export const handleChange = function (elementType, elementName, options) {
     await nextTick()
 
     expect(onChangeMock).toHaveBeenCalledWith(file, null)
+
+    // destroy() // teardown
   })
 }
 
@@ -1823,6 +1990,8 @@ export const handleClick = function (elementType, elementName, options) {
     await nextTick()
 
     expect(clickMock).toHaveBeenCalled()
+    
+    // destroy(form) // teardown
   })
 
   it('should not click input element when upload button is clicked & disabled in `handleClick`', async () => {
@@ -1851,6 +2020,8 @@ export const handleClick = function (elementType, elementName, options) {
     await nextTick()
 
     expect(clickMock).not.toHaveBeenCalled()
+
+    // destroy() // teardown
   })
 }
 
@@ -1883,6 +2054,8 @@ export const handleUploadTemp = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.validated).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -1911,6 +2084,8 @@ export const handleRemove = function (elementType, elementName, options) {
     removeButton.trigger('click')
     
     expect(el.value).toBe(el.nullValue)
+
+    // destroy() // teardown
   })
 }
 
@@ -1943,6 +2118,8 @@ export const handleAbort = function (elementType, elementName, options) {
     await nextTick()
 
     expect(cancelMock).toHaveBeenCalled()
+    
+    // destroy(form) // teardown
   })
 
   it('should submit form if `Abort` is not clicked', async () => {
@@ -1984,6 +2161,8 @@ export const handleAbort = function (elementType, elementName, options) {
 
     expect(axiosPostMock).toHaveBeenCalled()
     expect(axiosSubmitMock).toHaveBeenCalled()
+    
+    // destroy(form) // teardown
   })
 
   it('should throw an error when `Abort` is clicked', async () => {
@@ -2040,6 +2219,8 @@ export const handleAbort = function (elementType, elementName, options) {
     } catch (e) {
       expect(e).toStrictEqual(new Error('Cancelled'))
     }
+    
+    // destroy(form) // teardown
   })
 
   it('should not cancel request when `Abort` is clicked and request does not exist', async () => {
@@ -2065,6 +2246,8 @@ export const handleAbort = function (elementType, elementName, options) {
     await nextTick()
 
     expect(cancelMock).not.toHaveBeenCalled()
+
+    // destroy() // teardown
   })
 }
 
@@ -2082,6 +2265,8 @@ export const rendering = function (elementType, elementName, options) {
 
     expect(elWrapper.find('input[type="file"]').exists()).toBe(true)
     expect(elWrapper.get('input').element).not.toBeVisible()
+    
+    // destroy(form) // teardown
   })
 
   it('should render upload button', async () => {
@@ -2097,6 +2282,8 @@ export const rendering = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
     expect(elWrapper.html()).toContain(el.classes.selectButton)
+    
+    // destroy(form) // teardown
   })
 
   it('should not render upload button & input not exist if `embed` is true', async () => {
@@ -2123,6 +2310,8 @@ export const rendering = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input).not.toBeVisible()
+    
+    // destroy(form) // teardown
   })
 
   it('should not render select button if `disabled`', async () => {
@@ -2141,6 +2330,8 @@ export const rendering = function (elementType, elementName, options) {
     await nextTick()
 
     expect(elWrapper.find(`[class="${el.classes.selectButton}"]`).exists()).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should not render select button if `preparing`', async () => {
@@ -2160,6 +2351,8 @@ export const rendering = function (elementType, elementName, options) {
     await nextTick()
 
     expect(elWrapper.find(`[class="${el.classes.selectButton}"]`).exists()).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should not render input if `disabled`', async () => {
@@ -2177,6 +2370,8 @@ export const rendering = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input).toBeFalsy()
+    
+    // destroy(form) // teardown
   })
 
   it('should not render input if `preparing`', async () => {
@@ -2196,6 +2391,8 @@ export const rendering = function (elementType, elementName, options) {
     await nextTick()
 
     expect(elWrapper.find('input[type="file"]').exists()).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should render preview with filename if it has no link', async () => {
@@ -2219,6 +2416,8 @@ export const rendering = function (elementType, elementName, options) {
     
     expect(elWrapper.find('.preview').html()).not.toContain('href')
     expect(elWrapper.find('.preview').html()).toContain('filename')
+    
+    // destroy(form) // teardown
   })
 
   it('should render preview with anchor if it has link', async () => {
@@ -2239,6 +2438,8 @@ export const rendering = function (elementType, elementName, options) {
     
     expect(elWrapper.find('.preview').html()).toContain('href')
     expect(elWrapper.find('.preview').html()).toContain('filename')
+    
+    // destroy(form) // teardown
   })
 
   it('should only show progress if `progress` is larger than 0', async () => {
@@ -2261,6 +2462,8 @@ export const rendering = function (elementType, elementName, options) {
     await nextTick()
 
     expect(fsp$.html()).toBeTruthy()
+    
+    // destroy(form) // teardown
   })
 
   it('should only show temp upload button if `canUploadTemp` is true', async () => {
@@ -2283,6 +2486,8 @@ export const rendering = function (elementType, elementName, options) {
     await nextTick()
 
     expect(elWrapper.find(`a[class="${el.classes.uploadButton}"]`).exists()).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should only show remove button if `canRemove` is true', async () => {
@@ -2305,6 +2510,8 @@ export const rendering = function (elementType, elementName, options) {
     await nextTick()
 
     expect(elWrapper.find(`a[class="${el.classes.removeButton}"]`).exists()).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should only show abort button if `uploading` is true', async () => {
@@ -2327,5 +2534,7 @@ export const rendering = function (elementType, elementName, options) {
     await nextTick()
 
     expect(elWrapper.find(`a[class="${el.classes.abortButton}"]`).exists()).toBe(true)
+
+    // destroy() // teardown
   })
 }

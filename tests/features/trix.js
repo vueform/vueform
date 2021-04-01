@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testPropDefault, testAttribute } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, testAttribute, destroy } from 'test-helpers'
 
 export const accept = function (elementType, elementName, options) {
   it('should pass `accept` to Trix component', () => {
@@ -16,6 +16,8 @@ export const accept = function (elementType, elementName, options) {
     let Trix = findAllComponents(elWrapper, { name: 'TrixWrapper' }).at(0)
 
     expect(Trix.props('accept')).toStrictEqual(el.accept)
+
+    // destroy() // teardown
   })
 }
 
@@ -35,6 +37,8 @@ export const acceptMimes = function (elementType, elementName, options) {
     let Trix = findAllComponents(elWrapper, { name: 'TrixWrapper' }).at(0)
 
     expect(Trix.props('acceptMimes')).toStrictEqual(el.acceptMimes)
+
+    // destroy() // teardown
   })
 }
 
@@ -67,5 +71,7 @@ export const trixEndpoint = function (elementType, elementName, options) {
     let Trix = findAllComponents(elWrapper, { name: 'TrixWrapper' }).at(0)
 
     expect(Trix.props('endpoint')).toStrictEqual(el.trixEndpoint)
+
+    // destroy() // teardown
   })
 }

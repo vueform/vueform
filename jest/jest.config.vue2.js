@@ -5,7 +5,7 @@ module.exports = {
       "json",
       "vue"
   ],
-  "testTimeout": 5000,
+  "testTimeout": 20000,
   "transform": {
       ".*\\.(vue)$": "vue-prev-jest",
       "^.+\\.js$": "babel-jest"
@@ -24,7 +24,7 @@ module.exports = {
       '^vue-jest$': "<rootDir>/node_modules/vue-prev-jest"
   },
   "setupFilesAfterEnv": ["<rootDir>/jest/jest.setup.js"],
-  "collectCoverage": false,
+  "collectCoverage": true,
   "collectCoverageFrom": [
       "**/*.{js,vue}",
       "!**/node_modules/**",
@@ -38,10 +38,10 @@ module.exports = {
       "!**/jest/**",
       "!**/api/**",
   ],
-  // "reporters": [
-  //   'jest-progress-bar-reporter',
-  //   ["jest-silent-reporter", { "showWarnings": true }]
-  // ],
+  "reporters": [
+    'jest-progress-bar-reporter',
+    ["jest-silent-reporter", { "showWarnings": true }]
+  ],
   "coverageReporters": [
       "html",
       "text-summary"

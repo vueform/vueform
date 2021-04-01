@@ -38,6 +38,8 @@ export const value = function (elementType, elementName, options) {
     options.at(2).setSelected()
     expect(el.value).toBe(2)
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
+    
+    // destroy(form) // teardown
   })
 
   it('should value be equal to selected option\'s value when items are an object & native=true', async () => {
@@ -71,6 +73,8 @@ export const value = function (elementType, elementName, options) {
     options.at(2).setSelected()
     expect(el.value).toBe('2')
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
+    
+    // destroy(form) // teardown
   })
 
   it('should value be equal to selected option\'s value when items are an array of objects & native=true', async () => {
@@ -108,6 +112,8 @@ export const value = function (elementType, elementName, options) {
     options.at(2).setSelected()
     expect(el.value).toBe(2)
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
+    
+    // destroy(form) // teardown
   })
 
   it('should value be equal to selected option\'s value when items are async & native=true', async () => {
@@ -147,6 +153,8 @@ export const value = function (elementType, elementName, options) {
     options.at(2).setSelected()
     expect(el.value).toBe(2)
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
+    
+    // destroy(form) // teardown
   })
 
   it('should value be equal to selected option\'s value when items are an array & native=false', async () => {
@@ -185,6 +193,8 @@ export const value = function (elementType, elementName, options) {
     expect(select.internalValue).toStrictEqual({ value: 2, label: 3 })
 
     destroy(form)
+    
+    // destroy(form) // teardown
   })
 
   it('should value be equal to selected option\'s value when items are an object & native=false', async () => {
@@ -223,6 +233,8 @@ export const value = function (elementType, elementName, options) {
     expect(select.internalValue).toStrictEqual({ value: '2', label: 3 })
 
     destroy(form)
+    
+    // destroy(form) // teardown
   })
 
   it('should value be equal to selected option\'s value when items are an array of objects & native=false', async () => {
@@ -265,6 +277,8 @@ export const value = function (elementType, elementName, options) {
     expect(select.internalValue).toStrictEqual({ value: 2, label: 3 })
 
     destroy(form)
+    
+    // destroy(form) // teardown
   })
 
   it('should value be equal to selected option\'s value when items are async & native=false', async () => {
@@ -309,6 +323,8 @@ export const value = function (elementType, elementName, options) {
     expect(select.internalValue).toStrictEqual({ value: 2, label: 3 })
 
     destroy(form)
+    
+    // destroy(form) // teardown
   })
 
   it('should value be equal to selected option\'s value when items are an array & native=false object=true', async () => {
@@ -350,6 +366,8 @@ export const value = function (elementType, elementName, options) {
     expect(select.internalValue).toStrictEqual({ value: 2, label: 3 })
 
     destroy(form)
+    
+    // destroy(form) // teardown
   })
 
   it('should value be equal to selected option\'s value when items are an object & native=false object=true', async () => {
@@ -391,6 +409,8 @@ export const value = function (elementType, elementName, options) {
     expect(select.internalValue).toStrictEqual({ value: '2', label: 3 })
 
     destroy(form)
+    
+    // destroy(form) // teardown
   })
 
   it('should value be equal to selected option\'s value when items are an array of objects & native=false object=true', async () => {
@@ -437,6 +457,8 @@ export const value = function (elementType, elementName, options) {
     expect(select.internalValue).toStrictEqual({ v: 2, label: 3 })
 
     destroy(form)
+    
+    // destroy(form) // teardown
   })
 
   it('should value be equal to selected option\'s value when items are async & native=false object=true', async () => {
@@ -484,5 +506,7 @@ export const value = function (elementType, elementName, options) {
     expect(select.internalValue).toStrictEqual({ value: 2, label: 3 })
 
     destroy(form)
+
+    // destroy() // teardown
   })
 }

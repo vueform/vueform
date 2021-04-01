@@ -1,4 +1,4 @@
-import { createForm, testModelCases } from 'test-helpers'
+import { createForm, testModelCases, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
 
 import { testChanges, testChangesObject } from './value_list'

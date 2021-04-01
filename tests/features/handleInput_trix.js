@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, findAllComponents } from 'test-helpers'
+import { createForm, findAllComponents, destroy } from 'test-helpers'
 
 export const handleInput = function (elementType, elementName, options) {
   it('should set value on input', () => {
@@ -17,5 +17,7 @@ export const handleInput = function (elementType, elementName, options) {
     el.input.handleChange()
 
     expect(el.model).toBe(options.value )
+
+    // destroy() // teardown
   })
 }

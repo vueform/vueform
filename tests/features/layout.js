@@ -1,4 +1,4 @@
-import { createForm, findAllComponents } from 'test-helpers'
+import { createForm, findAllComponents, destroy } from 'test-helpers'
 
 export const elementLayout = function (elementType, elementName, options) {
   it('should be ElementLayout by default', () => {
@@ -15,6 +15,8 @@ export const elementLayout = function (elementType, elementName, options) {
 
     expect(ElementLayout.vm.el$).toStrictEqual(el)
     expect(el.elementLayout).toStrictEqual('ElementLayout')
+    
+    // destroy(form) // teardown
   })
 
   it('should be ElementLayoutInline if inline', () => {
@@ -32,6 +34,8 @@ export const elementLayout = function (elementType, elementName, options) {
 
     expect(ElementLayoutInline.vm.el$).toStrictEqual(el)
     expect(el.elementLayout).toStrictEqual('ElementLayoutInline')
+    
+    // destroy(form) // teardown
   })
 
   it('should be custom if layout is defined', () => {
@@ -47,5 +51,7 @@ export const elementLayout = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.elementLayout).toStrictEqual('ElementLayoutInline')
+
+    // destroy() // teardown
   })
 }

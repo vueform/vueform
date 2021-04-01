@@ -21,6 +21,8 @@ export const list = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.list.children[1].children[0]).toStrictEqual(el.children$[1].$el)
+
+    // destroy() // teardown
   })
 }
 
@@ -40,6 +42,8 @@ export const sortable = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.sortable).toBe(null)
+
+    // destroy() // teardown
   })
 }
 
@@ -59,6 +63,8 @@ export const isSortable = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.isSortable).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should be true if sort is true', () => {
@@ -77,6 +83,8 @@ export const isSortable = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.isSortable).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should be false if sort is true && disabled', () => {
@@ -96,6 +104,8 @@ export const isSortable = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.isSortable).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -119,6 +129,8 @@ export const initSortable = function (elementType, elementName, options) {
     el.initSortable()
 
     expect(el.sortable).not.toBe(null)
+
+    // destroy() // teardown
   })
 }
 
@@ -143,6 +155,8 @@ export const destroySortable = function (elementType, elementName, options) {
     el.destroySortable()
 
     expect(el.sortable).toBe(null)
+
+    // destroy() // teardown
   })
 }
 
@@ -153,6 +167,8 @@ export const handleSort = function (elementType, elementName, options) {
       {child:'a',order:2},
       {child:'c',order:3}
     ], elementType)
+    
+    // destroy(form) // teardown
   })
 
   it('should reposition from 1 to 0', async () => {
@@ -161,6 +177,8 @@ export const handleSort = function (elementType, elementName, options) {
       {child:'a',order:2},
       {child:'c',order:3}
     ], elementType)
+    
+    // destroy(form) // teardown
   })
 
   it('should reposition from 0 to 2', async () => {
@@ -169,6 +187,8 @@ export const handleSort = function (elementType, elementName, options) {
       {child:'c',order:2},
       {child:'a',order:3},
     ], elementType)
+    
+    // destroy(form) // teardown
   })
 
   it('should reposition from 2 to 0', async () => {
@@ -177,6 +197,8 @@ export const handleSort = function (elementType, elementName, options) {
       {child:'a',order:2},
       {child:'b',order:3},
     ], elementType)
+    
+    // destroy(form) // teardown
   })
 
   it('should reposition from 1 to 2', async () => {
@@ -185,6 +207,8 @@ export const handleSort = function (elementType, elementName, options) {
       {child:'c',order:2},
       {child:'b',order:3},
     ], elementType)
+    
+    // destroy(form) // teardown
   })
 
   it('should reposition from 2 to 1', async () => {
@@ -193,6 +217,8 @@ export const handleSort = function (elementType, elementName, options) {
       {child:'c',order:2},
       {child:'b',order:3},
     ], elementType)
+
+    // destroy() // teardown
   })
 }
 
@@ -219,6 +245,8 @@ export const watchers = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.sortable).not.toBe(null)
+    
+    // destroy(form) // teardown
   })
 
   it('should destroy sortable if sort becomes false', async () => {
@@ -243,6 +271,8 @@ export const watchers = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.sortable).toBe(null)
+
+    // destroy() // teardown
   })
 }
 
@@ -263,6 +293,8 @@ export const onMounted = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.sortable).not.toBe(null)
+    
+    // destroy(form) // teardown
   })
 
   it('should not init sortable if sort is not true', async () => {

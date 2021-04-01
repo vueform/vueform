@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const check = function (elementType, elementName, options) {
   it('should add single and multiple values to value on `check`', () => {
@@ -17,6 +17,10 @@ export const check = function (elementType, elementName, options) {
 
     el.check(['2',3])
     expect(el.value).toStrictEqual([1,'2',3])
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -38,6 +42,10 @@ export const uncheck = function (elementType, elementName, options) {
 
     el.uncheck(['2',3])
     expect(el.value).toStrictEqual([])
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -61,6 +69,10 @@ export const checkAll = function (elementType, elementName, options) {
     el.checkAll()
     
     expect(el.value).toStrictEqual(['1','2','3'])
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -87,5 +99,7 @@ export const uncheckAll = function (elementType, elementName, options) {
     el.uncheckAll()
 
     expect(el.value).toStrictEqual([])
+    
+    // destroy(form) // teardown
   })
 }

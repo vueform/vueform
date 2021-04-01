@@ -1,4 +1,4 @@
-import { createForm, testPropDefault, createElement } from 'test-helpers'
+import { createForm, testPropDefault, createElement, destroy } from 'test-helpers'
 import { markRaw } from 'composition-api'
 
 export const rendering = function (elementType, elementName, options) {
@@ -14,6 +14,8 @@ export const rendering = function (elementType, elementName, options) {
 
     expect(form.findComponent({ name: 'ElementLayout' }).exists()).toBe(true)
     expect(form.findComponent({ name: elementName }).html()).toContain('<div>Hello</div>')
+    
+    // destroy(form) // teardown
   })
 
   it('should not render layout if `wrap` false', () => {
@@ -47,5 +49,7 @@ export const rendering = function (elementType, elementName, options) {
     })
 
     expect(form.findComponent({ name: elementName }).html()).toContain('<div>Hello</div>')
+
+    // destroy() // teardown
   })
 }

@@ -1,4 +1,4 @@
-import { createForm, testPropDefault } from 'test-helpers'
+import { createForm, testPropDefault, destroy } from 'test-helpers'
 
 export const fieldOptions = function (elementType, elementName, options) {
   it('should have default `fieldOptions`', () => {
@@ -77,5 +77,7 @@ export const fieldOptions = function (elementType, elementName, options) {
     _.each(el.fieldOptions, (value, key) => {
       expect(Slider.props(key)).toStrictEqual(value)
     })
+
+    // destroy() // teardown
   })
 }

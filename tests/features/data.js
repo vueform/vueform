@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 export const plainData = function (elementType, elementName, options) {
@@ -17,6 +17,8 @@ export const plainData = function (elementType, elementName, options) {
     expect(el.plainData).toStrictEqual({
       el: el.value
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -34,6 +36,8 @@ export const data = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.data).toStrictEqual(el.plainData)
+    
+    // destroy(form) // teardown
   })
 
   it('should have `data` equal to `plainData` if there are met conditions', () => {
@@ -56,6 +60,8 @@ export const data = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.data).toStrictEqual(el.plainData)
+    
+    // destroy(form) // teardown
   })
 
   it('should have empty object for `data` if there are unmet conditions', () => {
@@ -77,6 +83,8 @@ export const data = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.data).toStrictEqual({})
+
+    // destroy() // teardown
   })
 }
 
@@ -95,6 +103,8 @@ export const load = function (elementType, elementName, options) {
 
     el.load(options.value)
     expect(el.value).toStrictEqual(options.value)
+    
+    // destroy(form) // teardown
   })
 
   it('should should format data if "formatLoad" is set on `load`', async () => {
@@ -119,6 +129,8 @@ export const load = function (elementType, elementName, options) {
     el.load(options.value, true)
 
     expect(formatLoadMock).toHaveBeenCalled()
+
+    // destroy() // teardown
   })
 }
 
@@ -137,6 +149,8 @@ export const update = function (elementType, elementName, options) {
 
     el.update(options.value)
     expect(el.value).toStrictEqual(options.value)
+
+    // destroy() // teardown
   })
 }
 
@@ -157,6 +171,8 @@ export const clear = function (elementType, elementName, options) {
     el.clear()
 
     expect(el.value).toStrictEqual(el.nullValue)
+
+    // destroy() // teardown
   })
 }
 
@@ -179,6 +195,8 @@ export const reset = function (elementType, elementName, options) {
     el.reset()
 
     expect(el.value).toStrictEqual(el.defaultValue)
+    
+    // destroy(form) // teardown
   })
 
   it('should reset validators on `reset`', async () => {
@@ -202,5 +220,7 @@ export const reset = function (elementType, elementName, options) {
 
     expect(el.validated).toBe(false)
     expect(el.invalid).toBe(false)
+
+    // destroy() // teardown
   })
 }

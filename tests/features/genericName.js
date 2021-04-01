@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const genericName = function (elementType, elementName, options) {
   it('should return `genericName` when label is defined', () => {
@@ -16,6 +16,8 @@ export const genericName = function (elementType, elementName, options) {
     if (el.label !== undefined) {
       expect(el.genericName).toBe('Element label')
     }
+    
+    // destroy(form) // teardown
   })
 
   it('should return `genericName` when placeholder is defined', () => {
@@ -33,6 +35,8 @@ export const genericName = function (elementType, elementName, options) {
     if (el.placeholder !== undefined) {
       expect(el.genericName).toBe('Element placeholder')
     }
+    
+    // destroy(form) // teardown
   })
 
   it('should return `genericName` when no placeholder nor label is defined', () => {
@@ -47,5 +51,7 @@ export const genericName = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.genericName).toBe('El')
+
+    // destroy() // teardown
   })
 }

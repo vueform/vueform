@@ -1,4 +1,4 @@
-import { createForm, testPropDefault } from 'test-helpers'
+import { createForm, testPropDefault, destroy } from 'test-helpers'
 
 export const search = function (elementType, elementName, options) {
   it('should have `search` "true" when "create" is "true"', () => {
@@ -14,6 +14,8 @@ export const search = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.fieldOptions.searchable).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -31,6 +33,8 @@ export const native = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.native).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -48,6 +52,8 @@ export const isNative = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.isNative).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -113,5 +119,7 @@ export const fieldOptions = function (elementType, elementName, options) {
     _.each(el.fieldOptions, (value, key) => {
       expect(Multiselect.props(key)).toStrictEqual(value)
     })
+
+    // destroy() // teardown
   })
 }

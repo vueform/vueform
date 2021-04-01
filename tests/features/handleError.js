@@ -19,6 +19,8 @@ export const handleError = function (elementType, elementName, options) {
     el.handleError('error', 'e')
 
     expect(onErrorMock).toHaveBeenCalledWith('error', 'e')
+    
+    // destroy(form) // teardown
   })
 
   it('should throw `error` in alert if error listeners is not defined', async () => {
@@ -38,5 +40,7 @@ export const handleError = function (elementType, elementName, options) {
     el.handleError('error')
 
     expect(alertSpy).toHaveBeenLastCalledWith('error')
+
+    // destroy() // teardown
   })
 }

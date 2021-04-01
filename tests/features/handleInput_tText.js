@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, findAllComponents } from 'test-helpers'
+import { createForm, findAllComponents, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const handleInput = function (elementType, elementName, options) {
@@ -28,6 +28,8 @@ export const handleInput = function (elementType, elementName, options) {
     elWrapper.get(options.fieldType).setValue('value')
 
     expect(el.model).toBe('value')
+    
+    // destroy(form) // teardown
   })
 
   it('should dirt the element if input value is different than the current', async () => {
@@ -59,6 +61,8 @@ export const handleInput = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.dirty).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should not dirt the element on if input value is not different than the current', () => {
@@ -89,6 +93,8 @@ export const handleInput = function (elementType, elementName, options) {
     elWrapper.get(options.fieldType).setValue('value')
 
     expect(el.dirty).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should trigger "change" event if value changed', async () => {
@@ -120,6 +126,8 @@ export const handleInput = function (elementType, elementName, options) {
     await nextTick()
 
     expect(onChangeMock).toHaveBeenCalled()
+    
+    // destroy(form) // teardown
   })
 
   it('should not trigger "change" event if value not changed', () => {
@@ -150,6 +158,8 @@ export const handleInput = function (elementType, elementName, options) {
     elWrapper.get(options.fieldType).setValue('value')
 
     expect(onChangeMock).not.toHaveBeenCalled()
+    
+    // destroy(form) // teardown
   })
 
   it('should trigger validation on if validateOn contains "change"', async () => {
@@ -189,5 +199,7 @@ export const handleInput = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.state.validated.en).toBe(true)
+
+    // destroy() // teardown
   })
 }

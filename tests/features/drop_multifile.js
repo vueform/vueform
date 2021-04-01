@@ -1,4 +1,4 @@
-import { createForm, testPropDefault, findAllComponents } from 'test-helpers'
+import { createForm, testPropDefault, findAllComponents, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export { canDrop, rendering } from './drop'
@@ -28,6 +28,8 @@ export const handleDrop = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.value).toStrictEqual([file, file2])
+    
+    // destroy(form) // teardown
   })
 
   it('should add files on `handleDrop` when it is an object element', async () => {
@@ -58,6 +60,8 @@ export const handleDrop = function (elementType, elementName, options) {
       { file: file },
       { file: file2 }
     ])
+    
+    // destroy(form) // teardown
   })
 
   it('should not add files on `handleDrop` when disabled', async () => {
@@ -85,6 +89,8 @@ export const handleDrop = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.value).toStrictEqual(el.nullValue)
+    
+    // destroy(form) // teardown
   })
 
   it('should not add files on `handleDrop` when not in accept', async () => {
@@ -112,5 +118,7 @@ export const handleDrop = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.value).toStrictEqual([file])
+
+    // destroy() // teardown
   })
 }

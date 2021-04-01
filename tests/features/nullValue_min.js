@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const nullValue = function (elementType, elementName, options) {
   it('should have min as `nullValue`', () => {
@@ -14,6 +14,8 @@ export const nullValue = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.nullValue).toBe(3)
+    
+    // destroy(form) // teardown
   })
 
   it('should have min array as `nullValue` when default is an array', () => {
@@ -29,5 +31,7 @@ export const nullValue = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.nullValue).toStrictEqual([0, 0])
+
+    // destroy() // teardown
   })
 }

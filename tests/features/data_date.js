@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 export { plainData, data, clear, } from './data'
@@ -17,7 +17,9 @@ export const load = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     el.load('20-11-2020')
-    expect(el.value).toBe('2020-11-20')
+    expect(el.value).toBe('2020-11-20')    
+    
+    // destroy(form) // teardown
   })
 
   it('should set Date instance on `load`', async () => {
@@ -32,7 +34,9 @@ export const load = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     el.load(moment('20-11-2020', 'DD-MM-YYYY').toDate())
-    expect(el.value).toStrictEqual('2020-11-20')
+    expect(el.value).toStrictEqual('2020-11-20')    
+    
+    // destroy(form) // teardown
   })
 
   it('should throw an error on `load` when value not being provided according to loadFormat', async () => {
@@ -53,7 +57,9 @@ export const load = function (elementType, elementName, options) {
 
     expect(() => {
       el.load('20-11-2020')
-    }).not.toThrowError()
+    }).not.toThrowError()    
+    
+    // destroy(form) // teardown
   })
 
   it('should should format data if "formatLoad" is set on `load`', async () => {
@@ -77,6 +83,10 @@ export const load = function (elementType, elementName, options) {
     el.load(options.value, true)
 
     expect(formatLoadMock).toHaveBeenCalled()
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -95,6 +105,10 @@ export const update = function (elementType, elementName, options) {
     el.update(options.value)
 
     expect(el.value).toBe(options.value)
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -115,7 +129,9 @@ export const reset = function (elementType, elementName, options) {
 
     el.reset()
 
-    expect(el.value).toStrictEqual(options.value)
+    expect(el.value).toStrictEqual(options.value)    
+    
+    // destroy(form) // teardown
   })
 
   it('should reset validators on `reset`', async () => {
@@ -138,5 +154,7 @@ export const reset = function (elementType, elementName, options) {
 
     expect(el.validated).toBe(false)
     expect(el.invalid).toBe(false)
+    
+    // destroy(form) // teardown
   })
 }

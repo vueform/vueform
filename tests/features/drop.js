@@ -1,4 +1,4 @@
-import { createForm, testPropDefault, findAllComponents } from 'test-helpers'
+import { createForm, testPropDefault, findAllComponents, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const canDrop = function (elementType, elementName, options) {
@@ -14,6 +14,8 @@ export const canDrop = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.canDrop).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -39,6 +41,8 @@ export const handleDrop = function (elementType, elementName, options) {
     })
 
     expect(el.value).toStrictEqual(file)
+    
+    // destroy(form) // teardown
   })
 
   it('should trigger `handleDrop` when a file is being dropped', () => {
@@ -64,6 +68,8 @@ export const handleDrop = function (elementType, elementName, options) {
     })
 
     expect(el.value).toStrictEqual(file)
+    
+    // destroy(form) // teardown
   })
 
   it('should not update file on `handleDrop` when disabled', () => {
@@ -89,6 +95,8 @@ export const handleDrop = function (elementType, elementName, options) {
 
     expect(el.value).toStrictEqual(el.nullValue)
     expect(el.dirty).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should not update file on `handleDrop` when file type is not among accept', () => {
@@ -114,6 +122,8 @@ export const handleDrop = function (elementType, elementName, options) {
 
     expect(el.value).toStrictEqual(el.nullValue)
     expect(el.dirty).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -145,6 +155,8 @@ export const rendering = function (elementType, elementName, options) {
 
     DragAndDrop = findAllComponents(form, { name: 'DragAndDrop' })
     expect(DragAndDrop.length).toBe(0)
+    
+    // destroy(form) // teardown
   })
 
   it('should not render upload button if `drop` is true', async () => {
@@ -207,5 +219,7 @@ export const rendering = function (elementType, elementName, options) {
     await nextTick()
 
     expect(clickMock).toHaveBeenCalled()
+
+    // destroy() // teardown
   })
 }

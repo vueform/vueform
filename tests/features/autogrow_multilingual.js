@@ -37,5 +37,7 @@ export const autosize = function (elementType, elementName, options) {
     form.vm.setLanguage('fr')
 
     expect(updateMock).toHaveBeenCalled()
+    
+    // destroy(form) // teardown
   })
 }

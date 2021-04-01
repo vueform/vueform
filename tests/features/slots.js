@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testPropDefault, createElement } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, createElement, destroy } from 'test-helpers'
 import { defineComponent, markRaw, nextTick } from 'composition-api'
 
 export const slots = function (elementType, elementName, options) {
@@ -27,6 +27,8 @@ export const slots = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
     expect(elWrapper.html()).toContain('it is before')
+    
+    // destroy(form) // teardown
   })
 
   it('should render `between`', () => {
@@ -42,6 +44,8 @@ export const slots = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
     expect(elWrapper.html()).toContain('it is between')
+    
+    // destroy(form) // teardown
   })
 
   it('should render `after`', () => {
@@ -428,5 +432,7 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
         
         expect(elWrapper.html()).toContain('from inline slot')
     }
+
+    // destroy() // teardown
   })
 }

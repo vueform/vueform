@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 export const plainData = function (elementType, elementName) {
@@ -16,6 +16,10 @@ export const plainData = function (elementType, elementName) {
     expect(el.plainData).toStrictEqual({
       el: el.value,
     })
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -39,7 +43,9 @@ export const data = function(elementType, elementName) {
         country: null,
         zip: null,
       }
-    })
+    })    
+    
+    // destroy(form) // teardown
   })
 
   it('should have empty object as `data` if not available', async () => {
@@ -60,6 +66,10 @@ export const data = function(elementType, elementName) {
     let el = form.vm.el$('el')
 
     expect(el.data).toStrictEqual({})
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -80,7 +90,9 @@ export const load = function(elementType, elementName) {
       address: 'value'
     })
 
-    expect(el.value.address).toStrictEqual('value')
+    expect(el.value.address).toStrictEqual('value')    
+    
+    // destroy(form) // teardown
   })
 
   it('should should format data if "formatData" is "true" on `load`', async () => {
@@ -111,6 +123,10 @@ export const load = function(elementType, elementName) {
       state: null,
       zip: null,
     })
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -139,6 +155,10 @@ export const update = function(elementType, elementName) {
       state: null,
       zip: null,
     })
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -169,6 +189,10 @@ export const clear = function(elementType, elementName) {
       state: null,
       zip: null,
     })
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -199,5 +223,7 @@ export const reset = function(elementType, elementName) {
     expect(address.invalid).toBe(false)
     expect(address.validated).toBe(false)
     expect(address.value).toBe(null)
+    
+    // destroy(form) // teardown
   })
 }

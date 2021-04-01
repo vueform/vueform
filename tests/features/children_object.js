@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export const children$Array = function (elementType, elementName) {
@@ -13,7 +13,9 @@ export const children$Array = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.children$Array).toStrictEqual([])
+    expect(el.children$Array).toStrictEqual([])    
+    
+    // destroy(form) // teardown
   })
 
   it('should collect elements to `children$Array`', async () => {
@@ -35,7 +37,9 @@ export const children$Array = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.children$Array.length).toBe(2)
+    expect(el.children$Array.length).toBe(2)    
+    
+    // destroy(form) // teardown
   })
 
   it('should update `children$Array` when schema changes', async () => {
@@ -73,6 +77,10 @@ export const children$Array = function (elementType, elementName) {
 
     expect(el.children$Array[0]).toStrictEqual(form.vm.el$('el.child2'))
     expect(el.children$Array[1]).toStrictEqual(form.vm.el$('el.child1'))
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -99,6 +107,10 @@ export const children = function (elementType, elementName) {
     let el = form.vm.el$('el')
 
     expect(el.children).toStrictEqual(childrenSchema)
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -124,5 +136,7 @@ export const children$ = function (elementType, elementName) {
 
     expect(el.children$.child1.name).toBe('child1')
     expect(el.children$.child2.name).toBe('child2')
+    
+    // destroy(form) // teardown
   })
 }

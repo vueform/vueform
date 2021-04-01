@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const isStatic = function (elementType, elementName, options) {
@@ -14,6 +14,10 @@ export const isStatic = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isStatic).toBe(false)
+
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -30,6 +34,10 @@ export const isImageType = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isImageType).toBe(false)
+
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -46,6 +54,10 @@ export const isFileType = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isFileType).toBe(false)
+
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -62,6 +74,10 @@ export const isArrayType = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isArrayType).toBe(false)
+
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -79,6 +95,8 @@ export const hooks = function (elementType, elementName, options) {
     })
 
     expect(hookMock).toHaveBeenCalledTimes(1)
+
+    // destroy(form) // teardown   
   })
 
   it('should have onCreated hook', () => {
@@ -94,6 +112,8 @@ export const hooks = function (elementType, elementName, options) {
     })
 
     expect(hookMock).toHaveBeenCalledTimes(1)
+
+    // destroy(form) // teardown  
   })
 
   it('should have onBeforeMount hook', () => {
@@ -109,6 +129,8 @@ export const hooks = function (elementType, elementName, options) {
     })
 
     expect(hookMock).toHaveBeenCalledTimes(1)
+
+    // destroy(form) // teardown 
   })
 
   it('should have onMounted hook', async () => {
@@ -124,6 +146,8 @@ export const hooks = function (elementType, elementName, options) {
     })
 
     expect(hookMock).toHaveBeenCalledTimes(1)
+
+    // destroy(form) // teardown
   })
 
   it('should have onBeforeUpdate hook', async () => {
@@ -145,6 +169,8 @@ export const hooks = function (elementType, elementName, options) {
     await nextTick()
 
     expect(hookMock).toHaveBeenCalledTimes(1)
+
+    // destroy(form) // teardown
   })
 
   it('should have onUpdated hook', async () => {
@@ -166,6 +192,8 @@ export const hooks = function (elementType, elementName, options) {
     await nextTick()
 
     expect(hookMock).toHaveBeenCalledTimes(1)
+
+    // destroy(form) // teardown
   })
 
   it('should have onBeforeUnmount hook', async () => {
@@ -185,6 +213,8 @@ export const hooks = function (elementType, elementName, options) {
     await nextTick()
 
     expect(hookMock).toHaveBeenCalledTimes(1)
+
+    // destroy(form) // teardown
   })
 
   it('should have onUnmounted hook', async () => {
@@ -204,5 +234,7 @@ export const hooks = function (elementType, elementName, options) {
     await nextTick()
 
     expect(hookMock).toHaveBeenCalledTimes(1)
+
+    // destroy(form) // teardown
   })
 }

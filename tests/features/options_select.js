@@ -1,4 +1,4 @@
-import { createForm, testPropDefault } from 'test-helpers'
+import { createForm, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const isNative = function (elementType, elementName, options) {
@@ -23,6 +23,8 @@ export const isNative = function (elementType, elementName, options) {
     el.$set(form.vm.laraform.schema.el, 'search', true)
     await nextTick()
     expect(el.isNative).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -86,5 +88,7 @@ export const fieldOptions = function (elementType, elementName, options) {
     _.each(el.fieldOptions, (value, key) => {
       expect(Multiselect.props(key)).toStrictEqual(value)
     })
+
+    // destroy() // teardown
   })
 }

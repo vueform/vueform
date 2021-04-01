@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, destroy } from 'test-helpers'
 
 export const hasLabel = function (elementType, elementName, options) { 
   it('should have `hasLabel` equal "true" if the element has label defined & config.labels disabled', () => {
@@ -19,6 +19,8 @@ export const hasLabel = function (elementType, elementName, options) {
 
     expect(form.vm.$laraform.config.labels).toBe(false)
     expect(el.hasLabel).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should have `hasLabel` equal "true" if the element has no label defined & config.labels enabled', () => {
@@ -38,6 +40,8 @@ export const hasLabel = function (elementType, elementName, options) {
 
     expect(form.vm.$laraform.config.labels).toBe(true)
     expect(el.hasLabel).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should have `hasLabel` equal "false" if the element has no label defined & config.labels disabled', () => {
@@ -57,6 +61,8 @@ export const hasLabel = function (elementType, elementName, options) {
 
     expect(form.vm.$laraform.config.labels).toBe(false)
     expect(el.hasLabel).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -76,6 +82,8 @@ export const rendering = function (elementType, elementName, options) {
     let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
 
     expect(ElementLabel.at(0).vm.label === el.label).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should should render `ElementLabel` if hasLabel is "false"', () => {
@@ -96,5 +104,7 @@ export const rendering = function (elementType, elementName, options) {
     let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' })
 
     expect(ElementLabel.length === 0 || ElementLabel.at(0).vm.label !== el.label).toBe(true)
+
+    // destroy() // teardown
   })
 }

@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export { messageBag, } from './validation'
@@ -38,6 +38,8 @@ export const state = function (elementType, elementName, options) {
         fr: true,
       },
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -64,6 +66,8 @@ export const validationRules = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.validationRules).toStrictEqual({})
+    
+    // destroy(form) // teardown
   })
 
   it('should return same `rules` for each language', async () => {
@@ -92,6 +96,8 @@ export const validationRules = function (elementType, elementName, options) {
       en: 'required',
       fr: 'required'
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should return different `rules` languages if rules is defined on a language level', async () => {
@@ -122,6 +128,8 @@ export const validationRules = function (elementType, elementName, options) {
       en: 'required',
       fr: null,
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -152,6 +160,8 @@ export const dirty = function (elementType, elementName, options) {
     el.dirt()
 
     expect(el.dirty).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -191,6 +201,8 @@ export const validated = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.validated).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -224,6 +236,8 @@ export const invalid = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.invalid).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -261,6 +275,8 @@ export const pending = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.pending).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -297,6 +313,8 @@ export const debouncing = function (elementType, elementName, options) {
     jest.advanceTimersByTime(1)
 
     expect(el.debouncing).toBe(false)      
+
+    // destroy() // teardown
   })
 }
 
@@ -334,6 +352,8 @@ export const busy = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.busy).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should `busy` if debouncing', async () => {
@@ -367,6 +387,8 @@ export const busy = function (elementType, elementName, options) {
 
     jest.advanceTimersByTime(1)
     expect(el.busy).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -405,6 +427,8 @@ export const errors = function (elementType, elementName, options) {
     expect(el.errors[0].substr(el.errors[0].length - 4)).toBe('(en)')
     expect(el.errors[1].substr(el.errors[1].length - 4)).toBe('(en)')
     expect(el.errors[2].substr(el.errors[2].length - 4)).toBe('(fr)')
+
+    // destroy() // teardown
   })
 }
 
@@ -440,6 +464,8 @@ export const error = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.error).toBe(el.Validators.en[0].message)
+    
+    // destroy(form) // teardown
   })
 
   it('should return prepended `error` message for each languages', async () => {
@@ -481,6 +507,8 @@ export const error = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.error).toBe('Error message')
+
+    // destroy() // teardown
   })
 }
 
@@ -512,6 +540,8 @@ export const validate = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.validated).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -551,6 +581,8 @@ export const validateLanguage = function (elementType, elementName, options) {
     await flushPromises()
     
     expect(el.Validators.en[0].invalid).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should not `validateLanguage` if has no "rules"', async () => {
@@ -581,6 +613,8 @@ export const validateLanguage = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.state.validated.en).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should not `validateLanguage` form validation is disabled', async () => {
@@ -612,6 +646,8 @@ export const validateLanguage = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.state.validated.en).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -649,6 +685,8 @@ export const resetValidators = function (elementType, elementName, options) {
 
     expect(el.validated).toBe(false)
     expect(el.invalid).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -677,6 +715,8 @@ export const dirt = function (elementType, elementName, options) {
     el.dirt()
 
     expect(el.state.dirty.en).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -709,6 +749,8 @@ export const clean = function (elementType, elementName, options) {
     el.clean()
 
     expect(el.state.dirty.en).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -741,6 +783,8 @@ export const Validators = function (elementType, elementName, options) {
       en: false,
       fr: true,
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should set the same validators for each language if rules is not an object', async () => {
@@ -769,6 +813,8 @@ export const Validators = function (elementType, elementName, options) {
     expect(el.Validators.en[1].name).toBe('email')
     expect(el.Validators.fr[0].name).toBe('required')
     expect(el.Validators.fr[1].name).toBe('email')
+    
+    // destroy(form) // teardown
   })
 
   it('should set the different validators for each language if rules is an object', async () => {
@@ -799,6 +845,8 @@ export const Validators = function (elementType, elementName, options) {
     expect(el.Validators.en[0].name).toBe('required')
     expect(el.Validators.en[1].name).toBe('email')
     expect(el.Validators.fr[0].name).toBe('min')
+
+    // destroy() // teardown
   })
 }
 
@@ -838,5 +886,7 @@ export const watchers = function (elementType, elementName, options) {
     expect(el.Validators.fr[0].name).toBe('email')
     expect(el.Validators.en[1].name).toBe('required')
     expect(el.Validators.fr[1].name).toBe('required')
+
+    // destroy() // teardown
   })
 }

@@ -1,5 +1,5 @@
 import { nextTick } from 'vue'
-import { createForm, findAllComponents } from 'test-helpers'
+import { createForm, findAllComponents, destroy } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 
 expect.extend({toBeVisible})
@@ -17,6 +17,8 @@ export const hidden = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.hidden).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -57,6 +59,8 @@ export const visible = function (elementType, elementName, options) {
     expect(el.hidden).toBe(false)
     expect(el.active).toBe(true)
     expect(el.visible).toBe(true)
+    
+    // destroy(form) // teardown
   })
 
   it('should have "false" for `visible` if not available, hidden or not active', () => {
@@ -105,6 +109,8 @@ export const visible = function (elementType, elementName, options) {
     expect(el.active).toBe(false)
 
     expect(el.visible).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -125,6 +131,8 @@ export const hide = function (elementType, elementName, options) {
     el.hide()
 
     expect(el.hidden).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -147,6 +155,8 @@ export const show = function (elementType, elementName, options) {
     el.show()
 
     expect(el.hidden).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -169,6 +179,8 @@ export const activate = function (elementType, elementName, options) {
     el.activate()
 
     expect(el.active).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -189,6 +201,8 @@ export const deactivate = function (elementType, elementName, options) {
     el.deactivate()
 
     expect(el.active).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -206,6 +220,8 @@ export const rendering = function (elementType, elementName, options) {
 
     expect(el.visible).toBe(true)
     expect(el.$el).toBeVisible()
+    
+    // destroy(form) // teardown
   })
 
   it('should not show element if `visible` is "true"', async () => {
@@ -225,5 +241,7 @@ export const rendering = function (elementType, elementName, options) {
 
     expect(el.visible).toBe(false)
     expect(el.$el).not.toBeVisible()
+
+    // destroy() // teardown
   })
 }

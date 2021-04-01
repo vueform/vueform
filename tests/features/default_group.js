@@ -1,4 +1,4 @@
-import { testPropDefault, createForm } from 'test-helpers'
+import { testPropDefault, createForm, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const defaultValue = function (elementType, elementName, options) {
@@ -25,6 +25,8 @@ export const defaultValue = function (elementType, elementName, options) {
       child: 'value',
       child2: 'value2',
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to form default if form default is defined', async () => {
@@ -50,6 +52,8 @@ export const defaultValue = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.defaultValue).toStrictEqual({child:'value',child2:'not-value2'})
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to nullValue if default is not defined', () => {
@@ -68,5 +72,7 @@ export const defaultValue = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.defaultValue).toStrictEqual(el.nullValue)
+
+    // destroy() // teardown
   })
 }

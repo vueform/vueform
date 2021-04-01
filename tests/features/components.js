@@ -1,6 +1,6 @@
 import { nextTick } from 'vue'
 import { markRaw } from 'composition-api'
-import { createForm, findAllComponents, createElement, testPropDefault } from 'test-helpers'
+import { createForm, findAllComponents, createElement, testPropDefault, destroy } from 'test-helpers'
 
 export const components = function (elementType, elementName, options) {
   // Computed Porps
@@ -15,7 +15,9 @@ export const components = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.components).toStrictEqual(el.theme.components)
+    expect(el.components).toStrictEqual(el.theme.components)    
+    
+    // destroy(form) // teardown
   })
 
   it('should return theme components merged with local components if `overrideComponents` is defined', () => {
@@ -40,6 +42,10 @@ export const components = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.components).toStrictEqual(Object.assign({}, el.theme.components, overrideComponents))
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -69,5 +75,7 @@ export const rendering = function (elementType, elementName, options) {
     let ElementLabel = findAllComponents(elWrapper, { name: 'ElementLabel' }).at(0)
 
     expect(ElementLabel.html()).toContain('hello')
+    
+    // destroy(form) // teardown
   })
 }

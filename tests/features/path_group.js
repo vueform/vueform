@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 export { path } from './path'
 
 export const flat = function (elementType, elementName) {
@@ -14,5 +14,7 @@ export const flat = function (elementType, elementName) {
     let el = form.vm.el$('el')
 
     expect(el.flat).toBe(true)
+
+    // destroy() // teardown
   })
 }

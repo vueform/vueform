@@ -1,4 +1,4 @@
-import { testPropDefault } from 'test-helpers'
+import { testPropDefault, destroy } from 'test-helpers'
 
 export const trueValue = function (elementType, elementName, options) {
   testPropDefault(it, elementType, 'trueValue', true, 'on')

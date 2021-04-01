@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
 export { plainData, data, clear, reset } from './data'
 
@@ -17,7 +17,9 @@ export const load = function(elementType, elementName) {
 
     expect(() => {
       el.load('value')
-    }).toThrowError()
+    }).toThrowError()    
+    
+    // destroy(form) // teardown
   })
 
   it('should `load` data', async () => {
@@ -59,7 +61,9 @@ export const load = function(elementType, elementName) {
     expect(el.value).toStrictEqual({
       en: 'value-en',
       fr: 'value-fr'
-    })
+    })    
+    
+    // destroy(form) // teardown
   })
 
   it('should format data if "formatLoad" is set on `load`', async () => {
@@ -99,6 +103,8 @@ export const load = function(elementType, elementName) {
       en: 'value-en-formatted',
       fr: 'value-fr-formatted',
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -130,7 +136,9 @@ export const update = function(elementType, elementName) {
     expect(el.value).toStrictEqual({
       en: 'value',
       fr: el.nullValue.fr,
-    })
+    })    
+    
+    // destroy(form) // teardown
   })
 
   it('should `update` all languages when an object is provided as value', async () => {

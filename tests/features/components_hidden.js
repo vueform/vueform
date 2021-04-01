@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const components = function (elementType, elementName, options) {
   // Computed Porps
@@ -14,5 +14,7 @@ export const components = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.components).toStrictEqual(el.theme.components)
+    
+    // destroy(form) // teardown
   })
 }

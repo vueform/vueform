@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const path = function (elementType, elementName) {
   it('should have `path` equal to name if parent is not provided', () => {
@@ -48,5 +48,7 @@ export const flat = function (elementType, elementName) {
     let el = form.vm.el$('el')
 
     expect(el.flat).toBe(false)
+
+    // destroy() // teardown
   })
 }

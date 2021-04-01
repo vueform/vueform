@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const nullValue = function (elementType, elementName, options) {
   it('should have "{addressFields}" as `nullValue`', () => {
@@ -20,5 +20,7 @@ export const nullValue = function (elementType, elementName, options) {
       state: null,
       country: null,
     })
+
+    // destroy() // teardown
   })
 }

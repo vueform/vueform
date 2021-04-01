@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, findAll } from 'test-helpers'
+import { createForm, findAllComponents, findAll, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 export const nativeItems = function (elementType, elementName, options) {
@@ -21,7 +21,9 @@ export const nativeItems = function (elementType, elementName, options) {
     expect(options.at(1).attributes('value')).toBe('1')
     expect(options.at(1).element.innerHTML.trim()).toBe('2')
     expect(options.at(2).attributes('value')).toBe('2')
-    expect(options.at(2).element.innerHTML.trim()).toBe('3')
+    expect(options.at(2).element.innerHTML.trim()).toBe('3')    
+    
+    // destroy(form) // teardown
   })
 
   it('should render select options when items are an object', async () => {
@@ -47,7 +49,9 @@ export const nativeItems = function (elementType, elementName, options) {
     expect(options.at(1).attributes('value')).toBe('1')
     expect(options.at(1).element.innerHTML.trim()).toBe('2')
     expect(options.at(2).attributes('value')).toBe('2')
-    expect(options.at(2).element.innerHTML.trim()).toBe('3')
+    expect(options.at(2).element.innerHTML.trim()).toBe('3')    
+    
+    // destroy(form) // teardown
   })
 
   it('should render select options when items are an array of objects', async () => {
@@ -73,7 +77,9 @@ export const nativeItems = function (elementType, elementName, options) {
     expect(options.at(1).attributes('value')).toBe('1')
     expect(options.at(1).element.innerHTML.trim()).toBe('2')
     expect(options.at(2).attributes('value')).toBe('2')
-    expect(options.at(2).element.innerHTML.trim()).toBe('3')
+    expect(options.at(2).element.innerHTML.trim()).toBe('3')    
+    
+    // destroy(form) // teardown
   })
 
   it('should render select options when items are async', async () => {
@@ -102,6 +108,10 @@ export const nativeItems = function (elementType, elementName, options) {
     expect(options.at(1).element.innerHTML.trim()).toBe('2')
     expect(options.at(2).attributes('value')).toBe('2')
     expect(options.at(2).element.innerHTML.trim()).toBe('3')
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -143,7 +153,9 @@ export const updateItems = function (elementType, elementName, options) {
       { value: 0, label: 1 },
       { value: 1, label: 2 },
       { value: 2, label: 4 }
-    ])
+    ])    
+    
+    // destroy(form) // teardown
   })
 
   it('should update items when native=false', async () => {
@@ -184,5 +196,7 @@ export const updateItems = function (elementType, elementName, options) {
       { value: 1, label: 2 },
       { value: 2, label: 4 }
     ])
+    
+    // destroy(form) // teardown
   })
 }

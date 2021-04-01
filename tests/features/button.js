@@ -1,4 +1,4 @@
-import { createForm, createElement, findAll } from 'test-helpers'
+import { createForm, createElement, findAll, destroy } from 'test-helpers'
 import { nextTick, markRaw } from 'composition-api'
 import flushPromises from 'flush-promises'
 
@@ -8,6 +8,7 @@ export const isLoading = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          loading: false
         }
       }
     })
@@ -16,11 +17,13 @@ export const isLoading = function (elementType, elementName, options) {
 
     expect(el.isLoading).toBe(false)
 
-    el.$set(form.vm.options.schema.el, 'loading', true)
+    el.$set(form.vm.laraform.schema.el, 'loading', true)
 
     await nextTick()
 
-    expect(el.isLoading).toBe(true)
+    expect(el.isLoading).toBe(true)    
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to loading value if function', async () => {
@@ -45,6 +48,10 @@ export const isLoading = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.isLoading).toBe(true)
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -64,11 +71,11 @@ export const isButtonLabelComponent = function (elementType, elementName, option
     expect(el.isButtonLabelComponent).toBe(false)
     expect(findAll(form, 'button').at(0).element.innerHTML).toBe('String')
 
-    el.$set(form.vm.options.schema.el, 'buttonLabel', null)
+    el.$set(form.vm.laraform.schema.el, 'buttonLabel', null)
     await nextTick()
     expect(el.isButtonLabelComponent).toBe(false)
 
-    el.$set(form.vm.options.schema.el, 'buttonLabel', markRaw({
+    el.$set(form.vm.laraform.schema.el, 'buttonLabel', markRaw({
       props: ['el$'],
       render(h) {
         return createElement(h, 'div', 'hello')
@@ -76,7 +83,9 @@ export const isButtonLabelComponent = function (elementType, elementName, option
     }))
     await nextTick()
     expect(el.isButtonLabelComponent).toBe(true)
-    expect(findAll(form, 'button').at(0).element.innerHTML).toBe('<div>hello</div>')
+    expect(findAll(form, 'button').at(0).element.innerHTML).toBe('<div>hello</div>')    
+    
+    // destroy(form) // teardown
   })
 
   it('should return true & render component if label is a component buttonType=anchor', async() => {
@@ -95,11 +104,11 @@ export const isButtonLabelComponent = function (elementType, elementName, option
     expect(el.isButtonLabelComponent).toBe(false)
     expect(findAll(form, 'a').at(0).element.innerHTML).toBe('String')
 
-    el.$set(form.vm.options.schema.el, 'buttonLabel', null)
+    el.$set(form.vm.laraform.schema.el, 'buttonLabel', null)
     await nextTick()
     expect(el.isButtonLabelComponent).toBe(false)
 
-    el.$set(form.vm.options.schema.el, 'buttonLabel', markRaw({
+    el.$set(form.vm.laraform.schema.el, 'buttonLabel', markRaw({
       props: ['el$'],
       render(h) {
         return createElement(h, 'div', 'hello')
@@ -108,6 +117,10 @@ export const isButtonLabelComponent = function (elementType, elementName, option
     await nextTick()
     expect(el.isButtonLabelComponent).toBe(true)
     expect(findAll(form, 'a').at(0).element.innerHTML).toBe('<div>hello</div>')
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -134,7 +147,7 @@ export const button = function (elementType, elementName, options) {
     expect(findAll(form, 'a').at(0).element.href).toContain('href')
     expect(findAll(form, 'a').at(0).element.target).toBe('target')
 
-    el.$set(form.vm.options.schema.el, 'buttonLabel', markRaw({
+    el.$set(form.vm.laraform.schema.el, 'buttonLabel', markRaw({
       props: ['el$'],
       render(h) {
         return createElement(h, 'div', 'hello')
@@ -142,7 +155,9 @@ export const button = function (elementType, elementName, options) {
     }))
     await nextTick()
     expect(findAll(form, 'a').at(0).element.href).toContain('href')
-    expect(findAll(form, 'a').at(0).element.target).toBe('target')
+    expect(findAll(form, 'a').at(0).element.target).toBe('target')    
+    
+    // destroy(form) // teardown
   })
 
   it('should include disabled when button and assign to button', async () => {
@@ -164,7 +179,7 @@ export const button = function (elementType, elementName, options) {
     })
     expect(findAll(form, 'button').at(0).element.disabled).toBeTruthy()
 
-    el.$set(form.vm.options.schema.el, 'buttonLabel', markRaw({
+    el.$set(form.vm.laraform.schema.el, 'buttonLabel', markRaw({
       props: ['el$'],
       render(h) {
         return createElement(h, 'div', 'hello')
@@ -172,6 +187,8 @@ export const button = function (elementType, elementName, options) {
     }))
     await nextTick()
     expect(findAll(form, 'button').at(0).element.disabled).toBeTruthy()
+    
+    // destroy(form) // teardown
   })
 }
 export const handleClick = function (elementType, elementName, options) {
@@ -191,10 +208,12 @@ export const handleClick = function (elementType, elementName, options) {
     el.handleClick({ preventDefault: preventMock, })
     expect(preventMock).not.toHaveBeenCalled()
 
-    el.$set(form.vm.options.schema.el, 'href', 'href')
+    el.$set(form.vm.laraform.schema.el, 'href', 'href')
     await nextTick()
     el.handleClick({ preventDefault: preventMock, })
-    expect(preventMock).toHaveBeenCalled()
+    expect(preventMock).toHaveBeenCalled()    
+    
+    // destroy(form) // teardown
   })
 
   it('should return if disabled or loading and call onClick with form$ if not', async () => {
@@ -216,21 +235,23 @@ export const handleClick = function (elementType, elementName, options) {
     el.handleClick()
     expect(onClickMock).not.toHaveBeenCalled()
 
-    el.$set(form.vm.options.schema.el, 'disabled', false)
+    el.$set(form.vm.laraform.schema.el, 'disabled', false)
     await nextTick()
     el.handleClick()
     expect(onClickMock).not.toHaveBeenCalled()
 
-    el.$set(form.vm.options.schema.el, 'loading', false)
-    el.$set(form.vm.options.schema.el, 'disabled', true)
+    el.$set(form.vm.laraform.schema.el, 'loading', false)
+    el.$set(form.vm.laraform.schema.el, 'disabled', true)
     await nextTick()
     el.handleClick()
     expect(onClickMock).not.toHaveBeenCalled()
 
-    el.$set(form.vm.options.schema.el, 'disabled', false)
+    el.$set(form.vm.laraform.schema.el, 'disabled', false)
     await nextTick()
     el.handleClick()
-    expect(onClickMock).toHaveBeenCalledWith(el.form$)
+    expect(onClickMock).toHaveBeenCalledWith(el.form$)    
+    
+    // destroy(form) // teardown
   })
 
   it('should reset on click if resets true', async () => {
@@ -253,7 +274,9 @@ export const handleClick = function (elementType, elementName, options) {
 
     el.handleClick()
 
-    expect(el2.value).toBe(el2.nullValue)
+    expect(el2.value).toBe(el2.nullValue)    
+    
+    // destroy(form) // teardown
   })
 
   it('should submit on click if submits true', async () => {
@@ -276,7 +299,9 @@ export const handleClick = function (elementType, elementName, options) {
 
     await flushPromises()
 
-    expect(postMock).toHaveBeenCalled()
+    expect(postMock).toHaveBeenCalled()    
+    
+    // destroy(form) // teardown
   })
 
   it('should trigger on click buttonType=anchor', async () => {
@@ -298,7 +323,7 @@ export const handleClick = function (elementType, elementName, options) {
     a.trigger('click')
     expect(onClickMock).toHaveBeenCalled()
 
-    form.vm.$set(form.vm.options.schema.el, 'label', markRaw({
+    form.vm.$set(form.vm.laraform.schema.el, 'label', markRaw({
       props: ['el$'],
       render(h) {
         return createElement(h, 'div', 'hello')
@@ -306,7 +331,9 @@ export const handleClick = function (elementType, elementName, options) {
     }))
     await nextTick()
     a.trigger('click')
-    expect(onClickMock).toHaveBeenCalledTimes(2)
+    expect(onClickMock).toHaveBeenCalledTimes(2)    
+    
+    // destroy(form) // teardown
   })
 
   it('should trigger on click buttonType=button', async () => {
@@ -328,7 +355,7 @@ export const handleClick = function (elementType, elementName, options) {
     button.trigger('click')
     expect(onClickMock).toHaveBeenCalled()
 
-    form.vm.$set(form.vm.options.schema.el, 'label', markRaw({
+    form.vm.$set(form.vm.laraform.schema.el, 'label', markRaw({
       props: ['el$'],
       render(h) {
         return createElement(h, 'div', 'hello')
@@ -337,5 +364,7 @@ export const handleClick = function (elementType, elementName, options) {
     await nextTick()
     button.trigger('click')
     expect(onClickMock).toHaveBeenCalledTimes(2)
+    
+    // destroy(form) // teardown
   })
 }

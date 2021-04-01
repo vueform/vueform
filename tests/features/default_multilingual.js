@@ -1,5 +1,5 @@
 import { nextTick } from 'vue'
-import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
 export const default_ = function(elementType, elementName) {
@@ -29,6 +29,8 @@ export const default_ = function(elementType, elementName) {
       en: 'value',
       fr: 'value',
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should set `default` if it is an object', async () => {
@@ -59,5 +61,7 @@ export const default_ = function(elementType, elementName) {
       en: 'value-en',
       fr: el.nullValue.fr,
     })
+
+    // destroy() // teardown
   })
 }

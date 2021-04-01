@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const languages = function (elementType, elementName, options) {
   it('should return an array of language codes for `languages`', () => {
@@ -23,6 +23,8 @@ export const languages = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.languages).toStrictEqual(['en', 'fr'])
+    
+    // destroy(form) // teardown
   })
 
   it('should return current language for `language`', () => {
@@ -51,5 +53,7 @@ export const languages = function (elementType, elementName, options) {
     form.vm.setLanguage('fr')
 
     expect(el.language).toBe('fr')
+
+    // destroy() // teardown
   })
 }

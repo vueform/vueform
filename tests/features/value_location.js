@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testValue, setValue } from 'test-helpers'
+import { createForm, findAllComponents, testValue, setValue, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
 import { value as baseValue } from './value'
 
@@ -29,5 +29,7 @@ export const value = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input.value).toBe('')
+
+    // destroy() // teardown
   })
 }

@@ -10,6 +10,8 @@ export const handleSort = function (elementType, elementName, options) {
       {child:'a',order:2},
       {child:'c',order:3}
     ], elementType)
+    
+    // destroy(form) // teardown
   })
 
   it('should reposition from 1 to 0', async () => {
@@ -18,6 +20,8 @@ export const handleSort = function (elementType, elementName, options) {
       {child:'a',order:2},
       {child:'c',order:3}
     ], elementType)
+    
+    // destroy(form) // teardown
   })
 
   it('should reposition from 0 to 2', async () => {
@@ -26,6 +30,8 @@ export const handleSort = function (elementType, elementName, options) {
       {child:'c',order:2},
       {child:'a',order:3},
     ], elementType)
+    
+    // destroy(form) // teardown
   })
 
   it('should reposition from 2 to 0', async () => {
@@ -34,6 +40,8 @@ export const handleSort = function (elementType, elementName, options) {
       {child:'a',order:2},
       {child:'b',order:3},
     ], elementType)
+    
+    // destroy(form) // teardown
   })
 
   it('should reposition from 1 to 2', async () => {
@@ -42,6 +50,8 @@ export const handleSort = function (elementType, elementName, options) {
       {child:'c',order:2},
       {child:'b',order:3},
     ], elementType)
+    
+    // destroy(form) // teardown
   })
 
   it('should reposition from 2 to 1', async () => {

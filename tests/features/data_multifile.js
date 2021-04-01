@@ -1,5 +1,5 @@
 import { nextTick } from 'vue'
-import { createForm, listSchema, listChildValue } from 'test-helpers'
+import { createForm, listSchema, listChildValue, destroy } from 'test-helpers'
 import asyncForEach from './../../src/utils/asyncForEach'
 
 export { plainData, add, remove, load, update, clear, reset, } from './data_list'
@@ -53,7 +53,9 @@ export const data = function (elementType, elementName, options) {
 
     expect(el.data).toStrictEqual({
       el: [listChildValue(options, 0, 0), listChildValue(options, 0, 1)]
-    })
+    })    
+    
+    // destroy(form) // teardown
   })
 
   it('should "data" contained data data of children prototype is an object', async () => {
@@ -101,7 +103,9 @@ export const data = function (elementType, elementName, options) {
           child: null,
         }
       ]
-    })
+    })    
+    
+    // destroy(form) // teardown
   })
 
   it('should have "data" according to `formatData` if it is set', async () => {
@@ -129,7 +133,11 @@ export const data = function (elementType, elementName, options) {
           el: el.value
         }
       })
+
+      // destroy(form) // teardown
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -146,7 +154,9 @@ export const sortValue = function (elementType, elementName, options) {
 
     await el.load([3,2,4])
 
-    expect(el.value).toStrictEqual([2,3,4])
+    expect(el.value).toStrictEqual([2,3,4])    
+    
+    // destroy(form) // teardown
   })
 
   it('should `sortValue` "DESC" if "order" is "DESC" using single element', async () => {
@@ -159,7 +169,9 @@ export const sortValue = function (elementType, elementName, options) {
 
     await el.load([3,2,4])
 
-    expect(el.value).toStrictEqual([4,3,2])
+    expect(el.value).toStrictEqual([4,3,2])    
+    
+    // destroy(form) // teardown
   })
 
   it('should `sortValue` by "orderBy" "ASC" if "orderBy" is defined using object element', async () => {
@@ -196,7 +208,9 @@ export const sortValue = function (elementType, elementName, options) {
       Object.assign({}, options.childNulls[1], {
         order: 4
       }),
-    ])
+    ])    
+    
+    // destroy(form) // teardown
   })
 
   it('should `sortValue` by "orderBy" "DESC" if "orderBy" is defined and "order" is "DESC" using object element', async () => {
@@ -234,6 +248,10 @@ export const sortValue = function (elementType, elementName, options) {
         order: 2
       }),
     ])
+
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -258,6 +276,8 @@ export const handleAdd = function (elementType, elementName, options) {
 
       expect(el.value.length).toBe(1)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -281,7 +301,9 @@ export const handleRemove = function (elementType, elementName, options) {
       el.handleRemove(1)
 
       expect(el.value.length).toBe(2)
-    })
+    })    
+    
+    // destroy(form) // teardown
   })
 
   it('should trigger remove on `handleRemove` when clicking "Remove" button', async () => {

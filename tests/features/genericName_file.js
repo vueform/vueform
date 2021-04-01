@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const genericName = function (elementType, elementName, options) {
   // @todo later when multifile works
@@ -48,6 +48,8 @@ export const genericName = function (elementType, elementName, options) {
     el.$set(form.vm.laraform.schema.el, 'embed', true)
 
     expect(el.genericName).toStrictEqual('File')
+    
+    // destroy(form) // teardown
   })
 
   it('should have `genericName` equal to name of the element if embedded & filename & label does not existor not embedded', async () => {
@@ -66,6 +68,8 @@ export const genericName = function (elementType, elementName, options) {
     el.$set(form.vm.laraform.schema.el, 'embed', true)
 
     expect(el.genericName).toStrictEqual('El')
+    
+    // destroy(form) // teardown
   })
 
   it('should be equal to defaultName if nothing else works', async () => {
@@ -84,5 +88,7 @@ export const genericName = function (elementType, elementName, options) {
     el.$set(form.vm.laraform.schema[0], 'embed', true)
 
     expect(el.genericName).toStrictEqual(el.__('laraform.elements.file.defaultName'))
+
+    // destroy() // teardown
   })
 }

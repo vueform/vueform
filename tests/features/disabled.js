@@ -1,4 +1,4 @@
-import { createForm, testPropDefault, testAttribute } from 'test-helpers'
+import { createForm, testPropDefault, testAttribute, destroy } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 
 expect.extend({toBeVisible})
@@ -16,6 +16,8 @@ export const isDisabled = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isDisabled).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should be isDisabled if disabled is true', () => {
@@ -31,6 +33,8 @@ export const isDisabled = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isDisabled).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -51,6 +55,8 @@ export const disable = function (elementType, elementName, options) {
     el.disable()
 
     expect(el.isDisabled).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -72,6 +78,8 @@ export const enable = function (elementType, elementName, options) {
     el.enable()
 
     expect(el.isDisabled).toBe(false)
+    
+    // destroy(form) // teardown
   })
 
   it('should `enable` element even if disabled is true', () => {
@@ -91,6 +99,8 @@ export const enable = function (elementType, elementName, options) {
     el.enable()
 
     expect(el.isDisabled).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -127,5 +137,7 @@ export const rendering = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     
     testAttribute(elWrapper, options.fieldType, 'disabled', [undefined, false])
+
+    // destroy() // teardown
   })
 }

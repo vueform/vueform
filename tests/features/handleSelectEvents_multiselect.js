@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export { searchChange, open, close } from './handleSelectEvents'
@@ -27,6 +27,8 @@ export const select = function (elementType, elementName, options) {
     el.input.select({ value: 0, label: 1 })
 
     expect(onSelectMock).toHaveBeenCalledWith(0)
+
+    // destroy() // teardown
   })
 }
 
@@ -51,5 +53,7 @@ export const deselect = function (elementType, elementName, options) {
     el.input.deselect({ value: 0, label: 1 })
 
     expect(onDeselectMock).toHaveBeenCalledWith(0)
+
+    // destroy() // teardown
   })
 }

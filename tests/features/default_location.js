@@ -31,5 +31,7 @@ export const defaultValue = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.input.value).toBe('Budapest, Hungary')
+
+    // destroy() // teardown
   })
 }

@@ -38,5 +38,7 @@ export const handleAddressChange = function (elementType, elementName, options) 
     await nextTick()
 
     expect(el.dirty).toBe(true)
+
+    // destroy() // teardown
   })
 }

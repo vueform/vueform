@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const nullValue = function (elementType, elementName, options) {
   it('should `nullValue` have "null" for each languages', () => {
@@ -26,5 +26,7 @@ export const nullValue = function (elementType, elementName, options) {
       en: null,
       fr: null,
     })
+
+    // destroy() // teardown
   })
 }

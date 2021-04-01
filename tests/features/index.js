@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { runFeatureTests } from 'test-helpers'
+import { runFeatureTests, destroy } from 'test-helpers'
 
 import fs from 'fs'
 

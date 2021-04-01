@@ -1,4 +1,4 @@
-import { createForm, testPropDefault } from 'test-helpers'
+import { createForm, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const autosize = function (elementType, elementName, options) {
@@ -22,7 +22,9 @@ export const autosize = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(updateMock).toHaveBeenCalled()
+    expect(updateMock).toHaveBeenCalled()    
+    
+    // destroy(form) // teardown
   })
 
   it('should not invoke autosize\'s "updated" method on `autosize` if "autogrow" is false', async () => {
@@ -45,7 +47,9 @@ export const autosize = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(updateMock).not.toHaveBeenCalled()
+    expect(updateMock).not.toHaveBeenCalled()    
+    
+    // destroy(form) // teardown
   })
 
   it('should init `autosize` when autogrow becomes "true"', async () => {
@@ -72,7 +76,9 @@ export const autosize = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(autosizeMock).toHaveBeenCalled()
+    expect(autosizeMock).toHaveBeenCalled()    
+    
+    // destroy(form) // teardown
   })
 
   it('should destroy `autosize` when autogrow becomes "false"', async () => {
@@ -97,7 +103,9 @@ export const autosize = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(destroyMock).toHaveBeenCalled()
+    expect(destroyMock).toHaveBeenCalled()    
+    
+    // destroy(form) // teardown
   })
 
   it('should init `autosize` if autogrow is "true"', async () => {
@@ -118,7 +126,9 @@ export const autosize = function (elementType, elementName, options) {
 
     await nextTick()
     
-    expect(autosizeMock).toHaveBeenCalled()
+    expect(autosizeMock).toHaveBeenCalled()    
+    
+    // destroy(form) // teardown
   })
 
   it('should not init `autosize` if autogrow is "false"', async () => {
@@ -139,7 +149,9 @@ export const autosize = function (elementType, elementName, options) {
 
     await nextTick()
     
-    expect(autosizeMock).not.toHaveBeenCalled()
+    expect(autosizeMock).not.toHaveBeenCalled()    
+    
+    // destroy(form) // teardown
   })
 
   it('should invoke `autosize` if value changes', async () => {
@@ -167,5 +179,7 @@ export const autosize = function (elementType, elementName, options) {
     await nextTick()
 
     expect(updateMock).toHaveBeenCalled()
+    
+    // destroy(form) // teardown
   })
 }

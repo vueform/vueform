@@ -20,5 +20,7 @@ export const errors = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.errors.length).toBe(_.filter(el.children$, child$ => !!child$.rules && child$.available).length)
+
+    // destroy() // teardown
   })
 }

@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const removing = function (elementType, elementName, options) {
   it('should have `removing` false by default', async () => {
@@ -13,5 +13,7 @@ export const removing = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.removing).toBe(false)
+
+    // destroy() // teardown
   })
 }

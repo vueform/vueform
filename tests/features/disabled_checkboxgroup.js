@@ -1,4 +1,4 @@
-import { createForm, testPropDefault, findAll, findAllComponents } from 'test-helpers'
+import { createForm, testPropDefault, findAll, findAllComponents, destroy } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import { nextTick } from 'composition-api'
 
@@ -18,6 +18,8 @@ export const disabledItems = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.disabledItems).toStrictEqual(['1', '2'])
+    
+    // destroy(form) // teardown
   })
 
   it('should disable items contained in `disables`', () => {
@@ -40,6 +42,8 @@ export const disabledItems = function (elementType, elementName, options) {
 
     expect(checkbox1.attributes('disabled') !== undefined).toBe(true)
     expect(checkbox2.attributes('disabled') === undefined).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -65,6 +69,8 @@ export const disable = function (elementType, elementName, options) {
 
     el.disable(['2', 3])
     expect(el.disabledItems).toStrictEqual(['1', '2', '3'])
+
+    // destroy() // teardown
   })
 }
 
@@ -91,6 +97,8 @@ export const enable = function (elementType, elementName, options) {
 
     el.enable(['2', 3])
     expect(el.disabledItems).toStrictEqual([])
+
+    // destroy() // teardown
   })
 }
 
@@ -115,6 +123,8 @@ export const isDisabled = function (elementType, elementName, options) {
 
     expect(checkbox1.attributes('disabled') !== undefined).toBe(true)
     expect(checkbox2.attributes('disabled') !== undefined).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -144,6 +154,8 @@ export const disableAll = function (elementType, elementName, options) {
     expect(el.isDisabled).toBe(true)
     expect(checkbox1.attributes('disabled') !== undefined).toBe(true)
     expect(checkbox2.attributes('disabled') !== undefined).toBe(true)
+
+    // destroy() // teardown
   })
 }
 
@@ -174,5 +186,7 @@ export const enableAll = function (elementType, elementName, options) {
     expect(el.isDisabled).toBe(false)
     expect(checkbox1.attributes('disabled') !== undefined).toBe(false)
     expect(checkbox2.attributes('disabled') !== undefined).toBe(false)
+
+    // destroy() // teardown
   })
 }

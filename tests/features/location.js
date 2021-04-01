@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const locationService = function (elementType, elementName, options) { 
@@ -15,6 +15,8 @@ export const locationService = function (elementType, elementName, options) {
 
     expect(el.locationService).not.toStrictEqual(new el.$laraform.services.location.google)
     expect(el.locationService.options).toStrictEqual(el.providerOptions)
+    
+    // destroy(form) // teardown
   })
 
   it('should init `locationService` with algolia', async () => {
@@ -31,6 +33,8 @@ export const locationService = function (elementType, elementName, options) {
 
     expect(el.locationService).not.toStrictEqual(new el.$laraform.services.location.algolia)
     expect(el.locationService.options).toStrictEqual(el.providerOptions)
+
+    // destroy() // teardown
   })
 }
 
@@ -47,6 +51,8 @@ export const location = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.location).toStrictEqual({})
+
+    // destroy() // teardown
   })
 }
 
@@ -107,6 +113,8 @@ export const provider = function (elementType, elementName, options, spies) {
     expect(autocompleteMock.mock.calls.length).toBe(1)
     expect(googleRemoveListenerMock.mock.calls.length).toBe(1)
     expect(placesMock.mock.calls.length).toBe(1)
+
+    // destroy() // teardown
   })
 }
 
@@ -124,6 +132,8 @@ export const providerOptions = function (elementType, elementName, options, spie
     let el = form.vm.el$('el')
 
     expect(el.providerOptions).toStrictEqual(el.defaultOptions)
+    
+    // destroy(form) // teardown
   })
 
   it('should have default `providerOptions` when algolia', () => {
@@ -203,13 +213,15 @@ export const providerOptions = function (elementType, elementName, options, spie
     expect(autocompleteMock.mock.calls.length).toBe(1)
     expect(googleRemoveListenerMock.mock.calls.length).toBe(0)
 
-    el.options.description = 'b'
+    form.vm.$set(form.vm.laraform.schema.el.options, 'description', 'b')
 
     await nextTick()
 
     expect(autocompleteMock.mock.calls.length).toBe(2)
     expect(googleRemoveListenerMock.mock.calls.length).toBe(1)
     expect(el.locationService.options).toStrictEqual(el.providerOptions)
+
+    // destroy() // teardown
   })
 }
 
@@ -229,5 +241,7 @@ export const handleAddressChange = function (elementType, elementName, options) 
 
     expect(el.value).toBe('value')
     expect(el.location).toBe('location')
+
+    // destroy() // teardown
   })
 }

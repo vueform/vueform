@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
 
 // Core
 import { Laraform, useLaraform } from './../../../src/index'

@@ -69,6 +69,8 @@ export const value = function (elementType, elementName, options) {
     setMultiselectValue(select, [2])
     expect(el.value).toStrictEqual(['2'])
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
+    
+    // destroy(form) // teardown
   })
 
   it('should value be equal to selected options\' value when items are an array of objects & native=true', async () => {
@@ -105,6 +107,8 @@ export const value = function (elementType, elementName, options) {
     setMultiselectValue(select, [2])
     expect(el.value).toStrictEqual([2])
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
+    
+    // destroy(form) // teardown
   })
 
   it('should value be equal to selected options\' value when items are async & native=true', async () => {
@@ -143,5 +147,7 @@ export const value = function (elementType, elementName, options) {
     setMultiselectValue(select, [2])
     expect(el.value).toStrictEqual([2])
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
+
+    // destroy() // teardown
   })
 }

@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import { classes as baseClasses } from './classes'
 
 export { mainClass, rendering } from './classes'
@@ -21,4 +21,6 @@ export const classes = function (elementType, elementName, options) {
       },
     }
   }))
+    
+  destroy(form) // teardown
 }

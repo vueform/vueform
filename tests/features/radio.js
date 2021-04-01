@@ -40,6 +40,8 @@ export const fieldName = function (elementType, elementName, options) {
     // expect(el2.value).toBe(2)
 
     destroy(form)
+
+    // destroy() // teardown
   })
 }
 
@@ -59,6 +61,8 @@ export const check = function (elementType, elementName, options) {
     el.check()
 
     expect(el.value).toBe(1)
+
+    // destroy() // teardown
   })
 }
 
@@ -79,5 +83,7 @@ export const uncheck = function (elementType, elementName, options) {
     el.uncheck()
 
     expect(el.value).toBe(null)
+
+    // destroy() // teardown
   })
 }

@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export { isStatic, isImageType, isFileType } from './baseElement'
 
@@ -15,5 +15,7 @@ export const isArrayType = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isArrayType).toBe(true)
+    
+    // destroy(form) // teardown
   })
 }

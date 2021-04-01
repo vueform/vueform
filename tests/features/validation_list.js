@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, listSchema, listChild, listChildValue } from 'test-helpers'
+import { createForm, listSchema, listChild, listChildValue, destroy } from 'test-helpers'
 
 import {
   dirty as baseDirty, validated as baseValidated, pending as basePending, debouncing as baseDebouncing,
@@ -36,6 +36,8 @@ export const dirty = function (elementType, elementName, options) {
 
       expect(el.dirty).toBe(true)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -67,6 +69,8 @@ export const validated = function (elementType, elementName, options) {
 
       expect(el.validated).toBe(true)
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should not be `validated` if any of the children are validated', async () => {
@@ -90,6 +94,8 @@ export const validated = function (elementType, elementName, options) {
 
       expect(el.validated).toBe(false)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -113,6 +119,8 @@ export const invalid = function (elementType, elementName, options) {
 
       expect(el.invalid).toBe(true)
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should not be `invalid` if none of the validators is invalid', async () => {
@@ -133,6 +141,8 @@ export const invalid = function (elementType, elementName, options) {
       expect(el.invalid).toBe(false)
 
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should be `invalid` if any the children is invalid', async () => {
@@ -156,6 +166,8 @@ export const invalid = function (elementType, elementName, options) {
 
       expect(el.invalid).toBe(true)
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should not be `invalid` if none of children is invalid', async () => {
@@ -181,6 +193,8 @@ export const invalid = function (elementType, elementName, options) {
 
       expect(el.invalid).toBe(false)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -216,6 +230,8 @@ export const pending = function (elementType, elementName, options) {
       
       expect(el.pending).toBe(false)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -245,6 +261,8 @@ export const debouncing = function (elementType, elementName, options) {
       
       expect(el.pending).toBe(false)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -280,6 +298,8 @@ export const busy = function (elementType, elementName, options) {
       
       expect(el.busy).toBe(false)
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should have `busy` "true" if any of the children is debouncing and "false" when async validation finished', async () => {
@@ -303,6 +323,8 @@ export const busy = function (elementType, elementName, options) {
 
       expect(el.busy).toBe(false)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -329,6 +351,8 @@ export const errors = function (elementType, elementName, options) {
 
       expect(el.errors.length).toBe(3)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -355,6 +379,8 @@ export const error = function (elementType, elementName, options) {
 
       expect(el.error).toBe(el.errors[0])
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -388,6 +414,8 @@ export const validate = function (elementType, elementName, options) {
       expect(child0.validated).toBe(true)
       expect(child1.validated).toBe(true)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -445,6 +473,8 @@ export const validateValidators = function (elementType, elementName, options) {
 
       expect(el.state.validated).toBe(false)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -507,6 +537,8 @@ export const validateChildren = function (elementType, elementName, options) {
       expect(child0.validated).toBe(false)
       expect(child1.validated).toBe(false)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -537,6 +569,8 @@ export const clean = function (elementType, elementName, options) {
       expect(child0.dirty).toBe(false)
       expect(child1.dirty).toBe(false)
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -578,5 +612,7 @@ export const resetValidators = function (elementType, elementName, options) {
       expect(child0.validated).toBe(false)
       expect(child1.validated).toBe(false)
     })
+
+    // destroy() // teardown
   })
 }

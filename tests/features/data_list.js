@@ -27,6 +27,10 @@ export const plainData = function (elementType, elementName, options) {
     expect(el.plainData).toStrictEqual({
       el: el.value
     })
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
 
@@ -81,7 +85,9 @@ export const data = function (elementType, elementName, options) {
 
     expect(el.data).toStrictEqual({
       el: ['child1-value', null]
-    })
+    })    
+    
+    // destroy(form) // teardown
   })
 
   it('should "data" contained data data of children prototype is an object', () => {
@@ -172,7 +178,9 @@ export const data = function (elementType, elementName, options) {
           child1: 'child1-value',
         }
       ]
-    })
+    })    
+    
+    // destroy(form) // teardown
   })
 
   it('should have "data" according to `formatData` if it is set', async () => {
@@ -197,7 +205,11 @@ export const data = function (elementType, elementName, options) {
           el: el.value
         }
       })
+    
+      // destroy(form) // teardown
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -221,7 +233,9 @@ export const add = function (elementType, elementName, options) {
         options.childNulls[i],
         options.childValues[i]
       ])
-    })
+    
+      // destroy(form) // teardown
+    })    
   })
 
   it('should return index of new child on `add`', async () => {
@@ -234,7 +248,9 @@ export const add = function (elementType, elementName, options) {
 
       expect(el.add()).toBe(0)
       expect(el.add()).toBe(1)
-    })
+    
+      // destroy(form) // teardown
+    })    
   })
 
   it('should trigger updated on `add` on next tick', async () => {
@@ -250,7 +266,9 @@ export const add = function (elementType, elementName, options) {
       await nextTick()
 
       expect(el.dirty).toBe(true)
-    })
+    
+      // destroy(form) // teardown
+    })    
   })
 
   it('should trigger "add" event on `add` on next tick', async () => {
@@ -269,7 +287,11 @@ export const add = function (elementType, elementName, options) {
       await nextTick()
 
       expect(onAddMock).toHaveBeenCalled()
+    
+      // destroy(form) // teardown
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -294,7 +316,9 @@ export const remove = function (elementType, elementName, options) {
           listChildValue(options, i, 0),
           listChildValue(options, i, 2),
       ])
-    })
+
+      // destroy(form) // teardown
+    })    
   })
 
   it('should trigger "remove" when child is being removed on `remove`', async () => {
@@ -315,7 +339,11 @@ export const remove = function (elementType, elementName, options) {
       el.remove(1)
 
       expect(onRemoveMock).toHaveBeenCalledWith(1, el.value)
+    
+      // destroy(form) // teardown
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -339,7 +367,9 @@ export const load = function (elementType, elementName, options) {
       await el.load(values)
 
       expect(el.value).toStrictEqual(values)
-    })
+    
+      // destroy(form) // teardown
+    })    
   })
 
   it('should should format data if "format" is "true" on `load`', async () => {
@@ -369,7 +399,9 @@ export const load = function (elementType, elementName, options) {
       expect(el.value).toStrictEqual(values)
 
       expect(elFormatLoadMock).toHaveBeenCalled()
-    })
+    
+      // destroy(form) // teardown
+    })    
   })
 
   it('should order value on `load` if "order" is not "null" when object', async () => {
@@ -407,7 +439,9 @@ export const load = function (elementType, elementName, options) {
       Object.assign({}, options.childNulls[1], {
         order: 4
       }),
-    ])
+    ])    
+    
+    // destroy(form) // teardown
   })
 
   it('should order value on `load` if "order" is not "null" when element', async () => {
@@ -421,6 +455,8 @@ export const load = function (elementType, elementName, options) {
     await el.load([3,2,4])
 
     expect(el.value).toStrictEqual([4,3,2])
+
+    // destroy() // teardown
   })
 }
 
@@ -444,7 +480,11 @@ export const update = function (elementType, elementName, options) {
       el.update(values)
 
       expect(el.value).toStrictEqual(values)
+    
+      // destroy(form) // teardown
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -464,7 +504,11 @@ export const clear = function (elementType, elementName, options) {
       el.clear()
 
       expect(el.value).toStrictEqual([])
+    
+      // destroy(form) // teardown
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -485,7 +529,11 @@ export const reset = function (elementType, elementName, options) {
       el.reset()
 
       expect(el.value.length).toBe(3)
+    
+      // destroy(form) // teardown
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -502,7 +550,9 @@ export const sortValue = function (elementType, elementName, options) {
 
     await el.load([3,2,4])
 
-    expect(el.value).toStrictEqual([2,3,4])
+    expect(el.value).toStrictEqual([2,3,4])    
+    
+    // destroy(form) // teardown
   })
 
   it('should `sortValue` "DESC" if "order" is "DESC" using single element', async () => {
@@ -515,7 +565,9 @@ export const sortValue = function (elementType, elementName, options) {
 
     await el.load([3,2,4])
 
-    expect(el.value).toStrictEqual([4,3,2])
+    expect(el.value).toStrictEqual([4,3,2])    
+    
+    // destroy(form) // teardown
   })
 
   it('should `sortValue` by "orderBy" "ASC" if "orderBy" is defined using object element', async () => {
@@ -552,7 +604,9 @@ export const sortValue = function (elementType, elementName, options) {
       Object.assign({}, options.childNulls[1], {
         order: 4
       }),
-    ])
+    ])    
+    
+    // destroy(form) // teardown
   })
 
   it('should `sortValue` by "orderBy" "DESC" if "orderBy" is defined and "order" is "DESC" using object element', async () => {
@@ -590,6 +644,8 @@ export const sortValue = function (elementType, elementName, options) {
         order: 2
       }),
     ])
+    
+    // destroy(form) // teardown
   })
 }
 
@@ -614,7 +670,9 @@ export const handleAdd = function (elementType, elementName, options) {
       el.handleAdd()
 
       expect(el.value.length).toBe(1)
-    })
+    })    
+    
+    // destroy(form) // teardown
   })
 
   it('should trigger add on `handleAdd` when clicking "Add" button', async () => {
@@ -631,7 +689,11 @@ export const handleAdd = function (elementType, elementName, options) {
       elWrapper.find(`.${el.defaultClasses.add}`).trigger('click')
 
       expect(el.value.length).toBe(1)
+    
+      // destroy(form) // teardown
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -655,7 +717,9 @@ export const handleRemove = function (elementType, elementName, options) {
       el.handleRemove(1)
 
       expect(el.value.length).toBe(2)
-    })
+    
+      // destroy(form) // teardown
+    })    
   })
 
   it('should trigger remove on `handleRemove` when clicking "Remove" button', async () => {
@@ -672,7 +736,11 @@ export const handleRemove = function (elementType, elementName, options) {
       elWrapper.find(`.${el.defaultClasses.remove}`).trigger('click')
 
       expect(el.value.length).toBe(2)
+
+      // destroy(form) // teardown
     })
+
+    // destroy() // teardown
   })
 }
 
@@ -688,6 +756,8 @@ export const setInitialInstances = function (elementType, elementName, options) 
       let el = form.vm.el$('el')
 
       expect(el.value.length).toBe(3)
+    
+      // destroy(form) // teardown
     })
   })
 }

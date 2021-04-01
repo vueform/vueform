@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const theme = function (elementType, elementName, options) {
   it('should inject `theme`', () => {
@@ -13,5 +13,7 @@ export const theme = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.theme).toStrictEqual(form.vm.extendedTheme)
+
+    // destroy() // teardown
   })
 }

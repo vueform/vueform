@@ -1,4 +1,4 @@
-import { createInlineForm } from 'test-helpers'
+import { createInlineForm, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 import { defaultValue as baseDefaultValue } from './default'
@@ -176,6 +176,8 @@ export const defaultValue = function (elementType, elementName, options) {
         },
       ]
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should set default on multiple level with no higher preference', async () => {
@@ -213,6 +215,8 @@ export const defaultValue = function (elementType, elementName, options) {
         },
       ]
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should set default on multiple level with direct parent preference', async () => {
@@ -253,6 +257,8 @@ export const defaultValue = function (elementType, elementName, options) {
         },
       ]
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should set default on multiple level with list parent preference', async () => {
@@ -296,6 +302,8 @@ export const defaultValue = function (elementType, elementName, options) {
         },
       ]
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should set default on multiple level with list parent parent preference', async () => {
@@ -342,6 +350,8 @@ export const defaultValue = function (elementType, elementName, options) {
         },
       ]
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should set default on multiple level with list parent list parent preference', async () => {
@@ -391,6 +401,8 @@ export const defaultValue = function (elementType, elementName, options) {
         },
       ]
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should set default on multiple level with form default preference', async () => {
@@ -445,6 +457,8 @@ export const defaultValue = function (elementType, elementName, options) {
         },
       ]
     })
+    
+    // destroy(form) // teardown
   })
 
   it('should set default on multiple level with v-model preference', async () => {
@@ -506,5 +520,7 @@ export const defaultValue = function (elementType, elementName, options) {
         },
       ]
     })
+
+    // destroy() // teardown
   })
 }

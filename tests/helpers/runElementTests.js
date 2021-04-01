@@ -6,6 +6,12 @@ import elements from './../elements'
 const mockPlaces = (spy = null) => {
   let ShadowRoot = window.ShadowRoot
 
+  global.MutationObserver = class {
+    constructor(callback) {}
+    disconnect() {}
+    observe(element, initObject) {}
+  }
+
   spy = jest.spyOn(global, 'window', 'get')
   spy.mockImplementation(() => ({
     ShadowRoot,

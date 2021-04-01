@@ -345,7 +345,11 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.overrideClasses[componentName] = overwriteClasses2
+      form.vm.$set(form.vm.laraform.schema.el.overrideClasses, componentName, overwriteClasses2)
+      await nextTick()
+      await nextTick()
+
+      Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
@@ -391,7 +395,10 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.overrideClasses[componentName] = overwriteClasses2
+      form.vm.$set(form.vm.laraform.schema.el.overrideClasses, componentName, overwriteClasses2)
+      await nextTick()
+
+      Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
@@ -432,7 +439,10 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.overrideClasses[componentName] = overwriteClasses2
+      form.vm.$set(form.vm.laraform.schema.el.overrideClasses, componentName, overwriteClasses2)
+      await nextTick()
+
+      Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
@@ -468,7 +478,10 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses1[mainClass], mergeWith[mainClass] || ''))
 
-      el.addClasses[componentName] = addClasses2
+      form.vm.$set(form.vm.laraform.schema.el.addClasses, componentName, addClasses2)
+      await nextTick()
+
+      Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses2[mainClass], mergeWith[mainClass] || ''))
     })

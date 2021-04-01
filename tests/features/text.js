@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, testPropDefault } from 'test-helpers'
+import { createForm, findAllComponents, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export const text = function (elementType, elementName, options) {
@@ -24,5 +24,7 @@ export const text = function (elementType, elementName, options) {
     await nextTick()
 
     expect(elWrapper.html()).toContain('<div>Element HTML Text</div>')
+
+    // destroy() // teardown
   })
 }

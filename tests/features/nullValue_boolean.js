@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 
 export const nullValue = function (elementType, elementName, options) {
   it('should have "falseValue" as `nullValue`', () => {
@@ -14,5 +14,7 @@ export const nullValue = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.nullValue).toBe(el.falseValue)
+
+    // destroy() // teardown
   })
 }

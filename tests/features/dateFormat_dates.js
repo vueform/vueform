@@ -1,4 +1,4 @@
-import { testPropDefault, createForm } from 'test-helpers'
+import { testPropDefault, createForm, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 export const displayDateFormat = function (elementType, elementName, options) {
@@ -15,6 +15,8 @@ export const displayDateFormat = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.displayDateFormat).toBe('DD-MM-YYYY')
+    
+    // destroy(form) // teardown
   })
 
   it('should equal to default displayFormat if not defined', () => {
@@ -29,6 +31,8 @@ export const displayDateFormat = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.displayDateFormat).toBe(el.__('laraform.dateFormats.date'))
+
+    // destroy() // teardown
   })
 }
 
@@ -46,6 +50,8 @@ export const valueDateFormat = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.valueDateFormat).toBe('DD-MM-YYYY')
+    
+    // destroy(form) // teardown
   })
 
   it('should equal to default valueFormat if not defined', () => {
@@ -60,6 +66,8 @@ export const valueDateFormat = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.valueDateFormat).toBe(el.__('laraform.dateFormats.date'))
+    
+    // destroy(form) // teardown
   })
 
   it('should equal to false if valueFormat is false', () => {
@@ -75,6 +83,8 @@ export const valueDateFormat = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.valueDateFormat).toBe(false)
+
+    // destroy() // teardown
   })
 }
 
@@ -92,6 +102,8 @@ export const loadDateFormat = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.loadDateFormat).toBe('DD-MM-YYYY')
+    
+    // destroy(form) // teardown
   })
 
   it('should equal to default loadFormat if not defined', () => {
@@ -106,6 +118,8 @@ export const loadDateFormat = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.loadDateFormat).toBe(el.__('laraform.dateFormats.date'))
+    
+    // destroy(form) // teardown
   })
 
   it('should equal to false if loadFormat is false', () => {
@@ -121,5 +135,7 @@ export const loadDateFormat = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.loadDateFormat).toBe(false)
+
+    // destroy() // teardown
   })
 }
