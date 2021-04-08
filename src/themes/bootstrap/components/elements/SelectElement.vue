@@ -202,16 +202,17 @@
 
   .is-tags {
     .multiselect-input {
-      padding: calc(#{$input-padding-y} - 5px) $input-padding-x;
+      padding: calc(#{$input-padding-y} - 5px) $input-padding-y;
     }
 
     .multiselect-search {
       flex-grow: 1;
+      padding-left: calc(#{$input-padding-x} - #{$input-padding-y} - 2px);
 
       input {
         outline: none;
         border: 0;
-        margin: 0 0 5px 3px;
+        margin: 0 0 5px 2px;
         flex-grow: 1;
         min-width: 100%;
         font-family: $input-font-family;
@@ -221,6 +222,10 @@
         color: $input-color;
         padding: 0;
       }
+    }
+
+    span + .multiselect-search {
+      padding-left: 0;
     }
   }
 
@@ -305,7 +310,7 @@
 
   .multiselect-tag i:before {
     content: "\D7";
-    color: darken($primary, 37.5%);
+    color: darken($primary, 25%);
     font-size: 14px;
     font-weight: 700;
     padding: 1px 5px 1px 5px;
@@ -315,7 +320,7 @@
   }
 
   .multiselect-tag i:hover:before {
-    color: lighten($primary, 37.5%);
+    color: #ffffff;
     background: rgba(255,255,255,0.2);
   }
 
