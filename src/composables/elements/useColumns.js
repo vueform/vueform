@@ -17,7 +17,7 @@ const base = function(props, context, dependencies)
   const columnsObject = computed(() => {
     return {
       classes: {
-        element: 'col-lg-6',
+        element: 'col-lg-12',
         label: 'col-lg-12',
         field: 'col-lg-12',
       }

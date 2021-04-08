@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes.container" v-html="el$.noResultsText"></div>
+  <div :class="classes.container" v-html="el$.fieldOptions.noResultsText"></div>
 </template>
 
 <script>

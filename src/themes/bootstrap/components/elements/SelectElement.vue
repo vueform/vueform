@@ -88,7 +88,6 @@
 
 <script>
   import Multiselect from '@vueform/multiselect/src/Multiselect'
-  // import '@vueform/multiselect/themes/default.css'
 
   export default {
     name: 'SelectElement',
@@ -344,7 +343,7 @@
     position: absolute;
     left: 0;
     right: 0px;
-    border: 1px solid #e8e8e8;
+    border: 1px solid $input-border-color;
     margin-top: -1px;
     max-height: 160px;
     overflow-y: scroll;
@@ -404,8 +403,10 @@
   .multiselect-no-options,
   .multiselect-no-results {
     display: flex;
-    padding: 10px 12px;
-    color: #777;
+    padding: $input-padding-y $input-padding-x;
+    color: $text-muted;
+    min-height: $input-height;
+    align-items: center;
   }
 
   .multiselect-caret {
