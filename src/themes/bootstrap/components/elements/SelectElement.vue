@@ -24,7 +24,7 @@
             :key="index"
           >
             {{ option.label }}
-            </option>
+          </option>
         </select>
         <span v-if="placeholder && empty" :class="classes.placeholder">{{ placeholder }}</span>
       </div>
@@ -120,7 +120,7 @@
   .native-select-placeholder {
     position: absolute;
     top: $input-padding-y;
-    left: $input-padding-x;
+    left: calc(#{$input-padding-x} + 3px);
     font-family: $input-font-family;
     @include font-size($input-font-size);
     font-weight: $input-font-weight;
@@ -254,12 +254,16 @@
     display: flex;
     align-items: center;
     height: 100%;
-    padding-left: 14px;
+    padding-left: calc(#{$input-padding-x} + 5px);
     position: absolute;
     left: 0;
     top: 0;
     pointer-events: none;
     background: transparent;
+  }
+
+  .multiselect-placeholder {
+    padding-left: calc(#{$input-padding-x} + 3px);
   }
 
   .multiselect-placeholder {
@@ -428,6 +432,7 @@
     background: transparent;
     width: $input-height;
     height: $input-height;
+    cursor: pointer;
 
     &:before, &:after {
       content: " ";
@@ -451,7 +456,7 @@
 
     &:hover {
       &:before, &:after {
-        background-color: $gray-300;
+        background-color: $gray-700;
       }
     }
   }
