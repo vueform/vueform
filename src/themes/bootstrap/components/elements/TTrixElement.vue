@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-trix',
+          container: '',
           trixDisabled: 'trix-disabled',
         }
       }

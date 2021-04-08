@@ -1,10 +1,6 @@
 const config = {
   vue: 3,
 
-  extensions: [],
-  
-  themes: {},
-
   theme: 'default',
 
   languages: {
@@ -21,12 +17,6 @@ const config = {
   displayErrors: true,
 
   language: 'en',
-
-  elements: {},
-  
-  components: {},
-
-  rules: {},
 
   labels: false,
 

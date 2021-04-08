@@ -5,7 +5,7 @@
       <Slider
         :value="value"
         :modelValue="value"
-        v-bind="options"
+        v-bind="fieldOptions"
         :id="fieldId"
         ref="input"
         @change="handleChange"
@@ -23,9 +23,7 @@
 
 <script>
   import Slider from '@vueform/slider/src/Slider'
-  import '@vueform/slider/themes/default.scss'
   
-
   export default {
     name: 'SliderElement',
     components: {
@@ -40,3 +38,38 @@
     }
   }
 </script>
+
+<style lang="scss">
+  @import 'node_modules/@vueform/slider/themes/default.scss';
+  @import 'node_modules/bootstrap/scss/_functions.scss';
+  @import 'node_modules/bootstrap/scss/_variables.scss';
+  @import 'node_modules/bootstrap/scss/_mixins.scss';
+
+  .slider-base {
+    background: $input-border-color;
+  }
+
+  .slider-connect {
+    background: $primary;
+  }
+
+  .slider-tooltip {
+    background: $primary;
+    border-color: $primary;
+  }
+
+  [disabled] {
+    & .slider-base {
+      background: $input-disabled-bg;
+    }
+
+    & .slider-tooltip {
+      background: $input-border-color;
+      border-color: $input-border-color;
+    }
+
+    & .slider-connect {
+      background: $input-border-color;
+    }
+  }
+</style>

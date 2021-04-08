@@ -26,22 +26,22 @@ export const value = function (elementType, elementName, options) {
 
     // Default value
     expect(el.value).toStrictEqual([0])
-    expect(select.externalValue).toStrictEqual([0])
-    expect(select.internalValue).toStrictEqual([{ value: 0, label: 1 }])
+    expect(select.ev).toStrictEqual([0])
+    expect(select.iv).toStrictEqual([{ value: 0, label: 1 }])
 
     // Loaded value
     el.load([1])
     expect(el.value).toStrictEqual([1])
     await nextTick()
-    expect(select.externalValue).toStrictEqual([1])
-    expect(select.internalValue).toStrictEqual([{ value: 1, label: 2 }])
+    expect(select.ev).toStrictEqual([1])
+    expect(select.iv).toStrictEqual([{ value: 1, label: 2 }])
 
     // Selected value
     select.clear()
     select.handleOptionClick({ value: 2, label: 3 })
     await nextTick()
-    expect(select.externalValue).toStrictEqual([2])
-    expect(select.internalValue).toStrictEqual([{ value: 2, label: 3 }])
+    expect(select.ev).toStrictEqual([2])
+    expect(select.iv).toStrictEqual([{ value: 2, label: 3 }])
 
     destroy(form)
     
@@ -67,22 +67,22 @@ export const value = function (elementType, elementName, options) {
 
     // Default value
     expect(el.value).toStrictEqual(['0'])
-    expect(select.externalValue).toStrictEqual(['0'])
-    expect(select.internalValue).toStrictEqual([{ value: '0', label: 1 }])
+    expect(select.ev).toStrictEqual(['0'])
+    expect(select.iv).toStrictEqual([{ value: '0', label: 1 }])
 
     // Loaded value
     el.load(['1'])
     expect(el.value).toStrictEqual(['1'])
     await nextTick()
-    expect(select.externalValue).toStrictEqual(['1'])
-    expect(select.internalValue).toStrictEqual([{ value: '1', label: 2 }])
+    expect(select.ev).toStrictEqual(['1'])
+    expect(select.iv).toStrictEqual([{ value: '1', label: 2 }])
 
     // Selected value
     select.clear()
     select.handleOptionClick({ value: '2', label: 3 })
     await nextTick()
-    expect(select.externalValue).toStrictEqual(['2'])
-    expect(select.internalValue).toStrictEqual([{ value: '2', label: 3 }])
+    expect(select.ev).toStrictEqual(['2'])
+    expect(select.iv).toStrictEqual([{ value: '2', label: 3 }])
 
     destroy(form)
     
@@ -112,22 +112,22 @@ export const value = function (elementType, elementName, options) {
 
     // Default value
     expect(el.value).toStrictEqual([0])
-    expect(select.externalValue).toStrictEqual([0])
-    expect(select.internalValue).toStrictEqual([{ value: 0, label: 1 }])
+    expect(select.ev).toStrictEqual([0])
+    expect(select.iv).toStrictEqual([{ value: 0, label: 1 }])
 
     // Loaded value
     el.load([1])
     expect(el.value).toStrictEqual([1])
     await nextTick()
-    expect(select.externalValue).toStrictEqual([1])
-    expect(select.internalValue).toStrictEqual([{ value: 1, label: 2 }])
+    expect(select.ev).toStrictEqual([1])
+    expect(select.iv).toStrictEqual([{ value: 1, label: 2 }])
 
     // Selected value
     select.clear()
     select.handleOptionClick({ value: 2, label: 3 })
     await nextTick()
-    expect(select.externalValue).toStrictEqual([2])
-    expect(select.internalValue).toStrictEqual([{ value: 2, label: 3 }])
+    expect(select.ev).toStrictEqual([2])
+    expect(select.iv).toStrictEqual([{ value: 2, label: 3 }])
 
     destroy(form)
     
@@ -159,22 +159,22 @@ export const value = function (elementType, elementName, options) {
 
     // Default value
     expect(el.value).toStrictEqual([0])
-    expect(select.externalValue).toStrictEqual([0])
-    expect(select.internalValue).toStrictEqual([{ value: 0, label: 1 }])
+    expect(select.ev).toStrictEqual([0])
+    expect(select.iv).toStrictEqual([{ value: 0, label: 1 }])
 
     // Loaded value
     el.load([1])
     expect(el.value).toStrictEqual([1])
     await nextTick()
-    expect(select.externalValue).toStrictEqual([1])
-    expect(select.internalValue).toStrictEqual([{ value: 1, label: 2 }])
+    expect(select.ev).toStrictEqual([1])
+    expect(select.iv).toStrictEqual([{ value: 1, label: 2 }])
 
     // Selected value
     select.clear()
     select.handleOptionClick({ value: 2, label: 3 })
     await nextTick()
-    expect(select.externalValue).toStrictEqual([2])
-    expect(select.internalValue).toStrictEqual([{ value: 2, label: 3 }])
+    expect(select.ev).toStrictEqual([2])
+    expect(select.iv).toStrictEqual([{ value: 2, label: 3 }])
 
     destroy(form)
   })
@@ -201,22 +201,22 @@ export const value = function (elementType, elementName, options) {
 
     // Default value
     expect(el.value).toStrictEqual([{ value: 0, label: 1 }])
-    expect(select.externalValue).toStrictEqual([{ value: 0, label: 1 }])
-    expect(select.internalValue).toStrictEqual([{ value: 0, label: 1 }])
+    expect(select.ev).toStrictEqual([{ value: 0, label: 1 }])
+    expect(select.iv).toStrictEqual([{ value: 0, label: 1 }])
 
     // Loaded value
     el.load([{ value: 1, label: 2 }])
     expect(el.value).toStrictEqual([{ value: 1, label: 2 }])
     await nextTick()
-    expect(select.externalValue).toStrictEqual([{ value: 1, label: 2 }])
-    expect(select.internalValue).toStrictEqual([{ value: 1, label: 2 }])
+    expect(select.ev).toStrictEqual([{ value: 1, label: 2 }])
+    expect(select.iv).toStrictEqual([{ value: 1, label: 2 }])
 
     // Selected value
     select.clear()
     select.handleOptionClick([{ value: 2, label: 3 }])
     await nextTick()
-    expect(select.externalValue).toStrictEqual([{ value: 2, label: 3 }])
-    expect(select.internalValue).toStrictEqual([{ value: 2, label: 3 }])
+    expect(select.ev).toStrictEqual([{ value: 2, label: 3 }])
+    expect(select.iv).toStrictEqual([{ value: 2, label: 3 }])
 
     destroy(form)
     
@@ -245,22 +245,22 @@ export const value = function (elementType, elementName, options) {
 
     // Default value
     expect(el.value).toStrictEqual([{ value: '0', label: 1 }])
-    expect(select.externalValue).toStrictEqual([{ value: '0', label: 1 }])
-    expect(select.internalValue).toStrictEqual([{ value: '0', label: 1 }])
+    expect(select.ev).toStrictEqual([{ value: '0', label: 1 }])
+    expect(select.iv).toStrictEqual([{ value: '0', label: 1 }])
 
     // Loaded value
     el.load([{ value: '1', label: 2 }])
     expect(el.value).toStrictEqual([{ value: '1', label: 2 }])
     await nextTick()
-    expect(select.externalValue).toStrictEqual([{ value: '1', label: 2 }])
-    expect(select.internalValue).toStrictEqual([{ value: '1', label: 2 }])
+    expect(select.ev).toStrictEqual([{ value: '1', label: 2 }])
+    expect(select.iv).toStrictEqual([{ value: '1', label: 2 }])
 
     // Selected value
     select.clear()
     select.handleOptionClick([{ value: '2', label: 3 }])
     await nextTick()
-    expect(select.externalValue).toStrictEqual([{ value: '2', label: 3 }])
-    expect(select.internalValue).toStrictEqual([{ value: '2', label: 3 }])
+    expect(select.ev).toStrictEqual([{ value: '2', label: 3 }])
+    expect(select.iv).toStrictEqual([{ value: '2', label: 3 }])
 
     destroy(form)
     
@@ -294,22 +294,22 @@ export const value = function (elementType, elementName, options) {
 
     // Default value
     expect(el.value).toStrictEqual([{ v: 0, label: 1 }])
-    expect(select.externalValue).toStrictEqual([{ v: 0, label: 1 }])
-    expect(select.internalValue).toStrictEqual([{ v: 0, label: 1 }])
+    expect(select.ev).toStrictEqual([{ v: 0, label: 1 }])
+    expect(select.iv).toStrictEqual([{ v: 0, label: 1 }])
 
     // Loaded value
     el.load([{ v: 1, label: 2 }])
     expect(el.value).toStrictEqual([{ v: 1, label: 2 }])
     await nextTick()
-    expect(select.externalValue).toStrictEqual([{ v: 1, label: 2 }])
-    expect(select.internalValue).toStrictEqual([{ v: 1, label: 2 }])
+    expect(select.ev).toStrictEqual([{ v: 1, label: 2 }])
+    expect(select.iv).toStrictEqual([{ v: 1, label: 2 }])
 
     // Selected value
     select.clear()
     select.handleOptionClick([{ v: 2, label: 3 }])
     await nextTick()
-    expect(select.externalValue).toStrictEqual([{ v: 2, label: 3 }])
-    expect(select.internalValue).toStrictEqual([{ v: 2, label: 3 }])
+    expect(select.ev).toStrictEqual([{ v: 2, label: 3 }])
+    expect(select.iv).toStrictEqual([{ v: 2, label: 3 }])
 
     destroy(form)
     
@@ -344,22 +344,22 @@ export const value = function (elementType, elementName, options) {
 
     // Default value
     expect(el.value).toStrictEqual([{ value: 0, label: 1 }])
-    expect(select.externalValue).toStrictEqual([{ value: 0, label: 1 }])
-    expect(select.internalValue).toStrictEqual([{ value: 0, label: 1 }])
+    expect(select.ev).toStrictEqual([{ value: 0, label: 1 }])
+    expect(select.iv).toStrictEqual([{ value: 0, label: 1 }])
 
     // Loaded value
     el.load([{ value: 1, label: 2 }])
     expect(el.value).toStrictEqual([{ value: 1, label: 2 }])
     await nextTick()
-    expect(select.externalValue).toStrictEqual([{ value: 1, label: 2 }])
-    expect(select.internalValue).toStrictEqual([{ value: 1, label: 2 }])
+    expect(select.ev).toStrictEqual([{ value: 1, label: 2 }])
+    expect(select.iv).toStrictEqual([{ value: 1, label: 2 }])
 
     // Selected value
     select.clear()
     select.handleOptionClick([{ value: 2, label: 3 }])
     await nextTick()
-    expect(select.externalValue).toStrictEqual([{ value: 2, label: 3 }])
-    expect(select.internalValue).toStrictEqual([{ value: 2, label: 3 }])
+    expect(select.ev).toStrictEqual([{ value: 2, label: 3 }])
+    expect(select.iv).toStrictEqual([{ value: 2, label: 3 }])
 
     destroy(form)
 

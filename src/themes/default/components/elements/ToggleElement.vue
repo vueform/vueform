@@ -28,7 +28,7 @@
 
 <script>
   import Toggle from '@vueform/toggle/src/Toggle'
-  import '@vueform/toggle/themes/default.css'
+  // import '@vueform/toggle/themes/default.css'
 
   export default {
     name: 'ToggleElement',

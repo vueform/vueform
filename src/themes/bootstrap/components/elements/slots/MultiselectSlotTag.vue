@@ -4,7 +4,7 @@
     <i
       v-if="!disabled"
       @click.prevent
-      @mousedown.prevent="handleTagRemove(option)"
+      @mousedown.prevent="handleTagRemove(option, $event)"
     ></i>
   </span>
 </template>

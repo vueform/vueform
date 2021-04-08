@@ -53,7 +53,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-textarea',
+          container: '',
           textarea: 'form-control',
         }
       }

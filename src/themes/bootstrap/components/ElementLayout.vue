@@ -29,11 +29,11 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-element',
+          container: '',
           outerWrapper: 'form-group',
           innerWrapper: 'row',	
-          labelWrapper: 'lf-label-container',	
-          fieldWrapper: 'lf-field-container',
+          labelWrapper: '',	
+          fieldWrapper: '',
         },
         classKeys: {
           element: 'container',

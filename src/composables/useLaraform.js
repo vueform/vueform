@@ -149,7 +149,7 @@ const base = function(props, context, dependencies = {})
   })
 
   const baseConfig = computed(() => {
-    return $this.$laraform.config
+    return $this.$laraform
   })
 
   const services = computed(() => {
@@ -174,15 +174,15 @@ const base = function(props, context, dependencies = {})
     }
 
     const defaults = {
-      columns: baseConfig.value.columns,
-      languages: baseConfig.value.languages,
-      language: baseConfig.value.language,
-      theme: baseConfig.value.theme,
-      endpoint: baseConfig.value.endpoints.process,
-      method: baseConfig.value.methods.process,
-      validateOn: baseConfig.value.validateOn,
-      displayErrors: baseConfig.value.displayErrors,
-      labels: baseConfig.value.labels,
+      columns: baseConfig.value.config.columns,
+      languages: baseConfig.value.config.languages,
+      language: baseConfig.value.config.language,
+      theme: baseConfig.value.config.theme,
+      endpoint: baseConfig.value.config.endpoints.process,
+      method: baseConfig.value.config.methods.process,
+      validateOn: baseConfig.value.config.validateOn,
+      displayErrors: baseConfig.value.config.displayErrors,
+      labels: baseConfig.value.config.labels,
       overrideClasses: {},
       addClasses: {},
       components: {},

@@ -162,7 +162,12 @@ export default function(config) {
   const Laraform = class {
     constructor() {
       this.options = {
-        config: config,
+        config: _.omit(config, ['extensions', 'themes', 'elements', 'components', 'rules']),
+        extensions: config.extensions || [],
+        themes: config.themes || {},
+        elements: config.elements || {},
+        components: config.components || {},
+        rules: config.rules || {},
         services: {
           validation,
           axios,
@@ -181,8 +186,16 @@ export default function(config) {
     config(config) {
       // merge
       _.each([
-        'extensions', 'themes', 'locales', 'languages',
-        'elements', 'components', 'rules', 'services',
+        'extensions', 'themes', 'elements', 'components', 'rules',
+      ], (attr) => {
+          if (config[attr] !== undefined) {
+            this.options[attr] = Object.assign({}, this.options[attr], config[attr])
+          }
+      })
+
+      // merge
+      _.each([
+        'locales', 'languages', 'services',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = Object.assign({}, this.options.config[attr], config[attr])
@@ -222,7 +235,7 @@ export default function(config) {
     }
 
     registerComponents(appOrVue, componenList = components) {
-      const theme = this.options.config.themes[this.options.config.theme]
+      const theme = this.options.themes[this.options.config.theme]
 
       _.each(componenList, (component, name) => {
         let componentSetup = component.setup
@@ -265,7 +278,7 @@ export default function(config) {
 
       this.initI18n()
 
-      if (this.options.config.extensions && this.options.config.extensions.length) {
+      if (this.options.extensions && this.options.extensions.length) {
         this.applyExtensions()
       }
 
@@ -279,6 +292,11 @@ export default function(config) {
           const $laraform = this.options
 
           appOrVue.mixin({
+            data() {
+              return {
+                $laraform: {},
+              }
+            },
             methods: {
               setRef() {},
               __: (expr, data) => this.options.i18n.$t(expr, data)
@@ -286,7 +304,15 @@ export default function(config) {
             beforeCreate() {
               // might exist as test mock
               if (!this.$laraform) {
-                this.$laraform = appOrVue.observable($laraform)
+                this.$laraform = {
+                  config: appOrVue.observable($laraform.config),
+                  themes: $laraform.themes,
+                  elements: $laraform.elements,
+                  components: $laraform.components,
+                  extensions: $laraform.extensions,
+                  rules: $laraform.rules,
+                  services: $laraform.services,
+                }
               }
               this.$vueVersion = 2
             }

@@ -55,7 +55,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-text',
+          container: '', // added to layout
           inputContainer: 'input-group',
           input: 'form-control',
         }
