@@ -18,8 +18,8 @@ const base = function(props, context, dependencies)
     return {
       classes: {
         element: 'col-lg-12',
-        label: 'col-lg-12',
-        field: 'col-lg-12',
+        label: 'col-lg-2',
+        field: 'col-lg-10',
       }
     }
   })

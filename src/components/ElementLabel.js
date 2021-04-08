@@ -1,6 +1,7 @@
 import { computed, ref } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
 import useLabel from './../composables/useLabel'
+import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'ElementLabel',
@@ -11,7 +12,7 @@ export default {
     const {
       el$,
       form$,
-      classes,
+      classes: baseClasses,
       mainClass,
       components,
       theme,
@@ -27,6 +28,17 @@ export default {
      })
 
     // ============== COMPUTED ==============
+
+    /**
+     * 
+     * 
+     * @private
+     */
+    const classes = computed(() => {
+      return mergeComponentClasses(_.clone(baseClasses.value), {
+        [mainClass.value]: el$.value.columnsObject.classes.label,
+      })
+    })
 
     /**
      * 

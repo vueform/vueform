@@ -44,9 +44,15 @@
           radioContainer: 'radio',
           radioLabel: '',
           radio: '',
-          text: 'checkbox-text',
+          text: 'radio-text',
         }
       }
     }
   }
 </script>
+
+<style lang="scss">
+  .radio-text {
+    margin-left: 5px;
+  }
+</style>
