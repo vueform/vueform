@@ -1,7 +1,6 @@
 import { toRefs, watch, computed, ref, onMounted } from 'composition-api'
 import useElementComponent from '../../composables/useElementComponent'
 import flatpickr from 'flatpickr'
-import 'flatpickr/dist/themes/light.css'
 
 export default {
   name: 'FlatpickrWrapper',

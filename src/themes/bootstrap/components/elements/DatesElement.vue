@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-dates',
+          container: '',
           input: 'form-control',
         }
       }
