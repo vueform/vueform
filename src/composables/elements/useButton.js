@@ -22,7 +22,15 @@ const base = function (props, context, dependencies)
   // ============== COMPUTED ==============
 
   const isLoading = computed(() => {
-    return typeof loading.value === 'function' ? loading.value(form$.value, el$.value) : loading.value
+    if (typeof loading.value === 'function') {
+      return loading.value(form$.value, el$.value)
+    }
+    
+    if (submits.value && form$.value.busy) {
+      return true
+    }
+    
+    return loading.value
   })
 
   const isButtonLabelComponent = computed(() => {
