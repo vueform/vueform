@@ -2,7 +2,7 @@ import { computed, toRefs } from 'composition-api'
 import useElementComponent from './../../../composables/useElementComponent'
 
 export default {
-  name: 'ImageSlotPreview',
+  name: 'FileSlotGalleryPreview',
   setup(props, context)
   {
     const {

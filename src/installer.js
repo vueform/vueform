@@ -66,8 +66,9 @@ import FlatpickrWrapper from './components/wrappers/FlatpickrWrapper'
 import TrixWrapper from './components/wrappers/TrixWrapper'
 
 import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
-import FileSlotPreview from './components/elements/slots/FileSlotPreview'
-import ImageSlotPreview from './components/elements/slots/ImageSlotPreview'
+import FileSlotFilePreview from './components/elements/slots/FileSlotFilePreview'
+import FileSlotImagePreview from './components/elements/slots/FileSlotImagePreview'
+import FileSlotGalleryPreview from './components/elements/slots/FileSlotGalleryPreview'
 import MultiselectSlotNoOptions from './components/elements/slots/MultiselectSlotNoOptions'
 import MultiselectSlotNoResults from './components/elements/slots/MultiselectSlotNoResults'
 import MultiselectSlotOption from './components/elements/slots/MultiselectSlotOption'
@@ -137,8 +138,9 @@ const components = {
   TrixWrapper,
 
   CheckboxgroupSlotCheckbox,
-  FileSlotPreview,
-  ImageSlotPreview,
+  FileSlotFilePreview,
+  FileSlotImagePreview,
+  FileSlotGalleryPreview,
   MultiselectSlotNoOptions,
   MultiselectSlotNoResults,
   MultiselectSlotOption,

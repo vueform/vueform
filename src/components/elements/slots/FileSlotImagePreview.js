@@ -2,7 +2,7 @@ import { computed, toRefs } from 'composition-api'
 import useElementComponent from './../../../composables/useElementComponent'
 
 export default {
-  name: 'FileSlotPreview',
+  name: 'FileSlotImagePreview',
   setup(props, context)
   {
     const {
@@ -35,6 +35,14 @@ export default {
 
     const filename = computed(() => {
       return el$.value.filename
+    })
+
+    const preview = computed(() => {
+      return el$.value.preview
+    })
+
+    const previewLoaded = computed(() => {
+      return el$.value.previewLoaded
     })
 
     const uploaded = computed(() => {
@@ -90,6 +98,8 @@ export default {
       hasError,
       link,
       filename,
+      preview,
+      previewLoaded,
       uploaded,
       uploading,
       progress,

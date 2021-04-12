@@ -11,7 +11,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-tags',
+          container: '',
           select: 'form-control',
           selectNativePlaceholder: 'native-select-placeholder',
         }

@@ -1,21 +1,20 @@
 <template>
   <div :class="classes.container">
+    <input
+      type="radio"
+      v-model="el$.value"
+      :value="value"
+      :class="classes.input"
+      :name="el$.name"
+      :id="`${el$.fieldId}-${value}`"
+      :disabled="isDisabled"
+    />
+
     <label 
       :class="classes.label"
       :for="`${el$.fieldId}-${value}`"
-    >
-      <input
-        type="radio"
-        v-model="el$.value"
-        :value="value"
-        :class="classes.radio"
-        :name="el$.name"
-        :id="`${el$.fieldId}-${value}`"
-        :disabled="isDisabled"
-      />
-    
-      <span>{{ item }}</span>
-    </label>
+      v-html="item"
+    ></label>
   </div>
 </template>
 
@@ -25,9 +24,9 @@
     data() {
       return {
         defaultClasses: {
-          container: 'radio-container',
-          label: 'label',
-          radio: 'radio',
+          container: 'form-radio',
+          label: 'form-radio-label',
+          input: 'form-radio-input',
         }
       }
     }

@@ -31,38 +31,9 @@
       />
 
       <!-- Preview -->
-      <slot name="preview" :previewOptions="previewOptions">
-        <component :is="fieldSlots.preview" :previewOptions="previewOptions" />
+      <slot name="preview">
+        <component :is="fieldSlots.preview" />
       </slot>
-
-      <!-- Progress -->
-      <slot name="progress" :progress="progress">
-        <component :is="fieldSlots.progress" :progress="progress" />
-      </slot>
-
-      <!-- Upload temp button -->
-      <a
-        v-if="canUploadTemp"
-        href=""
-        :class="classes.uploadButton"
-        @click.prevent="handleUploadTemp"
-      >{{ __(`laraform.elements.${type}.upload`) }}</a>
-
-      <!-- Remove button -->
-      <a
-        v-if="canRemove"
-        href=""
-        :class="classes.removeButton"
-        @click.prevent="handleRemove"
-      >{{ __(`laraform.elements.${type}.remove`) }}</a>
-
-      <!-- Abort button -->
-      <a
-        v-if="uploading"
-        href=""
-        :class="classes.abortButton"
-        @click.prevent="handleAbort"
-      >{{ __(`laraform.elements.${type}.abort`) }}</a>
         
     </template>
 

@@ -14,6 +14,7 @@ const base = function (props, context, dependencies)
     image,
     params,
     softRemove,
+    view,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -389,7 +390,7 @@ const base = function (props, context, dependencies)
 
     update(file || null)
 
-    if (image.value) {
+    if (image.value && view.value !== 'file') {
       loadPreview()
     }
 

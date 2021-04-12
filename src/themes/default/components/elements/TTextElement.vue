@@ -4,6 +4,14 @@
   export default {
     name: 'TTextElement',
     render: TextElement.render,
-    data: TextElement.data,
+    data() {
+      return {
+        defaultClasses: {
+          container: '', // added to layout
+          inputContainer: 'input-group',
+          input: 'form-control',
+        }
+      }
+    },
   }
 </script>

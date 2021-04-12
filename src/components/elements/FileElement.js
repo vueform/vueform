@@ -12,7 +12,6 @@ import useLabel from './../../composables/elements/useLabel'
 import useColumns from './../../composables/elements/useColumns'
 import useView from './../../composables/elements/useView'
 import useComponents from './../../composables/elements/useComponents'
-import useSlots from './../../composables/elements/useSlots'
 import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
@@ -29,6 +28,7 @@ import { file as useBaseElement } from './../../composables/elements/useBaseElem
 import { file as useValidation } from './../../composables/elements/useValidation'
 import { file as useGenericName } from './../../composables/elements/useGenericName'
 import { file as useClasses } from './../../composables/elements/useClasses'
+import { file as useSlots } from './../../composables/elements/useSlots'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -65,7 +65,7 @@ export default {
     view: {
       type: [String],
       required: false,
-      default: 'gallery' // list|gallery
+      default: null,
     },
     debounce: {
       required: false,
@@ -274,11 +274,8 @@ export default {
       slots: [
         'label', 'info', 'description', 'error',
         'message', 'before', 'between', 'after',
-        'progress', 'preview',
-      ],
-      defaultSlots: {
-        preview: image.value ? 'ImageSlotPreview' : 'FileSlotPreview',
-      }
+        'preview',
+      ]
     })
 
     useWatchValue(props, context, {

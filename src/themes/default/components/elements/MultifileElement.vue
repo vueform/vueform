@@ -41,7 +41,6 @@
             :name="i"
             @remove="remove(i)"
           />
-          <span :class="classes.handle">[-{{ name }}]</span>
         </div>
       </div>
 

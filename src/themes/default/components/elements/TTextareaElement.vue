@@ -4,6 +4,13 @@
   export default {
     name: 'TTextareaElement',
     render: TextareaElement.render,
-    data: TextareaElement.data,
+    data() {
+      return {
+        defaultClasses: {
+          container: '',
+          textarea: 'form-control',
+        }
+      }
+    }
   }
 </script>

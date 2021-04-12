@@ -14,8 +14,8 @@
     data() {
       return {
         defaultClasses: {
-          flatpickr: 'laraform-flatpickr',
-          calendarContainer: 'lf-flatpickr'
+          flatpickr: '',
+          calendarContainer: 'flatpickr-calendar-container'
         }
       }
     }

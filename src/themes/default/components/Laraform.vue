@@ -29,8 +29,6 @@
       <FormStepsControls
         v-if="hasSteps && options.stepsControls"
       />
-      {{ plainData }}
-      {{ data }}
     </slot>
   </form>
 </template>
@@ -40,7 +38,7 @@
     data() {
       return {
         defaultClasses: {
-          form: 'lf-form',
+          form: '',
         }
       }
     }

@@ -3,16 +3,45 @@
     <template v-slot:field>
 
       <template v-if="buttonType === 'button'">
-        <button v-if="isButtonLabelComponent" v-bind="button" :disabled="isDisabled" :class="classes.button" @click.prevent="handleClick">
+
+        <button
+          v-if="isButtonLabelComponent"
+          v-bind="button"
+          :disabled="isDisabled"
+          :class="classes.button"
+          @click.prevent="handleClick"
+        >
           <component :is="buttonLabel" :el$="el$" />
         </button>
-        <button v-else :class="classes.button" v-bind="button" v-html="buttonLabel" :disabled="isDisabled" @click.prevent="handleClick" />
+
+        <button
+          v-else
+          v-bind="button"
+          v-html="buttonLabel"
+          :class="classes.button"
+          :disabled="isDisabled"
+          @click.prevent="handleClick" 
+        />
+
       </template>
+
       <template v-else>
-        <a v-if="isButtonLabelComponent" v-bind="button" :class="classes.button" @click="handleClick">
+        <a
+          v-if="isButtonLabelComponent"
+          v-bind="button"
+          :class="classes.button"
+          @click="handleClick"
+        >
           <component :is="buttonLabel" :el$="el$" />
         </a>
-        <a v-else :class="classes.button" v-bind="button" v-html="buttonLabel"  @click="handleClick"/>
+
+        <a
+          v-else
+          v-bind="button"
+          v-html="buttonLabel"
+          :class="classes.button"
+          @click="handleClick"
+        />
       </template>
 
     </template>
@@ -31,8 +60,8 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-button',
-          button: 'lf-btn',
+          container: '',
+          button: 'btn',
           loading: 'btn-loading',
           disabled: 'btn-disabled',
           left: 'align-left',
@@ -51,3 +80,39 @@
     }
   }
 </script>
+
+<style lang="scss">
+
+  .btn-loading {
+    position: relative;
+    color: transparent !important;
+
+    &:after {
+      content: "";
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      vertical-align: text-bottom;
+      border: .25em solid;
+      border-right: .25em solid transparent;
+      border-radius: 50%;
+      -webkit-animation: button-spinner .75s linear infinite;
+      animation: button-spinner .75s linear infinite;
+      font-size: 9px;
+      position: absolute;
+      left: calc(50% - 7px);
+      top: calc(50% - 7px);
+      color: initial;
+      color: #ffffff;
+    }
+  }
+
+  @keyframes button-spinner {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(1turn);
+    }
+  }
+</style>

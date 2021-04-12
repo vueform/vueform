@@ -19,7 +19,7 @@ const base = function(props, context, dependencies, options = {})
     after: 'ElementText',
   }
 
-  const defaultFieldSlots = {
+  const defaultFieldSlots = options.defaultFieldSlots || {
     addonBefore: 'ElementAddon',
     addonAfter: 'ElementAddon',
     checkbox: 'CheckboxgroupSlotCheckbox',
@@ -30,8 +30,7 @@ const base = function(props, context, dependencies, options = {})
     singlelabel: 'MultiselectSlotSingleLabel',
     multiplelabel: 'MultiselectSlotMultipleLabel',
     tag: 'MultiselectSlotTag',
-    progress: 'FileSlotProgress',
-    preview: 'FileSlotPreview',
+    preview: 'FileSlotFilePreview',
     beforelist: null,
     afterlist: null,
   }
@@ -115,6 +114,38 @@ const base = function(props, context, dependencies, options = {})
     fieldSlots,
     elementSlotProps,
   }
+}
+
+const file = function(props, context, dependencies, options = {})
+{
+  const {
+    image,
+    view,
+  } = toRefs(props)
+
+  let preview = 'FileSlotFilePreview'
+
+  if (image.value && view.value !== 'file') {
+    preview = view.value == 'gallery' ? 'FileSlotGalleryPreview' : 'FileSlotImagePreview'
+  }
+
+  const {
+    elementSlots,
+    fieldSlots,
+    elementSlotProps,
+  } = base(props, context, dependencies, Object.assign({}, options, {
+    defaultFieldSlots: { preview }
+  }))
+
+  return {
+    elementSlots,
+    fieldSlots,
+    elementSlotProps,
+  }
+}
+
+export {
+  file,
 }
 
 export default base

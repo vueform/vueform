@@ -35,7 +35,7 @@
 
 <script>
   export default {
-    name: 'FileSlotPreview',
+    name: 'FileSlotImagePreview',
     data() {
       return {
         defaultClasses: {

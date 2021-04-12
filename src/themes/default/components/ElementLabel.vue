@@ -11,7 +11,7 @@
     data() {
       return {
         defaultClasses: {
-          label: 'control-label',
+          label: 'col-form-label',
         }
       }
     }
