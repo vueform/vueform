@@ -33,6 +33,7 @@ const base = function (props, context, dependencies)
   const isImageType = dependencies.isImageType
   const removing = dependencies.removing
   const handleError = dependencies.handleError
+  const el$ = dependencies.el$
 
   // ================ DATA ================
 
@@ -75,6 +76,14 @@ const base = function (props, context, dependencies)
    * @default false
    */
   const preparing = ref(false)
+
+  /**
+   * 
+   * 
+   * @type {boolean}
+   * @default false
+   */
+  const previewLoaded = ref(false)
 
   // ============== COMPUTED ==============
 
@@ -352,6 +361,23 @@ const base = function (props, context, dependencies)
     }
   }
 
+  const loadPreview = () => {
+    previewLoaded.value = false
+
+    let img = el$.value.$el.querySelector('img')
+    
+    let listener = () => {
+      loadImg()
+    }
+    
+    img.addEventListener('load', listener)
+
+    let loadImg = () => {
+      previewLoaded.value = true
+      img.removeEventListener('load', listener)
+    }
+  }
+
   /**
    * 
    * @param {Event} e* 
@@ -362,6 +388,10 @@ const base = function (props, context, dependencies)
     let file = e.target.files[0]
 
     update(file || null)
+
+    if (image.value) {
+      loadPreview()
+    }
 
     input.value.value = ''
 
@@ -458,6 +488,7 @@ const base = function (props, context, dependencies)
     base64,
     progress,
     preparing,
+    previewLoaded,
     fileMethods,
     fileEndpoints,
     fileUrl,
@@ -472,6 +503,7 @@ const base = function (props, context, dependencies)
     uploadTemp,
     remove,
     prepare,
+    loadPreview,
     handleChange,
     handleClick,
     handleUploadTemp,

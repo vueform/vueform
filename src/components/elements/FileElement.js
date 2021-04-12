@@ -62,6 +62,11 @@ export default {
       required: false,
       default: false
     },
+    view: {
+      type: [String],
+      required: false,
+      default: 'gallery' // list|gallery
+    },
     debounce: {
       required: false,
       type: [Number],
@@ -220,6 +225,7 @@ export default {
       isImageType: baseElement.isImageType,
       removing: removing.removing,
       handleError: handleError.handleError,
+      el$: baseElement.el$,
     })
     
     const drop = useDrop(props, context, {
