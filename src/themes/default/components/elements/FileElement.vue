@@ -91,9 +91,3 @@
     }
   }
 </script>
-
-<style>
-  .removing {
-    opacity: 0.6;
-  }
-</style>

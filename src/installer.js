@@ -66,7 +66,6 @@ import FlatpickrWrapper from './components/wrappers/FlatpickrWrapper'
 import TrixWrapper from './components/wrappers/TrixWrapper'
 
 import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
-import FileSlotProgress from './components/elements/slots/FileSlotProgress'
 import FileSlotPreview from './components/elements/slots/FileSlotPreview'
 import ImageSlotPreview from './components/elements/slots/ImageSlotPreview'
 import MultiselectSlotNoOptions from './components/elements/slots/MultiselectSlotNoOptions'
@@ -138,7 +137,6 @@ const components = {
   TrixWrapper,
 
   CheckboxgroupSlotCheckbox,
-  FileSlotProgress,
   FileSlotPreview,
   ImageSlotPreview,
   MultiselectSlotNoOptions,
@@ -258,6 +256,10 @@ export default function(config) {
             renderer = name === 'Laraform' ? this.extendedComponents[this.$options.name] : this.components[this.$options.name] || this.theme.elements[this.$options.name]
           } catch (e) {
             throw new Error(e)
+          }
+
+          if (!this.$options.staticRenderFns && renderer.staticRenderFns) {
+            this.$options.staticRenderFns = renderer.staticRenderFns
           }
           
           return renderer.render.apply(this, arguments)

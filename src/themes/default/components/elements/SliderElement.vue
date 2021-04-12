@@ -34,7 +34,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-slider',
+          container: '',
         }
       }
     }

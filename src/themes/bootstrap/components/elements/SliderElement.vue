@@ -32,7 +32,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-slider',
+          container: '',
         }
       }
     }
@@ -64,6 +64,7 @@
 
   .slider-target {
     position: relative;
+    margin-top: calc(#{$input-padding-y} + 1px);
   }
 
   .slider-base,

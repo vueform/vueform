@@ -47,6 +47,14 @@ const base = function (props, context, dependencies)
   /**
    * 
    * 
+   * @type {boolean}
+   * @default false
+   */
+  const hasUploadError = ref(false)
+
+  /**
+   * 
+   * 
    * @type {string}
    * @default null
    */
@@ -224,21 +232,6 @@ const base = function (props, context, dependencies)
     return !embed.value && stage.value == 0 && !isDisabled.value && !preparing.value
   })
 
-  /**
-   * 
-   * 
-   * @type {object}
-   */
-  const previewOptions = computed(() => {
-    return {
-      link: link.value,
-      clickable: clickable.value,
-      filename: filename.value,
-      preview: preview.value,
-      uploaded: uploaded.value,
-    }
-  })
-
   // =============== METHODS ==============
 
   /**
@@ -266,6 +259,8 @@ const base = function (props, context, dependencies)
         path: path.value,
       }))
 
+      hasUploadError.value = false
+
       let response = await axios.value[fileMethods.value.uploadTemp](fileEndpoints.value.uploadTemp, data, {
         onUploadProgress: (e) => {
           progress.value = Math.round((e.loaded * 100) / e.total)
@@ -279,6 +274,7 @@ const base = function (props, context, dependencies)
       progress.value = 0
 
       if (!axios.value.isCancel(e)) {
+        hasUploadError.value = true
         handleError(form$.value.__(`laraform.elements.${type.value.toLowerCase()}.uploadError`, { filename: filename.value }), e)
       }
 
@@ -296,6 +292,7 @@ const base = function (props, context, dependencies)
    */
   const remove = async () => {
     removing.value = true
+    hasUploadError.value = false
 
     try {
       if (stage.value === 3 && !softRemove.value) {
@@ -303,7 +300,7 @@ const base = function (props, context, dependencies)
           return false
         }
 
-        await form$.value.$laraform.services.axios[fileMethods.value.remove](fileEndpoints.value.remove,
+        await axios.value[fileMethods.value.remove](fileEndpoints.value.remove,
           Object.assign({}, params.value, {
             file: value.value,
             formKey: form$.value.options.formKey,
@@ -313,7 +310,7 @@ const base = function (props, context, dependencies)
       }
 
       else if (stage.value === 2 && !softRemove.value) {
-        await form$.value.$laraform.services.axios[fileMethods.value.removeTemp](fileEndpoints.value.removeTemp,
+        await axios.value[fileMethods.value.removeTemp](fileEndpoints.value.removeTemp,
           Object.assign({}, params.value, {
             file: value.value.tmp,
             formKey: form$.value.options.formKey,
@@ -457,6 +454,7 @@ const base = function (props, context, dependencies)
 
   return {
     file,
+    hasUploadError,
     base64,
     progress,
     preparing,
@@ -471,7 +469,6 @@ const base = function (props, context, dependencies)
     canRemove,
     canUploadTemp,
     canSelect,
-    previewOptions,
     uploadTemp,
     remove,
     prepare,
