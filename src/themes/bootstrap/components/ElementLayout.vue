@@ -28,12 +28,16 @@
       return {
         defaultClasses: {
           container: '',
-          outerWrapper: 'form-group row',
+          outerWrapper: 'row',
+          outerWrapperSingle: 'form-group',
+          outerWrapperMultiple: '',
           fieldWrapper: '',
         },
         classKeys: {
           element: 'container',
-          label: 'labelWrapper',
+          outerWrapper: 'outerWrapper',
+          outerWrapperSingle: 'outerWrapperSingle',
+          outerWrapperMultiple: 'outerWrapperMultiple',
           field: 'fieldWrapper',
         }
       }

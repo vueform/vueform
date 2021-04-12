@@ -1,14 +1,14 @@
 <template>
   <span :class="classes.container" v-show="visible">
-      <slot v-if="hasLabel" name="label"></slot>
-      <slot name="info"></slot>
-      <slot name="before"></slot>
-      <slot name="field"></slot>
-      <slot name="between"></slot>
-      <slot name="description"></slot>
-      <slot name="error"></slot>
-      <slot name="message"></slot>
-      <slot name="after"></slot>
+    <slot v-if="hasLabel" name="label"></slot>
+    <slot name="info"></slot>
+    <slot name="before"></slot>
+    <slot name="field"></slot>
+    <slot name="between"></slot>
+    <slot name="description"></slot>
+    <slot name="error"></slot>
+    <slot name="message"></slot>
+    <slot name="after"></slot>
   </span>
 </template>
 
@@ -18,7 +18,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-element-inline',
+          container: '',
         },
       }
     },

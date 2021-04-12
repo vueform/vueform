@@ -71,8 +71,5 @@
       font-weight: 600;
       margin-top: 12px;
     }
-
-    .dnd-description {
-    }
   }
 </style>

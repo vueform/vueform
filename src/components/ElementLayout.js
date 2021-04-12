@@ -4,8 +4,16 @@ import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'ElementLayout',
+  props: {
+    multiple: {
+      type: [Boolean],
+      required: false,
+      default: false,
+    },
+  },
   setup(props, context)
   {
+    const { multiple } = toRefs(props)
     const { classKeys } = toRefs(context.data)
 
     // ============ DEPENDENCIES ============
@@ -32,8 +40,10 @@ export default {
 
       classList = mergeComponentClasses(classList, {
         [classKeys.value.element]: el$.value.columnsObject.classes.element,
-        [classKeys.value.label]: el$.value.columnsObject.classes.label,
         [classKeys.value.field]: el$.value.columnsObject.classes.field,
+        [classKeys.value.outerWrapper]: multiple.value
+          ? classList[classKeys.value.outerWrapperMultiple]
+          : classList[classKeys.value.outerWrapperSingle],
       })
 
       // Add element's main class to main class
