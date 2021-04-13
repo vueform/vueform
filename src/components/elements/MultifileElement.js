@@ -14,6 +14,7 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useDefault from './../../composables/elements/useDefault'
 import useEvents from './../../composables/useEvents'
 import useSort from './../../composables/elements/useSort'
+import useSorting from './../../composables/elements/useSorting'
 import useOrder from './../../composables/elements/useOrder'
 import usePath from './../../composables/elements/usePath'
 import useInput from './../../composables/elements/useInput'
@@ -24,11 +25,12 @@ import useValue from './../../composables/elements/useValue'
 
 import { multifile as usePrototype } from './../../composables/elements/usePrototype'
 import { multifile as useDrop } from './../../composables/elements/useDrop'
+import { multifile as useClasses } from './../../composables/elements/useClasses'
 import { list as useData } from './../../composables/elements/useData'
-import { list as useClasses } from './../../composables/elements/useClasses'
 import { list as useValidation } from './../../composables/elements/useValidation'
 import { list as useBaseElement } from './../../composables/elements/useBaseElement'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
+import { array as useEmpty } from './../../composables/elements/useEmpty'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -56,6 +58,11 @@ export default {
       type: [Boolean],
       required: false,
       default: false
+    },
+    view: {
+      type: [String],
+      required: false,
+      default: null,
     },
     debounce: {
       required: false,
@@ -153,6 +160,7 @@ export default {
     const children = useChildren(props, context)
     const input = useInput(props, context)
     const prototype = usePrototype(props, context)
+    const sorting = useSorting(props, context)
 
     const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
@@ -192,6 +200,11 @@ export default {
       dataPath: path.dataPath,
       form$: form$.form$,
     }, { init: false })
+
+    const empty = useEmpty(props, context, {
+      value: value.value,
+      nullValue: nullValue.nullValue,
+    })
 
     const elements = useElements(props, context, {
       theme: theme.theme,
@@ -263,17 +276,20 @@ export default {
       accept: multifile.accept,
     })
 
+    const classes = useClasses(props, context, {
+      form$: form$.form$,
+      theme: theme.theme,
+      isDisabled: disabled.isDisabled,
+      sorting: sorting.sorting,
+    })
+
     const sort = useSort(props, context, {
       isDisabled: disabled.isDisabled,
       fire: events.fire,
       refreshOrderStore: order.refreshOrderStore,
       value: value.value,
-    })
-
-    const classes = useClasses(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      isDisabled: disabled.isDisabled,
+      sorting: sorting.sorting,
+      classes: classes.classes,
     })
 
     useWatchValue(props, context, {
@@ -316,12 +332,14 @@ export default {
       ...data,
       ...events,
       ...sort,
+      ...sorting,
       ...default_,
       ...order,
       ...prototype,
       ...multifile,
       ...input,
       ...drop,
+      ...empty,
     }
   } 
 }

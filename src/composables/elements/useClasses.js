@@ -90,10 +90,6 @@ const base = function(props, context, dependencies)
 const list = function(props, context, dependencies)
 {
   const {
-    sort,
-  } = toRefs(props)
-
-  const {
     mainClass,
     classes: baseClasses,
     defaultClasses,
@@ -116,14 +112,66 @@ const list = function(props, context, dependencies)
     let classes = _.clone(baseClasses.value)
 
     classes = mergeComponentClasses(classes, {
-      [classKeys.value.sortable]: {
-        [classes.sortable]: sort.value
+      [classKeys.value.list]: {
+        [classes.disabled]: isDisabled.value
       },
+    })
+
+    return classes
+  })
+
+  return {
+    classes,
+    mainClass,
+    defaultClasses,
+    classKeys,
+  }
+}
+
+const multifile = function(props, context, dependencies)
+{
+  const {
+    view,
+  } = toRefs(props)
+
+  const {
+    mainClass,
+    classes: baseClasses,
+    defaultClasses,
+    classKeys
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES ============
+
+  const isDisabled = dependencies.isDisabled
+  const sorting = dependencies.sorting
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`.
+   * 
+   * @type {object}
+   * @option
+   */
+  const classes = computed(() => {
+    let classes = _.clone(baseClasses.value)
+
+    classes = mergeComponentClasses(classes, {
       [classKeys.value.add]: {
         [classes.disabled]: isDisabled.value
       },
       [classKeys.value.remove]: {
         [classes.disabled]: isDisabled.value
+      },
+      [classKeys.value.list]: {
+        [classes.listDefault]: view.value !== 'gallery',
+        [classes.listGallery]: view.value === 'gallery',
+        [classes.sorting]: sorting.value,
+      },
+      [classKeys.value.listItem]: {
+        [classes.listItemDefault]: view.value !== 'gallery',
+        [classes.listItemGallery]: view.value === 'gallery',
       },
     })
 
@@ -238,6 +286,7 @@ export {
   list,
   file,
   button,
+  multifile,
 }
 
 export default base

@@ -66,6 +66,22 @@
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
 
+  .sortable-sorting {
+    .gallery-preview {
+      &:hover {
+        .overlay {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        .remove {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+    }
+  }
+
   .gallery-preview {
     padding: 3px;
     font-family: $input-font-family;
@@ -74,7 +90,6 @@
     border: $input-border-width solid $input-border-color;
     @include border-radius($input-border-radius, 0);
     color: $input-color;
-    min-height: 38px;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;

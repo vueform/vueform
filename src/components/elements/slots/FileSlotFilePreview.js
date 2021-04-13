@@ -50,7 +50,7 @@ export default {
     })
 
     const canRemove = computed(() => {
-      return el$.value.progress || el$.value.stage == 1
+      return el$.value.canRemove || el$.value.uploading
     })
 
     const canUpload = computed(() => {

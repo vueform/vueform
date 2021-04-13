@@ -18,6 +18,8 @@ const base = function(props, context, dependencies, options)
   const fire = dependencies.fire
   const refreshOrderStore = dependencies.refreshOrderStore
   const value = dependencies.value
+  const classes = dependencies.classes
+  const sorting = dependencies.sorting
 
   // ================ DATA ================
 
@@ -40,7 +42,10 @@ const base = function(props, context, dependencies, options)
 
   const initSortable = () => {
     sortable.value = new Sortable(list.value, {
-      handle: `.${defaultClasses.value[classKeys.value.handle]}`,
+      handle: `.${classes.value[classKeys.value.handle]}`,
+      onStart: () => {
+        sorting.value = true
+      },
       onEnd: handleSort,
     })
   }
@@ -57,6 +62,8 @@ const base = function(props, context, dependencies, options)
    * @event sort
    */
   const handleSort = ({ oldIndex, newIndex, item }) => {
+    sorting.value = false
+
     if (oldIndex === newIndex || isDisabled.value) {
       return
     }

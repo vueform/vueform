@@ -45,6 +45,7 @@ const multifile = function(props, context, dependencies, options = {})
     storeFile,
     storeOrder,
     image,
+    view,
    } = toRefs(props)
 
   // =============== PRIVATE ==============
@@ -88,6 +89,8 @@ const multifile = function(props, context, dependencies, options = {})
         type: type.value,
         auto: auto.value,
         image: image.value,
+        view: view.value,
+        layout: view.value === 'gallery' ? 'ElementLayoutInline' : 'ElementLayout',
       }, file.value)
     }
 
@@ -99,6 +102,8 @@ const multifile = function(props, context, dependencies, options = {})
           type: type.value,
           auto: auto.value,
           image: image.value,
+          view: view.value,
+          layout: view.value === 'gallery' ? 'ElementLayoutInline' : 'ElementLayout',
           embed: true,
         }, file.value)},
 

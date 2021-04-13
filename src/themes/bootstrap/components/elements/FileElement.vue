@@ -52,6 +52,7 @@
       return {
         defaultClasses: {
           container: '',
+          selectButton: 'btn btn-light',
           removing: 'removing',
         }
       }
