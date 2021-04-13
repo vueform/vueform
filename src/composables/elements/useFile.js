@@ -1,4 +1,4 @@
-import { computed, toRefs, ref, watch } from 'composition-api'
+import { computed, toRefs, ref, watch, nextTick } from 'composition-api'
 import convertFormData from './../../utils/convertFormData'
 
 const base = function (props, context, dependencies)
@@ -366,6 +366,11 @@ const base = function (props, context, dependencies)
     previewLoaded.value = false
 
     let img = el$.value.$el.querySelector('img')
+
+    if (img.complete) {
+      previewLoaded.value = true
+      return
+    }
     
     let listener = () => {
       loadImg()
@@ -389,10 +394,6 @@ const base = function (props, context, dependencies)
     let file = e.target.files[0]
 
     update(file || null)
-
-    if (image.value && view.value !== 'file') {
-      loadPreview()
-    }
 
     input.value.value = ''
 
@@ -457,9 +458,11 @@ const base = function (props, context, dependencies)
       return
     }
 
-    if (!isImageType.value || !(file.value instanceof Blob)) {
+    if (!isImageType.value || !(file.value instanceof Blob) || view.value === 'file') {
       return
     }
+    
+    loadPreview()
 
     let reader = new FileReader()
   
