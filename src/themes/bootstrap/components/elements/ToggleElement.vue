@@ -3,7 +3,7 @@
 
     <template v-slot:field>
 
-      <div :class="classes.inputContainer">
+      <div :class="classes.wrapper">
         <Toggle
           :value="value"
           :modelValue="value"
@@ -40,8 +40,8 @@
       return {
         defaultClasses: {
           container: '',
+          wrapper: 'toggle-wrapper',
           toggleText: 'toggle-text',
-          inputContainer: 'input-group',
         }
       }
     }
@@ -52,6 +52,13 @@
   @import 'node_modules/bootstrap/scss/_functions.scss';
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
+
+  .toggle-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: $input-height;
+  }
 
   .toggle-input {
     margin-right: 10px;
@@ -75,6 +82,7 @@
       padding-left: 24px;
       padding-left: var(--toggle-height);
       padding-right: 6px;
+      margin-bottom: 0;
 
       &:before {
         content: " ";

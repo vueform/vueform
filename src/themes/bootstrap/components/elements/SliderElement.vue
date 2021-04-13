@@ -2,14 +2,16 @@
   <component :is="elementLayout">
     <template v-slot:field>
 
-      <Slider
-        :value="value"
-        :modelValue="value"
-        v-bind="fieldOptions"
-        :id="fieldId"
-        ref="input"
-        @change="handleChange"
-      />
+      <div :class="classes.wrapper">
+        <Slider
+          :value="value"
+          :modelValue="value"
+          v-bind="fieldOptions"
+          :id="fieldId"
+          ref="input"
+          @change="handleChange"
+        />
+      </div>
 
     </template>
 
@@ -33,6 +35,7 @@
       return {
         defaultClasses: {
           container: '',
+          wrapper: 'slider-wrapper',
         }
       }
     }
@@ -43,6 +46,10 @@
   @import 'node_modules/bootstrap/scss/_functions.scss';
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
+
+  .slider-wrapper {
+    margin-top: calc((#{$input-height} - 6px) / 2)
+  }
 
   /* Functional styling;
   * These styles are required for noUiSlider to function.
@@ -64,7 +71,6 @@
 
   .slider-target {
     position: relative;
-    margin-top: calc(#{$input-padding-y} + 1px);
   }
 
   .slider-base,
