@@ -34,7 +34,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-checkboxgroup',
+          container: '',
           checkboxGroup: 'checkbox-group',
         }
       }

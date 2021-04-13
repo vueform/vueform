@@ -34,7 +34,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-radiogroup',
+          container: '',
           radioGroup: 'radio-group',
         }
       }

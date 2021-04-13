@@ -11,7 +11,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-multiselect',
+          container: '',
           select: 'form-control',
           selectNativePlaceholder: 'native-select-placeholder',
         }

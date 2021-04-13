@@ -25,7 +25,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-static'
+          container: ''
         }
       }
     }

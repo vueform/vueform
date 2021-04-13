@@ -52,7 +52,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-location',
+          container: '',
           input: 'form-control',
         }
       }
