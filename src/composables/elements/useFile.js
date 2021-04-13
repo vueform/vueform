@@ -230,7 +230,7 @@ const base = function (props, context, dependencies)
    * @type {boolean}
    */
   const canUploadTemp = computed(() => {
-    return stage.value === 1 && !auto.value && !uploading.value
+    return stage.value === 1 && !auto.value && !uploading.value && !isDisabled.value
   })
 
   /**

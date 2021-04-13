@@ -36,12 +36,11 @@
             :is="component(prototype)"
             v-if="prototype.type"
             v-bind="prototype"
-            :disabled="isDisabled"
             :embed="true"
             :name="i"
             @remove="remove(i)"
           />
-          <span :class="classes.handle"><span></span></span>
+          <span v-if="!isDisabled && sort" :class="classes.handle"><span></span></span>
         </div>
       </div>
 
@@ -69,7 +68,7 @@
           listItem: '',
           listItemDefault: 'row',
           listItemGallery: 'mr-2 mb-2',
-          disabled: 'disabled',
+          disabled: 'is-disabled',
           selectButton: 'btn btn-light',
           handle: 'list-handle',
           sorting: 'sortable-sorting',

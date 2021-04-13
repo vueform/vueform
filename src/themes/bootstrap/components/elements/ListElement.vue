@@ -16,18 +16,18 @@
           </slot>
           <a
             href=""
-            v-if="!isDisabled"
+            v-if="hasRemove"
             :class="classes.remove"
             @click.prevent="handleRemove(i)"
           ><span></span></a>
-          <span v-if="!isDisabled" :class="classes.handle"><span></span></span>
+          <span v-if="hasSort" :class="classes.handle"><span></span></span>
         </div>
         
       </div>
 
       <a
         href=""
-        v-if="!isDisabled"
+        v-if="hasAdd"
         :class="classes.add"
         @click.prevent="handleAdd"
         v-html="__('laraform.elements.list.add')"

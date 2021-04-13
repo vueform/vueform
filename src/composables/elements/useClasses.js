@@ -99,6 +99,7 @@ const list = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const isDisabled = dependencies.isDisabled
+  const sorting = dependencies.sorting
 
   // ============== COMPUTED ==============
 
@@ -113,7 +114,8 @@ const list = function(props, context, dependencies)
 
     classes = mergeComponentClasses(classes, {
       [classKeys.value.list]: {
-        [classes.disabled]: isDisabled.value
+        [classes.disabled]: isDisabled.value,
+        [classes.sorting]: sorting.value,
       },
     })
 
@@ -158,16 +160,11 @@ const multifile = function(props, context, dependencies)
     let classes = _.clone(baseClasses.value)
 
     classes = mergeComponentClasses(classes, {
-      [classKeys.value.add]: {
-        [classes.disabled]: isDisabled.value
-      },
-      [classKeys.value.remove]: {
-        [classes.disabled]: isDisabled.value
-      },
       [classKeys.value.list]: {
         [classes.listDefault]: view.value !== 'gallery',
         [classes.listGallery]: view.value === 'gallery',
         [classes.sorting]: sorting.value,
+        [classes.disabled]: isDisabled.value,
       },
       [classKeys.value.listItem]: {
         [classes.listItemDefault]: view.value !== 'gallery',

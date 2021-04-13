@@ -21,6 +21,7 @@ import useWatchValue from './../../composables/elements/useWatchValue'
 import useChildren from './../../composables/elements/useChildren'
 import useDefault from './../../composables/elements/useDefault'
 import useValue from './../../composables/elements/useValue'
+import useControls from './../../composables/elements/useControls'
 
 import { list as useData } from './../../composables/elements/useData'
 import { list as useClasses } from './../../composables/elements/useClasses'
@@ -100,6 +101,25 @@ export default {
       required: false,
       type: [Boolean],
       default: false
+    },
+    min: {
+      required: false,
+      type: [Number],
+      default: -1,
+    },
+    max: {
+      required: false,
+      type: [Number],
+      default: -1,
+    },
+    controls: {
+      required: false,
+      type: [Object],
+      default: () => ({
+        add: true,
+        remove: true,
+        sort: true,
+      })
     },
     object: {
       required: false,
@@ -186,6 +206,11 @@ export default {
       dataPath: path.dataPath,
       form$: form$.form$,
     }, { init: false })
+
+    const controls = useControls(props, context, {
+      isDisabled: disabled.isDisabled,
+      value: value.value,
+    })
 
     const empty = useEmpty(props, context, {
       value: value.value,
@@ -293,6 +318,7 @@ export default {
       ...order,
       ...prototype,
       ...empty,
+      ...controls,
     }
   } 
 }
