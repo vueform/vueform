@@ -1,5 +1,5 @@
 <template>
-  <li :class="classes.container" v-if="visible">
+  <li :class="classes.container" v-show="visible">
     <a
       v-if="isLabelComponent"
       href=""
@@ -56,6 +56,15 @@
     text-align: center;
     padding: 0 10px;
 
+    &:nth-child(1):before, &:nth-child(1) a:before, &:nth-child(1) a:after { z-index: 10; }
+    &:nth-child(2):before, &:nth-child(2) a:before, &:nth-child(2) a:after { z-index: 9; }
+    &:nth-child(3):before, &:nth-child(3) a:before, &:nth-child(3) a:after { z-index: 8; }
+    &:nth-child(4):before, &:nth-child(4) a:before, &:nth-child(4) a:after { z-index: 7; }
+    &:nth-child(5):before, &:nth-child(5) a:before, &:nth-child(5) a:after { z-index: 6; }
+    &:nth-child(6):before, &:nth-child(6) a:before, &:nth-child(6) a:after { z-index: 5; }
+    &:nth-child(7):before, &:nth-child(7) a:before, &:nth-child(7) a:after { z-index: 4; }
+    &:nth-child(8):before, &:nth-child(8) a:before, &:nth-child(8) a:after { z-index: 3; }
+
     &:before {
       content: " ";
       display: inline-block;
@@ -66,27 +75,27 @@
       left: 0;
       right: 50%;
       transition: .3s;
-      z-index: 2;
     }
 
     &:after {
       content: " ";
       display: inline-block;
       height: 4px;
-      background: $gray-300;
+      background: $primary;
       position: absolute;
       top: -12px;
       left: 50%;
       right: 0;
       transition: .3s;
-      z-index: 2;
     }
 
     a {
       text-decoration: none !important;
+      color: $body-color;
 
       &:hover, &:focus, &:active {
         text-decoration: none !important;
+        color: $body-color;
       }
 
       &:before {
@@ -173,13 +182,10 @@
       }
     }
 
-    a {
-      color: $input-color;
-    }
-
     &.is-disabled {
       &:before {
         background: $gray-300;
+        left: -100%;
       }
 
       a {
@@ -193,7 +199,7 @@
 
     &.is-completed {
       &:after {
-        background: $primary;
+        // background: $primary;
       }
 
       a {
@@ -219,23 +225,6 @@
       }
     }
 
-    &.is-pending {
-      // &:after {
-      //   background: $primary;
-      // }
-
-      a {
-        &:after {
-          background: url('data:image/svg+xml;utf8,<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="hourglass-start" class="svg-inline--fa fa-hourglass-start fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="white" d="M372 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h4c0 80.564 32.188 165.807 97.18 208C47.898 298.381 16 383.9 16 464h-4c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h360c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-4c0-80.564-32.188-165.807-97.18-208C336.102 213.619 368 128.1 368 48h4c6.627 0 12-5.373 12-12V12c0-6.627-5.373-12-12-12zm-52 464H64c0-101.62 57.308-184 128-184s128 82.38 128 184z"></path></svg>');
-          background-size: 8px 8px;
-          background-position: 0px 0px;
-          background-repeat: no-repeat;
-          transform: scale(1);
-          border-radius: 0;
-        }
-      }
-    }
-
     &.has-errors {
       a {
         color: $danger;
@@ -256,9 +245,33 @@
         }
       }
     }
+
+    &.is-pending {
+      a {
+        &:after {
+          animation: 1s linear infinite step-loading;
+          background: #ffffff;
+          top: -14px;
+          border-radius: 50%;
+        }
+      }
+    }
   }
 
-  .form-wizard-controls {
-    margin-bottom: 20px;
+  @keyframes step-loading {
+    0% {
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+    }
+
+    20% {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+
+    100% {
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+    }
   }
 </style>

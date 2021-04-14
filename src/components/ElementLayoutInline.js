@@ -26,14 +26,17 @@ export default {
      * @private
      */
     const classes = computed(() => {
-      let classList = _.clone(baseClasses.value)
+      let classes = _.clone(baseClasses.value)
 
       // Add element's main class to main class
-      classList = mergeComponentClasses(classList, {
-        [mainClass.value]: el$.value.classes[el$.value.mainClass]
+      classes = mergeComponentClasses(classes, {
+        [mainClass.value]: {
+          [el$.value.classes[el$.value.mainClass]]: true,
+          [classes.error]: !el$.value.isStatic ? !!el$.value.error : false
+        }
       })
 
-      return classList
+      return classes
     })
 
     /**

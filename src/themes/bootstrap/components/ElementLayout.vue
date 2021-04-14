@@ -29,6 +29,7 @@
           outerWrapperSingle: 'form-group',
           outerWrapperMultiple: '',
           fieldWrapper: '',
+          error: 'has-error',
         },
         classKeys: {
           element: 'container',

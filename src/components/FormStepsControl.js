@@ -1,6 +1,7 @@
 import { computed, toRefs } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useLabel from './../composables/useLabel'
+import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'FormStepsControl',
@@ -21,11 +22,28 @@ export default {
     const {
       form$,
       theme,
-      classes,
+      classes: baseClasses,
       mainClass,
       components,
       defaultClasses,
     } = useFormComponent(props, context)
+
+    // ============== COMPUTED ==============
+    
+    /**
+     * 
+     * 
+     * @private
+     */
+    const classes = computed(() => {
+      let classes = _.clone(baseClasses.value)
+
+      classes = mergeComponentClasses(classes, {
+        [mainClass.value]: classes[type.value]
+      })
+
+      return classes
+    })
 
     /**
      * 

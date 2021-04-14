@@ -15,6 +15,10 @@
           :visible="!empty"
         />
 
+        <ElementLoader
+          v-show="pending"
+        />
+
         <input
           :value="model"
           :type="inputType"

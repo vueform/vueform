@@ -29,3 +29,9 @@
     }
   }
 </script>
+
+<style lang="scss">
+  .input-group-append {
+    order: 2;
+  }
+</style>

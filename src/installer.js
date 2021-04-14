@@ -52,6 +52,7 @@ import FormStep from './components/FormStep'
 import FormElements from './components/FormElements'
 import ElementLayout from './components/ElementLayout'
 import ElementLayoutInline from './components/ElementLayoutInline'
+import ElementLoader from './components/ElementLoader'
 import ElementLabelFloating from './components/ElementLabelFloating'
 import ElementLabel from './components/ElementLabel'
 import ElementInfo from './components/ElementInfo'
@@ -124,6 +125,7 @@ const components = {
   FormElements,
   ElementLayout,
   ElementLayoutInline,
+  ElementLoader,
   ElementLabelFloating,
   ElementLabel,
   ElementInfo,

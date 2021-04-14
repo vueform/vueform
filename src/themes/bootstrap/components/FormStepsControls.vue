@@ -12,7 +12,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-steps-controls'
+          container: 'd-flex mt-3 justify-content-between'
         }
       }
     }

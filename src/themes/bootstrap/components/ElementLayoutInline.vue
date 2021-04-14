@@ -18,6 +18,7 @@
       return {
         defaultClasses: {
           container: '',
+          error: 'has-error',
         },
       }
     },

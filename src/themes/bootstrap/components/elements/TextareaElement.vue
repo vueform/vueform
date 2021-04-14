@@ -15,6 +15,10 @@
           :visible="!empty"
         />
 
+        <ElementLoader
+          v-show="pending"
+        />
+
         <textarea
           :value="model"
           :name="name"

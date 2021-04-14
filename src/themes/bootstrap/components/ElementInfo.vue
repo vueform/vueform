@@ -53,7 +53,7 @@
     top: -4px;
     visibility: hidden;
     transition: .3s;
-    z-index: 3;
+    z-index: 20;
     width: 200px;
   }
 
