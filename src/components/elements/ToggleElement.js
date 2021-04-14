@@ -37,7 +37,7 @@ export default {
   name: 'ToggleElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change'],
-  // slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
+  // slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {
     type: {
       required: false,
@@ -199,7 +199,7 @@ export default {
       components: components.components,
     }, {
       slots: [
-        'label', 'info', 'description', 'error',
+        'label', 'description', 'error',
         'message', 'before', 'between', 'after'
       ]
     })

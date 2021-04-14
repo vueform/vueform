@@ -22,7 +22,7 @@ import HasView from './../../mixins/HasView'
 export default {
   name: 'StaticElement',
   mixins: [BaseElement, HasView],
-  // slots: ['label', 'info', 'description', 'before', 'between', 'after'],
+  // slots: ['label', 'description', 'before', 'between', 'after'],
   props: {
     type: {
       required: false,
@@ -93,7 +93,7 @@ export default {
       components: components.components,
     }, {
       slots: [
-        'label', 'info', 'description',
+        'label', 'description',
         'before', 'between', 'after',
       ]
     })

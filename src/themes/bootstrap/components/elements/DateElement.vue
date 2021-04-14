@@ -2,23 +2,40 @@
   <component :is="elementLayout">
     <template v-slot:field>
 
-      <ElementLabelFloating
-        v-if="floating"
-        :visible="!empty"
-      />
-      
-      <FlatpickrWrapper
-        :value="model"
-        :modelValue="model"
-        :options="fieldOptions"
-        :id="fieldId"
-        :class="classes.input"
-        :placeholder="placeholder"
-        :disabled="isDisabled"
-        :readonly="readonly"
-        @change="handleChange"
-        ref="input"
-      />
+
+      <div :class="classes.inputContainer">
+        <slot name="addon-before">
+          <component :is="fieldSlots.addonBefore"
+            v-if="addons.before"
+            type="before"
+          />
+        </slot>
+
+        <ElementLabelFloating
+          v-if="floating"
+          :visible="!empty"
+        />
+        
+        <FlatpickrWrapper
+          :value="model"
+          :modelValue="model"
+          :options="fieldOptions"
+          :id="fieldId"
+          :class="classes.input"
+          :placeholder="placeholder"
+          :disabled="isDisabled"
+          :readonly="readonly"
+          @change="handleChange"
+          ref="input"
+        />
+
+        <slot name="addon-after">
+          <component :is="fieldSlots.addonAfter"
+            v-if="addons.after"
+            type="after"
+          />
+        </slot>
+      </div>
 
     </template>
 
@@ -37,6 +54,7 @@
       return {
         defaultClasses: {
           container: '',
+          inputContainer: 'input-group',
           input: 'form-control',
         }
       }
@@ -48,6 +66,35 @@
   @import 'node_modules/bootstrap/scss/_functions.scss';
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
+
+  /* Border radius fixes for pre- suffix */
+
+  .input-group > .flatpickr-wrapper {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+    margin-bottom: 0;
+  }
+
+  .input-group > :not(.input-group-prepend) ~ .flatpickr-wrapper:not(:first-child) .form-control,
+  .input-group:not(.has-validation) > :not(.input-group-prepend) ~ .flatpickr-wrapper .form-control {
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+  }
+
+  .input-group > .input-group-prepend ~ .flatpickr-wrapper:not(:first-child) .form-control,
+  .input-group:not(.has-validation) > .input-group-prepend ~ .flatpickr-wrapper .form-control {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .input-group:not(.has-validation) > .flatpickr-wrapper:not(:last-child) .form-control{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  /* Flatpickr styles */
 
   .flatpickr-input.form-control[readonly="readonly"] {
     background: $input-bg;

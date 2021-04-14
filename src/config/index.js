@@ -14,6 +14,8 @@ const config = {
     }
   },
 
+  floatPlaceholder: true,
+
   displayErrors: true,
 
   language: 'en',

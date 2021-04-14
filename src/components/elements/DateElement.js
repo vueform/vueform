@@ -4,6 +4,7 @@ import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
 import useLayout from './../../composables/elements/useLayout'
 import useInput from './../../composables/elements/useInput'
+import useAddons from './../../composables/elements/useAddons'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
 import useNullValue from './../../composables/elements/useNullValue'
@@ -38,7 +39,7 @@ export default {
   name: 'DateElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change'],
-  // slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
+  // slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after', 'addonBefore', 'addonAfter',],
   props: {
     type: {
       required: false,
@@ -49,6 +50,11 @@ export default {
       required: false,
       type: [String, Date],
       default: null
+    },
+    addons: {
+      required: false,
+      type: [Object],
+      default: () => ({})
     },
     debounce: {
       required: false,
@@ -142,6 +148,7 @@ export default {
     const theme = useTheme(props, context)
     const layout = useLayout(props, context)
     const input = useInput(props, context)
+    const addons = useAddons(props, context)
     const path = usePath(props, context)
     const disabled = useDisabled(props, context)
     const nullValue = useNullValue(props, context)
@@ -238,8 +245,9 @@ export default {
       components: components.components,
     }, {
       slots: [
-        'label', 'info', 'description', 'error',
-        'message', 'before', 'between', 'after'
+        'label', 'description', 'error',
+        'message', 'before', 'between', 'after',
+        'addonBefore', 'addonAfter',
       ]
     })
 
@@ -270,6 +278,7 @@ export default {
       ...theme,
       ...layout,
       ...input,
+      ...addons,
       ...path,
       ...conditions,
       ...value,

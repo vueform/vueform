@@ -54,6 +54,7 @@
       return {
         defaultClasses: {
           container: '',
+          inputContainer: 'input-group',
           textarea: 'form-control',
         }
       }

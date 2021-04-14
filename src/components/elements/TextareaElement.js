@@ -37,7 +37,7 @@ export default {
   name: 'TextareaElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change'],
-  // slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after', 'addonBefore', 'addonAfter'],
+  // slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after', 'addonBefore', 'addonAfter'],
   props: {
     type: {
       required: false,
@@ -185,7 +185,7 @@ export default {
       components: components.components,
     }, {
       slots: [
-        'label', 'info', 'description', 'error',
+        'label', 'description', 'error',
         'message', 'before', 'between', 'after',
         'addonBefore', 'addonAfter',
       ]

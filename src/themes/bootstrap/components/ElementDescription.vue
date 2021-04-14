@@ -8,7 +8,7 @@
     data() {
       return {
         defaultClasses: {
-          fieldDescription: 'lf-field-description',
+          fieldDescription: 'form-text text-muted',
         }
       }
     }

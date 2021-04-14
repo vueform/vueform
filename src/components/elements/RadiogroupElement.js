@@ -33,7 +33,7 @@ export default {
   name: 'RadiogroupElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change'],
-  // slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after', 'radio'],
+  // slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after', 'radio'],
   props: {
     type: {
       required: false,
@@ -157,7 +157,7 @@ export default {
       components: components.components,
     }, {
       slots: [
-        'label', 'info', 'description', 'error',
+        'label', 'description', 'error',
         'message', 'before', 'between', 'after',
         'radio',
       ]

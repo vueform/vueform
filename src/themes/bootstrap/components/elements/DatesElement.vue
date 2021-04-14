@@ -8,6 +8,7 @@
       return {
         defaultClasses: {
           container: '',
+          inputContainer: 'input-group',
           input: 'form-control',
         }
       }

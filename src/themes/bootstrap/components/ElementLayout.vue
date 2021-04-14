@@ -2,10 +2,7 @@
   <div :class="classes.container" v-show="visible">
     <div :class="classes.outerWrapper">
 
-      <template v-if="hasLabel">
-        <slot name="label"></slot>
-        <slot name="info"></slot>
-      </template>
+      <slot v-if="hasLabel" name="label"></slot>
 
       <div :class="classes.fieldWrapper">
         <slot name="before"></slot>

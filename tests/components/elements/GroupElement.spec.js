@@ -11,10 +11,4 @@ export default runElementTests('group', {
   events: {
     events: ['change']
   },
-  slots: {
-    slots: [
-      'label', 'info', 'description', 'message',
-      'before', 'between', 'after'
-    ]
-  }
 })

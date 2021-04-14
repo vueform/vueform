@@ -1,5 +1,6 @@
-import { computed } from 'composition-api'
+import { computed, toRefs } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
+import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'ElementLabelFloating',
@@ -11,12 +12,14 @@ export default {
   },
   setup(props, context)
   {    
+    const { visible } = toRefs(props)
+
     // ============ DEPENDENCIES ============
 
     const {
     el$,
     form$,
-    classes,
+    classes: baseClasses,
     components,
     mainClass,
     theme,
@@ -25,16 +28,28 @@ export default {
 
     // ============== COMPUTED ==============
 
-  /**
-   * 
-   * 
-   * @private
-   */
+    /**
+     * 
+     * 
+     * @private
+     */
+    const classes = computed(() => {
+      return mergeComponentClasses(_.clone(baseClasses.value), {
+        [mainClass.value]: {
+          [baseClasses.value.visible]: visible.value,
+        },
+      })
+    })
+
+    /**
+     * 
+     * 
+     * @private
+     */
     const floating = computed(() => {
       return el$.value.floating
     })
     
-
     return {
       el$,
       form$,

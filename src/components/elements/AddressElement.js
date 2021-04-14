@@ -33,7 +33,7 @@ import HasData from './../../mixins/HasData'
 export default {
   name: 'AddressElement',
   mixins: [BaseElement, HasView, HasChange, HasData],
-  // slots: ['label', 'info', 'description', 'message', 'before', 'between', 'after'],
+  // slots: ['label', 'description', 'message', 'before', 'between', 'after'],
   props: {
     type: {
       required: false,
@@ -159,7 +159,7 @@ export default {
       components: components.components,
     }, {
       slots: [
-        'label', 'info', 'description', 'message',
+        'label', 'description', 'message',
         'before', 'between', 'after'
       ]
     })
