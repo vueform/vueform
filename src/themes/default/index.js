@@ -12,6 +12,7 @@ import FormStep from './components/FormStep'
 import FormElements from './components/FormElements'
 import ElementLayout from './components/ElementLayout'
 import ElementLayoutInline from './components/ElementLayoutInline'
+import ElementLoader from './components/ElementLoader'
 import ElementLabelFloating from './components/ElementLabelFloating'
 import ElementLabel from './components/ElementLabel'
 import ElementInfo from './components/ElementInfo'
@@ -56,6 +57,7 @@ import TTrixElement from './components/elements/TTrixElement'
 import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
 import FileSlotFilePreview from './components/elements/slots/FileSlotFilePreview'
 import FileSlotImagePreview from './components/elements/slots/FileSlotImagePreview'
+import FileSlotGalleryPreview from './components/elements/slots/FileSlotGalleryPreview'
 import MultiselectSlotNoOptions from './components/elements/slots/MultiselectSlotNoOptions'
 import MultiselectSlotNoResults from './components/elements/slots/MultiselectSlotNoResults'
 import MultiselectSlotOption from './components/elements/slots/MultiselectSlotOption'
@@ -81,6 +83,7 @@ const components = {
   FormElements,
   ElementLayout,
   ElementLayoutInline,
+  ElementLoader,
   ElementLabelFloating,
   ElementLabel,
   ElementInfo,
@@ -99,6 +102,7 @@ const components = {
   CheckboxgroupSlotCheckbox,
   FileSlotFilePreview,
   FileSlotImagePreview,
+  FileSlotGalleryPreview,
   MultiselectSlotNoOptions,
   MultiselectSlotNoResults,
   MultiselectSlotOption,

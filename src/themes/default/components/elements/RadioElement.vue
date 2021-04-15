@@ -2,23 +2,25 @@
   <component :is="elementLayout">
     <template v-slot:field>
       
-      <div :class="classes.inputContainer">
-        <input
-          type="radio"
-          v-model="value"
-          :value="radioValue"
-          :class="classes.input"
-          :name="fieldName"
-          :id="fieldId"
-          :disabled="isDisabled"
-          ref="input"
-        />
-        <label 
-          :class="classes.label"
-          :for="name"
-          v-html="text"
-        >
-        </label>
+      <div :class="classes.wrapper">
+        <div :class="classes.inputContainer">
+          <input
+            type="radio"
+            v-model="value"
+            :value="radioValue"
+            :class="classes.input"
+            :name="fieldName"
+            :id="fieldId"
+            :disabled="isDisabled"
+            ref="input"
+          />
+          <label 
+            :class="classes.label"
+            :for="name"
+            v-html="text"
+          >
+          </label>
+        </div>
       </div>
 
     </template>
@@ -38,6 +40,7 @@
       return {
         defaultClasses: {
           container: '',
+          wrapper: 'radio-wrapper',
           inputContainer: 'form-radio',
           label: 'form-radio-label',
           input: 'form-radio-input',
@@ -51,6 +54,13 @@
   @import 'node_modules/bootstrap/scss/_functions.scss';
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
+
+  .radio-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: $input-height;
+  }
 
   .form-radio {
     position: relative;

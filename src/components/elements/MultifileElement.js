@@ -217,6 +217,8 @@ export default {
 
     const columns = useColumns(props, context, {
       form$: form$.form$,
+      theme: theme.theme,
+      hasLabel: label.hasLabel,
     })
 
     const view = useView(props, context, {

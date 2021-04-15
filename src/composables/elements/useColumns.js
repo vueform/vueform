@@ -3,8 +3,14 @@ import { computed, toRefs } from 'composition-api'
 const base = function(props, context, dependencies)
 {
   const {
-    columns
+    columns,
   } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
+  const theme = dependencies.theme
+  const hasLabel = dependencies.hasLabel
 
   // ============== COMPUTED ==============
 
@@ -14,18 +20,18 @@ const base = function(props, context, dependencies)
    * @type {object} 
    * @option
    */
-  const columnsObject = computed(() => {
-    return {
-      classes: {
-        element: 'col-lg-12',
-        label: 'col-lg-2',
-        field: 'col-lg-10',
-      }
-    }
+  const columnsClasses = computed(() => {
+    return (new theme.value.utils.columns(
+      columns.value,
+      form$.value.options.columns,
+      form$.value.$laraform.config.columns,
+      hasLabel.value,
+      
+    )).classes
   })
 
   return {
-    columnsObject,
+    columnsClasses,
   }
 }
 

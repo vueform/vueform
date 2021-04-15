@@ -52,10 +52,13 @@ export default function createForm (data, options = {}, render = null) {
     render,
   } : {})
 
+  let finalConfig = Object.assign({}, config, options.config || {})
+
   let $laraform = {
     test: true,
     extensions: config.extensions,
-    config: Object.assign({}, config, options.config || {}),
+    config: finalConfig,
+    themes: finalConfig.themes,
     services: {
       condition,
       validation,

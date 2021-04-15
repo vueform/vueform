@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: '', // added to layout
+          container: '',
           inputContainer: 'input-group',
           input: 'form-control',
         }

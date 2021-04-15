@@ -7,8 +7,8 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-address',
-          childrenContainer: 'element-group',
+          container: '',
+          childrenContainer: 'form-row',
         }
       }
     }

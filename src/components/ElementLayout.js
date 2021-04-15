@@ -40,10 +40,10 @@ export default {
 
       classes = mergeComponentClasses(classes, {
         [classKeys.value.element]: {
-          [el$.value.columnsObject.classes.element]: true,
+          [el$.value.columnsClasses.element]: true,
           [classes.error]: !el$.value.isStatic ? !!el$.value.error : false
         },
-        [classKeys.value.field]: el$.value.columnsObject.classes.field,
+        [classKeys.value.field]: el$.value.columnsClasses.field,
         [classKeys.value.outerWrapper]: multiple.value
           ? classes[classKeys.value.outerWrapperMultiple]
           : classes[classKeys.value.outerWrapperSingle],

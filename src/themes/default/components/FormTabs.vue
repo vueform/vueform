@@ -18,9 +18,19 @@
     data() {
       return {
         defaultClasses: {
-          container: 'nav nav-tabs form-tabs'
+          container: 'nav nav-tabs'
         }
       }
     },
   }
 </script>
+
+<style lang="scss">
+  @import 'node_modules/bootstrap/scss/_functions.scss';
+  @import 'node_modules/bootstrap/scss/_variables.scss';
+  @import 'node_modules/bootstrap/scss/_mixins.scss';
+
+  .nav-tabs {
+    margin-bottom: calc(#{$spacer} * 2);
+  }
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <component :is="elementLayout">
+  <component :is="elementLayout" :multiple="true">
 
     <template v-slot:field>
       
@@ -32,8 +32,8 @@
     data() {
       return {
         defaultClasses: {
-          container: 'lf-object',
-          childrenContainer: 'element-group',
+          container: '',
+          childrenContainer: 'form-row',
         }
       }
     }

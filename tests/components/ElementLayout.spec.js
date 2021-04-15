@@ -15,9 +15,9 @@ describe('ElementLayout', () => {
 
   useElementComponent('text', 'ElementLayout', { addClass: 'element-class' }, {
     mergeWith: {
-      [Layout.vm.classKeys.element]: `${el.columnsObject.classes.element} ${el.classes[el.mainClass]} element-class`,
-      [Layout.vm.classKeys.label]: el.columnsObject.classes.label,
-      [Layout.vm.classKeys.field]: el.columnsObject.classes.field,
+      [Layout.vm.classKeys.element]: `${el.columnsClasses.element} ${el.classes[el.mainClass]} element-class`,
+      [Layout.vm.classKeys.label]: el.columnsClasses.label,
+      [Layout.vm.classKeys.field]: el.columnsClasses.field,
     }
   })
 

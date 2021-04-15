@@ -22,7 +22,10 @@
     data() {
       return {
         defaultClasses: {
-          button: 'btn btn-secondary',
+          button: 'btn',
+          previous: 'btn-secondary',
+          next: 'btn-primary',
+          finish: 'btn-primary',
         }
       }
     }

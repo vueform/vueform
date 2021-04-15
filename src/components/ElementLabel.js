@@ -36,7 +36,7 @@ export default {
      */
     const classes = computed(() => {
       return mergeComponentClasses(_.clone(baseClasses.value), {
-        [mainClass.value]: el$.value.columnsObject.classes.label,
+        [mainClass.value]: el$.value.columnsClasses.label,
       })
     })
 

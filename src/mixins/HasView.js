@@ -32,7 +32,7 @@ export default {
     },
     columns: {
       required: false,
-      type: [Object, String],
+      type: [Object, String, Number],
       default: null
     },
     overrideComponents: {

@@ -1,16 +1,17 @@
 <template>
-  <label
+  <div
     v-if="isAddonComponent"
     :class="classes.container"
   >
-    <component :is="addon" :el$="el$" />
-  </label>
-  <label
-    v-else
-    v-html="addon"
-    :class="classes.container"
-  >
-  </label>
+    <div :class="classes.wrapper">
+      <component :is="addon" :el$="el$" />
+    </div>
+  </div>
+
+  <div v-else :class="classes.container">
+    <div v-html="addon" :class="classes.wrapper">
+    </div>
+  </div>
 </template>
 
 <script>
@@ -19,11 +20,18 @@
     data() {
       return {
         defaultClasses: {
-          container: 'input-addon',
-          addonBefore: 'input-group-addon',
-          addonAfter: 'input-group-addon',
+          container: '',
+          wrapper: 'input-group-text',
+          addonBefore: 'input-group-prepend',
+          addonAfter: 'input-group-append',
         }
       }
     }
   }
 </script>
+
+<style lang="scss">
+  .input-group-append {
+    order: 2;
+  }
+</style>

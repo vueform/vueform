@@ -15,6 +15,10 @@
           :visible="!empty"
         />
 
+        <ElementLoader
+          v-show="pending"
+        />
+
         <input
           :value="model"
           :type="inputType"
@@ -55,7 +59,7 @@
     data() {
       return {
         defaultClasses: {
-          container: '', // added to layout
+          container: '',
           inputContainer: 'input-group',
           input: 'form-control',
         }

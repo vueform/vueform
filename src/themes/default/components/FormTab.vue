@@ -25,11 +25,11 @@
       return {
         defaultClasses: {
           container: 'nav-item',
-          active: 'active',
-          inactive: 'inactive',
-          valid: 'valid',
-          invalid: 'has-error',
           wrapper: 'nav-link',
+          active: 'active',
+          inactive: '',
+          valid: '',
+          invalid: 'has-error',
         },
         classKeys: {
           state: 'wrapper'
@@ -38,3 +38,17 @@
     }
   }
 </script>
+
+<style lang="scss">
+  @import 'node_modules/bootstrap/scss/_functions.scss';
+  @import 'node_modules/bootstrap/scss/_variables.scss';
+  @import 'node_modules/bootstrap/scss/_mixins.scss';
+
+  .nav-tabs {
+    .nav-link {
+      &.has-error, &.active.has-error {
+        color: $danger;
+      }
+    }
+  }
+</style>

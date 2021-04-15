@@ -15,7 +15,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'nav nav-pills nav-justified form-language-selectors',
+          container: 'nav nav-pills nav-fill mb-3',
         },
       }
     }

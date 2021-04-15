@@ -19,7 +19,7 @@
           container: 'nav-item',
           wrapper: 'nav-link',
           active: 'active',
-          inactive: 'inactive'
+          inactive: ''
         },
         classKeys: {
           state: 'wrapper'
