@@ -8,7 +8,8 @@
       return {
         defaultClasses: {
           container: '',
-          trixDisabled: 'trix-disabled',
+          trix: '',
+          disabled: 'is-disabled',
         }
       }
     }

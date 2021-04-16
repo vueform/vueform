@@ -53,9 +53,15 @@
         defaultClasses: {
           container: '',
           selectButton: 'btn btn-light',
-          removing: 'removing',
+          removing: 'is-removing',
         }
       }
     }
   }
 </script>
+
+<style lang="scss">
+  @import 'node_modules/bootstrap/scss/_functions.scss';
+  @import 'node_modules/bootstrap/scss/_variables.scss';
+  @import 'node_modules/bootstrap/scss/_mixins.scss';
+</style>

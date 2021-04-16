@@ -408,6 +408,16 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
+   * 
+   * 
+   * @ignore
+   * @type {boolean}
+   */
+  const showErrors = computed(() => {
+    return hasErrors.value && options.value.displayErrors
+  })
+
+  /**
    * List of all errors within the form.
    * 
    * @type {array}
@@ -427,12 +437,13 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form is disabled.
    * 
+   * 
+   * @ignore
    * @type {boolean}
    */
-  const disabled = computed(() => {
-    return (invalid.value && shouldValidateOnChange.value) || busy.value
+  const showMessages = computed(() => {
+    return hasMessages.value
   })
 
   /**
@@ -442,6 +453,24 @@ const base = function(props, context, dependencies = {})
    */
   const isMultilingual = computed(() => {
     return options.value.multilingual
+  })
+
+  /**
+   * 
+   * 
+   * @private
+   */
+  const showLanguages = computed(() => {
+    return isMultilingual.value
+  })
+
+  /**
+   * Whether the form is disabled.
+   * 
+   * @type {boolean}
+   */
+  const disabled = computed(() => {
+    return (invalid.value && shouldValidateOnChange.value) || busy.value
   })
 
   /**
@@ -473,6 +502,26 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
+   *
+   * 
+   * @ignore
+   * @type {boolean}
+   */
+  const showSteps = computed(() => {
+    return hasSteps.value
+  })
+
+  /**
+   * 
+   * 
+   * @ignore
+   * @type {boolean}
+   */
+  const showStepsControls = computed(() => {
+    return hasSteps.value && options.value.stepsControls
+  })
+
+  /**
    * Whether the form has tabs.
    * 
    * @ignore
@@ -480,6 +529,16 @@ const base = function(props, context, dependencies = {})
    */
   const hasTabs = computed(() => {
     return !_.isEmpty(options.value.tabs)
+  })
+
+  /**
+   *
+   * 
+   * @ignore
+   * @type {boolean}
+   */
+  const showTabs = computed(() => {
+    return hasTabs.value
   })
 
   /**
@@ -944,6 +1003,12 @@ const base = function(props, context, dependencies = {})
     hasErrors,
     hasMessages,
     isMultilingual,
+    showErrors,
+    showMessages,
+    showLanguages,
+    showSteps,
+    showTabs,
+    showStepsControls,
     mainClass,
     defaultClasses,
     extendedClasses,

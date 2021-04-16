@@ -64,17 +64,11 @@
           button: 'btn',
           loading: 'btn-loading',
           disabled: 'btn-disabled',
-          left: 'align-left',
-          center: 'align-center',
-          right: 'align-right',
         },
         classKeys: {
           button: 'button',
           loading: 'loading',
           disabled: 'disabled',
-          left: 'left',
-          center: 'center',
-          right: 'right',
         }
       }
     }
@@ -82,6 +76,9 @@
 </script>
 
 <style lang="scss">
+  @import 'node_modules/bootstrap/scss/_functions.scss';
+  @import 'node_modules/bootstrap/scss/_variables.scss';
+  @import 'node_modules/bootstrap/scss/_mixins.scss';
 
   .btn-loading {
     position: relative;

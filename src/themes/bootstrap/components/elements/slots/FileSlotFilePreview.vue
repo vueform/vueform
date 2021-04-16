@@ -185,7 +185,7 @@
     }
   }
 
-  .removing {
+  .is-removing {
     .file-preview {
       opacity: 0.6;
     }

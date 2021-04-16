@@ -228,7 +228,6 @@ const button = function(props, context, dependencies)
 {
   const {
     buttonClass,
-    align,
   } = toRefs(props)
 
   const {
@@ -256,7 +255,6 @@ const button = function(props, context, dependencies)
 
     classes = mergeComponentClasses(classes, {
       [classKeys.value.button]: {
-        [classes[classKeys.value[align.value]]]: true,
         [classes[classKeys.value.loading]]: isLoading.value,
         [classes[classKeys.value.disabled]]: isDisabled.value,
       }
@@ -279,11 +277,53 @@ const button = function(props, context, dependencies)
   }
 }
 
+const trix = function(props, context, dependencies)
+{
+  const {
+    mainClass,
+    classes: baseClasses,
+    defaultClasses,
+    classKeys
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES ============
+
+  const isDisabled = dependencies.isDisabled
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`.
+   * 
+   * @type {object}
+   * @option
+   */
+  const classes = computed(() => {
+    let classes = _.clone(baseClasses.value)
+
+    classes = mergeComponentClasses(classes, {
+      trix: {
+        [classes.disabled]: isDisabled.value,
+      }
+    })
+
+    return classes
+  })
+
+  return {
+    classes,
+    mainClass,
+    defaultClasses,
+    classKeys
+  }
+}
+
 export {
   list,
   file,
   button,
   multifile,
+  trix,
 }
 
 export default base

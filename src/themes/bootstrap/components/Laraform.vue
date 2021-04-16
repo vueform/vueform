@@ -5,29 +5,29 @@
   >
     <slot>
       <FormMessages
-        v-if="hasMessages"
+        v-if="showMessages"
       />
 
       <FormErrors
-        v-if="hasErrors && options.displayErrors"
+        v-if="showErrors"
       />
 
       <FormLanguages
-        v-if="isMultilingual"
+        v-if="showLanguages"
       />
 
       <FormTabs
-        v-if="hasTabs"
+        v-if="showTabs"
       />
 
       <FormSteps
-        v-if="hasSteps"
+        v-if="showSteps"
       />
       
       <FormElements />
 
       <FormStepsControls
-        v-if="hasSteps && options.stepsControls"
+        v-if="showStepsControls"
       />
     </slot>
   </form>
@@ -44,3 +44,9 @@
     }
   }
 </script>
+
+<style lang="scss">
+  @import 'node_modules/bootstrap/scss/_functions.scss';
+  @import 'node_modules/bootstrap/scss/_variables.scss';
+  @import 'node_modules/bootstrap/scss/_mixins.scss';
+</style>

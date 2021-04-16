@@ -63,11 +63,6 @@ export default {
       type: [String],
       default: null
     },
-    align: {
-      required: false,
-      type: [String],
-      default: 'left'
-    },
     onClick: {
       required: false,
       type: [Function],

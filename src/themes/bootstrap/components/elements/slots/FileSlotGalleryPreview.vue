@@ -218,7 +218,7 @@
     }
   }
 
-  .removing {
+  .is-removing {
     .gallery-preview {
       opacity: 0.6;
     }
