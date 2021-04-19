@@ -31,13 +31,6 @@
           fieldWrapper: '',
           error: 'has-error',
         },
-        classKeys: {
-          element: 'container',
-          outerWrapper: 'outerWrapper',
-          outerWrapperSingle: 'outerWrapperSingle',
-          outerWrapperMultiple: 'outerWrapperMultiple',
-          field: 'fieldWrapper',
-        }
       }
     },
   }

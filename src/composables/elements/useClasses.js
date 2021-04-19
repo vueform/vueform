@@ -25,13 +25,6 @@ const base = function(props, context, dependencies, options = {})
   */
   const defaultClasses = toRefs(context.data).defaultClasses
 
-  /**
-  * 
-  * 
-  * @type {object} 
-  */
-  const classKeys = toRefs(context.data).classKeys || {}
-
   // ============== COMPUTED ==============
   
   /**
@@ -94,7 +87,6 @@ const base = function(props, context, dependencies, options = {})
     classes,
     mainClass,
     defaultClasses,
-    classKeys,
   }
 }
 
@@ -104,7 +96,6 @@ const list = function(props, context, dependencies)
     mainClass,
     classes,
     defaultClasses,
-    classKeys
   } = base(props, context, dependencies, {
     addClasses: [
       ['list', 'disabled', computed(() => isDisabled.value)],
@@ -121,7 +112,6 @@ const list = function(props, context, dependencies)
     classes,
     mainClass,
     defaultClasses,
-    classKeys,
   }
 }
 
@@ -135,7 +125,6 @@ const multifile = function(props, context, dependencies)
     mainClass,
     classes,
     defaultClasses,
-    classKeys
   } = base(props, context, dependencies, {
     addClasses: [
       ['list', 'listDefault', computed(() => view.value !== 'gallery')],
@@ -156,7 +145,6 @@ const multifile = function(props, context, dependencies)
     classes,
     mainClass,
     defaultClasses,
-    classKeys,
   }
 }
 
@@ -166,7 +154,6 @@ const file = function(props, context, dependencies)
     defaultClasses,
     mainClass,
     classes,
-    classKeys
   } = base(props, context, dependencies, {
     addClasses: [
       ['container', 'removing', computed(() => removing.value)],
@@ -181,7 +168,6 @@ const file = function(props, context, dependencies)
     classes,
     mainClass,
     defaultClasses,
-    classKeys
   }
 }
 
@@ -195,7 +181,6 @@ const button = function(props, context, dependencies)
     mainClass,
     classes,
     defaultClasses,
-    classKeys
   } = base(props, context, dependencies, {
     addClasses: [
       ['button', 'loading', computed(() => isLoading.value)],
@@ -213,7 +198,6 @@ const button = function(props, context, dependencies)
     classes,
     mainClass,
     defaultClasses,
-    classKeys
   }
 }
 
@@ -223,7 +207,6 @@ const trix = function(props, context, dependencies)
     mainClass,
     classes,
     defaultClasses,
-    classKeys
   } = base(props, context, dependencies, {
     addClasses: [
       ['trix', 'disabled', computed(() => isDisabled.value)],
@@ -238,7 +221,6 @@ const trix = function(props, context, dependencies)
     classes,
     mainClass,
     defaultClasses,
-    classKeys
   }
 }
 

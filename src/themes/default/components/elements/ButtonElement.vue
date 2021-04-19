@@ -65,11 +65,6 @@
           loading: 'btn-loading',
           disabled: 'btn-disabled',
         },
-        classKeys: {
-          button: 'button',
-          loading: 'loading',
-          disabled: 'disabled',
-        }
       }
     }
   }

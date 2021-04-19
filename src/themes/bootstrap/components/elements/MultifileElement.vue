@@ -73,13 +73,6 @@
           handle: 'list-handle',
           sorting: 'is-sorting',
         },
-        classKeys: {
-          list: 'list',
-          listItem: 'listItem',
-          add: 'add',
-          remove: 'remove',
-          handle: 'handle',
-        }
       }
     }
   }

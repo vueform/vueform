@@ -21,9 +21,6 @@
           active: 'active',
           inactive: ''
         },
-        classKeys: {
-          state: 'wrapper'
-        }
       }
     }
   }

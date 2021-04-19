@@ -13,7 +13,6 @@ export default {
   setup(props, context)
   {
     const { multiple } = toRefs(props)
-    const { classKeys } = toRefs(context.data)
 
     // ============ DEPENDENCIES ============
 
@@ -109,7 +108,6 @@ export default {
       classes,
       mainClass,
       defaultClasses,
-      classKeys,
       visible,
       hasLabel,
       info,

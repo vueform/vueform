@@ -64,7 +64,7 @@ export default {
       conditions,
       tabClass,
     } = toRefs(props)
-    const { classKeys } = toRefs(context.data)
+
     const $this = getCurrentInstance().proxy
 
     // ============ DEPENDENCIES ============
@@ -308,7 +308,6 @@ export default {
       classes,
       mainClass,
       defaultClasses,
-      classKeys,
       components,
       available,
       isLabelComponent,

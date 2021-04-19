@@ -10,8 +10,6 @@ const base = function(props, context, dependencies, options)
 
   const defaultClasses = toRefs(context.data).defaultClasses
 
-  const classKeys = toRefs(context.data).classKeys
-
   // ============ DEPENDENCIES ============
 
   const isDisabled = dependencies.isDisabled
@@ -42,7 +40,7 @@ const base = function(props, context, dependencies, options)
 
   const initSortable = () => {
     sortable.value = new Sortable(list.value, {
-      handle: `.${classes.value[classKeys.value.handle]}`,
+      handle: `.${classes.value.handle}`,
       onStart: () => {
         sorting.value = true
       },

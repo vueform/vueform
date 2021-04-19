@@ -36,9 +36,6 @@
           incompleted: '',
           pending: 'is-pending',
         },
-        classKeys: {
-          state: 'container'
-        }
       }
     }
   }

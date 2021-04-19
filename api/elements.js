@@ -2,33 +2,32 @@ export default {
   "address": {
     "features": [
       "baseElement",
-      // "children_address",
-      // "classes",
-      // "columns",
-      // "components",
-      // "conditions",
-      // "data_object",
-      // "default_object",
-      // "disabled",
-      // "elements",
-      // "events",
-      // "form$",
-      // "genericName",
-      // "label",
-      // "layout",
-      // "location_address",
-      // "nullValue_address",
-      // "path",
-      // "slots",
-      // "theme",
-      // "validation_object",
-      // "value_object",
-      // "view",
-      // "watchValue"
+      "children_address",
+      "classes",
+      "columns",
+      "components",
+      "conditions",
+      "data_object",
+      "default_object",
+      "disabled",
+      "elements",
+      "events",
+      "form$",
+      "genericName",
+      "label",
+      "layout",
+      "location_address",
+      "nullValue_address",
+      "path",
+      "slots",
+      "theme",
+      "validation_object",
+      "value_object",
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "message",
       "before",
@@ -39,94 +38,10 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "embed": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
         ]
       },
       "default": {
@@ -135,30 +50,10 @@ export default {
           "object"
         ]
       },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
       "disabled": {
         "required": "false",
         "types": [
           "boolean"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
         ]
       },
       "provider": {
@@ -185,65 +80,34 @@ export default {
           "boolean"
         ]
       },
-      "before": {
+      "embed": {
         "required": "false",
         "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
+          "boolean"
         ]
       }
     }
   },
   "button": {
     "features": [
-      // "baseElement_static",
-      // "button",
+      "baseElement_static",
+      "button",
       "classes_button",
-      // "columns",
-      // "components",
-      // "conditions",
-      // "disabled_button",
-      // "form$",
-      // "genericName",
-      // "label",
-      // "layout",
-      // "path",
-      // "slots",
-      // "theme",
-      // "view"
+      "columns",
+      "components",
+      "conditions",
+      "disabled_button",
+      "form$",
+      "genericName",
+      "label",
+      "layout",
+      "path",
+      "slots",
+      "theme",
+      "view"
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "before",
       "between",
@@ -251,27 +115,6 @@ export default {
     ],
     "events": [],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
@@ -326,12 +169,6 @@ export default {
           "string"
         ]
       },
-      "align": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
       "onClick": {
         "required": "false",
         "types": [
@@ -348,95 +185,6 @@ export default {
         "required": "false",
         "types": [
           "boolean"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
         ]
       }
     }
@@ -470,7 +218,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -482,31 +229,42 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
+        ]
+      },
+      "default": {
+        "required": "false",
+        "types": [
+          "string",
+          "number",
+          "boolean"
+        ]
+      },
+      "id": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "text": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "disabled": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "debounce": {
+        "required": "false",
+        "types": [
+          "number"
         ]
       },
       "trueValue": {
@@ -523,169 +281,6 @@ export default {
           "boolean",
           "string",
           "number"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
-        ]
-      },
-      "default": {
-        "required": "false",
-        "types": [
-          "string",
-          "number",
-          "boolean"
-        ]
-      },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "disabled": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "id": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "text": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
         ]
       }
     }
@@ -718,7 +313,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -731,94 +325,10 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
         ]
       },
       "default": {
@@ -827,31 +337,7 @@ export default {
           "array"
         ]
       },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "disables": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "disabled": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
       "id": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "info": {
         "required": "false",
         "types": [
           "string"
@@ -864,74 +350,29 @@ export default {
           "array"
         ]
       },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
+      "disabled": {
         "required": "false",
         "types": [
           "boolean"
         ]
       },
-      "onChange": {
+      "disables": {
         "required": "false",
         "types": [
-          "function"
+          "array"
+        ]
+      },
+      "debounce": {
+        "required": "false",
+        "types": [
+          "number"
         ]
       }
     }
   },
   "date": {
     "features": [
+      "addons",
       "baseElement",
       "classes",
       "columns",
@@ -962,106 +403,23 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
       "before",
       "between",
-      "after"
+      "after",
+      "addonBefore",
+      "addonAfter"
     ],
     "events": [
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
         ]
       },
       "default": {
@@ -1071,10 +429,16 @@ export default {
           "Date"
         ]
       },
-      "description": {
+      "addons": {
         "required": "false",
         "types": [
-          "string"
+          "object"
+        ]
+      },
+      "debounce": {
+        "required": "false",
+        "types": [
+          "number"
         ]
       },
       "disabled": {
@@ -1093,20 +457,6 @@ export default {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
         ]
       },
       "displayFormat": {
@@ -1183,67 +533,12 @@ export default {
         "types": [
           "boolean"
         ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
       }
     }
   },
   "dates": {
     "features": [
+      "addons",
       "baseElement_dates",
       "classes",
       "columns",
@@ -1274,100 +569,23 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
       "before",
       "between",
-      "after"
+      "after",
+      "addonBefore",
+      "addonAfter"
     ],
     "events": [
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
         ]
       },
       "debounce": {
@@ -1382,10 +600,10 @@ export default {
           "array"
         ]
       },
-      "description": {
+      "addons": {
         "required": "false",
         "types": [
-          "string"
+          "object"
         ]
       },
       "disabled": {
@@ -1406,18 +624,10 @@ export default {
           "string"
         ]
       },
-      "info": {
+      "range": {
         "required": "false",
         "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
+          "boolean"
         ]
       },
       "displayFormat": {
@@ -1483,107 +693,49 @@ export default {
         "types": [
           "boolean"
         ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
       }
     }
   },
   "file": {
     "features": [
-      // "baseElement_file",
+      "baseElement_file",
       "classes_file",
-      // "columns",
-      // "components",
-      // "conditions",
-      // "data",
-      // "default",
-      // "disabled",
-      // "drop",
-      // "empty",
-      // "events",
-      // "fieldId",
-      // "file",
-      // "form$",
-      // "genericName_file",
-      // "handleError",
-      // "input",
-      // "label",
-      // "layout",
-      // "nullValue",
-      // "path",
-      // "removing",
-      // "request",
-      // "slots",
-      // "theme",
-      // "validation_file",
-      // "value",
-      // "view",
-      // "watchValue"
+      "columns",
+      "components",
+      "conditions",
+      "data",
+      "default",
+      "disabled",
+      "drop",
+      "empty",
+      "events",
+      "fieldId",
+      "file",
+      "form$",
+      "genericName_file",
+      "handleError",
+      "input",
+      "label",
+      "layout",
+      "nullValue",
+      "path",
+      "removing",
+      "request",
+      "slots_file",
+      "theme",
+      "validation_file",
+      "value",
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
       "before",
       "between",
       "after",
-      "progress",
       "preview"
     ],
     "events": [
@@ -1592,25 +744,17 @@ export default {
       "error"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
+      "type": {
         "required": "false",
         "types": [
-          "boolean"
+          "string"
         ]
       },
-      "layout": {
+      "default": {
         "required": "false",
         "types": [
           "string",
-          "object",
-          "boolean"
+          "File"
         ]
       },
       "embed": {
@@ -1625,86 +769,16 @@ export default {
         ],
         "required": "false"
       },
-      "type": {
-        "required": "false",
+      "view": {
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
+        ],
+        "required": "false"
       },
       "debounce": {
         "required": "false",
         "types": [
           "number"
-        ]
-      },
-      "default": {
-        "required": "false",
-        "types": [
-          "string",
-          "File"
-        ]
-      },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
         ]
       },
       "disabled": {
@@ -1750,6 +824,18 @@ export default {
           "object"
         ]
       },
+      "params": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "softRemove": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
       "url": {
         "required": "false",
         "types": [
@@ -1760,76 +846,6 @@ export default {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
         ]
       },
       "onRemove": {
@@ -1873,7 +889,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "message",
       "before",
@@ -1884,95 +899,10 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "schema": {
-        "required": "false",
-        "types": [
-          "object",
-          "array"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
         ]
       },
       "default": {
@@ -1981,60 +911,11 @@ export default {
           "object"
         ]
       },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
-        ]
-      },
-      "before": {
+      "schema": {
         "required": "false",
         "types": [
           "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
+          "array"
         ]
       }
     }
@@ -2064,53 +945,10 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
         ]
       },
       "default": {
@@ -2120,24 +958,16 @@ export default {
           "number"
         ]
       },
+      "debounce": {
+        "required": "false",
+        "types": [
+          "number"
+        ]
+      },
       "id": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
         ]
       },
       "meta": {
@@ -2145,47 +975,43 @@ export default {
         "types": [
           "boolean"
         ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
       }
     }
   },
   "list": {
     "features": [
-      // "baseElement_list",
-      // "children",
+      "baseElement_list",
+      "children",
       "classes_list",
-      // "columns",
-      // "components",
-      // "conditions",
-      // "data_list",
-      // "default",
-      // "disabled",
-      // "elements",
-      // "events",
-      // "form$",
-      // "genericName",
-      // "label",
-      // "layout",
-      // "nullValue_array",
-      // "order",
-      // "path",
-      // "prototype",
-      // "slots",
-      // "sort",
-      // "theme",
-      // "validation_list",
-      // "value",
-      // "view",
-      // "watchValue"
+      "columns",
+      "components",
+      "conditions",
+      "controls",
+      "data_list",
+      "default",
+      "disabled",
+      "elements",
+      "empty_array",
+      "events",
+      "form$",
+      "genericName",
+      "label",
+      "layout",
+      "nullValue_array",
+      "order",
+      "path",
+      "prototype",
+      "slots",
+      "sort",
+      "sorting",
+      "theme",
+      "validation_list",
+      "value",
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -2200,67 +1026,13 @@ export default {
       "sort"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
         ]
       },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
+      "default": {
         "required": "false",
         "types": [
           "array"
@@ -2272,60 +1044,16 @@ export default {
           "number"
         ]
       },
-      "default": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
       "debounce": {
         "required": "false",
         "types": [
           "number"
         ]
       },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
       "disabled": {
         "required": "false",
         "types": [
           "boolean"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
         ]
       },
       "order": {
@@ -2346,60 +1074,28 @@ export default {
           "string"
         ]
       },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
       "sort": {
         "required": "false",
         "types": [
           "boolean"
         ]
       },
-      "rules": {
+      "min": {
         "required": "false",
         "types": [
-          "array",
-          "string",
-          "object"
+          "number"
         ]
       },
-      "messages": {
+      "max": {
+        "required": "false",
+        "types": [
+          "number"
+        ]
+      },
+      "controls": {
         "required": "false",
         "types": [
           "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
         ]
       },
       "object": {
@@ -2412,12 +1108,6 @@ export default {
         "required": "false",
         "types": [
           "object"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
         ]
       },
       "onAdd": {
@@ -2470,7 +1160,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -2484,100 +1173,10 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
-      "addons": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
         ]
       },
       "default": {
@@ -2586,10 +1185,16 @@ export default {
           "object"
         ]
       },
-      "description": {
+      "addons": {
         "required": "false",
         "types": [
-          "string"
+          "object"
+        ]
+      },
+      "debounce": {
+        "required": "false",
+        "types": [
+          "number"
         ]
       },
       "disabled": {
@@ -2616,20 +1221,6 @@ export default {
           "string"
         ]
       },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
-        ]
-      },
       "provider": {
         "required": "false",
         "types": [
@@ -2653,100 +1244,45 @@ export default {
         "types": [
           "boolean"
         ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
       }
     }
   },
   "multifile": {
     "features": [
-      // "baseElement_list",
-      // "children",
+      "baseElement_list",
+      "children",
       "classes_multifile",
-      // "columns",
-      // "components",
-      // "conditions",
-      // "data_list",
-      // "default",
-      // "disabled",
-      // "drop_multifile",
-      // "elements",
-      // "events",
-      // "form$",
-      // "genericName",
-      // "input",
-      // "label",
-      // "layout",
-      // "multifile",
-      // "nullValue_array",
-      // "order",
-      // "path",
-      // "prototype_multifile",
-      // "slots",
-      // "sort",
-      // "theme",
-      // "validation_list",
-      // "value",
-      // "view",
-      // "watchValue"
+      "columns",
+      "components",
+      "conditions",
+      "data_list",
+      "default",
+      "disabled",
+      "drop_multifile",
+      "elements",
+      "empty_array",
+      "events",
+      "form$",
+      "genericName",
+      "input",
+      "label",
+      "layout",
+      "multifile",
+      "nullValue_array",
+      "order",
+      "path",
+      "prototype_multifile",
+      "slots",
+      "sort",
+      "sorting",
+      "theme",
+      "validation_list",
+      "value",
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -2761,17 +1297,16 @@ export default {
       "sort"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
+      "type": {
         "required": "false",
         "types": [
-          "boolean"
+          "string"
+        ]
+      },
+      "default": {
+        "required": "false",
+        "types": [
+          "array"
         ]
       },
       "image": {
@@ -2780,76 +1315,11 @@ export default {
         ],
         "required": "false"
       },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
-      "type": {
-        "required": "false",
+      "view": {
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
+        ],
+        "required": "false"
       },
       "debounce": {
         "required": "false",
@@ -2863,18 +1333,6 @@ export default {
           "number"
         ]
       },
-      "default": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
       "disabled": {
         "required": "false",
         "types": [
@@ -2885,20 +1343,6 @@ export default {
         "required": "false",
         "types": [
           "boolean"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
         ]
       },
       "accept": {
@@ -2944,36 +1388,6 @@ export default {
           "object"
         ]
       },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
       "sort": {
         "required": "false",
         "types": [
@@ -2986,36 +1400,10 @@ export default {
           "string"
         ]
       },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
       "object": {
         "required": "false",
         "types": [
           "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
         ]
       },
       "onAdd": {
@@ -3071,7 +1459,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -3094,94 +1481,10 @@ export default {
       "close"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
         ]
       },
       "default": {
@@ -3190,10 +1493,10 @@ export default {
           "array"
         ]
       },
-      "description": {
+      "debounce": {
         "required": "false",
         "types": [
-          "string"
+          "number"
         ]
       },
       "disabled": {
@@ -3214,25 +1517,11 @@ export default {
           "string"
         ]
       },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
       "items": {
         "required": "false",
         "types": [
           "object",
           "array",
-          "function"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
           "function"
         ]
       },
@@ -3260,66 +1549,10 @@ export default {
           "boolean"
         ]
       },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
       "native": {
         "required": "false",
         "types": [
           "boolean"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
         ]
       },
       "onSelect": {
@@ -3381,7 +1614,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "message",
       "before",
@@ -3392,17 +1624,16 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
+      "type": {
         "required": "false",
         "types": [
-          "boolean"
+          "string"
+        ]
+      },
+      "default": {
+        "required": "false",
+        "types": [
+          "object"
         ]
       },
       "schema": {
@@ -3416,139 +1647,6 @@ export default {
         "required": "false",
         "types": [
           "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
-      "type": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "default": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
         ]
       }
     }
@@ -3582,7 +1680,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -3594,94 +1691,10 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
         ]
       },
       "default": {
@@ -3691,10 +1704,10 @@ export default {
           "number"
         ]
       },
-      "description": {
+      "debounce": {
         "required": "false",
         "types": [
-          "string"
+          "number"
         ]
       },
       "disabled": {
@@ -3707,20 +1720,6 @@ export default {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
         ]
       },
       "fieldName": {
@@ -3737,66 +1736,10 @@ export default {
           "number"
         ]
       },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
       "text": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
         ]
       }
     }
@@ -3828,7 +1771,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -3841,94 +1783,10 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
         ]
       },
       "default": {
@@ -3938,10 +1796,10 @@ export default {
           "number"
         ]
       },
-      "description": {
+      "debounce": {
         "required": "false",
         "types": [
-          "string"
+          "number"
         ]
       },
       "disables": {
@@ -3962,81 +1820,11 @@ export default {
           "string"
         ]
       },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
       "items": {
         "required": "false",
         "types": [
           "object",
           "array"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
         ]
       }
     }
@@ -4073,7 +1861,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -4096,94 +1883,10 @@ export default {
       "close"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
         ]
       },
       "default": {
@@ -4194,10 +1897,10 @@ export default {
           "object"
         ]
       },
-      "description": {
+      "debounce": {
         "required": "false",
         "types": [
-          "string"
+          "number"
         ]
       },
       "disabled": {
@@ -4218,25 +1921,11 @@ export default {
           "string"
         ]
       },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
       "items": {
         "required": "false",
         "types": [
           "object",
           "array",
-          "function"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
           "function"
         ]
       },
@@ -4270,60 +1959,16 @@ export default {
           "boolean"
         ]
       },
-      "before": {
+      "noOptionsText": {
         "required": "false",
         "types": [
-          "object",
-          "string",
-          "number"
+          "string"
         ]
       },
-      "between": {
+      "noResultsText": {
         "required": "false",
         "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
+          "string"
         ]
       },
       "onSelect": {
@@ -4388,7 +2033,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -4400,94 +2044,10 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
         ]
       },
       "default": {
@@ -4497,10 +2057,10 @@ export default {
           "array"
         ]
       },
-      "description": {
+      "debounce": {
         "required": "false",
         "types": [
-          "string"
+          "number"
         ]
       },
       "disabled": {
@@ -4513,20 +2073,6 @@ export default {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
         ]
       },
       "min": {
@@ -4595,62 +2141,6 @@ export default {
         "types": [
           "boolean"
         ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
       }
     }
   },
@@ -4674,7 +2164,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "before",
       "between",
@@ -4682,120 +2171,10 @@ export default {
     ],
     "events": [],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
         ]
       },
       "wrap": {
@@ -4847,7 +2226,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -4871,94 +2249,10 @@ export default {
       "tag"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
         ]
       },
       "default": {
@@ -4967,10 +2261,10 @@ export default {
           "array"
         ]
       },
-      "description": {
+      "debounce": {
         "required": "false",
         "types": [
-          "string"
+          "number"
         ]
       },
       "disabled": {
@@ -4991,25 +2285,11 @@ export default {
           "string"
         ]
       },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
       "items": {
         "required": "false",
         "types": [
           "object",
           "array",
-          "function"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
           "function"
         ]
       },
@@ -5041,62 +2321,6 @@ export default {
         "required": "false",
         "types": [
           "boolean"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
         ]
       },
       "onSelect": {
@@ -5169,7 +2393,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -5182,7 +2405,75 @@ export default {
     "events": [
       "change"
     ],
-    "props": {}
+    "props": {
+      "type": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "default": {
+        "required": "false",
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "addons": {
+        "required": "false",
+        "types": [
+          "object"
+        ]
+      },
+      "autogrow": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "rows": {
+        "required": "false",
+        "types": [
+          "number"
+        ]
+      },
+      "debounce": {
+        "required": "false",
+        "types": [
+          "number"
+        ]
+      },
+      "disabled": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      },
+      "floating": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "id": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "placeholder": {
+        "required": "false",
+        "types": [
+          "string"
+        ]
+      },
+      "readonly": {
+        "required": "false",
+        "types": [
+          "boolean"
+        ]
+      }
+    }
   },
   "text": {
     "features": [
@@ -5215,7 +2506,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -5229,259 +2519,73 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "addons": {
-        "required": "false",
-        "types": [
-          "object"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "autocomplete": {
-        "required": "false",
-        "types": [
-          "string",
-          "number"
-        ],
-        "default": "\"ElementLayout\""
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
-        ],
-        "default": "\"ElementLayout\""
+        ]
       },
       "default": {
         "required": "false",
         "types": [
           "string",
           "number"
-        ],
-        "default": "\"ElementLayout\""
+        ]
       },
-      "description": {
+      "addons": {
         "required": "false",
         "types": [
-          "string"
-        ],
-        "default": "\"ElementLayout\""
+          "object"
+        ]
+      },
+      "autocomplete": {
+        "required": "false",
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "debounce": {
+        "required": "false",
+        "types": [
+          "number"
+        ]
       },
       "disabled": {
         "required": "false",
         "types": [
           "boolean"
-        ],
-        "default": "\"ElementLayout\""
+        ]
       },
       "floating": {
         "required": "false",
         "types": [
           "string"
-        ],
-        "default": "\"ElementLayout\""
+        ]
       },
       "id": {
         "required": "false",
         "types": [
           "string"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ],
-        "default": "\"ElementLayout\""
+        ]
       },
       "inputType": {
         "required": "false",
         "types": [
           "string"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
-        ],
-        "default": "\"ElementLayout\""
+        ]
       },
       "placeholder": {
         "required": "false",
         "types": [
           "string"
-        ],
-        "default": "\"ElementLayout\""
+        ]
       },
       "readonly": {
         "required": "false",
         "types": [
           "boolean"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ],
-        "default": "\"ElementLayout\""
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
-        ],
-        "default": "\"ElementLayout\""
+        ]
       }
     }
   },
@@ -5516,7 +2620,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -5528,31 +2631,18 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
+        ]
+      },
+      "default": {
+        "required": "false",
+        "types": [
+          "string",
+          "number",
+          "boolean"
         ]
       },
       "trueValue": {
@@ -5571,81 +2661,10 @@ export default {
           "number"
         ]
       },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
       "debounce": {
         "required": "false",
         "types": [
           "number"
-        ]
-      },
-      "default": {
-        "required": "false",
-        "types": [
-          "string",
-          "number",
-          "boolean"
-        ]
-      },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
         ]
       },
       "disabled": {
@@ -5658,20 +2677,6 @@ export default {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
         ]
       },
       "labels": {
@@ -5710,103 +2715,46 @@ export default {
           "object"
         ]
       },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
       "text": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
         ]
       }
     }
   },
   "trix": {
     "features": [
-      // "baseElement",
+      "baseElement",
       "classes_trix",
-      // "columns",
-      // "components",
-      // "conditions",
-      // "data_trix",
-      // "default",
-      // "disabled",
-      // "empty",
-      // "events",
-      // "fieldId",
-      // "form$",
-      // "genericName",
-      // "handleError",
-      // "handleInput",
-      // "input",
-      // "label",
-      // "layout",
-      // "nullValue",
-      // "path",
-      // "slots",
-      // "theme",
-      // "trix",
-      // "validation",
-      // "value",
-      // "view",
-      // "watchValue"
+      "columns",
+      "components",
+      "conditions",
+      "data_trix",
+      "default",
+      "disabled",
+      "empty",
+      "events",
+      "fieldId",
+      "form$",
+      "genericName",
+      "handleError",
+      "handleInput",
+      "input",
+      "label",
+      "layout",
+      "nullValue",
+      "path",
+      "slots",
+      "theme",
+      "trix",
+      "validation",
+      "value",
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -5819,94 +2767,10 @@ export default {
       "error"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
         ]
       },
       "default": {
@@ -5916,10 +2780,10 @@ export default {
           "number"
         ]
       },
-      "description": {
+      "debounce": {
         "required": "false",
         "types": [
-          "string"
+          "number"
         ]
       },
       "disabled": {
@@ -5934,54 +2798,10 @@ export default {
           "string"
         ]
       },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
-        ]
-      },
       "placeholder": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
         ]
       },
       "accept": {
@@ -6000,32 +2820,6 @@ export default {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
         ]
       },
       "onError": {
@@ -6069,7 +2863,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -6083,25 +2876,18 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
+      "type": {
+        "required": "false",
         "types": [
+          "string"
+        ]
+      },
+      "default": {
+        "required": "false",
+        "types": [
+          "object",
           "string",
           "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
         ]
       },
       "addons": {
@@ -6122,87 +2908,10 @@ export default {
           "number"
         ]
       },
-      "type": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
       "debounce": {
         "required": "false",
         "types": [
           "number"
-        ]
-      },
-      "default": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
         ]
       },
       "disabled": {
@@ -6223,20 +2932,6 @@ export default {
           "string"
         ]
       },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
-        ]
-      },
       "placeholder": {
         "required": "false",
         "types": [
@@ -6247,62 +2942,6 @@ export default {
         "required": "false",
         "types": [
           "boolean"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
         ]
       }
     }
@@ -6339,7 +2978,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -6353,25 +2991,18 @@ export default {
       "change"
     ],
     "props": {
-      "name": {
-        "required": "true",
+      "type": {
+        "required": "false",
         "types": [
+          "string"
+        ]
+      },
+      "default": {
+        "required": "false",
+        "types": [
+          "object",
           "string",
           "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
         ]
       },
       "addons": {
@@ -6387,87 +3018,10 @@ export default {
           "number"
         ]
       },
-      "type": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
       "debounce": {
         "required": "false",
         "types": [
           "number"
-        ]
-      },
-      "default": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "description": {
-        "required": "false",
-        "types": [
-          "string"
         ]
       },
       "disabled": {
@@ -6488,24 +3042,10 @@ export default {
           "string"
         ]
       },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
       "inputType": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
         ]
       },
       "placeholder": {
@@ -6519,69 +3059,13 @@ export default {
         "types": [
           "boolean"
         ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
       }
     }
   },
   "tTrix": {
     "features": [
       "baseElement",
-      "classes",
+      "classes_trix",
       "columns",
       "components",
       "conditions",
@@ -6611,7 +3095,6 @@ export default {
     ],
     "slots": [
       "label",
-      "info",
       "description",
       "error",
       "message",
@@ -6624,94 +3107,10 @@ export default {
       "error"
     ],
     "props": {
-      "name": {
-        "required": "true",
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "inline": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "layout": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "boolean"
-        ]
-      },
       "type": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "addClass": {
-        "required": "false",
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "addClasses": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "columns": {
-        "required": "false",
-        "types": [
-          "object",
-          "string"
-        ]
-      },
-      "overrideComponents": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "conditions": {
-        "required": "false",
-        "types": [
-          "array"
-        ]
-      },
-      "formatData": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "formatLoad": {
-        "required": "false",
-        "types": [
-          "function"
-        ]
-      },
-      "submit": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "debounce": {
-        "required": "false",
-        "types": [
-          "number"
         ]
       },
       "default": {
@@ -6722,10 +3121,10 @@ export default {
           "number"
         ]
       },
-      "description": {
+      "debounce": {
         "required": "false",
         "types": [
-          "string"
+          "number"
         ]
       },
       "disabled": {
@@ -6740,54 +3139,10 @@ export default {
           "string"
         ]
       },
-      "info": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
-      "label": {
-        "required": "false",
-        "types": [
-          "string",
-          "object",
-          "function"
-        ]
-      },
       "placeholder": {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "before": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "between": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "after": {
-        "required": "false",
-        "types": [
-          "object",
-          "string",
-          "number"
-        ]
-      },
-      "slots": {
-        "required": "false",
-        "types": [
-          "object"
         ]
       },
       "accept": {
@@ -6806,32 +3161,6 @@ export default {
         "required": "false",
         "types": [
           "string"
-        ]
-      },
-      "rules": {
-        "required": "false",
-        "types": [
-          "array",
-          "string",
-          "object"
-        ]
-      },
-      "messages": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
-      "displayError": {
-        "required": "false",
-        "types": [
-          "boolean"
-        ]
-      },
-      "onChange": {
-        "required": "false",
-        "types": [
-          "function"
         ]
       },
       "onError": {

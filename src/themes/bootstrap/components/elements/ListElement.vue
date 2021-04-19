@@ -59,12 +59,6 @@
           disabled: 'is-disabled',
           sorting: 'is-sorting',
         },
-        classKeys: {
-          list: 'list',
-          add: 'add',
-          remove: 'remove',
-          handle: 'handle',
-        }
       }
     },
   }

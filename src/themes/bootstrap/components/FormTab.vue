@@ -31,9 +31,6 @@
           valid: '',
           invalid: 'has-error',
         },
-        classKeys: {
-          state: 'wrapper'
-        }
       }
     }
   }
