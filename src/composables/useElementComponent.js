@@ -4,7 +4,7 @@ import useEl$ from './useEl$'
 import useTheme from './useTheme'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 
-const base = function(props, context, dependencies)
+const base = function(props, context, dependencies, options = {})
 {
   const componentName = context.name
   const { defaultClasses } = toRefs(context.data)
@@ -41,6 +41,17 @@ const base = function(props, context, dependencies)
       // Element level overwrites
       el$.value.overrideClasses[componentName.value] || {}
     )
+
+    // Add classes defined by specific components
+    if (options.addClasses) {
+      options.addClasses.forEach((add) => {
+        if (add[2].value) {
+          classes = mergeComponentClasses(classes, {
+            [add[0]]: typeof add[1] == 'object' ? add[1].value : classes[add[1]],
+          })
+        }
+      })
+    }
 
     // Add form's addClasses
     if (form$.value.options.addClasses[componentName.value] !== undefined) {

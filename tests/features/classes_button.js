@@ -1,46 +1,53 @@
 import { createForm, destroy } from 'test-helpers'
 import { classes as baseClasses } from './classes'
+import { nextTick } from 'composition-api'
 
 export { mainClass, rendering } from './classes'
 
 export const classes = function (elementType, elementName, options) {
-  let form = createForm({
-    schema: {
-      el: {
-        type: elementType,
-      }
-    },
-  })
+  baseClasses(elementType, elementName, options)
 
-  let el = form.vm.el$('el')
-
-  baseClasses(elementType, elementName, Object.assign({}, options, {
-    mergeWith: {
-      [el.classKeys.button]: {
-        [el.classes.left]: true,
-        [el.classes.loading]: el.isLoading,
-        [el.classes.disabled]: el.isDisabled,
-      }
-    }
-  }))
-
-    
-  destroy(form) // teardown
-
-  it('should add `buttonClass` to button class list', () => {
+  it('should add disabled class to button when disabled', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          buttonClass: 'button-class'
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.classes.button['button-class']).toBe(true)
+    expect(el.classes.button).not.toContain(el.classes.disabled)
+
+    form.vm.$set(form.vm.laraform.schema.el, 'disabled', true)
+
+    await nextTick()
+
+    expect(el.classes.button).toContain(el.classes.disabled)
     
-    // destroy(form) // teardown
+  // destroy(form) // teardown
+  })
+
+  it('should add loading class to button when loading', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.classes.button).not.toContain(el.classes.loading)
+
+    form.vm.$set(form.vm.laraform.schema.el, 'loading', true)
+
+    await nextTick()
+
+    expect(el.classes.button).toContain(el.classes.loading)
+    
+  // destroy(form) // teardown
   })
 }

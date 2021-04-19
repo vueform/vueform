@@ -22,11 +22,37 @@ describe('ElementAddon', () => {
 
   useElementComponent('text', 'ElementAddon', { addons:{before:'before'} }, {
     mergeWith: {
-      [ElementAddon.vm.mainClass]: {
-        [ElementAddon.vm.defaultClasses.addonBefore]: ElementAddon.vm.type === 'before',
-        [ElementAddon.vm.defaultClasses.addonAfter]: ElementAddon.vm.type === 'after',
-      }
+      container: ElementAddon.vm.classes.before
     }
+  })
+
+  describe('classes', () => {
+    it('should add after class to container when type=after', async () => {
+      let form = createForm({
+        schema: {
+          el: {
+            type: 'text',
+            addons: {
+              before: 'before'
+            }
+          }
+        }
+      })
+
+      let component = findAllComponents(form, { name: 'ElementAddon' }).at(0).vm
+
+      expect(component.classes.container).not.toContain(component.classes.after)
+
+      form.vm.$set(form.vm.laraform.schema.el, 'addons', { after: 'after' })
+
+      await nextTick()
+
+      component = findAllComponents(form, { name: 'ElementAddon' }).at(0).vm
+
+      expect(component.classes.container).toContain(component.classes.after)
+      
+    // destroy(form) // teardown
+    })
   })
 
   describe('rendering', () => {

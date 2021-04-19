@@ -2,23 +2,29 @@ import { createForm, findAllComponents} from 'test-helpers'
 import useElementComponent from './../composables/useElementComponent'
 
 describe('DragAndDrop', () => {
-  let form = createForm({
-    schema: {
-      el: {
-        type: 'file',
-        drop: true,
-      }
-    }
-  })
+  useElementComponent('file', 'DragAndDrop', { drop: true })
 
-  let Drag = findAllComponents(form, { name: 'DragAndDrop' }).at(0)
+  describe('classes', () => {
+    it('should add active class to container when dragging', async () => {
+      let form = createForm({
+        schema: {
+          el: {
+            type: 'file',
+            drop: true,
+          }
+        }
+      })
 
-  useElementComponent('file', 'DragAndDrop', { drop: true }, {
-    mergeWith: {
-      [Drag.vm.mainClass]: {
-        [Drag.vm.defaultClasses.active]: Drag.vm.dragging,
-      }
-    }
+      let component = findAllComponents(form, { name: 'DragAndDrop' }).at(0).vm
+
+      expect(component.classes.container).not.toContain(component.classes.active)
+
+      component.dragging = true
+
+      expect(component.classes.container).toContain(component.classes.active)
+      
+    // destroy(form) // teardown
+    })
   })
 
   describe('rendering', () => {

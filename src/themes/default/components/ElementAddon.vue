@@ -22,8 +22,8 @@
         defaultClasses: {
           container: '',
           wrapper: 'input-group-text',
-          addonBefore: 'input-group-prepend',
-          addonAfter: 'input-group-append',
+          before: 'input-group-prepend',
+          after: 'input-group-append',
         }
       }
     }
@@ -31,6 +31,10 @@
 </script>
 
 <style lang="scss">
+  @import 'node_modules/bootstrap/scss/_functions.scss';
+  @import 'node_modules/bootstrap/scss/_variables.scss';
+  @import 'node_modules/bootstrap/scss/_mixins.scss';
+
   .input-group-append {
     order: 2;
   }

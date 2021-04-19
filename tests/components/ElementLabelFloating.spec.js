@@ -1,8 +1,35 @@
 import { createForm } from 'test-helpers'
 import useElementComponent from './../composables/useElementComponent'
+import { nextTick } from 'composition-api'
 
 describe('ElementLabelFloating', () => {
   useElementComponent('text', 'ElementLabelFloating', { floating: 'floating' })
+
+  describe('classes', () => {
+    it('should add visible class to wrapper when visible', async () => {
+      let form = createForm({
+        schema: {
+          el: {
+            type: 'text',
+            floating: 'El'
+          }
+        }
+      })
+
+      let el = form.vm.el$('el')
+      let component = findAllComponents(form, { name: 'ElementLabelFloating' }).at(0).vm
+
+      expect(component.classes.wrapper).not.toContain(component.classes.visible)
+
+      el.update('value')
+
+      await nextTick()
+
+      expect(component.classes.wrapper).toContain(component.classes.visible)
+      
+    // destroy(form) // teardown
+    })
+  })
 
   describe('floating', () => {
     it('should be equal to element floating', () => {

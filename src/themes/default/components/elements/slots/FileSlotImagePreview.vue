@@ -224,7 +224,7 @@
     }
   }
 
-  .removing {
+  .is-removing {
     .image-preview {
       opacity: 0.6;
     }

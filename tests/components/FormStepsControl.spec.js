@@ -6,7 +6,27 @@ import useFormComponent from './../composables/useFormComponent'
 expect.extend({toBeVisible})
 
 describe('FormStepsControl', () => {
-  useFormComponent({steps:{a:{label:'a',elements:['el']}},schema:{el:{type:'text'}}}, 'FormStepsControl', )
+  let form = createForm({
+    steps: {
+      a: {
+        label: 'a',
+        elements: ['el']
+      }
+    },
+    schema: {
+      el: {
+        type: 'text',
+      }
+    }
+  })
+
+  let FormStepsControl = findAllComponents(form, { name: 'FormStepsControl' }).at(0)
+
+  useFormComponent({steps:{a:{label:'a',elements:['el']}},schema:{el:{type:'text'}}}, 'FormStepsControl', {
+    mergeWith: {
+      button: [FormStepsControl.vm.classes.previous]
+    }
+  })
 
   describe('label', () => {
     it('should render Previous if type previous', async () => {

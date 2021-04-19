@@ -12,12 +12,16 @@ export default {
     const {
       el$,
       form$,
-      classes: baseClasses,
+      classes,
       mainClass,
       components,
       theme,
       defaultClasses,
-    } = useElementComponent(props, context)
+    } = useElementComponent(props, context, {}, {
+      addClasses: [
+        ['label', computed(() => el$.value.columnsClasses.label ), ref(true)]
+      ]
+    })
 
     const {
       label,
@@ -28,17 +32,6 @@ export default {
      })
 
     // ============== COMPUTED ==============
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const classes = computed(() => {
-      return mergeComponentClasses(_.clone(baseClasses.value), {
-        [mainClass.value]: el$.value.columnsClasses.label,
-      })
-    })
 
     /**
      * 

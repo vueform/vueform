@@ -306,11 +306,11 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses1[mainClass], mergeWith[mainClass] || ''))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses1[mainClass])))
 
       el.form$.options.addClasses[componentName] = addClasses2
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses2[mainClass], mergeWith[mainClass] || ''))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses2[mainClass])))
     })
 
     // Element classes
@@ -476,14 +476,14 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses1[mainClass], mergeWith[mainClass] || ''))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses1[mainClass])))
 
       form.vm.$set(form.vm.laraform.schema.el.addClasses, componentName, addClasses2)
       await nextTick()
 
       Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses2[mainClass], mergeWith[mainClass] || ''))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses2[mainClass])))
     })
 
     it('should addClasses in both form and element add classes in `classes`, even when changes', async () => {
@@ -524,18 +524,16 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(
-        defaultClasses[mainClass] + ' ' + addClassesForm1[mainClass] + ' ' + addClassesElement1[mainClass],
-        mergeWith[mainClass] || ''
-      ))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(
+        mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], [addClassesForm1[mainClass], addClassesElement1[mainClass]]))
+      )
 
       el.form$.options.addClasses[componentName] = addClassesForm2
       el.addClasses[componentName] = addClassesElement2
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(
-        defaultClasses[mainClass] + ' ' + addClassesForm2[mainClass] + ' ' + addClassesElement2[mainClass],
-        mergeWith[mainClass] || ''
-      ))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(
+        mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], [addClassesForm2[mainClass], addClassesElement2[mainClass]]))
+      )
     })
 
     // Rendering

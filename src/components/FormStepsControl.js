@@ -1,4 +1,4 @@
-import { computed, toRefs } from 'composition-api'
+import { computed, toRefs, ref } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useLabel from './../composables/useLabel'
 import { mergeComponentClasses } from './../utils/mergeClasses'
@@ -22,28 +22,17 @@ export default {
     const {
       form$,
       theme,
-      classes: baseClasses,
+      classes,
       mainClass,
       components,
       defaultClasses,
-    } = useFormComponent(props, context)
+    } = useFormComponent(props, context, {}, {
+      addClasses: [
+        ['button', type.value, ref(true)],
+      ]
+    })
 
     // ============== COMPUTED ==============
-    
-    /**
-     * 
-     * 
-     * @private
-     */
-    const classes = computed(() => {
-      let classes = _.clone(baseClasses.value)
-
-      classes = mergeComponentClasses(classes, {
-        [mainClass.value]: classes[type.value]
-      })
-
-      return classes
-    })
 
     /**
      * 

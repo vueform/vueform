@@ -252,9 +252,7 @@
     transform: translateY(-50%) rotate(180deg);
   }
 
-  .multiselect-placeholder,
-  .multiselect-single-label,
-  .multiselect-multiple-label {
+  .multiselect-placeholder {
     display: flex;
     align-items: center;
     height: 100%;
@@ -287,46 +285,6 @@
 
   .no-caret .multiselect-tags {
     padding-right: 9px;
-  }
-
-  .multiselect-tag {
-    background: $primary;
-    color: $input-bg;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 0 0 0 8px;
-    border-radius: 3px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    cursor: text;
-    white-space: nowrap;
-  }
-
-  .multiselect-tag i {
-    cursor: pointer;
-  }
-
-  .multiselect-tag i:before {
-    content: "\D7";
-    color: darken($primary, 25%);
-    font-size: 14px;
-    font-weight: 700;
-    padding: 1px 5px 1px 5px;
-    margin-left: 3px;
-    display: flex;
-    font-style: normal;
-  }
-
-  .multiselect-tag i:hover:before {
-    color: #ffffff;
-    background: rgba(255,255,255,0.2);
-  }
-
-  .is-disabled .multiselect-tag {
-    background: darken($input-disabled-bg, 37.5%);
-    padding: 1px 8px 1px 8px;
   }
 
   .multiselect-fake-input {
@@ -403,15 +361,6 @@
   .is-multiple .multiselect-option.is-selected.is-pointed,
   .is-tags .multiselect-option.is-selected.is-pointed {
     background: $gray-200;
-  }
-
-  .multiselect-no-options,
-  .multiselect-no-results {
-    display: flex;
-    padding: $input-padding-y $input-padding-x;
-    color: $text-muted;
-    min-height: $input-height;
-    align-items: center;
   }
 
   .multiselect-caret {

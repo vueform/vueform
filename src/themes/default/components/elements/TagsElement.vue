@@ -13,7 +13,6 @@
         defaultClasses: {
           container: '',
           select: 'form-control',
-          selectNativePlaceholder: 'native-select-placeholder',
         }
       }
     }

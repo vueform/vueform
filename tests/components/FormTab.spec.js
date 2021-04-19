@@ -22,16 +22,20 @@ describe('FormTab', () => {
 
   let FormTab = findAllComponents(form, { name: 'FormTab' }).at(0)
 
+  let mergeWith = {
+    wrapper: [
+      FormTab.vm.classes.active, 
+    ],
+    container: 'tab-class'
+  }
+
+  if (!_.isEmpty(FormTab.vm.classes.valid)) {
+    mergeWith.wrapper.push(FormTab.vm.classes.valid)
+  }
+
   useFormComponent({tabs:{a:{label:'a',elements:['el'],tabClass:'tab-class'}},schema:{el:{type:'text'}}}, 'FormTab', {
-    mergeWith: {
-      [FormTab.vm.mainClass]: 'tab-class',
-      [FormTab.vm.classKeys.state]: {
-        [FormTab.vm.defaultClasses.active]: FormTab.vm.active,
-        [FormTab.vm.defaultClasses.inactive]: !FormTab.vm.active,
-        [FormTab.vm.defaultClasses.valid]: !FormTab.vm.invalid,
-        [FormTab.vm.defaultClasses.invalid]: FormTab.vm.invalid,
-      }
-    }
+    execute() {},
+    mergeWith,
   })
 
   describe('label', () => {

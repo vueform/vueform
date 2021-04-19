@@ -18,7 +18,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'nav nav-tabs'
+          container: 'form-tabs nav nav-tabs'
         }
       }
     },
@@ -30,7 +30,7 @@
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
 
-  .nav-tabs {
+  .form-tabs {
     margin-bottom: calc(#{$spacer} * 2);
   }
 </style>

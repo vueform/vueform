@@ -11,14 +11,21 @@ describe('ElementLayout', () => {
   })
 
   let el = form.vm.el$('el')
-  let Layout = findAllComponents(form, { name: 'ElementLayout' }).at(0)
+  let ElementLayout = findAllComponents(form, { name: 'ElementLayout' }).at(0).vm
+
+  let mergeWith = {
+    container: [el.columnsClasses.element[0]],
+    fieldWrapper: [el.columnsClasses.field[0], ElementLayout.classes.outerWrapperSingle],
+  }
+
+  if (!_.isEmpty(el.classes.container)) {
+    mergeWith.container.push(el.classes.container)
+  }
+
+  mergeWith.container.push('element-class')
 
   useElementComponent('text', 'ElementLayout', { addClass: 'element-class' }, {
-    mergeWith: {
-      [Layout.vm.classKeys.element]: `${el.columnsClasses.element} ${el.classes[el.mainClass]} element-class`,
-      [Layout.vm.classKeys.label]: el.columnsClasses.label,
-      [Layout.vm.classKeys.field]: el.columnsClasses.field,
-    }
+    mergeWith,
   })
 
   describe('rendering', () => {

@@ -93,12 +93,24 @@ export default {
     const {
       form$,
       theme,
-      classes:
-      baseClasses,
+      classes,
       mainClass,
       components,
       defaultClasses,
-    } = useFormComponent(props, context)
+    } = useFormComponent(props, context, {}, {
+      addClasses: [
+        ['container', 'active', computed(() => active.value)],
+        ['container', 'inactive', computed(() => !active.value)],
+        ['container', 'disabled', computed(() => disabled.value)],
+        ['container', 'enabled', computed(() => !disabled.value)],
+        ['container', 'completed', computed(() => completed.value)],
+        ['container', 'incompleted', computed(() => !completed.value)],
+        ['container', 'valid', computed(() => !invalid.value)],
+        ['container', 'invalid', computed(() => invalid.value)],
+        ['container', 'pending', computed(() => pending.value)],
+        ['container', computed(() => stepClass.value || null), ref(true)],
+      ]
+    })
 
     const {
       available,
@@ -197,47 +209,6 @@ export default {
       */
     const pending = computed(() => {
       return _.some(children$.value, { available: true, pending: true })   
-    })
-
-    /**
-     * Class of step.
-     * 
-     * @type {string|array|object}
-     */
-    const class_ = computed(() => {
-      return stepClass.value || null
-    })
-    
-    /**
-     * 
-     * 
-     * @private
-     */
-    const classes = computed(() => {
-      let classList = baseClasses.value
-
-      classList = mergeComponentClasses(classList, {
-        [classKeys.value.state]: {
-          [classList.active]: active.value,
-          [classList.inactive]: !active.value,
-          [classList.disabled]: disabled.value,
-          [classList.enabled]: !disabled.value,
-          [classList.completed]: completed.value,
-          [classList.incompleted]: !completed.value,
-          [classList.valid]: !invalid.value,
-          [classList.invalid]: invalid.value,
-          [classList.pending]: pending.value,
-        }
-      })
-
-      // Add steps's class to main class
-      if (class_.value !== null) {
-        classList = mergeComponentClasses(classList, {
-          [mainClass.value]: class_.value
-        })
-      }
-
-      return classList
     })
 
     /**

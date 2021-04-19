@@ -57,7 +57,7 @@
           remove: 'list-remove',
           add: 'btn btn-primary btn-sm',
           disabled: 'is-disabled',
-          sorting: 'sortable-sorting',
+          sorting: 'is-sorting',
         },
         classKeys: {
           list: 'list',
@@ -87,7 +87,7 @@
       }
     }
 
-    &.sortable-sorting {
+    &.is-sorting {
       & > div:hover {
         .list-handle, .list-remove {
           visibility: hidden;

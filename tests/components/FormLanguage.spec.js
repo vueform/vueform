@@ -2,11 +2,67 @@ import { createForm, findAllComponents, findAll } from 'test-helpers'
 import useFormComponent from './../composables/useFormComponent'
 import { nextTick } from 'composition-api'
 
-describe('FormLanguages', () => { 
-  useFormComponent({multilingual:true,schema:{el:{type:'text'}}}, 'FormLanguages')
+describe('FormLanguage', () => { 
+  let form = createForm({
+    multilingual: true,
+    schema: {
+      el: {
+        type: 'text',
+      }
+    }
+  })
+
+  let FormLanguage = findAllComponents(form, { name: 'FormLanguage' }).at(0)
+
+  useFormComponent({multilingual:true,schema:{el:{type:'text'}}}, 'FormLanguage', {
+    mergeWith: {
+      wrapper: FormLanguage.vm.classes.active
+    }
+  })
+
+  describe('classes', () => {
+    it('should add inactive class but not active to wrapper when inactive', async () => {
+      let form = createForm({
+        multilingual: true,
+        languages: {
+          en: { label: 'English', code: 'en' },
+          de: { label: 'German', code: 'de' },
+        },
+        language: 'en',
+        overrideClasses: {
+          FormLanguage: {
+            inactive: 'inactive'
+          }
+        },
+        schema: {
+          el: {
+            type: 'text',
+          }
+        }
+      })
+
+      await nextTick()
+
+      let component = findAllComponents(form, { name: 'FormLanguage' }).at(0).vm
+
+      expect(component.classes.wrapper).not.toContain(component.classes.inactive)
+      expect(component.classes.wrapper).toContain(component.classes.active)
+
+      form.vm.selectedLanguage = 'de'
+
+      await nextTick()
+
+      component = findAllComponents(form, { name: 'FormLanguage' }).at(0).vm
+
+      expect(component.classes.wrapper).toContain(component.classes.inactive)
+      expect(component.classes.wrapper).not.toContain(component.classes.active)
+      
+    // destroy(form) // teardown
+    })
+  })
 
   describe('select', () => {
-    it('should select form language by clicking tab', async () => {
+    it('should emit select event on select', () => {
       let form = createForm({
         languages: {
           en: {
@@ -34,10 +90,7 @@ describe('FormLanguages', () => {
 
       findAll(tab, 'a').last().trigger('click')
 
-      await nextTick()
-
-      expect(form.vm.selectedLanguage).toBe('de')
-      expect(languageSelector.vm.language).toBe('de')
+      expect(tab.emitted('select')[0][0]).toBe('de')
     })
   })
 })

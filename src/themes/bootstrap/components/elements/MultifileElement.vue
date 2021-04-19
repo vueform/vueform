@@ -71,7 +71,7 @@
           disabled: 'is-disabled',
           selectButton: 'btn btn-light',
           handle: 'list-handle',
-          sorting: 'sortable-sorting',
+          sorting: 'is-sorting',
         },
         classKeys: {
           list: 'list',
@@ -105,7 +105,7 @@
       }
     }
 
-    &.sortable-sorting {
+    &.is-sorting {
       & > div:hover {
         .list-handle {
           visibility: hidden;
@@ -140,7 +140,7 @@
       }
     }
 
-    &.sortable-sorting {
+    &.is-sorting {
       & > div:hover {
         .list-handle {
           visibility: hidden;

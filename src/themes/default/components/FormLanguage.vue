@@ -1,13 +1,13 @@
 <template>
   <li :class="classes.container">
-      <a
-        href="#"
-        :class="classes.wrapper"
-        @click.prevent="select"
-      >
-        {{ language.label }}
-      </a>
-    </li>
+    <a
+      href="#"
+      :class="classes.wrapper"
+      @click.prevent="select"
+    >
+      {{ language.label }}
+    </a>
+  </li>
 </template>
 
 <script>
@@ -28,3 +28,9 @@
     }
   }
 </script>
+
+<style lang="scss">
+  @import 'node_modules/bootstrap/scss/_functions.scss';
+  @import 'node_modules/bootstrap/scss/_variables.scss';
+  @import 'node_modules/bootstrap/scss/_mixins.scss';
+</style>

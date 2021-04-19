@@ -1,7 +1,7 @@
 import { computed, toRefs } from 'composition-api'
 import { mergeComponentClasses } from './../../utils/mergeClasses'
 
-const base = function(props, context, dependencies)
+const base = function(props, context, dependencies, options = {})
 {
   const {
     addClasses,
@@ -76,6 +76,17 @@ const base = function(props, context, dependencies)
       })
     }
 
+    // Add classes defined by specific elements
+    if (options.addClasses) {
+      options.addClasses.forEach((add) => {
+        if (add[2].value) {
+          classes = mergeComponentClasses(classes, {
+            [add[0]]: typeof add[1] == 'object' ? add[1].value : classes[add[1]],
+          })
+        }
+      })
+    }
+
     return classes
   })
 
@@ -91,36 +102,20 @@ const list = function(props, context, dependencies)
 {
   const {
     mainClass,
-    classes: baseClasses,
+    classes,
     defaultClasses,
     classKeys
-  } = base(props, context, dependencies)
+  } = base(props, context, dependencies, {
+    addClasses: [
+      ['list', 'disabled', computed(() => isDisabled.value)],
+      ['list', 'sorting', computed(() => sorting.value)],
+    ]
+  })
 
   // ============ DEPENDENCIES ============
 
   const isDisabled = dependencies.isDisabled
   const sorting = dependencies.sorting
-
-  // ============== COMPUTED ==============
-
-  /**
-   * Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`.
-   * 
-   * @type {object}
-   * @option
-   */
-  const classes = computed(() => {
-    let classes = _.clone(baseClasses.value)
-
-    classes = mergeComponentClasses(classes, {
-      [classKeys.value.list]: {
-        [classes.disabled]: isDisabled.value,
-        [classes.sorting]: sorting.value,
-      },
-    })
-
-    return classes
-  })
 
   return {
     classes,
@@ -138,42 +133,24 @@ const multifile = function(props, context, dependencies)
 
   const {
     mainClass,
-    classes: baseClasses,
+    classes,
     defaultClasses,
     classKeys
-  } = base(props, context, dependencies)
+  } = base(props, context, dependencies, {
+    addClasses: [
+      ['list', 'listDefault', computed(() => view.value !== 'gallery')],
+      ['list', 'listGallery', computed(() => view.value === 'gallery')],
+      ['list', 'sorting', computed(() => sorting.value)],
+      ['list', 'disabled', computed(() => isDisabled.value)],
+      ['listItem', 'listItemDefault', computed(() => view.value !== 'gallery')],
+      ['listItem', 'listItemGallery', computed(() => view.value === 'gallery')],
+    ]
+  })
 
   // ============ DEPENDENCIES ============
 
   const isDisabled = dependencies.isDisabled
   const sorting = dependencies.sorting
-
-  // ============== COMPUTED ==============
-
-  /**
-   * Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`.
-   * 
-   * @type {object}
-   * @option
-   */
-  const classes = computed(() => {
-    let classes = _.clone(baseClasses.value)
-
-    classes = mergeComponentClasses(classes, {
-      [classKeys.value.list]: {
-        [classes.listDefault]: view.value !== 'gallery',
-        [classes.listGallery]: view.value === 'gallery',
-        [classes.sorting]: sorting.value,
-        [classes.disabled]: isDisabled.value,
-      },
-      [classKeys.value.listItem]: {
-        [classes.listItemDefault]: view.value !== 'gallery',
-        [classes.listItemGallery]: view.value === 'gallery',
-      },
-    })
-
-    return classes
-  })
 
   return {
     classes,
@@ -185,36 +162,20 @@ const multifile = function(props, context, dependencies)
 
 const file = function(props, context, dependencies)
 {
+  const {
+    defaultClasses,
+    mainClass,
+    classes,
+    classKeys
+  } = base(props, context, dependencies, {
+    addClasses: [
+      ['container', 'removing', computed(() => removing.value)],
+    ]
+  })
+
   // ============ DEPENDENCIES ============
 
-  const {
-    mainClass,
-    classes: baseClasses,
-    defaultClasses,
-    classKeys
-  } = base(props, context, dependencies)
-
   const removing = dependencies.removing
-
-  // ============== COMPUTED ==============
-
-  /**
-   * Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`.
-   * 
-   * @type {object}
-   * @option
-   */
-  const classes = computed(() => {
-    let classes = _.clone(baseClasses.value)
-
-      classes = mergeComponentClasses(classes, {
-        [mainClass.value]: {
-          [classes.removing]: removing.value,
-        },
-      })
-
-      return classes
-  })
 
   return {
     classes,
@@ -232,42 +193,21 @@ const button = function(props, context, dependencies)
 
   const {
     mainClass,
-    classes: baseClasses,
+    classes,
     defaultClasses,
     classKeys
-  } = base(props, context, dependencies)
+  } = base(props, context, dependencies, {
+    addClasses: [
+      ['button', 'loading', computed(() => isLoading.value)],
+      ['button', 'disabled', computed(() => isDisabled.value)],
+      ['button', buttonClass, buttonClass],
+    ]
+  })
 
   // ============ DEPENDENCIES ============
 
   const isLoading = dependencies.isLoading
   const isDisabled = dependencies.isDisabled
-
-  // ============== COMPUTED ==============
-
-  /**
-   * Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`.
-   * 
-   * @type {object}
-   * @option
-   */
-  const classes = computed(() => {
-    let classes = _.clone(baseClasses.value)
-
-    classes = mergeComponentClasses(classes, {
-      [classKeys.value.button]: {
-        [classes[classKeys.value.loading]]: isLoading.value,
-        [classes[classKeys.value.disabled]]: isDisabled.value,
-      }
-    })
-
-    if (buttonClass.value) {
-      classes = mergeComponentClasses(classes, {
-        [classKeys.value.button]: buttonClass.value
-      })
-    }
-
-    return classes
-  })
 
   return {
     classes,
@@ -281,34 +221,18 @@ const trix = function(props, context, dependencies)
 {
   const {
     mainClass,
-    classes: baseClasses,
+    classes,
     defaultClasses,
     classKeys
-  } = base(props, context, dependencies)
+  } = base(props, context, dependencies, {
+    addClasses: [
+      ['trix', 'disabled', computed(() => isDisabled.value)],
+    ]
+  })
 
   // ============ DEPENDENCIES ============
 
   const isDisabled = dependencies.isDisabled
-
-  // ============== COMPUTED ==============
-
-  /**
-   * Returns the final classes of the components within the element. Setting the value will overwrite compoent classes. Eg. `classes: { ElementLabel: { label: 'my-label-class' } }` will replace `ElementLabel`'s `label` class with `my-label-class`.
-   * 
-   * @type {object}
-   * @option
-   */
-  const classes = computed(() => {
-    let classes = _.clone(baseClasses.value)
-
-    classes = mergeComponentClasses(classes, {
-      trix: {
-        [classes.disabled]: isDisabled.value,
-      }
-    })
-
-    return classes
-  })
 
   return {
     classes,

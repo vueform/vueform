@@ -72,12 +72,19 @@ export default {
     const {
       form$,
       theme,
-      classes:
-      baseClasses,
+      classes,
       components,
       mainClass,
       defaultClasses,
-    } = useFormComponent(props, context)
+    } = useFormComponent(props, context, {}, {
+      addClasses: [
+        ['wrapper', 'active', computed(() => active.value)],
+        ['wrapper', 'inactive', computed(() => !active.value)],
+        ['wrapper', 'valid', computed(() => !invalid.value)],
+        ['wrapper', 'invalid', computed(() => invalid.value)],
+        ['container', computed(() => tabClass.value || null), ref(true)],
+      ]
+    })
 
     const {
       available,
@@ -143,48 +150,12 @@ export default {
     })
 
     /**
-     * Class of tab.
-     * 
-     * @type {string|array|object}
-     */
-    const class_ = computed(() => {
-      return tabClass.value || null
-    })
-
-    /**
      * Determines whether the tab has any invalid elements.
      * 
      * @type {boolean}
      */
     const invalid = computed(() => {
       return _.some(children$.value, { available: true, invalid: true })   
-    })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const classes = computed(() => {
-      let classList = _.clone(baseClasses.value)
-
-      classList = mergeComponentClasses(classList, {
-        [classKeys.value.state]: {
-          [classList.active]: active.value,
-          [classList.inactive]: !active.value,
-          [classList.valid]: !invalid.value,
-          [classList.invalid]: invalid.value,
-        }
-      })
-
-      // Add tabs's class to main class
-      if (class_ !== null) {
-        classList = mergeComponentClasses(classList, {
-          [mainClass.value]: class_.value
-        })
-      }
-
-      return classList
     })
     
     /**

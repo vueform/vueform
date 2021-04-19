@@ -1,29 +1,12 @@
 import { createForm, findAllComponents, findAll } from 'test-helpers'
 import useFormComponent from './../composables/useFormComponent'
+import { nextTick } from 'composition-api'
 
-describe('FormLanguage', () => { 
-  let form = createForm({
-    multilingual: true,
-    schema: {
-      el: {
-        type: 'text',
-      }
-    }
-  })
-
-  let FormLanguage = findAllComponents(form, { name: 'FormLanguage' }).at(0)
-
-  useFormComponent({multilingual:true,schema:{el:{type:'text'}}}, 'FormLanguage', {
-    mergeWith: {
-      [FormLanguage.vm.classKeys.state]: {
-        [FormLanguage.vm.defaultClasses.active]: FormLanguage.vm.selected,
-        [FormLanguage.vm.defaultClasses.inactive]: !FormLanguage.vm.selected,
-      }
-    }
-  })
+describe('FormLanguages', () => { 
+  useFormComponent({multilingual:true,schema:{el:{type:'text'}}}, 'FormLanguages')
 
   describe('select', () => {
-    it('should emit select event on select', () => {
+    it('should select form language by clicking tab', async () => {
       let form = createForm({
         languages: {
           en: {
@@ -51,7 +34,10 @@ describe('FormLanguage', () => {
 
       findAll(tab, 'a').last().trigger('click')
 
-      expect(tab.emitted('select')[0][0]).toBe('de')
+      await nextTick()
+
+      expect(form.vm.selectedLanguage).toBe('de')
+      expect(languageSelector.vm.language).toBe('de')
     })
   })
 })

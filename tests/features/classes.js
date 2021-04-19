@@ -172,11 +172,11 @@ export const classes = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses1[mainClass], mergeWith[mainClass] || ''))
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass((defaultClasses[mainClass] + ' ' + addClasses1[mainClass]).trim(), mergeWith[mainClass] || ''))
 
     el.form$.options.addClasses[elementName] = addClasses2
 
-    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses2[mainClass], mergeWith[mainClass] || ''))
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass((defaultClasses[mainClass] + ' ' + addClasses2[mainClass]).trim(), mergeWith[mainClass] || ''))
     
     // destroy(form) // teardown
   })
@@ -311,12 +311,12 @@ export const classes = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses1[mainClass], mergeWith[mainClass] || ''))
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass((defaultClasses[mainClass] + ' ' + addClasses1[mainClass]).trim(), mergeWith[mainClass] || ''))
 
     form.vm.$set(form.vm.laraform.schema.el.addClasses, elementName, addClasses2)
     await nextTick()
 
-    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses2[mainClass], mergeWith[mainClass] || ''))    
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass((defaultClasses[mainClass] + ' ' + addClasses2[mainClass]).trim(), mergeWith[mainClass] || ''))    
     
     // destroy(form) // teardown
   })
@@ -352,7 +352,7 @@ export const classes = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.classes[mainClass]).toStrictEqual(mergeClass(
-      defaultClasses[mainClass] + ' ' + addClassesForm1[mainClass] + ' ' + addClassesElement1[mainClass],
+      (defaultClasses[mainClass] + ' ' + addClassesForm1[mainClass] + ' ' + addClassesElement1[mainClass]).trim(),
       mergeWith[mainClass] || ''
     ))
 
@@ -360,7 +360,7 @@ export const classes = function (elementType, elementName, options) {
     el.addClasses[elementName] = addClassesElement2
 
     expect(el.classes[mainClass]).toStrictEqual(mergeClass(
-      defaultClasses[mainClass] + ' ' + addClassesForm2[mainClass] + ' ' + addClassesElement2[mainClass],
+      (defaultClasses[mainClass] + ' ' + addClassesForm2[mainClass] + ' ' + addClassesElement2[mainClass]).trim(),
       mergeWith[mainClass] || ''
     ))
     

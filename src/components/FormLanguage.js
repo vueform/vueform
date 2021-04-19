@@ -1,6 +1,5 @@
 import { computed, toRefs } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
-import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'FormLanguage',
@@ -25,11 +24,16 @@ export default {
     const {
       form$,
       theme,
-      classes: baseClasses,
+      classes,
       mainClass,
       components,
       defaultClasses,
-    } = useFormComponent(props, context)
+    } = useFormComponent(props, context, {}, {
+      addClasses: [
+        ['wrapper', 'active', computed(() => selected.value)],
+        ['wrapper', 'inactive', computed(() => !selected.value)],
+      ]
+    })
 
     // ============== COMPUTED ==============
 
@@ -49,24 +53,6 @@ export default {
      */
     const selected = computed(() => {
       return selectedLanguage.value == code.value
-    })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const classes = computed(() => {
-      let classList = baseClasses.value
-
-      classList = mergeComponentClasses(classList, {
-        [classKeys.value.state]: {
-          [classList.active]: selected.value,
-          [classList.inactive]: !selected.value,
-        }
-      })
-
-      return classList
     })
 
     // =============== METHODS ==============

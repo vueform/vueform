@@ -67,7 +67,7 @@
   @import 'node_modules/bootstrap/scss/_mixins.scss';
 
   // Refers to MultifileElement classes
-  .sortable-sorting, .gallery-list.is-disabled {
+  .is-sorting, .gallery-list.is-disabled {
     .gallery-preview {
       &:hover {
         .overlay {

@@ -12,12 +12,23 @@ describe('ElementLayoutInline', () => {
   })
 
   let el = form.vm.el$('el')
-  let Layout = findAllComponents(form, { name: 'ElementLayoutInline' }).at(0)
+
+  let mergeWith = {
+    container: [],
+  }
+
+  if (!_.isEmpty(el.classes.container)) {
+    mergeWith.container.push(el.classes.container)
+  }
+
+  if (mergeWith.container.length) {
+    mergeWith.container.push('element-class')
+  } else {
+    mergeWith.container = 'element-class'
+  }
 
   useElementComponent('text', 'ElementLayoutInline', { addClass: 'element-class', inline: true }, {
-    mergeWith: {
-      [Layout.vm.mainClass]: `${el.classes[el.mainClass]} element-class`,
-    }
+    mergeWith,
   })
 
   describe('rendering', () => {

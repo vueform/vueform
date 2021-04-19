@@ -1,6 +1,5 @@
-import { computed, toRefs, onBeforeUpdate } from 'composition-api'
+import { computed, toRefs, ref } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
-import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'ElementLayout',
@@ -21,41 +20,23 @@ export default {
     const {
       form$,
       el$,
-      classes: baseClasses,
+      classes,
       components,
       mainClass,
       theme,
       defaultClasses,
-    } = useElementComponent(props, context)
+    } = useElementComponent(props, context, {}, {
+      addClasses: [
+        ['container', computed(() => el$.value.columnsClasses.element), ref(true)],
+        ['container', computed(() => el$.value.classes.container), ref(true)],
+        ['container', 'error', computed(() => !el$.value.isStatic && !!el$.value.error)],
+        ['fieldWrapper', computed(() => el$.value.columnsClasses.field), ref(true)],
+        ['fieldWrapper', 'outerWrapperMultiple', computed(() => multiple.value)],
+        ['fieldWrapper', 'outerWrapperSingle', computed(() => !multiple.value)],
+      ]
+    })
 
     // ============== COMPUTED ==============
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const classes = computed(() => {
-      let classes = _.clone(baseClasses.value)
-
-      classes = mergeComponentClasses(classes, {
-        [classKeys.value.element]: {
-          [el$.value.columnsClasses.element]: true,
-          [classes.error]: !el$.value.isStatic ? !!el$.value.error : false
-        },
-        [classKeys.value.field]: el$.value.columnsClasses.field,
-        [classKeys.value.outerWrapper]: multiple.value
-          ? classes[classKeys.value.outerWrapperMultiple]
-          : classes[classKeys.value.outerWrapperSingle],
-      })
-
-      // Add element's main class to main class
-      classes = mergeComponentClasses(classes, {
-        [mainClass.value]: el$.value.classes[el$.value.mainClass]
-      })
-
-      return classes
-    })
 
     /**
      * 

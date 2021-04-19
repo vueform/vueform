@@ -1,6 +1,5 @@
-import { computed, onMounted, ref } from 'composition-api'
+import { onMounted, ref, computed } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
-import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'DragAndDrop',
@@ -22,12 +21,16 @@ export default {
     const {
       el$,
       form$,
-      classes: baseClasses,
+      classes,
       components,
       mainClass,
       theme,
       defaultClasses,
-    } = useElementComponent(props, context)
+    } = useElementComponent(props, context, {}, {
+      addClasses: [
+        ['container', 'active', computed(() => dragging.value)]
+      ],
+    })
 
     // ================ DATA ================
 
@@ -44,18 +47,6 @@ export default {
      * @private
      */
     const area = ref(null)
-
-    // ============== COMPUTED ==============
-
-    const classes = computed(() => {
-      let classes = _.clone(baseClasses.value)
-
-      return mergeComponentClasses(classes, {
-        [mainClass.value]: {
-          [classes.active]: dragging.value,
-        }
-      })
-    })
 
     // =============== METHODS ==============
 

@@ -4,29 +4,45 @@ import { classes as baseClasses } from './classes'
 export { mainClass, rendering } from './classes'
 
 export const classes = function (elementType, elementName, options) {
-  let form = createForm({
-    schema: {
-      el: {
-        type: elementType,
+  baseClasses(elementType, elementName, options)
+
+  it('should add disabled class to list when disabled', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
       }
-    },
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.classes.list).not.toContain(el.classes.disabled)
+
+    el.disable()
+
+    expect(el.classes.list).toContain(el.classes.disabled)
+    
+  // destroy(form) // teardown
   })
 
-  let el = form.vm.el$('el')
+  it('should add sorting class to list when sorting', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
 
-  baseClasses(elementType, elementName, Object.assign({}, options, {
-    mergeWith: {
-      [el.classKeys.sortable]: {
-        [el.classes.sortable]: el.sort
-      },
-      [el.classKeys.add]: {
-        [el.classes.disabled]: el.isDisabled
-      },
-      [el.classKeys.remove]: {
-        [el.classes.disabled]: el.isDisabled
-      },
-    }
-  }))
+    let el = form.vm.el$('el')
+
+    expect(el.classes.list).not.toContain(el.classes.sorting)
     
-  destroy(form) // teardown
+    el.sorting = true
+
+    expect(el.classes.list).toContain(el.classes.sorting)
+    
+  // destroy(form) // teardown
+  })
 }

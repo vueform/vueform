@@ -19,27 +19,18 @@ export default {
     const {
     el$,
     form$,
-    classes: baseClasses,
+    classes,
     components,
     mainClass,
     theme,
     defaultClasses,
-  } = useElementComponent(props, context)
+  } = useElementComponent(props, context, {}, {
+    addClasses: [
+      ['wrapper', 'visible', visible]
+    ]
+  })
 
     // ============== COMPUTED ==============
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const classes = computed(() => {
-      return mergeComponentClasses(_.clone(baseClasses.value), {
-        [mainClass.value]: {
-          [baseClasses.value.visible]: visible.value,
-        },
-      })
-    })
 
     /**
      * 

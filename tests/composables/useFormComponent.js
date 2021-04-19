@@ -231,11 +231,11 @@ export default function (schema, componentName, options = {}) {
       
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses1[mainClass], mergeWith[mainClass] || ''))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses1[mainClass])))
 
       el.form$.options.addClasses[componentName] = addClasses2
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass] + ' ' + addClasses2[mainClass], mergeWith[mainClass] || ''))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses2[mainClass])))
     })
 
     // Rendering
