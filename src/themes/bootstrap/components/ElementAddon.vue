@@ -22,8 +22,8 @@
         defaultClasses: {
           container: '',
           wrapper: 'input-group-text',
-          addonBefore: 'input-group-prepend',
-          addonAfter: 'input-group-append',
+          before: 'input-group-prepend',
+          after: 'input-group-append',
         }
       }
     }

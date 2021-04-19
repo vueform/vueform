@@ -1,13 +1,13 @@
 <template>
   <li :class="classes.container">
-      <a
-        href="#"
-        :class="classes.wrapper"
-        @click.prevent="select"
-      >
-        {{ language.label }}
-      </a>
-    </li>
+    <a
+      href="#"
+      :class="classes.wrapper"
+      @click.prevent="select"
+    >
+      {{ language.label }}
+    </a>
+  </li>
 </template>
 
 <script>

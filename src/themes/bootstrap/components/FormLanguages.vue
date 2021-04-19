@@ -27,7 +27,7 @@
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
 
-  .form-languages {
+  .nav.form-languages {
     margin-bottom: calc(#{$spacer} * 2);
   }
 </style>
