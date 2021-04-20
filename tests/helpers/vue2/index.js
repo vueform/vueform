@@ -41,6 +41,7 @@ import installLaraform from './installLaraform'
 
 window.createForm = createForm
 window.findAllComponents = findAllComponents
+window.c = console.log
 
 export {
   change,

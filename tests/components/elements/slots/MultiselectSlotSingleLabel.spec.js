@@ -3,7 +3,7 @@ import useElementComponent from './../../../composables/useElementComponent'
 import { nextTick } from 'composition-api'
 
 describe('MultiselectSlotSingleLabel', () => {
-  useElementComponent('select', 'MultiselectSlotSingleLabel', { items: ['value'], default: 0, native: false })
+  useElementComponent('select', 'MultiselectSlotSingleLabel', { items: ['Select option'], default: 'Select option', native: false })
 
   describe('rendering', () => {
     it('should render content', async () => {
@@ -12,7 +12,7 @@ describe('MultiselectSlotSingleLabel', () => {
           el: {
             type: 'select',
             native: false,
-            default: 0,
+            default: 'Select option',
             items: ['Select option']
           }
         }

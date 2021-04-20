@@ -4,7 +4,7 @@ import { ref, markRaw, nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 import defaultTheme from './../../src/themes/default'
 import bootstrap from './../../src/themes/bootstrap'
-import { mergeComponentClasses } from './../../src/utils/mergeClasses'
+import { mergeComponentClasses, mergeClass } from './../../src/utils/mergeClasses'
 import fs from 'fs'
 
 jest.useFakeTimers()
@@ -1241,11 +1241,11 @@ describe('Laraform', () => {
         }
       })
 
-      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses1[mainClass])
+      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], addClasses1[mainClass]))
 
       form.vm.options.addClasses.Laraform = addClasses2
 
-      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses2[mainClass])
+      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], addClasses2[mainClass]))
     })
 
     it('should have addClasses in form add classes, even when changes using Composition API', async () => {
@@ -1268,11 +1268,11 @@ describe('Laraform', () => {
         }
       })
 
-      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses1[mainClass])
+      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], addClasses1[mainClass]))
 
       form.vm.options.addClasses.Laraform = addClasses2
 
-      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses2[mainClass])
+      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], addClasses2[mainClass]))
     })
 
     it('should have addClasses in form add classes, even when changes using :form prop', async () => {
@@ -1291,11 +1291,11 @@ describe('Laraform', () => {
         }
       })
 
-      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses1[mainClass])
+      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], addClasses1[mainClass]))
 
       form.vm.options.addClasses.Laraform = addClasses2
 
-      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(defaultClasses[mainClass] + ' ' + addClasses2[mainClass])
+      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], addClasses2[mainClass]))
     })
 
     it('should have class add classes, even when changes', async () => {

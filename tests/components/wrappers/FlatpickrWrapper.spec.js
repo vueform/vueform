@@ -3,7 +3,7 @@ import useElementComponent from './../../composables/useElementComponent'
 import { nextTick } from 'composition-api'
 
 describe('FlatpickrWrapper', () => {
-  // useElementComponent('date', 'FlatpickrWrapper')
+  useElementComponent('date', 'FlatpickrWrapper')
 
   describe('flatpickr$', () => {
     it('should be equal to flatpickr instance', async () => {

@@ -240,6 +240,8 @@ describe('FormTab', () => {
             type: 'text'
           },
         }
+      }, {
+        attach: true
       })
 
       let second = findAllComponents(form, { name: 'FormTab' }).at(1)

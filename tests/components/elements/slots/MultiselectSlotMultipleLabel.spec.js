@@ -1,9 +1,8 @@
 import { createForm, findAllComponents } from 'test-helpers'
 import useElementComponent from './../../../composables/useElementComponent'
-import { nextTick } from 'composition-api'
 
 describe('MultiselectSlotMultipleLabel', () => {
-  useElementComponent('multiselect', 'MultiselectSlotMultipleLabel', { items: ['value'], default: [0], native: false })
+  useElementComponent('multiselect', 'MultiselectSlotMultipleLabel', { items: [0], default: [0], native: false })
 
   describe('rendering', () => {
     it('should render content', async () => {
@@ -13,7 +12,7 @@ describe('MultiselectSlotMultipleLabel', () => {
             type: 'multiselect',
             native: false,
             default: [0],
-            items: ['Select option']
+            items: [0]
           }
         }
       })

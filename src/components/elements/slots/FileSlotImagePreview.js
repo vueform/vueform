@@ -82,7 +82,6 @@ export default {
       else {
         el$.value.handleRemove()
       }
-
     }
 
     return {

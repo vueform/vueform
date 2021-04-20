@@ -13,7 +13,6 @@ describe('ElementLabel', () => {
   })
 
   let el = form.vm.el$('el')
-  let ElementLabel = findAllComponents(form, { name: 'ElementLabel' }).at(0)
 
   useElementComponent('text', 'ElementLabel', { label: 'label' }, {
     mergeWith: {

@@ -2,8 +2,8 @@ import { createForm, findAllComponents, findAll } from 'test-helpers'
 import useElementComponent from './../../../composables/useElementComponent'
 import { nextTick } from 'composition-api'
 
-describe('FileSlotPreview', () => {
-  useElementComponent('file', 'FileSlotPreview', { default: new File(['a'], 'a'), auto: false })
+describe('FileSlotFilePreview', () => {
+  useElementComponent('file', 'FileSlotFilePreview', { default: new File(['a'], 'a'), auto: false })
 
   describe('rendering', () => {
     it('should render clickable filename', async () => {
@@ -20,7 +20,7 @@ describe('FileSlotPreview', () => {
       })
 
       let el = findAllComponents(form, { name: 'FileElement' }).at(0)
-      let slot = findAllComponents(el, { name: 'FileSlotPreview' }).at(0)
+      let slot = findAllComponents(el, { name: 'FileSlotFilePreview' }).at(0)
 
       expect(findAll(slot, 'a').at(0).attributes('href')).toBe('http://domain.com/filename.jpg')
       expect(findAll(slot, 'a').at(0).element.innerHTML).toBe('filename.jpg')
@@ -40,9 +40,9 @@ describe('FileSlotPreview', () => {
       })
 
       let el = findAllComponents(form, { name: 'FileElement' }).at(0)
-      let slot = findAllComponents(el, { name: 'FileSlotPreview' }).at(0)
+      let slot = findAllComponents(el, { name: 'FileSlotFilePreview' }).at(0)
 
-      expect(findAll(slot, 'span').at(0).element.innerHTML).toBe('filename.jpg')
+      expect(findAll(slot, `.${slot.vm.classes.filename} span`).last().element.innerHTML).toBe('filename.jpg')
     })
   })
 })

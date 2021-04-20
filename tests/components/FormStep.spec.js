@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, findAll, createElement } from 'test-helpers'
+import { createForm, findAllComponents, findAll, createElement, destroy } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import { nextTick, markRaw } from 'composition-api'
 import flushPromises from 'flush-promises'
@@ -531,7 +531,11 @@ describe('FormStep', () => {
             type: 'text'
           },
         }
+      }, {
+        attach: true,
       })
+
+      await nextTick()
 
       let next = findAllComponents(form, { name: 'FormStepsControl' }).at(1)
 

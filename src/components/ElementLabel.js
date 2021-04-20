@@ -1,7 +1,6 @@
 import { computed, ref } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
 import useLabel from './../composables/useLabel'
-import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'ElementLabel',

@@ -5,36 +5,36 @@ import flushPromises from 'flush-promises'
 import useFormComponent from './../composables/useFormComponent'
 
 describe('FormSteps', () => {
-  // useFormComponent({steps:{a:{label:'a',elements:['el']}},schema:{el:{type:'text'}}}, 'FormSteps')
+  useFormComponent({steps:{a:{label:'a',elements:['el']}},schema:{el:{type:'text'}}}, 'FormSteps')
 
-  // describe('rendering', () => {
-  //   it('should render steps', () => {
-  //     let form = createForm({
-  //       steps: {
-  //         first: {
-  //           label: 'First',
-  //           elements: ['a'],
-  //         },
-  //         second: {
-  //           label: 'Second',
-  //           elements: ['b'],
-  //         },
-  //       },
-  //       schema: {
-  //         a: {
-  //           type: 'text'
-  //         },
-  //         b: {
-  //           type: 'text'
-  //         },
-  //       }
-  //     })
+  describe('rendering', () => {
+    it('should render steps', () => {
+      let form = createForm({
+        steps: {
+          first: {
+            label: 'First',
+            elements: ['a'],
+          },
+          second: {
+            label: 'Second',
+            elements: ['b'],
+          },
+        },
+        schema: {
+          a: {
+            type: 'text'
+          },
+          b: {
+            type: 'text'
+          },
+        }
+      })
 
-  //     expect(form.html()).toContain('First')
-  //     expect(form.html()).toContain('Second')
-  //     expect(findAllComponents(form, { name: 'FormStep' }).length).toBe(2)
-  //   })
-  // })
+      expect(form.html()).toContain('First')
+      expect(form.html()).toContain('Second')
+      expect(findAllComponents(form, { name: 'FormStep' }).length).toBe(2)
+    })
+  })
 
   describe('computed', () => {
     it('should be pending if has any pending elements', async () => {

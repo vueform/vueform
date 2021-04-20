@@ -1,9 +1,9 @@
-import { createForm, createElement } from 'test-helpers'
+import { createForm, createElement, findAllComponents } from 'test-helpers'
 import { nextTick, markRaw } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 
 describe('FormElement', () => {
-  // useFormComponent({schema:{el:{type:'text'}}}, 'FormElements')
+  useFormComponent({schema:{el:{type:'text'}}}, 'FormElements')
 
   describe('rendering', () => {
     it('should render element based on type', () => {
@@ -15,7 +15,7 @@ describe('FormElement', () => {
         }
       })
 
-      expect(form.findComponent({name: 'TextElement'}).exists()).toBe(true)
+      expect(findAllComponents(form, { name: 'TextElement' }).at(0).exists()).toBe(true)
     })
 
     it('should render elements in order of steps `elements`', async () => {

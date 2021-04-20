@@ -40,6 +40,7 @@ import unselect from './unselect'
 
 window.createForm = createForm
 window.findAllComponents = findAllComponents
+window.c = console.log
 
 export {
   change,

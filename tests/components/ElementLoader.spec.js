@@ -1,4 +1,4 @@
-import { createForm } from 'test-helpers'
+import { createForm, destroy } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import useElementComponent from './../composables/useElementComponent'
 import { nextTick } from 'composition-api'
@@ -19,6 +19,8 @@ describe('ElementLoader', () => {
             rules: 'required'
           }
         }
+      }, {
+        attach: true,
       })
       
       let el = form.vm.el$('el')
@@ -31,6 +33,8 @@ describe('ElementLoader', () => {
       await nextTick()
       
       expect(ElementLoader.vm.$el).toBeVisible()
+
+      destroy(form)
     })
   })
 })

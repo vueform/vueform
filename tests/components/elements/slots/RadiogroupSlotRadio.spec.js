@@ -60,7 +60,7 @@ describe('RadiogroupSlotRadio', () => {
       expect(label.attributes('for')).toStrictEqual('el-0')
 
       expect(input.attributes('value')).toStrictEqual('0')
-      expect(input.attributes('class')).toStrictEqual(slot.vm.classes.radio)
+      expect(input.attributes('class')).toStrictEqual(slot.vm.classes.input)
       expect(input.attributes('name')).toStrictEqual('el')
       expect(input.attributes('id')).toStrictEqual('el-0')
       expect(input.attributes('disabled')).toStrictEqual(undefined)
@@ -71,7 +71,7 @@ describe('RadiogroupSlotRadio', () => {
 
       expect(input.attributes('disabled')).not.toStrictEqual(undefined)
 
-      expect(findAll(label, 'span').at(0).element.innerHTML).toBe('value')
+      expect(label.element.innerHTML).toBe('value')
     })
   })
 })
