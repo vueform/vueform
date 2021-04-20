@@ -54,6 +54,17 @@ const base = function(props, context, dependencies, options = {})
       overrideClasses.value[componentName.value] || {}
     )
 
+    // Add classes defined by specific elements
+    if (options.addClasses) {
+      options.addClasses.forEach((add) => {
+        if (add[2].value) {
+          classes = mergeComponentClasses(classes, {
+            [add[0]]: typeof add[1] == 'object' ? add[1].value : classes[add[1]],
+          })
+        }
+      })
+    }
+
     // Add form's addClasses
     if (form$.value.options.addClasses[componentName.value] !== undefined) {
       classes = mergeComponentClasses(classes, form$.value.options.addClasses[componentName.value] || null)
@@ -66,17 +77,6 @@ const base = function(props, context, dependencies, options = {})
     if (addClass.value) {
       classes = mergeComponentClasses(classes, {
         [mainClass.value]: addClass.value
-      })
-    }
-
-    // Add classes defined by specific elements
-    if (options.addClasses) {
-      options.addClasses.forEach((add) => {
-        if (add[2].value) {
-          classes = mergeComponentClasses(classes, {
-            [add[0]]: typeof add[1] == 'object' ? add[1].value : classes[add[1]],
-          })
-        }
       })
     }
 

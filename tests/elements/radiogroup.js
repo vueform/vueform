@@ -18,10 +18,11 @@ export default function (elementType, elementName, options) {
       let el = form.vm.el$('el')
       let elWrapper = findAllComponents(form, { name: elementName }).at(0)
       let inputs = findAll(elWrapper, `input[type="${options.fieldType}"]`) 
+      let labels = findAll(elWrapper, 'label')
       let input = inputs.at(0)
       let input2 = inputs.at(1)
-      let label = input.element.parentElement
-      let label2 = input2.element.parentElement
+      let label = labels.at(0)
+      let label2 = labels.at(1)
 
       expect(input.attributes('name')).toBe('el')
       expect(input.attributes('id')).toBe('el-1')
@@ -30,10 +31,10 @@ export default function (elementType, elementName, options) {
       expect(input2.attributes('id')).toBe('el-2')
       expect(input2.attributes('value')).toBe('2')
 
-      expect(label.innerHTML).toContain('value')
-      expect(label2.innerHTML).toContain('value2')
-      expect(label.getAttribute('for')).toBe('el-1')
-      expect(label2.getAttribute('for')).toBe('el-2')
+      expect(label.element.innerHTML).toContain('value')
+      expect(label2.element.innerHTML).toContain('value2')
+      expect(label.attributes('for')).toBe('el-1')
+      expect(label2.attributes('for')).toBe('el-2')
     })
   })
 }

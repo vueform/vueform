@@ -14,6 +14,7 @@ export const empty = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          initial: 0,
         }
       }
     })

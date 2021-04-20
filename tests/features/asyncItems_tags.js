@@ -23,10 +23,10 @@ export const updateItems = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     
-    expect(el.input.filteredOptions).toStrictEqual([
-      { value: 0, label: 1 },
-      { value: 1, label: 2 },
-      { value: 2, label: 3 }
+    expect(el.input.fo).toStrictEqual([
+      { value: 1, label: 1 },
+      { value: 2, label: 2 },
+      { value: 3, label: 3 }
     ])
 
     option3 = 4
@@ -35,10 +35,10 @@ export const updateItems = function (elementType, elementName, options) {
 
     await flushPromises()
     
-    expect(el.input.filteredOptions).toStrictEqual([
-      { value: 0, label: 1 },
-      { value: 1, label: 2 },
-      { value: 2, label: 4 }
+    expect(el.input.fo).toStrictEqual([
+      { value: 1, label: 1 },
+      { value: 2, label: 2 },
+      { value: 4, label: 4 }
     ])
     
     // destroy(form) // teardown

@@ -686,7 +686,7 @@ export const handleAdd = function (elementType, elementName, options) {
 
       await nextTick()
 
-      elWrapper.find(`.${el.defaultClasses.add}`).trigger('click')
+      elWrapper.find(`[class="${el.defaultClasses.add}"]`).trigger('click')
 
       expect(el.value.length).toBe(1)
     

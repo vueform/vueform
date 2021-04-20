@@ -817,30 +817,6 @@ export const canUploadTemp = function (elementType, elementName, options) {
   })
 }
 
-export const previewOptions = function (elementType, elementName, options) {
-  it('should have `previewOptions`', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-    
-    expect(el.previewOptions).toStrictEqual({
-      link: el.link,
-      clickable: el.clickable,
-      filename: el.filename,
-      preview: el.preview,
-      uploaded: el.uploaded,
-    })
-
-    // destroy() // teardown
-  })
-}
-
 export const uploadTemp = function (elementType, elementName, options) {
   it('should throw an error in `uploadTemp` if not in stage 1', async () => {
     let form = createForm({
@@ -2040,6 +2016,7 @@ export const handleUploadTemp = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let FileSlotFilePreview = findAllComponents(form, { name: 'FileSlotFilePreview' }).at(0)
 
     el.$laraform.services.axios.post = jest.fn(() => ({data:{}}))
 
@@ -2047,7 +2024,7 @@ export const handleUploadTemp = function (elementType, elementName, options) {
 
     await nextTick()
 
-    let uploadTempButton = findAll(elWrapper, `[class="${el.classes.uploadButton}"]`).at(0)
+    let uploadTempButton = findAll(FileSlotFilePreview, `[class="${FileSlotFilePreview.vm.classes.upload}"]`).at(0)
 
     uploadTempButton.trigger('click')
 
@@ -2074,12 +2051,13 @@ export const handleRemove = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let FileSlotFilePreview = findAllComponents(form, { name: 'FileSlotFilePreview' }).at(0)
 
     el.load(new File([], 'filename.jpg'))
 
     await nextTick()
 
-    let removeButton = findAll(elWrapper, `[class="${el.classes.removeButton}"]`).at(0)
+    let removeButton = findAll(elWrapper, `[class="${FileSlotFilePreview.vm.classes.remove}"]`).at(0)
 
     removeButton.trigger('click')
     
@@ -2102,6 +2080,7 @@ export const handleAbort = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let FileSlotFilePreview = findAllComponents(form, { name: 'FileSlotFilePreview' }).at(0)
 
     let cancelMock = jest.fn()
 
@@ -2113,7 +2092,7 @@ export const handleAbort = function (elementType, elementName, options) {
 
     expect(cancelMock).not.toHaveBeenCalled()
 
-    elWrapper.find(`[class="${el.classes.abortButton}"]`).trigger('click')
+    elWrapper.find(`[class="${FileSlotFilePreview.vm.classes.remove}"]`).trigger('click')
 
     await nextTick()
 
@@ -2393,148 +2372,5 @@ export const rendering = function (elementType, elementName, options) {
     expect(elWrapper.find('input[type="file"]').exists()).toBe(false)
     
     // destroy(form) // teardown
-  })
-
-  it('should render preview with filename if it has no link', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-
-    el.load({
-      tmp: 'tmp123',
-      originalName: 'filename'
-    })
-
-    await nextTick()
-    
-    expect(elWrapper.find('.preview').html()).not.toContain('href')
-    expect(elWrapper.find('.preview').html()).toContain('filename')
-    
-    // destroy(form) // teardown
-  })
-
-  it('should render preview with anchor if it has link', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-
-    el.load('filename')
-
-    await nextTick()
-    
-    expect(elWrapper.find('.preview').html()).toContain('href')
-    expect(elWrapper.find('.preview').html()).toContain('filename')
-    
-    // destroy(form) // teardown
-  })
-
-  it('should only show progress if `progress` is larger than 0', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let fsp$ = findAllComponents(elWrapper, { name: 'FileSlotProgress' }).at(0)
-
-    expect(fsp$.html()).toBeFalsy()
-
-    el.progress = 60
-
-    await nextTick()
-
-    expect(fsp$.html()).toBeTruthy()
-    
-    // destroy(form) // teardown
-  })
-
-  it('should only show temp upload button if `canUploadTemp` is true', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: false
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-
-    expect(elWrapper.find(`a[class="${el.classes.uploadButton}"]`).exists()).toBe(false)
-
-    el.load(new File([''], 'filename'))
-
-    await nextTick()
-
-    expect(elWrapper.find(`a[class="${el.classes.uploadButton}"]`).exists()).toBe(true)
-    
-    // destroy(form) // teardown
-  })
-
-  it('should only show remove button if `canRemove` is true', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: false
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-
-    expect(elWrapper.find(`a[class="${el.classes.removeButton}"]`).exists()).toBe(false)
-
-    el.load(new File([''], 'filename'))
-
-    await nextTick()
-
-    expect(elWrapper.find(`a[class="${el.classes.removeButton}"]`).exists()).toBe(true)
-    
-    // destroy(form) // teardown
-  })
-
-  it('should only show abort button if `uploading` is true', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: false
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-
-    expect(elWrapper.find(`a[class="${el.classes.abortButton}"]`).exists()).toBe(false)
-
-    el.request = {}
-
-    await nextTick()
-
-    expect(elWrapper.find(`a[class="${el.classes.abortButton}"]`).exists()).toBe(true)
-
-    // destroy() // teardown
   })
 }

@@ -38,10 +38,10 @@ module.exports = {
       "!**/jest/**",
       "!**/api/**",
   ],
-  // "reporters": [
-  //   'jest-progress-bar-reporter',
-  //   ["jest-silent-reporter", { "showWarnings": true }]
-  // ],
+  "reporters": [
+    'jest-progress-bar-reporter',
+    ["jest-silent-reporter", { "showWarnings": true }]
+  ],
   "coverageReporters": [
       "html",
       "text-summary"

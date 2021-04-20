@@ -214,6 +214,8 @@ export const rendering = function (elementType, elementName, options) {
           type: elementType,
         }
       }
+    }, {
+      attach: true,
     })
 
     let el = form.vm.el$('el')
@@ -221,7 +223,7 @@ export const rendering = function (elementType, elementName, options) {
     expect(el.visible).toBe(true)
     expect(el.$el).toBeVisible()
     
-    // destroy(form) // teardown
+    destroy(form) // teardown
   })
 
   it('should not show element if `visible` is "true"', async () => {
@@ -231,6 +233,8 @@ export const rendering = function (elementType, elementName, options) {
           type: elementType,
         }
       }
+    }, {
+      attach: true
     })
 
     let el = form.vm.el$('el')
@@ -242,6 +246,6 @@ export const rendering = function (elementType, elementName, options) {
     expect(el.visible).toBe(false)
     expect(el.$el).not.toBeVisible()
 
-    // destroy() // teardown
+    destroy(form) // teardown
   })
 }

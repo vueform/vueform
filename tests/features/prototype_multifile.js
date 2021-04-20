@@ -36,6 +36,8 @@ export const prototype = function (elementType, elementName, options) {
       type: 'file',
       image: false,
       auto: el.auto,
+      view: el.view,
+      layout: 'ElementLayout',
     })
   })
   it('should have `prototype` as a single element when not object image=true', () => {
@@ -54,6 +56,8 @@ export const prototype = function (elementType, elementName, options) {
       type: 'file',
       image: true,
       auto: el.auto,
+      view: el.view,
+      layout: 'ElementLayout',
     })
     
     // destroy(form) // teardown
@@ -77,7 +81,9 @@ export const prototype = function (elementType, elementName, options) {
       type: 'file',
       image: false,
       auto: el.auto,
-      url: '/uploads/'
+      url: '/uploads/',
+      view: el.view,
+      layout: 'ElementLayout',
     })
     
     // destroy(form) // teardown
@@ -103,6 +109,8 @@ export const prototype = function (elementType, elementName, options) {
           image: false,
           embed: true,
           auto: el.auto,
+          view: el.view,
+          layout: 'ElementLayout',
         }
       }
     })
@@ -131,6 +139,8 @@ export const prototype = function (elementType, elementName, options) {
           image: true,
           embed: true,
           auto: el.auto,
+          view: el.view,
+          layout: 'ElementLayout',
         }
       }
     })
@@ -159,6 +169,8 @@ export const prototype = function (elementType, elementName, options) {
           image: false,
           embed: true,
           auto: el.auto,
+          view: el.view,
+          layout: 'ElementLayout',
         }
       }
     })
@@ -190,6 +202,8 @@ export const prototype = function (elementType, elementName, options) {
           image: false,
           embed: true,
           url: '/uploads/',
+          view: el.view,
+          layout: 'ElementLayout',
         }
       }
     })
@@ -218,6 +232,8 @@ export const prototype = function (elementType, elementName, options) {
           image: false,
           embed: true,
           auto: el.auto,
+          view: el.view,
+          layout: 'ElementLayout',
         },
         order: {
           type: 'hidden',
@@ -254,6 +270,8 @@ export const prototype = function (elementType, elementName, options) {
           image: false,
           embed: true,
           auto: el.auto,
+          view: el.view,
+          layout: 'ElementLayout',
         },
         label: {
           type: 'text'

@@ -164,7 +164,7 @@ export const value = function (elementType, elementName, options) {
           type: elementType,
           native: false,
           items: [1,2,3],
-          default: 0,
+          default: 1,
         }
       }
     }, { 
@@ -175,22 +175,22 @@ export const value = function (elementType, elementName, options) {
     let select = el.input
 
     // Default value
-    expect(el.value).toBe(0)
-    expect(select.ev).toBe(0)
-    expect(select.iv).toStrictEqual({ value: 0, label: 1 })
+    expect(el.value).toBe(1)
+    expect(select.ev).toBe(1)
+    expect(select.iv).toStrictEqual({ value: 1, label: 1 })
 
     // Loaded value
-    el.load(1)
-    expect(el.value).toBe(1)
-    await nextTick()
-    expect(select.ev).toBe(1)
-    expect(select.iv).toStrictEqual({ value: 1, label: 2 })
-
-    // Selected value
-    select.handleOptionClick({ value: 2, label: 3 })
+    el.load(2)
+    expect(el.value).toBe(2)
     await nextTick()
     expect(select.ev).toBe(2)
-    expect(select.iv).toStrictEqual({ value: 2, label: 3 })
+    expect(select.iv).toStrictEqual({ value: 2, label: 2 })
+
+    // Selected value
+    select.handleOptionClick({ value: 3, label: 3 })
+    await nextTick()
+    expect(select.ev).toBe(3)
+    expect(select.iv).toStrictEqual({ value: 3, label: 3 })
 
     destroy(form)
     
@@ -292,7 +292,7 @@ export const value = function (elementType, elementName, options) {
               resolve([1,2,3])
             })
           },
-          default: 0,
+          default: 1,
         }
       }
     }, { 
@@ -305,22 +305,22 @@ export const value = function (elementType, elementName, options) {
     let select = el.input
 
     // Default value
-    expect(el.value).toBe(0)
-    expect(select.ev).toBe(0)
-    expect(select.iv).toStrictEqual({ value: 0, label: 1 })
+    expect(el.value).toBe(1)
+    expect(select.ev).toBe(1)
+    expect(select.iv).toStrictEqual({ value: 1, label: 1 })
 
     // Loaded value
-    el.load(1)
-    expect(el.value).toBe(1)
-    await nextTick()
-    expect(select.ev).toBe(1)
-    expect(select.iv).toStrictEqual({ value: 1, label: 2 })
-
-    // Selected value
-    select.handleOptionClick({ value: 2, label: 3 })
+    el.load(2)
+    expect(el.value).toBe(2)
     await nextTick()
     expect(select.ev).toBe(2)
-    expect(select.iv).toStrictEqual({ value: 2, label: 3 })
+    expect(select.iv).toStrictEqual({ value: 2, label: 2 })
+
+    // Selected value
+    select.handleOptionClick({ value: 3, label: 3 })
+    await nextTick()
+    expect(select.ev).toBe(3)
+    expect(select.iv).toStrictEqual({ value: 3, label: 3 })
 
     destroy(form)
     

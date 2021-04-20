@@ -259,6 +259,7 @@ export default function(config) {
           try {
             renderer = name === 'Laraform' ? this.extendedComponents[this.$options.name] : this.components[this.$options.name] || this.theme.elements[this.$options.name]
           } catch (e) {
+            c(this.extendedComponents)
             throw new Error(e)
           }
 
