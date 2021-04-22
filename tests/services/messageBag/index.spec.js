@@ -107,6 +107,93 @@ describe('Message Bag Service', () => {
     expect(a.vm.messageBag.messages[1]).toBe('bbb')
   })
 
+  it('should remove `any`', async () => {
+     let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+
+    a.vm.messageBag.prepend('aaa')
+    a.vm.messageBag.prepend('bbb')
+    a.vm.messageBag.append('aaa')
+    a.vm.messageBag.append('ccc')
+    a.vm.messageBag.prepend('aaa', 'message')
+    a.vm.messageBag.prepend('bbb', 'message')
+    a.vm.messageBag.append('aaa', 'message')
+    a.vm.messageBag.append('ccc', 'message')
+
+    expect(a.vm.messageBag.errors.length).toBe(4)
+    expect(a.vm.messageBag.messages.length).toBe(4)
+    
+    a.vm.messageBag.remove('aaa')
+
+    expect(a.vm.messageBag.errors).toStrictEqual(['bbb', 'ccc'])
+    expect(a.vm.messageBag.messages).toStrictEqual(['bbb', 'ccc'])
+  })
+
+  it('should remove `messages`', async () => {
+     let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+
+    a.vm.messageBag.prepend('aaa')
+    a.vm.messageBag.prepend('bbb')
+    a.vm.messageBag.append('aaa')
+    a.vm.messageBag.append('ccc')
+    a.vm.messageBag.prepend('aaa', 'message')
+    a.vm.messageBag.prepend('bbb', 'message')
+    a.vm.messageBag.append('aaa', 'message')
+    a.vm.messageBag.append('ccc', 'message')
+
+    expect(a.vm.messageBag.errors.length).toBe(4)
+    expect(a.vm.messageBag.messages.length).toBe(4)
+    
+    a.vm.messageBag.remove('aaa', 'message')
+
+    expect(a.vm.messageBag.errors).toStrictEqual(['bbb', 'aaa', 'aaa', 'ccc'])
+    expect(a.vm.messageBag.messages).toStrictEqual(['bbb', 'ccc'])
+  })
+
+  it('should remove `messages`', async () => {
+     let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+
+    a.vm.messageBag.prepend('aaa')
+    a.vm.messageBag.prepend('bbb')
+    a.vm.messageBag.append('aaa')
+    a.vm.messageBag.append('ccc')
+    a.vm.messageBag.prepend('aaa', 'message')
+    a.vm.messageBag.prepend('bbb', 'message')
+    a.vm.messageBag.append('aaa', 'message')
+    a.vm.messageBag.append('ccc', 'message')
+
+    expect(a.vm.messageBag.errors.length).toBe(4)
+    expect(a.vm.messageBag.messages.length).toBe(4)
+    
+    a.vm.messageBag.remove('aaa', 'error')
+
+    expect(a.vm.messageBag.errors).toStrictEqual(['bbb', 'ccc'])
+    expect(a.vm.messageBag.messages).toStrictEqual(['bbb', 'aaa', 'aaa', 'ccc'])
+  })
+
   it('should render first `error`', () => {
      let form = createForm({
       schema: {

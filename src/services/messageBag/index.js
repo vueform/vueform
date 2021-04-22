@@ -85,7 +85,7 @@ export default class messageBag {
           this.rm('prepends', 'messages', index)
         }
       })
-      _.each(this.appends.errors, (error, index) => {
+      _.each(this.appends.messages, (error, index) => {
         if (error == msg) {
           this.rm('appends', 'messages', index)
         }

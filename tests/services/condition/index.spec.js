@@ -2,347 +2,356 @@ import { createForm, findAllComponents } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
 describe('Condition Service', () => {
-  // it('should `checkGlobal` condition', () => {
-  //   let form = createForm({
-  //     conditions: {
-  //       globalCondition(form$){
-  //         if (!form$.el$('a')) {
-  //           return false
-  //         }
-
-  //         return form$.el$('a').value == 'aaa'
-  //       }
-  //     },
-  //     schema: {
-  //       a: {
-  //         type: 'text'
-  //       },
-  //       b: {
-  //         type: 'text',
-  //         conditions: ['globalCondition']
-  //       },
-  //     }
-  //   })
-
-  //   let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-  //   let b = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-  //   expect(b.vm.available).toBe(false)
-
-  //   a.get('input').setValue('aaa')
-
-  //   expect(b.vm.available).toBe(true)
-  // })
-
-  // it('should `checkFunction` condition', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       a: {
-  //         type: 'text'
-  //       },
-  //       b: {
-  //         type: 'text',
-  //         conditions: [
-  //           function(form$) {
-  //             if (!form$.el$('a')) {
-  //               return false
-  //             }
-
-  //             return form$.el$('a').value == 'aaa'
-  //           }
-  //         ]
-  //       },
-  //     }
-  //   })
-
-  //   let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-  //   let b = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-  //   expect(b.vm.available).toBe(false)
-
-  //   a.get('input').setValue('aaa')
-
-  //   expect(b.vm.available).toBe(true)
-  // })
-
-  // it('should `checkArray` condition', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       a: {
-  //         type: 'text'
-  //       },
-  //       b: {
-  //         type: 'text',
-  //         conditions: [
-  //           ['a', 'aaa']
-  //         ]
-  //       },
-  //     }
-  //   })
-
-  //   let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-  //   let b = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-  //   expect(b.vm.available).toBe(false)
-
-  //   a.get('input').setValue('aaa')
-
-  //   expect(b.vm.available).toBe(true)
-  // })
-
-  // it('should throw error for unknown condition type', async () => {
-  //   const originalConsoleError = console.error
-  //   const originalConsoleWarn = console.warn
-
-  //   console.error = () => {}
-  //   console.warn = () => {}
-
-  //   expect(() => {
-  //     let form = createForm({
-  //       schema: {
-  //         a: {
-  //           type: 'text'
-  //         },
-  //         b: {
-  //           type: 'text',
-  //           conditions: [
-  //             {a:1}
-  //           ]
-  //         },
-  //       }
-  //     })
-  //   }).toThrowError()
-
-  //   await nextTick()
-
-  //   console.error = originalConsoleError
-  //   console.warn = originalConsoleWarn
-  // })
-
-  // it('should check equality in array', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       a: {
-  //         type: 'text'
-  //       },
-  //       b: {
-  //         type: 'text',
-  //         conditions: [
-  //           ['a', ['aaa','aa']]
-  //         ]
-  //       },
-  //     }
-  //   })
-
-  //   let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-  //   let b = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-  //   expect(b.vm.available).toBe(false)
-
-  //   a.get('input').setValue('aaa')
-  //   expect(b.vm.available).toBe(true)
-
-  //   a.get('input').setValue('aa')
-  //   expect(b.vm.available).toBe(true)
-
-  //   a.get('input').setValue('a')
-  //   expect(b.vm.available).toBe(false)
-  // })
-
-  // it('should check non-equality in array', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       a: {
-  //         type: 'text'
-  //       },
-  //       b: {
-  //         type: 'text',
-  //         conditions: [
-  //           ['a', '!=', ['aaa', 'aa']]
-  //         ]
-  //       },
-  //     }
-  //   })
-
-  //   let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-  //   let b = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-  //   expect(b.vm.available).toBe(true)
-
-  //   a.get('input').setValue('aaa')
-  //   expect(b.vm.available).toBe(false)
-
-  //   a.get('input').setValue('aa')
-  //   expect(b.vm.available).toBe(false)
-
-  //   a.get('input').setValue('a')
-  //   expect(b.vm.available).toBe(true)
-  // })
-
-  // it('should check equality', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       a: {
-  //         type: 'text'
-  //       },
-  //       b: {
-  //         type: 'text',
-  //         conditions: [
-  //           ['a', 'aaa']
-  //         ]
-  //       },
-  //     }
-  //   })
-
-  //   let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-  //   let b = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-  //   expect(b.vm.available).toBe(false)
-
-  //   a.get('input').setValue('aaa')
-  //   expect(b.vm.available).toBe(true)
-  // })
-
-  // it('should check non-equality', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       a: {
-  //         type: 'text'
-  //       },
-  //       b: {
-  //         type: 'text',
-  //         conditions: [
-  //           ['a', '!=', 'aaa']
-  //         ]
-  //       },
-  //     }
-  //   })
-
-  //   let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-  //   let b = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-  //   expect(b.vm.available).toBe(true)
-
-  //   a.get('input').setValue('aaa')
-  //   expect(b.vm.available).toBe(false)
-  // })
-
-  // it('should check gt', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       a: {
-  //         type: 'text'
-  //       },
-  //       b: {
-  //         type: 'text',
-  //         conditions: [
-  //           ['a', '>', 3]
-  //         ]
-  //       },
-  //     }
-  //   })
-
-  //   let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-  //   let b = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-  //   expect(b.vm.available).toBe(false)
-
-  //   a.get('input').setValue(4)
-  //   expect(b.vm.available).toBe(true)
-
-  //   a.get('input').setValue(2)
-  //   expect(b.vm.available).toBe(false)
-  // })
-
-  // it('should check gte', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       a: {
-  //         type: 'text'
-  //       },
-  //       b: {
-  //         type: 'text',
-  //         conditions: [
-  //           ['a', '>=', 3]
-  //         ]
-  //       },
-  //     }
-  //   })
-
-  //   let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-  //   let b = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-  //   expect(b.vm.available).toBe(false)
-
-  //   a.get('input').setValue(3)
-  //   expect(b.vm.available).toBe(true)
-
-  //   a.get('input').setValue(2)
-  //   expect(b.vm.available).toBe(false)
-
-  //   a.get('input').setValue(4)
-  //   expect(b.vm.available).toBe(true)
-  // })
-
-  // it('should check lt', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       a: {
-  //         type: 'text'
-  //       },
-  //       b: {
-  //         type: 'text',
-  //         conditions: [
-  //           ['a', '<', 3]
-  //         ]
-  //       },
-  //     }
-  //   })
-
-  //   let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-  //   let b = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-  //   expect(b.vm.available).toBe(true)
-
-  //   a.get('input').setValue(2)
-  //   expect(b.vm.available).toBe(true)
-
-  //   a.get('input').setValue(3)
-  //   expect(b.vm.available).toBe(false)
-
-  //   a.get('input').setValue(4)
-  //   expect(b.vm.available).toBe(false)
-  // })
-
-  // it('should check lte', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       a: {
-  //         type: 'text'
-  //       },
-  //       b: {
-  //         type: 'text',
-  //         conditions: [
-  //           ['a', '<=', 3]
-  //         ]
-  //       },
-  //     }
-  //   })
-
-  //   let a = findAllComponents(form, { name: 'TextElement' }).at(0)
-  //   let b = findAllComponents(form, { name: 'TextElement' }).at(1)
-
-  //   expect(b.vm.available).toBe(true)
-
-  //   a.get('input').setValue(2)
-  //   expect(b.vm.available).toBe(true)
-
-  //   a.get('input').setValue(3)
-  //   expect(b.vm.available).toBe(true)
-
-  //   a.get('input').setValue(4)
-  //   expect(b.vm.available).toBe(false)
-  // })
+  it('should `checkFunction` condition', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text',
+          conditions: [
+            function(form$) {
+              if (!form$.el$('a')) {
+                return false
+              }
+
+              return form$.el$('a').value == 'aaa'
+            }
+          ]
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+
+    expect(b.vm.available).toBe(false)
+
+    a.vm.update('aaa')
+
+    expect(b.vm.available).toBe(true)
+  })
+
+  it('should `checkArray` condition', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text',
+          conditions: [
+            ['a', 'aaa']
+          ]
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+
+    expect(b.vm.available).toBe(false)
+
+    a.vm.update('aaa')
+
+    expect(b.vm.available).toBe(true)
+  })
+
+  it('should check equality in array', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text',
+          conditions: [
+            ['a', ['aaa','aa']]
+          ]
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+
+    expect(b.vm.available).toBe(false)
+
+    a.vm.update('aaa')
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update('aa')
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update('a')
+    expect(b.vm.available).toBe(false)
+  })
+
+  it('should check equality in array when value is array', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'checkboxgroup',
+          items: {
+            a: 'a',
+            aa: 'aa',
+            aaa: 'aaa'
+          }
+        },
+        b: {
+          type: 'text',
+          conditions: [
+            ['a', ['aaa','aa']]
+          ]
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(0)
+
+    expect(b.vm.available).toBe(false)
+
+    a.vm.update(['aaa'])
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update(['aa'])
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update(['a'])
+    expect(b.vm.available).toBe(false)
+  })
+
+  it('should check non-equality in array', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text',
+          conditions: [
+            ['a', 'not_in', ['aaa', 'aa']]
+          ]
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update('aaa')
+    expect(b.vm.available).toBe(false)
+
+    a.vm.update('aa')
+    expect(b.vm.available).toBe(false)
+
+    a.vm.update('a')
+    expect(b.vm.available).toBe(true)
+  })
+
+  it('should check non-equality in array when value is array', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'checkboxgroup',
+          items: {
+            a: 'a',
+            aa: 'aa',
+            aaa: 'aaa'
+          }
+        },
+        b: {
+          type: 'text',
+          conditions: [
+            ['a', 'not_in', ['aaa','aa']]
+          ]
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'CheckboxgroupElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(0)
+
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update(['aaa'])
+    expect(b.vm.available).toBe(false)
+
+    a.vm.update(['aa'])
+    expect(b.vm.available).toBe(false)
+
+    a.vm.update(['a'])
+    expect(b.vm.available).toBe(true)
+  })
+
+  it('should check equality', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text',
+          conditions: [
+            ['a', 'aaa']
+          ]
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+
+    expect(b.vm.available).toBe(false)
+
+    a.vm.update('aaa')
+    expect(b.vm.available).toBe(true)
+  })
+
+  it('should check non-equality', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text',
+          conditions: [
+            ['a', '!=', 'aaa']
+          ]
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update('aaa')
+    expect(b.vm.available).toBe(false)
+  })
+
+  it('should check gt', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text',
+          conditions: [
+            ['a', '>', 3]
+          ]
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+
+    expect(b.vm.available).toBe(false)
+
+    a.vm.update(4)
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update(2)
+    expect(b.vm.available).toBe(false)
+  })
+
+  it('should check gte', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text',
+          conditions: [
+            ['a', '>=', 3]
+          ]
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+
+    expect(b.vm.available).toBe(false)
+
+    a.vm.update(3)
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update(2)
+    expect(b.vm.available).toBe(false)
+
+    a.vm.update(4)
+    expect(b.vm.available).toBe(true)
+  })
+
+  it('should check lt', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text',
+          conditions: [
+            ['a', '<', 3]
+          ]
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update(2)
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update(3)
+    expect(b.vm.available).toBe(false)
+
+    a.vm.update(4)
+    expect(b.vm.available).toBe(false)
+  })
+
+  it('should check lte', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text',
+          conditions: [
+            ['a', '<=', 3]
+          ]
+        },
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+    let b = findAllComponents(form, { name: 'TextElement' }).at(1)
+
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update(2)
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update(3)
+    expect(b.vm.available).toBe(true)
+
+    a.vm.update(4)
+    expect(b.vm.available).toBe(false)
+  })
 
   it('should check chanied conditions', async () => {
     let form = createForm({

@@ -1,3 +1,5 @@
+import { watch, computed } from 'composition-api'
+
 const Validator = class {
 
   constructor(rule, props) {
@@ -15,10 +17,10 @@ const Validator = class {
 
     this.debouncer = null
     this.lastValue = null
-    this.watchers = []
+    this.watchers = {}
     
     if (this.condition && this.dependent) {
-      this.form$.$watch('plainData.' + this.dependent, () => {
+      watch(computed(() => _.get(this.form$.plainData, this.dependent)), () => {
         if (this.element$.validated) {
 
           // we need to revalidate the whole element
@@ -28,7 +30,10 @@ const Validator = class {
           
           // we need to revalidate only current validator
           else {
-            this.validate()
+            // We need to do this instead of this.validate()
+            // because Vue3 does not recognize `invalid` as
+            // as a reactive property if used that way.
+            this.revalidate()
           }
         }
       })
@@ -58,7 +63,7 @@ const Validator = class {
     else if (this.form$.options.messages[this.name]) {
       message = this.form$.options.messages[this.name]
     }
-    else if (this.name !== '_class') {
+    else if (this.name !== '_class' && this.form$.__(`validation`)[this.name] !== undefined) {
       message = this.form$.__(`validation.${this.name}`)
 
       if (_.isPlainObject(message)) {
@@ -201,25 +206,21 @@ const Validator = class {
     this.invalid = false
   }
 
-  watch(variable, callback) {
-    var exists = false
-
-    _.each(this.watchers, (watcher) => {
-      if (watcher.callback == callback.toString()
-        && watcher.variable == variable
-      ) {
-        exists = true
-      }
-    })
-
-    if (exists) {
+  watch(variable) {
+    if (this.watchers[variable]) {
       return
     }
 
-    this.watchers.push({
-      variable: variable,
-      callback: callback.toString(),
-      unwatch: this.form$.$watch(variable, callback)
+    this.watchers[variable] = watch(computed(() => _.get(this.form$.plainData, variable)), () => {
+      this.revalidate()
+    })
+  }
+
+  revalidate() {
+    this.element$.Validators.forEach((Validator) => {
+      if (Validator.rule.name === this.rule.name) {
+        Validator.validate()
+      }
     })
   }
 

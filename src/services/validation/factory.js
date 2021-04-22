@@ -11,7 +11,7 @@ const Factory = class {
   }
 
   get rules() {
-    return Object.assign({}, this.form$.$laraform.services.validation.rules, this.form$.$laraform.config.rules)
+    return Object.assign({}, this.form$.$laraform.services.validation.rules, this.form$.$laraform.rules)
   }
  
   makeAll(rules) {
@@ -27,7 +27,7 @@ const Factory = class {
   }
   
   make(rule) {
-    let ruleClass = typeof rule == 'function' ? this.createRule(rule) : this.rules[rule.name]
+    let ruleClass = typeof rule == 'function' ? rule : this.rules[rule.name]
 
     if (!ruleClass) {
       throw new Error(`Unknown rule: '${rule.name}'`)
@@ -36,23 +36,6 @@ const Factory = class {
     return new ruleClass(rule, {
       element$: this.element$
     })
-  }
-
-  createRule(inlineRule) {
-    return inlineRule
-    // return class extends Validator {
-    //   get defaultMessage() {
-    //     return new Promise(async (resolve, reject) => {
-    //       let message = await inlineRule(this.element$.value, this.form$, this)
-
-    //       resolve(message === true ? '' : message)
-    //     })
-    //   }
-
-    //   async check() {
-    //     return await inlineRule(this.element$.value, this.form$, this) === true
-    //   }
-    // }
   }
 
   parseRules(rules) {

@@ -216,7 +216,7 @@ export default {
       value: value.value,
       fire: events.fire,
       dirt: validation.dirt,
-      validate: validation.validate,
+      validate: validation.validateLanguage,
     })
 
     onMounted(() => {

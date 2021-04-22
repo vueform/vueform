@@ -6,10 +6,6 @@ import _ from 'lodash'
 // condition - condition information [otherPath, operator, expectedValue]
 // elementPath - current
 const check = (condition, elementPath, form$) => {
-  let checkGlobal = () => {
-    return form$.conditions[condition](form$)
-  }
-
   let checkFunction = () => {
     return condition(form$)
   }
@@ -43,7 +39,6 @@ const check = (condition, elementPath, form$) => {
   }
 
   let details = () => {
-
     return {
       conditionPath: elementPath ? replaceWildcards(condition[0], elementPath) : condition[0],
       operator: condition.length == 3 ? condition[1] : '=',
@@ -56,43 +51,39 @@ const check = (condition, elementPath, form$) => {
     expected = normalize(expected)
 
     if (_.isArray(expected)) {
-      if (operator === '!=') {
-        if (expected.indexOf(actual) !== -1) {
-          return false
+      if (operator.toLowerCase() === 'not_in') {
+        // ['checkboxes', 'not_in', [1,2,3]]
+        if (_.isArray(actual)) {
+          return actual.filter(e => expected.includes(e)).length == 0
+
+        // ['checkbox', 'not_in', [1,2,3]]
+        } else {
+          return expected.indexOf(actual) === -1
         }
-      } else if (expected.indexOf(actual) === -1) {
-        return false
+      } else {
+        // ['checkboxes', [1,2,3]]
+        if (_.isArray(actual)) {
+          return actual.filter(e => expected.includes(e)).length > 0
+
+        // ['checkbox', [1,2,3]]
+        } else {
+          return expected.indexOf(actual) !== -1
+        }
       }
-    } else {
-      return compare(actual, expected, operator)
     }
-
-    return true
+    
+    return compare(actual, expected, operator)
+  }
+  
+  if (typeof condition == 'function') {
+    return checkFunction()
   }
 
-  let getType = () => {
-    if (typeof condition == 'string') {
-      return 'string'
-    } else if (typeof condition == 'function') {
-      return 'function'
-    } else if (_.isArray(condition)) {
-      return 'array'
-    }
+  else if (_.isArray(condition)) {
+    return checkArray()
   }
 
-  switch (getType(condition)) {
-    case 'string':
-      return checkGlobal()
-
-    case 'function':
-      return checkFunction()
-
-    case 'array':
-      return checkArray()
-
-    default:
-      throw new Error('Condition must be a string, a function or an object')
-  }
+  throw new Error('Condition must be a function or an array')
 }
 
 export default {

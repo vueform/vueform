@@ -29,5 +29,11 @@
 
   .nav.form-languages {
     margin-bottom: calc(#{$spacer} * 2);
+
+    &.nav-fill {
+      .nav-item {
+        flex: 1;
+      }
+    }
   }
 </style>

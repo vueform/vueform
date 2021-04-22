@@ -13,11 +13,9 @@ export default class after extends Validator {
   }
 
   get format() {
-    if (this.element$.valueFormat) {
-      return this.element$.valueFormat
-    }
-
-    return 'YYYY-MM-DD'
+    return ['date', 'dates'].indexOf(this.element$.type) !== -1 && this.element$.valueFormat
+      ? this.element$.valueFormat
+      : 'YYYY-MM-DD'
   }
 
   get otherFormat() {
@@ -25,11 +23,9 @@ export default class after extends Validator {
       return this.format
     }
 
-    if (this.other$.valueFormat) {
-      return this.other$.valueFormat
-    }
-
-    return this.format
+    return ['date', 'dates'].indexOf(this.other$.type) !== -1 && this.other$.valueFormat
+      ? this.other$.valueFormat
+      : this.format
   }
 
   get otherPath() {

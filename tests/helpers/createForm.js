@@ -59,6 +59,7 @@ export default function createForm (data, options = {}, render = null) {
     extensions: config.extensions,
     config: finalConfig,
     themes: finalConfig.themes,
+    rules: finalConfig.rules,
     services: {
       condition,
       validation,
