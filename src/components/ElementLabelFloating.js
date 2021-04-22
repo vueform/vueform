@@ -1,6 +1,5 @@
 import { computed, toRefs } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
-import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'ElementLabelFloating',

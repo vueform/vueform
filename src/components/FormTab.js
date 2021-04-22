@@ -4,7 +4,6 @@ import useFormComponent from './../composables/useFormComponent'
 import useConditions from './../composables/useConditions'
 import useLabel from './../composables/useLabel'
 import useEvents from './../composables/useEvents'
-import { mergeComponentClasses } from './../utils/mergeClasses'
 import normalize from './../utils/normalize'
 
 export default {

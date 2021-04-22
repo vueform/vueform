@@ -99,7 +99,7 @@ export const handleDrop = function (elementType, elementName, options) {
         el: {
           type: elementType,
           auto: false,
-          accept: ['.png']
+          accept: ['png']
         }
       }
     })

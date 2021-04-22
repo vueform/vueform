@@ -239,11 +239,7 @@ describe('mergeClasses', () => {
 
     expect(classes).toStrictEqual({
       BaseElement: {
-        container: [
-          'a b',
-          'c',
-          'd'
-        ]
+        container: [ 'a', 'b', 'c', 'd' ]
       }
     })
   })
@@ -264,7 +260,7 @@ describe('mergeClasses', () => {
 
     expect(classes).toStrictEqual({
       BaseElement: {
-        container: 'a b c d'
+        container: ['a', 'b', 'c d']
       }
     })
   })
@@ -280,7 +276,22 @@ describe('mergeClasses', () => {
     let classes = mergeComponentClasses(base, add)
 
     expect(classes).toStrictEqual({
-      container: 'a b c d'
+      container: ['a', 'b', 'c d']
+    })
+  })
+
+  it('should not merge twice', () => {
+    let base = {
+      container: 'a b'
+    }
+    let add = {
+      container: ['a', 'c d']
+    }
+
+    let classes = mergeComponentClasses(base, add)
+
+    expect(classes).toStrictEqual({
+      container: ['a', 'b', 'c d']
     })
   })
 })

@@ -11,5 +11,5 @@ export default function checkFileType (file, accept) {
     })
   }
 
-  return accept.indexOf(file.type) !== -1 || accept.indexOf('.' + file.name.split('.').pop()) !== -1
+  return accept.indexOf(file.type) !== -1 || accept.indexOf(file.name.split('.').pop()) !== -1
 }

@@ -52,7 +52,7 @@ const mergeClass = function (base, add) {
       })
     }
   }
-  else if (_.isArray(base)) {
+  else {
     // ['class'] + { class2: true } => ['class', { class2: true }]
     if (_.isPlainObject(add)) {
       classes = _.concat(base, [add])

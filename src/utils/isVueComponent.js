@@ -27,6 +27,7 @@ function isFunction(value) {
  * @param {*} value - The value to check.
  * @returns {boolean} Returns `true` if the given value is a non-empty array, else `false`.
  */
+/* istanbul ignore next */
 function isNonEmptyArray(value) {
   return Array.isArray(value) && value.length > 0;
 }
@@ -36,6 +37,7 @@ function isNonEmptyArray(value) {
  * @param {*} value - The value to check.
  * @returns {boolean} Returns `true` if the given value is an element, else `false`.
  */
+/* istanbul ignore next */
 function isElement(value) {
   return isNonNullObject(value) && value.nodeType === 1 && toString.call(value).indexOf('Element') > -1;
 }
@@ -46,6 +48,7 @@ function isElement(value) {
  * @returns {boolean} Returns `true` if the given value is a valid Vue component, else `false`.
  */
 export default function isVueComponent(value) {
+  /* istanbul ignore next */
   return (_.isPlainObject(value) && (
     isNonEmptyString(value.template)
     || isFunction(value.render)

@@ -7,8 +7,7 @@ import autosize from './services/autosize'
 import location from './services/location'
 import condition from './services/condition'
 import i18n from './services/i18n'
-import applyExtensions from './utils/applyExtensions'
-import { reactive, ref, toRefs, computed } from 'composition-api'
+import { reactive, ref } from 'composition-api'
 
 import AddressElement from './components/elements/AddressElement'
 import ButtonElement from './components/elements/ButtonElement'
@@ -181,10 +180,6 @@ export default function(config) {
       }
     }
 
-    locale(locale) {
-      this.options.locale = locale
-    }
-
     config(config) {
       // merge
       _.each([
@@ -224,12 +219,8 @@ export default function(config) {
       })
     }
 
-    applyExtensions() {
-      // _.each(this.options.themes, (theme) => {
-      //   _.each(Object.assign({}, theme.components, theme.elements), (component, name) => {
-      //     applyExtensions(component, name, this.options.extensions)
-      //   })
-      // })
+    locale(locale) {
+      this.options.locale = locale
     }
 
     initI18n() {
@@ -259,7 +250,6 @@ export default function(config) {
           try {
             renderer = name === 'Laraform' ? this.extendedComponents[this.$options.name] : this.components[this.$options.name] || this.theme.elements[this.$options.name]
           } catch (e) {
-            c(this.extendedComponents)
             throw new Error(e)
           }
 
@@ -285,10 +275,6 @@ export default function(config) {
 
       this.initI18n()
 
-      if (this.options.extensions && this.options.extensions.length) {
-        this.applyExtensions()
-      }
-
       this.registerComponents(appOrVue)
       this.registerElements(appOrVue)
 
@@ -305,7 +291,6 @@ export default function(config) {
               }
             },
             methods: {
-              setRef() {},
               __: (expr, data) => this.options.i18n.$t(expr, data)
             },
             beforeCreate() {
@@ -321,7 +306,6 @@ export default function(config) {
                   services: $laraform.services,
                 }
               }
-              this.$vueVersion = 2
             }
           })
           break
@@ -330,19 +314,10 @@ export default function(config) {
           appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
 
           appOrVue.config.globalProperties.$laraform = this.options
-          appOrVue.config.globalProperties.$vueVersion = 3
           appOrVue.provide('$laraform', this.options)
-          appOrVue.provide('$vueVersion', 3)
 
           appOrVue.mixin({
             methods: {
-              setRef(prop, key) {
-                return function(el) {
-                  if (el) {
-                    prop[key] = el
-                  }
-                }
-              },
               $set(obj, key, value) {
                 obj[key] = value
               },

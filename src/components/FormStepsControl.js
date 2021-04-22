@@ -1,7 +1,6 @@
 import { computed, toRefs, ref } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useLabel from './../composables/useLabel'
-import { mergeComponentClasses } from './../utils/mergeClasses'
 
 export default {
   name: 'FormStepsControl',
