@@ -19,18 +19,16 @@
           v-show="pending"
         />
 
-        <input
+        <textarea
           :value="model"
-          :type="inputType"
           :name="name"
           :id="fieldId"
-          :class="classes.input"
-          :placeholder="placeholder" 
-          :autocomplete="autocomplete"
+          :class="classes.textarea"
+          :placeholder="placeholder"
           :disabled="isDisabled"
           :readonly="readonly"
+          :rows="rows"
           @input="handleInput"
-          @select="handleInput"
           ref="input"
         />
 
@@ -42,7 +40,7 @@
         </slot>
 
       </div>
-
+      
     </template>
 
     <template v-for="(component, slot) in elementSlots" v-slot:[slot]>
@@ -55,16 +53,16 @@
 
 <script>
   export default {
-    name: 'TextElement',
+    name: 'TextareaElement',
     data() {
       return {
         defaultClasses: {
           container: '',
           inputContainer: 'input-group',
-          input: 'form-control',
+          textarea: 'form-control',
         }
       }
-    },
+    }
   }
 </script>
 
@@ -72,18 +70,4 @@
   @import 'node_modules/bootstrap/scss/_functions.scss';
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
-
-  /* Fix for border radius bug introduced by inserting and extra div between the prefix and .form control */
-  
-  .input-group > :not(.input-group-prepend) ~ .form-control:not(:first-child),
-  .input-group:not(.has-validation) > :not(.input-group-prepend) ~ .form-control {
-    border-top-left-radius: $border-radius;
-    border-bottom-left-radius: $border-radius;
-  }
-
-  .input-group > .input-group-prepend ~ .form-control:not(:first-child),
-  .input-group:not(.has-validation) > .input-group-prepend ~ .form-control {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
 </style>

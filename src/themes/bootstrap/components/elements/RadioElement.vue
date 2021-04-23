@@ -70,7 +70,6 @@
 
   .form-radio-input {
     position: absolute;
-    margin-top: $form-check-input-margin-y;
     margin-left: -$form-check-input-gutter;
     -webkit-appearance: none;
     transition: all .2s ease-in-out;

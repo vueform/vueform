@@ -74,15 +74,13 @@
   @import 'node_modules/bootstrap/scss/_mixins.scss';
 
   /* Fix for border radius bug introduced by inserting and extra div between the prefix and .form control */
-  
-  .input-group > :not(.input-group-prepend) ~ .form-control:not(:first-child),
-  .input-group:not(.has-validation) > :not(.input-group-prepend) ~ .form-control {
+
+  .input-group > :not(.input-group-text) ~ :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
     border-top-left-radius: $border-radius;
     border-bottom-left-radius: $border-radius;
   }
 
-  .input-group > .input-group-prepend ~ .form-control:not(:first-child),
-  .input-group:not(.has-validation) > .input-group-prepend ~ .form-control {
+  .input-group > .input-group-text ~ :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
