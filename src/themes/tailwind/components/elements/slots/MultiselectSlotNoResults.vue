@@ -1,0 +1,19 @@
+<template>
+  <div :class="classes.container" v-html="el$.fieldOptions.noResultsText"></div>
+</template>
+
+<script>
+  export default {
+    name: 'MultiselectSlotNoResults',
+    data() {
+      return {
+        defaultClasses: {
+          container: ''
+        }
+      }
+    }
+  }
+</script>
+
+<style lang="scss">
+</style>
