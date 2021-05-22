@@ -21,16 +21,16 @@ export default function (map, classes) {
         
     Object.keys(map).forEach((entry) => {
       if (map[entry].split('|').length > 1) {
-        const elKey = map[entry].split('|')[0];
+        const selector = map[entry].split('|')[0];
 
-        if (!observers[elKey]) {
-          observers[elKey] = {}
+        if (!observers[entry]) {
+          observers[entry] = {}
         }
 
-        (elMap[elKey] || document.querySelectorAll(map[elKey])).forEach((el, i) => {
+        (elMap[entry] || document.querySelectorAll(selector)).forEach((el, i) => {
           const fixClass = (target) => {
             classify(classes[entry]).forEach((c) => {
-              el.classList[target.classList.contains(map[entry].split('|')[1].replace('.','')) ? 'add' : 'remove'](c)
+              if (c.length) el.classList[target.classList.contains(map[entry].split('|')[1].replace('.','')) ? 'add' : 'remove'](c);
             })
           }
 
@@ -41,11 +41,11 @@ export default function (map, classes) {
           }
 
           const registerObserver = () => {
-            observers[elKey][i] = new MutationObserver(handle)
+            observers[entry][i] = new MutationObserver(handle)
           }
 
           const getObserver = () => {
-            return observers[elKey][i]
+            return observers[entry][i]
           }
 
           const observe = () => {
@@ -69,10 +69,12 @@ export default function (map, classes) {
 
         (mapped ? elMap[entry] : document.querySelectorAll(map[entry])).forEach((el) => {
           el.className.split(' ').filter(c => ['trix-active'].indexOf(c) === -1).forEach((c) => {
-            el.classList.remove(c)
+            if (c.length) el.classList.remove(c);
           })
 
-          classify(classes[entry]).forEach(c => el.classList.add(c))
+          classify(classes[entry]).forEach((c) => {
+            if (c.length) el.classList.add(c)
+          })
 
           if (!mapped) elMap[entry].push(el);
         })

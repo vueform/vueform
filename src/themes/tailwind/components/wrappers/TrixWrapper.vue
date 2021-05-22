@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="classes.container">
     <input :id="`trix-input-${id}`" :value="value" type="hidden">
     <trix-editor
       :placeholder="placeholder"
@@ -21,12 +21,10 @@
     name: 'TrixWrapper',
     data() {
       return {
-        defaultClasses: {}
+        defaultClasses: {
+          container: '',
+        }
       }
-    } 
+    },
   }
 </script>
-
-<style lang="scss">
-
-</style>

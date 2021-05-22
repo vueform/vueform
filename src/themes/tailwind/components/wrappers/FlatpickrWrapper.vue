@@ -15,7 +15,7 @@
       return {
         defaultClasses: {
           flatpickr: '',
-          calendarContainer: ''
+          calendarContainer: 'flatpickr-calendar-container'
         }
       }
     }

@@ -130,6 +130,7 @@ export default {
       }))
 
       if (flatpickr$.value.calendarContainer) {
+        if (typeof classes.value.calendarContainer !== 'string' || classes.value.calendarContainer.length > 0)
         flatpickr$.value.calendarContainer.classList.add(classes.value.calendarContainer)
       }
 

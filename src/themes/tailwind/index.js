@@ -112,6 +112,50 @@ const components = {
   RadiogroupSlotRadio,
 }
 
+const classes = {
+  ElementLayout: {
+    outerWrapper: 'flex',
+    outerWrapperSingle: 'mb-4',
+  },
+  ElementLabel: {
+    label: 'py-1.5'
+  },
+  TextElement: {
+    input: 'w-full py-1.5 px-3 border-gray-300 rounded focus:ring-4 focus:ring-vueform-primary focus:ring-opacity-20 focus:border-vueform-primary',
+    inputContainer: 'w-full',
+  },
+  TextareaElement: {
+    textarea: 'w-full py-1.5 px-3 border-gray-300 rounded focus:ring-4 focus:ring-vueform-primary focus:ring-opacity-20 focus:border-vueform-primary',
+    inputContainer: 'w-full',
+  },
+  TrixElement: {
+    trix: 'border border-gray-300 rounded',
+  },
+  TrixWrapper: {
+    container: '',
+  }
+}
+
+const presets = {
+  default: {
+    classes: {
+      ElementLayout: {
+        outerWrapper: 'flex',
+        outerWrapperSingle: 'mb-4',
+      },
+    },
+  },
+  minimal: {
+    extends: 'default',
+    classes: {
+      ElementLayout: {
+        outerWrapper: 'flex',
+        outerWrapperSingle: 'mb-4',
+      },
+    },
+  },
+}
+
 export default {
   components,
   elements: {
@@ -143,7 +187,7 @@ export default {
     TTextElement,
     TTrixElement,
   },
-  classes: {},
+  classes,
   utils: {
     columns,
   },
@@ -152,7 +196,7 @@ export default {
 export const core = {
   components,
   elements: {},
-  classes: {}
+  classes,
 }
 
 export {

@@ -77,7 +77,10 @@
         "vue-template-compiler": "^2.6.12",
         "webpack": "^4.28.4",
         "webpack-cli": "^3.2.1",
-        "webpack-notifier": "^1.7.0"
+        "webpack-notifier": "^1.7.0",
+        "@tailwindcss/postcss7-compat": "^2.0.2",
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+        "autoprefixer": "^9"
     },
     "dependencies": {
         "autosize": "^4.0.2",
