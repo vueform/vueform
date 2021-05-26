@@ -93,35 +93,35 @@
     }
 
     .trix-button--icon-attach::before {
-      @apply bg-form-trix-attach top-0.5 bottom-0.5 my-px;
+      @apply bg-form-trix-attach top-0.5 bottom-0.5 my-0.5;
     }
 
     .trix-button--icon-bold::before {
-      @apply bg-form-trix-bold top-0.5 bottom-0.5 my-px;
+      @apply bg-form-trix-bold top-0.5 bottom-0.5 my-0.5;
     }
 
     .trix-button--icon-italic::before {
-      @apply bg-form-trix-italic top-0.5 bottom-0.5 my-px;
+      @apply bg-form-trix-italic top-0.5 bottom-0.5 my-0.5;
     }
 
     .trix-button--icon-link::before {
-      @apply bg-form-trix-link top-0.5 bottom-0.5 my-px;
+      @apply bg-form-trix-link top-0.5 bottom-0.5 my-0.5;
     }
 
     .trix-button--icon-strike::before {
-      @apply bg-form-trix-strike top-0.5 bottom-0.5 my-px;
+      @apply bg-form-trix-strike top-0.5 bottom-0.5 my-0.5;
     }
 
     .trix-button--icon-quote::before {
-      @apply bg-form-trix-quote top-0.5 bottom-0.5 my-0.5;
+      @apply bg-form-trix-quote top-1 bottom-1 my-px;
     }
 
     .trix-button--icon-heading-1::before {
-      @apply bg-form-trix-heading top-0.5 bottom-0.5 my-px;
+      @apply bg-form-trix-heading top-0.5 bottom-0.5 my-0.5;
     }
 
     .trix-button--icon-code::before {
-      @apply bg-form-trix-code top-0.5 bottom-0.5 my-0.5;
+      @apply bg-form-trix-code top-1.5 bottom-1.5 my-px;
     }
 
     .trix-button--icon-bullet-list::before {
@@ -133,15 +133,15 @@
     }
 
     .trix-button--icon-undo::before {
-      @apply bg-form-trix-undo top-0.5 bottom-0.5 my-px;
+      @apply bg-form-trix-undo top-1 bottom-1;
     }
 
     .trix-button--icon-redo::before {
-      @apply bg-form-trix-redo top-0.5 bottom-0.5 my-px;
+      @apply bg-form-trix-redo top-1 bottom-1;
     }
 
     .trix-button--icon-decrease-nesting-level::before {
-      @apply bg-form-trix-decrease-indent top-0.5 bottom-0.5 my-px;
+      @apply bg-form-trix-decrease-indent top-0.5 bottom-0.5 mt-0.5;
     }
 
     .trix-button--icon-increase-nesting-level::before {
