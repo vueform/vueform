@@ -77,11 +77,10 @@
     }
 
     .trix-button--icon {
-      @apply w-10 h-6 text-xs text-transparent;
+      @apply w-10 h-6 text-xs indent-out;
 
       &::before {
-        content: "";
-        @apply absolute inset-0 inline-block opacity-60 bg-center bg-no-repeat bg-contain;
+        @apply absolute inset-0 inline-block opacity-60 bg-center bg-no-repeat bg-contain content-empty;
       }
 
       &.trix-active::before {
@@ -195,31 +194,30 @@
   }
 
   trix-editor {
-    min-height: 6rem;
-    @apply px-3 pb-1.5 rounded outline-none;
+    @apply px-3 pb-1.5 rounded outline-none min-h-24;
 
     [data-trix-mutable]:not(.attachment__caption-editor) {
-      user-select: none;
+      @apply user-select-none;
     }
 
     [data-trix-mutable]::-moz-selection,
     [data-trix-cursor-target]::-moz-selection,
     [data-trix-mutable] ::-moz-selection {
-      background: none;
+      @apply bg-none;
     }
 
     [data-trix-mutable]::selection,
     [data-trix-cursor-target]::selection,
     [data-trix-mutable] ::selection {
-      background: none;
+      @apply bg-none;
     }
 
     [data-trix-mutable].attachment__caption-editor:focus::-moz-selection {
-      background: highlight;
+      @apply bg-highlight;
     }
 
     [data-trix-mutable].attachment__caption-editor:focus::selection {
-      background: highlight;
+      @apply bg-highlight;
     }
 
     [data-trix-mutable].attachment.attachment--file {
@@ -280,7 +278,7 @@
 
 
     .trix-button--remove {
-      @apply inline-block p-0 outline-none w-7 h-7 leading-7 rounded-full bg-white border-2 border-gray-200 overflow-x-hidden text-transparent;
+      @apply inline-block p-0 outline-none w-7 h-7 leading-7 rounded-full bg-white border border-solid border-gray-400 overflow-x-hidden indent-out;
 
       &:not(.trix-active):hover {
        @apply bg-gray-100; 
@@ -288,10 +286,7 @@
     }
 
     .trix-button--remove::before {
-      content: "";
-      background-image: url(data:image/svg+xml,%3Csvg%20height%3D%2224%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M19%206.4L17.6%205%2012%2010.6%206.4%205%205%206.4l5.6%205.6L5%2017.6%206.4%2019l5.6-5.6%205.6%205.6%201.4-1.4-5.6-5.6z%22%2F%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E);
-
-      @apply inline-block absolute inset-0 bg-opacity-70 bg-center bg-no-repeat;
+      @apply inline-block absolute top-1 bottom-1 left-1 right-1 bg-opacity-70 bg-center bg-no-repeat content-empty bg-form-remove-light;
 
       &:hover {
         @apply border-gray-700;
@@ -366,7 +361,7 @@
       @apply text-center text-sm;
 
       .attachment__name+.attachment__size::before {
-        content: ' · ';
+        @apply content-spaced-dot;
       }
     }
   }
