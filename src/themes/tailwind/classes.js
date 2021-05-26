@@ -18,6 +18,17 @@ export default {
     disabled: 'form-bg-disabled form-text-disabled cursor-not-allowed',
     loading: 'form-bg-primary text-white form-bg-spinner-white opacity-70 cursor-default'
   },
+  CheckboxElement: {
+    inputContainer: 'flex align-start form-py-input',
+    label: 'cursor-pointer',
+    ...checkbox,
+  },
+  CheckboxgroupElement: {
+    checkboxGroup: 'flex flex-col justify-start form-py-input',
+  },
+  GroupElement: {
+    childrenContainer: 'flex flex-wrap',
+  },
   TextElement: {
     input: 'w-full form-p-input form-border form-border-color form-rounded',
     inputEnabled: 'focus:form-ring',
@@ -30,13 +41,8 @@ export default {
     inputDisabled: 'form-bg-disabled form-text-disabled',
     inputContainer: 'w-full',
   },
-  CheckboxElement: {
-    inputContainer: 'flex align-start form-py-input',
-    label: 'cursor-pointer',
-    ...checkbox,
-  },
-  CheckboxgroupElement: {
-    checkboxGroup: 'flex flex-col justify-start form-py-input',
+  ObjectElement: {
+    childrenContainer: 'flex flex-wrap',
   },
   RadioElement: {
     inputContainer: 'flex align-start form-py-input',
@@ -55,7 +61,7 @@ export default {
 
   // Components
   ElementLayout: {
-    outerWrapper: 'flex',
+    outerWrapper: 'flex flex-wrap',
     outerWrapperSingle: 'mb-4',
   },
   ElementLabel: {
