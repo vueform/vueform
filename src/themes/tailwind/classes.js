@@ -12,12 +12,12 @@ const radio = {
 
 export default {
   // Elements
-  // ButtonElement: {
-  //   button: 'p-form-button leading-snug rounded-form transition',
-  //   enabled: 'bg-form-primary text-white cursor-pointer hover:bg-opacity-90',
-  //   disabled: 'bg-form-disabled text-form-disabled cursor-not-allowed',
-  //   loading: 'bg-form-primary text-white spinner-bg spinner-bg-white bg-opacity-80 cursor-default'
-  // },
+  ButtonElement: {
+    button: 'form-p-button leading-snug form-rounded transition',
+    enabled: 'form-bg-primary text-white cursor-pointer hover:form-bg-primary-darker',
+    disabled: 'form-bg-disabled form-text-disabled cursor-not-allowed',
+    loading: 'form-bg-primary text-white form-bg-spinner-white opacity-70 cursor-default'
+  },
   TextElement: {
     input: 'w-full form-p-input form-border form-border-color form-rounded',
     inputEnabled: 'focus:form-ring',
