@@ -111,10 +111,10 @@ export default class Columns
   getClass(breakpoint, size) {
     switch (breakpoint) {
       case 'default':
-        return `w-${size}/12`
+        return size == 12 ? 'w-full' : `w-${size}/12`
 
       default:
-        return `${breakpoint}:w-${size}/12`
+        return size == 12 ? `${breakpoint}:w-full` : `${breakpoint}:w-${size}/12`
     }
   }
 

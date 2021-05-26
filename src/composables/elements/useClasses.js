@@ -90,6 +90,30 @@ const base = function(props, context, dependencies, options = {})
   }
 }
 
+const input = function(props, context, dependencies)
+{
+  const {
+    mainClass,
+    classes,
+    defaultClasses,
+  } = base(props, context, dependencies, {
+    addClasses: [
+      ['input', 'inputEnabled', computed(() => !isDisabled.value)],
+      ['input', 'inputDisabled', computed(() => isDisabled.value)],
+    ]
+  })
+
+  // ============ DEPENDENCIES ============
+
+  const isDisabled = dependencies.isDisabled
+
+  return {
+    classes,
+    mainClass,
+    defaultClasses,
+  }
+}
+
 const list = function(props, context, dependencies)
 {
   const {
@@ -184,6 +208,7 @@ const button = function(props, context, dependencies)
   } = base(props, context, dependencies, {
     addClasses: [
       ['button', 'loading', computed(() => isLoading.value)],
+      ['button', 'enabled', computed(() => !isDisabled.value && !isLoading.value)],
       ['button', 'disabled', computed(() => isDisabled.value)],
       ['button', buttonClass, buttonClass],
     ]
@@ -210,12 +235,14 @@ const trix = function(props, context, dependencies)
   } = base(props, context, dependencies, {
     addClasses: [
       ['trix', 'disabled', computed(() => isDisabled.value)],
+      ['trix', 'trixFocused', computed(() => focused.value)],
     ]
   })
 
   // ============ DEPENDENCIES ============
 
   const isDisabled = dependencies.isDisabled
+  const focused = dependencies.focused
 
   return {
     classes,
@@ -225,6 +252,7 @@ const trix = function(props, context, dependencies)
 }
 
 export {
+  input,
   list,
   file,
   button,

@@ -62,13 +62,11 @@
         defaultClasses: {
           container: '',
           button: '',
-          loading: '',
+          enabled: '',
           disabled: '',
+          loading: '',
         },
       }
     }
   }
 </script>
-
-<style lang="scss">
-</style>

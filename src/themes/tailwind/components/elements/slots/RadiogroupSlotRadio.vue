@@ -27,6 +27,8 @@
           container: '',
           label: '',
           input: '',
+          inputEnabled: '',
+          inputDisabled: '',
         }
       }
     }

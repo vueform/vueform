@@ -62,11 +62,12 @@
         defaultClasses: {
           container: '',
           button: 'btn',
-          loading: 'btn-loading',
+          enabled: '',
           disabled: 'btn-disabled',
+          loading: 'btn-loading',
         },
       }
-    }
+    },
   }
 </script>
 

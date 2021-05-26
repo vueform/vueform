@@ -23,7 +23,7 @@
           :value="model"
           :name="name"
           :id="fieldId"
-          :class="classes.textarea"
+          :class="classes.input"
           :placeholder="placeholder"
           :disabled="isDisabled"
           :readonly="readonly"
@@ -59,7 +59,9 @@
         defaultClasses: {
           container: '',
           inputContainer: '',
-          textarea: '',
+          input: '',
+          inputEnabled: '',
+          inputDisabled: '',
         }
       }
     }

@@ -10,7 +10,6 @@ import useData from './../../composables/elements/useData'
 import useDefault from './../../composables/elements/useDefault'
 import useValidation from './../../composables/elements/useValidation'
 import useLabel from './../../composables/elements/useLabel'
-import useClasses from './../../composables/elements/useClasses'
 import useColumns from './../../composables/elements/useColumns'
 import useBaseElement from './../../composables/elements/useBaseElement'
 import useGenericName from './../../composables/elements/useGenericName'
@@ -24,6 +23,7 @@ import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { boolean as useNullValue } from './../../composables/elements/useNullValue'
+import { input as useClasses } from './../../composables/elements/useClasses'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -44,7 +44,7 @@ export default {
     },
     default: {
       required: false,
-      type: [String, Number, Boolean],
+      type: [String, Boolean, Number],
       default: undefined // falseValue
     },
     id: {
@@ -147,6 +147,7 @@ export default {
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
+      isDisabled: disabled.isDisabled,
     })
 
     const columns = useColumns(props, context, {

@@ -44,6 +44,8 @@
           inputContainer: '',
           label: '',
           input: '',
+          inputEnabled: '',
+          inputDisabled: '',
         }
       }
     }

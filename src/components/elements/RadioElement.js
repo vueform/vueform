@@ -11,7 +11,6 @@ import useDefault from './../../composables/elements/useDefault'
 import useNullValue from './../../composables/elements/useNullValue'
 import useValidation from './../../composables/elements/useValidation'
 import useLabel from './../../composables/elements/useLabel'
-import useClasses from './../../composables/elements/useClasses'
 import useColumns from './../../composables/elements/useColumns'
 import useBaseElement from './../../composables/elements/useBaseElement'
 import useGenericName from './../../composables/elements/useGenericName'
@@ -23,6 +22,8 @@ import useEvents from './../../composables/useEvents'
 import useRadio from './../../composables/elements/useRadio'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
+
+import { input as useClasses } from './../../composables/elements/useClasses'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -147,6 +148,7 @@ export default {
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
+      isDisabled: disabled.isDisabled,
     })
 
     const columns = useColumns(props, context, {

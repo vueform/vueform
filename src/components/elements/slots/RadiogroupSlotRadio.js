@@ -25,7 +25,12 @@ export default {
       defaultClasses,
       components,
       theme,
-    } = useElementComponent(props, context)
+    } = useElementComponent(props, context, {}, {
+      addClasses: [
+        ['input', 'inputEnabled', computed(() => !isDisabled.value)],
+        ['input', 'inputDisabled', computed(() => isDisabled.value)],
+      ]
+    })
 
     // ============== COMPUTED ==============
 
