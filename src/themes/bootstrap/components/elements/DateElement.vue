@@ -56,6 +56,8 @@
           container: '',
           inputContainer: 'input-group',
           input: 'form-control',
+          inputEnabled: '',
+          inputDisabled: '',
         }
       }
     }
@@ -325,7 +327,7 @@
   }
   .flatpickr-months .flatpickr-prev-month:hover svg,
   .flatpickr-months .flatpickr-next-month:hover svg {
-    fill: $primary;
+    fill: darken($input-border-color, 80%);
   }
   .flatpickr-months .flatpickr-prev-month svg,
   .flatpickr-months .flatpickr-next-month svg {

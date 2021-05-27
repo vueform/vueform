@@ -10,6 +10,8 @@
           container: '',
           inputContainer: '',
           input: '',
+          inputEnabled: '',
+          inputDisabled: '',
         }
       }
     }

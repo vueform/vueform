@@ -9,7 +9,6 @@ import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
 import useValidation from './../../composables/elements/useValidation'
 import useLabel from './../../composables/elements/useLabel'
-import useClasses from './../../composables/elements/useClasses'
 import useColumns from './../../composables/elements/useColumns'
 import useGenericName from './../../composables/elements/useGenericName'
 import useView from './../../composables/elements/useView'
@@ -28,6 +27,7 @@ import { dates as useOptions } from './../../composables/elements/useOptions'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { dates as useBaseElement } from './../../composables/elements/useBaseElement'
 import { dates as useDateFormat } from './../../composables/elements/useDateFormat'
+import { input as useClasses } from './../../composables/elements/useClasses'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -163,6 +163,7 @@ export default {
       form$: form$.form$,
       isDisabled: disabled.isDisabled,
       displayDateFormat: dateFormat.displayDateFormat,
+      valueDateFormat: dateFormat.valueDateFormat,
     })
 
     const default_ = useDefault(props, context, {
@@ -219,6 +220,7 @@ export default {
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
+      isDisabled: disabled.isDisabled,
     })
 
     const columns = useColumns(props, context, {

@@ -10,6 +10,8 @@
           container: '',
           inputContainer: 'input-group',
           input: 'form-control',
+          inputEnabled: '',
+          inputDisabled: '',
         }
       }
     }

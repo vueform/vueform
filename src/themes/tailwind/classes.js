@@ -32,6 +32,14 @@ export default {
   CheckboxgroupElement: {
     checkboxGroup: 'flex flex-col justify-start form-pt-input-border',
   },
+  DateElement: {
+    inputContainer: 'w-full flex',
+    ...text,
+  },
+  DatesElement: {
+    inputContainer: 'w-full flex',
+    ...text,
+  },
   FileElement: {
     selectButton: 'inline-block form-p-button leading-snug form-rounded transition bg-gray-100 cursor-pointer hover:bg-gray-200 focus:form-ring focus:outline-none',
     removing: 'opacity-50',

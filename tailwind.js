@@ -231,6 +231,9 @@ const vueform = plugin(({ theme, addBase, addUtilities }) => {
       pyInput: theme('padding')['1.5'],
       pxButton: theme('padding.4'),
       pyButton: theme('padding.2'),
+
+      dateHeadBg: theme('colors.gray.100'),
+      dateHeadColor: theme('colors.gray.700'),
     }),
     extend: {
       backgroundImage: (theme) => ({

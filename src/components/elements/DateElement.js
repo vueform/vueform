@@ -10,7 +10,6 @@ import useConditions from './../../composables/useConditions'
 import useNullValue from './../../composables/elements/useNullValue'
 import useValidation from './../../composables/elements/useValidation'
 import useLabel from './../../composables/elements/useLabel'
-import useClasses from './../../composables/elements/useClasses'
 import useColumns from './../../composables/elements/useColumns'
 import useBaseElement from './../../composables/elements/useBaseElement'
 import useGenericName from './../../composables/elements/useGenericName'
@@ -28,6 +27,7 @@ import useDefault from './../../composables/elements/useDefault'
 import { date as useData } from './../../composables/elements/useData'
 import { date as useValue } from './../../composables/elements/useValue'
 import { date as useOptions } from './../../composables/elements/useOptions'
+import { input as useClasses } from './../../composables/elements/useClasses'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -230,6 +230,7 @@ export default {
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
+      isDisabled: disabled.isDisabled,
     })
 
     const columns = useColumns(props, context, {
