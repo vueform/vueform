@@ -8,27 +8,26 @@
       :href="link"
       target="_blank"
     >
-      <img :src="preview" :alt="filename" :title="filename" /> 
+      <img :src="preview" :class="classes.previewImage" /> 
     </a>
 
     <div
       v-else
       :class="classes.previewContainer"
     >
-      <img v-show="previewLoaded" :src="preview" :alt="filename" :title="filename" />
-      <span v-show="!previewLoaded" :class="classes.previewLoader"></span>
+      <img v-show="previewLoaded" :class="classes.previewImage" :src="preview" />
     </div>
 
     <!-- Overlay -->
-    <div v-if="!uploaded && !uploading" class="overlay">
-      <a v-if="canUpload" @click.prevent="upload" href="" class="upload">Upload</a>
+    <div v-if="!uploaded && !uploading" :class="classes.overlay">
+      <a v-if="canUpload" @click.prevent="upload" href="" :class="classes.upload">{{ uploadText }}</a>
     </div>
 
     <!-- Error -->
     <span v-if="hasError" :class="classes.iconWarning"></span>
 
     <!-- Remove -->
-    <a v-if="canRemove" @click.prevent="remove" href="" class="remove"><span class="icon-remove"></span></a>
+    <a v-if="canRemove" @click.prevent="remove" href="" :class="classes.remove"><span :class="classes.iconRemove"></span></a>
 
     <!-- Progress -->
     <div v-if="uploading" :class="classes.progress">
@@ -45,16 +44,15 @@
         defaultClasses: {
           preview: 'gallery-preview',
           previewContainer: 'preview',
-          info: 'file-info',
-          actions: 'actions',
-          percent: 'percent',
-          upload: 'btn btn-primary btn-sm',
+          previewImage: '',
+          upload: 'upload',
           remove: 'remove',
           progress: 'progress',
           progressBar: 'progress-bar',
           iconWarning: 'icon-warning',
           iconUploaded: 'icon-uploaded',
           iconRemove: 'icon-remove',
+          overlay: 'overlay',
         }
       }
     }

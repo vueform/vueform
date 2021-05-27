@@ -9,21 +9,21 @@
         <span v-else :class="classes.iconFile"></span> 
 
         <!-- Filename -->
-        <a :href="link" v-if="hasLink" target="_blank">{{ filename }}</a>
-        <span v-else>{{ filename }}</span>
+        <a :href="link" v-if="hasLink" :class="classes.filenameLink" target="_blank">{{ filename }}</a>
+        <span v-else :class="classes.filenameStatic">{{ filename }}</span>
 
       </div>
       
-      <div class="actions">
+      <div :class="classes.actions">
 
         <!-- Status -->
         <div  v-if="uploading" :class="classes.percent">{{ progress }}%</div>
 
-        <!-- Upload button -->
-        <a href="" :class="classes.upload" v-if="canUpload" @click.prevent="upload">{{ uploadText }}</a>
-
         <!-- Remove -->
         <a href="" :class="classes.remove" v-if="canRemove" @click.prevent="remove"><span :class="classes.iconRemove"></span></a>
+
+        <!-- Upload button -->
+        <a href="" :class="classes.upload" v-if="canUpload" @click.prevent="upload">{{ uploadText }}</a>
 
       </div>
     </div>
@@ -42,6 +42,8 @@
           preview: '',
           info: '',
           filename: '',
+          filenameLink: '',
+          filenameStatic: '',
           actions: '',
           percent: '',
           upload: '',

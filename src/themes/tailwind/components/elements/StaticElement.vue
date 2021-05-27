@@ -4,7 +4,7 @@
     <template v-slot:field>
       <slot>
         <component v-if="!isHtml" :is="content" :el$="el$" />
-        <div v-else v-html="content"></div>
+        <div v-else :class="classes.content" v-html="content"></div>
       </slot>
     </template>
 
@@ -15,7 +15,7 @@
     </template>
   </component>
   <component v-else-if="!isHtml" :is="content" :el$="el$" />
-  <div v-else v-html="content"></div>
+  <div v-else :class="classes.content" v-html="content"></div>
 
 </template>
 
@@ -25,7 +25,8 @@
     data() {
       return {
         defaultClasses: {
-          container: ''
+          container: '',
+          content: '',
         }
       }
     }

@@ -72,8 +72,21 @@ const vueform = plugin(({ theme, addBase, addUtilities }) => {
       paddingTop: theme('form.pyInput'),
       paddingBottom: theme('form.pyInput'),
     },
+    '.form-py-input-border': {
+      paddingTop: `calc((${theme('form.borderWidth')} * 2) + ${theme('form.pyInput')})`,
+      paddingBottom: `calc((${theme('form.borderWidth')} * 2) + ${theme('form.pyInput')})`,
+    },
     '.form-pt-input': {
       paddingTop: theme('form.pyInput'),
+    },
+    '.form-pt-input-border': {
+      paddingTop: `calc((${theme('form.borderWidth')} * 2) + ${theme('form.pyInput')})`,
+    },
+    '.form-mt-input': {
+      marginTop: theme('form.pyInput'),
+    },
+    '.-form-mb-input': {
+      marginBottom: `-${theme('form.pyInput')}`,
     },
     '.form-text-disabled': {
       color: theme('form.colorDisabled'),
@@ -84,28 +97,20 @@ const vueform = plugin(({ theme, addBase, addUtilities }) => {
     '.form-h-checkbox': {
       height: theme('form.checkboxSize'),
     },
-
-    '.content-empty': {
-      content: '""',
+    '.form-min-h-input': {
+      minHeight: `calc((${theme('form.pyInput')} * 2) + (${theme('form.borderWidth')} * 2) + ${theme('fontSize.base')})`,
     },
-
-    '.content-spaced-dot': {
-      content: ' · ',
+    '.form-w-30': {
+      width: '7.5rem',
     },
-    '.indent-out': {
-      textIndent: '-9999px',
+    '.form-h-30': {
+      height: '7.5rem',
     },
-    '.bg-none': {
-      background: 'none',
+    '.form-max-w-30': {
+      maxWidth: '7.5rem',
     },
-    '.bg-highlight': {
-      background: 'highlight',
-    },
-    '.user-select-none': {
-      userSelect: 'none',
-    },
-    '.min-h-24': {
-      minHeight: '6rem',
+    '.form-max-h-30': {
+      maxHeight: '7.5rem',
     },
 
     '.form-bg-spinner-white': {
@@ -125,6 +130,28 @@ const vueform = plugin(({ theme, addBase, addUtilities }) => {
         backgroundImage: theme('backgroundImage.form-spinner-white')
       }
     },
+
+    '.content-empty': {
+      content: '""',
+    },
+    '.content-spaced-dot': {
+      content: ' · ',
+    },
+    '.indent-out': {
+      textIndent: '-9999px',
+    },
+    '.bg-none': {
+      background: 'none',
+    },
+    '.bg-highlight': {
+      background: 'highlight',
+    },
+    '.user-select-none': {
+      userSelect: 'none',
+    },
+    '.min-h-24': {
+      minHeight: '6rem',
+    },
   }
 
   const focusable = {
@@ -134,7 +161,7 @@ const vueform = plugin(({ theme, addBase, addUtilities }) => {
         : 'none',
     }, theme('form.ring') ? {
       borderColor: theme('form.ringColor'),
-    } : {})
+    } : {}),
   }
 
   const checkable = {
@@ -158,8 +185,24 @@ const vueform = plugin(({ theme, addBase, addUtilities }) => {
     },
   }
 
+  const groupHoverable = {
+    '.form-hidden': {
+      display: 'none',
+    },
+    '.form-inline-block': {
+      display: 'inline',
+    },
+    '.form-visible': {
+      visibility: 'visible',
+    },
+    '.form-invisible': {
+      visibility: 'hidden',
+    },
+  }
+
   addUtilities(plain)
   addUtilities(hoverable, ['hover'])
+  addUtilities(groupHoverable, ['group-hover'])
   addUtilities(focusable, ['focus'])
   addUtilities(checkable, ['checked'])
 }, {
@@ -199,6 +242,30 @@ const vueform = plugin(({ theme, addBase, addUtilities }) => {
         )}")`,
         'form-spinner-white': `url("${svgToDataUri(
           `<svg viewBox="0 0 512 512" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M456.433 371.72l-27.79-16.045c-7.192-4.152-10.052-13.136-6.487-20.636 25.82-54.328 23.566-118.602-6.768-171.03-30.265-52.529-84.802-86.621-144.76-91.424C262.35 71.922 256 64.953 256 56.649V24.56c0-9.31 7.916-16.609 17.204-15.96 81.795 5.717 156.412 51.902 197.611 123.408 41.301 71.385 43.99 159.096 8.042 232.792-4.082 8.369-14.361 11.575-22.424 6.92z"></path></svg>`,
+        )}")`,
+        'form-file': `url("${svgToDataUri(
+          `<svg viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M369.9 97.9L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zm-22.6 22.7c2.1 2.1 3.5 4.6 4.2 7.4H256V32.5c2.8.7 5.3 2.1 7.4 4.2l83.9 83.9zM336 480H48c-8.8 0-16-7.2-16-16V48c0-8.8 7.2-16 16-16h176v104c0 13.3 10.7 24 24 24h104v304c0 8.8-7.2 16-16 16z"></path></svg>`,
+        )}")`,
+        'form-file-check': `url("${svgToDataUri(
+          `<svg viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M369.941 97.941l-83.882-83.882A48 48 0 0 0 252.118 0H48C21.49 0 0 21.49 0 48v416c0 26.51 21.49 48 48 48h288c26.51 0 48-21.49 48-48V131.882a48 48 0 0 0-14.059-33.941zm-22.627 22.628a15.89 15.89 0 0 1 4.195 7.431H256V32.491a15.88 15.88 0 0 1 7.431 4.195l83.883 83.883zM336 480H48c-8.837 0-16-7.163-16-16V48c0-8.837 7.163-16 16-16h176v104c0 13.255 10.745 24 24 24h104v304c0 8.837-7.163 16-16 16zm-34.467-210.949l-134.791 133.71c-4.7 4.663-12.288 4.642-16.963-.046l-67.358-67.552c-4.683-4.697-4.672-12.301.024-16.985l8.505-8.48c4.697-4.683 12.301-4.672 16.984.024l50.442 50.587 117.782-116.837c4.709-4.671 12.313-4.641 16.985.068l8.458 8.527c4.672 4.709 4.641 12.313-.068 16.984z"></path></svg>`,
+        )}")`,
+        'form-check-circle': `url("${svgToDataUri(
+          `<svg viewBox="0 0 512 512" fill="${theme('colors.green.500')}" xmlns="http://www.w3.org/2000/svg"><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z"></path></svg>`,
+        )}")`,
+        'form-error': `url("${svgToDataUri(
+          `<svg viewBox="0 0 576 512" fill="${theme('colors.red.500')}" xmlns="http://www.w3.org/2000/svg"><path d="M270.2 160h35.5c3.4 0 6.1 2.8 6 6.2l-7.5 196c-.1 3.2-2.8 5.8-6 5.8h-20.5c-3.2 0-5.9-2.5-6-5.8l-7.5-196c-.1-3.4 2.6-6.2 6-6.2zM288 388c-15.5 0-28 12.5-28 28s12.5 28 28 28 28-12.5 28-28-12.5-28-28-28zm281.5 52L329.6 24c-18.4-32-64.7-32-83.2 0L6.5 440c-18.4 31.9 4.6 72 41.6 72H528c36.8 0 60-40 41.5-72zM528 480H48c-12.3 0-20-13.3-13.9-24l240-416c6.1-10.6 21.6-10.7 27.7 0l240 416c6.2 10.6-1.5 24-13.8 24z"></path></svg>`,
+        )}")`,
+        'form-map-marker': `url("${svgToDataUri(
+          `<svg viewBox="0 0 384 512" fill="${theme('colors.gray.400')}" xmlns="http://www.w3.org/2000/svg"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>`,
+        )}")`,
+        'form-remove': `url("${svgToDataUri(
+          `<svg viewBox="0 0 320 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>`,
+        )}")`,
+        'form-remove-light': `url("${svgToDataUri(
+          `<svg viewBox="0 0 320 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"></path></svg>`,
+        )}")`,
+        'form-remove-light-white': `url("${svgToDataUri(
+          `<svg viewBox="0 0 320 512" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"></path></svg>`,
         )}")`,
         'form-trix-bold': `url("${svgToDataUri(
           `<svg viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M333.49 238a122 122 0 0 0 27-65.21C367.87 96.49 308 32 233.42 32H34a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h31.87v288H34a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h209.32c70.8 0 134.14-51.75 141-122.4 4.74-48.45-16.39-92.06-50.83-119.6zM145.66 112h87.76a48 48 0 0 1 0 96h-87.76zm87.76 288h-87.76V288h87.76a56 56 0 0 1 0 112z"></path></svg>`,
@@ -255,12 +322,6 @@ const vueform = plugin(({ theme, addBase, addUtilities }) => {
         'form-trix-redo': `url("${svgToDataUri(
           `<svg viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M256.455 8c66.269.119 126.437 26.233 170.859 68.685l35.715-35.715C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.75c-30.864-28.899-70.801-44.907-113.23-45.273-92.398-.798-170.283 73.977-169.484 169.442C88.764 348.009 162.184 424 256 424c41.127 0 79.997-14.678 110.629-41.556 4.743-4.161 11.906-3.908 16.368.553l39.662 39.662c4.872 4.872 4.631 12.815-.482 17.433C378.202 479.813 319.926 504 256 504 119.034 504 8.001 392.967 8 256.002 7.999 119.193 119.646 7.755 256.455 8z"></path></svg>`,
           // `<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="redo" class="svg-inline--fa fa-redo fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M500 8h-27.711c-6.739 0-12.157 5.548-11.997 12.286l2.347 98.568C418.075 51.834 341.788 7.73 255.207 8.001 118.82 8.428 7.787 120.009 8 256.396 8.214 393.181 119.165 504 256 504c63.926 0 122.202-24.187 166.178-63.908 5.113-4.618 5.354-12.561.482-17.433l-19.738-19.738c-4.498-4.498-11.753-4.785-16.501-.552C351.787 433.246 306.105 452 256 452c-108.322 0-196-87.662-196-196 0-108.322 87.662-196 196-196 79.545 0 147.941 47.282 178.675 115.302l-126.389-3.009c-6.737-.16-12.286 5.257-12.286 11.997V212c0 6.627 5.373 12 12 12h192c6.627 0 12-5.373 12-12V20c0-6.627-5.373-12-12-12z"></path></svg>`,
-        )}")`,
-        'form-remove': `url("${svgToDataUri(
-          `<svg viewBox="0 0 320 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"></path></svg>`,
-        )}")`,
-        'form-remove-light': `url("${svgToDataUri(
-          `<svg viewBox="0 0 320 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"></path></svg>`,
         )}")`,
       })
     }

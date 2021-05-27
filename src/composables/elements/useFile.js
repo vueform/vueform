@@ -271,7 +271,7 @@ const base = function (props, context, dependencies)
 
       hasUploadError.value = false
 
-      let response = await axios.value[fileMethods.value.uploadTemp](fileEndpoints.value.uploadTemp, data, {
+      let response = await axios.value[fileMethods.value.uploadTemp](fileEndpoints.value.temp, data, {
         onUploadProgress: (e) => {
           progress.value = Math.round((e.loaded * 100) / e.total)
         },
@@ -366,21 +366,16 @@ const base = function (props, context, dependencies)
     previewLoaded.value = false
 
     let img = el$.value.$el.querySelector('img')
-
-    if (img.complete) {
-      previewLoaded.value = true
-      return
-    }
     
     let listener = () => {
       loadImg()
     }
     
-    img.addEventListener('load', listener)
+    img.onload = listener
 
     let loadImg = () => {
       previewLoaded.value = true
-      img.removeEventListener('load', listener)
+      img.onload = null
     }
   }
 

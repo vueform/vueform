@@ -17,6 +17,7 @@
         />
 
         <input
+          type="text"
           :name="name"
           :id="fieldId"
           :class="classes.input"
@@ -54,6 +55,8 @@
         defaultClasses: {
           container: '',
           input: '',
+          inputEnabled: '',
+          inputDisabled: '',
         }
       }
     }
@@ -61,4 +64,17 @@
 </script>
 
 <style lang="scss">
+  .pac-item {
+    @apply py-1 px-3 border-gray-200;
+  }
+
+  .pac-icon-marker {
+    @apply bg-form-map-marker bg-no-repeat bg-contain bg-center w-3 h-4 mr-2 mt-1.5;
+  }
+
+  .pac-logo {
+    &:after {
+      @apply mx-2.5 mb-2.5;
+    }
+  }
 </style>

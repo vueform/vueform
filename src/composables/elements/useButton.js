@@ -51,6 +51,10 @@ const base = function (props, context, dependencies)
         break
     }
 
+    if (isLoading.value) {
+      button.tabindex = -1
+    }
+
     return button
   })
 
