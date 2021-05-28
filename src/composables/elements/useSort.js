@@ -40,7 +40,7 @@ const base = function(props, context, dependencies, options)
 
   const initSortable = () => {
     sortable.value = new Sortable(list.value, {
-      handle: `.${classes.value.handle}`,
+      handle: `[data-handle]`,
       onStart: () => {
         sorting.value = true
       },

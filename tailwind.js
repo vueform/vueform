@@ -2,7 +2,7 @@ const svgToDataUri = require('mini-svg-data-uri')
 const Color = require('color')
 const plugin = require('tailwindcss/plugin')
 
-const vueform = plugin(({ theme, addBase, addUtilities }) => {
+const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
   const rules = [
     {
       base: [
@@ -98,19 +98,28 @@ const vueform = plugin(({ theme, addBase, addUtilities }) => {
       height: theme('form.checkboxSize'),
     },
     '.form-min-h-input': {
-      minHeight: `calc((${theme('form.pyInput')} * 2) + (${theme('form.borderWidth')} * 2) + ${theme('fontSize.base')})`,
+      minHeight: `calc((${theme('form.pyInput')} * 2) + (${theme('form.borderWidth')} * 2) + (${theme('fontSize.base')} * ${theme('lineHeight.normal')}))`,
     },
     '.form-w-30': {
       width: '7.5rem',
     },
+    '.form-w-input': {
+      width: `calc((${theme('form.pyInput')} * 2) + (${theme('form.borderWidth')} * 2) + (${theme('fontSize.base')} * ${theme('lineHeight.normal')}))`,
+    },
     '.form-h-30': {
       height: '7.5rem',
+    },
+    '.form-h-input': {
+      height: `calc((${theme('form.pyInput')} * 2) + (${theme('form.borderWidth')} * 2) + (${theme('fontSize.base')} * ${theme('lineHeight.normal')}))`,
     },
     '.form-max-w-30': {
       maxWidth: '7.5rem',
     },
     '.form-max-h-30': {
       maxHeight: '7.5rem',
+    },
+    [`.${e('form-bg-size-2.75')}`]: {
+      backgroundSize: '0.6875rem'
     },
 
     '.form-bg-spinner-white': {
@@ -131,6 +140,9 @@ const vueform = plugin(({ theme, addBase, addUtilities }) => {
       }
     },
 
+    '.cursor-grab': {
+      cursor: 'grab',
+    },
     '.content-empty': {
       content: '""',
     },
@@ -200,11 +212,18 @@ const vueform = plugin(({ theme, addBase, addUtilities }) => {
     },
   }
 
+  const activable = {
+    '.cursor-grabbing': {
+      cursor: 'grabbing',
+    },
+  }
+
   addUtilities(plain)
   addUtilities(hoverable, ['hover'])
   addUtilities(groupHoverable, ['group-hover'])
   addUtilities(focusable, ['focus'])
   addUtilities(checkable, ['checked'])
+  addUtilities(activable, ['active'])
 }, {
   theme: {
     form: (theme) => ({
@@ -270,6 +289,10 @@ const vueform = plugin(({ theme, addBase, addUtilities }) => {
         'form-remove-light-white': `url("${svgToDataUri(
           `<svg viewBox="0 0 320 512" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"></path></svg>`,
         )}")`,
+        'form-sort-handle': `url("${svgToDataUri(
+          `<svg viewBox="0 0 11 9" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M10.0418527,0.894571939 L0.309709821,0.894571939 C0.235791888,0.894571939 0.17578125,0.834156736 0.17578125,0.759740479 L0.17578125,0.220414636 C0.17578125,0.145998379 0.235791888,0.0855831754 0.309709821,0.0855831754 L10.0418527,0.0855831754 C10.1157706,0.0855831754 10.1757812,0.145998379 10.1757812,0.220414636 L10.1757812,0.759740479 C10.1757812,0.834156736 10.1157706,0.894571939 10.0418527,0.894571939 Z M10.0418527,4.8049452 L0.309709821,4.8049452 C0.235791888,4.8049452 0.17578125,4.74453 0.17578125,4.67011374 L0.17578125,4.1307879 C0.17578125,4.05637164 0.235791888,3.99595644 0.309709821,3.99595644 L10.0418527,3.99595644 C10.1157706,3.99595644 10.1757812,4.05637164 10.1757812,4.1307879 L10.1757812,4.67011374 C10.1757812,4.74453 10.1157706,4.8049452 10.0418527,4.8049452 Z M10.0418527,8.80953919 L0.309709821,8.80953919 C0.235791888,8.80953919 0.17578125,8.74912399 0.17578125,8.67470773 L0.17578125,8.13538189 C0.17578125,8.06096563 0.235791888,8.00055043 0.309709821,8.00055043 L10.0418527,8.00055043 C10.1157706,8.00055043 10.1757812,8.06096563 10.1757812,8.13538189 L10.1757812,8.67470773 C10.1757812,8.74912399 10.1157706,8.80953919 10.0418527,8.80953919 Z"></path></svg>`,
+        )}")`,
+
         'form-trix-bold': `url("${svgToDataUri(
           `<svg viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M333.49 238a122 122 0 0 0 27-65.21C367.87 96.49 308 32 233.42 32H34a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h31.87v288H34a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h209.32c70.8 0 134.14-51.75 141-122.4 4.74-48.45-16.39-92.06-50.83-119.6zM145.66 112h87.76a48 48 0 0 1 0 96h-87.76zm87.76 288h-87.76V288h87.76a56 56 0 0 1 0 112z"></path></svg>`,
           // `<svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="bold" class="svg-inline--fa fa-bold fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M314.52 238.78A119.76 119.76 0 0 0 232 32H48a16 16 0 0 0-16 16v16a16 16 0 0 0 16 16h16v352H48a16 16 0 0 0-16 16v16a16 16 0 0 0 16 16h208a128 128 0 0 0 128-128c0-49.49-28.38-91.92-69.48-113.22zM128 80h88a72 72 0 0 1 0 144h-88zm112 352H128V272h112a80 80 0 0 1 0 160z"></path></svg>`,

@@ -47,6 +47,16 @@ export default {
   GroupElement: {
     childrenContainer: 'flex flex-wrap',
   },
+  ListElement: {
+    container: '',
+    list: '',
+    listItem: 'relative group',
+    handle: 'absolute form-w-input form-h-input bg-form-sort-handle bg-center bg-no-repeat left-0 top-0 transform -translate-x-full form-bg-size-2.75 cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
+    remove: 'absolute w-0.5 h-0.5 box-content p-1.5 top-px left-px bg-form-remove-light-white bg-black bg-opacity-60 bg-center bg-no-repeat rounded border-2 border-black border-opacity-0 transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 group-hover:opacity-100',
+    add: 'form-bg-primary text-white px-2.5 py-1.5 text-sm form-rounded transition hover:form-bg-primary-darker',
+    disabled: '',
+    sorting: 'is-sorting',
+  },
   LocationElement: {
     input: 'w-full form-p-input form-border form-border-color form-rounded',
     ...text,

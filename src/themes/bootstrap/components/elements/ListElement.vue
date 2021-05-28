@@ -14,13 +14,13 @@
               :name="i"
             />
           </slot>
+          <span v-if="hasSort" :class="classes.handle" data-handle><span></span></span>
           <a
             href=""
             v-if="hasRemove"
             :class="classes.remove"
             @click.prevent="handleRemove(i)"
           ><span></span></a>
-          <span v-if="hasSort" :class="classes.handle"><span></span></span>
         </div>
         
       </div>
