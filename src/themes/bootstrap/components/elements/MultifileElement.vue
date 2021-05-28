@@ -1,5 +1,5 @@
 <template>
-  <component :is="elementLayout">
+  <component :is="elementLayout" :multiple="true">
     
     <template v-slot:field>
 
@@ -40,7 +40,7 @@
             :name="i"
             @remove="remove(i)"
           />
-          <span v-if="!isDisabled && sort" :class="classes.handle"><span></span></span>
+          <span v-if="!isDisabled && sort" :class="classes.handle" data-handle><span></span></span>
         </div>
       </div>
 
@@ -68,9 +68,11 @@
           listItem: '',
           listItemDefault: 'row',
           listItemGallery: 'gallery-list-item',
-          disabled: 'is-disabled',
-          selectButton: 'btn btn-light',
           handle: 'list-handle',
+          handleDefault: '',
+          handleGallery: '',
+          disabled: 'is-disabled',
+          selectButton: 'btn btn-light btn-form-upload',
           sorting: 'is-sorting',
         },
       }
@@ -83,10 +85,11 @@
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
 
-  .file-list {
-    margin-top: $spacer;
-    margin-bottom: calc(#{$spacer} * -1);
+  .btn-form-upload {
+    margin-bottom: $spacer;
+  }
 
+  .file-list {
     & > .row {
       position: relative;
 
@@ -115,8 +118,7 @@
   .gallery-list {
     display: flex;
     flex-wrap: wrap;
-    margin-top: $spacer;
-    margin-bottom: calc(#{$spacer} * -0.5);
+    margin-bottom: calc(#{$spacer} * 0.5);
 
     & > div {
       position: relative;

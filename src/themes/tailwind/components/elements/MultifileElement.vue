@@ -1,5 +1,5 @@
 <template>
-  <component :is="elementLayout">
+  <component :is="elementLayout" :multiple="true">
     
     <template v-slot:field>
 
@@ -40,7 +40,7 @@
             :name="i"
             @remove="remove(i)"
           />
-          <span v-if="!isDisabled && sort" :class="classes.handle"><span></span></span>
+          <span v-if="!isDisabled && sort" :class="classes.handle" data-handle><span></span></span>
         </div>
       </div>
 
@@ -68,9 +68,11 @@
           listItem: '',
           listItemDefault: '',
           listItemGallery: '',
+          handle: '',
+          handleDefault: '',
+          handleGallery: '',
           disabled: '',
           selectButton: '',
-          handle: '',
           sorting: '',
         },
       }

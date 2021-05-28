@@ -363,20 +363,20 @@ const base = function (props, context, dependencies)
   }
 
   const loadPreview = () => {
-    previewLoaded.value = false
+    // previewLoaded.value = false
 
-    let img = el$.value.$el.querySelector('img')
+    // let img = el$.value.$el.querySelector('img')
     
-    let listener = () => {
-      loadImg()
-    }
+    // let listener = () => {
+    //   loadImg()
+    // }
     
-    img.onload = listener
+    // img.onload = listener
 
-    let loadImg = () => {
-      previewLoaded.value = true
-      img.onload = null
-    }
+    // let loadImg = () => {
+    //   previewLoaded.value = true
+    //   img.onload = null
+    // }
   }
 
   /**

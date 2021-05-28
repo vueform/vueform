@@ -157,6 +157,8 @@ const multifile = function(props, context, dependencies)
       ['list', 'disabled', computed(() => isDisabled.value)],
       ['listItem', 'listItemDefault', computed(() => view.value !== 'gallery')],
       ['listItem', 'listItemGallery', computed(() => view.value === 'gallery')],
+      ['handle', 'handleDefault', computed(() => view.value !== 'gallery')],
+      ['handle', 'handleGallery', computed(() => view.value === 'gallery')],
     ]
   })
 
