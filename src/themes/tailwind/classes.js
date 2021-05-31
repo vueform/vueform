@@ -117,6 +117,17 @@ export default {
     title: 'font-semibold mt-3',
     description: '',
   },
+  ElementDescription: {
+    container: 'text-sm text-gray-500 mt-1',
+  },
+  ElementError: {
+    container: 'text-sm text-red-500',
+  },
+  ElementInfo: {
+    info: 'inline-block w-3.5 h-3.5 bg-form-info bg-opacity-20 bg-center bg-no-repeat relative ml-2 top-px cursor-pointer group',
+    wrapper: 'absolute left-5 -top-1.5 -mt-px opacity-0 invisible group-hover:opacity-100 group-hover:form-visible transition z-20 w-52',
+    content: 'bg-black bg-opacity-90 text-white rounded-md text-sm py-1 px-2.5 not-italic inline-block relative',
+  },
   ElementLayout: {
     outerWrapper: 'flex flex-wrap',
     outerWrapperSingle: 'mb-4',

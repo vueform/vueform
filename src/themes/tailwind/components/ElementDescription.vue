@@ -1,5 +1,5 @@
 <template>
-  <div v-if="description" :class="classes.fieldDescription" v-html="description"></div>
+  <div v-if="description" :class="classes.container" v-html="description"></div>
 </template>
 
 <script>
@@ -8,7 +8,7 @@
     data() {
       return {
         defaultClasses: {
-          fieldDescription: '',
+          container: '',
         }
       }
     }
