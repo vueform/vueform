@@ -109,6 +109,14 @@ export default {
   },
 
   // Components
+  DragAndDrop: {
+    container: 'w-full border border-dashed transition flex flex-col items-center justify-center p-6 cursor-pointer',
+    containerInactive: 'form-border-color',
+    containerActive: 'form-border-primary form-bg-primary bg-opacity-20',
+    icon: 'inline-block w-9 h-8 bg-center bg-contain bg-form-inbox-in',
+    title: 'font-semibold mt-3',
+    description: '',
+  },
   ElementLayout: {
     outerWrapper: 'flex flex-wrap',
     outerWrapperSingle: 'mb-4',

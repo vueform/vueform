@@ -17,7 +17,8 @@
       return {
         defaultClasses: {
           container: 'drag-and-drop',
-          active: 'is-active',
+          containerInactive: '',
+          containerActive: 'is-active',
           icon: 'icon-upload',
           title: 'dnd-title',
           description: 'dnd-description',

@@ -17,7 +17,8 @@
       return {
         defaultClasses: {
           container: '',
-          active: '',
+          containerInactive: '',
+          containerActive: '',
           icon: '',
           title: '',
           description: '',

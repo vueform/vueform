@@ -28,7 +28,8 @@ export default {
       defaultClasses,
     } = useElementComponent(props, context, {}, {
       addClasses: [
-        ['container', 'active', computed(() => dragging.value)]
+        ['container', 'containerActive', computed(() => dragging.value)],
+        ['container', 'containerInactive', computed(() => !dragging.value)],
       ],
     })
 
