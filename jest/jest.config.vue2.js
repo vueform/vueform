@@ -26,7 +26,7 @@ module.exports = {
       '^vue-jest$': "<rootDir>/node_modules/vue-prev-jest"
   },
   "setupFilesAfterEnv": ["<rootDir>/jest/jest.setup.js"],
-  "collectCoverage": true,
+  "collectCoverage": false,
   "collectCoverageFrom": [
       "**/*.{js,vue}",
       "!**/node_modules/**",

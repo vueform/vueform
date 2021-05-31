@@ -5,8 +5,8 @@ import {
 import flushPromises from 'flush-promises'
 import asyncForEach from './../../src/utils/asyncForEach'
 
-export const plainData = function (elementType, elementName, options) {
-  it('should have "plainData" as an object with element name as property and element value as value by default', async () => {
+export const data = function (elementType, elementName, options) {
+  it('should have "data" as an object with element name as property and element value as value by default', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -24,7 +24,7 @@ export const plainData = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.plainData).toStrictEqual({
+    expect(el.data).toStrictEqual({
       el: el.value
     })
     
@@ -34,10 +34,10 @@ export const plainData = function (elementType, elementName, options) {
   })
 }
 
-export const data = function (elementType, elementName, options) {
+export const output = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  it('should "data" contained data data of children if prototype is a single element', () => {
+  it('should "output" contain output of children if prototype is a single element', () => {
     let form = createForm({
       schema: {
         el: {
@@ -67,30 +67,30 @@ export const data = function (elementType, elementName, options) {
     let el3 = form.vm.el$('el3')
     let child0_1 = form.vm.el$('el.0')
 
-    expect(el.data).toStrictEqual({})
+    expect(el.output).toStrictEqual({})
 
     el3.update('value3')
 
-    expect(el.data).toStrictEqual({
+    expect(el.output).toStrictEqual({
       el: []
     })
 
     el2.update('value2')
 
-    expect(el.data).toStrictEqual({
+    expect(el.output).toStrictEqual({
       el: [null, null]
     })
 
     child0_1.update('child1-value')
 
-    expect(el.data).toStrictEqual({
+    expect(el.output).toStrictEqual({
       el: ['child1-value', null]
     })    
     
     // destroy(form) // teardown
   })
 
-  it('should "data" contained data data of children prototype is an object', () => {
+  it('should "output" containe output of children prototype is an object', () => {
     let form = createForm({
       schema: {
         el: {
@@ -139,23 +139,23 @@ export const data = function (elementType, elementName, options) {
     let el4 = form.vm.el$('el4')
     let child0_1 = form.vm.el$('el.0.child1')
 
-    expect(el.data).toStrictEqual({})
+    expect(el.output).toStrictEqual({})
 
     el4.update('value4')
 
-    expect(el.data).toStrictEqual({
+    expect(el.output).toStrictEqual({
       el: []
     })
 
     el2.update('value2')
 
-    expect(el.data).toStrictEqual({
+    expect(el.output).toStrictEqual({
       el: [{}, {}]
     })
 
     el3.update('value3')
 
-    expect(el.data).toStrictEqual({
+    expect(el.output).toStrictEqual({
       el: [
         {
           child1: 'child1-value',
@@ -168,7 +168,7 @@ export const data = function (elementType, elementName, options) {
 
     child0_1.update('child1-value2')
 
-    expect(el.data).toStrictEqual({
+    expect(el.output).toStrictEqual({
       el: [
         {
           child1: 'child1-value2',
@@ -183,7 +183,7 @@ export const data = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should have "data" according to `formatData` if it is set', async () => {
+  it('should have "output" according to `formatData` if it is set', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm(listSchema(options, i, {
         initial: 1,
@@ -200,7 +200,7 @@ export const data = function (elementType, elementName, options) {
 
       let el = form.vm.el$('el')
 
-      expect(el.data).toStrictEqual({
+      expect(el.output).toStrictEqual({
         custom: {
           el: el.value
         }

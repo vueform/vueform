@@ -1,8 +1,8 @@
 import { createForm, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
-export const plainData = function (elementType, elementName, options) {
-  it('should have "plainData" as an object with element name as property and element value as value by default', async () => {
+export const data = function (elementType, elementName, options) {
+  it('should have "data" as an object with element name as property and element value as value by default', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -14,7 +14,7 @@ export const plainData = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.plainData).toStrictEqual({
+    expect(el.data).toStrictEqual({
       el: el.value
     })
 
@@ -22,8 +22,8 @@ export const plainData = function (elementType, elementName, options) {
   })
 }
 
-export const data = function (elementType, elementName, options) {
-  it('should have `data` equal to `plainData` if there are no conditions', () => {
+export const output = function (elementType, elementName, options) {
+  it('should have `output` equal to `data` if there are no conditions', () => {
     let form = createForm({
       schema: {
         el: {
@@ -35,12 +35,12 @@ export const data = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual(el.plainData)
+    expect(el.output).toStrictEqual(el.data)
     
     // destroy(form) // teardown
   })
 
-  it('should have `data` equal to `plainData` if there are met conditions', () => {
+  it('should have `output` equal to `data` if there are met conditions', () => {
     let form = createForm({
       schema: {
         el: {
@@ -59,12 +59,12 @@ export const data = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual(el.plainData)
+    expect(el.output).toStrictEqual(el.data)
     
     // destroy(form) // teardown
   })
 
-  it('should have empty object for `data` if there are unmet conditions', () => {
+  it('should have empty object for `output` if there are unmet conditions', () => {
     let form = createForm({
       schema: {
         el: {
@@ -82,7 +82,7 @@ export const data = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual({})
+    expect(el.output).toStrictEqual({})
 
     // destroy() // teardown
   })

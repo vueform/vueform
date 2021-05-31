@@ -5,12 +5,16 @@ export default function (props, context, dependencies)
   const {
     value: v,
     modelValue: mv,
+    sync,
   } = toRefs(props)
 
   const $this = dependencies.$this
-  const fire = dependencies.fire
 
   const externalValue = context.expose !== undefined ? mv : v
+
+  const isSync = computed(() => {
+    return sync.value && externalValue && externalValue.value !== undefined
+  })
 
   /**
    * Clone value of model container: v-model or internal data
@@ -98,11 +102,6 @@ export default function (props, context, dependencies)
   }
 
   if (externalValue.value) {
-    watch(intermediaryValue, (n, o) => {
-      context.emit('input', n)
-      context.emit('update:modelValue', n)
-    }, { deep: true, immediate: false })
-    
     watch(model, (n, o) => {
       if (_.isEqual(n, o)) {
         return
@@ -112,22 +111,12 @@ export default function (props, context, dependencies)
     }, { deep: true, immediate: false })
   }
 
-  onMounted(() => {
-    // Watching model to track old/new values
-    watch(model, (n, o) => {
-      if (_.isEqual(n, o)) {
-        return
-      }
-
-      fire('change', n, o)
-    }, { deep: true, immediate: false })
-  })
-
   return {
     model,
     internalData,
     intermediaryValue,
     externalValue,
+    isSync,
     updateModel,
   }
 }

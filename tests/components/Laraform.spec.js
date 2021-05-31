@@ -623,8 +623,8 @@ describe('Laraform', () => {
     })
   })
 
-  describe('plainData', () => {
-    it('should collect plainData from children', async () => {
+  describe('data', () => {
+    it('should collect data from children', async () => {
       let form = createForm({
         schema: {
           el: { type: 'text', default: 'value' },
@@ -632,7 +632,7 @@ describe('Laraform', () => {
         }
       })
       
-      expect(form.vm.plainData).toStrictEqual({el:'value',el2:'value2'})
+      expect(form.vm.data).toStrictEqual({el:'value',el2:'value2'})
     })
   })
 
@@ -645,7 +645,7 @@ describe('Laraform', () => {
         }
       })
       
-      expect(form.vm.data).toStrictEqual({el:'value'})
+      expect(form.vm.output).toStrictEqual({el:'value'})
     })
   })
 
@@ -1570,7 +1570,7 @@ describe('Laraform', () => {
 
       await flushPromises()
 
-      expect(form.vm.plainData).toStrictEqual({
+      expect(form.vm.data).toStrictEqual({
         el: 'value',
         el2: 'value2',
       })
@@ -1611,7 +1611,7 @@ describe('Laraform', () => {
 
       await flushPromises()
 
-      expect(form.vm.plainData).toStrictEqual({
+      expect(form.vm.data).toStrictEqual({
         el: 'value',
         el2: 'value2',
         child: 'value-child',
@@ -1649,7 +1649,7 @@ describe('Laraform', () => {
 
       await flushPromises()
 
-      expect(form.vm.plainData).toStrictEqual({
+      expect(form.vm.data).toStrictEqual({
         el: 'value-formatted',
         el2: 'value2-formatted',
         child: 'value-child-formatted',
@@ -1693,7 +1693,7 @@ describe('Laraform', () => {
 
       await flushPromises()
 
-      expect(form.vm.plainData).toStrictEqual({
+      expect(form.vm.data).toStrictEqual({
         el: 'value-formatted',
         el2: 'value2-formatted',
         child: 'value-child-formatted',
@@ -1734,7 +1734,7 @@ describe('Laraform', () => {
 
       await flushPromises()
 
-      expect(form.vm.plainData).toStrictEqual({
+      expect(form.vm.data).toStrictEqual({
         el: 'value-formatted',
         el2: 'value2-formatted',
         child: 'value-child-formatted',
@@ -1785,7 +1785,7 @@ describe('Laraform', () => {
 
       form.vm.reset()
 
-      expect(form.vm.plainData).toStrictEqual({
+      expect(form.vm.data).toStrictEqual({
         el: 'default',
         el2: null,
       })
@@ -1892,7 +1892,7 @@ describe('Laraform', () => {
 
       form.vm.clear()
 
-      expect(form.vm.plainData).toStrictEqual({
+      expect(form.vm.data).toStrictEqual({
         el: null,
         el2: null,
       })
@@ -2439,7 +2439,7 @@ describe('Laraform', () => {
 
       await flushPromises()
 
-      expect(form.vm.plainData).toStrictEqual({
+      expect(form.vm.data).toStrictEqual({
         el: 'not-value'
       })
     })

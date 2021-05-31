@@ -2,21 +2,51 @@ import { createForm, createInlineForm } from 'test-helpers'
 
 export default function (cases, elementType, options, mockList, baseSchema, testChanges) {
   _.each(cases, (c) => {
-    for(let i = 0; i < 1; i++) {
+    for(let i = 0; i < 4; i++) {
       let describeName = ''
       let name = 'should work when'
+      let sync
+      let inline
+      let hasModel = false
+      let emptyModel = true
+      let updateModel = false
 
       switch (i) {
         case 0:
-          describeName += 'no v-model'
+          describeName += 'SFC'
+          inline = false
+          sync = false
           break
 
         case 1:
-          describeName += 'empty v-model'
+          describeName += 'inline'
+          inline = true
+          sync = false
           break
 
         case 2:
-          describeName += 'v-model with value'
+          describeName += 'inline with v-model'
+          inline = true
+          sync = false
+          hasModel = true
+          break
+
+        case 3:
+          describeName += 'inline with empty v-model & sync'
+          inline = true
+          sync = true
+          hasModel = true
+          emptyModel = true
+          updateModel = false
+          break
+
+        case 4:
+          describeName += 'inline with pre-existing data in v-model & sync'
+          inline = true
+          sync = true
+          hasModel = true
+          emptyModel = false
+          updateModel = true
           break
       }
 
@@ -37,7 +67,7 @@ export default function (cases, elementType, options, mockList, baseSchema, test
             }
           }
 
-          let form, app, inline
+          let form, app, inlineForm
           let schema = baseSchema(mocks, elementType)
 
           if (c.elementDefault) {
@@ -57,25 +87,28 @@ export default function (cases, elementType, options, mockList, baseSchema, test
             })
           }
 
-          if (i === 0) {
-            form = createForm({
-              schema,
-              default: c.formDefault || {}
-            }, config)
-          } else {
-            inline = createInlineForm({
-              model: i === 2 ? c.model : {},
+          if (inline) {
+            inlineForm = createInlineForm(Object.assign({}, {
               props: {
                 schema,
-                default: c.formDefault || {}
-              }
-            }, config)
+                default: c.formDefault || {},
+                sync,
+              },
+            }, hasModel ? {
+              model: emptyModel ? {} : c.model,
+            } : {}), config)
 
-            app = inline.app
-            form = inline.form
+            app = inlineForm.app
+            form = inlineForm.form
+          } else {
+            form = createForm({
+              schema,
+              default: c.formDefault || {},
+              sync,
+            }, config)
           }
 
-          await testChanges(form, mocks, options, i === 2, i === 2 ? _.cloneDeep(c.initialWithModel) : _.cloneDeep(c.initial), app)
+          await testChanges(form, mocks, options, updateModel, emptyModel ? _.cloneDeep(c.initial) : _.cloneDeep(c.initialWithModel), hasModel, app)
         })
       })
     }

@@ -157,6 +157,7 @@ export default {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
+      parent: path.parent,
     })
 
     const data = useData(props, context, {

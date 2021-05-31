@@ -3,7 +3,7 @@ import flushPromises from 'flush-promises'
 import { nextTick } from 'composition-api'
 import { update as baseUpdate, clear as baseClear, reset as baseReset, } from './data_multilingual'
 
-export { plainData, data } from './data_multilingual'
+export { data, output } from './data_multilingual'
 
 export const load = function (elementType, elementName, options) {
   it('should `load` data', async () => {

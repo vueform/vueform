@@ -205,6 +205,7 @@ export default {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
+      parent: path.parent,
     }, { init: false })
 
     const controls = useControls(props, context, {

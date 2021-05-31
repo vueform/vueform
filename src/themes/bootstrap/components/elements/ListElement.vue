@@ -5,7 +5,7 @@
       <!-- Sorting container -->
       <div :class="classes.list" ref="list">
 
-        <div v-for="(val, i) in value" :key="i" :class="classes.listItem">
+        <div v-for="(val, i, n) in value" :key="n" :class="classes.listItem">
           <slot :index="i">
             <component
               :is="component(prototype)"

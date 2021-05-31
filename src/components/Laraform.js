@@ -19,6 +19,11 @@ export default {
       required: false,
       default: undefined
     },
+    sync: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     default: {
       type: Object,
       required: false,

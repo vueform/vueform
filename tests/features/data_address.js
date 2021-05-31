@@ -1,8 +1,8 @@
 import { createForm, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
-export const plainData = function (elementType, elementName) {
-  it('should have "plainData" as an object with values of children', () => {
+export const data = function (elementType, elementName) {
+  it('should have "data" as an object with values of children', () => {
     let form = createForm({
       schema: {
         el: {
@@ -13,7 +13,7 @@ export const plainData = function (elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.plainData).toStrictEqual({
+    expect(el.data).toStrictEqual({
       el: el.value,
     })
     
@@ -23,8 +23,8 @@ export const plainData = function (elementType, elementName) {
   })
 }
 
-export const data = function(elementType, elementName) {
-  it('should have `data` equal to available children data values', async () => {
+export const output = function(elementType, elementName) {
+  it('should have `output` equal to available children data values', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -35,7 +35,7 @@ export const data = function(elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual({
+    expect(el.output).toStrictEqual({
       el: {
         address: null,
         address2: null,
@@ -48,7 +48,7 @@ export const data = function(elementType, elementName) {
     // destroy(form) // teardown
   })
 
-  it('should have empty object as `data` if not available', async () => {
+  it('should have empty object as `output` if not available', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -65,7 +65,7 @@ export const data = function(elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual({})
+    expect(el.output).toStrictEqual({})
     
     // destroy(form) // teardown
 

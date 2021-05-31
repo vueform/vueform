@@ -1,8 +1,8 @@
 import { createForm, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
-export const plainData = function (elementType, elementName) {
-  it('should have "plainData" as an object with values of children', () => {
+export const data = function (elementType, elementName) {
+  it('should have "data" as an object with values of children', () => {
     let form = createForm({
       schema: {
         el: {
@@ -24,13 +24,13 @@ export const plainData = function (elementType, elementName) {
     let el = form.vm.el$('el')
 
     if (el.flat) {
-      expect(el.plainData).toStrictEqual({
+      expect(el.data).toStrictEqual({
         child1: 'value',
         child2: 'value2',
       })
     }
     else {
-      expect(el.plainData).toStrictEqual({
+      expect(el.data).toStrictEqual({
         el: {
           child1: 'value',
           child2: 'value2',
@@ -41,8 +41,8 @@ export const plainData = function (elementType, elementName) {
 }
 
 
-export const data = function(elementType, elementName) {
-  it('should have empty object as `data` if not available', async () => {
+export const output = function(elementType, elementName) {
+  it('should have empty object as `output` if not available', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -67,12 +67,12 @@ export const data = function(elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.data).toStrictEqual({})    
+    expect(el.output).toStrictEqual({})    
     
     // destroy(form) // teardown
   })
 
-  it('should have `data` equal to available children data values', async () => {
+  it('should have `output` equal to available children output values', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -113,13 +113,13 @@ export const data = function(elementType, elementName) {
     let el = form.vm.el$('el')
 
     if (el.flat) {
-      expect(el.data).toStrictEqual({
+      expect(el.output).toStrictEqual({
         child1: 'value',
         child4: 'value4'
       })
     }
     else {
-      expect(el.data).toStrictEqual({
+      expect(el.output).toStrictEqual({
         el: {
           child1: 'value',
           child3: {

@@ -20,7 +20,7 @@ const Validator = class {
     this.watchers = {}
     
     if (this.condition && this.dependent) {
-      watch(computed(() => _.get(this.form$.plainData, this.dependent)), () => {
+      watch(computed(() => _.get(this.form$.data, this.dependent)), () => {
         if (this.element$.validated) {
 
           // we need to revalidate the whole element
@@ -211,7 +211,7 @@ const Validator = class {
       return
     }
 
-    this.watchers[variable] = watch(computed(() => _.get(this.form$.plainData, variable)), () => {
+    this.watchers[variable] = watch(computed(() => _.get(this.form$.data, variable)), () => {
       this.revalidate()
     })
   }

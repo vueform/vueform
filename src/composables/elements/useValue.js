@@ -3,26 +3,55 @@ import checkDateFormat from '../../utils/checkDateFormat'
 
 const base = function(props, context, dependencies, options = {})
 {
+  const { name } = toRefs(props)
+
   // ============ DEPENDENCIES =============
 
+  const parent = dependencies.parent
   const defaultValue = dependencies.defaultValue
   const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
 
   // ================ DATA =================
 
-  const initialValue = ref(_.get(form$.value.model, dataPath.value))
+  const initialValue = ref(undefined)
+
+  if (form$.value.isSync) {
+    initialValue.value = _.get(form$.value.model, dataPath.value)
+  } else if (parent.value && ['object', 'list'].indexOf(parent.value.type) !== -1) {
+    initialValue.value = parent.value.value[name.value]
+  }
 
   // ============== COMPUTED ===============
 
+  const internalValue = ref(_.cloneDeep(defaultValue.value))
+
   const value = computed(options.value || {
     get() {
-      let value = _.get(form$.value.model, dataPath.value)
+      let value
+
+      if (form$.value.isSync) {
+        value = _.get(form$.value.model, dataPath.value)
+      } else if (parent.value && ['object', 'list'].indexOf(parent.value.type) !== -1) {
+        value = parent.value.value[name.value]
+      } else {
+        value = internalValue.value
+      }
 
       return value !== undefined ? value : defaultValue.value
     },
     set(val) {
-      form$.value.updateModel(dataPath.value, val)
+      if (form$.value.isSync) {
+        form$.value.updateModel(dataPath.value, val)
+      } else if (parent.value && ['list'].indexOf(parent.value.type) !== -1) {
+        parent.value.update(parent.value.value.map((v,k) => k == name.value ? val : v))
+      } else if (parent.value && ['object'].indexOf(parent.value.type) !== -1) {
+        parent.value.value = Object.assign({}, parent.value.value, {
+          [name.value]: val
+        })
+      } else {
+        internalValue.value = val
+      }
     }
   })
 
@@ -43,8 +72,40 @@ const base = function(props, context, dependencies, options = {})
   }
 
   return {
+    initialValue,
+    internalValue,
     value,
     model,
+  }
+}
+
+const object = function(props, context, dependencies, options = {})
+{
+  const {
+    initialValue,
+    internalValue,
+    value,
+  } = base(props, context, dependencies, {
+   init: false,
+  })
+
+  // ============ DEPENDENCIES =============
+
+  const defaultValue = dependencies.defaultValue
+
+  // ================ HOOKS ================
+
+  if (options.init === undefined || options.init !== false) {
+    if (initialValue.value === undefined) {
+      value.value = defaultValue.value
+    } else {
+      value.value = Object.assign({}, defaultValue.value, value.value)
+    }
+  }
+
+  return {
+    internalValue,
+    value,
   }
 }
 
@@ -76,44 +137,6 @@ const group = function(props, context, dependencies, options = {})
       form$.value.updateModel(dataPath.value, val)
     }
   })
-
-  return {
-    value,
-  }
-}
-
-const object = function(props, context, dependencies, options = {})
-{
-  // ============ DEPENDENCIES =============
-
-  const defaultValue = dependencies.defaultValue
-  const dataPath = dependencies.dataPath
-  const form$ = dependencies.form$
-
-  // ================ DATA =================
-
-  const initialValue = ref(_.get(form$.value.model, dataPath.value))
-
-  // ============== COMPUTED ===============
-
-  const value = computed(options.value || {
-    get() {
-      let value = _.get(form$.value.model, dataPath.value)
-
-      return value !== undefined ? value : defaultValue.value
-    },
-    set(val) {
-      form$.value.updateModel(dataPath.value, val)
-    }
-  })
-
-  if (options.init === undefined || options.init !== false) {
-    if (initialValue.value === undefined) {
-      value.value = defaultValue.value
-    } else {
-      value.value = Object.assign({}, defaultValue.value, value.value)
-    }
-  }
 
   return {
     value,

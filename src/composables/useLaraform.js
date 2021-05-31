@@ -53,9 +53,11 @@ const base = function(props, context, dependencies = {})
   })
 
   const {
+    externalValue,
     model,
     internalData,
     intermediaryValue,
+    isSync,
     updateModel,
   } = useModel(props, context, {
     $this,
@@ -264,25 +266,6 @@ const base = function(props, context, dependencies = {})
    * 
    * @type {object}
    */
-  const plainData = computed(() => {
-    var plainData = {}
-
-    _.each(elements$.value, (e$) => {
-      if (e$.isStatic) {
-        return
-      }
-
-      plainData = Object.assign({}, plainData, e$.plainData)
-    })
-
-    return plainData
-  })
-
-  /**
-   * The form's data excluding elements with unmet conditions and the ones which should not submit.
-   * 
-   * @type {object}
-   */
   const data = computed(() => {
     var data = {}
 
@@ -290,11 +273,30 @@ const base = function(props, context, dependencies = {})
       if (e$.isStatic) {
         return
       }
-      
+
       data = Object.assign({}, data, e$.data)
     })
 
-    return formatData.value ? formatData.value(data) : data
+    return data
+  })
+
+  /**
+   * The form's data excluding elements with unmet conditions and the ones which should not submit.
+   * 
+   * @type {object}
+   */
+  const output = computed(() => {
+    var output = {}
+
+    _.each(elements$.value, (e$) => {
+      if (e$.isStatic) {
+        return
+      }
+      
+      output = Object.assign({}, output, e$.output)
+    })
+
+    return formatData.value ? formatData.value(output) : output
   })
 
   /**
@@ -305,7 +307,7 @@ const base = function(props, context, dependencies = {})
   const formData = computed(() => {
     return convertFormData({
       formKey: options.value.formKey,
-      data: data.value,
+      data: output.value,
     })
   })
 
@@ -970,6 +972,25 @@ const base = function(props, context, dependencies = {})
     userConfig.value = $this.laraform || {}
   })
 
+  onMounted(() => {
+    // Watching model to track old/new values
+    watch(data, (n, o) => {
+      if (JSON.stringify(n) === JSON.stringify(o)) {
+        return
+      }
+
+      fire('change', n, o)
+      context.emit('input', n)
+      context.emit('update:modelValue', n)
+    }, { deep: true, immediate: false })
+
+    // If has v-model & not equals to form data
+    if (externalValue && externalValue.value !== undefined && JSON.stringify(externalValue.value) !== JSON.stringify(data.value)) {
+      context.emit('input', data.value)
+      context.emit('update:modelValue', data.value)
+    }
+  })
+
   return {
     tabs$,
     steps$,
@@ -984,8 +1005,8 @@ const base = function(props, context, dependencies = {})
     events,
     listeners,
     internalData,
-    plainData,
     data,
+    output,
     formData,
     dirty,
     invalid,
@@ -1020,6 +1041,7 @@ const base = function(props, context, dependencies = {})
     model,
     intermediaryValue,
     userConfig,
+    isSync,
     updateModel,
     update,
     load,

@@ -81,7 +81,7 @@ export default function (elementType, options, elementExports) {
         return
       }
 
-      describe(`${_.upperFirst(baseProp)} prop`, propTest(elementType, Object.assign({}, options.default || {}, options[prop] || {}), spies))
+      // describe(`${_.upperFirst(baseProp)} prop`, propTest(elementType, Object.assign({}, options.default || {}, options[prop] || {}), spies))
     })
 
     // Element tests
