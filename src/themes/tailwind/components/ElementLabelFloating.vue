@@ -14,8 +14,9 @@
       return {
         defaultClasses: {
           wrapper: '',
-          visible: '',
           label: '',
+          labelInvisible: '',
+          labelVisible: '',
         }
       }
     }

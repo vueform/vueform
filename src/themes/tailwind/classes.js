@@ -128,13 +128,21 @@ export default {
     wrapper: 'absolute left-5 -top-1.5 -mt-px opacity-0 invisible group-hover:opacity-100 group-hover:form-visible transition z-20 w-52',
     content: 'bg-black bg-opacity-90 text-white rounded-md text-sm py-1 px-2.5 not-italic inline-block relative',
   },
+  ElementLabel: {
+    label: 'form-py-input-border'
+  },
+  ElementLabelFloating: {
+    wrapper: 'relative',
+    label: 'absolute z-10 left-2.5 -top-1.5 -mt-px form-text-0.5xs text-gray-500 bg-white px-px transition',
+    labelInvisible: 'opacity-0 invisible',
+    labelVisible: 'opacity-100 visible',
+  },
   ElementLayout: {
     outerWrapper: 'flex flex-wrap',
     outerWrapperSingle: 'mb-4',
   },
-  ElementLabel: {
-    label: 'form-py-input-border'
-  },
+
+  // Slots
   CheckboxgroupSlotCheckbox: {
     container: 'flex align-start',
     label: 'cursor-pointer',

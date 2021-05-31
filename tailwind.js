@@ -65,6 +65,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
     '.form-rounded': { 
       borderRadius: theme('form.borderRadius'),
     },
+      [`.${e('form-text-0.5xs')}`]: {
+      fontSize: '0.6875rem',
+    },
     '.form-p-input': {
       padding: `${theme('form.pyInput')} ${theme('form.pxInput')}`
     },

@@ -14,8 +14,9 @@
       return {
         defaultClasses: {
           wrapper: 'floating-wrapper',
-          visible: 'is-visible',
           label: 'floating-label',
+          labelInvisible: '',
+          labelVisible: 'is-visible',
         }
       }
     }
@@ -31,14 +32,6 @@
 
   .floating-wrapper {
     position: relative;
-
-    &.is-visible {
-      .floating-label {
-        opacity: 1;
-        visibility: visible;
-        top: -4px;
-      }
-    }
   }
 
   .floating-label {
@@ -53,5 +46,11 @@
     transition: .3s;
     opacity: 0;
     visibility: hidden;
+
+    &.is-visible {
+      opacity: 1;
+      visibility: visible;
+      top: -4px;
+    }
   }
 </style>
