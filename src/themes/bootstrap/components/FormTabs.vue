@@ -30,7 +30,7 @@
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
 
-  .form-tabs {
+  .nav.form-tabs {
     margin-bottom: calc(#{$spacer} * 2);
   }
 </style>

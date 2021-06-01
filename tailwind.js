@@ -59,6 +59,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
     '.form-border-color': {
       borderColor: `${theme('form.borderColor')}`
     },
+    '.form-border-b-color': {
+      borderBottomColor: `${theme('form.borderColor')}`
+    },
+    '.form-border-b-white': {
+      borderBottomColor: '#ffffff',
+    },
     '.form-border-primary': {
       borderColor: `${theme('form.primary')}`
     },
@@ -70,9 +76,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
     },
     '.form-p-input': {
       padding: `${theme('form.pyInput')} ${theme('form.pxInput')}`
-    },
-    '.form-p-button': {
-      padding: `${theme('form.pyButton')} ${theme('form.pxButton')}`
     },
     '.form-py-input': {
       paddingTop: theme('form.pyInput'),
@@ -91,8 +94,20 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
     '.form-mt-input': {
       marginTop: theme('form.pyInput'),
     },
+    '.form-mr-input': {
+      marginRight: theme('form.pxInput'),
+    },
     '.-form-mb-input': {
       marginBottom: `-${theme('form.pyInput')}`,
+    },
+    '.form-top-input': {
+      top: theme('form.pyInput'),
+    },
+    '.form-p-button': {
+      padding: `${theme('form.pyButton')} ${theme('form.pxButton')}`
+    },
+    '.form-text-primary': {
+      color: theme('form.primary'),
     },
     '.form-text-disabled': {
       color: theme('form.colorDisabled'),
@@ -154,6 +169,196 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
         backgroundImage: theme('backgroundImage.form-spinner-white')
       }
     },
+    '.form-step': {
+      position: 'relative',
+      whiteSpace: 'nowrap',
+      flex: 1,
+      textAlign: 'center',
+      padding: '0 10px',
+      '&:nth-child(1):before, &:nth-child(1) a:before, &:nth-child(1) a:after': { zIndex: 10 },
+      '&:nth-child(2):before, &:nth-child(2) a:before, &:nth-child(2) a:after': { zIndex: 9 },
+      '&:nth-child(3):before, &:nth-child(3) a:before, &:nth-child(3) a:after': { zIndex: 8 },
+      '&:nth-child(4):before, &:nth-child(4) a:before, &:nth-child(4) a:after': { zIndex: 7 },
+      '&:nth-child(5):before, &:nth-child(5) a:before, &:nth-child(5) a:after': { zIndex: 6 },
+      '&:nth-child(6):before, &:nth-child(6) a:before, &:nth-child(6) a:after': { zIndex: 5 },
+      '&:nth-child(7):before, &:nth-child(7) a:before, &:nth-child(7) a:after': { zIndex: 4 },
+      '&:nth-child(8):before, &:nth-child(8) a:before, &:nth-child(8) a:after': { zIndex: 3 },
+      '&:before': {
+        content: '" "',
+        display: 'inline-block',
+        height: '4px',
+        background: theme('form.primary'),
+        position: 'absolute',
+        top: '-12px',
+        left: '0',
+        right: '50%',
+        transition: '.3s',
+      },
+      '&:after': {
+        content: '" "',
+        display: 'inline-block',
+        height: '4px',
+        background: theme('form.primary'),
+        position: 'absolute',
+        top: '-12px',
+        left: '50%',
+        right: '0',
+        transition: '.3s',
+      },
+      a: {
+        textDecoration: 'none !important',
+        '&:hover, &:focus, &:active': {
+          textDecoration: 'none !important',
+        },
+        '&:before': {
+          content: '" "',
+          display: 'inline-block',
+          width: '16px',
+          height: '16px',
+          position: 'absolute',
+          background: theme('form.primary'),
+          borderRadius: '50%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          top: '-18px',
+          zIndex: '3',
+        },
+        '&:after': {
+          content: '" "',
+          display: 'inline-block',
+          width: '8px',
+          height: '8px',
+          position: 'absolute',
+          background: '#ffffff',
+          borderRadius: '50%',
+          left: 'calc(50% - 4px)',
+          transform: 'scale(0)',
+          top: '-14px',
+          zIndex: '4',
+          transition: 'transform .3s ease-in-out',
+        },
+      },
+      '&:first-of-type': {
+        paddingLeft: '0',
+        textAlign: 'left',
+        '&:before': {
+          display: 'none',
+        },
+        '&:after': {
+          left: '0',
+        },
+        a: {
+          '&:before': {
+            left: '0',
+            transform: 'none',
+          },
+          '&:after': {
+            left: '4px',
+            transform: 'scale(0)',
+          },
+        }
+      },
+      '&:last-of-type': {
+        paddingRight: '0',
+        textAlign: 'right',
+        '&:after': {
+          display: 'none',
+        },
+        '&:before': {
+          right: '0',
+        },
+        a: {
+          '&:before': {
+            right: '0',
+            left: 'auto',
+            left: 'initial',
+            transform: 'none',
+          },
+          '&:after': {
+            left: 'auto',
+            left: 'initial',
+            transform: 'scale(0)',
+            right: '4px',
+          },
+        },
+      },
+      '&.form-step-disabled': {
+        '&:before': {
+          background: theme('colors.gray.300'),
+          left: '-100%',
+        },
+        a: {
+          color: theme('colors.gray.500'),
+          '&:before': {
+            background: theme('colors.gray.300'),
+          }
+        },
+      },
+      '&.form-step-completed': {
+        '&:after': {
+          // background: $primary;
+        },
+        a: {
+          '&:after': {
+            background: theme('backgroundImage.form-check-solid-white'),
+            backgroundSize: '8px 8px',
+            backgroundPosition: '0px 0px',
+            backgroundRepeat: 'no-repeat',
+            borderRadius: '0',
+            transform: 'scale(1)',
+          }
+        },
+      },
+      '&.form-step-active': {
+        a: {
+          '&:after': {
+            background: '#ffffff',
+            top: '-14px',
+            transform: 'scale(1)',
+            borderRadius: '50%',
+          }
+        },
+      },
+      '&.has-errors': {
+        a: {
+          color: theme('colors.red.500'),
+          '&:before': {
+            backgroundColor: theme('colors.red.500'),
+          },
+          '&:after': {
+            background: theme('backgroundImage.form-exclamation-solid-white'),
+            backgroundSize: '8px 8px',
+            backgroundPosition: '0px 0px',
+            backgroundRepeat: 'no-repeat',
+            width: '8px',
+            height: '8px',
+            top: '-14px',
+            borderRadius: '0',
+          },
+        }
+      },
+      '&.form-step-pending': {
+        a: {
+          '&:after': {
+            animation: '1s linear infinite step-loading',
+            background: '#ffffff',
+            top: '-14px',
+            borderRadius: '50%',
+          }
+        }
+      }
+    },
+    '@keyframes step-loading': {
+      '0%': {
+        transform: 'scale(0.5)'
+      },
+      '20%': {
+        transform: 'scale(1.2)'
+      },
+      '100%': {
+        transform: 'scale(0.5)'
+      },
+    },
 
     '.cursor-grab': {
       cursor: 'grab',
@@ -199,10 +404,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
       border: theme('borderWidth.0')
     },
     '.form-bg-check-white': {
-      backgroundImage: theme('backgroundImage')['form-check-white']
+      backgroundImage: theme('backgroundImage.form-check-white')
     },
     '.form-bg-radio-white': {
-      backgroundImage: theme('backgroundImage')['form-radio-white']
+      backgroundImage: theme('backgroundImage.form-radio-white')
     },
   }
 
@@ -274,11 +479,17 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
         'form-check-white': `url("${svgToDataUri(
           `<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z"/></svg>`,
         )}")`,
+        'form-check-solid-white': `url("${svgToDataUri(
+          `<svg viewBox="0 0 512 512" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>`,
+        )}")`,
         'form-radio-white': `url("${svgToDataUri(
           `<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3"/></svg>`,
         )}")`,
         'form-spinner-white': `url("${svgToDataUri(
           `<svg viewBox="0 0 512 512" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M456.433 371.72l-27.79-16.045c-7.192-4.152-10.052-13.136-6.487-20.636 25.82-54.328 23.566-118.602-6.768-171.03-30.265-52.529-84.802-86.621-144.76-91.424C262.35 71.922 256 64.953 256 56.649V24.56c0-9.31 7.916-16.609 17.204-15.96 81.795 5.717 156.412 51.902 197.611 123.408 41.301 71.385 43.99 159.096 8.042 232.792-4.082 8.369-14.361 11.575-22.424 6.92z"></path></svg>`,
+        )}")`,
+        'form-spinner-primary': `url("${svgToDataUri(
+          `<svg viewBox="0 0 512 512" fill="${theme('form.primary')}" xmlns="http://www.w3.org/2000/svg"><path d="M456.433 371.72l-27.79-16.045c-7.192-4.152-10.052-13.136-6.487-20.636 25.82-54.328 23.566-118.602-6.768-171.03-30.265-52.529-84.802-86.621-144.76-91.424C262.35 71.922 256 64.953 256 56.649V24.56c0-9.31 7.916-16.609 17.204-15.96 81.795 5.717 156.412 51.902 197.611 123.408 41.301 71.385 43.99 159.096 8.042 232.792-4.082 8.369-14.361 11.575-22.424 6.92z"></path></svg>`,
         )}")`,
         'form-file': `url("${svgToDataUri(
           `<svg viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M369.9 97.9L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zm-22.6 22.7c2.1 2.1 3.5 4.6 4.2 7.4H256V32.5c2.8.7 5.3 2.1 7.4 4.2l83.9 83.9zM336 480H48c-8.8 0-16-7.2-16-16V48c0-8.8 7.2-16 16-16h176v104c0 13.3 10.7 24 24 24h104v304c0 8.8-7.2 16-16 16z"></path></svg>`,
@@ -291,6 +502,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
         )}")`,
         'form-error': `url("${svgToDataUri(
           `<svg viewBox="0 0 576 512" fill="${theme('colors.red.500')}" xmlns="http://www.w3.org/2000/svg"><path d="M270.2 160h35.5c3.4 0 6.1 2.8 6 6.2l-7.5 196c-.1 3.2-2.8 5.8-6 5.8h-20.5c-3.2 0-5.9-2.5-6-5.8l-7.5-196c-.1-3.4 2.6-6.2 6-6.2zM288 388c-15.5 0-28 12.5-28 28s12.5 28 28 28 28-12.5 28-28-12.5-28-28-28zm281.5 52L329.6 24c-18.4-32-64.7-32-83.2 0L6.5 440c-18.4 31.9 4.6 72 41.6 72H528c36.8 0 60-40 41.5-72zM528 480H48c-12.3 0-20-13.3-13.9-24l240-416c6.1-10.6 21.6-10.7 27.7 0l240 416c6.2 10.6-1.5 24-13.8 24z"></path></svg>`,
+        )}")`,
+        'form-exclamation-solid-white': `url("${svgToDataUri(
+          `<svg viewBox="0 0 192 512" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z"></path></svg>`,
         )}")`,
         'form-map-marker': `url("${svgToDataUri(
           `<svg viewBox="0 0 384 512" fill="${theme('colors.gray.400')}" xmlns="http://www.w3.org/2000/svg"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>`,

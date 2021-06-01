@@ -29,8 +29,8 @@ export default {
       defaultClasses,
     } = useFormComponent(props, context, {}, {
       addClasses: [
-        ['wrapper', 'active', computed(() => selected.value)],
-        ['wrapper', 'inactive', computed(() => !selected.value)],
+        ['wrapper', 'wrapperActive', computed(() => selected.value)],
+        ['wrapper', 'wrapperInactive', computed(() => !selected.value)],
       ]
     })
 

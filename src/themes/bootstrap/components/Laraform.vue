@@ -3,7 +3,7 @@
     :class="extendedClasses.form"
     @submit.prevent="submit"
   >
-    <slot>
+    <slot name="empty">
       <FormMessages
         v-if="showMessages"
       />
@@ -24,7 +24,9 @@
         v-if="showSteps"
       />
       
-      <FormElements />
+      <FormElements>
+        <slot></slot>
+      </FormElements>
 
       <FormStepsControls
         v-if="showStepsControls"

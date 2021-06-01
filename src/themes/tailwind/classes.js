@@ -133,13 +133,89 @@ export default {
   },
   ElementLabelFloating: {
     wrapper: 'relative',
-    label: 'absolute z-10 left-2.5 -top-1.5 -mt-px form-text-0.5xs text-gray-500 bg-white px-px transition',
+    label: 'absolute z-10 left-2.5 -top-1.5 leading-none form-text-0.5xs text-gray-500 bg-white px-px transition',
     labelInvisible: 'opacity-0 invisible',
     labelVisible: 'opacity-100 visible',
   },
   ElementLayout: {
+    container: '',
     outerWrapper: 'flex flex-wrap',
     outerWrapperSingle: 'mb-4',
+    outerWrapperMultiple: '',
+    fieldWrapper: '',
+    error: 'has-error',
+  },
+  ElementLayoutInline: {
+    container: '',
+    error: 'has-error',
+  },
+  ElementLoader: {
+    wrapper: 'relative z-10 order-1',
+    loader: 'absolute w-4 h-4 form-mr-input right-full form-top-input mt-1 bg-form-spinner-primary bg-center bg-no-repeat bg-contain animate-spin',
+  },
+  ElementMessage: {
+    container: 'text-sm text-green-500',
+  },
+  ElementText: {
+    before: '',
+    between: '',
+    after: '',
+  },
+  FormElements: {
+    container: 'flex flex-wrap'
+  },
+  FormErrors: {
+    container: 'bg-red-100 border border-red-200 text-red-700 py-3 px-5 rounded mb-4',
+    error: '',
+  },
+  FormLanguage: {
+    container: 'flex-grow flex-shrink w-full',
+    wrapper: 'form-rounded text-center py-2 px-4 block',
+    wrapperInactive: 'form-text-primary',
+    wrapperActive: 'text-white form-bg-primary'
+  },
+  FormLanguages: {
+    container: 'flex items-center justify-between mb-8',
+  },
+  FormMessages: {
+    container: 'bg-green-100 border border-green-200 text-green-500 py-3 px-5 rounded mb-4',
+    error: '',
+  },
+  FormTabs: {
+    container: 'flex border-b form-border-color mb-8',
+  },
+  FormTab: {
+    container: '',
+    wrapper: 'py-2 px-4 block bg-white -mb-px',
+    wrapperActive: 'border form-border-color form-border-b-white rounded-tl rounded-tr',
+    wrapperInactive: 'border border-white form-border-b-color',
+    wrapperValid: '',
+    wrapperInvalid: 'text-red-500',
+  },
+  FormSteps: {
+    container: 'mb-8 flex justify-between overflow-x-auto pt-5',
+  },
+  FormStep: {
+    container: 'form-step',
+    wrapper: '',
+    containerActive: 'form-step-active',
+    containerInactive: '',
+    containerInvalid: 'has-errors',
+    containerValid: '',
+    containerDisabled: 'form-step-disabled',
+    containerEnabled: '',
+    containerCompleted: 'form-step-completed',
+    containerIncompleted: '',
+    containerPending: 'form-step-pending',
+  },
+  FormStepsControl: {
+    button: 'px-4 py-2 form-rounded',
+    previous: 'text-gray-700 bg-gray-200 transition hover:bg-gray-300 focus:form-ring focus:outline-none',
+    next: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
+    finish: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
+  },
+  FormStepsControls: {
+    container: 'flex justify-between mt-4'
   },
 
   // Slots

@@ -98,15 +98,15 @@ export default {
       defaultClasses,
     } = useFormComponent(props, context, {}, {
       addClasses: [
-        ['container', 'active', computed(() => active.value)],
-        ['container', 'inactive', computed(() => !active.value)],
-        ['container', 'disabled', computed(() => disabled.value)],
-        ['container', 'enabled', computed(() => !disabled.value)],
-        ['container', 'completed', computed(() => completed.value)],
-        ['container', 'incompleted', computed(() => !completed.value)],
-        ['container', 'valid', computed(() => !invalid.value)],
-        ['container', 'invalid', computed(() => invalid.value)],
-        ['container', 'pending', computed(() => pending.value)],
+        ['container', 'containerActive', computed(() => active.value)],
+        ['container', 'containerInactive', computed(() => !active.value)],
+        ['container', 'containerDisabled', computed(() => disabled.value)],
+        ['container', 'containerEnabled', computed(() => !disabled.value)],
+        ['container', 'containerCompleted', computed(() => completed.value)],
+        ['container', 'containerIncompleted', computed(() => !completed.value)],
+        ['container', 'containerValid', computed(() => !invalid.value)],
+        ['container', 'containerInvalid', computed(() => invalid.value)],
+        ['container', 'containerPending', computed(() => pending.value)],
         ['container', computed(() => stepClass.value || null), ref(true)],
       ]
     })

@@ -26,10 +26,10 @@
         defaultClasses: {
           container: 'nav-item',
           wrapper: 'nav-link',
-          active: 'active',
-          inactive: '',
-          valid: '',
-          invalid: 'has-error',
+          wrapperActive: 'active',
+          wrapperInactive: '',
+          wrapperValid: '',
+          wrapperInvalid: 'has-error',
         },
       }
     }

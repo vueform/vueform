@@ -18,8 +18,8 @@
         defaultClasses: {
           container: '',
           wrapper: '',
-          active: '',
-          inactive: ''
+          wrapperActive: '',
+          wrapperInactive: ''
         },
       }
     }

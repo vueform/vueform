@@ -18,8 +18,8 @@
         defaultClasses: {
           container: 'nav-item',
           wrapper: 'nav-link',
-          active: 'active',
-          inactive: ''
+          wrapperActive: 'active',
+          wrapperInactive: '',
         },
       }
     }

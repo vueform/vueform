@@ -77,10 +77,10 @@ export default {
       defaultClasses,
     } = useFormComponent(props, context, {}, {
       addClasses: [
-        ['wrapper', 'active', computed(() => active.value)],
-        ['wrapper', 'inactive', computed(() => !active.value)],
-        ['wrapper', 'valid', computed(() => !invalid.value)],
-        ['wrapper', 'invalid', computed(() => invalid.value)],
+        ['wrapper', 'wrapperActive', computed(() => active.value)],
+        ['wrapper', 'wrapperInactive', computed(() => !active.value)],
+        ['wrapper', 'wrapperValid', computed(() => !invalid.value)],
+        ['wrapper', 'wrapperInvalid', computed(() => invalid.value)],
         ['container', computed(() => tabClass.value || null), ref(true)],
       ]
     })

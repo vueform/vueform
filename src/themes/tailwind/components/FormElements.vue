@@ -1,12 +1,14 @@
 <template>
   <div :class="classes.container">
-    <component
-      v-for="(element, name) in schema"
-      v-bind="element"
-      :is="component(element)"
-      :name="name"
-      :key="name"
-    />
+    <slot>
+      <component
+        v-for="(element, name) in schema"
+        v-bind="element"
+        :is="component(element)"
+        :name="name"
+        :key="name"
+      />
+    </slot>
   </div>
 </template>
 
