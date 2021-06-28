@@ -201,11 +201,11 @@ const base = function(props, context, dependencies = {})
     }
 
     _.each(override, (val, key) => {
-      options[key] = userConfig.value[key] || val.value || defaults[key]
+      options[key] = userConfig.value[key] || (val && val.value ? val.value : undefined) || defaults[key]
     })
 
     _.each(ifNotUndefined, (val, key) => {
-      options[key] = userConfig.value[key] !== undefined ? userConfig.value[key] : (val.value !== null ? val.value : defaults[key])
+      options[key] = userConfig.value[key] !== undefined ? userConfig.value[key] : (val && val.value !== null ? val.value : defaults[key])
     })
 
     return options
@@ -250,15 +250,15 @@ const base = function(props, context, dependencies = {})
   })
 
   const formSchema = computed(() => {
-    return _.merge({}, schema.value || {}, userConfig.value.schema || {})
+    return _.merge({}, schema && schema.value ? schema.value : {}, userConfig.value.schema || {})
   })
 
   const formTabs = computed(() => {
-    return _.merge({}, tabs.value || {}, userConfig.value.tabs || {})
+    return _.merge({}, tabs && tabs.value ? tabs.value : {}, userConfig.value.tabs || {})
   })
 
   const formSteps = computed(() => {
-    return _.merge({}, steps.value || {}, userConfig.value.steps || {})
+    return _.merge({}, steps && steps.value ? steps.value : {}, userConfig.value.steps || {})
   })
 
   /**

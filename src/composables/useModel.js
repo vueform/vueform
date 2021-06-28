@@ -37,7 +37,7 @@ export default function (props, context, dependencies)
    * 
    * @private
    */
-  const intermediaryValue = ref(externalValue.value ? _.cloneDeep(externalValue.value) : null)
+  const intermediaryValue = ref(externalValue && externalValue.value ? _.cloneDeep(externalValue.value) : null)
 
   /**
    * 
@@ -101,7 +101,7 @@ export default function (props, context, dependencies)
     }
   }
 
-  if (externalValue.value) {
+  if (externalValue && externalValue.value) {
     watch(model, (n, o) => {
       if (_.isEqual(n, o)) {
         return

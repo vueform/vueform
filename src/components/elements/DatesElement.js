@@ -170,6 +170,7 @@ export default {
       form$: form$.form$,
       nullValue: nullValue.nullValue,
       path: path.path,
+      parent: path.parent,
     })
 
     const value = useValue(props, context, {

@@ -123,6 +123,7 @@ export default {
       nullValue: nullValue.nullValue,
       form$: form$.form$,
       dataPath: path.dataPath,
+      parent: path.parent,
     })
 
     const conditions = useConditions(props, context, {
