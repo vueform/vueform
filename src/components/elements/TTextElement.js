@@ -137,6 +137,7 @@ export default {
       language: languages.language,
       dataPath: path.dataPath,
       form$: form$.form$,
+      parent: path.parent,
     })
 
     const conditions = useConditions(props, context, {
