@@ -7,6 +7,7 @@
           :value="value"
           :modelValue="value"
           v-bind="fieldOptions"
+          :classes="classes.slider"
           :id="fieldId"
           ref="input"
           @change="handleChange"
@@ -36,6 +37,7 @@
         defaultClasses: {
           container: '',
           wrapper: '',
+          slider: '',
         }
       }
     }
@@ -43,4 +45,7 @@
 </script>
 
 <style lang="scss">
+  .slider-wrapper {
+    margin-top: calc((38px - 6px) / 2)
+  }
 </style>

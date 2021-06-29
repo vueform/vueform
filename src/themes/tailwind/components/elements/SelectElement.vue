@@ -32,6 +32,7 @@
         v-else
         v-bind="fieldOptions"
         v-model="value"
+        :classes="classes.select"
         :id="fieldId"
         :name="name"
         :options="items"

@@ -2,7 +2,7 @@ const svgToDataUri = require('mini-svg-data-uri')
 const Color = require('color')
 const plugin = require('tailwindcss/plugin')
 
-const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
+const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
   const rules = [
     {
       base: [
@@ -48,7 +48,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
 
   const plain = {
     '.form-bg-primary-darker': {
-      backgroundColor: Color(theme('form.primary')).darken(20).toString()
+      backgroundColor: Color(theme('form.primary')).darken(0.2).toString(),
     },
     '.form-bg-disabled': {
       backgroundColor: theme('form.bgDisabled'),
@@ -71,11 +71,30 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
     '.form-rounded': { 
       borderRadius: theme('form.borderRadius'),
     },
-      [`.${e('form-text-0.5xs')}`]: {
+    '.form-rounded-b': { 
+      borderBottomLeftRadius: theme('form.borderRadius'),
+      borderBottomRightRadius: theme('form.borderRadius'),
+    },
+    '.form-rounded-t': { 
+      borderTopLeftRadius: theme('form.borderRadius'),
+      borderTopRightRadius: theme('form.borderRadius'),
+    },
+    '.form-rounded-b-none': { 
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+    '.form-rounded-t-none': { 
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+    },
+    [`.${e('form-text-0.5xs')}`]: {
       fontSize: '0.6875rem',
     },
     '.form-p-input': {
       padding: `${theme('form.pyInput')} ${theme('form.pxInput')}`
+    },
+    '.form-p-input-border': {
+      padding: `calc((${theme('form.borderWidth')} * 2) + ${theme('form.pyInput')}) calc((${theme('form.borderWidth')} * 2) + ${theme('form.pxInput')})`
     },
     '.form-py-input': {
       paddingTop: theme('form.pyInput'),
@@ -85,11 +104,21 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
       paddingTop: `calc((${theme('form.borderWidth')} * 2) + ${theme('form.pyInput')})`,
       paddingBottom: `calc((${theme('form.borderWidth')} * 2) + ${theme('form.pyInput')})`,
     },
+    '.form-px-input': {
+      paddingLeft: theme('form.pxInput'),
+      paddingRight: theme('form.pxInput'),
+    },
     '.form-pt-input': {
       paddingTop: theme('form.pyInput'),
     },
     '.form-pt-input-border': {
       paddingTop: `calc((${theme('form.borderWidth')} * 2) + ${theme('form.pyInput')})`,
+    },
+    '.form-pr-input': {
+      paddingRight: theme('form.pxInput'),
+    },
+    '.form-pl-input': {
+      paddingLeft: theme('form.pxInput'),
     },
     '.form-mt-input': {
       marginTop: theme('form.pyInput'),
@@ -132,6 +161,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
     },
     '.form-h-input': {
       height: `calc((${theme('form.pyInput')} * 2) + (${theme('form.borderWidth')} * 2) + (${theme('fontSize.base')} * ${theme('lineHeight.normal')}))`,
+    },
+    '.form-h-input-inner': {
+      height: `calc((${theme('form.pyInput')} * 2) + (${theme('fontSize.base')} * ${theme('lineHeight.normal')}))`,
     },
     '.form-max-w-30': {
       maxWidth: '7.5rem',
@@ -295,9 +327,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
         },
       },
       '&.form-step-completed': {
-        '&:after': {
-          // background: $primary;
-        },
         a: {
           '&:after': {
             background: theme('backgroundImage.form-check-solid-white'),
@@ -384,15 +413,70 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
     '.min-h-24': {
       minHeight: '6rem',
     },
+
+    // Slider
+    '.cursor-grabbing': {
+      cursor: 'grabbing',
+    },
+    '.touch-none': {
+      touchAction: 'none',
+    },
+    '.tap-highlight-transparent': {
+      '-webkit-tap-highlight-color': 'rgba(0,0,0,0)',
+    },
+    '.touch-callout-none': {
+      '-webkit-touch-callout': 'none',
+    },
+    '.will-change-transform': {
+      willChange: 'transform',
+    },
+    '.transform-origin-0': {
+      transformOrigin: '0 0',
+    },
+    '.transform-style-flat': {
+      '-webkit-transform-style': 'preserve-3d',
+      transformStyle: 'flat',
+    },
+    '.cursor-inherit': {
+      cursor: 'inherit',
+    },
+    '.cursor-ew-resize': {
+      cursor: 'ew-resize',
+    },
+    [`.slider-vertical .${e('v:cursor-ns-resize')}`]: {
+      cursor: 'ns-resize',
+    },
+    [`.slider-vertical .${e('v:arrow-right')}:before`]: {
+      content: '""',
+      position: 'absolute',
+      right: '-10px',
+      top: '50%',
+      width: '0',
+      height: '0',
+      border: '5px solid transparent',
+      borderLeftColor: 'inherit',
+      transform: 'translateY(-50%)',
+    },
+    [`.slider-horizontal .${e('h:arrow-bottom')}:before`]: {
+      content: '""',
+      position: 'absolute',
+      bottom: '-10px',
+      left: '50%',
+      width: '0',
+      height: '0',
+      border: '5px solid transparent',
+      borderTopColor: 'inherit',
+      transform: 'translate(-50%)',
+    },
   }
 
   const focusable = {
     '.form-ring': Object.assign({}, {
       boxShadow: theme('form.ring')
-        ? `0px 0px 0px ${theme('form.ringWidth')} ${Color(theme('form.ringColor')).alpha(theme('form.ringOpacity')).toString()}`
+        ? `0px 0px 0px ${theme('form.ringWidth')} ${Color(theme('form.primary')).alpha(theme('form.ringOpacity')).toString()}`
         : 'none',
     }, theme('form.ring') ? {
-      borderColor: theme('form.ringColor'),
+      borderColor: theme('form.primary'),
     } : {}),
   }
 
@@ -438,13 +522,132 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
     },
   }
 
+  const disableable = {
+    '.form-bg-disabled-darker': {
+      backgroundColor: Color(theme('form.bgDisabled')).darken(0.3).toString(),
+    },
+    '.form-border-disabled-darker': {
+      borderColor: Color(theme('form.bgDisabled')).darken(0.3).toString(),
+    },
+  }
+
+  const important = {
+    '.form-bg-disabled-darker': {
+      backgroundColor: Color(theme('form.bgDisabled')).darken(0.3).toString(),
+    },
+  }
+
   addUtilities(plain)
   addUtilities(hoverable, ['hover'])
   addUtilities(groupHoverable, ['group-hover'])
   addUtilities(focusable, ['focus'])
   addUtilities(checkable, ['checked'])
   addUtilities(activable, ['active'])
+  addUtilities(disableable, ['disabled'])
+  addUtilities(important, ['important'])
+
+  addVariant('h', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.slider-horizontal .${e(`h${separator}${className}`)}`
+    })
+  })
+
+  addVariant('v', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.slider-vertical .${e(`v${separator}${className}`)}`
+    })
+  })
+
+  addVariant('merge-h', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.slider-horizontal .slider-origin > .${e(`merge-h${separator}${className}`)}`
+    })
+  })
+
+  addVariant('merge-v', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.slider-vertical .slider-origin > .${e(`merge-v${separator}${className}`)}`
+    })
+  })
+
+  addVariant('h-txt-rtl', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.slider-horizontal.slider-txt-rtl .${e(`h-txt-rtl${separator}${className}`)}`
+    })
+  })
+
+  addVariant('tap', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.slider-tap .${e(`tap${separator}${className}`)}`
+    })
+  })
+
+  addVariant('disabled', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `[disabled] .${e(`disabled${separator}${className}`)}`
+    })
+  })
+
+  addVariant('tt-focus', ({ container, separator }) => {
+    container.walkRules(rule => {
+      rule.selector = `.slider-tooltip-focus:not(.slider-focused) .${e(`tt-focus${separator}${rule.selector.slice(1)}`)}`
+      rule.walkDecls(decl => {
+        decl.important = true
+      })
+    })
+  })
+
+  addVariant('tt-focused', ({ container, separator }) => {
+    container.walkRules(rule => {
+      rule.selector = `.slider-tooltip-focus.slider-focused .${e(`tt-focused${separator}${rule.selector.slice(1)}:not(.slider-tooltip-hidden)`)}`
+      rule.walkDecls(decl => {
+        decl.important = true
+      })
+    })
+  })
+
+  addVariant('tt-drag', ({ container, separator }) => {
+    container.walkRules(rule => {
+      rule.selector = `.slider-tooltip-drag:not(.slider-state-drag) .${e(`tt-drag${separator}${rule.selector.slice(1)}`)}`
+      rule.walkDecls(decl => {
+        decl.important = true
+      })
+    })
+  })
+
+  addVariant('tt-dragging', ({ container, separator }) => {
+    container.walkRules(rule => {
+      rule.selector = `.slider-tooltip-drag.slider-state-drag .${e(`tt-dragging${separator}${rule.selector.slice(1)}:not(.slider-tooltip-hidden)`)},
+                        .slider-tooltip-drag .slider-active .${e(`tt-dragging${separator}${rule.selector.slice(1)}`)}`
+      rule.walkDecls(decl => {
+        decl.important = true
+      })
+    })
+  })
+
+  addVariant('important', ({ container }) => {
+    container.walkRules(rule => {
+      rule.selector = `.\\!${rule.selector.slice(1)}`
+      rule.walkDecls(decl => {
+        decl.important = true
+      })
+    })
+  })
 }, {
+  variants: {
+    extend: {
+      backgroundColor: ['disabled'],
+      cursor: ['disabled'],
+      borderColor: ['disabled'],
+      height: ['h', 'v'],
+      width: ['h', 'v'],
+      inset: ['h', 'v', 'h-txt-rtl', 'merge-h', 'merge-v'],
+      translate: ['h', 'v', 'merge-h', 'merge-v'],
+      transitionProperty: ['tap'],
+      transitionDuration: ['tap'],
+      display: ['tt-focus', 'tt-focused', 'tt-drag', 'tt-dragging']
+    }
+  },
   theme: {
     form: (theme) => ({
       primary: theme('colors.green.500'),
@@ -463,7 +666,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
 
       ring: true,
       ringWidth: theme('ringWidth.2'),
-      ringColor: theme('colors.green.500'),
       ringOpacity: theme('ringOpacity.40'),
 
       pxInput: theme('padding.3'),
@@ -475,6 +677,25 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
       dateHeadColor: theme('colors.gray.700'),
     }),
     extend: {
+      zIndex: {
+        1: 1,
+      },
+      width: {
+        '1\/10': '10%',
+      },
+      height: {
+        '1\/10': '10%',
+      },
+      minWidth: {
+        5: '1.25rem',
+      },
+      inset: {
+        '-1.25': '-0.3125rem'
+      },
+      boxShadow: {
+        slider: '0.5px 0.5px 2px 1px rgba(0,0,0,.32)',
+        'slider-active': '0.5px 0.5px 2px 1px rgba(0,0,0,.42)',
+      },
       backgroundImage: (theme) => ({
         'form-check-white': `url("${svgToDataUri(
           `<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z"/></svg>`,
@@ -490,6 +711,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, e }) => {
         )}")`,
         'form-spinner-primary': `url("${svgToDataUri(
           `<svg viewBox="0 0 512 512" fill="${theme('form.primary')}" xmlns="http://www.w3.org/2000/svg"><path d="M456.433 371.72l-27.79-16.045c-7.192-4.152-10.052-13.136-6.487-20.636 25.82-54.328 23.566-118.602-6.768-171.03-30.265-52.529-84.802-86.621-144.76-91.424C262.35 71.922 256 64.953 256 56.649V24.56c0-9.31 7.916-16.609 17.204-15.96 81.795 5.717 156.412 51.902 197.611 123.408 41.301 71.385 43.99 159.096 8.042 232.792-4.082 8.369-14.361 11.575-22.424 6.92z"></path></svg>`,
+        )}")`,
+        'form-caret': `url("${svgToDataUri(
+          `<svg viewBox="0 0 320 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>`,
         )}")`,
         'form-file': `url("${svgToDataUri(
           `<svg viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M369.9 97.9L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zm-22.6 22.7c2.1 2.1 3.5 4.6 4.2 7.4H256V32.5c2.8.7 5.3 2.1 7.4 4.2l83.9 83.9zM336 480H48c-8.8 0-16-7.2-16-16V48c0-8.8 7.2-16 16-16h176v104c0 13.3 10.7 24 24 24h104v304c0 8.8-7.2 16-16 16z"></path></svg>`,

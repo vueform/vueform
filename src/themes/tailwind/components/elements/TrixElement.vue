@@ -157,7 +157,7 @@
     }
 
     .trix-input--dialog {
-      @apply py-1.5 px-3 border-gray-300 rounded focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary mr-2;
+      @apply py-1.5 px-3 border-gray-300 rounded focus:form-ring mr-2;
 
       &.validate:invalid {
         @apply border-red-500;
@@ -321,7 +321,7 @@
     }
 
     a {
-      @apply text-primary;
+      @apply form-text-primary;
     }
 
     ul {

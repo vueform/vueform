@@ -48,6 +48,10 @@ const multifile = function(props, context, dependencies, options = {})
     view,
    } = toRefs(props)
 
+  // ============ DEPENDENCIES ============
+
+  const isDisabled = dependencies.isDisabled
+
   // =============== PRIVATE ==============
 
   const type = computed(() => {
@@ -91,6 +95,7 @@ const multifile = function(props, context, dependencies, options = {})
         image: image.value,
         view: view.value,
         layout: view.value === 'gallery' ? 'ElementLayoutInline' : 'ElementLayout',
+        disabled: isDisabled.value,
       }, file.value)
     }
 
@@ -105,6 +110,7 @@ const multifile = function(props, context, dependencies, options = {})
           view: view.value,
           layout: view.value === 'gallery' ? 'ElementLayoutInline' : 'ElementLayout',
           embed: true,
+          disabled: isDisabled.value,
         }, file.value)},
 
         // Order

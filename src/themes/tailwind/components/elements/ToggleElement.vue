@@ -8,6 +8,7 @@
           :value="value"
           :modelValue="value"
           v-bind="fieldOptions"
+          :classes="classes.toggle"
           :name="name"
           :id="fieldId"
           @input="handleChange"
@@ -42,6 +43,7 @@
           container: '',
           wrapper: '',
           toggleText: '',
+          toggle: '',
         }
       }
     }

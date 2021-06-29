@@ -1,11 +1,13 @@
 <template>
   <span :class="classes.container">
     <span v-text="option.label"></span>
-    <i
+    <span
       v-if="!disabled"
-      @click.prevent
+      :class="classes.remove"
       @mousedown.prevent="handleTagRemove(option, $event)"
-    ></i>
+    >
+      <span :class="classes.removeIcon"></span>
+    </span>
   </span>
 </template>
 
@@ -15,7 +17,10 @@
     data() {
       return {
         defaultClasses: {
-          container: ''
+          container: '',
+          disabled: '',
+          remove: '',
+          removeIcon: '',
         }
       }
     }

@@ -475,10 +475,6 @@ const toggle = function(props, context, dependencies)
       disabled: isDisabled.value,
       offLabel: labels.value ? (labels.value.off || '') : '',
       onLabel: labels.value ? (labels.value.on || '') : '',
-      width: width.value,
-      height: height.value,
-      speed: speed.value,
-      colors: colors.value,
     }
   })
 

@@ -1,3 +1,4 @@
+import { toRefs, computed } from 'composition-api'
 import useElementComponent from './../../../composables/useElementComponent'
 
 export default {
@@ -17,6 +18,8 @@ export default {
   },
   setup(props, context)
   {
+    const { disabled } = toRefs(props)
+
     const {
       el$,
       form$,
@@ -25,7 +28,11 @@ export default {
       defaultClasses,
       components,
       theme,
-    } = useElementComponent(props, context)
+    } = useElementComponent(props, context, {}, {
+      addClasses: [
+        ['container', 'disabled', computed(() => disabled.value)],
+      ]
+    })
 
     return {
       el$,

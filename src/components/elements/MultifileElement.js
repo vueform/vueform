@@ -159,8 +159,11 @@ export default {
     const nullValue = useNullValue(props, context)
     const children = useChildren(props, context)
     const input = useInput(props, context)
-    const prototype = usePrototype(props, context)
     const sorting = useSorting(props, context)
+
+    const prototype = usePrototype(props, context, {
+      isDisabled: disabled.isDisabled,
+    })
 
     const baseElement = useBaseElement(props, context, {
       form$: form$.form$,

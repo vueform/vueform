@@ -16,6 +16,33 @@ const text = {
   inputDisabled: 'form-bg-disabled form-text-disabled',
 }
 
+const select = {
+  container: 'relative mx-auto w-full flex items-center justify-end box-border cursor-pointer border border-gray-300 form-rounded bg-white text-base leading-normal outline-none',
+  containerDisabled: 'cursor-default form-bg-disabled',
+  containerOpen: 'form-rounded-b-none',
+  containerOpenTop: 'form-rounded-t-none',
+  containerActive: 'form-ring',
+  search: 'w-full absolute inset-0 outline-none appearance-none box-border border-0 text-base font-sans bg-white form-rounded pl-3.5',
+  placeholder: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input text-gray-400',
+  caret: 'bg-form-caret bg-center bg-no-repeat w-2.5 h-4 py-px box-content form-mr-input relative z-10 opacity-40 flex-shrink-0 flex-grow-0 transition-transform transform',
+  caretOpen: 'rotate-180',
+  clear: 'form-pr-input relative z-10 opacity-40 transition duration-300 flex-shrink-0 flex-grow-0 flex hover:opacity-80',
+  clearIcon: 'bg-form-remove bg-center bg-no-repeat w-2.5 h-4 py-px box-content inline-block',
+  spinner: 'bg-form-spinner-primary bg-center bg-no-repeat w-4 h-4 z-10 form-mr-input animate-spin flex-shrink-0 flex-grow-0',
+  dropdown: 'absolute -left-px -right-px bottom-0 transform translate-y-full border border-gray-300 -mt-px overflow-y-scroll z-50 bg-white flex flex-col form-rounded-b',
+  dropdownTop: '-translate-y-full top-px bottom-auto flex-col-reverse form-rounded-b-none form-rounded-t',
+  options: 'flex flex-col p-0 m-0 list-none',
+  optionsTop: 'flex-col-reverse',
+  option: 'flex items-center justify-start box-border text-left cursor-pointer text-base leading-normal form-px-input form-py-input-border',
+  optionPointed: 'text-gray-800 bg-gray-100',
+  optionSelected: 'text-white form-bg-primary',
+  optionDisabled: 'form-text-disabled cursor-not-allowed',
+  optionSelectedPointed: 'text-white form-bg-primary opacity-90',
+  optionSelectedDisabled: 'text-white form-bg-primary bg-opacity-50 cursor-not-allowed',
+  fakeInput: 'bg-transparent absolute left-0 right-0 -bottom-px w-full h-px border-0 p-0 appearance-none outline-none text-transparent',
+  spacer: 'form-h-input-inner box-content',
+}
+
 export default {
   // Elements
   ButtonElement: {
@@ -76,6 +103,15 @@ export default {
     handleGallery: 'absolute w-px h-px box-content p-1.5 top-1 left-1 mt-px ml-px bg-form-arrows-white bg-black bg-opacity-60 bg-center bg-no-repeat rounded form-border-3.5 border-black border-opacity-0 transition opacity-0 group-hover:opacity-100 cursor-grab active:cursor-grabbing',
     sorting: '',
   },
+  MultiselectElement: {
+    container: '',
+    select: '',
+    native: '',
+    placeholder: '',
+    select: {
+      ...select,
+    }
+  },
   ObjectElement: {
     childrenContainer: 'flex flex-wrap',
   },
@@ -87,8 +123,56 @@ export default {
   RadiogroupElement: {
     radioGroup: 'flex flex-col justify-start form-pt-input-border',
   },
+  SelectElement: {
+    container: '',
+    select: '',
+    native: '',
+    placeholder: '',
+    select: {
+      ...select,
+    }
+  },
+  SliderElement: {
+    container: '',
+    wrapper: 'mt-4',
+    slider: {
+      target: 'relative box-border user-select-none touch-none tap-highlight-transparent touch-callout-none disabled:cursor-not-allowed',
+      focused: 'slider-focused',
+      tooltipFocus: 'slider-tooltip-focus',
+      tooltipDrag: 'slider-tooltip-drag',
+      ltr: 'slider-ltr',
+      rtl: 'slider-rtl',
+      horizontal: 'slider-horizontal h-1.5',
+      vertical: 'slider-vertical w-1.5 h-80',
+      textDirectionRtl: 'slider-txt-rtl',
+      textDirectionLtr: 'slider-txt-ltr',
+      base: 'w-full h-full relative z-1 bg-gray-300 rounded',
+      connects: 'w-full h-full relative overflow-hidden z-0 rounded',
+      connect: 'absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-full w-full form-bg-primary cursor-pointer tap:duration-300 tap:transition-transform disabled:form-bg-disabled-darker disabled:cursor-not-allowed',
+      origin: 'slider-origin absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-1/10 w-1/10 h:h-0 txt-rtl-h:left-0 txt-rtl-h:right-auto v:w-0 tap:duration-300 tap:transition-transform',
+      handle: 'absolute rounded-full bg-white border-0 shadow-slider cursor-grab focus:outline-none h:w-4 h:h-4 h:-top-1.5 h:-right-2 txt-rtl-h:-left-2 txt-rtl-h:right-auto v:w-4 v:h-4 v:-top-2 v:-right-1.25 disabled:cursor-not-allowed focus:form-ring',
+      touchArea: 'h-full w-full',
+      tooltip: 'absolute block text-sm font-semibold whitespace-nowrap py-0.5 px-1.5 min-w-5 text-center text-white rounded border form-border-primary form-bg-primary transform h:-translate-x-1/2 h:left-1/2 h:bottom-6 h:arrow-bottom v:-translate-y-1/2 v:top-1/2 v:right-6 v:arrow-right disabled:form-bg-disabled-darker disabled:form-border-disabled-darker merge-h:translate-x-1/2 merge-h:left-auto merge-h:bottom-3.5 merge-v:-translate-x-4 merge-v:top-auto merge-v:right-1 tt-focus:hidden tt-focused:block tt-drag:hidden tt-dragging:block',
+      tooltipHidden: 'slider-tooltip-hidden',
+      active: 'slider-active shadow-slider-active cursor-grabbing',
+      draggable: 'cursor-ew-resize v:cursor-ns-resize',
+      tap: 'slider-state-tap',
+      drag: 'slider-state-drag',
+    }
+  },
   StaticElement: {
     content: 'form-pt-input-border',
+  },
+  TagsElement: {
+    container: '',
+    select: '',
+    native: '',
+    placeholder: '',
+    select: {
+      ...select,
+      tags: 'flex-grow flex-shrink flex flex-wrap mt-1 pl-2',
+      tagsSearch: 'h-full border-0 outline-none appearance-none p-0 text-base font-sans mx-1 mb-1 box-border flex-grow flex-shrink',
+    }
   },
   TextareaElement: {
     inputContainer: 'w-full flex',
@@ -97,6 +181,25 @@ export default {
   TextElement: {
     inputContainer: 'w-full flex',
     ...text,
+  },
+  ToggleElement: {
+    container: '',
+    wrapper: 'form-min-h-input flex items-center',
+    toggleText: 'ml-2',
+    toggle: {
+      container: 'inline-block rounded-full outline-none focus:form-ring',
+      toggle: 'flex w-12 h-5 rounded-full relative cursor-pointer transition items-center box-content border-2 text-xs leading-none',
+      toggleOn: 'form-bg-primary form-border-primary justify-start text-white',
+      toggleOff: 'bg-gray-300 border-gray-300 justify-end text-gray-700',
+      toggleOnDisabled: 'form-bg-primary form-border-primary opacity-50 justify-start text-gray-400 cursor-not-allowed',
+      toggleOffDisabled: 'bg-gray-300 border-gray-300 opacity-50 justify-end text-gray-400 cursor-not-allowed',
+      handle: 'inline-block bg-white w-5 h-5 top-0 rounded-full absolute transition-all',
+      handleOn: 'left-full transform -translate-x-full',
+      handleOff: 'left-0',
+      handleOnDisabled: 'left-full transform -translate-x-full',
+      handleOffDisabled: 'bg-gray-100 left-0',
+      label: 'text-center w-8 border-box whitespace-nowrap select-none',
+    }
   },
   TrixElement: {
     trix: 'form-border form-border-color form-rounded',
@@ -272,6 +375,27 @@ export default {
     iconWarning: 'flex w-5 h-5 p-1 items-center justify-center absolute right-0 bottom-0 bg-white border-2 border-white form-rounded bg-no-repeat bg-center bg-form-error',
     iconUploaded: 'flex w-4 h-4 items-center justify-center bg-no-repeat bg-center ml-2 bg-form-check-circle',
     iconRemove: 'flex w-4 h-4 items-center justify-center bg-no-repeat bg-center bg-form-remove-light-white',
+  },
+  MultiselectSlotMultipleLabel: {
+    container: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
+  },
+  MultiselectSlotNoOptions: {
+    container: 'text-base leading-normal form-p-input text-gray-600 bg-white',
+  },
+  MultiselectSlotNoResults: {
+    container: 'text-base leading-normal form-p-input text-gray-600 bg-white',
+  },
+  MultiselectSlotOption: {
+    container: '',
+  },
+  MultiselectSlotSingleLabel: {
+    container: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
+  },
+  MultiselectSlotTag: {
+    container: 'form-bg-primary text-white text-sm font-semibold py-px pl-2 rounded mr-1 mb-1 flex items-center whitespace-nowrap',
+    disabled: 'pr-2 !form-bg-disabled-darker text-white',
+    remove: 'flex items-center justify-center p-1 mx-0.5 rounded-sm hover:bg-black hover:bg-opacity-10 group',
+    removeIcon: 'bg-form-remove bg-center bg-no-repeat opacity-30 inline-block w-3 h-3 group-hover:opacity-60',
   },
   RadiogroupSlotRadio: {
     container: 'flex align-start',

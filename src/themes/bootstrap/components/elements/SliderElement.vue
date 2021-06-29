@@ -51,10 +51,6 @@
     margin-top: calc((#{$input-height} - 6px) / 2)
   }
 
-  /* Functional styling;
-  * These styles are required for noUiSlider to function.
-  * You don't need to change these rules to apply your design.
-  */
   .slider-target,
   .slider-target * {
     -webkit-touch-callout: none;
@@ -81,8 +77,6 @@
     z-index: 1;
   }
 
-  /* Wrapper for all connect elements.
-  */
   .slider-connects {
     overflow: hidden;
     z-index: 0;
@@ -112,16 +106,11 @@
     width: 10%;
   }
 
-  /* Offset direction
-  */
   .slider-txt-dir-rtl.slider-horizontal .slider-origin {
     left: 0;
     right: auto;
   }
 
-  /* Give origins 0 height/width so they don't interfere with clicking the
-  * connect elements.
-  */
   .slider-vertical .slider-origin {
     width: 0;
   }
@@ -151,55 +140,59 @@
     cursor: inherit !important;
   }
 
-  /* Slider size and handle placement;
-  */
+  .slider-tooltip-focus .slider-tooltip,
+  .slider-tooltip-drag .slider-tooltip {
+    display: none !important;
+  }
+
+  .slider-tooltip-focus.slider-focused .slider-tooltip:not(.slider-tooltip-hidden),
+  .slider-tooltip-drag.slider-state-drag .slider-tooltip:not(.slider-tooltip-hidden),
+  .slider-tooltip-drag .slider-active .slider-tooltip {
+    display: block !important;
+  }
+
   .slider-horizontal {
-    height: 6px;
+    height: var(--slider-height, 6px);
   }
 
   .slider-horizontal .slider-handle {
-    width: 16px;
-    height: 16px;
-    top: -6px;
-    right: -8px;
+    width: var(--slider-handle-width, 16px);
+    height: var(--slider-handle-height, 16px);
+    top: calc(((var(--slider-handle-height, 16px) - var(--slider-height, 6px)) / 2 + 1px) * -1);
+    right: calc(var(--slider-handle-width, 16px) / 2 * -1);
   }
 
   .slider-vertical {
-    width: 6px;
-    height: 300px;
+    width: var(--slider-height, 6px);
+    height: var(--slider-vertical-height, 300px);
   }
 
   .slider-vertical .slider-handle {
-    width: 16px;
-    height: 16px;
-    top: -8px;
-    right: -6px;
+    width: var(--slider-handle-height, 16px);
+    height: var(--slider-handle-width, 16px);
+    top: calc(var(--slider-handle-width, 16px) / 2 * -1);
+    right: calc(((var(--slider-handle-height, 16px) - var(--slider-height, 6px)) / 2 + 1px) * -1);
   }
 
   .slider-txt-dir-rtl.slider-horizontal .slider-handle {
-    left: -8px;
+    left: calc(var(--slider-handle-width, 16px) / 2 * -1);
     right: auto;
   }
 
-  /* Styling;
-  * Giving the connect element a border radius causes issues with using transform: scale
-  */
   .slider-base {
-    background: $input-border-color;
-    border-radius: 3px;
+    background-color: var(--slider-bg, #D1D5DB);
+    border-radius: var(--slider-radius, 9999px);
   }
 
   .slider-connects {
-    border-radius: 3px;
+    border-radius: var(--slider-radius, 9999px);
   }
 
   .slider-connect {
-    background: $primary;
+    background: var(--slider-connect-bg, #10B981);
     cursor: pointer;
   }
 
-  /* Handles and cursors;
-  */
   .slider-draggable {
     cursor: ew-resize;
   }
@@ -209,34 +202,29 @@
   }
 
   .slider-handle {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: #fff;
-    border: 0;
-    right: -8px;
-    box-shadow: 0.5px 0.5px 2px 1px rgba(0,0,0,.32);
+    width: var(--slider-handle-width, 16px);
+    height: var(--slider-handle-height, 16px);
+    border-radius: var(--slider-handle-radius, 9999px);
+    background: var(--slider-handle-bg, #fff);
+    border: var(--slider-handle-border, 0);
+    box-shadow: var(--slider-handle-shadow, 0.5px 0.5px 2px 1px rgba(0,0,0,.32));
     cursor: grab;
 
     &:focus {
       outline: none;
+      box-shadow: 0 0 0 var(--slider-handle-ring-width, 3px) var(--slider-handle-ring-color, #10B98130), var(--slider-handle-shadow, 0.5px 0.5px 2px 1px rgba(0,0,0,.32));
     }
   }
 
   .slider-active {
-    box-shadow: 0.5px 0.5px 2px 1px rgba(0,0,0,.42);
+    box-shadow: var(--slider-handle-shadow-active, 0.5px 0.5px 2px 1px rgba(0,0,0,.42));
     cursor: grabbing;
   }
 
-  /* Disabled state;
-  */
-
-  [disabled] .slider-base {
-    background: $input-disabled-bg;
-  }
   [disabled] .slider-connect {
-    background: $input-border-color;
+    background: var(--slider-connect-bg-disabled, #9CA3AF);
   }
+
   [disabled].slider-target,
   [disabled].slider-handle,
   [disabled] .slider-handle {
@@ -244,39 +232,40 @@
   }
 
   [disabled] .slider-tooltip {
-    background: $input-border-color;
-    border-color: $input-border-color;
+    background: var(--slider-tooltip-bg-disabled, #9CA3AF);
+    border-color: var(--slider-tooltip-bg-disabled, #9CA3AF);
   }
 
   .slider-tooltip {
     position: absolute;
     display: block;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: var(--slider-tooltip-font-size, 0.875rem);
+    line-height: var(--slider-tooltip-line-height, 1.25rem);
+    font-weight: var(--slider-tooltip-font-weight, 600);
     white-space: nowrap;
-    padding: 2px 5px;
-    min-width: 20px;
+    padding: var(--slider-tooltip-py, 2px) var(--slider-tooltip-px, 6px);
+    min-width: var(--slider-tooltip-min-width, 20px);
     text-align: center;
-    color: #fff;
-    border-radius: 5px;
-    border: 1px solid $primary;
-    background: $primary;
+    color: var(--slider-tooltip-color, #fff);
+    border-radius: var(--slider-tooltip-radius, 5px);
+    border: 1px solid var(--slider-tooltip-bg, #10B981);
+    background: var(--slider-tooltip-bg, #10B981);
   }
 
   .slider-horizontal .slider-tooltip {
     -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
     left: 50%;
-    bottom: 24px;
+    bottom: calc(var(--slider-handle-height, 16px) + var(--slider-tooltip-arrow-size, 5px) + var(--slider-tooltip-distance, 3px));
 
     &:before {
       content: "";
       position: absolute;
-      bottom: -10px;
+      bottom: calc(var(--slider-tooltip-arrow-size, 5px) * -2);
       left: 50%;
       width: 0;
       height: 0;
-      border: 5px solid transparent;
+      border: var(--slider-tooltip-arrow-size, 5px) solid transparent;
       border-top-color: inherit;
       transform: translate(-50%);
     }
@@ -286,16 +275,16 @@
     -webkit-transform: translate(0, -50%);
     transform: translate(0, -50%);
     top: 50%;
-    right: 24px;
+    right: calc(var(--slider-handle-height, 16px) + var(--slider-tooltip-arrow-size, 5px) + var(--slider-tooltip-distance, 3px));
 
     &:before {
       content: "";
       position: absolute;
-      right: -10px;
+      right: calc(var(--slider-tooltip-arrow-size, 5px) * -2);
       top: 50%;
       width: 0;
       height: 0;
-      border: 5px solid transparent;
+      border: var(--slider-tooltip-arrow-size, 5px) solid transparent;
       border-left-color: inherit;
       transform: translateY(-50%);
     }
@@ -305,127 +294,12 @@
     -webkit-transform: translate(50%, 0);
     transform: translate(50%, 0);
     left: auto;
-    bottom: 14px;
+    bottom: calc(var(--slider-tooltip-arrow-size, 5px) + ((var(--slider-handle-height, 16px) - var(--slider-height, 6px)) / 2) + var(--slider-tooltip-distance, 3px));
   }
 
   .slider-vertical .slider-origin > .slider-tooltip {
-    -webkit-transform: translate(0, -18px);
-    transform: translate(0, -18px);
+    transform: translate(0, calc((var(--slider-tooltip-line-height, 1.25rem) - var(--slider-tooltip-py, 2px)) * -1));
     top: auto;
-    right: 18px;
-  }
-
-  /* Base;
-  *
-  */
-  .slider-pips,
-  .slider-pips * {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-
-  .slider-pips {
-    position: absolute;
-    color: #999;
-  }
-
-  /* Values;
-  *
-  */
-  .slider-value {
-    position: absolute;
-    white-space: nowrap;
-    text-align: center;
-  }
-
-  .slider-value-sub {
-    color: #ccc;
-    font-size: 10px;
-  }
-
-  /* Markings;
-  *
-  */
-  .slider-marker {
-    position: absolute;
-    background: #CCC;
-  }
-
-  .slider-marker-sub {
-    background: #AAA;
-  }
-
-  .slider-marker-large {
-    background: #AAA;
-  }
-
-  /* Horizontal layout;
-  *
-  */
-  .slider-pips-horizontal {
-    padding: 10px 0;
-    height: 80px;
-    top: 100%;
-    left: 0;
-    width: 100%;
-  }
-
-  .slider-value-horizontal {
-    -webkit-transform: translate(-50%, 50%);
-    transform: translate(-50%, 50%);
-
-    .slider-rtl & {
-      -webkit-transform: translate(50%, 50%);
-      transform: translate(50%, 50%);
-    }
-  }
-
-  .slider-marker-horizontal.slider-marker {
-    margin-left: -1px;
-    width: 2px;
-    height: 5px;
-  }
-
-  .slider-marker-horizontal.slider-marker-sub {
-    height: 10px;
-  }
-
-  .slider-marker-horizontal.slider-marker-large {
-    height: 15px;
-  }
-
-  /* Vertical layout;
-  *
-  */
-  .slider-pips-vertical {
-    padding: 0 10px;
-    height: 100%;
-    top: 0;
-    left: 100%;
-  }
-
-  .slider-value-vertical {
-    -webkit-transform: translate(0, -50%);
-    transform: translate(0, -50%);
-    padding-left: 25px;
-
-    .slider-rtl & {
-      -webkit-transform: translate(0, 50%);
-      transform: translate(0, 50%);
-    }
-  }
-
-  .slider-marker-vertical.slider-marker {
-    width: 5px;
-    height: 2px;
-    margin-top: -1px;
-  }
-
-  .slider-marker-vertical.slider-marker-sub {
-    width: 10px;
-  }
-
-  .slider-marker-vertical.slider-marker-large {
-    width: 15px;
+    right: calc(var(--slider-tooltip-arrow-size, 5px) + var(--slider-height, 6px) + ((var(--slider-handle-height, 16px) - var(--slider-height, 6px)) / 2) + var(--slider-tooltip-distance, 3px));
   }
 </style>
