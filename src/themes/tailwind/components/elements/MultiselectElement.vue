@@ -12,7 +12,9 @@
       return {
         defaultClasses: {
           container: '',
-          select: '',
+          input: '',
+          inputEnabled: '',
+          inputDisabled: '',
         }
       }
     }

@@ -24,7 +24,7 @@ const select = {
   containerActive: 'form-ring',
   search: 'w-full absolute inset-0 outline-none appearance-none box-border border-0 text-base font-sans bg-white form-rounded pl-3.5',
   placeholder: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input text-gray-400',
-  caret: 'bg-form-caret bg-center bg-no-repeat w-2.5 h-4 py-px box-content form-mr-input relative z-10 opacity-40 flex-shrink-0 flex-grow-0 transition-transform transform',
+  caret: 'bg-form-caret bg-center bg-no-repeat w-2.5 h-4 py-px box-content form-mr-input relative z-10 flex-shrink-0 flex-grow-0 transition-transform transform',
   caretOpen: 'rotate-180',
   clear: 'form-pr-input relative z-10 opacity-40 transition duration-300 flex-shrink-0 flex-grow-0 flex hover:opacity-80',
   clearIcon: 'bg-form-remove bg-center bg-no-repeat w-2.5 h-4 py-px box-content inline-block',
@@ -105,7 +105,9 @@ export default {
   },
   MultiselectElement: {
     container: '',
-    select: '',
+    input: 'w-full form-p-input form-border form-border-color form-rounded',
+    inputEnabled: 'focus:form-ring',
+    inputDisabled: 'form-bg-disabled form-text-disabled',
     native: '',
     placeholder: '',
     select: {
@@ -125,7 +127,9 @@ export default {
   },
   SelectElement: {
     container: '',
-    select: '',
+    input: 'w-full form-p-input form-border form-border-color form-rounded',
+    inputEnabled: 'focus:form-ring',
+    inputDisabled: 'form-bg-disabled form-text-disabled',
     native: '',
     placeholder: '',
     select: {

@@ -10,7 +10,6 @@ import useData from './../../composables/elements/useData'
 import useDefault from './../../composables/elements/useDefault'
 import useValidation from './../../composables/elements/useValidation'
 import useLabel from './../../composables/elements/useLabel'
-import useClasses from './../../composables/elements/useClasses'
 import useColumns from './../../composables/elements/useColumns'
 import useGenericName from './../../composables/elements/useGenericName'
 import useView from './../../composables/elements/useView'
@@ -24,6 +23,7 @@ import useAsyncItems from './../../composables/elements/useAsyncItems'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 
+import { input as useClasses } from './../../composables/elements/useClasses'
 import { multiselect as useOptions } from './../../composables/elements/useOptions'
 import { multiselect as useBaseElement } from './../../composables/elements/useBaseElement'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
@@ -215,6 +215,7 @@ export default {
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
+      isDisabled: disabled.isDisabled,
     })
 
     const columns = useColumns(props, context, {

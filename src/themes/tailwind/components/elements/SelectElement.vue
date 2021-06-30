@@ -11,7 +11,7 @@
       <div v-if="isNative" :class="classes.native">
         <select
           v-model="value"
-          :class="classes.select"
+          :class="classes.input"
           :name="name"
           :id="fieldId"
           :multiple="fieldOptions.mode === 'multiple'"
@@ -99,7 +99,9 @@
       return {
         defaultClasses: {
           container: '',
-          select: '',
+          input: '',
+          inputEnabled: '',
+          inputDisabled: '',
           native: '',
           placeholder: '',
         }
