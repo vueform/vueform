@@ -11,7 +11,7 @@ const radio = {
 }
 
 const text = {
-  input: 'w-full form-p-input form-border form-border-color form-rounded',
+  input: 'w-full form-p-input form-border form-border-color form-rounded addon-before:form-rounded-l-none addon-after:form-rounded-r-none',
   inputEnabled: 'focus:form-ring',
   inputDisabled: 'form-bg-disabled form-text-disabled',
 }
@@ -223,6 +223,11 @@ export default {
     icon: 'inline-block w-9 h-8 bg-center bg-contain bg-form-inbox-in',
     title: 'font-semibold mt-3',
     description: '',
+  },
+  ElementAddon: {
+    container: 'form-p-input form-border form-border-color bg-gray-100',
+    before: 'form-addon-before form-border-r-0 form-rounded-l',
+    after: 'form-addon-after form-border-l-0 form-rounded-r order-2',
   },
   ElementDescription: {
     container: 'text-sm text-gray-500 mt-1',
