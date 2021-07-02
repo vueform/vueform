@@ -9,6 +9,7 @@
         defaultClasses: {
           container: '',
           trix: '',
+          trixFocused: '',
           disabled: '',
         }
       }

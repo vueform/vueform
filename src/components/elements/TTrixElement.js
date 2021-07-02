@@ -180,10 +180,16 @@ export default {
       form$: form$.form$
     })
 
+    const trix = useTrix(props, context, {
+      form$: form$.form$,
+      input: input.input,
+    })
+
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       isDisabled: disabled.isDisabled,
+      focused: trix.focused,
     })
 
     const columns = useColumns(props, context, {
@@ -213,10 +219,6 @@ export default {
     const handleError = useHandleError(props, context, {
       fire: events.fire,
       listeners: events.listeners,
-    })
-
-    const trix = useTrix(props, context, {
-      form$: form$.form$,
     })
 
     useWatchValue(props, context, {

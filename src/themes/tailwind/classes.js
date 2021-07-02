@@ -11,7 +11,7 @@ const radio = {
 }
 
 const text = {
-  input: 'w-full form-p-input form-border form-border-color form-rounded addon-before:form-rounded-l-none addon-after:form-rounded-r-none',
+  input: 'w-full form-p-input form-border form-border-color form-rounded z-1 addon-before:form-rounded-l-none addon-after:form-rounded-r-none',
   inputEnabled: 'focus:form-ring',
   inputDisabled: 'form-bg-disabled form-text-disabled',
 }
@@ -22,7 +22,7 @@ const select = {
   containerOpen: 'form-rounded-b-none',
   containerOpenTop: 'form-rounded-t-none',
   containerActive: 'form-ring',
-  search: 'w-full absolute inset-0 outline-none appearance-none box-border border-0 text-base font-sans bg-white form-rounded pl-3.5',
+  search: 'w-full absolute inset-0 outline-none appearance-none box-border border-0 text-base font-sans bg-white form-rounded form-pl-input',
   placeholder: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input text-gray-400',
   caret: 'bg-form-caret bg-center bg-no-repeat w-2.5 h-4 py-px box-content form-mr-input relative z-10 flex-shrink-0 flex-grow-0 transition-transform transform',
   caretOpen: 'rotate-180',
@@ -169,12 +169,9 @@ export default {
   },
   TagsElement: {
     container: '',
-    select: '',
-    native: '',
-    placeholder: '',
     select: {
       ...select,
-      tags: 'flex-grow flex-shrink flex flex-wrap mt-1 pl-2',
+      tags: 'flex-grow flex-shrink flex flex-wrap items-center mt-1 pl-2',
       tagsSearch: 'h-full border-0 outline-none appearance-none p-0 text-base font-sans mx-1 mb-1 box-border flex-grow flex-shrink',
     }
   },
@@ -209,6 +206,18 @@ export default {
     trix: 'form-border form-border-color form-rounded',
     trixFocused: 'form-ring',
   },
+  TTextareaElement: {
+    inputContainer: 'w-full flex',
+    ...text,
+  },
+  TTextElement: {
+    inputContainer: 'w-full flex',
+    ...text,
+  },
+  TTrixElement: {
+    trix: 'form-border form-border-color form-rounded',
+    trixFocused: 'form-ring',
+  },
 
   // Wrappers
   TrixWrapper: {
@@ -225,7 +234,7 @@ export default {
     description: '',
   },
   ElementAddon: {
-    container: 'form-p-input form-border form-border-color bg-gray-100',
+    container: 'form-p-input form-border form-border-color bg-gray-100 flex items-center',
     before: 'form-addon-before form-border-r-0 form-rounded-l',
     after: 'form-addon-after form-border-l-0 form-rounded-r order-2',
   },
@@ -245,7 +254,7 @@ export default {
   },
   ElementLabelFloating: {
     wrapper: 'relative',
-    label: 'absolute z-10 left-2.5 -top-1.5 leading-none form-text-0.5xs text-gray-500 bg-white px-px transition',
+    label: 'absolute z-10 left-2.5 -top-1.5 leading-none form-text-0.5xs text-gray-500 bg-white px-px transition whitespace-nowrap',
     labelInvisible: 'opacity-0 invisible',
     labelVisible: 'opacity-100 visible',
   },

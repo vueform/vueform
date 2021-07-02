@@ -10,6 +10,13 @@
           />
         </slot>
 
+        <slot name="addon-after">
+          <component :is="fieldSlots.addonAfter"
+            v-if="addons.after"
+            type="after"
+          />
+        </slot>
+
         <ElementLabelFloating
           v-if="floating"
           :visible="!empty"
@@ -31,13 +38,6 @@
           @input="handleInput"
           ref="input"
         />
-
-        <slot name="addon-after">
-          <component :is="fieldSlots.addonAfter"
-            v-if="addons.after"
-            type="after"
-          />
-        </slot>
 
       </div>
       

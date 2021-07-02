@@ -8,7 +8,6 @@ import useAddons from './../../composables/elements/useAddons'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
 import useLabel from './../../composables/elements/useLabel'
-import useClasses from './../../composables/elements/useClasses'
 import useColumns from './../../composables/elements/useColumns'
 import useBaseElement from './../../composables/elements/useBaseElement'
 import useGenericName from './../../composables/elements/useGenericName'
@@ -21,6 +20,7 @@ import useHandleInput from './../../composables/elements/useHandleInput'
 import useLanguages from './../../composables/elements/useLanguages'
 import useWatchValue from './../../composables/elements/useWatchValue'
 
+import { input as useClasses } from './../../composables/elements/useClasses'
 import { multilingual as useValue } from './../../composables/elements/useValue'
 import { multilingual as useData } from './../../composables/elements/useData'
 import { multilingual as useDefault } from './../../composables/elements/useDefault'
@@ -185,6 +185,7 @@ export default {
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
+      isDisabled: disabled.isDisabled,
     })
 
     const columns = useColumns(props, context, {

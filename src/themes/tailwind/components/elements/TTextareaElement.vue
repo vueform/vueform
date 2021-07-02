@@ -8,7 +8,10 @@
       return {
         defaultClasses: {
           container: '',
-          textarea: '',
+          inputContainer: '',
+          input: '',
+          inputEnabled: '',
+          inputDisabled: '',
         }
       }
     }

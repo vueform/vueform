@@ -15,6 +15,7 @@
           input: '',
           inputEnabled: '',
           inputDisabled: '',
+          select: '',
         }
       }
     }

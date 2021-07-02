@@ -104,6 +104,7 @@
           inputDisabled: '',
           native: '',
           placeholder: '',
+          select: '',
         }
       }
     }
