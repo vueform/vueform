@@ -15,8 +15,8 @@
         defaultClasses: {
           container: '',
           label: '',
-          labelInvisible: '',
-          labelVisible: '',
+          label_visible: '',
+          label_invisible: '',
         }
       }
     }

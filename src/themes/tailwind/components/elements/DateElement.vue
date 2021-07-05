@@ -56,8 +56,8 @@
           container: '',
           inputContainer: '',
           input: '',
-          inputEnabled: '',
-          inputDisabled: '',
+          input_enabled: '',
+          input_disabled: '',
         }
       }
     }

@@ -28,10 +28,10 @@ export default {
       addClasses: [
         ['container', computed(() => el$.value.columnsClasses.element), ref(true)],
         ['container', computed(() => el$.value.classes.container), ref(true)],
-        ['container', 'containerError', computed(() => !el$.value.isStatic && el$.value.errors && !!el$.value.errors.length)],
+        ['container', 'container_error', computed(() => !el$.value.isStatic && el$.value.errors && !!el$.value.errors.length)],
         ['fieldWrapper', computed(() => el$.value.columnsClasses.field), ref(true)],
-        ['outerWrapper', 'outerWrapperMultiple', computed(() => multiple.value)],
-        ['outerWrapper', 'outerWrapperSingle', computed(() => !multiple.value)],
+        ['outerWrapper', 'outerWrapper_single', computed(() => !multiple.value)],
+        ['outerWrapper', 'outerWrapper_multiple', computed(() => multiple.value)],
       ]
     })
 

@@ -34,9 +34,9 @@
         defaultClasses: {
           container: '',
           input: '',
-          inputEnabled: '',
-          inputDisabled: '',
-          inputFocused: '',
+          input_enabled: '',
+          input_disabled: '',
+          input_focused: '',
         }
       }
     }

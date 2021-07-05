@@ -9,9 +9,9 @@
       return {
         defaultClasses: {
           container: '',
-          containerBefore: '',
-          containerBetween: '',
-          containerAfter: '',
+          container_before: '',
+          container_between: '',
+          container_after: '',
         }
       }
     }

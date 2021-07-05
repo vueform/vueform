@@ -55,8 +55,8 @@
         defaultClasses: {
           container: '',
           input: '',
-          inputEnabled: '',
-          inputDisabled: '',
+          input_enabled: '',
+          input_disabled: '',
         }
       }
     }

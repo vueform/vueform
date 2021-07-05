@@ -26,10 +26,10 @@
         defaultClasses: {
           container: '',
           wrapper: '',
-          wrapperActive: '',
-          wrapperInactive: '',
-          wrapperValid: '',
-          wrapperInvalid: '',
+          wrapper_active: '',
+          wrapper_inactive: '',
+          wrapper_valid: '',
+          wrapper_invalid: '',
         },
       }
     }

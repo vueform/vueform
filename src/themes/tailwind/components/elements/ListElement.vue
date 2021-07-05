@@ -52,8 +52,8 @@
         defaultClasses: {
           container: '',
           list: '',
-          listDisabled: '',
-          listSorting: '',
+          list_disabled: '',
+          list_sorting: '',
           listItem: '',
           handle: '',
           remove: '',

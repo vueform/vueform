@@ -1,7 +1,7 @@
 <template>
-  <div :class="classes.preview" v-show="visible">
-    <div :class="classes.info">
-      <div :class="classes.previewContainer">
+  <div :class="classes.container" v-show="visible">
+    <div :class="classes.wrapper">
+      <div :class="classes.previewWrapper">
 
         <!-- Image && filename  -->
         <a v-if="uploaded && hasLink" :href="link" :class="classes.previewLinkWrapper" target="_blank">
@@ -45,9 +45,9 @@
     data() {
       return {
         defaultClasses: {
-          preview: '',
-          info: '',
-          previewContainer: '',
+          container: '',
+          wrapper: '',
+          previewWrapper: '',
           previewImage: '',
           previewLinkWrapper: '',
           previewStaticWrapper: '',

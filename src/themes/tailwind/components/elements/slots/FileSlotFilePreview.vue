@@ -1,6 +1,6 @@
 <template>
-  <div :class="classes.preview" v-show="visible">
-    <div :class="classes.info">
+  <div :class="classes.container" v-show="visible">
+    <div :class="classes.wrapper">
       <div :class="classes.filename">
 
         <!-- Icon -->
@@ -39,11 +39,11 @@
     data() {
       return {
         defaultClasses: {
-          preview: '',
-          info: '',
+          container: '',
+          wrapper: '',
           filename: '',
-          filenameLink: '',
-          filenameStatic: '',
+          filename_link: '',
+          filename_static: '',
           actions: '',
           percent: '',
           upload: '',

@@ -25,10 +25,10 @@
       return {
         defaultClasses: {
           container: '',
-          containerError: '',
+          container_error: '',
           outerWrapper: '',
-          outerWrapperSingle: '',
-          outerWrapperMultiple: '',
+          outerWrapper_single: '',
+          outerWrapper_multiple: '',
           fieldWrapper: '',
         },
       }

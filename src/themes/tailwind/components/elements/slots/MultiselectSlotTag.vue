@@ -18,7 +18,7 @@
       return {
         defaultClasses: {
           container: '',
-          containerDisabled: '',
+          container_disabled: '',
           remove: '',
           removeIcon: '',
         }

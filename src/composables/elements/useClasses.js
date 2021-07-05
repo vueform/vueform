@@ -98,8 +98,8 @@ const input = function(props, context, dependencies)
     defaultClasses,
   } = base(props, context, dependencies, {
     addClasses: [
-      ['input', 'inputEnabled', computed(() => !isDisabled.value)],
-      ['input', 'inputDisabled', computed(() => isDisabled.value)],
+      ['input', 'input_enabled', computed(() => !isDisabled.value)],
+      ['input', 'input_disabled', computed(() => isDisabled.value)],
     ]
   })
 
@@ -122,8 +122,8 @@ const list = function(props, context, dependencies)
     defaultClasses,
   } = base(props, context, dependencies, {
     addClasses: [
-      ['list', 'listDisabled', computed(() => isDisabled.value)],
-      ['list', 'listSorting', computed(() => sorting.value)],
+      ['list', 'list_disabled', computed(() => isDisabled.value)],
+      ['list', 'list_sorting', computed(() => sorting.value)],
     ]
   })
 
@@ -151,16 +151,16 @@ const multifile = function(props, context, dependencies)
     defaultClasses,
   } = base(props, context, dependencies, {
     addClasses: [
-      ['list', 'listDefault', computed(() => view.value !== 'gallery')],
-      ['list', 'listGallery', computed(() => view.value === 'gallery')],
-      ['list', 'listSorting', computed(() => sorting.value)],
-      ['list', 'listDisabled', computed(() => isDisabled.value)],
-      ['listItem', 'listItemDefault', computed(() => view.value !== 'gallery')],
-      ['listItem', 'listItemGallery', computed(() => view.value === 'gallery')],
-      ['handle', 'handleDefault', computed(() => view.value !== 'gallery')],
-      ['handle', 'handleGallery', computed(() => view.value === 'gallery')],
-      ['button', 'buttonEnabled', computed(() => !isDisabled.value && !preparing.value)],
-      ['button', 'buttonDisabled', computed(() => isDisabled.value || preparing.value)],
+      ['list', 'list_default', computed(() => view.value !== 'gallery')],
+      ['list', 'list_gallery', computed(() => view.value === 'gallery')],
+      ['list', 'list_sorting', computed(() => sorting.value)],
+      ['list', 'list_disabled', computed(() => isDisabled.value)],
+      ['listItem', 'listItem_default', computed(() => view.value !== 'gallery')],
+      ['listItem', 'listItem_gallery', computed(() => view.value === 'gallery')],
+      ['handle', 'handle_default', computed(() => view.value !== 'gallery')],
+      ['handle', 'handle_gallery', computed(() => view.value === 'gallery')],
+      ['button', 'button_enabled', computed(() => !isDisabled.value && !preparing.value)],
+      ['button', 'button_disabled', computed(() => isDisabled.value || preparing.value)],
     ]
   })
 
@@ -185,9 +185,9 @@ const file = function(props, context, dependencies)
     classes,
   } = base(props, context, dependencies, {
     addClasses: [
-      ['container', 'containerRemoving', computed(() => removing.value)],
-      ['button', 'buttonEnabled', computed(() => !isDisabled.value && !preparing.value)],
-      ['button', 'buttonDisabled', computed(() => isDisabled.value || preparing.value)],
+      ['container', 'container_removing', computed(() => removing.value)],
+      ['button', 'button_enabled', computed(() => !isDisabled.value && !preparing.value)],
+      ['button', 'button_disabled', computed(() => isDisabled.value || preparing.value)],
     ]
   })
 
@@ -216,9 +216,9 @@ const button = function(props, context, dependencies)
     defaultClasses,
   } = base(props, context, dependencies, {
     addClasses: [
-      ['button', 'buttonLoading', computed(() => isLoading.value)],
-      ['button', 'buttonEnabled', computed(() => !isDisabled.value && !isLoading.value)],
-      ['button', 'buttonDisabled', computed(() => isDisabled.value)],
+      ['button', 'button_loading', computed(() => isLoading.value)],
+      ['button', 'button_enabled', computed(() => !isDisabled.value && !isLoading.value)],
+      ['button', 'button_disabled', computed(() => isDisabled.value)],
       ['button', buttonClass, buttonClass],
     ]
   })
@@ -243,9 +243,9 @@ const trix = function(props, context, dependencies)
     defaultClasses,
   } = base(props, context, dependencies, {
     addClasses: [
-      ['input', 'inputEnabled', computed(() => !isDisabled.value)],
-      ['input', 'inputDisabled', computed(() => isDisabled.value)],
-      ['input', 'inputFocused', computed(() => focused.value)],
+      ['input', 'input_enabled', computed(() => !isDisabled.value)],
+      ['input', 'input_disabled', computed(() => isDisabled.value)],
+      ['input', 'input_focused', computed(() => focused.value)],
     ]
   })
 

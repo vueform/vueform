@@ -1,19 +1,19 @@
 const checkbox = {
   input: 'appearance-none transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox form-rounded form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-check-white checked:border-0',
-  inputEnabled: 'checked:form-bg-primary',
-  inputDisabled: 'form-bg-disabled',
+  input_enabled: 'checked:form-bg-primary',
+  input_disabled: 'form-bg-disabled',
 }
 
 const radio = {
   input: 'appearance-none transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox rounded-full form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-radio-white checked:border-0',
-  inputEnabled: 'checked:form-bg-primary',
-  inputDisabled: 'form-bg-disabled',
+  input_enabled: 'checked:form-bg-primary',
+  input_disabled: 'form-bg-disabled',
 }
 
 const text = {
   input: 'w-full form-p-input form-border form-border-color form-rounded z-1 addon-before:form-rounded-l-none addon-after:form-rounded-r-none',
-  inputEnabled: 'focus:form-ring',
-  inputDisabled: 'form-bg-disabled form-text-disabled',
+  input_enabled: 'focus:form-ring',
+  input_disabled: 'form-bg-disabled form-text-disabled',
 }
 
 const select = {
@@ -52,9 +52,9 @@ export default {
   ButtonElement: {
     container: '',
     button: 'inline-block form-p-button leading-snug form-rounded transition form-bg-primary text-white focus:outline-none',
-    buttonEnabled: 'cursor-pointer hover:form-bg-primary-darker focus:form-ring',
-    buttonDisabled: 'opacity-50 cursor-not-allowed',
-    buttonLoading: 'form-bg-primary text-white form-bg-spinner-white opacity-70 cursor-not-allowed'
+    button_enabled: 'cursor-pointer hover:form-bg-primary-darker focus:form-ring',
+    button_disabled: 'opacity-50 cursor-not-allowed',
+    button_loading: 'form-bg-primary text-white form-bg-spinner-white opacity-70 cursor-not-allowed'
   },
   CheckboxElement: {
     container: '',
@@ -79,10 +79,10 @@ export default {
   },
   FileElement: {
     container: '',
-    containerRemoving: 'opacity-50',
+    container_removing: 'opacity-50',
     button: 'inline-block form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
-    buttonEnabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
-    buttonDisabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
+    button_enabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
+    button_disabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
   },
   GroupElement: {
     container: '',
@@ -91,11 +91,11 @@ export default {
   ListElement: {
     container: '',
     list: '',
-    listDisabled: '',
-    listSorting: 'is-sorting',
+    list_disabled: '',
+    list_sorting: 'is-sorting',
     listItem: 'relative group',
     handle: 'absolute form-w-input form-h-input bg-form-sort-handle bg-center bg-no-repeat left-0 top-0 transform -translate-x-full form-bg-size-2.75 cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
-    remove: 'absolute w-0.5 h-0.5 box-content p-1.5 top-px left-px bg-form-remove-light-white bg-black bg-opacity-60 bg-center bg-no-repeat rounded border-2 border-black border-opacity-0 transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 group-hover:opacity-100',
+    remove: 'absolute z-1 w-0.5 h-0.5 box-content p-1.5 top-px left-px bg-form-remove-light-white bg-black bg-opacity-60 bg-center bg-no-repeat rounded border-2 border-black border-opacity-0 transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 group-hover:opacity-100',
     add: 'form-bg-primary text-white px-2.5 py-1.5 text-sm form-rounded transition hover:form-bg-primary-darker',
   },
   LocationElement: {
@@ -106,25 +106,25 @@ export default {
   MultifileElement: {
     container: '',
     list: '',
-    listDisabled: '',
-    listSorting: '',
-    listDefault: '',
-    listGallery: 'flex flex-wrap mb-2',
+    list_disabled: '',
+    list_sorting: '',
+    list_default: '',
+    list_gallery: 'flex flex-wrap mb-2',
     listItem: 'relative group',
-    listItemDefault: '',
-    listItemGallery: 'mr-2 mb-2',
+    listItem_default: '',
+    listItem_gallery: 'mr-2 mb-2',
     handle: '',
-    handleDefault: 'absolute form-w-input form-h-input bg-form-sort-handle bg-center bg-no-repeat left-0 top-0 transform -translate-x-full form-bg-size-2.75 cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
-    handleGallery: 'absolute w-px h-px box-content p-1.5 top-1 left-1 mt-px ml-px bg-form-arrows-white bg-black bg-opacity-60 bg-center bg-no-repeat rounded form-border-3.5 border-black border-opacity-0 transition opacity-0 group-hover:opacity-100 cursor-grab active:cursor-grabbing',
+    handle_default: 'absolute form-w-input form-h-input bg-form-sort-handle bg-center bg-no-repeat left-0 top-0 transform -translate-x-full form-bg-size-2.75 cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
+    handle_gallery: 'absolute w-px h-px box-content p-1.5 top-1 left-1 mt-px ml-px bg-form-arrows-white bg-black bg-opacity-60 bg-center bg-no-repeat rounded form-border-3.5 border-black border-opacity-0 transition opacity-0 group-hover:opacity-100 cursor-grab active:cursor-grabbing',
     button: 'inline-block mb-4 form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
-    buttonEnabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
-    buttonDisabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
+    button_enabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
+    button_disabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
   },
   MultiselectElement: {
     container: '',
     input: 'w-full form-p-input form-border form-border-color form-rounded',
-    inputEnabled: 'focus:form-ring',
-    inputDisabled: 'form-bg-disabled form-text-disabled',
+    input_enabled: 'focus:form-ring',
+    input_disabled: 'form-bg-disabled form-text-disabled',
     inputWrapper: '',
     select: {
       ...select,
@@ -148,8 +148,8 @@ export default {
   SelectElement: {
     container: '',
     input: 'w-full form-p-input form-border form-border-color form-rounded',
-    inputEnabled: 'focus:form-ring',
-    inputDisabled: 'form-bg-disabled form-text-disabled',
+    input_enabled: 'focus:form-ring',
+    input_disabled: 'form-bg-disabled form-text-disabled',
     inputWrapper: '',
     inputPlaceholder: '',
     select: {
@@ -228,9 +228,9 @@ export default {
   TrixElement: {
     container: '',
     input: 'form-border form-border-color form-rounded',
-    inputEnabled: '',
-    inputDisabled: 'form-bg-disabled form-text-disabled',
-    inputFocused: 'form-ring',
+    input_enabled: '',
+    input_disabled: 'form-bg-disabled form-text-disabled',
+    input_focused: 'form-ring',
   },
   TTextareaElement: {
     container: '',
@@ -245,9 +245,9 @@ export default {
   TTrixElement: {
     container: '',
     input: 'form-border form-border-color form-rounded',
-    inputEnabled: '',
-    inputDisabled: 'form-bg-disabled form-text-disabled',
-    inputFocused: 'form-ring',
+    input_enabled: '',
+    input_disabled: 'form-bg-disabled form-text-disabled',
+    input_focused: 'form-ring',
   },
 
   // Wrappers
@@ -262,18 +262,18 @@ export default {
   // Components
   DragAndDrop: {
     container: 'w-full border border-dashed transition flex flex-col items-center justify-center p-6 cursor-pointer mb-4',
-    containerInactive: 'form-border-color',
-    containerActive: 'form-border-primary form-bg-primary bg-opacity-20',
-    containerEnabled: '',
-    containerDisabled: 'opacity-50 bg-gray-50 cursor-not-allowed',
+    container_inactive: 'form-border-color',
+    container_active: 'form-border-primary form-bg-primary bg-opacity-20',
+    container_enabled: '',
+    container_disabled: 'opacity-50 bg-gray-50 cursor-not-allowed',
     icon: 'inline-block w-9 h-8 bg-center bg-contain bg-form-inbox-in',
     title: 'font-semibold mt-3',
     description: '',
   },
   ElementAddon: {
     container: 'form-p-input form-border form-border-color bg-gray-100 flex items-center',
-    containerBefore: 'form-addon-before form-border-r-0 form-rounded-l',
-    containerAfter: 'form-addon-after form-border-l-0 form-rounded-r order-2',
+    container_before: 'form-addon-before form-border-r-0 form-rounded-l',
+    container_after: 'form-addon-after form-border-l-0 form-rounded-r order-2',
   },
   ElementDescription: {
     container: 'text-sm text-gray-500 mt-1',
@@ -292,20 +292,20 @@ export default {
   ElementLabelFloating: {
     container: 'relative',
     label: 'absolute z-10 left-2.5 -top-1.5 leading-none form-text-0.5xs text-gray-500 bg-white px-px transition whitespace-nowrap',
-    labelInvisible: 'opacity-0 invisible',
-    labelVisible: 'opacity-100 visible',
+    label_invisible: 'opacity-0 invisible',
+    label_visible: 'opacity-100 visible',
   },
   ElementLayout: {
     container: '',
-    containerError: 'has-error',
+    container_error: 'has-error',
     outerWrapper: 'flex flex-wrap',
-    outerWrapperSingle: 'mb-4',
-    outerWrapperMultiple: '',
+    outerWrapper_single: 'mb-4',
+    outerWrapper_multiple: '',
     fieldWrapper: '',
   },
   ElementLayoutInline: {
     container: '',
-    containerError: 'has-error',
+    container_error: 'has-error',
   },
   ElementLoader: {
     container: 'relative z-10 order-1',
@@ -316,9 +316,9 @@ export default {
   },
   ElementText: {
     container: '',
-    containerBefore: '',
-    containerBetween: '',
-    containerAfter: '',
+    container_before: '',
+    container_between: '',
+    container_after: '',
   },
   FormElements: {
     container: 'flex flex-wrap'
@@ -330,8 +330,8 @@ export default {
   FormLanguage: {
     container: 'flex-grow flex-shrink w-full',
     wrapper: 'form-rounded text-center py-2 px-4 block',
-    wrapperInactive: 'form-text-primary',
-    wrapperActive: 'text-white form-bg-primary'
+    wrapper_inactive: 'form-text-primary',
+    wrapper_active: 'text-white form-bg-primary'
   },
   FormLanguages: {
     container: 'flex items-center justify-between mb-8',
@@ -343,24 +343,24 @@ export default {
   FormStep: {
     container: 'form-step',
     wrapper: '',
-    containerActive: 'form-step-active',
-    containerInactive: '',
-    containerInvalid: 'has-errors',
-    containerValid: '',
-    containerDisabled: 'form-step-disabled',
-    containerEnabled: '',
-    containerCompleted: 'form-step-completed',
-    containerIncompleted: '',
-    containerPending: 'form-step-pending',
+    container_active: 'form-step-active',
+    container_inactive: '',
+    container_invalid: 'has-errors',
+    container_valid: '',
+    container_disabled: 'form-step-disabled',
+    container_enabled: '',
+    container_completed: 'form-step-completed',
+    container_incompleted: '',
+    container_pending: 'form-step-pending',
   },
   FormSteps: {
     container: 'mb-8 flex justify-between overflow-x-auto pt-5',
   },
   FormStepsControl: {
     button: 'px-4 py-2 form-rounded',
-    buttonPrevious: 'text-gray-700 bg-gray-200 transition hover:bg-gray-300 focus:form-ring focus:outline-none',
-    buttonNext: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
-    buttonFinish: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
+    button_previous: 'text-gray-700 bg-gray-200 transition hover:bg-gray-300 focus:form-ring focus:outline-none',
+    button_next: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
+    button_finish: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
   },
   FormStepsControls: {
     container: 'flex justify-between mt-4'
@@ -368,10 +368,10 @@ export default {
   FormTab: {
     container: '',
     wrapper: 'py-2 px-4 block bg-white -mb-px',
-    wrapperActive: 'border form-border-color form-border-b-white rounded-tl rounded-tr',
-    wrapperInactive: 'border border-white form-border-b-color',
-    wrapperValid: '',
-    wrapperInvalid: 'text-red-500',
+    wrapper_active: 'border form-border-color form-border-b-white rounded-tl rounded-tr',
+    wrapper_inactive: 'border border-white form-border-b-color',
+    wrapper_valid: '',
+    wrapper_invalid: 'text-red-500',
   },
   FormTabs: {
     container: 'flex border-b form-border-color mb-8 items-end',
@@ -387,11 +387,11 @@ export default {
     ...checkbox,
   },
   FileSlotFilePreview: {
-    preview: 'form-py-input flex justify-start flex-col transition duration-500 hover:bg-gray-50 group',
-    info: 'flex justify-between items-center',
+    container: 'form-py-input flex justify-start flex-col transition duration-500 hover:bg-gray-50 group',
+    wrapper: 'flex justify-between items-center',
     filename: 'flex items-center pl-1',
-    filenameLink: 'hover:underline',
-    filenameStatic: '',
+    filename_link: 'hover:underline',
+    filename_static: '',
     actions: 'flex items-center pr-1',
     percent: 'flex justify-between items-center text-sm text-gray-500 mr-2 group-hover:form-hidden',
     upload: 'form-bg-primary text-white form-rounded text-xs py-0.5 px-2 font-semibold mr-2.5 whitespace-nowrap focus:form-ring',
@@ -404,8 +404,8 @@ export default {
     iconRemove: 'flex w-4 h-4 items-center justify-center bg-no-repeat bg-center bg-form-remove-light',
   },
   FileSlotGalleryPreview: {
-    preview: 'p-1 form-border form-border-color form-rounded flex justify-start flex-col transition duration-500 form-w-30 form-h-30 relative group',
-    previewContainer: 'w-full h-full',
+    container: 'p-1 form-border form-border-color form-rounded flex justify-start flex-col transition duration-500 form-w-30 form-h-30 relative group',
+    previewWrapper: 'w-full h-full',
     previewImage: 'w-full h-full object-cover',
     overlay: 'absolute inset-0 bg-black bg-opacity-90 transition duration-300 opacity-0 invisible flex items-center justify-center p-3 form-rounded group-hover:form-visible group-hover:opacity-100',
     upload: 'absolute inset-0 flex items-center justify-center p-3 leading-snug text-center text-sm text-white',
@@ -417,9 +417,9 @@ export default {
     iconRemove: 'flex w-4 h-4 items-center justify-center bg-no-repeat bg-center bg-form-remove-light-white',
   },
   FileSlotImagePreview: {
-    preview: 'px-1.5 form-py-input form-border form-border-color form-rounded form-min-h-input flex justify-start flex-col transition duration-500 hover:bg-gray-100 group',
-    info: 'flex justify-between items-center',
-    previewContainer: 'flex items-center',
+    container: 'px-1.5 form-py-input form-border form-border-color form-rounded form-min-h-input flex justify-start flex-col transition duration-500 hover:bg-gray-100 group',
+    wrapper: 'flex justify-between items-center',
+    previewWrapper: 'flex items-center',
     previewImage: 'form-max-w-30 form-max-h-30 mr-3.5',
     previewLinkWrapper: 'flex items-center group',
     previewStaticWrapper: 'flex items-center',
@@ -452,7 +452,7 @@ export default {
   },
   MultiselectSlotTag: {
     container: 'form-bg-primary text-white text-sm font-semibold py-px pl-2 rounded mr-1 mb-1 flex items-center whitespace-nowrap',
-    containerDisabled: 'pr-2 !form-bg-disabled-darker text-white',
+    container_disabled: 'pr-2 !form-bg-disabled-darker text-white',
     remove: 'flex items-center justify-center p-1 mx-0.5 rounded-sm hover:bg-black hover:bg-opacity-10 group',
     removeIcon: 'bg-form-remove bg-center bg-no-repeat opacity-30 inline-block w-3 h-3 group-hover:opacity-60',
   },

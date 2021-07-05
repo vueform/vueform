@@ -25,8 +25,8 @@ export default {
     defaultClasses,
   } = useElementComponent(props, context, {}, {
     addClasses: [
-      ['label', 'labelInvisible', computed(() => !visible.value)],
-      ['label', 'labelVisible', computed(() => visible.value)],
+      ['label', 'label_invisible', computed(() => !visible.value)],
+      ['label', 'label_visible', computed(() => visible.value)],
     ]
   })
 

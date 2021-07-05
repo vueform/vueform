@@ -18,7 +18,7 @@
       return {
         defaultClasses: {
           container: '',
-          containerError: '',
+          container_error: '',
         },
       }
     },

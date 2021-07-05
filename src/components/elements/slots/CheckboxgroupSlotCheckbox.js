@@ -25,8 +25,8 @@ export default {
       theme,
     } = useElementComponent(props, context, {}, {
       addClasses: [
-        ['input', 'inputEnabled', computed(() => !isDisabled.value)],
-        ['input', 'inputDisabled', computed(() => isDisabled.value)],
+        ['input', 'input_enabled', computed(() => !isDisabled.value)],
+        ['input', 'input_disabled', computed(() => isDisabled.value)],
       ]
     })
 

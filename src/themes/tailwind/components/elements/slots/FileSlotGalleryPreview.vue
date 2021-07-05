@@ -1,10 +1,10 @@
 <template>
-  <div :class="classes.preview" v-show="visible">
+  <div :class="classes.container" v-show="visible">
 
     <!-- Image  -->
     <a
       v-if="uploaded && hasLink"
-      :class="classes.previewContainer"
+      :class="classes.previewWrapper"
       :href="link"
       target="_blank"
     >
@@ -13,7 +13,7 @@
 
     <div
       v-else
-      :class="classes.previewContainer"
+      :class="classes.previewWrapper"
     >
       <img v-show="previewLoaded" :class="classes.previewImage" :src="preview" />
     </div>
@@ -42,8 +42,8 @@
     data() {
       return {
         defaultClasses: {
-          preview: '',
-          previewContainer: '',
+          container: '',
+          previewWrapper: '',
           previewImage: '',
           overlay: '',
           upload: '',

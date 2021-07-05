@@ -17,10 +17,10 @@
       return {
         defaultClasses: {
           container: '',
-          containerInactive: '',
-          containerActive: '',
-          containerEnabled: '',
-          containerDisabled: '',
+          container_inactive: '',
+          container_active: '',
+          container_enabled: '',
+          container_disabled: '',
           icon: '',
           title: '',
           description: '',
