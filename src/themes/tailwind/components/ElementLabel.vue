@@ -1,9 +1,9 @@
 <template>
-  <label v-if="isLabelComponent" :class="classes.label" :for="name">
+  <label v-if="isLabelComponent" :class="classes.container" :for="name">
     <span><component v-if="isLabelComponent" :is="label" :el$="el$" /></span>
     <ElementInfo />
   </label>
-  <label v-else :class="classes.label" :for="name">
+  <label v-else :class="classes.container" :for="name">
     <span v-html="label"></span>
     <ElementInfo />
   </label>
@@ -15,7 +15,7 @@
     data() {
       return {
         defaultClasses: {
-          label: '',
+          container: '',
         }
       }
     }

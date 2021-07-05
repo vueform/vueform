@@ -14,8 +14,8 @@
       return {
         defaultClasses: {
           container: '',
-          before: '',
-          after: '',
+          containerBefore: '',
+          containerAfter: '',
         }
       }
     }

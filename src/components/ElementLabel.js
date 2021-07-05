@@ -18,7 +18,7 @@ export default {
       defaultClasses,
     } = useElementComponent(props, context, {}, {
       addClasses: [
-        ['label', computed(() => el$.value.columnsClasses.label ), ref(true)]
+        ['container', computed(() => el$.value.columnsClasses.label ), ref(true)]
       ]
     })
 

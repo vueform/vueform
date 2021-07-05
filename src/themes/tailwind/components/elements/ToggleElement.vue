@@ -15,7 +15,7 @@
           ref="input"
         />
 
-        <span v-if="text" :class="classes.toggleText" v-html="text"></span>
+        <span v-if="text" :class="classes.text" v-html="text"></span>
       </div>
 
     </template>
@@ -42,8 +42,8 @@
         defaultClasses: {
           container: '',
           wrapper: '',
-          toggleText: '',
           toggle: '',
+          text: '',
         }
       }
     }

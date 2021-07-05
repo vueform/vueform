@@ -10,7 +10,7 @@
         :accept-mimes="acceptMimes"
         :endpoint="trixEndpoint"
         :disabled="isDisabled"
-        :class="classes.trix"
+        :class="classes.input"
         @input="handleInput"
         @alert="handleError"
         ref="input"
@@ -33,9 +33,10 @@
       return {
         defaultClasses: {
           container: '',
-          trix: '',
-          trixFocused: '',
-          disabled: '',
+          input: '',
+          inputEnabled: '',
+          inputDisabled: '',
+          inputFocused: '',
         }
       }
     }

@@ -115,7 +115,7 @@
       img {
         max-width: 120px;
         max-height: 120px;
-        margin-right: $input-padding-y;
+        margin-right: 12px;
       }
 
       .preview-container {

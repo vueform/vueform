@@ -1,9 +1,9 @@
 <template>
-  <i v-if="info" :class="classes.info">
+  <span v-if="info" :class="classes.container">
     <div :class="classes.wrapper">
       <span :class="classes.content" v-html="info"></span>
     </div>
-  </i>
+  </span>
 </template>
 
 <script>
@@ -12,7 +12,7 @@
     data() {
       return {
         defaultClasses: {
-          info: '',
+          container: '',
           wrapper: '',
           content: '',
         }

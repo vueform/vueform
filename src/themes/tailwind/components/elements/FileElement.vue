@@ -53,10 +53,10 @@
       return {
         defaultClasses: {
           container: '',
+          containerRemoving: '',
           button: '',
           buttonEnabled: '',
           buttonDisabled: '',
-          removing: '',
         }
       }
     }

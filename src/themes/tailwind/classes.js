@@ -45,89 +45,104 @@ const select = {
 
 export default {
   // Elements
+  AddressElement: {
+    container: '',
+    childrenContainer: 'flex flex-wrap',
+  },
   ButtonElement: {
+    container: '',
     button: 'inline-block form-p-button leading-snug form-rounded transition form-bg-primary text-white focus:outline-none',
-    enabled: 'cursor-pointer hover:form-bg-primary-darker focus:form-ring',
-    disabled: 'opacity-50 cursor-not-allowed',
-    loading: 'form-bg-primary text-white form-bg-spinner-white opacity-70 cursor-not-allowed'
+    buttonEnabled: 'cursor-pointer hover:form-bg-primary-darker focus:form-ring',
+    buttonDisabled: 'opacity-50 cursor-not-allowed',
+    buttonLoading: 'form-bg-primary text-white form-bg-spinner-white opacity-70 cursor-not-allowed'
   },
   CheckboxElement: {
+    container: '',
+    wrapper: '',
     inputContainer: 'flex align-start form-pt-input-border',
     label: 'cursor-pointer',
     ...checkbox,
   },
   CheckboxgroupElement: {
+    container: '',
     checkboxGroup: 'flex flex-col justify-start form-pt-input-border',
   },
   DateElement: {
+    container: '',
     inputContainer: 'w-full flex',
     ...text,
   },
   DatesElement: {
+    container: '',
     inputContainer: 'w-full flex',
     ...text,
   },
   FileElement: {
+    container: '',
+    containerRemoving: 'opacity-50',
     button: 'inline-block form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
     buttonEnabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
     buttonDisabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
-    removing: 'opacity-50',
-
   },
   GroupElement: {
+    container: '',
     childrenContainer: 'flex flex-wrap',
   },
   ListElement: {
     container: '',
     list: '',
+    listDisabled: '',
+    listSorting: 'is-sorting',
     listItem: 'relative group',
     handle: 'absolute form-w-input form-h-input bg-form-sort-handle bg-center bg-no-repeat left-0 top-0 transform -translate-x-full form-bg-size-2.75 cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
     remove: 'absolute w-0.5 h-0.5 box-content p-1.5 top-px left-px bg-form-remove-light-white bg-black bg-opacity-60 bg-center bg-no-repeat rounded border-2 border-black border-opacity-0 transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 group-hover:opacity-100',
     add: 'form-bg-primary text-white px-2.5 py-1.5 text-sm form-rounded transition hover:form-bg-primary-darker',
-    disabled: '',
-    sorting: 'is-sorting',
   },
   LocationElement: {
+    container: '',
     input: 'w-full form-p-input form-border form-border-color form-rounded',
     ...text,
   },
   MultifileElement: {
     container: '',
     list: '',
+    listDisabled: '',
+    listSorting: '',
     listDefault: '',
     listGallery: 'flex flex-wrap mb-2',
     listItem: 'relative group',
     listItemDefault: '',
     listItemGallery: 'mr-2 mb-2',
-    disabled: '',
-    button: 'inline-block mb-4 form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
-    buttonEnabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
-    buttonDisabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
     handle: '',
     handleDefault: 'absolute form-w-input form-h-input bg-form-sort-handle bg-center bg-no-repeat left-0 top-0 transform -translate-x-full form-bg-size-2.75 cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
     handleGallery: 'absolute w-px h-px box-content p-1.5 top-1 left-1 mt-px ml-px bg-form-arrows-white bg-black bg-opacity-60 bg-center bg-no-repeat rounded form-border-3.5 border-black border-opacity-0 transition opacity-0 group-hover:opacity-100 cursor-grab active:cursor-grabbing',
-    sorting: '',
+    button: 'inline-block mb-4 form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
+    buttonEnabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
+    buttonDisabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
   },
   MultiselectElement: {
     container: '',
     input: 'w-full form-p-input form-border form-border-color form-rounded',
     inputEnabled: 'focus:form-ring',
     inputDisabled: 'form-bg-disabled form-text-disabled',
-    native: '',
-    placeholder: '',
+    inputWrapper: '',
     select: {
       ...select,
     }
   },
   ObjectElement: {
+    container: '',
     childrenContainer: 'flex flex-wrap',
   },
   RadioElement: {
+    container: '',
+    wrapper: '',
     inputContainer: 'flex align-start form-pt-input-border',
     label: 'cursor-pointer',
     ...radio,
   },
   RadiogroupElement: {
+    container: '',
     radioGroup: 'flex flex-col justify-start form-pt-input-border',
   },
   SelectElement: {
@@ -135,8 +150,8 @@ export default {
     input: 'w-full form-p-input form-border form-border-color form-rounded',
     inputEnabled: 'focus:form-ring',
     inputDisabled: 'form-bg-disabled form-text-disabled',
-    native: '',
-    placeholder: '',
+    inputWrapper: '',
+    inputPlaceholder: '',
     select: {
       ...select,
     }
@@ -170,6 +185,7 @@ export default {
     }
   },
   StaticElement: {
+    container: '',
     content: 'form-pt-input-border',
   },
   TagsElement: {
@@ -181,17 +197,19 @@ export default {
     }
   },
   TextareaElement: {
+    container: '',
     inputContainer: 'w-full flex',
     ...text,
   },
   TextElement: {
+    container: '',
     inputContainer: 'w-full flex',
     ...text,
   },
   ToggleElement: {
     container: '',
     wrapper: 'form-min-h-input flex items-center',
-    toggleText: 'ml-2',
+    text: 'ml-2',
     toggle: {
       container: 'inline-block rounded-full outline-none focus:form-ring',
       toggle: 'flex w-12 h-5 rounded-full relative cursor-pointer transition items-center box-content border-2 text-xs leading-none',
@@ -208,23 +226,35 @@ export default {
     }
   },
   TrixElement: {
-    trix: 'form-border form-border-color form-rounded',
-    trixFocused: 'form-ring',
+    container: '',
+    input: 'form-border form-border-color form-rounded',
+    inputEnabled: '',
+    inputDisabled: 'form-bg-disabled form-text-disabled',
+    inputFocused: 'form-ring',
   },
   TTextareaElement: {
+    container: '',
     inputContainer: 'w-full flex',
     ...text,
   },
   TTextElement: {
+    container: '',
     inputContainer: 'w-full flex',
     ...text,
   },
   TTrixElement: {
-    trix: 'form-border form-border-color form-rounded',
-    trixFocused: 'form-ring',
+    container: '',
+    input: 'form-border form-border-color form-rounded',
+    inputEnabled: '',
+    inputDisabled: 'form-bg-disabled form-text-disabled',
+    inputFocused: 'form-ring',
   },
 
   // Wrappers
+  FlatpickrWrapper: {
+    flatpickr: '',
+    calendarContainer: ''
+  },
   TrixWrapper: {
     container: '',
   },
@@ -242,8 +272,8 @@ export default {
   },
   ElementAddon: {
     container: 'form-p-input form-border form-border-color bg-gray-100 flex items-center',
-    before: 'form-addon-before form-border-r-0 form-rounded-l',
-    after: 'form-addon-after form-border-l-0 form-rounded-r order-2',
+    containerBefore: 'form-addon-before form-border-r-0 form-rounded-l',
+    containerAfter: 'form-addon-after form-border-l-0 form-rounded-r order-2',
   },
   ElementDescription: {
     container: 'text-sm text-gray-500 mt-1',
@@ -252,42 +282,43 @@ export default {
     container: 'text-sm text-red-500 block',
   },
   ElementInfo: {
-    info: 'inline-block w-3.5 h-3.5 bg-form-info bg-opacity-20 bg-center bg-no-repeat relative ml-2 top-px cursor-pointer group',
+    container: 'inline-block w-3.5 h-3.5 bg-form-info bg-opacity-20 bg-center bg-no-repeat relative ml-2 top-px cursor-pointer group',
     wrapper: 'absolute left-5 -top-1.5 -mt-px opacity-0 invisible group-hover:opacity-100 group-hover:form-visible transition z-20 w-52',
     content: 'bg-black bg-opacity-90 text-white rounded-md text-sm py-1 px-2.5 not-italic inline-block relative',
   },
   ElementLabel: {
-    label: 'form-py-input-border'
+    container: 'form-py-input-border'
   },
   ElementLabelFloating: {
-    wrapper: 'relative',
+    container: 'relative',
     label: 'absolute z-10 left-2.5 -top-1.5 leading-none form-text-0.5xs text-gray-500 bg-white px-px transition whitespace-nowrap',
     labelInvisible: 'opacity-0 invisible',
     labelVisible: 'opacity-100 visible',
   },
   ElementLayout: {
     container: '',
+    containerError: 'has-error',
     outerWrapper: 'flex flex-wrap',
     outerWrapperSingle: 'mb-4',
     outerWrapperMultiple: '',
     fieldWrapper: '',
-    error: 'has-error',
   },
   ElementLayoutInline: {
     container: '',
-    error: 'has-error',
+    containerError: 'has-error',
   },
   ElementLoader: {
-    wrapper: 'relative z-10 order-1',
+    container: 'relative z-10 order-1',
     loader: 'absolute w-4 h-4 form-mr-input right-full form-top-input mt-1 bg-form-spinner-primary bg-center bg-no-repeat bg-contain animate-spin',
   },
   ElementMessage: {
     container: 'text-sm text-green-500 block',
   },
   ElementText: {
-    before: '',
-    between: '',
-    after: '',
+    container: '',
+    containerBefore: '',
+    containerBetween: '',
+    containerAfter: '',
   },
   FormElements: {
     container: 'flex flex-wrap'
@@ -307,21 +338,7 @@ export default {
   },
   FormMessages: {
     container: 'bg-green-100 border border-green-200 text-green-500 py-3 px-5 rounded mb-4',
-    error: '',
-  },
-  FormTabs: {
-    container: 'flex border-b form-border-color mb-8 items-end',
-  },
-  FormTab: {
-    container: '',
-    wrapper: 'py-2 px-4 block bg-white -mb-px',
-    wrapperActive: 'border form-border-color form-border-b-white rounded-tl rounded-tr',
-    wrapperInactive: 'border border-white form-border-b-color',
-    wrapperValid: '',
-    wrapperInvalid: 'text-red-500',
-  },
-  FormSteps: {
-    container: 'mb-8 flex justify-between overflow-x-auto pt-5',
+    message: '',
   },
   FormStep: {
     container: 'form-step',
@@ -336,14 +353,31 @@ export default {
     containerIncompleted: '',
     containerPending: 'form-step-pending',
   },
+  FormSteps: {
+    container: 'mb-8 flex justify-between overflow-x-auto pt-5',
+  },
   FormStepsControl: {
     button: 'px-4 py-2 form-rounded',
-    previous: 'text-gray-700 bg-gray-200 transition hover:bg-gray-300 focus:form-ring focus:outline-none',
-    next: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
-    finish: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
+    buttonPrevious: 'text-gray-700 bg-gray-200 transition hover:bg-gray-300 focus:form-ring focus:outline-none',
+    buttonNext: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
+    buttonFinish: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
   },
   FormStepsControls: {
     container: 'flex justify-between mt-4'
+  },
+  FormTab: {
+    container: '',
+    wrapper: 'py-2 px-4 block bg-white -mb-px',
+    wrapperActive: 'border form-border-color form-border-b-white rounded-tl rounded-tr',
+    wrapperInactive: 'border border-white form-border-b-color',
+    wrapperValid: '',
+    wrapperInvalid: 'text-red-500',
+  },
+  FormTabs: {
+    container: 'flex border-b form-border-color mb-8 items-end',
+  },
+  Laraform: {
+    form: '',
   },
 
   // Slots
@@ -369,6 +403,19 @@ export default {
     iconFile: 'flex w-4 h-4 items-center justify-center bg-no-repeat bg-center mr-1.5 bg-form-file',
     iconRemove: 'flex w-4 h-4 items-center justify-center bg-no-repeat bg-center bg-form-remove-light',
   },
+  FileSlotGalleryPreview: {
+    preview: 'p-1 form-border form-border-color form-rounded flex justify-start flex-col transition duration-500 form-w-30 form-h-30 relative group',
+    previewContainer: 'w-full h-full',
+    previewImage: 'w-full h-full object-cover',
+    overlay: 'absolute inset-0 bg-black bg-opacity-90 transition duration-300 opacity-0 invisible flex items-center justify-center p-3 form-rounded group-hover:form-visible group-hover:opacity-100',
+    upload: 'absolute inset-0 flex items-center justify-center p-3 leading-snug text-center text-sm text-white',
+    remove: 'absolute right-1 top-1 p-0.5 bg-black bg-opacity-90 form-rounded opacity-0 invisible transition duration-300 group-hover:form-visible group-hover:opacity-100',
+    progress: 'bg-white rounded-none absolute left-1 right-1 bottom-1 pt-1',
+    progressBar: 'form-bg-primary h-1 rounded-none',
+    iconWarning: 'flex w-5 h-5 p-1 items-center justify-center absolute right-0 bottom-0 bg-white border-2 border-white form-rounded bg-no-repeat bg-center bg-form-error',
+    iconUploaded: 'flex w-4 h-4 items-center justify-center bg-no-repeat bg-center ml-2 bg-form-check-circle',
+    iconRemove: 'flex w-4 h-4 items-center justify-center bg-no-repeat bg-center bg-form-remove-light-white',
+  },
   FileSlotImagePreview: {
     preview: 'px-1.5 form-py-input form-border form-border-color form-rounded form-min-h-input flex justify-start flex-col transition duration-500 hover:bg-gray-100 group',
     info: 'flex justify-between items-center',
@@ -388,19 +435,6 @@ export default {
     iconUploaded: 'flex w-4 h-4 items-center justify-center bg-no-repeat bg-center ml-2 bg-form-check-circle',
     iconRemove: 'flex w-4 h-4 items-center justify-center bg-no-repeat bg-center bg-form-remove-light',
   },
-  FileSlotGalleryPreview: {
-    preview: 'p-1 form-border form-border-color form-rounded flex justify-start flex-col transition duration-500 form-w-30 form-h-30 relative group',
-    previewContainer: 'w-full h-full',
-    previewImage: 'w-full h-full object-cover',
-    overlay: 'absolute inset-0 bg-black bg-opacity-90 transition duration-300 opacity-0 invisible flex items-center justify-center p-3 form-rounded group-hover:form-visible group-hover:opacity-100',
-    upload: 'absolute inset-0 flex items-center justify-center p-3 leading-snug text-center text-sm text-white',
-    remove: 'absolute right-1 top-1 p-0.5 bg-black bg-opacity-90 form-rounded opacity-0 invisible transition duration-300 group-hover:form-visible group-hover:opacity-100',
-    progress: 'bg-white rounded-none absolute left-1 right-1 bottom-1 pt-1',
-    progressBar: 'form-bg-primary h-1 rounded-none',
-    iconWarning: 'flex w-5 h-5 p-1 items-center justify-center absolute right-0 bottom-0 bg-white border-2 border-white form-rounded bg-no-repeat bg-center bg-form-error',
-    iconUploaded: 'flex w-4 h-4 items-center justify-center bg-no-repeat bg-center ml-2 bg-form-check-circle',
-    iconRemove: 'flex w-4 h-4 items-center justify-center bg-no-repeat bg-center bg-form-remove-light-white',
-  },
   MultiselectSlotMultipleLabel: {
     container: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
   },
@@ -418,7 +452,7 @@ export default {
   },
   MultiselectSlotTag: {
     container: 'form-bg-primary text-white text-sm font-semibold py-px pl-2 rounded mr-1 mb-1 flex items-center whitespace-nowrap',
-    disabled: 'pr-2 !form-bg-disabled-darker text-white',
+    containerDisabled: 'pr-2 !form-bg-disabled-darker text-white',
     remove: 'flex items-center justify-center p-1 mx-0.5 rounded-sm hover:bg-black hover:bg-opacity-10 group',
     removeIcon: 'bg-form-remove bg-center bg-no-repeat opacity-30 inline-block w-3 h-3 group-hover:opacity-60',
   },

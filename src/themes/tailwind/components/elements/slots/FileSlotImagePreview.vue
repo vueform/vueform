@@ -51,7 +51,8 @@
           previewImage: '',
           previewLinkWrapper: '',
           previewStaticWrapper: '',
-          filename: '',
+          filenameLink: '',
+          filenameStatic: '',
           actions: '',
           percent: '',
           upload: '',
@@ -68,61 +69,4 @@
 </script>
 
 <style lang="scss">
-
-  // .file-info {
-  //   display: flex;
-  //   justify-content: space-between;
-  //   align-items: center;
-
-  //   img {
-  //     max-width: 120px;
-  //     max-height: 120px;
-  //     margin-right: $input-padding-y;
-  //   }
-
-  //   .filename {
-  //     display: flex;
-  //     align-items: center;
-
-  //     a, a:hover, a:focus, a:active {
-  //       color: $body-color;
-  //     }
-
-  //     a:hover {
-  //       text-decoration: underline;
-  //     }
-
-  //     & > span, & > a {
-  //       display: flex;
-  //       align-items: center;
-  //     }
-
-  //     .preview-loader {
-  //       position: relative;
-  //       color: transparent !important;
-  //       width: 14px;
-  //       height: 14px;
-  //       margin-right: $input-padding-y;
-
-  //       &:after {
-  //         content: "";
-  //         display: inline-block;
-  //         width: 14px;
-  //         height: 14px;
-  //         vertical-align: text-bottom;
-  //         border: .25em solid;
-  //         border-right: .25em solid transparent;
-  //         border-radius: 50%;
-  //         -webkit-animation: preview-spinner .75s linear infinite;
-  //         animation: preview-spinner .75s linear infinite;
-  //         font-size: 9px;
-  //         position: absolute;
-  //         left: calc(50% - 7px);
-  //         top: calc(50% - 7px);
-  //         color: initial;
-  //         color: $primary;
-  //       }
-  //     }
-  //   }
-  // }
 </style>

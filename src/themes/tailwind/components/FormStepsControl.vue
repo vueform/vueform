@@ -23,9 +23,9 @@
       return {
         defaultClasses: {
           button: '',
-          previous: '',
-          next: '',
-          finish: '',
+          buttonPrevious: '',
+          buttonNext: '',
+          buttonFinish: '',
         }
       }
     }

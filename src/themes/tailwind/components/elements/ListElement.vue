@@ -52,12 +52,12 @@
         defaultClasses: {
           container: '',
           list: '',
+          listDisabled: '',
+          listSorting: '',
           listItem: '',
           handle: '',
           remove: '',
           add: '',
-          disabled: '',
-          sorting: '',
         },
       }
     },

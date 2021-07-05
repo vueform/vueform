@@ -1,5 +1,5 @@
 <template>
-  <div v-if="content" :class="classes[type]" v-html="content"></div>
+  <div v-if="content" :class="classes.container" v-html="content"></div>
 </template>
 
 <script>
@@ -8,9 +8,10 @@
     data() {
       return {
         defaultClasses: {
-          before: '',
-          between: '',
-          after: '',
+          container: '',
+          containerBefore: '',
+          containerBetween: '',
+          containerAfter: '',
         }
       }
     }

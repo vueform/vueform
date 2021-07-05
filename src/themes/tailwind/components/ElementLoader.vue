@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes.wrapper">
+  <div :class="classes.container">
     <span :class="classes.loader"></span>
   </div>
 </template>
@@ -10,7 +10,7 @@
     data() {
       return {
         defaultClasses: {
-          wrapper: '',
+          container: '',
           loader: '',
         }
       }

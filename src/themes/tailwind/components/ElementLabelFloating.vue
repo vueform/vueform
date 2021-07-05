@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes.wrapper">
+  <div :class="classes.container">
     <span
       :class="classes.label"
       v-html="floating"
@@ -13,7 +13,7 @@
     data() {
       return {
         defaultClasses: {
-          wrapper: '',
+          container: '',
           label: '',
           labelInvisible: '',
           labelVisible: '',

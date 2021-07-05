@@ -25,10 +25,10 @@
       return {
         defaultClasses: {
           container: '',
-          label: '',
           input: '',
           inputEnabled: '',
           inputDisabled: '',
+          label: '',
         }
       }
     }

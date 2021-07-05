@@ -8,7 +8,7 @@
         :visible="!empty"
       />
 
-      <div v-if="isNative" :class="classes.native">
+      <div v-if="isNative" :class="classes.inputWrapper">
         <select
           v-model="value"
           :class="classes.input"
@@ -19,14 +19,14 @@
           ref="input"
         >
           <option
-            v-for="(option, index) in nativeItems"
+            v-for="(option, index) in nativeItems" 
             :value="option.value"
             :key="index"
           >
             {{ option.label }}
           </option>
         </select>
-        <span v-if="placeholder && empty" :class="classes.placeholder">{{ placeholder }}</span>
+        <span v-if="placeholder && empty" :class="classes.inputPlaceholder">{{ placeholder }}</span>
       </div>
       <Multiselect
         v-else
@@ -102,9 +102,8 @@
           input: '',
           inputEnabled: '',
           inputDisabled: '',
-          native: '',
-          placeholder: '',
-          select: '',
+          inputWrapper: '',
+          inputPlaceholder: '',
         }
       }
     }

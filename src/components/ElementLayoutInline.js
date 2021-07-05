@@ -18,7 +18,7 @@ export default {
     } = useElementComponent(props, context, {}, {
       addClasses: [
         ['container', computed(() => el$.value.classes.container), ref(true)],
-        ['container', 'error', computed(() => !el$.value.isStatic && el$.value.errors && !!el$.value.errors.length)],
+        ['container', 'containerError', computed(() => !el$.value.isStatic && el$.value.errors && !!el$.value.errors.length)],
       ]
     })
 

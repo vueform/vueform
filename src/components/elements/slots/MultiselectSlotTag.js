@@ -30,7 +30,7 @@ export default {
       theme,
     } = useElementComponent(props, context, {}, {
       addClasses: [
-        ['container', 'disabled', computed(() => disabled.value)],
+        ['container', 'containerDisabled', computed(() => disabled.value)],
       ]
     })
 

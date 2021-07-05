@@ -23,7 +23,13 @@ export default {
       mainClass,
       theme,
       defaultClasses,
-    } = useElementComponent(props, context)
+    } = useElementComponent(props, context, {}, {
+      addClasses: [
+        ['container', 'containerBefore', computed(() => type.value == 'before')],
+        ['container', 'containerBetween', computed(() => type.value == 'between')],
+        ['container', 'containerAfter', computed(() => type.value == 'after')],
+      ]
+    })
 
     // ============== COMPUTED ==============
 

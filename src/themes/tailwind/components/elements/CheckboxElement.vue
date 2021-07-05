@@ -42,10 +42,10 @@
           container: '',
           wrapper: '',
           inputContainer: '',
-          label: '',
           input: '',
           inputEnabled: '',
           inputDisabled: '',
+          label: '',
         }
       }
     }

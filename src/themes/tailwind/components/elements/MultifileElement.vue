@@ -64,6 +64,8 @@
         defaultClasses: {
           container: '',
           list: '',
+          listDisabled: '',
+          listSorting: '',
           listDefault: '',
           listGallery: '',
           listItem: '',
@@ -72,11 +74,9 @@
           handle: '',
           handleDefault: '',
           handleGallery: '',
-          disabled: '',
           button: '',
           buttonEnabled: '',
           buttonDisabled: '',
-          sorting: '',
         },
       }
     }

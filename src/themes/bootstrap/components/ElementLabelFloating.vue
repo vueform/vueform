@@ -46,6 +46,7 @@
     transition: .3s;
     opacity: 0;
     visibility: hidden;
+    white-space: nowrap;
 
     &.is-visible {
       opacity: 1;

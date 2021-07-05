@@ -62,9 +62,9 @@
         defaultClasses: {
           container: '',
           button: '',
-          enabled: '',
-          disabled: '',
-          loading: '',
+          buttonEnabled: '',
+          buttonDisabled: '',
+          buttonLoading: '',
         },
       }
     }

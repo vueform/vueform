@@ -26,8 +26,8 @@ export default {
       defaultClasses,
     } = useElementComponent(props, context, {}, {
       addClasses: [
-        ['container', 'before', computed(() => type.value === 'before')],
-        ['container', 'after', computed(() => type.value === 'after')],
+        ['container', 'containerBefore', computed(() => type.value === 'before')],
+        ['container', 'containerAfter', computed(() => type.value === 'after')],
       ],
     })
 

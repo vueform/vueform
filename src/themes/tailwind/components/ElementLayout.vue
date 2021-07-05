@@ -25,11 +25,11 @@
       return {
         defaultClasses: {
           container: '',
+          containerError: '',
           outerWrapper: '',
           outerWrapperSingle: '',
           outerWrapperMultiple: '',
           fieldWrapper: '',
-          error: '',
         },
       }
     },

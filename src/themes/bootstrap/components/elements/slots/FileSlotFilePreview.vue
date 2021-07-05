@@ -135,6 +135,7 @@
           padding: 2px 8px;
           font-weight: 600;
           margin-right: 5px;
+          white-space: nowrap;
 
           & + .remove {
             display: inline-block;
@@ -143,6 +144,7 @@
 
         .remove {
           display: none;
+          margin-right: 5px;
         }
       }
     }
