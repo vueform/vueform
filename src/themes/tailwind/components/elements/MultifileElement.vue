@@ -5,17 +5,18 @@
 
       <!-- Drag n drop -->
       <DragAndDrop
-        v-if="drop && canDrop && !isDisabled"
+        v-if="drop && canDrop"
         :title="__(`laraform.elements.${type}.dndTitle`)"
         :description="__(`laraform.elements.${type}.dndDescription`)"
+        :disabled="isDisabled"
         @click="handleClick"
         @drop="handleDrop"
       />
       <!-- Upload button -->
       <a
-        v-else-if="!isDisabled"
+        v-else
         href=""
-        :class="classes.selectButton"
+        :class="classes.button"
         @click.prevent="handleClick"
       >{{ __('laraform.elements.multifile.uploadButton') }}</a>
       
@@ -72,7 +73,9 @@
           handleDefault: '',
           handleGallery: '',
           disabled: '',
-          selectButton: '',
+          button: '',
+          buttonEnabled: '',
+          buttonDisabled: '',
           sorting: '',
         },
       }

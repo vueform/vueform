@@ -1,3 +1,5 @@
+import { computed } from 'composition-api'
+
 const base = function (props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
@@ -7,8 +9,13 @@ const base = function (props, context, dependencies)
   const input = dependencies.input
   const isObject = dependencies.isObject
   const storeFileName = dependencies.storeFileName
+  const children$ = dependencies.children$
 
   // ============== COMPUTED ==============
+
+  const preparing = computed(() => {
+    return _.some(children$.value, { available: true, perparing: true })
+  })
 
   // =============== METHODS ==============
 
@@ -45,6 +52,7 @@ const base = function (props, context, dependencies)
   }
 
   return {
+    preparing,
     handleChange,
     handleClick,
   }

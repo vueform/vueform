@@ -8,6 +8,7 @@
         v-if="drop && canDrop && canSelect"
         :title="__(`laraform.elements.${type}.dndTitle`)"
         :description="__(`laraform.elements.${type}.dndDescription`)"
+        :disabled="isDisabled"
         @click="handleClick"
         @drop="handleDrop"
       />
@@ -15,13 +16,13 @@
       <a
         v-else-if="canSelect"
         href=""
-        :class="classes.selectButton"
+        :class="classes.button"
         @click.prevent="handleClick"
       >{{ __(`laraform.elements.${type}.select`) }}</a>
       
-      <!-- Invisible input field -->
+      <!-- Hidden file input -->
       <input
-        v-if="canSelect"
+        v-if="canSelect && !isDisabled && !preparing"
         v-show="false"
         type="file"
         :id="fieldId"
@@ -52,7 +53,9 @@
       return {
         defaultClasses: {
           container: '',
-          selectButton: '',
+          button: '',
+          buttonEnabled: '',
+          buttonDisabled: '',
           removing: '',
         }
       }

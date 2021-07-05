@@ -259,6 +259,8 @@ export default {
       form$: form$.form$,
       theme: theme.theme,
       removing: removing.removing,
+      isDisabled: disabled.isDisabled,
+      preparing: file.preparing,
     })
 
     const columns = useColumns(props, context, {

@@ -46,10 +46,10 @@ const select = {
 export default {
   // Elements
   ButtonElement: {
-    button: 'inline-block form-p-button leading-snug form-rounded transition focus:outline-none',
-    enabled: 'form-bg-primary text-white cursor-pointer hover:form-bg-primary-darker focus:form-ring',
-    disabled: 'form-bg-disabled form-text-disabled cursor-not-allowed',
-    loading: 'form-bg-primary text-white form-bg-spinner-white opacity-70 cursor-default'
+    button: 'inline-block form-p-button leading-snug form-rounded transition form-bg-primary text-white focus:outline-none',
+    enabled: 'cursor-pointer hover:form-bg-primary-darker focus:form-ring',
+    disabled: 'opacity-50 cursor-not-allowed',
+    loading: 'form-bg-primary text-white form-bg-spinner-white opacity-70 cursor-not-allowed'
   },
   CheckboxElement: {
     inputContainer: 'flex align-start form-pt-input-border',
@@ -68,8 +68,11 @@ export default {
     ...text,
   },
   FileElement: {
-    selectButton: 'inline-block form-p-button leading-snug form-rounded transition bg-gray-100 cursor-pointer hover:bg-gray-200 focus:form-ring focus:outline-none',
+    button: 'inline-block form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
+    buttonEnabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
+    buttonDisabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
     removing: 'opacity-50',
+
   },
   GroupElement: {
     childrenContainer: 'flex flex-wrap',
@@ -97,7 +100,9 @@ export default {
     listItemDefault: '',
     listItemGallery: 'mr-2 mb-2',
     disabled: '',
-    selectButton: 'inline-block mb-4 form-p-button leading-snug form-rounded transition bg-gray-100 cursor-pointer hover:bg-gray-200 focus:form-ring focus:outline-none',
+    button: 'inline-block mb-4 form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
+    buttonEnabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
+    buttonDisabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
     handle: '',
     handleDefault: 'absolute form-w-input form-h-input bg-form-sort-handle bg-center bg-no-repeat left-0 top-0 transform -translate-x-full form-bg-size-2.75 cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
     handleGallery: 'absolute w-px h-px box-content p-1.5 top-1 left-1 mt-px ml-px bg-form-arrows-white bg-black bg-opacity-60 bg-center bg-no-repeat rounded form-border-3.5 border-black border-opacity-0 transition opacity-0 group-hover:opacity-100 cursor-grab active:cursor-grabbing',
@@ -226,9 +231,11 @@ export default {
 
   // Components
   DragAndDrop: {
-    container: 'w-full border border-dashed transition flex flex-col items-center justify-center p-6 cursor-pointer',
+    container: 'w-full border border-dashed transition flex flex-col items-center justify-center p-6 cursor-pointer mb-4',
     containerInactive: 'form-border-color',
     containerActive: 'form-border-primary form-bg-primary bg-opacity-20',
+    containerEnabled: '',
+    containerDisabled: 'opacity-50 bg-gray-50 cursor-not-allowed',
     icon: 'inline-block w-9 h-8 bg-center bg-contain bg-form-inbox-in',
     title: 'font-semibold mt-3',
     description: '',
@@ -242,7 +249,7 @@ export default {
     container: 'text-sm text-gray-500 mt-1',
   },
   ElementError: {
-    container: 'text-sm text-red-500',
+    container: 'text-sm text-red-500 block',
   },
   ElementInfo: {
     info: 'inline-block w-3.5 h-3.5 bg-form-info bg-opacity-20 bg-center bg-no-repeat relative ml-2 top-px cursor-pointer group',
@@ -275,7 +282,7 @@ export default {
     loader: 'absolute w-4 h-4 form-mr-input right-full form-top-input mt-1 bg-form-spinner-primary bg-center bg-no-repeat bg-contain animate-spin',
   },
   ElementMessage: {
-    container: 'text-sm text-green-500',
+    container: 'text-sm text-green-500 block',
   },
   ElementText: {
     before: '',
@@ -303,7 +310,7 @@ export default {
     error: '',
   },
   FormTabs: {
-    container: 'flex border-b form-border-color mb-8',
+    container: 'flex border-b form-border-color mb-8 items-end',
   },
   FormTab: {
     container: '',
@@ -366,7 +373,7 @@ export default {
     preview: 'px-1.5 form-py-input form-border form-border-color form-rounded form-min-h-input flex justify-start flex-col transition duration-500 hover:bg-gray-100 group',
     info: 'flex justify-between items-center',
     previewContainer: 'flex items-center',
-    previewImage: 'form-max-w-30 form-max-h-30 mr-1.5',
+    previewImage: 'form-max-w-30 form-max-h-30 mr-3.5',
     previewLinkWrapper: 'flex items-center group',
     previewStaticWrapper: 'flex items-center',
     filenameLink: 'group-hover:underline',

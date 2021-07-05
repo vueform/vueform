@@ -159,6 +159,8 @@ const multifile = function(props, context, dependencies)
       ['listItem', 'listItemGallery', computed(() => view.value === 'gallery')],
       ['handle', 'handleDefault', computed(() => view.value !== 'gallery')],
       ['handle', 'handleGallery', computed(() => view.value === 'gallery')],
+      ['button', 'buttonEnabled', computed(() => !isDisabled.value && !preparing.value)],
+      ['button', 'buttonDisabled', computed(() => isDisabled.value || preparing.value)],
     ]
   })
 
@@ -166,6 +168,7 @@ const multifile = function(props, context, dependencies)
 
   const isDisabled = dependencies.isDisabled
   const sorting = dependencies.sorting
+  const preparing = dependencies.preparing
 
   return {
     classes,
@@ -183,12 +186,16 @@ const file = function(props, context, dependencies)
   } = base(props, context, dependencies, {
     addClasses: [
       ['container', 'removing', computed(() => removing.value)],
+      ['button', 'buttonEnabled', computed(() => !isDisabled.value && !preparing.value)],
+      ['button', 'buttonDisabled', computed(() => isDisabled.value || preparing.value)],
     ]
   })
 
   // ============ DEPENDENCIES ============
 
   const removing = dependencies.removing
+  const isDisabled = dependencies.isDisabled
+  const preparing = dependencies.preparing
 
   return {
     classes,

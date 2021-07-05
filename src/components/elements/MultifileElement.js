@@ -273,6 +273,7 @@ export default {
       add: data.add,
       isObject: prototype.isObject,
       storeFileName: prototype.storeFileName,
+      children$: children.children$,
     })
 
     const drop = useDrop(props, context, {
@@ -288,6 +289,7 @@ export default {
       theme: theme.theme,
       isDisabled: disabled.isDisabled,
       sorting: sorting.sorting,
+      preparing: multifile.preparing,
     })
 
     const sort = useSort(props, context, {

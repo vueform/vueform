@@ -1,4 +1,4 @@
-import { onMounted, ref, computed } from 'composition-api'
+import { onMounted, ref, computed, toRefs, } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
 
 export default {
@@ -13,9 +13,16 @@ export default {
       type: String,
       required: true,
     },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
+    }
   },
   setup(props, context)
   {
+    const { disabled } = toRefs(props)
+
     // ============== DEPENDENCIES ==============
 
     const {
@@ -30,6 +37,8 @@ export default {
       addClasses: [
         ['container', 'containerActive', computed(() => dragging.value)],
         ['container', 'containerInactive', computed(() => !dragging.value)],
+        ['container', 'containerEnabled', computed(() => !disabled.value)],
+        ['container', 'containerDisabled', computed(() => disabled.value)],
       ],
     })
 
@@ -73,21 +82,37 @@ export default {
 
       // listening for the actual drop event
       area.value.addEventListener('drop', (e) => {
+        if (disabled.value) {
+          return
+        }
+
         context.emit('drop', e)
         dragging.value = false
       })
 
       area.value.addEventListener('dragover', (e) => {
+        if (disabled.value) {
+          return
+        }
+        
         if (dragging.value !== true) {
           dragging.value = true
         }
       })
 
       area.value.addEventListener('dragleave', (e) => {
+        if (disabled.value) {
+          return
+        }
+
         dragging.value = false
       })
 
       area.value.addEventListener('dragend', (e) => {
+        if (disabled.value) {
+          return
+        }
+
         dragging.value = false
       })
     })

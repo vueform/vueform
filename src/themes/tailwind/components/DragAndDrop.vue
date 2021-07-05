@@ -19,6 +19,8 @@
           container: '',
           containerInactive: '',
           containerActive: '',
+          containerEnabled: '',
+          containerDisabled: '',
           icon: '',
           title: '',
           description: '',

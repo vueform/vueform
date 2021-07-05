@@ -239,7 +239,7 @@ const base = function (props, context, dependencies)
    * @type {boolean}
    */
   const canSelect = computed(() => {
-    return !embed.value && stage.value == 0 && !isDisabled.value && !preparing.value
+    return !embed.value && stage.value == 0
   })
 
   // =============== METHODS ==============
