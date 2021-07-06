@@ -65,7 +65,4 @@
 </script>
 
 <style lang="scss">
-  .sortable-ghost {
-    @apply opacity-60;
-  }
 </style>

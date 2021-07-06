@@ -27,7 +27,7 @@ export default {
       defaultClasses,
     } = useFormComponent(props, context, {}, {
       addClasses: [
-        ['button', type.value, ref(true)],
+        ['button', `button_${type.value}`, ref(true)],
       ]
     })
 

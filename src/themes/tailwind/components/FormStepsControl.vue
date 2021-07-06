@@ -23,7 +23,7 @@
       return {
         defaultClasses: {
           button: '',
-          button_brevious: '',
+          button_previous: '',
           button_next: '',
           button_finish: '',
         }

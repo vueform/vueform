@@ -45,7 +45,4 @@
 </script>
 
 <style lang="scss">
-  .slider-wrapper {
-    margin-top: calc((38px - 6px) / 2)
-  }
 </style>

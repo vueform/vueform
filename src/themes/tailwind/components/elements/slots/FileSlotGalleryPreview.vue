@@ -60,20 +60,4 @@
 </script>
 
 <style lang="scss">
-  // Refers to MultifileElement classes
-  .is-sorting, .gallery-list.is-disabled {
-    .gallery-preview {
-      &:hover {
-        .overlay {
-          opacity: 0;
-          visibility: hidden;
-        }
-
-        .remove {
-          opacity: 0;
-          visibility: hidden;
-        }
-      }
-    }
-  }
 </style>
