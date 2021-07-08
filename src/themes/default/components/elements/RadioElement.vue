@@ -1,49 +1,19 @@
-<template>
-  <component :is="elementLayout">
-    <template v-slot:field>
-      
-      <div :class="classes.wrapper">
-        <div :class="classes.inputContainer">
-          <input
-            type="radio"
-            v-model="value"
-            :value="radioValue"
-            :class="classes.input"
-            :name="fieldName"
-            :id="fieldId"
-            :disabled="isDisabled"
-            ref="input"
-          />
-          <label 
-            :class="classes.label"
-            :for="name"
-            v-html="text"
-          >
-          </label>
-        </div>
-      </div>
-
-    </template>
-
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]>
-      <slot :name="slot" :el$="el$">
-        <component :is="component" v-bind="elementSlotProps[slot]" />
-      </slot>
-    </template>
-  </component>
-</template>
-
 <script>
+  import RadioElement from './../../../blank/components/elements/RadioElement'
+
   export default {
     name: 'RadioElement',
+    render: RadioElement.render,
     data() {
       return {
         defaultClasses: {
           container: '',
           wrapper: 'radio-wrapper',
           inputContainer: 'form-radio',
-          label: 'form-radio-label',
           input: 'form-radio-input',
+          input_enabled: '',
+          input_disabled: '',
+          label: 'form-radio-label',
         }
       }
     }
@@ -70,7 +40,6 @@
 
   .form-radio-input {
     position: absolute;
-    margin-top: $form-check-input-margin-y;
     margin-left: -$form-check-input-gutter;
     -webkit-appearance: none;
     transition: all .2s ease-in-out;

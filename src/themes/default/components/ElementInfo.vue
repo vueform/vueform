@@ -1,18 +1,13 @@
-<template>
-  <i v-if="info" :class="classes.info">
-    <div :class="classes.wrapper">
-      <span :class="classes.content" v-html="info"></span>
-    </div>
-  </i>
-</template>
-
 <script>
+  import ElementInfo from './../../blank/components/ElementInfo'
+
   export default {
     name: 'ElementInfo',
+    render: ElementInfo.render,
     data() {
       return {
         defaultClasses: {
-          info: 'element-info',
+          container: 'element-info',
           wrapper: 'element-info-wrapper',
           content: 'element-info-content',
         }

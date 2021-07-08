@@ -1,17 +1,26 @@
 <script>
-  import TrixElement from './TrixElement'
+  import TTrixElement from './../../../blank/components/elements/TTrixElement'
 
   export default {
     name: 'TTrixElement',
-    render: TrixElement.render,
+    render: TTrixElement.render,
     data() {
       return {
         defaultClasses: {
           container: '',
-          trix: '',
-          disabled: 'is-disabled',
+          input: '',
+          input_enabled: '',
+          input_disabled: 'is-disabled',
+          input_focused: '',
         }
       }
     }
   }
 </script>
+
+<style lang="scss">
+  @import 'node_modules/bootstrap/scss/_functions.scss';
+  @import 'node_modules/bootstrap/scss/_variables.scss';
+  @import 'node_modules/bootstrap/scss/_mixins.scss';
+
+</style>

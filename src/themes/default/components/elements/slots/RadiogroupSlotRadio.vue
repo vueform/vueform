@@ -1,32 +1,17 @@
-<template>
-  <div :class="classes.container">
-    <input
-      type="radio"
-      v-model="el$.value"
-      :value="value"
-      :class="classes.input"
-      :name="el$.name"
-      :id="`${el$.fieldId}-${value}`"
-      :disabled="isDisabled"
-    />
-
-    <label 
-      :class="classes.label"
-      :for="`${el$.fieldId}-${value}`"
-      v-html="item"
-    ></label>
-  </div>
-</template>
-
 <script>
+  import RadiogroupSlotRadio from './../../../../blank/components/elements/slots/RadiogroupSlotRadio'
+
   export default {
     name: 'RadiogroupSlotRadio',
+    render: RadiogroupSlotRadio.render,
     data() {
       return {
         defaultClasses: {
           container: 'form-radio',
-          label: 'form-radio-label',
           input: 'form-radio-input',
+          input_enabled: '',
+          input_disabled: '',
+          label: 'form-radio-label',
         }
       }
     }
@@ -37,4 +22,5 @@
   @import 'node_modules/bootstrap/scss/_functions.scss';
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
+
 </style>

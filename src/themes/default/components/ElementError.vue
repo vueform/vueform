@@ -1,19 +1,13 @@
-<template>
-  <small
-    v-if="error"
-    :class="classes.container"
-  >
-    {{ error }}
-  </small>
-</template>
-
 <script>
+  import ElementError from './../../blank/components/ElementError'
+
   export default {
     name: 'ElementError',
+    render: ElementError.render,
     data() {
       return {
         defaultClasses: {
-          container: 'text-danger'
+          container: 'text-danger',
         }
       }
     }
@@ -24,4 +18,5 @@
   @import 'node_modules/bootstrap/scss/_functions.scss';
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
+
 </style>

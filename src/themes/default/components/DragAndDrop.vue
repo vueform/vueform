@@ -1,23 +1,17 @@
-<template>
-  <div
-    :class="classes.container"
-    @click.prevent="handleClick"
-    ref="area"
-  >
-    <span :class="classes.icon"></span>
-    <span v-if="title" :class="classes.title">{{ title }}</span>
-    <span v-if="description" :class="classes.description">{{ description }}</span>
-  </div>
-</template>
-
 <script>
+  import DragAndDrop from './../../blank/components/DragAndDrop'
+
   export default {
     name: 'DragAndDrop',
+    render: DragAndDrop.render,
     data() {
       return {
         defaultClasses: {
           container: 'drag-and-drop',
-          active: 'is-active',
+          container_inactive: '',
+          container_active: 'is-active',
+          container_enabled: '',
+          container_disabled: '',
           icon: 'icon-upload',
           title: 'dnd-title',
           description: 'dnd-description',

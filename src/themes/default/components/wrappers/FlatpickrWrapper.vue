@@ -1,16 +1,9 @@
-<template>
-  <input
-    type="text"
-    :class="classes.flatpickr"
-    :id="id"
-    :placeholder="placeholder"
-    ref="input"
-  />
-</template>
-
 <script>
+  import FlatpickrWrapper from './../../../blank/components/wrappers/FlatpickrWrapper'
+
   export default {
     name: 'FlatpickrWrapper',
+    render: FlatpickrWrapper.render,
     data() {
       return {
         defaultClasses: {
@@ -21,3 +14,10 @@
     }
   }
 </script>
+
+<style lang="scss">
+  @import 'node_modules/bootstrap/scss/_functions.scss';
+  @import 'node_modules/bootstrap/scss/_variables.scss';
+  @import 'node_modules/bootstrap/scss/_mixins.scss';
+
+</style>

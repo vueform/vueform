@@ -1,38 +1,10 @@
-<template>
-  <component :is="elementLayout">
-
-    <template v-slot:field>
-
-      <div :class="classes.wrapper">
-        <Toggle
-          :value="value"
-          :modelValue="value"
-          v-bind="fieldOptions"
-          :name="name"
-          :id="fieldId"
-          @input="handleChange"
-          ref="input"
-        />
-
-        <span v-if="text" :class="classes.toggleText" v-html="text"></span>
-      </div>
-
-    </template>
-
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]>
-      <slot :name="slot" :el$="el$">
-        <component :is="component" v-bind="elementSlotProps[slot]" />
-      </slot>
-    </template>
-
-  </component>
-</template>
-
 <script>
+  import ToggleElement from './../../../blank/components/elements/ToggleElement'
   import Toggle from '@vueform/toggle/src/Toggle'
 
   export default {
     name: 'ToggleElement',
+    render: ToggleElement.render,
     components: {
       Toggle,
     },
@@ -41,7 +13,8 @@
         defaultClasses: {
           container: '',
           wrapper: 'toggle-wrapper',
-          toggleText: 'toggle-text',
+          toggle: {},
+          text: 'toggle-text',
         }
       }
     }
@@ -60,106 +33,97 @@
     min-height: $input-height;
   }
 
-  .toggle-input {
-    margin-right: 10px;
+  .toggle-text {
+    margin-left: 0.5rem;
+  }
 
-    label {
-      background: $input-border-color;
-      width: 54px;
-      width: var(--toggle-width);
-      height: 24px;
-      height: var(--toggle-height);
-      display: flex;
-      border-radius: 12px;
-      border-radius: var(--toggle-radius);
-      position: relative;
-      cursor: pointer;
-      transition: .3s background;
-      transition: var(--toggle-speed) background;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      padding-left: 24px;
-      padding-left: var(--toggle-height);
-      padding-right: 6px;
-      margin-bottom: 0;
+  .toggle-container {
+    display: inline-block;
+  }
 
-      &:before {
-        content: " ";
-        background: #ffffff;
-        background: var(--toggle-off-handle-color);
-        width: 18px;
-        width: var(--toggle-handle-size);
-        height: 18px;
-        height: var(--toggle-handle-size);
-        border-radius: 50%;
-        position: absolute;
-        left: 3px;
-        top: 3px;
-        transition: .3s left;
-        transition: var(--toggle-speed) left;
-      }
+  .toggle {
+    display: flex;
+    width: var(--toggle-width, 3rem);
+    height: var(--toggle-height, 1.25rem);
+    border-radius: 999px;
+    position: relative;
+    cursor: pointer;
+    transition: .3s all;
+    align-items: center;
+    box-sizing: content-box;
+    border: var(--toggle-border, 0.125rem) solid;
+    font-size: var(--toggle-font-size, 0.75rem);
+    line-height: 1;
+  }
 
-      .toggle-on,
-      .toggle-off {
-        font-size: 13px;
-        font-size: var(--toggle-font-size);
-        text-align: center;
-        font-weight: 500;
-      }
+  .toggle-on {
+    background: var(--toggle-bg-on, #10b981);
+    border-color: var(--toggle-border-on, #10b981);
+    justify-content: flex-start;
+    color: var(--toggle-text-on, #ffffff);
+  }
 
-      .toggle-on {
-        display: none;
-        color: #ffffff;
-        color: var(--toggle-on-text-color);
-      }
+  .toggle-off {
+    background: var(--toggle-bg-off, #e5e7eb);
+    border-color: var(--toggle-border-off, #e5e7eb);
+    justify-content: flex-end;
+    color: var(--toggle-text-off, #374151);
+  }
 
-      .toggle-off {
-        display: flex;
-        color: #80878c;
-        color: var(--toggle-off-text-color);
-      }
-    }
+  .toggle-on-disabled {
+    background: var(--toggle-bg-on-disabled, #d1d5db);
+    border-color: var(--toggle-border-on-disabled, #d1d5db);
+    justify-content: flex-start;
+    color: var(--toggle-text-on-disabled, #9ca3af);
+    cursor: not-allowed;
+  }
 
-    input {
-      display: none;
+  .toggle-off-disabled {
+    background: var(--toggle-bg-off-disabled, #e5e7eb);
+    border-color: var(--toggle-border-off-disabled, #e5e7eb);
+    justify-content: flex-end;
+    color: var(--toggle-text-off-disabled, #9ca3af);
+    cursor: not-allowed;
+  }
 
-      &:checked + label {
-        background: $primary;
-        padding-right: 24px;
-        padding-right: var(--toggle-height);
-        padding-left: 6px;
+  .toggle-handle {
+    display: inline-block;
+    background: var(--toggle-handle-enabled, #ffffff);
+    width: 20px;
+    height: 20px;
+    top: 0;
+    border-radius: 50%;
+    position: absolute;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: var(--toggle-duration, 150ms);
+  }
 
-        &:before {
-          background: #ffffff;
-          background: var(--toggle-on-handle-color);
-          left: calc(100% - var(--toggle-handle-right-on));
-        }
+  .toggle-handle-on {
+    left: 100%;
+    transform: translateX(-100%);
+  }
 
-        .toggle-on {
-          display: flex;
-        }
+  .toggle-handle-off {
+    left: 0%;
+  }
 
-        .toggle-off {
-          display: none;
-        }
-      }
+  .toggle-handle-on-disabled {
+    left: 100%;
+    transform: translateX(-100%);
+    background: var(--toggle-handle-disabled, #f3f4f6);
+  }
 
-      &:disabled + label {
-        background: $input-disabled-bg;
-        cursor: not-allowed;
+  .toggle-handle-off-disabled {
+    left: 0%;
+    background: var(--toggle-handle-disabled, #f3f4f6);
+  }
 
-        &:before {
-          background: #f2faff;
-          background: var(--toggle-disabled-handle-color);
-        }
-
-        .toggle-on,
-        .toggle-off {
-          color: #80878c;
-          color: var(--toggle-disabled-text-color);
-        }
-      }
-    }
+  .toggle-label {
+    text-align: center;
+    width: calc(var(--toggle-width, 3.25rem) - var(--toggle-height, 1.25rem));
+    box-sizing: border-box;
+    white-space: nowrap;
+    user-select: none;
   }
 </style>

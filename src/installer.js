@@ -7,6 +7,7 @@ import autosize from './services/autosize'
 import location from './services/location'
 import condition from './services/condition'
 import i18n from './services/i18n'
+import columns from './services/columns'
 import { reactive, ref } from 'composition-api'
 
 import AddressElement from './components/elements/AddressElement'
@@ -176,6 +177,7 @@ export default function(config) {
           autosize,
           location,
           condition,
+          columns,
         }
       }
     }

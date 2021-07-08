@@ -1,25 +1,16 @@
-<template>
-  <div :class="classes.container">
-    <component
-      v-for="(element, name) in schema"
-      v-bind="element"
-      :is="component(element)"
-      :name="name"
-      :key="name"
-    />
-  </div>
-</template>
-
 <script>
+  import FormElements from './../../blank/components/FormElements'
+
   export default {
     name: 'FormElements',
+    render: FormElements.render,
     data() {
       return {
         defaultClasses: {
-          container: 'row',
+          container: 'form-row',
         }
       }
-    },
+    }
   }
 </script>
 
@@ -27,4 +18,5 @@
   @import 'node_modules/bootstrap/scss/_functions.scss';
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
+
 </style>

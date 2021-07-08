@@ -1,22 +1,14 @@
-<template>
-  <ul :class="classes.container">
-    <FormLanguage
-      v-for="(lang, code, key) in languages"
-      :language="lang"
-      :code="code"
-      :key="key"
-      @select="handleSelect"
-    />
-  </ul>
-</template>
 <script>
+  import FormLanguages from './../../blank/components/FormLanguages'
+
   export default {
     name: 'FormLanguages',
+    render: FormLanguages.render,
     data() {
       return {
         defaultClasses: {
           container: 'form-languages nav nav-pills nav-fill',
-        },
+        }
       }
     }
   }

@@ -1,21 +1,16 @@
-<template>
-  <span :class="classes.container">
-    <span v-text="option.label"></span>
-    <i
-      v-if="!disabled"
-      @click.prevent
-      @mousedown.prevent="handleTagRemove(option, $event)"
-    ></i>
-  </span>
-</template>
-
 <script>
+  import MultiselectSlotTag from './../../../../blank/components/elements/slots/MultiselectSlotTag'
+
   export default {
     name: 'MultiselectSlotTag',
+    render: MultiselectSlotTag.render,
     data() {
       return {
         defaultClasses: {
-          container: 'multiselect-tag'
+          container: 'multiselect-tag',
+          container_disabled: '',
+          remove: 'multiselect-tag-remove',
+          removeIcon: 'multiselect-tag-remove-icon',
         }
       }
     }
@@ -42,11 +37,11 @@
     white-space: nowrap;
   }
 
-  .multiselect-tag i {
+  .multiselect-tag-remove {
     cursor: pointer;
   }
 
-  .multiselect-tag i:before {
+  .multiselect-tag-remove-icon {
     content: "\D7";
     color: darken($primary, 25%);
     font-size: 14px;
@@ -57,7 +52,7 @@
     font-style: normal;
   }
 
-  .multiselect-tag i:hover:before {
+  .multiselect-tag-remove:hover .multiselect-tag-remove-icon {
     color: #ffffff;
     background: rgba(255,255,255,0.2);
   }

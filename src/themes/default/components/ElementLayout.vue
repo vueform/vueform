@@ -1,38 +1,21 @@
-<template>
-  <div :class="classes.container" v-show="visible">
-    <div :class="classes.outerWrapper">
-
-      <slot v-if="hasLabel" name="label"></slot>
-
-      <div :class="classes.fieldWrapper">
-        <slot name="before"></slot>
-        <slot name="field"></slot>
-        <slot name="between"></slot>
-        <slot name="description"></slot>
-        <slot name="error"></slot>
-        <slot name="message"></slot>
-        <slot name="after"></slot>
-      </div>
-
-    </div>
-  </div>
-</template>
-
 <script>
+  import ElementLayout from './../../blank/components/ElementLayout'
+
   export default {
     name: 'ElementLayout',
+    render: ElementLayout.render,
     data() {
       return {
         defaultClasses: {
           container: '',
+          container_error: 'has-error',
           outerWrapper: 'row',
-          outerWrapperSingle: 'form-group',
-          outerWrapperMultiple: '',
+          outerWrapper_single: 'form-group',
+          outerWrapper_multiple: '',
           fieldWrapper: '',
-          error: 'has-error',
-        },
+        }
       }
-    },
+    }
   }
 </script>
 
@@ -40,4 +23,5 @@
   @import 'node_modules/bootstrap/scss/_functions.scss';
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
+
 </style>

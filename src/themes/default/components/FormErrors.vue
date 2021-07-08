@@ -1,21 +1,9 @@
-<template>
-  <div
-    :class="classes.container"
-  >
-    <div  
-      v-for="(error, key, index) in errors"
-      :class="classes.error"
-      :key="index"
-    >
-      {{ error }}
-    </div>
-  </div>
-</template>
-
 <script>
+  import FormErrors from './../../blank/components/FormErrors'
 
   export default {
     name: 'FormErrors',
+    render: FormErrors.render,
     data() {
       return {
         defaultClasses: {
@@ -31,4 +19,5 @@
   @import 'node_modules/bootstrap/scss/_functions.scss';
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
+
 </style>

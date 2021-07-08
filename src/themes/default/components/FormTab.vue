@@ -1,36 +1,19 @@
-<template>
-  <li v-show="visible" :class="classes.container">
-    <a
-      v-if="isLabelComponent"
-      href="#"
-      :class="classes.wrapper"
-      @click.prevent="select"
-    >
-      <component :is="tabLabel" :form$="form$" />
-    </a>
-    <a
-      v-else
-      v-html="tabLabel"
-      href="#"
-      :class="classes.wrapper"
-      @click.prevent="select"
-    ></a>
-  </li>
-</template>
-
 <script>
+  import FormTab from './../../blank/components/FormTab'
+
   export default {
     name: 'FormTab',
+    render: FormTab.render,
     data() {
       return {
         defaultClasses: {
           container: 'nav-item',
           wrapper: 'nav-link',
-          active: 'active',
-          inactive: '',
-          valid: '',
-          invalid: 'has-error',
-        },
+          wrapper_active: 'active',
+          wrapper_inactive: '',
+          wrapper_valid: '',
+          wrapper_invalid: 'has-error',
+        }
       }
     }
   }

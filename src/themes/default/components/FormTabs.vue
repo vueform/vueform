@@ -1,27 +1,16 @@
-<template>
-  <ul :class="classes.container">
-    <slot>
-      <FormTab
-        v-for="(tab, name, i) in tabs"
-        v-bind="tab"
-        :name="name"
-        :index="i"
-        :key="name"
-      />
-    </slot>
-  </ul>
-</template>
-
 <script>
+  import FormTabs from './../../blank/components/FormTabs'
+
   export default {
     name: 'FormTabs',
+    render: FormTabs.render,
     data() {
       return {
         defaultClasses: {
-          container: 'form-tabs nav nav-tabs'
+          container: 'form-tabs nav nav-tabs',
         }
       }
-    },
+    }
   }
 </script>
 
@@ -30,7 +19,7 @@
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
 
-  .form-tabs {
+  .nav.form-tabs {
     margin-bottom: calc(#{$spacer} * 2);
   }
 </style>

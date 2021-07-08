@@ -1,8 +1,8 @@
 <script>
-  import DateElement from './DateElement'
+  import DateElement from './../../../blank/components/elements/DateElement'
 
   export default {
-    name: 'DatesElement',
+    name: 'DateElement',
     render: DateElement.render,
     data() {
       return {
@@ -10,8 +10,17 @@
           container: '',
           inputContainer: 'input-group',
           input: 'form-control',
+          input_enabled: '',
+          input_disabled: '',
         }
       }
     }
   }
 </script>
+
+<style lang="scss">
+  @import 'node_modules/bootstrap/scss/_functions.scss';
+  @import 'node_modules/bootstrap/scss/_variables.scss';
+  @import 'node_modules/bootstrap/scss/_mixins.scss';
+
+</style>

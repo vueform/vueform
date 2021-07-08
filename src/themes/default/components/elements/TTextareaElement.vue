@@ -1,16 +1,26 @@
 <script>
-  import TextareaElement from './TextareaElement'
+  import TTextareaElement from './../../../blank/components/elements/TTextareaElement'
 
   export default {
     name: 'TTextareaElement',
-    render: TextareaElement.render,
+    render: TTextareaElement.render,
     data() {
       return {
         defaultClasses: {
           container: '',
-          textarea: 'form-control',
+          inputContainer: '',
+          input: 'form-control',
+          input_enabled: '',
+          input_disabled: '',
         }
       }
     }
   }
 </script>
+
+<style lang="scss">
+  @import 'node_modules/bootstrap/scss/_functions.scss';
+  @import 'node_modules/bootstrap/scss/_variables.scss';
+  @import 'node_modules/bootstrap/scss/_mixins.scss';
+
+</style>

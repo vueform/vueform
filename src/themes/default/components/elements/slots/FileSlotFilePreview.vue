@@ -1,47 +1,17 @@
-<template>
-  <div :class="classes.preview" v-show="visible">
-    <div :class="classes.info">
-      <div :class="classes.filename">
-
-        <!-- Icon -->
-        <span v-if="hasError" :class="classes.iconWarning"></span>
-        <span v-else-if="uploaded" :class="classes.iconUploaded"></span>
-        <span v-else :class="classes.iconFile"></span> 
-
-        <!-- Filename -->
-        <a :href="link" v-if="hasLink" target="_blank">{{ filename }}</a>
-        <span v-else>{{ filename }}</span>
-
-      </div>
-      
-      <div class="actions">
-
-        <!-- Status -->
-        <div  v-if="uploading" :class="classes.percent">{{ progress }}%</div>
-
-        <!-- Upload button -->
-        <a href="" :class="classes.upload" v-if="canUpload" @click.prevent="upload">{{ uploadText }}</a>
-
-        <!-- Remove -->
-        <a href="" :class="classes.remove" v-if="canRemove" @click.prevent="remove"><span :class="classes.iconRemove"></span></a>
-
-      </div>
-    </div>
-    <div v-if="uploading" :class="classes.progress">
-      <div :class="classes.progressBar" :style="{ width: progress + '%' }"></div>
-    </div>
-  </div>
-</template>
-
 <script>
+  import FileSlotFilePreview from './../../../../blank/components/elements/slots/FileSlotFilePreview'
+
   export default {
     name: 'FileSlotFilePreview',
+    render: FileSlotFilePreview.render,
     data() {
       return {
         defaultClasses: {
-          preview: 'file-preview',
-          info: 'file-info',
+          container: 'file-preview',
+          wrapper: 'file-info',
           filename: 'filename',
+          filename_link: '',
+          filename_static: '',
           actions: 'actions',
           percent: 'percent',
           upload: 'btn btn-primary btn-sm',
@@ -133,6 +103,7 @@
           padding: 2px 8px;
           font-weight: 600;
           margin-right: 5px;
+          white-space: nowrap;
 
           & + .remove {
             display: inline-block;
@@ -141,6 +112,7 @@
 
         .remove {
           display: none;
+          margin-right: 5px;
         }
       }
     }

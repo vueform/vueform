@@ -1,16 +1,13 @@
-<template>
-  <div :class="classes.wrapper">
-    <span :class="classes.loader"></span>
-  </div>
-</template>
-
 <script>
+  import ElementLoader from './../../blank/components/ElementLoader'
+
   export default {
     name: 'ElementLoader',
+    render: ElementLoader.render,
     data() {
       return {
         defaultClasses: {
-          wrapper: 'element-loader-wrapper',
+          container: 'element-loader-wrapper',
           loader: 'element-loader',
         }
       }

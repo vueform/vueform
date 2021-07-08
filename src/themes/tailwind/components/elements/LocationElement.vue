@@ -1,80 +1,71 @@
-<template>
-  <component :is="elementLayout">
-
-    <template v-slot:field>
-
-      <div :class="classes.inputContainer">
-        <slot name="addon-before">
-          <component :is="fieldSlots.addonBefore"
-            v-if="addons.before"
-            type="before"
-          />
-        </slot>
-
-        <ElementLabelFloating
-          v-if="floating"
-          :visible="!empty"
-        />
-
-        <input
-          type="text"
-          :name="name"
-          :id="fieldId"
-          :class="classes.input"
-          :placeholder="placeholder"
-          :disabled="isDisabled"
-          :readonly="readonly"
-          ref="input"
-          @blur="handleLocationBlur"
-        />
-
-        <slot name="addon-after">
-          <component :is="fieldSlots.addonAfter"
-            v-if="addons.after"
-            type="after"
-          />
-        </slot>
-
-      </div>
-
-    </template>
-
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]>
-      <slot :name="slot" :el$="el$">
-        <component :is="component" v-bind="elementSlotProps[slot]" />
-      </slot>
-    </template>
-  </component>
-</template>
-
 <script>
+  import LocationElement from './../../../blank/components/elements/LocationElement'
+
   export default {
     name: 'LocationElement',
-    data() {
-      return {
-        defaultClasses: {
-          container: '',
-          input: '',
-          input_enabled: '',
-          input_disabled: '',
-        }
-      }
-    }
+    render: LocationElement.render,
+    data: LocationElement.data,
   }
 </script>
 
 <style lang="scss">
+  // Google
   .pac-item {
-    @apply py-1 px-3 border-gray-200;
+    @apply py-3 px-3 border-gray-200 flex items-center;
+
+   & > span:last-of-type {
+     @apply text-xs;
+   } 
+  }
+
+  .pac-item-query {
+    @apply text-sm leading-none mr-1 pr-1;
   }
 
   .pac-icon-marker {
-    @apply bg-form-map-marker bg-no-repeat bg-contain bg-center w-3 h-4 mr-2 mt-1.5;
+    @apply bg-form-map-marker bg-no-repeat bg-contain bg-center w-4 h-4 mr-3 mt-0 py-px box-content;
   }
 
   .pac-logo {
     &:after {
       @apply mx-2.5 mb-2.5;
     }
+  }
+
+  // Algolia
+  .ap-footer {
+    @apply flex items-center justify-end;
+  }
+
+  .ap-footer-algolia {
+    @apply mx-1;
+  }
+
+  .ap-footer-osm {
+    @apply ml-1 flex;
+
+    svg {
+      @apply mr-1;
+    }
+  }
+
+  .ap-suggestion {
+    @apply py-3 px-3 border-b border-gray-200 flex items-center text-sm leading-none h-auto;
+
+    svg {
+      @apply hidden;
+    }
+
+    &:last-of-type {
+      @apply border-0;
+    }
+  }
+
+  .ap-suggestion-icon {
+    @apply bg-form-map-marker bg-no-repeat bg-contain bg-center w-4 h-4 mr-3 mt-0 py-px box-content;
+  }
+
+  .ap-address {
+    @apply text-xs ml-2 leading-none;
   }
 </style>

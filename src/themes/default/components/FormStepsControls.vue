@@ -1,18 +1,13 @@
-<template>
-  <div :class="classes.container">
-    <FormStepsControl type="previous" />
-    <FormStepsControl type="next" />
-    <FormStepsControl type="finish" />
-  </div>
-</template>
-
 <script>
+  import FormStepsControls from './../../blank/components/FormStepsControls'
+
   export default {
     name: 'FormStepsControls',
+    render: FormStepsControls.render,
     data() {
       return {
         defaultClasses: {
-          container: 'form-steps-controls'
+          container: 'form-steps-controls',
         }
       }
     }

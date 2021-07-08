@@ -1,20 +1,9 @@
-<template>
-  <div
-    :class="classes.container"
-  >
-    <div
-      v-for="(message, key, index) in messages"
-      :class="classes.message"
-      :key="index"
-    >
-      {{ message }}
-    </div>
-  </div>
-</template>
-
 <script>
+  import FormMessages from './../../blank/components/FormMessages'
+
   export default {
     name: 'FormMessages',
+    render: FormMessages.render,
     data() {
       return {
         defaultClasses: {
@@ -30,4 +19,5 @@
   @import 'node_modules/bootstrap/scss/_functions.scss';
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
+
 </style>

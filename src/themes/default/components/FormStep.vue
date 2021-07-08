@@ -1,41 +1,24 @@
-<template>
-  <li :class="classes.container" v-show="visible">
-    <a
-      v-if="isLabelComponent"
-      href=""
-      :class="classes.wrapper"
-      @click.prevent="select"
-    >
-      <component :is="stepLabel" :form$="form$" />
-    </a>
-    <a
-      v-else
-      v-html="stepLabel"
-      href=""
-      :class="classes.wrapper"
-      @click.prevent="select"
-    ></a>
-  </li>
-</template>
-
 <script>
+  import FormStep from './../../blank/components/FormStep'
+
   export default {
     name: 'FormStep',
+    render: FormStep.render,
     data() {
       return {
         defaultClasses: {
           container: 'form-step',
           wrapper: '',
-          active: 'is-active',
-          inactive: '',
-          invalid: 'has-errors',
-          valid: '',
-          disabled: 'is-disabled',
-          enabled: '',
-          completed: 'is-completed',
-          incompleted: '',
-          pending: 'is-pending',
-        },
+          container_active: 'is-active',
+          container_inactive: '',
+          container_invalid: 'has-errors',
+          container_valid: '',
+          container_disabled: 'is-disabled',
+          container_enabled: '',
+          container_completed: 'is-completed',
+          container_incompleted: '',
+          container_pending: 'is-pending',
+        }
       }
     }
   }

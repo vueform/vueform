@@ -1,26 +1,16 @@
-<template>
-  <ul :class="classes.container">
-    <slot>
-      <FormStep
-        v-for="(step, name) in steps"
-        v-bind="step"
-        :name="name"
-        :key="name"
-      />
-    </slot>
-  </ul>
-</template>
-
 <script>
+  import FormSteps from './../../blank/components/FormSteps'
+
   export default {
     name: 'FormSteps',
+    render: FormSteps.render,
     data() {
       return {
         defaultClasses: {
           container: 'form-steps',
         }
       }
-    },
+    }
   }
 </script>
 

@@ -21,12 +21,12 @@ const base = function(props, context, dependencies)
    * @option
    */
   const columnsClasses = computed(() => {
-    return (new theme.value.utils.columns(
+    return (new form$.value.$laraform.services.columns(
       columns.value,
       form$.value.options.columns,
       form$.value.$laraform.config.columns,
       hasLabel.value,
-      
+      theme.value.columns,
     )).classes
   })
 

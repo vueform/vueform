@@ -1,54 +1,20 @@
-<template>
-  <div :class="classes.preview" v-show="visible">
-    <div :class="classes.info">
-      <div :class="classes.filename">
-
-        <!-- Image && filename  -->
-        <a v-if="uploaded && hasLink" :href="link" target="_blank">
-          <img :src="preview" :alt="filename" :title="filename" /> 
-          <span v-if="hasError" :class="classes.iconWarning"></span>
-          {{ filename }}
-        </a>
-        <span v-else>
-          <img v-show="previewLoaded" :src="preview" :alt="filename" :title="filename" />
-          <span v-show="!previewLoaded" :class="classes.previewLoader"></span>
-          <span v-if="hasError" :class="classes.iconWarning"></span>
-          {{ filename }}
-        </span>
-
-      </div>
-      
-      <div class="actions">
-
-        <!-- Status -->
-        <div  v-if="uploading" :class="classes.percent">{{ progress }}%</div>
-
-        <!-- Upload button -->
-        <a href="" :class="classes.upload" v-if="canUpload" @click.prevent="upload">{{ uploadText }}</a> 
-
-        <!-- Success -->
-        <span v-if="uploaded" :class="classes.iconUploaded"></span>
-
-        <!-- Remove -->
-        <a href="" :class="classes.remove" v-if="canRemove" @click.prevent="remove"><span :class="classes.iconRemove"></span></a>
-
-      </div>
-    </div>
-    <div v-if="uploading" :class="classes.progress">
-      <div :class="classes.progressBar" :style="{ width: progress + '%' }"></div>
-    </div>
-  </div>
-</template>
-
 <script>
+  import FileSlotImagePreview from './../../../../blank/components/elements/slots/FileSlotImagePreview'
+
   export default {
     name: 'FileSlotImagePreview',
+    render: FileSlotImagePreview.render,
     data() {
       return {
         defaultClasses: {
-          preview: 'image-preview',
-          info: 'file-info',
-          filename: 'filename',
+          container: 'image-preview',
+          wrapper: 'file-info',
+          previewWrapper: 'preview-container',
+          previewImage: '',
+          previewLinkWrapper: '',
+          previewStaticWrapper: '',
+          filenameLink: '',
+          filenameStatic: '',
           actions: 'actions',
           percent: 'percent',
           upload: 'btn btn-primary btn-sm',
@@ -58,7 +24,6 @@
           iconWarning: 'icon-warning',
           iconUploaded: 'icon-uploaded',
           iconRemove: 'icon-remove',
-          previewLoader: 'preview-loader',
         }
       }
     }
@@ -112,10 +77,10 @@
       img {
         max-width: 120px;
         max-height: 120px;
-        margin-right: $input-padding-y;
+        margin-right: 12px;
       }
 
-      .filename {
+      .preview-container {
         display: flex;
         align-items: center;
 
@@ -130,33 +95,6 @@
         & > span, & > a {
           display: flex;
           align-items: center;
-        }
-
-        .preview-loader {
-          position: relative;
-          color: transparent !important;
-          width: 14px;
-          height: 14px;
-          margin-right: $input-padding-y;
-
-          &:after {
-            content: "";
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-            vertical-align: text-bottom;
-            border: .25em solid;
-            border-right: .25em solid transparent;
-            border-radius: 50%;
-            -webkit-animation: preview-spinner .75s linear infinite;
-            animation: preview-spinner .75s linear infinite;
-            font-size: 9px;
-            position: absolute;
-            left: calc(50% - 7px);
-            top: calc(50% - 7px);
-            color: initial;
-            color: $primary;
-          }
         }
       }
 

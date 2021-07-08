@@ -1,78 +1,28 @@
-<template>
-  <component :is="elementLayout">
-    
-    <template v-slot:field>
-
-      <!-- Drag n drop -->
-      <DragAndDrop
-        v-if="drop && canDrop && !isDisabled"
-        :title="__(`laraform.elements.${type}.dndTitle`)"
-        :description="__(`laraform.elements.${type}.dndDescription`)"
-        @click="handleClick"
-        @drop="handleDrop"
-      />
-      <!-- Upload button -->
-      <a
-        v-else-if="!isDisabled"
-        href=""
-        :class="classes.selectButton"
-        @click.prevent="handleClick"
-      >{{ __('laraform.elements.multifile.uploadButton') }}</a>
-      
-      <!-- Actual input field -->
-      <input
-        v-show="false"
-        multiple
-        type="file"
-        @change="handleChange"
-        :accept="accept"
-        :disabled="isDisabled"
-        ref="input" 
-      />
-
-      <div v-show="!empty" :class="classes.list" ref="list">
-        <div v-for="(val, i) in value" :key="i" :class="classes.listItem">
-          <component
-            :is="component(prototype)"
-            v-if="prototype.type"
-            v-bind="prototype"
-            :embed="true"
-            :name="i"
-            @remove="remove(i)"
-          />
-          <span v-if="!isDisabled && sort" :class="classes.handle"><span></span></span>
-        </div>
-      </div>
-
-    </template>
-
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]>
-      <slot :name="slot" :el$="el$">
-        <component :is="component" v-bind="elementSlotProps[slot]" />
-      </slot>
-    </template>
-
-  </component>
-</template>
-
 <script>
+  import MultifileElement from './../../../blank/components/elements/MultifileElement'
+
   export default {
     name: 'MultifileElement',
+    render: MultifileElement.render,
     data() {
       return {
         defaultClasses: {
           container: '',
           list: '',
-          listDefault: 'file-list',
-          listGallery: 'gallery-list',
+          list_disabled: 'is-disabled',
+          list_sorting: 'is-sorting',
+          list_default: 'file-list',
+          list_gallery: 'gallery-list',
           listItem: '',
-          listItemDefault: 'row',
-          listItemGallery: 'gallery-list-item',
-          disabled: 'is-disabled',
-          selectButton: 'btn btn-light',
+          listItem_default: 'row',
+          listItem_gallery: 'gallery-list-item',
           handle: 'list-handle',
-          sorting: 'is-sorting',
-        },
+          handle_default: '',
+          handle_gallery: '',
+          button: 'btn btn-light btn-form-upload',
+          button_enabled: '',
+          button_disabled: '',
+        }
       }
     }
   }
@@ -83,10 +33,11 @@
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
 
-  .file-list {
-    margin-top: $spacer;
-    margin-bottom: calc(#{$spacer} * -1);
+  .btn-form-upload {
+    margin-bottom: $spacer;
+  }
 
+  .file-list {
     & > .row {
       position: relative;
 
@@ -115,8 +66,7 @@
   .gallery-list {
     display: flex;
     flex-wrap: wrap;
-    margin-top: $spacer;
-    margin-bottom: calc(#{$spacer} * -0.5);
+    margin-bottom: calc(#{$spacer} * 0.5);
 
     & > div {
       position: relative;

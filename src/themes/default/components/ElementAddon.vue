@@ -1,29 +1,16 @@
-<template>
-  <div
-    v-if="isAddonComponent"
-    :class="classes.container"
-  >
-    <div :class="classes.wrapper">
-      <component :is="addon" :el$="el$" />
-    </div>
-  </div>
-
-  <div v-else :class="classes.container">
-    <div v-html="addon" :class="classes.wrapper">
-    </div>
-  </div>
-</template>
-
 <script>
+  import ElementAddon from './../../blank/components/ElementAddon'
+
   export default {
     name: 'ElementAddon',
+    render: ElementAddon.render,
     data() {
       return {
         defaultClasses: {
           container: '',
+          container_before: 'input-group-prepend',
+          container_after: 'input-group-append',
           wrapper: 'input-group-text',
-          before: 'input-group-prepend',
-          after: 'input-group-append',
         }
       }
     }

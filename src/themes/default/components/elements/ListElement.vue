@@ -1,66 +1,23 @@
-<template>
-  <component :is="elementLayout">
-    <template v-slot:field>
-
-      <!-- Sorting container -->
-      <div :class="classes.list" ref="list">
-
-        <div v-for="(val, i) in value" :key="i" :class="classes.listItem">
-          <slot :index="i">
-            <component
-              :is="component(prototype)"
-              v-if="prototype.type"
-              v-bind="prototype"
-              :name="i"
-            />
-          </slot>
-          <a
-            href=""
-            v-if="hasRemove"
-            :class="classes.remove"
-            @click.prevent="handleRemove(i)"
-          ><span></span></a>
-          <span v-if="hasSort" :class="classes.handle"><span></span></span>
-        </div>
-        
-      </div>
-
-      <a
-        href=""
-        v-if="hasAdd"
-        :class="classes.add"
-        @click.prevent="handleAdd"
-        v-html="__('laraform.elements.list.add')"
-      ></a>
-
-    </template>
-
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]>
-      <slot :name="slot" :el$="el$">
-        <component :is="component" v-bind="elementSlotProps[slot]" />
-      </slot>
-    </template>
-
-  </component>
-</template>
-
 <script>
+  import ListElement from './../../../blank/components/elements/ListElement'
+
   export default {
     name: 'ListElement',
+    render: ListElement.render,
     data() {
       return {
         defaultClasses: {
           container: '',
           list: 'form-list',
+          list_disabled: 'is-disabled',
+          list_sorting: 'is-sorting',
           listItem: 'row',
           handle: 'list-handle',
           remove: 'list-remove',
           add: 'btn btn-primary btn-sm',
-          disabled: 'is-disabled',
-          sorting: 'is-sorting',
-        },
+        }
       }
-    },
+    }
   }
 </script>
 

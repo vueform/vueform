@@ -1,16 +1,16 @@
-<template>
-  <div v-if="content" :class="classes[type]" v-html="content"></div>
-</template>
-
 <script>
+  import ElementText from './../../blank/components/ElementText'
+
   export default {
     name: 'ElementText',
+    render: ElementText.render,
     data() {
       return {
         defaultClasses: {
-          before: '',
-          between: '',
-          after: '',
+          container: '',
+          container_before: '',
+          container_between: '',
+          container_after: '',
         }
       }
     }
@@ -21,4 +21,5 @@
   @import 'node_modules/bootstrap/scss/_functions.scss';
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
+
 </style>

@@ -1,33 +1,17 @@
-<template>
-  <div :class="classes.container">
-    <input
-      type="checkbox"
-      v-model="el$.model"
-      :value="value"
-      :class="classes.input"
-      :name="`${el$.name}-${value}`"
-      :id="`${el$.fieldId}-${value}`"
-      :disabled="isDisabled"
-    />
-
-    <label 
-      :class="classes.label"
-      :for="`${el$.fieldId}-${value}`"
-      v-html="item"
-    >
-    </label>
-  </div>
-</template>
-
 <script>
+  import CheckboxgroupSlotCheckbox from './../../../../blank/components/elements/slots/CheckboxgroupSlotCheckbox'
+
   export default {
     name: 'CheckboxgroupSlotCheckbox',
+    render: CheckboxgroupSlotCheckbox.render,
     data() {
       return {
         defaultClasses: {
           container: 'form-check',
-          label: 'form-check-label',
-          input: 'form-check-input',
+          input: '',
+          input_enabled: 'form-check-label',
+          input_disabled: 'form-check-input',
+          label: '',
         }
       }
     }
@@ -38,4 +22,5 @@
   @import 'node_modules/bootstrap/scss/_functions.scss';
   @import 'node_modules/bootstrap/scss/_variables.scss';
   @import 'node_modules/bootstrap/scss/_mixins.scss';
+
 </style>

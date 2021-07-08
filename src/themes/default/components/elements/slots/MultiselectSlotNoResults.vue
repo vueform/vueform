@@ -1,14 +1,13 @@
-<template>
-  <div :class="classes.container" v-html="el$.fieldOptions.noResultsText"></div>
-</template>
-
 <script>
+  import MultiselectSlotNoResults from './../../../../blank/components/elements/slots/MultiselectSlotNoResults'
+
   export default {
     name: 'MultiselectSlotNoResults',
+    render: MultiselectSlotNoResults.render,
     data() {
       return {
         defaultClasses: {
-          container: 'multiselect-no-results'
+          container: 'multiselect-no-results',
         }
       }
     }

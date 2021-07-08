@@ -33,7 +33,7 @@ const config = {
   methods: {
     process: 'post',
     file: {
-      uploadTemp: 'post',
+      temp: 'post',
       removeTemp: 'post',
       remove: 'post',
     }
@@ -42,7 +42,7 @@ const config = {
   endpoints: {
     process: '/laraform/process',
     file: {
-      uploadTemp: '/laraform/file/upload-temp',
+      temp: '/laraform/file/upload-temp',
       removeTemp: '/laraform/file/remove-temp',
       remove: '/laraform/file/remove',
     },
