@@ -229,7 +229,7 @@ export default {
     container: '',
     input: 'form-border form-border-color form-rounded',
     input_enabled: '',
-    input_disabled: 'form-bg-disabled form-text-disabled',
+    input_disabled: 'is-disabled form-bg-disabled form-text-disabled',
     input_focused: 'form-ring',
   },
   TTextareaElement: {
@@ -246,7 +246,7 @@ export default {
     container: '',
     input: 'form-border form-border-color form-rounded',
     input_enabled: '',
-    input_disabled: 'form-bg-disabled form-text-disabled',
+    input_disabled: 'is-disabled form-bg-disabled form-text-disabled',
     input_focused: 'form-ring',
   },
 

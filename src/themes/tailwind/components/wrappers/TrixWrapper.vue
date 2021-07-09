@@ -27,17 +27,24 @@
     .trix-button {
       @apply relative mb-1 md:mb-0 text-gray-700 px-2 outline-none rounded whitespace-nowrap float-left;
 
-
       &.trix-active {
         @apply bg-gray-200;
       }
 
       &:not(.trix-active):hover {
         @apply bg-gray-100;
+
+        .is-disabled & {
+          @apply bg-transparent cursor-default;
+        }
       }
 
       &:not(:disabled) {
         @apply cursor-pointer;
+      }
+
+      .is-disabled & {
+        @apply cursor-default pointer-events-none;
       }
     }
 
@@ -122,7 +129,7 @@
     }
 
     .trix-input--dialog {
-      @apply py-1.5 px-3 border-gray-300 rounded focus:form-ring mr-2;
+      @apply py-1.5 px-3 border-gray-300 rounded focus:form-ring mr-2 text-xs;
 
       &.validate:invalid {
         @apply border-red-500;
@@ -241,23 +248,22 @@
       }
     }
 
-
     .trix-button--remove {
       @apply inline-block p-0 outline-none w-7 h-7 leading-7 rounded-full bg-white border border-solid border-gray-400 overflow-x-hidden indent-out;
 
       &:not(.trix-active):hover {
        @apply bg-gray-100; 
       }
-    }
 
-    .trix-button--remove::before {
-      @apply inline-block absolute top-1 bottom-1 left-1 right-1 bg-opacity-70 bg-center bg-no-repeat content-empty bg-form-remove-light;
+      &::before {
+        @apply inline-block absolute top-1 bottom-1 left-1 right-1 bg-opacity-70 bg-center bg-no-repeat content-empty bg-form-remove-light;
 
-      &:hover {
-        @apply border-gray-700;
+        &:hover {
+          @apply border-gray-700;
 
-        &::before {
-          @apply opacity-100;
+          &::before {
+            @apply opacity-100;
+          }
         }
       }
     }
