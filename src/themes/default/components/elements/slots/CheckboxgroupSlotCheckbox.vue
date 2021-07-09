@@ -8,10 +8,10 @@
       return {
         defaultClasses: {
           container: 'form-check',
-          input: '',
-          input_enabled: 'form-check-label',
-          input_disabled: 'form-check-input',
-          label: '',
+          input: 'form-check-input',
+          input_enabled: '',
+          input_disabled: '',
+          label: 'form-check-label',
         }
       }
     }

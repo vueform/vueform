@@ -1,13 +1,13 @@
 const checkbox = {
   input: 'appearance-none transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox form-rounded form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-check-white checked:border-0',
   input_enabled: 'checked:form-bg-primary',
-  input_disabled: 'form-bg-disabled',
+  input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
 }
 
 const radio = {
   input: 'appearance-none transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox rounded-full form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-radio-white checked:border-0',
   input_enabled: 'checked:form-bg-primary',
-  input_disabled: 'form-bg-disabled',
+  input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
 }
 
 const text = {
@@ -18,7 +18,7 @@ const text = {
 
 const select = {
   container: 'relative mx-auto w-full flex items-center justify-end box-border cursor-pointer border border-gray-300 form-rounded bg-white text-base leading-normal outline-none',
-  containerDisabled: 'cursor-default form-bg-disabled',
+  containerDisabled: '!cursor-default form-bg-disabled',
   containerOpen: 'form-rounded-b-none',
   containerOpenTop: 'form-rounded-t-none',
   containerActive: 'form-ring',

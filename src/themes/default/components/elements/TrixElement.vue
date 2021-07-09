@@ -33,7 +33,7 @@
     }
 
     &.is-disabled {
-      background: #e5e7eb;
+      background: #e9ecef;
     }
   }
 </style>

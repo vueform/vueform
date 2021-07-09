@@ -44,6 +44,10 @@
     border-radius: 4px;
     margin-top: 0.2rem;
 
+    &:disabled {
+      background: #e9ecef;
+    }
+
     &:checked {
       box-shadow: inset 0 0 0 9px $primary;
       border: 0;
@@ -60,6 +64,11 @@
         position: absolute;
         top: 3px;
         left: 3px;
+      }
+
+      &:disabled {
+        box-shadow: inset 0 0 0 9px #e9ecef;
+        border: 1px solid $input-border-color;
       }
     }
   }

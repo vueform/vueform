@@ -57,6 +57,10 @@
       color: $text-muted;
     }
 
+    &:disabled {
+      background: #e9ecef;
+    }
+
     &:checked {
       box-shadow: inset 0 0 0 9px $primary;
       border: 0;
@@ -65,10 +69,10 @@
         content: " ";
         position: absolute;
         background: #fff;
-        width: 4px;
-        height: 4px;
-        left: 6px;
-        top: 6px;
+        width: 6px;
+        height: 6px;
+        left: 5px;
+        top: 5px;
         border-radius: 50%;
         opacity: 0;
         transition: all .2s ease-in-out .1s;
@@ -77,6 +81,16 @@
         opacity: 1;
         transform: scale(1);
       }
+
+      &:disabled {
+        box-shadow: inset 0 0 0 9px #e9ecef;
+        border: 1px solid $input-border-color;
+      }
+    }
+
+    &:disabled:checked:after {
+      left: 4px;
+      top: 4px; 
     }
   }
 
