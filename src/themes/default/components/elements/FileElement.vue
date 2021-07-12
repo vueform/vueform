@@ -11,7 +11,7 @@
           container_removing: 'is-removing',
           button: 'btn btn-light',
           button_enabled: '',
-          button_disabled: '',
+          button_disabled: 'btn-disabled',
         }
       }
     }

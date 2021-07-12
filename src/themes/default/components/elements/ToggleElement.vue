@@ -64,26 +64,28 @@
   }
 
   .toggle-off {
-    background: var(--toggle-bg-off, #e5e7eb);
-    border-color: var(--toggle-border-off, #e5e7eb);
+    background: var(--toggle-bg-off, #d1d5db);
+    border-color: var(--toggle-border-off, #d1d5db);
     justify-content: flex-end;
     color: var(--toggle-text-off, #374151);
   }
 
   .toggle-on-disabled {
-    background: var(--toggle-bg-on-disabled, #d1d5db);
-    border-color: var(--toggle-border-on-disabled, #d1d5db);
+    background: var(--toggle-bg-on-disabled, #10b981);
+    border-color: var(--toggle-border-on-disabled, #10b981);
     justify-content: flex-start;
-    color: var(--toggle-text-on-disabled, #9ca3af);
+    color: var(--toggle-text-on-disabled, #ffffff);
     cursor: not-allowed;
+    opacity: var(--toggle-opacity-on-disabled, 0.5);
   }
 
   .toggle-off-disabled {
-    background: var(--toggle-bg-off-disabled, #e5e7eb);
-    border-color: var(--toggle-border-off-disabled, #e5e7eb);
+    background: var(--toggle-bg-off-disabled, #d1d5db);
+    border-color: var(--toggle-border-off-disabled, #d1d5db);
     justify-content: flex-end;
-    color: var(--toggle-text-off-disabled, #9ca3af);
+    color: var(--toggle-text-off-disabled, #374151);
     cursor: not-allowed;
+    opacity: var(--toggle-opacity-off-disabled, 0.5);
   }
 
   .toggle-handle {

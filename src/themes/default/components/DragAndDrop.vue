@@ -11,7 +11,7 @@
           container_inactive: '',
           container_active: 'is-active',
           container_enabled: '',
-          container_disabled: '',
+          container_disabled: 'is-disabled',
           icon: 'icon-upload',
           title: 'dnd-title',
           description: 'dnd-description',
@@ -43,6 +43,13 @@
     box-sizing: border-box;
     cursor: pointer;
     text-align: center;
+    margin-bottom: 15px;
+
+    &.is-disabled {
+      background: #fcfdfd;
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
 
     &.is-active {
       background: $gray-200;

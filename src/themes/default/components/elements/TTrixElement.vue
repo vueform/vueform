@@ -8,10 +8,10 @@
       return {
         defaultClasses: {
           container: '',
-          input: '',
+          input: 'trix',
           input_enabled: '',
           input_disabled: 'is-disabled',
-          input_focused: '',
+          input_focused: 'is-focused',
         }
       }
     }

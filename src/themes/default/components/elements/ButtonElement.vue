@@ -26,6 +26,8 @@
   .btn-loading {
     position: relative;
     color: transparent !important;
+    opacity: 0.5;
+    pointer-events: none;
 
     &:after {
       content: "";

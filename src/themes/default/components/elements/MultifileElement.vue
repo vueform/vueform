@@ -21,7 +21,7 @@
           handle_gallery: '',
           button: 'btn btn-light btn-form-upload',
           button_enabled: '',
-          button_disabled: '',
+          button_disabled: 'btn-disabled',
         }
       }
     }
