@@ -288,7 +288,7 @@ export default {
     content: 'bg-black bg-opacity-90 text-white rounded-md text-sm py-1 px-2.5 not-italic inline-block relative',
   },
   ElementLabel: {
-    container: 'form-py-input-border'
+    container: 'form-py-input-border pr-4'
   },
   ElementLabelFloating: {
     container: 'relative',
