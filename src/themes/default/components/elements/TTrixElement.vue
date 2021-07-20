@@ -8,7 +8,7 @@
       return {
         defaultClasses: {
           container: '',
-          input: 'trix',
+          input: 'form-trix',
           input_enabled: '',
           input_disabled: 'is-disabled',
           input_focused: 'is-focused',
@@ -19,8 +19,5 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
+  // Some styles are contained in TrixElement.vue
 </style>

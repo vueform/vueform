@@ -16,10 +16,6 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-  
   trix-toolbar {
     border-radius: 0.25rem;
     flex-wrap: wrap;
@@ -255,7 +251,7 @@
     
       &:focus {
         border-color: #15C495;
-        box-shadow: 0px 0px 0px var(--vf-ring-width, 2px) var(--vf-ring-color, #15C49540);
+        box-shadow: 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
         outline: none;
       }
       

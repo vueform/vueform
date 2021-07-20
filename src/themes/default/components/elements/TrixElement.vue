@@ -8,7 +8,7 @@
       return {
         defaultClasses: {
           container: '',
-          input: 'trix',
+          input: 'form-trix',
           input_enabled: '',
           input_disabled: 'is-disabled',
           input_focused: 'is-focused',
@@ -19,21 +19,18 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
-  .trix {
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+  .form-trix {
+    border: var(--form-border-width) solid var(--form-border-color);
+    border-radius: var(--form-border-radius);
 
     &.is-focused {
-      border-color: #15C495;
-      box-shadow: 0px 0px 0px var(--vf-ring-width, 2px) var(--vf-ring-color, #15C49540);
+      border-color: var(--form-primary);
+      box-shadow: 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
     }
 
     &.is-disabled {
-      background: #e9ecef;
+      background: var(--form-bg-disabled);
+      color: var(--form-color-disabled);
     }
   }
 </style>
