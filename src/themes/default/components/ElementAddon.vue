@@ -7,10 +7,10 @@
     data() {
       return {
         defaultClasses: {
-          container: '',
-          container_before: 'input-group-prepend',
-          container_after: 'input-group-append',
-          wrapper: 'input-group-text',
+          container: 'form-addon',
+          container_before: 'form-addon-before',
+          container_after: 'form-addon-after',
+          wrapper: 'form-addon-wrapper',
         }
       }
     }
@@ -18,11 +18,36 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
+  .form-addon {
+    align-items: center;
+    display: flex;
+    padding: var(--form-input-py) var(--form-input-px);
+    border: var(--form-border-width) solid var(--form-border-color);
+    border-radius: var(--form-border-radius);
+    background: var(--form-addon-bg);
+    color: var(--form-addon-color);
+  }
 
-  .input-group-append {
+  .form-addon-before {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0;
+
+    & ~ .form-input {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  .form-addon-after {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
     order: 2;
+
+    & ~ .form-input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
   }
 </style>

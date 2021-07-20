@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-text text-muted',
+          container: 'form-description',
         }
       }
     }
@@ -15,8 +15,10 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
+  .form-description {
+    font-size: var(--form-element-text-font-size);
+    line-height: var(--form-element-text-line-height);
+    color: var(--form-element-description-color);
+    margin-top: 0.25rem;
+  }
 </style>

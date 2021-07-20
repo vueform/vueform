@@ -7,8 +7,8 @@
     data() {
       return {
         defaultClasses: {
-          container: 'floating-wrapper',
-          label: 'floating-label',
+          container: 'form-floating-wrapper',
+          label: 'form-floating-label',
           label_invisible: '',
           label_visible: 'is-visible',
         }
@@ -18,17 +18,11 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
-  /* Floating label styles */
-
-  .floating-wrapper {
+  .form-floating-wrapper {
     position: relative;
   }
 
-  .floating-label {
+  .form-floating-label {
     position: absolute;
     z-index: 5;
     left: 10px;

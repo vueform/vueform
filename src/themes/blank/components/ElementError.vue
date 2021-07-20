@@ -1,10 +1,5 @@
 <template>
-  <small
-    v-if="error"
-    :class="classes.container"
-  >
-    {{ error }}
-  </small>
+  <div v-if="error" :class="classes.container">{{ error }}</div>
 </template>
 
 <script>

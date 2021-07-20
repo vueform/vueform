@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'text-success',
+          container: 'form-element-message',
         }
       }
     }
@@ -15,8 +15,10 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
+  .form-element-message {
+    font-size: var(--form-element-text-font-size);
+    line-height: var(--form-element-text-line-height);
+    color: var(--form-element-message-color);
+    margin-top: 0.25rem;
+  }
 </style>

@@ -9,7 +9,7 @@
         defaultClasses: {
           container: '',
           container_error: 'has-error',
-          outerWrapper: 'row',
+          outerWrapper: 'form-row',
           outerWrapper_single: 'form-group',
           outerWrapper_multiple: '',
           fieldWrapper: '',
@@ -20,8 +20,5 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
+  // Styles contained in Laraform.vue
 </style>

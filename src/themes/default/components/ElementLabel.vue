@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'col-form-label',
+          container: 'form-label',
         }
       }
     }
@@ -15,8 +15,8 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
+  .form-label {
+    padding: calc(var(--form-input-py) + var(--form-border-width)) var(--form-gutter);
+    padding-left: 0;
+  }
 </style>

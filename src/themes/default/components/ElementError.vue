@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'text-danger',
+          container: 'form-element-error',
         }
       }
     }
@@ -15,8 +15,10 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
+  .form-element-error {
+    font-size: var(--form-element-text-font-size);
+    line-height: var(--form-element-text-line-height);
+    color: var(--form-element-error-color);
+    margin-top: 0.25rem;
+  }
 </style>

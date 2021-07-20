@@ -272,8 +272,8 @@ export default {
   },
   ElementAddon: {
     container: 'form-p-input form-border form-border-color bg-gray-100 flex items-center',
-    container_before: 'form-addon-before form-border-r-0 form-rounded-l',
-    container_after: 'form-addon-after form-border-l-0 form-rounded-r order-2',
+    container_before: 'form-addon-before !form-border-r-0 form-rounded-l',
+    container_after: 'form-addon-after !form-border-l-0 form-rounded-r order-2',
     wrapper: '',
   },
   ElementDescription: {

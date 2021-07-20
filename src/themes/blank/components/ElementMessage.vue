@@ -1,10 +1,5 @@
 <template>
-  <small
-    v-if="message"
-    :class="classes.container"
-  >
-    {{ message }}
-  </small>
+  <div v-if="message" :class="classes.container">{{ message }}</div>
 </template>
 
 <script>
