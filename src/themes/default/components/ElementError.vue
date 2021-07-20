@@ -18,7 +18,7 @@
   .form-element-error {
     font-size: var(--form-element-text-font-size);
     line-height: var(--form-element-text-line-height);
-    color: var(--form-element-error-color);
+    color: var(--form-error-color);
     margin-top: 0.25rem;
   }
 </style>

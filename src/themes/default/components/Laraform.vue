@@ -22,10 +22,14 @@
    */
   :root {
     --form-primary: #10B981;
+    --form-primary-darker: #0EA774;
     --form-gutter: 1rem;
 
     --form-bg-disabled: #E5E7EB;
     --form-color-disabled: #9CA3AF;
+
+    --form-error-color: #EF4444;
+    --form-message-color: #10B981;
 
     --form-placeholder-color: #6B7280;
     --form-placeholder-opacity: 1;
@@ -41,7 +45,7 @@
 
     --form-input-py: 0.375rem;
     --form-input-px: 0.75rem;
-    --form-button-py: 0.5rem;
+    --form-button-py: 0.4375rem;
     --form-button-px: 1rem;
 
     --form-date-head-bg: #F3F4F6;
@@ -53,8 +57,6 @@
     --form-element-text-font-size: 0.875rem;
     --form-element-text-line-height: 1.25rem;
     --form-element-description-color: #6B7280;
-    --form-element-error-color: #EF4444;
-    --form-element-message-color: #10B981;
   }
 
   /*
@@ -106,6 +108,44 @@
     &[disabled] {
       background-color: var(--form-bg-disabled);
       color: var(--form-color-disabled);
+    }
+  }
+
+  .form-btn {
+    padding: var(--form-button-py) var(--form-button-px);
+    border-radius: var(--form-border-radius);
+    transition: .3s;
+    cursor: pointer;
+    border: 0;
+    appearance: none;
+    font-size: inherit;
+    line-height: inherit;
+
+    &:focus {
+      box-shadow: 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
+    }
+
+    &[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  .form-btn-primary {
+    background: var(--form-primary);
+    color: #ffffff;
+
+    &:not([disabled]):hover {
+      background: var(--form-primary-darker);
+    }
+  }
+
+  .form-btn-secondary {
+    background: #E5E7EB;
+    color: #374151;
+
+    &:not([disabled]):hover {
+      background: #D1D5DB;
     }
   }
 
