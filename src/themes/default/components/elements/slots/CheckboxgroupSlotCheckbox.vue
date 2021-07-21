@@ -7,11 +7,11 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-check',
-          input: 'form-check-input',
+          container: 'form-checkbox-container',
+          input: 'form-checkbox',
           input_enabled: '',
           input_disabled: '',
-          label: 'form-check-label',
+          label: 'form-checkbox-label',
         }
       }
     }
@@ -19,8 +19,5 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
+  // Some styles are contained in Laraform.vue
 </style>

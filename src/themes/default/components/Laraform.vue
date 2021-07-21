@@ -24,6 +24,7 @@
     --form-primary: #10B981;
     --form-primary-darker: #0EA774;
     --form-gutter: 1rem;
+    --form-input-min-height: 2.375rem;
 
     --form-bg-disabled: #E5E7EB;
     --form-color-disabled: #9CA3AF;
@@ -111,6 +112,73 @@
       background-color: var(--form-bg-disabled);
       color: var(--form-color-disabled);
     }
+  }
+
+  .form-checkbox {
+    appearance: none;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid var(--form-border-color);
+    outline: none;
+    border-radius: 4px;
+    margin: 0 0.375rem 0 0;
+    position: relative;
+
+    &:focus {
+      box-shadow: inset 0 0 0 0 var(--form-primary), 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
+    }
+
+    &:disabled {
+      background: var(--form-bg-disabled);
+    }
+
+    &:checked {
+      box-shadow: inset 0 0 0 9px var(--form-primary), 0px 0px 0px 0px var(--form-ring-color);
+      border: 0;
+
+      &:focus {
+        box-shadow: inset 0 0 0 9px var(--form-primary), 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
+      }
+
+      &:after {
+        content: " ";
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+        background: url('data:image/svg+xml;utf8,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" class="svg-inline--fa fa-check fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="white" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>');
+        background-size: 10px 10px;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        box-sizing: border-box;
+      }
+
+      &:disabled {
+        box-shadow: inset 0 0 0 9px var(--form-bg-disabled);
+        border: 1px solid var(--form-border-color);
+
+        &:after {
+          left: 2px;
+          top: 2px;
+        }
+      }
+    }
+  }
+
+  .form-checkbox-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-top: calc(var(--form-input-py) + var(--form-border-width));
+  }
+
+  .form-checkbox-label {
+    cursor: pointer;
   }
 
   .form-btn {
