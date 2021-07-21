@@ -209,7 +209,7 @@ export default {
   },
   ToggleElement: {
     container: '',
-    wrapper: 'form-min-h-input flex items-center',
+    wrapper: 'form-pt-input-border flex items-center',
     text: 'ml-2',
     toggle: {
       container: 'inline-block rounded-full outline-none focus:form-ring',
@@ -222,7 +222,7 @@ export default {
       handleOn: 'left-full transform -translate-x-full',
       handleOff: 'left-0',
       handleOnDisabled: 'left-full transform -translate-x-full',
-      handleOffDisabled: 'bg-gray-100 left-0',
+      handleOffDisabled: 'left-0',
       label: 'text-center w-8 border-box whitespace-nowrap select-none',
     }
   },

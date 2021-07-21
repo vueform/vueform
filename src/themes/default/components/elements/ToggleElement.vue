@@ -12,9 +12,9 @@
       return {
         defaultClasses: {
           container: '',
-          wrapper: 'toggle-wrapper',
+          wrapper: 'form-toggle-wrapper',
           toggle: {},
-          text: 'toggle-text',
+          text: 'form-toggle-text',
         }
       }
     }
@@ -22,23 +22,26 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
-  .toggle-wrapper {
+  .form-toggle-wrapper {
     display: flex;
     align-items: center;
     width: 100%;
-    min-height: $input-height;
+    padding-top: calc(var(--form-input-py) + var(--form-border-width));
   }
 
-  .toggle-text {
+  .form-toggle-text {
     margin-left: 0.5rem;
   }
 
+  // @vueform/toggle styles
   .toggle-container {
     display: inline-block;
+    outline: none;
+    border-radius: 9999px;
+
+    &:focus {
+      box-shadow: 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
+    }
   }
 
   .toggle {
@@ -57,8 +60,8 @@
   }
 
   .toggle-on {
-    background: var(--toggle-bg-on, #10b981);
-    border-color: var(--toggle-border-on, #10b981);
+    background: var(--toggle-bg-on, var(--form-primary));
+    border-color: var(--toggle-border-on, var(--form-primary));
     justify-content: flex-start;
     color: var(--toggle-text-on, #ffffff);
   }
@@ -71,8 +74,8 @@
   }
 
   .toggle-on-disabled {
-    background: var(--toggle-bg-on-disabled, #10b981);
-    border-color: var(--toggle-border-on-disabled, #10b981);
+    background: var(--toggle-bg-on-disabled, var(--form-primary));
+    border-color: var(--toggle-border-on-disabled, var(--form-primary));
     justify-content: flex-start;
     color: var(--toggle-text-on-disabled, #ffffff);
     cursor: not-allowed;
@@ -113,12 +116,12 @@
   .toggle-handle-on-disabled {
     left: 100%;
     transform: translateX(-100%);
-    background: var(--toggle-handle-disabled, #f3f4f6);
+    background: var(--toggle-handle-disabled, #ffffff);
   }
 
   .toggle-handle-off-disabled {
     left: 0%;
-    background: var(--toggle-handle-disabled, #f3f4f6);
+    background: var(--toggle-handle-disabled, #ffffff);
   }
 
   .toggle-label {
