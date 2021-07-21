@@ -29,6 +29,7 @@
         <a
           v-if="isButtonLabelComponent"
           v-bind="button"
+          :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           @click="handleClick"
         >
@@ -39,6 +40,7 @@
           v-else
           v-bind="button"
           v-html="buttonLabel"
+          :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           @click="handleClick"
         />

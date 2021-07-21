@@ -53,8 +53,8 @@ export default {
     container: '',
     button: 'inline-block form-p-button leading-snug form-rounded transition form-bg-primary text-white focus:outline-none',
     button_enabled: 'cursor-pointer hover:form-bg-primary-darker focus:form-ring',
-    button_disabled: 'opacity-50 cursor-not-allowed',
-    button_loading: 'form-bg-primary text-white form-bg-spinner-white opacity-70 cursor-not-allowed'
+    button_disabled: 'opacity-60 cursor-not-allowed',
+    button_loading: 'form-bg-primary text-white form-bg-spinner-white opacity-60 cursor-not-allowed'
   },
   CheckboxElement: {
     container: '',
