@@ -12,7 +12,7 @@
       return {
         defaultClasses: {
           container: '',
-          wrapper: 'slider-wrapper',
+          wrapper: 'form-slider-wrapper',
           slider: {},
         }
       }
@@ -21,14 +21,11 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
-  .slider-wrapper {
-    margin-top: calc((#{$input-height} - 6px) / 2)
+  .form-slider-wrapper {
+    margin-top: calc((var(--form-input-min-height) - 6px) / 2)
   }
 
+  // @vueform/slider styles
   .slider-target,
   .slider-target * {
     -webkit-touch-callout: none;
@@ -167,7 +164,7 @@
   }
 
   .slider-connect {
-    background: var(--slider-connect-bg, #10B981);
+    background: var(--slider-connect-bg, var(--form-primary));
     cursor: pointer;
   }
 
@@ -190,7 +187,7 @@
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 var(--slider-handle-ring-width, 3px) var(--slider-handle-ring-color, #10B98130), var(--slider-handle-shadow, 0.5px 0.5px 2px 1px rgba(0,0,0,.32));
+      box-shadow: 0 0 0 var(--slider-handle-ring-width, var(--form-ring-width)) var(--slider-handle-ring-color, var(--form-ring-color)), var(--slider-handle-shadow, 0.5px 0.5px 2px 1px rgba(0,0,0,.32));
     }
   }
 
@@ -226,8 +223,8 @@
     text-align: center;
     color: var(--slider-tooltip-color, #fff);
     border-radius: var(--slider-tooltip-radius, 5px);
-    border: 1px solid var(--slider-tooltip-bg, #10B981);
-    background: var(--slider-tooltip-bg, #10B981);
+    border: 1px solid var(--slider-tooltip-bg, var(--form-primary));
+    background: var(--slider-tooltip-bg, var(--form-primary));
   }
 
   .slider-horizontal .slider-tooltip {
