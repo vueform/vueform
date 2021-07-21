@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'alert alert-success',
+          container: 'form-messages',
           message: '',
         }
       }
@@ -16,8 +16,11 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
+  .form-messages {
+    background: var(--form-message-bg);
+    color: var(--form-message-color);
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.25rem;
+    margin-bottom: var(--form-gutter);
+  }
 </style>

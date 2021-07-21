@@ -280,7 +280,7 @@ export default {
     container: 'text-sm text-gray-500 mt-1',
   },
   ElementError: {
-    container: 'text-sm text-red-500 block',
+    container: 'text-sm text-red-500 block mt-1',
   },
   ElementInfo: {
     container: 'inline-block w-3.5 h-3.5 bg-form-info bg-opacity-20 bg-center bg-no-repeat relative ml-2 top-px cursor-pointer group',
@@ -325,7 +325,7 @@ export default {
     container: 'flex flex-wrap'
   },
   FormErrors: {
-    container: 'bg-red-100 border border-red-200 text-red-700 py-3 px-5 rounded mb-4',
+    container: 'bg-red-100 text-red-500 py-3 px-5 rounded mb-4',
     error: '',
   },
   FormLanguage: {
@@ -338,7 +338,7 @@ export default {
     container: 'flex items-center justify-between mb-8',
   },
   FormMessages: {
-    container: 'bg-green-100 border border-green-200 text-green-500 py-3 px-5 rounded mb-4',
+    container: 'bg-green-100 text-green-500 py-3 px-5 rounded mb-4',
     message: '',
   },
   FormStep: {

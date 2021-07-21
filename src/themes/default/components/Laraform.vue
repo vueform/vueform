@@ -28,7 +28,9 @@
     --form-bg-disabled: #E5E7EB;
     --form-color-disabled: #9CA3AF;
 
+    --form-error-bg: #FEE2E2;
     --form-error-color: #EF4444;
+    --form-message-bg: #D1FAE5;
     --form-message-color: #10B981;
 
     --form-placeholder-color: #6B7280;
