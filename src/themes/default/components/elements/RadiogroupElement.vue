@@ -8,7 +8,7 @@
       return {
         defaultClasses: {
           container: '',
-          radioGroup: 'radio-group',
+          radioGroup: 'form-radio-group',
         }
       }
     }
@@ -16,8 +16,11 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
+  .form-radio-group {
+    padding-top: calc(var(--form-input-py) + var(--form-border-width));
 
+    .form-radio-container {
+      padding-top: 0;
+    }
+  }
 </style>

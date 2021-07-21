@@ -7,8 +7,8 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-radio',
-          input: 'form-radio-input',
+          container: 'form-radio-container',
+          input: 'form-radio',
           input_enabled: '',
           input_disabled: '',
           label: 'form-radio-label',
@@ -19,8 +19,5 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
+  // Some styles are contained in Laraform.vue
 </style>
