@@ -8,7 +8,7 @@
       return {
         defaultClasses: {
           container: '',
-          content: '',
+          content: 'form-static-element-content',
         }
       }
     }
@@ -16,8 +16,7 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
+  .form-static-element-content {
+    padding-top: calc(var(--form-input-py) + var(--form-border-width));
+  }
 </style>
