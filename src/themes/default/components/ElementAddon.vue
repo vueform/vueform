@@ -33,7 +33,8 @@
     border-bottom-right-radius: 0;
     border-right: 0;
 
-    & ~ .form-input {
+    & ~ .form-input,
+    & ~ div .form-input {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
@@ -45,7 +46,8 @@
     border-left: 0;
     order: 2;
 
-    & ~ .form-input {
+    & ~ .form-input,
+    & ~ div .form-input {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }

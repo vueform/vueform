@@ -2,12 +2,18 @@
   <component :is="elementLayout">
     <template v-slot:field>
 
-
       <div :class="classes.inputContainer">
         <slot name="addon-before">
           <component :is="fieldSlots.addonBefore"
             v-if="addons.before"
             type="before"
+          />
+        </slot>
+
+        <slot name="addon-after">
+          <component :is="fieldSlots.addonAfter"
+            v-if="addons.after"
+            type="after"
           />
         </slot>
 
@@ -28,13 +34,6 @@
           @change="handleChange"
           ref="input"
         />
-
-        <slot name="addon-after">
-          <component :is="fieldSlots.addonAfter"
-            v-if="addons.after"
-            type="after"
-          />
-        </slot>
       </div>
 
     </template>
