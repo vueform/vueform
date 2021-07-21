@@ -26,7 +26,7 @@
             {{ option.label }}
           </option>
         </select>
-        <span v-if="placeholder && empty" :class="classes.inputPlaceholder">{{ placeholder }}</span>
+        <span v-if="placeholder && empty && !isDisabled" :class="classes.inputPlaceholder">{{ placeholder }}</span>
       </div>
       <Multiselect
         v-else
@@ -93,7 +93,7 @@
   export default {
     name: 'SelectElement',
     components: {
-      Multiselect: Multiselect,
+      Multiselect,
     },
     data() {
       return {

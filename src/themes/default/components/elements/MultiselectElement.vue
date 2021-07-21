@@ -12,7 +12,7 @@
       return {
         defaultClasses: {
           container: '',
-          input: 'form-control',
+          input: 'form-input',
           input_enabled: '',
           input_disabled: '',
           inputWrapper: '',
@@ -24,8 +24,5 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
+  // Some styles are contained in Laraform.vue
 </style>

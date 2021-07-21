@@ -18,7 +18,7 @@ const text = {
 
 const select = {
   container: 'relative mx-auto w-full flex items-center justify-end box-border cursor-pointer border border-gray-300 form-rounded bg-white text-base leading-normal outline-none',
-  containerDisabled: '!cursor-default form-bg-disabled',
+  containerDisabled: '!cursor-default form-bg-disabled text-gray-400',
   containerOpen: 'form-rounded-b-none',
   containerOpenTop: 'form-rounded-t-none',
   containerActive: 'form-ring',
@@ -151,8 +151,8 @@ export default {
     input: 'w-full form-p-input form-border form-border-color form-rounded',
     input_enabled: 'focus:form-ring',
     input_disabled: 'form-bg-disabled form-text-disabled',
-    inputWrapper: '',
-    inputPlaceholder: '',
+    inputWrapper: 'relative',
+    inputPlaceholder: 'absolute left-0 top-0 form-pt-input form-pl-input ml-px text-gray-400 pointer-events-none',
     select: {
       ...select,
     }
@@ -193,7 +193,7 @@ export default {
     container: '',
     select: {
       ...select,
-      tags: 'flex-grow flex-shrink flex flex-wrap items-center mt-1 pl-2',
+      tags: 'flex-grow flex-shrink flex flex-wrap items-center mt-1 form-pl-input-y',
       tagsSearch: 'h-full border-0 outline-none appearance-none p-0 text-base font-sans mx-1 mb-1 box-border flex-grow flex-shrink',
     }
   },

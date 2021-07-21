@@ -22,11 +22,14 @@
    */
   :root {
     --form-primary: #10B981;
+    --form-primary-lighter: #26c08e;
+    --form-primary-light: #87dcc0;
     --form-primary-darker: #0EA774;
     --form-gutter: 1rem;
     --form-input-min-height: 2.375rem;
 
     --form-bg-disabled: #E5E7EB;
+    --form-bg-disabled-darker: #969EAE;
     --form-color-disabled: #9CA3AF;
 
     --form-error-bg: #FEE2E2;
@@ -34,7 +37,7 @@
     --form-message-bg: #D1FAE5;
     --form-message-color: #10B981;
 
-    --form-placeholder-color: #6B7280;
+    --form-placeholder-color: #9CA3AF;
     --form-placeholder-opacity: 1;
 
     --form-border-width: 1px;

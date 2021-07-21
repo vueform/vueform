@@ -15,10 +15,6 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
   .multiselect-single-label {
     display: flex;
     align-items: center;
@@ -28,7 +24,7 @@
     top: 0;
     pointer-events: none;
     background: transparent;
-    line-height: var(--ms-line-height, 1.375);
-    padding-left: var(--ms-px, 0.875rem);
+    line-height: var(--ms-line-height, inherit);
+    padding-left: var(--ms-px, var(--form-input-px));
   }
 </style>
