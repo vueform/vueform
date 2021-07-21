@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-languages nav nav-pills nav-fill',
+          container: 'form-languages',
         }
       }
     }
@@ -15,17 +15,12 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
-  .nav.form-languages {
-    margin-bottom: calc(#{$spacer} * 2);
-
-    &.nav-fill {
-      .nav-item {
-        flex: 1;
-      }
-    }
+  .form-languages {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 calc(var(--form-gutter) * 2) 0;
   }
 </style>

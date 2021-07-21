@@ -7,9 +7,9 @@
     data() {
       return {
         defaultClasses: {
-          container: 'nav-item',
-          wrapper: 'nav-link',
-          wrapper_active: 'active',
+          container: 'form-language',
+          wrapper: 'form-language-link',
+          wrapper_active: 'is-active',
           wrapper_inactive: '',
         }
       }
@@ -18,8 +18,23 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
+  .form-language {
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 100%;
+  }
 
+  .form-language-link {
+    border-radius: var(--form-border-radius);
+    text-align: center;
+    padding: 0.5rem 1rem;
+    display: block;
+    color: var(--form-primary);
+    text-decoration: none;
+
+    &.is-active {
+      color: #ffffff;
+      background: var(--form-primary);
+    }
+  }
 </style>
