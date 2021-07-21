@@ -100,6 +100,7 @@ export default {
   },
   LocationElement: {
     container: '',
+    inputContainer: 'w-full flex',
     input: 'w-full form-p-input form-border form-border-color form-rounded',
     ...text,
   },

@@ -11,6 +11,13 @@
           />
         </slot>
 
+        <slot name="addon-after">
+          <component :is="fieldSlots.addonAfter"
+            v-if="addons.after"
+            type="after"
+          />
+        </slot>
+
         <ElementLabelFloating
           v-if="floating"
           :visible="!empty"
@@ -27,13 +34,6 @@
           ref="input"
           @blur="handleLocationBlur"
         />
-
-        <slot name="addon-after">
-          <component :is="fieldSlots.addonAfter"
-            v-if="addons.after"
-            type="after"
-          />
-        </slot>
 
       </div>
 
@@ -54,6 +54,7 @@
       return {
         defaultClasses: {
           container: '',
+          inputContainer: '',
           input: '',
           input_enabled: '',
           input_disabled: '',

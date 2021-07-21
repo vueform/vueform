@@ -33,6 +33,18 @@
   }
 
   // Algolia
+  .ap-input {
+    @apply h-auto;
+  }
+
+  .ap-input-icon {
+    @apply z-1;
+  }
+
+  .ap-icon-pin {
+    @apply hidden;
+  }
+
   .ap-footer {
     @apply flex items-center justify-end;
   }
