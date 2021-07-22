@@ -53,7 +53,6 @@
     --form-button-px: 1rem;
 
     --form-checkbox-size: 1rem;
-    
     --form-gallery-size: 6rem;
 
     --form-date-head-bg: #F3F4F6;

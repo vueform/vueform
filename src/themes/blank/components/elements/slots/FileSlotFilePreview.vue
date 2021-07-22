@@ -4,7 +4,7 @@
       <div :class="classes.file">
 
         <!-- Filename -->
-        <a :href="link" v-if="hasLink" :class="classes.filenameLink" target="_blank">{{ filename }}</a>
+        <a :href="link" v-if="hasLink && clickable" :class="classes.filenameLink" target="_blank">{{ filename }}</a>
         <span v-else :class="classes.filenameStatic">{{ filename }}</span>
 
       </div>
@@ -53,7 +53,6 @@
           progress: '',
           iconWarning: '',
           iconUploaded: '',
-          iconFile: '',
           iconRemove: '',
         }
       }

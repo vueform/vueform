@@ -37,6 +37,10 @@ export default {
       return el$.value.filename
     })
 
+    const clickable = computed(() => {
+      return el$.value.clickable
+    })
+
     const uploaded = computed(() => {
       return el$.value.stage > 1
     })
@@ -90,6 +94,7 @@ export default {
       hasError,
       link,
       filename,
+      clickable,
       uploaded,
       uploading,
       progress,

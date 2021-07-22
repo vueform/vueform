@@ -37,6 +37,10 @@ export default {
       return el$.value.filename
     })
 
+    const clickable = computed(() => {
+      return el$.value.clickable
+    })
+
     const preview = computed(() => {
       return el$.value.preview
     })
@@ -98,6 +102,7 @@ export default {
       hasError,
       link,
       filename,
+      clickable,
       preview,
       previewLoaded,
       uploaded,

@@ -33,13 +33,15 @@
       return {
         defaultClasses: {
           container: '',
-          previewWrapper: '',
-          previewImage: '',
+          image: '',
+          image_link: '',
+          image_static: '',
+          img: '',
           overlay: '',
           upload: '',
           remove: '',
-          progress: '',
           progressBar: '',
+          progress: '',
           iconWarning: '',
           iconUploaded: '',
           iconRemove: '',
