@@ -121,6 +121,7 @@ export default {
     handle_file: 'absolute form-w-input form-h-input bg-form-sort-handle bg-center bg-no-repeat left-0 top-0 transform -translate-x-full form-bg-size-2.75 cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
     handle_image: 'absolute form-w-input form-h-input bg-form-sort-handle bg-center bg-no-repeat left-0 top-0 transform -translate-x-full form-bg-size-2.75 cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
     handle_gallery: 'absolute w-4 h-4 box-content top-0.5 left-0.5 mt-px ml-px form-bg-size-2.75 bg-form-arrows bg-gray-200 bg-center bg-no-repeat rounded-full transition opacity-0 group-hover:opacity-100 cursor-grab active:cursor-grabbing hover:bg-gray-300',
+    dnd: 'mb-2',
     button: 'inline-block mb-2 form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
     button_enabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
     button_disabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
@@ -266,7 +267,7 @@ export default {
 
   // Components
   DragAndDrop: {
-    container: 'w-full border border-dashed transition flex flex-col items-center justify-center p-6 cursor-pointer mb-4',
+    container: 'w-full border border-dashed transition inline-flex flex-col items-center justify-center p-6 cursor-pointer',
     container_inactive: 'form-border-color',
     container_active: 'form-border-primary form-bg-primary bg-opacity-20',
     container_enabled: '',

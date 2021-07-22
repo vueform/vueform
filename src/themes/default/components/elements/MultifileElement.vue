@@ -23,6 +23,7 @@
           handle_file: 'form-multifile-handle-file',
           handle_image: 'form-multifile-handle-image',
           handle_gallery: 'form-multifile-handle-gallery',
+          dnd: 'form-multifile-dnd',
           button: 'form-btn form-btn-light form-btn-upload',
           button_enabled: '',
           button_disabled: 'is-disabled',
@@ -37,6 +38,10 @@
 
   .form-btn-upload {
     margin-bottom: calc(var(--form-gutter) / 2);
+  }
+
+  .form-multifile-dnd {
+    margin-bottom: var(--form-gutter);
   }
 
   .form-multifile-spacer {

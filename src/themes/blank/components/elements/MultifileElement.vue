@@ -9,9 +9,11 @@
         :title="__(`laraform.elements.${type}.dndTitle`)"
         :description="__(`laraform.elements.${type}.dndDescription`)"
         :disabled="isDisabled"
+        :class="classes.dnd"
         @click="handleClick"
         @drop="handleDrop"
       />
+
       <!-- Upload button -->
       <a
         v-else
@@ -79,6 +81,7 @@
           handle_file: '',
           handle_image: '',
           handle_gallery: '',
+          dnd: '',
           button: '',
           button_enabled: '',
           button_disabled: '',
