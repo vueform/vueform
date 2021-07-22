@@ -16,7 +16,7 @@
 
 <style lang="scss">
   .form-label {
-    padding: calc(var(--form-input-py) + var(--form-border-width)) var(--form-gutter);
-    padding-left: 0;
+    padding-top: calc(var(--form-input-py) + var(--form-border-width));
+    padding-bottom: calc(var(--form-input-py) + var(--form-border-width));
   }
 </style>

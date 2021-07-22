@@ -8,7 +8,7 @@
       return {
         defaultClasses: {
           container: '',
-          childrenContainer: 'form-row',
+          childrenContainer: 'form-row-group',
         }
       }
     }
@@ -16,8 +16,5 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
+  // Some styles are contained in Laraform.vue
 </style>
