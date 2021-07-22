@@ -22,6 +22,8 @@
 </script>
 
 <style lang="scss">
+    // Some styles are contained in Laraform.vue
+
   .form-rowset {
     & > .form-row {
       position: relative;
