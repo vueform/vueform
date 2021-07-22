@@ -40,6 +40,30 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
         opacity: theme('form.placeholderOpacity'),
       },
     },
+    {
+      base: ['select'],
+      styles: {
+        'background-image': `url("${svgToDataUri(
+          `<svg viewBox="0 0 320 512" fill="${theme(
+            'colors.gray.500'
+          )}" xmlns="http://www.w3.org/2000/svg"><path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>`
+        )}")`,
+        'background-position': `right ${theme('form.pxInput')} center`,
+        'background-repeat': `no-repeat`,
+        'background-size': `10px`,
+        'color-adjust': `exact`,
+      },
+    },
+    {
+      base: ['[multiple]'],
+      styles: {
+        'background-image': 'initial',
+        'background-position': 'initial',
+        'background-repeat': 'unset',
+        'background-size': 'initial',
+        'color-adjust': 'unset',
+      },
+    },
   ]
   
   addBase(rules.map((rule) => {
@@ -53,12 +77,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
     '.form-bg-disabled': {
       backgroundColor: theme('form.bgDisabled'),
     },
-    '.form-border': {
-      border: `${theme('form.borderWidth')} solid`
-    },
-    '.form-border-color': {
-      borderColor: `${theme('form.borderColor')}`
-    },
     '.form-border-b-color': {
       borderBottomColor: `${theme('form.borderColor')}`
     },
@@ -71,21 +89,29 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
     '.form-rounded': { 
       borderRadius: theme('form.borderRadius'),
     },
-    '.form-rounded-b': { 
-      borderBottomLeftRadius: theme('form.borderRadius'),
-      borderBottomRightRadius: theme('form.borderRadius'),
-    },
     '.form-rounded-t': { 
       borderTopLeftRadius: theme('form.borderRadius'),
       borderTopRightRadius: theme('form.borderRadius'),
     },
-    '.form-rounded-b-none': { 
-      borderBottomLeftRadius: 0,
-      borderBottomRightRadius: 0,
+    '.form-rounded-r': { 
+      borderTopRightRadius: theme('form.borderRadius'),
+      borderBottomRightRadius: theme('form.borderRadius'),
+    },
+    '.form-rounded-b': { 
+      borderBottomLeftRadius: theme('form.borderRadius'),
+      borderBottomRightRadius: theme('form.borderRadius'),
+    },
+    '.form-rounded-l': { 
+      borderTopLeftRadius: theme('form.borderRadius'),
+      borderBottomLeftRadius: theme('form.borderRadius'),
     },
     '.form-rounded-t-none': { 
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
+    },
+    '.form-rounded-b-none': { 
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
     },
     [`.${e('form-text-0.5xs')}`]: {
       fontSize: '0.6875rem',
@@ -94,15 +120,15 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
       padding: `${theme('form.pyInput')} ${theme('form.pxInput')}`
     },
     '.form-p-input-border': {
-      padding: `calc((${theme('form.borderWidth')} * 2) + ${theme('form.pyInput')}) calc((${theme('form.borderWidth')} * 2) + ${theme('form.pxInput')})`
+      padding: `calc(${theme('form.borderWidth')} + ${theme('form.pyInput')}) calc(${theme('form.borderWidth')} + ${theme('form.pxInput')})`
     },
     '.form-py-input': {
       paddingTop: theme('form.pyInput'),
       paddingBottom: theme('form.pyInput'),
     },
     '.form-py-input-border': {
-      paddingTop: `calc((${theme('form.borderWidth')} * 2) + ${theme('form.pyInput')})`,
-      paddingBottom: `calc((${theme('form.borderWidth')} * 2) + ${theme('form.pyInput')})`,
+      paddingTop: `calc(${theme('form.borderWidth')} + ${theme('form.pyInput')})`,
+      paddingBottom: `calc(${theme('form.borderWidth')} + ${theme('form.pyInput')})`,
     },
     '.form-px-input': {
       paddingLeft: theme('form.pxInput'),
@@ -112,13 +138,16 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
       paddingTop: theme('form.pyInput'),
     },
     '.form-pt-input-border': {
-      paddingTop: `calc((${theme('form.borderWidth')} * 2) + ${theme('form.pyInput')})`,
+      paddingTop: `calc(${theme('form.borderWidth')} + ${theme('form.pyInput')})`,
     },
     '.form-pr-input': {
       paddingRight: theme('form.pxInput'),
     },
     '.form-pl-input': {
       paddingLeft: theme('form.pxInput'),
+    },
+    '.form-pl-input-y': {
+      paddingLeft: theme('form.pyInput'),
     },
     '.form-mt-input': {
       marginTop: theme('form.pyInput'),
@@ -144,11 +173,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
     '.form-w-checkbox': {
       width: theme('form.checkboxSize'),
     },
-    '.form-h-checkbox': {
-      height: theme('form.checkboxSize'),
-    },
-    '.form-min-h-input': {
-      minHeight: `calc((${theme('form.pyInput')} * 2) + (${theme('form.borderWidth')} * 2) + (${theme('fontSize.base')} * ${theme('lineHeight.normal')}))`,
+    '.form-w-gallery': {
+      width: theme('form.gallerySize'),
     },
     '.form-w-30': {
       width: '7.5rem',
@@ -156,8 +182,11 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
     '.form-w-input': {
       width: `calc((${theme('form.pyInput')} * 2) + (${theme('form.borderWidth')} * 2) + (${theme('fontSize.base')} * ${theme('lineHeight.normal')}))`,
     },
-    '.form-h-30': {
-      height: '7.5rem',
+    '.form-h-checkbox': {
+      height: theme('form.checkboxSize'),
+    },
+    '.form-h-gallery': {
+      height: theme('form.gallerySize'),
     },
     '.form-h-input': {
       height: `calc((${theme('form.pyInput')} * 2) + (${theme('form.borderWidth')} * 2) + (${theme('fontSize.base')} * ${theme('lineHeight.normal')}))`,
@@ -165,14 +194,29 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
     '.form-h-input-inner': {
       height: `calc((${theme('form.pyInput')} * 2) + (${theme('fontSize.base')} * ${theme('lineHeight.normal')}))`,
     },
+    '.form-h-30': {
+      height: '7.5rem',
+    },
     '.form-max-w-30': {
       maxWidth: '7.5rem',
     },
     '.form-max-h-30': {
       maxHeight: '7.5rem',
     },
+    '.form-min-h-input': {
+      minHeight: `calc((${theme('form.pyInput')} * 2) + (${theme('form.borderWidth')} * 2) + (${theme('fontSize.base')} * ${theme('lineHeight.normal')}))`,
+    },
+    '.form-left-input': {
+      left: `calc((${theme('form.pyInput')} * 2) + (${theme('form.borderWidth')} * 2) + (${theme('fontSize.base')} * ${theme('lineHeight.normal')}))`,
+    },
+    [`.${e('form-bg-size-2.5')}`]: {
+      backgroundSize: '0.625rem 0.625rem'
+    },
     [`.${e('form-bg-size-2.75')}`]: {
-      backgroundSize: '0.6875rem'
+      backgroundSize: '0.6875rem 0.6875rem'
+    },
+    [`.${e('form-bg-size-3')}`]: {
+      backgroundSize: '0.75rem 0.75rem'
     },
     [`.${e('form-p-0.5px')}`]: {
       padding: '0.5px',
@@ -184,6 +228,11 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
       borderWidth: '3.5px',
     },
 
+    '.form-hide-empty-img': {
+      '&[src=""], &[src="data:"], &:not([src])': {
+        opacity: 0,
+      }
+    },
     '.form-bg-spinner-white': {
       position: 'relative',
       color: 'transparent',
@@ -202,9 +251,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
       }
     },
     '.form-step': {
+      display: 'block',
       position: 'relative',
       whiteSpace: 'nowrap',
-      flex: 1,
+      flex: '1 1',
       textAlign: 'center',
       padding: '0 10px',
       '&:nth-child(1):before, &:nth-child(1) a:before, &:nth-child(1) a:after': { zIndex: 10 },
@@ -493,6 +543,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
     '.form-bg-radio-white': {
       backgroundImage: theme('backgroundImage.form-radio-white')
     },
+    '.form-border': {
+      border: `${theme('form.borderWidth')} solid`
+    },
+    '.form-border-color': {
+      borderColor: `${theme('form.borderColor')}`
+    },
   }
 
   const hoverable = {
@@ -535,6 +591,26 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
     '.form-bg-disabled-darker': {
       backgroundColor: Color(theme('form.bgDisabled')).darken(0.3).toString(),
     },
+    '.form-border-l-0': {
+      borderLeft: 0,
+    },
+    '.form-border-r-0': {
+      borderRight: 0,
+    },
+  }
+
+  const addonBefore = {
+    '.form-rounded-l-none': { 
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
+  }
+
+  const addonAfter = {
+    '.form-rounded-r-none': { 
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
   }
 
   addUtilities(plain)
@@ -545,6 +621,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
   addUtilities(activable, ['active'])
   addUtilities(disableable, ['disabled'])
   addUtilities(important, ['important'])
+  addUtilities(addonBefore, ['addon-before'])
+  addUtilities(addonAfter, ['addon-after'])
 
   addVariant('h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
@@ -633,11 +711,33 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
       })
     })
   })
+
+  addVariant('addon-before', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.form-addon-before ~ .${e(`addon-before${separator}${className}`)},
+              .form-addon-before ~ div .${e(`addon-before${separator}${className}`)},
+              .form-addon-before ~ span .${e(`addon-before${separator}${className}`)}`
+    })
+  })
+
+  addVariant('addon-after', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.form-addon-after ~ .${e(`addon-after${separator}${className}`)},
+              .form-addon-after ~ div .${e(`addon-after${separator}${className}`)},
+              .form-addon-after ~ span .${e(`addon-after${separator}${className}`)}`
+    })
+  })
+
+  addVariant('ghost', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.sortable-ghost.${e(`ghost${separator}${className}`)}`
+    })
+  })
 }, {
   variants: {
     extend: {
       backgroundColor: ['disabled'],
-      cursor: ['disabled'],
+      cursor: ['disabled', 'important'],
       borderColor: ['disabled'],
       height: ['h', 'v'],
       width: ['h', 'v'],
@@ -645,7 +745,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
       translate: ['h', 'v', 'merge-h', 'merge-v'],
       transitionProperty: ['tap'],
       transitionDuration: ['tap'],
-      display: ['tt-focus', 'tt-focused', 'tt-drag', 'tt-dragging']
+      display: ['tt-focus', 'tt-focused', 'tt-drag', 'tt-dragging'],
+      opacity: ['ghost'],
     }
   },
   theme: {
@@ -663,15 +764,16 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
       borderRadius: theme('borderRadius.DEFAULT'),
 
       checkboxSize: theme('width.4'),
+      gallerySize: theme('width.24'),
 
       ring: true,
       ringWidth: theme('ringWidth.2'),
       ringOpacity: theme('ringOpacity.40'),
 
-      pxInput: theme('padding.3'),
       pyInput: theme('padding')['1.5'],
-      pxButton: theme('padding.4'),
+      pxInput: theme('padding.3'),
       pyButton: theme('padding.2'),
+      pxButton: theme('padding.4'),
 
       dateHeadBg: theme('colors.gray.100'),
       dateHeadColor: theme('colors.gray.700'),
@@ -684,6 +786,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
         '1\/10': '10%',
       },
       height: {
+        '0.75': '0.1875rem',
         '1\/10': '10%',
       },
       minWidth: {
@@ -703,6 +806,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
         'form-check-solid-white': `url("${svgToDataUri(
           `<svg viewBox="0 0 512 512" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>`,
         )}")`,
+        'form-check-solid-green-500': `url("${svgToDataUri(
+          `<svg viewBox="0 0 512 512" fill="${theme('colors.green.500')}" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>`,
+        )}")`,
         'form-radio-white': `url("${svgToDataUri(
           `<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3"/></svg>`,
         )}")`,
@@ -713,13 +819,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
           `<svg viewBox="0 0 512 512" fill="${theme('form.primary')}" xmlns="http://www.w3.org/2000/svg"><path d="M456.433 371.72l-27.79-16.045c-7.192-4.152-10.052-13.136-6.487-20.636 25.82-54.328 23.566-118.602-6.768-171.03-30.265-52.529-84.802-86.621-144.76-91.424C262.35 71.922 256 64.953 256 56.649V24.56c0-9.31 7.916-16.609 17.204-15.96 81.795 5.717 156.412 51.902 197.611 123.408 41.301 71.385 43.99 159.096 8.042 232.792-4.082 8.369-14.361 11.575-22.424 6.92z"></path></svg>`,
         )}")`,
         'form-caret': `url("${svgToDataUri(
-          `<svg viewBox="0 0 320 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>`,
-        )}")`,
-        'form-file': `url("${svgToDataUri(
-          `<svg viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M369.9 97.9L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zm-22.6 22.7c2.1 2.1 3.5 4.6 4.2 7.4H256V32.5c2.8.7 5.3 2.1 7.4 4.2l83.9 83.9zM336 480H48c-8.8 0-16-7.2-16-16V48c0-8.8 7.2-16 16-16h176v104c0 13.3 10.7 24 24 24h104v304c0 8.8-7.2 16-16 16z"></path></svg>`,
-        )}")`,
-        'form-file-check': `url("${svgToDataUri(
-          `<svg viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M369.941 97.941l-83.882-83.882A48 48 0 0 0 252.118 0H48C21.49 0 0 21.49 0 48v416c0 26.51 21.49 48 48 48h288c26.51 0 48-21.49 48-48V131.882a48 48 0 0 0-14.059-33.941zm-22.627 22.628a15.89 15.89 0 0 1 4.195 7.431H256V32.491a15.88 15.88 0 0 1 7.431 4.195l83.883 83.883zM336 480H48c-8.837 0-16-7.163-16-16V48c0-8.837 7.163-16 16-16h176v104c0 13.255 10.745 24 24 24h104v304c0 8.837-7.163 16-16 16zm-34.467-210.949l-134.791 133.71c-4.7 4.663-12.288 4.642-16.963-.046l-67.358-67.552c-4.683-4.697-4.672-12.301.024-16.985l8.505-8.48c4.697-4.683 12.301-4.672 16.984.024l50.442 50.587 117.782-116.837c4.709-4.671 12.313-4.641 16.985.068l8.458 8.527c4.672 4.709 4.641 12.313-.068 16.984z"></path></svg>`,
+          `<svg viewBox="0 0 320 512" fill="${theme('colors.gray.500')}" xmlns="http://www.w3.org/2000/svg"><path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>`,
         )}")`,
         'form-check-circle': `url("${svgToDataUri(
           `<svg viewBox="0 0 512 512" fill="${theme('colors.green.500')}" xmlns="http://www.w3.org/2000/svg"><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z"></path></svg>`,
@@ -729,6 +829,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
         )}")`,
         'form-exclamation-solid-white': `url("${svgToDataUri(
           `<svg viewBox="0 0 192 512" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z"></path></svg>`,
+        )}")`,
+        'form-exclamation-solid-red-500': `url("${svgToDataUri(
+          `<svg viewBox="0 0 192 512" fill="${theme('colors.red.500')}" xmlns="http://www.w3.org/2000/svg"><path d="M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z"></path></svg>`,
         )}")`,
         'form-map-marker': `url("${svgToDataUri(
           `<svg viewBox="0 0 384 512" fill="${theme('colors.gray.400')}" xmlns="http://www.w3.org/2000/svg"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>`,
@@ -745,8 +848,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
         'form-sort-handle': `url("${svgToDataUri(
           `<svg viewBox="0 0 11 9" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M10.0418527,0.894571939 L0.309709821,0.894571939 C0.235791888,0.894571939 0.17578125,0.834156736 0.17578125,0.759740479 L0.17578125,0.220414636 C0.17578125,0.145998379 0.235791888,0.0855831754 0.309709821,0.0855831754 L10.0418527,0.0855831754 C10.1157706,0.0855831754 10.1757812,0.145998379 10.1757812,0.220414636 L10.1757812,0.759740479 C10.1757812,0.834156736 10.1157706,0.894571939 10.0418527,0.894571939 Z M10.0418527,4.8049452 L0.309709821,4.8049452 C0.235791888,4.8049452 0.17578125,4.74453 0.17578125,4.67011374 L0.17578125,4.1307879 C0.17578125,4.05637164 0.235791888,3.99595644 0.309709821,3.99595644 L10.0418527,3.99595644 C10.1157706,3.99595644 10.1757812,4.05637164 10.1757812,4.1307879 L10.1757812,4.67011374 C10.1757812,4.74453 10.1157706,4.8049452 10.0418527,4.8049452 Z M10.0418527,8.80953919 L0.309709821,8.80953919 C0.235791888,8.80953919 0.17578125,8.74912399 0.17578125,8.67470773 L0.17578125,8.13538189 C0.17578125,8.06096563 0.235791888,8.00055043 0.309709821,8.00055043 L10.0418527,8.00055043 C10.1157706,8.00055043 10.1757812,8.06096563 10.1757812,8.13538189 L10.1757812,8.67470773 C10.1757812,8.74912399 10.1157706,8.80953919 10.0418527,8.80953919 Z"></path></svg>`,
         )}")`,
-        'form-arrows-white': `url("${svgToDataUri(
-          `<svg viewBox="0 0 512 512" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M337.782 434.704l-73.297 73.782c-4.686 4.686-12.284 4.686-16.971 0l-73.296-73.782c-4.686-4.686-4.686-12.284 0-16.97l7.07-7.07c4.686-4.686 12.284-4.686 16.971 0L239 451.887h1V272H60.113v1l41.224 40.741c4.686 4.686 4.686 12.284 0 16.971l-7.071 7.07c-4.686 4.686-12.284 4.686-16.97 0L3.515 264.485c-4.686-4.686-4.686-12.284 0-16.971l73.782-73.297c4.686-4.686 12.284-4.686 16.971 0l7.071 7.071c4.686 4.686 4.686 12.284 0 16.971L60.113 239v1H240V60.113h-1l-40.741 41.224c-4.686 4.686-12.284 4.686-16.971 0l-7.07-7.071c-4.686-4.686-4.687-12.284 0-16.97l73.297-73.782c4.686-4.686 12.284-4.686 16.971 0l73.297 73.782c4.686 4.686 4.686 12.284 0 16.971l-7.071 7.071c-4.686 4.686-12.284 4.686-16.971 0L273 60.113h-1V240h179.887v-1l-41.224-40.741c-4.686-4.686-4.686-12.284 0-16.971l7.071-7.07c4.686-4.686 12.284-4.686 16.97 0l73.782 73.297c4.687 4.686 4.686 12.284 0 16.971l-73.782 73.297c-4.686 4.686-12.284 4.686-16.97 0l-7.071-7.07c-4.686-4.686-4.686-12.284 0-16.971L451.887 273v-1H272v179.887h1l40.741-41.224c4.686-4.686 12.284-4.686 16.971 0l7.07 7.071c4.686 4.685 4.686 12.283 0 16.97z"></path></svg>`,
+        'form-arrows': `url("${svgToDataUri(
+          `<svg viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M337.782 434.704l-73.297 73.782c-4.686 4.686-12.284 4.686-16.971 0l-73.296-73.782c-4.686-4.686-4.686-12.284 0-16.97l7.07-7.07c4.686-4.686 12.284-4.686 16.971 0L239 451.887h1V272H60.113v1l41.224 40.741c4.686 4.686 4.686 12.284 0 16.971l-7.071 7.07c-4.686 4.686-12.284 4.686-16.97 0L3.515 264.485c-4.686-4.686-4.686-12.284 0-16.971l73.782-73.297c4.686-4.686 12.284-4.686 16.971 0l7.071 7.071c4.686 4.686 4.686 12.284 0 16.971L60.113 239v1H240V60.113h-1l-40.741 41.224c-4.686 4.686-12.284 4.686-16.971 0l-7.07-7.071c-4.686-4.686-4.687-12.284 0-16.97l73.297-73.782c4.686-4.686 12.284-4.686 16.971 0l73.297 73.782c4.686 4.686 4.686 12.284 0 16.971l-7.071 7.071c-4.686 4.686-12.284 4.686-16.971 0L273 60.113h-1V240h179.887v-1l-41.224-40.741c-4.686-4.686-4.686-12.284 0-16.971l7.071-7.07c4.686-4.686 12.284-4.686 16.97 0l73.782 73.297c4.687 4.686 4.686 12.284 0 16.971l-73.782 73.297c-4.686 4.686-12.284 4.686-16.97 0l-7.071-7.07c-4.686-4.686-4.686-12.284 0-16.971L451.887 273v-1H272v179.887h1l40.741-41.224c4.686-4.686 12.284-4.686 16.971 0l7.07 7.071c4.686 4.685 4.686 12.283 0 16.97z"></path></svg>`,
         )}")`,
         'form-inbox-in': `url("${svgToDataUri(
           `<svg viewBox="0 0 576 512" fill="${theme('form.primary')}" xmlns="http://www.w3.org/2000/svg"><path d="M560.8 329.8l-94.6-88.7c-2.4-2.3-6.2-2.1-8.5.3L444.1 256c-2.3 2.4-2.1 6.2.3 8.5l59.3 55.6H388.2l-32 64H219.8l-32-64H72.4l59.3-55.6c2.4-2.3 2.5-6.1.3-8.5l-13.7-14.6c-2.3-2.4-6.1-2.5-8.5-.3l-94.6 88.7c-9.7 9-15.2 21.7-15.2 35V464c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48v-99.2c0-13.3-5.5-26-15.2-35zM544 464c0 8.8-7.2 16-16 16H48c-8.8 0-16-7.2-16-16v-96c0-8.8 7.2-16 16-16h120l32 64h176l32-64h120c8.8 0 16 7.2 16 16v96zM416 128h-64V24c0-13.2-10.8-24-24-24h-80c-13.2 0-24 10.8-24 24v104h-64c-28.4 0-42.8 34.5-22.6 54.6l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c20-20.1 5.8-54.6-22.7-54.6zM288 288L160 160h96V32h64v128h96L288 288z"></path></svg>`,
