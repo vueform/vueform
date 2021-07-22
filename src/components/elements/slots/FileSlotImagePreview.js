@@ -13,7 +13,12 @@ export default {
       defaultClasses,
       components,
       theme,
-    } = useElementComponent(props, context)
+    } = useElementComponent(props, context, {}, {
+      addClasses: [
+        ['image', 'image_link', computed(() => hasLink.value)],
+        ['image', 'image_static', computed(() => !hasLink.value)],
+      ]
+    })
 
     // ============== COMPUTED ==============
 

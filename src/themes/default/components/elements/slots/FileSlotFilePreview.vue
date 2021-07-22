@@ -99,9 +99,14 @@
     border-radius: calc(var(--form-border-radius) * 0.75);
     text-decoration: none;
     transition: .15s;
+    outline: none;
 
     &:hover {
       background: var(--form-primary-darker);
+    }
+
+    &:focus {
+      box-shadow: 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
     }
   }
 
