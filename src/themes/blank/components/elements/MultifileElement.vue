@@ -44,6 +44,7 @@
           <span v-if="!isDisabled && sort" :class="classes.handle" data-handle><span></span></span>
         </div>
       </div>
+      <div :class="classes.spacer"></div>
 
     </template>
 
@@ -64,15 +65,19 @@
         defaultClasses: {
           container: '',
           list: '',
+          list_file: '',
+          list_image: '',
+          list_gallery: '',
           list_disabled: '',
           list_sorting: '',
-          list_default: '',
-          list_gallery: '',
+          spacer: '',
           listItem: '',
-          listItem_default: '',
+          listItem_file: '',
+          listItem_image: '',
           listItem_gallery: '',
           handle: '',
-          handle_default: '',
+          handle_file: '',
+          handle_image: '',
           handle_gallery: '',
           button: '',
           button_enabled: '',

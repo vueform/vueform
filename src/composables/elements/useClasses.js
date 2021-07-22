@@ -143,6 +143,7 @@ const multifile = function(props, context, dependencies)
 {
   const {
     view,
+    image,
   } = toRefs(props)
 
   const {
@@ -151,14 +152,17 @@ const multifile = function(props, context, dependencies)
     defaultClasses,
   } = base(props, context, dependencies, {
     addClasses: [
-      ['list', 'list_default', computed(() => view.value !== 'gallery')],
-      ['list', 'list_gallery', computed(() => view.value === 'gallery')],
+      ['list', 'list_file', computed(() => !image.value)],
+      ['list', 'list_image', computed(() => image.value && view.value !== 'gallery')],
+      ['list', 'list_gallery', computed(() => image.value && view.value === 'gallery')],
       ['list', 'list_sorting', computed(() => sorting.value)],
       ['list', 'list_disabled', computed(() => isDisabled.value)],
-      ['listItem', 'listItem_default', computed(() => view.value !== 'gallery')],
-      ['listItem', 'listItem_gallery', computed(() => view.value === 'gallery')],
-      ['handle', 'handle_default', computed(() => view.value !== 'gallery')],
-      ['handle', 'handle_gallery', computed(() => view.value === 'gallery')],
+      ['listItem', 'listItem_file', computed(() => !image.value)],
+      ['listItem', 'listItem_image', computed(() => image.value && view.value !== 'gallery')],
+      ['listItem', 'listItem_gallery', computed(() => image.value && view.value === 'gallery')],
+      ['handle', 'handle_file', computed(() => !image.value)],
+      ['handle', 'handle_image', computed(() => image.value && view.value !== 'gallery')],
+      ['handle', 'handle_gallery', computed(() => image.value && view.value === 'gallery')],
       ['button', 'button_enabled', computed(() => !isDisabled.value && !preparing.value)],
       ['button', 'button_disabled', computed(() => isDisabled.value || preparing.value)],
     ]
