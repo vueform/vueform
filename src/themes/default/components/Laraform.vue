@@ -322,6 +322,11 @@
     }
   }
 
+  .form-btn-sm {
+    padding: calc(var(--form-button-py) * 0.625) calc(var(--form-button-px) * 0.625);
+    font-size: 0.875rem;
+  }
+
   .form-btn-primary {
     background: var(--form-primary);
     color: #ffffff;

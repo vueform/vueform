@@ -8,13 +8,13 @@
       return {
         defaultClasses: {
           container: '',
-          list: 'form-list',
+          list: 'form-rowset',
           list_disabled: 'is-disabled',
           list_sorting: 'is-sorting',
-          listItem: 'row',
-          handle: 'list-handle',
-          remove: 'list-remove',
-          add: 'btn btn-primary btn-sm',
+          listItem: 'form-row',
+          handle: 'form-list-handle',
+          remove: 'form-list-remove',
+          add: 'form-btn form-btn-primary form-btn-sm',
         }
       }
     }
@@ -22,16 +22,12 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
-  .form-list {
-    & > .row {
+  .form-rowset {
+    & > .form-row {
       position: relative;
 
       &:hover {
-        .list-remove, .list-handle {
+        .form-list-remove, .form-list-handle {
           visibility: visible;
           opacity: 1;
         }
@@ -40,7 +36,7 @@
 
     &.is-sorting {
       & > div:hover {
-        .list-handle, .list-remove {
+        .form-list-handle, .form-list-remove {
           visibility: hidden;
           opacity: 0;
         }
@@ -52,7 +48,7 @@
     }
   }
 
-  .list-remove, .list-handle {
+  .form-list-remove, .form-list-handle {
     visibility: hidden;
     opacity: 0;
     transition: .3s;
@@ -66,12 +62,13 @@
     }
   }
 
-  .list-remove {
+  .form-list-remove {
     background: rgba(0,0,0,0.6);
     border-radius: 3px;
     position: absolute;
-    left: calc(#{$grid-gutter-width} / 4);
-    top: -9px;
+    left: var(--form-gutter);
+    transform: translateX(-50%) translateY(-50%);
+    top: 0;
     z-index: 3;
 
     span {
@@ -81,10 +78,11 @@
     }
   }
 
-  .list-handle {
+  .form-list-handle {
     border-radius: 3px;
     position: absolute;
-    left: calc(#{$input-height} * -1 + (#{$grid-gutter-width} / 2));
+    left: var(--form-gutter);
+    transform: translateX(-100%);
     top: 0;
     cursor: grab;
 
@@ -93,9 +91,9 @@
     }
 
     span {
-      width: $input-height;
-      height: $input-height;
-      background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='11px' height='9px' viewBox='0 0 11 9' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Ebars%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M10.0418527,0.894571939 L0.309709821,0.894571939 C0.235791888,0.894571939 0.17578125,0.834156736 0.17578125,0.759740479 L0.17578125,0.220414636 C0.17578125,0.145998379 0.235791888,0.0855831754 0.309709821,0.0855831754 L10.0418527,0.0855831754 C10.1157706,0.0855831754 10.1757812,0.145998379 10.1757812,0.220414636 L10.1757812,0.759740479 C10.1757812,0.834156736 10.1157706,0.894571939 10.0418527,0.894571939 Z M10.0418527,4.8049452 L0.309709821,4.8049452 C0.235791888,4.8049452 0.17578125,4.74453 0.17578125,4.67011374 L0.17578125,4.1307879 C0.17578125,4.05637164 0.235791888,3.99595644 0.309709821,3.99595644 L10.0418527,3.99595644 C10.1157706,3.99595644 10.1757812,4.05637164 10.1757812,4.1307879 L10.1757812,4.67011374 C10.1757812,4.74453 10.1157706,4.8049452 10.0418527,4.8049452 Z M10.0418527,8.80953919 L0.309709821,8.80953919 C0.235791888,8.80953919 0.17578125,8.74912399 0.17578125,8.67470773 L0.17578125,8.13538189 C0.17578125,8.06096563 0.235791888,8.00055043 0.309709821,8.00055043 L10.0418527,8.00055043 C10.1157706,8.00055043 10.1757812,8.06096563 10.1757812,8.13538189 L10.1757812,8.67470773 C10.1757812,8.74912399 10.1157706,8.80953919 10.0418527,8.80953919 Z' id='bars' fill='#{str-replace(#{$body-color}, '#', '%23')}'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+      width: var(--form-input-min-height);
+      height: var(--form-input-min-height);
+      background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='11px' height='9px' viewBox='0 0 11 9' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Ebars%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M10.0418527,0.894571939 L0.309709821,0.894571939 C0.235791888,0.894571939 0.17578125,0.834156736 0.17578125,0.759740479 L0.17578125,0.220414636 C0.17578125,0.145998379 0.235791888,0.0855831754 0.309709821,0.0855831754 L10.0418527,0.0855831754 C10.1157706,0.0855831754 10.1757812,0.145998379 10.1757812,0.220414636 L10.1757812,0.759740479 C10.1757812,0.834156736 10.1157706,0.894571939 10.0418527,0.894571939 Z M10.0418527,4.8049452 L0.309709821,4.8049452 C0.235791888,4.8049452 0.17578125,4.74453 0.17578125,4.67011374 L0.17578125,4.1307879 C0.17578125,4.05637164 0.235791888,3.99595644 0.309709821,3.99595644 L10.0418527,3.99595644 C10.1157706,3.99595644 10.1757812,4.05637164 10.1757812,4.1307879 L10.1757812,4.67011374 C10.1757812,4.74453 10.1157706,4.8049452 10.0418527,4.8049452 Z M10.0418527,8.80953919 L0.309709821,8.80953919 C0.235791888,8.80953919 0.17578125,8.74912399 0.17578125,8.67470773 L0.17578125,8.13538189 C0.17578125,8.06096563 0.235791888,8.00055043 0.309709821,8.00055043 L10.0418527,8.00055043 C10.1157706,8.00055043 10.1757812,8.06096563 10.1757812,8.13538189 L10.1757812,8.67470773 C10.1757812,8.74912399 10.1157706,8.80953919 10.0418527,8.80953919 Z' id='bars' fill='currentColor' %3E%3C/path%3E%3C/g%3E%3C/svg%3E");
     }
   }
 </style>
