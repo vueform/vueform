@@ -32,7 +32,7 @@ export default {
         uploadError: 'Couldn\'t upload file: :filename',
         removeError: 'Couldn\'t remove file',
         select: 'Select file',
-        upload: 'Upload to server',
+        upload: 'Upload',
       },
       multifile: {
         uploadButton: 'Upload files',

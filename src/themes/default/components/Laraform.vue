@@ -278,7 +278,7 @@
   .form-btn {
     padding: var(--form-button-py) var(--form-button-px);
     border-radius: var(--form-border-radius);
-    transition: .3s;
+    transition: .15s;
     cursor: pointer;
     border: 0;
     appearance: none;
@@ -342,6 +342,15 @@
 
     &:not([disabled]):hover {
       background: #D1D5DB;
+    }
+  }
+
+  .form-btn-light {
+    background: #F3F4F6;
+    color: inherit;
+
+    &:not([disabled]):hover {
+      background: #E5E7EB;
     }
   }
 

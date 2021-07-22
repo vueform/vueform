@@ -9,9 +9,9 @@
         defaultClasses: {
           container: '',
           container_removing: 'is-removing',
-          button: 'btn btn-light',
+          button: 'form-btn form-btn-light',
           button_enabled: '',
-          button_disabled: 'btn-disabled',
+          button_disabled: 'is-disabled',
         }
       }
     }
@@ -19,8 +19,5 @@
 </script>
 
 <style lang="scss">
-  @import 'node_modules/bootstrap/scss/_functions.scss';
-  @import 'node_modules/bootstrap/scss/_variables.scss';
-  @import 'node_modules/bootstrap/scss/_mixins.scss';
-
+  // Some styles are contained in Laraform.vue
 </style>

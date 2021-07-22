@@ -271,7 +271,7 @@ const base = function (props, context, dependencies)
 
       hasUploadError.value = false
 
-      let response = await axios.value[fileMethods.value.uploadTemp](fileEndpoints.value.temp, data, {
+      let response = await axios.value[fileMethods.value.temp](fileEndpoints.value.temp, data, {
         onUploadProgress: (e) => {
           progress.value = Math.round((e.loaded * 100) / e.total)
         },
