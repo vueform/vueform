@@ -186,7 +186,7 @@ const base = function (props, context, dependencies)
    * @type {string}
    */
   const link = computed(() => {
-    if (!uploaded.value || !clickable.value) {
+    if (!uploaded.value) {
       return
     }
 

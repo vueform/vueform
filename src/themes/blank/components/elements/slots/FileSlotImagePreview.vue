@@ -3,7 +3,7 @@
     <div :class="classes.wrapper">
 
       <!-- Image -->
-      <a :href="link" v-if="hasLink" :class="classes.image" target="_blank"><img :class="classes.img" :src="preview" /></a>
+      <a :href="link" v-if="uploaded && hasLink && clickable" :class="classes.image" target="_blank"><img :class="classes.img" :src="preview" /></a>
       <span v-else :class="classes.image"><img :class="classes.img" :src="preview" /></span>
 
       <div :class="classes.file">

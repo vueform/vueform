@@ -2,21 +2,8 @@
   <div :class="classes.container" v-show="visible">
 
     <!-- Image  -->
-    <a
-      v-if="uploaded && hasLink"
-      :class="classes.previewWrapper"
-      :href="link"
-      target="_blank"
-    >
-      <img :src="preview" :class="classes.previewImage" /> 
-    </a>
-
-    <div
-      v-else
-      :class="classes.previewWrapper"
-    >
-      <img :class="classes.previewImage" :src="preview" />
-    </div>
+    <a v-if="uploaded && hasLink && clickable" :class="classes.image" :href="link" target="_blank"><img :src="preview" :class="classes.img" /></a>
+    <div v-else :class="classes.image"><img :class="classes.img" :src="preview" /></div>
 
     <!-- Overlay -->
     <div v-if="!uploaded && !uploading" :class="classes.overlay">
@@ -26,12 +13,15 @@
     <!-- Error -->
     <span v-if="hasError" :class="classes.iconWarning"></span>
 
+    <!-- Success -->
+    <span v-else-if="uploaded" :class="classes.iconUploaded"></span>
+
     <!-- Remove -->
     <a v-if="canRemove" @click.prevent="remove" href="" :class="classes.remove"><span :class="classes.iconRemove"></span></a>
 
     <!-- Progress -->
-    <div v-if="uploading" :class="classes.progress">
-      <div :class="classes.progressBar" :style="{ width: progress + '%' }"></div>
+    <div v-if="uploading" :class="classes.progressBar">
+      <div :class="classes.progress" :style="{ width: progress + '%' }"></div>
     </div>
   </div>
 </template>

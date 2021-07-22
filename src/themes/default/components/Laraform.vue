@@ -44,8 +44,6 @@
     --form-border-color: #D1D5DB;
     --form-border-radius: 0.25rem;
 
-    --form-checkbox-size: 1rem;
-
     --form-ring-width: 2px;
     --form-ring-color: rgba(16, 185, 129, 0.4);
 
@@ -53,6 +51,10 @@
     --form-input-px: 0.75rem;
     --form-button-py: 0.4375rem;
     --form-button-px: 1rem;
+
+    --form-checkbox-size: 1rem;
+    
+    --form-gallery-size: 6rem;
 
     --form-date-head-bg: #F3F4F6;
     --form-date-head-color: #374151;

@@ -12,7 +12,7 @@
           list_disabled: 'is-disabled',
           list_sorting: 'is-sorting',
           list_default: 'file-list',
-          list_gallery: 'gallery-list',
+          list_gallery: 'form-gallery',
           listItem: '',
           listItem_default: 'row',
           listItem_gallery: 'gallery-list-item',
