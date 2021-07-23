@@ -70,28 +70,28 @@
     box-sizing: border-box;
     cursor: pointer;
     outline: none;
-    border: var(--ms-border-width, var(--form-border-width)) solid var(--ms-border-color, var(--form-border-color));
-    border-radius: var(--ms-radius, var(--form-border-radius));
-    background: var(--ms-bg, #FFFFFF);
-    font-size: var(--ms-font-size, inherit);
+    border: var(--form-select-border-width) solid var(--form-select-border-color);
+    border-radius: var(--form-select-radius);
+    background: var(--form-select-bg);
+    font-size: var(--form-select-font-size);
     min-height: var(--form-input-min-height);
 
     &.is-open {
-      border-radius: var(--ms-radius, var(--form-border-radius)) var(--ms-radius, var(--form-border-radius)) 0 0;
+      border-radius: var(--form-select-radius) var(--form-select-radius) 0 0;
     }
 
     &.is-open-top {
-      border-radius: 0 0 var(--ms-radius, var(--form-border-radius)) var(--ms-radius, var(--form-border-radius));
+      border-radius: 0 0 var(--form-select-radius) var(--form-select-radius);
     }
 
     &.is-disabled {
       cursor: default;
-      background: var(--ms-bg-disabled, var(--form-bg-disabled));
+      background: var(--form-select-bg-disabled);
       color: var(--form-color-disabled);
     }
 
     &.is-active {
-      box-shadow: 0 0 0 var(--ms-ring-width, var(--form-ring-width)) var(--ms-ring-color, var(--form-ring-color));
+      box-shadow: 0 0 0 var(--form-select-ring-width) var(--form-select-ring-color);
     }
   }
 
@@ -105,12 +105,12 @@
     top: 0;
     pointer-events: none;
     background: transparent;
-    line-height: var(--ms-line-height, inherit);
-    padding-left: var(--ms-px, var(--form-input-px));
+    line-height: var(--form-select-line-height);
+    padding-left: var(--form-select-px);
   }
 
   .multiselect-placeholder {
-    color: var(--ms-placeholder-color, var(--form-placeholder-color));
+    color: var(--form-select-placeholder-color);
   }
 
   .multiselect-search {
@@ -126,9 +126,9 @@
     appearance: none;
     font-size: inherit;
     font-family: inherit;
-    background: var(--ms-bg, #FFFFFF);
-    border-radius: var(--ms-radius, var(--form-border-radius));
-    padding-left: var(--ms-px, var(--form-input-px));
+    background: var(--form-select-bg);
+    border-radius: var(--form-select-radius);
+    padding-left: var(--form-select-px);
   }
 
   .multiselect-tags {
@@ -136,8 +136,8 @@
     flex-shrink: 1;
     display: flex;
     flex-wrap: wrap;
-    margin: var(--ms-tag-my, 0.25rem) 0 0;
-    padding-left: var(--ms-py, var(--form-input-py));
+    margin: var(--form-select-tag-my) 0 0;
+    padding-left: var(--form-select-py);
     align-items: center;
   }
 
@@ -149,7 +149,7 @@
     padding: 0;
     font-size: inherit;
     font-family: inherit;
-    margin: 0 var(--ms-tag-mx, 0.25rem) var(--ms-tag-my, 0.25rem);
+    margin: 0 var(--form-select-tag-mx) var(--form-select-tag-my);
     box-sizing: border-box;
     flex-grow: 1;
     flex-shrink: 1;
@@ -163,14 +163,14 @@
     width: 1rem;
     height: 1rem;
     z-index: 10;
-    margin: 0 var(--ms-px, 0.875rem) 0 0;
+    margin: 0 var(--form-select-px) 0 0;
     animation: multiselect-spin 1s linear infinite;
     flex-shrink: 0;
     flex-grow: 0;
   }
 
   .multiselect-clear {
-    padding: 0 var(--ms-px, var(--form-input-px)) 0 0px;
+    padding: 0 var(--form-select-px) 0 0px;
     position: relative;
     z-index: 10;
     opacity: 0.4;
@@ -203,7 +203,7 @@
     background-color: var(--form-gray-500);
     width: 0.625rem;
     height: 1.125rem;
-    margin: 0 var(--ms-px, var(--form-input-px)) 0 0;
+    margin: 0 var(--form-select-px) 0 0;
     position: relative;
     z-index: 10;
     flex-shrink: 0;
@@ -216,27 +216,27 @@
 
   .multiselect-dropdown {
     position: absolute;
-    left: calc(var(--ms-border-width, var(--form-border-width)) * -1);
-    right: calc(var(--ms-border-width, var(--form-border-width)) * -1);
+    left: calc(var(--form-select-border-width) * -1);
+    right: calc(var(--form-select-border-width) * -1);
     bottom: 0;
     transform: translateY(100%);
-    border: var(--ms-dropdown-border-width, var(--form-border-width)) solid var(--ms-dropdown-border-color, var(--form-border-color));
-    margin-top: calc(var(--ms-border-width, var(--form-border-width)) * -1);
+    border: var(--form-select-dropdown-border-width) solid var(--form-select-dropdown-border-color);
+    margin-top: calc(var(--form-select-border-width) * -1);
     max-height: 10rem;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     z-index: 100;
-    background: var(--ms-dropdown-bg, #FFFFFF);
+    background: var(--form-select-dropdown-bg);
     display: flex;
     flex-direction: column;
-    border-radius: 0 0 var(--ms-dropdown-radius, var(--form-border-radiu)) var(--ms-dropdown-radius, var(--form-border-radiu));
+    border-radius: 0 0 var(--form-select-dropdown-radius) var(--form-select-dropdown-radius);
 
     &.is-top {
       transform: translateY(-100%);
-      top: var(--ms-border-width, 1px);
+      top: var(--form-select-border-width);
       bottom: auto;
       flex-direction: column-reverse;
-      border-radius: var(--ms-dropdown-radius, var(--form-border-radiu)) var(--ms-dropdown-radius, var(--form-border-radiu)) 0 0;
+      border-radius: var(--form-select-dropdown-radius) var(--form-select-dropdown-radius) 0 0;
     }
   }
 
@@ -260,36 +260,36 @@
     justify-content: flex-start;
     text-align: left;
     cursor: pointer;
-    font-size: var(--ms-option-font-size, inherit);
-    line-height: var(--ms-option-line-height, inherit);
-    padding: var(--ms-option-py, calc(var(--form-input-py) + var(--form-border-width))) var(--ms-option-px, var(--form-input-px));
+    font-size: var(--form-select-option-font-size);
+    line-height: var(--form-select-option-line-height);
+    padding: var(--form-select-option-py) var(--form-select-option-px);
 
     &.is-pointed {
-      background: var(--ms-option-bg-pointed, var(--form-gray-100));
-      color: var(--ms-option-color-pointed, var(--form-gray-800));
+      background: var(--form-select-option-bg-pointed);
+      color: var(--form-select-option-color-pointed);
     }
 
     &.is-disabled {
-      background: var(--ms-option-bg-disabled, #FFFFFF);
-      color: var(--ms-option-color-disabled, var(--form-gray-300));
+      background: var(--form-select-option-bg-disabled);
+      color: var(--form-select-option-color-disabled);
       cursor: not-allowed;
     }
 
     &.is-selected {
-      background: var(--ms-option-bg-selected, var(--form-primary));
-      color: var(--ms-option-color-selected, #FFFFFF);
+      background: var(--form-select-option-bg-selected);
+      color: var(--form-select-option-color-selected);
     }
 
     &.is-selected.is-pointed {
-      background: var(--ms-option-bg-selected-pointed, var(--form-primary));
-      color: var(--ms-option-color-selected-pointed, #FFFFFF);
-      opacity: 0.85;
+      background: var(--form-select-option-bg-selected-pointed);
+      color: var(--form-select-option-color-selected-pointed);
+      opacity: var(--form-select-option-opacity-selected-pointed);
     }
 
     &.is-selected.is-disabled {
-      background: var(--ms-option-bg-selected-disabled, var(--form-primary));
-      color: var(--ms-option-color-selected-disabled, #FFFFFF);
-      opacity: 0.5;
+      background: var(--form-select-option-bg-selected-disabled);
+      color: var(--form-select-option-color-selected-disabled);
+      opacity: var(--form-select-option-opacity-selected-disabled);
     }
   }
 

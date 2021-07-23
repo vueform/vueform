@@ -46,54 +46,54 @@
 
   .toggle {
     display: flex;
-    width: var(--toggle-width, 3rem);
-    height: var(--toggle-height, 1.25rem);
+    width: var(--form-toggle-width);
+    height: var(--form-toggle-height);
     border-radius: 999px;
     position: relative;
     cursor: pointer;
     transition: .3s all;
     align-items: center;
     box-sizing: content-box;
-    border: var(--toggle-border, 0.125rem) solid;
-    font-size: var(--toggle-font-size, 0.75rem);
+    border: var(--form-toggle-border) solid;
+    font-size: var(--form-toggle-font-size);
     line-height: 1;
   }
 
   .toggle-on {
-    background: var(--toggle-bg-on, var(--form-primary));
-    border-color: var(--toggle-border-on, var(--form-primary));
+    background: var(--form-toggle-bg-on);
+    border-color: var(--form-toggle-border-on);
     justify-content: flex-start;
-    color: var(--toggle-text-on, #FFFFFF);
+    color: var(--form-toggle-text-on);
   }
 
   .toggle-off {
-    background: var(--toggle-bg-off, var(--form-gray-300));
-    border-color: var(--toggle-border-off, var(--form-gray-300));
+    background: var(--form-toggle-bg-off);
+    border-color: var(--form-toggle-border-off);
     justify-content: flex-end;
-    color: var(--toggle-text-off, var(--form-gray-700));
+    color: var(--form-toggle-text-off);
   }
 
   .toggle-on-disabled {
-    background: var(--toggle-bg-on-disabled, var(--form-primary));
-    border-color: var(--toggle-border-on-disabled, var(--form-primary));
+    background: var(--form-toggle-bg-on-disabled);
+    border-color: var(--form-toggle-border-on-disabled);
     justify-content: flex-start;
-    color: var(--toggle-text-on-disabled, #FFFFFF);
+    color: var(--form-toggle-text-on-disabled);
     cursor: not-allowed;
-    opacity: var(--toggle-opacity-on-disabled, 0.5);
+    opacity: var(--form-toggle-opacity-on-disabled);
   }
 
   .toggle-off-disabled {
-    background: var(--toggle-bg-off-disabled, var(--form-gray-300));
-    border-color: var(--toggle-border-off-disabled, var(--form-gray-300));
+    background: var(--form-toggle-bg-off-disabled);
+    border-color: var(--form-toggle-border-off-disabled);
     justify-content: flex-end;
-    color: var(--toggle-text-off-disabled, var(--form-gray-700));
+    color: var(--form-toggle-text-off-disabled);
     cursor: not-allowed;
-    opacity: var(--toggle-opacity-off-disabled, 0.5);
+    opacity: var(--form-toggle-opacity-off-disabled);
   }
 
   .toggle-handle {
     display: inline-block;
-    background: var(--toggle-handle-enabled, #FFFFFF);
+    background: var(--form-toggle-handle-enabled);
     width: 1.25rem;
     height: 1.25rem;
     top: 0;
@@ -101,7 +101,7 @@
     position: absolute;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: var(--toggle-duration, 150ms);
+    transition-duration: var(--form-toggle-duration);
   }
 
   .toggle-handle-on {
@@ -116,17 +116,17 @@
   .toggle-handle-on-disabled {
     left: 100%;
     transform: translateX(-100%);
-    background: var(--toggle-handle-disabled, #FFFFFF);
+    background: var(--form-toggle-handle-disabled);
   }
 
   .toggle-handle-off-disabled {
     left: 0%;
-    background: var(--toggle-handle-disabled, #FFFFFF);
+    background: var(--form-toggle-handle-disabled);
   }
 
   .toggle-label {
     text-align: center;
-    width: calc(var(--toggle-width, 3.25rem) - var(--toggle-height, 1.25rem));
+    width: calc(var(--form-toggle-width) - var(--form-toggle-height));
     box-sizing: border-box;
     white-space: nowrap;
     user-select: none;

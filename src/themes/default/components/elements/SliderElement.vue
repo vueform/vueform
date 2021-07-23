@@ -22,7 +22,7 @@
 
 <style lang="scss">
   .form-slider-wrapper {
-    margin-top: calc((var(--form-input-min-height) - var(--slider-height, 0.375rem)) / 2)
+    margin-top: calc((var(--form-input-min-height) - var(--form-slider-height)) / 2)
   }
 
   // @vueform/slider styles
@@ -127,44 +127,44 @@
   }
 
   .slider-horizontal {
-    height: var(--slider-height, 0.375rem);
+    height: var(--form-slider-height);
   }
 
   .slider-horizontal .slider-handle {
-    width: var(--slider-handle-width, 1rem);
-    height: var(--slider-handle-height, 1rem);
-    top: calc(((var(--slider-handle-height, 1rem) - var(--slider-height, 0.375rem)) / 2 + 1px) * -1);
-    right: calc(var(--slider-handle-width, 1rem) / 2 * -1);
+    width: var(--form-slider-handle-width);
+    height: var(--form-slider-handle-height);
+    top: calc(((var(--form-slider-handle-height) - var(--form-slider-height)) / 2 + 1px) * -1);
+    right: calc(var(--form-slider-handle-width) / 2 * -1);
   }
 
   .slider-vertical {
-    width: var(--slider-height, 0.375rem);
-    height: var(--slider-vertical-height, 18.75rem);
+    width: var(--form-slider-height);
+    height: var(--form-slider-vertical-height);
   }
 
   .slider-vertical .slider-handle {
-    width: var(--slider-handle-height, 1rem);
-    height: var(--slider-handle-width, 1rem);
-    top: calc(var(--slider-handle-width, 1rem) / 2 * -1);
-    right: calc(((var(--slider-handle-height, 1rem) - var(--slider-height, 0.375rem)) / 2 + 1px) * -1);
+    width: var(--form-slider-handle-height);
+    height: var(--form-slider-handle-width);
+    top: calc(var(--form-slider-handle-width) / 2 * -1);
+    right: calc(((var(--form-slider-handle-height) - var(--form-slider-height)) / 2 + 1px) * -1);
   }
 
   .slider-txt-dir-rtl.slider-horizontal .slider-handle {
-    left: calc(var(--slider-handle-width, 1rem) / 2 * -1);
+    left: calc(var(--form-slider-handle-width) / 2 * -1);
     right: auto;
   }
 
   .slider-base {
-    background-color: var(--slider-bg, var(--form-gray-300));
-    border-radius: var(--slider-radius, 9999px);
+    background-color: var(--form-slider-bg);
+    border-radius: var(--form-slider-radius);
   }
 
   .slider-connects {
-    border-radius: var(--slider-radius, 9999px);
+    border-radius: var(--form-slider-radius);
   }
 
   .slider-connect {
-    background: var(--slider-connect-bg, var(--form-primary));
+    background: var(--form-slider-connect-bg);
     cursor: pointer;
   }
 
@@ -177,27 +177,27 @@
   }
 
   .slider-handle {
-    width: var(--slider-handle-width, 1rem);
-    height: var(--slider-handle-height, 1rem);
-    border-radius: var(--slider-handle-radius, 9999px);
-    background: var(--slider-handle-bg, #FFFFFF);
-    border: var(--slider-handle-border, 0);
-    box-shadow: var(--slider-handle-shadow, 0.5px 0.5px 2px 1px rgba(0,0,0,.32));
+    width: var(--form-slider-handle-width);
+    height: var(--form-slider-handle-height);
+    border-radius: var(--form-slider-handle-radius);
+    background: var(--form-slider-handle-bg);
+    border: var(--form-slider-handle-border);
+    box-shadow: var(--form-slider-handle-shadow);
     cursor: grab;
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 var(--slider-handle-ring-width, var(--form-ring-width)) var(--slider-handle-ring-color, var(--form-ring-color)), var(--slider-handle-shadow, 0.5px 0.5px 2px 1px rgba(0,0,0,.32));
+      box-shadow: 0 0 0 var(--form-slider-handle-ring-width) var(--form-slider-handle-ring-color), var(--form-slider-handle-shadow);
     }
   }
 
   .slider-active {
-    box-shadow: var(--slider-handle-shadow-active, 0.5px 0.5px 2px 1px rgba(0,0,0,.42));
+    box-shadow: var(--form-slider-handle-shadow-active);
     cursor: grabbing;
   }
 
   [disabled] .slider-connect {
-    background: var(--slider-connect-bg-disabled, var(--form-gray-400));
+    background: var(--form-slider-connect-bg-disabled);
   }
 
   [disabled].slider-target,
@@ -207,40 +207,40 @@
   }
 
   [disabled] .slider-tooltip {
-    background: var(--slider-tooltip-bg-disabled, var(--form-gray-400));
-    border-color: var(--slider-tooltip-bg-disabled, var(--form-gray-400));
+    background: var(--form-slider-tooltip-bg-disabled);
+    border-color: var(--form-slider-tooltip-bg-disabled);
   }
 
   .slider-tooltip {
     position: absolute;
     display: block;
-    font-size: var(--slider-tooltip-font-size, 0.875rem);
-    line-height: var(--slider-tooltip-line-height, 1.25rem);
-    font-weight: var(--slider-tooltip-font-weight, 600);
+    font-size: var(--form-slider-tooltip-font-size);
+    line-height: var(--form-slider-tooltip-line-height);
+    font-weight: var(--form-slider-tooltip-font-weight);
     white-space: nowrap;
-    padding: var(--slider-tooltip-py, 0.125rem) var(--slider-tooltip-px, 0.375rem);
-    min-width: var(--slider-tooltip-min-width, 1.25rem);
+    padding: var(--form-slider-tooltip-py) var(--form-slider-tooltip-px);
+    min-width: var(--form-slider-tooltip-min-width);
     text-align: center;
-    color: var(--slider-tooltip-color, #FFFFFF);
-    border-radius: var(--slider-tooltip-radius, var(--form-border-radius));
-    border: 1px solid var(--slider-tooltip-bg, var(--form-primary));
-    background: var(--slider-tooltip-bg, var(--form-primary));
+    color: var(--form-slider-tooltip-color);
+    border-radius: var(--form-slider-tooltip-radius);
+    border: 1px solid var(--form-slider-tooltip-bg);
+    background: var(--form-slider-tooltip-bg);
   }
 
   .slider-horizontal .slider-tooltip {
     -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
     left: 50%;
-    bottom: calc(var(--slider-handle-height, 1rem) + var(--slider-tooltip-arrow-size, 0.3125rem) + var(--slider-tooltip-distance, 0.1875rem));
+    bottom: calc(var(--form-slider-handle-height) + var(--form-slider-tooltip-arrow-size) + var(--form-slider-tooltip-distance));
 
     &:before {
       content: "";
       position: absolute;
-      bottom: calc(var(--slider-tooltip-arrow-size, 0.3125rem) * -2);
+      bottom: calc(var(--form-slider-tooltip-arrow-size) * -2);
       left: 50%;
       width: 0;
       height: 0;
-      border: var(--slider-tooltip-arrow-size, 0.3125rem) solid transparent;
+      border: var(--form-slider-tooltip-arrow-size) solid transparent;
       border-top-color: inherit;
       transform: translate(-50%);
     }
@@ -250,16 +250,16 @@
     -webkit-transform: translate(0, -50%);
     transform: translate(0, -50%);
     top: 50%;
-    right: calc(var(--slider-handle-height, 1rem) + var(--slider-tooltip-arrow-size, 0.3125rem) + var(--slider-tooltip-distance, 0.1875rem));
+    right: calc(var(--form-slider-handle-height) + var(--form-slider-tooltip-arrow-size) + var(--form-slider-tooltip-distance));
 
     &:before {
       content: "";
       position: absolute;
-      right: calc(var(--slider-tooltip-arrow-size, 0.3125rem) * -2);
+      right: calc(var(--form-slider-tooltip-arrow-size) * -2);
       top: 50%;
       width: 0;
       height: 0;
-      border: var(--slider-tooltip-arrow-size, 0.3125rem) solid transparent;
+      border: var(--form-slider-tooltip-arrow-size) solid transparent;
       border-left-color: inherit;
       transform: translateY(-50%);
     }
@@ -269,12 +269,12 @@
     -webkit-transform: translate(50%, 0);
     transform: translate(50%, 0);
     left: auto;
-    bottom: calc(var(--slider-tooltip-arrow-size, 0.3125rem) + ((var(--slider-handle-height, 1rem) - var(--slider-height, 0.375rem)) / 2) + var(--slider-tooltip-distance, 0.1875rem));
+    bottom: calc(var(--form-slider-tooltip-arrow-size) + ((var(--form-slider-handle-height) - var(--form-slider-height)) / 2) + var(--form-slider-tooltip-distance));
   }
 
   .slider-vertical .slider-origin > .slider-tooltip {
-    transform: translate(0, calc((var(--slider-tooltip-line-height, 1.25rem) - var(--slider-tooltip-py, 0.125rem)) * -1));
+    transform: translate(0, calc((var(--form-slider-tooltip-line-height) - var(--form-slider-tooltip-py)) * -1));
     top: auto;
-    right: calc(var(--slider-tooltip-arrow-size, 0.3125rem) + var(--slider-height, 0.375rem) + ((var(--slider-handle-height, 1rem) - var(--slider-height, 0.375rem)) / 2) + var(--slider-tooltip-distance, 0.1875rem));
+    right: calc(var(--form-slider-tooltip-arrow-size) + var(--form-slider-height) + ((var(--form-slider-handle-height) - var(--form-slider-height)) / 2) + var(--form-slider-tooltip-distance));
   }
 </style>

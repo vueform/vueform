@@ -24,7 +24,7 @@
     top: 0;
     pointer-events: none;
     background: transparent;
-    line-height: var(--ms-line-height, inherit);
-    padding-left: var(--ms-px, var(--form-input-px));
+    line-height: var(--form-select-line-height);
+    padding-left: var(--form-select-px);
   }
 </style>

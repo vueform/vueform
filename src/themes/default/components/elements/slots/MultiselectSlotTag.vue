@@ -19,23 +19,23 @@
 
 <style lang="scss">
   .multiselect-tag {
-    background: var(--ms-tag-bg, var(--form-primary));
-    color: var(--ms-tag-color, #FFFFFF);
-    font-size: var(--ms-tag-font-size, 0.875rem);
-    line-height: var(--ms-tag-line-height, 1.25rem);
-    font-weight: var(--ms-tag-font-weight, 600);
-    padding: var(--ms-tag-py, 0.0625rem) 0 var(--ms-tag-py, 0.0625rem) var(--ms-tag-px, 0.5rem);
-    border-radius: var(--ms-tag-radius, var(--form-border-radius));
-    margin-right: var(--ms-tag-mx, 0.25rem);
-    margin-bottom: var(--ms-tag-my, 0.25rem);
+    background: var(--form-select-tag-bg);
+    color: var(--form-select-tag-color);
+    font-size: var(--form-select-tag-font-size);
+    line-height: var(--form-select-tag-line-height);
+    font-weight: var(--form-select-tag-font-weight);
+    padding: var(--form-select-tag-py) 0 var(--form-select-tag-py) var(--form-select-tag-px);
+    border-radius: var(--form-select-tag-radius);
+    margin-right: var(--form-select-tag-mx);
+    margin-bottom: var(--form-select-tag-my);
     display: flex;
     align-items: center;
     white-space: nowrap;
 
     &.is-disabled {
-      padding-right: var(--ms-tag-px, 0.5rem);
-      background: var(--ms-tag-bg-disabled, var(--form-color-disabled));
-      color: var(--ms-tag-color-disabled, #FFFFFF);
+      padding-right: var(--form-select-tag-px);
+      background: var(--form-select-tag-bg-disabled);
+      color: var(--form-select-tag-color-disabled);
     }
   }
 
@@ -43,12 +43,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--ms-tag-remove-py, 0.25rem) var(--ms-tag-remove-px, 0.25rem);
-    margin: var(--ms-tag-remove-my, 0rem) var(--ms-tag-remove-mx, 0.125rem);
-    border-radius: var(--ms-tag-remove-radius, var(--form-border-radius));
+    padding: var(--form-select-tag-remove-py) var(--form-select-tag-remove-px);
+    margin: var(--form-select-tag-remove-my) var(--form-select-tag-remove-mx);
+    border-radius: var(--form-select-tag-remove-radius);
     
     &:hover {
-      background: #00000010;
+      background: var(--form-select-tag-remove-bg-hover);
     }
   }
 

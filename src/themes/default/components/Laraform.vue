@@ -59,12 +59,6 @@
     --form-input-px: 0.75rem;
     --form-button-py: 0.4375rem;
     --form-button-px: 1rem;
-
-    --form-checkbox-size: 1rem;
-    --form-gallery-size: 6rem;
-
-    --form-date-head-bg: var(--form-gray-100);
-    --form-date-head-color: var(--form-gray-700);
     
     --form-addon-bg: var(--form-gray-100);
     --form-addon-color: inherit;
@@ -72,6 +66,123 @@
     --form-element-text-font-size: 0.875rem;
     --form-element-text-line-height: 1.25rem;
     --form-element-description-color: var(--form-gray-500);
+
+    --form-checkbox-size: 1rem;
+    --form-gallery-size: 6rem;
+
+    --form-date-head-bg: var(--form-gray-100);
+    --form-date-head-color: var(--form-gray-700);
+
+    --form-toggle-width: 3rem;
+    --form-toggle-height: 1.25rem;
+    --form-toggle-border: 0.125rem;
+    --form-toggle-font-size: 0.75rem;
+    --form-toggle-duration: 150ms;
+    --form-toggle-bg-on: var(--form-primary);
+    --form-toggle-bg-off: var(--form-gray-300);
+    --form-toggle-bg-on-disabled: var(--form-primary);
+    --form-toggle-bg-off-disabled: var(--form-gray-300);
+    --form-toggle-opacity-on-disabled: 0.5;
+    --form-toggle-opacity-off-disabled: 0.5;
+    --form-toggle-border-on: var(--form-primary);
+    --form-toggle-border-off: var(--form-gray-300);
+    --form-toggle-border-on-disabled: var(--form-primary);
+    --form-toggle-border-off-disabled: var(--form-gray-300);
+    --form-toggle-ring-width: var(--form-ring-width);
+    --form-toggle-ring-color: var(--form-ring-color);
+    --form-toggle-text-on: #FFFFFF;
+    --form-toggle-text-off: var(--form-gray-700);
+    --form-toggle-text-on-disabled: #FFFFFF;
+    --form-toggle-text-off-disabled: var(--form-gray-700);
+    --form-toggle-handle-enabled: #FFFFFF;
+    --form-toggle-handle-disabled: #FFFFFF;
+
+    --form-slider-bg: var(--form-gray-300);
+    --form-slider-connect-bg: var(--form-primary);
+    --form-slider-connect-bg-disabled: var(--form-gray-400);
+    --form-slider-height: 0.375rem;
+    --form-slider-vertical-height: 18.75rem;
+    --form-slider-radius: 9999px;
+
+    --form-slider-handle-bg: #FFFFFF;
+    --form-slider-handle-border: 0;
+    --form-slider-handle-width: 1rem;
+    --form-slider-handle-height: 1rem;
+    --form-slider-handle-radius: 9999px;
+    --form-slider-handle-shadow: 0.5px 0.5px 2px 1px rgba(0,0,0,.32);
+    --form-slider-handle-shadow-active: 0.5px 0.5px 2px 1px rgba(0,0,0,.42);
+    --form-slider-handle-ring-width: var(--form-ring-width);
+    --form-slider-handle-ring-color: var(--form-ring-color);
+
+    --form-slider-tooltip-font-size: 0.875rem;
+    --form-slider-tooltip-line-height: 1.25rem;
+    --form-slider-tooltip-font-weight: 600;
+    --form-slider-tooltip-min-width: 1.25rem;
+    --form-slider-tooltip-bg: var(--form-primary);
+    --form-slider-tooltip-bg-disabled: var(--form-gray-400);
+    --form-slider-tooltip-color: #FFFFFF;
+    --form-slider-tooltip-radius: var(--form-border-radius);
+    --form-slider-tooltip-py: 0.125rem;
+    --form-slider-tooltip-px: 0.375rem;
+    --form-slider-tooltip-arrow-size: 0.3125rem;
+    --form-slider-tooltip-distance: 0.1875rem;
+
+    --form-select-font-size: inherit;
+    --form-select-line-height: inherit;
+    --form-select-bg: #FFFFFF;
+    --form-select-bg-disabled: var(--form-bg-disabled);
+    --form-select-border-color: var(--form-border-color);
+    --form-select-border-width: var(--form-border-width);
+    --form-select-radius: var(--form-border-radius);
+    --form-select-py: var(--form-input-py);
+    --form-select-px: var(--form-input-px);
+    --form-select-ring-width: var(--form-ring-width);
+    --form-select-ring-color: var(--form-ring-color);
+    --form-select-placeholder-color: var(--form-placeholder-color);
+      
+    --form-select-tag-font-size: 0.875rem;
+    --form-select-tag-line-height: 1.25rem;
+    --form-select-tag-font-weight: 600;
+    --form-select-tag-bg: var(--form-primary);
+    --form-select-tag-bg-disabled: var(--form-color-disabled);
+    --form-select-tag-color: #FFFFFF;
+    --form-select-tag-color-disabled: #FFFFFF;
+    --form-select-tag-radius: var(--form-border-radius);
+    --form-select-tag-py: 0.0625rem;
+    --form-select-tag-px: 0.5rem;
+    --form-select-tag-my: 0.25rem;
+    --form-select-tag-mx: 0.25rem;
+
+    --form-select-tag-remove-radius: var(--form-border-radius);
+    --form-select-tag-remove-py: 0.25rem;
+    --form-select-tag-remove-px: 0.25rem;
+    --form-select-tag-remove-my: 0rem;
+    --form-select-tag-remove-mx: 0.125rem;
+    --form-select-tag-remove-bg-hover: #00000010;
+
+    --form-select-dropdown-bg: #FFFFFF;
+    --form-select-dropdown-border-color: var(--form-border-color);
+    --form-select-dropdown-border-width: var(--form-border-width);
+    --form-select-dropdown-radius: var(--form-border-radius);
+
+    --form-select-option-font-size: inherit;
+    --form-select-option-line-height: inherit;
+    --form-select-option-bg-pointed: var(--form-gray-100);
+    --form-select-option-bg-selected: var(--form-primary);
+    --form-select-option-bg-disabled: #FFFFFF;
+    --form-select-option-bg-selected-pointed: var(--form-primary);
+    --form-select-option-bg-selected-disabled: var(--form-primary);
+    --form-select-option-color-pointed: var(--form-gray-800);
+    --form-select-option-color-selected: #FFFFFF;
+    --form-select-option-color-disabled: var(--form-gray-300);
+    --form-select-option-color-selected-pointed: #FFFFFF;
+    --form-select-option-color-selected-disabled: #FFFFFF;
+    --form-select-option-opacity-selected-pointed: 0.85;
+    --form-select-option-opacity-selected-disabled: 0.5;
+    --form-select-option-py: calc(var(--form-input-py) + var(--form-border-width));
+    --form-select-option-px: var(--form-input-px);
+
+    --form-select-empty-color: var(--form-gray-600);
   }
 
   /*
