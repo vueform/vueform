@@ -35,7 +35,7 @@
 
     &.is-active {
       border: 1px solid var(--form-border-color);
-      border-bottom: 1px solid #ffffff;
+      border-bottom: 1px solid #FFFFFF;
       border-top-left-radius: var(--form-border-radius);
       border-top-right-radius: var(--form-border-radius);
       margin-bottom: -1px;

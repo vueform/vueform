@@ -29,7 +29,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #9CA3AF;
+      background-color: var(--form-gray-400);
       width: 0.875rem;
       height: 0.875rem;
       display: inline-block;
@@ -56,7 +56,7 @@
 
   .form-element-info-content {
     background: rgba(0,0,0,0.85);
-    color: #fff;
+    color: #FFFFFF;
     border-radius: var(--form-border-radius);
     font-size: 80%;
     padding: 0.3125rem 0.625rem;

@@ -23,7 +23,7 @@
 
 <style lang="scss">
   .form-dnd {
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     transition: .3s;
     border: var(--form-border-width) dashed var(--form-border-color);
     padding: 1.5rem;
@@ -49,7 +49,7 @@
       right: 0;
       top: 0;
       bottom: 0;
-      background: var(--form-primary-light);
+      background: var(--form-primary);
       opacity: 0;
     }
 
@@ -63,7 +63,7 @@
       border-color: var(--form-primary);
 
       &:after {
-        opacity: 0.2;
+        opacity: 0.1;
       }
     }
   }

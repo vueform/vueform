@@ -29,7 +29,7 @@
   .slider-target,
   .slider-target * {
     -webkit-touch-callout: none;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
     -webkit-user-select: none;
     -ms-touch-action: none;
     touch-action: none;
@@ -155,7 +155,7 @@
   }
 
   .slider-base {
-    background-color: var(--slider-bg, #D1D5DB);
+    background-color: var(--slider-bg, var(--form-gray-300));
     border-radius: var(--slider-radius, 9999px);
   }
 
@@ -180,7 +180,7 @@
     width: var(--slider-handle-width, 1rem);
     height: var(--slider-handle-height, 1rem);
     border-radius: var(--slider-handle-radius, 9999px);
-    background: var(--slider-handle-bg, #fff);
+    background: var(--slider-handle-bg, #FFFFFF);
     border: var(--slider-handle-border, 0);
     box-shadow: var(--slider-handle-shadow, 0.5px 0.5px 2px 1px rgba(0,0,0,.32));
     cursor: grab;
@@ -197,7 +197,7 @@
   }
 
   [disabled] .slider-connect {
-    background: var(--slider-connect-bg-disabled, #9CA3AF);
+    background: var(--slider-connect-bg-disabled, var(--form-gray-400));
   }
 
   [disabled].slider-target,
@@ -207,8 +207,8 @@
   }
 
   [disabled] .slider-tooltip {
-    background: var(--slider-tooltip-bg-disabled, #9CA3AF);
-    border-color: var(--slider-tooltip-bg-disabled, #9CA3AF);
+    background: var(--slider-tooltip-bg-disabled, var(--form-gray-400));
+    border-color: var(--slider-tooltip-bg-disabled, var(--form-gray-400));
   }
 
   .slider-tooltip {
@@ -221,7 +221,7 @@
     padding: var(--slider-tooltip-py, 0.125rem) var(--slider-tooltip-px, 0.375rem);
     min-width: var(--slider-tooltip-min-width, 1.25rem);
     text-align: center;
-    color: var(--slider-tooltip-color, #fff);
+    color: var(--slider-tooltip-color, #FFFFFF);
     border-radius: var(--slider-tooltip-radius, var(--form-border-radius));
     border: 1px solid var(--slider-tooltip-bg, var(--form-primary));
     background: var(--slider-tooltip-bg, var(--form-primary));

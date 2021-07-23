@@ -26,7 +26,7 @@
     position: absolute;
     width: 1rem;
     height: 1rem;
-    background: #fff;
+    background: #FFFFFF;
     display: block;
 
     right: var(--form-input-px);

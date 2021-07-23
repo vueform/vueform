@@ -50,7 +50,7 @@
       padding-left: 0.5rem;
       padding-right: 0.5rem;
       position: relative;
-      color: rgba(55, 65, 81, 1);
+      color: var(--form-gray-700);
       white-space: nowrap;
       border: 0;
       background-color: transparent;
@@ -61,11 +61,11 @@
       }
     
       &.trix-active {
-        background-color: rgba(229, 231, 235, 1);
+        background-color: var(--form-gray-200);
       }
       
       &:not(.trix-active):hover {
-        background-color: rgba(243, 244, 246, 1);
+        background-color: var(--form-gray-100);
 
         .is-disabled & {
           background-color: transparent;
@@ -113,7 +113,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       margin-top: 0.125rem;
       margin-bottom: 0.125rem;
       top: 0.125rem;
@@ -125,7 +125,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       margin-top: 0.125rem;
       margin-bottom: 0.125rem;
       top: 0.125rem;
@@ -137,7 +137,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       margin-top: 0.125rem;
       margin-bottom: 0.125rem;
       top: 0.125rem;
@@ -149,7 +149,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       margin-top: 0.125rem;
       margin-bottom: 0.125rem;
       top: 0.125rem;
@@ -161,7 +161,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       margin-top: 0.125rem;
       margin-bottom: 0.125rem;
       top: 0.125rem;
@@ -173,7 +173,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       margin-top: 1px;
       margin-bottom: 1px;
       top: 0.25rem;
@@ -185,7 +185,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       margin-top: 0.125rem;
       margin-bottom: 0.125rem;
       top: 0.125rem;
@@ -197,7 +197,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       margin-top: 1px;
       margin-bottom: 1px;
       top: 0.375rem;
@@ -209,7 +209,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       margin-top: 1px;
       margin-bottom: 1px;
       top: 0.125rem;
@@ -221,7 +221,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       margin-top: 1px;
       margin-bottom: 1px;
       top: 0.125rem;
@@ -233,7 +233,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       top: 0.25rem;
       bottom: 0.25rem;
     }
@@ -243,7 +243,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       top: 0.25rem;
       bottom: 0.25rem;
     }
@@ -253,7 +253,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       margin-top: 0.125rem;
       top: 0.125rem;
       bottom: 0.125rem;
@@ -264,7 +264,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: #111827;
+      background-color: var(--form-gray-900);
       margin-top: 1px;
       margin-bottom: 1px;
       top: 0.125rem;
@@ -276,8 +276,8 @@
     }
     
     .trix-dialog {
-      background-color: rgba(255, 255, 255, 1);
-      border-color: rgba(209, 213, 219, 1);
+      background-color: #FFFFFF;
+      border-color: var(--form-gray-300);
       border-radius: 0.25rem;
       border-top-width: 2px;
       border-top-style: solid;
@@ -296,7 +296,7 @@
     }
     
     .trix-input--dialog {
-      border-color: rgba(209, 213, 219, 1);
+      border-color: var(--form-gray-300);
       border-radius: 0.25rem;
       margin-right: 0.5rem;
       padding-left: 0.75rem;
@@ -306,19 +306,19 @@
       border: 0;
     
       &:focus {
-        border-color: #15C495;
+        border-color: var(--form-primary);
         box-shadow: 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
         outline: none;
       }
       
       &.validate:invalid {
-        border-color: rgba(239, 68, 68, 1);
+        border-color: var(--form-error-color);
       }
     }
     
     .trix-button--dialog {
       background-color: transparent;
-      border-color: rgba(209, 213, 219, 1);
+      border-color: var(--form-gray-300);
       border-radius: 0px;
       border-left-width: 1px;
       padding: 0.5rem;
@@ -390,7 +390,7 @@
     }
     
     [data-trix-mutable].attachment.attachment--file {
-      background-color: rgba(243, 244, 246, 1);
+      background-color: var(--form-gray-200);
     }
     
     [data-trix-mutable].attachment img {
@@ -436,7 +436,7 @@
     }
     
     .attachment__caption-editor:focus {
-      border-color: rgba(229, 231, 235, 1);
+      border-color: var(--form-gray-100);
     }
     
     .attachment__caption-editor {
@@ -489,17 +489,17 @@
       padding-left: 0.75rem;
       padding-right: 0.75rem;
       position: relative;
-      color: rgba(107, 114, 128, 1);
+      color: var(--form-gray-500);
       white-space: nowrap;
       border: 0px;
     
       &.trix-active {
-        background-color: rgba(229, 231, 235, 1);
-        color: rgba(0, 0, 0, 1);
+        background-color: var(--form-gray-100);
+        color: #000000;
       }
       
       &:not(.trix-active):hover {
-        background-color: rgba(243, 244, 246, 1);
+        background-color: var(--form-gray-200);
       }
       
       &:not(:disabled) {
@@ -508,8 +508,8 @@
     }
     
     .trix-button--remove {
-      background-color: rgba(255, 255, 255, 1);
-      border-color: rgba(156, 163, 175, 1);
+      background-color: #FFFFFF;
+      border-color: var(--form-gray-400);
       border-radius: 9999px;
       border-style: solid;
       border-width: 1px;
@@ -524,7 +524,7 @@
       text-indent: -9999px;
     
       &:not(.trix-active):hover {
-        background-color: rgba(243, 244, 246, 1);
+        background-color: var(--form-gray-200);
       }
       
       &::before {
@@ -532,7 +532,7 @@
         mask-position: center;
         mask-repeat: no-repeat;
         mask-size: contain;
-        background-color: #111827;
+        background-color: var(--form-gray-900);
         display: inline-block;
         position: absolute;
         top: 0.25rem;
@@ -540,10 +540,6 @@
         bottom: 0.25rem;
         left: 0.25rem;
         content: "";
-      }
-      
-      &::before:hover {
-        border-color: rgba(55, 65, 81, 0.7);
       }
       
       &::before:hover::before {
@@ -567,7 +563,7 @@
       position: absolute;
       top: 1rem;
       left: 50%;
-      color: rgba(255, 255, 255, 1);
+      color: #FFFFFF;
       transform: translateX(-50%);
     
       .attachment__name {
@@ -596,7 +592,7 @@
     }
 
     a {
-      color: #10b981;
+      color: var(--form-primary);
     }
 
     ul {
@@ -620,7 +616,7 @@
     }
 
     blockquote {
-      border-color: rgba(209, 213, 219, 1);
+      border-color: var(--form-gray-300);
       border-left-width: 4px;
       padding-left: 0.625rem;
       border-left-style: solid;
@@ -628,7 +624,7 @@
 
     [dir=rtl] blockquote,
     blockquote[dir=rtl] {
-      border-color: rgba(209, 213, 219, 1);
+      border-color: var(--form-gray-300);
       border-right-width: 4px;
       border-left-style: none;
       border-right-style: solid;
@@ -636,7 +632,7 @@
     }
 
     pre {
-      background-color: rgba(249, 250, 251, 1);
+      background-color: var(--form-gray-50);
       display: inline-block;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 0.875rem;
@@ -689,11 +685,11 @@
     .attachment--preview .attachment__caption {
       font-size: 0.875rem;
       line-height: 1.25rem;
-      color: rgba(107, 114, 128, 1);
+      color: var(--form-gray-500);
     }
 
     .attachment--file {
-      border-color: rgba(209, 213, 219, 1);
+      border-color: var(--form-gray-300);
       border-radius: 0.25rem;
       border-width: 1px;
       line-height: 1;
@@ -703,7 +699,7 @@
       padding-right: 1rem;
       padding-top: 0.375rem;
       padding-bottom: 0.375rem;
-      color: rgba(55, 65, 81, 1);
+      color: var(--form-gray-700);
     }
 
     .attachment-gallery {

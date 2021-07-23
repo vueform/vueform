@@ -48,7 +48,7 @@
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center center;
-    background-color: #9ca3af;
+    background-color: var(--form-gray-400);
     box-sizing: content-box;
     height: 1rem;
     margin-top: 0px;
@@ -125,7 +125,7 @@
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center center;
-    background-color: #9ca3af;
+    background-color: var(--form-gray-400);
     box-sizing: content-box;
     height: 1rem;
     margin-top: 0px;

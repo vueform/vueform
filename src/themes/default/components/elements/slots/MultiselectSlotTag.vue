@@ -34,7 +34,7 @@
 
     &.is-disabled {
       padding-right: var(--ms-tag-px, 0.5rem);
-      background: var(--ms-tag-bg-disabled, var(--form-bg-disabled-darker));
+      background: var(--ms-tag-bg-disabled, var(--form-color-disabled));
       color: var(--ms-tag-color-disabled, #FFFFFF);
     }
   }

@@ -28,7 +28,7 @@
     left: 0.625rem;
     top: -0.4375rem;
     font-size: 70%;
-    background: #fff;
+    background: #FFFFFF;
     padding: 0 1px;
     line-height: 0.9;
     transition: .3s;

@@ -59,7 +59,7 @@
   .form-file-preview-image-image {
     flex: 0 0 auto;
     font-size: 0;
-    background: #F3F4F6;
+    background: var(--form-gray-100);
     border-radius: var(--form-border-radius);
     outline: none;
 
@@ -116,17 +116,17 @@
     font-size: 0.75rem;
     margin-left: 0.5rem;
     white-space: nowrap;
-    background: #ffffff;
+    background: #FFFFFF;
     padding: 0.0625rem 0.4375rem;
     background: var(--form-primary);
-    color: #ffffff;
+    color: #FFFFFF;
     border-radius: calc(var(--form-border-radius) * 0.75);
     text-decoration: none;
     transition: .15s;
     outline: none;
 
     &:hover {
-      background: var(--form-primary-darker);
+      opacity: 0.9;
     }
 
     &:focus {
@@ -136,7 +136,7 @@
 
   .form-file-preview-image-percent {
     font-size: 0.875rem;
-    color: #6B7280;
+    color: var(--form-gray-500);
     margin-left: 0.375rem;
   }
 
@@ -144,7 +144,7 @@
     margin-top: 0.625rem;
     border-radius: 0;
     height: 0.1875rem;
-    background: #E5E7EB;
+    background: var(--form-gray-200);
     position: absolute;
     bottom: 0;
     left: calc(var(--form-input-min-height) + 0.625rem);
@@ -159,7 +159,7 @@
     transition: .6s ease;
   }
 
-  [class^="form-file-preview-image-icon-"] {
+  [class^="form-file-preview-file-icon-"] {
     display: flex;
     width: 1rem;
     height: 1rem;
@@ -168,27 +168,27 @@
     border-radius: 999px;
   }
 
-  .form-file-preview-image-remove {
+  .form-file-preview-file-remove {
     display: none;
     margin-left: 0.375rem;
-    background-color: #E5E7EB;
+    background-color: var(--form-gray-200);
     border-radius: 999px;
     transition: .15s;
 
     &:hover {
-      background-color: #D1D5DB;
+      background-color: var(--form-gray-300);
     }
   }
 
-  .form-file-preview-image-icon-remove {
+  .form-file-preview-file-icon-remove {
     mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E");
     mask-size: 0.75rem 0.75rem;
     mask-repeat: no-repeat;
     mask-position: center center;
-    background-color: #6B7280;
+    background-color: var(--form-gray-500);
   }
 
-  .form-file-preview-image-icon-uploaded {
+  .form-file-preview-file-icon-uploaded {
     background-color: var(--form-success-bg);
 
     &:after {
@@ -204,7 +204,7 @@
     }
   }
 
-  .form-file-preview-image-icon-warning {
+  .form-file-preview-file-icon-warning {
     background-color: var(--form-error-bg);
 
     &:after {

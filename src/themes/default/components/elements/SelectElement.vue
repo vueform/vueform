@@ -34,7 +34,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: 0.625rem;
-      background-color: #6b7280;
+      background-color: var(--form-gray-500);
       position: absolute;
       right: 0;
       top: 0;
@@ -200,7 +200,7 @@
     mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E");
     mask-position: center;
     mask-repeat: no-repeat;
-    background-color: #6b7280;
+    background-color: var(--form-gray-500);
     width: 0.625rem;
     height: 1.125rem;
     margin: 0 var(--ms-px, var(--form-input-px)) 0 0;
@@ -265,13 +265,13 @@
     padding: var(--ms-option-py, calc(var(--form-input-py) + var(--form-border-width))) var(--ms-option-px, var(--form-input-px));
 
     &.is-pointed {
-      background: var(--ms-option-bg-pointed, #F3F4F6);
-      color: var(--ms-option-color-pointed, #1F2937);
+      background: var(--ms-option-bg-pointed, var(--form-gray-100));
+      color: var(--ms-option-color-pointed, var(--form-gray-800));
     }
 
     &.is-disabled {
       background: var(--ms-option-bg-disabled, #FFFFFF);
-      color: var(--ms-option-color-disabled, #D1D5DB);
+      color: var(--ms-option-color-disabled, var(--form-gray-300));
       cursor: not-allowed;
     }
 
@@ -281,13 +281,15 @@
     }
 
     &.is-selected.is-pointed {
-      background: var(--ms-option-bg-selected-pointed, var(--form-primary-lighter));
+      background: var(--ms-option-bg-selected-pointed, var(--form-primary));
       color: var(--ms-option-color-selected-pointed, #FFFFFF);
+      opacity: 0.85;
     }
 
     &.is-selected.is-disabled {
-      background: var(--ms-option-bg-selected-disabled, var(--form-primary-light));
-      color: var(--ms-option-color-selected-disabled, #D1FAE5);
+      background: var(--ms-option-bg-selected-disabled, var(--form-primary));
+      color: var(--ms-option-color-selected-disabled, #FFFFFF);
+      opacity: 0.5;
     }
   }
 

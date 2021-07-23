@@ -74,17 +74,17 @@
   .form-file-preview-gallery-upload {
     font-size: 0.75rem;
     white-space: nowrap;
-    background: #ffffff;
+    background: #FFFFFF;
     padding: 0.0625rem 0.4375rem;
     background: var(--form-primary);
-    color: #ffffff;
+    color: #FFFFFF;
     border-radius: calc(var(--form-border-radius) * 0.75);
     text-decoration: none;
     transition: .15s;
     outline: none;
 
     &:hover {
-      background: var(--form-primary-darker);
+      opacity: 0.9;
     }
 
     &:focus {
@@ -96,7 +96,7 @@
     width: 100%;
     height: 100%;
     font-size: 0;
-    background: #F3F4F6;
+    background: var(--form-gray-100);
     border-radius: var(--form-border-radius);
     outline: none;
   }
@@ -119,7 +119,7 @@
     left: 0.1875rem;
     bottom: 0.1875rem;
     z-index: 1;
-    background: #fff;
+    background: #FFFFFF;
     right: 0.1875rem;
   }
 
@@ -144,12 +144,12 @@
     top: 0.1875rem;
     opacity: 0;
     visibility: hidden;
-    background-color: #E5E7EB;
+    background-color: var(--form-gray-200);
     border-radius: 999px;
     transition: .15s;
 
     &:hover {
-      background-color: #D1D5DB;
+      background-color: var(--form-gray-300);
     }
   }
 
@@ -158,7 +158,7 @@
     mask-size: 0.75rem 0.75rem;
     mask-repeat: no-repeat;
     mask-position: center center;
-    background-color: #6B7280;
+    background-color: var(--form-gray-500);
   }
 
   .form-file-preview-gallery-icon-uploaded {

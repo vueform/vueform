@@ -63,37 +63,37 @@
     background: var(--toggle-bg-on, var(--form-primary));
     border-color: var(--toggle-border-on, var(--form-primary));
     justify-content: flex-start;
-    color: var(--toggle-text-on, #ffffff);
+    color: var(--toggle-text-on, #FFFFFF);
   }
 
   .toggle-off {
-    background: var(--toggle-bg-off, #d1d5db);
-    border-color: var(--toggle-border-off, #d1d5db);
+    background: var(--toggle-bg-off, var(--form-gray-300));
+    border-color: var(--toggle-border-off, var(--form-gray-300));
     justify-content: flex-end;
-    color: var(--toggle-text-off, #374151);
+    color: var(--toggle-text-off, var(--form-gray-700));
   }
 
   .toggle-on-disabled {
     background: var(--toggle-bg-on-disabled, var(--form-primary));
     border-color: var(--toggle-border-on-disabled, var(--form-primary));
     justify-content: flex-start;
-    color: var(--toggle-text-on-disabled, #ffffff);
+    color: var(--toggle-text-on-disabled, #FFFFFF);
     cursor: not-allowed;
     opacity: var(--toggle-opacity-on-disabled, 0.5);
   }
 
   .toggle-off-disabled {
-    background: var(--toggle-bg-off-disabled, #d1d5db);
-    border-color: var(--toggle-border-off-disabled, #d1d5db);
+    background: var(--toggle-bg-off-disabled, var(--form-gray-300));
+    border-color: var(--toggle-border-off-disabled, var(--form-gray-300));
     justify-content: flex-end;
-    color: var(--toggle-text-off-disabled, #374151);
+    color: var(--toggle-text-off-disabled, var(--form-gray-700));
     cursor: not-allowed;
     opacity: var(--toggle-opacity-off-disabled, 0.5);
   }
 
   .toggle-handle {
     display: inline-block;
-    background: var(--toggle-handle-enabled, #ffffff);
+    background: var(--toggle-handle-enabled, #FFFFFF);
     width: 1.25rem;
     height: 1.25rem;
     top: 0;
@@ -116,12 +116,12 @@
   .toggle-handle-on-disabled {
     left: 100%;
     transform: translateX(-100%);
-    background: var(--toggle-handle-disabled, #ffffff);
+    background: var(--toggle-handle-disabled, #FFFFFF);
   }
 
   .toggle-handle-off-disabled {
     left: 0%;
-    background: var(--toggle-handle-disabled, #ffffff);
+    background: var(--toggle-handle-disabled, #FFFFFF);
   }
 
   .toggle-label {

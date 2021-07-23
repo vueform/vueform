@@ -33,7 +33,7 @@
     text-decoration: none;
 
     &.is-active {
-      color: #ffffff;
+      color: #FFFFFF;
       background: var(--form-primary);
     }
   }

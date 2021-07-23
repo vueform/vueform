@@ -66,12 +66,12 @@
     transform: translateX(-50%) translateY(-50%);
     top: 0;
     z-index: 3;
-    background-color: #E5E7EB;
+    background-color: var(--form-gray-200);
     border-radius: 999px;
     transition: .15s;
 
     &:hover {
-      background-color: #D1D5DB;
+      background-color: var(--form-gray-300);
     }
 
     span {
@@ -84,7 +84,7 @@
       mask-size: 0.75rem 0.75rem;
       mask-repeat: no-repeat;
       mask-position: center center;
-      background-color: #6B7280;
+      background-color: var(--form-gray-500);
     }
   }
 

@@ -94,7 +94,7 @@
         width: 0.5rem;
         height: 0.5rem;
         position: absolute;
-        background: #ffffff;
+        background: #FFFFFF;
         border-radius: 50%;
         left: calc(50% - 0.25rem);
         transform: scale(0);
@@ -189,7 +189,7 @@
     &.is-active {
       a {
         &:after {
-          background: #ffffff;
+          background: #FFFFFF;
           top: -0.875rem;
           transform: scale(1);
           border-radius: 50%;
@@ -222,7 +222,7 @@
       a {
         &:after {
           animation: 1s linear infinite step-loading;
-          background: #ffffff;
+          background: #FFFFFF;
           top: -0.875rem;
           border-radius: 50%;
         }

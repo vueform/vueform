@@ -86,17 +86,17 @@
     font-size: 0.75rem;
     margin-left: 0.5rem;
     white-space: nowrap;
-    background: #ffffff;
+    background: #FFFFFF;
     padding: 0.0625rem 0.4375rem;
     background: var(--form-primary);
-    color: #ffffff;
+    color: #FFFFFF;
     border-radius: calc(var(--form-border-radius) * 0.75);
     text-decoration: none;
     transition: .15s;
     outline: none;
 
     &:hover {
-      background: var(--form-primary-darker);
+      opacity: 0.9;
     }
 
     &:focus {
@@ -106,7 +106,7 @@
 
   .form-file-preview-file-percent {
     font-size: 0.875rem;
-    color: #6B7280;
+    color: var(--form-gray-500);
     margin-left: 0.375rem;
   }
 
@@ -114,7 +114,7 @@
     margin-top: 0.625rem;
     border-radius: 0;
     height: 0.1875rem;
-    background: #E5E7EB;
+    background: var(--form-gray-200);
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -139,12 +139,12 @@
   .form-file-preview-file-remove {
     display: none;
     margin-left: 0.375rem;
-    background-color: #E5E7EB;
+    background-color: var(--form-gray-200);
     border-radius: 999px;
     transition: .15s;
 
     &:hover {
-      background-color: #D1D5DB;
+      background-color: var(--form-gray-300);
     }
   }
 
@@ -153,7 +153,7 @@
     mask-size: 0.75rem 0.75rem;
     mask-repeat: no-repeat;
     mask-position: center center;
-    background-color: #6B7280;
+    background-color: var(--form-gray-500);
   }
 
   .form-file-preview-file-icon-uploaded {
