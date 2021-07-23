@@ -47,7 +47,7 @@ export default {
   // Elements
   AddressElement: {
     container: '',
-    childrenContainer: 'flex flex-wrap',
+    childrenContainer: 'form-row-group flex flex-wrap',
   },
   ButtonElement: {
     container: '',
@@ -86,14 +86,14 @@ export default {
   },
   GroupElement: {
     container: '',
-    childrenContainer: 'flex flex-wrap',
+    childrenContainer: 'form-row-group flex flex-wrap',
   },
   ListElement: {
     container: '',
     list: '',
     list_disabled: '',
     list_sorting: '',
-    listItem: 'relative group ghost:opacity-60',
+    listItem: 'form-row relative group ghost:opacity-60',
     handle: 'absolute form-w-input form-h-input left-0 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
     handleIcon: 'mask-bg mask-form-sort-handle bg-black mask-size-2.8 block w-full h-full',
     remove: 'absolute z-1 w-4 h-4 box-content p-0.5 top-px left-px bg-gray-200 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 hover:bg-gray-300 group-hover:opacity-100',
@@ -109,16 +109,16 @@ export default {
   MultifileElement: {
     container: '',
     list: '',
-    list_file: 'mt-2',
-    list_image: 'mt-4',
-    list_gallery: 'flex flex-wrap mt-2',
+    list_file: 'form-mt-0.5gutter',
+    list_image: 'form-mt-gutter',
+    list_gallery: 'flex flex-wrap form-mt-0.5gutter',
     list_disabled: '',
     list_sorting: '',
-    spacer: 'mb-2',
+    spacer: 'form-mb-0.5gutter',
     listItem: 'relative group ghost:opacity-60',
-    listItem_file: '-mt-2',
-    listItem_image: '-mt-2',
-    listItem_gallery: 'mr-2 mb-2',
+    listItem_file: 'form-row -form-mt-0.5gutter',
+    listItem_image: 'form-row -form-mt-0.5gutter',
+    listItem_gallery: 'form-mr-0.5gutter form-mb-0.5gutter',
     handle: '',
     handle_file: 'absolute form-w-input form-h-input left-0 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
     handle_image: 'absolute form-w-input form-h-input left-0 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
@@ -127,8 +127,8 @@ export default {
     handleIcon_file: 'mask-bg mask-form-sort-handle bg-black mask-size-2.8 block w-full h-full',
     handleIcon_image: 'mask-bg mask-form-sort-handle bg-black mask-size-2.8 block w-full h-full',
     handleIcon_gallery: 'mask-bg mask-form-arrows bg-gray-700 mask-size-3 block w-full h-full',
-    dnd: 'mb-2',
-    button: 'inline-block mb-2 form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
+    dnd: 'form-mb-0.5gutter',
+    button: 'inline-block form-mb-0.5gutter form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
     button_enabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
     button_disabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
   },
@@ -144,7 +144,7 @@ export default {
   },
   ObjectElement: {
     container: '',
-    childrenContainer: 'flex flex-wrap',
+    childrenContainer: 'form-row-group flex flex-wrap',
   },
   RadioElement: {
     container: '',
@@ -300,7 +300,7 @@ export default {
     content: 'bg-black bg-opacity-90 text-white rounded-md text-sm py-1 px-2.5 not-italic inline-block relative',
   },
   ElementLabel: {
-    container: 'form-py-input-border pr-4'
+    container: 'form-col form-py-input-border pr-4'
   },
   ElementLabelFloating: {
     container: 'relative',
@@ -309,12 +309,12 @@ export default {
     label_visible: 'opacity-100 visible',
   },
   ElementLayout: {
-    container: '',
+    container: 'form-col',
     container_error: 'has-error',
-    outerWrapper: 'flex flex-wrap',
-    outerWrapper_single: 'mb-4',
+    outerWrapper: 'form-row flex flex-wrap',
+    outerWrapper_single: 'form-mb-gutter',
     outerWrapper_multiple: '',
-    fieldWrapper: '',
+    fieldWrapper: 'form-col',
   },
   ElementLayoutInline: {
     container: '',
@@ -334,10 +334,10 @@ export default {
     container_after: '',
   },
   FormElements: {
-    container: 'flex flex-wrap'
+    container: 'form-row flex flex-wrap'
   },
   FormErrors: {
-    container: 'bg-red-100 text-red-500 py-3 px-5 rounded mb-4',
+    container: 'bg-red-100 text-red-500 py-3 px-5 rounded form-mb-gutter',
     error: '',
   },
   FormLanguage: {
@@ -347,10 +347,10 @@ export default {
     wrapper_active: 'text-white form-bg-primary'
   },
   FormLanguages: {
-    container: 'flex items-center justify-between mb-8',
+    container: 'flex items-center justify-between form-mb-2gutter',
   },
   FormMessages: {
-    container: 'bg-green-100 text-green-500 py-3 px-5 rounded mb-4',
+    container: 'bg-green-100 text-green-500 py-3 px-5 rounded form-mb-gutter',
     message: '',
   },
   FormStep: {
@@ -367,7 +367,7 @@ export default {
     container_pending: 'form-step-pending',
   },
   FormSteps: {
-    container: 'mb-8 flex justify-between overflow-x-auto pt-5',
+    container: 'form-mb-2gutter flex justify-between overflow-x-auto pt-5',
   },
   FormStepsControl: {
     button: 'px-4 py-2 form-rounded',
@@ -376,7 +376,7 @@ export default {
     button_finish: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
   },
   FormStepsControls: {
-    container: 'flex justify-between mt-4'
+    container: 'flex justify-between form-mt-gutter'
   },
   FormTab: {
     container: '',
@@ -387,7 +387,7 @@ export default {
     wrapper_invalid: 'text-red-500',
   },
   FormTabs: {
-    container: 'flex border-b form-border-color mb-8 items-end',
+    container: 'flex border-b form-border-color form-mb-2gutter items-end',
   },
   Laraform: {
     form: '',
