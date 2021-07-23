@@ -24,8 +24,8 @@
 
   .form-element-loader {
     position: absolute;
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
     background: #fff;
     display: block;
 
@@ -38,9 +38,9 @@
       content: "";
       top: 50%;
       left: 50%;
-      margin: -8px 0 0 -8px;
-      width: 16px;
-      height: 16px;
+      margin: -0.5rem 0 0 -0.5rem;
+      width: 1rem;
+      height: 1rem;
       border-radius: 100%;
       border-color: var(--form-primary) transparent transparent;
       border-style: solid;

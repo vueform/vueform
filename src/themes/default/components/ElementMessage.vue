@@ -18,7 +18,7 @@
   .form-element-message {
     font-size: var(--form-element-text-font-size);
     line-height: var(--form-element-text-line-height);
-    color: var(--form-message-color);
+    color: var(--form-success-color);
     margin-top: 0.25rem;
   }
 </style>

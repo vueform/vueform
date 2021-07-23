@@ -30,7 +30,7 @@
     white-space: nowrap;
     flex: 1;
     text-align: center;
-    padding: 0 10px;
+    padding: 0 0.625rem;
 
     &:nth-child(1):before, &:nth-child(1) a:before, &:nth-child(1) a:after { z-index: 10; }
     &:nth-child(2):before, &:nth-child(2) a:before, &:nth-child(2) a:after { z-index: 9; }
@@ -44,10 +44,10 @@
     &:before {
       content: " ";
       display: inline-block;
-      height: 4px;
+      height: 0.25rem;
       background: var(--form-primary);
       position: absolute;
-      top: -12px;
+      top: -0.75rem;
       left: 0;
       right: 50%;
       transition: .3s;
@@ -56,10 +56,10 @@
     &:after {
       content: " ";
       display: inline-block;
-      height: 4px;
+      height: 0.25rem;
       background: var(--form-primary);
       position: absolute;
-      top: -12px;
+      top: -0.75rem;
       left: 50%;
       right: 0;
       transition: .3s;
@@ -77,28 +77,28 @@
       &:before {
         content: " ";
         display: inline-block;
-        width: 16px;
-        height: 16px;
+        width: 1rem;
+        height: 1rem;
         position: absolute;
         background: var(--form-primary);
         border-radius: 50%;
         left: 50%;
         transform: translateX(-50%);
-        top: -18px;
+        top: -1.125rem;
         z-index: 3;
       }
 
       &:after {
         content: " ";
         display: inline-block;
-        width: 8px;
-        height: 8px;
+        width: 0.5rem;
+        height: 0.5rem;
         position: absolute;
         background: #ffffff;
         border-radius: 50%;
-        left: calc(50% - 4px);
+        left: calc(50% - 0.25rem);
         transform: scale(0);
-        top: -14px;
+        top: -0.875rem;
         z-index: 4;
         transition: transform .3s ease-in-out;
       }
@@ -123,7 +123,7 @@
         }
 
         &:after {
-          left: 4px;
+          left: 0.25rem;
           transform: scale(0);
         }
       }
@@ -153,7 +153,7 @@
           left: auto;
           left: initial;
           transform: scale(0);
-          right: 4px;
+          right: 0.25rem;
         }
       }
     }
@@ -177,7 +177,7 @@
       a {
         &:after {
           background: url('data:image/svg+xml;utf8,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" class="svg-inline--fa fa-check fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="white" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>');
-          background-size: 8px 8px;
+          background-size: 0.5rem 0.5rem;
           background-position: 0px 0px;
           background-repeat: no-repeat;
           border-radius: 0;
@@ -190,7 +190,7 @@
       a {
         &:after {
           background: #ffffff;
-          top: -14px;
+          top: -0.875rem;
           transform: scale(1);
           border-radius: 50%;
         }
@@ -207,12 +207,12 @@
 
         &:after {
           background: url('data:image/svg+xml;utf8,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="exclamation" class="svg-inline--fa fa-exclamation fa-w-6" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="white" d="M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z"></path></svg>');
-          background-size: 8px 8px;
+          background-size: 0.5rem 0.5rem;
           background-position: 0px 0px;
           background-repeat: no-repeat;
-          width: 8px;
-          height: 8px;
-          top: -14px;
+          width: 0.5rem;
+          height: 0.5rem;
+          top: -0.875rem;
           border-radius: 0;
         }
       }
@@ -223,7 +223,7 @@
         &:after {
           animation: 1s linear infinite step-loading;
           background: #ffffff;
-          top: -14px;
+          top: -0.875rem;
           border-radius: 50%;
         }
       }

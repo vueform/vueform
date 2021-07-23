@@ -22,6 +22,6 @@
     display: flex;
     justify-content: space-between;
     overflow-x: auto;
-    padding-top: 20px;
+    padding-top: 1.25rem;
   }
 </style>

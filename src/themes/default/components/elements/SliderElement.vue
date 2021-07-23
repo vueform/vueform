@@ -22,7 +22,7 @@
 
 <style lang="scss">
   .form-slider-wrapper {
-    margin-top: calc((var(--form-input-min-height) - 6px) / 2)
+    margin-top: calc((var(--form-input-min-height) - var(--slider-height, 0.375rem)) / 2)
   }
 
   // @vueform/slider styles
@@ -127,30 +127,30 @@
   }
 
   .slider-horizontal {
-    height: var(--slider-height, 6px);
+    height: var(--slider-height, 0.375rem);
   }
 
   .slider-horizontal .slider-handle {
-    width: var(--slider-handle-width, 16px);
-    height: var(--slider-handle-height, 16px);
-    top: calc(((var(--slider-handle-height, 16px) - var(--slider-height, 6px)) / 2 + 1px) * -1);
-    right: calc(var(--slider-handle-width, 16px) / 2 * -1);
+    width: var(--slider-handle-width, 1rem);
+    height: var(--slider-handle-height, 1rem);
+    top: calc(((var(--slider-handle-height, 1rem) - var(--slider-height, 0.375rem)) / 2 + 1px) * -1);
+    right: calc(var(--slider-handle-width, 1rem) / 2 * -1);
   }
 
   .slider-vertical {
-    width: var(--slider-height, 6px);
-    height: var(--slider-vertical-height, 300px);
+    width: var(--slider-height, 0.375rem);
+    height: var(--slider-vertical-height, 18.75rem);
   }
 
   .slider-vertical .slider-handle {
-    width: var(--slider-handle-height, 16px);
-    height: var(--slider-handle-width, 16px);
-    top: calc(var(--slider-handle-width, 16px) / 2 * -1);
-    right: calc(((var(--slider-handle-height, 16px) - var(--slider-height, 6px)) / 2 + 1px) * -1);
+    width: var(--slider-handle-height, 1rem);
+    height: var(--slider-handle-width, 1rem);
+    top: calc(var(--slider-handle-width, 1rem) / 2 * -1);
+    right: calc(((var(--slider-handle-height, 1rem) - var(--slider-height, 0.375rem)) / 2 + 1px) * -1);
   }
 
   .slider-txt-dir-rtl.slider-horizontal .slider-handle {
-    left: calc(var(--slider-handle-width, 16px) / 2 * -1);
+    left: calc(var(--slider-handle-width, 1rem) / 2 * -1);
     right: auto;
   }
 
@@ -177,8 +177,8 @@
   }
 
   .slider-handle {
-    width: var(--slider-handle-width, 16px);
-    height: var(--slider-handle-height, 16px);
+    width: var(--slider-handle-width, 1rem);
+    height: var(--slider-handle-height, 1rem);
     border-radius: var(--slider-handle-radius, 9999px);
     background: var(--slider-handle-bg, #fff);
     border: var(--slider-handle-border, 0);
@@ -218,11 +218,11 @@
     line-height: var(--slider-tooltip-line-height, 1.25rem);
     font-weight: var(--slider-tooltip-font-weight, 600);
     white-space: nowrap;
-    padding: var(--slider-tooltip-py, 2px) var(--slider-tooltip-px, 6px);
-    min-width: var(--slider-tooltip-min-width, 20px);
+    padding: var(--slider-tooltip-py, 0.125rem) var(--slider-tooltip-px, 0.375rem);
+    min-width: var(--slider-tooltip-min-width, 1.25rem);
     text-align: center;
     color: var(--slider-tooltip-color, #fff);
-    border-radius: var(--slider-tooltip-radius, 5px);
+    border-radius: var(--slider-tooltip-radius, var(--form-border-radius));
     border: 1px solid var(--slider-tooltip-bg, var(--form-primary));
     background: var(--slider-tooltip-bg, var(--form-primary));
   }
@@ -231,16 +231,16 @@
     -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
     left: 50%;
-    bottom: calc(var(--slider-handle-height, 16px) + var(--slider-tooltip-arrow-size, 5px) + var(--slider-tooltip-distance, 3px));
+    bottom: calc(var(--slider-handle-height, 1rem) + var(--slider-tooltip-arrow-size, 0.3125rem) + var(--slider-tooltip-distance, 0.1875rem));
 
     &:before {
       content: "";
       position: absolute;
-      bottom: calc(var(--slider-tooltip-arrow-size, 5px) * -2);
+      bottom: calc(var(--slider-tooltip-arrow-size, 0.3125rem) * -2);
       left: 50%;
       width: 0;
       height: 0;
-      border: var(--slider-tooltip-arrow-size, 5px) solid transparent;
+      border: var(--slider-tooltip-arrow-size, 0.3125rem) solid transparent;
       border-top-color: inherit;
       transform: translate(-50%);
     }
@@ -250,16 +250,16 @@
     -webkit-transform: translate(0, -50%);
     transform: translate(0, -50%);
     top: 50%;
-    right: calc(var(--slider-handle-height, 16px) + var(--slider-tooltip-arrow-size, 5px) + var(--slider-tooltip-distance, 3px));
+    right: calc(var(--slider-handle-height, 1rem) + var(--slider-tooltip-arrow-size, 0.3125rem) + var(--slider-tooltip-distance, 0.1875rem));
 
     &:before {
       content: "";
       position: absolute;
-      right: calc(var(--slider-tooltip-arrow-size, 5px) * -2);
+      right: calc(var(--slider-tooltip-arrow-size, 0.3125rem) * -2);
       top: 50%;
       width: 0;
       height: 0;
-      border: var(--slider-tooltip-arrow-size, 5px) solid transparent;
+      border: var(--slider-tooltip-arrow-size, 0.3125rem) solid transparent;
       border-left-color: inherit;
       transform: translateY(-50%);
     }
@@ -269,12 +269,12 @@
     -webkit-transform: translate(50%, 0);
     transform: translate(50%, 0);
     left: auto;
-    bottom: calc(var(--slider-tooltip-arrow-size, 5px) + ((var(--slider-handle-height, 16px) - var(--slider-height, 6px)) / 2) + var(--slider-tooltip-distance, 3px));
+    bottom: calc(var(--slider-tooltip-arrow-size, 0.3125rem) + ((var(--slider-handle-height, 1rem) - var(--slider-height, 0.375rem)) / 2) + var(--slider-tooltip-distance, 0.1875rem));
   }
 
   .slider-vertical .slider-origin > .slider-tooltip {
-    transform: translate(0, calc((var(--slider-tooltip-line-height, 1.25rem) - var(--slider-tooltip-py, 2px)) * -1));
+    transform: translate(0, calc((var(--slider-tooltip-line-height, 1.25rem) - var(--slider-tooltip-py, 0.125rem)) * -1));
     top: auto;
-    right: calc(var(--slider-tooltip-arrow-size, 5px) + var(--slider-height, 6px) + ((var(--slider-handle-height, 16px) - var(--slider-height, 6px)) / 2) + var(--slider-tooltip-distance, 3px));
+    right: calc(var(--slider-tooltip-arrow-size, 0.3125rem) + var(--slider-height, 0.375rem) + ((var(--slider-handle-height, 1rem) - var(--slider-height, 0.375rem)) / 2) + var(--slider-tooltip-distance, 0.1875rem));
   }
 </style>

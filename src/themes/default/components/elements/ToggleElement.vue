@@ -94,8 +94,8 @@
   .toggle-handle {
     display: inline-block;
     background: var(--toggle-handle-enabled, #ffffff);
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     top: 0;
     border-radius: 50%;
     position: absolute;

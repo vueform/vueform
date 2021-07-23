@@ -25,8 +25,8 @@
   .form-floating-label {
     position: absolute;
     z-index: 5;
-    left: 10px;
-    top: -7px;
+    left: 0.625rem;
+    top: -0.4375rem;
     font-size: 70%;
     background: #fff;
     padding: 0 1px;
@@ -39,7 +39,7 @@
     &.is-visible {
       opacity: 1;
       visibility: visible;
-      top: -4px;
+      top: -0.25rem;
     }
   }
 </style>

@@ -44,16 +44,17 @@
   }
 
   .pac-icon-marker {
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 384 512' fill='%239ca3af' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z'%3e%3c/path%3e%3c/svg%3e");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 384 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z'%3e%3c/path%3e%3c/svg%3e");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    background-color: #9ca3af;
     box-sizing: content-box;
     height: 1rem;
     margin-top: 0px;
     margin-right: 0.75rem;
-    padding-top: 1px;
-    padding-bottom: 1px;
+    padding-top: 0.0625rem;
+    padding-bottom: 0.0625rem;
     width: 1rem;
   }
 
@@ -120,16 +121,17 @@
   }
 
   .ap-suggestion-icon {
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 384 512' fill='%239ca3af' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z'%3e%3c/path%3e%3c/svg%3e");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 384 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z'%3e%3c/path%3e%3c/svg%3e");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    background-color: #9ca3af;
     box-sizing: content-box;
     height: 1rem;
     margin-top: 0px;
     margin-right: 0.75rem;
-    padding-top: 1px;
-    padding-bottom: 1px;
+    padding-top: 0.0625rem;
+    padding-bottom: 0.0625rem;
     width: 1rem;
   }
 
