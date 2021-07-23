@@ -371,7 +371,7 @@ export default {
   },
   FormStepsControl: {
     button: 'px-4 py-2 form-rounded',
-    button_previous: 'text-gray-700 bg-gray-200 transition hover:bg-gray-300 focus:form-ring focus:outline-none',
+    button_previous: 'text-gray-700 bg-gray-200 transition hover-not-disabled:bg-gray-300 focus:form-ring focus:outline-none disabled:opacity-60 disabled:cursor-not-allowed',
     button_next: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
     button_finish: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
   },
@@ -381,7 +381,7 @@ export default {
   FormTab: {
     container: '',
     wrapper: 'py-2 px-4 block bg-white -mb-px',
-    wrapper_active: 'border form-border-color form-border-b-white rounded-tl rounded-tr',
+    wrapper_active: 'border form-border-color !form-border-b-white rounded-tl rounded-tr',
     wrapper_inactive: 'border border-white form-border-b-color',
     wrapper_valid: '',
     wrapper_invalid: 'text-red-500',
