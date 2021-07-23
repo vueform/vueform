@@ -17,19 +17,25 @@
       <div :class="classes.actions">
 
         <!-- Remove -->
-        <a href="" :class="classes.remove" v-if="canRemove" @click.prevent="remove"><span :class="classes.iconRemove"></span></a>
+        <a href="" :class="classes.remove" v-if="canRemove" @click.prevent="remove">
+          <span :class="classes.removeIcon"></span>
+        </a>
 
         <!-- Progress -->
         <div  v-if="uploading" :class="classes.percent">{{ progress }}%</div>
 
         <!-- Error -->
-        <span v-if="hasError" :class="classes.iconWarning"></span>
+        <span v-if="hasError" :class="classes.warning">
+          <span :class="classes.warningIcon"></span>
+        </span>
 
         <!-- Upload button -->
         <a href="" :class="classes.upload" v-if="canUpload" @click.prevent="upload">{{ uploadText }}</a>
 
         <!-- Success -->
-        <span v-else-if="uploaded" :class="classes.iconUploaded"></span>
+        <span v-else-if="uploaded" :class="classes.uploaded">
+          <span :class="classes.uploadedIcon"></span>
+        </span>
 
       </div>
     </div>
@@ -60,9 +66,12 @@
           remove: '',
           progressBar: '',
           progress: '',
-          iconWarning: '',
-          iconUploaded: '',
-          iconRemove: '',
+          warning: '',
+          warningIcon: '',
+          uploaded: '',
+          uploadedIcon: '',
+          remove: '',
+          removeIcon: '',
         }
       }
     }

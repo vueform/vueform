@@ -11,13 +11,19 @@
     </div>
 
     <!-- Error -->
-    <span v-if="hasError" :class="classes.iconWarning"></span>
+    <span v-if="hasError" :class="classes.warning">
+      <span :class="classes.warningIcon"></span>
+    </span>
 
     <!-- Success -->
-    <span v-else-if="uploaded" :class="classes.iconUploaded"></span>
+    <span v-else-if="uploaded" :class="classes.uploaded">
+      <span :class="classes.uploadedIcon"></span>
+    </span>
 
     <!-- Remove -->
-    <a v-if="canRemove" @click.prevent="remove" href="" :class="classes.remove"><span :class="classes.iconRemove"></span></a>
+    <a v-if="canRemove" @click.prevent="remove" href="" :class="classes.remove">
+      <span :class="classes.removeIcon"></span>
+    </a>
 
     <!-- Progress -->
     <div v-if="uploading" :class="classes.progressBar">
@@ -39,12 +45,14 @@
           img: '',
           overlay: '',
           upload: '',
-          remove: '',
           progressBar: '',
           progress: '',
-          iconWarning: '',
-          iconUploaded: '',
-          iconRemove: '',
+          warning: '',
+          warningIcon: '',
+          uploaded: '',
+          uploadedIcon: '',
+          remove: '',
+          removeIcon: '',
         }
       }
     }

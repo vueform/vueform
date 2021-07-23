@@ -163,6 +163,9 @@ const multifile = function(props, context, dependencies)
       ['handle', 'handle_file', computed(() => !image.value)],
       ['handle', 'handle_image', computed(() => image.value && view.value !== 'gallery')],
       ['handle', 'handle_gallery', computed(() => image.value && view.value === 'gallery')],
+      ['handleIcon', 'handleIcon_file', computed(() => !image.value)],
+      ['handleIcon', 'handleIcon_image', computed(() => image.value && view.value !== 'gallery')],
+      ['handleIcon', 'handleIcon_gallery', computed(() => image.value && view.value === 'gallery')],
       ['button', 'button_enabled', computed(() => !isDisabled.value && !preparing.value)],
       ['button', 'button_disabled', computed(() => isDisabled.value || preparing.value)],
     ]

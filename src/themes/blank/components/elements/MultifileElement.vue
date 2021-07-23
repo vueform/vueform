@@ -43,7 +43,9 @@
             :name="i"
             @remove="remove(i)"
           />
-          <span v-if="!isDisabled && sort" :class="classes.handle" data-handle><span></span></span>
+          <span v-if="!isDisabled && sort" :class="classes.handle" data-handle>
+            <span :class="classes.handleIcon"></span>
+          </span>
         </div>
       </div>
       <div :class="classes.spacer"></div>
@@ -81,6 +83,10 @@
           handle_file: '',
           handle_image: '',
           handle_gallery: '',
+          handleIcon: '',
+          handleIcon_file: '',
+          handleIcon_image: '',
+          handleIcon_gallery: '',
           dnd: '',
           button: '',
           button_enabled: '',

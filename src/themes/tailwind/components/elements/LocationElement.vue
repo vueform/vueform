@@ -23,13 +23,16 @@
   }
 
   .pac-icon-marker {
-    @apply bg-form-map-marker bg-no-repeat bg-contain bg-center w-4 h-4 mr-3 mt-0 py-px box-content;
+    @apply mask-bg mask-form-map-marker bg-gray-400 w-4 h-4 mr-3 mt-0 py-px box-content;
   }
 
   .pac-logo {
     &:after {
       @apply mx-2.5 mb-2.5;
     }
+  }
+  .hdpi .pac-icon {
+    @apply bg-none;
   }
 
   // Algolia
@@ -74,7 +77,7 @@
   }
 
   .ap-suggestion-icon {
-    @apply bg-form-map-marker bg-no-repeat bg-contain bg-center w-4 h-4 mr-3 mt-0 py-px box-content;
+    @apply mask-bg mask-form-map-marker bg-gray-400 w-4 h-4 mr-3 mt-0 py-px box-content;
   }
 
   .ap-address {

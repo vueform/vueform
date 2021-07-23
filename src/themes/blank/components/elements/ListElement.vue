@@ -14,13 +14,21 @@
               :name="i"
             />
           </slot>
-          <span v-if="hasSort" :class="classes.handle" data-handle><span></span></span>
+          <span
+            v-if="hasSort"
+            :class="classes.handle"
+            data-handle
+          >
+            <span :class="classes.handleIcon"></span>
+          </span>
           <a
             href=""
             v-if="hasRemove"
             :class="classes.remove"
             @click.prevent="handleRemove(i)"
-          ><span></span></a>
+          >
+            <span :class="classes.removeIcon"></span>
+          </a>
         </div>
         
       </div>
@@ -56,7 +64,9 @@
           list_sorting: '',
           listItem: '',
           handle: '',
+          handleIcon: '',
           remove: '',
+          removeIcon: '',
           add: '',
         },
       }

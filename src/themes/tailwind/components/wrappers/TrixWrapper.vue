@@ -65,59 +65,59 @@
     }
 
     .trix-button--icon-attach::before {
-      @apply bg-form-trix-attach top-0.5 bottom-0.5 my-0.5;
+      @apply mask-bg bg-gray-900 mask-form-trix-attach top-0.5 bottom-0.5 my-0.5;
     }
 
     .trix-button--icon-bold::before {
-      @apply bg-form-trix-bold top-0.5 bottom-0.5 my-0.5;
+      @apply mask-bg bg-gray-900 mask-form-trix-bold top-0.5 bottom-0.5 my-0.5;
     }
 
     .trix-button--icon-italic::before {
-      @apply bg-form-trix-italic top-0.5 bottom-0.5 my-0.5;
+      @apply mask-bg bg-gray-900 mask-form-trix-italic top-0.5 bottom-0.5 my-0.5;
     }
 
     .trix-button--icon-link::before {
-      @apply bg-form-trix-link top-0.5 bottom-0.5 my-0.5;
+      @apply mask-bg bg-gray-900 mask-form-trix-link top-0.5 bottom-0.5 my-0.5;
     }
 
     .trix-button--icon-strike::before {
-      @apply bg-form-trix-strike top-0.5 bottom-0.5 my-0.5;
+      @apply mask-bg bg-gray-900 mask-form-trix-strike top-0.5 bottom-0.5 my-0.5;
     }
 
     .trix-button--icon-quote::before {
-      @apply bg-form-trix-quote top-1 bottom-1 my-px;
+      @apply mask-bg bg-gray-900 mask-form-trix-quote top-1 bottom-1 my-px;
     }
 
     .trix-button--icon-heading-1::before {
-      @apply bg-form-trix-heading top-0.5 bottom-0.5 my-0.5;
+      @apply mask-bg bg-gray-900 mask-form-trix-heading top-0.5 bottom-0.5 my-0.5;
     }
 
     .trix-button--icon-code::before {
-      @apply bg-form-trix-code top-1.5 bottom-1.5 my-px;
+      @apply mask-bg bg-gray-900 mask-form-trix-code top-1.5 bottom-1.5 my-px;
     }
 
     .trix-button--icon-bullet-list::before {
-      @apply bg-form-trix-ul top-0.5 bottom-0.5 my-px;
+      @apply mask-bg bg-gray-900 mask-form-trix-ul top-0.5 bottom-0.5 my-px;
     }
 
     .trix-button--icon-number-list::before {
-      @apply bg-form-trix-ol top-0.5 bottom-0.5 my-px;
+      @apply mask-bg bg-gray-900 mask-form-trix-ol top-0.5 bottom-0.5 my-px;
     }
 
     .trix-button--icon-undo::before {
-      @apply bg-form-trix-undo top-1 bottom-1;
+      @apply mask-bg bg-gray-900 mask-form-trix-undo top-1 bottom-1;
     }
 
     .trix-button--icon-redo::before {
-      @apply bg-form-trix-redo top-1 bottom-1;
+      @apply mask-bg bg-gray-900 mask-form-trix-redo top-1 bottom-1;
     }
 
     .trix-button--icon-decrease-nesting-level::before {
-      @apply bg-form-trix-decrease-indent top-0.5 bottom-0.5 mt-0.5;
+      @apply mask-bg bg-gray-900 mask-form-trix-decrease-indent top-0.5 bottom-0.5 mt-0.5;
     }
 
     .trix-button--icon-increase-nesting-level::before {
-      @apply bg-form-trix-increase-indent top-0.5 bottom-0.5 my-px;
+      @apply mask-bg bg-gray-900 mask-form-trix-increase-indent top-0.5 bottom-0.5 my-px;
     }
 
     .trix-dialogs {
@@ -256,7 +256,7 @@
       }
 
       &::before {
-        @apply inline-block absolute top-1 bottom-1 left-1 right-1 bg-opacity-70 bg-center bg-no-repeat content-empty bg-form-remove-light;
+        @apply inline-block absolute top-1 bottom-1 left-1 right-1 bg-opacity-70 bg-center bg-no-repeat content-empty mask-bg bg-gray-900 mask-form-remove-light;
 
         &:hover {
           @apply border-gray-700;
