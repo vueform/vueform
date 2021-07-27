@@ -88,6 +88,8 @@
 
     &:hover {
       opacity: 0.9;
+      color: #FFFFFF;
+      text-decoration: none;
     }
 
     &:focus {
