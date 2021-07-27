@@ -9,11 +9,11 @@
         defaultClasses: {
           container: '',
           wrapper: '',
-          inputContainer: 'form-checkbox-container',
-          input: 'form-checkbox',
+          inputContainer: 'vf-checkbox-container',
+          input: 'vf-checkbox',
           input_enabled: '',
           input_disabled: '',
-          label: 'form-checkbox-label',
+          label: 'vf-checkbox-label',
         }
       }
     }

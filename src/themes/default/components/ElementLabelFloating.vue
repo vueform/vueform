@@ -7,8 +7,8 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-floating-wrapper',
-          label: 'form-floating-label',
+          container: 'vf-floating-wrapper',
+          label: 'vf-floating-label',
           label_invisible: '',
           label_visible: 'is-visible',
         }
@@ -18,11 +18,11 @@
 </script>
 
 <style lang="scss">
-  .form-floating-wrapper {
+  .vf-floating-wrapper {
     position: relative;
   }
 
-  .form-floating-label {
+  .vf-floating-label {
     position: absolute;
     z-index: 5;
     left: 0.625rem;

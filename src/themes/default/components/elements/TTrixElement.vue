@@ -8,7 +8,7 @@
       return {
         defaultClasses: {
           container: '',
-          input: 'form-trix',
+          input: 'vf-trix',
           input_enabled: '',
           input_disabled: 'is-disabled',
           input_focused: 'is-focused',

@@ -7,11 +7,11 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-radio-container',
-          input: 'form-radio',
+          container: 'vf-radio-container',
+          input: 'vf-radio',
           input_enabled: '',
           input_disabled: '',
-          label: 'form-radio-label',
+          label: 'vf-radio-label',
         }
       }
     }

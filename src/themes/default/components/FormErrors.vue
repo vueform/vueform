@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-errors',
+          container: 'vf-errors',
           error: '',
         }
       }
@@ -16,11 +16,11 @@
 </script>
 
 <style lang="scss">
-  .form-errors {
-    background: var(--form-error-bg);
-    color: var(--form-error-color);
+  .vf-errors {
+    background: var(--vf-error-bg);
+    color: var(--vf-error-color);
     padding: 0.75rem 1.25rem;
     border-radius: 0.25rem;
-    margin-bottom: var(--form-gutter);
+    margin-bottom: var(--vf-gutter);
   }
 </style>

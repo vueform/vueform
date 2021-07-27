@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-row',
+          container: 'vf-row',
         }
       }
     }

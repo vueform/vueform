@@ -19,23 +19,23 @@
 
 <style lang="scss">
   .multiselect-tag {
-    background: var(--form-select-tag-bg);
-    color: var(--form-select-tag-color);
-    font-size: var(--form-select-tag-font-size);
-    line-height: var(--form-select-tag-line-height);
-    font-weight: var(--form-select-tag-font-weight);
-    padding: var(--form-select-tag-py) 0 var(--form-select-tag-py) var(--form-select-tag-px);
-    border-radius: var(--form-select-tag-radius);
-    margin-right: var(--form-select-tag-mx);
-    margin-bottom: var(--form-select-tag-my);
+    background: var(--vf-select-tag-bg);
+    color: var(--vf-select-tag-color);
+    font-size: var(--vf-select-tag-font-size);
+    line-height: var(--vf-select-tag-line-height);
+    font-weight: var(--vf-select-tag-font-weight);
+    padding: var(--vf-select-tag-py) 0 var(--vf-select-tag-py) var(--vf-select-tag-px);
+    border-radius: var(--vf-select-tag-radius);
+    margin-right: var(--vf-select-tag-mx);
+    margin-bottom: var(--vf-select-tag-my);
     display: flex;
     align-items: center;
     white-space: nowrap;
 
     &.is-disabled {
-      padding-right: var(--form-select-tag-px);
-      background: var(--form-select-tag-bg-disabled);
-      color: var(--form-select-tag-color-disabled);
+      padding-right: var(--vf-select-tag-px);
+      background: var(--vf-select-tag-bg-disabled);
+      color: var(--vf-select-tag-color-disabled);
     }
   }
 
@@ -43,12 +43,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--form-select-tag-remove-py) var(--form-select-tag-remove-px);
-    margin: var(--form-select-tag-remove-my) var(--form-select-tag-remove-mx);
-    border-radius: var(--form-select-tag-remove-radius);
+    padding: var(--vf-select-tag-remove-py) var(--vf-select-tag-remove-px);
+    margin: var(--vf-select-tag-remove-my) var(--vf-select-tag-remove-mx);
+    border-radius: var(--vf-select-tag-remove-radius);
     
     &:hover {
-      background: var(--form-select-tag-remove-bg-hover);
+      background: var(--vf-select-tag-remove-bg-hover);
     }
   }
 

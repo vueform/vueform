@@ -7,9 +7,9 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-element-info',
-          wrapper: 'form-element-info-wrapper',
-          content: 'form-element-info-content',
+          container: 'vf-element-info',
+          wrapper: 'vf-element-info-wrapper',
+          content: 'vf-element-info-content',
         }
       }
     }
@@ -17,7 +17,7 @@
 </script>
 
 <style lang="scss">
-  .form-element-info {
+  .vf-element-info {
     margin-left: 0.5rem;
     position: relative;
     top: 1px;
@@ -29,21 +29,21 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: var(--form-gray-400);
+      background-color: var(--vf-gray-400);
       width: 0.875rem;
       height: 0.875rem;
       display: inline-block;
     }
 
     &:hover {
-      .form-element-info-wrapper {
+      .vf-element-info-wrapper {
         opacity: 1;
         visibility: visible;
       }
     }
   }
 
-  .form-element-info-wrapper {
+  .vf-element-info-wrapper {
     position: absolute;
     left: 1.375rem;
     opacity: 0;
@@ -54,10 +54,10 @@
     width: 12.5rem;
   }
 
-  .form-element-info-content {
+  .vf-element-info-content {
     background: rgba(0,0,0,0.85);
     color: #FFFFFF;
-    border-radius: var(--form-border-radius);
+    border-radius: var(--vf-border-radius);
     font-size: 80%;
     padding: 0.3125rem 0.625rem;
     font-style: normal;

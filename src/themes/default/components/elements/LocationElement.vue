@@ -8,8 +8,8 @@
       return {
         defaultClasses: {
           container: '',
-          inputContainer: 'form-input-group',
-          input: 'form-input',
+          inputContainer: 'vf-input-group',
+          input: 'vf-input',
           input_enabled: '',
           input_disabled: '',
         }
@@ -21,7 +21,7 @@
 <style lang="scss">
   // Google
   .pac-item {
-    border-color: var(--form-border-color);
+    border-color: var(--vf-border-color);
     display: flex;
     align-items: center;
     padding-top: 0.75rem;
@@ -48,7 +48,7 @@
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center center;
-    background-color: var(--form-gray-400);
+    background-color: var(--vf-gray-400);
     box-sizing: content-box;
     height: 1rem;
     margin-top: 0px;
@@ -56,12 +56,17 @@
     padding-top: 0.0625rem;
     padding-bottom: 0.0625rem;
     width: 1rem;
+    flex-shrink: 0;
   }
 
   .pac-logo:after {
     margin-left: 0.625rem;
     margin-right: 0.625rem;
     margin-bottom: 0.625rem;
+  }
+
+  .hdpi .pac-icon, .pac-icon {
+    background-image: none;
   }
 
   // Algolia
@@ -98,7 +103,7 @@
   }
 
   .ap-suggestion {
-    border-bottom: 1px solid var(--form-border-color);
+    border-bottom: 1px solid var(--vf-border-color);
     display: flex;
     align-items: center;
     height: auto;
@@ -109,6 +114,7 @@
     padding-bottom: 0.75rem;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
+    flex-shrink: 0;
   }
 
   .ap-suggestion svg {
@@ -125,7 +131,7 @@
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center center;
-    background-color: var(--form-gray-400);
+    background-color: var(--vf-gray-400);
     box-sizing: content-box;
     height: 1rem;
     margin-top: 0px;

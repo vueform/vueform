@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-tabs',
+          container: 'vf-tabs',
         }
       }
     }
@@ -15,12 +15,12 @@
 </script>
 
 <style lang="scss">
-  .form-tabs {
+  .vf-tabs {
     display: flex;
     align-items: flex-end;
-    border-bottom: 1px solid var(--form-border-color);
+    border-bottom: 1px solid var(--vf-border-color);
     list-style: none;
     padding: 0;
-    margin: 0 0 calc(var(--form-gutter) * 2) 0;
+    margin: 0 0 calc(var(--vf-gutter) * 2) 0;
   }
 </style>

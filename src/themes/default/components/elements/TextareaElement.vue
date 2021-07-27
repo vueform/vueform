@@ -8,8 +8,8 @@
       return {
         defaultClasses: {
           container: '',
-          inputContainer: 'form-input-group',
-          input: 'form-input',
+          inputContainer: 'vf-input-group',
+          input: 'vf-input',
           input_enabled: '',
           input_disabled: '',
         }

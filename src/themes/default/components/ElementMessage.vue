@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-element-message',
+          container: 'vf-element-message',
         }
       }
     }
@@ -15,10 +15,10 @@
 </script>
 
 <style lang="scss">
-  .form-element-message {
-    font-size: var(--form-element-text-font-size);
-    line-height: var(--form-element-text-line-height);
-    color: var(--form-success-color);
+  .vf-element-message {
+    font-size: var(--vf-element-text-font-size);
+    line-height: var(--vf-element-text-line-height);
+    color: var(--vf-success-color);
     margin-top: 0.25rem;
   }
 </style>

@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-step',
+          container: 'vf-step',
           wrapper: '',
           container_active: 'is-active',
           container_inactive: '',
@@ -25,7 +25,7 @@
 </script>
 
 <style lang="scss">
-  .form-step {
+  .vf-step {
     position: relative;
     white-space: nowrap;
     flex: 1;
@@ -45,7 +45,7 @@
       content: " ";
       display: inline-block;
       height: 0.25rem;
-      background: var(--form-primary);
+      background: var(--vf-primary);
       position: absolute;
       top: -0.75rem;
       left: 0;
@@ -57,7 +57,7 @@
       content: " ";
       display: inline-block;
       height: 0.25rem;
-      background: var(--form-primary);
+      background: var(--vf-primary);
       position: absolute;
       top: -0.75rem;
       left: 50%;
@@ -80,7 +80,7 @@
         width: 1rem;
         height: 1rem;
         position: absolute;
-        background: var(--form-primary);
+        background: var(--vf-primary);
         border-radius: 50%;
         left: 50%;
         transform: translateX(-50%);
@@ -160,15 +160,15 @@
 
     &.is-disabled {
       &:before {
-        background: var(--form-bg-disabled);
+        background: var(--vf-bg-disabled);
         left: -100%;
       }
 
       a {
-        color: var(--form-color-disabled);
+        color: var(--vf-color-disabled);
 
         &:before {
-          background: var(--form-bg-disabled);
+          background: var(--vf-bg-disabled);
         }
       }
     }
@@ -199,10 +199,10 @@
 
     &.has-errors {
       a {
-        color: var(--form-error-color);
+        color: var(--vf-error-color);
 
         &:before {
-          background-color: var(--form-error-color);
+          background-color: var(--vf-error-color);
         }
 
         &:after {

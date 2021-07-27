@@ -8,7 +8,7 @@
       return {
         defaultClasses: {
           container: '',
-          button: 'form-btn',
+          button: 'vf-btn',
           button_enabled: '',
           button_disabled: 'is-disabled',
           button_loading: 'is-loading',

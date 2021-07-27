@@ -12,11 +12,11 @@
       return {
         defaultClasses: {
           container: '',
-          input: 'form-input form-native-select',
+          input: 'vf-input vf-native-select',
           input_enabled: '',
           input_disabled: '',
-          inputWrapper: 'form-native-select-wrapper',
-          inputPlaceholder: 'form-native-select-placeholder',
+          inputWrapper: 'vf-native-select-wrapper',
+          inputPlaceholder: 'vf-native-select-placeholder',
           select: {},
         }
       }
@@ -25,7 +25,7 @@
 </script>
 
 <style lang="scss">
-  .form-native-select-wrapper {
+  .vf-native-select-wrapper {
     position: relative;
 
     &:before {
@@ -34,27 +34,27 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: 0.625rem;
-      background-color: var(--form-gray-500);
+      background-color: var(--vf-gray-500);
       position: absolute;
       right: 0;
       top: 0;
-      width: var(--form-input-min-height);
-      height: var(--form-input-min-height);
+      width: var(--vf-input-min-height);
+      height: var(--vf-input-min-height);
       display: inline-block;
       pointer-events: none;
     }
   }
 
-  .form-native-select-placeholder {
+  .vf-native-select-placeholder {
     position: absolute;
-    top: var(--form-input-py);
-    left: var(--form-input-px);
+    top: var(--vf-input-py);
+    left: var(--vf-input-px);
     margin-left: 1px;
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
     line-height: inherit;
-    color: var(--form-placeholder-color);
+    color: var(--vf-placeholder-color);
     cursor: default;
     pointer-events: none;
   }
@@ -70,28 +70,28 @@
     box-sizing: border-box;
     cursor: pointer;
     outline: none;
-    border: var(--form-select-border-width) solid var(--form-select-border-color);
-    border-radius: var(--form-select-radius);
-    background: var(--form-select-bg);
-    font-size: var(--form-select-font-size);
-    min-height: var(--form-input-min-height);
+    border: var(--vf-select-border-width) solid var(--vf-select-border-color);
+    border-radius: var(--vf-select-radius);
+    background: var(--vf-select-bg);
+    font-size: var(--vf-select-font-size);
+    min-height: var(--vf-input-min-height);
 
     &.is-open {
-      border-radius: var(--form-select-radius) var(--form-select-radius) 0 0;
+      border-radius: var(--vf-select-radius) var(--vf-select-radius) 0 0;
     }
 
     &.is-open-top {
-      border-radius: 0 0 var(--form-select-radius) var(--form-select-radius);
+      border-radius: 0 0 var(--vf-select-radius) var(--vf-select-radius);
     }
 
     &.is-disabled {
       cursor: default;
-      background: var(--form-select-bg-disabled);
-      color: var(--form-color-disabled);
+      background: var(--vf-select-bg-disabled);
+      color: var(--vf-color-disabled);
     }
 
     &.is-active {
-      box-shadow: 0 0 0 var(--form-select-ring-width) var(--form-select-ring-color);
+      box-shadow: 0 0 0 var(--vf-select-ring-width) var(--vf-select-ring-color);
     }
   }
 
@@ -105,12 +105,12 @@
     top: 0;
     pointer-events: none;
     background: transparent;
-    line-height: var(--form-select-line-height);
-    padding-left: var(--form-select-px);
+    line-height: var(--vf-select-line-height);
+    padding-left: var(--vf-select-px);
   }
 
   .multiselect-placeholder {
-    color: var(--form-select-placeholder-color);
+    color: var(--vf-select-placeholder-color);
   }
 
   .multiselect-search {
@@ -126,9 +126,9 @@
     appearance: none;
     font-size: inherit;
     font-family: inherit;
-    background: var(--form-select-bg);
-    border-radius: var(--form-select-radius);
-    padding-left: var(--form-select-px);
+    background: var(--vf-select-bg);
+    border-radius: var(--vf-select-radius);
+    padding-left: var(--vf-select-px);
   }
 
   .multiselect-tags {
@@ -136,41 +136,60 @@
     flex-shrink: 1;
     display: flex;
     flex-wrap: wrap;
-    margin: var(--form-select-tag-my) 0 0;
-    padding-left: var(--form-select-py);
+    margin: var(--vf-select-tag-my) 0 0;
+    padding-left: var(--vf-select-py);
     align-items: center;
   }
 
-  .multiselect-tags-search {
+  .multiselect-tags-search-wrapper {
+    display: inline-block;
+    position: relative;
+    margin: 0 var(--vf-select-tag-mx) var(--vf-select-tag-my);
+    flex-grow: 1;
+    flex-shrink: 1;
     height: 100%;
+  }
+
+  .multiselect-tags-search-copy {
+    visibility: hidden;
+    white-space: pre-wrap;
+    display: inline-block;
+    height: 1px;
+    width: 100%;
+  }
+
+  .multiselect-tags-search {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     border: 0;
     appearance: none;
     outline: none;
     padding: 0;
     font-size: inherit;
     font-family: inherit;
-    margin: 0 var(--form-select-tag-mx) var(--form-select-tag-my);
     box-sizing: border-box;
-    flex-grow: 1;
-    flex-shrink: 1;
+    width: 100%;
   }
 
   .multiselect-spinner {
     mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M456.433 371.72l-27.79-16.045c-7.192-4.152-10.052-13.136-6.487-20.636 25.82-54.328 23.566-118.602-6.768-171.03-30.265-52.529-84.802-86.621-144.76-91.424C262.35 71.922 256 64.953 256 56.649V24.56c0-9.31 7.916-16.609 17.204-15.96 81.795 5.717 156.412 51.902 197.611 123.408 41.301 71.385 43.99 159.096 8.042 232.792-4.082 8.369-14.361 11.575-22.424 6.92z'%3E%3C/path%3E%3C/svg%3E");
     mask-position: center;
     mask-repeat: no-repeat;
-    background-color: var(--form-primary);
+    background-color: var(--vf-primary);
     width: 1rem;
     height: 1rem;
     z-index: 10;
-    margin: 0 var(--form-select-px) 0 0;
+    margin: 0 var(--vf-select-px) 0 0;
     animation: multiselect-spin 1s linear infinite;
     flex-shrink: 0;
     flex-grow: 0;
   }
 
   .multiselect-clear {
-    padding: 0 var(--form-select-px) 0 0px;
+    padding: 0 var(--vf-select-px) 0 0px;
     position: relative;
     z-index: 10;
     opacity: 0.4;
@@ -200,10 +219,10 @@
     mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E");
     mask-position: center;
     mask-repeat: no-repeat;
-    background-color: var(--form-gray-500);
+    background-color: var(--vf-gray-500);
     width: 0.625rem;
     height: 1.125rem;
-    margin: 0 var(--form-select-px) 0 0;
+    margin: 0 var(--vf-select-px) 0 0;
     position: relative;
     z-index: 10;
     flex-shrink: 0;
@@ -216,27 +235,31 @@
 
   .multiselect-dropdown {
     position: absolute;
-    left: calc(var(--form-select-border-width) * -1);
-    right: calc(var(--form-select-border-width) * -1);
+    left: calc(var(--vf-select-border-width) * -1);
+    right: calc(var(--vf-select-border-width) * -1);
     bottom: 0;
     transform: translateY(100%);
-    border: var(--form-select-dropdown-border-width) solid var(--form-select-dropdown-border-color);
-    margin-top: calc(var(--form-select-border-width) * -1);
+    border: var(--vf-select-dropdown-border-width) solid var(--vf-select-dropdown-border-color);
+    margin-top: calc(var(--vf-select-border-width) * -1);
     max-height: 10rem;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     z-index: 100;
-    background: var(--form-select-dropdown-bg);
+    background: var(--vf-select-dropdown-bg);
     display: flex;
     flex-direction: column;
-    border-radius: 0 0 var(--form-select-dropdown-radius) var(--form-select-dropdown-radius);
+    border-radius: 0 0 var(--vf-select-dropdown-radius) var(--vf-select-dropdown-radius);
 
     &.is-top {
       transform: translateY(-100%);
-      top: var(--form-select-border-width);
+      top: var(--vf-select-border-width);
       bottom: auto;
       flex-direction: column-reverse;
-      border-radius: var(--form-select-dropdown-radius) var(--form-select-dropdown-radius) 0 0;
+      border-radius: var(--vf-select-dropdown-radius) var(--vf-select-dropdown-radius) 0 0;
+    }
+
+    &.is-hidden {
+      display: none;
     }
   }
 
@@ -260,36 +283,36 @@
     justify-content: flex-start;
     text-align: left;
     cursor: pointer;
-    font-size: var(--form-select-option-font-size);
-    line-height: var(--form-select-option-line-height);
-    padding: var(--form-select-option-py) var(--form-select-option-px);
+    font-size: var(--vf-select-option-font-size);
+    line-height: var(--vf-select-option-line-height);
+    padding: var(--vf-select-option-py) var(--vf-select-option-px);
 
     &.is-pointed {
-      background: var(--form-select-option-bg-pointed);
-      color: var(--form-select-option-color-pointed);
+      background: var(--vf-select-option-bg-pointed);
+      color: var(--vf-select-option-color-pointed);
     }
 
     &.is-disabled {
-      background: var(--form-select-option-bg-disabled);
-      color: var(--form-select-option-color-disabled);
+      background: var(--vf-select-option-bg-disabled);
+      color: var(--vf-select-option-color-disabled);
       cursor: not-allowed;
     }
 
     &.is-selected {
-      background: var(--form-select-option-bg-selected);
-      color: var(--form-select-option-color-selected);
+      background: var(--vf-select-option-bg-selected);
+      color: var(--vf-select-option-color-selected);
     }
 
     &.is-selected.is-pointed {
-      background: var(--form-select-option-bg-selected-pointed);
-      color: var(--form-select-option-color-selected-pointed);
-      opacity: var(--form-select-option-opacity-selected-pointed);
+      background: var(--vf-select-option-bg-selected-pointed);
+      color: var(--vf-select-option-color-selected-pointed);
+      opacity: var(--vf-select-option-opacity-selected-pointed);
     }
 
     &.is-selected.is-disabled {
-      background: var(--form-select-option-bg-selected-disabled);
-      color: var(--form-select-option-color-selected-disabled);
-      opacity: var(--form-select-option-opacity-selected-disabled);
+      background: var(--vf-select-option-bg-selected-disabled);
+      color: var(--vf-select-option-color-selected-disabled);
+      opacity: var(--vf-select-option-opacity-selected-disabled);
     }
   }
 

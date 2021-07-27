@@ -12,7 +12,7 @@
       return {
         defaultClasses: {
           container: '',
-          input: 'form-input',
+          input: 'vf-input',
           input_enabled: '',
           input_disabled: '',
           inputWrapper: '',

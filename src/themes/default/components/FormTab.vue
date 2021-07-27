@@ -7,8 +7,8 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-tab',
-          wrapper: 'form-tab-link',
+          container: 'vf-tab',
+          wrapper: 'vf-tab-link',
           wrapper_active: 'is-active',
           wrapper_inactive: '',
           wrapper_valid: '',
@@ -20,7 +20,7 @@
 </script>
 
 <style lang="scss">
-  .form-tab-link {
+  .vf-tab-link {
     padding: 0.5rem 1rem;
     display: block;
     background: white;
@@ -29,15 +29,19 @@
     color: inherit;
     text-decoration: none;
 
+    &:hover {
+      text-decoration: none;
+    }
+
     &.has-error {
-      color: var(--form-error-color);
+      color: var(--vf-error-color);
     }
 
     &.is-active {
-      border: 1px solid var(--form-border-color);
+      border: 1px solid var(--vf-border-color);
       border-bottom: 1px solid #FFFFFF;
-      border-top-left-radius: var(--form-border-radius);
-      border-top-right-radius: var(--form-border-radius);
+      border-top-left-radius: var(--vf-border-radius);
+      border-top-right-radius: var(--vf-border-radius);
       margin-bottom: -1px;
       margin-left: 0;
       margin-right: 0;

@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-languages',
+          container: 'vf-languages',
         }
       }
     }
@@ -15,12 +15,12 @@
 </script>
 
 <style lang="scss">
-  .form-languages {
+  .vf-languages {
     display: flex;
     align-items: center;
     justify-content: space-between;
     list-style: none;
     padding: 0;
-    margin: 0 0 calc(var(--form-gutter) * 2) 0;
+    margin: 0 0 calc(var(--vf-gutter) * 2) 0;
   }
 </style>

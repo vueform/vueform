@@ -31,6 +31,7 @@ const select = {
   spinner: 'mask-bg mask-form-spinner form-bg-primary w-4 h-4 z-10 form-mr-input animate-spin flex-shrink-0 flex-grow-0',
   dropdown: 'absolute -left-px -right-px bottom-0 transform translate-y-full border border-gray-300 -mt-px overflow-y-scroll z-50 bg-white flex flex-col form-rounded-b',
   dropdownTop: '-translate-y-full top-px bottom-auto flex-col-reverse form-rounded-b-none form-rounded-t',
+  dropdownHidden: 'hidden',
   options: 'flex flex-col p-0 m-0 list-none',
   optionsTop: 'flex-col-reverse',
   option: 'flex items-center justify-start box-border text-left cursor-pointer text-base leading-normal form-px-input form-py-input-border',
@@ -205,7 +206,9 @@ export default {
     select: {
       ...select,
       tags: 'flex-grow flex-shrink flex flex-wrap items-center mt-1 form-pl-input-y',
-      tagsSearch: 'h-full border-0 outline-none appearance-none p-0 text-base font-sans mx-1 mb-1 box-border flex-grow flex-shrink',
+      tagsSearchWrapper: 'inline-block relative mx-1 mb-1 flex-grow flex-shrink h-full',
+      tagsSearch: 'absolute inset-0 border-0 outline-none appearance-none p-0 text-base font-sans box-border w-full',
+      tagsSearchCopy: 'invisible whitespace-pre-wrap inline-block h-px',
     }
   },
   TextareaElement: {

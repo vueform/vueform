@@ -23,7 +23,7 @@
   }
 
   .pac-icon-marker {
-    @apply mask-bg mask-form-map-marker bg-gray-400 w-4 h-4 mr-3 mt-0 py-px box-content;
+    @apply mask-bg mask-form-map-marker bg-gray-400 w-4 h-4 mr-3 mt-0 py-px box-content flex-shrink-0;
   }
 
   .pac-logo {
@@ -31,7 +31,8 @@
       @apply mx-2.5 mb-2.5;
     }
   }
-  .hdpi .pac-icon {
+
+  .pac-icon, .hdpi .pac-icon {
     @apply bg-none;
   }
 

@@ -9,7 +9,7 @@
         defaultClasses: {
           container: '',
           container_removing: 'is-removing',
-          button: 'form-btn form-btn-light',
+          button: 'vf-btn vf-btn-light',
           button_enabled: '',
           button_disabled: 'is-disabled',
         }

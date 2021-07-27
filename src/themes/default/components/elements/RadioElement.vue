@@ -9,11 +9,11 @@
         defaultClasses: {
           container: '',
           wrapper: '',
-          inputContainer: 'form-radio-container',
-          input: 'form-radio',
+          inputContainer: 'vf-radio-container',
+          input: 'vf-radio',
           input_enabled: '',
           input_disabled: '',
-          label: 'form-radio-label',
+          label: 'vf-radio-label',
         }
       }
     }

@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-description',
+          container: 'vf-description',
         }
       }
     }
@@ -15,10 +15,10 @@
 </script>
 
 <style lang="scss">
-  .form-description {
-    font-size: var(--form-element-text-font-size);
-    line-height: var(--form-element-text-line-height);
-    color: var(--form-element-description-color);
+  .vf-description {
+    font-size: var(--vf-element-text-font-size);
+    line-height: var(--vf-element-text-line-height);
+    color: var(--vf-element-description-color);
     margin-top: 0.25rem;
   }
 </style>

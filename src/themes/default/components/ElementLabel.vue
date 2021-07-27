@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-label',
+          container: 'vf-label',
         }
       }
     }
@@ -15,8 +15,9 @@
 </script>
 
 <style lang="scss">
-  .form-label {
-    padding-top: calc(var(--form-input-py) + var(--form-border-width));
-    padding-bottom: calc(var(--form-input-py) + var(--form-border-width));
+  .vf-label {
+    padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
+    padding-bottom: calc(var(--vf-input-py) + var(--vf-border-width));
+    margin-bottom: 0;
   }
 </style>

@@ -9,8 +9,8 @@
         defaultClasses: {
           container: '',
           container_error: 'has-error',
-          outerWrapper: 'form-row',
-          outerWrapper_single: 'form-group',
+          outerWrapper: 'vf-row',
+          outerWrapper_single: 'vf-group',
           outerWrapper_multiple: '',
           fieldWrapper: '',
         }

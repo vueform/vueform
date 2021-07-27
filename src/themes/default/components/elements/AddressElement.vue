@@ -8,7 +8,7 @@
       return {
         defaultClasses: {
           container: '',
-          childrenContainer: 'form-row-group',
+          childrenContainer: 'vf-row-group',
         }
       }
     }

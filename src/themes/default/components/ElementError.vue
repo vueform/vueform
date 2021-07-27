@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-element-error',
+          container: 'vf-element-error',
         }
       }
     }
@@ -15,10 +15,10 @@
 </script>
 
 <style lang="scss">
-  .form-element-error {
-    font-size: var(--form-element-text-font-size);
-    line-height: var(--form-element-text-line-height);
-    color: var(--form-error-color);
+  .vf-element-error {
+    font-size: var(--vf-element-text-font-size);
+    line-height: var(--vf-element-text-line-height);
+    color: var(--vf-error-color);
     margin-top: 0.25rem;
   }
 </style>

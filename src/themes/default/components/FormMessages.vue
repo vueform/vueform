@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-messages',
+          container: 'vf-messages',
           message: '',
         }
       }
@@ -16,11 +16,11 @@
 </script>
 
 <style lang="scss">
-  .form-messages {
-    background: var(--form-success-bg);
-    color: var(--form-success-color);
+  .vf-messages {
+    background: var(--vf-success-bg);
+    color: var(--vf-success-color);
     padding: 0.75rem 1.25rem;
     border-radius: 0.25rem;
-    margin-bottom: var(--form-gutter);
+    margin-bottom: var(--vf-gutter);
   }
 </style>

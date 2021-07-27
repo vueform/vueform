@@ -17,9 +17,9 @@
 <style lang="scss">
   .multiselect-no-options {
     display: flex;
-    padding: var(--form-select-option-py) var(--form-select-option-px);
-    color: var(--form-select-empty-color);
-    min-height: var(--form-input-min-height);
+    padding: var(--vf-select-option-py) var(--vf-select-option-px);
+    color: var(--vf-select-empty-color);
+    min-height: var(--vf-input-min-height);
     align-items: center;
   }
 </style>

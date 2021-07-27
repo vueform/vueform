@@ -8,7 +8,7 @@
       return {
         defaultClasses: {
           container: '',
-          checkboxGroup: 'form-checkbox-group',
+          checkboxGroup: 'vf-checkbox-group',
         }
       }
     }
@@ -16,10 +16,10 @@
 </script>
 
 <style lang="scss">
-  .form-checkbox-group {
-    padding-top: calc(var(--form-input-py) + var(--form-border-width));
+  .vf-checkbox-group {
+    padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
 
-    .form-checkbox-container {
+    .vf-checkbox-container {
       padding-top: 0;
     }
   }

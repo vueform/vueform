@@ -7,8 +7,8 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-language',
-          wrapper: 'form-language-link',
+          container: 'vf-language',
+          wrapper: 'vf-language-link',
           wrapper_active: 'is-active',
           wrapper_inactive: '',
         }
@@ -18,23 +18,27 @@
 </script>
 
 <style lang="scss">
-  .form-language {
+  .vf-language {
     flex-grow: 1;
     flex-shrink: 1;
     width: 100%;
   }
 
-  .form-language-link {
-    border-radius: var(--form-border-radius);
+  .vf-language-link {
+    border-radius: var(--vf-border-radius);
     text-align: center;
     padding: 0.5rem 1rem;
     display: block;
-    color: var(--form-primary);
+    color: var(--vf-primary);
     text-decoration: none;
+
+    &:hover { 
+      text-decoration: none;
+    }
 
     &.is-active {
       color: #FFFFFF;
-      background: var(--form-primary);
+      background: var(--vf-primary);
     }
   }
 </style>

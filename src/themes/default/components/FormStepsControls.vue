@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-steps-controls',
+          container: 'vf-steps-controls',
         }
       }
     }
@@ -15,9 +15,9 @@
 </script>
 
 <style lang="scss">
-  .form-steps-controls {
+  .vf-steps-controls {
     display: flex;
     justify-content: space-between;
-    margin-top: var(--form-gutter);
+    margin-top: var(--vf-gutter);
   }
 </style>

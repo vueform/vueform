@@ -24,7 +24,7 @@
     top: 0;
     pointer-events: none;
     background: transparent;
-    line-height: var(--form-select-line-height);
-    padding-left: var(--form-select-px);
+    line-height: var(--vf-select-line-height);
+    padding-left: var(--vf-select-px);
   }
 </style>

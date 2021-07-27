@@ -7,11 +7,11 @@
     data() {
       return {
         defaultClasses: {
-          container: 'form-checkbox-container',
-          input: 'form-checkbox',
+          container: 'vf-checkbox-container',
+          input: 'vf-checkbox',
           input_enabled: '',
           input_disabled: '',
-          label: 'form-checkbox-label',
+          label: 'vf-checkbox-label',
         }
       }
     }

@@ -21,168 +21,167 @@
    * Variables used across different components.
    */
   :root {
-    --form-primary: #10B981;
+    --vf-primary: #10B981;
 
-    --form-error-bg: #FEE2E2;
-    --form-error-color: #EF4444;
-    --form-success-bg: #D1FAE5;
-    --form-success-color: #10B981;
+    --vf-error-bg: #FEE2E2;
+    --vf-error-color: #EF4444;
+    --vf-success-bg: #D1FAE5;
+    --vf-success-color: #10B981;
 
-    --form-gray-50: #F9FAFB;
-    --form-gray-100: #F3F4F6;
-    --form-gray-200: #E5E7EB;
-    --form-gray-300: #D1D5DB;
-    --form-gray-400: #9CA3AF;
-    --form-gray-500: #6B7280;
-    --form-gray-600: #4B5563;
-    --form-gray-700: #374151;
-    --form-gray-800: #1F2937;
-    --form-gray-900: #111827;
+    --vf-gray-100: #F3F4F6;
+    --vf-gray-200: #E5E7EB;
+    --vf-gray-300: #D1D5DB;
+    --vf-gray-400: #9CA3AF;
+    --vf-gray-500: #6B7280;
+    --vf-gray-600: #4B5563;
+    --vf-gray-700: #374151;
+    --vf-gray-800: #1F2937;
+    --vf-gray-900: #111827;
 
-    --form-gutter: 1rem;
-    --form-input-min-height: 2.375rem;
+    --vf-gutter: 1rem;
+    --vf-input-min-height: 2.375rem;
 
-    --form-bg-disabled: var(--form-gray-200);
-    --form-color-disabled: var(--form-gray-400);
+    --vf-bg-disabled: var(--vf-gray-200);
+    --vf-color-disabled: var(--vf-gray-400);
 
-    --form-placeholder-color: var(--form-gray-400);
-    --form-placeholder-opacity: 1;
+    --vf-placeholder-color: var(--vf-gray-400);
+    --vf-placeholder-opacity: 1;
 
-    --form-border-width: 1px;
-    --form-border-color: var(--form-gray-300);
-    --form-border-radius: 0.25rem;
+    --vf-border-width: 1px;
+    --vf-border-color: var(--vf-gray-300);
+    --vf-border-radius: 0.25rem;
 
-    --form-ring-width: 0.125rem;
-    --form-ring-color: rgba(16, 185, 129, 0.4);
+    --vf-ring-width: 0.125rem;
+    --vf-ring-color: rgba(16, 185, 129, 0.4);
 
-    --form-input-py: 0.375rem;
-    --form-input-px: 0.75rem;
-    --form-button-py: 0.4375rem;
-    --form-button-px: 1rem;
+    --vf-input-py: 0.375rem;
+    --vf-input-px: 0.75rem;
+    --vf-button-py: 0.4375rem;
+    --vf-button-px: 1rem;
     
-    --form-addon-bg: var(--form-gray-100);
-    --form-addon-color: inherit;
+    --vf-addon-bg: var(--vf-gray-100);
+    --vf-addon-color: inherit;
     
-    --form-element-text-font-size: 0.875rem;
-    --form-element-text-line-height: 1.25rem;
-    --form-element-description-color: var(--form-gray-500);
+    --vf-element-text-font-size: 0.875rem;
+    --vf-element-text-line-height: 1.25rem;
+    --vf-element-description-color: var(--vf-gray-500);
 
-    --form-checkbox-size: 1rem;
-    --form-gallery-size: 6rem;
+    --vf-checkbox-size: 1rem;
+    --vf-gallery-size: 6rem;
 
-    --form-date-head-bg: var(--form-gray-100);
-    --form-date-head-color: var(--form-gray-700);
+    --vf-date-head-bg: var(--vf-gray-100);
+    --vf-date-head-color: var(--vf-gray-700);
 
-    --form-toggle-width: 3rem;
-    --form-toggle-height: 1.25rem;
-    --form-toggle-border: 0.125rem;
-    --form-toggle-font-size: 0.75rem;
-    --form-toggle-duration: 150ms;
-    --form-toggle-bg-on: var(--form-primary);
-    --form-toggle-bg-off: var(--form-gray-300);
-    --form-toggle-bg-on-disabled: var(--form-primary);
-    --form-toggle-bg-off-disabled: var(--form-gray-300);
-    --form-toggle-opacity-on-disabled: 0.5;
-    --form-toggle-opacity-off-disabled: 0.5;
-    --form-toggle-border-on: var(--form-primary);
-    --form-toggle-border-off: var(--form-gray-300);
-    --form-toggle-border-on-disabled: var(--form-primary);
-    --form-toggle-border-off-disabled: var(--form-gray-300);
-    --form-toggle-ring-width: var(--form-ring-width);
-    --form-toggle-ring-color: var(--form-ring-color);
-    --form-toggle-text-on: #FFFFFF;
-    --form-toggle-text-off: var(--form-gray-700);
-    --form-toggle-text-on-disabled: #FFFFFF;
-    --form-toggle-text-off-disabled: var(--form-gray-700);
-    --form-toggle-handle-enabled: #FFFFFF;
-    --form-toggle-handle-disabled: #FFFFFF;
+    --vf-toggle-width: 3rem;
+    --vf-toggle-height: 1.25rem;
+    --vf-toggle-border: 0.125rem;
+    --vf-toggle-font-size: 0.75rem;
+    --vf-toggle-duration: 150ms;
+    --vf-toggle-bg-on: var(--vf-primary);
+    --vf-toggle-bg-off: var(--vf-gray-300);
+    --vf-toggle-bg-on-disabled: var(--vf-primary);
+    --vf-toggle-bg-off-disabled: var(--vf-gray-300);
+    --vf-toggle-opacity-on-disabled: 0.5;
+    --vf-toggle-opacity-off-disabled: 0.5;
+    --vf-toggle-border-on: var(--vf-primary);
+    --vf-toggle-border-off: var(--vf-gray-300);
+    --vf-toggle-border-on-disabled: var(--vf-primary);
+    --vf-toggle-border-off-disabled: var(--vf-gray-300);
+    --vf-toggle-ring-width: var(--vf-ring-width);
+    --vf-toggle-ring-color: var(--vf-ring-color);
+    --vf-toggle-text-on: #FFFFFF;
+    --vf-toggle-text-off: var(--vf-gray-700);
+    --vf-toggle-text-on-disabled: #FFFFFF;
+    --vf-toggle-text-off-disabled: var(--vf-gray-700);
+    --vf-toggle-handle-enabled: #FFFFFF;
+    --vf-toggle-handle-disabled: #FFFFFF;
 
-    --form-slider-bg: var(--form-gray-300);
-    --form-slider-connect-bg: var(--form-primary);
-    --form-slider-connect-bg-disabled: var(--form-gray-400);
-    --form-slider-height: 0.375rem;
-    --form-slider-vertical-height: 18.75rem;
-    --form-slider-radius: 9999px;
+    --vf-slider-bg: var(--vf-gray-300);
+    --vf-slider-connect-bg: var(--vf-primary);
+    --vf-slider-connect-bg-disabled: var(--vf-gray-400);
+    --vf-slider-height: 0.375rem;
+    --vf-slider-vertical-height: 18.75rem;
+    --vf-slider-radius: 9999px;
 
-    --form-slider-handle-bg: #FFFFFF;
-    --form-slider-handle-border: 0;
-    --form-slider-handle-width: 1rem;
-    --form-slider-handle-height: 1rem;
-    --form-slider-handle-radius: 9999px;
-    --form-slider-handle-shadow: 0.5px 0.5px 2px 1px rgba(0,0,0,.32);
-    --form-slider-handle-shadow-active: 0.5px 0.5px 2px 1px rgba(0,0,0,.42);
-    --form-slider-handle-ring-width: var(--form-ring-width);
-    --form-slider-handle-ring-color: var(--form-ring-color);
+    --vf-slider-handle-bg: #FFFFFF;
+    --vf-slider-handle-border: 0;
+    --vf-slider-handle-width: 1rem;
+    --vf-slider-handle-height: 1rem;
+    --vf-slider-handle-radius: 9999px;
+    --vf-slider-handle-shadow: 0.5px 0.5px 2px 1px rgba(0,0,0,.32);
+    --vf-slider-handle-shadow-active: 0.5px 0.5px 2px 1px rgba(0,0,0,.42);
+    --vf-slider-handle-ring-width: var(--vf-ring-width);
+    --vf-slider-handle-ring-color: var(--vf-ring-color);
 
-    --form-slider-tooltip-font-size: 0.875rem;
-    --form-slider-tooltip-line-height: 1.25rem;
-    --form-slider-tooltip-font-weight: 600;
-    --form-slider-tooltip-min-width: 1.25rem;
-    --form-slider-tooltip-bg: var(--form-primary);
-    --form-slider-tooltip-bg-disabled: var(--form-gray-400);
-    --form-slider-tooltip-color: #FFFFFF;
-    --form-slider-tooltip-radius: var(--form-border-radius);
-    --form-slider-tooltip-py: 0.125rem;
-    --form-slider-tooltip-px: 0.375rem;
-    --form-slider-tooltip-arrow-size: 0.3125rem;
-    --form-slider-tooltip-distance: 0.1875rem;
+    --vf-slider-tooltip-font-size: 0.875rem;
+    --vf-slider-tooltip-line-height: 1.25rem;
+    --vf-slider-tooltip-font-weight: 600;
+    --vf-slider-tooltip-min-width: 1.25rem;
+    --vf-slider-tooltip-bg: var(--vf-primary);
+    --vf-slider-tooltip-bg-disabled: var(--vf-gray-400);
+    --vf-slider-tooltip-color: #FFFFFF;
+    --vf-slider-tooltip-radius: var(--vf-border-radius);
+    --vf-slider-tooltip-py: 0.125rem;
+    --vf-slider-tooltip-px: 0.375rem;
+    --vf-slider-tooltip-arrow-size: 0.3125rem;
+    --vf-slider-tooltip-distance: 0.1875rem;
 
-    --form-select-font-size: inherit;
-    --form-select-line-height: inherit;
-    --form-select-bg: #FFFFFF;
-    --form-select-bg-disabled: var(--form-bg-disabled);
-    --form-select-border-color: var(--form-border-color);
-    --form-select-border-width: var(--form-border-width);
-    --form-select-radius: var(--form-border-radius);
-    --form-select-py: var(--form-input-py);
-    --form-select-px: var(--form-input-px);
-    --form-select-ring-width: var(--form-ring-width);
-    --form-select-ring-color: var(--form-ring-color);
-    --form-select-placeholder-color: var(--form-placeholder-color);
+    --vf-select-font-size: inherit;
+    --vf-select-line-height: inherit;
+    --vf-select-bg: #FFFFFF;
+    --vf-select-bg-disabled: var(--vf-bg-disabled);
+    --vf-select-border-color: var(--vf-border-color);
+    --vf-select-border-width: var(--vf-border-width);
+    --vf-select-radius: var(--vf-border-radius);
+    --vf-select-py: var(--vf-input-py);
+    --vf-select-px: var(--vf-input-px);
+    --vf-select-ring-width: var(--vf-ring-width);
+    --vf-select-ring-color: var(--vf-ring-color);
+    --vf-select-placeholder-color: var(--vf-placeholder-color);
       
-    --form-select-tag-font-size: 0.875rem;
-    --form-select-tag-line-height: 1.25rem;
-    --form-select-tag-font-weight: 600;
-    --form-select-tag-bg: var(--form-primary);
-    --form-select-tag-bg-disabled: var(--form-color-disabled);
-    --form-select-tag-color: #FFFFFF;
-    --form-select-tag-color-disabled: #FFFFFF;
-    --form-select-tag-radius: var(--form-border-radius);
-    --form-select-tag-py: 0.0625rem;
-    --form-select-tag-px: 0.5rem;
-    --form-select-tag-my: 0.25rem;
-    --form-select-tag-mx: 0.25rem;
+    --vf-select-tag-font-size: 0.875rem;
+    --vf-select-tag-line-height: 1.25rem;
+    --vf-select-tag-font-weight: 600;
+    --vf-select-tag-bg: var(--vf-primary);
+    --vf-select-tag-bg-disabled: var(--vf-color-disabled);
+    --vf-select-tag-color: #FFFFFF;
+    --vf-select-tag-color-disabled: #FFFFFF;
+    --vf-select-tag-radius: var(--vf-border-radius);
+    --vf-select-tag-py: 0.0625rem;
+    --vf-select-tag-px: 0.5rem;
+    --vf-select-tag-my: 0.25rem;
+    --vf-select-tag-mx: 0.25rem;
 
-    --form-select-tag-remove-radius: var(--form-border-radius);
-    --form-select-tag-remove-py: 0.25rem;
-    --form-select-tag-remove-px: 0.25rem;
-    --form-select-tag-remove-my: 0rem;
-    --form-select-tag-remove-mx: 0.125rem;
-    --form-select-tag-remove-bg-hover: #00000010;
+    --vf-select-tag-remove-radius: var(--vf-border-radius);
+    --vf-select-tag-remove-py: 0.25rem;
+    --vf-select-tag-remove-px: 0.25rem;
+    --vf-select-tag-remove-my: 0rem;
+    --vf-select-tag-remove-mx: 0.125rem;
+    --vf-select-tag-remove-bg-hover: #00000010;
 
-    --form-select-dropdown-bg: #FFFFFF;
-    --form-select-dropdown-border-color: var(--form-border-color);
-    --form-select-dropdown-border-width: var(--form-border-width);
-    --form-select-dropdown-radius: var(--form-border-radius);
+    --vf-select-dropdown-bg: #FFFFFF;
+    --vf-select-dropdown-border-color: var(--vf-border-color);
+    --vf-select-dropdown-border-width: var(--vf-border-width);
+    --vf-select-dropdown-radius: var(--vf-border-radius);
 
-    --form-select-option-font-size: inherit;
-    --form-select-option-line-height: inherit;
-    --form-select-option-bg-pointed: var(--form-gray-100);
-    --form-select-option-bg-selected: var(--form-primary);
-    --form-select-option-bg-disabled: #FFFFFF;
-    --form-select-option-bg-selected-pointed: var(--form-primary);
-    --form-select-option-bg-selected-disabled: var(--form-primary);
-    --form-select-option-color-pointed: var(--form-gray-800);
-    --form-select-option-color-selected: #FFFFFF;
-    --form-select-option-color-disabled: var(--form-gray-300);
-    --form-select-option-color-selected-pointed: #FFFFFF;
-    --form-select-option-color-selected-disabled: #FFFFFF;
-    --form-select-option-opacity-selected-pointed: 0.85;
-    --form-select-option-opacity-selected-disabled: 0.5;
-    --form-select-option-py: calc(var(--form-input-py) + var(--form-border-width));
-    --form-select-option-px: var(--form-input-px);
+    --vf-select-option-font-size: inherit;
+    --vf-select-option-line-height: inherit;
+    --vf-select-option-bg-pointed: var(--vf-gray-100);
+    --vf-select-option-bg-selected: var(--vf-primary);
+    --vf-select-option-bg-disabled: #FFFFFF;
+    --vf-select-option-bg-selected-pointed: var(--vf-primary);
+    --vf-select-option-bg-selected-disabled: var(--vf-primary);
+    --vf-select-option-color-pointed: var(--vf-gray-800);
+    --vf-select-option-color-selected: #FFFFFF;
+    --vf-select-option-color-disabled: var(--vf-gray-300);
+    --vf-select-option-color-selected-pointed: #FFFFFF;
+    --vf-select-option-color-selected-disabled: #FFFFFF;
+    --vf-select-option-opacity-selected-pointed: 0.85;
+    --vf-select-option-opacity-selected-disabled: 0.5;
+    --vf-select-option-py: calc(var(--vf-input-py) + var(--vf-border-width));
+    --vf-select-option-px: var(--vf-input-px);
 
-    --form-select-empty-color: var(--form-gray-600);
+    --vf-select-empty-color: var(--vf-gray-600);
   }
 
   /*
@@ -190,13 +189,19 @@
    *
    * Global base styles. 
    */
-  form * {
-    box-sizing: border-box;
+  form {
+    * {
+      box-sizing: border-box;
+    }
+
+    label {
+      margin: 0;
+    }
   }
 
   ::placeholder {
-    color: var(--form-placeholder-color);
-    opacity: var(--form-placeholder-opacity);
+    color: var(--vf-placeholder-color);
+    opacity: var(--vf-placeholder-opacity);
   }
 
   /*
@@ -204,36 +209,36 @@
    *
    * Reusable general style definitions.
    */
-  .form-row {
+  .vf-row {
     display: flex;
     flex-wrap: wrap;
-    margin-left: calc(var(--form-gutter) * -1);
-    margin-right: calc(var(--form-gutter) * -1);
+    margin-left: calc(var(--vf-gutter) * -1);
+    margin-right: calc(var(--vf-gutter) * -1);
   }
 
-  .form-row-group {
+  .vf-row-group {
     display: flex;
     flex-wrap: wrap;
-    margin-left: calc(var(--form-gutter) * -0.5);
-    margin-right: calc(var(--form-gutter) * -0.5);
+    margin-left: calc(var(--vf-gutter) * -0.5);
+    margin-right: calc(var(--vf-gutter) * -0.5);
 
-    & > [class*="form-col"] {
-      padding-left: calc(var(--form-gutter) / 2);
-      padding-right: calc(var(--form-gutter) / 2);
+    & > [class*="vf-col"] {
+      padding-left: calc(var(--vf-gutter) / 2);
+      padding-right: calc(var(--vf-gutter) / 2);
     }
   }
 
-  .form-group {
-    margin-bottom: var(--form-gutter);
+  .vf-group {
+    margin-bottom: var(--vf-gutter);
   }
 
   // General input
-  .form-input-group {
+  .vf-input-group {
     width: 100%;
     display: flex;
   }
 
-  .form-input {
+  .vf-input {
     appearance: none;
     font-size: inherit;
     line-height: inherit;
@@ -241,58 +246,58 @@
     font-family: inherit;
     margin: 0;
     width: 100%;
-    padding: var(--form-input-py) var(--form-input-px);
-    border: var(--form-border-width) solid var(--form-border-color);
+    padding: var(--vf-input-py) var(--vf-input-px);
+    border: var(--vf-border-width) solid var(--vf-border-color);
     outline: none;
-    border-radius: var(--form-border-radius);
+    border-radius: var(--vf-border-radius);
 
     &:focus {
-      box-shadow: 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
-      border-color: var(--form-primary);
+      box-shadow: 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
+      border-color: var(--vf-primary);
     }
 
     &[disabled] {
-      background-color: var(--form-bg-disabled);
-      color: var(--form-color-disabled);
+      background-color: var(--vf-bg-disabled);
+      color: var(--vf-color-disabled);
     }
   }
 
   // Checkbox
-  .form-checkbox {
+  .vf-checkbox {
     appearance: none;
     transition: all .2s ease-in-out;
     cursor: pointer;
-    width: var(--form-checkbox-size);
-    height: var(--form-checkbox-size);
-    border-radius: var(--form-border-radius);
-    border: 1px solid var(--form-border-color);
+    width: var(--vf-checkbox-size);
+    height: var(--vf-checkbox-size);
+    border-radius: var(--vf-border-radius);
+    border: 1px solid var(--vf-border-color);
     outline: none;
     margin: 0 0.375rem 0 0;
     position: relative;
 
     &:focus {
-      box-shadow: inset 0 0 0 0 var(--form-primary), 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
+      box-shadow: inset 0 0 0 0 var(--vf-primary), 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
     }
 
     &:disabled {
-      background: var(--form-bg-disabled);
+      background: var(--vf-bg-disabled);
     }
 
     &:checked {
-      box-shadow: inset 0 0 0 0.5625rem var(--form-primary), 0px 0px 0px 0px var(--form-ring-color);
+      box-shadow: inset 0 0 0 0.5625rem var(--vf-primary), 0px 0px 0px 0px var(--vf-ring-color);
       border: 0;
 
       &:focus {
-        box-shadow: inset 0 0 0 0.5625rem var(--form-primary), 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
+        box-shadow: inset 0 0 0 0.5625rem var(--vf-primary), 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
       }
 
       &:after {
         content: " ";
-        width: calc(var(--form-checkbox-size) - 0.375rem);
-        height: calc(var(--form-checkbox-size) - 0.375rem);
+        width: calc(var(--vf-checkbox-size) - 0.375rem);
+        height: calc(var(--vf-checkbox-size) - 0.375rem);
         display: inline-block;
         background: url('data:image/svg+xml;utf8,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" class="svg-inline--fa fa-check fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="white" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>');
-        background-size: calc(var(--form-checkbox-size) - 0.375rem) calc(var(--form-checkbox-size) - 0.375rem);
+        background-size: calc(var(--vf-checkbox-size) - 0.375rem) calc(var(--vf-checkbox-size) - 0.375rem);
         background-position: 50%;
         background-repeat: no-repeat;
         position: absolute;
@@ -302,8 +307,8 @@
       }
 
       &:disabled {
-        box-shadow: inset 0 0 0 9px var(--form-bg-disabled);
-        border: 1px solid var(--form-border-color);
+        box-shadow: inset 0 0 0 9px var(--vf-bg-disabled);
+        border: 1px solid var(--vf-border-color);
 
         &:after {
           left: calc(0.1875rem - 1px);
@@ -313,58 +318,58 @@
     }
   }
 
-  .form-checkbox-container {
+  .vf-checkbox-container {
     display: flex;
     align-items: center;
     width: 100%;
-    padding-top: calc(var(--form-input-py) + var(--form-border-width));
+    padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
   }
 
-  .form-checkbox-label {
+  .vf-checkbox-label {
     cursor: pointer;
   }
 
   // Radio
-  .form-radio {
+  .vf-radio {
     position: relative;
     appearance: none;
     transition: all .2s ease-in-out;
     cursor: pointer;
-    width: var(--form-checkbox-size);
-    height: var(--form-checkbox-size);
-    border-radius: var(--form-border-radius);
-    border: 1px solid var(--form-border-color);
+    width: var(--vf-checkbox-size);
+    height: var(--vf-checkbox-size);
+    border-radius: var(--vf-border-radius);
+    border: 1px solid var(--vf-border-color);
     outline: none;
     border-radius: 50%;
     margin: 0 0.375rem 0 0;
 
     &:focus {
-      box-shadow: inset 0 0 0 0 var(--form-primary), 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
+      box-shadow: inset 0 0 0 0 var(--vf-primary), 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
     }
 
-    &[disabled] ~ .form-check-label,
-    &:disabled ~ .form-check-label {
-      color: var(--form-color-disabled);
+    &[disabled] ~ .vf-check-label,
+    &:disabled ~ .vf-check-label {
+      color: var(--vf-color-disabled);
     }
 
     &:disabled {
-      background: var(--form-bg-disabled);
+      background: var(--vf-bg-disabled);
     }
 
     &:checked {
-      box-shadow: inset 0 0 0 0.5625rem var(--form-primary), 0px 0px 0px 0px var(--form-ring-color);
+      box-shadow: inset 0 0 0 0.5625rem var(--vf-primary), 0px 0px 0px 0px var(--vf-ring-color);
       border: 0;
 
       &:focus {
-        box-shadow: inset 0 0 0 0.5625rem var(--form-primary), 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
+        box-shadow: inset 0 0 0 0.5625rem var(--vf-primary), 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
       }
 
       &:after {
         content: " ";
         position: absolute;
         background: #FFFFFF;
-        width: calc(var(--form-checkbox-size) - 0.625rem);
-        height: calc(var(--form-checkbox-size) - 0.625rem);
+        width: calc(var(--vf-checkbox-size) - 0.625rem);
+        height: calc(var(--vf-checkbox-size) - 0.625rem);
         left: 0.3125rem;
         top: 0.3125rem;
         border-radius: 50%;
@@ -377,8 +382,8 @@
       }
 
       &:disabled {
-        box-shadow: inset 0 0 0 9px var(--form-bg-disabled);
-        border: 1px solid var(--form-border-color);
+        box-shadow: inset 0 0 0 9px var(--vf-bg-disabled);
+        border: 1px solid var(--vf-border-color);
       }
     }
 
@@ -388,21 +393,21 @@
     }
   }
 
-  .form-radio-container {
+  .vf-radio-container {
     display: flex;
     align-items: center;
     width: 100%;
-    padding-top: calc(var(--form-input-py) + var(--form-border-width));
+    padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
   }
 
-  .form-radio-label {
+  .vf-radio-label {
     cursor: pointer;
   }
 
   // Button
-  .form-btn {
-    padding: var(--form-button-py) var(--form-button-px);
-    border-radius: var(--form-border-radius);
+  .vf-btn {
+    padding: var(--vf-button-py) var(--vf-button-px);
+    border-radius: var(--vf-border-radius);
     transition: .15s;
     cursor: pointer;
     border: 0;
@@ -415,7 +420,11 @@
     outline: none;
 
     &:focus {
-      box-shadow: 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
+      box-shadow: 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
+    }
+
+    &:hover {
+      text-decoration: none;
     }
 
     &[disabled],
@@ -451,35 +460,38 @@
     }
   }
 
-  .form-btn-sm {
-    padding: calc(var(--form-button-py) * 0.625) calc(var(--form-button-px) * 0.625);
+  .vf-btn-sm {
+    padding: calc(var(--vf-button-py) * 0.625) calc(var(--vf-button-px) * 0.625);
     font-size: 0.875rem;
   }
 
-  .form-btn-primary {
+  .vf-btn-primary {
     color: #FFFFFF;
-    background: var(--form-primary);
+    background: var(--vf-primary);
 
     &:not([disabled]):hover {
       opacity: 0.9;
+      color: #FFFFFF;
     }
   }
 
-  .form-btn-secondary {
-    background: var(--form-gray-200);
-    color: var(--form-gray-700);
+  .vf-btn-secondary {
+    background: var(--vf-gray-200);
+    color: var(--vf-gray-700);
 
     &:not([disabled]):hover {
-      background: var(--form-gray-300);
+      background: var(--vf-gray-300);
+      color: var(--vf-gray-700);
     }
   }
 
-  .form-btn-light {
-    background: var(--form-gray-100);
+  .vf-btn-light {
+    background: var(--vf-gray-100);
     color: inherit;
 
     &:not([disabled]):hover {
-      background: var(--form-gray-200);
+      background: var(--vf-gray-200);
+      color: inherit;
     }
   }
 
@@ -495,7 +507,7 @@
   /*
    * Grid system
    *
-   * Creating the form-col-* grid system.
+   * Creating the vf-col-* grid system.
    */
   $grid-breakpoints: (
     xs: 0,
@@ -537,8 +549,8 @@
     %grid-column {
       position: relative;
       width: 100%;
-      padding-left: var(--form-gutter);
-      padding-right: var(--form-gutter);
+      padding-left: var(--vf-gutter);
+      padding-right: var(--vf-gutter);
     }
 
     @each $breakpoint in map-keys($breakpoints) {
@@ -546,18 +558,18 @@
 
       @if $columns > 0 {
         @for $i from 1 through $columns {
-          .form-col#{$infix}-#{$i} {
+          .vf-col#{$infix}-#{$i} {
             @extend %grid-column;
           }
         }
       }
 
-      .form-col#{$infix} {
+      .vf-col#{$infix} {
         @extend %grid-column;
       }
 
       @include media-breakpoint-up($breakpoint, $breakpoints) {
-        .form-col#{$infix} {
+        .vf-col#{$infix} {
           flex-basis: 0;
           flex-grow: 1;
           max-width: 100%;
@@ -565,7 +577,7 @@
 
         @if $columns > 0 {
           @for $i from 1 through $columns {
-            .form-col#{$infix}-#{$i} {
+            .vf-col#{$infix}-#{$i} {
               @include make-col($i, $columns);
             }
           }

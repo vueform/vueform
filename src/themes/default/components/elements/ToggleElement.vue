@@ -12,9 +12,9 @@
       return {
         defaultClasses: {
           container: '',
-          wrapper: 'form-toggle-wrapper',
+          wrapper: 'vf-toggle-wrapper',
           toggle: {},
-          text: 'form-toggle-text',
+          text: 'vf-toggle-text',
         }
       }
     }
@@ -22,14 +22,14 @@
 </script>
 
 <style lang="scss">
-  .form-toggle-wrapper {
+  .vf-toggle-wrapper {
     display: flex;
     align-items: center;
     width: 100%;
-    padding-top: calc(var(--form-input-py) + var(--form-border-width));
+    padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
   }
 
-  .form-toggle-text {
+  .vf-toggle-text {
     margin-left: 0.5rem;
   }
 
@@ -40,60 +40,60 @@
     border-radius: 9999px;
 
     &:focus {
-      box-shadow: 0px 0px 0px var(--form-ring-width) var(--form-ring-color);
+      box-shadow: 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
     }
   }
 
   .toggle {
     display: flex;
-    width: var(--form-toggle-width);
-    height: var(--form-toggle-height);
+    width: var(--vf-toggle-width);
+    height: var(--vf-toggle-height);
     border-radius: 999px;
     position: relative;
     cursor: pointer;
     transition: .3s all;
     align-items: center;
     box-sizing: content-box;
-    border: var(--form-toggle-border) solid;
-    font-size: var(--form-toggle-font-size);
+    border: var(--vf-toggle-border) solid;
+    font-size: var(--vf-toggle-font-size);
     line-height: 1;
   }
 
   .toggle-on {
-    background: var(--form-toggle-bg-on);
-    border-color: var(--form-toggle-border-on);
+    background: var(--vf-toggle-bg-on);
+    border-color: var(--vf-toggle-border-on);
     justify-content: flex-start;
-    color: var(--form-toggle-text-on);
+    color: var(--vf-toggle-text-on);
   }
 
   .toggle-off {
-    background: var(--form-toggle-bg-off);
-    border-color: var(--form-toggle-border-off);
+    background: var(--vf-toggle-bg-off);
+    border-color: var(--vf-toggle-border-off);
     justify-content: flex-end;
-    color: var(--form-toggle-text-off);
+    color: var(--vf-toggle-text-off);
   }
 
   .toggle-on-disabled {
-    background: var(--form-toggle-bg-on-disabled);
-    border-color: var(--form-toggle-border-on-disabled);
+    background: var(--vf-toggle-bg-on-disabled);
+    border-color: var(--vf-toggle-border-on-disabled);
     justify-content: flex-start;
-    color: var(--form-toggle-text-on-disabled);
+    color: var(--vf-toggle-text-on-disabled);
     cursor: not-allowed;
-    opacity: var(--form-toggle-opacity-on-disabled);
+    opacity: var(--vf-toggle-opacity-on-disabled);
   }
 
   .toggle-off-disabled {
-    background: var(--form-toggle-bg-off-disabled);
-    border-color: var(--form-toggle-border-off-disabled);
+    background: var(--vf-toggle-bg-off-disabled);
+    border-color: var(--vf-toggle-border-off-disabled);
     justify-content: flex-end;
-    color: var(--form-toggle-text-off-disabled);
+    color: var(--vf-toggle-text-off-disabled);
     cursor: not-allowed;
-    opacity: var(--form-toggle-opacity-off-disabled);
+    opacity: var(--vf-toggle-opacity-off-disabled);
   }
 
   .toggle-handle {
     display: inline-block;
-    background: var(--form-toggle-handle-enabled);
+    background: var(--vf-toggle-handle-enabled);
     width: 1.25rem;
     height: 1.25rem;
     top: 0;
@@ -101,7 +101,7 @@
     position: absolute;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: var(--form-toggle-duration);
+    transition-duration: var(--vf-toggle-duration);
   }
 
   .toggle-handle-on {
@@ -116,17 +116,17 @@
   .toggle-handle-on-disabled {
     left: 100%;
     transform: translateX(-100%);
-    background: var(--form-toggle-handle-disabled);
+    background: var(--vf-toggle-handle-disabled);
   }
 
   .toggle-handle-off-disabled {
     left: 0%;
-    background: var(--form-toggle-handle-disabled);
+    background: var(--vf-toggle-handle-disabled);
   }
 
   .toggle-label {
     text-align: center;
-    width: calc(var(--form-toggle-width) - var(--form-toggle-height));
+    width: calc(var(--vf-toggle-width) - var(--vf-toggle-height));
     box-sizing: border-box;
     white-space: nowrap;
     user-select: none;
