@@ -1,4 +1,5 @@
 import { watch, computed } from 'composition-api'
+import dataEquals from './../../utils/dataEquals'
 
 const Validator = class {
 
@@ -293,7 +294,7 @@ const Validator = class {
 
     let valid = await this.check(value)
 
-    if (_.isEqual(this.lastValue, value)) {
+    if (dataEquals(this.lastValue, value)) {
       this.invalid = !valid
       this.pending = false
     }

@@ -453,7 +453,7 @@ const base = function (props, context, dependencies)
       return
     }
 
-    if (!isImageType.value || !(file.value instanceof Blob) || view.value === 'file') {
+    if (!isImageType.value || !(file.value instanceof File) || view.value === 'file') {
       return
     }
     

@@ -724,7 +724,7 @@ export default {
       "slots_file",
       "theme",
       "validation_file",
-      // "value",
+      "value",
       "view",
       "watchValue"
     ],

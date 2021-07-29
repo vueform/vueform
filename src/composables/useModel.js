@@ -1,4 +1,5 @@
 import { computed, ref, toRefs,  onMounted, watch, } from 'composition-api'
+import dataEquals from './../utils/dataEquals'
 
 export default function (props, context, dependencies)
 {
@@ -103,7 +104,7 @@ export default function (props, context, dependencies)
 
   if (externalValue && externalValue.value) {
     watch(model, (n, o) => {
-      if (_.isEqual(n, o)) {
+      if (dataEquals(n, o)) {
         return
       }
 

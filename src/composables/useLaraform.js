@@ -2,6 +2,7 @@ import { computed, ref, toRefs, inject, markRaw, getCurrentInstance, onMounted, 
 import { mergeComponentClasses } from './../utils/mergeClasses'
 import convertFormData from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'
+import dataEquals from './../utils/dataEquals'
 import useEvents from './useEvents'
 import useModel from './useModel'
 
@@ -975,7 +976,7 @@ const base = function(props, context, dependencies = {})
   onMounted(() => {
     // Watching model to track old/new values
     watch(data, (n, o) => {
-      if (JSON.stringify(n) === JSON.stringify(o)) {
+      if (dataEquals(n, o)) {
         return
       }
 

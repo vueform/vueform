@@ -1,4 +1,5 @@
 import { watch, onMounted, toRefs } from 'composition-api'
+import dataEquals from './../../utils/dataEquals'
 
 const base = function(props, context, dependencies, options = {})
 {
@@ -14,7 +15,7 @@ const base = function(props, context, dependencies, options = {})
 
   onMounted(() => {
     watch(value, (n, o) => {
-      if (_.isEqual(n,o)) {
+      if (dataEquals(n,o)) {
         return
       }
 
@@ -48,7 +49,7 @@ const location = function(props, context, dependencies, options = {})
 
   onMounted(() => {
     watch(value, (n, o) => {
-      if (_.isEqual(n,o)) {
+      if (dataEquals(n,o)) {
         return
       }
 
