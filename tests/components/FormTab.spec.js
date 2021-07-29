@@ -24,13 +24,13 @@ describe('FormTab', () => {
 
   let mergeWith = {
     wrapper: [
-      FormTab.vm.classes.active, 
+      FormTab.vm.classes.wrapper_active, 
     ],
     container: 'tab-class'
   }
 
-  if (!_.isEmpty(FormTab.vm.classes.valid)) {
-    mergeWith.wrapper.push(FormTab.vm.classes.valid)
+  if (!_.isEmpty(FormTab.vm.classes.wrapper_valid)) {
+    mergeWith.wrapper.push(FormTab.vm.classes.wrapper_valid)
   }
 
   useFormComponent({tabs:{a:{label:'a',elements:['el'],tabClass:'tab-class'}},schema:{el:{type:'text'}}}, 'FormTab', {

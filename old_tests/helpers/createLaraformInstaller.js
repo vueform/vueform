@@ -3,7 +3,7 @@ import installer from './../../src/installer'
 import config from './../../src/config'
 
 // Assets
-import bootstrap from './../../src/themes/bootstrap'
+import bootstrap from './../../src/themes/default'
 import defaultTheme from './../../src/themes/default'
 import en from './../../src/locales/en'
 

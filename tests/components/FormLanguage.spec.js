@@ -16,7 +16,7 @@ describe('FormLanguage', () => {
 
   useFormComponent({multilingual:true,schema:{el:{type:'text'}}}, 'FormLanguage', {
     mergeWith: {
-      wrapper: FormLanguage.vm.classes.active
+      wrapper: FormLanguage.vm.classes.wrapper_active
     }
   })
 
@@ -45,8 +45,8 @@ describe('FormLanguage', () => {
 
       let component = findAllComponents(form, { name: 'FormLanguage' }).at(0).vm
 
-      expect(component.classes.wrapper).not.toContain(component.classes.inactive)
-      expect(component.classes.wrapper).toContain(component.classes.active)
+      expect(component.classes.wrapper).not.toContain(component.classes.wrapper_inactive)
+      expect(component.classes.wrapper).toContain(component.classes.wrapper_active)
 
       form.vm.selectedLanguage = 'de'
 
@@ -54,8 +54,8 @@ describe('FormLanguage', () => {
 
       component = findAllComponents(form, { name: 'FormLanguage' }).at(0).vm
 
-      expect(component.classes.wrapper).toContain(component.classes.inactive)
-      expect(component.classes.wrapper).not.toContain(component.classes.active)
+      expect(component.classes.wrapper).toContain(component.classes.wrapper_inactive)
+      expect(component.classes.wrapper).not.toContain(component.classes.wrapper_active)
       
     // destroy(form) // teardown
     })

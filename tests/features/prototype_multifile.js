@@ -38,6 +38,7 @@ export const prototype = function (elementType, elementName, options) {
       auto: el.auto,
       view: el.view,
       layout: 'ElementLayout',
+      disabled: el.disabled,
     })
   })
   it('should have `prototype` as a single element when not object image=true', () => {
@@ -58,6 +59,7 @@ export const prototype = function (elementType, elementName, options) {
       auto: el.auto,
       view: el.view,
       layout: 'ElementLayout',
+      disabled: el.disabled,
     })
     
     // destroy(form) // teardown
@@ -84,6 +86,7 @@ export const prototype = function (elementType, elementName, options) {
       url: '/uploads/',
       view: el.view,
       layout: 'ElementLayout',
+      disabled: el.disabled,
     })
     
     // destroy(form) // teardown
@@ -111,6 +114,7 @@ export const prototype = function (elementType, elementName, options) {
           auto: el.auto,
           view: el.view,
           layout: 'ElementLayout',
+          disabled: el.disabled,
         }
       }
     })
@@ -141,6 +145,7 @@ export const prototype = function (elementType, elementName, options) {
           auto: el.auto,
           view: el.view,
           layout: 'ElementLayout',
+          disabled: el.disabled,
         }
       }
     })
@@ -171,6 +176,7 @@ export const prototype = function (elementType, elementName, options) {
           auto: el.auto,
           view: el.view,
           layout: 'ElementLayout',
+          disabled: el.disabled,
         }
       }
     })
@@ -204,6 +210,7 @@ export const prototype = function (elementType, elementName, options) {
           url: '/uploads/',
           view: el.view,
           layout: 'ElementLayout',
+          disabled: el.disabled,
         }
       }
     })
@@ -234,6 +241,7 @@ export const prototype = function (elementType, elementName, options) {
           auto: el.auto,
           view: el.view,
           layout: 'ElementLayout',
+          disabled: el.disabled,
         },
         order: {
           type: 'hidden',
@@ -272,6 +280,7 @@ export const prototype = function (elementType, elementName, options) {
           auto: el.auto,
           view: el.view,
           layout: 'ElementLayout',
+          disabled: el.disabled,
         },
         label: {
           type: 'text'

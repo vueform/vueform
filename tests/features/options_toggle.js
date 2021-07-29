@@ -19,10 +19,6 @@ export const fieldOptions = function (elementType, elementName, options) {
       disabled: el.isDisabled,
       onLabel: el.labels.on,
       offLabel: '',
-      width: el.width,
-      height: el.height,
-      speed: el.speed,
-      colors: el.colors,
     })
   })
   
@@ -47,10 +43,6 @@ export const fieldOptions = function (elementType, elementName, options) {
       disabled: el.isDisabled,
       onLabel: el.labels.on,
       offLabel: '',
-      width: el.width,
-      height: el.height,
-      speed: el.speed,
-      colors: el.colors,
       custom: 'option'
     })
   })

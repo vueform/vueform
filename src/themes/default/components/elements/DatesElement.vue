@@ -1,9 +1,9 @@
 <script>
-  import DateElement from './../../../blank/components/elements/DateElement'
+  import DatesElement from './../../../blank/components/elements/DatesElement'
 
   export default {
-    name: 'DateElement',
-    render: DateElement.render,
+    name: 'DatesElement',
+    render: DatesElement.render,
     data() {
       return {
         defaultClasses: {

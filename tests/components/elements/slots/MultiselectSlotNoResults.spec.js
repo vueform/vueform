@@ -12,7 +12,7 @@ describe('MultiselectSlotNoOptions', () => {
           el: {
             type: 'select',
             native: false,
-            noOptionsText: 'No results, sorry',
+            noResultsText: 'No results, sorry',
             items: ['a']
           }
         }
@@ -24,7 +24,7 @@ describe('MultiselectSlotNoOptions', () => {
 
       await nextTick()
 
-      let slot = findAllComponents(el, { name: 'MultiselectSlotNoOptions' }).at(0)
+      let slot = findAllComponents(el, { name: 'MultiselectSlotNoResults' }).at(0)
 
       expect(slot.html()).toContain('No results, sorry')
     })

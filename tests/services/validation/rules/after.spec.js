@@ -111,16 +111,16 @@ describe('After Rule', () => {
     let yesterday = moment().subtract(1, 'days').format('DD YYYY MM')
     let today = moment().format('DD YYYY MM')
     let tomorrow = moment().add(1, 'days').format('DD YYYY MM')
-
-    setDate(a, yesterday)
+    
+    a.vm.update(yesterday)
     await flushPromises()
     expect(a.vm.invalid).toBe(true)
 
-    setDate(a, today)
+    a.vm.update(today)
     await flushPromises()
     expect(a.vm.invalid).toBe(true)
 
-    setDate(a, tomorrow)
+    a.vm.update(tomorrow)
     await flushPromises()
     expect(a.vm.invalid).toBe(false)
   })

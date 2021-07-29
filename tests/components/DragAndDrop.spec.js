@@ -17,11 +17,11 @@ describe('DragAndDrop', () => {
 
       let component = findAllComponents(form, { name: 'DragAndDrop' }).at(0).vm
 
-      expect(component.classes.container).not.toContain(component.classes.active)
+      expect(component.classes.container).not.toContain(component.classes.container_active)
 
       component.dragging = true
 
-      expect(component.classes.container).toContain(component.classes.active)
+      expect(component.classes.container).toContain(component.classes.container_active)
       
     // destroy(form) // teardown
     })

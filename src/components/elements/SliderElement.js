@@ -103,11 +103,6 @@ export default {
       type: [String],
       default: 'ltr'
     },
-    height: {
-      required: false,
-      type: [String],
-      default: '300px'
-    },
     options: {
       required: false,
       type: [Object],

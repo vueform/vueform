@@ -42,7 +42,7 @@ describe('FileSlotFilePreview', () => {
       let el = findAllComponents(form, { name: 'FileElement' }).at(0)
       let slot = findAllComponents(el, { name: 'FileSlotFilePreview' }).at(0)
 
-      expect(findAll(slot, `.${slot.vm.classes.filename} span`).last().element.innerHTML).toBe('filename.jpg')
+      expect(slot.html()).toContain('filename.jpg')
     })
   })
 })

@@ -15,24 +15,24 @@ export const path = function (elementType, elementName) {
     expect(el.path).toBe(el.name)
   })
 
-  // it('should have `path` equal to name with parent if parent is provided', () => {
-  //   let form = createForm({
-  //     schema: {
-  //       parent: {
-  //         type: 'object',
-  //         schema: {
-  //           el: {
-  //             type: elementType,
-  //           }
-  //         }
-  //       }
-  //     }
-  //   })
+  it('should have `path` equal to name with parent if parent is provided', () => {
+    let form = createForm({
+      schema: {
+        parent: {
+          type: 'object',
+          schema: {
+            el: {
+              type: elementType,
+            }
+          }
+        }
+      }
+    })
 
-  //   let el = form.vm.el$('parent.el')
+    let el = form.vm.el$('parent.el')
 
-  //   expect(el.path).toBe('parent.el')
-  // })
+    expect(el.path).toBe('parent.el')
+  })
 }
 
 export const flat = function (elementType, elementName) {

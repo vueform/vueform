@@ -16,7 +16,7 @@ describe('ElementLabel', () => {
 
   useElementComponent('text', 'ElementLabel', { label: 'label' }, {
     mergeWith: {
-      label: el.columnsClasses.label,
+      container: el.columnsClasses.label,
     }
   })
 

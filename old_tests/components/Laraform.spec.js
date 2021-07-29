@@ -3,7 +3,7 @@ import { createForm, findAllComponents, installLaraform } from 'test-helpers'
 import { Laraform } from './../../src/index'
 import { mergeComponentClasses } from './../../src/utils/mergeClasses'
 import defaultTheme from './../../src/themes/default'
-import bootstrapTheme from './../../src/themes/bootstrap'
+import bootstrapTheme from './../../src/themes/default'
 import flushPromises from 'flush-promises'
 
 const Vue = createLocalVue()

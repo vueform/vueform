@@ -316,6 +316,7 @@ const list = function(props, context, dependencies, options)
   const orderByName = dependencies.orderByName
   const refreshOrderStore = dependencies.refreshOrderStore
   const dataPath = dependencies.dataPath
+  const parent = dependencies.parent
   const nullValue = dependencies.nullValue
   const defaultValue = dependencies.defaultValue
   const fire = dependencies.fire

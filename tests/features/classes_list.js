@@ -17,11 +17,11 @@ export const classes = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.classes.list).not.toContain(el.classes.disabled)
+    expect(el.classes.list).not.toContain(el.classes.list_disabled)
 
     el.disable()
 
-    expect(el.classes.list).toContain(el.classes.disabled)
+    expect(el.classes.list).toContain(el.classes.list_disabled)
     
   // destroy(form) // teardown
   })
@@ -37,11 +37,11 @@ export const classes = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.classes.list).not.toContain(el.classes.sorting)
+    expect(el.classes.list).not.toContain(el.classes.list_sorting)
     
     el.sorting = true
 
-    expect(el.classes.list).toContain(el.classes.sorting)
+    expect(el.classes.list).toContain(el.classes.list_sorting)
     
   // destroy(form) // teardown
   })

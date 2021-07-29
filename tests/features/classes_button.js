@@ -18,13 +18,13 @@ export const classes = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.classes.button).not.toContain(el.classes.disabled)
+    expect(el.classes.button).not.toContain(el.classes.button_disabled)
 
     form.vm.$set(form.vm.laraform.schema.el, 'disabled', true)
 
     await nextTick()
 
-    expect(el.classes.button).toContain(el.classes.disabled)
+    expect(el.classes.button).toContain(el.classes.button_disabled)
     
   // destroy(form) // teardown
   })
@@ -40,13 +40,13 @@ export const classes = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.classes.button).not.toContain(el.classes.loading)
+    expect(el.classes.button).not.toContain(el.classes.button_loading)
 
     form.vm.$set(form.vm.laraform.schema.el, 'loading', true)
 
     await nextTick()
 
-    expect(el.classes.button).toContain(el.classes.loading)
+    expect(el.classes.button).toContain(el.classes.button_loading)
     
   // destroy(form) // teardown
   })

@@ -20,7 +20,10 @@ describe('Location Google Service', () => {
     formatted = {"country":"United States","country_code":"US","state":"Kentucky","state_code":"KY","city":"Louisville","zip":"40205","address":"Boulevard Napoleon 2211","formatted_address":"2211 Boulevard Napoleon, Louisville, KY 40205, USA","lat":38.22325339999999,"lng":-85.6955977}
     display = "2211 Boulevard Napoleon, Louisville, KY 40205, USA"
 
+    let ShadowRoot = window.ShadowRoot
+
     windowSpy.mockImplementation(() => ({
+      ShadowRoot,
       google: {
         maps: {
           places: {

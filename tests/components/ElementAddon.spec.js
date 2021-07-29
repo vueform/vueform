@@ -22,7 +22,7 @@ describe('ElementAddon', () => {
 
   useElementComponent('text', 'ElementAddon', { addons:{before:'before'} }, {
     mergeWith: {
-      container: ElementAddon.vm.classes.before
+      container: ElementAddon.vm.classes.container_before
     }
   })
 
@@ -41,7 +41,7 @@ describe('ElementAddon', () => {
 
       let component = findAllComponents(form, { name: 'ElementAddon' }).at(0).vm
 
-      expect(component.classes.container).not.toContain(component.classes.after)
+      expect(component.classes.container).not.toContain(component.classes.container_after)
 
       form.vm.$set(form.vm.laraform.schema.el, 'addons', { after: 'after' })
 
@@ -49,7 +49,7 @@ describe('ElementAddon', () => {
 
       component = findAllComponents(form, { name: 'ElementAddon' }).at(0).vm
 
-      expect(component.classes.container).toContain(component.classes.after)
+      expect(component.classes.container).toContain(component.classes.container_after)
       
     // destroy(form) // teardown
     })

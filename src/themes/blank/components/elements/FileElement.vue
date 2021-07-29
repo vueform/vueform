@@ -12,6 +12,7 @@
         @click="handleClick"
         @drop="handleDrop"
       />
+      
       <!-- Upload button -->
       <a
         v-else-if="canSelect"

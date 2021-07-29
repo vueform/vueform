@@ -148,13 +148,6 @@ export const rendering = function (elementType, elementName, options) {
 
     DragAndDrop = findAllComponents(form, { name: 'DragAndDrop' })
     expect(DragAndDrop.length).toBe(1)
-
-    el.disable()
-    
-    await nextTick()
-
-    DragAndDrop = findAllComponents(form, { name: 'DragAndDrop' })
-    expect(DragAndDrop.length).toBe(0)
     
     // destroy(form) // teardown
   })

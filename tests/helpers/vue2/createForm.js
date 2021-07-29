@@ -12,6 +12,7 @@ import validation from './../../../src/services/validation'
 import messageBag from './../../../src/services/messageBag'
 import autosize from './../../../src/services/autosize'
 import location from './../../../src/services/location'
+import columns from './../../../src/services/columns'
 
 // 3rd party
 import axios from 'axios'
@@ -68,6 +69,7 @@ export default function createForm (data, options = {}, render = null) {
       messageBag,
       autosize,
       location,
+      columns,
     },
     locales: options.locales || {
       en: en

@@ -24,7 +24,7 @@ describe('FormStepsControl', () => {
 
   useFormComponent({steps:{a:{label:'a',elements:['el']}},schema:{el:{type:'text'}}}, 'FormStepsControl', {
     mergeWith: {
-      button: [FormStepsControl.vm.classes.previous]
+      button: [FormStepsControl.vm.classes.button_previous]
     }
   })
 

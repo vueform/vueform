@@ -24,7 +24,6 @@ export const fieldOptions = function (elementType, elementName, options) {
       format: el.format,
       orientation: el.orientation,
       direction: el.direction,
-      height: el.height,
       disabled: el.isDisabled,
     })
   })
@@ -55,7 +54,6 @@ export const fieldOptions = function (elementType, elementName, options) {
       format: el.format,
       orientation: el.orientation,
       direction: el.direction,
-      height: el.height,
       disabled: el.isDisabled,
       custom: 'option'
     })

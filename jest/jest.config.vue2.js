@@ -40,7 +40,8 @@ module.exports = {
       "!**/jest/**",
       "!**/api/**",
       "!**/src/themes/default/components/**",
-      "!**/src/themes/bootstrap/components/**",
+      "!**/src/themes/tailwind/components/**",
+      "!**/src/themes/blank/components/**",
   ],
   // "reporters": [
   //   'jest-progress-bar-reporter',

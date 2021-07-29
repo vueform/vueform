@@ -173,7 +173,6 @@ export const value = function (elementType, elementName, options) {
     testModelCases(objectCases, elementType, options, mocks, objectSchema, testChangesObject)
 
     // @todo
-    return
     it('should fire the right events when child values change', async () => {
       let formChangeMock = jest.fn()
       let elChangeMock = jest.fn()

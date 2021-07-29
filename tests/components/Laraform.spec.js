@@ -3,7 +3,7 @@ import { findAllComponents, createElement } from 'test-helpers'
 import { ref, markRaw, nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 import defaultTheme from './../../src/themes/default'
-import bootstrap from './../../src/themes/bootstrap'
+import bootstrap from './../../src/themes/default'
 import { mergeComponentClasses, mergeClass } from './../../src/utils/mergeClasses'
 import fs from 'fs'
 

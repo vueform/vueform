@@ -17,11 +17,11 @@ export const classes = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.classes[el.mainClass]).not.toContain(el.classes.removing)
+    expect(el.classes[el.mainClass]).not.toContain(el.classes.container_removing)
     
     el.removing = true
 
-    expect(el.classes[el.mainClass]).toContain(el.classes.removing)
+    expect(el.classes[el.mainClass]).toContain(el.classes.container_removing)
     
   // destroy(form) // teardown
   })

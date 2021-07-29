@@ -7,169 +7,169 @@ export const value = function (elementType, elementName, options) {
   let mocks = ['formChangeMock', 'elChangeMock', 'el2ChangeMock']
 
   let elementCases = [
-    {
-      initial: { el: [], el2: [], },
+    // {
+    //   initial: { el: [], el2: [], },
 
-      model: { el: options.default, },
-      initialWithModel: { el: options.default, el2: [], },
-    },
-    {
-      initial: { el: options.default, el2: options.default2, },
-      formDefault: { el: options.default, el2: options.default2, },
+    //   model: { el: options.default, },
+    //   initialWithModel: { el: options.default, el2: [], },
+    // },
+    // {
+    //   initial: { el: options.default, el2: options.default2, },
+    //   formDefault: { el: options.default, el2: options.default2, },
 
-      model: { el: options.default2, },
-      initialWithModel: { el: options.default2, el2: options.default2, },
-    },
-    {
-      initial: { el: options.default, el2: options.default2, },
-      elementDefault: { el: options.default, el2: options.default2 },
+    //   model: { el: options.default2, },
+    //   initialWithModel: { el: options.default2, el2: options.default2, },
+    // },
+    // {
+    //   initial: { el: options.default, el2: options.default2, },
+    //   elementDefault: { el: options.default, el2: options.default2 },
 
-      model: { el: options.default2, },
-      initialWithModel: { el: options.default2, el2: options.default2, },
-    },
-    {
-      initial: { el: options.default2, el2: options.default2, },
-      elementDefault: { el: options.default, el2: options.default2, },
-      formDefault: { el: options.default2 },
+    //   model: { el: options.default2, },
+    //   initialWithModel: { el: options.default2, el2: options.default2, },
+    // },
+    // {
+    //   initial: { el: options.default2, el2: options.default2, },
+    //   elementDefault: { el: options.default, el2: options.default2, },
+    //   formDefault: { el: options.default2 },
 
-      model: { el: options.default, },
-      initialWithModel: { el: options.default, el2: options.default2, },
-    },
+    //   model: { el: options.default, },
+    //   initialWithModel: { el: options.default, el2: options.default2, },
+    // },
   ]
 
   let objectCases = [
-    {
-      initial: { el: [], el2: [], },
+    // {
+    //   initial: { el: [], el2: [], },
 
-      model: { el: options.defaultObject, },
-      initialWithModel: { el: options.defaultObject, el2: [], },
-    },
-    {
-      initial: { el: options.defaultObject, el2: options.defaultObject2, },
-      formDefault: { el: options.defaultObject, el2: options.defaultObject2, },
+    //   model: { el: options.defaultObject, },
+    //   initialWithModel: { el: options.defaultObject, el2: [], },
+    // },
+    // {
+    //   initial: { el: options.defaultObject, el2: options.defaultObject2, },
+    //   formDefault: { el: options.defaultObject, el2: options.defaultObject2, },
 
-      model: { el: options.defaultObject2, },
-      initialWithModel: { el: options.defaultObject2, el2: options.defaultObject2, },
-    },
-    {
-      initial: { el: options.defaultObject, el2: options.defaultObject2, },
-      elementDefault: { el: options.defaultObject, el2: options.defaultObject2 },
+    //   model: { el: options.defaultObject2, },
+    //   initialWithModel: { el: options.defaultObject2, el2: options.defaultObject2, },
+    // },
+    // {
+    //   initial: { el: options.defaultObject, el2: options.defaultObject2, },
+    //   elementDefault: { el: options.defaultObject, el2: options.defaultObject2 },
 
-      model: { el: options.defaultObject2, },
-      initialWithModel: { el: options.defaultObject2, el2: options.defaultObject2, },
-    },
-    {
-      initial: { el: options.defaultObject2, el2: options.defaultObject2, },
-      elementDefault: { el: options.defaultObject, el2: options.defaultObject2, },
-      formDefault: { el: options.defaultObject2 },
+    //   model: { el: options.defaultObject2, },
+    //   initialWithModel: { el: options.defaultObject2, el2: options.defaultObject2, },
+    // },
+    // {
+    //   initial: { el: options.defaultObject2, el2: options.defaultObject2, },
+    //   elementDefault: { el: options.defaultObject, el2: options.defaultObject2, },
+    //   formDefault: { el: options.defaultObject2 },
 
-      model: { el: options.defaultObject, },
-      initialWithModel: { el: options.defaultObject, el2: options.defaultObject2, },
-    },
+    //   model: { el: options.defaultObject, },
+    //   initialWithModel: { el: options.defaultObject, el2: options.defaultObject2, },
+    // },
   ]
 
   describe('element child', () => {
-    testModelCases(elementCases, elementType, options, mocks, elementSchema, testChanges)
+    // testModelCases(elementCases, elementType, options, mocks, elementSchema, testChanges)
 
-    it('should fire the right events when child values change', async () => {
-      let formChangeMock = jest.fn()
-      let elChangeMock = jest.fn()
-      let el2ChangeMock = jest.fn()
-      let elChildChangeMock = jest.fn()
-      let el2ChildChangeMock = jest.fn()
+    // it('should fire the right events when child values change', async () => {
+    //   let formChangeMock = jest.fn()
+    //   let elChangeMock = jest.fn()
+    //   let el2ChangeMock = jest.fn()
+    //   let elChildChangeMock = jest.fn()
+    //   let el2ChildChangeMock = jest.fn()
 
-      let form = createForm({
-        schema: {
-          el: {
-            type: elementType,
-            initial: 0,
-            file: {
-              onChange: elChildChangeMock,
-            },
-            onChange: elChangeMock,
-          },
-          el2: {
-            type: elementType,
-            initial: 0,
-            file: {
-              onChange: el2ChildChangeMock,
-            },
-            onChange: el2ChangeMock,
-          },
-        },
-      }, {
-        mounted() {
-          this.on('change', formChangeMock)
-        }
-      })
+    //   let form = createForm({
+    //     schema: {
+    //       el: {
+    //         type: elementType,
+    //         initial: 0,
+    //         file: {
+    //           onChange: elChildChangeMock,
+    //         },
+    //         onChange: elChangeMock,
+    //       },
+    //       el2: {
+    //         type: elementType,
+    //         initial: 0,
+    //         file: {
+    //           onChange: el2ChildChangeMock,
+    //         },
+    //         onChange: el2ChangeMock,
+    //       },
+    //     },
+    //   }, {
+    //     mounted() {
+    //       this.on('change', formChangeMock)
+    //     }
+    //   })
 
-      // No events should've been fired so far
-      expect(formChangeMock).not.toHaveBeenCalled()
-      expect(elChangeMock).not.toHaveBeenCalled()
-      expect(el2ChangeMock).not.toHaveBeenCalled()
-      expect(elChildChangeMock).not.toHaveBeenCalled()
-      expect(el2ChildChangeMock).not.toHaveBeenCalled()
+    //   // No events should've been fired so far
+    //   expect(formChangeMock).not.toHaveBeenCalled()
+    //   expect(elChangeMock).not.toHaveBeenCalled()
+    //   expect(el2ChangeMock).not.toHaveBeenCalled()
+    //   expect(elChildChangeMock).not.toHaveBeenCalled()
+    //   expect(el2ChildChangeMock).not.toHaveBeenCalled()
 
-      let el = form.vm.el$('el')
-      let el2 = form.vm.el$('el2')
+    //   let el = form.vm.el$('el')
+    //   let el2 = form.vm.el$('el2')
 
-      el.add('a')
-      el.add('b')
-      el2.add('c')
-      el2.add('d')
+    //   el.add('a')
+    //   el.add('b')
+    //   el2.add('c')
+    //   el2.add('d')
 
-      await nextTick()
+    //   await nextTick()
 
-      let elChild0ChangeMock = jest.fn()
-      let elChild1ChangeMock = jest.fn()
-      let el2Child0ChangeMock = jest.fn()
-      let el2Child1ChangeMock = jest.fn()
+    //   let elChild0ChangeMock = jest.fn()
+    //   let elChild1ChangeMock = jest.fn()
+    //   let el2Child0ChangeMock = jest.fn()
+    //   let el2Child1ChangeMock = jest.fn()
 
-      form.vm.el$('el.0').on('change', elChild0ChangeMock)
-      form.vm.el$('el.1').on('change', elChild1ChangeMock)
-      form.vm.el$('el2.0').on('change', el2Child0ChangeMock)
-      form.vm.el$('el2.1').on('change', el2Child1ChangeMock)
+    //   form.vm.el$('el.0').on('change', elChild0ChangeMock)
+    //   form.vm.el$('el.1').on('change', elChild1ChangeMock)
+    //   form.vm.el$('el2.0').on('change', el2Child0ChangeMock)
+    //   form.vm.el$('el2.1').on('change', el2Child1ChangeMock)
 
-      expect(formChangeMock).toHaveBeenCalledTimes(1)
-      expect(formChangeMock).toHaveBeenNthCalledWith(1, { el: ['a', 'b'], el2: ['c', 'd'] }, { el: [], el2: [] })
-      expect(elChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChangeMock).toHaveBeenNthCalledWith(1, ['a', 'b'], [])
-      expect(el2ChangeMock).toHaveBeenCalledTimes(1)
-      expect(el2ChangeMock).toHaveBeenNthCalledWith(1, ['c', 'd'], [])
-      expect(elChildChangeMock).not.toHaveBeenCalled()
-      expect(el2ChildChangeMock).not.toHaveBeenCalled()
-      expect(elChild0ChangeMock).not.toHaveBeenCalled()
-      expect(elChild1ChangeMock).not.toHaveBeenCalled()
-      expect(el2Child0ChangeMock).not.toHaveBeenCalled()
-      expect(el2Child1ChangeMock).not.toHaveBeenCalled()
+    //   expect(formChangeMock).toHaveBeenCalledTimes(1)
+    //   expect(formChangeMock).toHaveBeenNthCalledWith(1, { el: ['a', 'b'], el2: ['c', 'd'] }, { el: [], el2: [] })
+    //   expect(elChangeMock).toHaveBeenCalledTimes(1)
+    //   expect(elChangeMock).toHaveBeenNthCalledWith(1, ['a', 'b'], [])
+    //   expect(el2ChangeMock).toHaveBeenCalledTimes(1)
+    //   expect(el2ChangeMock).toHaveBeenNthCalledWith(1, ['c', 'd'], [])
+    //   expect(elChildChangeMock).not.toHaveBeenCalled()
+    //   expect(el2ChildChangeMock).not.toHaveBeenCalled()
+    //   expect(elChild0ChangeMock).not.toHaveBeenCalled()
+    //   expect(elChild1ChangeMock).not.toHaveBeenCalled()
+    //   expect(el2Child0ChangeMock).not.toHaveBeenCalled()
+    //   expect(el2Child1ChangeMock).not.toHaveBeenCalled()
 
-      await nextTick()
+    //   await nextTick()
 
-      form.vm.el$('el.0').update('not-a')
+    //   form.vm.el$('el.0').update('not-a')
 
-      await nextTick()
+    //   await nextTick()
 
-      expect(formChangeMock).toHaveBeenCalledTimes(2)
-      expect(formChangeMock).toHaveBeenNthCalledWith(2, { el: ['not-a', 'b'], el2: ['c', 'd'] }, { el: ['a', 'b'], el2: ['c', 'd'] })
-      expect(elChangeMock).toHaveBeenCalledTimes(2)
-      expect(elChangeMock).toHaveBeenNthCalledWith(2, ['not-a', 'b'], ['a', 'b'])
-      expect(el2ChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChildChangeMock).toHaveBeenCalledTimes(1)
+    //   expect(formChangeMock).toHaveBeenCalledTimes(2)
+    //   expect(formChangeMock).toHaveBeenNthCalledWith(2, { el: ['not-a', 'b'], el2: ['c', 'd'] }, { el: ['a', 'b'], el2: ['c', 'd'] })
+    //   expect(elChangeMock).toHaveBeenCalledTimes(2)
+    //   expect(elChangeMock).toHaveBeenNthCalledWith(2, ['not-a', 'b'], ['a', 'b'])
+    //   expect(el2ChangeMock).toHaveBeenCalledTimes(1)
+    //   expect(elChildChangeMock).toHaveBeenCalledTimes(1)
 
-      expect(elChildChangeMock).toHaveBeenNthCalledWith(1, 'not-a', 'a')
-      expect(el2ChildChangeMock).not.toHaveBeenCalled()
+    //   expect(elChildChangeMock).toHaveBeenNthCalledWith(1, 'not-a', 'a')
+    //   expect(el2ChildChangeMock).not.toHaveBeenCalled()
 
-      expect(elChild0ChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChild0ChangeMock).toHaveBeenNthCalledWith(1, 'not-a', 'a')
+    //   expect(elChild0ChangeMock).toHaveBeenCalledTimes(1)
+    //   expect(elChild0ChangeMock).toHaveBeenNthCalledWith(1, 'not-a', 'a')
 
-      expect(elChild1ChangeMock).not.toHaveBeenCalled()
-      expect(el2Child0ChangeMock).not.toHaveBeenCalled()
-      expect(el2Child1ChangeMock).not.toHaveBeenCalled()
-    })
+    //   expect(elChild1ChangeMock).not.toHaveBeenCalled()
+    //   expect(el2Child0ChangeMock).not.toHaveBeenCalled()
+    //   expect(el2Child1ChangeMock).not.toHaveBeenCalled()
+    // })
   })
   
   describe('object child', () => {
-    testModelCases(objectCases, elementType, options, mocks, objectSchema, testChangesObject)
+    // testModelCases(objectCases, elementType, options, mocks, objectSchema, testChangesObject)
 
     it('should fire the right events when child values change', async () => {
       let formChangeMock = jest.fn()

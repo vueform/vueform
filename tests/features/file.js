@@ -541,30 +541,6 @@ export const link = function (elementType, elementName, options) {
     
     // destroy(form) // teardown
   })
-
-  it('should undefined for `link` if `clickable` is false', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.load('a.jpg')
-
-    expect(el.link).toStrictEqual('/a.jpg')
-
-    el.$set(form.vm.laraform.schema.el, 'clickable', false)
-
-    await nextTick()
-
-    expect(el.link).toStrictEqual(undefined)
-
-    // destroy() // teardown
-  })
 }
 
 export const uploaded = function (elementType, elementName, options) {
@@ -1961,7 +1937,7 @@ export const handleClick = function (elementType, elementName, options) {
 
     expect(clickMock).not.toHaveBeenCalled()
 
-    elWrapper.find(`[class="${el.classes.selectButton}"]`).trigger('click')
+    elWrapper.find(`[class="${el.classes.button}"]`).trigger('click')
 
     await nextTick()
 
@@ -2260,7 +2236,24 @@ export const rendering = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-    expect(elWrapper.html()).toContain(el.classes.selectButton)
+    expect(elWrapper.html()).toContain(el.classes.button)
+    
+    // destroy(form) // teardown
+  })
+
+  it('should render upload button if `embed` is false', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          embed: false,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.$el.querySelectorAll(`.${el.classes.button.replace(' ', '.')}`).length).toBe(1)
     
     // destroy(form) // teardown
   })
@@ -2270,25 +2263,14 @@ export const rendering = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
+          embed: true,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    const originalConsoleError = console.error
-    const originalConsoleWarn = console.warn
-    console.error = () => {}
-    console.warn = () => {}
-
-    el.$props.embed = true
-
-    console.error = originalConsoleError
-    console.warn = originalConsoleWarn
-
-    await nextTick()
-
-    expect(el.input).not.toBeVisible()
+    expect(el.$el.querySelectorAll(`.${el.classes.button.replace(' ', '.')}`).length).toBe(0)
     
     // destroy(form) // teardown
   })

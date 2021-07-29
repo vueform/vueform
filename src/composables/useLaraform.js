@@ -980,8 +980,11 @@ const base = function(props, context, dependencies = {})
       }
 
       fire('change', n, o)
-      context.emit('input', n)
-      context.emit('update:modelValue', n)
+      
+      if (externalValue && externalValue.value !== undefined) {
+        context.emit('input', n)
+        context.emit('update:modelValue', n)
+      }
     }, { deep: true, immediate: false })
 
     // If has v-model & not equals to form data

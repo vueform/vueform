@@ -400,7 +400,6 @@ const slider = function (props, context, dependencies)
     format,
     orientation,
     direction,
-    height,
     options,
   } = toRefs(props)
 
@@ -426,7 +425,6 @@ const slider = function (props, context, dependencies)
       format: format.value,
       orientation: orientation.value,
       direction: direction.value,
-      height: height.value,
       disabled: isDisabled.value,
     }
   })
@@ -451,10 +449,6 @@ const toggle = function(props, context, dependencies)
 {
   const { 
     labels,
-    width,
-    height,
-    speed,
-    colors,
     options,
   } = toRefs(props)
 

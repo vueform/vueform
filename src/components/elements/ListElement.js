@@ -256,6 +256,7 @@ export default {
       orderByName: order.orderByName,
       refreshOrderStore: order.refreshOrderStore,
       dataPath: path.dataPath,
+      parent: path.parent,
       nullValue: nullValue.nullValue,
       defaultValue: default_.defaultValue,
       fire: events.fire,

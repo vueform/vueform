@@ -75,11 +75,11 @@
         "vue-next": "npm:vue@^3.0.0",
         "vue-next-jest": "npm:vue-jest@^5.0.0-alpha.4",
         "vue-next-test-utils": "npm:@vue/test-utils@2.0.0-rc.4",
-        "vue-prev": "npm:vue@^2.6.12",
+        "vue-prev": "npm:vue@^2.6.14",
         "vue-prev-composition-api": "npm:@vue/composition-api@^1.0.0-beta.17",
         "vue-prev-jest": "npm:vue-jest@^3.0.7",
         "vue-prev-test-utils": "npm:@vue/test-utils@1.1.3",
-        "vue-template-compiler": "^2.6.12",
+        "vue-template-compiler": "^2.6.14",
         "webpack": "^4.28.4",
         "webpack-cli": "^3.2.1",
         "webpack-notifier": "^1.7.0"

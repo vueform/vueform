@@ -18,13 +18,13 @@ export const classes = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.classes.trix).not.toContain(el.classes.disabled)
+    expect(el.classes.input).not.toContain(el.classes.input_disabled)
 
     form.vm.$set(form.vm.laraform.schema.el, 'disabled', true)
 
     await nextTick()
 
-    expect(el.classes.trix).toContain(el.classes.disabled)
+    expect(el.classes.input).toContain(el.classes.input_disabled)
     
   // destroy(form) // teardown
   })

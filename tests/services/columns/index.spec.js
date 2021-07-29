@@ -1,8 +1,4 @@
-import { createLocalVue } from '@vue/test-utils'
-import { createForm, findAllComponents } from 'test-helpers'
-import flushPromises from 'flush-promises'
-import defaultTheme from './../../../../src/themes/default'
-import bootstrap from './../../../../src/themes/bootstrap'
+import { createForm } from 'test-helpers'
 
 describe('Bootstrap Columns Util', () => {
   it('should set element column if integer', async () => {
@@ -15,15 +11,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { element: 12, label: 12, field: 12, }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { element: 12, label: 12, field: 12, } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-8'],
-      label: ['col-12'],
-      field: ['col-12'],
+      element: ['vf-col-8'],
+      label: ['vf-col-12'],
+      field: ['vf-col-12'],
     })
   })
 
@@ -37,15 +33,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { default: { element: 12, label: 12, field: 12, }, lg: 10 }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { default: { element: 12, label: 12, field: 12, }, lg: 10 } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-8', 'col-lg-10'],
-      label: ['col-12'],
-      field: ['col-12'],
+      element: ['vf-col-8', 'vf-col-lg-10'],
+      label: ['vf-col-12'],
+      field: ['vf-col-12'],
     })
   })
 
@@ -61,15 +57,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { element: 12, label: 12, field: 12, }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { element: 12, label: 12, field: 12, } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-8'],
-      label: ['col-12'],
-      field: ['col-12'],
+      element: ['vf-col-8'],
+      label: ['vf-col-12'],
+      field: ['vf-col-12'],
     })
   })
 
@@ -85,15 +81,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { default: { element: 12, label: 12, field: 12, }, lg: 10 }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { default: { element: 12, label: 12, field: 12, }, lg: 10 } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-8', 'col-lg-10'],
-      label: ['col-12'],
-      field: ['col-12'],
+      element: ['vf-col-8', 'vf-col-lg-10'],
+      label: ['vf-col-12'],
+      field: ['vf-col-12'],
     })
   })
 
@@ -110,15 +106,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { element: 12, label: 12, field: 12, }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { element: 12, label: 12, field: 12, } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-12'],
-      label: ['col-4'],
-      field: ['col-8'],
+      element: ['vf-col-12'],
+      label: ['vf-col-4'],
+      field: ['vf-col-8'],
     })
   })
 
@@ -135,15 +131,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { default: { element: 12, label: 12, field: 12 }, lg: { label: 4, field: 8 } }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { default: { element: 12, label: 12, field: 12 }, lg: { label: 4, field: 8 } } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-12'],
-      label: ['col-4', 'col-lg-4'],
-      field: ['col-8', 'col-lg-8'],
+      element: ['vf-col-12'],
+      label: ['vf-col-4', 'vf-col-lg-4'],
+      field: ['vf-col-8', 'vf-col-lg-8'],
     })
   })
 
@@ -160,15 +156,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { element: 12, label: 12, field: 12, }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { element: 12, label: 12, field: 12, } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-12', 'col-lg-10', 'col-md-8'],
-      label: ['col-12'],
-      field: ['col-12'],
+      element: ['vf-col-12', 'vf-col-lg-10', 'vf-col-md-8'],
+      label: ['vf-col-12'],
+      field: ['vf-col-12'],
     })
   })
 
@@ -185,15 +181,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { default: { element: 12, label: 12, field: 12, }, lg: 10, md: 8 }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { default: { element: 12, label: 12, field: 12, }, lg: 10, md: 8 } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-10', 'col-lg-8', 'col-md-8'],
-      label: ['col-12'],
-      field: ['col-12'],
+      element: ['vf-col-10', 'vf-col-lg-8', 'vf-col-md-8'],
+      label: ['vf-col-12'],
+      field: ['vf-col-12'],
     })
   })
 
@@ -211,15 +207,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { element: 12, label: 12, field: 12, }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { element: 12, label: 12, field: 12, } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-12', 'col-md-8'],
-      label: ['col-12'],
-      field: ['col-12'],
+      element: ['vf-col-12', 'vf-col-md-8'],
+      label: ['vf-col-12'],
+      field: ['vf-col-12'],
     })
   })
 
@@ -237,15 +233,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { default: { element: 12, label: 12, field: 12, }, lg: 10 }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { default: { element: 12, label: 12, field: 12, }, lg: 10 } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-12', 'col-lg-10', 'col-md-8'],
-      label: ['col-12'],
-      field: ['col-12'],
+      element: ['vf-col-12', 'vf-col-lg-10', 'vf-col-md-8'],
+      label: ['vf-col-12'],
+      field: ['vf-col-12'],
     })
   })
 
@@ -264,15 +260,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { element: 12, label: 12, field: 12, }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { element: 12, label: 12, field: 12, } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-12'],
-      label: ['col-12', 'col-md-4'],
-      field: ['col-12', 'col-md-8'],
+      element: ['vf-col-12'],
+      label: ['vf-col-12', 'vf-col-md-4'],
+      field: ['vf-col-12', 'vf-col-md-8'],
     })
   })
 
@@ -291,15 +287,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { default: { element: 12, label: 12, field: 12 }, lg: { label: 2, field: 10 }, md: { label: 3, field: 9 } }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { default: { element: 12, label: 12, field: 12 }, lg: { label: 2, field: 10 }, md: { label: 3, field: 9 } } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-12'],
-      label: ['col-12', 'col-lg-2', 'col-md-4'],
-      field: ['col-12', 'col-lg-10', 'col-md-8'],
+      element: ['vf-col-12'],
+      label: ['vf-col-12', 'vf-col-lg-2', 'vf-col-md-4'],
+      field: ['vf-col-12', 'vf-col-lg-10', 'vf-col-md-8'],
     })
   })
 
@@ -327,15 +323,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { element: 12, label: 12, field: 12, }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { element: 12, label: 12, field: 12, } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-12', 'col-md-6'],
-      label: ['col-4', 'col-lg-2', 'col-md-3'],
-      field: ['col-8', 'col-lg-10', 'col-md-9'],
+      element: ['vf-col-12', 'vf-col-md-6'],
+      label: ['vf-col-4', 'vf-col-lg-2', 'vf-col-md-3'],
+      field: ['vf-col-8', 'vf-col-lg-10', 'vf-col-md-9'],
     })
   })
 
@@ -363,15 +359,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { default: { element: 12, label: 12, field: 12 }, lg: { element: 12, label: 4, field: 8 }, md: { label: 6, field: 6 }, sm: { label: 12, field: 12 } }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { default: { element: 12, label: 12, field: 12 }, lg: { element: 12, label: 4, field: 8 }, md: { label: 6, field: 6 }, sm: { label: 12, field: 12 } } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-12', 'col-lg-12', 'col-md-6'],
-      label: ['col-4', 'col-lg-2', 'col-md-3', 'col-sm-12'],
-      field: ['col-8', 'col-lg-10', 'col-md-9', 'col-sm-12'],
+      element: ['vf-col-12', 'vf-col-lg-12', 'vf-col-md-6'],
+      label: ['vf-col-4', 'vf-col-lg-2', 'vf-col-md-3', 'vf-col-sm-12'],
+      field: ['vf-col-8', 'vf-col-lg-10', 'vf-col-md-9', 'vf-col-sm-12'],
     })
   })
 
@@ -384,15 +380,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: {}, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: {} },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-12'],
-      label: ['col-12'],
-      field: ['col-12'],
+      element: ['vf-col-12'],
+      label: ['vf-col-12'],
+      field: ['vf-col-12'],
     })
   })
 
@@ -410,15 +406,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { element: 12, label: 12, field: 12 }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { element: 12, label: 12, field: 12 } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-12'],
-      label: ['col-2'],
-      field: ['col-10'],
+      element: ['vf-col-12'],
+      label: ['vf-col-2'],
+      field: ['vf-col-10'],
     })
   })
 
@@ -440,15 +436,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { element: 12, label: 12, field: 12 }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { element: 12, label: 12, field: 12 } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-6', 'col-lg-6', 'col-md-6'],
-      label: ['col-6', 'col-lg-2', 'col-md-6'],
-      field: ['col-6', 'col-lg-10', 'col-md-6'],
+      element: ['vf-col-6', 'vf-col-lg-6', 'vf-col-md-6'],
+      label: ['vf-col-6', 'vf-col-lg-2', 'vf-col-md-6'],
+      field: ['vf-col-6', 'vf-col-lg-10', 'vf-col-md-6'],
     })
   })
 
@@ -469,15 +465,15 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { element: 12, label: 12, field: 12 }, theme: 'bootstrap', themes: { default: defaultTheme, bootstrap } },
+      config: { columns: { element: 12, label: 12, field: 12 } },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      element: ['col-6', 'col-lg-6', 'col-md-6'],
-      label: ['col-0', 'col-lg-0', 'col-md-0', 'col-sm-0'],
-      field: ['col-12', 'col-lg-12', 'col-md-12', 'col-sm-12'],
+      element: ['vf-col-6', 'vf-col-lg-6', 'vf-col-md-6'],
+      label: ['vf-col-0', 'vf-col-lg-0', 'vf-col-md-0', 'vf-col-sm-0'],
+      field: ['vf-col-12', 'vf-col-lg-12', 'vf-col-md-12', 'vf-col-sm-12'],
     })
   })
 })

@@ -20,7 +20,10 @@ describe('Location Algolia Service', () => {
     formatted = {"country":"United States of America","country_code":"US","state":"Kentucky","state_code":"KY","city":"Louisville","zip":"40205","address":"22 Boulevard Napoleon","formatted_address":"22 Boulevard Napoleon, Louisville, Kentucky, United States of America","lat":38.2218,"lng":-85.6947}
     display = "22 Boulevard Napoleon, Louisville, Kentucky, United States of America"
 
+    let ShadowRoot = window.ShadowRoot
+
     windowSpy.mockImplementation(() => ({
+      ShadowRoot,
       places: () => {
         return {
           on: (evt, callback) => {  },
@@ -28,6 +31,10 @@ describe('Location Algolia Service', () => {
       }
     }))
   })
+
+afterEach(() => {
+  windowSpy.mockRestore()
+})  
 
   it('should return plain value in `formatValue` if the provided data is not a plain object',async () => {
     let form = createForm({
@@ -47,7 +54,10 @@ describe('Location Algolia Service', () => {
   })
 
   it('should trigger `handleChange` on `place_changed`',async () => {
+    let ShadowRoot = window.ShadowRoot
+
     windowSpy.mockImplementation(() => ({
+      ShadowRoot,
       places: () => {
         return {
           on: (evt, callback) => { if(typeof callback == 'function') { callback(raw) } },
@@ -129,7 +139,10 @@ describe('Location Algolia Service', () => {
   it('should Places.destroy on `destroy`',async () => {
     let destroyMock = jest.fn()
 
+    let ShadowRoot = window.ShadowRoot
+
     windowSpy.mockImplementation(() => ({
+      ShadowRoot,
       places: () => {
         return {
           on: (evt, callback) => {  },

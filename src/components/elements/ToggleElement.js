@@ -79,26 +79,6 @@ export default {
       type: [Object],
       default: () => ({})
     },
-    width: {
-      required: false,
-      type: [Number],
-      default: 54
-    },
-    height: {
-      required: false,
-      type: [Number],
-      default: 24
-    },
-    speed: {
-      required: false,
-      type: [Number],
-      default: 300
-    },
-    colors: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
     options: {
       required: false,
       type: [Object],

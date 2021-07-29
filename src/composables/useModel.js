@@ -92,7 +92,7 @@ export default function (props, context, dependencies)
       if (path) {
         _.set(model, path, val)
 
-      // Group element
+      // Flat elements (eg. Group)
       } else {
         model = Object.assign({}, model, val)
       }

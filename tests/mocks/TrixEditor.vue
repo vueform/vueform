@@ -29,6 +29,8 @@
         }
       })
 
+      const addEventListener = () => {}
+
       watch(value, (newValue, oldValue) => {
         if (newValue == oldValue) {
           return
@@ -43,6 +45,7 @@
         contentEditable,
         option,
         setOption,
+        addEventListener,
       }
     },
   }

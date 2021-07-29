@@ -25,20 +25,20 @@ describe('FormStep', () => {
 
   let mergeWith = {
     container: [
-      FormStep.vm.classes.active, 
+      FormStep.vm.classes.container_active, 
     ]
   }
 
-  if (!_.isEmpty(FormStep.vm.classes.enabled)) {
-    mergeWith.container.push(FormStep.vm.classes.enabled)
+  if (!_.isEmpty(FormStep.vm.classes.container_enabled)) {
+    mergeWith.container.push(FormStep.vm.classes.container_enabled)
   }
 
-  if (!_.isEmpty(FormStep.vm.classes.incompleted)) {
-    mergeWith.container.push(FormStep.vm.classes.incompleted)
+  if (!_.isEmpty(FormStep.vm.classes.container_incompleted)) {
+    mergeWith.container.push(FormStep.vm.classes.container_incompleted)
   }
 
-  if (!_.isEmpty(FormStep.vm.classes.valid)) {
-    mergeWith.container.push(FormStep.vm.classes.valid)
+  if (!_.isEmpty(FormStep.vm.classes.container_valid)) {
+    mergeWith.container.push(FormStep.vm.classes.container_valid)
   }
 
   mergeWith.container.push('step-class')
@@ -81,8 +81,8 @@ describe('FormStep', () => {
 
       let component = findAllComponents(form, { name: 'FormStep' }).at(0).vm
 
-      expect(component.classes.container).not.toContain(component.classes.inactive)
-      expect(component.classes.container).toContain(component.classes.active)
+      expect(component.classes.container).not.toContain(component.classes.container_inactive)
+      expect(component.classes.container).toContain(component.classes.container_active)
 
       form.vm.steps$.next()
 
@@ -90,8 +90,8 @@ describe('FormStep', () => {
 
       component = findAllComponents(form, { name: 'FormStep' }).at(0).vm
 
-      expect(component.classes.container).toContain(component.classes.inactive)
-      expect(component.classes.container).not.toContain(component.classes.active)
+      expect(component.classes.container).toContain(component.classes.container_inactive)
+      expect(component.classes.container).not.toContain(component.classes.container_active)
       
     // destroy(form) // teardown
     })
@@ -118,8 +118,8 @@ describe('FormStep', () => {
         },
         overrideClasses: {
           FormStep: {
-            disabled: 'disabled',
-            enabled: 'enabled',
+            container_disabled: 'disabled',
+            container_enabled: 'enabled',
           }
         },
       })
@@ -128,8 +128,8 @@ describe('FormStep', () => {
 
       let component = findAllComponents(form, { name: 'FormStep' }).at(1).vm
 
-      expect(component.classes.container).not.toContain(component.classes.enabled)
-      expect(component.classes.container).toContain(component.classes.disabled)
+      expect(component.classes.container).not.toContain(component.classes.container_enabled)
+      expect(component.classes.container).toContain(component.classes.container_disabled)
 
       form.vm.steps$.next()
 
@@ -137,8 +137,8 @@ describe('FormStep', () => {
 
       component = findAllComponents(form, { name: 'FormStep' }).at(1).vm
 
-      expect(component.classes.container).toContain(component.classes.enabled)
-      expect(component.classes.container).not.toContain(component.classes.disabled)
+      expect(component.classes.container).toContain(component.classes.container_enabled)
+      expect(component.classes.container).not.toContain(component.classes.container_disabled)
       
     // destroy(form) // teardown
     })
@@ -165,8 +165,8 @@ describe('FormStep', () => {
         },
         overrideClasses: {
           FormStep: {
-            completed: 'completed',
-            incompleted: 'incompleted',
+            container_completed: 'completed',
+            container_incompleted: 'incompleted',
           }
         },
       })
@@ -175,15 +175,15 @@ describe('FormStep', () => {
 
       let component = findAllComponents(form, { name: 'FormStep' }).at(0)
 
-      expect(component.vm.classes.container).not.toContain(component.vm.classes.completed)
-      expect(component.vm.classes.container).toContain(component.vm.classes.incompleted)
+      expect(component.vm.classes.container).not.toContain(component.vm.classes.container_completed)
+      expect(component.vm.classes.container).toContain(component.vm.classes.container_incompleted)
 
       component.vm.complete()
 
       await nextTick()
 
-      expect(component.vm.classes.container).toContain(component.vm.classes.completed)
-      expect(component.vm.classes.container).not.toContain(component.vm.classes.incompleted)
+      expect(component.vm.classes.container).toContain(component.vm.classes.container_completed)
+      expect(component.vm.classes.container).not.toContain(component.vm.classes.container_incompleted)
       
     // destroy(form) // teardown
     })
@@ -211,8 +211,8 @@ describe('FormStep', () => {
         },
         overrideClasses: {
           FormStep: {
-            valid: 'valid',
-            invalid: 'invalid',
+            container_valid: 'valid',
+            container_invalid: 'invalid',
           }
         },
       })
@@ -221,16 +221,16 @@ describe('FormStep', () => {
 
       let component = findAllComponents(form, { name: 'FormStep' }).at(0)
 
-      expect(component.vm.classes.container).not.toContain(component.vm.classes.invalid)
-      expect(component.vm.classes.container).toContain(component.vm.classes.valid)
+      expect(component.vm.classes.container).not.toContain(component.vm.classes.container_invalid)
+      expect(component.vm.classes.container).toContain(component.vm.classes.container_valid)
 
       form.vm.el$('el').validate()
 
       await flushPromises()
       await nextTick()
 
-      expect(component.vm.classes.container).toContain(component.vm.classes.invalid)
-      expect(component.vm.classes.container).not.toContain(component.vm.classes.valid)
+      expect(component.vm.classes.container).toContain(component.vm.classes.container_invalid)
+      expect(component.vm.classes.container).not.toContain(component.vm.classes.container_valid)
       
     // destroy(form) // teardown
     })
@@ -262,13 +262,13 @@ describe('FormStep', () => {
 
       let component = findAllComponents(form, { name: 'FormStep' }).at(0)
 
-      expect(component.vm.classes.container).not.toContain(component.vm.classes.pending)
+      expect(component.vm.classes.container).not.toContain(component.vm.classes.container_pending)
 
       form.vm.el$('el').Validators[0].pending = true
 
       await nextTick()
 
-      expect(component.vm.classes.container).toContain(component.vm.classes.pending)
+      expect(component.vm.classes.container).toContain(component.vm.classes.container_pending)
       
     // destroy(form) // teardown
     })

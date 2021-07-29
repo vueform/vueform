@@ -469,6 +469,7 @@ export const defaultValue = function (elementType, elementName, options) {
         }]
       },
       props: {
+        sync: true,
         default: {
           el: [{
             child: [{subchild:'value6'}]

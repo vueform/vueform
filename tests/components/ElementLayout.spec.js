@@ -15,7 +15,8 @@ describe('ElementLayout', () => {
 
   let mergeWith = {
     container: [el.columnsClasses.element[0]],
-    fieldWrapper: [el.columnsClasses.field[0], ElementLayout.classes.outerWrapperSingle],
+    outerWrapper: [ElementLayout.classes.outerWrapper_single],
+    fieldWrapper: [el.columnsClasses.field[0]],
   }
 
   if (!_.isEmpty(el.classes.container)) {

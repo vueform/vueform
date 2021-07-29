@@ -52,7 +52,7 @@ describe('FileSlotImagePreview', () => {
 
       await flushPromises()
 
-      expect(findAll(slot, 'span').at(0).html()).toContain('filename.jpg')
+      expect(slot.html()).toContain('filename.jpg')
       expect(findAll(slot, 'img').at(0).attributes('src')).toStrictEqual(slot.vm.preview)
     })
 

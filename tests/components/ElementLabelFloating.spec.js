@@ -6,7 +6,7 @@ describe('ElementLabelFloating', () => {
   useElementComponent('text', 'ElementLabelFloating', { floating: 'floating' })
 
   describe('classes', () => {
-    it('should add visible class to wrapper when visible', async () => {
+    it('should add visible class to container when visible', async () => {
       let form = createForm({
         schema: {
           el: {
@@ -19,13 +19,13 @@ describe('ElementLabelFloating', () => {
       let el = form.vm.el$('el')
       let component = findAllComponents(form, { name: 'ElementLabelFloating' }).at(0).vm
 
-      expect(component.classes.wrapper).not.toContain(component.classes.visible)
+      expect(component.classes.label).not.toContain(component.classes.label_visible)
 
       el.update('value')
 
       await nextTick()
 
-      expect(component.classes.wrapper).toContain(component.classes.visible)
+      expect(component.classes.label).toContain(component.classes.label_visible)
       
     // destroy(form) // teardown
     })
