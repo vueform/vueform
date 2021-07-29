@@ -1006,7 +1006,7 @@ export default {
       "sorting",
       "theme",
       "validation_list",
-      // "value",
+      "value",
       "view",
       "watchValue"
     ],
@@ -1277,7 +1277,7 @@ export default {
       "sorting",
       "theme",
       "validation_list",
-      // "value",
+      "value",
       "view",
       "watchValue"
     ],

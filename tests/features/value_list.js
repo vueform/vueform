@@ -407,11 +407,11 @@ export const value = function (elementType, elementName, options) {
 
       // Abstract child
       expect(elChildChangeMock).toHaveBeenCalledTimes(3)
-      expect(elChildChangeMock).toHaveBeenNthCalledWith(2,
+      expect(elChild0ChangeMock).toHaveBeenNthCalledWith(2,
         { child: 'c', child2: 'd' },
         { child: 'not-a', child2: 'b' },
       )
-      expect(elChildChangeMock).toHaveBeenNthCalledWith(3,
+      expect(elChild1ChangeMock).toHaveBeenNthCalledWith(1,
         { child: 'not-a', child2: 'b' },
         { child: 'c', child2: 'd' },
       )
@@ -419,11 +419,15 @@ export const value = function (elementType, elementName, options) {
 
       // Abstract sub-child
       expect(elChildTextChangeMock).toHaveBeenCalledTimes(3)
-      expect(elChildTextChangeMock).toHaveBeenNthCalledWith(2, 'c', 'not-a')
-      expect(elChildTextChangeMock).toHaveBeenNthCalledWith(3, 'not-a', 'c')
+      
+      expect(elChild0TextChangeMock).toHaveBeenNthCalledWith(2, 'c', 'not-a')
+      expect(elChild1TextChangeMock).toHaveBeenNthCalledWith(1, 'not-a', 'c')
+
       expect(elChildText2ChangeMock).toHaveBeenCalledTimes(2)
-      expect(elChildText2ChangeMock).toHaveBeenNthCalledWith(1, 'd', 'b')
-      expect(elChildText2ChangeMock).toHaveBeenNthCalledWith(2, 'b', 'd')
+
+      expect(elChild0Text2ChangeMock).toHaveBeenNthCalledWith(1, 'd', 'b')
+      expect(elChild1Text2ChangeMock).toHaveBeenNthCalledWith(1, 'b', 'd')
+
       expect(el2ChildTextChangeMock).not.toHaveBeenCalled()
       expect(el2ChildText2ChangeMock).not.toHaveBeenCalled()
 
