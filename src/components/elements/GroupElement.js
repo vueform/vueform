@@ -13,7 +13,6 @@ import useComponents from './../../composables/elements/useComponents'
 import useSlots from './../../composables/elements/useSlots'
 import useElements from './../../composables/useElements'
 import useEvents from './../../composables/useEvents'
-import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { group as useValue } from './../../composables/elements/useValue'
 import { group as useDefault } from './../../composables/elements/useDefault'
@@ -148,13 +147,6 @@ export default {
       children$: children.children$,
     })
     
-    useWatchValue(props, context, {
-      form$: form$.form$,
-      value: value.value,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
-    })
     onMounted(() => {
       validation.initMessageBag()  
     })
