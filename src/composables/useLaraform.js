@@ -799,6 +799,7 @@ const base = function(props, context, dependencies = {})
       }
     } catch (e) {
       fire('error', e)
+      console.error(e)
     } finally {
       preparing.value = false
     }
@@ -820,7 +821,7 @@ const base = function(props, context, dependencies = {})
     let response = {}
 
     try {
-      response = await services.value.axios[options.value.method](options.value.endpoint, formData.value)
+      response = await services.value.axios[options.value.method.toLowerCase()](options.value.endpoint.toLowerCase(), formData.value)
 
       if (response.data.payload && response.data.payload.updates) {
         update(response.data.payload.updates)
@@ -830,6 +831,7 @@ const base = function(props, context, dependencies = {})
     }
     catch (error) {
       fire('fail', error.response, error)
+      console.error(error)
     }
     finally {
       submitting.value = false
