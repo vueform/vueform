@@ -203,7 +203,7 @@ export default function(config) {
 
       // deep merge
       _.each([
-        'endpoints'
+        'endpoints', 'axios'
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = _.merge({}, this.options.config[attr], config[attr])
@@ -214,6 +214,7 @@ export default function(config) {
       _.each([
         'theme', 'locale', 'language', 'labels',
         'columns', 'validateOn', 'method', 'vue',
+        'beforeSend',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = config[attr]

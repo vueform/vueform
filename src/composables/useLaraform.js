@@ -795,7 +795,11 @@ const base = function(props, context, dependencies = {})
       await prepareElements()
       
       if (typeof options.value.prepare === 'function') {
-        await options.value.prepare(form$)
+        await options.value.prepare(form$.value)
+      }
+      
+      if (typeof $this.$laraform.config.beforeSend === 'function') {
+        await $this.$laraform.config.beforeSend(form$.value)
       }
     } catch (e) {
       fire('error', e)
@@ -821,7 +825,11 @@ const base = function(props, context, dependencies = {})
     let response = {}
 
     try {
-      response = await services.value.axios[options.value.method.toLowerCase()](options.value.endpoint.toLowerCase(), formData.value)
+      response = await services.value.axios.request(Object.assign({}, $this.$laraform.config.axios, {
+        url: options.value.endpoint.toLowerCase(),
+        method: options.value.method.toLowerCase(),
+        data: formData.value,
+      }))
 
       if (response.data.payload && response.data.payload.updates) {
         update(response.data.payload.updates)

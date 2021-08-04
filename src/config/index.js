@@ -30,6 +30,10 @@ const config = {
 
   validateOn: 'change|submit|step',
 
+  axios: {},
+
+  beforeSend: null,
+
   methods: {
     process: 'post',
     file: {
