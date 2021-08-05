@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import parse from './parse'
 import replaceWildcards from './../../utils/replaceWildcards'
 import compare from './../../utils/compare'

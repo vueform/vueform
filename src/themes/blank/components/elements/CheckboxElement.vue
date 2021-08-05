@@ -16,10 +16,16 @@
               ref="input"
             />
             <label
+              v-if="text"
               :class="classes.label"
               :for="name"
               v-html="text"
             ></label>
+            <label
+              v-else
+              :class="classes.label"
+              :for="name"
+            ><slot></slot></label>
           </div>
         </div>
 

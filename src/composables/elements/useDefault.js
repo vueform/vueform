@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { computed, toRefs } from 'composition-api'
 
 const base = function(props, context, dependencies)
@@ -23,17 +24,17 @@ const base = function(props, context, dependencies)
   const defaultValue = computed(() => {
     let parentDefaultValue = parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
 
-    if (parentDefaultValue !== undefined) {
-      return parentDefaultValue instanceof File
-        ? new File([parentDefaultValue], parentDefaultValue.name, parentDefaultValue)
-        : _.cloneDeep(parentDefaultValue)
-    }
+    // if (parentDefaultValue !== undefined) {
+    //   return parentDefaultValue instanceof File
+    //     ? new File([parentDefaultValue], parentDefaultValue.name, parentDefaultValue)
+    //     : _.cloneDeep(parentDefaultValue)
+    // }
 
-    if (default_.value !== undefined) {
-      return default_.value instanceof File
-        ? new File([default_.value], default_.value.name, default_.value)
-        : _.cloneDeep(default_.value)
-    }
+    // if (default_.value !== undefined) {
+    //   return default_.value instanceof File
+    //     ? new File([default_.value], default_.value.name, default_.value)
+    //     : _.cloneDeep(default_.value)
+    // }
 
     return _.cloneDeep(nullValue.value)
   })

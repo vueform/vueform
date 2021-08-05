@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export default class messageBag {
   constructor(baseErrors) {
     this.baseErrors = baseErrors

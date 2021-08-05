@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import Validator from './../validator'
 import pregQuote from './../../../utils/pregQuote'
 import flattenKeys from './../../../utils/flattenKeys'

@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 /**
  * From: https://github.com/fengyuanchen/is-vue-component/blob/master/src/index.js
  */

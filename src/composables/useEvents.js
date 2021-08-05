@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { ref } from 'composition-api'
 
 const base = function(props, context, dependencies, options = {})

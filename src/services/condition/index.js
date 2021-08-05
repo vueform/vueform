@@ -1,7 +1,7 @@
+import _ from 'lodash'
 import normalize from './../../utils/normalize'
 import replaceWildcards from './../../utils/replaceWildcards'
 import compare from './../../utils/compare'
-import _ from 'lodash'
 
 // condition - condition information [otherPath, operator, expectedValue]
 // elementPath - current

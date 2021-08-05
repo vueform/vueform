@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { computed, ref, toRefs, inject, markRaw, getCurrentInstance, onMounted, onBeforeMount, provide, watch, nextTick, reactive } from 'composition-api'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 import convertFormData from './../utils/convertFormData'
@@ -825,11 +826,11 @@ const base = function(props, context, dependencies = {})
     let response = {}
 
     try {
-      response = await services.value.axios.request(Object.assign({}, $this.$laraform.config.axios, {
+      response = await services.value.axios.request({
         url: options.value.endpoint.toLowerCase(),
         method: options.value.method.toLowerCase(),
         data: formData.value,
-      }))
+      })
 
       if (response.data.payload && response.data.payload.updates) {
         update(response.data.payload.updates)

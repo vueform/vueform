@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import normalize from './../../utils/normalize'
 import spliceMultiple from './../../utils/spliceMultiple'
 

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import useTheme from './useTheme'
 
 const base = function(props, context, dependencies)

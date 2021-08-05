@@ -49,7 +49,7 @@ export default {
     },
     default: {
       required: false,
-      type: [String, File],
+      type: [String, Object],
       default: null
     },
     embed: {

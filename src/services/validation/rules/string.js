@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import Validator from './../validator'
 
 export default class string extends Validator {

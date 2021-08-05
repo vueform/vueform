@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { computed, toRefs } from 'composition-api'
 import { mergeComponentClasses } from './../../utils/mergeClasses'
 

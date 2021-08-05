@@ -1,6 +1,7 @@
 <template>
   <div :class="classes.container">
     <input :id="`trix-input-${id}`" :value="value" type="hidden">
+    
     <trix-editor
       :placeholder="placeholder"
       :disabled="disabled"
@@ -15,7 +16,7 @@
 </template>
 
 <script>
-  import Trix from 'trix'
+  // import Trix from 'trix'
 
   export default {
     name: 'TrixWrapper',

@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import moment from 'moment'
 import axios from './services/axios'
 import validation from './services/validation'
 import messageBag from './services/messageBag'
@@ -78,8 +77,6 @@ import MultiselectSlotSingleLabel from './components/elements/slots/MultiselectS
 import MultiselectSlotTag from './components/elements/slots/MultiselectSlotTag'
 import RadiogroupSlotRadio from './components/elements/slots/RadiogroupSlotRadio'
 
-window.c = console.log
-
 const elements = {
   AddressElement,
   ButtonElement,
@@ -152,14 +149,6 @@ const components = {
   RadiogroupSlotRadio,
 }
 
-if (window._ === undefined) {
-  window._ = _
-}
-
-if (window.moment === undefined) {
-  window.moment = moment
-}
-
 export default function(config) {
   const Laraform = class {
     constructor() {
@@ -226,10 +215,6 @@ export default function(config) {
       this.options.locale = locale
     }
 
-    initI18n() {
-      this.options.i18n = this.options.i18n || new i18n(this.options.config)
-    }
-
     registerComponents(appOrVue, componenList = components) {
       const theme = this.options.themes[this.options.config.theme]
 
@@ -271,11 +256,25 @@ export default function(config) {
       this.registerComponents(appOrVue, elements)
     }
 
+    initAxios() {
+      const axiosConfig = _.cloneDeep(this.options.config.axios)
+      const axiosRequest = this.options.services.axios.request
+
+      this.options.services.axios.request = (settings) => {
+        return axiosRequest(Object.assign({}, settings, axiosConfig || {}))
+      }
+    }
+
+    initI18n() {
+      this.options.i18n = this.options.i18n || new i18n(this.options.config)
+    }
+
     install(appOrVue, options) {
       if (options) {
         this.config(options)
       }
 
+      this.initAxios()
       this.initI18n()
 
       this.registerComponents(appOrVue)
