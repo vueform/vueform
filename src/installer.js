@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import clientOnly from './utils/clientOnly'
 import axios from './services/axios'
 import validation from './services/validation'
 import messageBag from './services/messageBag'
@@ -282,6 +283,10 @@ export default function(config) {
 
       switch (this.options.config.vue) {
         case 2:
+          if (!appOrVue.options.components.ClientOnly) {
+            appOrVue.component('ClientOnly', clientOnly)
+          }
+
           appOrVue.config.ignoredElements = ['trix-editor']
 
           const $laraform = this.options
