@@ -162,7 +162,7 @@ export default {
     // ============== COMPUTED ==============
     
     const steps$ = computed(() => {
-      return form$.value.steps$
+      return form$.value.steps$ || {}
     })
     
     const elements$ = computed(() => {
@@ -170,6 +170,10 @@ export default {
     })
 
     const index = computed(() => {
+      if (!steps$.value || !steps$.value.steps$) {
+        return undefined
+      }
+
       return Object.keys(steps$.value.steps$).indexOf(name.value)
     })
 
@@ -199,7 +203,7 @@ export default {
       * @type {boolean}
       */
     const invalid = computed(() => {
-      return _.some(children$.value, { available: true, invalid: true })   
+      return _.some(children$.value, { available: true, invalid: true })
     })
 
     /**

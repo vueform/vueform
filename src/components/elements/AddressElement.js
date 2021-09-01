@@ -150,6 +150,7 @@ export default {
 
     const view = useView(props, context, {
       available: conditions.available,
+      active: baseElement.active,
     })
 
     const components = useComponents(props, context, {

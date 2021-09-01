@@ -4,17 +4,14 @@
     <template v-slot:field>
 
       <div :class="classes.radioGroup">
-
-        <div v-for="(item, value, key) in items" :key="key">
-          <slot name="radio" :el$="el$" :item="item" :value="value">
-            <component
-              :is="fieldSlots.radio"
-              :item="item"
-              :value="value"
-            />
-          </slot>
-        </div>
-        
+        <slot v-for="(item, value, key) in items" name="radio" :el$="el$" :item="item" :value="value">
+          <component
+            :is="fieldSlots.radio"
+            :item="item"
+            :value="value"
+            :key="key"
+          />
+        </slot>
       </div>
 
     </template>

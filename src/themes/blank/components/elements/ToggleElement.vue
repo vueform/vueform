@@ -16,6 +16,7 @@
         />
 
         <span v-if="text" :class="classes.text" v-html="text"></span>
+        <span v-else :class="classes.text"><slot :el$="el$"></slot></span>
       </div>
 
     </template>

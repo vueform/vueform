@@ -464,6 +464,10 @@ const list = function(props, context, dependencies)
    */
   const resetValidators = () => {
     _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+
       element$.resetValidators()
     })
 
@@ -980,6 +984,10 @@ const object = function(props, context, dependencies)
    */
   const validate = () => {
     _.each(children$.value, (element$) => {
+      if (!element$.available || element$.isStatic) {
+        return
+      }
+
       element$.validate()
     })
   }
@@ -991,6 +999,10 @@ const object = function(props, context, dependencies)
    */
   const clean = () => {
     _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+
       element$.clean()
     })
   }
@@ -1002,6 +1014,10 @@ const object = function(props, context, dependencies)
    */
   const resetValidators = () => {
     _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+      
       element$.resetValidators()
     })
   }

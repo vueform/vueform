@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import clientOnly from './utils/clientOnly'
+import flatten from 'flat'
 import axios from './services/axios'
 import validation from './services/validation'
 import messageBag from './services/messageBag'
@@ -193,7 +193,7 @@ export default function(config) {
 
       // deep merge
       _.each([
-        'endpoints', 'axios'
+        'methods', 'endpoints', 'axios'
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = _.merge({}, this.options.config[attr], config[attr])
@@ -258,12 +258,47 @@ export default function(config) {
     }
 
     initAxios() {
-      const axiosConfig = _.cloneDeep(this.options.config.axios)
-      const axiosRequest = this.options.services.axios.request
+      const $axios = this.options.services.axios
+      const axiosConfig = this.options.config.axios
+      const axiosConfigFlat = flatten(this.options.config.axios)
 
-      this.options.services.axios.request = (settings) => {
-        return axiosRequest(Object.assign({}, settings, axiosConfig || {}))
-      }
+      Object.keys(axiosConfigFlat).forEach((key) => {
+        const value = axiosConfigFlat[key]
+
+        if (['onUnauthenticated'].indexOf(key) === -1 && key.indexOf('csrfRequest.') === -1) {
+          _.set($axios.defaults, key, value)
+        }
+      })
+
+      $axios.interceptors.response.use(r => r, (error) => {
+        if (!error.response) {
+          return Promise.reject(error)
+        }
+
+        return new Promise((resolve, reject) => {
+          const response = error.response
+          const originalRequest = response.config
+
+          if ([401, 419].indexOf(error.response.status) !== -1) {
+            if (axiosConfig.csrfRequest && !originalRequest.CSRF) {
+              $axios.request({
+                ...axiosConfig.csrfRequest,
+                CSRF: true,
+              }).then(() => {
+                resolve($axios.request({...originalRequest, CSRF: true }))
+              }).catch((error) => {
+                reject(error)
+              })
+            } else if (axiosConfig.onUnauthenticated) {
+              axiosConfig.onUnauthenticated()
+            } else {
+              reject(error)
+            }
+          } else {
+            reject(error)
+          }
+        })
+      })
     }
 
     initI18n() {
@@ -283,10 +318,6 @@ export default function(config) {
 
       switch (this.options.config.vue) {
         case 2:
-          if (!appOrVue.options.components.ClientOnly) {
-            appOrVue.component('ClientOnly', clientOnly)
-          }
-
           appOrVue.config.ignoredElements = ['trix-editor']
 
           const $laraform = this.options

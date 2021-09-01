@@ -25,6 +25,7 @@ const base = function(props, context, dependencies = {})
     theme,
     endpoint,
     method,
+    formData,
     language,
     validateOn,
     labels,
@@ -35,6 +36,8 @@ const base = function(props, context, dependencies = {})
     formatData,
     prepare,
     default: default_,
+    disabled,
+    loading,
   } = toRefs(props)
 
   const $this = getCurrentInstance().proxy
@@ -170,11 +173,12 @@ const base = function(props, context, dependencies = {})
     const override = {
       columns, languages, language, theme, endpoint, method, validateOn,
       overrideClasses, addClasses, components, elements, messages, addClass,
-      formKey, multilingual, formatLoad, formatData, prepare, default: default_ 
+      formKey, multilingual, formatLoad, formatData, prepare, default: default_ ,
+      formData,
     }
 
     const ifNotUndefined = {
-      stepsControls, displayErrors, labels
+      stepsControls, displayErrors, labels, disabled, loading,
     }
 
     const defaults = {
@@ -187,6 +191,7 @@ const base = function(props, context, dependencies = {})
       validateOn: baseConfig.value.config.validateOn,
       displayErrors: baseConfig.value.config.displayErrors,
       labels: baseConfig.value.config.labels,
+      formData: baseConfig.value.config.formData,
       overrideClasses: {},
       addClasses: {},
       components: {},
@@ -200,10 +205,12 @@ const base = function(props, context, dependencies = {})
       prepare: null,
       multilingual: false,
       stepsControls: true,
+      disabled: false,
+      loading: false,
     }
 
     _.each(override, (val, key) => {
-      options[key] = userConfig.value[key] || (val && val.value ? val.value : undefined) || defaults[key]
+      options[key] = userConfig.value[key] !== undefined ?  userConfig.value[key] : ((val && val.value ? val.value : undefined) || defaults[key])
     })
 
     _.each(ifNotUndefined, (val, key) => {
@@ -302,18 +309,6 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * 
-   * 
-   * @private
-   */
-  const formData = computed(() => {
-    return convertFormData({
-      formKey: options.value.formKey,
-      data: output.value,
-    })
-  })
-
-  /**
    * Whether the form has any dirty element.
    * 
    * @type {boolean}
@@ -376,7 +371,7 @@ const base = function(props, context, dependencies = {})
   const busy = computed(() => {
     return _.some(elements$.value, (element$) => {
       return element$.isStatic === false && element$.available === true && element$.busy === true
-    }) || submitting.value || preparing.value
+    }) || submitting.value || preparing.value || options.value.loading
   })
 
   // no export
@@ -473,8 +468,17 @@ const base = function(props, context, dependencies = {})
    * 
    * @type {boolean}
    */
-  const disabled = computed(() => {
-    return (invalid.value && shouldValidateOnChange.value) || busy.value
+  const isDisabled = computed(() => {
+    return (invalid.value && shouldValidateOnChange.value) || busy.value || options.value.disabled
+  })
+
+  /**
+   * Whether the form is loading.
+   * 
+   * @type {boolean}
+   */
+  const isLoading = computed(() => {
+    return options.value.loading
   })
 
   /**
@@ -727,6 +731,10 @@ const base = function(props, context, dependencies = {})
    */
   const clear = () => {
     _.each(elements$.value, (e$) => {
+      if (e$.isStatic) {
+        return
+      }
+      
       e$.clear()
     })
 
@@ -772,6 +780,22 @@ const base = function(props, context, dependencies = {})
       await e$.validate()
     })
   }
+  
+  /**
+   * 
+   * 
+   * @public
+   * @returns {void}
+   */
+  const resetValidators = () => {
+    _.each(elements$.value, (e$) => {
+      if (e$.isStatic) {
+        return
+      }
+
+      e$.resetValidators()
+    })
+  }
 
   /**
    * Starts the submission process.
@@ -780,7 +804,7 @@ const base = function(props, context, dependencies = {})
    * @returns {void}
    */
   const submit = async () => {
-    if (disabled.value) {
+    if (isDisabled.value) {
       return
     }
     
@@ -809,7 +833,11 @@ const base = function(props, context, dependencies = {})
       preparing.value = false
     }
     
-    fire('submit')
+    fire('submit', form$.value)
+
+    if (!options.value.endpoint) {
+      return
+    }
 
     send()
   }
@@ -826,10 +854,12 @@ const base = function(props, context, dependencies = {})
     let response = {}
 
     try {
+      resetValidators()
+
       response = await services.value.axios.request({
         url: options.value.endpoint.toLowerCase(),
         method: options.value.method.toLowerCase(),
-        data: formData.value,
+        data: convertFormData(options.value.formData(form$.value)),
       })
 
       if (response.data.payload && response.data.payload.updates) {
@@ -839,10 +869,11 @@ const base = function(props, context, dependencies = {})
       fire('success', response)
     }
     catch (error) {
-      fire('fail', error.response, error)
+      fire('fail', error)
       console.error(error)
     }
     finally {
+      fire('response', response)
       submitting.value = false
     }
   }
@@ -1022,7 +1053,6 @@ const base = function(props, context, dependencies = {})
     internalData,
     data,
     output,
-    formData,
     dirty,
     invalid,
     debouncing,
@@ -1031,7 +1061,8 @@ const base = function(props, context, dependencies = {})
     busy,
     formErrors,
     formMessages,
-    disabled,
+    isDisabled,
+    isLoading,
     shouldValidateOnChange,
     shouldValidateOnStep,
     hasSteps,
@@ -1064,6 +1095,8 @@ const base = function(props, context, dependencies = {})
     clear,
     clean,
     validate,
+    resetValidators,
+    convertFormData,
     submit,
     send,
     disableValidation,

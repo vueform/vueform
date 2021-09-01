@@ -3,7 +3,7 @@ export default function (fillable, fill) {
     return fillable
   }
 
-  fill.match(/.([0-9]+)(?![a-zA-Z]+)/g).forEach((match) => {
+  fill.match(/\.([0-9]+)(?![a-zA-Z]+)/g).forEach((match) => {
     fillable = fillable.replace('.*', match)
   })
 

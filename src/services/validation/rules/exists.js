@@ -30,12 +30,17 @@ export default class exists extends Validator {
   }
   
   async check(value) {
-    var name = this.element$.name
+    const name = this.element$.name
+    const method = this.form$.$laraform.config.methods.validators.exists
 
-    var res = await this.form$.$laraform.services.axios.post(this.form$.$laraform.config.endpoints.validators.exists, {
-      params: this.requestParams,
-      [name]: value,
-      laraformFieldName: name
+    const res = await this.form$.$laraform.services.axios.request({
+      url: this.form$.$laraform.config.endpoints.validators.exists,
+      method,
+      [method.toLowerCase() === 'get' ? 'params' : 'data']: {
+        params: this.requestParams,
+        [name]: value,
+        laraformFieldName: name
+      },
     })
 
     return res.data

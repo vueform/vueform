@@ -221,7 +221,13 @@ export default {
      * @type {boolean}
      */
     const isAtLastStep = computed(() => {
-      return _.findLast(visible$.value, { visible: true }).index === current$.value.index
+      const last = _.findLast(visible$.value, { visible: true })
+
+      if (!current$.value || !last) {
+        return false
+      }
+
+      return last.index === current$.value.index
     })
 
     /**
@@ -415,6 +421,10 @@ export default {
      * @returns {void}
      */
     const enableUntilLastEnabled = () => {
+      if (!lastEnabled$.value && !first$.value) {
+        return
+      }
+
       enableUntil(lastEnabled$.value !== undefined ? lastEnabled$.value.index : first$.value.index)
     }
 
@@ -461,10 +471,10 @@ export default {
     watch(steps, () => {
       nextTick(() => {
         if (lastEnabled$.value === undefined) {
-          first$.value.enable()
+          // first$.value.enable()
         }
 
-        if (current$.value.index === undefined) {
+        if (current$.value.index === undefined && first$.value) {
           first$.value.select()
         }
       })

@@ -11,7 +11,7 @@ const radio = {
 }
 
 const text = {
-  input: 'w-full form-p-input form-border form-border-color form-rounded z-1 addon-before:form-rounded-l-none addon-after:form-rounded-r-none',
+  input: 'w-full form-p-input form-border form-border-color form-rounded z-1 addon-before:form-rounded-l-none outline-none addon-after:form-rounded-r-none',
   input_enabled: 'focus:form-ring',
   input_disabled: 'form-bg-disabled form-text-disabled',
 }
@@ -29,7 +29,7 @@ const select = {
   clear: 'form-pr-input relative z-10 opacity-40 transition duration-300 flex-shrink-0 flex-grow-0 flex hover:opacity-80',
   clearIcon: 'mask-bg mask-form-remove bg-black w-2.5 h-4 py-px box-content inline-block',
   spinner: 'mask-bg mask-form-spinner form-bg-primary w-4 h-4 z-10 form-mr-input animate-spin flex-shrink-0 flex-grow-0',
-  dropdown: 'absolute -left-px -right-px bottom-0 transform translate-y-full border border-gray-300 -mt-px overflow-y-scroll z-50 bg-white flex flex-col form-rounded-b',
+  dropdown: 'absolute max-h-40 -left-px -right-px bottom-0 transform translate-y-full border border-gray-300 -mt-px overflow-y-scroll z-50 bg-white flex flex-col form-rounded-b',
   dropdownTop: '-translate-y-full top-px bottom-auto flex-col-reverse form-rounded-b-none form-rounded-t',
   dropdownHidden: 'hidden',
   options: 'flex flex-col p-0 m-0 list-none',
@@ -97,7 +97,7 @@ export default {
     listItem: 'form-row relative group ghost:opacity-60',
     handle: 'absolute form-w-input form-h-input left-0 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
     handleIcon: 'mask-bg mask-form-sort-handle bg-black mask-size-2.8 block w-full h-full',
-    remove: 'absolute z-1 w-4 h-4 box-content p-0.5 top-px left-px bg-gray-200 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 hover:bg-gray-300 group-hover:opacity-100',
+    remove: 'absolute z-1 w-4 h-4 box-content p-0.5 top-px form-left-gutter bg-gray-200 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 hover:bg-gray-300 group-hover:opacity-100',
     removeIcon: 'mask-bg mask-form-remove-light bg-gray-500 mask-size-3 block w-full h-full',
     add: 'form-bg-primary text-white px-2.5 py-1.5 text-sm form-rounded transition hover:form-bg-primary-darker',
   },
@@ -373,10 +373,15 @@ export default {
     container: 'form-mb-2gutter flex justify-between overflow-x-auto pt-5',
   },
   FormStepsControl: {
-    button: 'px-4 py-2 form-rounded',
-    button_previous: 'text-gray-700 bg-gray-200 transition hover-not-disabled:bg-gray-300 focus:form-ring focus:outline-none disabled:opacity-60 disabled:cursor-not-allowed',
-    button_next: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
-    button_finish: 'form-bg-primary text-white transition hover:form-bg-primary-darker focus:form-ring focus:outline-none',
+    button: 'px-4 py-2 form-rounded focus:form-ring focus:outline-none disabled:pointer-events-none disabled:opacity-60 disabled:cursor-not-allowed',
+    button_previous_enabled: 'text-gray-700 bg-gray-200 transition hover-not-disabled:bg-gray-300',
+    button_previous_disabled: 'text-gray-700 bg-gray-200 opacity-60 pointer-events-none',
+    button_next_enabled: 'form-bg-primary text-white transition hover:form-bg-primary-darker',
+    button_next_disabled: 'form-bg-primary text-white opacity-60 pointer-events-none cursor-not-allowed',
+    button_next_loading: 'form-bg-primary text-white form-bg-spinner-white',
+    button_finish_enabled: 'form-bg-primary text-white transition hover:form-bg-primary-darker',
+    button_finish_disabled: 'form-bg-primary text-white opacity-60 pointer-events-none cursor-not-allowed',
+    button_finish_loading: 'form-bg-primary text-white form-bg-spinner-white',
   },
   FormStepsControls: {
     container: 'flex justify-between form-mt-gutter'

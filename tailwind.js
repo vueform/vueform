@@ -204,6 +204,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
     '.form-top-input': {
       top: theme('form.pyInput'),
     },
+    '.form-left-gutter': {
+      left: theme('form.gutter'),
+    },
     '.form-p-button': {
       padding: `${theme('form.pyButton')} ${theme('form.pxButton')}`
     },
@@ -332,7 +335,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
         background: theme('form.primary'),
         position: 'absolute',
         top: '-12px',
-        left: '0',
+        left: '-1px',
         right: '50%',
         transition: '.3s',
       },
@@ -452,6 +455,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
       '&.form-step-active': {
         a: {
           '&:after': {
+            maskImage: 'none',
             background: '#ffffff',
             top: '-14px',
             transform: 'scale(1)',
@@ -774,7 +778,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
 
   addVariant('tap', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-tap .${e(`tap${separator}${className}`)}`
+      return `.slider-state-tap .${e(`tap${separator}${className}`)}`
     })
   })
 
@@ -871,6 +875,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
       transitionDuration: ['tap'],
       display: ['tt-focus', 'tt-focused', 'tt-drag', 'tt-dragging'],
       opacity: ['ghost', 'disabled'],
+      pointerEvents: ['disabled'],
     }
   },
   theme: {

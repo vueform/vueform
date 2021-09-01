@@ -29,6 +29,16 @@ export default {
       required: false,
       default: null
     },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: null,
+    },
+    loading: {
+      type: Boolean,
+      required: false,
+      default: null,
+    },
     schema: {
       type: Object,
       required: false,
@@ -101,6 +111,11 @@ export default {
     },
     method: {
       type: String,
+      required: false,
+      default: null
+    },
+    formData: {
+      type: Function,
       required: false,
       default: null
     },

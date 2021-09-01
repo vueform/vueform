@@ -8,12 +8,18 @@ export default {
     type: {
       type: [String],
       required: true
-    }
+    },
+    labels: {
+      type: [Boolean],
+      required: false,
+      default: true,
+    },
   },
   setup(props, context)
   {  
     const {
-      type
+      type,
+      labels,
     } = toRefs(props)
 
     // ============ DEPENDENCIES ============
@@ -27,7 +33,9 @@ export default {
       defaultClasses,
     } = useFormComponent(props, context, {}, {
       addClasses: [
-        ['button', `button_${type.value}`, ref(true)],
+        ['button', `button_${type.value}_enabled`, computed(() => !disabled.value)],
+        ['button', `button_${type.value}_disabled`, computed(() => disabled.value)],
+        ['button', `button_${type.value}_loading`, computed(() => loading.value)],
       ]
     })
 
@@ -39,15 +47,19 @@ export default {
      * @private
      */
     const baseLabel = computed(() => {
-      let labels = current$ && current$.value ? current$.value.labels : null
+      if (!labels.value) {
+        return null
+      }
+
+      let stepLabels = current$ && current$.value ? current$.value.labels : null
 
       switch (type.value) {
         case 'previous':
-          return labels && labels.previous ? labels.previous : form$.value.__('laraform.steps.previous')
+          return stepLabels && stepLabels.previous ? stepLabels.previous : form$.value.__('laraform.steps.previous')
         case 'next':
-          return labels && labels.next ? labels.next : form$.value.__('laraform.steps.next')
+          return stepLabels && stepLabels.next ? stepLabels.next : form$.value.__('laraform.steps.next')
         case 'finish':
-          return labels && labels.finish ? labels.finish : form$.value.__('laraform.steps.finish')
+          return stepLabels && stepLabels.finish ? stepLabels.finish : form$.value.__('laraform.steps.finish')
       }
     })
 
@@ -110,7 +122,7 @@ export default {
             // changed to valid, but still marked as invalid
             (
               (current$.value.invalid && form$.value.shouldValidateOnChange) ||  
-              current$.value.busy
+              current$.value.busy || form$.value.isDisabled || form$.value.isLoading
             )
 
         case 'finish':
@@ -120,8 +132,17 @@ export default {
           // form has invalid fields, which values have
           // changed to valid, but still marked as invalid
           return (steps$.value.invalid && form$.value.shouldValidateOnChange) ||
-                steps$.value.busy || form$.value.submitting || form$.value.disabled
+                steps$.value.busy || form$.value.submitting || form$.value.isDisabled || form$.value.isLoading
       }
+    })
+
+    /**
+     * 
+     * 
+     * @private
+     */
+    const loading = computed(() => {
+      return type.value === 'previous' ? false : form$.value.isLoading
     })
 
     // =============== METHODS ==============
@@ -193,6 +214,7 @@ export default {
       components,
       visible,
       disabled,
+      loading,
       current$,
       label,
       isLabelComponent,

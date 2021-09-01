@@ -125,6 +125,10 @@ const group = function(props, context, dependencies, options = {})
       let value = {}
 
       _.each(children$Array.value, (child$) => {
+        if (child$.isStatic) {
+          return
+        }
+        
         if (child$.flat) {
           value = Object.assign({}, value, child$.value)
         } else {

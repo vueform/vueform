@@ -5,7 +5,7 @@
       <template v-if="buttonType === 'button'">
 
         <button
-          v-if="isButtonLabelComponent"
+          v-if="buttonLabel && isButtonLabelComponent"
           v-bind="button"
           :disabled="isDisabled"
           :class="classes.button"
@@ -15,19 +15,27 @@
         </button>
 
         <button
-          v-else
+          v-else-if="buttonLabel"
           v-bind="button"
           v-html="buttonLabel"
           :class="classes.button"
           :disabled="isDisabled"
           @click.prevent="handleClick" 
-        />
+        ></button>
+
+        <button
+          v-else
+          v-bind="button"
+          :class="classes.button"
+          :disabled="isDisabled"
+          @click.prevent="handleClick" 
+        ><slot></slot></button>
 
       </template>
 
       <template v-else>
         <a
-          v-if="isButtonLabelComponent"
+          v-if="buttonLabel && isButtonLabelComponent"
           v-bind="button"
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
@@ -37,13 +45,21 @@
         </a>
 
         <a
-          v-else
+          v-else-if="buttonLabel"
           v-bind="button"
           v-html="buttonLabel"
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           @click="handleClick"
         />
+
+        <a
+          v-else
+          v-bind="button"
+          :tabindex="isDisabled || isLoading ? -1 : undefined"
+          :class="classes.button"
+          @click="handleClick"
+        ><slot></slot></a>
       </template>
 
     </template>

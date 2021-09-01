@@ -14,6 +14,10 @@ const config = {
     }
   },
 
+  formData(form$) {
+    return form$.output
+  },
+
   floatPlaceholder: true,
 
   displayErrors: true,
@@ -40,7 +44,17 @@ const config = {
       temp: 'post',
       removeTemp: 'post',
       remove: 'post',
-    }
+    },
+    validators: {
+      active_url: 'get',
+      unique: 'get',
+      exists: 'get',
+    },
+    elements: {
+      trix: {
+        attachment: 'post'
+      }
+    },
   },
 
   endpoints: {

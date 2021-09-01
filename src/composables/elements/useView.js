@@ -5,6 +5,7 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const available = dependencies.available
+  const active = dependencies.active
 
   // ================ DATA ================
 
@@ -15,14 +16,6 @@ const base = function(props, context, dependencies)
    * @default false
    */
   const hidden = ref(false)
-
-  /**
-   * Whether the element is hidden internally by other components, like tabs or steps steps.
-   * 
-   * @type {boolean} 
-   * @default true
-   */
-  const active = ref(true)
 
 
   // ============== COMPUTED ==============
@@ -56,34 +49,11 @@ const base = function(props, context, dependencies)
     hidden.value = false
   }
 
-  /**
-   * Sets the `active` property of the element to `true`.
-   *
-   * @private
-   * @returns {void}
-   */
-  const activate = () => {
-    active.value = true
-  }
-
-  /**
-   * Sets the `active` property of the element to `false`.
-   *
-   * @private
-   * @returns {void}
-   */
-  const deactivate = () => {
-    active.value = false
-  }
-
   return {
     hidden,
-    active,
     visible,
     hide,
     show,
-    activate,
-    deactivate,
   }
 }
 

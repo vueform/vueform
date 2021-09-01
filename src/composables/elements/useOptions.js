@@ -451,6 +451,8 @@ const toggle = function(props, context, dependencies)
   const { 
     labels,
     options,
+    trueValue,
+    falseValue,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -470,6 +472,8 @@ const toggle = function(props, context, dependencies)
       disabled: isDisabled.value,
       offLabel: labels.value ? (labels.value.off || '') : '',
       onLabel: labels.value ? (labels.value.on || '') : '',
+      trueValue: trueValue.value,
+      falseValue: falseValue.value,
     }
   })
 

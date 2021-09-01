@@ -14,12 +14,15 @@
             :disabled="isDisabled"
             ref="input"
           />
-          <label 
-            :class="classes.label"
-            :for="name"
-            v-html="text"
-          >
-          </label>
+
+          <slot>
+            <label 
+              :class="classes.label"
+              :for="name"
+              v-html="text"
+            >
+            </label>
+          </slot>
         </div>
       </div>
 

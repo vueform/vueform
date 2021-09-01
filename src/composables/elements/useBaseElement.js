@@ -1,6 +1,6 @@
 import {
   computed, getCurrentInstance, provide, toRefs, onBeforeMount, onMounted, onBeforeUpdate,
-  onUpdated, onBeforeUnmount, onUnmounted, onErrorCaptured, onRenderTracked, onRenderTriggered,
+  onUpdated, onBeforeUnmount, onUnmounted, ref,
 } from 'composition-api'
 
 import useParentAssign from './../useParentAssign'
@@ -35,6 +35,16 @@ const base = function(props, context, dependencies)
   } = useParentAssign(props, context, {
     form$,
   })
+
+  // ================ DATA ================
+
+  /**
+   * Whether the element is hidden internally by other components, like tabs or steps steps.
+   * 
+   * @type {boolean} 
+   * @default true
+   */
+  const active = ref(true)
 
   // ============== COMPUTED ==============
 
@@ -83,6 +93,28 @@ const base = function(props, context, dependencies)
     return currentInstance.proxy
   })
 
+  // ============== METHODS ===============
+
+  /**
+   * Sets the `active` property of the element to `true`.
+   *
+   * @private
+   * @returns {void}
+   */
+  const activate = () => {
+    active.value = true
+  }
+
+  /**
+   * Sets the `active` property of the element to `false`.
+   *
+   * @private
+   * @returns {void}
+   */
+  const deactivate = () => {
+    active.value = false
+  }
+
   // ============== PROVIDES ==============
 
   /**
@@ -122,6 +154,9 @@ const base = function(props, context, dependencies)
     isFileType,
     isArrayType,
     isImageType,
+    active,
+    activate,
+    deactivate,
   }
 }
 
@@ -132,6 +167,9 @@ const list = function(props, context, dependencies)
     isStatic,
     isFileType,
     isImageType,
+    active,
+    activate,
+    deactivate,
   } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
@@ -146,6 +184,9 @@ const list = function(props, context, dependencies)
     isFileType,
     isArrayType,
     isImageType,
+    active,
+    activate,
+    deactivate,
   }
 }
 
@@ -159,6 +200,9 @@ const file = function(props, context, dependencies)
     el$,
     isStatic,
     isArrayType,
+    active,
+    activate,
+    deactivate,
   } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
@@ -177,6 +221,9 @@ const file = function(props, context, dependencies)
     isFileType,
     isArrayType,
     isImageType,
+    active,
+    activate,
+    deactivate,
   }
 }
 
@@ -186,7 +233,10 @@ const static_ = function(props, context, dependencies)
     el$,
     isArrayType,
     isFileType,
-    isImageType
+    isImageType,
+    active,
+    activate,
+    deactivate,
   } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
@@ -201,6 +251,9 @@ const static_ = function(props, context, dependencies)
     isFileType,
     isArrayType,
     isImageType,
+    active,
+    activate,
+    deactivate,
   }
 }
 

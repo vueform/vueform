@@ -6,6 +6,7 @@ const base = function(props, context, dependencies)
   const {
     name,
     placeholder,
+    floating,
     label,
   } = toRefs(props)
 
@@ -19,6 +20,8 @@ const base = function(props, context, dependencies)
   const genericName = computed(() => {
     if (label && label.value) {
       return label.value
+    } else if (floating && floating.value) {
+      return floating.value
     } else if (placeholder && placeholder.value) {
       return placeholder.value
     } else {

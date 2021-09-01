@@ -1,8 +1,8 @@
 <template>
   <div :class="classes.container">
-    <FormStepsControl type="previous" />
-    <FormStepsControl type="next" />
-    <FormStepsControl type="finish" />
+    <FormStepsControl type="previous" :labels="labels"><slot name="previous"></slot></FormStepsControl>
+    <FormStepsControl type="next" :labels="labels"><slot name="next"></slot></FormStepsControl>
+    <FormStepsControl type="finish" :labels="labels"><slot name="finish"></slot></FormStepsControl>
   </div>
 </template>
 

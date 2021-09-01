@@ -26,7 +26,7 @@ const base = function (props, context, dependencies)
       return loading.value(form$.value, el$.value)
     }
     
-    if (submits.value && (form$.value.submitting || form$.value.preparing)) {
+    if (submits.value && (form$.value.submitting || form$.value.preparing || form$.value.isLoading)) {
       return true
     }
     

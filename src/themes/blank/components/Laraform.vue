@@ -3,37 +3,35 @@
     :class="extendedClasses.form"
     @submit.prevent="submit"
   >
-    <client-only>
-      <slot name="empty">
-        <FormMessages
-          v-if="showMessages"
-        />
+    <slot name="empty">
+      <FormMessages
+        v-if="showMessages"
+      />
 
-        <FormErrors
-          v-if="showErrors"
-        />
+      <FormErrors
+        v-if="showErrors"
+      />
 
-        <FormLanguages
-          v-if="showLanguages"
-        />
+      <FormLanguages
+        v-if="showLanguages"
+      />
 
-        <FormTabs
-          v-if="showTabs"
-        />
+      <FormTabs
+        v-if="showTabs"
+      />
 
-        <FormSteps
-          v-if="showSteps"
-        />
-        
-        <FormElements>
-          <slot></slot>
-        </FormElements>
+      <FormSteps
+        v-if="showSteps"
+      />
+      
+      <FormElements>
+        <slot></slot>
+      </FormElements>
 
-        <FormStepsControls
-          v-if="showStepsControls"
-        />
-      </slot>
-    </client-only>
+      <FormStepsControls
+        v-if="showStepsControls"
+      />
+    </slot>
   </form>
 </template>
 
