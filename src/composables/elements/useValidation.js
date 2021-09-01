@@ -15,6 +15,11 @@ const base = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {string|array}
+   */
   const validationRules = computed(() => {
     return rules.value
   })

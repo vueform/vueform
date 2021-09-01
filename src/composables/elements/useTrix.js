@@ -13,6 +13,11 @@ const base = function (props, context, dependencies)
 
   // ================ DATA ================
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const focused = ref(false)
 
   // ============== COMPUTED ==============

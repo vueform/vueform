@@ -9,6 +9,11 @@ const base = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {string|object}
+   */
   const elementLayout = computed(() => {
     return inline.value || !layout.value ? 'ElementLayoutInline' : layout.value
   })

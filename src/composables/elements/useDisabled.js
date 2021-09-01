@@ -9,10 +9,20 @@ const base = function(props, context, dependencies)
 
   // ================ DATA ================
 
+  /**
+   * 
+   * @ignore
+   * @type {boolean|null}
+   */
   const localDisabled = ref(null)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const isDisabled = computed(() => {
     return (disabled.value && localDisabled.value !== false) || localDisabled.value === true
   })

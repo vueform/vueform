@@ -47,6 +47,11 @@ const base = function(props, context, dependencies, options = {})
     })
   }
 
+  /**
+   * 
+   * 
+   * @type {object}
+   */
   const elementSlotProps = computed(() => {
     return {
       before: {

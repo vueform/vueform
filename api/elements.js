@@ -1,30 +1,30 @@
 export default {
   "address": {
     "features": [
-      // "baseElement",
-      // "children_address",
-      // "classes",
-      // "columns",
-      // "components",
-      // "conditions",
-      // "data_object",
-      // "default_object",
-      // "disabled",
-      // "elements",
-      // "events",
-      // "form$",
-      // "genericName",
-      // "label",
-      // "layout",
-      // "location_address",
-      // "nullValue_address",
+      "baseElement",
+      "children_address",
+      "classes",
+      "columns",
+      "components",
+      "conditions",
+      "data_object",
+      "default_object",
+      "disabled",
+      "elements",
+      "events",
+      "form$",
+      "genericName",
+      "label",
+      "layout",
+      "location_address",
+      "nullValue_address",
       "path",
-      // "slots",
-      // "theme",
-      // "validation_object",
-      // "value_object",
-      // "view",
-      // "watchValue"
+      "slots",
+      "theme",
+      "validation_object",
+      "value_object",
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
@@ -192,7 +192,7 @@ export default {
   "checkbox": {
     "features": [
       "baseElement",
-      "classes",
+      "classes_input",
       "columns",
       "components",
       "conditions",
@@ -239,8 +239,8 @@ export default {
         "required": "false",
         "types": [
           "string",
-          "number",
-          "boolean"
+          "boolean",
+          "number"
         ]
       },
       "id": {
@@ -374,7 +374,7 @@ export default {
     "features": [
       "addons",
       "baseElement",
-      "classes",
+      "classes_input",
       "columns",
       "components",
       "conditions",
@@ -540,7 +540,7 @@ export default {
     "features": [
       "addons",
       "baseElement_dates",
-      "classes",
+      "classes_input",
       "columns",
       "components",
       "conditions",
@@ -754,7 +754,7 @@ export default {
         "required": "false",
         "types": [
           "string",
-          "File"
+          "object"
         ]
       },
       "embed": {
@@ -884,8 +884,7 @@ export default {
       "theme",
       "validation_group",
       "value_group",
-      "view",
-      "watchValue"
+      "view"
     ],
     "slots": [
       "label",
@@ -1134,7 +1133,7 @@ export default {
     "features": [
       "addons",
       "baseElement",
-      "classes",
+      "classes_input",
       "columns",
       "components",
       "conditions",
@@ -1430,7 +1429,7 @@ export default {
     "features": [
       "asyncItems",
       "baseElement_multiselect",
-      "classes",
+      "classes_input",
       "columns",
       "components",
       "conditions",
@@ -1654,7 +1653,7 @@ export default {
   "radio": {
     "features": [
       "baseElement",
-      "classes",
+      "classes_input",
       "columns",
       "components",
       "conditions",
@@ -1833,7 +1832,7 @@ export default {
     "features": [
       "asyncItems",
       "baseElement",
-      "classes",
+      "classes_input",
       "columns",
       "components",
       "conditions",
@@ -2124,12 +2123,6 @@ export default {
           "string"
         ]
       },
-      "height": {
-        "required": "false",
-        "types": [
-          "string"
-        ]
-      },
       "options": {
         "required": "false",
         "types": [
@@ -2366,7 +2359,7 @@ export default {
       "addons",
       "autogrow",
       "baseElement",
-      "classes",
+      "classes_input",
       "columns",
       "components",
       "conditions",
@@ -2479,7 +2472,7 @@ export default {
     "features": [
       "addons",
       "baseElement",
-      "classes",
+      "classes_input",
       "columns",
       "components",
       "conditions",
@@ -2685,30 +2678,6 @@ export default {
           "object"
         ]
       },
-      "width": {
-        "required": "false",
-        "types": [
-          "number"
-        ]
-      },
-      "height": {
-        "required": "false",
-        "types": [
-          "number"
-        ]
-      },
-      "speed": {
-        "required": "false",
-        "types": [
-          "number"
-        ]
-      },
-      "colors": {
-        "required": "false",
-        "types": [
-          "object"
-        ]
-      },
       "options": {
         "required": "false",
         "types": [
@@ -2835,7 +2804,7 @@ export default {
       "addons",
       "autogrow_multilingual",
       "baseElement",
-      "classes",
+      "classes_input",
       "columns",
       "components",
       "conditions",
@@ -2950,7 +2919,7 @@ export default {
     "features": [
       "addons",
       "baseElement",
-      "classes",
+      "classes_input",
       "columns",
       "components",
       "conditions",

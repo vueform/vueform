@@ -32,6 +32,11 @@ const base = function(props, context, dependencies, options = {})
 
   // ============== COMPUTED ===============
   
+  /**
+   * 
+   * 
+   * @type {object}
+   */
   const data = computed(() => {
     return {[name.value]: value.value}
   })

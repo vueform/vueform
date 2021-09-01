@@ -31,6 +31,11 @@ const base = function(props, context, dependencies, options)
 
   }
 
+  /**
+   * 
+   * 
+   * @type {string}
+   */
   const orderByName = computed(() => {
     return orderBy.value || storeOrder.value
   })

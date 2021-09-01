@@ -341,7 +341,7 @@ const Parser = class
             let variation = this.getVariation(i)
 
             // Check if has docblock
-            if (!this.lines[i-1].trim().match(/^\*\//)) {
+            if (!this.lines[i-1] || !this.lines[i-1].trim().match(/^\*\//)) {
               return
             }
 

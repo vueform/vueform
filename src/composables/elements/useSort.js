@@ -6,10 +6,7 @@ const base = function(props, context, dependencies, options)
 {
   const {
     sort,
-    name,
   } = toRefs(props)
-
-  const defaultClasses = toRefs(context.data).defaultClasses
 
   // ============ DEPENDENCIES ============
 
@@ -17,11 +14,15 @@ const base = function(props, context, dependencies, options)
   const fire = dependencies.fire
   const refreshOrderStore = dependencies.refreshOrderStore
   const value = dependencies.value
-  const classes = dependencies.classes
   const sorting = dependencies.sorting
 
   // ================ DATA ================
 
+  /**
+   * 
+   * 
+   * @type {HTMLElement}
+   */
   const list = ref(null)
 
   /**
@@ -33,12 +34,22 @@ const base = function(props, context, dependencies, options)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const isSortable = computed(() => {
     return sort.value && !isDisabled.value
   })
 
   // =============== METHODS ==============
 
+  /**
+   *
+   *
+   * @returns {void}
+   */
   const initSortable = () => {
     sortable.value = new Sortable(list.value, {
       handle: `[data-handle]`,
@@ -49,6 +60,11 @@ const base = function(props, context, dependencies, options)
     })
   }
 
+  /**
+   *
+   *
+   * @returns {void}
+   */
   const destroySortable = () => {
     sortable.value.destroy()
     sortable.value = null

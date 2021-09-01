@@ -4,6 +4,11 @@ const base = function(props, context, dependencies)
 {
   // ================ DATA ================
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const sorting = ref(false)
 
   return {

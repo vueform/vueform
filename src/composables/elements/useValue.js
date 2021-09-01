@@ -15,6 +15,11 @@ const base = function(props, context, dependencies, options = {})
 
   // ================ DATA =================
 
+  /**
+   * 
+   * 
+   * @type {any}
+   */
   const initialValue = ref(undefined)
 
   if (form$.value.isSync) {
@@ -25,8 +30,18 @@ const base = function(props, context, dependencies, options = {})
 
   // ============== COMPUTED ===============
 
+  /**
+   * 
+   * 
+   * @type {any}
+   */
   const internalValue = ref(_.cloneDeep(defaultValue.value))
 
+  /**
+   * 
+   * 
+   * @type {any}
+   */
   const value = computed(options.value || {
     get() {
       let value
@@ -56,6 +71,11 @@ const base = function(props, context, dependencies, options = {})
     }
   })
 
+  /**
+   * 
+   * 
+   * @type {any}
+   */
   const model = computed({
     get() {
       return value.value
@@ -92,6 +112,11 @@ const object = function(props, context, dependencies, options = {})
 
   // ============ DEPENDENCIES =============
 
+  /**
+   * 
+   * 
+   * @type {object}
+   */
   const defaultValue = dependencies.defaultValue
 
   // ================ HOOKS ================
@@ -120,6 +145,11 @@ const group = function(props, context, dependencies, options = {})
 
   // ============== COMPUTED ===============
 
+  /**
+   * 
+   * 
+   * @type {object}
+   */
   const value = computed(options.value || {
     get() {
       let value = {}
@@ -160,6 +190,11 @@ const multilingual = function(props, context, dependencies)
 
   // ============== COMPUTED ===============
 
+  /**
+   * 
+   * 
+   * @type {object}
+   */
   const model = computed({
     get() {
       return value.value[language.value]
@@ -185,8 +220,6 @@ const date = function(props, context, dependencies)
   const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
 
-  // ================ DATA =================
-
   const {
     value,
   } = base(props, context, dependencies, {
@@ -210,6 +243,11 @@ const date = function(props, context, dependencies)
 
   // ============== COMPUTED ===============
 
+  /**
+   * 
+   * 
+   * @type {Date}
+   */
   const model = computed(() => {
     return value.value instanceof Date || !value.value ? value.value : moment(value.value, valueDateFormat.value).toDate()
   })
@@ -227,8 +265,6 @@ const dates = function(props, context, dependencies)
   const valueDateFormat = dependencies.valueDateFormat
   const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
-
-  // ================ DATA =================
 
   const {
     value,
@@ -257,6 +293,11 @@ const dates = function(props, context, dependencies)
 
   // ============== COMPUTED ===============
 
+  /**
+   * 
+   * 
+   * @type {array}
+   */
   const model = computed(() => {
     return value.value.map((v) => {
       return v instanceof Date || !v ? v : moment(v, valueDateFormat.value).toDate()

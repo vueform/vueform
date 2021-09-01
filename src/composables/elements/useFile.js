@@ -363,6 +363,11 @@ const base = function (props, context, dependencies)
     }
   }
 
+  /**
+   *
+   *
+   * @returns {void}
+   */
   const loadPreview = () => {
     // previewLoaded.value = false
 

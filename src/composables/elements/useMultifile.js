@@ -14,6 +14,11 @@ const base = function (props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const preparing = computed(() => {
     return _.some(children$.value, { available: true, perparing: true })
   })

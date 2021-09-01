@@ -21,6 +21,11 @@ const base = function (props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const isLoading = computed(() => {
     if (typeof loading.value === 'function') {
       return loading.value(form$.value, el$.value)
@@ -33,10 +38,20 @@ const base = function (props, context, dependencies)
     return loading.value
   })
 
+  /**
+   * 
+   * 
+   * @type {boolean}
+   */
   const isButtonLabelComponent = computed(() => {
     return buttonLabel.value !== null && typeof buttonLabel.value === 'object'
   })
 
+  /**
+   * 
+   * 
+   * @type {object}
+   */
   const button = computed(() => {
     const button = {}
 
@@ -58,6 +73,14 @@ const base = function (props, context, dependencies)
     return button
   })
 
+  // =============== METHODS ==============
+
+  /**
+   *
+   *
+   * @param {Event} e* event
+   * @returns {void}
+   */
   const handleClick = (e) => {
     if (href.value.length > 0) {
       e.preventDefault()

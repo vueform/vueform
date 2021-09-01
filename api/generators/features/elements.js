@@ -2,7 +2,7 @@ import _ from 'lodash'
 import fs from 'fs'
 import Parser from './../../parser'
 
-const filesPath = process.cwd() + '/src/composables/elements/features/'
+const filesPath = process.cwd() + '/src/composables/elements/'
 const outputPath = process.cwd() + '/api/features/elements.js'
 
 const files = fs.readdirSync(filesPath).filter(f=>['.DS_Store', 'useTemplate.js'].indexOf(f) === -1 && f.match(/\.js$/))
