@@ -21,8 +21,13 @@ export default {
       component
     } = useElements(props, context, { theme })
 
-    // ============ computed ============
+    // ============ COMPUTED ============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const schema = computed(() => {
       return form$.value.options.schema
     })

@@ -31,7 +31,7 @@ _.each(elements, (element, elementName) => {
 
     let feature = elementFeatures[base] ? elementFeatures[base][variant] : commonFeatures[base][variant]
 
-    if (!feature.options) {
+    if (!feature || !feature.options) {
       return
     }
 

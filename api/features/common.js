@@ -9,16 +9,6 @@ export default {
           ],
           "description": "Whether all element conditions are met (if any)."
         }
-      },
-      "options": {
-        "conditions": {
-          "public": true,
-          "default": "[]",
-          "types": [
-            "array"
-          ],
-          "description": "Conditions to be applied for the element."
-        }
       }
     }
   },
@@ -58,6 +48,12 @@ export default {
           "description": ""
         },
         "mainClass": {
+          "public": false,
+          "description": ""
+        }
+      },
+      "data": {
+        "defaultClasses": {
           "public": false,
           "description": ""
         }
@@ -173,6 +169,12 @@ export default {
           "public": false,
           "description": ""
         }
+      },
+      "data": {
+        "defaultClasses": {
+          "public": false,
+          "description": ""
+        }
       }
     }
   },
@@ -197,7 +199,7 @@ export default {
           "public": false,
           "description": ""
         },
-        "wizard$": {
+        "steps$": {
           "public": false,
           "description": ""
         },
@@ -220,6 +222,14 @@ export default {
             "MessageBag"
           ],
           "description": "Message bag that contains computed & custom errors & messages."
+        },
+        "selectedLanguage": {
+          "public": false,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Determine if the form's data is currently being updated for external model."
         },
         "submitting": {
           "public": true,
@@ -260,26 +270,38 @@ export default {
             "object"
           ],
           "description": "Helper property used to store listeners for events."
+        },
+        "internalData": {
+          "public": false,
+          "description": "If v-model is defined it is always equal to that. Otherwise used as model container."
+        },
+        "intermediaryValue": {
+          "public": false,
+          "description": ""
+        },
+        "userConfig": {
+          "public": false,
+          "description": ""
         }
       },
       "computed": {
-        "data": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "The form's data."
+        "options": {
+          "public": false,
+          "description": ""
         },
-        "filtered": {
+        "data": {
           "public": true,
           "types": [
             "object"
           ],
           "description": "The form's data excluding elements with unmet conditions and the ones which should not submit."
         },
-        "formData": {
-          "public": false,
-          "description": ""
+        "output": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The form's data excluding elements with unmet conditions and the ones which should not submit."
         },
         "dirty": {
           "public": true,
@@ -337,18 +359,21 @@ export default {
           ],
           "description": "List of all errors within the form."
         },
-        "disabled": {
+        "isDisabled": {
           "public": true,
           "types": [
             "boolean"
           ],
           "description": "Whether the form is disabled."
         },
-        "shouldValidateOnChange": {
-          "public": false,
-          "description": ""
+        "isLoading": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the form is loading."
         },
-        "shouldValidateOnSubmit": {
+        "shouldValidateOnChange": {
           "public": false,
           "description": ""
         },
@@ -356,12 +381,12 @@ export default {
           "public": false,
           "description": ""
         },
-        "hasWizard": {
+        "hasSteps": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the form has wizard."
+          "description": "Whether the form has steps."
         },
         "hasTabs": {
           "public": true,
@@ -383,6 +408,49 @@ export default {
             "boolean"
           ],
           "description": "Whether the form has messages."
+        },
+        "isMultilingual": {
+          "public": false,
+          "description": ""
+        },
+        "showErrors": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "showMessages": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "showLanguages": {
+          "public": false,
+          "description": ""
+        },
+        "showSteps": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "showTabs": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
+        },
+        "showStepsControls": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": ""
         },
         "mainClass": {
           "public": false,
@@ -414,19 +482,24 @@ export default {
           ],
           "description": "The selected theme's file with local extensions."
         },
-        "store": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "The value of external Vuex store state."
-        },
         "form$": {
+          "public": false,
+          "description": ""
+        },
+        "model": {
+          "public": false,
+          "description": "Clone value of model container: v-model or internal data"
+        },
+        "isSync": {
           "public": false,
           "description": ""
         }
       },
       "methods": {
+        "updateModel": {
+          "public": false,
+          "description": ""
+        },
         "update": {
           "public": true,
           "returns": "void",
@@ -475,6 +548,15 @@ export default {
           "returns": "void",
           "description": "Validates each elements within the form."
         },
+        "resetValidators": {
+          "public": true,
+          "returns": "void",
+          "description": ""
+        },
+        "convertFormData": {
+          "public": false,
+          "description": ""
+        },
         "submit": {
           "public": true,
           "returns": "void",
@@ -498,24 +580,6 @@ export default {
         "setLanguage": {
           "public": false,
           "description": ""
-        },
-        "updateSchema": {
-          "public": false,
-          "description": ""
-        },
-        "handleChangeLanguage": {
-          "public": true,
-          "returns": "void",
-          "description": "Set the language of a multilingual form.",
-          "params": {
-            "code": {
-              "types": [
-                "string"
-              ],
-              "required": false,
-              "description": "code of language to set"
-            }
-          }
         },
         "handleSubmit": {
           "public": true,
@@ -555,10 +619,6 @@ export default {
               "description": "path of the element"
             }
           }
-        },
-        "resortSchema": {
-          "public": false,
-          "description": ""
         },
         "initMessageBag": {
           "public": false,
@@ -603,6 +663,40 @@ export default {
               "description": "event to remove the listeners for."
             }
           }
+        }
+      }
+    }
+  },
+  "model": {
+    "base": {
+      "computed": {
+        "model": {
+          "public": false,
+          "description": "Clone value of model container: v-model or internal data"
+        },
+        "isSync": {
+          "public": false,
+          "description": ""
+        }
+      },
+      "data": {
+        "internalData": {
+          "public": false,
+          "description": "If v-model is defined it is always equal to that. Otherwise used as model container."
+        },
+        "intermediaryValue": {
+          "public": false,
+          "description": ""
+        },
+        "externalValue": {
+          "public": false,
+          "description": ""
+        }
+      },
+      "methods": {
+        "updateModel": {
+          "public": false,
+          "description": ""
         }
       }
     }

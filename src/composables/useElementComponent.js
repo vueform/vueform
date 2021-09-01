@@ -8,7 +8,7 @@ import { mergeComponentClasses } from './../utils/mergeClasses'
 const base = function(props, context, dependencies, options = {})
 {
   const componentName = context.name
-  const { defaultClasses } = toRefs(context.data)
+  const { defaultClasses: _defaultClasses } = toRefs(context.data)
 
   // =============== INJECT ===============
 
@@ -24,6 +24,15 @@ const base = function(props, context, dependencies, options = {})
     theme
   } = useTheme(props, context)
   
+  // ================ DATA =================
+
+  /**
+  * 
+  * 
+  * @private
+  */
+  const defaultClasses = ref(_defaultClasses.value)
+
   // ============== COMPUTED ===============
 
   /**

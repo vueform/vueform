@@ -12,8 +12,18 @@ export default function (props, context, dependencies)
 
   const $this = dependencies.$this
 
-  const externalValue = context.expose !== undefined ? mv : v
+  /**
+   * 
+   * 
+   * @private
+   */
+  const externalValue = ref(context.expose !== undefined ? mv : v).value
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const isSync = computed(() => {
     return sync.value && externalValue && externalValue.value !== undefined
   })

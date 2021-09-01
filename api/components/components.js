@@ -29,6 +29,10 @@ export default {
       }
     },
     "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      },
       "dragging": {
         "public": false,
         "description": ""
@@ -40,6 +44,50 @@ export default {
     },
     "methods": {
       "handleClick": {
+        "public": false,
+        "description": ""
+      }
+    }
+  },
+  "ElementAddon": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "components": {
+        "public": false,
+        "description": ""
+      },
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "addon": {
+        "public": false,
+        "description": ""
+      },
+      "isAddonComponent": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
         "public": false,
         "description": ""
       }
@@ -77,6 +125,12 @@ export default {
         "public": false,
         "description": ""
       }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
     }
   },
   "ElementError": {
@@ -111,6 +165,12 @@ export default {
         "public": false,
         "description": ""
       }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
     }
   },
   "ElementInfo": {
@@ -142,6 +202,12 @@ export default {
         "description": ""
       },
       "info": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
         "public": false,
         "description": ""
       }
@@ -188,6 +254,52 @@ export default {
         "types": [
           "string"
         ],
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    }
+  },
+  "ElementLabelFloating": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      },
+      "floating": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
         "description": ""
       }
     }
@@ -248,6 +360,92 @@ export default {
         "public": false,
         "description": ""
       }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    }
+  },
+  "ElementLayoutInline": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "components": {
+        "public": false,
+        "description": ""
+      },
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "hasLabel": {
+        "public": false,
+        "description": ""
+      },
+      "visible": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    }
+  },
+  "ElementLoader": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
     }
   },
   "ElementMessage": {
@@ -279,6 +477,12 @@ export default {
         "description": ""
       },
       "message": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
         "public": false,
         "description": ""
       }
@@ -316,245 +520,9 @@ export default {
         "public": false,
         "description": ""
       }
-    }
-  },
-  "FormButton": {
-    "inject": {
-      "el$": {
-        "public": false,
-        "description": ""
-      },
-      "form$": {
-        "public": false,
-        "description": ""
-      },
-      "theme": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "computed": {
-      "align": {
-        "public": false,
-        "description": ""
-      },
-      "isLoading": {
-        "public": false,
-        "description": ""
-      },
-      "isDisabled": {
-        "public": false,
-        "description": ""
-      },
-      "mainClass": {
-        "public": false,
-        "description": ""
-      },
-      "classes": {
-        "public": false,
-        "description": ""
-      },
-      "components": {
-        "public": false,
-        "description": ""
-      },
-      "label": {
-        "public": false,
-        "description": ""
-      },
-      "isLabelComponent": {
-        "public": false,
-        "description": ""
-      }
     },
     "data": {
-      "loading": {
-        "public": false,
-        "description": ""
-      },
-      "disabled": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "methods": {
-      "setLoading": {
-        "public": false,
-        "description": ""
-      },
-      "disable": {
-        "public": false,
-        "description": ""
-      },
-      "enable": {
-        "public": false,
-        "description": ""
-      },
-      "handleClick": {
-        "public": false,
-        "description": ""
-      }
-    }
-  },
-  "FormButtonAnchor": {
-    "inject": {
-      "el$": {
-        "public": false,
-        "description": ""
-      },
-      "form$": {
-        "public": false,
-        "description": ""
-      },
-      "theme": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "computed": {
-      "align": {
-        "public": false,
-        "description": ""
-      },
-      "isLoading": {
-        "public": false,
-        "description": ""
-      },
-      "isDisabled": {
-        "public": false,
-        "description": ""
-      },
-      "mainClass": {
-        "public": false,
-        "description": ""
-      },
-      "classes": {
-        "public": false,
-        "description": ""
-      },
-      "components": {
-        "public": false,
-        "description": ""
-      },
-      "label": {
-        "public": false,
-        "description": ""
-      },
-      "isLabelComponent": {
-        "public": false,
-        "description": ""
-      },
-      "href": {
-        "public": false,
-        "description": ""
-      },
-      "target": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "data": {
-      "loading": {
-        "public": false,
-        "description": ""
-      },
-      "disabled": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "methods": {
-      "setLoading": {
-        "public": false,
-        "description": ""
-      },
-      "disable": {
-        "public": false,
-        "description": ""
-      },
-      "enable": {
-        "public": false,
-        "description": ""
-      },
-      "handleClick": {
-        "public": false,
-        "description": ""
-      }
-    }
-  },
-  "FormButtonSubmit": {
-    "inject": {
-      "el$": {
-        "public": false,
-        "description": ""
-      },
-      "form$": {
-        "public": false,
-        "description": ""
-      },
-      "theme": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "computed": {
-      "align": {
-        "public": false,
-        "description": ""
-      },
-      "isLoading": {
-        "public": false,
-        "description": ""
-      },
-      "isDisabled": {
-        "public": false,
-        "description": ""
-      },
-      "mainClass": {
-        "public": false,
-        "description": ""
-      },
-      "classes": {
-        "public": false,
-        "description": ""
-      },
-      "components": {
-        "public": false,
-        "description": ""
-      },
-      "label": {
-        "public": false,
-        "description": ""
-      },
-      "isLabelComponent": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "data": {
-      "loading": {
-        "public": false,
-        "description": ""
-      },
-      "disabled": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "methods": {
-      "setLoading": {
-        "public": false,
-        "description": ""
-      },
-      "disable": {
-        "public": false,
-        "description": ""
-      },
-      "enable": {
-        "public": false,
-        "description": ""
-      },
-      "handleClick": {
+      "defaultClasses": {
         "public": false,
         "description": ""
       }
@@ -581,6 +549,16 @@ export default {
         "description": ""
       },
       "components": {
+        "public": false,
+        "description": ""
+      },
+      "schema": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
         "public": false,
         "description": ""
       }
@@ -620,47 +598,9 @@ export default {
         "public": false,
         "description": ""
       }
-    }
-  },
-  "FormLanguages": {
-    "inject": {
-      "form$": {
-        "public": false,
-        "description": ""
-      },
-      "theme": {
-        "public": false,
-        "description": ""
-      }
     },
-    "computed": {
-      "classes": {
-        "public": false,
-        "description": ""
-      },
-      "mainClass": {
-        "public": false,
-        "description": ""
-      },
-      "components": {
-        "public": false,
-        "description": ""
-      },
-      "language": {
-        "public": false,
-        "description": ""
-      },
-      "languages": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "methods": {
-      "select": {
-        "public": false,
-        "description": ""
-      },
-      "handleSelect": {
+    "data": {
+      "defaultClasses": {
         "public": false,
         "description": ""
       }
@@ -699,8 +639,64 @@ export default {
         "description": ""
       }
     },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
     "methods": {
       "select": {
+        "public": false,
+        "description": ""
+      }
+    }
+  },
+  "FormLanguages": {
+    "inject": {
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      },
+      "language": {
+        "public": false,
+        "description": ""
+      },
+      "languages": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "methods": {
+      "select": {
+        "public": false,
+        "description": ""
+      },
+      "handleSelect": {
         "public": false,
         "description": ""
       }
@@ -734,9 +730,15 @@ export default {
         "public": false,
         "description": ""
       }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
     }
   },
-  "FormTab": {
+  "FormStep": {
     "inject": {
       "form$": {
         "public": false,
@@ -747,53 +749,42 @@ export default {
         "description": ""
       }
     },
-    "data": {
-      "active": {
-        "public": true,
-        "default": "false",
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the tab is active."
-      },
-      "events": {
-        "public": true,
-        "default": "[]",
-        "types": [
-          "array"
-        ],
-        "description": "Helper property used to store available events for the element."
-      },
-      "listeners": {
-        "public": true,
-        "default": "{}",
-        "types": [
-          "object"
-        ],
-        "description": "Helper property used to store listeners for events."
-      }
-    },
     "computed": {
+      "steps$": {
+        "public": false,
+        "description": ""
+      },
+      "elements$": {
+        "public": false,
+        "description": ""
+      },
       "children$": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "Returns the components of elements within the tab."
+        "description": "Returns the components of elements within the step."
       },
       "visible": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the tab is visible."
+        "description": "Determines whether the step is visible."
       },
       "invalid": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the tab has any invalid elements."
+        "description": "Determines whether the step has any invalid elements."
+      },
+      "pending": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the step has any pending elements."
       },
       "classes": {
         "public": false,
@@ -814,7 +805,42 @@ export default {
         ],
         "description": "Whether all element conditions are met (if any)."
       },
-      "label": {
+      "baseLabel": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "Base label of step."
+      },
+      "debouncing": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the step has any debouncing elements."
+      },
+      "validated": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether all the elements in the step has been validated."
+      },
+      "busy": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the step has any busy elements."
+      },
+      "done": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the step is done (complete, validated has no invalid or pending elements)."
+      },
+      "step$": {
         "public": false,
         "description": ""
       },
@@ -822,94 +848,35 @@ export default {
         "public": false,
         "description": ""
       },
-      "tab$": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "options": {
-      "conditions": {
-        "public": true,
-        "default": "[]",
-        "types": [
-          "array"
-        ],
-        "description": "Conditions to be applied for the element."
-      }
-    },
-    "methods": {
-      "select": {
-        "public": true,
-        "returns": "void",
-        "description": "Selects the tab to become the active tab."
-      },
-      "activate": {
-        "public": true,
-        "returns": "void",
-        "description": "Activates the tab."
-      },
-      "deactivate": {
-        "public": true,
-        "returns": "void",
-        "description": "Deactivates the step."
-      },
-      "on": {
-        "public": true,
-        "returns": "void",
-        "description": "Adds a listener for an event.",
-        "params": {
-          "event": {
-            "types": [
-              "string"
-            ],
-            "required": false,
-            "description": "event to listen for."
-          },
-          "callback": {
-            "types": [
-              "function"
-            ],
-            "required": false,
-            "description": "callback to run when the event is triggered. The `this` variable refers to the component the listener is set for."
-          }
-        }
-      },
-      "off": {
-        "public": true,
-        "returns": "void",
-        "description": "Removes all listeners for an event.",
-        "params": {
-          "event": {
-            "types": [
-              "string"
-            ],
-            "required": false,
-            "description": "event to remove the listeners for."
-          }
-        }
-      },
-      "fire": {
-        "public": true,
-        "returns": "any",
-        "description": "Fires an event."
-      }
-    }
-  },
-  "FormTabs": {
-    "inject": {
-      "form$": {
-        "public": false,
-        "description": ""
-      },
-      "theme": {
+      "index": {
         "public": false,
         "description": ""
       }
     },
     "data": {
-      "tabs$Array": {
-        "public": false,
-        "description": ""
+      "active": {
+        "public": true,
+        "default": "false",
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the step is active."
+      },
+      "disabled": {
+        "public": true,
+        "default": "true",
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the step is disabled."
+      },
+      "completed": {
+        "public": true,
+        "default": "false",
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the step is completed."
       },
       "events": {
         "public": true,
@@ -927,126 +894,60 @@ export default {
         ],
         "description": "Helper property used to store listeners for events."
       },
-      "exists": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "computed": {
-      "classes": {
+      "defaultClasses": {
         "public": false,
         "description": ""
       },
-      "mainClass": {
+      "stepLabel": {
         "public": false,
         "description": ""
-      },
-      "components": {
-        "public": false,
-        "description": ""
-      },
-      "tabs$": {
-        "public": true,
-        "default": "{}",
-        "types": [
-          "object"
-        ],
-        "description": "Object of tab$ components."
-      },
-      "visible$": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the visible [tab$](reference/frontend-tab) components."
-      },
-      "current$": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the current [tab$](reference/frontend-tab) components."
-      },
-      "first$": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the first [tab$](reference/frontend-tab) components."
-      },
-      "next$": {
-        "public": true,
-        "types": [
-          [
-            "component",
-            "FormTab"
-          ]
-        ],
-        "description": "Returns the next [tab$](reference/frontend-tab) component."
-      },
-      "previous$": {
-        "public": true,
-        "types": [
-          [
-            "component",
-            "FormTab"
-          ]
-        ],
-        "description": "Returns the previous [tabs$](reference/frontend-tab) component."
       }
     },
     "methods": {
-      "goTo": {
+      "validate": {
         "public": true,
         "returns": "void",
-        "description": "Moves to a tab.",
-        "params": {
-          "tab": {
-            "types": [
-              "object"
-            ],
-            "required": false,
-            "description": "key of tab in [tabs](reference/frontend-form#prop-tabs)"
-          }
-        }
+        "description": "Validate the elements within the step."
+      },
+      "activate": {
+        "public": true,
+        "returns": "void",
+        "description": "Activates the step."
+      },
+      "deactivate": {
+        "public": true,
+        "returns": "void",
+        "description": "Deactivates the step."
+      },
+      "enable": {
+        "public": true,
+        "returns": "void",
+        "description": "Enables the step."
+      },
+      "disable": {
+        "public": true,
+        "returns": "void",
+        "description": "Disables the step."
+      },
+      "complete": {
+        "public": true,
+        "returns": "void",
+        "description": "Completes the step."
+      },
+      "uncomplete": {
+        "public": true,
+        "returns": "void",
+        "description": "Uncompletes the step."
       },
       "select": {
+        "public": true,
+        "returns": "void",
+        "description": "Selects the step to become the active step."
+      },
+      "forwardConditions": {
         "public": false,
         "returns": "void",
-        "description": "Selects a tab.",
-        "params": {
-          "tab$": {
-            "types": [
-              "object"
-            ],
-            "required": false,
-            "description": "selected tab component"
-          }
-        }
-      },
-      "tab$": {
-        "public": true,
-        "returns": [
-          [
-            "component",
-            "FormTab"
-          ]
-        ],
-        "description": "Returns a specific [tab$](reference/frontend-tab).",
-        "params": {
-          "tab": {
-            "types": [
-              "object"
-            ],
-            "required": false,
-            "description": "key of tab in [tabs](reference/frontend-form#prop-tabs) object"
-          }
-        }
-      },
-      "reset": {
-        "public": true,
-        "returns": "void",
-        "description": "Reset tabs, meaning selecting [first$](#prop-first) tab."
+        "description": "Apply conditions of the step to the elements within."
       },
       "on": {
         "public": true,
@@ -1090,7 +991,7 @@ export default {
       }
     }
   },
-  "FormWizard": {
+  "FormSteps": {
     "inject": {
       "form$": {
         "public": false,
@@ -1099,6 +1000,162 @@ export default {
       "theme": {
         "public": false,
         "description": ""
+      }
+    },
+    "computed": {
+      "steps": {
+        "public": false,
+        "description": ""
+      },
+      "elements$": {
+        "public": false,
+        "description": ""
+      },
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      },
+      "steps$": {
+        "public": true,
+        "default": "{}",
+        "types": [
+          "object"
+        ],
+        "description": "Object of stepsStep$ components."
+      },
+      "pending": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the steps has any pending elements."
+      },
+      "debouncing": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the steps has any debouncing elements."
+      },
+      "invalid": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the steps has any invalid elements."
+      },
+      "done": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether all the steps are completetly filled out."
+      },
+      "busy": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the steps has any pending or debouncing elements."
+      },
+      "visible$": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the visible [stepsStep$](reference/frontend-steps-step) components."
+      },
+      "first$": {
+        "public": true,
+        "types": [
+          [
+            "component",
+            "FormStep"
+          ]
+        ],
+        "description": "Returns the first [stepsStep$](reference/frontend-steps-step) component."
+      },
+      "current$": {
+        "public": true,
+        "types": [
+          [
+            "component",
+            "FormStep"
+          ]
+        ],
+        "description": "Returns the current [stepsStep$](reference/frontend-steps-step) component."
+      },
+      "next$": {
+        "public": true,
+        "types": [
+          [
+            "component",
+            "FormStep"
+          ]
+        ],
+        "description": "Returns the next [stepsStep$](reference/frontend-steps-step) component."
+      },
+      "previous$": {
+        "public": true,
+        "types": [
+          [
+            "component",
+            "FormStep"
+          ]
+        ],
+        "description": "Returns the previous [stepsStep$](reference/frontend-steps-step) component."
+      },
+      "firstInvalid$": {
+        "public": true,
+        "types": [
+          [
+            "component",
+            "FormStep"
+          ]
+        ],
+        "description": "Returns the first invalid [stepsStep$](reference/frontend-steps-step) component."
+      },
+      "firstNonDone$": {
+        "public": true,
+        "types": [
+          [
+            "component",
+            "FormStep"
+          ]
+        ],
+        "description": "Returns the first [stepsStep$](reference/frontend-steps-step) component which is not done yet."
+      },
+      "lastEnabled$": {
+        "public": true,
+        "types": [
+          [
+            "component",
+            "FormStep"
+          ]
+        ],
+        "description": "Returns the last enabled [stepsStep$](reference/frontend-steps-step) component."
+      },
+      "isAtLastStep": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the steps is at the last step."
+      },
+      "isAtFirstStep": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the steps is at the first step."
       }
     },
     "data": {
@@ -1125,154 +1182,10 @@ export default {
       "exists": {
         "public": false,
         "description": ""
-      }
-    },
-    "computed": {
-      "classes": {
+      },
+      "defaultClasses": {
         "public": false,
         "description": ""
-      },
-      "mainClass": {
-        "public": false,
-        "description": ""
-      },
-      "components": {
-        "public": false,
-        "description": ""
-      },
-      "steps$": {
-        "public": true,
-        "default": "{}",
-        "types": [
-          "object"
-        ],
-        "description": "Object of wizardStep$ components."
-      },
-      "pending": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the wizard has any pending elements."
-      },
-      "debouncing": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the wizard has any debouncing elements."
-      },
-      "invalid": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the wizard has any invalid elements."
-      },
-      "done": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether all the steps are completetly filled out."
-      },
-      "busy": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the wizard has any pending or debouncing elements."
-      },
-      "visible$": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the visible [wizardStep$](reference/frontend-wizard-step) components."
-      },
-      "first$": {
-        "public": true,
-        "types": [
-          [
-            "component",
-            "FormWizardStep"
-          ]
-        ],
-        "description": "Returns the first [wizardStep$](reference/frontend-wizard-step) component."
-      },
-      "current$": {
-        "public": true,
-        "types": [
-          [
-            "component",
-            "FormWizardStep"
-          ]
-        ],
-        "description": "Returns the current [wizardStep$](reference/frontend-wizard-step) component."
-      },
-      "next$": {
-        "public": true,
-        "types": [
-          [
-            "component",
-            "FormWizardStep"
-          ]
-        ],
-        "description": "Returns the next [wizardStep$](reference/frontend-wizard-step) component."
-      },
-      "previous$": {
-        "public": true,
-        "types": [
-          [
-            "component",
-            "FormWizardStep"
-          ]
-        ],
-        "description": "Returns the previous [wizardStep$](reference/frontend-wizard-step) component."
-      },
-      "firstInvalid$": {
-        "public": true,
-        "types": [
-          [
-            "component",
-            "FormWizardStep"
-          ]
-        ],
-        "description": "Returns the first invalid [wizardStep$](reference/frontend-wizard-step) component."
-      },
-      "firstNonDone$": {
-        "public": true,
-        "types": [
-          [
-            "component",
-            "FormWizardStep"
-          ]
-        ],
-        "description": "Returns the first [wizardStep$](reference/frontend-wizard-step) component which is not done yet."
-      },
-      "lastEnabled$": {
-        "public": true,
-        "types": [
-          [
-            "component",
-            "FormWizardStep"
-          ]
-        ],
-        "description": "Returns the last enabled [wizardStep$](reference/frontend-wizard-step) component."
-      },
-      "isAtLastStep": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the wizard is at the last step."
-      },
-      "isAtFirstStep": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the wizard is at the first step."
       }
     },
     "methods": {
@@ -1286,7 +1199,7 @@ export default {
               "object"
             ],
             "required": false,
-            "description": "key of step in [wizard](reference/frontend-form#prop-wizard)"
+            "description": "key of step in [steps](reference/frontend-form#prop-steps)"
           },
           "enableUntil": {
             "types": [
@@ -1310,24 +1223,24 @@ export default {
       "complete": {
         "public": true,
         "returns": "void",
-        "description": "Marks each [wizardStep$](reference/frontend-wizard-step) as complete."
+        "description": "Marks each [stepsStep$](reference/frontend-steps-step) as complete."
       },
       "step$": {
         "public": true,
         "returns": [
           [
             "component",
-            "FormWizardStep"
+            "FormStep"
           ]
         ],
-        "description": "Returns a specific [wizardStep$](reference/frontend-wizard-step).",
+        "description": "Returns a specific [stepsStep$](reference/frontend-steps-step).",
         "params": {
           "step": {
             "types": [
               "object"
             ],
             "required": false,
-            "description": "key of step in [wizard](reference/frontend-form#prop-wizard)"
+            "description": "key of step in [steps](reference/frontend-form#prop-steps)"
           }
         }
       },
@@ -1425,7 +1338,7 @@ export default {
       }
     }
   },
-  "FormWizardControls": {
+  "FormStepsControl": {
     "inject": {
       "form$": {
         "public": false,
@@ -1437,32 +1350,10 @@ export default {
       }
     },
     "computed": {
-      "classes": {
+      "steps$": {
         "public": false,
         "description": ""
       },
-      "mainClass": {
-        "public": false,
-        "description": ""
-      },
-      "components": {
-        "public": false,
-        "description": ""
-      }
-    }
-  },
-  "FormWizardFinish": {
-    "inject": {
-      "form$": {
-        "public": false,
-        "description": ""
-      },
-      "theme": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "computed": {
       "classes": {
         "public": false,
         "description": ""
@@ -1483,59 +1374,7 @@ export default {
         "public": false,
         "description": ""
       },
-      "current$": {
-        "public": false,
-        "description": ""
-      },
-      "visible$": {
-        "public": false,
-        "description": ""
-      },
-      "label": {
-        "public": false,
-        "description": ""
-      },
-      "isLabelComponent": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "methods": {
-      "finish": {
-        "public": false,
-        "description": ""
-      }
-    }
-  },
-  "FormWizardNext": {
-    "inject": {
-      "form$": {
-        "public": false,
-        "description": ""
-      },
-      "theme": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "computed": {
-      "classes": {
-        "public": false,
-        "description": ""
-      },
-      "mainClass": {
-        "public": false,
-        "description": ""
-      },
-      "components": {
-        "public": false,
-        "description": ""
-      },
-      "visible": {
-        "public": false,
-        "description": ""
-      },
-      "disabled": {
+      "loading": {
         "public": false,
         "description": ""
       },
@@ -1552,54 +1391,8 @@ export default {
         "description": ""
       }
     },
-    "methods": {
-      "next": {
-        "public": false,
-        "description": ""
-      }
-    }
-  },
-  "FormWizardPrevious": {
-    "inject": {
-      "form$": {
-        "public": false,
-        "description": ""
-      },
-      "theme": {
-        "public": false,
-        "description": ""
-      }
-    },
-    "computed": {
-      "classes": {
-        "public": false,
-        "description": ""
-      },
-      "mainClass": {
-        "public": false,
-        "description": ""
-      },
-      "components": {
-        "public": false,
-        "description": ""
-      },
-      "visible": {
-        "public": false,
-        "description": ""
-      },
-      "disabled": {
-        "public": false,
-        "description": ""
-      },
-      "current$": {
-        "public": false,
-        "description": ""
-      },
-      "label": {
-        "public": false,
-        "description": ""
-      },
-      "isLabelComponent": {
+    "data": {
+      "defaultClasses": {
         "public": false,
         "description": ""
       }
@@ -1608,10 +1401,22 @@ export default {
       "previous": {
         "public": false,
         "description": ""
+      },
+      "next": {
+        "public": false,
+        "description": ""
+      },
+      "finish": {
+        "public": false,
+        "description": ""
+      },
+      "handleClick": {
+        "public": false,
+        "description": ""
       }
     }
   },
-  "FormWizardStep": {
+  "FormStepsControls": {
     "inject": {
       "form$": {
         "public": false,
@@ -1622,76 +1427,67 @@ export default {
         "description": ""
       }
     },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      }
+    },
     "data": {
-      "active": {
-        "public": true,
-        "default": "false",
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the step is active."
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    }
+  },
+  "FormTab": {
+    "inject": {
+      "form$": {
+        "public": false,
+        "description": ""
       },
-      "disabled": {
-        "public": true,
-        "default": "true",
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the step is disabled."
-      },
-      "completed": {
-        "public": true,
-        "default": "false",
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the step is completed."
-      },
-      "events": {
-        "public": true,
-        "default": "[]",
-        "types": [
-          "array"
-        ],
-        "description": "Helper property used to store available events for the element."
-      },
-      "listeners": {
-        "public": true,
-        "default": "{}",
-        "types": [
-          "object"
-        ],
-        "description": "Helper property used to store listeners for events."
+      "theme": {
+        "public": false,
+        "description": ""
       }
     },
     "computed": {
+      "elements$": {
+        "public": false,
+        "description": ""
+      },
+      "index": {
+        "public": false,
+        "description": ""
+      },
       "children$": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "Returns the components of elements within the step."
+        "description": "Returns the components of elements within the tab."
       },
       "visible": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the step is visible."
+        "description": "Determines whether the tab is visible."
       },
       "invalid": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the step has any invalid elements."
-      },
-      "pending": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the step has any pending elements."
+        "description": "Determines whether the tab has any invalid elements."
       },
       "classes": {
         "public": false,
@@ -1712,123 +1508,64 @@ export default {
         ],
         "description": "Whether all element conditions are met (if any)."
       },
-      "baseLabel": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "Base label of step."
-      },
-      "labels": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the labels object of step schema."
-      },
-      "buttons": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the buttons object of step schema."
-      },
-      "debouncing": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the step has any debouncing elements."
-      },
-      "validated": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether all the elements in the step has been validated."
-      },
-      "busy": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the step has any busy elements."
-      },
-      "done": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Determines whether the step is done (complete, validated has no invalid or pending elements)."
-      },
-      "step$": {
-        "public": false,
-        "description": ""
-      },
-      "label": {
-        "public": false,
-        "description": ""
-      },
       "isLabelComponent": {
+        "public": false,
+        "description": ""
+      },
+      "tab$": {
         "public": false,
         "description": ""
       }
     },
-    "options": {
-      "conditions": {
+    "data": {
+      "active": {
+        "public": true,
+        "default": "false",
+        "types": [
+          "boolean"
+        ],
+        "description": "Determines whether the tab is active."
+      },
+      "events": {
         "public": true,
         "default": "[]",
         "types": [
           "array"
         ],
-        "description": "Conditions to be applied for the element."
+        "description": "Helper property used to store available events for the element."
+      },
+      "listeners": {
+        "public": true,
+        "default": "{}",
+        "types": [
+          "object"
+        ],
+        "description": "Helper property used to store listeners for events."
+      },
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      },
+      "tabLabel": {
+        "public": false,
+        "description": ""
       }
     },
     "methods": {
-      "validate": {
+      "select": {
         "public": true,
         "returns": "void",
-        "description": "Validate the elements within the step."
+        "description": "Selects the tab to become the active tab."
       },
       "activate": {
         "public": true,
         "returns": "void",
-        "description": "Activates the step."
+        "description": "Activates the tab."
       },
       "deactivate": {
         "public": true,
         "returns": "void",
         "description": "Deactivates the step."
-      },
-      "enable": {
-        "public": true,
-        "returns": "void",
-        "description": "Enables the step."
-      },
-      "disable": {
-        "public": true,
-        "returns": "void",
-        "description": "Disables the step."
-      },
-      "complete": {
-        "public": true,
-        "returns": "void",
-        "description": "Completes the step."
-      },
-      "uncomplete": {
-        "public": true,
-        "returns": "void",
-        "description": "Uncompletes the step."
-      },
-      "select": {
-        "public": true,
-        "returns": "void",
-        "description": "Selects the step to become the active step."
-      },
-      "forwardConditions": {
-        "public": false,
-        "returns": "void",
-        "description": "Apply conditions of the step to the elements within."
       },
       "on": {
         "public": true,
@@ -1872,12 +1609,8 @@ export default {
       }
     }
   },
-  "InputAddon": {
+  "FormTabs": {
     "inject": {
-      "el$": {
-        "public": false,
-        "description": ""
-      },
       "form$": {
         "public": false,
         "description": ""
@@ -1888,7 +1621,11 @@ export default {
       }
     },
     "computed": {
-      "components": {
+      "tabs": {
+        "public": false,
+        "description": ""
+      },
+      "elements$": {
         "public": false,
         "description": ""
       },
@@ -1900,13 +1637,182 @@ export default {
         "public": false,
         "description": ""
       },
-      "addon": {
+      "components": {
         "public": false,
         "description": ""
       },
-      "isAddonComponent": {
+      "tabs$": {
+        "public": true,
+        "default": "{}",
+        "types": [
+          "object"
+        ],
+        "description": "Object of tab$ components."
+      },
+      "visible$": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the visible [tab$](reference/frontend-tab) components."
+      },
+      "current$": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the current [tab$](reference/frontend-tab) components."
+      },
+      "first$": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the first [tab$](reference/frontend-tab) components."
+      },
+      "next$": {
+        "public": true,
+        "types": [
+          [
+            "component",
+            "FormTab"
+          ]
+        ],
+        "description": "Returns the next [tab$](reference/frontend-tab) component."
+      },
+      "previous$": {
+        "public": true,
+        "types": [
+          [
+            "component",
+            "FormTab"
+          ]
+        ],
+        "description": "Returns the previous [tabs$](reference/frontend-tab) component."
+      }
+    },
+    "data": {
+      "tabs$Array": {
         "public": false,
         "description": ""
+      },
+      "events": {
+        "public": true,
+        "default": "[]",
+        "types": [
+          "array"
+        ],
+        "description": "Helper property used to store available events for the element."
+      },
+      "listeners": {
+        "public": true,
+        "default": "{}",
+        "types": [
+          "object"
+        ],
+        "description": "Helper property used to store listeners for events."
+      },
+      "exists": {
+        "public": false,
+        "description": ""
+      },
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "methods": {
+      "goTo": {
+        "public": true,
+        "returns": "void",
+        "description": "Moves to a tab.",
+        "params": {
+          "tab": {
+            "types": [
+              "object"
+            ],
+            "required": false,
+            "description": "key of tab in [tabs](reference/frontend-form#prop-tabs)"
+          }
+        }
+      },
+      "select": {
+        "public": false,
+        "returns": "void",
+        "description": "Selects a tab.",
+        "params": {
+          "tab$": {
+            "types": [
+              "object"
+            ],
+            "required": false,
+            "description": "selected tab component"
+          }
+        }
+      },
+      "tab$": {
+        "public": true,
+        "returns": [
+          [
+            "component",
+            "FormTab"
+          ]
+        ],
+        "description": "Returns a specific [tab$](reference/frontend-tab).",
+        "params": {
+          "tab": {
+            "types": [
+              "object"
+            ],
+            "required": false,
+            "description": "key of tab in [tabs](reference/frontend-form#prop-tabs) object"
+          }
+        }
+      },
+      "reset": {
+        "public": true,
+        "returns": "void",
+        "description": "Reset tabs, meaning selecting [first$](#prop-first) tab."
+      },
+      "on": {
+        "public": true,
+        "returns": "void",
+        "description": "Adds a listener for an event.",
+        "params": {
+          "event": {
+            "types": [
+              "string"
+            ],
+            "required": false,
+            "description": "event to listen for."
+          },
+          "callback": {
+            "types": [
+              "function"
+            ],
+            "required": false,
+            "description": "callback to run when the event is triggered. The `this` variable refers to the component the listener is set for."
+          }
+        }
+      },
+      "off": {
+        "public": true,
+        "returns": "void",
+        "description": "Removes all listeners for an event.",
+        "params": {
+          "event": {
+            "types": [
+              "string"
+            ],
+            "required": false,
+            "description": "event to remove the listeners for."
+          }
+        }
+      },
+      "fire": {
+        "public": true,
+        "returns": "any",
+        "description": "Fires an event."
       }
     }
   }

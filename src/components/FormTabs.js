@@ -50,10 +50,20 @@ export default {
 
     // ============== COMPUTED ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const elements$ = computed(() => {
       return form$.value.elements$
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const tabs = computed(() => {
       return form$.value.options.tabs
     })

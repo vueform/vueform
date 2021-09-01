@@ -58,10 +58,20 @@ export default {
 
     // ============== COMPUTED ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const steps = computed(() => {
       return form$.value.options.steps
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const elements$ = computed(() => {
       return form$.value.elements$
     })

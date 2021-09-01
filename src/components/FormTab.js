@@ -92,7 +92,7 @@ export default {
 
     const {
       isLabelComponent,
-      label: tabLabel,
+      label: tabLabel_,
     } = useLabel(props, context, { component$: form$, labelDefinition: label })
 
     const {
@@ -115,16 +115,38 @@ export default {
      */
     const active = ref(false)
 
+    /**
+     * 
+     * 
+     * @private
+     */
+    const tabLabel = ref(tabLabel_.value)
+
     // ============== COMPUTED ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const elements$ = computed(() => {
       return form$.value.elements$
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const tabs$ = computed(() => {
       return form$.value.tabs$
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const index = computed(() => {
       return Object.keys(tabs$.value.tabs$).indexOf(name.value)
     })

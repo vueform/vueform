@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { computed, ref, toRefs, inject, markRaw, getCurrentInstance, onMounted, onBeforeMount, provide, watch, nextTick, reactive } from 'composition-api'
 import { mergeComponentClasses } from './../utils/mergeClasses'
-import convertFormData from './../utils/convertFormData'
+import convertFormDataUtil from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'
 import dataEquals from './../utils/dataEquals'
 import useEvents from './useEvents'
@@ -151,18 +151,38 @@ const base = function(props, context, dependencies = {})
 
   // ============== COMPUTED ==============
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const form$ = computed(() => {
     return $this
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const baseConfig = computed(() => {
     return $this.$laraform
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const services = computed(() => {
     return $this.$laraform.services
   })
 
+  /**
+   * 
+   * 
+   * @private
+   */
   const options = computed(() => {
     const options = {
       schema: orderedSchema.value,
@@ -937,6 +957,15 @@ const base = function(props, context, dependencies = {})
    */
   const handleSubmit = () => {
     submit()
+  }
+
+  /**
+  * 
+  * 
+  * @private
+  */
+  const convertFormData = (data) => {
+    return convertFormDataUtil(data)
   }
 
   /**

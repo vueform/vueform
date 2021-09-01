@@ -118,7 +118,7 @@ export default {
 
     const {
       isLabelComponent,
-      label: stepLabel,
+      label: stepLabel_,
     } = useLabel(props, context, { component$: form$, labelDefinition: label })
 
     const {
@@ -134,6 +134,13 @@ export default {
     })
 
     // ================ DATA ================
+
+    /**
+     * 
+     * 
+     * @private
+     */
+    const stepLabel = ref(stepLabel_.value)
 
     /**
      * Determines whether the step is active.
@@ -161,14 +168,29 @@ export default {
 
     // ============== COMPUTED ==============
     
+    /**
+     * 
+     * 
+     * @private
+     */
     const steps$ = computed(() => {
       return form$.value.steps$ || {}
     })
     
+    /**
+     * 
+     * 
+     * @private
+     */
     const elements$ = computed(() => {
       return form$.value.elements$
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const index = computed(() => {
       if (!steps$.value || !steps$.value.steps$) {
         return undefined
