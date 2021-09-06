@@ -242,8 +242,13 @@ export default function(config) {
             throw new Error(e)
           }
 
-          if (!this.$options.staticRenderFns && renderer.staticRenderFns) {
-            this.$options.staticRenderFns = renderer.staticRenderFns
+          try {
+            if (!this.$options?.staticRenderFns && renderer.staticRenderFns) {
+              this.$options.staticRenderFns = renderer.staticRenderFns
+            }
+          } catch (e) {
+            console.log(name)
+            throw new Error(e)
           }
           
           return renderer.render.apply(this, arguments)

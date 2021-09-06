@@ -30,13 +30,12 @@ import HasView from './../../mixins/HasView'
 import HasChange from './../../mixins/HasChange'
 import HasData from './../../mixins/HasData'
 
-export default {
+const element = {
   name: 'AddressElement',
   mixins: [BaseElement, HasView, HasChange, HasData],
-  // slots: ['label', 'description', 'message', 'before', 'between', 'after'],
   props: {
     type: {
-      required: false,
+      required: true,
       type: [String],
       default: 'address'
     },
@@ -164,7 +163,7 @@ export default {
     }, {
       slots: [
         'label', 'description', 'message',
-        'before', 'between', 'after'
+        'before', 'between', 'after',
       ]
     })
 
@@ -225,3 +224,7 @@ export default {
     }
   }
 }
+
+export default element
+
+export { element }

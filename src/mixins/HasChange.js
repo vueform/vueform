@@ -4,6 +4,7 @@ export default {
       required: false,
       type: [Function],
       default: null,
+      private: true,
     },
   }
 }

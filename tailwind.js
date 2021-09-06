@@ -726,12 +726,18 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0,
     },
+    '.form-border-l-none': { 
+      borderLeft: 0,
+    },
   }
 
   const addonAfter = {
     '.form-rounded-r-none': { 
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
+    },
+    '.form-border-r-none': { 
+      borderRight: 0,
     },
   }
 

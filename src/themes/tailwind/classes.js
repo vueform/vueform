@@ -11,7 +11,7 @@ const radio = {
 }
 
 const text = {
-  input: 'w-full form-p-input form-border form-border-color form-rounded z-1 addon-before:form-rounded-l-none outline-none addon-after:form-rounded-r-none',
+  input: 'w-full form-p-input form-border form-border-color form-rounded z-1 addon-before:form-rounded-l-none addon-before:form-border-l-none outline-none addon-after:form-rounded-r-none addon-after:form-border-r-none',
   input_enabled: 'focus:form-ring',
   input_disabled: 'form-bg-disabled form-text-disabled',
 }
@@ -299,7 +299,7 @@ export default {
   },
   ElementInfo: {
     container: 'inline-block w-3.5 h-3.5 form-bg-info relative ml-2 top-px cursor-pointer group',
-    wrapper: 'absolute left-5 -top-1.5 -mt-px opacity-0 invisible group-hover:opacity-100 group-hover:form-visible transition z-20 w-52',
+    wrapper: 'absolute left-5 -top-0.5 -mt-px opacity-0 invisible group-hover:opacity-100 group-hover:form-visible transition z-20 w-52',
     content: 'bg-black bg-opacity-90 text-white rounded-md text-sm py-1 px-2.5 not-italic inline-block relative',
   },
   ElementLabel: {
@@ -307,7 +307,7 @@ export default {
   },
   ElementLabelFloating: {
     container: 'relative',
-    label: 'absolute z-10 left-2.5 -top-1.5 leading-none form-text-0.5xs text-gray-500 bg-white px-px transition whitespace-nowrap',
+    label: 'absolute z-10 left-2.5 -top-1 leading-none form-text-0.5xs text-gray-500 bg-white px-px transition whitespace-nowrap',
     label_invisible: 'opacity-0 invisible',
     label_visible: 'opacity-100 visible',
   },

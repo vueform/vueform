@@ -10,10 +10,5 @@ export default {
       type: [Object],
       default: () => ({})
     },
-    displayError: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
   }
 }

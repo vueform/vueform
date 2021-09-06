@@ -17,7 +17,7 @@ export default function (props, context, dependencies)
    * 
    * @private
    */
-  const externalValue = ref(context.expose !== undefined ? mv : v).value
+  const externalValue = context.expose !== undefined ? mv : v
 
   /**
    * 

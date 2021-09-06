@@ -1,6 +1,25 @@
 const _ = require('lodash')
 const fs = require('fs')
-const elements = require('./../../elements').default
+require('module-alias/register')
+
+const elementsInfo = require('./../../elements').default
+
+const elements = {}
+const skipPrivate = false
+
+_.each(fs.readdirSync(__dirname + '/../../../src/components/elements'), (filename) => {
+  if (!filename.match(/\.js$/)) {
+    return
+  }
+
+  console.log(filename, 'loaded')
+
+  const element = filename.replace('.js', '')
+
+  elements[element] = require('./../../../src/components/elements/' + filename).default
+})
+
+
 const elementFeatures = require('./../../features/elements').default
 const commonFeatures = require('./../../features/common').default
 
@@ -9,78 +28,169 @@ const include = []
 
 const output = __dirname + '/../../components/elements.js'
 
-let contents = ''
+const generate = () => {
+  let contents = `module.exports = {\n`
 
-contents += `export default {\n`
+  _.each(elements, (element, elementName) => {
+    if (include.length > 0 && include.indexOf(elementName) === -1) {
+      return
+    }
+    contents += `  ${elementName}: {\n`
 
-_.each(elements, (element, elementName) => {
-  if (include.length > 0 && include.indexOf(elementName) === -1) {
-    return
+    contents = addProps(contents, element)
+    contents = addFeatureAsset('data', contents, elementName)
+    contents = addFeatureAsset('computed', contents, elementName)
+    contents = addFeatureAsset('methods', contents, elementName)
+    contents = addFeatureAsset('inject', contents, elementName)
+
+    contents += `  },\n`
+  })
+
+  contents += '}'
+
+  return contents
+}
+
+const addProps = (contents, element) => {
+  let props = {}
+
+  _.forEach(element.mixins || {}, (mixin) => {
+    props = { ...props, ...mixin.props }
+  })
+
+  props = { ...props, ...element.props || {} }
+
+  const addDefault = (prop) => {
+    let default_ = prop['@default'] || prop.default
+
+    if (typeof default_ === 'function') {
+      default_ = JSON.stringify(default_())
+    }
+
+    contents += `        default: '${default_}',\n`
   }
 
-  contents += `  ${elementName}: {\n`
+  const addTypes = (prop) => {
+    let types = prop['@type'] || prop.type
+
+    contents += `        types: [\n`
+
+    _.forEach(types, (v,k) => {
+      contents += `          '${v.prototype.constructor.name.toLowerCase()}',\n`
+    })
+
+    contents += `        ],\n`
+  }
+
   contents += `    props: {\n`
-  contents += `      name: {\n`
-  contents += `        required: true,\n`
-  contents += `        type: [String, Number],\n`
-  contents += `      },\n`,
 
-  _.each(element.features, (featureName) => {
-    let base = featureName.split('_')[0]
-    let variant = featureName.split('_').length > 1 ? featureName.split('_')[1] : 'base'
-
-    let feature = elementFeatures[base] ? elementFeatures[base][variant] : commonFeatures[base][variant]
-
-    if (!feature || !feature.options) {
+  _.forEach(props, (v,k) => {
+    if (skipPrivate && v.private) {
       return
     }
 
-    _.each(feature.options, (option, optionName) => {
-      if (ignore.indexOf(optionName) !== -1) {
+    contents += `      ${k}: {\n`
+    contents += `        required: '${v.required}',\n`
+    addDefault(v)
+    addTypes(v)
+
+    if (!skipPrivate) {
+      contents += `        private: ${!!v.private},\n`
+    }
+
+    contents += `      },\n`
+  })
+
+  contents += `    },\n`
+
+  return contents
+}
+
+const addFeatureAsset = (type, contents, elementName) => {
+  contents += `    ${type}: {\n`
+
+  _.forEach(getFeatures(elementName), (featureName) => {
+    const feature = getFeature(featureName)
+
+    if (!feature) {
+      return
+    }
+
+    _.forEach(feature[type] || {}, (asset, key) => {
+      if (skipPrivate && asset.public === false) {
         return
       }
 
-      let types = []
+      contents += `      ${key}: {\n`
 
-      _.each(option.types, (type) => {
-        let Type
+      if (asset.types) {
+        contents += `        types: [\n`
 
-        switch(type) {
-          case 'object': Type = 'Object'; break
-          case 'array': Type = 'Array'; break
-          case 'string': Type = 'String'; break
-          case 'number': Type = 'Number'; break
-          case 'boolean': Type = 'Boolean'; break
-          case 'function': Type = 'Function'; break
-          case 'component': Type = 'Object'; break
-        }
+        _.forEach(asset.types, (type) => {
+          contents += `          '${type}',\n`
+        })
 
-        types.push(Type)
-      })
+        contents += `        ],\n`
+      }
 
-      contents += `      ${optionName}: {\n`
-      contents += `        required: false,\n`
-      contents += `        type: [${types.join(', ')}],\n`
-      contents += `        default: undefined\n`
+      contents += `        description: '${asset.description.split('').map(c=>c==='\''?'&quot;':c).join('')}',\n`
+
+      if (asset.default) {
+        contents += `        default: '${asset.default}',\n`
+      }
+
+      if (asset.returns) {
+        contents += `        returns: '${asset.returns}',\n`
+      }
+
+      if (asset.params) {
+        contents += `        params: {\n`
+
+        _.forEach(asset.params, (param, k) => {
+          contents += `          ${k}: {\n`
+          contents += `            types: [\n`
+
+          _.forEach(param.types, (type) => {
+            contents += `              '${type}',\n`
+          })
+
+          contents += `            ],\n`
+          contents += `            required: '${param.required === true}',\n`
+          contents += `            description: '${param.description.split('').map(c=>c==='\''?'&quot;':c).join('')}',\n`
+          contents += `          },\n`
+        })
+
+        contents += `        },\n`
+      }
+
+      if (!skipPrivate) {
+        contents += `        private: ${asset.public === false},\n`
+      }
+
       contents += `      },\n`
     })
+
   })
+
   contents += `    },\n`
 
-  if (element.slots.length > 0) {
-    contents += `    slots: ['${element.slots.join("', '")}'],\n`
-  } else {
-    contents += `    slots: [],\n`
+  return contents
+}
+
+const getFeatures = (elementName) => {
+  try {
+    return elementsInfo[_.lowerFirst(elementName).replace('Element', '')].features
+  } catch (e) {
+    console.log(elementName)
+    throw new Error(e)
   }
+}
 
-  if (element.events.length > 0) {
-    contents += `    events: ['${element.events.join("', '")}'],\n`
-  } else {
-    contents += `    events: [],\n`
-  }
+const getFeature = (featureName) => {
+  let base = featureName.split('_')[0]
+  let variant = featureName.split('_').length > 1 ? featureName.split('_')[1] : 'base'
 
-  contents += `  },\n`
-})
-contents += '}'
+  return elementFeatures[base] ? elementFeatures[base][variant] : commonFeatures[base][variant]
+}
 
-fs.writeFileSync(output, contents)
+fs.writeFileSync(output, generate())

@@ -52,7 +52,7 @@ export default {
     addons: {
       required: false,
       type: [Object],
-      default: () => ({})
+      default: () => ({}),
     },
     autocomplete: {
       required: false,

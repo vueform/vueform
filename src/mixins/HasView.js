@@ -5,11 +5,6 @@ export default {
       type: [Boolean],
       default: false,
     },
-    /*
-      * 
-      * 
-      * @default "ElementLayout"
-      */
     layout: {
       required: false,
       type: [String, Object, Boolean],
