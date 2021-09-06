@@ -3,6 +3,8 @@ const fs = require('fs')
 require('module-alias/register')
 
 const elementsInfo = require('./../../elements').default
+const eventsInfo = require('./../../events').default
+const slotsInfo = require('./../../slots').default
 
 const elements = {}
 const skipPrivate = false
@@ -19,12 +21,11 @@ _.each(fs.readdirSync(__dirname + '/../../../src/components/elements'), (filenam
   elements[element] = require('./../../../src/components/elements/' + filename).default
 })
 
-
 const elementFeatures = require('./../../features/elements').default
 const commonFeatures = require('./../../features/common').default
 
 const ignore = []
-const include = []
+const include = ['TextElement']
 
 const output = __dirname + '/../../components/elements.js'
 
@@ -42,11 +43,122 @@ const generate = () => {
     contents = addFeatureAsset('computed', contents, elementName)
     contents = addFeatureAsset('methods', contents, elementName)
     contents = addFeatureAsset('inject', contents, elementName)
+    contents = addEvents(contents, elementName)
+    contents = addSlots(contents, elementName)
 
     contents += `  },\n`
   })
 
   contents += '}'
+
+  return contents
+}
+
+const addEvents = (contents, elementName) => {
+  const elementKey = _.lowerFirst(elementName).replace('Element', '')
+  const element = elementsInfo[elementKey]
+
+  if (!element.events) {
+    return contents
+  }
+
+  contents += `    events: {\n`
+
+  _.forEach(element.events, (eventName) => {
+    const eventInfo = eventsInfo[eventName][elementKey] || eventsInfo[eventName].base
+
+    contents += `      ${eventName}: {\n`
+
+    if (eventInfo.description) {
+      contents += `        description: '${eventInfo.description.split('').map(c=>c==='\''?'&quot;':c).join('')}',\n`
+    }
+
+    if (eventInfo.params) {
+      contents += `        params: {\n`
+
+      _.forEach(eventInfo.params, (param, paramName) => {
+        contents += `          ${paramName}: {\n`
+
+        if (param.description) {
+          contents += `            description: '${param.description.split('').map(c=>c==='\''?'&quot;':c).join('')}',\n`
+        }
+
+        if (param.types) {
+          contents += `            types: [\n`
+
+          _.forEach(param.types, (type) => {
+            contents += `              '${type}',\n`
+          })
+          contents += `            ]\n`
+        }
+
+        contents += `          },\n`
+      })
+
+      contents += `       },\n`
+    }
+
+    contents += `      },\n`
+  })
+
+  contents += `    },\n`
+
+  return contents
+}
+
+const addSlots = (contents, elementName) => {
+  const elementKey = _.lowerFirst(elementName).replace('Element', '')
+  const element = elementsInfo[elementKey]
+
+  if (!element.slots) {
+    return contents
+  }
+
+  contents += `    slots: {\n`
+
+  _.forEach(element.slots, (slotName) => {
+    if (!slotsInfo[slotName]) {
+      contents += `      ${slotName}: {},\n`
+      return
+    }
+
+
+    const slotInfo = slotsInfo[slotName][elementKey] || slotsInfo[slotName].base
+
+    contents += `      ${slotName}: {\n`
+
+    if (slotInfo.description) {
+      contents += `        description: '${slotInfo.description.split('').map(c=>c==='\''?'&quot;':c).join('')}',\n`
+    }
+
+    if (slotInfo.props) {
+      contents += `        props: {\n`
+
+      _.forEach(slotInfo.props, (prop, propName) => {
+        contents += `          ${propName}: {\n`
+
+        if (prop.description) {
+          contents += `            description: '${prop.description.split('').map(c=>c==='\''?'&quot;':c).join('')}',\n`
+        }
+
+        if (prop.types) {
+          contents += `            types: [\n`
+
+          _.forEach(prop.types, (type) => {
+            contents += `              '${type}',\n`
+          })
+          contents += `            ],\n`
+        }
+
+        contents += `          },\n`
+      })
+      contents += `        },\n`
+    }
+
+    contents += `      },\n`
+  })
+
+  contents += `    },\n`
 
   return contents
 }
