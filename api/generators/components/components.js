@@ -170,4 +170,4 @@ _.each(files, (file) => {
   }
 })
 
-fs.writeFileSync(outputPath, 'export default ' + JSON.stringify(components, null, 2))
+fs.writeFileSync(outputPath, 'module.exports = ' + JSON.stringify(components, null, 2))
