@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import moment from 'moment'
 import Validator from './../validator'
 
 export default class after extends Validator {

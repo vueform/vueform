@@ -25,7 +25,7 @@ const elementFeatures = require('./../../features/elements').default
 const commonFeatures = require('./../../features/common').default
 
 const ignore = []
-const include = ['TextElement']
+const include = []
 
 const output = __dirname + '/../../components/elements.js'
 
@@ -65,7 +65,14 @@ const addEvents = (contents, elementName) => {
   contents += `    events: {\n`
 
   _.forEach(element.events, (eventName) => {
-    const eventInfo = eventsInfo[eventName][elementKey] || eventsInfo[eventName].base
+    let eventInfo
+    
+    try {
+      eventInfo = eventsInfo[eventName][elementKey] || eventsInfo[eventName].base
+    } catch (e) {
+      console.log(elementName, elementKey)
+      throw e
+    }
 
     contents += `      ${eventName}: {\n`
 
