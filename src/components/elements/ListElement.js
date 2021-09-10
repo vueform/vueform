@@ -40,7 +40,6 @@ export default {
   name: 'ListElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'add', 'remove', 'sort'],
-  // slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {
     type: {
       required: false,

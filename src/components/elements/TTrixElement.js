@@ -39,7 +39,6 @@ export default {
   name: 'TTrixElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'error'],
-  // slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {
     type: {
       required: false,

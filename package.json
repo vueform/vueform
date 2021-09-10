@@ -32,6 +32,8 @@
         "generate:features:common": "npx babel-node api/generators/features/common.js --presets @babel/preset-env",
         "generate:components:elements": "npx babel-node api/generators/components/elements.js --presets @babel/preset-env",
         "generate:components:components": "npx babel-node api/generators/components/components.js --presets @babel/preset-env",
+        "generate:e": "npm run generate:elements ; npm run generate:features:elements ; npm run generate:features:common ; npm run generate:components:elements",
+        "generate:c": "npm run generate:features:common ; npm run generate:components:components",
         "generate:all": "npm run generate:elements ; npm run generate:features:elements ; npm run generate:features:common ; npm run generate:components:elements ; npm run generate:components:components"
     },
     "devDependencies": {

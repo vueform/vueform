@@ -31,7 +31,6 @@ export default {
   name: 'GroupElement',
   mixins: [BaseElement, HasView, HasChange, HasData],
   emits: ['change'],
-  // slots: ['label', 'description', 'message', 'before', 'between', 'after'],
   props: {
     type: {
       required: false,

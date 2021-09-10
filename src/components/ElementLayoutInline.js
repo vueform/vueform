@@ -3,6 +3,7 @@ import useElementComponent from './../composables/useElementComponent'
 
 export default {
   name: 'ElementLayoutInline',
+  slots: ['label', 'before', 'field', 'between', 'description', 'error', 'message', 'after'],
   setup(props, context)
   {
     // ============ DEPENDENCIES ============

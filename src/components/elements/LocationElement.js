@@ -37,7 +37,6 @@ export default {
   name: 'LocationElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change'],
-  // slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after', 'addonBefore', 'addonAfter'],
   props: {
     type: {
       required: false,

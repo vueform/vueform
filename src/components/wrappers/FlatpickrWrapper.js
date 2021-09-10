@@ -50,8 +50,18 @@ export default {
 
     // ================ DATA ================
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const flatpickr$ = ref(null)
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const input = ref(null)
 
     /* istanbul ignore next */
@@ -59,10 +69,20 @@ export default {
 
     // ============== COMPITED ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const mode = computed(() => {
       return options.value.mode || 'single'
     })
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const config = computed(() => {
       const config = {}
 
@@ -85,10 +105,20 @@ export default {
 
     // =============== METHODS ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const update = (val) => {
       context.emit('change', mode.value == 'single' ? (val[0] || null) : val)
     }
-  
+
+    /**
+     * 
+     * 
+     * @private
+     */
     const setFlatpickrId = () => {
       flatpickr$.value.input.parentElement.id = 'flatpickr-' + id.value
     }

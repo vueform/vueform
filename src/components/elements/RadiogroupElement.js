@@ -33,7 +33,6 @@ export default {
   name: 'RadiogroupElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change'],
-  // slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after', 'radio'],
   props: {
     type: {
       required: false,

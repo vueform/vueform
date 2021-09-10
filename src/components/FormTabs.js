@@ -7,6 +7,7 @@ import normalize from './../utils/normalize'
 export default {
   name: 'FormTabs',
   emits: ['change'],
+  slots: ['default'],
   setup(props, context)
   {  
     const $this = getCurrentInstance().proxy

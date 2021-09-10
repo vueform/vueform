@@ -4,6 +4,7 @@ import useLabel from './../composables/useLabel'
 
 export default {
   name: 'FormStepsControl',
+  slots: ['default'],
   props: {
     type: {
       type: [String],

@@ -687,10 +687,6 @@ export default {
         "intermediaryValue": {
           "public": false,
           "description": ""
-        },
-        "externalValue": {
-          "public": false,
-          "description": ""
         }
       },
       "methods": {

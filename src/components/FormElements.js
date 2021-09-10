@@ -4,6 +4,7 @@ import useElements from './../composables/useElements'
 
 export default {
   name: 'FormElements',
+  slots: ['default'],
   setup(props, context)
   {  
     // ============ DEPENDENCIES ============

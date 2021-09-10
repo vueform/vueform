@@ -1111,7 +1111,6 @@ const base = function(props, context, dependencies = {})
     extendedComponents,
     selectedTheme,
     extendedTheme,
-    options,
     form$,
     model,
     intermediaryValue,

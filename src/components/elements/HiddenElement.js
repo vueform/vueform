@@ -26,7 +26,6 @@ export default {
   name: 'HiddenElement',
   mixins: [BaseElement, HasChange, HasData, HasValidation],
   emits: ['change'],
-  // slots: [],
   props: {
     type: {
       required: false,

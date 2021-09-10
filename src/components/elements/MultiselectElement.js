@@ -39,7 +39,6 @@ export default {
   name: 'MultiselectElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'select', 'deselect', 'searchChange', 'open', 'close'],
-  // slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after', 'beforelist', 'afterlist', 'multiplelabel', 'noresults', 'nooptions', 'option'],
   props: {
     type: {
       required: false,

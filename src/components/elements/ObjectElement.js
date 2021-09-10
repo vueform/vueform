@@ -32,7 +32,6 @@ export default {
   name: 'ObjectElement',
   mixins: [BaseElement, HasView, HasChange, HasData],
   emits: ['change', 'remove'],
-  // slots: ['label', 'description', 'message', 'before', 'between', 'after'],
   props: {
     type: {
       required: false,

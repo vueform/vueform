@@ -47,7 +47,45 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {
+      "title": {
+        "required": true,
+        "types": [
+          "string"
+        ]
+      },
+      "description": {
+        "required": true,
+        "types": [
+          "string"
+        ]
+      },
+      "disabled": {
+        "required": false,
+        "default": false,
+        "types": [
+          "boolean"
+        ]
+      }
+    },
+    "events": {
+      "click": {
+        "description": ""
+      },
+      "drop": {
+        "description": "",
+        "params": {
+          "e": {
+            "description": "",
+            "types": [
+              "Event"
+            ]
+          }
+        }
+      }
+    },
+    "slots": {}
   },
   "ElementAddon": {
     "inject": {
@@ -91,7 +129,17 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {
+      "type": {
+        "required": true,
+        "types": [
+          "string"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
   },
   "ElementDescription": {
     "inject": {
@@ -131,7 +179,10 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
   },
   "ElementError": {
     "inject": {
@@ -171,7 +222,10 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
   },
   "ElementInfo": {
     "inject": {
@@ -211,7 +265,10 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
   },
   "ElementLabel": {
     "inject": {
@@ -262,7 +319,10 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
   },
   "ElementLabelFloating": {
     "inject": {
@@ -302,7 +362,18 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {
+      "visible": {
+        "required": false,
+        "default": false,
+        "types": [
+          "boolean"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
   },
   "ElementLayout": {
     "inject": {
@@ -366,6 +437,42 @@ export default {
         "public": false,
         "description": ""
       }
+    },
+    "props": {
+      "multiple": {
+        "required": false,
+        "default": false,
+        "types": [
+          "boolean"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {
+      "label": {
+        "description": "Label slot"
+      },
+      "before": {
+        "description": "Before slot"
+      },
+      "field": {
+        "description": "Field slot"
+      },
+      "between": {
+        "description": "Between slot"
+      },
+      "description": {
+        "description": "Description slot"
+      },
+      "error": {
+        "description": "Error slot"
+      },
+      "message": {
+        "description": "Message slot"
+      },
+      "after": {
+        "description": "After slot"
+      }
     }
   },
   "ElementLayoutInline": {
@@ -410,7 +517,10 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
   },
   "ElementLoader": {
     "inject": {
@@ -446,7 +556,10 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
   },
   "ElementMessage": {
     "inject": {
@@ -486,7 +599,10 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
   },
   "ElementText": {
     "inject": {
@@ -526,7 +642,17 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {
+      "type": {
+        "required": true,
+        "types": [
+          "string"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
   },
   "FormElements": {
     "inject": {
@@ -568,7 +694,10 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
   },
   "FormErrors": {
     "inject": {
@@ -604,7 +733,10 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
   },
   "FormLanguage": {
     "inject": {
@@ -650,7 +782,23 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {
+      "language": {
+        "required": true,
+        "types": [
+          "object"
+        ]
+      },
+      "code": {
+        "required": true,
+        "types": [
+          "string"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
   },
   "FormLanguages": {
     "inject": {
@@ -700,7 +848,10 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
   },
   "FormMessages": {
     "inject": {
@@ -736,7 +887,10 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
   },
   "FormStep": {
     "inject": {
@@ -989,7 +1143,92 @@ export default {
         "returns": "any",
         "description": "Fires an event."
       }
-    }
+    },
+    "props": {
+      "name": {
+        "required": true,
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "label": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string",
+          "object",
+          "function"
+        ]
+      },
+      "labels": {
+        "required": false,
+        "default": "{}",
+        "types": [
+          "object"
+        ]
+      },
+      "buttons": {
+        "required": false,
+        "default": "{}",
+        "types": [
+          "object"
+        ]
+      },
+      "elements": {
+        "required": false,
+        "default": "[]",
+        "types": [
+          "array"
+        ]
+      },
+      "conditions": {
+        "required": false,
+        "default": "[]",
+        "types": [
+          "array"
+        ]
+      },
+      "stepClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "onActive": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ]
+      },
+      "onInactive": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ]
+      },
+      "onDisable": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ]
+      },
+      "onEnable": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
   },
   "FormSteps": {
     "inject": {
@@ -1336,7 +1575,10 @@ export default {
         "returns": "any",
         "description": "Fires an event."
       }
-    }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
   },
   "FormStepsControl": {
     "inject": {
@@ -1414,7 +1656,24 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {
+      "type": {
+        "required": true,
+        "types": [
+          "string"
+        ]
+      },
+      "labels": {
+        "required": false,
+        "default": true,
+        "types": [
+          "boolean"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
   },
   "FormStepsControls": {
     "inject": {
@@ -1446,7 +1705,18 @@ export default {
         "public": false,
         "description": ""
       }
-    }
+    },
+    "props": {
+      "labels": {
+        "required": false,
+        "default": true,
+        "types": [
+          "boolean"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
   },
   "FormTab": {
     "inject": {
@@ -1607,7 +1877,64 @@ export default {
         "returns": "any",
         "description": "Fires an event."
       }
-    }
+    },
+    "props": {
+      "name": {
+        "required": true,
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "label": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string",
+          "object",
+          "function"
+        ]
+      },
+      "elements": {
+        "required": false,
+        "default": "[]",
+        "types": [
+          "array"
+        ]
+      },
+      "conditions": {
+        "required": false,
+        "default": "[]",
+        "types": [
+          "array"
+        ]
+      },
+      "tabClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "onActive": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ]
+      },
+      "onInactive": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
   },
   "FormTabs": {
     "inject": {
@@ -1814,6 +2141,1626 @@ export default {
         "returns": "any",
         "description": "Fires an event."
       }
-    }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
+  },
+  "Laraform": {
+    "data": {
+      "tabs$": {
+        "public": false,
+        "description": ""
+      },
+      "steps$": {
+        "public": false,
+        "description": ""
+      },
+      "elements$": {
+        "public": false,
+        "description": ""
+      },
+      "validation": {
+        "public": true,
+        "default": "true",
+        "types": [
+          "boolean"
+        ],
+        "description": "Determine if the form should validate."
+      },
+      "messageBag": {
+        "public": true,
+        "default": "{MessageBag}",
+        "types": [
+          "MessageBag"
+        ],
+        "description": "Message bag that contains computed & custom errors & messages."
+      },
+      "selectedLanguage": {
+        "public": false,
+        "default": "false",
+        "types": [
+          "boolean"
+        ],
+        "description": "Determine if the form's data is currently being updated for external model."
+      },
+      "submitting": {
+        "public": true,
+        "default": "false",
+        "types": [
+          "boolean"
+        ],
+        "description": "Determine if the form is currently submitting."
+      },
+      "preparing": {
+        "public": true,
+        "default": "false",
+        "types": [
+          "boolean"
+        ],
+        "description": "Determine if the form is currently preparing for submission."
+      },
+      "updating": {
+        "public": false,
+        "default": "false",
+        "types": [
+          "boolean"
+        ],
+        "description": "Determine if the form's data is currently being updated for external model."
+      },
+      "events": {
+        "public": true,
+        "default": "[]",
+        "types": [
+          "array"
+        ],
+        "description": "Helper property used to store available events for the element."
+      },
+      "listeners": {
+        "public": true,
+        "default": "{}",
+        "types": [
+          "object"
+        ],
+        "description": "Helper property used to store listeners for events."
+      },
+      "internalData": {
+        "public": false,
+        "description": "If v-model is defined it is always equal to that. Otherwise used as model container."
+      },
+      "intermediaryValue": {
+        "public": false,
+        "description": ""
+      },
+      "userConfig": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "options": {
+        "public": false,
+        "description": ""
+      },
+      "data": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The form's data excluding elements with unmet conditions and the ones which should not submit."
+      },
+      "output": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The form's data excluding elements with unmet conditions and the ones which should not submit."
+      },
+      "dirty": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form has any dirty element."
+      },
+      "invalid": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form has any invalid element."
+      },
+      "debouncing": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form has any debouncing element."
+      },
+      "pending": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form has any pending element."
+      },
+      "validated": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether each element of the form has been validated."
+      },
+      "busy": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form has any busy element or in preparing or submitting state."
+      },
+      "formErrors": {
+        "public": true,
+        "types": [
+          "array"
+        ],
+        "description": "List of all errors within the form."
+      },
+      "formMessages": {
+        "public": true,
+        "types": [
+          "array"
+        ],
+        "description": "List of all errors within the form."
+      },
+      "isDisabled": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form is disabled."
+      },
+      "isLoading": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form is loading."
+      },
+      "shouldValidateOnChange": {
+        "public": false,
+        "description": ""
+      },
+      "shouldValidateOnStep": {
+        "public": false,
+        "description": ""
+      },
+      "hasSteps": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form has steps."
+      },
+      "hasTabs": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form has tabs."
+      },
+      "hasErrors": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form has errors."
+      },
+      "hasMessages": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form has messages."
+      },
+      "isMultilingual": {
+        "public": false,
+        "description": ""
+      },
+      "showErrors": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": ""
+      },
+      "showMessages": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": ""
+      },
+      "showLanguages": {
+        "public": false,
+        "description": ""
+      },
+      "showSteps": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": ""
+      },
+      "showTabs": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": ""
+      },
+      "showStepsControls": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      },
+      "extendedClasses": {
+        "public": false,
+        "description": ""
+      },
+      "extendedComponents": {
+        "public": false,
+        "description": ""
+      },
+      "selectedTheme": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The theme object of the selected theme."
+      },
+      "extendedTheme": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The selected theme's file with local extensions."
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "model": {
+        "public": false,
+        "description": "Clone value of model container: v-model or internal data"
+      },
+      "isSync": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "methods": {
+      "updateModel": {
+        "public": false,
+        "description": ""
+      },
+      "update": {
+        "public": true,
+        "returns": "void",
+        "description": "Updates the element values which are contained in the data.",
+        "params": {
+          "data": {
+            "types": [
+              "object"
+            ],
+            "required": false,
+            "description": "data to update with"
+          }
+        }
+      },
+      "load": {
+        "public": true,
+        "returns": "void",
+        "description": "Loads data and clears any element if the element's key is not found in the `data` object. Sets all elements' `dirty` to `false`.",
+        "params": {
+          "data": {
+            "types": [
+              "object"
+            ],
+            "required": false,
+            "description": "data to load"
+          }
+        }
+      },
+      "reset": {
+        "public": true,
+        "returns": "void",
+        "description": "Resets the form to its default state."
+      },
+      "clear": {
+        "public": true,
+        "returns": "void",
+        "description": "Resets the form to null values."
+      },
+      "clean": {
+        "public": true,
+        "returns": "void",
+        "description": "Sets all elements' `dirty` to `false`."
+      },
+      "validate": {
+        "public": true,
+        "returns": "void",
+        "description": "Validates each elements within the form."
+      },
+      "resetValidators": {
+        "public": true,
+        "returns": "void",
+        "description": ""
+      },
+      "convertFormData": {
+        "public": false,
+        "description": ""
+      },
+      "submit": {
+        "public": true,
+        "returns": "void",
+        "description": "Starts the submission process."
+      },
+      "send": {
+        "public": true,
+        "returns": "void",
+        "description": "Transforms form data to [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object and sends it to the endpoint."
+      },
+      "disableValidation": {
+        "public": true,
+        "returns": "void",
+        "description": "Disabled validation."
+      },
+      "enableValidation": {
+        "public": true,
+        "returns": "void",
+        "description": "Enables validation."
+      },
+      "setLanguage": {
+        "public": false,
+        "description": ""
+      },
+      "handleSubmit": {
+        "public": true,
+        "description": "Triggered when the form is submitted. Can prevent further execution (element validation) if returns `false`."
+      },
+      "el$": {
+        "public": true,
+        "returns": "void",
+        "description": "Returns an element by its path.",
+        "params": {
+          "path": {
+            "types": [
+              "string"
+            ],
+            "required": false,
+            "description": "path of the element"
+          },
+          "elements": {
+            "types": [
+              "string"
+            ],
+            "required": false,
+            "description": "elements$ object to look elements for (leave blank)"
+          }
+        }
+      },
+      "siblings$": {
+        "public": true,
+        "returns": "void",
+        "description": "Returns the siblings of an element.",
+        "params": {
+          "path": {
+            "types": [
+              "string"
+            ],
+            "required": false,
+            "description": "path of the element"
+          }
+        }
+      },
+      "initMessageBag": {
+        "public": false,
+        "description": ""
+      },
+      "fire": {
+        "public": true,
+        "returns": "any",
+        "description": "Fires an event."
+      },
+      "on": {
+        "public": true,
+        "returns": "void",
+        "description": "Adds a listener for an event.",
+        "params": {
+          "event": {
+            "types": [
+              "string"
+            ],
+            "required": false,
+            "description": "event to listen for."
+          },
+          "callback": {
+            "types": [
+              "function"
+            ],
+            "required": false,
+            "description": "callback to run when the event is triggered. The `this` variable refers to the component the listener is set for."
+          }
+        }
+      },
+      "off": {
+        "public": true,
+        "returns": "void",
+        "description": "Removes all listeners for an event.",
+        "params": {
+          "event": {
+            "types": [
+              "string"
+            ],
+            "required": false,
+            "description": "event to remove the listeners for."
+          }
+        }
+      }
+    },
+    "props": {
+      "value": {
+        "required": false,
+        "types": [
+          "object"
+        ]
+      },
+      "modelValue": {
+        "required": false,
+        "types": [
+          "object"
+        ]
+      },
+      "sync": {
+        "required": false,
+        "default": false,
+        "types": [
+          "boolean"
+        ]
+      },
+      "default": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "disabled": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
+        ]
+      },
+      "loading": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
+        ]
+      },
+      "schema": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "tabs": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "steps": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "overrideClasses": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "addClasses": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "components": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "elements": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "messages": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "columns": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "languages": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "addClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "formKey": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "theme": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string"
+        ]
+      },
+      "endpoint": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string"
+        ]
+      },
+      "method": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string"
+        ]
+      },
+      "formData": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ]
+      },
+      "language": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string"
+        ]
+      },
+      "validateOn": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string"
+        ]
+      },
+      "labels": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
+        ]
+      },
+      "multilingual": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
+        ]
+      },
+      "stepsControls": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
+        ]
+      },
+      "displayErrors": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
+        ]
+      },
+      "formatLoad": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ]
+      },
+      "formatData": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ]
+      },
+      "prepare": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
+  },
+  "FlatpickrWrapper": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      },
+      "config": {
+        "public": false,
+        "description": ""
+      },
+      "mode": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      },
+      "flatpickr$": {
+        "public": false,
+        "description": ""
+      },
+      "input": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "methods": {
+      "update": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "props": {
+      "value": {
+        "required": true,
+        "types": [
+          "any"
+        ]
+      },
+      "modelValue": {
+        "required": true,
+        "types": [
+          "any"
+        ]
+      },
+      "options": {
+        "required": true,
+        "types": [
+          "object"
+        ]
+      },
+      "id": {
+        "required": true,
+        "types": [
+          "number",
+          "string"
+        ]
+      },
+      "placeholder": {
+        "required": false,
+        "types": [
+          "number",
+          "string"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
+  },
+  "TrixWrapper": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "trix$": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "methods": {
+      "update": {
+        "public": false,
+        "description": ""
+      },
+      "setOption": {
+        "public": false,
+        "description": ""
+      },
+      "handleChange": {
+        "public": false,
+        "description": ""
+      },
+      "handleFileAccept": {
+        "public": false,
+        "description": ""
+      },
+      "handleAttachmentAdd": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "props": {
+      "value": {
+        "required": false,
+        "default": null,
+        "types": [
+          "any"
+        ]
+      },
+      "placeholder": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "name": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "id": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "accept": {
+        "required": false,
+        "default": "[]",
+        "types": [
+          "array"
+        ]
+      },
+      "acceptMimes": {
+        "required": false,
+        "default": "[]",
+        "types": [
+          "array"
+        ]
+      },
+      "endpoint": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string"
+        ]
+      },
+      "disabled": {
+        "required": false,
+        "default": false,
+        "types": [
+          "boolean"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
+  },
+  "CheckboxgroupSlotCheckbox": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      },
+      "isDisabled": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "props": {
+      "item": {
+        "required": true,
+        "types": [
+          "any"
+        ]
+      },
+      "value": {
+        "required": true,
+        "types": [
+          "any"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
+  },
+  "FileSlotFilePreview": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      },
+      "visible": {
+        "public": false,
+        "description": ""
+      },
+      "hasLink": {
+        "public": false,
+        "description": ""
+      },
+      "hasError": {
+        "public": false,
+        "description": ""
+      },
+      "link": {
+        "public": false,
+        "description": ""
+      },
+      "filename": {
+        "public": false,
+        "description": ""
+      },
+      "clickable": {
+        "public": false,
+        "description": ""
+      },
+      "uploaded": {
+        "public": false,
+        "description": ""
+      },
+      "uploading": {
+        "public": false,
+        "description": ""
+      },
+      "progress": {
+        "public": false,
+        "description": ""
+      },
+      "canRemove": {
+        "public": false,
+        "description": ""
+      },
+      "canUpload": {
+        "public": false,
+        "description": ""
+      },
+      "uploadText": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "methods": {
+      "upload": {
+        "public": false,
+        "description": ""
+      },
+      "remove": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
+  },
+  "FileSlotGalleryPreview": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      },
+      "visible": {
+        "public": false,
+        "description": ""
+      },
+      "hasLink": {
+        "public": false,
+        "description": ""
+      },
+      "hasError": {
+        "public": false,
+        "description": ""
+      },
+      "link": {
+        "public": false,
+        "description": ""
+      },
+      "filename": {
+        "public": false,
+        "description": ""
+      },
+      "clickable": {
+        "public": false,
+        "description": ""
+      },
+      "preview": {
+        "public": false,
+        "description": ""
+      },
+      "previewLoaded": {
+        "public": false,
+        "description": ""
+      },
+      "uploaded": {
+        "public": false,
+        "description": ""
+      },
+      "uploading": {
+        "public": false,
+        "description": ""
+      },
+      "progress": {
+        "public": false,
+        "description": ""
+      },
+      "canRemove": {
+        "public": false,
+        "description": ""
+      },
+      "canUpload": {
+        "public": false,
+        "description": ""
+      },
+      "uploadText": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "methods": {
+      "upload": {
+        "public": false,
+        "description": ""
+      },
+      "remove": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
+  },
+  "FileSlotImagePreview": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      },
+      "visible": {
+        "public": false,
+        "description": ""
+      },
+      "hasLink": {
+        "public": false,
+        "description": ""
+      },
+      "hasError": {
+        "public": false,
+        "description": ""
+      },
+      "link": {
+        "public": false,
+        "description": ""
+      },
+      "filename": {
+        "public": false,
+        "description": ""
+      },
+      "clickable": {
+        "public": false,
+        "description": ""
+      },
+      "preview": {
+        "public": false,
+        "description": ""
+      },
+      "previewLoaded": {
+        "public": false,
+        "description": ""
+      },
+      "uploaded": {
+        "public": false,
+        "description": ""
+      },
+      "uploading": {
+        "public": false,
+        "description": ""
+      },
+      "progress": {
+        "public": false,
+        "description": ""
+      },
+      "canRemove": {
+        "public": false,
+        "description": ""
+      },
+      "canUpload": {
+        "public": false,
+        "description": ""
+      },
+      "uploadText": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "methods": {
+      "upload": {
+        "public": false,
+        "description": ""
+      },
+      "remove": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
+  },
+  "MultiselectSlotMultipleLabel": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "methods": {
+      "label": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "props": {
+      "values": {
+        "required": false,
+        "types": [
+          "array"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
+  },
+  "MultiselectSlotNoOptions": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
+  },
+  "MultiselectSlotNoResults": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "props": {},
+    "events": {},
+    "slots": {}
+  },
+  "MultiselectSlotOption": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "props": {
+      "option": {
+        "required": true,
+        "types": [
+          "any"
+        ]
+      },
+      "search": {
+        "required": false,
+        "types": [
+          "any"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
+  },
+  "MultiselectSlotSingleLabel": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "props": {
+      "value": {
+        "required": true,
+        "types": [
+          "any"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
+  },
+  "MultiselectSlotTag": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "props": {
+      "option": {
+        "required": true,
+        "types": [
+          "any"
+        ]
+      },
+      "handleTagRemove": {
+        "required": true,
+        "types": [
+          "function"
+        ]
+      },
+      "disabled": {
+        "required": true,
+        "types": [
+          "boolean"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
+  },
+  "RadiogroupSlotRadio": {
+    "inject": {
+      "el$": {
+        "public": false,
+        "description": ""
+      },
+      "form$": {
+        "public": false,
+        "description": ""
+      },
+      "theme": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "computed": {
+      "classes": {
+        "public": false,
+        "description": ""
+      },
+      "mainClass": {
+        "public": false,
+        "description": ""
+      },
+      "components": {
+        "public": false,
+        "description": ""
+      },
+      "isDisabled": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "data": {
+      "defaultClasses": {
+        "public": false,
+        "description": ""
+      }
+    },
+    "props": {
+      "item": {
+        "required": true,
+        "types": [
+          "object",
+          "string",
+          "number",
+          "array"
+        ]
+      },
+      "value": {
+        "required": true,
+        "types": [
+          "object",
+          "string",
+          "number",
+          "array"
+        ]
+      }
+    },
+    "events": {},
+    "slots": {}
   }
 }

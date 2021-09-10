@@ -34,7 +34,6 @@ export default {
   name: 'CheckboxgroupElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change'],
-  // slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after', 'checkbox'],
   props: {
     type: {
       required: false,

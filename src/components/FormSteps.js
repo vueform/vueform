@@ -7,6 +7,7 @@ import normalize from './../utils/normalize'
 export default {
   name: 'FormSteps',
   emits: ['next', 'previous', 'select', 'finish'],
+  slots: ['default'],
   setup(props, context)
   { 
     const $this = getCurrentInstance().proxy

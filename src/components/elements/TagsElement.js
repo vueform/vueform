@@ -40,7 +40,6 @@ export default {
   name: 'TagsElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'select', 'deselect', 'searchChange', 'open', 'close', 'tag'],
-  // slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after', 'beforelist', 'afterlist', 'noresults', 'nooptions', 'option', 'tag'],
   props: {
     type: {
       required: false,

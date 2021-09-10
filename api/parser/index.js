@@ -82,7 +82,11 @@ const Parser = class
 
         }
         
-        else {
+        else if (this.filename === 'useLaraform' && propName === 'externalValue') {
+          
+        }
+        
+        else if (this.filename === 'useLaraform' && propName === 'externalValue') {
           throw new Error(`Docblock not found for "${variation}@${propName}" in "${this.filename}"`)
         }
       })

@@ -35,7 +35,6 @@ export default {
   name: 'RadioElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change'],
-  // slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {
     type: {
       required: false,

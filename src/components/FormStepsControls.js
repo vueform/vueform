@@ -2,6 +2,7 @@ import useFormComponent from './../composables/useFormComponent'
 
 export default {
   name: 'FormStepsControls',
+  slots: ['previous', 'next', 'finish'],
   props: {
     labels: {
       type: Boolean,

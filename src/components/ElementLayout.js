@@ -3,6 +3,7 @@ import useElementComponent from './../composables/useElementComponent'
 
 export default {
   name: 'ElementLayout',
+  slots: ['label', 'before', 'field', 'between', 'description', 'error', 'message', 'after'],
   props: {
     multiple: {
       type: [Boolean],

@@ -67,10 +67,20 @@ export default {
 
     // ================ DATA ================
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const trix$ = ref(null)
 
     // =============== METHODS ==============
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const update = (val) => {
       if (typeof val == 'number') {
         val = String(val)
@@ -79,10 +89,20 @@ export default {
       trix$.value.editor.loadHTML(val)
     }
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const setOption = (key, val) => {
       trix$.value[key] = val
     }
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const handleChange = () => {
       // If the change is only triggered because of `update`
       // method (which implies an external call) we should
@@ -95,6 +115,11 @@ export default {
       context.emit('input', { target: { value: trix$.value.value }})
     }
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const handleFileAccept = (e) => {
       if (disabled.value) {
         e.preventDefault()
@@ -125,6 +150,11 @@ export default {
       }
     }
 
+    /**
+     * 
+     * 
+     * @private
+     */
     const handleAttachmentAdd = (e) => {
       if (!e.attachment.file) {
         return
