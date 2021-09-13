@@ -5,7 +5,6 @@ const base = function(props, context, dependencies)
 {
   const {
     name,
-    placeholder,
     floating,
     label,
   } = toRefs(props)
@@ -13,17 +12,16 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * Helper property used to determine a generic name for the element.
+   * The generic name of the element constructed from label / floating or element name.
    * 
    * @type {string}
+   * @private.
    */
   const genericName = computed(() => {
     if (label && label.value) {
       return label.value
     } else if (floating && floating.value) {
       return floating.value
-    } else if (placeholder && placeholder.value) {
-      return placeholder.value
     } else {
       return _.upperFirst(name.value)
     }
@@ -49,6 +47,12 @@ const file = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * The generic name of the element constructed from label / floating, element name or default file name if name is a number.
+   * 
+   * @type {string}
+   * @private.
+   */
   const genericName = computed(() => {
     if (embed.value && filename.value) {
       return filename.value
