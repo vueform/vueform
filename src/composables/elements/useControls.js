@@ -17,7 +17,7 @@ const base = function(props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * 
+   * Whether adding new items is allowed. Will return `false` if the element is `:disabled` or have reached `:max` items. Can be disabled manually by setting [`:controls.add`](#controls) to `false`.
    * 
    * @type {boolean}
    */
@@ -26,7 +26,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * 
+   * Whether remove items is allowed. Will return `false` if the element is `:disabled` or has <= `:min` items. Can be disabled manually by setting [`:controls.remove`](#controls) to `false`.
    * 
    * @type {boolean}
    */
@@ -35,7 +35,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * 
+   * Whether list items should be sortable. Can be enabled by setting [`:sort`](#sort) to `true`, but will return `false` if the element is `:disabled`.
    * 
    * @type {boolean}
    */
