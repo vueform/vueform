@@ -48,9 +48,10 @@ const base = function(props, context, dependencies, options = {})
   }
 
   /**
-   * 
+   * Props for element slots.
    * 
    * @type {object}
+   * @private
    */
   const elementSlotProps = computed(() => {
     return {
@@ -69,9 +70,10 @@ const base = function(props, context, dependencies, options = {})
   // ============== COMPUTED ==============
 
   /**
-   * Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.
+   * Slots of the element.
    * 
    * @type {object}
+   * @private
    */
   const elementSlots = computed(() => {
     const elementSlots = {}
@@ -92,9 +94,9 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
+   * Slots related to the element's field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.
    * 
-   * 
-   * 
+   * @type {{[name]:component}}
    * @private
    */
   const fieldSlots = computed(() => {
