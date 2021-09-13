@@ -9,15 +9,17 @@ const base = function (props, context, dependencies)
   // ================ DATA ================
 
   /**
+   * The axios request when temp is being uploaded.
    * 
-   * 
+   * @type {object}
    * @private
    */
   const request = ref(null)
 
   /**
+   * The form's axios instance.
    * 
-   * 
+   * @type {object}
    * @private
    */
   const axios = ref(null)
@@ -25,7 +27,7 @@ const base = function (props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * 
+   * Whether a temp file is currently being uploaded.
    * 
    * @private
    */
