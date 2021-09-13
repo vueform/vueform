@@ -10,16 +10,18 @@ const base = function(props, context, dependencies)
   // ================ DATA ================
 
   /**
+   * Helper to store whether the element is disabled via api (with .disable()).
    * 
-   * @ignore
    * @type {boolean|null}
+   * @default null
+   * @private
    */
   const localDisabled = ref(null)
 
   // ============== COMPUTED ==============
 
   /**
-   * 
+   * Whether the element is disabled.
    * 
    * @type {boolean}
    */
@@ -30,7 +32,7 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Disabled the field.
+   * Disables the element.
    *
    * @returns {void}
    */
@@ -39,7 +41,7 @@ const base = function(props, context, dependencies)
   }
 
   /**
-   * Enables the field.
+   * Enables the element even if it is disabled by [`:disabled`](#disabled) option.
    *
    * @returns {void}
    */
@@ -73,26 +75,26 @@ const checkboxgroup = function(props, context, dependencies)
    * 
    * @type {array} 
    * @default []
-   * @option
+   * @private
    */
   const disabledItems = ref([])
 
   // =============== METHODS ==============
 
   /**
-   * Disables an item or items.
+   * Disables one item or more items.
    *
-   * @param {array|string|number} items* Key of one or more items to disable.
+   * @param {array|string|number} values* value(s) to disable
    * @returns {void}
    */
-  const disable = (items) => {
-    if (!_.isArray(items)) {
-      items = [items]
+  const disable = (values) => {
+    if (!_.isArray(values)) {
+      values = [values]
     }
 
     const disablesList = _.clone(disabledItems.value)
 
-    _.each(items, (item) => {
+    _.each(values, (item) => {
       item = String(item)
       
       if (disablesList.indexOf(item) === -1) {
@@ -104,19 +106,19 @@ const checkboxgroup = function(props, context, dependencies)
   }
 
   /**
-   * Enables an item or items.
+   * Disables one item or more disabled items.
    *
-   * @param {array|string|number} items* Key of one or more items to enable.
+   * @param {array|string|number} values* value(s) to enable
    * @returns {void}
    */
-  const enable = (items) => {
-    if (!_.isArray(items)) {
-      items = [items]
+  const enable = (values) => {
+    if (!_.isArray(values)) {
+      values = [values]
     }
 
     const disablesList = _.clone(disabledItems.value)
 
-    _.each(items, (item) => {
+    _.each(values, (item) => {
       item = String(item)
       
       var index = disablesList.indexOf(item)
@@ -130,7 +132,7 @@ const checkboxgroup = function(props, context, dependencies)
   }
 
   /**
-   * Disabled all items.
+   * Disables all items.
    *
    * @returns {void}
    */
@@ -178,6 +180,11 @@ const button = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * Whether the button is disabled.
+   * 
+   * @type {boolean}
+   */
   const isDisabled = computed(() => {
     if (typeof disabled.value === 'function') {
       return disabled.value(form$.value, el$.value)

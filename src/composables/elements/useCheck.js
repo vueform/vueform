@@ -4,7 +4,7 @@ import { toRefs } from 'composition-api'
 const base = function(props, context, dependencies)
 {
   const {
-    items
+    items,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -16,51 +16,51 @@ const base = function(props, context, dependencies)
   /**
    * Checks one or more checkboxes.
    *
-   * @param {array|string|number} items* value(s) to check
+   * @param {array|string|number} values* value(s) to check
    * @returns {void}
    */
-  const check = (items) => {
-    if (!_.isArray(items)) {
-      items = [items]
+  const check = (values) => {
+    if (!_.isArray(values)) {
+      values = [values]
     }
 
-    const values = _.clone(value.value)
+    const items = _.clone(value.value)
 
-    _.each(items, (item) => {
-      if (values.indexOf(String(item)) === -1 && values.indexOf(Number(item)) === -1) {
-        values.push(item)
+    _.each(values, (item) => {
+      if (items.indexOf(String(item)) === -1 && items.indexOf(Number(item)) === -1) {
+        items.push(item)
       }
     })
 
-    value.value = values
+    value.value = items
   }
 
   /**
    * Unchecks one or more checkboxes.
    *
-   * @param {array|string|number} items* value(s) to check
+   * @param {array|string|number} values* value(s) to check
    * @returns {void}
    */
-  const uncheck = (items) => {
-    if (!_.isArray(items)) {
-      items = [items]
+  const uncheck = (values) => {
+    if (!_.isArray(values)) {
+      values = [values]
     }
 
-    const values = _.clone(value.value)
+    const items = _.clone(value.value)
 
-    _.each(items, (item) => {
-      let index = values.indexOf(String(item))
+    _.each(values, (item) => {
+      let index = items.indexOf(String(item))
 
       if (index === -1) {
-        index = values.indexOf(Number(item))
+        index = items.indexOf(Number(item))
       }
 
       if (index !== -1) {
-        values.splice(index, 1)
+        items.splice(index, 1)
       }
     })
 
-    value.value = values
+    value.value = items
   }
 
   /**
