@@ -9,6 +9,7 @@ const base = function(props, context, dependencies)
   /**
    * Handles `change` event.
    *
+   * @param {string} val* value of the element
    * @returns {void}
    * @private
    */

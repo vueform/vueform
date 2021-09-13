@@ -15,7 +15,7 @@ const base = function (props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * 
+   * Whether any of the file are preparing (being uploaded before submit).
    * 
    * @type {boolean}
    */
@@ -26,8 +26,10 @@ const base = function (props, context, dependencies)
   // =============== METHODS ==============
 
   /**
+   * Handles `change` event.
    * 
-   * 
+   * @param {Event} e* 
+   * @returns {void}
    * @private
    */
   const handleChange = (e) => {
@@ -45,8 +47,9 @@ const base = function (props, context, dependencies)
   }
 
   /**
+   * Handles `click` event.
    * 
-   * 
+   * @returns {void}
    * @private
    */
   const handleClick = () => {
