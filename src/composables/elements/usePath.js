@@ -10,8 +10,9 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
+   * The parent component of the element.
    * 
-   * 
+   * @type {component}
    * @private
    */
   const parent = computed(() => {
@@ -29,9 +30,9 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * The path of the element using dot `.` syntax.
+   * The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).
    * 
-   * @type {string} 
+   * @type {string}
    */
   const path = computed(() => {
 
@@ -39,7 +40,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * 
+   * The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).
    * 
    * @type {string} 
    */
@@ -48,8 +49,9 @@ const base = function(props, context, dependencies)
   })
 
   /**
+   * Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))
    * 
-   * 
+   * @type {boolean}
    * @private
    */
   const flat = computed(() => {
@@ -75,13 +77,7 @@ const group = function (props, context, dependencies)
 
   // ============== COMPUTED ==============
 
-  /**
-   * 
-   * 
-   * @type {string} 
-   */
   const dataPath = computed(() => {
-
     return parent.value && parent.value.dataPath ? parent.value.dataPath : null
   })
 
