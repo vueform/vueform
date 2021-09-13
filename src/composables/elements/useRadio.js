@@ -19,7 +19,6 @@ const base = function (props, context, dependencies)
   /**
    * Checks the radio.
    *
-   * @param {boolean} triggerChange whether the element should trigger `change` event
    * @returns {void}
    */
   const check = () => {
@@ -29,7 +28,6 @@ const base = function (props, context, dependencies)
   /**
    * Unhecks the radio.
    *
-   * @param {boolean} triggerChange whether the element should trigger `change` event
    * @returns {void}
    */
   const uncheck = () => {
