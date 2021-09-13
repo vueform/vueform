@@ -12,10 +12,11 @@ const base = function (props, context, dependencies)
   // =============== PRIVATE ==============
 
   /**
-   * Determines if an option is already among the selected options.
+   * Whether an option is already selected.
    *
-   * @private
+   * @param {object} option* value of the option
    * @returns {boolean}
+   * @private
    */
   const inValue = (option) => {
     return value.value.indexOf(option) !== -1
@@ -24,9 +25,9 @@ const base = function (props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Selects an option.
+   * Selects one or more options.
    *
-   * @param {str|num} option the key of option to select.
+   * @param {str|array} options* value(s) of the option(s) to select
    * @returns {void}
    */
   const select = (options) => {
@@ -48,9 +49,9 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * Deselects an option.
+   * Deselects one or more options.
    *
-   * @param {str|num} option the key of option to deselect.
+   * @param {str|array} options* value(s) of the option(s) to deselect
    * @returns {void}
    */
   const deselect = (options) => {
