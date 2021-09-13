@@ -15,7 +15,7 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Refreshes size.
+   * Updates the height of the input based in its contents when `autogrow` is enabled.
    * 
    * @returns {void}
    */
