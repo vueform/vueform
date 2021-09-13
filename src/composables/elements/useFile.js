@@ -40,7 +40,7 @@ const base = function (props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * 
+   * This equals to:<br>* the `File` object when a file is selected, but not uploaded yet<br>* an object containing temp file name and original name when it has only been temporarily uploaded<br>* the filename when the file has already been uploaded
    * 
    * @type {File|object|string}
    * @default null
@@ -48,7 +48,7 @@ const base = function (props, context, dependencies)
   const file = ref(null)
 
   /**
-   * 
+   * Whether the file uploader has any errors.
    * 
    * @type {boolean}
    * @default false
@@ -56,7 +56,7 @@ const base = function (props, context, dependencies)
   const hasUploadError = ref(false)
 
   /**
-   * 
+   * The `base64` format of the file when [`:image`](#image) is `true` and file only has been selected, but hasn't been uploaded yet.
    * 
    * @type {string}
    * @default null
@@ -64,7 +64,7 @@ const base = function (props, context, dependencies)
   const base64 = ref(null)
 
   /**
-   * 
+   * The percentage of progress when the file is being temporarily uploaded (0-100).
    * 
    * @type {number}
    * @default 0
@@ -72,7 +72,7 @@ const base = function (props, context, dependencies)
   const progress = ref(0)
 
   /**
-   * 
+   * If the form is submitted and a temp file hasn't been uploaded yet, the element will enter into `preparing` state by setting this to `true`. When in `preparing` state the form submission process will be halted until all async functions hasn't been completed without any errors.
    * 
    * @type {boolean}
    * @default false
@@ -80,42 +80,43 @@ const base = function (props, context, dependencies)
   const preparing = ref(false)
 
   /**
-   * 
+   * Whether the preview file has been loaded by the browser when the file has already been uploaded or has only been selected.
    * 
    * @type {boolean}
    * @default false
+   * @private
    */
   const previewLoaded = ref(false)
 
   // ============== COMPUTED ==============
 
   /**
-   * 
+   * An object containing `temp`, `remove` and `removeTemp` methods.
    * 
    * @type {object}
    * @default config.methods.file
-   * @option
+   * @private
    */
   const fileMethods = computed(() => {
     return Object.assign({}, form$.value.$laraform.config.methods.file, methods.value || {})
   })
 
   /**
-   * 
+   * An object containing `temp`, `remove` and `removeTemp` endpoints.
    * 
    * @type {object}
    * @default config.endpoints.file
-   * @option
+   * @private
    */
   const fileEndpoints = computed(() => {
     return Object.assign({}, form$.value.$laraform.config.endpoints.file, endpoints.value || {})
   })
 
   /**
-   * 
+   * URL to file using the [`:url`](#url) option without including the filename. If `url` is not defined it will default to `'/'`.
    * 
    * @type {string}
-   * @option
+   * @private
    */
   const fileUrl = computed(() => {
     if (url.value === undefined) {
@@ -136,7 +137,7 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * 
+   * The stage the file is at:<br>* `0`: file not selected<br>* `1`: file selected<br>* `2`: temp file uploaded<br>* `3`: file uploaded
    * 
    * @type {number}
    */
@@ -161,7 +162,7 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * 
+   * The original or stored name of the file.
    * 
    * @type {string}
    */
@@ -182,7 +183,7 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * 
+   * The link to an uploaded file.
    * 
    * @type {string}
    */
@@ -195,7 +196,7 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * 
+   * The preview of the file when [`image`](#image) is `true`. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded.
    * 
    * @type {string}
    */
@@ -208,7 +209,7 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * 
+   * Whether the file has been uploaded.
    * 
    * @type {boolean}
    */
@@ -217,7 +218,7 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * 
+   * Whether the file can be removed. 
    * 
    * @type {boolean}
    */
@@ -226,7 +227,7 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * 
+   * Whether temporary file can be uploaded.
    * 
    * @type {boolean}
    */
@@ -235,7 +236,7 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * 
+   * Whether file can be selected.
    * 
    * @type {boolean}
    */
@@ -246,7 +247,7 @@ const base = function (props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * 
+   * Upload temporary file (async).
    * 
    * @returns {void}
    */
@@ -297,7 +298,7 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * 
+   * Removes file (async):<br>* in stage `1`: sets the value to null<br>* in stage `2`: submit a request to `removeTemp` endpoint and sets the value to null<br>* in stage `3`: submits a request to `remove` endpoint and sets the value to null
    * 
    * @returns {void}
    */
@@ -344,7 +345,7 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * 
+   * Prepare the element for submitting the form (async). It will upload temp file if it hasn't been uploaded yet and halts the submit process until its done without any errors.
    * 
    * @returns {void}
    * @private
@@ -364,9 +365,10 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   *
+   * Helper method that sets the value of `previewLoaded` when an the preview img's `src` has been loaded by the browser.
    *
    * @returns {void}
+   * @private
    */
   const loadPreview = () => {
     // previewLoaded.value = false
@@ -386,6 +388,7 @@ const base = function (props, context, dependencies)
   }
 
   /**
+   * Handles `change` event.
    * 
    * @param {Event} e* 
    * @returns {void}
@@ -404,7 +407,7 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * Triggered when an uploader is clicked.
+   * Handles file select button `click` event.
    *
    * @returns {void}
    * @private
@@ -418,7 +421,7 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * 
+   * Handles `uploadTemp` event.
    * 
    * @returns {void}
    * @private
@@ -428,7 +431,7 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * 
+   * Handles `remove` event.
    * 
    * @returns {void}
    * @private
@@ -438,7 +441,7 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * 
+   * Handles `abort` event.
    * 
    * @returns {void}
    * @private
