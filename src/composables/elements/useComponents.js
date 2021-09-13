@@ -3,7 +3,7 @@ import { computed, toRefs } from 'composition-api'
 const base = function(props, context, dependencies)
 {
   const {
-    overrideComponents
+    overrideComponents,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -14,10 +14,9 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * Returns the components to use within the element. Setting the value will overwrite components contained in the value object. Eg. `components: { ElementLabel: MyElementLabel }` will replace `ElementLabel` component for only this element.
+   * Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element's components.
    * 
    * @type {object}
-   * @option
    */
   const components = computed(() => {
     return Object.assign({}, theme.value.components,
