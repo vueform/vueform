@@ -10,7 +10,7 @@ const base = function(props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * Whether the element was hidden programmatically with `.show()` / `.hide()` methods.
+   * Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.
    * 
    * @type {boolean} 
    * @default false
@@ -21,7 +21,7 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * Whether the element is visible. It's `false` if `available` or `active` is `false` or `hidden` is `true`.
+   * Whether the element is visible. It's `false` when `available` or `active` is `false` or `hidden` is `true`.
    * 
    * @type {boolean} 
    */
@@ -32,7 +32,7 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Sets the `hidden` property of the element to `false`.
+   * Hides the element.
    *
    * @returns {void}
    */
@@ -41,7 +41,7 @@ const base = function(props, context, dependencies)
   }
 
   /**
-   * Sets the `hidden` property of the element to `true`.
+   * Shows the element if it was hided with [`hide()`](#hide) method.
    *
    * @returns {void}
    */
