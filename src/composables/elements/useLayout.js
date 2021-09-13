@@ -10,9 +10,10 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
+   * The current layout of the element.
    * 
-   * 
-   * @type {string|object}
+   * @type {string|component}
+   * @private
    */
   const elementLayout = computed(() => {
     return inline.value || !layout.value ? 'ElementLayoutInline' : layout.value
