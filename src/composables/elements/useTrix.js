@@ -14,7 +14,7 @@ const base = function (props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * 
+   * Whether the editor is focused.
    * 
    * @type {boolean}
    */
@@ -23,10 +23,10 @@ const base = function (props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-  * Endpoint to be called to upload attachments. Defaults to config's `config.endpoints.elements`<br>`.trix.attachment`.
+  * The endpoint that uploads attachment. Can be changed by setting [`endpoint`](#endpoint) option.
   * 
   * @type {string}
-  * @default "..."
+  * @default `config.endpoints.elements`
   */
   const trixEndpoint = computed(() => {
     return endpoint.value || form$.value.$laraform.config.endpoints.elements.trix.attachment
