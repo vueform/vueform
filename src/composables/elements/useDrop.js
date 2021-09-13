@@ -5,7 +5,7 @@ import { computed, toRefs } from 'composition-api'
 const base = function(props, context, dependencies)
 {
   const {
-    accept
+    accept,
   } = toRefs(props)
 
   // ============ DEPENDENCIES =============
@@ -16,9 +16,10 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * 
+   * Whether `:drop` is enabled and browser supports dragging.
    * 
    * @type {boolean}
+   * @private
    */
   const canDrop = computed(() => {
     let div = document.createElement('div')
@@ -32,6 +33,7 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
+   * Handles the `drop` event.
    * 
    * @param {Event} e 
    * @returns {void}
@@ -60,11 +62,11 @@ const base = function(props, context, dependencies)
 const multifile = function(props, context, dependencies)
 {
   const {
-    accept
+    accept,
   } = toRefs(props)
   
   const {
-    canDrop
+    canDrop,
   } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
