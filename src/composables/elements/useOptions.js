@@ -26,11 +26,10 @@ const date = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * List of dates to be disabled.
+   * List of dates to disable.
    * 
    * @type {array} 
-   * @default []
-   * @option
+   * @private
    */
   const disabledDates = computed(() => {
     if (disables.value === undefined) {
@@ -45,11 +44,10 @@ const date = function(props, context, dependencies)
   })
 
   /**
-   * Earliest selectable date. Can be a string in `[loadFormat](#prop-loadFormat)` or a Date object.
+   * Earliest selectable date. Can be a string in `[loadFormat](#load-format)` or a Date object.
    * 
    * @type {string|Date} 
-   * @default null
-   * @option
+   * @private
    */
   const minDate = computed(() => {
     if (!min.value) {
@@ -62,11 +60,10 @@ const date = function(props, context, dependencies)
   })
 
   /**
-   * Latest selectable date. Can be a string in `[loadFormat](#prop-loadFormat)` or a Date object.
+   * Latest selectable date. Can be a string in `[loadFormat](#load-format)` or a Date object.
    * 
    * @type {string|Date} 
-   * @default null
-   * @option
+   * @private
    */
   const maxDate = computed(() => {
     if (!max.value) {
@@ -79,10 +76,10 @@ const date = function(props, context, dependencies)
   })
 
   /**
-  * Default options for flatpickr.
+  * Default options for date selector.
   * 
-  * @type {object} 
-  * @default {}
+  * @type {object}
+  * @private
   */
   const defaultOptions = computed(() => {
     return {
@@ -99,31 +96,29 @@ const date = function(props, context, dependencies)
   })
 
   /**
-  * Additional [options](https://flatpickr.js.org/options/) for flatpickr.
+  * Options for date selector. Can be extended via [`:options`](#options) with [flatpickr options](https://flatpickr.js.org/options/).
   * 
   * @type {object} 
-  * @default {}
-  * @option
   */
   const fieldOptions = computed(() => {
     return Object.assign({}, defaultOptions.value, options.value || {})
   })
 
   /**
-   * Helper property used to determine the element has date.
+   * Whether date selector has `date` enabled.
    * 
    * @type {boolean}
-   * @ignore
+   * @private
    */
   const hasDate = computed(() => {
     return true
   })
 
   /**
-   * Helper property used to determine the element has time.
+   * Whether date selector has `time` enabled.
    * 
    * @type {boolean}
-   * @ignore
+   * @private
    */
   const hasTime = computed(() => {
     return false
@@ -160,12 +155,6 @@ const dates = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
-  /**
-  * Default options for flatpickr.
-  * 
-  * @type {object} 
-  * @default {}
-  */
   const defaultOptions = computed(() => {
     return {
       mode: mode.value,
@@ -177,33 +166,14 @@ const dates = function(props, context, dependencies)
     }
   })
 
-  /**
-  * Additional [options](https://flatpickr.js.org/options/) for flatpickr.
-  * 
-  * @type {object} 
-  * @default {}
-  * @option
-  */
   const fieldOptions = computed(() => {
     return Object.assign({}, defaultOptions.value, options.value || {})
   })
 
-  /**
-   * Helper property used to determine the element has date.
-   * 
-   * @type {boolean}
-   * @ignore
-   */
   const hasDate = computed(() => {
     return true
   })
 
-  /**
-   * Helper property used to determine the element has time.
-   * 
-   * @type {boolean}
-   * @ignore
-   */
   const hasTime = computed(() => {
     return false
   })
@@ -221,7 +191,6 @@ const dates = function(props, context, dependencies)
 const select = function (props, context, dependencies)
 {
   const {
-    native,
     search,
     options,
     noOptionsText,
@@ -233,21 +202,12 @@ const select = function (props, context, dependencies)
   const form$ = dependencies.form$
 
   // ============== COMPUTED ==============
-
-  /**
-   * Determines if the native select is used.
-   * 
-   * @type {string}
-   */
-  const isNative = computed(() => {
-    return native.value && !search.value
-  })
   
   /**
-  * Default options for vue-multiselect.
+  * Default options for non-native select input.
   * 
   * @type {object} 
-  * @default {}
+  * @private
   */
   const defaultOptions = computed(() => {
     return {
@@ -259,12 +219,10 @@ const select = function (props, context, dependencies)
   })
 
   /**
-   * Additional [options](https://vue-multiselect.js.org/#sub-props) for the select.
-   * 
-   * @type {object}
-   * @default {}
-   * @option
-   */
+  * Options for non-native select input. Can be extended via [`:options`](#options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
+  * 
+  * @type {object} 
+  */
   const fieldOptions = computed(() => {
     return Object.assign({}, defaultOptions.value, options.value || {})
   })
@@ -280,24 +238,30 @@ const multiselect = function (props, context, dependencies)
   const {
     options,
     search,
+    native,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
 
-  const {
-    isNative
-  } = select(props, context, dependencies)
-
 
   // ============== COMPUTED ==============
 
   /**
-  * Default options for vue-multiselect.
+   * Whether native multiselect should be used.
+   * 
+   * @type {string}
+   */
+  const isNative = computed(() => {
+    return native.value && !search.value
+  })
+
+  /**
+  * Default options for non-native multiselect input.
   * 
   * @type {object} 
-  * @default {}
+  * @private
   */
   const defaultOptions = computed(() => {
     return {
@@ -314,12 +278,10 @@ const multiselect = function (props, context, dependencies)
   })
 
   /**
-   * Additional [options](https://vue-multiselect.js.org/#sub-props) for the select.
-   * 
-   * @type {object}
-   * @default {}
-   * @option
-   */
+  * Options for non-native multiselect input. Can be extended via [`:options`](#options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
+  * 
+  * @type {object} 
+  */
   const fieldOptions = computed(() => {
     return Object.assign({}, defaultOptions.value, options.value || {})
   })
@@ -344,13 +306,21 @@ const tags = function (props, context, dependencies)
 
   // ================ DATA ================
 
+  /**
+   * Technical prop to be able to use the same template for tags as for select.
+   * 
+   * @type {boolean}
+   * @default false
+   * @private
+   */
   const native = ref(false)
 
   // ============== COMPUTED ==============
 
   /**
+   * Technical prop to be able to use the same template for tags as for select.
    * 
-   * 
+   * @type {boolean}
    * @private
    */
   const isNative = computed(() => {
@@ -358,10 +328,10 @@ const tags = function (props, context, dependencies)
   })
 
   /**
-  * Default options for vue-multiselect.
+  * Default options for tags input.
   * 
   * @type {object} 
-  * @default {}
+  * @private
   */
   const defaultOptions = computed(() => {
     return {
@@ -374,12 +344,10 @@ const tags = function (props, context, dependencies)
   })
 
   /**
-   * Additional [options](https://vue-multiselect.js.org/#sub-props) for the select.
-   * 
-   * @type {object}
-   * @default {}
-   * @option
-   */
+  * Options for tags input. Can be extended via [`:options`](#options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
+  * 
+  * @type {object} 
+  */
   const fieldOptions = computed(() => {
     return Object.assign({}, defaultOptions.value, options.value || {})
   })
@@ -412,10 +380,10 @@ const slider = function (props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-  * Default options for vue-js-toggle-button.
+  * Default options for slider input.
   * 
-  * @type {object} 
-  * @default {}
+  * @type {object}
+  * @private
   */
   const defaultOptions = computed(() => {
     return {
@@ -432,11 +400,9 @@ const slider = function (props, context, dependencies)
   })
 
   /**
-  * Additional [options](https://nightcatsama.github.io/vue-slider-component/#/api/props) for slider.
+  * Options for slider input. Can be extended via [`:options`](#options) with [@vueform/slider options](https://github.com/vueform/slider#basic-props).
   * 
   * @type {object} 
-  * @default {}
-  * @option
   */
   const fieldOptions = computed(() => {
     return Object.assign({}, defaultOptions.value, options.value || {})
@@ -463,10 +429,10 @@ const toggle = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-  * Default options for vue-js-toggle-button.
+  * Default options toggle input.
   * 
-  * @type {object} 
-  * @default {}
+  * @type {object}
+  * @private
   */
   const defaultOptions = computed(() => {
     return {
@@ -479,11 +445,9 @@ const toggle = function(props, context, dependencies)
   })
 
   /**
-  * Additional [options](https://github.com/vueform/toggle) for @vueform/toggle.
+  * Options for toggle input. Can be extended via [`:options`](#options) with [@vueform/toggle options](https://github.com/vueform/toggle#basic-props).
   * 
   * @type {object} 
-  * @default {}
-  * @option
   */
   const fieldOptions = computed(() => {
     return Object.assign({}, defaultOptions.value, options.value || {})
