@@ -39,17 +39,18 @@ const base = function(props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * Whether the element is hidden internally by other components, like tabs or steps steps.
+   * Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.
    * 
    * @type {boolean} 
    * @default true
+   * @private
    */
   const active = ref(true)
 
   // ============== COMPUTED ==============
 
   /**
-   * 
+   * Whether the element is static (does not have any data or validation).
    * 
    * @type {boolean}
    */
@@ -58,7 +59,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Determines if the element's value is a file.
+   * Whether the element's value is a file.
    *
    * @type {boolean}
    */
@@ -67,7 +68,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Determines if the element's value is an image.
+   * Whether the element's value is an image.
    *
    * @type {boolean}
    */
@@ -76,7 +77,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Determines if the element's value is an array.
+   * Whether the element's value is an array.
    *
    * @type {boolean}
    */
@@ -85,9 +86,18 @@ const base = function(props, context, dependencies)
   })
 
   /**
+   * Whether the element should be visible when using `tabs` or `steps`.
    * 
+   * @type {boolean}
+   */
+  const isActive = computed(() => {
+    return active.value
+  })
+
+  /**
+   * The element's component.
    *
-   * @type {object<Element>}
+   * @type {component}
    */
   const el$ = computed(() => {
     return currentInstance.proxy
@@ -98,8 +108,8 @@ const base = function(props, context, dependencies)
   /**
    * Sets the `active` property of the element to `true`.
    *
-   * @private
    * @returns {void}
+   * @private
    */
   const activate = () => {
     active.value = true
@@ -108,8 +118,8 @@ const base = function(props, context, dependencies)
   /**
    * Sets the `active` property of the element to `false`.
    *
-   * @private
    * @returns {void}
+   * @private
    */
   const deactivate = () => {
     active.value = false
@@ -118,9 +128,9 @@ const base = function(props, context, dependencies)
   // ============== PROVIDES ==============
 
   /**
-   * 
+   * The element's component.
    *
-   * @type {component<Element>}
+   * @type {component}
    */
   provide('el$', el$)
 
@@ -154,6 +164,7 @@ const base = function(props, context, dependencies)
     isFileType,
     isArrayType,
     isImageType,
+    isActive,
     active,
     activate,
     deactivate,
@@ -167,6 +178,7 @@ const list = function(props, context, dependencies)
     isStatic,
     isFileType,
     isImageType,
+    isActive,
     active,
     activate,
     deactivate,
@@ -184,6 +196,7 @@ const list = function(props, context, dependencies)
     isFileType,
     isArrayType,
     isImageType,
+    isActive,
     active,
     activate,
     deactivate,
@@ -200,6 +213,7 @@ const file = function(props, context, dependencies)
     el$,
     isStatic,
     isArrayType,
+    isActive,
     active,
     activate,
     deactivate,
@@ -221,6 +235,7 @@ const file = function(props, context, dependencies)
     isFileType,
     isArrayType,
     isImageType,
+    isActive,
     active,
     activate,
     deactivate,
@@ -234,6 +249,7 @@ const static_ = function(props, context, dependencies)
     isArrayType,
     isFileType,
     isImageType,
+    isActive,
     active,
     activate,
     deactivate,
@@ -251,6 +267,7 @@ const static_ = function(props, context, dependencies)
     isFileType,
     isArrayType,
     isImageType,
+    isActive,
     active,
     activate,
     deactivate,
