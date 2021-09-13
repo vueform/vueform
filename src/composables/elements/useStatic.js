@@ -12,6 +12,7 @@ const base = function (props, context, dependencies)
    * Determines if HTML content should be rendered for the element.
    * 
    * @type {boolean}
+   * @private
    */
   const isHtml = computed(() => {
     return typeof content.value == 'string'
