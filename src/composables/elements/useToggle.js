@@ -4,7 +4,7 @@ const base = function(props, context, dependencies)
 {
   const {
     trueValue,
-    falseValue
+    falseValue,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -14,9 +14,8 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Checks the checkbox.
+   * Sets the toggle to `on` (`trueValue`).
    *
-   * @param {boolean} triggerChange whether the element should trigger `change` event
    * @returns {void}
    */
   const check = () => {
@@ -24,9 +23,8 @@ const base = function(props, context, dependencies)
   }
 
   /**
-   * Unhecks the checkbox.
+   * Sets the toggle to `off` (`falseValue`).
    *
-   * @param {boolean} triggerChange whether the element should trigger `change` event
    * @returns {void}
    */
   const uncheck = () => {
