@@ -19,8 +19,9 @@ const base = function(props, context, dependencies)
   // =============== PRIVATE ===============
 
   /**
+   * The default date format for display, value & load.
    * 
-   * 
+   * @type {string}
    * @private
    */
   const defaultFormat = computed(() => {
@@ -52,8 +53,9 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ===============
 
   /**
+   * The display date format.
    * 
-   * 
+   * @type {string}
    * @private
    */
   const displayDateFormat = computed(() => {
@@ -61,8 +63,9 @@ const base = function(props, context, dependencies)
   })
 
   /**
+   * The format of date value.
    * 
-   * 
+   * @type {string}
    * @private
    */
   const valueDateFormat = computed(() => {
@@ -70,8 +73,9 @@ const base = function(props, context, dependencies)
   })
 
   /**
+   * The date format of the data the element being loaded with.
    * 
-   * 
+   * @type {string}
    * @private
    */
   const loadDateFormat = computed(() => {
@@ -99,11 +103,6 @@ const dates = function(props, context, dependencies)
 
   // =============== PRIVATE ===============
 
-  /**
-   * 
-   * 
-   * @private
-   */
   const defaultFormat = computed(() => {
     return form$.value.__(`laraform.dateFormats.date`)
   })
