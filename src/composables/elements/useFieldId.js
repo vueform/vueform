@@ -10,7 +10,7 @@ const base = function (props, context, dependencies)
   // ============== COMPUTED ==============
   
   /**
-   * 
+   * The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.
    * 
    * @type {string}
    */
