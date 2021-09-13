@@ -11,9 +11,10 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-    * The schema of a child.
+    * The schema of a child element.
     * 
     * @type {object}
+    * @private
     */
   const prototype = computed(() => {
     return isObject.value
@@ -22,9 +23,10 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Determines if the list items are objects.
+   * Whether childrens are objects.
    *
    * @type {boolean}
+   * @private
    */
   const isObject = computed(() => {
     return !!object.value
@@ -62,8 +64,9 @@ const multifile = function(props, context, dependencies, options = {})
   // ============== COMPUTED ==============
 
   /**
+   * The `name` of the child element that stores the filename.
    * 
-   * 
+   * @type {string}
    * @private
    */
   const storeFileName = computed(() => {
@@ -74,20 +77,10 @@ const multifile = function(props, context, dependencies, options = {})
     return object.value || _.keys(fields.value).length || storeOrder.value ? 'file' : null
   })
 
-  /**
-   * Determines if the list items are objects.
-   *
-   * @type {boolean}
-   */
   const isObject = computed(() => {
     return !!object.value || !!storeFileName.value || !!storeOrder.value || !!_.keys(fields.value).length
   })
 
-  /**
-    * The schema of a child.
-    * 
-    * @type {object}
-    */
   const prototype = computed(() => {
     if (!isObject.value) {
       return Object.assign({}, {
