@@ -19,7 +19,8 @@ const base = function(props, context, dependencies)
   /**
   * The default value of the element.
   * 
-  * @type {string|number}
+  * @type {any}
+  * @private
   */
   const defaultValue = computed(() => {
     let parentDefaultValue = parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
@@ -57,11 +58,6 @@ const group = function(props, context, dependencies)
 
   // ============== COMPUTED ===============
 
-  /**
-  * The default value of the element.
-  * 
-  * @type {string|number}
-  */
   const defaultValue = computed(() => {
     let parentDefaultValue = parent.value ? parent.value.defaultValue : form$.value.options.default
 
@@ -88,11 +84,6 @@ const object = function(props, context, dependencies)
 
   // ============== COMPUTED ===============
 
-  /**
-  * The default value of the element.
-  * 
-  * @type {string|number}
-  */
   const defaultValue = computed(() => {
     let parentDefaultValue = parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
 
@@ -127,12 +118,6 @@ const multilingual = function(props, context, dependencies)
 
   // ============== COMPUTED ===============
 
-  /**
-  * 
-  * 
-  * @type {object|string|number}
-  * @option
-  */
   const defaultValue = computed(() => {
     let parentDefaultValue = parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
 
