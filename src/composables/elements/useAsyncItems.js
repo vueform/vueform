@@ -17,10 +17,10 @@ const base = function(props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * 
+   * Contains the fetched items when using async `items`.
    * 
    * @type {array|object}
-   * @default {}
+   * @default null
    * @private
    */
   const resolvedItems = ref(null)
@@ -28,7 +28,7 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
   
   /**
-   * 
+   * Contains select options for native select. 
    * 
    * @type {array}
    */
@@ -63,9 +63,9 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
+   * Fetches & updates select options when using `async` options.
    * 
-   * 
-   * @param {boolean} disable* 
+   * @param {boolean} shouldDisable* whether the input field should be disabled while fetching options
    * @returns {void} 
    */
   const updateItems = (shouldDisable = true) => {
