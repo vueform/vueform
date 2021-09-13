@@ -22,7 +22,7 @@ const base = function (props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * 
+   * Whether the button is in loading state.
    * 
    * @type {boolean}
    */
@@ -39,18 +39,20 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * 
+   * Whether the button's label is a component.
    * 
    * @type {boolean}
+   * @private
    */
   const isButtonLabelComponent = computed(() => {
     return buttonLabel.value !== null && typeof buttonLabel.value === 'object'
   })
 
   /**
-   * 
+   * Attributes of the button.
    * 
    * @type {object}
+   * @private
    */
   const button = computed(() => {
     const button = {}
@@ -67,7 +69,7 @@ const base = function (props, context, dependencies)
     }
 
     if (isLoading.value) {
-      button.tabindex = -1
+      button.tabindex = undefined
     }
 
     return button
@@ -76,10 +78,11 @@ const base = function (props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   *
+   * Handles the button's click event.
    *
    * @param {Event} e* event
    * @returns {void}
+   * @private
    */
   const handleClick = (e) => {
     if (href.value.length > 0) {
