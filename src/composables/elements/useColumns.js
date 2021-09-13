@@ -17,8 +17,8 @@ const base = function(props, context, dependencies)
   /**
    * Calulated column sizes and classes for the element.
    * 
-   * @type {object} 
-   * @option
+   * @type {object}
+   * @private
    */
   const columnsClasses = computed(() => {
     return (new form$.value.$laraform.services.columns(
