@@ -5,7 +5,7 @@ const base = function(props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * 
+   * Whether the list is currently being sorted (an item is dragged).
    * 
    * @type {boolean}
    */
