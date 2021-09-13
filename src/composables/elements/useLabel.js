@@ -13,10 +13,10 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * Helper property used to determine internally if a label should be
-   * rendered for the element.
+   * Whether the element has a [`:label`](#label) or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.
    * 
    * @type {boolean}
+   * 
    */
   const hasLabel = computed(() => {
     return !!(form$.value.options.labels || label.value)
