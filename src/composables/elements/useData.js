@@ -23,6 +23,14 @@ const base = function(props, context, dependencies, options = {})
 
   // =============== PRIVATE ===============
 
+  /**
+   * Sets the value of the element.
+   * 
+   * 
+   * @param {any} val the value to be set
+   * @returns {void}
+   * @private
+   */
   const setValue = (val) => {
     if (options.setValue) {
       return options.setValue(val)
@@ -34,7 +42,7 @@ const base = function(props, context, dependencies, options = {})
   // ============== COMPUTED ===============
   
   /**
-   * 
+   * The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data.
    * 
    * @type {object}
    */
@@ -43,7 +51,7 @@ const base = function(props, context, dependencies, options = {})
   })
   
   /**
-   * An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.
+   * Same as `data` property except that it only includes the element's value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).
    * 
    * @type {object}
    */
@@ -58,10 +66,10 @@ const base = function(props, context, dependencies, options = {})
   // =============== METHODS ===============
 
   /**
+   * Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.
    * 
-   * 
-   * @param {string|number} value* The value to be loaded.
-   * @param {boolean} format Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.
+   * @param {string} value* the value to be loaded
+   * @param {boolean} format whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)
    * @returns {void}
    */
   const load = (val, format = false) => {
@@ -69,9 +77,9 @@ const base = function(props, context, dependencies, options = {})
   }
 
   /**
+   * Updates the value of the element similarly to [`load`](#load), only that it can\'t format format data. 
    * 
-   * 
-   * @param {string|number} value* The value to update the field with.
+   * @param {string|} value* the value to be set
    * @returns {void}
    */
   const update = (val) => {
@@ -79,7 +87,7 @@ const base = function(props, context, dependencies, options = {})
   }
 
   /**
-   * 
+   * Clears the element's value.
    * 
    * @returns {void}
    */
@@ -88,7 +96,7 @@ const base = function(props, context, dependencies, options = {})
   }
 
   /**
-   * 
+   * Resets the element's value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.
    * 
    * @returns {void}
    */
@@ -98,7 +106,7 @@ const base = function(props, context, dependencies, options = {})
   }
 
   /**
-   * 
+   * Prepares the element.
    *
    * @returns {void}
    * @private
@@ -127,7 +135,7 @@ const object = function(props, context, dependencies)
 
   const {
     data,
-    prepare
+    prepare,
   } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
@@ -158,14 +166,6 @@ const object = function(props, context, dependencies)
 
   // =============== METHODS ===============
 
-  /**
-   * 
-   * 
-   * 
-   * @param {object} value* The value to be loaded.
-   * @param {boolean} format Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.
-   * @returns {void}
-   */
   const load = (val, format = false) => {
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
 
@@ -183,12 +183,6 @@ const object = function(props, context, dependencies)
     })
   }
 
-  /**
-   * 
-   * 
-   * @param {object} value* The value to update the field with.
-   * @returns {void}
-   */
   const update = (val) => {
     _.each(children$.value, (element$) => {
       if (element$.isStatic) {
@@ -334,6 +328,12 @@ const list = function(props, context, dependencies, options)
 
   // ============== COMPUTED ===============
 
+  /**
+   * Default value of the parent
+   * 
+   * @type {any}
+   * @private
+   */
   const parentDefaultValue = computed(() => {
     return parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
   })
@@ -359,10 +359,9 @@ const list = function(props, context, dependencies, options)
   // =============== METHODS ===============
 
   /**
+   * Appends a new item.
    * 
-   * 
-   * 
-   * @param {object|array|string|number|boolean} value  
+   * @param {any} value value of the appended element (optional)
    * @returns {void}
    */
   const add = (val = undefined) => {
@@ -382,10 +381,10 @@ const list = function(props, context, dependencies, options)
   }
   
   /**
+   * Removes an items by its index.
    * 
    * 
-   * 
-   * @param {number} index*   
+   * @param {number} index* index of items to be removed
    * @returns {void}
    */
   const remove = (index) => {
@@ -396,11 +395,6 @@ const list = function(props, context, dependencies, options)
     fire('remove', index, value.value)
   }
 
-  /**
-   * 
-   * 
-   * @private
-   */
   const load = async (val, format = false) => {
     let values = sortValue(format && formatLoad.value ? formatLoad.value(val, form$.value) : val)
 
@@ -420,10 +414,9 @@ const list = function(props, context, dependencies, options)
   }
 
   /**
+   * Sorts value when `:order` and `:orderByName` is defined.
    * 
-   * 
-   * 
-   * @param {array} value  
+   * @param {array} value value to be sorted
    * @returns {array}
    * @private
    */
@@ -445,8 +438,7 @@ const list = function(props, context, dependencies, options)
   }
 
   /**
-   * 
-   * 
+   * Handles the `add` event.
    * 
    * @returns {void}
    * @private
@@ -460,9 +452,9 @@ const list = function(props, context, dependencies, options)
   }
 
   /**
-   * Triggered when the user removes a list item or `.remove()` method is invoked.
+   * Handles the `remove` event.
    *
-   * @param {number} index* Index of child to be removed.
+   * @param {number} index* index of child to be removed
    * @returns {void}
    * @private
    */
@@ -568,14 +560,6 @@ const dates = function(props, context, dependencies)
 
   // =============== METHODS ===============
 
-  /**
-   * 
-   * 
-   * 
-   * @param {array} value* The value to be loaded.
-   * @param {boolean} format Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.
-   * @returns {void}
-   */
   const load = (val, format = false) => {
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
 
