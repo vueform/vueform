@@ -310,15 +310,16 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       children$Array: {
         types: [
-          'array,Element',
+          'array,component',
         ],
-        description: '',
+        description: 'List of child element components.',
+        default: '[children<component>]',
         private: true,
       },
       addressId: {
@@ -403,44 +404,52 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       children$: {
         types: [
           'object,Element',
         ],
-        description: '',
+        description: 'Child element components.',
+        default: '{[name]:component}',
         private: false,
       },
       children: {
@@ -1218,9 +1227,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -1241,58 +1250,65 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       isButtonLabelComponent: {
         types: [
           'boolean',
         ],
-        description: '',
-        private: false,
+        description: 'Whether the button&quot;s label is a component.',
+        private: true,
       },
       button: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Attributes of the button.',
+        private: true,
       },
       isLoading: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the button is in loading state.',
         private: false,
       },
       mainClass: {
@@ -1398,7 +1414,7 @@ module.exports = {
         private: true,
       },
       handleClick: {
-        description: '',
+        description: 'Handles the button&quot;s click event.',
         returns: 'void',
         params: {
           e: {
@@ -1409,7 +1425,7 @@ module.exports = {
             description: 'event',
           },
         },
-        private: false,
+        private: true,
       },
       hide: {
         description: 'Sets the `hidden` property of the element to `false`.',
@@ -1827,9 +1843,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -1919,37 +1935,44 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -3018,7 +3041,7 @@ module.exports = {
     },
     methods: {
       check: {
-        description: 'Checks a checkbox or checkboxes.',
+        description: 'Checks one or more checkboxes.',
         returns: 'void',
         params: {
           items: {
@@ -3028,13 +3051,13 @@ module.exports = {
               'number',
             ],
             required: 'true',
-            description: 'key of one or more checkboxes to check.',
+            description: 'value(s) to check',
           },
         },
         private: false,
       },
       uncheck: {
-        description: 'Unchecks a checkbox or checkboxes.',
+        description: 'Unchecks one or more checkboxes.',
         returns: 'void',
         params: {
           items: {
@@ -3044,7 +3067,7 @@ module.exports = {
               'number',
             ],
             required: 'true',
-            description: 'key of one or more checkboxes to uncheck.',
+            description: 'value(s) to check',
           },
         },
         private: false,
@@ -3055,7 +3078,7 @@ module.exports = {
         private: false,
       },
       uncheckAll: {
-        description: 'Checks all checkboxes.',
+        description: 'Unchecks all checkboxes.',
         returns: 'void',
         private: false,
       },
@@ -3753,9 +3776,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -3829,46 +3852,46 @@ module.exports = {
       },
     },
     computed: {
-      hasAddon: {
-        types: [
-          'boolean',
-        ],
-        description: 'Helper property used to determine internally if the element has any addons.',
-        private: false,
-      },
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -4843,13 +4866,6 @@ module.exports = {
       },
     },
     computed: {
-      hasAddon: {
-        types: [
-          'boolean',
-        ],
-        description: 'Helper property used to determine internally if the element has any addons.',
-        private: false,
-      },
       mainClass: {
         types: [
           'string',
@@ -5749,9 +5765,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -5903,37 +5919,44 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -6851,9 +6874,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -6890,37 +6913,44 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -7424,9 +7454,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       events: {
         types: [
@@ -7493,37 +7523,44 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       available: {
@@ -8248,15 +8285,16 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       children$Array: {
         types: [
-          'array,Element',
+          'array,component',
         ],
-        description: '',
+        description: 'List of child element components.',
+        default: '[children<component>]',
         private: true,
       },
       defaultClasses: {
@@ -8358,44 +8396,52 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       children$: {
         types: [
           'object,Element',
         ],
-        description: '',
+        description: 'Child element components.',
+        default: '{[name]:component}',
         private: false,
       },
       mainClass: {
@@ -9387,9 +9433,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -9493,46 +9539,46 @@ module.exports = {
       },
     },
     computed: {
-      hasAddon: {
-        types: [
-          'boolean',
-        ],
-        description: 'Helper property used to determine internally if the element has any addons.',
-        private: false,
-      },
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -10476,15 +10522,16 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       children$Array: {
         types: [
-          'array,Element',
+          'array,component',
         ],
-        description: '',
+        description: 'List of child element components.',
+        default: '[children<component>]',
         private: true,
       },
       defaultClasses: {
@@ -10593,44 +10640,52 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       children$: {
         types: [
           'object,Element',
         ],
-        description: '',
+        description: 'Child element components.',
+        default: '{[name]:component}',
         private: false,
       },
       mainClass: {
@@ -11769,7 +11824,7 @@ module.exports = {
         types: [
           'array',
         ],
-        description: '',
+        description: 'Contains select options for native select.',
         private: false,
       },
       mainClass: {
@@ -11983,15 +12038,15 @@ module.exports = {
     },
     methods: {
       updateItems: {
-        description: '',
+        description: 'Fetches & updates select options when using `async` options.',
         returns: 'void',
         params: {
-          disable: {
+          shouldDisable: {
             types: [
               'boolean',
             ],
             required: 'true',
-            description: '',
+            description: 'whether the input field should be disabled while fetching options',
           },
         },
         private: false,
@@ -12625,15 +12680,16 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       children$Array: {
         types: [
-          'array,Element',
+          'array,component',
         ],
-        description: '',
+        description: 'List of child element components.',
+        default: '[children<component>]',
         private: true,
       },
       defaultClasses: {
@@ -12686,37 +12742,44 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       children: {
@@ -12730,7 +12793,8 @@ module.exports = {
         types: [
           'object,Element',
         ],
-        description: '',
+        description: 'Child element components.',
+        default: '{[name]:component}',
         private: false,
       },
       mainClass: {
@@ -13454,9 +13518,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -13546,37 +13610,44 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -14375,9 +14446,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -14452,37 +14523,44 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -15335,9 +15413,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -15429,42 +15507,49 @@ module.exports = {
         types: [
           'array',
         ],
-        description: '',
+        description: 'Contains select options for native select.',
         private: false,
       },
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -15678,15 +15763,15 @@ module.exports = {
     },
     methods: {
       updateItems: {
-        description: '',
+        description: 'Fetches & updates select options when using `async` options.',
         returns: 'void',
         params: {
-          disable: {
+          shouldDisable: {
             types: [
               'boolean',
             ],
             required: 'true',
-            description: '',
+            description: 'whether the input field should be disabled while fetching options',
           },
         },
         private: false,
@@ -16407,9 +16492,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -16499,37 +16584,44 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -17221,9 +17313,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -17260,37 +17352,44 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -17872,9 +17971,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -17940,46 +18039,46 @@ module.exports = {
       },
     },
     computed: {
-      hasAddon: {
-        types: [
-          'boolean',
-        ],
-        description: 'Helper property used to determine internally if the element has any addons.',
-        private: false,
-      },
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -18818,9 +18917,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -18886,46 +18985,46 @@ module.exports = {
       },
     },
     computed: {
-      hasAddon: {
-        types: [
-          'boolean',
-        ],
-        description: 'Helper property used to determine internally if the element has any addons.',
-        private: false,
-      },
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -19135,7 +19234,7 @@ module.exports = {
     },
     methods: {
       autosize: {
-        description: 'Refreshes size.',
+        description: 'Updates the height of the input based in its contents when `autogrow` is enabled.',
         returns: 'void',
         private: false,
       },
@@ -19761,9 +19860,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -19838,37 +19937,44 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -20873,7 +20979,7 @@ module.exports = {
         types: [
           'array',
         ],
-        description: '',
+        description: 'Contains select options for native select.',
         private: false,
       },
       mainClass: {
@@ -21087,15 +21193,15 @@ module.exports = {
     },
     methods: {
       updateItems: {
-        description: '',
+        description: 'Fetches & updates select options when using `async` options.',
         returns: 'void',
         params: {
-          disable: {
+          shouldDisable: {
             types: [
               'boolean',
             ],
             required: 'true',
-            description: '',
+            description: 'whether the input field should be disabled while fetching options',
           },
         },
         private: false,
@@ -21821,9 +21927,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -21911,46 +22017,46 @@ module.exports = {
       },
     },
     computed: {
-      hasAddon: {
-        types: [
-          'boolean',
-        ],
-        description: 'Helper property used to determine internally if the element has any addons.',
-        private: false,
-      },
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -22785,9 +22891,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -22875,46 +22981,46 @@ module.exports = {
       },
     },
     computed: {
-      hasAddon: {
-        types: [
-          'boolean',
-        ],
-        description: 'Helper property used to determine internally if the element has any addons.',
-        private: false,
-      },
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -23128,7 +23234,7 @@ module.exports = {
     },
     methods: {
       autosize: {
-        description: 'Refreshes size.',
+        description: 'Updates the height of the input based in its contents when `autogrow` is enabled.',
         returns: 'void',
         private: false,
       },
@@ -23751,9 +23857,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -23843,37 +23949,44 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {
@@ -24700,9 +24813,9 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by other components, like tabs or steps steps.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
         default: 'true',
-        private: false,
+        private: true,
       },
       defaultClasses: {
         types: [
@@ -24799,37 +24912,44 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'object,Element',
+          'component',
         ],
-        description: '',
+        description: 'The element&quot;s component.',
         private: false,
       },
       isStatic: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is static (does not have any data or validation).',
         private: false,
       },
       isFileType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is a file.',
+        description: 'Whether the element&quot;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an array.',
+        description: 'Whether the element&quot;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the element&quot;s value is an image.',
+        description: 'Whether the element&quot;s value is an image.',
+        private: false,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
       mainClass: {

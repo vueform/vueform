@@ -1,17 +1,5 @@
 export default {
-  "addons": {
-    "base": {
-      "computed": {
-        "hasAddon": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Helper property used to determine internally if the element has any addons."
-        }
-      }
-    }
-  },
+  "addons": {},
   "asyncItems": {
     "base": {
       "computed": {
@@ -20,21 +8,21 @@ export default {
           "types": [
             "array"
           ],
-          "description": ""
+          "description": "Contains select options for native select."
         }
       },
       "methods": {
         "updateItems": {
           "public": true,
           "returns": "void",
-          "description": "",
+          "description": "Fetches & updates select options when using `async` options.",
           "params": {
-            "disable": {
+            "shouldDisable": {
               "types": [
                 "boolean"
               ],
               "required": true,
-              "description": ""
+              "description": "whether the input field should be disabled while fetching options"
             }
           }
         }
@@ -47,7 +35,7 @@ export default {
         "autosize": {
           "public": true,
           "returns": "void",
-          "description": "Refreshes size."
+          "description": "Updates the height of the input based in its contents when `autogrow` is enabled."
         }
       }
     },
@@ -56,7 +44,7 @@ export default {
         "autosize": {
           "public": true,
           "returns": "void",
-          "description": "Refreshes size."
+          "description": "Updates the height of the input based in its contents when `autogrow` is enabled."
         }
       }
     }
@@ -67,50 +55,54 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            [
-              "object",
-              "Element"
-            ]
+            "component"
           ],
-          "description": ""
+          "description": "The element's component."
         },
         "isStatic": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": ""
+          "description": "Whether the element is static (does not have any data or validation)."
         },
         "isFileType": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Determines if the element's value is a file."
+          "description": "Whether the element's value is a file."
         },
         "isArrayType": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Determines if the element's value is an array."
+          "description": "Whether the element's value is an array."
         },
         "isImageType": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Determines if the element's value is an image."
+          "description": "Whether the element's value is an image."
+        },
+        "isActive": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
         }
       },
       "data": {
         "active": {
-          "public": true,
+          "public": false,
           "default": "true",
           "types": [
             "boolean"
           ],
-          "description": "Whether the element is hidden internally by other components, like tabs or steps steps."
+          "description": "Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading."
         }
       },
       "methods": {
@@ -131,50 +123,54 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            [
-              "object",
-              "Element"
-            ]
+            "component"
           ],
-          "description": ""
+          "description": "The element's component."
         },
         "isStatic": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": ""
+          "description": "Whether the element is static (does not have any data or validation)."
         },
         "isFileType": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Determines if the element's value is a file."
+          "description": "Whether the element's value is a file."
         },
         "isArrayType": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Determines if the element's value is an array."
+          "description": "Whether the element's value is an array."
         },
         "isImageType": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Determines if the element's value is an image."
+          "description": "Whether the element's value is an image."
+        },
+        "isActive": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
         }
       },
       "data": {
         "active": {
-          "public": true,
+          "public": false,
           "default": "true",
           "types": [
             "boolean"
           ],
-          "description": "Whether the element is hidden internally by other components, like tabs or steps steps."
+          "description": "Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading."
         }
       },
       "methods": {
@@ -195,50 +191,54 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            [
-              "object",
-              "Element"
-            ]
+            "component"
           ],
-          "description": ""
+          "description": "The element's component."
         },
         "isStatic": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": ""
+          "description": "Whether the element is static (does not have any data or validation)."
         },
         "isFileType": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Determines if the element's value is a file."
+          "description": "Whether the element's value is a file."
         },
         "isArrayType": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Determines if the element's value is an array."
+          "description": "Whether the element's value is an array."
         },
         "isImageType": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Determines if the element's value is an image."
+          "description": "Whether the element's value is an image."
+        },
+        "isActive": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
         }
       },
       "data": {
         "active": {
-          "public": true,
+          "public": false,
           "default": "true",
           "types": [
             "boolean"
           ],
-          "description": "Whether the element is hidden internally by other components, like tabs or steps steps."
+          "description": "Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading."
         }
       },
       "methods": {
@@ -259,50 +259,54 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            [
-              "object",
-              "Element"
-            ]
+            "component"
           ],
-          "description": ""
+          "description": "The element's component."
         },
         "isStatic": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": ""
+          "description": "Whether the element is static (does not have any data or validation)."
         },
         "isFileType": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Determines if the element's value is a file."
+          "description": "Whether the element's value is a file."
         },
         "isArrayType": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Determines if the element's value is an array."
+          "description": "Whether the element's value is an array."
         },
         "isImageType": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Determines if the element's value is an image."
+          "description": "Whether the element's value is an image."
+        },
+        "isActive": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
         }
       },
       "data": {
         "active": {
-          "public": true,
+          "public": false,
           "default": "true",
           "types": [
             "boolean"
           ],
-          "description": "Whether the element is hidden internally by other components, like tabs or steps steps."
+          "description": "Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading."
         }
       },
       "methods": {
@@ -323,32 +327,32 @@ export default {
     "base": {
       "computed": {
         "isButtonLabelComponent": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
-          "description": ""
+          "description": "Whether the button's label is a component."
         },
         "button": {
-          "public": true,
+          "public": false,
           "types": [
             "object"
           ],
-          "description": ""
+          "description": "Attributes of the button."
         },
         "isLoading": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": ""
+          "description": "Whether the button is in loading state."
         }
       },
       "methods": {
         "handleClick": {
-          "public": true,
+          "public": false,
           "returns": "void",
-          "description": "",
+          "description": "Handles the button's click event.",
           "params": {
             "e": {
               "types": [
@@ -368,7 +372,7 @@ export default {
         "check": {
           "public": true,
           "returns": "void",
-          "description": "Checks a checkbox or checkboxes.",
+          "description": "Checks one or more checkboxes.",
           "params": {
             "items": {
               "types": [
@@ -377,14 +381,14 @@ export default {
                 "number"
               ],
               "required": true,
-              "description": "key of one or more checkboxes to check."
+              "description": "value(s) to check"
             }
           }
         },
         "uncheck": {
           "public": true,
           "returns": "void",
-          "description": "Unchecks a checkbox or checkboxes.",
+          "description": "Unchecks one or more checkboxes.",
           "params": {
             "items": {
               "types": [
@@ -393,7 +397,7 @@ export default {
                 "number"
               ],
               "required": true,
-              "description": "key of one or more checkboxes to uncheck."
+              "description": "value(s) to check"
             }
           }
         },
@@ -405,7 +409,7 @@ export default {
         "uncheckAll": {
           "public": true,
           "returns": "void",
-          "description": "Checks all checkboxes."
+          "description": "Unchecks all checkboxes."
         }
       }
     }
@@ -415,13 +419,14 @@ export default {
       "data": {
         "children$Array": {
           "public": false,
+          "default": "[children<component>]",
           "types": [
             [
               "array",
-              "Element"
+              "component"
             ]
           ],
-          "description": ""
+          "description": "List of child element components."
         }
       },
       "computed": {
@@ -433,7 +438,8 @@ export default {
               "Element"
             ]
           ],
-          "description": ""
+          "default": "{[name]:component}",
+          "description": "Child element components."
         }
       }
     },
@@ -454,19 +460,21 @@ export default {
               "Element"
             ]
           ],
-          "description": ""
+          "default": "{[name]:component}",
+          "description": "Child element components."
         }
       },
       "data": {
         "children$Array": {
           "public": false,
+          "default": "[children<component>]",
           "types": [
             [
               "array",
-              "Element"
+              "component"
             ]
           ],
-          "description": ""
+          "description": "List of child element components."
         }
       }
     },
@@ -474,13 +482,14 @@ export default {
       "data": {
         "children$Array": {
           "public": false,
+          "default": "[children<component>]",
           "types": [
             [
               "array",
-              "Element"
+              "component"
             ]
           ],
-          "description": ""
+          "description": "List of child element components."
         },
         "addressId": {
           "public": true,
@@ -500,7 +509,8 @@ export default {
               "Element"
             ]
           ],
-          "description": ""
+          "default": "{[name]:component}",
+          "description": "Child element components."
         },
         "children": {
           "public": false,
@@ -522,13 +532,14 @@ export default {
       "data": {
         "children$Array": {
           "public": false,
+          "default": "[children<component>]",
           "types": [
             [
               "array",
-              "Element"
+              "component"
             ]
           ],
-          "description": ""
+          "description": "List of child element components."
         }
       },
       "computed": {
@@ -540,7 +551,8 @@ export default {
               "Element"
             ]
           ],
-          "description": ""
+          "default": "{[name]:component}",
+          "description": "Child element components."
         },
         "children": {
           "public": false,

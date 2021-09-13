@@ -9,9 +9,10 @@ const base = function(props, context, dependencies)
   // ================ DATA ================
 
   /**
+   * List of child element components.
    * 
-   * 
-   * @type {array<Element>}
+   * @type {array<component>}
+   * @default [children<component>]
    * @private
    */
   const children$Array = ref([])
@@ -19,8 +20,9 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
+   * Child element components.
    * 
-   * 
+   * @default {[name]:component}
    * @type {object<Element>}
    */
   const children$ = computed(() => {
@@ -108,10 +110,9 @@ const address = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * 
+   * The `id` attribute of the input which contains the location autocomplete. Format: `address-{rand}`.
    * 
    * @type {string}
-   * @default "address-*"
    */
   const addressId = ref(`address-${Math.floor(Math.random() * 100000000)}`)
 
@@ -119,6 +120,7 @@ const address = function(props, context, dependencies)
    * Fields of the address. By default has the following `text` type elements: `address`, `address2`, `zip`, `city`, `state`, `country`.
    * 
    * @type {object}
+   * @private
    */
   const fields = computed(() => {
     let fields = {
