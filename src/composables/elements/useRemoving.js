@@ -5,9 +5,9 @@ const base = function (props, context, dependencies)
   // ================ DATA ================
 
   /**
+   * Whether async file removing request is in progress.
    * 
-   * 
-   * @private
+   * @type {boolean}
    */
   const removing = ref(false)
 
