@@ -27,6 +27,7 @@ const base = function (props, context, dependencies)
   * 
   * @type {string}
   * @default `config.endpoints.elements`
+  * @private
   */
   const trixEndpoint = computed(() => {
     return endpoint.value || form$.value.$laraform.config.endpoints.elements.trix.attachment

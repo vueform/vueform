@@ -13,25 +13,14 @@ const base = function(props, context, dependencies)
   const form$ = dependencies.form$
   const path = dependencies.path
 
-  // ============== COMPUTED ==============
-
-  /**
-   * 
-   * 
-   * @type {string|array}
-   */
-  const validationRules = computed(() => {
-    return rules.value
-  })
-
   // ================ DATA ================
 
   /**
    * Helper property used to store the element states.
    * 
+   * @type {{ dirty: boolean, validated: boolean }}
+   * @default { dirty: false, validate: true }
    * @private
-   * @type {object}
-   * @default {}
    */
   const state = ref({
     dirty: false,
@@ -41,13 +30,14 @@ const base = function(props, context, dependencies)
   /**
    * An array containing all the validators of the element.
    * 
-   * @type {array}
+   * @type {array<Validator>}
    * @default []
+   * @private
    */
   const Validators = ref([])
 
   /**
-   * Message bag service.
+   * Instance of MessageBag service.
    * 
    * @type {MessageBag}
    * @default {MessageBag}
@@ -55,14 +45,25 @@ const base = function(props, context, dependencies)
   const messageBag = ref({})
 
   /**
-   * Validator factory service.
+   * Instance of ValidatorFactory.
    * 
    * @type {ValidatorFactory}
    * @default {ValidatorFactory}
+   * @private
    */
   const validatorFactory = reactive({})
 
   // ============== COMPUTED ===============
+
+  /**
+   * The element's validation rules.
+   * 
+   * @type {string|array}
+   * @private
+   */
+  const validationRules = computed(() => {
+    return rules.value
+  })
 
   /**
    * Whether the element's value has been modified by the user.
@@ -118,6 +119,12 @@ const base = function(props, context, dependencies)
     return pending.value || debouncing.value
   })
 
+  /**
+   * The list of errors of failing rules.
+   * 
+   * @type {array}
+   * @private
+   */
   const validatorErrors = computed(() => {
     let errs = []
 
@@ -131,7 +138,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * List of errors of failing rules.
+   * All the errors of `MessageBag`.
    * 
    * @type {array}
    */
@@ -140,7 +147,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * The first error that should be displayed under the element.
+   * The first error of `MessageBag`.
    * 
    * @type {string}
    */
@@ -151,8 +158,7 @@ const base = function(props, context, dependencies)
   // =============== METHODS ===============
 
   /**
-   * 
-   * Validates the element.
+   * Checks each validation rule for the element (async).
    * 
    * @returns {void}
    */
@@ -173,7 +179,7 @@ const base = function(props, context, dependencies)
   }
 
   /**
-   * Set the validated state to false.
+   * Sets the validators to default state.
    * 
    * @returns {void}
    */
@@ -189,13 +195,14 @@ const base = function(props, context, dependencies)
    * Flag the element as dirty.
    * 
    * @returns {void}
+   * @private
    */
   const dirt = () => {
     state.value.dirty = true
   }
 
   /**
-   * Flag the element as non dirty.
+   * Removes the element's `dirty` state.
    * 
    * @returns {void}
    */
@@ -204,10 +211,10 @@ const base = function(props, context, dependencies)
   }
 
   /**
-   * Initalizes messageBag service.
+   * Initalizes MessageBag service.
    * 
-   * @private
    * @returns {void}
+   * @private
    */
   const initMessageBag = () => {
     messageBag.value = new form$.value.$laraform.services.messageBag(validatorErrors)
@@ -216,8 +223,8 @@ const base = function(props, context, dependencies)
   /**
    * Initalizes validators.
    * 
-   * @private
    * @returns {void}
+   * @private
    */
   const initValidation = () => {
     if (!validationRules.value) {
@@ -277,71 +284,36 @@ const list = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
-  /**
-   * Whether the element's value has been modified by the user.
-   * 
-   * @type {boolean}
-   */
   const dirty = computed(() => {
     return _.some(children$.value, { available: true, dirty: true })
       || state.value.dirty
   })
 
-  /**
-   * Whether the element's input has already been validated at least once.
-   * 
-   * @type {boolean}
-   */
   const validated = computed(() => {
     return !_.some(children$.value, { available: true, validated: false })
       && state.value.validated
   })
 
-  /**
-   * Whether the element has any failing rules.
-   * 
-   * @type {boolean}
-   */
   const invalid = computed(() => {
     return _.some(children$.value, { available: true, invalid: true })
       || _.some(Validators.value, { invalid: true })
   })
 
-  /**
-   * Whether the element has any async rules in progress.
-   * 
-   * @type {boolean}
-   */
   const pending = computed(() => {
     return _.some(children$.value, { available: true, pending: true })
       || _.some(Validators.value, { pending: true })
   })
 
-  /**
-   * Whether the element has an ongoing debounce.
-   * 
-   * @type {boolean}
-   */
   const debouncing = computed(() => {
     return _.some(children$.value, { available: true, debouncing: true })
       || _.some(Validators.value, { debouncing: true })
   })
 
-  /**
-   * Whether the element is `pending` or `debouncing`.
-   * 
-   * @type {boolean}
-   */
   const busy = computed(() => {
     return _.some(children$.value, { available: true, busy: true })
       || pending.value || debouncing.value
   })
 
-  /**
-   * 
-   * 
-   * @private
-   */
   const validatorErrors = computed(() => {
     const validatorErrors = []
 
@@ -355,8 +327,9 @@ const list = function(props, context, dependencies)
   })
 
   /**
+   * The list of errors collected from children.
    * 
-   * 
+   * @type {array}
    * @private
    */
   const childrenErrors = computed(() => {
@@ -376,37 +349,27 @@ const list = function(props, context, dependencies)
   })
 
   /**
+   * The `validatorErrors` concated with `childrenErrors`.
    * 
-   * 
+   * @type {array}
    * @private
    */
   const baseErrors = computed(() => {
     return validatorErrors.value.concat(childrenErrors.value)
   })
 
-  /**
-   * List of errors of failing rules.
-   * 
-   * @type {array}
-   */
   const errors = computed(() => {
     return messageBag.value.errors
   })
 
-  /**
-   * The element's error.
-   * 
-   * @type {string}
-   */
   const error = computed(() => {
     return _.head(validatorErrors.value)
   })
 
-
   // =============== METHODS ==============
 
   /**
-   * Validates the element.
+   * Checks each validation rule for the element and validates children (async).
    * 
    * @returns {void}
    */
@@ -416,9 +379,8 @@ const list = function(props, context, dependencies)
   }
   
   /**
-   * Validates the element.
+   * Checks each validation rule for the element (async).
    * 
-   * @private
    * @returns {void}
    */
   const validateValidators = () => {
@@ -434,9 +396,8 @@ const list = function(props, context, dependencies)
   }
   
   /**
-   * Validates each children.
+   * Validates every child (async).
    * 
-   * @private
    * @returns {void}
    */
   const validateChildren = () => {
@@ -449,11 +410,6 @@ const list = function(props, context, dependencies)
     })
   }
 
-  /**
-   * Cleans the element.
-   * 
-   * @returns {void}
-   */
   const clean = () => {
     _.each(children$.value, (element$) => {
       element$.clean()
@@ -462,11 +418,6 @@ const list = function(props, context, dependencies)
     state.value.dirty = false
   }
 
-  /**
-   * Resets validators for children.
-   * 
-   * @returns {void}
-   */
   const resetValidators = () => {
     _.each(children$.value, (element$) => {
       if (element$.isStatic) {
@@ -483,12 +434,6 @@ const list = function(props, context, dependencies)
     state.value.validated = !validationRules.value
   }
 
-  /**
-   * Initalizes messageBag service.
-   * 
-   * @private
-   * @returns {void}
-   */
   const initMessageBag = () => {
     messageBag.value = new form$.value.$laraform.services.messageBag(baseErrors)
   }
@@ -539,30 +484,15 @@ const multilingual = function(props, context, dependencies)
 
   // ================ DATA ================
 
-  /**
-   * 
-   * 
-   * @private
-   */
   const state = ref({
     dirty: {},
     validated: {},
   })
 
-  /**
-   * 
-   * 
-   * @private
-   */
   const Validators = ref({})
 
   // ============== COMPUTED ===============
   
-  /**
-   * 
-   * 
-   * @private
-   */
   const validationRules = computed(() => {
     var ruleList = {}
 
@@ -579,33 +509,18 @@ const multilingual = function(props, context, dependencies)
     return ruleList
   })
 
-  /**
-   * Whether the element's value has been modified by the user.
-   * 
-   * @type {boolean}
-   */
   const dirty = computed(() => {
     return _.some(state.value.dirty, (val) => {
       return val === true
     })
   })
 
-  /**
-   * Whether the element's input has already been validated at least once.
-   * 
-   * @type {boolean}
-   */
   const validated = computed(() => {
     return !_.some(state.value.validated, (val) => {
       return val === false
     })
   })
 
-  /**
-   * Whether the element has any failing rules.
-   * 
-   * @type {boolean}
-   */
   const invalid = computed(() => {
     var invalid = false
 
@@ -618,11 +533,6 @@ const multilingual = function(props, context, dependencies)
     return invalid
   })
 
-  /**
-   * Whether the element has any async rules in progress.
-   * 
-   * @type {boolean}
-   */
   const pending = computed(() => {
     var pending = false
 
@@ -635,11 +545,6 @@ const multilingual = function(props, context, dependencies)
     return pending
   })
 
-  /**
-   * Whether the element has an ongoing debounce.
-   * 
-   * @type {boolean}
-   */
   const debouncing = computed(() => {
     var debouncing = false
 
@@ -652,20 +557,10 @@ const multilingual = function(props, context, dependencies)
     return debouncing
   })
 
-  /**
-   * Whether the element is `pending` or `debouncing`.
-   * 
-   * @type {boolean}
-   */
   const busy = computed(() => {
     return pending.value || debouncing.value
   })
 
-  /**
-   * 
-   * 
-   * @private
-   */
   const validatorErrors = computed(() => {
     var errors = []
 
@@ -680,20 +575,10 @@ const multilingual = function(props, context, dependencies)
     return errors
   })
 
-  /**
-   * 
-   * 
-   * @private
-   */
   const errors = computed(() => {
     return messageBag.value.errors
   })
 
-  /**
-   * 
-   * 
-   * @private
-   */
   const error = computed(() => {
     var error = null
 
@@ -721,8 +606,7 @@ const multilingual = function(props, context, dependencies)
   // =============== METHODS ===============
 
   /**
-   * 
-   * Validates the element.
+   * Checks each validation rule for the element in every language (async).
    * 
    * @returns {void}
    */
@@ -733,9 +617,10 @@ const multilingual = function(props, context, dependencies)
   }
 
   /**
+   * Checks each validation rule for the element in a specific language (async).
    * 
-   * 
-   * @private
+   * @param {string} lang the langauage to check (defaults to currently selected language)
+   * @returns {void}
    */
   const validateLanguage = (lang = language.value) => {
     if (form$.value.validation === false) {
@@ -753,11 +638,6 @@ const multilingual = function(props, context, dependencies)
     state.value.validated[lang] = true
   }
 
-  /**
-   * Set the validated state to false.
-   * 
-   * @returns {void}
-   */
   const resetValidators = () => {
     _.each(languages.value, (language) => {
       _.each(Validators.value[language], (Validator) => {
@@ -770,27 +650,18 @@ const multilingual = function(props, context, dependencies)
     })
   }
 
-  /**
-   * Flag the element as dirty.
-   * 
-   * @returns {void}
-   */
   const dirt = () => {
     state.value.dirty[language.value] = true
   }
 
-  /**
-   * Flag the element as non dirty.
-   * 
-   * @returns {void}
-   */
   const clean = () => {
     state.value.dirty[language.value] = false
   }
 
   /**
+   * Inits the default `state` object.
    * 
-   * 
+   * @returns {void}
    * @private
    */
   const initState = () => {
@@ -811,21 +682,10 @@ const multilingual = function(props, context, dependencies)
     }
   }
 
-  /**
-   * 
-   * 
-   * @private
-   */
   const initMessageBag = () => {
     messageBag.value = new form$.value.$laraform.services.messageBag(validatorErrors)
   }
 
-  /**
-   * Initalizes validators.
-   * 
-   * @private
-   * @returns {void}
-   */
   const initValidation = () => {
     if (!validationRules.value) {
       return  
@@ -895,63 +755,34 @@ const object = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
-  /**
-   * Whether the element's value has been modified by the user.
-   * 
-   * @type {boolean}
-   */
   const dirty = computed(() => {
     return _.some(children$.value, { available: true, dirty: true })
   })
 
-  /**
-   * Whether the element's input has already been validated at least once.
-   * 
-   * @type {boolean}
-   */
   const validated = computed(() => {
     return !_.some(children$.value, { available: true, validated: false })
   })
 
-  /**
-   * Whether the element has any failing rules.
-   * 
-   * @type {boolean}
-   */
   const invalid = computed(() => {
     return _.some(children$.value, { available: true, invalid: true })
   })
 
-  /**
-   * Whether the element has any async rules in progress.
-   * 
-   * @type {boolean}
-   */
   const pending = computed(() => {
     return _.some(children$.value, { available: true, pending: true })
   })
 
-  /**
-   * Whether the element has an ongoing debounce.
-   * 
-   * @type {boolean}
-   */
   const debouncing = computed(() => {
     return _.some(children$.value, { available: true, debouncing: true })
   })
 
-  /**
-   * Whether the element is `pending` or `debouncing`.
-   * 
-   * @type {boolean}
-   */
   const busy = computed(() => {
     return _.some(children$.value, { available: true, busy: true })
   })
 
   /**
+   * The list of errors collected from children.
    * 
-   * 
+   * @type {array}
    * @private
    */
   const childrenErrors = computed(() => {
@@ -970,11 +801,6 @@ const object = function(props, context, dependencies)
     return errors
   })
 
-  /**
-   * List of errors of failing rules.
-   * 
-   * @type {array}
-   */
   const errors = computed(() => {
     return messageBag.value.errors
   })
@@ -982,11 +808,6 @@ const object = function(props, context, dependencies)
 
   // =============== METHODS ==============
 
-  /**
-   * Validates the element.
-   * 
-   * @returns {void}
-   */
   const validate = () => {
     _.each(children$.value, (element$) => {
       if (!element$.available || element$.isStatic) {
@@ -997,11 +818,6 @@ const object = function(props, context, dependencies)
     })
   }
 
-  /**
-   * Cleans the element.
-   * 
-   * @returns {void}
-   */
   const clean = () => {
     _.each(children$.value, (element$) => {
       if (element$.isStatic) {
@@ -1012,11 +828,6 @@ const object = function(props, context, dependencies)
     })
   }
 
-  /**
-   * Resets validators for children.
-   * 
-   * @returns {void}
-   */
   const resetValidators = () => {
     _.each(children$.value, (element$) => {
       if (element$.isStatic) {
@@ -1027,11 +838,6 @@ const object = function(props, context, dependencies)
     })
   }
   
-  /**
-   * 
-   * 
-   * @private
-   */
   const initMessageBag = (el$) => {
     messageBag.value = new form$.value.$laraform.services.messageBag(childrenErrors)
   }
@@ -1080,11 +886,6 @@ const slider = function(props, context, dependencies)
 
   // =============== METHODS ==============
 
-  /**
-   * 
-   * 
-   * @private
-   */
   const validate = async () => {
     if (!validationRules.value) {
       return
@@ -1165,7 +966,7 @@ const file = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * Whether the element is `pending`, `debouncing` or `uploading`.
+   * Whether the element is `pending`, `debouncing`, `uploading` or `removing`.
    * 
    * @type {boolean}
    */
@@ -1176,7 +977,7 @@ const file = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Validates the element. File element will only validate for `min`, `max`, `between`, `size`, `mimetypes` and `mimes` rules before the temporary files are uploaded.
+   * Checks each validation rule for the element (async). File element will only validate for `min`, `max`, `between`, `size`, `mimetypes`, `mimes`, `dimensions`, `file`, `image`, `gt`, `gte`, `lt` and `lte` rules and only before the temporary files are uploaded.
    * 
    * @returns {void}
    */
