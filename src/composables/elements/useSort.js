@@ -19,15 +19,17 @@ const base = function(props, context, dependencies, options)
   // ================ DATA ================
 
   /**
-   * 
+   * The DOM element containing list items.
    * 
    * @type {HTMLElement}
+   * @private
    */
   const list = ref(null)
 
   /**
+   * The `Sortable.js` instance.
    * 
-   * 
+   * @type {object}
    * @private
    */
   const sortable = ref(null)
@@ -35,7 +37,7 @@ const base = function(props, context, dependencies, options)
   // ============== COMPUTED ==============
 
   /**
-   * 
+   * Whether the list is sortable. Can be enabled with `:sort="true"` option, but it will disabled if [`isDisabled`](#is-disabled) is `true`.
    * 
    * @type {boolean}
    */
@@ -46,9 +48,10 @@ const base = function(props, context, dependencies, options)
   // =============== METHODS ==============
 
   /**
-   *
+   * Inits Sortable.js.
    *
    * @returns {void}
+   * @private
    */
   const initSortable = () => {
     sortable.value = new Sortable(list.value, {
@@ -61,9 +64,10 @@ const base = function(props, context, dependencies, options)
   }
 
   /**
-   *
+   * Destroys Sortable.js.
    *
    * @returns {void}
+   * @private
    */
   const destroySortable = () => {
     sortable.value.destroy()
@@ -71,10 +75,10 @@ const base = function(props, context, dependencies, options)
   }
 
   /**
-   * Triggered when the user changes the order of the list items.
+   * Handles `sort` event.
    *
-   * @param {object} indexes an object containing `newIndex` and `oldIndex`.
-   * @event sort
+   * @param {Event} e Sortable.js event
+   * @private
    */
   const handleSort = ({ oldIndex, newIndex, item }) => {
     sorting.value = false
