@@ -20,28 +20,29 @@ const base = function(props, context, dependencies, options = {})
   // ================ DATA ================
 
   /**
+  * The default classes for the element defined by theme.
   * 
-  * 
-  * @type {object} 
+  * @type {object}
+  * @private
   */
   const defaultClasses = toRefs(context.data).defaultClasses
 
   // ============== COMPUTED ==============
   
   /**
-  * Class of the element's outermost DOM. Can use Vue syntaxes (string, array, object).
+  * The class name of the element's outermost DOM.
   * 
   * @type {string}
+  * @private
   */
   const mainClass = computed(() => {
     return _.keys(defaultClasses.value)[0]
   })
 
   /**
-   * Returns the final classes of the components within the element.
+   * An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.
    * 
    * @type {object}
-   * @option
    */
   const classes = computed(() => {
     let classes = _.merge({},
