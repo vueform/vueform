@@ -6,8 +6,9 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ===============
 
   /**
+   * The null value of the element.
    * 
-   * 
+   * @type {any}
    * @private
    */
   const nullValue = computed(() => {
