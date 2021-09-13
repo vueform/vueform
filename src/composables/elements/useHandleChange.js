@@ -7,7 +7,7 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.
+   * Handles `change` event.
    *
    * @returns {void}
    * @private

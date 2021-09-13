@@ -7,9 +7,9 @@ const base = function (props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Triggered when the user selects an option using non-native element.
+   * Handles `select` event.
    *
-   * @param {object} option* the selected option object.
+   * @param {object} option* the selected option object
    * @returns {void}
    * @private
    */
@@ -18,9 +18,9 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * Triggered when the user deselects an option using non-native element. Does not trigger when an *other* element gets selected.
+   * Handles `deselect` event.
    *
-   * @param {object} option* the deselected option object.
+   * @param {object} option* the deselected option object
    * @returns {void}
    * @private
    */
@@ -29,9 +29,9 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * Triggered when the user changes the search criteria using non-native element.
+   * Handles `searchChange` event.
    *
-   * @param {string} searchQuery* the current search query.
+   * @param {string} searchQuery* the current search query
    * @returns {void}
    * @private
    */
@@ -40,7 +40,7 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * Triggered when the option list is opened using non-native element.
+   * Handles `open` event.
    *
    * @returns {void}
    * @private
@@ -50,9 +50,8 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * Triggered when the option list is closed using non-native element.
+   * Handles `close` event.
    *
-   * @event close
    * @returns {void}
    * @private
    */
@@ -61,9 +60,9 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * Triggered when the user creates a tag using non-native element.
+   * Handles `tag` event.
    *
-   * @param {string} searchQuery* the current search query.
+   * @param {string} searchQuery* the current search query
    * @returns {void}
    * @private
    */

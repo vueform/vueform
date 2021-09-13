@@ -8,9 +8,9 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Triggered when the trix editor throws an error during file upload (for example not accepted file types). If no event is attached browsers default `alert()` function will be used.
+   * Handles `error` event.
    *
-   * @param {string} message* message to display.
+   * @param {string} message* error message
    * @param {Event} e* 
    * @returns {void}
    * @private

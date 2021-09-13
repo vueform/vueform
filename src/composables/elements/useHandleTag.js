@@ -5,7 +5,7 @@ const base = function (props, context, dependencies)
   const fire = dependencies.fire
 
   /**
-   * Triggered when the user creates a tag. Only gets fired if [`create`](#option-create) is `true`.
+   * Handles `tag` event.
    *
    * @param {string} searchQuery* the current search query.
    * @returns {void}

@@ -9,8 +9,11 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.
-   *
+   * Handles `input` event.
+   * 
+   * @param {Event} e* 
+   * @returns {void}
+   * @private
    */
   const handleInput = (e) => {
     model.value = e.target.value
