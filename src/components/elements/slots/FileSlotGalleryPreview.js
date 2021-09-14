@@ -1,5 +1,6 @@
-import { computed, toRefs } from 'composition-api'
+import { computed } from 'composition-api'
 import useElementComponent from './../../../composables/useElementComponent'
+import usePreview from './../../../composables/usePreview'
 
 export default {
   name: 'FileSlotGalleryPreview',
@@ -15,159 +16,45 @@ export default {
       theme,
     } = useElementComponent(props, context)
 
+    const {
+      visible,
+      hasLink,
+      hasError,
+      link,
+      filename,
+      clickable,
+      uploaded,
+      uploading,
+      progress,
+      canRemove,
+      canUploadTemp,
+      uploadText,
+      upload,
+      remove,
+    } = usePreview(props, context, {
+      el$,
+    })
+
     // ============== COMPUTED ==============
-
+    
     /**
+     * The image's preview. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded.
      * 
-     * 
-     * @private
-     */
-    const visible = computed(() => {
-      return el$.value.stage > 0
-    })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const hasLink = computed(() => {
-      return el$.value.link && el$.value.clickable
-    })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const hasError = computed(() => {
-      return el$.value.hasUploadError
-    })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const link = computed(() => {
-      return el$.value.link
-    })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const filename = computed(() => {
-      return el$.value.filename
-    })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const clickable = computed(() => {
-      return el$.value.clickable
-    })
-
-    /**
-     * 
-     * 
-     * @private
+     * @type {string}
      */
     const preview = computed(() => {
       return el$.value.preview
     })
 
     /**
+     * Whether the preview file has been loaded by the browser when the file has already been uploaded or has only been selected.
      * 
-     * 
+     * @type {boolean}
      * @private
      */
     const previewLoaded = computed(() => {
       return el$.value.previewLoaded
     })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const uploaded = computed(() => {
-      return el$.value.stage > 1
-    })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const uploading = computed(() => {
-      return el$.value.uploading
-    })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const progress = computed(() => {
-      return el$.value.progress
-    })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const canRemove = computed(() => {
-      return el$.value.canRemove || el$.value.uploading
-    })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const canUpload = computed(() => {
-      return el$.value.canUploadTemp
-    })
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const uploadText = computed(() => {
-      return el$.value.__('laraform.elements.file.upload')
-    })
-
-    // =============== METHODS ==============
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const upload = () => {
-      el$.value.uploadTemp()
-    }
-
-    /**
-     * 
-     * 
-     * @private
-     */
-    const remove = () => {
-      if (uploading.value) {
-        el$.value.handleAbort()
-      }
-      else {
-        el$.value.handleRemove()
-      }
-
-    }
 
     return {
       el$,
@@ -189,8 +76,10 @@ export default {
       uploading,
       progress,
       canRemove,
-      canUpload,
+      canUploadTemp,
       uploadText,
+      preview,
+      previewLoaded,
       upload,
       remove,
     }
