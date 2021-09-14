@@ -37,18 +37,18 @@ export default {
     // ============== COMPUTED ==============
 
     /**
+     * The ISO 639-1 code of the currently selected language (2 letters).
      * 
-     * 
-     * @private
+     * @type {string}
      */
     const selectedLanguage = computed(() => {
       return form$.value.selectedLanguage
     })
 
     /**
+     * Whether the current language is the selected one.
      * 
-     * 
-     * @private
+     * @type {boolean}
      */
     const selected = computed(() => {
       return selectedLanguage.value == code.value
@@ -57,9 +57,9 @@ export default {
     // =============== METHODS ==============
 
     /**
+     * Select language.
      * 
-     * 
-     * @private
+     * @return {void}
      */
     const select = () => {
       context.emit('select', code.value)

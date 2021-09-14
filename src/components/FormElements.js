@@ -25,8 +25,9 @@ export default {
     // ============ COMPUTED ============
 
     /**
+     * The form schema.
      * 
-     * 
+     * @type {object}
      * @private
      */
     const schema = computed(() => {

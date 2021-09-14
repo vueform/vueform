@@ -34,18 +34,20 @@ export default {
     // ============== COMPUTED ==============
 
     /**
-     * 
-     * 
-     * @private
+     * The addon definition.
+     * ponent.
+  * 
+  * @type {string|function|component}
+  * @private
      */
     const baseAddon = computed(() => {
       return el$.value.addons[type.value]
     })
 
     /**
+     * The addon. If the addon is provided is a `function` this has the resolved value.
      * 
-     * 
-     * @private
+     * @type {string|component}
      */
     const addon = computed(() => {
       return isAddonFunction.value
@@ -54,19 +56,21 @@ export default {
     })
     
     /**
-     * 
-     * 
-     * @private
-     */
+    * Whether the addon is provided as a function.
+    * 
+    * @type {boolean}
+    * @private
+    */
     const isAddonFunction = computed(() => {
       return typeof baseAddon.value === 'function' && (!baseAddon.value.prototype || !baseAddon.value.prototype.constructor || (baseAddon.value.prototype.constructor && baseAddon.value.prototype.constructor.name !== 'VueComponent'))
     })
 
     /**
-     * 
-     * 
-     * @private
-     */
+    * Whether addon is provided as a Vue component.
+    * 
+    * @type {boolean}
+    * @private
+    */
     const isAddonComponent = computed(() => {
       return isVueComponent(baseAddon.value)
     })

@@ -43,8 +43,9 @@ export default {
     // ============== COMPUTED ==============
 
     /**
+     * The label definition of the component.
      * 
-     * 
+     * @type {string|function|component}
      * @private
      */
     const baseLabel = computed(() => {
@@ -72,7 +73,7 @@ export default {
     // ============== COMPUTED ==============
 
     /**
-     * 
+     * The [`FormSteps`](form-steps) component.
      * 
      * @private
      */
@@ -81,7 +82,7 @@ export default {
     })
 
     /**
-     * 
+     * The currently active [`FormStep`](form-step) component.
      * 
      * @private
      */
@@ -90,9 +91,9 @@ export default {
     })
 
     /**
+     * Whether the control should be visible.
      * 
-     * 
-     * @private
+     * @type {boolean}
      */
     const visible = computed(() => {
       let buttons = current$ && current$.value ? current$.value.buttons : null
@@ -110,9 +111,9 @@ export default {
     })
 
     /**
+     * Whether the control should be disabled.
      * 
-     * 
-     * @private
+     * @type {boolean}
      */
     const disabled = computed(() => {
       switch (type.value) {
@@ -143,9 +144,9 @@ export default {
     })
 
     /**
+     * Whether the control should be in loading state (except for previous).
      * 
-     * 
-     * @private
+     * @type {boolean}
      */
     const loading = computed(() => {
       return type.value === 'previous' ? false : form$.value.isLoading
@@ -154,17 +155,18 @@ export default {
     // =============== METHODS ==============
 
     /**
+     * Go to the previous form step.
      * 
-     * 
-     * @private
+     * @returns {void}
      */
     const previous = () => {
       steps$.value.previous()
     }
+
     /**
+     * Complete the current step and go to the next one (async). If the form's `:validateOn` prop or `config.validateOn` contains `'step'` also validate the elements within the step before moving forward (and stay if there's any error).
      * 
-     * 
-     * @private
+     * @returns {void}
      */
     const next = async () => {
       if (form$.value.shouldValidateOnStep) {
@@ -180,9 +182,9 @@ export default {
     }
 
     /**
+     * Complete the final step and submit the form (async).
      * 
-     * 
-     * @private
+     * @returns {void}
      */
     const finish = async () => {
       steps$.value.fire('finish')
@@ -192,8 +194,9 @@ export default {
     }
 
     /**
+     * Handles `click` event.
      * 
-     * 
+     * @returns {void}
      * @private
      */
     const handleClick = () => {

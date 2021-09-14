@@ -33,8 +33,10 @@ export default {
     // ============== COMPUTED ==============
 
     /**
+     * The name of the element.
      * 
      * @type {string}
+     * @private
      */
     const name = computed(() => {
       return el$.value.name

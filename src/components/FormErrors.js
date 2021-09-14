@@ -18,10 +18,11 @@ export default {
 
     // ============== COMPUTED ==============
 
+
     /**
+     * Form errors including element errors and the ones added to `messageBag` manually.
      * 
-     * 
-     * @private
+     * @type {array}
      */
     const errors = computed(() => {
       return form$.value.formErrors

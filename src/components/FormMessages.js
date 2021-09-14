@@ -19,9 +19,9 @@ export default {
     // ============== COMPUTED ==============
 
     /**
+     * Form messages including element messages and the ones added to `messageBag` manually.
      * 
-     * 
-     * @private
+     * @type {array}
      */
     const messages = computed(() => {
       return form$.value.formMessages

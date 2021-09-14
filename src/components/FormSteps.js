@@ -36,49 +36,50 @@ export default {
     // ================ DATA ================
 
     /**
+     * The child [`FormStep`](form-step) components.
      * 
-     * 
-     * @private
+     * @type {array}
+     * @default []
      */
     const steps$Array = ref([])
 
-    // no export
     /**
+     * Helper to store a watcher.
      * 
-     * 
-     * @private
+     * @type {object}
+     * @default null
      */
     const unwatchInvalid = ref(null)
 
     /**
+     * Helper prop used for checking if the component exists.
      * 
-     * 
-     * @private
+     * @type {boolean}
      */
     const exists = ref(true)
 
     // ============== COMPUTED ==============
 
     /**
+     * The form steps definition.
      * 
-     * 
-     * @private
+     * @type {object}
      */
     const steps = computed(() => {
       return form$.value.options.steps
     })
 
     /**
+     * The components of highest level form elements.
      * 
-     * 
-     * @private
+     * @type {object}
      */
     const elements$ = computed(() => {
       return form$.value.elements$
     })
 
     /**
-     * Determines whether the steps has any pending elements.
+     * Whether there are any steps in `pending` state.
      * 
      * @type {boolean}
      */
@@ -87,7 +88,7 @@ export default {
     })
 
     /**
-     * Determines whether the steps has any debouncing elements.
+     * Whether there are any steps in `debouncing` state.
      * 
      * @type {boolean}
      */
@@ -96,7 +97,7 @@ export default {
     })
 
     /**
-     * Determines whether the steps has any invalid elements.
+     * Whether there are any steps in `invalid` state.
      * 
      * @type {boolean}
      */
@@ -105,7 +106,7 @@ export default {
     })
 
     /**
-     * Determines whether all the steps are completetly filled out.
+     * Whether all the steps are `done`.
      * 
      * @type {boolean}
      */
@@ -114,7 +115,7 @@ export default {
     })
 
     /**
-     * Determines whether the steps has any pending or debouncing elements.
+     * Whether there are any steps in `busy` state.
      * 
      * @type {boolean}
      */
@@ -123,10 +124,9 @@ export default {
     })
 
     /**
-     * Object of stepsStep$ components.
+     * The child [`FormStep`](form-step) components with indexed keys.
      * 
      * @type {object}
-     * @default {}
      */
     const steps$ = computed(() => {
       let steps$ = {}
@@ -139,7 +139,7 @@ export default {
     })
 
     /**
-     * Returns the visible [stepsStep$](reference/frontend-steps-step) components.
+     * All the visible [`FormStep`](form-step) components.
      * 
      * @type {object}
      */
@@ -156,9 +156,9 @@ export default {
     })
 
     /**
-     * Returns the first [stepsStep$](reference/frontend-steps-step) component.
+     * The first visible [`FormStep`](form-step) component.
      * 
-     * @type {component<FormStep>}
+     * @type {component}
      */
     const first$ = computed(() => {
       return _.find(visible$.value, (step) => {
@@ -167,9 +167,9 @@ export default {
     })
 
     /**
-     * Returns the current [stepsStep$](reference/frontend-steps-step) component.
+     * The current [`FormStep`](form-step) component.
      * 
-     * @type {component<FormStep>}
+     * @type {component}
      */
     const current$ = computed(() => {
       var current = _.find(steps$.value, { active: true })
@@ -178,9 +178,9 @@ export default {
     })
 
     /**
-     * Returns the next [stepsStep$](reference/frontend-steps-step) component.
+     * The next visible [`FormStep`](form-step) component.
      * 
-     * @type {component<FormStep>}
+     * @type {component}
      */
     const next$ = computed(() => {
       return _.find(visible$.value, (step) => {
@@ -189,9 +189,9 @@ export default {
     })
 
     /**
-     * Returns the previous [stepsStep$](reference/frontend-steps-step) component.
+     * The previous visible [`FormStep`](form-step) component.
      * 
-     * @type {component<FormStep>}
+     * @type {component}
      */
     const previous$ = computed(() => {
       return _.findLast(visible$.value, (step) => {
@@ -200,34 +200,34 @@ export default {
     })
 
     /**
-     * Returns the first invalid [stepsStep$](reference/frontend-steps-step) component.
+     * The first invalid & visible [`FormStep`](form-step) component.
      * 
-     * @type {component<FormStep>}
+     * @type {component}
      */
     const firstInvalid$ = computed(() => {
       return _.find(visible$.value, { invalid: true })
     })
 
     /**
-     * Returns the first [stepsStep$](reference/frontend-steps-step) component which is not done yet.
+     * The first visible [`FormStep`](form-step) component which is not done yet.
      * 
-     * @type {component<FormStep>}
+     * @type {component}
      */
     const firstNonDone$ = computed(() => {
       return _.find(visible$.value, { done: false })
     })
 
     /**
-     * Returns the last enabled [stepsStep$](reference/frontend-steps-step) component.
+     * The last enabled & visible [`FormStep`](form-step) component.
      * 
-     * @type {component<FormStep>}
+     * @type {component}
      */
     const lastEnabled$ = computed(() => {
       return _.findLast(visible$.value, { disabled: false })
     })
 
     /**
-     * Determines whether the steps is at the last step.
+     * Whether the steps is at the last step.
      * 
      * @type {boolean}
      */
@@ -242,7 +242,7 @@ export default {
     })
 
     /**
-     * Determines whether the steps is at the first step.
+     * Whether the steps is at the first step.
      * 
      * @type {boolean}
      */
@@ -254,19 +254,14 @@ export default {
 
 
     /**
-     * Moves to a step. If it is disabled, enables it.
+     * Go to a step and enable it. Optionally enable all steps up to it.
      *
-     * @public
-     * @param {object} step key of step in [steps](reference/frontend-form#prop-steps)
-     * @param {boolean} enableUntil whether steps should be enabled before destination step (default: false)
+     * @param {object} index* index of step to go to
+     * @param {boolean} enableUntil whether steps should be enabled up to the selected step (default: false)
      * @returns {void}
      */
-    const goTo = (step, enableUntil) => {
-      if (enableUntil === undefined) {
-        enableUntil = false
-      }
-
-      var step = visible$.value[step]
+    const goTo = (index, enableUntil = false) => {
+      var step = visible$.value[index]
       
       step.enable()
       step.select()
@@ -279,9 +274,8 @@ export default {
     }
 
     /**
-     * Moves to next step and enables it.
+     * Move to next step and enable it.
      *
-     * @public
      * @returns {void}
      */
     const next = () => {
@@ -292,9 +286,8 @@ export default {
     }
 
     /**
-     * Moves to previous step.
+     * Move to previous step.
      *
-     * @public
      * @returns {void}
      */
     const previous = () => {
@@ -304,9 +297,8 @@ export default {
     }
 
     /**
-     * Marks each [stepsStep$](reference/frontend-steps-step) as complete.
+     * Mark each [`FormStep`](form-step) as complete.
      *
-     * @public
      * @returns {void}
      */
     const complete = () => {
@@ -316,20 +308,18 @@ export default {
     }
 
     /**
-     * Returns a specific [stepsStep$](reference/frontend-steps-step).
+     * Returns a specific [`FormStep`](form-step) by index.
      *
-     * @public
-     * @param {object} step key of step in [steps](reference/frontend-form#prop-steps)
-     * @returns {component<FormStep>}
+     * @param {object} index* index of the step
+     * @returns {component}
      */
-    const step$ = (step) => {
-      return _.find(visible$.value, { name: step })
+    const step$ = (index) => {
+      return _.find(visible$.value, { name: index })
     }
 
     /**
-     * Resets form and goes back to first step while disabling all others.
+     * Jump back to first visible step and disable all others.
      *
-     * @public
      * @returns {void}
      */
     const reset = () => {
@@ -343,9 +333,8 @@ export default {
     }
 
     /**
-     * Enables all steps.
+     * Enable all steps.
      *
-     * @public
      * @returns {void}
      */
     const enableAllSteps = () => {
@@ -355,9 +344,8 @@ export default {
     }
 
     /**
-     * Emits submit event.
+     * Invokes the form's `submit` event. If the form has any validation errors it will jump to the first step with error.
      *
-     * @public
      * @returns {void}
      */
     const submit = () => {
@@ -380,11 +368,11 @@ export default {
     }
 
     /**
-     * Triggered when a step is selected.
+     * Select a step.
      *
-     * @public
-     * @param {object} step$ the selected step component
-     * @event select
+     * @param {component} step$ the [`FormStep`](form-step) component to select
+     * @returns {void}
+     * @private
      */
     const select = (step$) => {
       let curr$ = current$.value
@@ -403,8 +391,7 @@ export default {
     /**
      * Enable steps until a certain index.
      * 
-     * @private
-     * @param {integer} index index of step
+     * @param {integer} index index of the step
      * @returns {void}
      */
     const enableUntil = (index) => {
@@ -416,9 +403,8 @@ export default {
     }
 
     /**
-     * Enable steps until current step.
+     * Enable all steps up to the current step.
      * 
-     * @private
      * @returns {void}
      */
     const enableUntilCurrent = () => {
@@ -426,9 +412,8 @@ export default {
     }
 
     /**
-     * Enable steps until last enabled.
+     * Enable all steps up to the last enabled.
      * 
-     * @private
      * @returns {void}
      */
     const enableUntilLastEnabled = () => {
@@ -439,10 +424,12 @@ export default {
       enableUntil(lastEnabled$.value !== undefined ? lastEnabled$.value.index : first$.value.index)
     }
 
-    // no export
     /**
+     * Set the component to the parent as if `refs` were used.
      * 
-     * 
+     * @param {component} $parent parent component
+     * @param {function} assignToParent the assignToParent function for recursion
+     * @returns {void}
      * @private
      */
     const assignToParent = ($parent, assignToParent) => {
@@ -454,12 +441,13 @@ export default {
       }
     }
 
-    // no export
     /**
-     * 
-     * 
-     * @private
-     */
+    * Removes the component from the parent.
+    * 
+    * @param {component} $parent parent component
+    * @param {function} removeFromParent the removeFromParent function for recursion
+    * @private
+    */
     const removeFromParent = ($parent, removeFromParent) => {
       if ($parent.steps$ !== undefined) {
         form$.value.$set($parent, 'steps$', null)

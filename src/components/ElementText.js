@@ -34,8 +34,9 @@ export default {
     // ============== COMPUTED ==============
 
     /**
+     * The value of the content type.
      * 
-     * 
+     * @type {string}
      * @private
      */
     const content = computed(() => {

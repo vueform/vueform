@@ -20,18 +20,18 @@ export default {
     // ============== COMPUTED ==============
 
     /**
+     * The ISO 639-1 code of the currently selected language (2 letters).
      * 
-     * 
-     * @private
+     * @type {string}
      */
     const language = computed(() => {
       return form$.value.selectedLanguage
     })
 
     /**
+     * The available languages.
      * 
-     * 
-     * @private
+     * @type {object}
      */
     const languages = computed(() => {
       return form$.value.options.languages
@@ -40,17 +40,20 @@ export default {
     // =============== METHODS ==============
 
     /**
+     * Select a language.
      * 
-     * 
-     * @private
+     * @param {string} code* the language code to be selected
+     * @returns {void}
      */
     const select = (code) => {
       form$.value.setLanguage(code)
     }
 
     /**
-     * 
-     * 
+     * Handles `select` event.
+     *
+     * @param {string} code* the language code to be selected
+     * @returns {void}
      * @private
      */
     const handleSelect = (code) => {

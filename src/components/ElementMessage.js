@@ -20,9 +20,9 @@ export default {
     // ============== COMPUTED ==============
 
     /**
+     * The first message of the element.
      * 
-     * 
-     * @private
+     * @type {string}
      */
     const message = computed(() => {
       return el$.value.messageBag ? el$.value.messageBag.message : null

@@ -108,7 +108,7 @@ export default {
     // ================ DATA ================
 
     /**
-     * Determines whether the tab is active.
+     * Whether the tab is active.
      * 
      * @type {boolean}
      * @default false
@@ -116,43 +116,44 @@ export default {
     const active = ref(false)
 
     /**
+     * The label of the tab.
      * 
-     * 
-     * @private
+     * @type {string|component}
+     * @default null
      */
     const tabLabel = ref(tabLabel_.value)
 
     // ============== COMPUTED ==============
 
     /**
+     * The components of highest level form elements.
      * 
-     * 
-     * @private
+     * @type {object}
      */
     const elements$ = computed(() => {
       return form$.value.elements$
     })
 
     /**
+     * The parent [`FormTabs`](form-tabs) component.
      * 
-     * 
-     * @private
+     * @type {component}
      */
     const tabs$ = computed(() => {
       return form$.value.tabs$
     })
 
     /**
+     * Index of this tab among the other tabs which are not hidden by unmet conditions.
      * 
-     * 
-     * @private
+     * @type {number}
      */
     const index = computed(() => {
       return Object.keys(tabs$.value.tabs$).indexOf(name.value)
     })
 
     /**
-     * Returns the components of elements within the tab.
+     * The components of form elements within the tab.
      * 
      * @type {object}
      */
@@ -163,7 +164,7 @@ export default {
     })
 
     /**
-     * Determines whether the tab is visible.
+     * Whether the tab should be visible.
      * 
      * @type {boolean}
      */
@@ -172,7 +173,7 @@ export default {
     })
 
     /**
-     * Determines whether the tab has any invalid elements.
+     * Whether the tab has any invalid elements.
      * 
      * @type {boolean}
      */
@@ -181,9 +182,9 @@ export default {
     })
     
     /**
+     * The tab's component.
      * 
-     * 
-     * @private
+     * @type {component}
      */
     const tab$ = computed(() => {
       return form$.value.tabs$.tabs$[name.value]
@@ -192,9 +193,8 @@ export default {
     // =============== METHODS ==============
 
     /**
-     * Selects the tab to become the active tab.
+     * Deactivate all other tabs and set the current one as active.
      *
-     * @public
      * @returns {void}
      */
     const select = () => {
@@ -208,9 +208,8 @@ export default {
     }
 
     /**
-     * Activates the tab.
+     * Activate the tab.
      *
-     * @public
      * @returns {void}
      */
     const activate = () => {
@@ -228,9 +227,8 @@ export default {
     }
 
     /**
-     * Deactivates the step.
+     * Deactivate the tab.
      *
-     * @public
      * @returns {void}
      */
     const deactivate = () => {
@@ -247,10 +245,12 @@ export default {
       fire('inactive')
     }
 
-    // no export
     /**
+     * Set the component to the parent as if `refs` were used.
      * 
-     * 
+     * @param {component} $parent parent component
+     * @param {function} assignToParent the assignToParent function for recursion
+     * @returns {void}
      * @private
      */
     const assignToParent = ($parent, assignToParent) => {
@@ -262,12 +262,13 @@ export default {
       }
     }
 
-    // no export
     /**
-     * 
-     * 
-     * @private
-     */
+    * Removes the component from the parent.
+    * 
+    * @param {component} $parent parent component
+    * @param {function} removeFromParent the removeFromParent function for recursion
+    * @private
+    */
     const removeFromParent = ($parent, removeFromParent) => {
       if ($parent.tabs$Array) {
         $parent.tabs$Array.splice($parent.tabs$Array.map(t$=>normalize(t$.name)).indexOf(normalize(name.value)), 1)

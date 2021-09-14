@@ -46,24 +46,27 @@ export default {
     // ================ DATA ================
 
     /**
+     * Whether the user is currently dragging a file over the drag and drop area.
      * 
-     * 
-     * @private
+     * @type {boolean}
+     * @default falyse
      */
     const dragging = ref(false)
 
     /**
+     * The DOM element of the drag and drop area.
      * 
-     * 
-     * @private
+     * @type {HTMLElement}
+     * @default null
      */
     const area = ref(null)
 
     // =============== METHODS ==============
 
     /**
+     * Handles `click` event.
      * 
-     * 
+     * @returns {void}
      * @private
      */
     const handleClick = () => {

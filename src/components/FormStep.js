@@ -137,14 +137,15 @@ export default {
     // ================ DATA ================
 
     /**
+     * The label of the step.
      * 
-     * 
-     * @private
+     * @type {string|component}
+     * @default null
      */
     const stepLabel = ref(stepLabel_.value)
 
     /**
-     * Determines whether the step is active.
+     * Whether the step is active.
      * 
      * @type {boolean}
      * @default false
@@ -152,7 +153,7 @@ export default {
     const active = ref(false)
 
     /**
-     * Determines whether the step is disabled.
+     * Whether the step is disabled.
      * 
      * @type {boolean}
      * @default true
@@ -160,7 +161,7 @@ export default {
     const disabled = ref(true)
 
     /**
-     * Determines whether the step is completed.
+     * Whether the step is completed.
      * 
      * @type {boolean}
      * @default false
@@ -170,27 +171,37 @@ export default {
     // ============== COMPUTED ==============
     
     /**
+     * The components of highest level form elements.
      * 
-     * 
-     * @private
-     */
-    const steps$ = computed(() => {
-      return form$.value.steps$ || {}
-    })
-    
-    /**
-     * 
-     * 
-     * @private
+     * @type {object}
      */
     const elements$ = computed(() => {
       return form$.value.elements$
     })
+    
+    /**
+     * The parent [`FormSteps`](form-steps) component.
+     * 
+     * @type {component}
+     */
+    const steps$ = computed(() => {
+      return form$.value.steps$ || {}
+    })
 
     /**
+     * The label definition of the component.
      * 
-     * 
+     * @type {string}
      * @private
+     */
+    const baseLabel = computed(() => {
+      return label.value
+    })
+
+    /**
+     * Index of this step among the other steps which are not hidden by unmet conditions.
+     * 
+     * @type {number}
      */
     const index = computed(() => {
       if (!steps$.value || !steps$.value.steps$) {
@@ -201,10 +212,10 @@ export default {
     })
 
     /**
-      * Returns the components of elements within the step.
-      * 
-      * @type {object}
-      */
+     * The components of form elements within the step.
+     * 
+     * @type {object}
+     */
     const children$ = computed(() => {
       return _.filter(elements$.value, (element$, key) => {
         return elements.value.indexOf(key) !== -1
@@ -212,7 +223,7 @@ export default {
     })
 
     /**
-     * Determines whether the step is visible.
+     * Whether the step should be visible.
      * 
      * @type {boolean}
      */
@@ -221,7 +232,7 @@ export default {
     })
 
     /**
-      * Determines whether the step has any invalid elements.
+      * Whether the step has any invalid elements.
       * 
       * @type {boolean}
       */
@@ -230,7 +241,7 @@ export default {
     })
 
     /**
-      * Determines whether the step has any pending elements.
+      * Whether the step has any pending elements.
       * 
       * @type {boolean}
       */
@@ -239,17 +250,7 @@ export default {
     })
 
     /**
-     * Base label of step.
-     * 
-     * @private
-     * @type {string}
-     */
-    const baseLabel = computed(() => {
-      return label.value
-    })
-
-    /**
-      * Determines whether the step has any debouncing elements.
+      * Whether the step has any debouncing elements.
       * 
       * @type {boolean}
       */
@@ -258,7 +259,7 @@ export default {
     })
 
     /**
-      * Determines whether all the elements in the step has been validated.
+      * Whether all the elements in the step has been validated.
       * 
       * @type {boolean}
       */
@@ -267,7 +268,7 @@ export default {
     })
 
     /**
-      * Determines whether the step has any busy elements.
+      * Whether the step has any busy elements.
       * 
       * @type {boolean}
       */
@@ -276,7 +277,7 @@ export default {
     })
 
     /**
-      * Determines whether the step is done (complete, validated has no invalid or pending elements).
+      * Whether the step is done (completed, validated has no invalid or pending elements).
       * 
       * @type {boolean}
       */
@@ -288,9 +289,9 @@ export default {
     })
 
     /**
+     * The step's component.
      * 
-     * 
-     * @private
+     * @type {component}
      */
     const step$ = computed(() => {
       return form$.value.steps$.steps$[name.value]
@@ -300,9 +301,8 @@ export default {
 
 
     /**
-     * Validate the elements within the step.
+     * Validate all elements within the step (async).
      *
-     * @public
      * @returns {void}
      */
     const validate = async () => {
@@ -321,9 +321,8 @@ export default {
     }
 
     /**
-     * Activates the step.
+     * Activate the step.
      *
-     * @public
      * @returns {void}
      */
     const activate = () => {
@@ -337,9 +336,8 @@ export default {
     }
 
     /**
-     * Deactivates the step.
+     * Deactivate the step.
      *
-     * @public
      * @returns {void}
      */
     const deactivate = () => {
@@ -353,9 +351,8 @@ export default {
     }
 
     /**
-     * Enables the step.
+     * Enable the step.
      *
-     * @public
      * @returns {void}
      */
     const enable = () => {
@@ -369,9 +366,8 @@ export default {
     }
 
     /**
-     * Disables the step.
+     * Disable the step.
      *
-     * @public
      * @returns {void}
      */
     const disable = () => {
@@ -385,9 +381,8 @@ export default {
     }
 
     /**
-     * Completes the step.
+     * Complete the step.
      *
-     * @public
      * @returns {void}
      */
     const complete = () => {
@@ -401,9 +396,8 @@ export default {
     }
 
     /**
-     * Uncompletes the step.
+     * Uncomplete the step.
      *
-     * @public
      * @returns {void}
      */
     const uncomplete = () => {
@@ -411,9 +405,8 @@ export default {
     }
 
     /**
-     * Selects the step to become the active step.
+     * Deactivate all other steps and set the current one as active.
      *
-     * @public
      * @returns {void}
      */
     const select = () => {
@@ -431,10 +424,10 @@ export default {
     }
 
     /**
-      * Apply conditions of the step to the elements within.
+      * Apply conditions of the step to its elements.
       * 
-      * @private
       * @returns {void}
+      * @private
       */
     const forwardConditions = () => {
       if (conditions.value.length == 0) {
@@ -448,10 +441,12 @@ export default {
       })
     }
 
-    // no export
     /**
+     * Set the component to the parent as if `refs` were used.
      * 
-     * 
+     * @param {component} $parent parent component
+     * @param {function} assignToParent the assignToParent function for recursion
+     * @returns {void}
      * @private
      */
     const assignToParent = ($parent, assignToParent) => {
@@ -463,12 +458,13 @@ export default {
       }
     }
 
-    // no export
     /**
-     * 
-     * 
-     * @private
-     */
+    * Removes the component from the parent.
+    * 
+    * @param {component} $parent parent component
+    * @param {function} removeFromParent the removeFromParent function for recursion
+    * @private
+    */
     const removeFromParent = ($parent, removeFromParent) => {
       if ($parent.steps$Array) {
         $parent.steps$Array.splice($parent.steps$Array.map(t$=>normalize(t$.name)).indexOf(normalize(name.value)), 1)

@@ -36,44 +36,44 @@ export default {
     // ================ DATA ================
 
     /**
+     * The child [`FormTab`](form-tab) components.
      * 
-     * 
-     * @private
+     * @type {array}
+     * @default []
      */
     const tabs$Array = ref([])
 
     /**
+     * Helper prop used for checking if the component exists.
      * 
-     * 
-     * @private
+     * @type {boolean}
      */
     const exists = ref(true)
 
     // ============== COMPUTED ==============
 
     /**
+     * The components of highest level form elements.
      * 
-     * 
-     * @private
+     * @type {object}
      */
     const elements$ = computed(() => {
       return form$.value.elements$
     })
 
     /**
+     * The form tabs definition.
      * 
-     * 
-     * @private
+     * @type {object}
      */
     const tabs = computed(() => {
       return form$.value.options.tabs
     })
 
     /**
-     * Object of tab$ components.
+     * The child [`FormTab`](form-tab) components with indexed keys.
      * 
      * @type {object}
-     * @default {}
      */
     const tabs$ = computed(() => {
       let tabList$ = {}
@@ -86,7 +86,7 @@ export default {
     })
 
     /**
-     * Returns the visible [tab$](reference/frontend-tab) components.
+     * All the visible [`FormTab`](form-tab) components.
      * 
      * @type {object}
      */
@@ -103,9 +103,9 @@ export default {
     })
 
     /**
-     * Returns the current [tab$](reference/frontend-tab) components.
+     * The current [`FormTab`](form-tab) component.
      * 
-     * @type {object}
+     * @type {component}
      */
     const current$ = computed(() => {
       var current = _.find(tabs$.value, { active: true })
@@ -114,9 +114,9 @@ export default {
     })
 
     /**
-     * Returns the first [tab$](reference/frontend-tab) components.
+     * The first visible [`FormTab`](form-tab) component.
      * 
-     * @type {object}
+     * @type {component}
      */
     const first$ = computed(() => {
       return _.find(visible$.value, (tab) => {
@@ -125,9 +125,9 @@ export default {
     })
 
     /**
-     * Returns the next [tab$](reference/frontend-tab) component.
+     * The next visible [`FormTab`](form-tab) component.
      * 
-     * @type {component<FormTab>}
+     * @type {component}
      */
     const next$ = computed(() => {
       return _.find(visible$.value, (tab) => {
@@ -136,9 +136,9 @@ export default {
     })
 
     /**
-     * Returns the previous [tabs$](reference/frontend-tab) component.
+     * The previous visible [`FormTab`](form-tab) component.
      * 
-     * @type {component<FormTab>}
+     * @type {component}
      */
     const previous$ = computed(() => {
       return _.findLast(visible$.value, (tab) => {
@@ -149,24 +149,23 @@ export default {
     // =============== METHODS ==============
 
     /**
-     * Moves to a tab.
+     * Go to a tab.
      *
-     * @public
-     * @param {object} tab key of tab in [tabs](reference/frontend-form#prop-tabs)
+     * @param {object} index* index of tab to go to
      * @returns {void}
      */
-    const goTo = (tab) => {
-      let tab$ = visible$.value[tab]
+    const goTo = (index) => {
+      let tab$ = visible$.value[index]
       
       tab$.select()
     }
 
     /**
-     * Selects a tab.
+     * Select a tab.
      *
-     * @private
-     * @param {object} tab$ selected tab component
+     * @param {component} tab$ the [`FormTab`](form-tab) component to select
      * @returns {void}
+     * @private
      */
     const select = (tab$) => {
       let curr$ = current$.value
@@ -183,30 +182,30 @@ export default {
     }
 
     /**
-     * Returns a specific [tab$](reference/frontend-tab).
+     * Returns a specific [`FormTab`](form-tab) by index.
      *
-     * @public
-     * @param {object} tab key of tab in [tabs](reference/frontend-form#prop-tabs) object
-     * @returns {component<FormTab>}
+     * @param {object} index* index of the tab
+     * @returns {component}
      */
     const tab$ = (tab) => {
       return _.find(tabs$.value, { name: tab })
     }
 
     /**
-     * Reset tabs, meaning selecting [first$](#prop-first) tab. 
+     * Jump back to the first visible tab.
      *
-     * @public
      * @returns {void}
      */
     const reset = () => {
       first$.value.select()
     }
 
-    // no export
     /**
+     * Set the component to the parent as if `refs` were used.
      * 
-     * 
+     * @param {component} $parent parent component
+     * @param {function} assignToParent the assignToParent function for recursion
+     * @returns {void}
      * @private
      */
     const assignToParent = ($parent, assignToParent) => {
@@ -218,12 +217,13 @@ export default {
       }
     }
 
-    // no export
     /**
-     * 
-     * 
-     * @private
-     */
+    * Removes the component from the parent.
+    * 
+    * @param {component} $parent parent component
+    * @param {function} removeFromParent the removeFromParent function for recursion
+    * @private
+    */
     const removeFromParent = ($parent, removeFromParent) => {
       if ($parent.tabs$ !== undefined) {
         form$.value.$set($parent, 'tabs$', null)

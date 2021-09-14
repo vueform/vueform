@@ -20,9 +20,9 @@ export default {
     // ============== COMPUTED ==============
     
     /**
+     * The first error of the element.
      * 
-     * 
-     * @private
+     * @type {string}
      */
     const error = computed(() => {
       return el$.value.error

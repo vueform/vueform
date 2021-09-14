@@ -26,18 +26,18 @@ export default {
     // ============== COMPUTED ==============
 
     /**
+     * Whether the element has a [`:label`](#label) or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.
      * 
-     * 
-     * @private
+     * @type {boolean}
      */
     const hasLabel = computed(() => {
       return el$.value.hasLabel
     })
 
     /**
+     * Whether the element should be visible.
      * 
-     * 
-     * @private
+     * @type {boolean}
      */
     const visible = computed(() => {
       return el$.value.visible

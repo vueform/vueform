@@ -20,9 +20,9 @@ export default {
     // ============== COMPUTED ==============
 
     /**
+     * The info for the element, defined via `:info` prop.
      * 
-     * 
-     * @private
+     * @type {string}
      */
     const info = computed(() => {
       return el$.value.info
