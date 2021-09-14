@@ -5,9 +5,9 @@ const base = function(props, context, dependencies)
   // =============== INJECT ===============
 
   /**
+  * The parent element's component.
   * 
-  * 
-  * @private
+  * @type {component}
   */
   let el$ = inject('el$')
 

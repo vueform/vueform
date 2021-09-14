@@ -18,27 +18,26 @@ const base = function(props, context, dependencies, options = {})
    * 
    * @type {array}
    * @default []
+   * @private
    */
   const events = ref(options.events)
 
   /**
    * Helper property used to store listeners for events.
    * 
-   * @ignore
    * @type {object}
    * @default {}
+   * @private
    */
   const listeners = ref({})
-
 
   // =============== METHODS ==============
 
   /**
    * Adds a listener for an event.
    *
-   * @public
-   * @param {string} event event to listen for.
-   * @param {function} callback callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.
+   * @param {string} event name of the event to listen for
+   * @param {function} callback callback to run when the event is triggered
    * @returns {void}
    */
   const on = (evt, callback) => {
@@ -52,8 +51,7 @@ const base = function(props, context, dependencies, options = {})
   /**
    * Removes all listeners for an event.
    *
-   * @public
-   * @param {string} event event to remove the listeners for.
+   * @param {string} event name of the event to remove
    * @returns {void}
    */
   const off = (evt) => {
@@ -61,10 +59,10 @@ const base = function(props, context, dependencies, options = {})
   }
 
   /**
-   * Fires an event.
+   * Fires & emits an event.
    *
-   * @public
-   * @returns {any}
+   * @param {any} [args] list of arguments to pass over to the event callback 
+   * @returns {void}
    */
   const fire = function() {
     let evt = arguments[0]

@@ -96,7 +96,7 @@ const base = function(props, context, dependencies, options = {})
   /**
    * Slots related to the element's field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.
    * 
-   * @type {{[name]:component}}
+   * @type {object}
    * @private
    */
   const fieldSlots = computed(() => {

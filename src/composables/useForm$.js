@@ -5,9 +5,9 @@ const base = function(props, context, dependencies)
   // =============== INJECT ===============
 
   /**
+  * The root form component.
   * 
-  * 
-  * @private
+  * @type {component}
   */
   let form$ = inject('form$')
 

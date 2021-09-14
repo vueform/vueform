@@ -1,13 +1,14 @@
 import _ from 'lodash'
-import useTheme from './useTheme'
 
 const base = function(props, context, dependencies)
 { 
   // ============== METHODS ===============
   
   /**
+  * Transforms an element `:type` into the element's component name.
   * 
-  * 
+  * @param {string} element* element `:type`
+  * @returns {string}
   * @private
   */
   const component = (element) => {

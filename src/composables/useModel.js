@@ -13,33 +13,20 @@ export default function (props, context, dependencies)
   const $this = dependencies.$this
 
   /**
+   * Any `v-model` / `:value` / `:modelValue` prop provided for the form.
    * 
-   * 
+   * @type {object}
    * @private
    */
   const externalValue = context.expose !== undefined ? mv : v
 
-  /**
-   * 
-   * 
-   * @private
-   */
-  const isSync = computed(() => {
-    return sync.value && externalValue && externalValue.value !== undefined
-  })
+  // ================ DATA =================
 
   /**
-   * Clone value of model container: v-model or internal data
+   * The internal store for the form's model. 
    * 
-   * @private
-   */
-  const model = computed(() => {
-    return _.cloneDeep(externalValue.value || internalData.value)
-  })
-
-  /**
-   * If v-model is defined it is always equal to that. Otherwise used as model container.
-   * 
+   * @type {object}
+   * @default {}
    * @private
    */
   const internalData = ref({})
@@ -51,17 +38,44 @@ export default function (props, context, dependencies)
    */
   const intermediaryValue = ref(externalValue && externalValue.value ? _.cloneDeep(externalValue.value) : null)
 
+  // ============== COMPUTED ===============
+
   /**
+   * Whether form data should be synced when the external value changes (when external value is used).
    * 
-   * 
+   * @type {boolean}
    * @private
    */
-  const updateModel = (path, val) => {
+  const isSync = computed(() => {
+    return sync.value && externalValue && externalValue.value !== undefined
+  })
+
+  /**
+   * The form's model, which either comes from `externalValue` or `internalData`.
+   * 
+   * @type {object}
+   * @private
+   */
+  const model = computed(() => {
+    return _.cloneDeep(externalValue.value || internalData.value)
+  })
+
+  // =============== METHODS ==============
+
+  /**
+   * Updates an element's data in the form model.
+   * 
+   * @param {string} dataPath the `dataPath` property of the element to update
+   * @param {any} val value to update with
+   * @returns {void}
+   * @private
+   */
+  const updateModel = (dataPath, val) => {
     // When using v-model as model
     if (externalValue.value) {
       // Non-flat elements
-      if (path) {
-        let parts = path.split('.')
+      if (dataPath) {
+        let parts = dataPath.split('.')
         let element = parts.pop()
         let parent = parts.join('.') || null
 
@@ -101,8 +115,8 @@ export default function (props, context, dependencies)
       let model = _.cloneDeep(externalValue.value || internalData.value)
 
       // Non-flat elements
-      if (path) {
-        _.set(model, path, val)
+      if (dataPath) {
+        _.set(model, dataPath, val)
 
       // Flat elements (eg. Group)
       } else {

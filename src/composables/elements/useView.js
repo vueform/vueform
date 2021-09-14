@@ -41,7 +41,7 @@ const base = function(props, context, dependencies)
   }
 
   /**
-   * Shows the element if it was hided with [`hide()`](#hide) method.
+   * Shows the element if it was hidden with [`hide()`](#hide) method.
    *
    * @returns {void}
    */

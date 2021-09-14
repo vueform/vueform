@@ -11,8 +11,9 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
   
   /**
+  * The label definition of the component.
   * 
-  * 
+  * @type {string|function|component}
   * @private
   */
   const baseLabel = computed(() => {
@@ -20,8 +21,9 @@ const base = function(props, context, dependencies)
   })
 
   /**
+  * Whether the label is provided as a function.
   * 
-  * 
+  * @type {boolean}
   * @private
   */
   const isLabelFunction = computed(() => {
@@ -29,8 +31,9 @@ const base = function(props, context, dependencies)
   })
 
   /**
+  * Whether label is provided as a Vue component.
   * 
-  * 
+  * @type {boolean}
   * @private
   */
   const isLabelComponent = computed(() => {
@@ -38,9 +41,9 @@ const base = function(props, context, dependencies)
   })
   
   /**
+  * The label of the component. If the label is provided is a `function` this will always have the resolved value.
   * 
-  * 
-  * @private
+  * @type {string|component}
   */
   const label = computed(() => {
     return isLabelFunction.value ? baseLabel.value(component$.value) : baseLabel.value || null

@@ -12,10 +12,12 @@ const base = function(props, context, dependencies, options = {})
 
   // =============== METHODS ==============
 
-  // no export
   /**
+  * Sets the component to the parent as if `refs` were used.
   * 
-  * 
+  * @param {component} $parent parent component
+  * @param {function} assignToParent the assignToParent function for recursion
+  * @returns {void}
   * @private
   */
   const assignToParent = ($parent, assignToParent) => {
@@ -30,10 +32,11 @@ const base = function(props, context, dependencies, options = {})
     }
   }
 
-  // no export
   /**
+  * Removes the component from the parent.
   * 
-  * 
+  * @param {component} $parent parent component
+  * @param {function} removeFromParent the removeFromParent function for recursion
   * @private
   */
   const removeFromParent = ($parent, removeFromParent) => {

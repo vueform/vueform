@@ -27,8 +27,9 @@ const base = function(props, context, dependencies, options = {})
   // ================ DATA =================
 
   /**
+  * The default classes for the component defined by theme.
   * 
-  * 
+  * @type {object}
   * @private
   */
   const defaultClasses = ref(_defaultClasses.value)
@@ -36,10 +37,11 @@ const base = function(props, context, dependencies, options = {})
   // ============== COMPUTED ===============
 
   /**
-  * 
-  * 
-  * @private
-  */
+   * An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.
+   * 
+   * @type {object}
+   * @private
+   */
   const mergedClasses = computed(() => {
     let classes = _.merge({},
       // Default component classes
@@ -75,10 +77,11 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-  * 
-  * 
-  * @private
-  */
+   * An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.
+   * 
+   * @type {object}
+   * @private
+   */
   const classes = computed({
     get() {
       return mergedClasses.value
@@ -89,17 +92,18 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-  * 
-  * 
-  * @private
-  */
+   * Returns the components used by the parent element.
+   * 
+   * @type {object}
+   */
   const components = computed(() => {
     return el$.value.components
   })
 
   /**
+  * The class name of the components's outermost DOM.
   * 
-  * 
+  * @type {string}
   * @private
   */
   const mainClass = computed(() => {

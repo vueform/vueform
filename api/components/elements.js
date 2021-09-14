@@ -326,24 +326,24 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
-        default: '"address-*"',
+        description: 'The `id` attribute of the input which contains the location autocomplete. Format: `address-{rand}`.',
         private: false,
       },
       defaultClasses: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -365,7 +365,7 @@ module.exports = {
         types: [
           'class',
         ],
-        description: 'The location service that&quot;s initalized once the component is mounted.',
+        description: 'The location service that&apos;s initalized once the component is mounted.',
         default: 'null',
         private: false,
       },
@@ -381,7 +381,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -389,14 +389,14 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -406,7 +406,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -420,21 +420,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -464,13 +464,34 @@ module.exports = {
           'object',
         ],
         description: 'Fields of the address. By default has the following `text` type elements: `address`, `address2`, `zip`, `city`, `state`, `country`.',
+        private: true,
+      },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
         private: false,
       },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -484,52 +505,51 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       defaultOptions: {
         types: [
@@ -540,61 +560,73 @@ module.exports = {
         private: false,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -629,21 +661,21 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -659,62 +691,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
-              'object',
+              'string',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
-              'object',
+              'string',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -776,7 +809,7 @@ module.exports = {
         private: false,
       },
       handleAddressChange: {
-        description: 'Handles location service&quot;s address change.',
+        description: 'Handles location service&apos;s address change.',
         params: {
           data: {
             types: [
@@ -801,31 +834,32 @@ module.exports = {
         private: false,
       },
       validate: {
-        description: 'Validates the element.',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       clean: {
-        description: 'Cleans the element.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Resets validators for children.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: '',
+        description: 'Initalizes MessageBag service.',
+        returns: 'void',
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -864,7 +898,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -875,7 +909,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -887,7 +921,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -898,7 +932,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -909,7 +943,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -1235,14 +1269,14 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -1252,7 +1286,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -1266,21 +1300,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -1294,7 +1328,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the button&quot;s label is a component.',
+        description: 'Whether the button&apos;s label is a component.',
         private: true,
       },
       button: {
@@ -1311,11 +1345,32 @@ module.exports = {
         description: 'Whether the button is in loading state.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -1329,76 +1384,85 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the button is disabled.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -1414,7 +1478,7 @@ module.exports = {
         private: true,
       },
       handleClick: {
-        description: 'Handles the button&quot;s click event.',
+        description: 'Handles the button&apos;s click event.',
         returns: 'void',
         params: {
           e: {
@@ -1428,12 +1492,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -1455,7 +1519,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -1466,7 +1530,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -1477,7 +1541,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -1488,7 +1552,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -1499,7 +1563,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -1851,16 +1915,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -1882,7 +1947,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
@@ -1890,22 +1955,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -1913,21 +1978,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -1937,7 +2002,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -1951,21 +2016,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -1975,11 +2040,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -1993,116 +2079,127 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       fieldId: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -2137,14 +2234,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -2152,28 +2249,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -2189,64 +2286,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -2291,55 +2387,37 @@ module.exports = {
         private: false,
       },
       check: {
-        description: 'Checks the checkbox.',
+        description: 'Sets the toggle to `on` (`trueValue`).',
         returns: 'void',
-        params: {
-          triggerChange: {
-            types: [
-              'boolean',
-            ],
-            required: 'false',
-            description: 'whether the element should trigger `change` event',
-          },
-        },
         private: false,
       },
       uncheck: {
-        description: 'Unhecks the checkbox.',
+        description: 'Sets the toggle to `off` (`falseValue`).',
         returns: 'void',
-        params: {
-          triggerChange: {
-            types: [
-              'boolean',
-            ],
-            required: 'false',
-            description: 'whether the element should trigger `change` event',
-          },
-        },
         private: false,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -2349,12 +2427,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -2393,7 +2471,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -2404,7 +2482,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -2417,7 +2495,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -2428,7 +2506,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -2439,7 +2517,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -2770,8 +2848,16 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
+      },
+      disabledItems: {
+        types: [
+          'array',
+        ],
+        description: 'List of option keys to be disabled.',
+        default: '[]',
+        private: true,
       },
       events: {
         types: [
@@ -2794,22 +2880,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -2817,31 +2903,52 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
     },
     computed: {
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -2855,116 +2962,127 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       fieldId: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -2999,14 +3117,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -3014,28 +3132,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -3044,7 +3162,7 @@ module.exports = {
         description: 'Checks one or more checkboxes.',
         returns: 'void',
         params: {
-          items: {
+          values: {
             types: [
               'array',
               'string',
@@ -3060,7 +3178,7 @@ module.exports = {
         description: 'Unchecks one or more checkboxes.',
         returns: 'void',
         params: {
-          items: {
+          values: {
             types: [
               'array',
               'string',
@@ -3083,59 +3201,58 @@ module.exports = {
         private: false,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disableAll: {
-        description: 'Disabled all items.',
+        description: 'Disables all items.',
         returns: 'void',
         private: false,
       },
@@ -3145,33 +3262,33 @@ module.exports = {
         private: false,
       },
       disable: {
-        description: 'Disables an item or items.',
+        description: 'Disables one item or more items.',
         returns: 'void',
         params: {
-          items: {
+          values: {
             types: [
               'array',
               'string',
               'number',
             ],
             required: 'true',
-            description: 'Key of one or more items to disable.',
+            description: 'value(s) to disable',
           },
         },
         private: false,
       },
       enable: {
-        description: 'Enables an item or items.',
+        description: 'Disables one item or more disabled items.',
         returns: 'void',
         params: {
-          items: {
+          values: {
             types: [
               'array',
               'string',
               'number',
             ],
             required: 'true',
-            description: 'Key of one or more items to enable.',
+            description: 'value(s) to enable',
           },
         },
         private: false,
@@ -3217,27 +3334,27 @@ module.exports = {
         private: false,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -3247,12 +3364,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -3291,7 +3408,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -3302,7 +3419,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -3315,7 +3432,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -3326,7 +3443,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -3337,7 +3454,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -3784,16 +3901,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -3815,7 +3933,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
@@ -3823,22 +3941,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -3846,7 +3964,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -3856,7 +3974,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -3870,21 +3988,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -3894,11 +4012,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -3912,41 +4051,49 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       displayDateFormat: {
-        description: '',
+        types: [
+          'string',
+        ],
+        description: 'The display date format.',
         private: true,
       },
       valueDateFormat: {
-        description: '',
+        types: [
+          'string',
+        ],
+        description: 'The format of date value.',
         private: true,
       },
       loadDateFormat: {
-        description: '',
+        types: [
+          'string',
+        ],
+        description: 'The date format of the data the element being loaded with.',
         private: true,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       empty: {
@@ -3960,87 +4107,99 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -4075,14 +4234,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -4090,28 +4249,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
-          'Date',
+          'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -4127,64 +4286,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -4229,32 +4387,41 @@ module.exports = {
         private: false,
       },
       handleChange: {
-        description: 'Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.',
+        description: 'Handles `change` event.',
         returns: 'void',
+        params: {
+          val: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'value of the element',
+          },
+        },
         private: true,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -4264,12 +4431,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -4308,7 +4475,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -4319,7 +4486,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -4332,7 +4499,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -4343,7 +4510,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -4354,7 +4521,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -4365,7 +4532,7 @@ module.exports = {
         description: 'The addon to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -4376,7 +4543,7 @@ module.exports = {
         description: 'The addon to be rendered after the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -4798,16 +4965,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -4829,7 +4997,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
@@ -4837,22 +5005,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -4860,17 +5028,38 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
     },
     computed: {
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -4884,41 +5073,49 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       displayDateFormat: {
-        description: '',
+        types: [
+          'string',
+        ],
+        description: 'The display date format.',
         private: true,
       },
       valueDateFormat: {
-        description: '',
+        types: [
+          'string',
+        ],
+        description: 'The format of date value.',
         private: true,
       },
       loadDateFormat: {
-        description: '',
+        types: [
+          'string',
+        ],
+        description: 'The date format of the data the element being loaded with.',
         private: true,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       empty: {
@@ -4932,87 +5129,99 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -5047,14 +5256,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -5062,90 +5271,90 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
-          'array',
+          'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
     methods: {
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
-              'array',
+              'string',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -5190,32 +5399,41 @@ module.exports = {
         private: false,
       },
       handleChange: {
-        description: 'Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.',
+        description: 'Handles `change` event.',
         returns: 'void',
+        params: {
+          val: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'value of the element',
+          },
+        },
         private: true,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -5225,12 +5443,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -5269,7 +5487,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -5280,7 +5498,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -5293,7 +5511,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -5304,7 +5522,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -5315,7 +5533,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -5326,7 +5544,7 @@ module.exports = {
         description: 'The addon to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -5337,7 +5555,7 @@ module.exports = {
         description: 'The addon to be rendered after the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -5773,16 +5991,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -5806,7 +6025,7 @@ module.exports = {
           'object',
           'string',
         ],
-        description: '',
+        description: 'This equals to:<br>* the `File` object when a file is selected, but not uploaded yet<br>* an object containing temp file name and original name when it has only been temporarily uploaded<br>* the filename when the file has already been uploaded',
         default: 'null',
         private: false,
       },
@@ -5814,7 +6033,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the file uploader has any errors.',
         default: 'false',
         private: false,
       },
@@ -5822,7 +6041,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `base64` format of the file when [`:image`](#image) is `true` and file only has been selected, but hasn&apos;t been uploaded yet.',
         default: 'null',
         private: false,
       },
@@ -5830,7 +6049,7 @@ module.exports = {
         types: [
           'number',
         ],
-        description: '',
+        description: 'The percentage of progress when the file is being temporarily uploaded (0-100).',
         default: '0',
         private: false,
       },
@@ -5838,7 +6057,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'If the form is submitted and a temp file hasn&apos;t been uploaded yet, the element will enter into `preparing` state by setting this to `true`. When in `preparing` state the form submission process will be halted until all async functions hasn&apos;t been completed without any errors.',
         default: 'false',
         private: false,
       },
@@ -5846,27 +6065,36 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the preview file has been loaded by the browser when the file has already been uploaded or has only been selected.',
         default: 'false',
-        private: false,
+        private: true,
       },
       input: {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       removing: {
-        description: '',
-        private: true,
+        types: [
+          'boolean',
+        ],
+        description: 'Whether async file removing request is in progress.',
+        private: false,
       },
       request: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'The axios request when temp is being uploaded.',
         private: true,
       },
       axios: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'The form&apos;s axios instance.',
         private: true,
       },
       state: {
@@ -5874,22 +6102,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -5897,21 +6125,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -5921,7 +6149,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -5935,21 +6163,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -5959,11 +6187,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -5977,37 +6226,36 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       canDrop: {
         types: [
           'boolean',
         ],
-        description: '',
-        private: false,
+        description: 'Whether `:drop` is enabled and browser supports dragging.',
+        private: true,
       },
       empty: {
         types: [
@@ -6020,147 +6268,182 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
+      },
+      fileMethods: {
+        types: [
+          'object',
+        ],
+        description: 'An object containing `temp`, `remove` and `removeTemp` methods.',
+        default: 'config.methods.file',
+        private: true,
+      },
+      fileEndpoints: {
+        types: [
+          'object',
+        ],
+        description: 'An object containing `temp`, `remove` and `removeTemp` endpoints.',
+        default: 'config.endpoints.file',
+        private: true,
+      },
+      fileUrl: {
+        types: [
+          'string',
+        ],
+        description: 'URL to file using the [`:url`](#url) option without including the filename. If `url` is not defined it will default to `&apos;/&apos;`.',
+        private: true,
       },
       stage: {
         types: [
           'number',
         ],
-        description: '',
+        description: 'The stage the file is at:<br>* `0`: file not selected<br>* `1`: file selected<br>* `2`: temp file uploaded<br>* `3`: file uploaded',
         private: false,
       },
       filename: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The original or stored name of the file.',
         private: false,
       },
       link: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The link to an uploaded file.',
         private: false,
       },
       preview: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The preview of the file when [`image`](#image) is `true`. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded.',
         private: false,
       },
       uploaded: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the file has been uploaded.',
         private: false,
       },
       canRemove: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the file can be removed.',
         private: false,
       },
       canUploadTemp: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether temporary file can be uploaded.',
         private: false,
       },
       canSelect: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether file can be selected.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating, element name or default file name if name is a number.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       uploading: {
-        description: '',
+        description: 'Whether a temp file is currently being uploaded.',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -6188,21 +6471,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending`, `debouncing` or `uploading`.',
+        description: 'Whether the element is `pending`, `debouncing`, `uploading` or `removing`.',
         private: false,
       },
       errors: {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -6210,28 +6493,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -6247,69 +6530,68 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
       handleDrop: {
-        description: '',
+        description: 'Handles the `drop` event.',
         returns: 'void',
         params: {
           e: {
@@ -6363,27 +6645,27 @@ module.exports = {
         private: false,
       },
       uploadTemp: {
-        description: '',
+        description: 'Upload temporary file (async).',
         returns: 'void',
         private: false,
       },
       remove: {
-        description: '',
+        description: 'Removes file (async):<br>* in stage `1`: sets the value to null<br>* in stage `2`: submit a request to `removeTemp` endpoint and sets the value to null<br>* in stage `3`: submits a request to `remove` endpoint and sets the value to null',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepare the element for submitting the form (async). It will upload temp file if it hasn&apos;t been uploaded yet and halts the submit process until its done without any errors.',
         returns: 'void',
         private: true,
       },
       loadPreview: {
-        description: '',
+        description: 'Helper method that sets the value of `previewLoaded` when an the preview img&apos;s `src` has been loaded by the browser.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       handleChange: {
-        description: '',
+        description: 'Handles `change` event.',
         returns: 'void',
         params: {
           e: {
@@ -6397,27 +6679,27 @@ module.exports = {
         private: true,
       },
       handleClick: {
-        description: 'Triggered when an uploader is clicked.',
+        description: 'Handles file select button `click` event.',
         returns: 'void',
         private: true,
       },
       handleUploadTemp: {
-        description: '',
+        description: 'Handles `uploadTemp` event.',
         returns: 'void',
         private: true,
       },
       handleRemove: {
-        description: '',
+        description: 'Handles `remove` event.',
         returns: 'void',
         private: true,
       },
       handleAbort: {
-        description: '',
+        description: 'Handles `abort` event.',
         returns: 'void',
         private: true,
       },
       handleError: {
-        description: 'Triggered when the trix editor throws an error during file upload (for example not accepted file types). If no event is attached browsers default `alert()` function will be used.',
+        description: 'Handles `error` event.',
         returns: 'void',
         params: {
           message: {
@@ -6425,7 +6707,7 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'message to display.',
+            description: 'error message',
           },
           e: {
             types: [
@@ -6438,27 +6720,27 @@ module.exports = {
         private: true,
       },
       validate: {
-        description: 'Validates the element. File element will only validate for `min`, `max`, `between`, `size`, `mimetypes` and `mimes` rules before the temporary files are uploaded.',
+        description: 'Checks each validation rule for the element (async). File element will only validate for `min`, `max`, `between`, `size`, `mimetypes`, `mimes`, `dimensions`, `file`, `image`, `gt`, `gte`, `lt` and `lte` rules and only before the temporary files are uploaded.',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -6468,12 +6750,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -6546,7 +6828,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -6557,7 +6839,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -6570,7 +6852,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -6581,7 +6863,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -6592,7 +6874,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -6882,8 +7164,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       events: {
         types: [
@@ -6905,7 +7187,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -6915,7 +7197,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -6929,21 +7211,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -6953,11 +7235,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -6971,102 +7274,113 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       value: {
         types: [
-          'object',
+          'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -7082,52 +7396,53 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
-              'object',
+              'string',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
-              'object',
+              'string',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
@@ -7176,12 +7491,12 @@ module.exports = {
         private: false,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -7220,7 +7535,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -7231,7 +7546,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -7243,7 +7558,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -7254,7 +7569,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -7265,7 +7580,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -7478,7 +7793,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
@@ -7486,22 +7801,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -7509,15 +7824,15 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
     },
     computed: {
@@ -7525,7 +7840,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -7539,21 +7854,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -7561,6 +7876,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
+        private: false,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -7574,23 +7896,22 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       empty: {
         types: [
@@ -7603,54 +7924,63 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -7685,14 +8015,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -7700,21 +8030,21 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
     },
@@ -7730,54 +8060,53 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
@@ -7822,27 +8151,27 @@ module.exports = {
         private: false,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -8301,16 +8630,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -8332,18 +8662,21 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
-        private: false,
+        description: 'The DOM element containing list items.',
+        private: true,
       },
       sortable: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'The `Sortable.js` instance.',
         private: true,
       },
       sorting: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the list is currently being sorted (an item is dragged).',
         private: false,
       },
       state: {
@@ -8351,22 +8684,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -8374,21 +8707,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -8398,7 +8731,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -8412,21 +8745,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -8444,11 +8777,32 @@ module.exports = {
         default: '{[name]:component}',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -8462,50 +8816,49 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether adding new items is allowed. Will return `false` if the element is `:disabled` or have reached `:max` items. Can be disabled manually by setting [`:controls.add`](#controls) to `false`.',
         private: false,
       },
       hasRemove: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether remove items is allowed. Will return `false` if the element is `:disabled` or has <= `:min` items. Can be disabled manually by setting [`:controls.remove`](#controls) to `false`.',
         private: false,
       },
       hasSort: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether list items should be sortable. Can be enabled by setting [`:sort`](#sort) to `true`, but will return `false` if the element is `:disabled`.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       empty: {
@@ -8519,108 +8872,120 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       orderByName: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The name of the field which we should order by.',
         private: false,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       prototype: {
         types: [
           'object',
         ],
-        description: 'The schema of a child.',
-        private: false,
+        description: 'The schema of a child element.',
+        private: true,
       },
       isObject: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the list items are objects.',
-        private: false,
+        description: 'Whether childrens are objects.',
+        private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       isSortable: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the list is sortable. Can be enabled with `:sort="true"` option, but it will disabled if [`isDisabled`](#is-disabled) is `true`.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -8651,26 +9016,25 @@ module.exports = {
         description: 'Whether the element is `pending` or `debouncing`.',
         private: false,
       },
-      validatorErrors: {
-        description: '',
-        private: true,
-      },
       childrenErrors: {
-        description: '',
+        types: [
+          'array',
+        ],
+        description: 'The list of errors collected from children.',
         private: true,
       },
       errors: {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The element&quot;s error.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -8678,28 +9042,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -8715,25 +9079,21 @@ module.exports = {
         private: true,
       },
       add: {
-        description: '',
+        description: 'Appends a new item.',
         returns: 'void',
         params: {
           value: {
             types: [
-              'object',
-              'array',
-              'string',
-              'number',
-              'boolean',
+              'any',
             ],
             required: 'false',
-            description: ' ',
+            description: 'value of the appended element (optional)',
           },
         },
         private: false,
       },
       remove: {
-        description: '',
+        description: 'Removes an items by its index.',
         returns: 'void',
         params: {
           index: {
@@ -8741,47 +9101,64 @@ module.exports = {
               'number',
             ],
             required: 'true',
-            description: '  ',
+            description: 'index of items to be removed',
           },
         },
         private: false,
       },
       load: {
-        description: '',
-        private: true,
-      },
-      update: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be loaded',
+          },
+          format: {
+            types: [
+              'boolean',
+            ],
+            required: 'false',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+          },
+        },
+        private: false,
+      },
+      update: {
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        returns: 'void',
+        params: {
+          value: {
+            types: [
+              'string',
+              '',
+            ],
+            required: 'true',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       handleAdd: {
-        description: '',
+        description: 'Handles the `add` event.',
         returns: 'void',
         private: true,
       },
       handleRemove: {
-        description: 'Triggered when the user removes a list item or `.remove()` method is invoked.',
+        description: 'Handles the `remove` event.',
         returns: 'void',
         params: {
           index: {
@@ -8789,23 +9166,23 @@ module.exports = {
               'number',
             ],
             required: 'true',
-            description: 'Index of child to be removed.',
+            description: 'index of child to be removed',
           },
         },
         private: true,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -8854,65 +9231,74 @@ module.exports = {
         private: false,
       },
       refreshOrderStore: {
-        description: 'Helper method used to refresh the element&quot;s value which stores the order.',
+        description: 'Sets the value of `storeOrder` fields within a list of items to match the order.',
         returns: 'void',
+        params: {
+          value: {
+            types: [
+              'array',
+            ],
+            required: 'true',
+            description: 'list of items',
+          },
+        },
         private: true,
       },
       handleSort: {
-        description: 'Triggered when the user changes the order of the list items.',
+        description: 'Handles `sort` event.',
         params: {
-          indexes: {
+          e: {
             types: [
-              'object',
+              'Event',
             ],
             required: 'false',
-            description: 'an object containing `newIndex` and `oldIndex`.',
+            description: 'Sortable.js event',
           },
         },
-        private: false,
+        private: true,
       },
       initSortable: {
-        description: '',
+        description: 'Inits Sortable.js.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       destroySortable: {
-        description: '',
+        description: 'Destroys Sortable.js.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       validate: {
-        description: 'Validates the element.',
+        description: 'Checks each validation rule for the element and validates children (async).',
         returns: 'void',
         private: false,
       },
       validateValidators: {
-        description: 'Validates the element.',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
-        private: true,
+        private: false,
       },
       validateChildren: {
-        description: 'Validates each children.',
+        description: 'Validates every child (async).',
         returns: 'void',
-        private: true,
+        private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Cleans the element.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Resets validators for children.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -8922,12 +9308,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -9017,7 +9403,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -9028,7 +9414,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -9041,7 +9427,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -9052,7 +9438,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -9063,7 +9449,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -9441,16 +9827,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -9472,14 +9859,14 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       locationService: {
         types: [
           'class',
         ],
-        description: 'The location service that&quot;s initalized once the component is mounted.',
+        description: 'The location service that&apos;s initalized once the component is mounted.',
         default: 'null',
         private: false,
       },
@@ -9496,22 +9883,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -9519,21 +9906,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -9543,7 +9930,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -9557,21 +9944,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -9581,11 +9968,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -9599,29 +10007,28 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       empty: {
@@ -9635,30 +10042,30 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       defaultOptions: {
         types: [
@@ -9669,57 +10076,66 @@ module.exports = {
         private: false,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -9754,14 +10170,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -9769,28 +10185,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -9806,64 +10222,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -9908,7 +10323,7 @@ module.exports = {
         private: false,
       },
       handleAddressChange: {
-        description: 'Handles location service&quot;s address change.',
+        description: 'Handles location service&apos;s address change.',
         params: {
           data: {
             types: [
@@ -9937,27 +10352,27 @@ module.exports = {
         private: false,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -9967,12 +10382,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -10011,7 +10426,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -10022,7 +10437,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -10035,7 +10450,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -10046,7 +10461,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -10057,7 +10472,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -10068,7 +10483,7 @@ module.exports = {
         description: 'The addon to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -10079,7 +10494,7 @@ module.exports = {
         description: 'The addon to be rendered after the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -10538,16 +10953,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -10569,25 +10985,28 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       list: {
         types: [
           'HTMLElement',
         ],
-        description: '',
-        private: false,
+        description: 'The DOM element containing list items.',
+        private: true,
       },
       sortable: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'The `Sortable.js` instance.',
         private: true,
       },
       sorting: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the list is currently being sorted (an item is dragged).',
         private: false,
       },
       state: {
@@ -10595,22 +11014,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -10618,21 +11037,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -10642,7 +11061,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -10656,21 +11075,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -10688,11 +11107,32 @@ module.exports = {
         default: '{[name]:component}',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -10706,37 +11146,36 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       canDrop: {
         types: [
           'boolean',
         ],
-        description: '',
-        private: false,
+        description: 'Whether `:drop` is enabled and browser supports dragging.',
+        private: true,
       },
       empty: {
         types: [
@@ -10749,119 +11188,134 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       preparing: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether any of the file are preparing (being uploaded before submit).',
         private: false,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       orderByName: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The name of the field which we should order by.',
         private: false,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       storeFileName: {
-        description: '',
+        types: [
+          'string',
+        ],
+        description: 'The `name` of the child element that stores the filename.',
         private: true,
       },
       isObject: {
         types: [
           'boolean',
         ],
-        description: 'Determines if the list items are objects.',
-        private: false,
+        description: 'Whether childrens are objects.',
+        private: true,
       },
       prototype: {
         types: [
           'object',
         ],
-        description: 'The schema of a child.',
-        private: false,
+        description: 'The schema of a child element.',
+        private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       isSortable: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the list is sortable. Can be enabled with `:sort="true"` option, but it will disabled if [`isDisabled`](#is-disabled) is `true`.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -10892,26 +11346,25 @@ module.exports = {
         description: 'Whether the element is `pending` or `debouncing`.',
         private: false,
       },
-      validatorErrors: {
-        description: '',
-        private: true,
-      },
       childrenErrors: {
-        description: '',
+        types: [
+          'array',
+        ],
+        description: 'The list of errors collected from children.',
         private: true,
       },
       errors: {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The element&quot;s error.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -10919,28 +11372,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -10956,25 +11409,21 @@ module.exports = {
         private: true,
       },
       add: {
-        description: '',
+        description: 'Appends a new item.',
         returns: 'void',
         params: {
           value: {
             types: [
-              'object',
-              'array',
-              'string',
-              'number',
-              'boolean',
+              'any',
             ],
             required: 'false',
-            description: ' ',
+            description: 'value of the appended element (optional)',
           },
         },
         private: false,
       },
       remove: {
-        description: '',
+        description: 'Removes an items by its index.',
         returns: 'void',
         params: {
           index: {
@@ -10982,47 +11431,64 @@ module.exports = {
               'number',
             ],
             required: 'true',
-            description: '  ',
+            description: 'index of items to be removed',
           },
         },
         private: false,
       },
       load: {
-        description: '',
-        private: true,
-      },
-      update: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be loaded',
+          },
+          format: {
+            types: [
+              'boolean',
+            ],
+            required: 'false',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+          },
+        },
+        private: false,
+      },
+      update: {
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        returns: 'void',
+        params: {
+          value: {
+            types: [
+              'string',
+              '',
+            ],
+            required: 'true',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       handleAdd: {
-        description: '',
+        description: 'Handles the `add` event.',
         returns: 'void',
         private: true,
       },
       handleRemove: {
-        description: 'Triggered when the user removes a list item or `.remove()` method is invoked.',
+        description: 'Handles the `remove` event.',
         returns: 'void',
         params: {
           index: {
@@ -11030,28 +11496,28 @@ module.exports = {
               'number',
             ],
             required: 'true',
-            description: 'Index of child to be removed.',
+            description: 'index of child to be removed',
           },
         },
         private: true,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
       handleDrop: {
-        description: '',
+        description: 'Handles the `drop` event.',
         returns: 'void',
         params: {
           e: {
@@ -11109,73 +11575,93 @@ module.exports = {
         private: false,
       },
       handleChange: {
-        description: '',
+        description: 'Handles `change` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
         private: true,
       },
       handleClick: {
-        description: '',
+        description: 'Handles `click` event.',
+        returns: 'void',
         private: true,
       },
       refreshOrderStore: {
-        description: 'Helper method used to refresh the element&quot;s value which stores the order.',
+        description: 'Sets the value of `storeOrder` fields within a list of items to match the order.',
         returns: 'void',
+        params: {
+          value: {
+            types: [
+              'array',
+            ],
+            required: 'true',
+            description: 'list of items',
+          },
+        },
         private: true,
       },
       handleSort: {
-        description: 'Triggered when the user changes the order of the list items.',
+        description: 'Handles `sort` event.',
         params: {
-          indexes: {
+          e: {
             types: [
-              'object',
+              'Event',
             ],
             required: 'false',
-            description: 'an object containing `newIndex` and `oldIndex`.',
+            description: 'Sortable.js event',
           },
         },
-        private: false,
+        private: true,
       },
       initSortable: {
-        description: '',
+        description: 'Inits Sortable.js.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       destroySortable: {
-        description: '',
+        description: 'Destroys Sortable.js.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       validate: {
-        description: 'Validates the element.',
+        description: 'Checks each validation rule for the element and validates children (async).',
         returns: 'void',
         private: false,
       },
       validateValidators: {
-        description: 'Validates the element.',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
-        private: true,
+        private: false,
       },
       validateChildren: {
-        description: 'Validates each children.',
+        description: 'Validates every child (async).',
         returns: 'void',
-        private: true,
+        private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Cleans the element.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Resets validators for children.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -11185,12 +11671,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -11280,7 +11766,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -11291,7 +11777,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -11304,7 +11790,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -11315,7 +11801,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -11326,7 +11812,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -11738,16 +12224,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -11769,7 +12256,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
@@ -11777,22 +12264,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -11800,21 +12287,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -11827,11 +12314,32 @@ module.exports = {
         description: 'Contains select options for native select.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -11845,29 +12353,28 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       empty: {
@@ -11881,87 +12388,99 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -11996,14 +12515,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -12011,28 +12530,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -12052,64 +12571,63 @@ module.exports = {
         private: false,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -12154,7 +12672,7 @@ module.exports = {
         private: false,
       },
       handleSelect: {
-        description: 'Triggered when the user selects an option using non-native element.',
+        description: 'Handles `select` event.',
         returns: 'void',
         params: {
           option: {
@@ -12162,13 +12680,13 @@ module.exports = {
               'object',
             ],
             required: 'true',
-            description: 'the selected option object.',
+            description: 'the selected option object',
           },
         },
         private: true,
       },
       handleDeselect: {
-        description: 'Triggered when the user deselects an option using non-native element. Does not trigger when an *other* element gets selected.',
+        description: 'Handles `deselect` event.',
         returns: 'void',
         params: {
           option: {
@@ -12176,13 +12694,13 @@ module.exports = {
               'object',
             ],
             required: 'true',
-            description: 'the deselected option object.',
+            description: 'the deselected option object',
           },
         },
         private: true,
       },
       handleSearchChange: {
-        description: 'Triggered when the user changes the search criteria using non-native element.',
+        description: 'Handles `searchChange` event.',
         returns: 'void',
         params: {
           searchQuery: {
@@ -12190,23 +12708,23 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'the current search query.',
+            description: 'the current search query',
           },
         },
         private: true,
       },
       handleOpen: {
-        description: 'Triggered when the option list is opened using non-native element.',
+        description: 'Handles `open` event.',
         returns: 'void',
         private: true,
       },
       handleClose: {
-        description: 'Triggered when the option list is closed using non-native element.',
+        description: 'Handles `close` event.',
         returns: 'void',
         private: true,
       },
       handleTag: {
-        description: 'Triggered when the user creates a tag using non-native element.',
+        description: 'Handles `tag` event.',
         returns: 'void',
         params: {
           searchQuery: {
@@ -12214,63 +12732,63 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'the current search query.',
+            description: 'the current search query',
           },
         },
         private: true,
       },
       select: {
-        description: 'Selects an option.',
+        description: 'Selects one or more options.',
         returns: 'void',
         params: {
-          option: {
+          options: {
             types: [
               'str',
-              'num',
+              'array',
             ],
-            required: 'false',
-            description: 'the key of option to select.',
+            required: 'true',
+            description: 'value(s) of the option(s) to select',
           },
         },
         private: false,
       },
       deselect: {
-        description: 'Deselects an option.',
+        description: 'Deselects one or more options.',
         returns: 'void',
         params: {
-          option: {
+          options: {
             types: [
               'str',
-              'num',
+              'array',
             ],
-            required: 'false',
-            description: 'the key of option to deselect.',
+            required: 'true',
+            description: 'value(s) of the option(s) to deselect',
           },
         },
         private: false,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -12280,12 +12798,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -12339,7 +12857,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -12350,7 +12868,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -12363,7 +12881,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -12374,7 +12892,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -12385,7 +12903,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -12696,8 +13214,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       events: {
         types: [
@@ -12719,7 +13237,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -12727,14 +13245,14 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -12744,7 +13262,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -12758,21 +13276,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -12797,11 +13315,32 @@ module.exports = {
         default: '{[name]:component}',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -12815,102 +13354,113 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -12945,21 +13495,21 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -12975,52 +13525,53 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
-              'object',
+              'string',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
-              'object',
+              'string',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
@@ -13069,31 +13620,32 @@ module.exports = {
         private: false,
       },
       validate: {
-        description: 'Validates the element.',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       clean: {
-        description: 'Cleans the element.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Resets validators for children.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: '',
+        description: 'Initalizes MessageBag service.',
+        returns: 'void',
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -13132,7 +13684,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -13143,7 +13695,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -13155,7 +13707,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -13166,7 +13718,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -13177,7 +13729,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -13526,16 +14078,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -13557,7 +14110,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
@@ -13565,22 +14118,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -13588,21 +14141,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -13612,7 +14165,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -13626,21 +14179,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -13650,11 +14203,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -13668,116 +14242,127 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       fieldId: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -13812,14 +14397,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -13827,28 +14412,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -13864,64 +14449,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -13968,53 +14552,35 @@ module.exports = {
       check: {
         description: 'Checks the radio.',
         returns: 'void',
-        params: {
-          triggerChange: {
-            types: [
-              'boolean',
-            ],
-            required: 'false',
-            description: 'whether the element should trigger `change` event',
-          },
-        },
         private: false,
       },
       uncheck: {
         description: 'Unhecks the radio.',
         returns: 'void',
-        params: {
-          triggerChange: {
-            types: [
-              'boolean',
-            ],
-            required: 'false',
-            description: 'whether the element should trigger `change` event',
-          },
-        },
         private: false,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -14024,12 +14590,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -14068,7 +14634,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -14079,7 +14645,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -14092,7 +14658,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -14103,7 +14669,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -14114,7 +14680,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -14454,8 +15020,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       events: {
         types: [
@@ -14478,22 +15044,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -14501,21 +15067,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -14525,7 +15091,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -14539,21 +15105,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -14563,11 +15129,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -14581,109 +15168,120 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       fieldId: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -14718,14 +15316,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -14733,28 +15331,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -14770,54 +15368,53 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
@@ -14862,27 +15459,27 @@ module.exports = {
         private: false,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -14892,12 +15489,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -14936,7 +15533,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -14947,7 +15544,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -14960,7 +15557,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -14971,7 +15568,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -14982,7 +15579,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -15421,16 +16018,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -15452,7 +16050,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
@@ -15460,22 +16058,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -15483,21 +16081,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -15514,7 +16112,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -15528,21 +16126,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -15552,11 +16150,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -15570,29 +16189,28 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       empty: {
@@ -15606,87 +16224,99 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -15721,14 +16351,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -15736,28 +16366,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -15787,64 +16417,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -15889,7 +16518,7 @@ module.exports = {
         private: false,
       },
       handleSelect: {
-        description: 'Triggered when the user selects an option using non-native element.',
+        description: 'Handles `select` event.',
         returns: 'void',
         params: {
           option: {
@@ -15897,13 +16526,13 @@ module.exports = {
               'object',
             ],
             required: 'true',
-            description: 'the selected option object.',
+            description: 'the selected option object',
           },
         },
         private: true,
       },
       handleDeselect: {
-        description: 'Triggered when the user deselects an option using non-native element. Does not trigger when an *other* element gets selected.',
+        description: 'Handles `deselect` event.',
         returns: 'void',
         params: {
           option: {
@@ -15911,13 +16540,13 @@ module.exports = {
               'object',
             ],
             required: 'true',
-            description: 'the deselected option object.',
+            description: 'the deselected option object',
           },
         },
         private: true,
       },
       handleSearchChange: {
-        description: 'Triggered when the user changes the search criteria using non-native element.',
+        description: 'Handles `searchChange` event.',
         returns: 'void',
         params: {
           searchQuery: {
@@ -15925,23 +16554,23 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'the current search query.',
+            description: 'the current search query',
           },
         },
         private: true,
       },
       handleOpen: {
-        description: 'Triggered when the option list is opened using non-native element.',
+        description: 'Handles `open` event.',
         returns: 'void',
         private: true,
       },
       handleClose: {
-        description: 'Triggered when the option list is closed using non-native element.',
+        description: 'Handles `close` event.',
         returns: 'void',
         private: true,
       },
       handleTag: {
-        description: 'Triggered when the user creates a tag using non-native element.',
+        description: 'Handles `tag` event.',
         returns: 'void',
         params: {
           searchQuery: {
@@ -15949,33 +16578,33 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'the current search query.',
+            description: 'the current search query',
           },
         },
         private: true,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -15985,12 +16614,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -16044,7 +16673,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -16055,7 +16684,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -16068,7 +16697,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -16079,7 +16708,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -16090,7 +16719,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -16500,16 +17129,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -16531,7 +17161,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
@@ -16539,22 +17169,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -16562,21 +17192,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -16586,7 +17216,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -16600,21 +17230,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -16624,11 +17254,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -16642,116 +17293,127 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       fieldId: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -16786,14 +17448,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -16801,28 +17463,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -16838,64 +17500,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -16940,31 +17601,41 @@ module.exports = {
         private: false,
       },
       handleChange: {
-        description: 'Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.',
+        description: 'Handles `change` event.',
         returns: 'void',
+        params: {
+          val: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'value of the element',
+          },
+        },
         private: true,
       },
       validate: {
-        description: '',
-        private: true,
+        description: 'Checks each validation rule for the element (async).',
+        returns: 'void',
+        private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -16974,12 +17645,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -17018,7 +17689,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -17029,7 +17700,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -17042,7 +17713,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -17053,7 +17724,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -17064,7 +17735,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -17321,8 +17992,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       events: {
         types: [
@@ -17344,7 +18015,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -17354,7 +18025,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -17368,21 +18039,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -17392,11 +18063,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -17410,76 +18102,85 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       isHtml: {
         types: [
           'boolean',
         ],
         description: 'Determines if HTML content should be rendered for the element.',
-        private: false,
+        private: true,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -17535,12 +18236,12 @@ module.exports = {
         private: false,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -17562,7 +18263,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -17573,7 +18274,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -17584,7 +18285,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -17595,7 +18296,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -17606,7 +18307,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -17979,16 +18680,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -18010,22 +18712,30 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Helper property used to store the element states.',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
-        description: '',
+        types: [
+          'array,Validator',
+        ],
+        description: 'An array containing all the validators of the element.',
+        default: '[]',
         private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -18033,7 +18743,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -18043,7 +18753,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -18057,21 +18767,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -18081,11 +18791,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -18099,21 +18830,28 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
+      },
+      defaultValue: {
+        types: [
+          'any',
+        ],
+        description: 'The default value of the element.',
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       empty: {
@@ -18127,28 +18865,28 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       language: {
         types: [
           'string',
         ],
-        description: 'Current language.',
+        description: 'The ISO 639-1 code of the currently selected language (2 letters).',
         private: false,
       },
       languages: {
@@ -18161,67 +18899,79 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -18253,36 +19003,46 @@ module.exports = {
         private: false,
       },
       errors: {
-        description: '',
-        private: true,
+        types: [
+          'array',
+        ],
+        description: 'All the errors of `MessageBag`.',
+        private: false,
       },
       error: {
-        description: '',
-        private: true,
+        types: [
+          'string',
+        ],
+        description: 'The first error of `MessageBag`.',
+        private: false,
       },
       validationRules: {
-        description: '',
+        types: [
+          'string',
+          'array',
+        ],
+        description: 'The element&apos;s validation rules.',
         private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
-          'object',
+          'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -18298,64 +19058,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -18400,39 +19159,61 @@ module.exports = {
         private: false,
       },
       handleInput: {
-        description: 'Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.',
-        private: false,
+        description: 'Handles `input` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element in every language (async).',
         returns: 'void',
         private: false,
       },
       validateLanguage: {
-        description: '',
-        private: true,
+        description: 'Checks each validation rule for the element in a specific language (async).',
+        returns: 'void',
+        params: {
+          lang: {
+            types: [
+              'string',
+            ],
+            required: 'false',
+            description: 'the langauage to check (defaults to currently selected language)',
+          },
+        },
+        private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initState: {
-        description: '',
+        description: 'Inits the default `state` object.',
+        returns: 'void',
         private: true,
       },
       initMessageBag: {
-        description: '',
+        description: 'Initalizes MessageBag service.',
+        returns: 'void',
         private: true,
       },
       initValidation: {
@@ -18441,12 +19222,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -18485,7 +19266,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -18496,7 +19277,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -18509,7 +19290,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -18520,7 +19301,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -18531,7 +19312,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -18542,7 +19323,7 @@ module.exports = {
         description: 'The addon to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -18553,7 +19334,7 @@ module.exports = {
         description: 'The addon to be rendered after the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -18925,16 +19706,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -18956,22 +19738,30 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Helper property used to store the element states.',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
-        description: '',
+        types: [
+          'array,Validator',
+        ],
+        description: 'An array containing all the validators of the element.',
+        default: '[]',
         private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -18979,7 +19769,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -18989,7 +19779,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -19003,21 +19793,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -19027,11 +19817,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -19045,21 +19856,28 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
+      },
+      defaultValue: {
+        types: [
+          'any',
+        ],
+        description: 'The default value of the element.',
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       empty: {
@@ -19073,28 +19891,28 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       language: {
         types: [
           'string',
         ],
-        description: 'Current language.',
+        description: 'The ISO 639-1 code of the currently selected language (2 letters).',
         private: false,
       },
       languages: {
@@ -19107,67 +19925,79 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -19199,36 +20029,46 @@ module.exports = {
         private: false,
       },
       errors: {
-        description: '',
-        private: true,
+        types: [
+          'array',
+        ],
+        description: 'All the errors of `MessageBag`.',
+        private: false,
       },
       error: {
-        description: '',
-        private: true,
+        types: [
+          'string',
+        ],
+        description: 'The first error of `MessageBag`.',
+        private: false,
       },
       validationRules: {
-        description: '',
+        types: [
+          'string',
+          'array',
+        ],
+        description: 'The element&apos;s validation rules.',
         private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
-          'object',
+          'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -19249,64 +20089,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -19351,39 +20190,61 @@ module.exports = {
         private: false,
       },
       handleInput: {
-        description: 'Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.',
-        private: false,
+        description: 'Handles `input` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element in every language (async).',
         returns: 'void',
         private: false,
       },
       validateLanguage: {
-        description: '',
-        private: true,
+        description: 'Checks each validation rule for the element in a specific language (async).',
+        returns: 'void',
+        params: {
+          lang: {
+            types: [
+              'string',
+            ],
+            required: 'false',
+            description: 'the langauage to check (defaults to currently selected language)',
+          },
+        },
+        private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initState: {
-        description: '',
+        description: 'Inits the default `state` object.',
+        returns: 'void',
         private: true,
       },
       initMessageBag: {
-        description: '',
+        description: 'Initalizes MessageBag service.',
+        returns: 'void',
         private: true,
       },
       initValidation: {
@@ -19392,12 +20253,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -19436,7 +20297,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -19447,7 +20308,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -19460,7 +20321,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -19471,7 +20332,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -19482,7 +20343,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -19493,7 +20354,7 @@ module.exports = {
         description: 'The addon to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -19504,7 +20365,7 @@ module.exports = {
         description: 'The addon to be rendered after the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -19868,16 +20729,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -19899,29 +20761,37 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       focused: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the editor is focused.',
         private: false,
       },
       state: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Helper property used to store the element states.',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
-        description: '',
+        types: [
+          'array,Validator',
+        ],
+        description: 'An array containing all the validators of the element.',
+        default: '[]',
         private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -19929,7 +20799,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -19939,7 +20809,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -19953,21 +20823,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -19977,11 +20847,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -19995,21 +20886,28 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
+      },
+      defaultValue: {
+        types: [
+          'any',
+        ],
+        description: 'The default value of the element.',
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       empty: {
@@ -20023,28 +20921,28 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       language: {
         types: [
           'string',
         ],
-        description: 'Current language.',
+        description: 'The ISO 639-1 code of the currently selected language (2 letters).',
         private: false,
       },
       languages: {
@@ -20057,75 +20955,87 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       trixEndpoint: {
         types: [
           'string',
         ],
-        description: 'Endpoint to be called to upload attachments. Defaults to config&quot;s `config.endpoints.elements`<br>`.trix.attachment`.',
-        default: '"..."',
-        private: false,
+        description: 'The endpoint that uploads attachment. Can be changed by setting [`endpoint`](#endpoint) option.',
+        default: '`config.endpoints.elements`',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -20157,36 +21067,46 @@ module.exports = {
         private: false,
       },
       errors: {
-        description: '',
-        private: true,
+        types: [
+          'array',
+        ],
+        description: 'All the errors of `MessageBag`.',
+        private: false,
       },
       error: {
-        description: '',
-        private: true,
+        types: [
+          'string',
+        ],
+        description: 'The first error of `MessageBag`.',
+        private: false,
       },
       validationRules: {
-        description: '',
+        types: [
+          'string',
+          'array',
+        ],
+        description: 'The element&apos;s validation rules.',
         private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
-          'object',
+          'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -20202,64 +21122,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -20304,7 +21223,7 @@ module.exports = {
         private: false,
       },
       handleError: {
-        description: 'Triggered when the trix editor throws an error during file upload (for example not accepted file types). If no event is attached browsers default `alert()` function will be used.',
+        description: 'Handles `error` event.',
         returns: 'void',
         params: {
           message: {
@@ -20312,7 +21231,7 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'message to display.',
+            description: 'error message',
           },
           e: {
             types: [
@@ -20325,39 +21244,61 @@ module.exports = {
         private: true,
       },
       handleInput: {
-        description: 'Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.',
-        private: false,
+        description: 'Handles `input` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element in every language (async).',
         returns: 'void',
         private: false,
       },
       validateLanguage: {
-        description: '',
-        private: true,
+        description: 'Checks each validation rule for the element in a specific language (async).',
+        returns: 'void',
+        params: {
+          lang: {
+            types: [
+              'string',
+            ],
+            required: 'false',
+            description: 'the langauage to check (defaults to currently selected language)',
+          },
+        },
+        private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initState: {
-        description: '',
+        description: 'Inits the default `state` object.',
+        returns: 'void',
         private: true,
       },
       initMessageBag: {
-        description: '',
+        description: 'Initalizes MessageBag service.',
+        returns: 'void',
         private: true,
       },
       initValidation: {
@@ -20366,12 +21307,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -20427,7 +21368,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -20438,7 +21379,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -20451,7 +21392,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -20462,7 +21403,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -20473,7 +21414,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -20893,16 +21834,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -20924,7 +21866,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
@@ -20932,22 +21874,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -20955,21 +21897,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -20982,11 +21924,32 @@ module.exports = {
         description: 'Contains select options for native select.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -21000,29 +21963,28 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       empty: {
@@ -21036,87 +21998,99 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -21151,14 +22125,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -21166,28 +22140,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -21207,64 +22181,63 @@ module.exports = {
         private: false,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -21309,7 +22282,7 @@ module.exports = {
         private: false,
       },
       handleSelect: {
-        description: 'Triggered when the user selects an option using non-native element.',
+        description: 'Handles `select` event.',
         returns: 'void',
         params: {
           option: {
@@ -21317,13 +22290,13 @@ module.exports = {
               'object',
             ],
             required: 'true',
-            description: 'the selected option object.',
+            description: 'the selected option object',
           },
         },
         private: true,
       },
       handleDeselect: {
-        description: 'Triggered when the user deselects an option using non-native element. Does not trigger when an *other* element gets selected.',
+        description: 'Handles `deselect` event.',
         returns: 'void',
         params: {
           option: {
@@ -21331,13 +22304,13 @@ module.exports = {
               'object',
             ],
             required: 'true',
-            description: 'the deselected option object.',
+            description: 'the deselected option object',
           },
         },
         private: true,
       },
       handleSearchChange: {
-        description: 'Triggered when the user changes the search criteria using non-native element.',
+        description: 'Handles `searchChange` event.',
         returns: 'void',
         params: {
           searchQuery: {
@@ -21345,23 +22318,23 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'the current search query.',
+            description: 'the current search query',
           },
         },
         private: true,
       },
       handleOpen: {
-        description: 'Triggered when the option list is opened using non-native element.',
+        description: 'Handles `open` event.',
         returns: 'void',
         private: true,
       },
       handleClose: {
-        description: 'Triggered when the option list is closed using non-native element.',
+        description: 'Handles `close` event.',
         returns: 'void',
         private: true,
       },
       handleTag: {
-        description: 'Triggered when the user creates a tag using non-native element.',
+        description: 'Handles `tag` event.',
         returns: 'void',
         params: {
           searchQuery: {
@@ -21369,13 +22342,13 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'the current search query.',
+            description: 'the current search query',
           },
         },
         private: true,
       },
       handleTag: {
-        description: 'Triggered when the user creates a tag. Only gets fired if [`create`](#option-create) is `true`.',
+        description: 'Handles `tag` event.',
         returns: 'void',
         params: {
           searchQuery: {
@@ -21389,57 +22362,57 @@ module.exports = {
         private: true,
       },
       select: {
-        description: 'Selects an option.',
+        description: 'Selects one or more options.',
         returns: 'void',
         params: {
-          option: {
+          options: {
             types: [
               'str',
-              'num',
+              'array',
             ],
-            required: 'false',
-            description: 'the key of option to select.',
+            required: 'true',
+            description: 'value(s) of the option(s) to select',
           },
         },
         private: false,
       },
       deselect: {
-        description: 'Deselects an option.',
+        description: 'Deselects one or more options.',
         returns: 'void',
         params: {
-          option: {
+          options: {
             types: [
               'str',
-              'num',
+              'array',
             ],
-            required: 'false',
-            description: 'the key of option to deselect.',
+            required: 'true',
+            description: 'value(s) of the option(s) to deselect',
           },
         },
         private: false,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -21449,12 +22422,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -21511,7 +22484,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -21522,7 +22495,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -21535,7 +22508,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -21546,7 +22519,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -21557,7 +22530,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -21935,16 +22908,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -21966,7 +22940,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
@@ -21974,22 +22948,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -21997,21 +22971,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -22021,7 +22995,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -22035,21 +23009,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -22059,11 +23033,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -22077,29 +23072,28 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       empty: {
@@ -22113,87 +23107,99 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -22228,14 +23234,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -22243,28 +23249,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -22280,64 +23286,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -22382,31 +23387,41 @@ module.exports = {
         private: false,
       },
       handleInput: {
-        description: 'Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.',
-        private: false,
+        description: 'Handles `input` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -22416,12 +23431,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -22460,7 +23475,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -22471,7 +23486,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -22484,7 +23499,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -22495,7 +23510,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -22506,7 +23521,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -22517,7 +23532,7 @@ module.exports = {
         description: 'The addon to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -22528,7 +23543,7 @@ module.exports = {
         description: 'The addon to be rendered after the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -22899,16 +23914,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -22930,7 +23946,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
@@ -22938,22 +23954,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -22961,21 +23977,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -22985,7 +24001,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -22999,21 +24015,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -23023,11 +24039,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -23041,29 +24078,28 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       empty: {
@@ -23077,87 +24113,99 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -23192,14 +24240,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -23207,28 +24255,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -23249,64 +24297,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -23351,31 +24398,41 @@ module.exports = {
         private: false,
       },
       handleInput: {
-        description: 'Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.',
-        private: false,
+        description: 'Handles `input` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -23385,12 +24442,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -23429,7 +24486,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -23440,7 +24497,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -23453,7 +24510,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -23464,7 +24521,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -23475,7 +24532,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -23486,7 +24543,7 @@ module.exports = {
         description: 'The addon to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -23497,7 +24554,7 @@ module.exports = {
         description: 'The addon to be rendered after the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -23865,16 +24922,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -23896,7 +24954,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       state: {
@@ -23904,22 +24962,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -23927,21 +24985,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -23951,7 +25009,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -23965,21 +25023,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -23989,11 +25047,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -24007,116 +25086,127 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       fieldId: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -24151,14 +25241,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -24166,28 +25256,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -24203,64 +25293,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -24305,60 +25394,51 @@ module.exports = {
         private: false,
       },
       handleChange: {
-        description: 'Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.',
+        description: 'Handles `change` event.',
         returns: 'void',
+        params: {
+          val: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'value of the element',
+          },
+        },
         private: true,
       },
       check: {
-        description: 'Checks the checkbox.',
+        description: 'Sets the toggle to `on` (`trueValue`).',
         returns: 'void',
-        params: {
-          triggerChange: {
-            types: [
-              'boolean',
-            ],
-            required: 'false',
-            description: 'whether the element should trigger `change` event',
-          },
-        },
         private: false,
       },
       uncheck: {
-        description: 'Unhecks the checkbox.',
+        description: 'Sets the toggle to `off` (`falseValue`).',
         returns: 'void',
-        params: {
-          triggerChange: {
-            types: [
-              'boolean',
-            ],
-            required: 'false',
-            description: 'whether the element should trigger `change` event',
-          },
-        },
         private: false,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -24368,12 +25448,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -24412,7 +25492,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -24423,7 +25503,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -24436,7 +25516,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -24447,7 +25527,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -24458,7 +25538,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -24821,16 +25901,17 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'The default classes for the element defined by theme.',
+        private: true,
       },
       localDisabled: {
         types: [
           'boolean',
           'null',
         ],
-        description: '',
-        private: false,
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
       },
       events: {
         types: [
@@ -24852,14 +25933,14 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: '',
+        description: 'The main input field of the element.',
         private: false,
       },
       focused: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the editor is focused.',
         private: false,
       },
       state: {
@@ -24867,22 +25948,22 @@ module.exports = {
           'object',
         ],
         description: 'Helper property used to store the element states.',
-        default: '{}',
+        default: '{ dirty: false, validate: true }',
         private: true,
       },
       Validators: {
         types: [
-          'array',
+          'array,Validator',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
-        description: 'Message bag service.',
+        description: 'Instance of MessageBag service.',
         default: '{MessageBag}',
         private: false,
       },
@@ -24890,21 +25971,21 @@ module.exports = {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The initial value of the element.',
+        private: true,
       },
       internalValue: {
         types: [
           'any',
         ],
-        description: '',
-        private: false,
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with `.show()` / `.hide()` methods.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
         default: 'false',
         private: false,
       },
@@ -24914,7 +25995,7 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The element&quot;s component.',
+        description: 'The element&apos;s component.',
         private: false,
       },
       isStatic: {
@@ -24928,21 +26009,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is a file.',
+        description: 'Whether the element&apos;s value is a file.',
         private: false,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an array.',
+        description: 'Whether the element&apos;s value is an array.',
         private: false,
       },
       isImageType: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value is an image.',
+        description: 'Whether the element&apos;s value is an image.',
         private: false,
       },
       isActive: {
@@ -24952,11 +26033,32 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: false,
       },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        private: false,
+      },
       mainClass: {
         types: [
           'string',
         ],
-        description: 'Class of the element&quot;s outermost DOM. Can use Vue syntaxes (string, array, object).',
+        description: 'The class name of the element&apos;s outermost DOM.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calulated column sizes and classes for the element.',
+        private: true,
+      },
+      components: {
+        types: [
+          'object',
+        ],
+        description: 'Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element&apos;s components.',
         private: false,
       },
       available: {
@@ -24970,29 +26072,28 @@ module.exports = {
         types: [
           'object',
         ],
-        description: '',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
         private: false,
       },
       output: {
         types: [
           'object',
         ],
-        description: 'An object containing the element `name` as a key and its `value` as value only if the element is available and `submit` is not set to `false`.',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
         types: [
-          'string',
-          'number',
+          'any',
         ],
         description: 'The default value of the element.',
-        private: false,
+        private: true,
       },
       isDisabled: {
         types: [
           'boolean',
         ],
-        description: '',
+        description: 'Whether the element is disabled.',
         private: false,
       },
       empty: {
@@ -25006,95 +26107,107 @@ module.exports = {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
       genericName: {
         types: [
           'string',
         ],
-        description: 'Helper property used to determine a generic name for the element.',
-        private: false,
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
       },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Helper property used to determine internally if a label should be rendered for the element.',
+        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
         types: [
           'string',
-          'object',
+          'component',
         ],
-        description: '',
-        private: false,
+        description: 'The current layout of the element.',
+        private: true,
       },
       nullValue: {
-        description: '',
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
         private: true,
       },
       parent: {
-        description: '',
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       path: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax.',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: '',
+        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
         private: false,
       },
       flat: {
-        description: '',
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
       elementSlots: {
         types: [
           'object',
         ],
-        description: 'Returns slots for the element. Setting the value as an object will merge the current slots with the provided values.',
-        private: false,
+        description: 'Slots of the element.',
+        private: true,
       },
       fieldSlots: {
-        description: '',
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
       elementSlotProps: {
         types: [
           'object',
         ],
-        description: '',
-        private: false,
+        description: 'Props for element slots.',
+        private: true,
       },
       trixEndpoint: {
         types: [
           'string',
         ],
-        description: 'Endpoint to be called to upload attachments. Defaults to config&quot;s `config.endpoints.elements`<br>`.trix.attachment`.',
-        default: '"..."',
-        private: false,
+        description: 'The endpoint that uploads attachment. Can be changed by setting [`endpoint`](#endpoint) option.',
+        default: '`config.endpoints.elements`',
+        private: true,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified by the user.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&quot;s input has already been validated at least once.',
+        description: 'Whether the element&apos;s input has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -25129,14 +26242,14 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'List of errors of failing rules.',
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       error: {
         types: [
           'string',
         ],
-        description: 'The first error that should be displayed under the element.',
+        description: 'The first error of `MessageBag`.',
         private: false,
       },
       validationRules: {
@@ -25144,28 +26257,28 @@ module.exports = {
           'string',
           'array',
         ],
-        description: '',
-        private: false,
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'The value of the element.',
         private: false,
       },
       model: {
         types: [
           'any',
         ],
-        description: '',
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
         private: false,
       },
       visible: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is visible. It&quot;s `false` if `available` or `active` is `false` or `hidden` is `true`.',
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
         private: false,
       },
     },
@@ -25181,64 +26294,63 @@ module.exports = {
         private: true,
       },
       load: {
-        description: '',
+        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
             ],
             required: 'true',
-            description: 'The value to be loaded.',
+            description: 'the value to be loaded',
           },
           format: {
             types: [
               'boolean',
             ],
             required: 'false',
-            description: 'Whether the loaded value should be formatted with `formatLoad` before applying values to the element. Default: `false`.',
+            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: '',
+        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
         returns: 'void',
         params: {
           value: {
             types: [
               'string',
-              'number',
+              '',
             ],
             required: 'true',
-            description: 'The value to update the field with.',
+            description: 'the value to be set',
           },
         },
         private: false,
       },
       clear: {
-        description: '',
+        description: 'Clears the element&apos;s value.',
         returns: 'void',
         private: false,
       },
       reset: {
-        description: '',
+        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
       prepare: {
-        description: '',
+        description: 'Prepares the element.',
         returns: 'void',
         private: true,
       },
       disable: {
-        description: 'Disabled the field.',
+        description: 'Disables the element.',
         returns: 'void',
         private: false,
       },
       enable: {
-        description: 'Enables the field.',
+        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -25283,7 +26395,7 @@ module.exports = {
         private: false,
       },
       handleError: {
-        description: 'Triggered when the trix editor throws an error during file upload (for example not accepted file types). If no event is attached browsers default `alert()` function will be used.',
+        description: 'Handles `error` event.',
         returns: 'void',
         params: {
           message: {
@@ -25291,7 +26403,7 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'message to display.',
+            description: 'error message',
           },
           e: {
             types: [
@@ -25304,31 +26416,41 @@ module.exports = {
         private: true,
       },
       handleInput: {
-        description: 'Triggered when the user changes the value of the element. Does not trigger if the `value` is programmatically changed.',
-        private: false,
+        description: 'Handles `input` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
       },
       validate: {
-        description: '',
+        description: 'Checks each validation rule for the element (async).',
         returns: 'void',
         private: false,
       },
       dirt: {
         description: 'Flag the element as dirty.',
         returns: 'void',
-        private: false,
+        private: true,
       },
       clean: {
-        description: 'Flag the element as non dirty.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Set the validated state to false.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes messageBag service.',
+        description: 'Initalizes MessageBag service.',
         returns: 'void',
         private: true,
       },
@@ -25338,12 +26460,12 @@ module.exports = {
         private: true,
       },
       hide: {
-        description: 'Sets the `hidden` property of the element to `false`.',
+        description: 'Hides the element.',
         returns: 'void',
         private: false,
       },
       show: {
-        description: 'Sets the `hidden` property of the element to `true`.',
+        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
@@ -25399,7 +26521,7 @@ module.exports = {
         description: 'The label of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -25410,7 +26532,7 @@ module.exports = {
         description: 'The description of the element',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -25423,7 +26545,7 @@ module.exports = {
         description: 'Text to be rendered before the field',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -25434,7 +26556,7 @@ module.exports = {
         description: 'Text to be rendered after the field and before description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],
@@ -25445,7 +26567,7 @@ module.exports = {
         description: 'Text to be rendered the description & error',
         props: {
           el$: {
-            description: 'The element&quot;s component',
+            description: 'The element&apos;s component',
             types: [
               'component',
             ],

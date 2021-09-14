@@ -5,17 +5,12 @@ const base = function(props, context, dependencies)
   // =============== INJECT ===============
 
   /**
+  * The global theme object, which contains all the default components and classes.
   * 
-  * 
-  * @private
+  * @type {object}
   */
   let theme = inject('theme')
 
-  /**
-  * 
-  * 
-  * @private
-  */
   return {
     theme,
   }

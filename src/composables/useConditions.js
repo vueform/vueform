@@ -13,7 +13,7 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * Whether all element conditions are met (if any).
+   * Whether the element has no [`:conditions`](#conditions) or they are fulfilled.
    * 
    * @type {boolean}
    */

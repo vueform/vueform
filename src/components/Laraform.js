@@ -16,7 +16,6 @@ export default {
       selectedLanguage,
       submitting,
       preparing,
-      updating,
       events,
       listeners,
       internalData,
@@ -89,7 +88,6 @@ export default {
       selectedLanguage,
       submitting,
       preparing,
-      updating,
       events,
       listeners,
       internalData,
@@ -293,6 +291,11 @@ export default {
       default: null
     },
     displayErrors: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    displayMessages: {
       type: Boolean,
       required: false,
       default: null

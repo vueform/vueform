@@ -21,6 +21,8 @@ const config = {
   floatPlaceholder: true,
 
   displayErrors: true,
+  
+  displayMessages: true,
 
   language: 'en',
 

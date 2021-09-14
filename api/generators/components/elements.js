@@ -77,7 +77,7 @@ const addEvents = (contents, elementName) => {
     contents += `      ${eventName}: {\n`
 
     if (eventInfo.description) {
-      contents += `        description: '${eventInfo.description.split('').map(c=>c==='\''?'&quot;':c).join('')}',\n`
+      contents += `        description: '${eventInfo.description.split('').map(c=>c==='\''?'&apos;':c).join('')}',\n`
     }
 
     if (eventInfo.params) {
@@ -87,7 +87,7 @@ const addEvents = (contents, elementName) => {
         contents += `          ${paramName}: {\n`
 
         if (param.description) {
-          contents += `            description: '${param.description.split('').map(c=>c==='\''?'&quot;':c).join('')}',\n`
+          contents += `            description: '${param.description.split('').map(c=>c==='\''?'&apos;':c).join('')}',\n`
         }
 
         if (param.types) {
@@ -135,7 +135,7 @@ const addSlots = (contents, elementName) => {
     contents += `      ${slotName}: {\n`
 
     if (slotInfo.description) {
-      contents += `        description: '${slotInfo.description.split('').map(c=>c==='\''?'&quot;':c).join('')}',\n`
+      contents += `        description: '${slotInfo.description.split('').map(c=>c==='\''?'&apos;':c).join('')}',\n`
     }
 
     if (slotInfo.props) {
@@ -145,7 +145,7 @@ const addSlots = (contents, elementName) => {
         contents += `          ${propName}: {\n`
 
         if (prop.description) {
-          contents += `            description: '${prop.description.split('').map(c=>c==='\''?'&quot;':c).join('')}',\n`
+          contents += `            description: '${prop.description.split('').map(c=>c==='\''?'&apos;':c).join('')}',\n`
         }
 
         if (prop.types) {
@@ -252,7 +252,7 @@ const addFeatureAsset = (type, contents, elementName) => {
         contents += `        ],\n`
       }
 
-      contents += `        description: '${asset.description.split('').map(c=>c==='\''?'&quot;':c).join('')}',\n`
+      contents += `        description: '${asset.description.split('').map(c=>c==='\''?'&apos;':c).join('')}',\n`
 
       if (asset.default) {
         contents += `        default: '${asset.default}',\n`
@@ -275,7 +275,7 @@ const addFeatureAsset = (type, contents, elementName) => {
 
           contents += `            ],\n`
           contents += `            required: '${param.required === true}',\n`
-          contents += `            description: '${param.description.split('').map(c=>c==='\''?'&quot;':c).join('')}',\n`
+          contents += `            description: '${param.description.split('').map(c=>c==='\''?'&apos;':c).join('')}',\n`
           contents += `          },\n`
         })
 

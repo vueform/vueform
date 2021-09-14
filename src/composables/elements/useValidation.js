@@ -18,7 +18,7 @@ const base = function(props, context, dependencies)
   /**
    * Helper property used to store the element states.
    * 
-   * @type {{ dirty: boolean, validated: boolean }}
+   * @type {object}
    * @default { dirty: false, validate: true }
    * @private
    */
@@ -40,7 +40,7 @@ const base = function(props, context, dependencies)
    * Instance of MessageBag service.
    * 
    * @type {MessageBag}
-   * @default {MessageBag}
+   * @default MessageBag
    */
   const messageBag = ref({})
 
@@ -48,7 +48,7 @@ const base = function(props, context, dependencies)
    * Instance of ValidatorFactory.
    * 
    * @type {ValidatorFactory}
-   * @default {ValidatorFactory}
+   * @default ValidatorFactory
    * @private
    */
   const validatorFactory = reactive({})
