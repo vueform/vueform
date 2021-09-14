@@ -972,7 +972,7 @@ const base = function(props, context, dependencies = {})
   /**
   * Converts form data to [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
   * 
-  * @param {object} data* the date to be converted
+  * @param {object} data* the data to be converted
   * @returns {FormData}
   */
   const convertFormData = (data) => {

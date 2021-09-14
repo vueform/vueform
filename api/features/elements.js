@@ -2961,7 +2961,7 @@ export default {
         },
         "messageBag": {
           "public": true,
-          "default": "{MessageBag}",
+          "default": "MessageBag",
           "types": [
             "MessageBag"
           ],
@@ -3090,7 +3090,7 @@ export default {
         },
         "messageBag": {
           "public": true,
-          "default": "{MessageBag}",
+          "default": "MessageBag",
           "types": [
             "MessageBag"
           ],
@@ -3236,7 +3236,7 @@ export default {
         },
         "messageBag": {
           "public": true,
-          "default": "{MessageBag}",
+          "default": "MessageBag",
           "types": [
             "MessageBag"
           ],
@@ -3365,7 +3365,7 @@ export default {
       "data": {
         "messageBag": {
           "public": true,
-          "default": "{MessageBag}",
+          "default": "MessageBag",
           "types": [
             "MessageBag"
           ],
@@ -3469,7 +3469,7 @@ export default {
         },
         "messageBag": {
           "public": true,
-          "default": "{MessageBag}",
+          "default": "MessageBag",
           "types": [
             "MessageBag"
           ],
@@ -3598,7 +3598,7 @@ export default {
         },
         "messageBag": {
           "public": true,
-          "default": "{MessageBag}",
+          "default": "MessageBag",
           "types": [
             "MessageBag"
           ],
@@ -3856,7 +3856,7 @@ export default {
         "show": {
           "public": true,
           "returns": "void",
-          "description": "Shows the element if it was hided with [`hide()`](#hide) method."
+          "description": "Shows the element if it was hidden with [`hide()`](#hide) method."
         }
       }
     }

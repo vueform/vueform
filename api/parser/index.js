@@ -157,7 +157,7 @@ const Parser = class
               this.lines[i].match(/<([a-zA-Z*]*)/)[1],
             ]]
           } else {
-            docs.returns = this.lines[i].match(/{([a-z]*)}/)[1]
+            docs.returns = this.lines[i].match(/{([a-zA-Z|]*)}/)[1]
           }
         }
 

@@ -2,36 +2,57 @@ module.exports = {
   "DragAndDrop": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       }
     },
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       },
       "dragging": {
         "public": false,
@@ -90,30 +111,48 @@ module.exports = {
   "ElementAddon": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "addon": {
         "public": false,
@@ -127,7 +166,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {
@@ -144,30 +186,48 @@ module.exports = {
   "ElementDescription": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "description": {
         "public": false,
@@ -177,7 +237,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -187,30 +250,48 @@ module.exports = {
   "ElementError": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "error": {
         "public": false,
@@ -220,7 +301,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -230,30 +314,48 @@ module.exports = {
   "ElementInfo": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "info": {
         "public": false,
@@ -263,7 +365,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -273,38 +378,63 @@ module.exports = {
   "ElementLabel": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "label": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string",
+          "component"
+        ],
+        "description": "The label of the component. If the label is provided is a `function` this will always have the resolved value."
       },
       "isLabelComponent": {
         "public": false,
-        "description": ""
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether label is provided as a Vue component."
       },
       "name": {
         "public": true,
@@ -317,7 +447,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -327,30 +460,48 @@ module.exports = {
   "ElementLabelFloating": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "floating": {
         "public": false,
@@ -360,7 +511,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {
@@ -378,30 +532,48 @@ module.exports = {
   "ElementLayout": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "visible": {
         "public": false,
@@ -435,7 +607,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {
@@ -478,30 +653,48 @@ module.exports = {
   "ElementLayoutInline": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "hasLabel": {
         "public": false,
@@ -515,7 +708,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -525,36 +721,57 @@ module.exports = {
   "ElementLoader": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       }
     },
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -564,30 +781,48 @@ module.exports = {
   "ElementMessage": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "message": {
         "public": false,
@@ -597,7 +832,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -607,30 +845,48 @@ module.exports = {
   "ElementText": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "content": {
         "public": false,
@@ -640,7 +896,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {
@@ -657,26 +916,41 @@ module.exports = {
   "FormElements": {
     "inject": {
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the form."
       },
       "schema": {
         "public": false,
@@ -686,13 +960,26 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
       "component": {
         "public": false,
-        "description": ""
+        "returns": "string",
+        "description": "Transforms an element `:type` into the element's component name.",
+        "params": {
+          "element": {
+            "types": [
+              "string"
+            ],
+            "required": true,
+            "description": "element `:type`"
+          }
+        }
       }
     },
     "props": {},
@@ -702,26 +989,41 @@ module.exports = {
   "FormErrors": {
     "inject": {
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the form."
       },
       "errors": {
         "public": false,
@@ -731,7 +1033,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -741,12 +1046,18 @@ module.exports = {
   "FormLanguage": {
     "inject": {
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
@@ -760,21 +1071,33 @@ module.exports = {
       },
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the form."
       }
     },
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
@@ -803,26 +1126,41 @@ module.exports = {
   "FormLanguages": {
     "inject": {
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the form."
       },
       "language": {
         "public": false,
@@ -836,7 +1174,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
@@ -856,26 +1197,41 @@ module.exports = {
   "FormMessages": {
     "inject": {
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the form."
       },
       "messages": {
         "public": false,
@@ -885,7 +1241,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -895,12 +1254,18 @@ module.exports = {
   "FormStep": {
     "inject": {
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
@@ -942,22 +1307,31 @@ module.exports = {
       },
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the form."
       },
       "available": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether all element conditions are met (if any)."
+        "description": "Whether the element has no [`:conditions`](#conditions) or they are fulfilled."
       },
       "baseLabel": {
         "public": false,
@@ -1000,7 +1374,10 @@ module.exports = {
       },
       "isLabelComponent": {
         "public": false,
-        "description": ""
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether label is provided as a Vue component."
       },
       "index": {
         "public": false,
@@ -1033,7 +1410,7 @@ module.exports = {
         "description": "Determines whether the step is completed."
       },
       "events": {
-        "public": true,
+        "public": false,
         "default": "[]",
         "types": [
           "array"
@@ -1041,7 +1418,7 @@ module.exports = {
         "description": "Helper property used to store available events for the element."
       },
       "listeners": {
-        "public": true,
+        "public": false,
         "default": "{}",
         "types": [
           "object"
@@ -1050,7 +1427,10 @@ module.exports = {
       },
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       },
       "stepLabel": {
         "public": false,
@@ -1113,14 +1493,14 @@ module.exports = {
               "string"
             ],
             "required": false,
-            "description": "event to listen for."
+            "description": "name of the event to listen for"
           },
           "callback": {
             "types": [
               "function"
             ],
             "required": false,
-            "description": "callback to run when the event is triggered. The `this` variable refers to the component the listener is set for."
+            "description": "callback to run when the event is triggered"
           }
         }
       },
@@ -1134,14 +1514,23 @@ module.exports = {
               "string"
             ],
             "required": false,
-            "description": "event to remove the listeners for."
+            "description": "name of the event to remove"
           }
         }
       },
       "fire": {
         "public": true,
-        "returns": "any",
-        "description": "Fires an event."
+        "returns": "void",
+        "description": "Fires & emits an event.",
+        "params": {
+          "args": {
+            "types": [
+              "any"
+            ],
+            "required": false,
+            "description": "list of arguments to pass over to the event callback "
+          }
+        }
       }
     },
     "props": {
@@ -1233,12 +1622,18 @@ module.exports = {
   "FormSteps": {
     "inject": {
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
@@ -1252,15 +1647,24 @@ module.exports = {
       },
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the form."
       },
       "steps$": {
         "public": true,
@@ -1403,7 +1807,7 @@ module.exports = {
         "description": ""
       },
       "events": {
-        "public": true,
+        "public": false,
         "default": "[]",
         "types": [
           "array"
@@ -1411,7 +1815,7 @@ module.exports = {
         "description": "Helper property used to store available events for the element."
       },
       "listeners": {
-        "public": true,
+        "public": false,
         "default": "{}",
         "types": [
           "object"
@@ -1424,7 +1828,10 @@ module.exports = {
       },
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
@@ -1545,14 +1952,14 @@ module.exports = {
               "string"
             ],
             "required": false,
-            "description": "event to listen for."
+            "description": "name of the event to listen for"
           },
           "callback": {
             "types": [
               "function"
             ],
             "required": false,
-            "description": "callback to run when the event is triggered. The `this` variable refers to the component the listener is set for."
+            "description": "callback to run when the event is triggered"
           }
         }
       },
@@ -1566,14 +1973,23 @@ module.exports = {
               "string"
             ],
             "required": false,
-            "description": "event to remove the listeners for."
+            "description": "name of the event to remove"
           }
         }
       },
       "fire": {
         "public": true,
-        "returns": "any",
-        "description": "Fires an event."
+        "returns": "void",
+        "description": "Fires & emits an event.",
+        "params": {
+          "args": {
+            "types": [
+              "any"
+            ],
+            "required": false,
+            "description": "list of arguments to pass over to the event callback "
+          }
+        }
       }
     },
     "props": {},
@@ -1583,12 +1999,18 @@ module.exports = {
   "FormStepsControl": {
     "inject": {
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
@@ -1598,15 +2020,24 @@ module.exports = {
       },
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the form."
       },
       "visible": {
         "public": false,
@@ -1625,18 +2056,28 @@ module.exports = {
         "description": ""
       },
       "label": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string",
+          "component"
+        ],
+        "description": "The label of the component. If the label is provided is a `function` this will always have the resolved value."
       },
       "isLabelComponent": {
         "public": false,
-        "description": ""
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether label is provided as a Vue component."
       }
     },
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
@@ -1678,32 +2119,50 @@ module.exports = {
   "FormStepsControls": {
     "inject": {
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the form."
       }
     },
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {
@@ -1721,12 +2180,18 @@ module.exports = {
   "FormTab": {
     "inject": {
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
@@ -1761,26 +2226,38 @@ module.exports = {
       },
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the form."
       },
       "available": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether all element conditions are met (if any)."
+        "description": "Whether the element has no [`:conditions`](#conditions) or they are fulfilled."
       },
       "isLabelComponent": {
         "public": false,
-        "description": ""
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether label is provided as a Vue component."
       },
       "tab$": {
         "public": false,
@@ -1797,7 +2274,7 @@ module.exports = {
         "description": "Determines whether the tab is active."
       },
       "events": {
-        "public": true,
+        "public": false,
         "default": "[]",
         "types": [
           "array"
@@ -1805,7 +2282,7 @@ module.exports = {
         "description": "Helper property used to store available events for the element."
       },
       "listeners": {
-        "public": true,
+        "public": false,
         "default": "{}",
         "types": [
           "object"
@@ -1814,7 +2291,10 @@ module.exports = {
       },
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       },
       "tabLabel": {
         "public": false,
@@ -1847,14 +2327,14 @@ module.exports = {
               "string"
             ],
             "required": false,
-            "description": "event to listen for."
+            "description": "name of the event to listen for"
           },
           "callback": {
             "types": [
               "function"
             ],
             "required": false,
-            "description": "callback to run when the event is triggered. The `this` variable refers to the component the listener is set for."
+            "description": "callback to run when the event is triggered"
           }
         }
       },
@@ -1868,14 +2348,23 @@ module.exports = {
               "string"
             ],
             "required": false,
-            "description": "event to remove the listeners for."
+            "description": "name of the event to remove"
           }
         }
       },
       "fire": {
         "public": true,
-        "returns": "any",
-        "description": "Fires an event."
+        "returns": "void",
+        "description": "Fires & emits an event.",
+        "params": {
+          "args": {
+            "types": [
+              "any"
+            ],
+            "required": false,
+            "description": "list of arguments to pass over to the event callback "
+          }
+        }
       }
     },
     "props": {
@@ -1939,12 +2428,18 @@ module.exports = {
   "FormTabs": {
     "inject": {
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
@@ -1958,15 +2453,24 @@ module.exports = {
       },
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the form."
       },
       "tabs$": {
         "public": true,
@@ -2024,7 +2528,7 @@ module.exports = {
         "description": ""
       },
       "events": {
-        "public": true,
+        "public": false,
         "default": "[]",
         "types": [
           "array"
@@ -2032,7 +2536,7 @@ module.exports = {
         "description": "Helper property used to store available events for the element."
       },
       "listeners": {
-        "public": true,
+        "public": false,
         "default": "{}",
         "types": [
           "object"
@@ -2045,7 +2549,10 @@ module.exports = {
       },
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
@@ -2111,14 +2618,14 @@ module.exports = {
               "string"
             ],
             "required": false,
-            "description": "event to listen for."
+            "description": "name of the event to listen for"
           },
           "callback": {
             "types": [
               "function"
             ],
             "required": false,
-            "description": "callback to run when the event is triggered. The `this` variable refers to the component the listener is set for."
+            "description": "callback to run when the event is triggered"
           }
         }
       },
@@ -2132,14 +2639,23 @@ module.exports = {
               "string"
             ],
             "required": false,
-            "description": "event to remove the listeners for."
+            "description": "name of the event to remove"
           }
         }
       },
       "fire": {
         "public": true,
-        "returns": "any",
-        "description": "Fires an event."
+        "returns": "void",
+        "description": "Fires & emits an event.",
+        "params": {
+          "args": {
+            "types": [
+              "any"
+            ],
+            "required": false,
+            "description": "list of arguments to pass over to the event callback "
+          }
+        }
       }
     },
     "props": {},
@@ -2150,15 +2666,25 @@ module.exports = {
     "data": {
       "tabs$": {
         "public": false,
-        "description": ""
+        "types": [
+          "component"
+        ],
+        "description": "The FormTabs component."
       },
       "steps$": {
         "public": false,
-        "description": ""
+        "types": [
+          "component"
+        ],
+        "description": "The FormSteps component."
       },
       "elements$": {
         "public": false,
-        "description": ""
+        "default": "{}",
+        "types": [
+          "object"
+        ],
+        "description": "The components of highest level form elements."
       },
       "validation": {
         "public": true,
@@ -2166,23 +2692,23 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Determine if the form should validate."
+        "description": "Enables validation for the form globally."
       },
       "messageBag": {
         "public": true,
-        "default": "{MessageBag}",
+        "default": "MessageBag",
         "types": [
           "MessageBag"
         ],
-        "description": "Message bag that contains computed & custom errors & messages."
+        "description": "Instance of MessageBag service."
       },
       "selectedLanguage": {
-        "public": false,
-        "default": "false",
+        "public": true,
+        "default": "config.language",
         "types": [
-          "boolean"
+          "string"
         ],
-        "description": "Determine if the form's data is currently being updated for external model."
+        "description": "The ISO 639-1 code of the currently selected language (2 letters)."
       },
       "submitting": {
         "public": true,
@@ -2190,7 +2716,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Determine if the form is currently submitting."
+        "description": "Whether the form is currently submitting."
       },
       "preparing": {
         "public": true,
@@ -2198,18 +2724,10 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Determine if the form is currently preparing for submission."
-      },
-      "updating": {
-        "public": false,
-        "default": "false",
-        "types": [
-          "boolean"
-        ],
-        "description": "Determine if the form's data is currently being updated for external model."
+        "description": "Whether the form is currently preparing the elements for submit."
       },
       "events": {
-        "public": true,
+        "public": false,
         "default": "[]",
         "types": [
           "array"
@@ -2217,7 +2735,7 @@ module.exports = {
         "description": "Helper property used to store available events for the element."
       },
       "listeners": {
-        "public": true,
+        "public": false,
         "default": "{}",
         "types": [
           "object"
@@ -2226,7 +2744,11 @@ module.exports = {
       },
       "internalData": {
         "public": false,
-        "description": "If v-model is defined it is always equal to that. Otherwise used as model container."
+        "default": "{}",
+        "types": [
+          "object"
+        ],
+        "description": "The internal store for the form's model."
       },
       "intermediaryValue": {
         "public": false,
@@ -2234,55 +2756,62 @@ module.exports = {
       },
       "userConfig": {
         "public": false,
-        "description": ""
+        "default": "{}",
+        "types": [
+          "object"
+        ],
+        "description": "The configuration object of the user when using SFC mode. Basically the value of the component's `data.vueform` object."
       }
     },
     "computed": {
       "options": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "Form options merged from config, component props & the component's `data.vueform` options."
       },
       "data": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The form's data excluding elements with unmet conditions and the ones which should not submit."
+        "description": "The form data including all the elements even if they have unmet conditions."
       },
       "output": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The form's data excluding elements with unmet conditions and the ones which should not submit."
+        "description": "The form data excluding elements with `available: false`. This one gets submitted."
       },
       "dirty": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has any dirty element."
+        "description": "Whether the form has any dirty elements."
       },
       "invalid": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has any invalid element."
+        "description": "Whether the form has any invalid elements."
       },
       "debouncing": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has any debouncing element."
+        "description": "Whether the form has any debouncing elements."
       },
       "pending": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has any pending element."
+        "description": "Whether the form has any pending elements."
       },
       "validated": {
         "public": true,
@@ -2296,133 +2825,157 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has any busy element or in preparing or submitting state."
+        "description": "Whether the form has any busy elements or [`:loading`](#loading) is `true` or in [`preparing`](#preparing) or [`submitting`](#submitting) state."
       },
       "formErrors": {
         "public": true,
         "types": [
           "array"
         ],
-        "description": "List of all errors within the form."
+        "description": "Form errors including element errors and the ones added to [`messageBag`](#messagebag) manually."
       },
       "formMessages": {
         "public": true,
         "types": [
           "array"
         ],
-        "description": "List of all errors within the form."
+        "description": "Form messages including element messages and the ones added to [`messageBag`](#messagebag) manually."
       },
       "isDisabled": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form is disabled."
+        "description": "Whether submitting the form is disabled. Returns `true` if:<br>* the form has any invalid elements and `:validateOn` contains `'change'`<br>* the form is [`busy`](#busy)<br>* manually disabled with [`:disabled`](#disabled) prop"
       },
       "isLoading": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form is loading."
+        "description": "Whether submitting the form is in loading state. Can be enabled with [`:loading`](#loading) prop."
       },
       "shouldValidateOnChange": {
         "public": false,
-        "description": ""
-      },
-      "shouldValidateOnStep": {
-        "public": false,
-        "description": ""
-      },
-      "hasSteps": {
-        "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has steps."
+        "description": "Whether the `:validateOn` prop or `config.validateOn` contains `'change'`."
+      },
+      "shouldValidateOnStep": {
+        "public": false,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the `:validateOn` prop or `config.validateOn` contains `'step'`."
+      },
+      "hasSteps": {
+        "public": false,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form has any steps."
       },
       "hasTabs": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has tabs."
+        "description": "Whether the form has any tabs."
       },
       "hasErrors": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has errors."
+        "description": "Whether the form has any errors."
       },
       "hasMessages": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has messages."
+        "description": "Whether the form has anymessages."
       },
       "isMultilingual": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form is multilingual and should show [`FormLanguages`](form-languages) component."
       },
       "showErrors": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": ""
+        "description": "Whether the form should display errors above the form with [`FormErrors`](form-errors) component. Can be disabled by [`:displayErrors`](#displayerrors) or in `config.displayErrros`."
       },
       "showMessages": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": ""
+        "description": "Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`:displayMessages`](#displaymessages) or in `config.displayMessages`."
       },
       "showLanguages": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the form should show langauge selectors."
       },
       "showSteps": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": ""
+        "description": "Whether the form should show [`FormSteps`](form-steps) component. Returns `true` if [`:steps`](#steps) has a value."
       },
       "showTabs": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": ""
+        "description": "Whether the form should show [`FormTabs`](form-tabs) component. Returns `true` if [`:tabs`](#tabs) has a value."
       },
       "showStepsControls": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": ""
+        "description": "Whether the form should display steps controls below form with [`FormStepsControls`](form-steps-control) component when it has [`:steps`](#steps). Can be disabled by [`:stepsControls`](#stepscontrols) or in `config.stepsControls`."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the form's outermost DOM."
       },
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the form defined by theme."
       },
       "extendedClasses": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The selected theme's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides. Normally we use `classes` property for this, but as Vueform component needs to have an actual [`:classes`](#classes) prop so we use this naming instead."
       },
       "extendedComponents": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The selected theme's components, extended by local overrides. Normally we use `components` property for this, but as Vueform component needs to have an actual [`:components`](#components) prop so we use this naming instead."
       },
       "selectedTheme": {
-        "public": true,
+        "public": false,
         "types": [
           "object"
         ],
@@ -2433,63 +2986,103 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's file with local extensions."
+        "description": "The selected theme, extended by local overrides. Normally we use `theme` property for this, but as Vueform component needs to have an actual [`:theme`](#theme) prop so we use this naming instead."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The form's component (self)."
       },
       "model": {
         "public": false,
-        "description": "Clone value of model container: v-model or internal data"
+        "types": [
+          "object"
+        ],
+        "description": "The form's model, which either comes from `externalValue` or `internalData`."
       },
       "isSync": {
         "public": false,
-        "description": ""
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether form data should be synced when the external value changes (when external value is used)."
       }
     },
     "methods": {
       "updateModel": {
         "public": false,
-        "description": ""
+        "returns": "void",
+        "description": "Updates an element's data in the form model.",
+        "params": {
+          "dataPath": {
+            "types": [
+              "string"
+            ],
+            "required": false,
+            "description": "the `dataPath` property of the element to update"
+          },
+          "val": {
+            "types": [
+              "any"
+            ],
+            "required": false,
+            "description": "value to update with"
+          }
+        }
       },
       "update": {
         "public": true,
         "returns": "void",
-        "description": "Updates the element values which are contained in the data.",
+        "description": "Updates the form data. Can be used to update a single element by providing the element's `path` as second option.",
         "params": {
           "data": {
             "types": [
               "object"
             ],
-            "required": false,
+            "required": true,
             "description": "data to update with"
+          },
+          "path": {
+            "types": [
+              "object"
+            ],
+            "required": false,
+            "description": "the `path` of the element to update (default: `null`)"
           }
         }
       },
       "load": {
         "public": true,
         "returns": "void",
-        "description": "Loads data and clears any element if the element's key is not found in the `data` object. Sets all elements' `dirty` to `false`.",
+        "description": "Loads data to the form using optional [`:formatLoad`](#format-load) formatter.",
         "params": {
-          "data": {
+          "value": {
             "types": [
-              "object"
+              "string"
+            ],
+            "required": true,
+            "description": "the value to be loaded"
+          },
+          "format": {
+            "types": [
+              "boolean"
             ],
             "required": false,
-            "description": "data to load"
+            "description": "whether the loaded value should be formatted with [`:formatLoad`](#format-load) (default: `false`)"
           }
         }
       },
       "reset": {
         "public": true,
         "returns": "void",
-        "description": "Resets the form to its default state."
+        "description": "Resets the form's data to default state. Also resets all the validation state for the elements."
       },
       "clear": {
         "public": true,
         "returns": "void",
-        "description": "Resets the form to null values."
+        "description": "Clears the forms data."
       },
       "clean": {
         "public": true,
@@ -2499,48 +3092,69 @@ module.exports = {
       "validate": {
         "public": true,
         "returns": "void",
-        "description": "Validates each elements within the form."
+        "description": "Validates all elements (async)."
       },
       "resetValidators": {
         "public": true,
         "returns": "void",
-        "description": ""
+        "description": "Sets all element validators to default state."
       },
       "convertFormData": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "FormData",
+        "description": "Converts form data to [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).",
+        "params": {
+          "data": {
+            "types": [
+              "object"
+            ],
+            "required": true,
+            "description": "the data to be converted"
+          }
+        }
       },
       "submit": {
         "public": true,
         "returns": "void",
-        "description": "Starts the submission process."
+        "description": "Validates and prepares elements then submits the form (async)."
       },
       "send": {
         "public": true,
         "returns": "void",
-        "description": "Transforms form data to [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object and sends it to the endpoint."
+        "description": "Sends form data to [`:endpoint`](#endpoint) with the selected [`method`](#method) (async)."
       },
       "disableValidation": {
         "public": true,
         "returns": "void",
-        "description": "Disabled validation."
+        "description": "Disabled form validation globally."
       },
       "enableValidation": {
         "public": true,
         "returns": "void",
-        "description": "Enables validation."
+        "description": "Enables form validation globally."
       },
       "setLanguage": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "void",
+        "description": "Sets current language when using [`:multilingual`](#multilingual).",
+        "params": {
+          "code": {
+            "types": [
+              "string"
+            ],
+            "required": true,
+            "description": "the language code to be selected"
+          }
+        }
       },
       "handleSubmit": {
         "public": true,
-        "description": "Triggered when the form is submitted. Can prevent further execution (element validation) if returns `false`."
+        "returns": "void",
+        "description": "Handles `submit` event."
       },
       "el$": {
         "public": true,
-        "returns": "void",
+        "returns": "component|null",
         "description": "Returns an element by its path.",
         "params": {
           "path": {
@@ -2549,13 +3163,6 @@ module.exports = {
             ],
             "required": false,
             "description": "path of the element"
-          },
-          "elements": {
-            "types": [
-              "string"
-            ],
-            "required": false,
-            "description": "elements$ object to look elements for (leave blank)"
           }
         }
       },
@@ -2575,12 +3182,22 @@ module.exports = {
       },
       "initMessageBag": {
         "public": false,
-        "description": ""
+        "returns": "void",
+        "description": "Inits MessageBag service."
       },
       "fire": {
         "public": true,
-        "returns": "any",
-        "description": "Fires an event."
+        "returns": "void",
+        "description": "Fires & emits an event.",
+        "params": {
+          "args": {
+            "types": [
+              "any"
+            ],
+            "required": false,
+            "description": "list of arguments to pass over to the event callback "
+          }
+        }
       },
       "on": {
         "public": true,
@@ -2592,14 +3209,14 @@ module.exports = {
               "string"
             ],
             "required": false,
-            "description": "event to listen for."
+            "description": "name of the event to listen for"
           },
           "callback": {
             "types": [
               "function"
             ],
             "required": false,
-            "description": "callback to run when the event is triggered. The `this` variable refers to the component the listener is set for."
+            "description": "callback to run when the event is triggered"
           }
         }
       },
@@ -2613,7 +3230,7 @@ module.exports = {
               "string"
             ],
             "required": false,
-            "description": "event to remove the listeners for."
+            "description": "name of the event to remove"
           }
         }
       }
@@ -2816,6 +3433,13 @@ module.exports = {
           "boolean"
         ]
       },
+      "displayMessages": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
+        ]
+      },
       "formatLoad": {
         "required": false,
         "default": null,
@@ -2844,30 +3468,48 @@ module.exports = {
   "FlatpickrWrapper": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "config": {
         "public": false,
@@ -2881,7 +3523,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       },
       "flatpickr$": {
         "public": false,
@@ -2938,26 +3583,41 @@ module.exports = {
   "TrixWrapper": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       }
     },
     "data": {
@@ -3055,30 +3715,48 @@ module.exports = {
   "CheckboxgroupSlotCheckbox": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "isDisabled": {
         "public": false,
@@ -3088,7 +3766,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {
@@ -3111,30 +3792,48 @@ module.exports = {
   "FileSlotFilePreview": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "visible": {
         "public": false,
@@ -3188,7 +3887,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
@@ -3208,30 +3910,48 @@ module.exports = {
   "FileSlotGalleryPreview": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "visible": {
         "public": false,
@@ -3293,7 +4013,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
@@ -3313,30 +4036,48 @@ module.exports = {
   "FileSlotImagePreview": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "visible": {
         "public": false,
@@ -3398,7 +4139,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
@@ -3418,36 +4162,57 @@ module.exports = {
   "MultiselectSlotMultipleLabel": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       }
     },
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
@@ -3470,36 +4235,57 @@ module.exports = {
   "MultiselectSlotNoOptions": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       }
     },
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -3509,36 +4295,57 @@ module.exports = {
   "MultiselectSlotNoResults": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       }
     },
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -3548,36 +4355,57 @@ module.exports = {
   "MultiselectSlotOption": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       }
     },
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {
@@ -3600,36 +4428,57 @@ module.exports = {
   "MultiselectSlotSingleLabel": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       }
     },
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {
@@ -3646,36 +4495,57 @@ module.exports = {
   "MultiselectSlotTag": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       }
     },
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {
@@ -3704,30 +4574,48 @@ module.exports = {
   "RadiogroupSlotRadio": {
     "inject": {
       "el$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent element's component."
       },
       "form$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The root form component."
       },
       "theme": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default components and classes."
       }
     },
     "computed": {
       "classes": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "mainClass": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The class name of the components's outermost DOM."
       },
       "components": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Returns the components used by the parent element."
       },
       "isDisabled": {
         "public": false,
@@ -3737,7 +4625,10 @@ module.exports = {
     "data": {
       "defaultClasses": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {

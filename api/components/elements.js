@@ -351,7 +351,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -359,7 +359,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       locationService: {
         types: [
@@ -382,7 +382,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       internalValue: {
@@ -498,7 +498,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -752,7 +752,17 @@ module.exports = {
         private: false,
       },
       component: {
-        description: '',
+        description: 'Transforms an element `:type` into the element&apos;s component name.',
+        returns: 'string',
+        params: {
+          element: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'element `:type`',
+          },
+        },
         private: true,
       },
       on: {
@@ -764,14 +774,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -785,14 +795,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       updateFields: {
@@ -859,19 +878,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -1377,7 +1402,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       isDisabled: {
@@ -1497,19 +1522,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -1933,7 +1964,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -1941,7 +1972,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -1971,7 +2002,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -2072,7 +2103,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -2355,14 +2386,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -2376,14 +2407,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       check: {
@@ -2432,19 +2472,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -2865,7 +2911,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -2873,7 +2919,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       state: {
         types: [
@@ -2896,7 +2942,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -2955,7 +3001,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -3302,14 +3348,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -3323,14 +3369,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       validate: {
@@ -3369,19 +3424,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -3919,7 +3980,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -3927,7 +3988,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -3957,7 +4018,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       hidden: {
@@ -4044,7 +4105,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -4355,14 +4416,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -4376,14 +4437,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleChange: {
@@ -4436,19 +4506,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -4983,7 +5059,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -4991,7 +5067,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -5021,7 +5097,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       hidden: {
@@ -5066,7 +5142,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -5367,14 +5443,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -5388,14 +5464,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleChange: {
@@ -5448,19 +5533,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -6009,7 +6100,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -6017,7 +6108,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       file: {
         types: [
@@ -6118,7 +6209,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -6219,7 +6310,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -6613,14 +6704,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -6634,14 +6725,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       uploadTemp: {
@@ -6755,19 +6855,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -7173,7 +7279,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -7181,7 +7287,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       hidden: {
         types: [
@@ -7267,7 +7373,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -7447,7 +7553,17 @@ module.exports = {
         private: true,
       },
       component: {
-        description: '',
+        description: 'Transforms an element `:type` into the element&apos;s component name.',
+        returns: 'string',
+        params: {
+          element: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'element `:type`',
+          },
+        },
         private: true,
       },
       on: {
@@ -7459,14 +7575,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -7480,14 +7596,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       hide: {
@@ -7496,19 +7621,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -7779,7 +7910,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -7787,7 +7918,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -7817,7 +7948,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -7889,7 +8020,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -8119,14 +8250,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -8140,14 +8271,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       validate: {
@@ -8183,12 +8323,18 @@ module.exports = {
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -8648,7 +8794,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -8656,7 +8802,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       list: {
         types: [
@@ -8700,7 +8846,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -8809,7 +8955,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       hasAdd: {
@@ -9187,7 +9333,17 @@ module.exports = {
         private: false,
       },
       component: {
-        description: '',
+        description: 'Transforms an element `:type` into the element&apos;s component name.',
+        returns: 'string',
+        params: {
+          element: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'element `:type`',
+          },
+        },
         private: true,
       },
       on: {
@@ -9199,14 +9355,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -9220,14 +9376,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       refreshOrderStore: {
@@ -9313,19 +9478,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -9845,7 +10016,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -9853,7 +10024,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -9899,7 +10070,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -10000,7 +10171,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -10291,14 +10462,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -10312,14 +10483,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleAddressChange: {
@@ -10387,19 +10567,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -10971,7 +11157,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -10979,7 +11165,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -11030,7 +11216,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -11139,7 +11325,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       output: {
@@ -11531,7 +11717,17 @@ module.exports = {
         private: true,
       },
       component: {
-        description: '',
+        description: 'Transforms an element `:type` into the element&apos;s component name.',
+        returns: 'string',
+        params: {
+          element: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'element `:type`',
+          },
+        },
         private: true,
       },
       on: {
@@ -11543,14 +11739,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -11564,14 +11760,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleChange: {
@@ -11676,19 +11881,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -12242,7 +12453,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -12250,7 +12461,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -12280,7 +12491,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -12346,7 +12557,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -12640,14 +12851,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -12661,14 +12872,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleSelect: {
@@ -12803,19 +13023,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -13223,7 +13449,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -13231,14 +13457,14 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       messageBag: {
         types: [
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       internalValue: {
@@ -13347,7 +13573,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -13576,7 +13802,17 @@ module.exports = {
         private: true,
       },
       component: {
-        description: '',
+        description: 'Transforms an element `:type` into the element&apos;s component name.',
+        returns: 'string',
+        params: {
+          element: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'element `:type`',
+          },
+        },
         private: true,
       },
       on: {
@@ -13588,14 +13824,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -13609,14 +13845,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       validate: {
@@ -13645,19 +13890,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -14096,7 +14347,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -14104,7 +14355,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -14134,7 +14385,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -14235,7 +14486,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -14518,14 +14769,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -14539,14 +14790,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       check: {
@@ -14595,19 +14855,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -15029,7 +15295,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -15037,7 +15303,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       state: {
         types: [
@@ -15060,7 +15326,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -15161,7 +15427,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -15427,14 +15693,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -15448,14 +15714,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       validate: {
@@ -15494,19 +15769,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -16036,7 +16317,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -16044,7 +16325,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -16074,7 +16355,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -16182,7 +16463,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -16486,14 +16767,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -16507,14 +16788,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleSelect: {
@@ -16619,19 +16909,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -17147,7 +17443,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -17155,7 +17451,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -17185,7 +17481,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -17286,7 +17582,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -17569,14 +17865,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -17590,14 +17886,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleChange: {
@@ -17650,19 +17955,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -18001,7 +18312,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -18009,7 +18320,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       hidden: {
         types: [
@@ -18095,7 +18406,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       genericName: {
@@ -18204,14 +18515,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -18225,14 +18536,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       hide: {
@@ -18241,19 +18561,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -18698,7 +19024,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -18706,7 +19032,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -18736,7 +19062,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       hidden: {
@@ -18823,7 +19149,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -19127,14 +19453,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -19148,14 +19474,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleInput: {
@@ -19227,19 +19562,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -19724,7 +20065,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -19732,7 +20073,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -19762,7 +20103,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       hidden: {
@@ -19849,7 +20190,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -20158,14 +20499,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -20179,14 +20520,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleInput: {
@@ -20258,19 +20608,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -20747,7 +21103,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -20755,7 +21111,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -20792,7 +21148,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       hidden: {
@@ -20879,7 +21235,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -21191,14 +21547,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -21212,14 +21568,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleError: {
@@ -21312,19 +21677,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -21852,7 +22223,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -21860,7 +22231,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -21890,7 +22261,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -21956,7 +22327,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -22250,14 +22621,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -22271,14 +22642,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleSelect: {
@@ -22427,19 +22807,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -22926,7 +23312,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -22934,7 +23320,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -22964,7 +23350,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -23065,7 +23451,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -23355,14 +23741,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -23376,14 +23762,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleInput: {
@@ -23436,19 +23831,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -23932,7 +24333,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -23940,7 +24341,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -23970,7 +24371,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -24071,7 +24472,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -24366,14 +24767,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -24387,14 +24788,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleInput: {
@@ -24447,19 +24857,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -24940,7 +25356,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -24948,7 +25364,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -24978,7 +25394,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -25079,7 +25495,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -25362,14 +25778,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -25383,14 +25799,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleChange: {
@@ -25453,19 +25878,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
@@ -25919,7 +26350,7 @@ module.exports = {
         ],
         description: 'Helper property used to store available events for the element.',
         default: '[]',
-        private: false,
+        private: true,
       },
       listeners: {
         types: [
@@ -25927,7 +26358,7 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
-        private: false,
+        private: true,
       },
       input: {
         types: [
@@ -25964,7 +26395,7 @@ module.exports = {
           'MessageBag',
         ],
         description: 'Instance of MessageBag service.',
-        default: '{MessageBag}',
+        default: 'MessageBag',
         private: false,
       },
       initialValue: {
@@ -26065,7 +26496,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all element conditions are met (if any).',
+        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
       data: {
@@ -26363,14 +26794,14 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to listen for.',
+            description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
             required: 'false',
-            description: 'callback to run when the event is triggered. The `this` variable refers to the component the listener is set for.',
+            description: 'callback to run when the event is triggered',
           },
         },
         private: false,
@@ -26384,14 +26815,23 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'event to remove the listeners for.',
+            description: 'name of the event to remove',
           },
         },
         private: false,
       },
       fire: {
-        description: 'Fires an event.',
-        returns: 'any',
+        description: 'Fires & emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
         private: false,
       },
       handleError: {
@@ -26465,19 +26905,25 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hided with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
         returns: 'void',
         private: false,
       },
     },
     inject: {
       form$: {
-        description: '',
-        private: true,
+        types: [
+          'component',
+        ],
+        description: 'The root form component.',
+        private: false,
       },
       theme: {
-        description: '',
-        private: true,
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default components and classes.',
+        private: false,
       },
     },
     events: {
