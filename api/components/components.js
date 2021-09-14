@@ -3875,7 +3875,7 @@ module.exports = {
         "public": false,
         "description": ""
       },
-      "canUpload": {
+      "canUploadTemp": {
         "public": false,
         "description": ""
       },
@@ -4001,7 +4001,7 @@ module.exports = {
         "public": false,
         "description": ""
       },
-      "canUpload": {
+      "canUploadTemp": {
         "public": false,
         "description": ""
       },
@@ -4127,7 +4127,7 @@ module.exports = {
         "public": false,
         "description": ""
       },
-      "canUpload": {
+      "canUploadTemp": {
         "public": false,
         "description": ""
       },

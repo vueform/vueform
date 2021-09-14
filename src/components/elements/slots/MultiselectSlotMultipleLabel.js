@@ -23,9 +23,9 @@ export default {
     // ============== METHODS ===============
 
     /**
+     * Returns the label to display.
      * 
-     * 
-     * @private
+     * @returns {string}
      */
     const label = (values) => {
       return el$.value.fieldOptions.multipleLabel(values)

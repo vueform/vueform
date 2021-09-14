@@ -30,7 +30,7 @@
         </span>
 
         <!-- Upload button -->
-        <a href="" :class="classes.upload" v-if="canUpload" @click.prevent="upload">{{ uploadText }}</a>
+        <a href="" :class="classes.upload" v-if="canUploadTemp" @click.prevent="upload">{{ uploadText }}</a>
 
         <!-- Success -->
         <span v-else-if="uploaded" :class="classes.uploaded">

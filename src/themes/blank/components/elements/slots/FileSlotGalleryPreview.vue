@@ -7,7 +7,7 @@
 
     <!-- Overlay -->
     <div v-if="!uploaded && !uploading" :class="classes.overlay">
-      <a v-if="canUpload" @click.prevent="upload" href="" :class="classes.upload">{{ uploadText }}</a>
+      <a v-if="canUploadTemp" @click.prevent="upload" href="" :class="classes.upload">{{ uploadText }}</a>
     </div>
 
     <!-- Error -->

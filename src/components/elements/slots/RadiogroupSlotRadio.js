@@ -35,9 +35,9 @@ export default {
     // ============== COMPUTED ==============
 
     /**
+     * Whether the radio should be disabled.
      * 
-     * 
-     * @private
+     * @type {boolean}
      */
     const isDisabled = computed(() => {
       return el$.value.disabledItems.map(i=>String(i)).indexOf(String(value.value)) !== -1 || el$.value.isDisabled
