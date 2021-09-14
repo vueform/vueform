@@ -51,16 +51,17 @@ export default {
     // ================ DATA ================
 
     /**
+     * The [flatpickr instance](https://flatpickr.js.org/instance-methods-properties-elements).
      * 
-     * 
-     * @private
+     * @type {object}
+     * @default null
      */
     const flatpickr$ = ref(null)
 
     /**
+     * The date input DOM element.
      * 
-     * 
-     * @private
+     * @type {HTMLElement}
      */
     const input = ref(null)
 
@@ -70,18 +71,18 @@ export default {
     // ============== COMPITED ==============
 
     /**
+     * The current `options.mode`.
      * 
-     * 
-     * @private
+     * @type {string}
      */
     const mode = computed(() => {
       return options.value.mode || 'single'
     })
 
     /**
+     * The flatpickr configuration object. Can be extended via [`:options`](#options) with [flatpickr options](https://flatpickr.js.org/options/).
      * 
-     * 
-     * @private
+     * @type {object}
      */
     const config = computed(() => {
       const config = {}
@@ -106,8 +107,10 @@ export default {
     // =============== METHODS ==============
 
     /**
+     * Emits `change` event.
      * 
-     * 
+     * @param {array|Date}
+     * @returns {void}
      * @private
      */
     const update = (val) => {
@@ -115,8 +118,9 @@ export default {
     }
 
     /**
+     * Sets's the flatpickr input parent's `id` attribute.
      * 
-     * 
+     * @returns {void}
      * @private
      */
     const setFlatpickrId = () => {

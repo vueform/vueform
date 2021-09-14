@@ -68,18 +68,20 @@ export default {
     // ================ DATA ================
 
     /**
+     * The [`Trix`](https://github.com/basecamp/trix) DOM instance.
      * 
-     * 
-     * @private
+     * @type {HTMLElement}
+     * @default null
      */
     const trix$ = ref(null)
 
     // =============== METHODS ==============
 
     /**
+     * Updates the value of Trix editor.
      * 
-     * 
-     * @private
+     * @param {string} value* the value to update with
+     * @returns {void}
      */
     const update = (val) => {
       if (typeof val == 'number') {
@@ -90,17 +92,20 @@ export default {
     }
 
     /**
+     * Sets an option for Trix editor.
      * 
-     * 
-     * @private
+     * @param {string} key* the option key
+     * @param {string} value* the option value
+     * @returns {void}
      */
     const setOption = (key, val) => {
       trix$.value[key] = val
     }
 
     /**
+     * Handles `change` event.
      * 
-     * 
+     * @returns {void}
      * @private
      */
     const handleChange = () => {
@@ -116,8 +121,10 @@ export default {
     }
 
     /**
+     * Handles `fileAccept` event.
      * 
-     * 
+     * @param {Event} e event
+     * @returns {void}
      * @private
      */
     const handleFileAccept = (e) => {
@@ -151,8 +158,10 @@ export default {
     }
 
     /**
+     * Handles `attachmentAdd` event.
      * 
-     * 
+     * @param {Event} e event
+     * @returns {void}
      * @private
      */
     const handleAttachmentAdd = (e) => {
