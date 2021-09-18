@@ -1,13 +1,13 @@
 <template>
   <span :class="classes.container" v-show="visible">
-    <slot v-if="hasLabel" name="label"></slot>
-    <slot name="before"></slot>
+    <ElementLabel><slot name="label"></slot></ElementLabel>
+    <ElementText type="before"><slot name="before"></slot></ElementText>
     <slot name="field"></slot>
-    <slot name="between"></slot>
-    <slot name="description"></slot>
-    <slot name="error"></slot>
-    <slot name="message"></slot>
-    <slot name="after"></slot>
+    <ElementText type="between"><slot name="between"></slot></ElementText>
+    <ElementDescription type="description"><slot name="description"></slot></ElementDescription>
+    <ElementError />
+    <ElementMessage />
+    <ElementText type="after"><slot name="after"></slot></ElementText>
   </span>
 </template>
 

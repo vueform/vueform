@@ -4,25 +4,17 @@ import { computed,  toRefs, markRaw } from 'composition-api'
 const base = function(props, context, dependencies, options = {})
 {
   const {
-    slots
+    slots,
   } = toRefs(props)
 
   // =============== OPTIONS ==============
 
-  const defaultElementSlots = {
-    label: 'ElementLabel',
-    info: 'ElementInfo',
-    description: 'ElementDescription',
-    error: 'ElementError',
-    message: 'ElementMessage',
-    before: 'ElementText',
-    between: 'ElementText',
-    after: 'ElementText',
-  }
+  const defaultElementSlots = [
+    'label', 'info', 'description',
+    'before', 'between', 'after',
+  ]
 
   const defaultFieldSlots = options.defaultFieldSlots || {
-    addonBefore: 'ElementAddon',
-    addonAfter: 'ElementAddon',
     checkbox: 'CheckboxgroupSlotCheckbox',
     radio: 'RadiogroupSlotRadio',
     option: 'MultiselectSlotOption',
@@ -36,37 +28,6 @@ const base = function(props, context, dependencies, options = {})
     afterlist: null,
   }
 
-  if (options.defaultSlots) {
-    _.each(options.defaultSlots, (component, slot) => {
-      if (defaultElementSlots[slot]) {
-        defaultElementSlots[slot] = component
-      }
-      else {
-        defaultFieldSlots[slot] = component
-      }
-    })
-  }
-
-  /**
-   * Props for element slots.
-   * 
-   * @type {object}
-   * @private
-   */
-  const elementSlotProps = computed(() => {
-    return {
-      before: {
-        type: 'before'
-      },
-      between: {
-        type: 'between'
-      },
-      after: {
-        type: 'after'
-      },
-    }
-  })
-
   // ============== COMPUTED ==============
 
   /**
@@ -76,21 +37,7 @@ const base = function(props, context, dependencies, options = {})
    * @private
    */
   const elementSlots = computed(() => {
-    const elementSlots = {}
-
-    _.each(options.slots, (slot) => {
-      if (defaultElementSlots[slot]) {
-        elementSlots[slot] = defaultElementSlots[slot]
-      }
-    })
-
-    _.each(slots.value, (component, slot) => {
-      if (elementSlots[slot]) {
-        elementSlots[slot] = component
-      }
-    })
-
-    return elementSlots
+    return [...defaultElementSlots.filter(s => options.slots.indexOf(s) !== -1)]
   })
 
   /**
@@ -120,7 +67,6 @@ const base = function(props, context, dependencies, options = {})
   return {
     elementSlots,
     fieldSlots,
-    elementSlotProps,
   }
 }
 

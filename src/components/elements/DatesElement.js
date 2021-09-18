@@ -138,16 +138,19 @@ export default {
     const theme = useTheme(props, context)
     const layout = useLayout(props, context)
     const input = useInput(props, context)
-    const addons = useAddons(props, context)
     const path = usePath(props, context)
     const disabled = useDisabled(props, context)
     const nullValue = useNullValue(props, context)
 
-    const dateFormat = useDateFormat(props, context, {
+    const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
     })
+    
+    const addons = useAddons(props, context, {
+      el$: baseElement.el$,
+    })
 
-    const baseElement = useBaseElement(props, context, {
+    const dateFormat = useDateFormat(props, context, {
       form$: form$.form$,
     })
 
@@ -208,6 +211,7 @@ export default {
 
     const label = useLabel(props, context, {
       form$: form$.form$,
+      el$: baseElement.el$,
     })
 
     const genericName = useGenericName(props, context, {
@@ -241,9 +245,8 @@ export default {
       components: components.components,
     }, {
       slots: [
-        'label', 'description', 'error',
-        'message', 'before', 'between', 'after',
-        'addonBefore', 'addonAfter',
+        'label', 'info', 'description', 'before',
+        'between', 'after', 'addon-before', 'addon-after',
       ]
     })
 

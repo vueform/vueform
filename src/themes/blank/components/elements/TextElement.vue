@@ -3,19 +3,13 @@
     <template v-slot:field>
 
       <div :class="classes.inputContainer">
-        <slot name="addon-before">
-          <component :is="fieldSlots.addonBefore"
-            v-if="addons.before"
-            type="before"
-          />
-        </slot>
+        <ElementAddon v-if="hasAddonBefore" type="before">
+          <slot name="addon-before"></slot>
+        </ElementAddon>
 
-        <slot name="addon-after">
-          <component :is="fieldSlots.addonAfter"
-            v-if="addons.after"
-            type="after"
-          />
-        </slot>
+        <ElementAddon v-if="hasAddonAfter" type="after">
+          <slot name="addon-after"></slot>
+        </ElementAddon>
 
         <ElementLabelFloating
           v-if="floating"
@@ -45,11 +39,7 @@
 
     </template>
 
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]>
-      <slot :name="slot" :el$="el$">
-        <component :is="component" v-bind="elementSlotProps[slot]" />
-      </slot>
-    </template>
+    <template v-for="(slot) in elementSlots" v-slot:[slot]><slot :name="slot"></slot></template>
   </component>
 </template>
 

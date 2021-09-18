@@ -3,23 +3,24 @@ import { computed, toRefs } from 'composition-api'
 const base = function(props, context, dependencies)
 {
   const {
-    label
+    label,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
+  const el$ = dependencies.el$
 
   // ============== COMPUTED ==============
 
   /**
-   * Whether the element has a [`:label`](#label) or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.
+   * Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.
    * 
    * @type {boolean}
    * 
    */
   const hasLabel = computed(() => {
-    return !!(form$.value.options.labels || label.value)
+    return !!(form$.value.options.labels || label.value || el$.value.slots.label || el$.value.$slots?.label || (context.expose === undefined && el$.value.$scopedSlots?.label))
   })
 
   return {

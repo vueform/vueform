@@ -1,5 +1,6 @@
 <template>
   <div v-if="description" :class="classes.container" v-html="description"></div>
+  <div v-else-if="isSlot" :class="classes.container"><slot><component :is="slotComponent" /></slot></div>
 </template>
 
 <script>

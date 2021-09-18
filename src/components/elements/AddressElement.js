@@ -111,6 +111,7 @@ const element = {
 
     const label = useLabel(props, context, {
       form$: form$.form$,
+      el$: baseElement.el$,
     })
 
     const genericName = useGenericName(props, context, {
@@ -163,7 +164,7 @@ const element = {
       components: components.components,
     }, {
       slots: [
-        'label', 'description', 'message',
+        'label',  'info', 'description',
         'before', 'between', 'after',
       ]
     })

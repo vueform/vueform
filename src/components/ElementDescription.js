@@ -28,6 +28,26 @@ export default {
       return el$.value.description
     })
 
+    /**
+     * Whether the description is provided as a slot.
+     * 
+     * @type {boolean}
+     * @private
+     */
+    const isSlot = computed(() => {
+      return !!(el$.value.slots?.description || el$.value.$slots?.description || (context.expose === undefined && el$.value.$scopedSlots?.description))
+    })
+  
+    /**
+     * Returns the slot component if defined in [`slots`](#option-slots) object.
+     * 
+     * @type {component}
+     * @private
+     */
+    const slotComponent = computed(() => {
+      return el$.value.slots?.description || undefined
+    })
+
     return {
       el$,
       form$,
@@ -37,6 +57,8 @@ export default {
       defaultClasses,
       components,
       description,
+      isSlot,
+      slotComponent,
     }
   },
 }

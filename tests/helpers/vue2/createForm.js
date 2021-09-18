@@ -15,6 +15,7 @@ import location from './../../../src/services/location'
 import columns from './../../../src/services/columns'
 
 // 3rd party
+import _ from 'lodash'
 import axios from 'axios'
 
 // Helpers
@@ -22,6 +23,8 @@ import { installLaraform } from './index'
 
 // Mocks
 import TrixEditor from './../../mocks/TrixEditor'
+
+window._ = _
 
 export default function createForm (data, options = {}, render = null) {
   let { LocalVue, config, store } = installLaraform(options)

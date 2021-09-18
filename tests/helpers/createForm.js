@@ -24,6 +24,8 @@ import { installLaraform } from './index'
 // Mocks
 import TrixEditor from './../mocks/TrixEditor'
 
+window._ = _
+
 export default function createForm (data, options = {}, render = null) {
   let { LaraformInstaller, config, store } = installLaraform(options)
 

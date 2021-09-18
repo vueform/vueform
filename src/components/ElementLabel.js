@@ -42,6 +42,36 @@ export default {
       return el$.value.name
     })
 
+    /**
+     * Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.
+     * 
+     * @type {boolean}
+     * 
+     */
+    const hasLabel = computed(() => {
+      return el$.value.hasLabel
+    })
+  
+    /**
+     * Whether the label is provided as a slot.
+     * 
+     * @type {boolean}
+     * @private
+     */
+    const isSlot = computed(() => {
+      return !!(el$.value.slots?.label || el$.value.$slots?.label || (context.expose === undefined && el$.value.$scopedSlots?.label))
+    })
+  
+    /**
+     * Returns the slot component if defined in [`slots`](#option-slots) object.
+     * 
+     * @type {component}
+     * @private
+     */
+    const slotComponent = computed(() => {
+      return el$.value.slots?.label || undefined
+    })
+
     return {
       el$,
       form$,
@@ -53,6 +83,9 @@ export default {
       label,
       isLabelComponent,
       name,
+      hasLabel,
+      isSlot,
+      slotComponent,
     }
   },
 }

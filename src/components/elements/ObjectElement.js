@@ -89,6 +89,7 @@ export default {
 
     const label = useLabel(props, context, {
       form$: form$.form$,
+      el$: baseElement.el$,
     })
 
     const genericName = useGenericName(props, context, {
@@ -140,7 +141,7 @@ export default {
       components: components.components,
     }, {
       slots: [
-        'label', 'description', 'message',
+        'label', 'info', 'description',
         'before', 'between', 'after'
       ]
     })
