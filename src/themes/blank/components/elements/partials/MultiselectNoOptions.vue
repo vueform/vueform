@@ -1,12 +1,11 @@
 <template>
-  <div :class="classes.container">
-    {{ value.label }}
-  </div>
+  <div v-if="isSlot" :class="classes.container"><slot></slot></div>
+  <div v-else :class="classes.container" v-html="el$.fieldOptions.noOptionsText"></div>
 </template>
 
 <script>
   export default {
-    name: 'MultiselectSlotSingleLabel',
+    name: 'MultiselectNoOptions',
     data() {
       return {
         defaultClasses: {

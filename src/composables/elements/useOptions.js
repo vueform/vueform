@@ -191,6 +191,7 @@ const dates = function(props, context, dependencies)
 const select = function (props, context, dependencies)
 {
   const {
+    native,
     search,
     options,
     noOptionsText,
@@ -201,7 +202,17 @@ const select = function (props, context, dependencies)
 
   const form$ = dependencies.form$
 
+
   // ============== COMPUTED ==============
+
+  /**
+   * Whether native select should be used.
+   * 
+   * @type {string}
+   */
+  const isNative = computed(() => {
+    return native.value && !search.value
+  })
   
   /**
   * Default options for non-native select input.

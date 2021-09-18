@@ -13,12 +13,12 @@ import useColumns from './../../composables/elements/useColumns'
 import useGenericName from './../../composables/elements/useGenericName'
 import useView from './../../composables/elements/useView'
 import useComponents from './../../composables/elements/useComponents'
-import useSlots from './../../composables/elements/useSlots'
 import useEvents from './../../composables/useEvents'
 import useCheck from './../../composables/elements/useCheck'
 import useFieldId from './../../composables/elements/useFieldId'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useSlots from './../../composables/elements/useSlots'
 
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { checkboxgroup as useDisabled } from './../../composables/elements/useDisabled'
@@ -164,6 +164,7 @@ export default {
 
     const slots = useSlots(props, context, {
       form$: form$.form$,
+      el$: baseElement.el$,
       components: components.components,
     }, {
       slots: [

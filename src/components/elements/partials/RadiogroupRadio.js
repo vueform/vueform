@@ -1,24 +1,21 @@
-import { toRefs, computed } from 'composition-api'
+import { computed, toRefs } from 'composition-api'
 import useElementComponent from './../../../composables/useElementComponent'
 
 export default {
-  name: 'MultiselectTag',
+  name: 'RadiogroupRadio',
   props: {
-    option: {
+    item: {
+      type: [Object, String, Number, Array],
       required: true
     },
-    handleTagRemove: {
-      type: Function,
-      required: true
-    },
-    disabled: {
-      type: Boolean,
+    value: {
+      type: [Object, String, Number, Array],
       required: true
     },
   },
   setup(props, context)
   {
-    const { disabled } = toRefs(props)
+    const { value } = toRefs(props)
 
     const {
       el$,
@@ -30,20 +27,20 @@ export default {
       theme,
     } = useElementComponent(props, context, {}, {
       addClasses: [
-        ['container', 'container_disabled', computed(() => disabled.value)],
+        ['input', 'input_enabled', computed(() => !isDisabled.value)],
+        ['input', 'input_disabled', computed(() => isDisabled.value)],
       ]
     })
 
     // ============== COMPUTED ==============
 
     /**
-     * Whether the tag is provided as a slot.
+     * Whether the radio should be disabled.
      * 
      * @type {boolean}
-     * @private
      */
-    const isSlot = computed(() => {
-      return !!(el$.value.$slots?.tag || (context.expose === undefined && el$.value.$scopedSlots?.tag))
+    const isDisabled = computed(() => {
+      return el$.value.disabledItems.map(i=>String(i)).indexOf(String(value.value)) !== -1 || el$.value.isDisabled
     })
 
     return {
@@ -54,7 +51,7 @@ export default {
       defaultClasses,
       components,
       theme,
-      isSlot,
+      isDisabled,
     }
   },
 }

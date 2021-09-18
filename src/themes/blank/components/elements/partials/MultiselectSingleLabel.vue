@@ -1,12 +1,14 @@
 <template>
-  <span :class="classes.container">
-    {{ option.label }}
-  </span>
+  <div :class="classes.container">
+    <slot :value="value">
+      {{ value.label }}
+    </slot>
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'MultiselectSlotOption',
+    name: 'MultiselectSingleLabel',
     data() {
       return {
         defaultClasses: {

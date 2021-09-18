@@ -54,17 +54,17 @@ import TTextareaElement from './components/elements/TTextareaElement'
 import TTextElement from './components/elements/TTextElement'
 import TTrixElement from './components/elements/TTrixElement'
 
-import CheckboxgroupSlotCheckbox from './components/elements/slots/CheckboxgroupSlotCheckbox'
-import FileSlotFilePreview from './components/elements/slots/FileSlotFilePreview'
-import FileSlotImagePreview from './components/elements/slots/FileSlotImagePreview'
-import FileSlotGalleryPreview from './components/elements/slots/FileSlotGalleryPreview'
-import MultiselectSlotNoOptions from './components/elements/slots/MultiselectSlotNoOptions'
-import MultiselectSlotNoResults from './components/elements/slots/MultiselectSlotNoResults'
-import MultiselectSlotOption from './components/elements/slots/MultiselectSlotOption'
-import MultiselectSlotMultipleLabel from './components/elements/slots/MultiselectSlotMultipleLabel'
-import MultiselectSlotSingleLabel from './components/elements/slots/MultiselectSlotSingleLabel'
-import MultiselectSlotTag from './components/elements/slots/MultiselectSlotTag'
-import RadiogroupSlotRadio from './components/elements/slots/RadiogroupSlotRadio'
+import CheckboxgroupCheckbox from './components/elements/partials/CheckboxgroupCheckbox'
+import FilePreview from './components/elements/partials/FilePreview'
+import ImagePreview from './components/elements/partials/ImagePreview'
+import GalleryPreview from './components/elements/partials/GalleryPreview'
+import MultiselectNoOptions from './components/elements/partials/MultiselectNoOptions'
+import MultiselectNoResults from './components/elements/partials/MultiselectNoResults'
+import MultiselectOption from './components/elements/partials/MultiselectOption'
+import MultiselectMultipleLabel from './components/elements/partials/MultiselectMultipleLabel'
+import MultiselectSingleLabel from './components/elements/partials/MultiselectSingleLabel'
+import MultiselectTag from './components/elements/partials/MultiselectTag'
+import RadiogroupRadio from './components/elements/partials/RadiogroupRadio'
 
 import columns from './columns'
 import classes from './classes'
@@ -99,18 +99,18 @@ const components = {
   FlatpickrWrapper,
   TrixWrapper,
 
-  // Element slots
-  CheckboxgroupSlotCheckbox,
-  FileSlotFilePreview,
-  FileSlotImagePreview,
-  FileSlotGalleryPreview,
-  MultiselectSlotNoOptions,
-  MultiselectSlotNoResults,
-  MultiselectSlotOption,
-  MultiselectSlotMultipleLabel,
-  MultiselectSlotSingleLabel,
-  MultiselectSlotTag,
-  RadiogroupSlotRadio,
+  // Element partials
+  CheckboxgroupCheckbox,
+  FilePreview,
+  ImagePreview,
+  GalleryPreview,
+  MultiselectNoOptions,
+  MultiselectNoResults,
+  MultiselectOption,
+  MultiselectMultipleLabel,
+  MultiselectSingleLabel,
+  MultiselectTag,
+  RadiogroupRadio,
 }
 
 const elements = {

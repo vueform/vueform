@@ -15,7 +15,6 @@ import useBaseElement from './../../composables/elements/useBaseElement'
 import useGenericName from './../../composables/elements/useGenericName'
 import useView from './../../composables/elements/useView'
 import useComponents from './../../composables/elements/useComponents'
-import useSlots from './../../composables/elements/useSlots'
 import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useToggle from './../../composables/elements/useToggle'
@@ -24,6 +23,7 @@ import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { boolean as useNullValue } from './../../composables/elements/useNullValue'
 import { input as useClasses } from './../../composables/elements/useClasses'
+import { checkbox as useSlots } from './../../composables/elements/useSlots'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -165,11 +165,13 @@ export default {
 
     const slots = useSlots(props, context, {
       form$: form$.form$,
+      el$: baseElement.el$,
       components: components.components,
     }, {
       slots: [
         'label', 'info', 'description',
-        'before', 'between', 'after'
+        'before', 'between', 'after',
+        'default',
       ]
     })
 

@@ -1,10 +1,14 @@
 <template>
-  <div :class="classes.container" v-html="label(values)"></div>
+  <span :class="classes.container">
+    <slot :option="option" :search="search">
+      {{ option.label }}
+    </slot>
+  </span>
 </template>
 
 <script>
   export default {
-    name: 'MultiselectSlotMultipleLabel',
+    name: 'MultiselectOption',
     data() {
       return {
         defaultClasses: {

@@ -1,9 +1,9 @@
 <script>
-  import CheckboxgroupSlotCheckbox from './../../../../blank/components/elements/slots/CheckboxgroupSlotCheckbox'
+  import CheckboxgroupCheckbox from './../../../../blank/components/elements/partials/CheckboxgroupCheckbox'
 
   export default {
-    name: 'CheckboxgroupSlotCheckbox',
-    render: CheckboxgroupSlotCheckbox.render,
+    name: 'CheckboxgroupCheckbox',
+    render: CheckboxgroupCheckbox.render,
     data() {
       return {
         defaultClasses: {

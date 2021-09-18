@@ -1,6 +1,5 @@
 <template>
   <div :class="classes.container" v-show="visible">
-
     <!-- Image  -->
     <a v-if="uploaded && hasLink && clickable" :class="classes.image" :href="link" target="_blank"><img :src="preview" :class="classes.img" /></a>
     <div v-else :class="classes.image"><img :class="classes.img" :src="preview" /></div>
@@ -34,7 +33,7 @@
 
 <script>
   export default {
-    name: 'FileSlotGalleryPreview',
+    name: 'GalleryPreview',
     data() {
       return {
         defaultClasses: {

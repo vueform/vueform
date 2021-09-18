@@ -1,9 +1,9 @@
 <script>
-  import FileSlotGalleryPreview from './../../../../blank/components/elements/slots/FileSlotGalleryPreview'
+  import GalleryPreview from './../../../../blank/components/elements/partials/GalleryPreview'
 
   export default {
-    name: 'FileSlotGalleryPreview',
-    render: FileSlotGalleryPreview.render,
+    name: 'GalleryPreview',
+    render: GalleryPreview.render,
     data() {
       return {
         defaultClasses: { 

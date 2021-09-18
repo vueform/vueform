@@ -2,21 +2,22 @@
   <component :is="elementLayout">
 
     <template v-slot:field>
-
       <div :class="classes.checkboxGroup">
         
-        <div v-for="(item, value, key) in items" :key="key">
-          <slot name="checkbox" :el$="el$" :item="item" :value="value">
-            <component
-              :is="fieldSlots.checkbox"
-              :item="item"
-              :value="value"
-            />
-          </slot>
-        </div>
+        <CheckboxgroupCheckbox
+          v-for="(item, value, key) in items"
+          :item="item"
+          :value="value"
+          :key="key"
+        >
+          <template #default="scope">
+            <slot name="checkbox" :el$="el$" v-bind="scope">
+              <component :is="fieldSlots.checkbox" :el$="el$" v-bind="scope" />
+            </slot>
+          </template>
+        </CheckboxgroupCheckbox>
 
       </div>
-
     </template>
 
     <template v-for="(slot) in elementSlots" v-slot:[slot]><slot :name="slot"></slot></template>

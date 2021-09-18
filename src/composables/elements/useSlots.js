@@ -7,6 +7,10 @@ const base = function(props, context, dependencies, options = {})
     slots,
   } = toRefs(props)
 
+  // ============ DEPENDENCIES ============
+
+  const el$ = dependencies.el$
+
   // =============== OPTIONS ==============
 
   const defaultElementSlots = [
@@ -14,19 +18,11 @@ const base = function(props, context, dependencies, options = {})
     'before', 'between', 'after',
   ]
 
-  const defaultFieldSlots = options.defaultFieldSlots || {
-    checkbox: 'CheckboxgroupSlotCheckbox',
-    radio: 'RadiogroupSlotRadio',
-    option: 'MultiselectSlotOption',
-    noresults: 'MultiselectSlotNoResults',
-    nooptions: 'MultiselectSlotNoOptions',
-    singlelabel: 'MultiselectSlotSingleLabel',
-    multiplelabel: 'MultiselectSlotMultipleLabel',
-    tag: 'MultiselectSlotTag',
-    preview: 'FileSlotFilePreview',
-    beforelist: null,
-    afterlist: null,
-  }
+  const defaultFieldSlots = [
+    'checkbox', 'radio', 'option', 'single-label',
+    'multiple-label', 'tag', 'no-results', 'no-options',
+    'after-list', 'before-list'
+  ]
 
   // ============== COMPUTED ==============
 
@@ -49,17 +45,7 @@ const base = function(props, context, dependencies, options = {})
   const fieldSlots = computed(() => {
     const fieldSlots = {}
 
-    _.each(options.slots, (slot) => {
-      if (defaultFieldSlots[slot]) {
-        fieldSlots[slot] = defaultFieldSlots[slot]
-      }
-    })
-
-    _.each(slots.value, (component, slot) => {
-      if (fieldSlots[slot]) {
-        fieldSlots[slot] = component
-      }
-    })
+    defaultFieldSlots.filter(s => options.slots.indexOf(s) !== -1).forEach(s => fieldSlots[s] = el$.value.slots[s] || el$.value.slots[_.camelCase(s)])
 
     return fieldSlots
   })
@@ -98,8 +84,31 @@ const file = function(props, context, dependencies, options = {})
   }
 }
 
+const checkbox = function(props, context, dependencies, options = {})
+{
+  const { slots } = toRefs(props)
+
+  const {
+    elementSlots,
+    fieldSlots,
+    elementSlotProps,
+  } = base(props, context, dependencies, options)
+
+  const defaultSlot = computed(() => {
+    return slots.value.default || undefined
+  })
+
+  return {
+    elementSlots,
+    fieldSlots,
+    elementSlotProps,
+    defaultSlot
+  }
+}
+
 export {
   file,
+  checkbox,
 }
 
 export default base

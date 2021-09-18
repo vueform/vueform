@@ -1,13 +1,13 @@
 <script>
-  import MultiselectSlotMultipleLabel from './../../../../blank/components/elements/slots/MultiselectSlotMultipleLabel'
+  import MultiselectSingleLabel from './../../../../blank/components/elements/partials/MultiselectSingleLabel'
 
   export default {
-    name: 'MultiselectSlotMultipleLabel',
-    render: MultiselectSlotMultipleLabel.render,
+    name: 'MultiselectSingleLabel',
+    render: MultiselectSingleLabel.render,
     data() {
       return {
         defaultClasses: {
-          container: 'multiselect-multiple-label',
+          container: 'multiselect-single-label',
         }
       }
     }
@@ -15,7 +15,7 @@
 </script>
 
 <style lang="scss">
-  .multiselect-multiple-label {
+  .multiselect-single-label {
     display: flex;
     align-items: center;
     height: 100%;

@@ -1,13 +1,13 @@
 <script>
-  import MultiselectSlotNoOptions from './../../../../blank/components/elements/slots/MultiselectSlotNoOptions'
+  import MultiselectNoResults from './../../../../blank/components/elements/partials/MultiselectNoResults'
 
   export default {
-    name: 'MultiselectSlotNoOptions',
-    render: MultiselectSlotNoOptions.render,
+    name: 'MultiselectNoResults',
+    render: MultiselectNoResults.render,
     data() {
       return {
         defaultClasses: {
-          container: 'multiselect-no-options',
+          container: 'multiselect-no-results',
         }
       }
     }
@@ -15,7 +15,7 @@
 </script>
 
 <style lang="scss">
-  .multiselect-no-options {
+  .multiselect-no-results {
     display: flex;
     padding: var(--vf-select-option-py) var(--vf-select-option-px);
     color: var(--vf-select-empty-color);

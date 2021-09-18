@@ -160,6 +160,7 @@ export default {
 
     const slots = useSlots(props, context, {
       form$: form$.form$,
+      el$: baseElement.el$,
       components: components.components,
     }, {
       slots: [

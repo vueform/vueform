@@ -1,9 +1,9 @@
 <script>
-  import RadiogroupSlotRadio from './../../../../blank/components/elements/slots/RadiogroupSlotRadio'
+  import RadiogroupRadio from './../../../../blank/components/elements/partials/RadiogroupRadio'
 
   export default {
-    name: 'RadiogroupSlotRadio',
-    render: RadiogroupSlotRadio.render,
+    name: 'RadiogroupRadio',
+    render: RadiogroupRadio.render,
     data() {
       return {
         defaultClasses: {

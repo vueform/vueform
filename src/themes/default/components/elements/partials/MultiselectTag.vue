@@ -1,9 +1,9 @@
 <script>
-  import MultiselectSlotTag from './../../../../blank/components/elements/slots/MultiselectSlotTag'
+  import MultiselectTag from './../../../../blank/components/elements/partials/MultiselectTag'
 
   export default {
-    name: 'MultiselectSlotTag',
-    render: MultiselectSlotTag.render,
+    name: 'MultiselectTag',
+    render: MultiselectTag.render,
     data() {
       return {
         defaultClasses: {

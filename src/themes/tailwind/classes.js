@@ -405,12 +405,12 @@ export default {
   },
 
   // Slots
-  CheckboxgroupSlotCheckbox: {
+  CheckboxgroupCheckbox: {
     container: 'flex align-start',
     label: 'cursor-pointer',
     ...checkbox,
   },
-  FileSlotFilePreview: {
+  FilePreview: {
     container: 'form-py-input flex justify-start flex-row group relative',
     wrapper: 'flex justify-between items-center w-full',
     file: 'flex items-center',
@@ -428,7 +428,7 @@ export default {
     remove: 'flex w-4 h-4 items-center justify-center bg-gray-200 rounded-full transition hover:bg-gray-300 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light bg-black mask-size-3 block w-full h-full',
   },
-  FileSlotGalleryPreview: {
+  GalleryPreview: {
     container: 'flex justify-start flex-col transition duration-500 form-w-gallery form-h-gallery relative group',
     image: 'w-full h-full bg-gray-100 form-rounded',
     image_link: '',
@@ -445,7 +445,7 @@ export default {
     remove: 'flex w-4 h-4 items-center justify-center bg-gray-200 absolute top-0.5 right-0.5 mt-px mr-px form-hidden rounded-full transition hover:bg-gray-300 group-hover:form-inline-block ',
     removeIcon: 'mask-bg mask-form-remove-light bg-black mask-size-3 block w-full h-full',
   },
-  FileSlotImagePreview: {
+  ImagePreview: {
     container: 'flex justify-start flex-row group relative',
     wrapper: 'flex justify-between items-center w-full',
     image: 'flex items-center bg-gray-100 form-rounded flex-grow-0 flex-shrink-0',
@@ -467,28 +467,28 @@ export default {
     remove: 'flex w-4 h-4 items-center justify-center bg-gray-200 rounded-full transition hover:bg-gray-300 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light bg-black mask-size-3 block w-full h-full',
   },
-  MultiselectSlotMultipleLabel: {
+  MultiselectMultipleLabel: {
     container: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
   },
-  MultiselectSlotNoOptions: {
+  MultiselectNoOptions: {
     container: 'text-base leading-normal form-p-input text-gray-600 bg-white',
   },
-  MultiselectSlotNoResults: {
+  MultiselectNoResults: {
     container: 'text-base leading-normal form-p-input text-gray-600 bg-white',
   },
-  MultiselectSlotOption: {
+  MultiselectOption: {
     container: '',
   },
-  MultiselectSlotSingleLabel: {
+  MultiselectSingleLabel: {
     container: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
   },
-  MultiselectSlotTag: {
+  MultiselectTag: {
     container: 'form-bg-primary text-white text-sm font-semibold py-px pl-2 rounded mr-1 mb-1 flex items-center whitespace-nowrap',
     container_disabled: 'pr-2 !form-bg-disabled-darker text-white',
     remove: 'flex items-center justify-center p-1 mx-0.5 rounded-sm hover:bg-black hover:bg-opacity-10 group',
     removeIcon: 'mask-bg mask-form-remove bg-current inline-block w-3 h-3',
   },
-  RadiogroupSlotRadio: {
+  RadiogroupRadio: {
     container: 'flex align-start',
     label: 'cursor-pointer',
     ...radio,

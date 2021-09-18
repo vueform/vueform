@@ -1,7 +1,7 @@
 <template>
   <component :is="elementLayout">
 
-    <template v-slot:field>
+    <template #field>
 
       <ElementLabelFloating
         v-if="floating"
@@ -46,40 +46,77 @@
         @close="handleClose"
         ref="input"
       >
-        <template v-slot:option="{ option, search }">
-          <slot name="option" :option="option" :search="search" :el$="el$">
-            <component :is="fieldSlots.option" :option="option" :search="search" />
-          </slot>
+        <template #option="{ option, search }">
+          <MultiselectOption :option="option" :search="search">
+            <slot name="option" :option="option" :search="search">
+              <component :is="fieldSlots.option" :option="option" :search="search" />
+            </slot>
+          </MultiselectOption>
         </template>
         
-        <template v-if="fieldOptions.mode == 'single'" v-slot:singlelabel="{ value }">
-          <slot name="singlelabel" :value="value" :el$="el$">
-            <component v-if="fieldSlots.singlelabel" :is="fieldSlots.singlelabel" :value="value" />
-          </slot>
+        <template v-if="fieldOptions.mode == 'single'" #singlelabel="{ value }">
+          <MultiselectSingleLabel :value="value">
+            <slot name="single-label" :value="value">
+              <component :is="fieldSlots['single-label']" :value="value" />
+            </slot>
+          </MultiselectSingleLabel>
         </template>
         
-        <template v-if="fieldOptions.mode == 'multiple'" v-slot:multiplelabel="{ values }">
-          <slot name="multiplelabel" :values="values" :el$="el$">
-            <component :is="fieldSlots.multiplelabel" :values="values" />
-          </slot>
+        <template v-if="fieldOptions.mode == 'multiple'" #multiplelabel="{ values }">
+          <MultiselectMultipleLabel :values="values">
+            <slot name="multiple-label" :values="values">
+              <component :is="fieldSlots['multiple-label']" :values="values" />
+            </slot>
+          </MultiselectMultipleLabel>
         </template>
 
-        <template v-if="fieldOptions.mode == 'tags'" v-slot:tag="{ option, handleTagRemove, disabled }">
-          <slot name="tag" :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled" :el$="el$">
-            <component :is="fieldSlots.tag" :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled" />
-          </slot>
+        <template v-if="fieldOptions.mode == 'tags'" #tag="{ option, handleTagRemove, disabled }">
+          <MultiselectTag :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled">
+            <template #default="{ classes }">
+              <slot name="tag" :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled" :classes="classes">
+                <component :is="fieldSlots.tag" :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled" :classes="classes" />
+              </slot>
+            </template>
+          </MultiselectTag>
         </template>
 
-        <template v-slot:noresults><slot name="noresults"><component :is="fieldSlots.noresults" /></slot></template>
-        <template v-slot:nooptions><slot name="nooptions"><component :is="fieldSlots.nooptions" /></slot></template>
-        <template v-slot:beforelist><slot name="beforelist"><component v-if="fieldSlots.beforelist" :is="fieldSlots.beforelist" /></slot></template>
-        <template v-slot:afterlist><slot name="afterlist"><component v-if="fieldSlots.afterlist" :is="fieldSlots.afterlist" /></slot></template>
+        <template #noresults>
+          <MultiselectNoResults>
+            <slot name="no-results">
+              <component :is="fieldSlots['no-results']" />
+            </slot>
+          </MultiselectNoResults>
+        </template>
+
+        <template #nooptions>
+          <MultiselectNoOptions>
+            <slot name="no-options">
+              <component :is="fieldSlots['no-options']" />
+            </slot>
+          </MultiselectNoOptions>
+        </template>
+
+        <template #beforelist>
+          <MultiselectBeforeList>
+            <slot name="before-list">
+              <component v-if="fieldSlots['before-list']" :is="fieldSlots['before-list']" />
+            </slot>
+          </MultiselectBeforeList>
+        </template>
+
+        <template #afterlist>
+          <MultiselectAfterList>
+            <slot name="after-list">
+              <component v-if="fieldSlots['after-list']" :is="fieldSlots['after-list']" />
+            </slot>
+          </MultiselectAfterList>
+        </template>
 
       </Multiselect>
 
     </template>
 
-    <template v-for="(slot) in elementSlots" v-slot:[slot]><slot :name="slot"></slot></template>
+    <template v-for="(slot) in elementSlots" #[slot]><slot :name="slot"></slot></template>
   </component>
 </template>
 

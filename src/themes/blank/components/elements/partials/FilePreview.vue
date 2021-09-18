@@ -42,7 +42,7 @@
 
 <script>
   export default {
-    name: 'FileSlotFilePreview',
+    name: 'FilePreview',
     data() {
       return {
         defaultClasses: {

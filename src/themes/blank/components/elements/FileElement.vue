@@ -34,7 +34,9 @@
 
       <!-- Preview -->
       <slot name="preview">
-        <component :is="fieldSlots.preview" />
+        <GalleryPreview v-if="image && view === 'gallery'" />
+        <ImagePreview v-else-if="image" />
+        <FilePreview v-else />
       </slot>
         
     </template>
