@@ -187,7 +187,7 @@ export default {
     }, {
       slots: [
         'label', 'info', 'description',
-        'before', 'between', 'after'
+        'before', 'between', 'after', 'default',
       ]
     })
 
