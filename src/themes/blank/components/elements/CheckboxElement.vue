@@ -25,13 +25,13 @@
               v-else
               :class="classes.label"
               :for="name"
-            ><slot></slot></label>
+            ><slot><component :is="defaultSlot" /></slot></label>
           </div>
         </div>
 
     </template>
 
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot"></slot></template>
+    <template v-for="(slot) in elementSlots" v-slot:[slot]><slot :name="slot"></slot></template>
   </component>
 </template>
 
