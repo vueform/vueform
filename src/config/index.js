@@ -31,7 +31,7 @@ const config = {
   columns: {
     element: 12,
     label: 2,
-    field: 10,
+    field: 12,
   },
 
   validateOn: 'change|submit|step',

@@ -317,7 +317,10 @@ export default {
     outerWrapper: 'form-row flex flex-wrap',
     outerWrapper_single: 'form-mb-gutter',
     outerWrapper_multiple: '',
+    fieldContainer: 'flex-auto',
+    fieldWrapperBefore: 'form-col w-full',
     fieldWrapper: 'form-col',
+    fieldWrapperAfter: 'form-col w-full',
   },
   ElementLayoutInline: {
     container: 'inline-flex',

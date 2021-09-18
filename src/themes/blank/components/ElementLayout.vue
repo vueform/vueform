@@ -7,16 +7,22 @@
         <template #info><slot name="info"></slot></template>
       </ElementLabel>
 
-      <div :class="classes.fieldWrapper">
-        <ElementText type="before"><slot name="before"></slot></ElementText>
+      <div :class="classes.fieldContainer">
+        <div :class="classes.fieldWrapperBefore">
+          <ElementText type="before"><slot name="before"></slot></ElementText>
+        </div>
 
-        <slot name="field"></slot>
-        
-        <ElementText type="between"><slot name="between"></slot></ElementText>
-        <ElementDescription type="description"><slot name="description"></slot></ElementDescription>
-        <ElementError />
-        <ElementMessage />
-        <ElementText type="after"><slot name="after"></slot></ElementText>
+        <div :class="classes.fieldWrapper">
+          <slot name="field"></slot>
+        </div>
+
+        <div :class="classes.fieldWrapperAfter">
+          <ElementDescription type="description"><slot name="description"></slot></ElementDescription>
+          <ElementText type="between"><slot name="between"></slot></ElementText>
+          <ElementError />
+          <ElementMessage />
+          <ElementText type="after"><slot name="after"></slot></ElementText>
+        </div>
       </div>
 
     </div>
@@ -34,7 +40,10 @@
           outerWrapper: '',
           outerWrapper_single: '',
           outerWrapper_multiple: '',
+          fieldContainer: '',
+          fieldWrapperBefore: '',
           fieldWrapper: '',
+          fieldWrapperAfter: '',
         },
       }
     },
