@@ -146,14 +146,14 @@ const base = function(props, context, dependencies)
 
   Object.values(instantHooks).forEach((hook) => {
     if (propRefs[hook].value) {
-      propRefs[hook].value.apply(currentInstance.proxy)
+      propRefs[hook].value(currentInstance.proxy)
     }
   })
 
   Object.keys(hooks).forEach((hook) => {
     if (propRefs[hook].value) {
       hooks[hook](() => {
-        propRefs[hook].value.call(currentInstance.proxy)
+        propRefs[hook].value(currentInstance.proxy)
       })
     }
   })

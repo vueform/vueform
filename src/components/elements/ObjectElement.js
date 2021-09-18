@@ -36,7 +36,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'object'
+      default: 'object',
+      private: true,
     },
     default: {
       required: false,

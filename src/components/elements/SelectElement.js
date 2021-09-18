@@ -43,7 +43,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'select'
+      default: 'select',
+      private: true,
     },
     default: {
       required: false,

@@ -38,7 +38,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'checkboxgroup'
+      default: 'checkboxgroup',
+      private: true,
     },
     default: {
       required: false,

@@ -37,7 +37,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'radiogroup'
+      default: 'radiogroup',
+      private: true,
     },
     default: {
       required: false,

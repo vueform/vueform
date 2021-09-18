@@ -44,7 +44,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'tags'
+      default: 'tags',
+      private: true,
     },
     default: {
       required: false,

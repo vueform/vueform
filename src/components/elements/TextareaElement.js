@@ -42,7 +42,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'textarea'
+      default: 'textarea',
+      private: true,
     },
     default: {
       required: false,

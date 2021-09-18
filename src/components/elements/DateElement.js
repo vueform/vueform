@@ -43,7 +43,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'date'
+      default: 'date',
+      private: true,
     },
     default: {
       required: false,

@@ -37,7 +37,8 @@ const element = {
     type: {
       required: true,
       type: [String],
-      default: 'address'
+      default: 'address',
+      private: true,
     },
     default: {
       required: false,

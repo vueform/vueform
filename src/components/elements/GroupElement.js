@@ -35,7 +35,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'group'
+      default: 'group',
+      private: true,
     },
     default: {
       required: false,

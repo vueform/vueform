@@ -5,7 +5,7 @@ import useLabel from './../composables/useLabel'
 export default {
   name: 'ElementLabel',
   setup(props, context)
-  {    
+  {
     // ============ DEPENDENCIES ============
 
     const {
@@ -18,7 +18,7 @@ export default {
       defaultClasses,
     } = useElementComponent(props, context, {}, {
       addClasses: [
-        ['container', computed(() => el$.value.columnsClasses.label ), ref(true)]
+        ['container', computed(() => el$.value.columnsClasses.label ), computed(() => !el$.value.inline)]
       ]
     })
 

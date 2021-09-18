@@ -39,7 +39,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'radio'
+      default: 'radio',
+      private: true,
     },
     default: {
       required: false,

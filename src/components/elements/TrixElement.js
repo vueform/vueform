@@ -42,7 +42,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'trix'
+      default: 'trix',
+      private: true,
     },
     default: {
       required: false,

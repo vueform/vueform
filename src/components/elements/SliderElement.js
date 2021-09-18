@@ -40,7 +40,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'slider'
+      default: 'slider',
+      private: true,
     },
     default: {
       required: false,

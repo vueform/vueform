@@ -42,7 +42,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 't-text'
+      default: 't-text',
+      private: true,
     },
     default: {
       required: false,

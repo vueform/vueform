@@ -46,7 +46,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'multifile'
+      default: 'multifile',
+      private: true,
     },
     default: {
       required: false,

@@ -41,7 +41,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'toggle'
+      default: 'toggle',
+      private: true,
     },
     default: {
       required: false,

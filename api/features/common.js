@@ -251,7 +251,7 @@ export default {
             "string",
             "component"
           ],
-          "description": "The label of the component. If the label is provided is a `function` this will always have the resolved value."
+          "description": "The label of the component. If the label is provided is a `function` this has the resolved value."
         },
         "isLabelComponent": {
           "public": false,
@@ -939,6 +939,108 @@ export default {
               "description": "the removeFromParent function for recursion"
             }
           }
+        }
+      }
+    }
+  },
+  "preview": {
+    "base": {
+      "computed": {
+        "visible": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the preview component should be visible."
+        },
+        "hasLink": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the file has link and should be clickable."
+        },
+        "hasError": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the preview has upload error."
+        },
+        "link": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The link for the file."
+        },
+        "filename": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The filename to display."
+        },
+        "clickable": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the file should be clickable if it is already uploaded."
+        },
+        "uploaded": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the temporary or final file is uploaded."
+        },
+        "uploading": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the file is currently uploading."
+        },
+        "progress": {
+          "public": true,
+          "types": [
+            "number"
+          ],
+          "description": "The percentage of progress when the file is being temporarily uploaded (0-100)."
+        },
+        "canRemove": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the file can be removed."
+        },
+        "canUploadTemp": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether temporary file can be uploaded."
+        },
+        "uploadText": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The text for upload button. Can be changed at the locale file: `laraform.elements.file.upload`"
+        }
+      },
+      "methods": {
+        "upload": {
+          "public": true,
+          "returns": "void",
+          "description": "Upload the currently selected file as temporary."
+        },
+        "remove": {
+          "public": true,
+          "returns": "void",
+          "description": "Remove the file."
         }
       }
     }

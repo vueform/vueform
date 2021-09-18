@@ -30,7 +30,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'hidden'
+      default: 'hidden',
+      private: true,
     },
     default: {
       required: false,

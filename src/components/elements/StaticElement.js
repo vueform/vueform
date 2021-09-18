@@ -26,7 +26,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'static'
+      default: 'static',
+      private: true,
     },
     wrap: {
       required: false,

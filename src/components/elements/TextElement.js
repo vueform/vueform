@@ -41,7 +41,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'text'
+      default: 'text',
+      private: true,
     },
     default: {
       required: false,

@@ -44,7 +44,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'file'
+      default: 'file',
+      private: true,
     },
     default: {
       required: false,

@@ -320,7 +320,7 @@ export default {
     fieldWrapper: 'form-col',
   },
   ElementLayoutInline: {
-    container: '',
+    container: 'inline-flex',
     container_error: 'has-error',
   },
   ElementLoader: {

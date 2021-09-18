@@ -43,7 +43,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'dates'
+      default: 'dates',
+      private: true,
     },
     debounce: {
       required: false,

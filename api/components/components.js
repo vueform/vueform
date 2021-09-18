@@ -55,18 +55,27 @@ module.exports = {
         "description": "The default classes for the component defined by theme."
       },
       "dragging": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "default": "falyse",
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the user is currently dragging a file over the drag and drop area."
       },
       "area": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "default": "null",
+        "types": [
+          "HTMLElement"
+        ],
+        "description": "The DOM element of the drag and drop area."
       }
     },
     "methods": {
       "handleClick": {
         "public": false,
-        "description": ""
+        "returns": "void",
+        "description": "Handles `click` event."
       }
     },
     "props": {
@@ -155,12 +164,19 @@ module.exports = {
         "description": "The class name of the components's outermost DOM."
       },
       "addon": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string",
+          "component"
+        ],
+        "description": "The addon. If the addon is provided is a `function` this has the resolved value."
       },
       "isAddonComponent": {
         "public": false,
-        "description": ""
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether addon is provided as a Vue component."
       }
     },
     "data": {
@@ -230,8 +246,11 @@ module.exports = {
         "description": "Returns the components used by the parent element."
       },
       "description": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The element's description, defined via `:description` prop."
       }
     },
     "data": {
@@ -294,8 +313,11 @@ module.exports = {
         "description": "Returns the components used by the parent element."
       },
       "error": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The first error of the element."
       }
     },
     "data": {
@@ -358,8 +380,11 @@ module.exports = {
         "description": "Returns the components used by the parent element."
       },
       "info": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The info for the element, defined via `:info` prop."
       }
     },
     "data": {
@@ -427,7 +452,7 @@ module.exports = {
           "string",
           "component"
         ],
-        "description": "The label of the component. If the label is provided is a `function` this will always have the resolved value."
+        "description": "The label of the component. If the label is provided is a `function` this has the resolved value."
       },
       "isLabelComponent": {
         "public": false,
@@ -437,11 +462,11 @@ module.exports = {
         "description": "Whether label is provided as a Vue component."
       },
       "name": {
-        "public": true,
+        "public": false,
         "types": [
           "string"
         ],
-        "description": ""
+        "description": "The name of the element."
       }
     },
     "data": {
@@ -504,8 +529,11 @@ module.exports = {
         "description": "Returns the components used by the parent element."
       },
       "floating": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The floating label of the element, defined via `:floating` prop."
       }
     },
     "data": {
@@ -576,32 +604,53 @@ module.exports = {
         "description": "The class name of the components's outermost DOM."
       },
       "visible": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the element should be visible."
       },
       "hasLabel": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the element has a [`:label`](#label) or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed."
       },
       "info": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The info for the element, defined via `:info` prop."
       },
       "before": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The before content for the element, defined via `:before` prop."
       },
       "between": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The between content for the element, defined via `:between` prop."
       },
       "after": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The after content for the element, defined via `:after` prop."
       },
       "description": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The description for the element, defined via `:description` prop."
       }
     },
     "data": {
@@ -697,12 +746,18 @@ module.exports = {
         "description": "The class name of the components's outermost DOM."
       },
       "hasLabel": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the element has a [`:label`](#label) or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed."
       },
       "visible": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the element should be visible."
       }
     },
     "data": {
@@ -825,8 +880,11 @@ module.exports = {
         "description": "Returns the components used by the parent element."
       },
       "message": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The first message of the element."
       }
     },
     "data": {
@@ -890,7 +948,10 @@ module.exports = {
       },
       "content": {
         "public": false,
-        "description": ""
+        "types": [
+          "string"
+        ],
+        "description": "The value of the content type."
       }
     },
     "data": {
@@ -954,7 +1015,10 @@ module.exports = {
       },
       "schema": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The form schema."
       }
     },
     "data": {
@@ -1026,8 +1090,11 @@ module.exports = {
         "description": "Returns the components used by the form."
       },
       "errors": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "array"
+        ],
+        "description": "Form errors including element errors and the ones added to `messageBag` manually."
       }
     },
     "data": {
@@ -1062,12 +1129,18 @@ module.exports = {
     },
     "computed": {
       "selectedLanguage": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The ISO 639-1 code of the currently selected language (2 letters)."
       },
       "selected": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the current language is the selected one."
       },
       "classes": {
         "public": false,
@@ -1102,8 +1175,8 @@ module.exports = {
     },
     "methods": {
       "select": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "description": "Select language."
       }
     },
     "props": {
@@ -1163,12 +1236,18 @@ module.exports = {
         "description": "Returns the components used by the form."
       },
       "language": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The ISO 639-1 code of the currently selected language (2 letters)."
       },
       "languages": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The available languages."
       }
     },
     "data": {
@@ -1182,12 +1261,32 @@ module.exports = {
     },
     "methods": {
       "select": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "void",
+        "description": "Select a language.",
+        "params": {
+          "code": {
+            "types": [
+              "string"
+            ],
+            "required": true,
+            "description": "the language code to be selected"
+          }
+        }
       },
       "handleSelect": {
         "public": false,
-        "description": ""
+        "returns": "void",
+        "description": "Handles `select` event.",
+        "params": {
+          "code": {
+            "types": [
+              "string"
+            ],
+            "required": true,
+            "description": "the language code to be selected"
+          }
+        }
       }
     },
     "props": {},
@@ -1234,8 +1333,11 @@ module.exports = {
         "description": "Returns the components used by the form."
       },
       "messages": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "array"
+        ],
+        "description": "Form messages including element messages and the ones added to `messageBag` manually."
       }
     },
     "data": {
@@ -1270,40 +1372,46 @@ module.exports = {
     },
     "computed": {
       "steps$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent [`FormSteps`](form-steps) component."
       },
       "elements$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The components of highest level form elements."
       },
       "children$": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "Returns the components of elements within the step."
+        "description": "The components of form elements within the step."
       },
       "visible": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the step is visible."
+        "description": "Whether the step should be visible."
       },
       "invalid": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the step has any invalid elements."
+        "description": "Whether the step has any invalid elements."
       },
       "pending": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the step has any pending elements."
+        "description": "Whether the step has any pending elements."
       },
       "classes": {
         "public": false,
@@ -1338,39 +1446,42 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "Base label of step."
+        "description": "The label definition of the component."
       },
       "debouncing": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the step has any debouncing elements."
+        "description": "Whether the step has any debouncing elements."
       },
       "validated": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether all the elements in the step has been validated."
+        "description": "Whether all the elements in the step has been validated."
       },
       "busy": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the step has any busy elements."
+        "description": "Whether the step has any busy elements."
       },
       "done": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the step is done (complete, validated has no invalid or pending elements)."
+        "description": "Whether the step is done (completed, validated has no invalid or pending elements)."
       },
       "step$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The step's component."
       },
       "isLabelComponent": {
         "public": false,
@@ -1380,8 +1491,11 @@ module.exports = {
         "description": "Whether label is provided as a Vue component."
       },
       "index": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "number"
+        ],
+        "description": "Index of this step among the other steps which are not hidden by unmet conditions."
       }
     },
     "data": {
@@ -1391,7 +1505,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the step is active."
+        "description": "Whether the step is active."
       },
       "disabled": {
         "public": true,
@@ -1399,7 +1513,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the step is disabled."
+        "description": "Whether the step is disabled."
       },
       "completed": {
         "public": true,
@@ -1407,7 +1521,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the step is completed."
+        "description": "Whether the step is completed."
       },
       "events": {
         "public": false,
@@ -1433,55 +1547,60 @@ module.exports = {
         "description": "The default classes for the component defined by theme."
       },
       "stepLabel": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "default": "null",
+        "types": [
+          "string",
+          "component"
+        ],
+        "description": "The label of the step."
       }
     },
     "methods": {
       "validate": {
         "public": true,
         "returns": "void",
-        "description": "Validate the elements within the step."
+        "description": "Validate all elements within the step (async)."
       },
       "activate": {
         "public": true,
         "returns": "void",
-        "description": "Activates the step."
+        "description": "Activate the step."
       },
       "deactivate": {
         "public": true,
         "returns": "void",
-        "description": "Deactivates the step."
+        "description": "Deactivate the step."
       },
       "enable": {
         "public": true,
         "returns": "void",
-        "description": "Enables the step."
+        "description": "Enable the step."
       },
       "disable": {
         "public": true,
         "returns": "void",
-        "description": "Disables the step."
+        "description": "Disable the step."
       },
       "complete": {
         "public": true,
         "returns": "void",
-        "description": "Completes the step."
+        "description": "Complete the step."
       },
       "uncomplete": {
         "public": true,
         "returns": "void",
-        "description": "Uncompletes the step."
+        "description": "Uncomplete the step."
       },
       "select": {
         "public": true,
         "returns": "void",
-        "description": "Selects the step to become the active step."
+        "description": "Deactivate all other steps and set the current one as active."
       },
       "forwardConditions": {
         "public": false,
         "returns": "void",
-        "description": "Apply conditions of the step to the elements within."
+        "description": "Apply conditions of the step to its elements."
       },
       "on": {
         "public": true,
@@ -1638,12 +1757,18 @@ module.exports = {
     },
     "computed": {
       "steps": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The form steps definition."
       },
       "elements$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The components of highest level form elements."
       },
       "classes": {
         "public": false,
@@ -1668,143 +1793,125 @@ module.exports = {
       },
       "steps$": {
         "public": true,
-        "default": "{}",
         "types": [
           "object"
         ],
-        "description": "Object of stepsStep$ components."
+        "description": "The child [`FormStep`](form-step) components with indexed keys."
       },
       "pending": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the steps has any pending elements."
+        "description": "Whether there are any steps in `pending` state."
       },
       "debouncing": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the steps has any debouncing elements."
+        "description": "Whether there are any steps in `debouncing` state."
       },
       "invalid": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the steps has any invalid elements."
+        "description": "Whether there are any steps in `invalid` state."
       },
       "done": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether all the steps are completetly filled out."
+        "description": "Whether all the steps are `done`."
       },
       "busy": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the steps has any pending or debouncing elements."
+        "description": "Whether there are any steps in `busy` state."
       },
       "visible$": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "Returns the visible [stepsStep$](reference/frontend-steps-step) components."
+        "description": "All the visible [`FormStep`](form-step) components."
       },
       "first$": {
         "public": true,
         "types": [
-          [
-            "component",
-            "FormStep"
-          ]
+          "component"
         ],
-        "description": "Returns the first [stepsStep$](reference/frontend-steps-step) component."
+        "description": "The first visible [`FormStep`](form-step) component."
       },
       "current$": {
         "public": true,
         "types": [
-          [
-            "component",
-            "FormStep"
-          ]
+          "component"
         ],
-        "description": "Returns the current [stepsStep$](reference/frontend-steps-step) component."
+        "description": "The current [`FormStep`](form-step) component."
       },
       "next$": {
         "public": true,
         "types": [
-          [
-            "component",
-            "FormStep"
-          ]
+          "component"
         ],
-        "description": "Returns the next [stepsStep$](reference/frontend-steps-step) component."
+        "description": "The next visible [`FormStep`](form-step) component."
       },
       "previous$": {
         "public": true,
         "types": [
-          [
-            "component",
-            "FormStep"
-          ]
+          "component"
         ],
-        "description": "Returns the previous [stepsStep$](reference/frontend-steps-step) component."
+        "description": "The previous visible [`FormStep`](form-step) component."
       },
       "firstInvalid$": {
         "public": true,
         "types": [
-          [
-            "component",
-            "FormStep"
-          ]
+          "component"
         ],
-        "description": "Returns the first invalid [stepsStep$](reference/frontend-steps-step) component."
+        "description": "The first invalid & visible [`FormStep`](form-step) component."
       },
       "firstNonDone$": {
         "public": true,
         "types": [
-          [
-            "component",
-            "FormStep"
-          ]
+          "component"
         ],
-        "description": "Returns the first [stepsStep$](reference/frontend-steps-step) component which is not done yet."
+        "description": "The first visible [`FormStep`](form-step) component which is not done yet."
       },
       "lastEnabled$": {
         "public": true,
         "types": [
-          [
-            "component",
-            "FormStep"
-          ]
+          "component"
         ],
-        "description": "Returns the last enabled [stepsStep$](reference/frontend-steps-step) component."
+        "description": "The last enabled & visible [`FormStep`](form-step) component."
       },
       "isAtLastStep": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the steps is at the last step."
+        "description": "Whether the steps is at the last step."
       },
       "isAtFirstStep": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the steps is at the first step."
+        "description": "Whether the steps is at the first step."
       }
     },
     "data": {
       "steps$Array": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "default": "[]",
+        "types": [
+          "array"
+        ],
+        "description": "The child [`FormStep`](form-step) components."
       },
       "events": {
         "public": false,
@@ -1823,8 +1930,11 @@ module.exports = {
         "description": "Helper property used to store listeners for events."
       },
       "exists": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Helper prop used for checking if the component exists."
       },
       "defaultClasses": {
         "public": false,
@@ -1838,88 +1948,84 @@ module.exports = {
       "goTo": {
         "public": true,
         "returns": "void",
-        "description": "Moves to a step. If it is disabled, enables it.",
+        "description": "Go to a step and enable it. Optionally enable all steps up to it.",
         "params": {
-          "step": {
+          "index": {
             "types": [
               "object"
             ],
-            "required": false,
-            "description": "key of step in [steps](reference/frontend-form#prop-steps)"
+            "required": true,
+            "description": "index of step to go to"
           },
           "enableUntil": {
             "types": [
               "boolean"
             ],
             "required": false,
-            "description": "whether steps should be enabled before destination step (default: false)"
+            "description": "whether steps should be enabled up to the selected step (default: false)"
           }
         }
       },
       "next": {
         "public": true,
         "returns": "void",
-        "description": "Moves to next step and enables it."
+        "description": "Move to next step and enable it."
       },
       "previous": {
         "public": true,
         "returns": "void",
-        "description": "Moves to previous step."
+        "description": "Move to previous step."
       },
       "complete": {
         "public": true,
         "returns": "void",
-        "description": "Marks each [stepsStep$](reference/frontend-steps-step) as complete."
+        "description": "Mark each [`FormStep`](form-step) as complete."
       },
       "step$": {
         "public": true,
-        "returns": [
-          [
-            "component",
-            "FormStep"
-          ]
-        ],
-        "description": "Returns a specific [stepsStep$](reference/frontend-steps-step).",
+        "returns": "component",
+        "description": "Returns a specific [`FormStep`](form-step) by index.",
         "params": {
-          "step": {
+          "index": {
             "types": [
               "object"
             ],
-            "required": false,
-            "description": "key of step in [steps](reference/frontend-form#prop-steps)"
+            "required": true,
+            "description": "index of the step"
           }
         }
       },
       "reset": {
         "public": true,
         "returns": "void",
-        "description": "Resets form and goes back to first step while disabling all others."
+        "description": "Jump back to first visible step and disable all others."
       },
       "enableAllSteps": {
         "public": true,
         "returns": "void",
-        "description": "Enables all steps."
+        "description": "Enable all steps."
       },
       "submit": {
         "public": true,
         "returns": "void",
-        "description": "Emits submit event."
+        "description": "Invokes the form's `submit` event. If the form has any validation errors it will jump to the first step with error."
       },
       "select": {
-        "public": true,
-        "description": "Triggered when a step is selected.",
+        "public": false,
+        "returns": "void",
+        "description": "Select a step.",
         "params": {
           "step$": {
             "types": [
-              "object"
+              "component"
             ],
             "required": false,
-            "description": "the selected step component"
+            "description": "the [`FormStep`](form-step) component to select"
           }
         }
       },
       "enableUntil": {
-        "public": false,
+        "public": true,
         "returns": "void",
         "description": "Enable steps until a certain index.",
         "params": {
@@ -1928,19 +2034,19 @@ module.exports = {
               "integer"
             ],
             "required": false,
-            "description": "index of step"
+            "description": "index of the step"
           }
         }
       },
       "enableUntilCurrent": {
-        "public": false,
+        "public": true,
         "returns": "void",
-        "description": "Enable steps until current step."
+        "description": "Enable all steps up to the current step."
       },
       "enableUntilLastEnabled": {
-        "public": false,
+        "public": true,
         "returns": "void",
-        "description": "Enable steps until last enabled."
+        "description": "Enable all steps up to the last enabled."
       },
       "on": {
         "public": true,
@@ -2016,7 +2122,7 @@ module.exports = {
     "computed": {
       "steps$": {
         "public": false,
-        "description": ""
+        "description": "The [`FormSteps`](form-steps) component."
       },
       "classes": {
         "public": false,
@@ -2040,20 +2146,29 @@ module.exports = {
         "description": "Returns the components used by the form."
       },
       "visible": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the control should be visible."
       },
       "disabled": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the control should be disabled."
       },
       "loading": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the control should be in loading state (except for previous)."
       },
       "current$": {
         "public": false,
-        "description": ""
+        "description": "The currently active [`FormStep`](form-step) component."
       },
       "label": {
         "public": true,
@@ -2061,7 +2176,7 @@ module.exports = {
           "string",
           "component"
         ],
-        "description": "The label of the component. If the label is provided is a `function` this will always have the resolved value."
+        "description": "The label of the component. If the label is provided is a `function` this has the resolved value."
       },
       "isLabelComponent": {
         "public": false,
@@ -2082,20 +2197,24 @@ module.exports = {
     },
     "methods": {
       "previous": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "void",
+        "description": "Go to the previous form step."
       },
       "next": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "void",
+        "description": "Complete the current step and go to the next one (async). If the form's `:validateOn` prop or `config.validateOn` contains `'step'` also validate the elements within the step before moving forward (and stay if there's any error)."
       },
       "finish": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "void",
+        "description": "Complete the final step and submit the form (async)."
       },
       "handleClick": {
         "public": false,
-        "description": ""
+        "returns": "void",
+        "description": "Handles `click` event."
       }
     },
     "props": {
@@ -2196,33 +2315,39 @@ module.exports = {
     },
     "computed": {
       "elements$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The components of highest level form elements."
       },
       "index": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "number"
+        ],
+        "description": "Index of this tab among the other tabs which are not hidden by unmet conditions."
       },
       "children$": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "Returns the components of elements within the tab."
+        "description": "The components of form elements within the tab."
       },
       "visible": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the tab is visible."
+        "description": "Whether the tab should be visible."
       },
       "invalid": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the tab has any invalid elements."
+        "description": "Whether the tab has any invalid elements."
       },
       "classes": {
         "public": false,
@@ -2260,8 +2385,11 @@ module.exports = {
         "description": "Whether label is provided as a Vue component."
       },
       "tab$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The tab's component."
       }
     },
     "data": {
@@ -2271,7 +2399,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Determines whether the tab is active."
+        "description": "Whether the tab is active."
       },
       "events": {
         "public": false,
@@ -2297,25 +2425,30 @@ module.exports = {
         "description": "The default classes for the component defined by theme."
       },
       "tabLabel": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "default": "null",
+        "types": [
+          "string",
+          "component"
+        ],
+        "description": "The label of the tab."
       }
     },
     "methods": {
       "select": {
         "public": true,
         "returns": "void",
-        "description": "Selects the tab to become the active tab."
+        "description": "Deactivate all other tabs and set the current one as active."
       },
       "activate": {
         "public": true,
         "returns": "void",
-        "description": "Activates the tab."
+        "description": "Activate the tab."
       },
       "deactivate": {
         "public": true,
         "returns": "void",
-        "description": "Deactivates the step."
+        "description": "Deactivate the tab."
       },
       "on": {
         "public": true,
@@ -2444,12 +2577,18 @@ module.exports = {
     },
     "computed": {
       "tabs": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The form tabs definition."
       },
       "elements$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The components of highest level form elements."
       },
       "classes": {
         "public": false,
@@ -2474,58 +2613,55 @@ module.exports = {
       },
       "tabs$": {
         "public": true,
-        "default": "{}",
         "types": [
           "object"
         ],
-        "description": "Object of tab$ components."
+        "description": "The child [`FormTab`](form-tab) components with indexed keys."
       },
       "visible$": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "Returns the visible [tab$](reference/frontend-tab) components."
+        "description": "All the visible [`FormTab`](form-tab) components."
       },
       "current$": {
         "public": true,
         "types": [
-          "object"
+          "component"
         ],
-        "description": "Returns the current [tab$](reference/frontend-tab) components."
+        "description": "The current [`FormTab`](form-tab) component."
       },
       "first$": {
         "public": true,
         "types": [
-          "object"
+          "component"
         ],
-        "description": "Returns the first [tab$](reference/frontend-tab) components."
+        "description": "The first visible [`FormTab`](form-tab) component."
       },
       "next$": {
         "public": true,
         "types": [
-          [
-            "component",
-            "FormTab"
-          ]
+          "component"
         ],
-        "description": "Returns the next [tab$](reference/frontend-tab) component."
+        "description": "The next visible [`FormTab`](form-tab) component."
       },
       "previous$": {
         "public": true,
         "types": [
-          [
-            "component",
-            "FormTab"
-          ]
+          "component"
         ],
-        "description": "Returns the previous [tabs$](reference/frontend-tab) component."
+        "description": "The previous visible [`FormTab`](form-tab) component."
       }
     },
     "data": {
       "tabs$Array": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "default": "[]",
+        "types": [
+          "array"
+        ],
+        "description": "The child [`FormTab`](form-tab) components."
       },
       "events": {
         "public": false,
@@ -2544,8 +2680,11 @@ module.exports = {
         "description": "Helper property used to store listeners for events."
       },
       "exists": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Helper prop used for checking if the component exists."
       },
       "defaultClasses": {
         "public": false,
@@ -2559,54 +2698,49 @@ module.exports = {
       "goTo": {
         "public": true,
         "returns": "void",
-        "description": "Moves to a tab.",
+        "description": "Go to a tab.",
         "params": {
-          "tab": {
+          "index": {
             "types": [
               "object"
             ],
-            "required": false,
-            "description": "key of tab in [tabs](reference/frontend-form#prop-tabs)"
+            "required": true,
+            "description": "index of tab to go to"
           }
         }
       },
       "select": {
         "public": false,
         "returns": "void",
-        "description": "Selects a tab.",
+        "description": "Select a tab.",
         "params": {
           "tab$": {
             "types": [
-              "object"
+              "component"
             ],
             "required": false,
-            "description": "selected tab component"
+            "description": "the [`FormTab`](form-tab) component to select"
           }
         }
       },
       "tab$": {
         "public": true,
-        "returns": [
-          [
-            "component",
-            "FormTab"
-          ]
-        ],
-        "description": "Returns a specific [tab$](reference/frontend-tab).",
+        "returns": "component",
+        "description": "Returns a specific [`FormTab`](form-tab) by index.",
         "params": {
-          "tab": {
+          "index": {
             "types": [
               "object"
             ],
-            "required": false,
-            "description": "key of tab in [tabs](reference/frontend-form#prop-tabs) object"
+            "required": true,
+            "description": "index of the tab"
           }
         }
       },
       "reset": {
         "public": true,
         "returns": "void",
-        "description": "Reset tabs, meaning selecting [first$](#prop-first) tab."
+        "description": "Jump back to the first visible tab."
       },
       "on": {
         "public": true,
@@ -3512,12 +3646,18 @@ module.exports = {
         "description": "Returns the components used by the parent element."
       },
       "config": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The flatpickr configuration object. Can be extended via [`:options`](#options) with [flatpickr options](https://flatpickr.js.org/options/)."
       },
       "mode": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The current `options.mode`."
       }
     },
     "data": {
@@ -3529,18 +3669,36 @@ module.exports = {
         "description": "The default classes for the component defined by theme."
       },
       "flatpickr$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "default": "null",
+        "types": [
+          "object"
+        ],
+        "description": "The [flatpickr instance](https://flatpickr.js.org/instance-methods-properties-elements)."
       },
       "input": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "HTMLElement"
+        ],
+        "description": "The date input DOM element."
       }
     },
     "methods": {
       "update": {
         "public": false,
-        "description": ""
+        "returns": "void",
+        "description": "Emits `change` event.",
+        "params": {
+          "value": {
+            "types": [
+              "array",
+              "Date"
+            ],
+            "required": true,
+            "description": "the value to emit with change"
+          }
+        }
       }
     },
     "props": {
@@ -3622,30 +3780,82 @@ module.exports = {
     },
     "data": {
       "trix$": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "default": "null",
+        "types": [
+          "HTMLElement"
+        ],
+        "description": "The [`Trix`](https://github.com/basecamp/trix) DOM instance."
       }
     },
     "methods": {
       "update": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "void",
+        "description": "Updates the value of Trix editor.",
+        "params": {
+          "value": {
+            "types": [
+              "string"
+            ],
+            "required": true,
+            "description": "the value to update with"
+          }
+        }
       },
       "setOption": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "void",
+        "description": "Sets an option for Trix editor.",
+        "params": {
+          "key": {
+            "types": [
+              "string"
+            ],
+            "required": true,
+            "description": "the option key"
+          },
+          "value": {
+            "types": [
+              "string"
+            ],
+            "required": true,
+            "description": "the option value"
+          }
+        }
       },
       "handleChange": {
         "public": false,
-        "description": ""
+        "returns": "void",
+        "description": "Handles `change` event."
       },
       "handleFileAccept": {
         "public": false,
-        "description": ""
+        "returns": "void",
+        "description": "Handles `fileAccept` event.",
+        "params": {
+          "e": {
+            "types": [
+              "Event"
+            ],
+            "required": false,
+            "description": "event"
+          }
+        }
       },
       "handleAttachmentAdd": {
         "public": false,
-        "description": ""
+        "returns": "void",
+        "description": "Handles `attachmentAdd` event.",
+        "params": {
+          "e": {
+            "types": [
+              "Event"
+            ],
+            "required": false,
+            "description": "event"
+          }
+        }
       }
     },
     "props": {
@@ -3759,8 +3969,11 @@ module.exports = {
         "description": "Returns the components used by the parent element."
       },
       "isDisabled": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the checkbox should be disabled."
       }
     },
     "data": {
@@ -3836,52 +4049,88 @@ module.exports = {
         "description": "Returns the components used by the parent element."
       },
       "visible": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the preview component should be visible."
       },
       "hasLink": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file has link and should be clickable."
       },
       "hasError": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the preview has upload error."
       },
       "link": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The link for the file."
       },
       "filename": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The filename to display."
       },
       "clickable": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file should be clickable if it is already uploaded."
       },
       "uploaded": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the temporary or final file is uploaded."
       },
       "uploading": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file is currently uploading."
       },
       "progress": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "number"
+        ],
+        "description": "The percentage of progress when the file is being temporarily uploaded (0-100)."
       },
       "canRemove": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file can be removed."
       },
       "canUploadTemp": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether temporary file can be uploaded."
       },
       "uploadText": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The text for upload button. Can be changed at the locale file: `laraform.elements.file.upload`"
       }
     },
     "data": {
@@ -3895,12 +4144,14 @@ module.exports = {
     },
     "methods": {
       "upload": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "void",
+        "description": "Upload the currently selected file as temporary."
       },
       "remove": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "void",
+        "description": "Remove the file."
       }
     },
     "props": {},
@@ -3954,60 +4205,102 @@ module.exports = {
         "description": "Returns the components used by the parent element."
       },
       "visible": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the preview component should be visible."
       },
       "hasLink": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file has link and should be clickable."
       },
       "hasError": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the preview has upload error."
       },
       "link": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The link for the file."
       },
       "filename": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The filename to display."
       },
       "clickable": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file should be clickable if it is already uploaded."
       },
       "preview": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The image's preview. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded."
       },
       "previewLoaded": {
         "public": false,
-        "description": ""
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the preview file has been loaded by the browser when the file has already been uploaded or has only been selected."
       },
       "uploaded": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the temporary or final file is uploaded."
       },
       "uploading": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file is currently uploading."
       },
       "progress": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "number"
+        ],
+        "description": "The percentage of progress when the file is being temporarily uploaded (0-100)."
       },
       "canRemove": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file can be removed."
       },
       "canUploadTemp": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether temporary file can be uploaded."
       },
       "uploadText": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The text for upload button. Can be changed at the locale file: `laraform.elements.file.upload`"
       }
     },
     "data": {
@@ -4021,12 +4314,14 @@ module.exports = {
     },
     "methods": {
       "upload": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "void",
+        "description": "Upload the currently selected file as temporary."
       },
       "remove": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "void",
+        "description": "Remove the file."
       }
     },
     "props": {},
@@ -4080,60 +4375,102 @@ module.exports = {
         "description": "Returns the components used by the parent element."
       },
       "visible": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the preview component should be visible."
       },
       "hasLink": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file has link and should be clickable."
       },
       "hasError": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the preview has upload error."
       },
       "link": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The link for the file."
       },
       "filename": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The filename to display."
       },
       "clickable": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file should be clickable if it is already uploaded."
       },
       "preview": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The image's preview. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded."
       },
       "previewLoaded": {
         "public": false,
-        "description": ""
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the preview file has been loaded by the browser when the file has already been uploaded or has only been selected."
       },
       "uploaded": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the temporary or final file is uploaded."
       },
       "uploading": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file is currently uploading."
       },
       "progress": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "number"
+        ],
+        "description": "The percentage of progress when the file is being temporarily uploaded (0-100)."
       },
       "canRemove": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file can be removed."
       },
       "canUploadTemp": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether temporary file can be uploaded."
       },
       "uploadText": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The text for upload button. Can be changed at the locale file: `laraform.elements.file.upload`"
       }
     },
     "data": {
@@ -4147,12 +4484,14 @@ module.exports = {
     },
     "methods": {
       "upload": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "void",
+        "description": "Upload the currently selected file as temporary."
       },
       "remove": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "void",
+        "description": "Remove the file."
       }
     },
     "props": {},
@@ -4217,8 +4556,9 @@ module.exports = {
     },
     "methods": {
       "label": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "returns": "string",
+        "description": "Returns the label to display."
       }
     },
     "props": {
@@ -4618,8 +4958,11 @@ module.exports = {
         "description": "Returns the components used by the parent element."
       },
       "isDisabled": {
-        "public": false,
-        "description": ""
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the radio should be disabled."
       }
     },
     "data": {

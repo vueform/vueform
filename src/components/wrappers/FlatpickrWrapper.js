@@ -109,7 +109,7 @@ export default {
     /**
      * Emits `change` event.
      * 
-     * @param {array|Date}
+     * @param {array|Date} value* the value to emit with change
      * @returns {void}
      * @private
      */

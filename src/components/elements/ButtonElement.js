@@ -25,7 +25,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'button'
+      default: 'button',
+      private: true,
     },
     buttonLabel: {
       required: false,

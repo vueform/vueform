@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: '',
+          container: 'vf-inline-layout',
           container_error: 'has-error',
         }
       }
@@ -16,4 +16,7 @@
 </script>
 
 <style lang="scss">
+  .vf-inline-layout {
+    display: inline-flex;
+  }
 </style>
