@@ -15,14 +15,17 @@
             ref="input"
           />
 
-          <slot>
-            <label 
-              :class="classes.label"
-              :for="name"
-              v-html="text"
-            >
-            </label>
-          </slot>
+          <label
+            v-if="text"
+            :class="classes.label"
+            :for="name"
+            v-html="text"
+          ></label>
+          <label
+            v-else
+            :class="classes.label"
+            :for="name"
+          ><slot><component :is="fieldSlots.default" /></slot></label>
         </div>
       </div>
 

@@ -29,7 +29,7 @@
           :class="classes.button"
           :disabled="isDisabled"
           @click.prevent="handleClick" 
-        ><slot></slot></button>
+        ><slot><component :is="fieldSlots.default" /></slot></button>
 
       </template>
 
@@ -59,7 +59,7 @@
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           @click="handleClick"
-        ><slot></slot></a>
+        ><slot><component :is="fieldSlots.default" /></slot></a>
       </template>
 
     </template>

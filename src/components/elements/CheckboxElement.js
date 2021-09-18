@@ -20,10 +20,10 @@ import useEvents from './../../composables/useEvents'
 import useToggle from './../../composables/elements/useToggle'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useSlots from './../../composables/elements/useSlots'
 
 import { boolean as useNullValue } from './../../composables/elements/useNullValue'
 import { input as useClasses } from './../../composables/elements/useClasses'
-import { checkbox as useSlots } from './../../composables/elements/useSlots'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -170,8 +170,7 @@ export default {
     }, {
       slots: [
         'label', 'info', 'description',
-        'before', 'between', 'after',
-        'default',
+        'before', 'between', 'after', 'default',
       ]
     })
 

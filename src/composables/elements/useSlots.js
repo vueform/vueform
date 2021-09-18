@@ -21,7 +21,7 @@ const base = function(props, context, dependencies, options = {})
   const defaultFieldSlots = [
     'checkbox', 'radio', 'option', 'single-label',
     'multiple-label', 'tag', 'no-results', 'no-options',
-    'after-list', 'before-list'
+    'after-list', 'before-list', 'default',
   ]
 
   // ============== COMPUTED ==============
@@ -54,61 +54,6 @@ const base = function(props, context, dependencies, options = {})
     elementSlots,
     fieldSlots,
   }
-}
-
-const file = function(props, context, dependencies, options = {})
-{
-  const {
-    image,
-    view,
-  } = toRefs(props)
-
-  let preview = 'FileSlotFilePreview'
-
-  if (image.value && view.value !== 'file') {
-    preview = view.value == 'gallery' ? 'FileSlotGalleryPreview' : 'FileSlotImagePreview'
-  }
-
-  const {
-    elementSlots,
-    fieldSlots,
-    elementSlotProps,
-  } = base(props, context, dependencies, Object.assign({}, options, {
-    defaultFieldSlots: { preview }
-  }))
-
-  return {
-    elementSlots,
-    fieldSlots,
-    elementSlotProps,
-  }
-}
-
-const checkbox = function(props, context, dependencies, options = {})
-{
-  const { slots } = toRefs(props)
-
-  const {
-    elementSlots,
-    fieldSlots,
-    elementSlotProps,
-  } = base(props, context, dependencies, options)
-
-  const defaultSlot = computed(() => {
-    return slots.value.default || undefined
-  })
-
-  return {
-    elementSlots,
-    fieldSlots,
-    elementSlotProps,
-    defaultSlot
-  }
-}
-
-export {
-  file,
-  checkbox,
 }
 
 export default base

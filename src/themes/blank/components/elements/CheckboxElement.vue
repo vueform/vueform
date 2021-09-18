@@ -25,7 +25,7 @@
               v-else
               :class="classes.label"
               :for="name"
-            ><slot><component :is="defaultSlot" /></slot></label>
+            ><slot><component :is="fieldSlots.default" /></slot></label>
           </div>
         </div>
 

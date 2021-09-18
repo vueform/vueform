@@ -2,20 +2,21 @@
   <component v-if="wrap" :is="elementLayout">
 
     <template v-slot:field>
-      <slot>
-        <component v-if="!isHtml" :is="content" :el$="el$" />
-        <div v-else :class="classes.content" v-html="content"></div>
-      </slot>
+      <div v-if="content && isHtml" :class="classes.content" v-html="content"></div>
+      <component v-else-if="content" :is="content" />
+      <slot v-else><component :is="fieldSlots.default" /></slot>
     </template>
 
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]>
-      <slot :name="slot" :el$="el$">
-        <component :is="component" v-bind="elementSlotProps[slot]" />
-      </slot>
-    </template>
+    <template v-for="(slot) in elementSlots" v-slot:[slot]><slot :name="slot"></slot></template>
   </component>
-  <component v-else-if="!isHtml" :is="content" :el$="el$" />
-  <div v-else :class="classes.content" v-html="content"></div>
+
+  <div v-else-if="content && isHtml" :class="classes.content" v-html="content"></div>
+
+  <component v-else-if="content" :is="content" />
+
+  <div v-else>
+    <slot><component :is="fieldSlots.default" /></slot>
+  </div>
 
 </template>
 
