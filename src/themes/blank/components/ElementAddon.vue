@@ -1,7 +1,7 @@
 <template>
   <div v-if="addon && isAddonComponent" :class="classes.container">
     <div :class="classes.wrapper">
-      <component :is="addon" :el$="el$" />
+      <component :is="addon" />
     </div>
   </div>
 

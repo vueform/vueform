@@ -1,6 +1,6 @@
 <template>
   <label v-if="label && isLabelComponent" :class="classes.container" :for="name">
-    <span><component v-if="isLabelComponent" :is="label" :el$="el$" /></span>
+    <span><component v-if="isLabelComponent" :is="label" /></span>
     <ElementInfo><slot name="info"></slot></ElementInfo>
   </label>
   <label v-else-if="label" :class="classes.container" :for="name">

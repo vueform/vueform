@@ -10,8 +10,8 @@
         :key="key"
       >
         <template #default="scope">
-          <slot name="radio" :el$="el$" :item="item" :value="value" v-bind="scope">
-            <component :is="fieldSlots.radio" :el$="el$" :item="item" :value="value" v-bind="scope" />
+          <slot name="radio" :item="item" :value="value" v-bind="scope">
+            <component :is="fieldSlots.radio" :item="item" :value="value" v-bind="scope" />
           </slot>
         </template>
       </RadiogroupRadio>

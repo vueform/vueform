@@ -11,8 +11,8 @@
           :key="key"
         >
           <template #default="scope">
-            <slot name="checkbox" :el$="el$" v-bind="scope">
-              <component :is="fieldSlots.checkbox" :el$="el$" v-bind="scope" />
+            <slot name="checkbox" v-bind="scope">
+              <component :is="fieldSlots.checkbox" v-bind="scope" />
             </slot>
           </template>
         </CheckboxgroupCheckbox>

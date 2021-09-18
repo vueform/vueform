@@ -11,7 +11,7 @@
           :class="classes.button"
           @click.prevent="handleClick"
         >
-          <component :is="buttonLabel" :el$="el$" />
+          <component :is="buttonLabel" />
         </button>
 
         <button
@@ -41,7 +41,7 @@
           :class="classes.button"
           @click="handleClick"
         >
-          <component :is="buttonLabel" :el$="el$" />
+          <component :is="buttonLabel" />
         </a>
 
         <a
