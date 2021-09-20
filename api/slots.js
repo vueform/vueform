@@ -1,4 +1,51 @@
 export default {
+  'default': {
+    CheckboxElement: {
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        }
+      },
+      description: 'Renders a label for the checkbox.',
+    },
+    RadioElement: {
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        }
+      },
+      description: 'Renders a label for the radio.',
+    },
+    ToggleElement: {
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        }
+      },
+      description: 'Renders a label for the toggle.',
+    },
+    ButtonElement: {
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        }
+      },
+      description: 'Renders the button\'s label.',
+    },
+    StaticElement: {
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        }
+      },
+      description: 'Renders the content of the static element.',
+    },
+  },
   'label': {
     default: {
       props: {
@@ -141,51 +188,183 @@ export default {
       },
     },
   },
-  'default': {
-    CheckboxElement: {
+  'placeholder': {
+    default: {
+      description: 'Replaces the default template for the input\'s [`placeholder`](#option-placeholder).',
       props: {
         el$: {
           description: 'the element\'s component',
           types: ['component'],
-        }
+        },
       },
-      description: 'Renders a label for the checkbox.',
     },
-    RadioElement: {
+  },
+  'after-list': {
+    default: {
+      description: 'Appends the content of the slot to the option list.',
       props: {
         el$: {
           description: 'the element\'s component',
           types: ['component'],
-        }
+        },
       },
-      description: 'Renders a label for the radio.',
     },
-    ToggleElement: {
+  },
+  'before-list': {
+    default: {
+      description: 'Prepends the content of the slot to the option list.',
       props: {
         el$: {
           description: 'the element\'s component',
           types: ['component'],
-        }
+        },
       },
-      description: 'Renders a label for the toggle.',
     },
-    ButtonElement: {
+  },
+  'multiple-label': {
+    default: {
+      description: 'Replaces the input\'s inner label that is displayed when at least one option is selected.',
       props: {
         el$: {
           description: 'the element\'s component',
           types: ['component'],
-        }
+        },
+        values: {
+          description: 'the list of selected options',
+          types: ['array<object>'],
+        },
       },
-      description: 'Renders the button\'s label.',
     },
-    StaticElement: {
+  },
+  'no-options': {
+    default: {
+      description: 'Replaces the default template that is shown when the input has no options. Can be also set without overriding the template with [`noOptionsText`](#option-no-options-text) option.',
       props: {
         el$: {
           description: 'the element\'s component',
           types: ['component'],
-        }
+        },
       },
-      description: 'Renders the content of the static element.',
+    },
+  },
+  'no-results': {
+    default: {
+      description: 'Replaces the default template that is shown when the input has options, but the user search does not have any results. Can be also set without overriding the template with [`noResultsText`](#option-no-results-text) option.',
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        },
+      },
+    },
+  },
+  'group-label': {
+    default: {
+      description: 'Replaces the default group header when [`groups`](#option-groups) is `true`.',
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        },
+        group: {
+          description: 'the group object',
+          types: ['object'],
+        },
+      },
+    },
+  },
+  'option': {
+    default: {
+      description: 'Replaces the default option template.',
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        },
+        option: {
+          description: 'the option object',
+          types: ['object'],
+        },
+        search: {
+          description: 'the current value of search input',
+          types: ['string|null'],
+        },
+      },
+    },
+  },
+  'single-label': {
+    default: {
+      description: 'Replaces the input\'s inner label that is displayed when an option is selected.',
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        },
+        value: {
+          description: 'the selected option',
+          types: ['object'],
+        },
+      },
+    },
+  },
+  'tag': {
+    default: {
+      description: 'Replaces the default tag template.',
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        },
+        option: {
+          description: 'the option object',
+          types: ['object'],
+        },
+        disabled: {
+          description: 'whether the option is disabled',
+          types: ['boolean'],
+        },
+        handleTagRemove: {
+          description: 'removes the tag from the selected options',
+          types: ['function'],
+        },
+      },
+    },
+  },
+  'caret': {
+    default: {
+      description: 'Replaces the small triangle displayed on the right of the input when [`caret`](#option-caret) is `true`.',
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        },
+      }
+    },
+  },
+  'clear': {
+    default: {
+      description: 'Replaces the clear icon shown when the input has at least one selected options and [`canClear`](#option-can-clear) is `true`.',
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        },
+        clear: {
+          description: 'clears the input value',
+          types: ['function'],
+        },
+      },
+    },
+  },
+  'spinner': {
+    default: {
+      description: 'Replaces the spinner shown when async options are loading or [`loading`](#option-loading) is `true`.',
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        },
+      },
     },
   },
 }

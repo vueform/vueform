@@ -519,12 +519,17 @@ export default {
       "before",
       "between",
       "after",
+      "option",
+      "placeholder",
+      "multiple-label",
+      "group-label",
       "before-list",
       "after-list",
-      "multiple-label",
       "no-results",
       "no-options",
-      "option"
+      "caret",
+      "spinner",
+      "clear"
     ],
     "events": [
       "change",
@@ -687,12 +692,17 @@ export default {
       "before",
       "between",
       "after",
+      "option",
+      "placeholder",
+      "single-label",
+      "group-label",
       "before-list",
       "after-list",
-      "single-label",
       "no-results",
       "no-options",
-      "option"
+      "caret",
+      "spinner",
+      "clear"
     ],
     "events": [
       "change",
@@ -811,12 +821,17 @@ export default {
       "before",
       "between",
       "after",
+      "tag",
+      "option",
+      "placeholder",
+      "group-label",
       "before-list",
       "after-list",
       "no-results",
       "no-options",
-      "option",
-      "tag"
+      "caret",
+      "spinner",
+      "clear"
     ],
     "events": [
       "change",

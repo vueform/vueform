@@ -12510,6 +12510,13 @@ module.exports = {
         ],
         private: false,
       },
+      multipleLabel: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+        ],
+        private: false,
+      },
     },
     data: {
       defaultClasses: {
@@ -13219,12 +13226,157 @@ module.exports = {
           },
         },
       },
-      'before-list': {},
-      'after-list': {},
-      'multiple-label': {},
-      'no-results': {},
-      'no-options': {},
-      'option': {},
+      'option': {
+        description: 'Replaces the default option template.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          option: {
+            description: 'the option object',
+            types: [
+              'object',
+            ],
+          },
+          search: {
+            description: 'the current value of search input',
+            types: [
+              'string|null',
+            ],
+          },
+        },
+      },
+      'placeholder': {
+        description: 'Replaces the default template for the input&apos;s [`placeholder`](#option-placeholder).',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'multiple-label': {
+        description: 'Replaces the input&apos;s inner label that is displayed when at least one option is selected.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          values: {
+            description: 'the list of selected options',
+            types: [
+              'array<object>',
+            ],
+          },
+        },
+      },
+      'group-label': {
+        description: 'Replaces the default group header when [`groups`](#option-groups) is `true`.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          group: {
+            description: 'the group object',
+            types: [
+              'object',
+            ],
+          },
+        },
+      },
+      'before-list': {
+        description: 'Prepends the content of the slot to the option list.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after-list': {
+        description: 'Appends the content of the slot to the option list.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'no-results': {
+        description: 'Replaces the default template that is shown when the input has options, but the user search does not have any results. Can be also set without overriding the template with [`noResultsText`](#option-no-results-text) option.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'no-options': {
+        description: 'Replaces the default template that is shown when the input has no options. Can be also set without overriding the template with [`noOptionsText`](#option-no-options-text) option.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'caret': {
+        description: 'Replaces the small triangle displayed on the right of the input when [`caret`](#option-caret) is `true`.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'spinner': {
+        description: 'Replaces the spinner shown when async options are loading or [`loading`](#option-loading) is `true`.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'clear': {
+        description: 'Replaces the clear icon shown when the input has at least one selected options and [`canClear`](#option-can-clear) is `true`.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          clear: {
+            description: 'clears the input value',
+            types: [
+              'function',
+            ],
+          },
+        },
+      },
     },
   },
   ObjectElement: {
@@ -16332,14 +16484,6 @@ module.exports = {
         ],
         private: false,
       },
-      search: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
-        ],
-        private: false,
-      },
       options: {
         required: 'false',
         default: '{}',
@@ -16361,22 +16505,6 @@ module.exports = {
         default: 'false',
         types: [
           'boolean',
-        ],
-        private: false,
-      },
-      noOptionsText: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'string',
-        ],
-        private: false,
-      },
-      noResultsText: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'string',
         ],
         private: false,
       },
@@ -16417,6 +16545,217 @@ module.exports = {
         default: 'null',
         types: [
           'function',
+        ],
+        private: false,
+      },
+      labelProp: {
+        required: 'false',
+        default: 'label',
+        types: [
+        ],
+        private: false,
+      },
+      trackBy: {
+        required: 'false',
+        default: 'label',
+        types: [
+        ],
+        private: false,
+      },
+      valueProp: {
+        required: 'false',
+        default: 'value',
+        types: [
+        ],
+        private: false,
+      },
+      search: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      limit: {
+        required: 'false',
+        default: '-1',
+        types: [
+        ],
+        private: false,
+      },
+      noOptionsText: {
+        required: 'false',
+        default: 'The list is empty',
+        types: [
+        ],
+        private: false,
+      },
+      noResultsText: {
+        required: 'false',
+        default: 'No results found',
+        types: [
+        ],
+        private: false,
+      },
+      caret: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      loading: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      object: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      delay: {
+        required: 'false',
+        default: '-1',
+        types: [
+        ],
+        private: false,
+      },
+      minChars: {
+        required: 'false',
+        default: '0',
+        types: [
+        ],
+        private: false,
+      },
+      resolveOnLoad: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      filterResults: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      clearOnSearch: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      clearOnSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      canDeselect: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      canClear: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      max: {
+        required: 'false',
+        default: '-1',
+        types: [
+        ],
+        private: false,
+      },
+      showOptions: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      openDirection: {
+        required: 'false',
+        default: 'bottom',
+        types: [
+        ],
+        private: false,
+      },
+      strict: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      closeOnSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      autocomplete: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+        ],
+        private: false,
+      },
+      groups: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      groupLabel: {
+        required: 'false',
+        default: 'label',
+        types: [
+        ],
+        private: false,
+      },
+      groupOptions: {
+        required: 'false',
+        default: 'options',
+        types: [
+        ],
+        private: false,
+      },
+      groupHideEmpty: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      groupSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      inputType: {
+        required: 'false',
+        default: 'text',
+        types: [
         ],
         private: false,
       },
@@ -17159,12 +17498,157 @@ module.exports = {
           },
         },
       },
-      'before-list': {},
-      'after-list': {},
-      'single-label': {},
-      'no-results': {},
-      'no-options': {},
-      'option': {},
+      'option': {
+        description: 'Replaces the default option template.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          option: {
+            description: 'the option object',
+            types: [
+              'object',
+            ],
+          },
+          search: {
+            description: 'the current value of search input',
+            types: [
+              'string|null',
+            ],
+          },
+        },
+      },
+      'placeholder': {
+        description: 'Replaces the default template for the input&apos;s [`placeholder`](#option-placeholder).',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'single-label': {
+        description: 'Replaces the input&apos;s inner label that is displayed when an option is selected.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          value: {
+            description: 'the selected option',
+            types: [
+              'object',
+            ],
+          },
+        },
+      },
+      'group-label': {
+        description: 'Replaces the default group header when [`groups`](#option-groups) is `true`.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          group: {
+            description: 'the group object',
+            types: [
+              'object',
+            ],
+          },
+        },
+      },
+      'before-list': {
+        description: 'Prepends the content of the slot to the option list.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after-list': {
+        description: 'Appends the content of the slot to the option list.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'no-results': {
+        description: 'Replaces the default template that is shown when the input has options, but the user search does not have any results. Can be also set without overriding the template with [`noResultsText`](#option-no-results-text) option.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'no-options': {
+        description: 'Replaces the default template that is shown when the input has no options. Can be also set without overriding the template with [`noOptionsText`](#option-no-options-text) option.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'caret': {
+        description: 'Replaces the small triangle displayed on the right of the input when [`caret`](#option-caret) is `true`.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'spinner': {
+        description: 'Replaces the spinner shown when async options are loading or [`loading`](#option-loading) is `true`.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'clear': {
+        description: 'Replaces the clear icon shown when the input has at least one selected options and [`canClear`](#option-can-clear) is `true`.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          clear: {
+            description: 'clears the input value',
+            types: [
+              'function',
+            ],
+          },
+        },
+      },
     },
   },
   SliderElement: {
@@ -22271,22 +22755,6 @@ module.exports = {
         ],
         private: false,
       },
-      search: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
-        ],
-        private: false,
-      },
-      create: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
-        ],
-        private: false,
-      },
       options: {
         required: 'false',
         default: '{}',
@@ -22356,6 +22824,50 @@ module.exports = {
         default: 'null',
         types: [
           'function',
+        ],
+        private: false,
+      },
+      search: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      create: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      createTag: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      appendNewTag: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      addTagOn: {
+        required: 'false',
+        default: '["enter"]',
+        types: [
+        ],
+        private: false,
+      },
+      hideSelected: {
+        required: 'false',
+        default: 'true',
+        types: [
         ],
         private: false,
       },
@@ -23085,12 +23597,169 @@ module.exports = {
           },
         },
       },
-      'before-list': {},
-      'after-list': {},
-      'no-results': {},
-      'no-options': {},
-      'option': {},
-      'tag': {},
+      'tag': {
+        description: 'Replaces the default tag template.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          option: {
+            description: 'the option object',
+            types: [
+              'object',
+            ],
+          },
+          disabled: {
+            description: 'whether the option is disabled',
+            types: [
+              'boolean',
+            ],
+          },
+          handleTagRemove: {
+            description: 'removes the tag from the selected options',
+            types: [
+              'function',
+            ],
+          },
+        },
+      },
+      'option': {
+        description: 'Replaces the default option template.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          option: {
+            description: 'the option object',
+            types: [
+              'object',
+            ],
+          },
+          search: {
+            description: 'the current value of search input',
+            types: [
+              'string|null',
+            ],
+          },
+        },
+      },
+      'placeholder': {
+        description: 'Replaces the default template for the input&apos;s [`placeholder`](#option-placeholder).',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'group-label': {
+        description: 'Replaces the default group header when [`groups`](#option-groups) is `true`.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          group: {
+            description: 'the group object',
+            types: [
+              'object',
+            ],
+          },
+        },
+      },
+      'before-list': {
+        description: 'Prepends the content of the slot to the option list.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after-list': {
+        description: 'Appends the content of the slot to the option list.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'no-results': {
+        description: 'Replaces the default template that is shown when the input has options, but the user search does not have any results. Can be also set without overriding the template with [`noResultsText`](#option-no-results-text) option.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'no-options': {
+        description: 'Replaces the default template that is shown when the input has no options. Can be also set without overriding the template with [`noOptionsText`](#option-no-options-text) option.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'caret': {
+        description: 'Replaces the small triangle displayed on the right of the input when [`caret`](#option-caret) is `true`.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'spinner': {
+        description: 'Replaces the spinner shown when async options are loading or [`loading`](#option-loading) is `true`.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'clear': {
+        description: 'Replaces the clear icon shown when the input has at least one selected options and [`canClear`](#option-can-clear) is `true`.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          clear: {
+            description: 'clears the input value',
+            types: [
+              'function',
+            ],
+          },
+        },
+      },
     },
   },
   TextElement: {

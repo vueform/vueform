@@ -380,10 +380,18 @@ export default {
       components: components.components,
     }, {
       slots: [
-        'label', 'info', 'description', 'before', 'between',
-        'after', 'before-list', 'after-list', 'single-label',
-        'no-results', 'no-options', 'option', 'group-label', 
-        'placeholder', 'caret', 'spinner', 
+        'label', 'info', 'description', 'before', 'between', 'after',
+        'option',
+        'placeholder',
+        'single-label',
+        'group-label', 
+        'before-list',
+        'after-list',
+        'no-results',
+        'no-options',
+        'caret',
+        'spinner',
+        'clear',
       ]
     })
 
