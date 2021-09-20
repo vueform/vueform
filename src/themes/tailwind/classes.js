@@ -17,24 +17,33 @@ const text = {
 }
 
 const select = {
-  container: 'relative mx-auto w-full flex items-center justify-end box-border cursor-pointer border border-gray-300 form-rounded bg-white text-base leading-normal outline-none',
-  containerDisabled: '!cursor-default form-bg-disabled text-gray-400',
+  container: 'relative mx-auto w-full flex items-center justify-end box-border cursor-pointer form-border form-border-color form-rounded bg-white text-base leading-snug outline-none',
+  containerDisabled: 'cursor-default form-bg-disabled text-gray-400',
   containerOpen: 'form-rounded-b-none',
   containerOpenTop: 'form-rounded-t-none',
   containerActive: 'form-ring',
   search: 'w-full absolute inset-0 outline-none appearance-none box-border border-0 text-base font-sans bg-white form-rounded form-pl-input',
   placeholder: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input text-gray-400',
-  caret: 'mask-bg mask-form-caret bg-gray-500 w-2.5 h-4 py-px box-content form-mr-input relative z-10 flex-shrink-0 flex-grow-0 transition-transform transform',
-  caretOpen: 'rotate-180',
+  caret: 'mask-bg mask-form-caret bg-gray-500 w-2.5 h-4 py-px box-content form-mr-input relative z-10 flex-shrink-0 flex-grow-0 transition-transform transform pointer-events-none',
+  caretOpen: 'rotate-180 pointer-events-auto',
   clear: 'form-pr-input relative z-10 opacity-40 transition duration-300 flex-shrink-0 flex-grow-0 flex hover:opacity-80',
   clearIcon: 'mask-bg mask-form-remove bg-black w-2.5 h-4 py-px box-content inline-block',
   spinner: 'mask-bg mask-form-spinner form-bg-primary w-4 h-4 z-10 form-mr-input animate-spin flex-shrink-0 flex-grow-0',
-  dropdown: 'absolute max-h-40 -left-px -right-px bottom-0 transform translate-y-full border border-gray-300 -mt-px overflow-y-scroll z-50 bg-white flex flex-col form-rounded-b',
+  dropdown: 'max-h-60 absolute -left-px -right-px bottom-0 transform translate-y-full form-border form-border-color form-rounded-b -mt-px overflow-y-scroll z-50 bg-white flex flex-col',
   dropdownTop: '-translate-y-full top-px bottom-auto flex-col-reverse form-rounded-b-none form-rounded-t',
   dropdownHidden: 'hidden',
   options: 'flex flex-col p-0 m-0 list-none',
   optionsTop: 'flex-col-reverse',
-  option: 'flex items-center justify-start box-border text-left cursor-pointer text-base leading-normal form-px-input form-py-input-border',
+  group: 'p-0 m-0',
+  groupLabel: 'flex text-sm box-border items-center justify-start text-left py-1 px-3 font-semibold bg-gray-200 cursor-default leading-normal',
+  groupLabelPointable: 'cursor-pointer',
+  groupLabelPointed: 'bg-gray-300 text-gray-700',
+  groupLabelSelected: 'form-bg-primary-darker text-white',
+  groupLabelDisabled: 'bg-gray-100 text-gray-300 cursor-not-allowed',
+  groupLabelSelectedPointed: 'form-bg-primary-darker text-white opacity-90',
+  groupLabelSelectedDisabled: 'text-white form-bg-primary-darker bg-opacity-50 cursor-not-allowed',
+  groupOptions: 'p-0 m-0',
+  option: 'flex items-center justify-start box-border text-left cursor-pointer text-base leading-snug form-px-input form-py-input-border',
   optionPointed: 'text-gray-800 bg-gray-100',
   optionSelected: 'text-white form-bg-primary',
   optionDisabled: 'form-text-disabled cursor-not-allowed',
@@ -42,6 +51,8 @@ const select = {
   optionSelectedDisabled: 'text-white form-bg-primary bg-opacity-50 cursor-not-allowed',
   fakeInput: 'bg-transparent absolute left-0 right-0 -bottom-px w-full h-px border-0 p-0 appearance-none outline-none text-transparent',
   spacer: 'form-h-input-inner box-content',
+  noOptions: 'text-base leading-normal form-p-input text-gray-600 bg-white',
+  noResults: 'text-base leading-normal form-p-input text-gray-600 bg-white',
 }
 
 export default {
@@ -141,6 +152,7 @@ export default {
     inputWrapper: '',
     select: {
       ...select,
+    multipleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
     }
   },
   ObjectElement: {
@@ -167,6 +179,7 @@ export default {
     inputPlaceholder: 'absolute left-0 top-0 form-pt-input form-pl-input ml-px text-gray-400 pointer-events-none',
     select: {
       ...select,
+      singleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
     }
   },
   SliderElement: {
@@ -206,6 +219,10 @@ export default {
     select: {
       ...select,
       tags: 'flex-grow flex-shrink flex flex-wrap items-center mt-1 form-pl-input-y',
+      tag: 'form-bg-primary text-white text-sm font-semibold py-px pl-2 rounded mr-1 mb-1 flex items-center whitespace-nowrap',
+      tagDisabled: 'pr-2 opacity-50',
+      tagRemove: 'flex items-center justify-center p-1 mx-0.5 rounded-sm hover:bg-black hover:bg-opacity-10 group',
+      tagRemoveIcon: 'mask-bg mask-form-remove bg-current inline-block w-3 h-3',
       tagsSearchWrapper: 'inline-block relative mx-1 mb-1 flex-grow flex-shrink h-full',
       tagsSearch: 'absolute inset-0 border-0 outline-none appearance-none p-0 text-base font-sans box-border w-full',
       tagsSearchCopy: 'invisible whitespace-pre-wrap inline-block h-px',

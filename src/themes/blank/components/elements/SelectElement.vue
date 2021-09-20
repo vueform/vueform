@@ -46,77 +46,39 @@
         @close="handleClose"
         ref="input"
       >
-        <template #option="{ option, search }">
-          <MultiselectOption :option="option" :search="search">
-            <slot name="option" :option="option" :search="search">
-              <component :is="fieldSlots.option" :option="option" :search="search" />
-            </slot>
-          </MultiselectOption>
+        <template v-for="(slot) in [
+          'no-results', 'no-options', 'before-list', 'after-list',
+          'placeholder', 'group-label', 'caret', 'clear', 'spinner',
+          'option',
+        ]" v-slot:[slot]="props">
+          <slot :name="slot" v-bind="props" :el$="el$">
+            <component :is="fieldSlots[slot]" v-bind="props" :el$="el$" />
+          </slot>
         </template>
         
         <template v-if="fieldOptions.mode == 'single'" #singlelabel="{ value }">
-          <MultiselectSingleLabel :value="value">
-            <slot name="single-label" :value="value">
-              <component :is="fieldSlots['single-label']" :value="value" />
-            </slot>
-          </MultiselectSingleLabel>
+          <slot name="single-label" :value="value" :el$="el$">
+            <component :is="fieldSlots['single-label']" :value="value" :el$="el$" />
+          </slot>
         </template>
         
         <template v-if="fieldOptions.mode == 'multiple'" #multiplelabel="{ values }">
-          <MultiselectMultipleLabel :values="values">
-            <slot name="multiple-label" :values="values">
-              <component :is="fieldSlots['multiple-label']" :values="values" />
-            </slot>
-          </MultiselectMultipleLabel>
+          <slot name="multiple-label" :values="values" :el$="el$">
+            <component :is="fieldSlots['multiple-label']" :values="values" :el$="el$" />
+          </slot>
         </template>
 
         <template v-if="fieldOptions.mode == 'tags'" #tag="{ option, handleTagRemove, disabled }">
-          <MultiselectTag :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled">
-            <template #default="{ classes }">
-              <slot name="tag" :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled" :classes="classes">
-                <component :is="fieldSlots.tag" :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled" :classes="classes" />
-              </slot>
-            </template>
-          </MultiselectTag>
-        </template>
-
-        <template #noresults>
-          <MultiselectNoResults>
-            <slot name="no-results">
-              <component :is="fieldSlots['no-results']" />
-            </slot>
-          </MultiselectNoResults>
-        </template>
-
-        <template #nooptions>
-          <MultiselectNoOptions>
-            <slot name="no-options">
-              <component :is="fieldSlots['no-options']" />
-            </slot>
-          </MultiselectNoOptions>
-        </template>
-
-        <template #beforelist>
-          <MultiselectBeforeList>
-            <slot name="before-list">
-              <component v-if="fieldSlots['before-list']" :is="fieldSlots['before-list']" />
-            </slot>
-          </MultiselectBeforeList>
-        </template>
-
-        <template #afterlist>
-          <MultiselectAfterList>
-            <slot name="after-list">
-              <component v-if="fieldSlots['after-list']" :is="fieldSlots['after-list']" />
-            </slot>
-          </MultiselectAfterList>
+          <slot name="tag" :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled" :el$="el$">
+            <component :is="fieldSlots.tag" :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled" :el$="el$" />
+          </slot>
         </template>
 
       </Multiselect>
 
     </template>
 
-    <template v-for="(slot) in elementSlots" #[slot]><slot :name="slot"></slot></template>
+    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
   </component>
 </template>
 

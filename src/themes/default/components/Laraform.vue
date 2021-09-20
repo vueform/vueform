@@ -23,6 +23,16 @@
   :root {
     --vf-primary: #10B981;
 
+    --vf-primary-100: #D1FAE5;
+    --vf-primary-200: #A7F3D0;
+    --vf-primary-300: #6EE7B7;
+    --vf-primary-400: #34D399;
+    --vf-primary-500: #10B981;
+    --vf-primary-600: #059669;
+    --vf-primary-700: #047857;
+    --vf-primary-800: #065F46;
+    --vf-primary-900: #064E3B;
+
     --vf-error-bg: #FEE2E2;
     --vf-error-color: #EF4444;
     --vf-success-bg: #D1FAE5;
@@ -138,6 +148,12 @@
     --vf-select-ring-width: var(--vf-ring-width);
     --vf-select-ring-color: var(--vf-ring-color);
     --vf-select-placeholder-color: var(--vf-placeholder-color);
+    --vf-select-max-height: 10rem;
+
+    --vf-select-spinner-color: var(--vf-primary);
+    --vf-select-caret-color: var(--vf-gray-400);
+    --vf-select-clear-color: var(--vf-gray-400);
+    --vf-select-clear-color-hover: #000000;
       
     --vf-select-tag-font-size: 0.875rem;
     --vf-select-tag-line-height: 1.25rem;
@@ -157,27 +173,44 @@
     --vf-select-tag-remove-px: 0.25rem;
     --vf-select-tag-remove-my: 0rem;
     --vf-select-tag-remove-mx: 0.125rem;
-    --vf-select-tag-remove-bg-hover: #00000010;
 
     --vf-select-dropdown-bg: #FFFFFF;
     --vf-select-dropdown-border-color: var(--vf-border-color);
     --vf-select-dropdown-border-width: var(--vf-border-width);
     --vf-select-dropdown-radius: var(--vf-border-radius);
 
+    --vf-select-group-label-py: inherit;
+    --vf-select-group-label-px: inherit;
+    --vf-select-group-label-line-height: 1.375;
+    --vf-select-group-label-bg: var(--vf-gray-200);
+    --vf-select-group-label-color: var(--vf-gray-700);
+    --vf-select-group-label-bg-pointed: var(--vf-gray-300);
+    --vf-select-group-label-color-pointed: var(--vf-gray-700);
+    --vf-select-group-label-bg-disabled: var(--vf-gray-100);
+    --vf-select-group-label-color-disabled: var(--vf-gray-300);
+    --vf-select-group-label-bg-selected: var(--vf-primary-600);
+    --vf-select-group-label-color-selected: #FFFFFF;
+    --vf-select-group-label-bg-selected-pointed: var(--vf-primary-600);
+    --vf-select-group-label-color-selected-pointed: #FFFFFF;
+    --vf-select-group-label-opacity-selected-pointed: 0.85;
+    --vf-select-group-label-bg-selected-disabled: var(--vf-primary-600);
+    --vf-select-group-label-color-selected-disabled: #FFFFFF;
+    --vf-select-group-label-opacity-selected-disabled: 0.5;
+
     --vf-select-option-font-size: inherit;
     --vf-select-option-line-height: inherit;
     --vf-select-option-bg-pointed: var(--vf-gray-100);
-    --vf-select-option-bg-selected: var(--vf-primary);
-    --vf-select-option-bg-disabled: #FFFFFF;
-    --vf-select-option-bg-selected-pointed: var(--vf-primary);
-    --vf-select-option-bg-selected-disabled: var(--vf-primary);
     --vf-select-option-color-pointed: var(--vf-gray-800);
+    --vf-select-option-bg-selected: var(--vf-primary);
     --vf-select-option-color-selected: #FFFFFF;
+    --vf-select-option-bg-disabled: #FFFFFF;
     --vf-select-option-color-disabled: var(--vf-gray-300);
+    --vf-select-option-bg-selected-pointed: #var(--vf-primary);
     --vf-select-option-color-selected-pointed: #FFFFFF;
+    --vf-select-select-option-opacity-selected-pointed: 0.85;
+    --vf-select-option-bg-selected-disabled: var(--vf-primary);
     --vf-select-option-color-selected-disabled: #FFFFFF;
-    --vf-select-option-opacity-selected-pointed: 0.85;
-    --vf-select-option-opacity-selected-disabled: 0.5;
+    --vf-select-select-option-opacity-selected-disabled: 0.5;
     --vf-select-option-py: calc(var(--vf-input-py) + var(--vf-border-width));
     --vf-select-option-px: var(--vf-input-px);
 

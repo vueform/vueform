@@ -382,7 +382,8 @@ export default {
       slots: [
         'label', 'info', 'description', 'before', 'between',
         'after', 'before-list', 'after-list', 'single-label',
-        'no-results', 'no-options', 'option',
+        'no-results', 'no-options', 'option', 'group-label', 
+        'placeholder', 'caret', 'spinner', 
       ]
     })
 

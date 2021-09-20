@@ -24,5 +24,18 @@
 </script>
 
 <style lang="scss">
-  // Some styles are contained in Laraform.vue
+  // Some styles are contained in Laraform.vue & SelectElement.vue
+
+  .multiselect-multiple-label {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    background: transparent;
+    line-height: var(--vf-select-line-height);
+    padding-left: var(--vf-select-px);
+  }
 </style>

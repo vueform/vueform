@@ -1,6 +1,7 @@
 const svgToDataUri = require('mini-svg-data-uri')
 const Color = require('color')
 const plugin = require('tailwindcss/plugin')
+const hslToRgba = require('./src/utils/hslToRgba')
 
 const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
   const rules = [
@@ -86,9 +87,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
     '.form-col': {
       paddingLeft: theme('form.gutter'),
       paddingRight: theme('form.gutter'),
-    },
-    '.form-bg-primary-darker': {
-      backgroundColor: Color(theme('form.primary')).darken(0.2).toString(),
     },
     '.form-bg-disabled': {
       backgroundColor: theme('form.bgDisabled'),
@@ -672,7 +670,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
 
   const hoverable = {
     '.form-bg-primary-darker': {
-      backgroundColor: Color(theme('form.primary')).darken(0.1).toString()
+      backgroundColor: hslToRgba(Color(theme('form.primary')).darken(0.1).toString(), 'var(--tw-bg-opacity, 1)')
     },
   }
 
