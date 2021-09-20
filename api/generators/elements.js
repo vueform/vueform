@@ -95,7 +95,7 @@ class Generator {
           while(lines[l].match(/\]/) === null) {
             l++
 
-            slots[element] = slots[element].concat((lines[l].match(/([a-zA-Z]+)/g)||[]))
+            slots[element] = slots[element].concat((lines[l].match(/([a-zA-Z-]+)/g)||[]))
           }
         }
       })

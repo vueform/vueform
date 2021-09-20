@@ -1,5 +1,7 @@
 export default {
-  "addons": {},
+  "addons": {
+    "base": {}
+  },
   "asyncItems": {
     "base": {
       "computed": {
@@ -2206,7 +2208,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has a [`:label`](#label) or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed."
+          "description": "Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed."
         }
       }
     }
@@ -2782,38 +2784,6 @@ export default {
             "object"
           ],
           "description": "Slots related to the element's field. Eg. an \"elementSlot\" is something related to the element, like `label`, `description`, etc. A \"fieldSlot\" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`."
-        },
-        "elementSlotProps": {
-          "public": false,
-          "types": [
-            "object"
-          ],
-          "description": "Props for element slots."
-        }
-      }
-    },
-    "file": {
-      "computed": {
-        "elementSlots": {
-          "public": false,
-          "types": [
-            "object"
-          ],
-          "description": "Slots of the element."
-        },
-        "fieldSlots": {
-          "public": false,
-          "types": [
-            "object"
-          ],
-          "description": "Slots related to the element's field. Eg. an \"elementSlot\" is something related to the element, like `label`, `description`, etc. A \"fieldSlot\" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`."
-        },
-        "elementSlotProps": {
-          "public": false,
-          "types": [
-            "object"
-          ],
-          "description": "Props for element slots."
         }
       }
     }

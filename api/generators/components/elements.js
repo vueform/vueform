@@ -125,14 +125,13 @@ const addSlots = (contents, elementName) => {
 
   _.forEach(element.slots, (slotName) => {
     if (!slotsInfo[slotName]) {
-      contents += `      ${slotName}: {},\n`
+      contents += `      '${slotName}': {},\n`
       return
     }
 
+    const slotInfo = slotsInfo[slotName][elementName] || slotsInfo[slotName].default
 
-    const slotInfo = slotsInfo[slotName][elementKey] || slotsInfo[slotName].base
-
-    contents += `      ${slotName}: {\n`
+    contents += `      '${slotName}': {\n`
 
     if (slotInfo.description) {
       contents += `        description: '${slotInfo.description.split('').map(c=>c==='\''?'&apos;':c).join('')}',\n`

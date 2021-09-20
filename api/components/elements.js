@@ -246,7 +246,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -540,7 +540,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -606,13 +606,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -919,56 +912,66 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -1192,7 +1195,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       buttonLabel: {
         required: 'false',
@@ -1423,7 +1426,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -1474,13 +1477,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       visible: {
@@ -1546,55 +1542,77 @@ module.exports = {
     events: {
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'default': {
+        description: 'Renders the button&apos;s label.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -1868,7 +1886,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -2152,7 +2170,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -2210,13 +2228,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -2513,57 +2524,77 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'default': {
+        description: 'Renders a label for the checkbox.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -2837,7 +2868,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -3050,7 +3081,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -3108,13 +3139,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -3465,64 +3489,107 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      checkbox: {},
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'checkbox': {
+        description: 'Replaces the template for the checkbox field. Checkboxes are rendered by the [`CheckboxgroupCheckbox`](checkboxgroup-checkbox) component which has a default checkbox template. If the this slot is defined, the default template in [`CheckboxgroupCheckbox`](checkboxgroup-checkbox) component will be overridden with the content of this slot.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          id: {
+            description: 'the `id` attribute of the checkbox field used by the default template',
+            types: [
+              'string',
+            ],
+          },
+          name: {
+            description: 'the `name` attribute of the checkbox field used by the default template',
+            types: [
+              'string',
+            ],
+          },
+          isDisabled: {
+            description: 'whether the checkbox is disabled',
+            types: [
+              'boolean',
+            ],
+          },
+          classes: {
+            description: 'an object containing the classes of [`CheckboxgroupCheckbox`](checkboxgroup-checkbox) component',
+            types: [
+              'object',
+            ],
+          },
+        },
+      },
     },
   },
   DateElement: {
@@ -3790,7 +3857,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -4182,7 +4249,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -4240,13 +4307,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -4547,79 +4607,88 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonBefore: {
-        description: 'The addon to be rendered before the field',
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonAfter: {
-        description: 'The addon to be rendered after the field',
+      'addon-before': {
+        description: 'Prepends an addon to the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'addon-after': {
+        description: 'Appends an addon to the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -4893,7 +4962,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       debounce: {
         required: 'false',
@@ -5219,7 +5288,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -5277,13 +5346,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -5574,79 +5636,88 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonBefore: {
-        description: 'The addon to be rendered before the field',
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonAfter: {
-        description: 'The addon to be rendered after the field',
+      'addon-before': {
+        description: 'Prepends an addon to the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'addon-after': {
+        description: 'Appends an addon to the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -5920,7 +5991,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -6452,7 +6523,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -6514,13 +6585,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -6930,64 +6994,72 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      preview: {},
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
     },
   },
   GroupElement: {
@@ -7237,7 +7309,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -7408,7 +7480,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -7466,13 +7538,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       value: {
@@ -7662,56 +7727,66 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -7859,7 +7934,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -8624,7 +8699,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -9025,7 +9100,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -9104,13 +9179,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       isSortable: {
@@ -9570,57 +9638,66 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -9894,7 +9971,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -10227,7 +10304,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -10286,13 +10363,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -10608,79 +10678,88 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonBefore: {
-        description: 'The addon to be rendered before the field',
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonAfter: {
-        description: 'The addon to be rendered after the field',
+      'addon-before': {
+        description: 'Prepends an addon to the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'addon-after': {
+        description: 'Appends an addon to the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -10954,7 +11033,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -11381,7 +11460,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -11474,13 +11553,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       isSortable: {
@@ -11973,57 +12045,66 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -12297,7 +12378,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -12613,7 +12694,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -12671,13 +12752,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -13079,69 +13153,78 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      beforelist: {},
-      afterlist: {},
-      multiplelabel: {},
-      noresults: {},
-      nooptions: {},
-      option: {},
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'before-list': {},
+      'after-list': {},
+      'multiple-label': {},
+      'no-results': {},
+      'no-options': {},
+      'option': {},
     },
   },
   ObjectElement: {
@@ -13391,7 +13474,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -13608,7 +13691,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -13666,13 +13749,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -13931,56 +14007,66 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -14254,7 +14340,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -14535,7 +14621,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -14593,13 +14679,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -14896,57 +14975,77 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'default': {
+        description: 'Renders a label for the radio.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -15220,7 +15319,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -15469,7 +15568,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -15527,13 +15626,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -15810,64 +15902,107 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      radio: {},
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'radio': {
+        description: 'Replaces the template for the radio input. Radio inputs are rendered by the [`RadiogroupRadio`](radiogroup-radio) component which has a default radio template. If the this slot is defined, the default template in [`RadiogroupRadio`](radiogroup-radio) component will be overridden with the content of this slot.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          id: {
+            description: 'the `id` attribute of the radio field used by the default template',
+            types: [
+              'string',
+            ],
+          },
+          name: {
+            description: 'the `name` attribute of the radio field used by the default template',
+            types: [
+              'string',
+            ],
+          },
+          isDisabled: {
+            description: 'whether the radio is disabled',
+            types: [
+              'boolean',
+            ],
+          },
+          classes: {
+            description: 'an object containing the classes of [`RadiogroupRadio`](radiogroup-radio) component',
+            types: [
+              'object',
+            ],
+          },
+        },
+      },
     },
   },
   SelectElement: {
@@ -16135,7 +16270,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -16519,7 +16654,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -16577,13 +16712,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -16965,69 +17093,78 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      beforelist: {},
-      afterlist: {},
-      singlelabel: {},
-      noresults: {},
-      nooptions: {},
-      option: {},
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'before-list': {},
+      'after-list': {},
+      'single-label': {},
+      'no-results': {},
+      'no-options': {},
+      'option': {},
     },
   },
   SliderElement: {
@@ -17295,7 +17432,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -17631,7 +17768,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -17689,13 +17826,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -17996,57 +18126,66 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -18270,7 +18409,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       wrap: {
         required: 'false',
@@ -18420,7 +18559,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -18471,13 +18610,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       isHtml: {
@@ -18585,55 +18717,77 @@ module.exports = {
     events: {
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'default': {
+        description: 'Renders the content of the static element.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -18907,7 +19061,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -19205,7 +19359,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       language: {
@@ -19277,13 +19431,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -19603,79 +19750,88 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonBefore: {
-        description: 'The addon to be rendered before the field',
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonAfter: {
-        description: 'The addon to be rendered after the field',
+      'addon-before': {
+        description: 'Prepends an addon to the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'addon-after': {
+        description: 'Appends an addon to the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -19949,7 +20105,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -20246,7 +20402,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       language: {
@@ -20318,13 +20474,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -20649,79 +20798,88 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonBefore: {
-        description: 'The addon to be rendered before the field',
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonAfter: {
-        description: 'The addon to be rendered after the field',
+      'addon-before': {
+        description: 'Prepends an addon to the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'addon-after': {
+        description: 'Appends an addon to the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -20995,7 +21153,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -21291,7 +21449,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       language: {
@@ -21363,13 +21521,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       trixEndpoint: {
@@ -21735,57 +21886,66 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -22059,7 +22219,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -22383,7 +22543,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -22441,13 +22601,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -22866,69 +23019,78 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      beforelist: {},
-      afterlist: {},
-      noresults: {},
-      nooptions: {},
-      option: {},
-      tag: {},
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'before-list': {},
+      'after-list': {},
+      'no-results': {},
+      'no-options': {},
+      'option': {},
+      'tag': {},
     },
   },
   TextElement: {
@@ -23196,7 +23358,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -23507,7 +23669,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -23565,13 +23727,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -23872,79 +24027,88 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonBefore: {
-        description: 'The addon to be rendered before the field',
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonAfter: {
-        description: 'The addon to be rendered after the field',
+      'addon-before': {
+        description: 'Prepends an addon to the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'addon-after': {
+        description: 'Appends an addon to the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -24218,7 +24382,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -24528,7 +24692,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -24586,13 +24750,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -24898,79 +25055,88 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonBefore: {
-        description: 'The addon to be rendered before the field',
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      addonAfter: {
-        description: 'The addon to be rendered after the field',
+      'addon-before': {
+        description: 'Prepends an addon to the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'addon-after': {
+        description: 'Appends an addon to the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -25244,7 +25410,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -25544,7 +25710,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -25602,13 +25768,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       dirty: {
@@ -25919,57 +26078,77 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'default': {
+        description: 'Renders a label for the toggle.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
@@ -26243,7 +26422,7 @@ module.exports = {
         types: [
           'string',
         ],
-        private: false,
+        private: true,
       },
       default: {
         required: 'false',
@@ -26552,7 +26731,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#label) or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -26610,13 +26789,6 @@ module.exports = {
           'object',
         ],
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
-        private: true,
-      },
-      elementSlotProps: {
-        types: [
-          'object',
-        ],
-        description: 'Props for element slots.',
         private: true,
       },
       trixEndpoint: {
@@ -26963,57 +27135,66 @@ module.exports = {
       },
     },
     slots: {
-      label: {
-        description: 'The label of the element',
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      description: {
-        description: 'The description of the element',
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      error: {},
-      message: {},
-      before: {
-        description: 'Text to be rendered before the field',
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      between: {
-        description: 'Text to be rendered after the field and before description & error',
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
           },
         },
       },
-      after: {
-        description: 'Text to be rendered the description & error',
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
         props: {
           el$: {
-            description: 'The element&apos;s component',
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
             types: [
               'component',
             ],
