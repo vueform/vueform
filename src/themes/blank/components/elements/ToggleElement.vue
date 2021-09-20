@@ -16,12 +16,12 @@
         />
 
         <span v-if="text" :class="classes.text" v-html="text"></span>
-        <span v-else :class="classes.text"><slot><component :is="fieldSlots.default" /></slot></span>
+        <span v-else :class="classes.text"><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$" /></slot></span>
       </div>
 
     </template>
 
-    <template v-for="(slot) in elementSlots" v-slot:[slot]><slot :name="slot"></slot></template>
+    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
   </component>
 </template>
 

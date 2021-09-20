@@ -84,16 +84,6 @@ export default {
     const isSlot = computed(() => {
       return !!(el$.value.slots?.[`addon-${type.value}`] || el$.value.$slots?.[`addon-${type.value}`] || (context.expose === undefined && el$.value.$scopedSlots?.[`addon-${type.value}`]))
     })
-  
-    /**
-     * Returns the slot component if defined in [`slots`](#option-slots) object.
-     * 
-     * @type {component}
-     * @private
-     */
-    const slotComponent = computed(() => {
-      return el$.value.slots?.[`addon-${type.value}`] || undefined
-    })
 
     return {
       el$,
@@ -106,7 +96,6 @@ export default {
       addon,
       isAddonComponent,
       isSlot,
-      slotComponent,
     }
   },
 }

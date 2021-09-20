@@ -29,7 +29,7 @@
           :class="classes.button"
           :disabled="isDisabled"
           @click.prevent="handleClick" 
-        ><slot><component :is="fieldSlots.default" /></slot></button>
+        ><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$" /></slot></button>
 
       </template>
 
@@ -59,12 +59,12 @@
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           @click="handleClick"
-        ><slot><component :is="fieldSlots.default" /></slot></a>
+        ><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$" /></slot></a>
       </template>
 
     </template>
 
-    <template v-for="(slot) in elementSlots" v-slot:[slot]><slot :name="slot"></slot></template>
+    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
   </component>
 </template>
 

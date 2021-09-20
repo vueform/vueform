@@ -61,16 +61,6 @@ export default {
     const isSlot = computed(() => {
       return !!(el$.value.slots?.label || el$.value.$slots?.label || (context.expose === undefined && el$.value.$scopedSlots?.label))
     })
-  
-    /**
-     * Returns the slot component if defined in [`slots`](#option-slots) object.
-     * 
-     * @type {component}
-     * @private
-     */
-    const slotComponent = computed(() => {
-      return el$.value.slots?.label || undefined
-    })
 
     return {
       el$,
@@ -85,7 +75,6 @@ export default {
       name,
       hasLabel,
       isSlot,
-      slotComponent,
     }
   },
 }

@@ -1,79 +1,137 @@
 export default {
-  label: {
-    base: {
+  'label': {
+    default: {
       props: {
         el$: {
-          description: 'The element\'s component',
+          description: 'the element\'s component',
           types: ['component'],
         }
       },
-      description: 'The label of the element',
+      description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
     }
   },
-  description: {
-    base: {
+  'info': {
+    default: {
       props: {
         el$: {
-          description: 'The element\'s component',
+          description: 'the element\'s component',
           types: ['component'],
         }
       },
-      description: 'The description of the element',
+      description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
     }
   },
-  before: {
-    base: {
+  'description': {
+    default: {
       props: {
         el$: {
-          description: 'The element\'s component',
+          description: 'the element\'s component',
           types: ['component'],
         }
       },
-      description: 'Text to be rendered before the field',
+      description: 'Renders description for the element in [`ElementDescription`](element-description) component',
     }
   },
-  between: {
-    base: {
+  'before': {
+    default: {
       props: {
         el$: {
-          description: 'The element\'s component',
+          description: 'the element\'s component',
           types: ['component'],
         }
       },
-      description: 'Text to be rendered after the field and before description & error',
+      description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
     }
   },
-  after: {
-    base: {
+  'between': {
+    default: {
       props: {
         el$: {
-          description: 'The element\'s component',
+          description: 'the element\'s component',
           types: ['component'],
         }
       },
-      description: 'Text to be rendered the description & error',
+      description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
     }
   },
-  addonBefore: {
-    base: {
+  'after': {
+    default: {
       props: {
         el$: {
-          description: 'The element\'s component',
+          description: 'the element\'s component',
           types: ['component'],
         }
       },
-      description: 'The addon to be rendered before the field',
+      description: 'Renders an [`ElementText`](element-text) component after the description and error.',
     }
   },
-  addonAfter: {
-    base: {
+  'addon-before': {
+    default: {
       props: {
         el$: {
-          description: 'The element\'s component',
+          description: 'the element\'s component',
           types: ['component'],
         }
       },
-      description: 'The addon to be rendered after the field',
+      description: 'Prepends an addon to the <%field%>.',
     }
+  },
+  'addon-after': {
+    default: {
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        }
+      },
+      description: 'Appends an addon to the <%field%>.',
+    }
+  },
+  'default': {
+    CheckboxElement: {
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        }
+      },
+      description: 'Renders a label for the checkbox.',
+    },
+    RadioElement: {
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        }
+      },
+      description: 'Renders a label for the radio.',
+    },
+    ToggleElement: {
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        }
+      },
+      description: 'Renders a label for the toggle.',
+    },
+    ButtonElement: {
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        }
+      },
+      description: 'Renders the button\'s label.',
+    },
+    StaticElement: {
+      props: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component'],
+        }
+      },
+      description: 'Renders the content of the static element.',
+    },
   },
 }

@@ -10,7 +10,7 @@
   </div>
 
   <div v-else-if="isSlot" :class="classes.container">
-    <div :class="classes.wrapper"><slot><component :is="slotComponent" /></slot></div>
+    <div :class="classes.wrapper"><slot></slot></div>
   </div>
 </template>
 

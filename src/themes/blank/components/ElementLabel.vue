@@ -8,7 +8,7 @@
     <ElementInfo><slot name="info"></slot></ElementInfo>
   </label>
   <label v-else-if="isSlot" :class="classes.container" :for="name">
-    <slot><component :is="slotComponent" /></slot>
+    <slot></slot>
     <ElementInfo><slot name="info"></slot></ElementInfo>
   </label>
 </template>
