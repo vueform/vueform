@@ -126,6 +126,10 @@ export default {
       type: [Function],
       default: null,
     },
+    multipleLabel: {
+      type: Function,
+      required: false,
+    },
   },
   setup(props, context) {
     const form$ = useForm$(props, context)

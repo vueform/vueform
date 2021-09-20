@@ -77,16 +77,6 @@ export default {
       type: [Object, Array, Function],
       default: () => ({})
     },
-    search: {
-      required: false,
-      type: [Boolean],
-      default: false
-    },
-    create: {
-      required: false,
-      type: [Boolean],
-      default: false
-    },
     options: {
       required: false,
       type: [Object],
@@ -131,6 +121,36 @@ export default {
       required: false,
       type: [Function],
       default: null,
+    },
+    search: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    create: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    createTag: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    appendNewTag: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    addTagOn: {
+      type: Array,
+      required: false,
+      default: () => (['enter']),
+    },
+    hideSelected: {
+      type: Boolean,
+      required: false,
+      default: true,
     },
   },
   setup(props, context) {

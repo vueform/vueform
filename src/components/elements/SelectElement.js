@@ -81,11 +81,6 @@ export default {
       type: [Boolean],
       default: true
     },
-    search: {
-      required: false,
-      type: [Boolean],
-      default: false
-    },
     options: {
       required: false,
       type: [Object],
@@ -100,16 +95,6 @@ export default {
       required: false,
       type: [Boolean],
       default: false
-    },
-    noOptionsText: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    noResultsText: {
-      required: false,
-      type: [String],
-      default: null
     },
     onSelect: {
       required: false,
@@ -136,6 +121,155 @@ export default {
       type: [Function],
       default: null,
     },
+    labelProp: {
+      type: String,
+      required: false,
+      default: 'label',
+    },
+    trackBy: {
+      type: String,
+      required: false,
+      default: 'label',
+    },
+    valueProp: {
+      type: String,
+      required: false,
+      default: 'value',
+    },
+    search: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    limit: {
+      type: Number,
+      required: false,
+      default: -1,
+    },
+    noOptionsText: {
+      type: String,
+      required: false,
+      default: 'The list is empty',
+    },
+    noResultsText: {
+      type: String,
+      required: false,
+      default: 'No results found',
+    },
+    caret: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    loading: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    object: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    delay: {
+      type: Number,
+      required: false,
+      default: -1,
+    },
+    minChars: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    resolveOnLoad: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    filterResults: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    clearOnSearch: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    clearOnSelect: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    canDeselect: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    canClear: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    max: {
+      type: Number,
+      required: false,
+      default: -1,
+    },
+    showOptions: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    openDirection: {
+      type: String,
+      required: false,
+      default: 'bottom',
+    },
+    strict: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    closeOnSelect: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    autocomplete: {
+      type: String,
+      required: false,
+    },
+    groups: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    groupLabel: {
+      type: String,
+      required: false,
+      default: 'label',
+    },
+    groupOptions: {
+      type: String,
+      required: false,
+      default: 'options',
+    },
+    groupHideEmpty: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    groupSelect: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    inputType: {
+      type: String,
+      required: false,
+      default: 'text',
+    }
   },
   setup(props, context) {
     const form$ = useForm$(props, context)
