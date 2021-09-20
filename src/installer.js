@@ -70,12 +70,6 @@ import CheckboxgroupCheckbox from './components/elements/partials/CheckboxgroupC
 import FilePreview from './components/elements/partials/FilePreview'
 import ImagePreview from './components/elements/partials/ImagePreview'
 import GalleryPreview from './components/elements/partials/GalleryPreview'
-import MultiselectNoOptions from './components/elements/partials/MultiselectNoOptions'
-import MultiselectNoResults from './components/elements/partials/MultiselectNoResults'
-import MultiselectOption from './components/elements/partials/MultiselectOption'
-import MultiselectMultipleLabel from './components/elements/partials/MultiselectMultipleLabel'
-import MultiselectSingleLabel from './components/elements/partials/MultiselectSingleLabel'
-import MultiselectTag from './components/elements/partials/MultiselectTag'
 import RadiogroupRadio from './components/elements/partials/RadiogroupRadio'
 
 const elements = {
@@ -141,12 +135,6 @@ const components = {
   FilePreview,
   ImagePreview,
   GalleryPreview,
-  MultiselectNoOptions,
-  MultiselectNoResults,
-  MultiselectOption,
-  MultiselectMultipleLabel,
-  MultiselectSingleLabel,
-  MultiselectTag,
   RadiogroupRadio,
 }
 
