@@ -282,12 +282,12 @@ const base = function (props, context, dependencies)
       
       update(response.data)
     }
-    catch (e) {
+    catch (error) {
       progress.value = 0
 
       if (!axios.value.isCancel(e)) {
         hasUploadError.value = true
-        handleError(form$.value.__(`laraform.elements.${type.value.toLowerCase()}.uploadError`, { filename: filename.value }), e)
+        handleError('upload', error)
       }
 
       throw new Error(e)
@@ -330,8 +330,8 @@ const base = function (props, context, dependencies)
           })
         )
       }
-    } catch (e) {
-      handleError(form$.value.__(`laraform.elements.file.removeError`), e)
+    } catch (error) {
+      handleError('remove', error)
       return
     } finally {
       removing.value = false

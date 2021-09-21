@@ -4,6 +4,7 @@ import useLabel from './../composables/useLabel'
 
 export default {
   name: 'ElementLabel',
+  slots: ['default', 'info'],
   setup(props, context)
   {
     // ============ DEPENDENCIES ============

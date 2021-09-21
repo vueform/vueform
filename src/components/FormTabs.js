@@ -6,7 +6,7 @@ import normalize from './../utils/normalize'
 
 export default {
   name: 'FormTabs',
-  emits: ['change'],
+  emits: ['select'],
   slots: ['default'],
   setup(props, context)
   {  
@@ -30,7 +30,7 @@ export default {
       off,
       fire
     } = useEvents(props, context, { form$ }, {
-      events: ['change']
+      events: ['select']
     })
 
     // ================ DATA ================
@@ -178,7 +178,7 @@ export default {
         tab$.deactivate()
       })
 
-      fire('change', tab$, curr$)
+      fire('select', tab$, curr$)
     }
 
     /**

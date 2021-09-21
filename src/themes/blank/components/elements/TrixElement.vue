@@ -12,7 +12,8 @@
         :disabled="isDisabled"
         :class="classes.input"
         @input="handleInput"
-        @alert="handleError"
+        @alert="handleAlert"
+        @error="handleError"
         ref="input"
       />
 

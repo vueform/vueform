@@ -10,6 +10,7 @@ import normalize from './../utils/normalize'
 export default {
   name: 'FormTab',
   emits: ['active', 'inactive'],
+  slots: ['default'],
   props: {
     /**
      * Name of tab within [tabs](reference/frontend-form#prop-tabs) object.

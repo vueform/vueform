@@ -37,8 +37,8 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'SelectElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'select', 'deselect', 'searchChange', 'open', 'close'],
-  slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after', 'beforelist', 'afterlist', 'singlelabel', 'noresults', 'nooptions', 'option'],
+  emits: ['change', 'select', 'deselect', 'search-change', 'open', 'close', 'clear', 'paste'],
+  // slots: ['label', 'description', 'error', 'message', 'before', 'between', 'after', 'beforelist', 'afterlist', 'singlelabel', 'noresults', 'nooptions', 'option'],
   props: {
     type: {
       required: false,
@@ -289,7 +289,7 @@ export default {
       form$: form$.form$,
     }, {
       events: [
-        'change', 'select', 'deselect', 'searchChange',
+        'change', 'select', 'deselect', 'search-change',
         'open', 'close',
       ],
     })

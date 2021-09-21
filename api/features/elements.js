@@ -2028,6 +2028,26 @@ export default {
       }
     }
   },
+  "handleAlert": {
+    "base": {
+      "methods": {
+        "handleAlert": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles `alert` event.",
+          "params": {
+            "message": {
+              "types": [
+                "string"
+              ],
+              "required": true,
+              "description": "alert message"
+            }
+          }
+        }
+      }
+    }
+  },
   "handleChange": {
     "base": {
       "methods": {
@@ -2056,19 +2076,12 @@ export default {
           "returns": "void",
           "description": "Handles `error` event.",
           "params": {
-            "message": {
+            "error": {
               "types": [
-                "string"
+                "Error"
               ],
               "required": true,
-              "description": "error message"
-            },
-            "e": {
-              "types": [
-                "Event"
-              ],
-              "required": true,
-              "description": ""
+              "description": "the error object"
             }
           }
         }
@@ -2129,7 +2142,7 @@ export default {
         "handleSearchChange": {
           "public": false,
           "returns": "void",
-          "description": "Handles `searchChange` event.",
+          "description": "Handles `search-change` event.",
           "params": {
             "searchQuery": {
               "types": [
@@ -2149,6 +2162,25 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Handles `close` event."
+        },
+        "handleClear": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles `clear` event."
+        },
+        "handlePaste": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles `paste` event.",
+          "params": {
+            "e": {
+              "types": [
+                "Event"
+              ],
+              "required": false,
+              "description": "event"
+            }
+          }
         },
         "handleTag": {
           "public": false,

@@ -375,7 +375,7 @@ const list = function(props, context, dependencies, options)
 
     let index = value.value.length - 1
 
-    fire('add', newValue, index, value.value)
+    fire('add', index, newValue, value.value)
     
     return index
   }

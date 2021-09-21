@@ -893,17 +893,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -2505,17 +2505,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -3470,17 +3470,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -4588,17 +4588,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -5617,17 +5617,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -6866,19 +6866,12 @@ module.exports = {
         description: 'Handles `error` event.',
         returns: 'void',
         params: {
-          message: {
+          error: {
             types: [
-              'string',
+              'Error',
             ],
             required: 'true',
-            description: 'error message',
-          },
-          e: {
-            types: [
-              'Event',
-            ],
-            required: 'true',
-            description: '',
+            description: 'the error object',
           },
         },
         private: true,
@@ -6941,53 +6934,39 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
           },
        },
       },
-      remove: {
-        description: 'Remove event',
-        params: {
-          index: {
-            description: 'Index',
-            types: [
-              'number',
-            ]
-          },
-          value: {
-            description: 'Value',
-            types: [
-              'array',
-            ]
-          },
-       },
+      'remove': {
+        description: 'Triggered after the file is removed.',
       },
-      error: {
-        description: 'Error event',
+      'error': {
+        description: 'Triggered when temporary upload or file remove throws an error.',
         params: {
-          message: {
-            description: 'Message',
+          type: {
+            description: 'the type of the error, possible values: `&apos;upload|remove&apos;`',
             types: [
               'string',
             ]
           },
-          e: {
-            description: 'Event',
+          error: {
+            description: 'the Error object',
             types: [
-              'Event',
+              'Error',
             ]
           },
        },
@@ -7708,17 +7687,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -8413,17 +8392,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -9568,68 +9547,68 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
           },
        },
       },
-      add: {
-        description: 'Add event',
+      'add': {
+        description: 'Triggered when a new item is added to the list.',
         params: {
+          index: {
+            description: 'the index of the added item',
+            types: [
+              'number',
+            ]
+          },
           addedValue: {
-            description: 'Added value',
+            description: 'the added value',
             types: [
               'any',
             ]
           },
-          index: {
-            description: 'Index',
-            types: [
-              'number',
-            ]
-          },
-          value: {
-            description: 'Value',
+          newValue: {
+            description: 'the element value after the item is added',
             types: [
               'array',
             ]
           },
        },
       },
-      remove: {
-        description: 'Remove event',
+      'remove': {
+        description: 'Triggered when a new item is added to the list.',
         params: {
           index: {
-            description: 'Index',
+            description: 'the index of the removed item',
             types: [
               'number',
             ]
           },
           value: {
-            description: 'Value',
+            description: 'the element&apos;s value after the item is removed',
             types: [
               'array',
             ]
           },
        },
       },
-      sort: {
-        description: 'Sort event',
+      'sort': {
+        description: 'Triggered when items are being sorted by the user, when [`sort: true`](#option-sort).',
         params: {
           value: {
-            description: 'Value',
+            description: 'the element&apos;s value after sorting',
             types: [
               'array',
             ]
@@ -10659,17 +10638,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -11975,68 +11954,68 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
           },
        },
       },
-      add: {
-        description: 'Add event',
+      'add': {
+        description: 'Triggered when a new item is added to the list.',
         params: {
+          index: {
+            description: 'the index of the added item',
+            types: [
+              'number',
+            ]
+          },
           addedValue: {
-            description: 'Added value',
+            description: 'the added value',
             types: [
-              'any',
-            ]
-          },
-          index: {
-            description: 'Index',
-            types: [
-              'number',
+              'File|object|string',
             ]
           },
           value: {
-            description: 'Value',
+            description: 'the element&apos;s value after the item is added',
             types: [
               'array',
             ]
           },
        },
       },
-      remove: {
-        description: 'Remove event',
+      'remove': {
+        description: 'Triggered when a new item is added to the list.',
         params: {
           index: {
-            description: 'Index',
+            description: 'the index of the removed item',
             types: [
               'number',
             ]
           },
           value: {
-            description: 'Value',
+            description: 'the element&apos;s value after the item is removed',
             types: [
               'array',
             ]
           },
        },
       },
-      sort: {
-        description: 'Sort event',
+      'sort': {
+        description: 'Triggered when items are being sorted by the user, when [`sort: true`](#option-sort).',
         params: {
           value: {
-            description: 'Value',
+            description: 'the element&apos;s value after sorting',
             types: [
               'array',
             ]
@@ -13001,7 +12980,7 @@ module.exports = {
         private: true,
       },
       handleSearchChange: {
-        description: 'Handles `searchChange` event.',
+        description: 'Handles `search-change` event.',
         returns: 'void',
         params: {
           searchQuery: {
@@ -13022,6 +13001,25 @@ module.exports = {
       handleClose: {
         description: 'Handles `close` event.',
         returns: 'void',
+        private: true,
+      },
+      handleClear: {
+        description: 'Handles `clear` event.',
+        returns: 'void',
+        private: true,
+      },
+      handlePaste: {
+        description: 'Handles `paste` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'false',
+            description: 'event',
+          },
+        },
         private: true,
       },
       handleTag: {
@@ -13126,37 +13124,61 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
           },
        },
       },
-      select: {
-        description: 'Select event',
+      'select': {
+        description: 'Triggered when an option is selected, using [`native: false`](#option-native).',
+        params: {
+          option: {
+            description: 'the selected option',
+            types: [
+              'object',
+            ]
+          },
+       },
       },
-      deselect: {
-        description: 'Select event',
+      'deselect': {
+        description: 'Triggered when an option is deselected, using [`native: false`](#option-native).',
+        params: {
+          option: {
+            description: 'the deselected option',
+            types: [
+              'object',
+            ]
+          },
+       },
       },
-      searchChange: {
-        description: 'searchChange event',
+      'search-change': {
+        description: 'Triggered when the search query changes, using [`search: true`](#option-search).',
+        params: {
+          searchQuery: {
+            description: 'the search value',
+            types: [
+              'string|null',
+            ]
+          },
+       },
       },
-      open: {
-        description: 'Open event',
+      'open': {
+        description: 'Triggered when the dropdown list is opened, using [`native: false`](#option-native).',
       },
-      close: {
-        description: 'Close event',
+      'close': {
+        description: 'Triggered when the dropdown list is closed, using [`native: false`](#option-native).',
       },
     },
     slots: {
@@ -14140,17 +14162,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -15108,17 +15130,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -16035,17 +16057,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -17303,7 +17325,7 @@ module.exports = {
         private: true,
       },
       handleSearchChange: {
-        description: 'Handles `searchChange` event.',
+        description: 'Handles `search-change` event.',
         returns: 'void',
         params: {
           searchQuery: {
@@ -17324,6 +17346,25 @@ module.exports = {
       handleClose: {
         description: 'Handles `close` event.',
         returns: 'void',
+        private: true,
+      },
+      handleClear: {
+        description: 'Handles `clear` event.',
+        returns: 'void',
+        private: true,
+      },
+      handlePaste: {
+        description: 'Handles `paste` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'false',
+            description: 'event',
+          },
+        },
         private: true,
       },
       handleTag: {
@@ -17398,37 +17439,61 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
           },
        },
       },
-      select: {
-        description: 'Select event',
+      'select': {
+        description: 'Triggered when an option is selected, using [`native: false`](#option-native).',
+        params: {
+          option: {
+            description: 'the selected option',
+            types: [
+              'object',
+            ]
+          },
+       },
       },
-      deselect: {
-        description: 'Select event',
+      'deselect': {
+        description: 'Triggered when an option is deselected, using [`native: false`](#option-native).',
+        params: {
+          option: {
+            description: 'the deselected option',
+            types: [
+              'object',
+            ]
+          },
+       },
       },
-      searchChange: {
-        description: 'searchChange event',
+      'search-change': {
+        description: 'Triggered when the search query changes, using [`search: true`](#option-search).',
+        params: {
+          searchQuery: {
+            description: 'the search value',
+            types: [
+              'string|null',
+            ]
+          },
+       },
       },
-      open: {
-        description: 'Open event',
+      'open': {
+        description: 'Triggered when the dropdown list is opened, using [`native: false`](#option-native).',
       },
-      close: {
-        description: 'Close event',
+      'close': {
+        description: 'Triggered when the dropdown list is closed, using [`native: false`](#option-native).',
       },
     },
     slots: {
@@ -18591,17 +18656,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -20215,17 +20280,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -21263,17 +21328,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -22226,19 +22291,12 @@ module.exports = {
         description: 'Handles `error` event.',
         returns: 'void',
         params: {
-          message: {
+          error: {
             types: [
-              'string',
+              'Error',
             ],
             required: 'true',
-            description: 'error message',
-          },
-          e: {
-            types: [
-              'Event',
-            ],
-            required: 'true',
-            description: '',
+            description: 'the error object',
           },
         },
         private: true,
@@ -22334,39 +22392,24 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
           },
        },
       },
-      error: {
-        description: 'Error event',
-        params: {
-          message: {
-            description: 'Message',
-            types: [
-              'string',
-            ]
-          },
-          e: {
-            description: 'Event',
-            types: [
-              'Event',
-            ]
-          },
-       },
+      'error': {
       },
     },
     slots: {
@@ -23355,7 +23398,7 @@ module.exports = {
         private: true,
       },
       handleSearchChange: {
-        description: 'Handles `searchChange` event.',
+        description: 'Handles `search-change` event.',
         returns: 'void',
         params: {
           searchQuery: {
@@ -23376,6 +23419,25 @@ module.exports = {
       handleClose: {
         description: 'Handles `close` event.',
         returns: 'void',
+        private: true,
+      },
+      handleClear: {
+        description: 'Handles `clear` event.',
+        returns: 'void',
+        private: true,
+      },
+      handlePaste: {
+        description: 'Handles `paste` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'false',
+            description: 'event',
+          },
+        },
         private: true,
       },
       handleTag: {
@@ -23494,40 +23556,72 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
           },
        },
       },
-      select: {
-        description: 'Select event',
+      'select': {
+        description: 'Triggered when an option is selected.',
+        params: {
+          option: {
+            description: 'the selected option',
+            types: [
+              'object',
+            ]
+          },
+       },
       },
-      deselect: {
-        description: 'Select event',
+      'deselect': {
+        description: 'Triggered when an option is deselected.',
+        params: {
+          option: {
+            description: 'the deselected option',
+            types: [
+              'object',
+            ]
+          },
+       },
       },
-      searchChange: {
-        description: 'searchChange event',
+      'search-change': {
+        description: 'Triggered when the search query changes, using [`search: true`](#option-search).',
+        params: {
+          searchQuery: {
+            description: 'the search value',
+            types: [
+              'string|null',
+            ]
+          },
+       },
       },
-      open: {
-        description: 'Open event',
+      'open': {
+        description: 'Triggered when the dropdown list is closed.',
       },
-      close: {
-        description: 'Close event',
+      'close': {
+        description: 'Triggered when the dropdown list is closed.',
       },
-      tag: {
-        description: 'Tag event',
+      'tag': {
+        description: 'Triggered when a new tag is created, using [`create: true`](#optons-create).',
+        params: {
+          tag: {
+            description: 'the tag value',
+            types: [
+              'string',
+            ]
+          },
+       },
       },
     },
     slots: {
@@ -24677,17 +24771,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -25705,17 +25799,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -26728,17 +26822,17 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
@@ -27675,8 +27769,8 @@ module.exports = {
         },
         private: false,
       },
-      handleError: {
-        description: 'Handles `error` event.',
+      handleAlert: {
+        description: 'Handles `alert` event.',
         returns: 'void',
         params: {
           message: {
@@ -27684,14 +27778,21 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'error message',
+            description: 'alert message',
           },
-          e: {
+        },
+        private: true,
+      },
+      handleError: {
+        description: 'Handles `error` event.',
+        returns: 'void',
+        params: {
+          error: {
             types: [
-              'Event',
+              'Error',
             ],
             required: 'true',
-            description: '',
+            description: 'the error object',
           },
         },
         private: true,
@@ -27768,36 +27869,30 @@ module.exports = {
       },
     },
     events: {
-      change: {
-        description: 'Change event',
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
         params: {
           newValue: {
-            description: 'New value',
+            description: 'the new value',
             types: [
               'string',
             ]
           },
           oldValue: {
-            description: 'Old value',
+            description: 'the old value',
             types: [
               'string',
             ]
           },
        },
       },
-      error: {
-        description: 'Error event',
+      'error': {
+        description: 'Triggered when file upload throws an error.',
         params: {
-          message: {
-            description: 'Message',
+          error: {
+            description: 'the Error object',
             types: [
-              'string',
-            ]
-          },
-          e: {
-            description: 'Event',
-            types: [
-              'Event',
+              'Error',
             ]
           },
        },

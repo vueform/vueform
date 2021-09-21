@@ -101,13 +101,13 @@ module.exports = {
     },
     "events": {
       "click": {
-        "description": ""
+        "description": "Triggered when the drag and drop area is clicked."
       },
       "drop": {
-        "description": "",
+        "description": "Triggered when a file is dropped.",
         "params": {
-          "e": {
-            "description": "",
+          "event": {
+            "description": "the drop Event",
             "types": [
               "Event"
             ]
@@ -177,6 +177,13 @@ module.exports = {
           "boolean"
         ],
         "description": "Whether addon is provided as a Vue component."
+      },
+      "isSlot": {
+        "public": false,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the label is provided as a slot."
       }
     },
     "data": {
@@ -197,7 +204,11 @@ module.exports = {
       }
     },
     "events": {},
-    "slots": {}
+    "slots": {
+      "default": {
+        "description": "Renders the content of the addon if the [`type`](#option-type) is not defined in the parent element's the `addons` option."
+      }
+    }
   },
   "ElementDescription": {
     "inject": {
@@ -251,6 +262,13 @@ module.exports = {
           "string"
         ],
         "description": "The element's description, defined via `:description` prop."
+      },
+      "isSlot": {
+        "public": false,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the description is provided as a slot."
       }
     },
     "data": {
@@ -264,7 +282,11 @@ module.exports = {
     },
     "props": {},
     "events": {},
-    "slots": {}
+    "slots": {
+      "default": {
+        "description": "Renders the content of the description if the parent element has no `description`."
+      }
+    }
   },
   "ElementError": {
     "inject": {
@@ -385,6 +407,13 @@ module.exports = {
           "string"
         ],
         "description": "The info for the element, defined via `:info` prop."
+      },
+      "isSlot": {
+        "public": false,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the info is provided as a slot."
       }
     },
     "data": {
@@ -398,7 +427,11 @@ module.exports = {
     },
     "props": {},
     "events": {},
-    "slots": {}
+    "slots": {
+      "default": {
+        "description": "Renders the content of the info when the info icon is hovered, if the parent element has no `info`."
+      }
+    }
   },
   "ElementLabel": {
     "inject": {
@@ -467,6 +500,20 @@ module.exports = {
           "string"
         ],
         "description": "The name of the element."
+      },
+      "hasLabel": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed."
+      },
+      "isSlot": {
+        "public": false,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the label is provided as a slot."
       }
     },
     "data": {
@@ -480,7 +527,14 @@ module.exports = {
     },
     "props": {},
     "events": {},
-    "slots": {}
+    "slots": {
+      "default": {
+        "description": "Renders the content of the label if the parent element has no `label`."
+      },
+      "info": {
+        "description": "Passes its content to [`ElementInfo`](element-info)'s `default` slot."
+      }
+    }
   },
   "ElementLabelFloating": {
     "inject": {
@@ -609,48 +663,6 @@ module.exports = {
           "boolean"
         ],
         "description": "Whether the element should be visible."
-      },
-      "hasLabel": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the element has a [`:label`](#label) or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed."
-      },
-      "info": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The info for the element, defined via `:info` prop."
-      },
-      "before": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The before content for the element, defined via `:before` prop."
-      },
-      "between": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The between content for the element, defined via `:between` prop."
-      },
-      "after": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The after content for the element, defined via `:after` prop."
-      },
-      "description": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The description for the element, defined via `:description` prop."
       }
     },
     "data": {
@@ -673,29 +685,26 @@ module.exports = {
     },
     "events": {},
     "slots": {
-      "label": {
-        "description": "Label slot"
-      },
-      "before": {
-        "description": "Before slot"
-      },
       "field": {
-        "description": "Field slot"
+        "description": "Replaces the layout's element field. This is the slot used by each element to render their content."
       },
-      "between": {
-        "description": "Between slot"
+      "label": {
+        "description": "Passes its content to the [`ElementLabel`](element-label)'s `default` slot."
+      },
+      "info": {
+        "description": "Passes its content to the [`ElementLabel`](element-label)'s `info` slot. It will only be rendered if `label` is defined as well."
       },
       "description": {
-        "description": "Description slot"
+        "description": "Passes its content to the [`ElementDescription`](element-description)'s `default` slot."
       },
-      "error": {
-        "description": "Error slot"
+      "before": {
+        "description": "Passes its content to the [`ElementText`](element-text)'s `default` slot with `type: \"before\"`."
       },
-      "message": {
-        "description": "Message slot"
+      "between": {
+        "description": "Passes its content to the [`ElementText`](element-text)'s `default` slot with `type: \"between\"`."
       },
       "after": {
-        "description": "After slot"
+        "description": "Passes its content to the [`ElementText`](element-text)'s `default` slot with `type: \"after\"`."
       }
     }
   },
@@ -745,13 +754,6 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "hasLabel": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the element has a [`:label`](#label) or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed."
-      },
       "visible": {
         "public": true,
         "types": [
@@ -771,7 +773,29 @@ module.exports = {
     },
     "props": {},
     "events": {},
-    "slots": {}
+    "slots": {
+      "field": {
+        "description": "Replaces the layout's element field. This is the slot used by each element to render their content."
+      },
+      "label": {
+        "description": "Passes its content to the [`ElementLabel`](element-label)'s `default` slot."
+      },
+      "info": {
+        "description": "Passes its content to the [`ElementLabel`](element-label)'s `info` slot. It will only be rendered if `label` is defined as well."
+      },
+      "description": {
+        "description": "Passes its content to the [`ElementDescription`](element-description)'s `default` slot."
+      },
+      "before": {
+        "description": "Passes its content to the [`ElementText`](element-text)'s `default` slot with `type: \"before\"`."
+      },
+      "between": {
+        "description": "Passes its content to the [`ElementText`](element-text)'s `default` slot with `type: \"between\"`."
+      },
+      "after": {
+        "description": "Passes its content to the [`ElementText`](element-text)'s `default` slot with `type: \"after\"`."
+      }
+    }
   },
   "ElementLoader": {
     "inject": {
@@ -952,6 +976,13 @@ module.exports = {
           "string"
         ],
         "description": "The value of the content type."
+      },
+      "isSlot": {
+        "public": false,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the contents are provided as a slot."
       }
     },
     "data": {
@@ -972,7 +1003,11 @@ module.exports = {
       }
     },
     "events": {},
-    "slots": {}
+    "slots": {
+      "default": {
+        "description": "Renders the text if the parent element has no [`type`](#option-type) defined as option (`before|between|after`)."
+      }
+    }
   },
   "FormElements": {
     "inject": {
@@ -1048,7 +1083,11 @@ module.exports = {
     },
     "props": {},
     "events": {},
-    "slots": {}
+    "slots": {
+      "default": {
+        "description": "Renders the elements."
+      }
+    }
   },
   "FormErrors": {
     "inject": {
@@ -1193,7 +1232,19 @@ module.exports = {
         ]
       }
     },
-    "events": {},
+    "events": {
+      "select": {
+        "description": "Triggered when the language is selected by the user.",
+        "params": {
+          "language": {
+            "description": "the selected language",
+            "types": [
+              "string"
+            ]
+          }
+        }
+      }
+    },
     "slots": {}
   },
   "FormLanguages": {
@@ -1735,8 +1786,48 @@ module.exports = {
         ]
       }
     },
-    "events": {},
-    "slots": {}
+    "events": {
+      "active": {
+        "description": "Triggered when the step becomes active."
+      },
+      "inactive": {
+        "description": "Triggered when the step becomes inactive."
+      },
+      "enable": {
+        "description": "Triggered when the step becomes enabled."
+      },
+      "disable": {
+        "description": "Triggered when the step becomes disabled."
+      },
+      "complete": {
+        "description": "Triggered when the step becomes [`complete`](#property-complete)."
+      }
+    },
+    "slots": {
+      "default": {
+        "description": "Replaces the label for the step.",
+        "params": {
+          "classes": {
+            "description": "the step's [classes](#property-classes) object",
+            "types": [
+              "object"
+            ]
+          },
+          "select": {
+            "description": "selects the step if it is not [`disabled`](#property-disabled)",
+            "types": [
+              "function"
+            ]
+          },
+          "disabled": {
+            "description": "whether the step is disabled",
+            "types": [
+              "boolean"
+            ]
+          }
+        }
+      }
+    }
   },
   "FormSteps": {
     "inject": {
@@ -2099,8 +2190,55 @@ module.exports = {
       }
     },
     "props": {},
-    "events": {},
-    "slots": {}
+    "events": {
+      "select": {
+        "description": "Triggered when a step becomes active.",
+        "params": {
+          "activeStep$": {
+            "description": "the active step",
+            "types": [
+              "component"
+            ]
+          },
+          "previousStep$": {
+            "description": "the previously active step",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "next": {
+        "description": "Triggered when steps to the next step.",
+        "params": {
+          "activeStep$": {
+            "description": "the active step",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "previous": {
+        "description": "Triggered when steps to the previous step.",
+        "params": {
+          "activeStep$": {
+            "description": "the active step",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "finish": {
+        "description": "Triggered when the form finishes, before the last step becomes [`complete`](#property-complete) and the form's [`submit`](laraform#method-submit) method gets called."
+      }
+    },
+    "slots": {
+      "default": {
+        "description": "Renders the form steps. Must contain a [`FormStep`](#form-step) component for each step."
+      }
+    }
   },
   "FormStepsControl": {
     "inject": {
@@ -2233,7 +2371,11 @@ module.exports = {
       }
     },
     "events": {},
-    "slots": {}
+    "slots": {
+      "default": {
+        "description": "Renders the text of the control button."
+      }
+    }
   },
   "FormStepsControls": {
     "inject": {
@@ -2294,7 +2436,17 @@ module.exports = {
       }
     },
     "events": {},
-    "slots": {}
+    "slots": {
+      "previous": {
+        "description": "Renders the text of the previous button in [`FormStepsControl`](form-steps-control) component if [`labels`](#option-labels) does not contain `previous`."
+      },
+      "next": {
+        "description": "Renders the text of the next button in [`FormStepsControl`](form-steps-control) component if [`labels`](#option-labels) does not contain `next`."
+      },
+      "finish": {
+        "description": "Renders the text of the previous button in [`FormStepsControl`](form-steps-control) component if [`labels`](#option-labels) does not contain `finish`."
+      }
+    }
   },
   "FormTab": {
     "inject": {
@@ -2555,8 +2707,33 @@ module.exports = {
         ]
       }
     },
-    "events": {},
-    "slots": {}
+    "events": {
+      "active": {
+        "description": "Triggered when the tab becomes active."
+      },
+      "inactive": {
+        "description": "Triggered when the tab becomes inactive."
+      }
+    },
+    "slots": {
+      "default": {
+        "description": "Replaces the label for the tab.",
+        "params": {
+          "classes": {
+            "description": "the tab's [classes](#property-classes) object",
+            "types": [
+              "object"
+            ]
+          },
+          "select": {
+            "description": "selects the tab",
+            "types": [
+              "function"
+            ]
+          }
+        }
+      }
+    }
   },
   "FormTabs": {
     "inject": {
@@ -2793,8 +2970,30 @@ module.exports = {
       }
     },
     "props": {},
-    "events": {},
-    "slots": {}
+    "events": {
+      "select": {
+        "description": "Triggered when a tab becomes active.",
+        "params": {
+          "activeTab$": {
+            "description": "the active tab",
+            "types": [
+              "component"
+            ]
+          },
+          "previousTab$": {
+            "description": "the previously active tab",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      }
+    },
+    "slots": {
+      "default": {
+        "description": "Renders the form tabs. Must contain a [`FormTab`](#form-tab) component for each tab."
+      }
+    }
   },
   "Laraform": {
     "data": {
@@ -3596,8 +3795,100 @@ module.exports = {
         ]
       }
     },
-    "events": {},
-    "slots": {}
+    "events": {
+      "input": {
+        "description": "Emitted when the form's data is changed (used by `v-model` in Vue 2).",
+        "params": {
+          "data": {
+            "description": "the form's data after the change",
+            "types": [
+              "object"
+            ]
+          }
+        }
+      },
+      "change": {
+        "description": "Triggered when the form's data is changed (intended for watching data changes).",
+        "params": {
+          "newData": {
+            "description": "the form's data after the change",
+            "types": [
+              "object"
+            ]
+          },
+          "oldData": {
+            "description": "the form's data before the change",
+            "types": [
+              "object"
+            ]
+          }
+        }
+      },
+      "reset": {
+        "description": "Triggered when the form is reseted using [`reset()`](#method-reset)."
+      },
+      "clear": {
+        "description": "Triggered when the form is cleared using [`clear()`](#method-clear)."
+      },
+      "submit": {
+        "description": "Triggered when the form is being submitted, after validation is checked and elements are prepared.",
+        "params": {
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "success": {
+        "description": "Triggered when the server returns with 2XX response code after submitting the form.",
+        "params": {
+          "response": {
+            "description": "the Response object",
+            "types": [
+              "Response"
+            ]
+          }
+        }
+      },
+      "error": {
+        "description": "Triggered when an error is thrown when preparing elements or submitting the form.",
+        "params": {
+          "state": {
+            "description": "the stage the error was thrown: `\"prepare|submit\"`",
+            "types": [
+              "string"
+            ]
+          },
+          "error": {
+            "description": "the Error object",
+            "types": [
+              "Error"
+            ]
+          }
+        }
+      },
+      "language": {
+        "description": "Triggered when a language is selected",
+        "params": {
+          "language": {
+            "description": "the selected language",
+            "types": [
+              "string"
+            ]
+          }
+        }
+      }
+    },
+    "slots": {
+      "default": {
+        "description": "Renders the elements of the form in [`FormElements`](#form-elements) component, while keeping all the other form components. Should only contain elements and custom tags."
+      },
+      "empty": {
+        "description": "Renders the content of the form. Removes all other form components. Can contain elements or form components including steps, tabs and language selector."
+      }
+    }
   },
   "FlatpickrWrapper": {
     "inject": {
@@ -3735,7 +4026,19 @@ module.exports = {
         ]
       }
     },
-    "events": {},
+    "events": {
+      "change": {
+        "description": "Triggered when then value is changed.",
+        "params": {
+          "value": {
+            "description": "the new value",
+            "types": [
+              "Date|array<Date>"
+            ]
+          }
+        }
+      }
+    },
     "slots": {}
   },
   "TrixWrapper": {
@@ -3919,10 +4222,33 @@ module.exports = {
         ]
       }
     },
-    "events": {},
+    "events": {
+      "input": {
+        "description": "Triggered when the editor's value is changed.",
+        "params": {
+          "value": {
+            "description": "the new value of the element contained in an object: `value.target.value`",
+            "types": [
+              "object"
+            ]
+          }
+        }
+      },
+      "alert": {
+        "description": "Triggered when the user select a file/mime type that is not allowed.",
+        "params": {
+          "message": {
+            "description": "the alert message",
+            "types": [
+              "string"
+            ]
+          }
+        }
+      }
+    },
     "slots": {}
   },
-  "CheckboxgroupSlotCheckbox": {
+  "CheckboxgroupCheckbox": {
     "inject": {
       "el$": {
         "public": true,
@@ -4002,7 +4328,7 @@ module.exports = {
     "events": {},
     "slots": {}
   },
-  "FileSlotFilePreview": {
+  "FilePreview": {
     "inject": {
       "el$": {
         "public": true,
@@ -4158,177 +4484,7 @@ module.exports = {
     "events": {},
     "slots": {}
   },
-  "FileSlotGalleryPreview": {
-    "inject": {
-      "el$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The parent element's component."
-      },
-      "form$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The root form component."
-      },
-      "theme": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "The global theme object, which contains all the default components and classes."
-      }
-    },
-    "computed": {
-      "classes": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
-      },
-      "components": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the components used by the parent element."
-      },
-      "visible": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the preview component should be visible."
-      },
-      "hasLink": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the file has link and should be clickable."
-      },
-      "hasError": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the preview has upload error."
-      },
-      "link": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The link for the file."
-      },
-      "filename": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The filename to display."
-      },
-      "clickable": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the file should be clickable if it is already uploaded."
-      },
-      "preview": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The image's preview. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded."
-      },
-      "previewLoaded": {
-        "public": false,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the preview file has been loaded by the browser when the file has already been uploaded or has only been selected."
-      },
-      "uploaded": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the temporary or final file is uploaded."
-      },
-      "uploading": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the file is currently uploading."
-      },
-      "progress": {
-        "public": true,
-        "types": [
-          "number"
-        ],
-        "description": "The percentage of progress when the file is being temporarily uploaded (0-100)."
-      },
-      "canRemove": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the file can be removed."
-      },
-      "canUploadTemp": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether temporary file can be uploaded."
-      },
-      "uploadText": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The text for upload button. Can be changed at the locale file: `laraform.elements.file.upload`"
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
-      }
-    },
-    "methods": {
-      "upload": {
-        "public": true,
-        "returns": "void",
-        "description": "Upload the currently selected file as temporary."
-      },
-      "remove": {
-        "public": true,
-        "returns": "void",
-        "description": "Remove the file."
-      }
-    },
-    "props": {},
-    "events": {},
-    "slots": {}
-  },
-  "FileSlotImagePreview": {
+  "GalleryPreview": {
     "inject": {
       "el$": {
         "public": true,
@@ -4498,7 +4654,7 @@ module.exports = {
     "events": {},
     "slots": {}
   },
-  "MultiselectSlotMultipleLabel": {
+  "ImagePreview": {
     "inject": {
       "el$": {
         "public": true,
@@ -4543,6 +4699,104 @@ module.exports = {
           "object"
         ],
         "description": "Returns the components used by the parent element."
+      },
+      "visible": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the preview component should be visible."
+      },
+      "hasLink": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file has link and should be clickable."
+      },
+      "hasError": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the preview has upload error."
+      },
+      "link": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The link for the file."
+      },
+      "filename": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The filename to display."
+      },
+      "clickable": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file should be clickable if it is already uploaded."
+      },
+      "preview": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The image's preview. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded."
+      },
+      "previewLoaded": {
+        "public": false,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the preview file has been loaded by the browser when the file has already been uploaded or has only been selected."
+      },
+      "uploaded": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the temporary or final file is uploaded."
+      },
+      "uploading": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file is currently uploading."
+      },
+      "progress": {
+        "public": true,
+        "types": [
+          "number"
+        ],
+        "description": "The percentage of progress when the file is being temporarily uploaded (0-100)."
+      },
+      "canRemove": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the file can be removed."
+      },
+      "canUploadTemp": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether temporary file can be uploaded."
+      },
+      "uploadText": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The text for upload button. Can be changed at the locale file: `laraform.elements.file.upload`"
       }
     },
     "data": {
@@ -4555,363 +4809,22 @@ module.exports = {
       }
     },
     "methods": {
-      "label": {
+      "upload": {
         "public": true,
-        "returns": "string",
-        "description": "Returns the label to display."
-      }
-    },
-    "props": {
-      "values": {
-        "required": false,
-        "types": [
-          "array"
-        ]
-      }
-    },
-    "events": {},
-    "slots": {}
-  },
-  "MultiselectSlotNoOptions": {
-    "inject": {
-      "el$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The parent element's component."
+        "returns": "void",
+        "description": "Upload the currently selected file as temporary."
       },
-      "form$": {
+      "remove": {
         "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The root form component."
-      },
-      "theme": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "The global theme object, which contains all the default components and classes."
-      }
-    },
-    "computed": {
-      "classes": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
-      },
-      "components": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the components used by the parent element."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
+        "returns": "void",
+        "description": "Remove the file."
       }
     },
     "props": {},
     "events": {},
     "slots": {}
   },
-  "MultiselectSlotNoResults": {
-    "inject": {
-      "el$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The parent element's component."
-      },
-      "form$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The root form component."
-      },
-      "theme": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "The global theme object, which contains all the default components and classes."
-      }
-    },
-    "computed": {
-      "classes": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
-      },
-      "components": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the components used by the parent element."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
-      }
-    },
-    "props": {},
-    "events": {},
-    "slots": {}
-  },
-  "MultiselectSlotOption": {
-    "inject": {
-      "el$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The parent element's component."
-      },
-      "form$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The root form component."
-      },
-      "theme": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "The global theme object, which contains all the default components and classes."
-      }
-    },
-    "computed": {
-      "classes": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
-      },
-      "components": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the components used by the parent element."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
-      }
-    },
-    "props": {
-      "option": {
-        "required": true,
-        "types": [
-          "any"
-        ]
-      },
-      "search": {
-        "required": false,
-        "types": [
-          "any"
-        ]
-      }
-    },
-    "events": {},
-    "slots": {}
-  },
-  "MultiselectSlotSingleLabel": {
-    "inject": {
-      "el$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The parent element's component."
-      },
-      "form$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The root form component."
-      },
-      "theme": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "The global theme object, which contains all the default components and classes."
-      }
-    },
-    "computed": {
-      "classes": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
-      },
-      "components": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the components used by the parent element."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
-      }
-    },
-    "props": {
-      "value": {
-        "required": true,
-        "types": [
-          "any"
-        ]
-      }
-    },
-    "events": {},
-    "slots": {}
-  },
-  "MultiselectSlotTag": {
-    "inject": {
-      "el$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The parent element's component."
-      },
-      "form$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The root form component."
-      },
-      "theme": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "The global theme object, which contains all the default components and classes."
-      }
-    },
-    "computed": {
-      "classes": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
-      },
-      "components": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the components used by the parent element."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
-      }
-    },
-    "props": {
-      "option": {
-        "required": true,
-        "types": [
-          "any"
-        ]
-      },
-      "handleTagRemove": {
-        "required": true,
-        "types": [
-          "function"
-        ]
-      },
-      "disabled": {
-        "required": true,
-        "types": [
-          "boolean"
-        ]
-      }
-    },
-    "events": {},
-    "slots": {}
-  },
-  "RadiogroupSlotRadio": {
+  "RadiogroupRadio": {
     "inject": {
       "el$": {
         "public": true,

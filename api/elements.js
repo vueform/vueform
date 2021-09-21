@@ -535,7 +535,7 @@ export default {
       "change",
       "select",
       "deselect",
-      "searchChange",
+      "search-change",
       "open",
       "close"
     ]
@@ -708,7 +708,7 @@ export default {
       "change",
       "select",
       "deselect",
-      "searchChange",
+      "search-change",
       "open",
       "close"
     ]
@@ -837,7 +837,7 @@ export default {
       "change",
       "select",
       "deselect",
-      "searchChange",
+      "search-change",
       "open",
       "close",
       "tag"
@@ -987,6 +987,7 @@ export default {
       "fieldId",
       "form$",
       "genericName",
+      "handleAlert",
       "handleError",
       "handleInput",
       "input",

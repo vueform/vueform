@@ -4,6 +4,7 @@ import isVueComponent from './../utils/isVueComponent'
 
 export default {
   name: 'ElementAddon',
+  slots: ['default'],
   props: {
     type: {
       required: true,

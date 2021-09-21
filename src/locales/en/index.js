@@ -29,8 +29,6 @@ export default {
         dndTitle: 'Upload file',
         dndDescription: 'Drop file or click here to upload',
         removeConfirm: 'By removing the file it will be permanently deleted. Are you sure to continue?',
-        uploadError: 'Couldn\'t upload file: :filename',
-        removeError: 'Couldn\'t remove file',
         select: 'Select file',
         upload: 'Upload',
       },
@@ -51,8 +49,8 @@ export default {
       previous: 'Previous',
     },
     trix: {
-      acceptedMimes: 'Accepted mimes are: :mimes',
-      acceptedExtensions: 'Accepted extenions are: :extensions',
+      acceptedMimesError: 'Accepted mimes are: :mimes',
+      acceptedExtensionsError: 'Accepted extenions are: :extensions',
     },
     dateFormats: {
       datetimeSeconds24: 'YYYY-MM-DD HH:mm:ss',

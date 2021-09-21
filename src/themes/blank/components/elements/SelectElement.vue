@@ -44,6 +44,8 @@
         @tag="handleTag"
         @open="handleOpen"
         @close="handleClose"
+        @clear="handleClear"
+        @paste="handlePaste"
         ref="input"
       >
         <template v-for="(slot) in [

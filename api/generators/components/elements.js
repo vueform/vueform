@@ -68,13 +68,13 @@ const addEvents = (contents, elementName) => {
     let eventInfo
     
     try {
-      eventInfo = eventsInfo[eventName][elementKey] || eventsInfo[eventName].base
+      eventInfo = eventsInfo[eventName][elementName] || eventsInfo[eventName].default;
     } catch (e) {
-      console.log(elementName, elementKey)
+      console.log(elementName, elementKey, eventName)
       throw e
     }
 
-    contents += `      ${eventName}: {\n`
+    contents += `      '${eventName}': {\n`
 
     if (eventInfo.description) {
       contents += `        description: '${eventInfo.description.split('').map(c=>c==='\''?'&apos;':c).join('')}',\n`

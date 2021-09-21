@@ -23,6 +23,7 @@ import useHandleInput from './../../composables/elements/useHandleInput'
 import useEmpty from './../../composables/elements/useEmpty'
 import useTrix from './../../composables/elements/useTrix'
 import useHandleError from './../../composables/elements/useHandleError'
+import useHandleAlert from './../../composables/elements/useHandleAlert'
 import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { trix as useData } from './../../composables/elements/useData'
@@ -37,7 +38,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'TrixElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'error'],
+  emits: ['change', 'alert', 'error'],
   props: {
     type: {
       required: false,
@@ -204,6 +205,11 @@ export default {
       model: value.model,
     })
 
+    const handleAlert = useHandleAlert(props, context, {
+      fire: events.fire,
+      listeners: events.listeners,
+    })
+
     const handleError = useHandleError(props, context, {
       fire: events.fire,
       listeners: events.listeners,
@@ -251,6 +257,7 @@ export default {
       ...default_,
       ...nullValue,
       ...handleInput,
+      ...handleAlert,
       ...handleError,
       ...trix,
     }

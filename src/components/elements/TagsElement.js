@@ -39,7 +39,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'TagsElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'select', 'deselect', 'searchChange', 'open', 'close', 'tag'],
+  emits: ['change', 'select', 'deselect', 'search-change', 'open', 'close', 'tag'],
   props: {
     type: {
       required: false,
@@ -171,7 +171,7 @@ export default {
       form$: form$.form$,
     }, {
       events: [
-        'change', 'select', 'deselect', 'searchChange',
+        'change', 'select', 'deselect', 'search-change',
         'open', 'close', 'tag',
       ],
     })

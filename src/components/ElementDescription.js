@@ -3,6 +3,7 @@ import useElementComponent from './../composables/useElementComponent'
 
 export default {
   name: 'ElementDescription',
+  slots: ['default'],
   setup(props, context)
   {
     // ============ DEPENDENCIES ============

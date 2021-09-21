@@ -3,7 +3,7 @@ import useLaraform from './../composables/useLaraform'
 
 export default {
   name: 'Laraform',
-  emits: ['input', 'update:modelValue', 'language', 'change', 'submit', 'success', 'fail', 'reset', 'clear', 'error'],
+  emits: ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'language'],
   slots: ['default', 'empty'],
   setup: (props, context) => {
     const {

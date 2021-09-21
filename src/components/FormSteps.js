@@ -6,7 +6,7 @@ import normalize from './../utils/normalize'
 
 export default {
   name: 'FormSteps',
-  emits: ['next', 'previous', 'select', 'finish'],
+  emits: ['select', 'next', 'previous', 'finish'],
   slots: ['default'],
   setup(props, context)
   { 
@@ -30,7 +30,7 @@ export default {
       off,
       fire
     } = useEvents(props, context, { form$ }, {
-      events: ['next', 'previous', 'finish', 'select']
+      events: ['select', 'next', 'previous', 'finish']
     })
 
     // ================ DATA ================

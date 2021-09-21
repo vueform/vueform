@@ -3,6 +3,7 @@ import useElementComponent from './../composables/useElementComponent'
 
 export default {
   name: 'ElementText',
+  slots: ['default'],
   props: {
     type: {
       type: String,

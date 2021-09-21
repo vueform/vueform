@@ -5,7 +5,7 @@ import Parser from './../../parser/single'
 
 const filesPath = process.cwd() + '/src/components/'
 const wrappersPath = process.cwd() + '/src/components/wrappers/'
-const slotsPath = process.cwd() + '/src/components/elements/slots/'
+const partialsPath = process.cwd() + '/src/components/elements/partials/'
 const outputPath = process.cwd() + '/api/components/components.js'
 const eventsInfo = require('./../../component-events').default
 const slotsInfo = require('./../../component-slots').default
@@ -16,7 +16,9 @@ const skipPrivate = false
 const files = fs.readdirSync(filesPath).filter(f=>['.DS_Store'].indexOf(f) === -1 && f.match(/\.js$/))
 
 fs.readdirSync(wrappersPath).filter(f=>['.DS_Store'].indexOf(f) === -1 && f.match(/\.js$/)).forEach(f => files.push(f))
-fs.readdirSync(slotsPath).filter(f=>['.DS_Store'].indexOf(f) === -1 && f.match(/\.js$/)).forEach(f => files.push(f))
+fs.readdirSync(partialsPath).filter(f=>['.DS_Store'].indexOf(f) === -1 && f.match(/\.js$/)).forEach(f => files.push(f))
+
+const partials = fs.readdirSync(partialsPath).filter(f=>['.DS_Store'].indexOf(f) === -1 && f.match(/\.js$/))
 
 const components = {}
 
@@ -26,7 +28,7 @@ const exclude = []
 _.each([
   __dirname + '/../../../src/components',
   __dirname + '/../../../src/components/wrappers',
-  __dirname + '/../../../src/components/elements/slots',
+  __dirname + '/../../../src/components/elements/partials',
 ], (path) => {
   _.each(fs.readdirSync(path), (filename) => {
     if (!filename.match(/\.js$/)) {
@@ -140,9 +142,9 @@ _.each(files, (file) => {
   if (file.indexOf('Wrapper') !== -1) {
     path = wrappersPath
   }
-
-  if (file.indexOf('Slot') !== -1) {
-    path = slotsPath
+  
+  if (partials.indexOf(file) !== -1) {
+    path = partialsPath
   }
 
   let parser = new Parser(path, file, false)

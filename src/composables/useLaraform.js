@@ -53,8 +53,8 @@ const base = function(props, context, dependencies = {})
     off
   } = useEvents(props, context, { form$: $this }, {
     events: [
-      'change', 'submit', 'success', 'error',
-      'language', 'reset', 'clear', 'fail'
+      'change', 'reset', 'clear', 'submit',
+      'success', 'error', 'language',
     ]
   })
 
@@ -861,8 +861,8 @@ const base = function(props, context, dependencies = {})
       if (typeof $this.$laraform.config.beforeSend === 'function') {
         await $this.$laraform.config.beforeSend(form$.value)
       }
-    } catch (e) {
-      fire('error', e)
+    } catch (error) {
+      fire('error', { type: 'prepare' }, error)
       console.error(e)
     } finally {
       preparing.value = false
@@ -903,7 +903,7 @@ const base = function(props, context, dependencies = {})
       fire('success', response)
     }
     catch (error) {
-      fire('fail', error)
+      fire('error', { type: 'submit' }, error)
       console.error(error)
     }
     finally {

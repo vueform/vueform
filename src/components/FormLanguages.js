@@ -1,9 +1,8 @@
-import { computed, toRefs } from 'composition-api'
+import { computed } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 
 export default {
   name: 'FormLanguages',
-  emits: ['changeLanguage'],
   setup(props, context)
   {  
     // ============ DEPENDENCIES ============

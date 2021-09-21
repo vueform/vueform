@@ -29,14 +29,14 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * Handles `searchChange` event.
+   * Handles `search-change` event.
    *
    * @param {string} searchQuery* the current search query
    * @returns {void}
    * @private
    */
   const handleSearchChange = (searchQuery) => {
-    fire('searchChange', searchQuery)
+    fire('search-change', searchQuery)
   }
 
   /**
@@ -60,6 +60,27 @@ const base = function (props, context, dependencies)
   }
 
   /**
+   * Handles `clear` event.
+   *
+   * @returns {void}
+   * @private
+   */
+  const handleClear = () => {
+    fire('clear')
+  }
+
+  /**
+   * Handles `paste` event.
+   * 
+   * @param {Event} e event
+   * @returns {void}
+   * @private
+   */
+  const handlePaste = (e) => {
+    fire('paste', e)
+  }
+
+  /**
    * Handles `tag` event.
    *
    * @param {string} searchQuery* the current search query
@@ -78,6 +99,8 @@ const base = function (props, context, dependencies)
     handleSearchChange,
     handleOpen,
     handleClose,
+    handleClear,
+    handlePaste,
     handleTag,
   }
 }

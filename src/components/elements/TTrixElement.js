@@ -38,7 +38,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'TTrixElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'error'],
+  emits: ['change', 'alert', 'error'],
   props: {
     type: {
       required: false,

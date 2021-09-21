@@ -8,18 +8,23 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Handles `error` event.
+   * Handles `alert` event.
    *
-   * @param {Error} error* the error object
+   * @param {string} message* alert message
    * @returns {void}
    * @private
    */
-  const handleError = (error) => {
-    fire('error', error)
+  const handleAlert = (message) => {
+    fire('alert', message)
+
+    if (!listeners.value.error) {
+      alert(message)
+    } 
   }
 
+
   return {
-    handleError,
+    handleAlert,
   }
 }
 

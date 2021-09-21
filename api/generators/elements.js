@@ -119,7 +119,7 @@ class Generator {
           while(lines[l].match(/\]/) === null) {
             l++
 
-            events[element] = events[element].concat((lines[l].match(/([a-zA-Z]+)/g)||[]))
+            events[element] = events[element].concat((lines[l].match(/([a-zA-Z-]+)/g)||[]))
           }
         }
       })

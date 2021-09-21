@@ -3,7 +3,7 @@ import useElementComponent from './../../composables/useElementComponent'
 
 export default {
   name: 'TrixWrapper',
-  emits: ['input', 'alert'],
+  emits: ['input', 'alert', 'error'],
   props: {
     value: {
       required: false,
@@ -141,9 +141,9 @@ export default {
       if (acceptMimes.value.length && acceptMimes.value.indexOf(e.file.type) === -1) {
         e.preventDefault()
 
-        context.emit('alert', form$.value.__('laraform.trix.acceptedMimes', {
-          mimes:acceptMimes.value.join(', ')})
-        )
+        context.emit('alert', form$.value.__('laraform.trix.acceptedMimesError', {
+          mimes:acceptMimes.value.join(', ')
+        }))
       }
 
       var extension = e.file.name.split('.').pop()
@@ -151,9 +151,9 @@ export default {
       if (accept.value.length && accept.value.indexOf(extension) === -1) {
         e.preventDefault()
 
-        context.emit('alert', form$.value.__('laraform.trix.acceptedExtensions', {
-          extensions:accept.value.join(', ')})
-        )
+        context.emit('alert', form$.value.__('laraform.trix.acceptedExtensionsError', {
+          extensions:accept.value.join(', ')
+        }))
       }
     }
 
@@ -190,6 +190,9 @@ export default {
           url: response.data.url,
           href: response.data.href,
         })
+      })
+      .catch((error) => {
+        context.emit('error', error)
       })
     }
 
