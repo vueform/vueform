@@ -1,7 +1,6 @@
 <template>
   <component :is="elementLayout">
-    <template v-slot:field>
-
+    <template #field>
       <TrixWrapper
         :value="model"
         :placeholder="placeholder"
@@ -15,11 +14,11 @@
         @alert="handleAlert"
         @error="handleError"
         ref="input"
-      />
-
+     />
     </template>
 
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
+    <!-- Default element slots -->
+    <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
   </component>
 </template>
 

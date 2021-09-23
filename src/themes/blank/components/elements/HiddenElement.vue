@@ -6,7 +6,7 @@
     :name="name"
     :id="fieldId"
     ref="input"
-  />
+ />
 </template>
 
 <script>

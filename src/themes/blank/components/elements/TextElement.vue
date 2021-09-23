@@ -2,10 +2,10 @@
   <component :is="elementLayout">
     <template #field>
       <div :class="classes.inputContainer">
-        <element-addon v-if="hasAddonBefore" type="before"><slot name="addon-before" /></element-addon>
-        <element-addon v-if="hasAddonAfter" type="after"><slot name="addon-after" /></element-addon>
-        <element-label-floating v-if="floating" :visible="!empty"/>
-        <element-label-floating v-show="pending" />
+        <ElementAddon v-if="hasAddonBefore" type="before"><slot name="addon-before"/></ElementAddon>
+        <ElementAddon v-if="hasAddonAfter" type="after"><slot name="addon-after"/></ElementAddon>
+        <ElementLabelFloating v-if="floating" :visible="!empty"/>
+        <ElementLabelFloating v-show="pending"/>
         <input
           :value="model"
           :type="inputType"
@@ -19,10 +19,11 @@
           @input="handleInput"
           @select="handleInput"
           ref="input"
-        />
+       />
       </div>
     </template>
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
+    <!-- Default element slots -->
+    <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
   </component>
 </template>
 

@@ -1,14 +1,17 @@
 <template>
   <li :class="classes.container" v-show="visible">
     <slot :classes="classes" :select="select" :disabled="disabled">
+      <!-- If label is a component -->
       <a
         v-if="isLabelComponent"
         href=""
         :class="classes.wrapper"
         @click.prevent="select"
       >
-        <component :is="stepLabel" :form$="form$" />
+        <component :is="stepLabel" :form$="form$"/>
       </a>
+
+      <!-- If label is HTML -->
       <a
         v-else
         v-html="stepLabel"

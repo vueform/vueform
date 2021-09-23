@@ -1,7 +1,5 @@
 <template>
-  <div
-    :class="classes.container"
-  >
+  <div :class="classes.container">
     <div  
       v-for="(error, key, index) in errors"
       :class="classes.error"

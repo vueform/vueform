@@ -7,7 +7,7 @@
         :name="name"
         :index="i"
         :key="name"
-      />
+     />
     </slot>
   </ul>
 </template>

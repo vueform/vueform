@@ -1,15 +1,20 @@
 <template>
+  <!-- If label is a component -->
   <label v-if="label && isLabelComponent" :class="classes.container" :for="name">
-    <span><component v-if="isLabelComponent" :is="label" /></span>
-    <ElementInfo><slot name="info"></slot></ElementInfo>
+    <span><component v-if="isLabelComponent" :is="label"/></span>
+    <ElementInfo><slot name="info"/></ElementInfo>
   </label>
+
+  <!-- If label is HTML -->
   <label v-else-if="label" :class="classes.container" :for="name">
     <span v-html="label"></span>
-    <ElementInfo><slot name="info"></slot></ElementInfo>
+    <ElementInfo><slot name="info"/></ElementInfo>
   </label>
+
+  <!-- If label is a slot -->
   <label v-else-if="isSlot" :class="classes.container" :for="name">
-    <slot></slot>
-    <ElementInfo><slot name="info"></slot></ElementInfo>
+    <slot/>
+    <ElementInfo><slot name="info"/></ElementInfo>
   </label>
 </template>
 

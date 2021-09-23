@@ -1,8 +1,6 @@
 <template>
   <component :is="elementLayout" :multiple="true">
-
-    <template v-slot:field>
-      
+    <template #field>
       <div :class="classes.childrenContainer">
         <slot>
           <component :is="component(element)"
@@ -12,13 +10,13 @@
             :name="name"
             :key="name"
             @remove="(e) => $emit('remove', e)"
-          />
+         />
         </slot>
       </div>
-
     </template>
 
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
+    <!-- Default element slots -->
+    <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
 	</component>
 </template>
 

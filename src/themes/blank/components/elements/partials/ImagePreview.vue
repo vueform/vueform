@@ -1,21 +1,17 @@
 <template>
   <div :class="classes.container" v-show="visible">
     <div :class="classes.wrapper">
-
       <!-- Image -->
-      <a :href="link" v-if="uploaded && hasLink && clickable" :class="classes.image" target="_blank"><img :class="classes.img" :src="preview" /></a>
-      <span v-else :class="classes.image"><img :class="classes.img" :src="preview" /></span>
+      <a :href="link" v-if="uploaded && hasLink && clickable" :class="classes.image" target="_blank"><img :class="classes.img" :src="preview"/></a>
+      <span v-else :class="classes.image"><img :class="classes.img" :src="preview"/></span>
 
       <div :class="classes.file">
-
         <!-- Filename -->
         <a :href="link" v-if="hasLink && clickable" :class="classes.filenameLink" target="_blank">{{ filename }}</a>
         <span v-else :class="classes.filenameStatic">{{ filename }}</span>
-
       </div>
       
       <div :class="classes.actions">
-
         <!-- Remove -->
         <a href="" :class="classes.remove" v-if="canRemove" @click.prevent="remove">
           <span :class="classes.removeIcon"></span>
@@ -36,7 +32,6 @@
         <span v-else-if="uploaded" :class="classes.uploaded">
           <span :class="classes.uploadedIcon"></span>
         </span>
-
       </div>
     </div>
     <div v-if="uploading" :class="classes.progressBar">

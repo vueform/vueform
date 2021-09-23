@@ -1,21 +1,30 @@
 <template>
+  <!-- If wrapped in layout -->
   <component v-if="wrap" :is="elementLayout">
-
-    <template v-slot:field>
+    <template #field>
+      <!-- If content is HTML -->
       <div v-if="content && isHtml" :class="classes.content" v-html="content"></div>
-      <component v-else-if="content" :is="content" />
-      <slot v-else :el$="el$"><component :is="fieldSlots.default" :el$="el$" /></slot>
+
+      <!-- If content is component -->
+      <component v-else-if="content" :is="content"/>
+
+      <!-- If content is a slot -->
+      <slot v-else :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot>
     </template>
 
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
+    <!-- Default element slots -->
+    <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
   </component>
 
+  <!-- If not wrapped and content is HTML -->
   <div v-else-if="content && isHtml" :class="classes.content" v-html="content"></div>
 
-  <component v-else-if="content" :is="content" />
+  <!-- If not wrapped and content is component  -->
+  <component v-else-if="content" :is="content"/>
 
+  <!-- If not wrapped and content is a slot -->
   <div v-else>
-    <slot :el$="el$"><component :is="fieldSlots.default" :el$="el$" /></slot>
+    <slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot>
   </div>
 
 </template>

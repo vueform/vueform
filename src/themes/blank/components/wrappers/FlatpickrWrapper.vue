@@ -5,7 +5,7 @@
     :id="id"
     :placeholder="placeholder"
     ref="input"
-  />
+ />
 </template>
 
 <script>

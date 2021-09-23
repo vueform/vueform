@@ -1,8 +1,6 @@
 <template>
   <component :is="elementLayout">
-
-    <template v-slot:field>
-
+    <template #field>
       <!-- Drag n drop -->
       <DragAndDrop
         v-if="drop && canDrop && canSelect"
@@ -11,7 +9,7 @@
         :disabled="isDisabled"
         @click="handleClick"
         @drop="handleDrop"
-      />
+     />
       
       <!-- Upload button -->
       <a
@@ -30,18 +28,18 @@
         :accept="accept"
         @change="handleChange"
         ref="input"
-      />
+     />
 
       <!-- Preview -->
       <slot name="preview">
-        <GalleryPreview v-if="image && view === 'gallery'" />
-        <ImagePreview v-else-if="image" />
-        <FilePreview v-else />
+        <GalleryPreview v-if="image && view === 'gallery'"/>
+        <ImagePreview v-else-if="image"/>
+        <FilePreview v-else/>
       </slot>
-        
     </template>
 
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
+    <!-- Default element slots -->
+    <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
   </component>
 </template>
 

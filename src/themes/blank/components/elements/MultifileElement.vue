@@ -1,8 +1,6 @@
 <template>
   <component :is="elementLayout" :multiple="true">
-    
-    <template v-slot:field>
-
+    <template #field>
       <!-- Drag n drop -->
       <DragAndDrop
         v-if="drop && canDrop"
@@ -12,7 +10,7 @@
         :class="classes.dnd"
         @click="handleClick"
         @drop="handleDrop"
-      />
+     />
 
       <!-- Upload button -->
       <a
@@ -31,7 +29,7 @@
         :accept="accept"
         :disabled="isDisabled"
         ref="input" 
-      />
+     />
 
       <div v-show="!empty" :class="classes.list" ref="list">
         <div v-for="(val, i) in value" :key="i" :class="classes.listItem">
@@ -42,17 +40,17 @@
             :embed="true"
             :name="i"
             @remove="remove(i)"
-          />
+         />
           <span v-if="!isDisabled && sort" :class="classes.handle" data-handle>
             <span :class="classes.handleIcon"></span>
           </span>
         </div>
       </div>
       <div :class="classes.spacer"></div>
-
     </template>
 
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
+    <!-- Default element slots -->
+    <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
   </component>
 </template>
 

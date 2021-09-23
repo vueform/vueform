@@ -1,7 +1,5 @@
 <template>
-  <div
-    :class="classes.container"
-  >
+  <div :class="classes.container">
     <div
       v-for="(message, key, index) in messages"
       :class="classes.message"

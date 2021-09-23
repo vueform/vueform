@@ -9,7 +9,7 @@
         :name="`${el$.name}-${value}`"
         :id="`${el$.fieldId}-${value}`"
         :disabled="isDisabled"
-      />
+     />
 
       <label 
         :class="classes.label"

@@ -1,9 +1,7 @@
 <template>
   <component :is="elementLayout">
-
-    <template v-slot:field>
+    <template #field>
       <div :class="classes.checkboxGroup">
-        
         <CheckboxgroupCheckbox
           v-for="(item, value, key) in items"
           :item="item"
@@ -12,15 +10,15 @@
         >
           <template #default="scope">
             <slot name="checkbox" v-bind="scope" :el$="el$">
-              <component :is="fieldSlots.checkbox" v-bind="scope" :el$="el$" />
+              <component :is="fieldSlots.checkbox" v-bind="scope" :el$="el$"/>
             </slot>
           </template>
         </CheckboxgroupCheckbox>
-
       </div>
     </template>
 
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
+    <!-- Default element slots -->
+    <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
   </component>
 </template>
 

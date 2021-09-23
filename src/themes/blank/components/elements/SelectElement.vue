@@ -1,13 +1,12 @@
 <template>
   <component :is="elementLayout">
-
     <template #field>
-
       <ElementLabelFloating
         v-if="floating"
         :visible="!empty"
-      />
+     />
 
+      <!-- Native select -->
       <div v-if="isNative" :class="classes.inputWrapper">
         <select
           v-model="value"
@@ -28,6 +27,8 @@
         </select>
         <span v-if="placeholder && empty && !isDisabled" :class="classes.inputPlaceholder">{{ placeholder }}</span>
       </div>
+
+      <!-- @vueform/multiselect copmonent -->
       <Multiselect
         v-else
         v-bind="fieldOptions"
@@ -52,35 +53,34 @@
           'no-results', 'no-options', 'before-list', 'after-list',
           'placeholder', 'group-label', 'caret', 'clear', 'spinner',
           'option',
-        ]" v-slot:[slot]="props">
+        ]" #[slot]="props">
           <slot :name="slot" v-bind="props" :el$="el$">
-            <component :is="fieldSlots[slot]" v-bind="props" :el$="el$" />
+            <component :is="fieldSlots[slot]" v-bind="props" :el$="el$"/>
           </slot>
         </template>
         
         <template v-if="fieldOptions.mode == 'single'" #singlelabel="{ value }">
           <slot name="single-label" :value="value" :el$="el$">
-            <component :is="fieldSlots['single-label']" :value="value" :el$="el$" />
+            <component :is="fieldSlots['single-label']" :value="value" :el$="el$"/>
           </slot>
         </template>
         
         <template v-if="fieldOptions.mode == 'multiple'" #multiplelabel="{ values }">
           <slot name="multiple-label" :values="values" :el$="el$">
-            <component :is="fieldSlots['multiple-label']" :values="values" :el$="el$" />
+            <component :is="fieldSlots['multiple-label']" :values="values" :el$="el$"/>
           </slot>
         </template>
 
         <template v-if="fieldOptions.mode == 'tags'" #tag="{ option, handleTagRemove, disabled }">
           <slot name="tag" :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled" :el$="el$">
-            <component :is="fieldSlots.tag" :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled" :el$="el$" />
+            <component :is="fieldSlots.tag" :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled" :el$="el$"/>
           </slot>
         </template>
-
       </Multiselect>
-
     </template>
 
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
+    <!-- Default element slots -->
+    <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
   </component>
 </template>
 

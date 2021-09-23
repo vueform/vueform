@@ -1,7 +1,6 @@
 <template>
   <div :class="classes.container">
     <input :id="`trix-input-${id}`" :value="value" type="hidden">
-    
     <trix-editor
       :placeholder="placeholder"
       :disabled="disabled"

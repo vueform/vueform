@@ -6,7 +6,7 @@
       :code="code"
       :key="key"
       @select="handleSelect"
-    />
+   />
   </ul>
 </template>
 <script>

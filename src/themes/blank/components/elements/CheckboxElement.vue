@@ -1,7 +1,6 @@
 <template>
   <component :is="elementLayout">
-    <template v-slot:field>
-
+    <template #field>
         <div :class="classes.wrapper">
           <div :class="classes.inputContainer">
             <input
@@ -14,24 +13,28 @@
               :false-value="falseValue"
               :disabled="isDisabled"
               ref="input"
-            />
+           />
+
+            <!-- If label is HTML -->
             <label
               v-if="text"
               :class="classes.label"
               :for="name"
               v-html="text"
             ></label>
+
+            <!-- If label is slot -->
             <label
               v-else
               :class="classes.label"
               :for="name"
-            ><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$" /></slot></label>
+            ><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></label>
           </div>
         </div>
-
     </template>
 
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
+    <!-- Default element slots -->
+    <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
   </component>
 </template>
 

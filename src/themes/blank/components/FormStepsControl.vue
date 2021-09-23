@@ -1,12 +1,15 @@
 <template>
+  <!-- If label is a component -->
   <button
     v-if="visible && label && isLabelComponent"
   	:disabled="disabled"
     :class="classes.button"
   	@click.prevent="handleClick"
   >
-    <component :is="label" :step$="current$" />
+    <component :is="label" :step$="current$"/>
   </button>
+
+  <!-- If label is HTML -->
   <button
     v-else-if="visible && label"
     v-html="label"
@@ -14,12 +17,14 @@
     :class="classes.button"
   	@click.prevent="handleClick"
   ></button>
+
+  <!-- If label is a slot -->
   <button
     v-else-if="visible"
   	:disabled="disabled"
     :class="classes.button"
   	@click.prevent="handleClick"
-  ><slot></slot></button>
+  ><slot/></button>
 </template>
 
 <script>

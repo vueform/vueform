@@ -6,7 +6,7 @@
         v-bind="step"
         :name="name"
         :key="name"
-      />
+     />
     </slot>
   </ul>
 </template>

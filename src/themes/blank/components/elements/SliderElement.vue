@@ -1,8 +1,8 @@
 <template>
   <component :is="elementLayout">
-    <template v-slot:field>
-
+    <template #field>
       <div :class="classes.wrapper">
+        <!-- @vueform/slider component -->
         <Slider
           :value="value"
           :modelValue="value"
@@ -11,12 +11,12 @@
           :id="fieldId"
           ref="input"
           @change="handleChange"
-        />
+       />
       </div>
-
     </template>
 
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
+    <!-- Default element slots -->
+    <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
   </component>
 </template>
 

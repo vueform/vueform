@@ -1,6 +1,9 @@
 <template>
+  <!-- If content is HTML -->
   <div v-if="content" :class="classes.container" v-html="content"></div>
-  <div v-else-if="isSlot" :class="classes.container"><slot></slot></div>
+
+  <!-- If content is a slot -->
+  <div v-else-if="isSlot" :class="classes.container"><slot/></div>
 </template>
 
 <script>

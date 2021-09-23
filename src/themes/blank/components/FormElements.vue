@@ -7,7 +7,7 @@
         :is="component(element)"
         :name="name"
         :key="name"
-      />
+     />
     </slot>
   </div>
 </template>

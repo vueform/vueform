@@ -1,21 +1,20 @@
 <template>
   <component :is="elementLayout">
-    <template v-slot:field>
-
+    <template #field>
       <div :class="classes.inputContainer">
         <ElementAddon v-if="hasAddonBefore" type="before">
-          <slot name="addon-before"></slot>
+          <slot name="addon-before"/>
         </ElementAddon>
 
         <ElementAddon v-if="hasAddonAfter" type="after">
-          <slot name="addon-after"></slot>
+          <slot name="addon-after"/>
         </ElementAddon>
 
         <ElementLabelFloating
           v-if="floating"
           :visible="!empty"
-        />
-        
+       />
+
         <FlatpickrWrapper
           :value="model"
           :modelValue="model"
@@ -27,12 +26,12 @@
           :readonly="readonly"
           @change="handleChange"
           ref="input"
-        />
+       />
       </div>
-
     </template>
 
-    <template v-for="(component, slot) in elementSlots" v-slot:[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$" /></slot></template>
+    <!-- Default element slots -->
+    <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
   </component>
 </template>
 
