@@ -30,7 +30,6 @@
       return {
         defaultClasses: {
           container: '',
-          wrapper: '',
           container_active: '',
           container_inactive: '',
           container_invalid: '',
@@ -40,6 +39,7 @@
           container_completed: '',
           container_incompleted: '',
           container_pending: '',
+          wrapper: '',
         },
       }
     }
