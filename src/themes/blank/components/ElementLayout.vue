@@ -14,7 +14,7 @@
           <slot name="field"/>
         </div>
         <div :class="classes.fieldWrapperAfter">
-          <ElementDescription type="description"><slot name="description"/></ElementDescription>
+          <ElementDescription><slot name="description"/></ElementDescription>
           <ElementText type="between"><slot name="between"/></ElementText>
           <ElementError/>
           <ElementMessage/>

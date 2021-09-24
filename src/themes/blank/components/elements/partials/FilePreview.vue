@@ -14,7 +14,7 @@
         </a>
 
         <!-- Progress -->
-        <div  v-if="uploading" :class="classes.percent">{{ progress }}%</div>
+        <div v-if="uploading" :class="classes.percent">{{ progress }}%</div>
 
         <!-- Error -->
         <span v-if="hasError" :class="classes.warning">

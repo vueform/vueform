@@ -4,7 +4,7 @@
     <ElementText type="before"><slot name="before"/></ElementText>
     <slot name="field"/>
     <ElementText type="between"><slot name="between"/></ElementText>
-    <ElementDescription type="description"><slot name="description"/></ElementDescription>
+    <ElementDescription><slot name="description"/></ElementDescription>
     <ElementError/>
     <ElementMessage/>
     <ElementText type="after"><slot name="after"/></ElementText>
