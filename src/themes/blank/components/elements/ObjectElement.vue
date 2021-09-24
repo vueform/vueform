@@ -1,7 +1,7 @@
 <template>
   <component :is="elementLayout" :multiple="true">
     <template #field>
-      <div :class="classes.childrenContainer">
+      <div :class="classes.wrapper">
         <slot>
           <component :is="component(element)"
             v-for="(element, name) in children"
@@ -27,7 +27,7 @@
       return {
         defaultClasses: {
           container: '',
-          childrenContainer: '',
+          wrapper: '',
         }
       }
     }

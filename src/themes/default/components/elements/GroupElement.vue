@@ -8,7 +8,7 @@
       return {
         defaultClasses: {
           container: '',
-          childrenContainer: 'vf-row-group',
+          wrapper: 'vf-row-group',
         }
       }
     }

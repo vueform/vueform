@@ -351,7 +351,7 @@
     }
   }
 
-  .vf-checkbox-container {
+  .vf-checkbox-wrapper {
     display: flex;
     align-items: center;
     width: 100%;
@@ -426,7 +426,7 @@
     }
   }
 
-  .vf-radio-container {
+  .vf-radio-wrapper {
     display: flex;
     align-items: center;
     width: 100%;

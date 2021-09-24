@@ -8,8 +8,7 @@
       return {
         defaultClasses: {
           container: '',
-          wrapper: '',
-          inputContainer: 'vf-radio-container',
+          wrapper: 'vf-radio-wrapper',
           input: 'vf-radio',
           input_enabled: '',
           input_disabled: '',

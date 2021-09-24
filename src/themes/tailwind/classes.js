@@ -70,8 +70,7 @@ export default {
   },
   CheckboxElement: {
     container: '',
-    wrapper: '',
-    inputContainer: 'flex align-start form-pt-input-border',
+    wrapper: 'flex align-start form-pt-input-border',
     label: 'cursor-pointer',
     ...checkbox,
   },
@@ -98,7 +97,7 @@ export default {
   },
   GroupElement: {
     container: '',
-    childrenContainer: 'form-row-group flex flex-wrap',
+    wrapper: 'form-row-group flex flex-wrap',
   },
   ListElement: {
     container: '',
@@ -157,12 +156,11 @@ export default {
   },
   ObjectElement: {
     container: '',
-    childrenContainer: 'form-row-group flex flex-wrap',
+    wrapper: 'form-row-group flex flex-wrap',
   },
   RadioElement: {
     container: '',
-    wrapper: '',
-    inputContainer: 'flex align-start form-pt-input-border',
+    wrapper: 'flex align-start form-pt-input-border',
     label: 'cursor-pointer',
     ...radio,
   },

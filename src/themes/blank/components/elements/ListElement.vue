@@ -1,5 +1,5 @@
 <template>
-  <component :is="elementLayout">
+  <component :is="elementLayout" :multiple="true">
     <template #field>
       <!-- Sorting container -->
       <div :class="classes.list" ref="list">

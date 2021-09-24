@@ -8,8 +8,7 @@
       return {
         defaultClasses: {
           container: '',
-          wrapper: '',
-          inputContainer: 'vf-checkbox-container',
+          wrapper: 'vf-checkbox-wrapper',
           input: 'vf-checkbox',
           input_enabled: '',
           input_disabled: '',

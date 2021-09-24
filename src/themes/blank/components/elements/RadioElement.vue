@@ -2,35 +2,32 @@
   <component :is="elementLayout">
     <template #field>
       <div :class="classes.wrapper">
-        <div :class="classes.inputContainer">
-          <input
-            type="radio"
-            v-model="value"
-            :value="radioValue"
-            :class="classes.input"
-            :name="fieldName"
-            :id="fieldId"
-            :disabled="isDisabled"
-            ref="input"
-         />
+        <input
+          type="radio"
+          v-model="value"
+          :value="radioValue"
+          :class="classes.input"
+          :name="fieldName"
+          :id="fieldId"
+          :disabled="isDisabled"
+          ref="input"
+        />
 
-          <!-- If label is HTML -->
-          <label
-            v-if="text"
-            :class="classes.label"
-            :for="name"
-            v-html="text"
-          ></label>
+        <!-- If label is HTML -->
+        <label
+          v-if="text"
+          :class="classes.label"
+          :for="name"
+          v-html="text"
+        ></label>
 
-          <!-- If label is slot -->
-          <label
-            v-else
-            :class="classes.label"
-            :for="name"
-          ><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></label>
-        </div>
+        <!-- If label is slot -->
+        <label
+          v-else
+          :class="classes.label"
+          :for="name"
+        ><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></label>
       </div>
-
     </template>
 
     <!-- Default element slots -->
@@ -46,7 +43,6 @@
         defaultClasses: {
           container: '',
           wrapper: '',
-          inputContainer: '',
           input: '',
           input_enabled: '',
           input_disabled: '',
