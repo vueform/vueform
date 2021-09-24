@@ -1,18 +1,20 @@
 <template>
   <component :is="elementLayout">
     <template #field>
-      <RadiogroupRadio
-        v-for="(item, value, key) in items"
-        :item="item"
-        :value="value"
-        :key="key"
-      >
-        <template #default="scope">
-          <slot name="radio" :item="item" :value="value" v-bind="scope">
-            <component :is="fieldSlots.radio" :item="item" :value="value" v-bind="scope"/>
-          </slot>
-        </template>
-      </RadiogroupRadio>
+      <div :class="classes.wrapper"> 
+        <RadiogroupRadio
+          v-for="(item, value, key) in items"
+          :item="item"
+          :value="value"
+          :key="key"
+        >
+          <template #default="scope">
+            <slot name="radio" :item="item" :value="value" v-bind="scope">
+              <component :is="fieldSlots.radio" :item="item" :value="value" v-bind="scope"/>
+            </slot>
+          </template>
+        </RadiogroupRadio>
+      </div>
     </template>
 
     <!-- Default element slots -->
@@ -27,7 +29,7 @@
       return {
         defaultClasses: {
           container: '',
-          radioGroup: '',
+          wrapper: '',
         }
       }
     }

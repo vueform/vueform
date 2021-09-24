@@ -1,7 +1,7 @@
 <template>
   <component :is="elementLayout">
     <template #field>
-      <div :class="classes.checkboxGroup">
+      <div :class="classes.wrapper">
         <CheckboxgroupCheckbox
           v-for="(item, value, key) in items"
           :item="item"
@@ -29,7 +29,7 @@
       return {
         defaultClasses: {
           container: '',
-          checkboxGroup: '',
+          wrapper: '',
         }
       }
     }

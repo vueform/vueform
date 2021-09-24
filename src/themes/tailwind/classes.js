@@ -77,7 +77,7 @@ export default {
   },
   CheckboxgroupElement: {
     container: '',
-    checkboxGroup: 'flex flex-col justify-start form-pt-input-border',
+    wrapper: 'flex flex-col justify-start form-pt-input-border',
   },
   DateElement: {
     container: '',
@@ -168,7 +168,7 @@ export default {
   },
   RadiogroupElement: {
     container: '',
-    radioGroup: 'flex flex-col justify-start form-pt-input-border',
+    wrapper: 'flex flex-col justify-start form-pt-input-border',
   },
   SelectElement: {
     container: '',

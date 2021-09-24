@@ -8,7 +8,7 @@
       return {
         defaultClasses: {
           container: '',
-          radioGroup: 'vf-radio-group',
+          wrapper: 'vf-radiogroup-wrapper',
         }
       }
     }
@@ -16,7 +16,7 @@
 </script>
 
 <style lang="scss">
-  .vf-radio-group {
+  .vf-radiogroup-wrapper {
     padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
 
     .vf-radio-container {
