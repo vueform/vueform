@@ -66,7 +66,8 @@ export default {
     onClick: {
       required: false,
       type: [Function],
-      default: null
+      default: null,
+      private: true,
     },
     resets: {
       required: false,

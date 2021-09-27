@@ -138,16 +138,19 @@ export default {
       required: false,
       type: [Function],
       default: null,
+      private: true,
     },
     onRemove: {
       required: false,
       type: [Function],
       default: null,
+      private: true,
     },
     onSort: {
       required: false,
       type: [Function],
       default: null,
+      private: true,
     },
   },
   setup(props, context) {

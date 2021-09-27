@@ -55,7 +55,8 @@ export default {
     embed: {
       type: [Boolean],
       required: false,
-      default: false
+      default: false,
+      private: true,
     },
     image: {
       type: [Boolean],
@@ -131,11 +132,13 @@ export default {
       required: false,
       type: [Function],
       default: null,
+      private: true,
     },
     onError: {
       required: false,
       type: [Function],
       default: null,
+      private: true,
     },
   },
   setup(props, context) {

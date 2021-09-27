@@ -62,35 +62,35 @@ export default {
           "description": "The element's component."
         },
         "isStatic": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element is static (does not have any data or validation)."
         },
         "isFileType": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element's value is a file."
         },
         "isArrayType": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element's value is an array."
         },
         "isImageType": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element's value is an image."
         },
         "isActive": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
@@ -130,35 +130,35 @@ export default {
           "description": "The element's component."
         },
         "isStatic": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element is static (does not have any data or validation)."
         },
         "isFileType": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element's value is a file."
         },
         "isArrayType": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element's value is an array."
         },
         "isImageType": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element's value is an image."
         },
         "isActive": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
@@ -198,35 +198,35 @@ export default {
           "description": "The element's component."
         },
         "isStatic": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element is static (does not have any data or validation)."
         },
         "isFileType": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element's value is a file."
         },
         "isArrayType": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element's value is an array."
         },
         "isImageType": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element's value is an image."
         },
         "isActive": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
@@ -266,35 +266,35 @@ export default {
           "description": "The element's component."
         },
         "isStatic": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element is static (does not have any data or validation)."
         },
         "isFileType": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element's value is a file."
         },
         "isArrayType": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element's value is an array."
         },
         "isImageType": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],
           "description": "Whether the element's value is an image."
         },
         "isActive": {
-          "public": true,
+          "public": false,
           "types": [
             "boolean"
           ],

@@ -49,16 +49,6 @@ export default {
       type: [String, Number],
       default: null
     },
-    addons: {
-      required: false,
-      type: [Object],
-      default: () => ({}),
-    },
-    autocomplete: {
-      required: false,
-      type: [String, Number],
-      default: null
-    },
     debounce: {
       required: false,
       type: [Number],
@@ -79,11 +69,6 @@ export default {
       type: [String],
       default: null
     },
-    inputType: {
-      required: false,
-      type: [String],
-      default: 'text'
-    },
     placeholder: {
       required: false,
       type: [String],
@@ -93,6 +78,22 @@ export default {
       required: false,
       type: [Boolean],
       default: false
+    },
+
+    inputType: {
+      required: false,
+      type: [String],
+      default: 'text'
+    },
+    addons: {
+      required: false,
+      type: [Object],
+      default: () => ({}),
+    },
+    autocomplete: {
+      required: false,
+      type: [String, Number],
+      default: null
     },
   },
   setup(props, context) {

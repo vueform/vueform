@@ -414,35 +414,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       children$: {
         types: [
@@ -1265,7 +1265,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       resets: {
         required: 'false',
@@ -1322,35 +1322,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       isButtonLabelComponent: {
         types: [
@@ -2059,35 +2059,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -4110,35 +4110,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -6008,7 +6008,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        private: false,
+        private: true,
       },
       image: {
         required: 'false',
@@ -6129,7 +6129,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onError: {
         required: 'false',
@@ -6137,7 +6137,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
     },
     data: {
@@ -6319,35 +6319,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -7362,35 +7362,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -8033,35 +8033,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       components: {
         types: [
@@ -8939,35 +8939,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       children$: {
         types: [
@@ -10165,35 +10165,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -11157,7 +11157,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onRemove: {
         required: 'false',
@@ -11165,7 +11165,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onSort: {
         required: 'false',
@@ -11173,7 +11173,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
     },
     data: {
@@ -11313,35 +11313,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       children$: {
         types: [
@@ -12409,14 +12409,6 @@ module.exports = {
         ],
         private: false,
       },
-      search: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
-        ],
-        private: false,
-      },
       options: {
         required: 'false',
         default: '{}',
@@ -12489,9 +12481,243 @@ module.exports = {
         ],
         private: false,
       },
+      onClear: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        private: true,
+      },
+      onPaste: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        private: true,
+      },
+      labelProp: {
+        required: 'false',
+        default: 'label',
+        types: [
+        ],
+        private: false,
+      },
+      trackBy: {
+        required: 'false',
+        default: 'label',
+        types: [
+        ],
+        private: false,
+      },
+      valueProp: {
+        required: 'false',
+        default: 'value',
+        types: [
+        ],
+        private: false,
+      },
+      search: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      limit: {
+        required: 'false',
+        default: '-1',
+        types: [
+        ],
+        private: false,
+      },
+      noOptionsText: {
+        required: 'false',
+        default: 'The list is empty',
+        types: [
+        ],
+        private: false,
+      },
+      noResultsText: {
+        required: 'false',
+        default: 'No results found',
+        types: [
+        ],
+        private: false,
+      },
+      caret: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      loading: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      object: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      delay: {
+        required: 'false',
+        default: '-1',
+        types: [
+        ],
+        private: false,
+      },
+      minChars: {
+        required: 'false',
+        default: '0',
+        types: [
+        ],
+        private: false,
+      },
+      resolveOnLoad: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      filterResults: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      clearOnSearch: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      clearOnSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      canDeselect: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      canClear: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      max: {
+        required: 'false',
+        default: '-1',
+        types: [
+        ],
+        private: false,
+      },
+      showOptions: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      openDirection: {
+        required: 'false',
+        default: 'bottom',
+        types: [
+        ],
+        private: false,
+      },
+      strict: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      closeOnSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      autocomplete: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+        ],
+        private: false,
+      },
+      groups: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      groupLabel: {
+        required: 'false',
+        default: 'label',
+        types: [
+        ],
+        private: false,
+      },
+      groupOptions: {
+        required: 'false',
+        default: 'options',
+        types: [
+        ],
+        private: false,
+      },
+      groupHideEmpty: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      groupSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      inputType: {
+        required: 'false',
+        default: 'text',
+        types: [
+        ],
+        private: false,
+      },
       multipleLabel: {
         required: 'false',
         default: 'undefined',
+        types: [
+        ],
+        private: false,
+      },
+      hideSelected: {
+        required: 'false',
+        default: 'true',
         types: [
         ],
         private: false,
@@ -13753,35 +13979,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       children: {
         types: [
@@ -14684,35 +14910,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -15638,35 +15864,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -16536,7 +16762,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onDeselect: {
         required: 'false',
@@ -16544,7 +16770,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onSearchChange: {
         required: 'false',
@@ -16552,7 +16778,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onOpen: {
         required: 'false',
@@ -16560,7 +16786,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onClose: {
         required: 'false',
@@ -16568,7 +16794,23 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
+      },
+      onClear: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        private: true,
+      },
+      onPaste: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        private: true,
       },
       labelProp: {
         required: 'false',
@@ -16897,35 +17139,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -18206,35 +18448,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -19032,35 +19274,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -19790,35 +20032,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -20833,35 +21075,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -21880,35 +22122,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -22867,6 +23109,225 @@ module.exports = {
         default: 'null',
         types: [
           'function',
+        ],
+        private: true,
+      },
+      onClear: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        private: true,
+      },
+      onPaste: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        private: true,
+      },
+      labelProp: {
+        required: 'false',
+        default: 'label',
+        types: [
+        ],
+        private: false,
+      },
+      trackBy: {
+        required: 'false',
+        default: 'label',
+        types: [
+        ],
+        private: false,
+      },
+      valueProp: {
+        required: 'false',
+        default: 'value',
+        types: [
+        ],
+        private: false,
+      },
+      limit: {
+        required: 'false',
+        default: '-1',
+        types: [
+        ],
+        private: false,
+      },
+      noOptionsText: {
+        required: 'false',
+        default: 'The list is empty',
+        types: [
+        ],
+        private: false,
+      },
+      noResultsText: {
+        required: 'false',
+        default: 'No results found',
+        types: [
+        ],
+        private: false,
+      },
+      caret: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      loading: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      object: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      delay: {
+        required: 'false',
+        default: '-1',
+        types: [
+        ],
+        private: false,
+      },
+      minChars: {
+        required: 'false',
+        default: '0',
+        types: [
+        ],
+        private: false,
+      },
+      resolveOnLoad: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      filterResults: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      clearOnSearch: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      clearOnSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      canDeselect: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      canClear: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      max: {
+        required: 'false',
+        default: '-1',
+        types: [
+        ],
+        private: false,
+      },
+      showOptions: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      openDirection: {
+        required: 'false',
+        default: 'bottom',
+        types: [
+        ],
+        private: false,
+      },
+      strict: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      closeOnSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      autocomplete: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+        ],
+        private: false,
+      },
+      groups: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      groupLabel: {
+        required: 'false',
+        default: 'label',
+        types: [
+        ],
+        private: false,
+      },
+      groupOptions: {
+        required: 'false',
+        default: 'options',
+        types: [
+        ],
+        private: false,
+      },
+      groupHideEmpty: {
+        required: 'false',
+        default: 'false',
+        types: [
+        ],
+        private: false,
+      },
+      groupSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+        ],
+        private: false,
+      },
+      inputType: {
+        required: 'false',
+        default: 'text',
+        types: [
         ],
         private: false,
       },
@@ -24132,23 +24593,6 @@ module.exports = {
         ],
         private: false,
       },
-      addons: {
-        required: 'false',
-        default: '{}',
-        types: [
-          'object',
-        ],
-        private: false,
-      },
-      autocomplete: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'string',
-          'number',
-        ],
-        private: false,
-      },
       debounce: {
         required: 'false',
         default: 'null',
@@ -24181,14 +24625,6 @@ module.exports = {
         ],
         private: false,
       },
-      inputType: {
-        required: 'false',
-        default: 'text',
-        types: [
-          'string',
-        ],
-        private: false,
-      },
       placeholder: {
         required: 'false',
         default: 'null',
@@ -24202,6 +24638,31 @@ module.exports = {
         default: 'false',
         types: [
           'boolean',
+        ],
+        private: false,
+      },
+      inputType: {
+        required: 'false',
+        default: 'text',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      addons: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        private: false,
+      },
+      autocomplete: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+          'number',
         ],
         private: false,
       },
@@ -24314,35 +24775,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -25337,35 +25798,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -26362,35 +26823,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [
@@ -27258,7 +27719,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
     },
     data: {
@@ -27376,35 +27837,35 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is static (does not have any data or validation).',
-        private: false,
+        private: true,
       },
       isFileType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is a file.',
-        private: false,
+        private: true,
       },
       isArrayType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an array.',
-        private: false,
+        private: true,
       },
       isImageType: {
         types: [
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
-        private: false,
+        private: true,
       },
       isActive: {
         types: [
           'boolean',
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
-        private: false,
+        private: true,
       },
       classes: {
         types: [

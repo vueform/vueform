@@ -38,7 +38,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'MultiselectElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'select', 'deselect', 'search-change', 'open', 'close'],
+  emits: ['change', 'select', 'deselect', 'search-change', 'open', 'close', 'clear', 'paste'],
   props: {
     type: {
       required: false,
@@ -75,11 +75,6 @@ export default {
       required: false,
       type: [Object, Array, Function],
       default: () => ({})
-    },
-    search: {
-      required: false,
-      type: [Boolean],
-      default: false
     },
     options: {
       required: false,
@@ -125,10 +120,175 @@ export default {
       required: false,
       type: [Function],
       default: null,
+    },onClear: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onPaste: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    labelProp: {
+      type: String,
+      required: false,
+      default: 'label',
+    },
+    trackBy: {
+      type: String,
+      required: false,
+      default: 'label',
+    },
+    valueProp: {
+      type: String,
+      required: false,
+      default: 'value',
+    },
+    search: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    limit: {
+      type: Number,
+      required: false,
+      default: -1,
+    },
+    noOptionsText: {
+      type: String,
+      required: false,
+      default: 'The list is empty',
+    },
+    noResultsText: {
+      type: String,
+      required: false,
+      default: 'No results found',
+    },
+    caret: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    loading: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    object: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    delay: {
+      type: Number,
+      required: false,
+      default: -1,
+    },
+    minChars: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    resolveOnLoad: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    filterResults: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    clearOnSearch: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    clearOnSelect: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    canDeselect: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    canClear: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    max: {
+      type: Number,
+      required: false,
+      default: -1,
+    },
+    showOptions: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    openDirection: {
+      type: String,
+      required: false,
+      default: 'bottom',
+    },
+    strict: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    closeOnSelect: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    autocomplete: {
+      type: String,
+      required: false,
+    },
+    groups: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    groupLabel: {
+      type: String,
+      required: false,
+      default: 'label',
+    },
+    groupOptions: {
+      type: String,
+      required: false,
+      default: 'options',
+    },
+    groupHideEmpty: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    groupSelect: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    inputType: {
+      type: String,
+      required: false,
+      default: 'text',
     },
     multipleLabel: {
       type: Function,
       required: false,
+    },
+    hideSelected: {
+      type: Boolean,
+      required: false,
+      default: true,
     },
   },
   setup(props, context) {

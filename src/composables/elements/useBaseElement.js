@@ -53,6 +53,7 @@ const base = function(props, context, dependencies)
    * Whether the element is static (does not have any data or validation).
    * 
    * @type {boolean}
+   * @private
    */
   const isStatic = computed(() => {
     return false
@@ -62,6 +63,7 @@ const base = function(props, context, dependencies)
    * Whether the element's value is a file.
    *
    * @type {boolean}
+   * @private
    */
   const isFileType = computed(() => {
     return false
@@ -71,6 +73,7 @@ const base = function(props, context, dependencies)
    * Whether the element's value is an image.
    *
    * @type {boolean}
+   * @private
    */
   const isImageType = computed(() => {
     return false
@@ -80,6 +83,7 @@ const base = function(props, context, dependencies)
    * Whether the element's value is an array.
    *
    * @type {boolean}
+   * @private
    */
   const isArrayType = computed(() => {
     return false
@@ -89,6 +93,7 @@ const base = function(props, context, dependencies)
    * Whether the element should be visible when using `tabs` or `steps`.
    * 
    * @type {boolean}
+   * @private
    */
   const isActive = computed(() => {
     return active.value
