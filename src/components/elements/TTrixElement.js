@@ -20,6 +20,7 @@ import useHandleError from './../../composables/elements/useHandleError'
 import useLanguages from './../../composables/elements/useLanguages'
 import useTrix from './../../composables/elements/useTrix'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useHandleAlert from './../../composables/elements/useHandleAlert'
 
 import { ttrix as useData } from './../../composables/elements/useData'
 import { trix as useClasses } from './../../composables/elements/useClasses'
@@ -43,7 +44,7 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: 'tTrix',
+      default: 't-trix',
       private: true,
     },
     default: {
@@ -219,6 +220,11 @@ export default {
       model: value.model,
     })
 
+    const handleAlert = useHandleAlert(props, context, {
+      fire: events.fire,
+      listeners: events.listeners,
+    })
+
     const handleError = useHandleError(props, context, {
       fire: events.fire,
       listeners: events.listeners,
@@ -268,6 +274,7 @@ export default {
       ...nullValue,
       ...handleInput,
       ...handleError,
+      ...handleAlert,
       ...trix,
       ...languages,
     }

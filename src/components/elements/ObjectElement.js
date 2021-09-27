@@ -52,7 +52,7 @@ export default {
     embed: {
       required: false,
       type: [Boolean],
-      default: false
+      default: false,
     },
   },
   setup(props, context) {

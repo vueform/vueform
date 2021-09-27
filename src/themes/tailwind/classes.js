@@ -286,7 +286,7 @@ export default {
     calendarContainer: ''
   },
   TrixWrapper: {
-    container: '',
+    container: 'bg-white',
   },
 
   // Components

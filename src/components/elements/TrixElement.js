@@ -49,7 +49,7 @@ export default {
     default: {
       required: false,
       type: [String, Number],
-      default: null
+      default: null,
     },
     debounce: {
       required: false,
@@ -84,7 +84,8 @@ export default {
     endpoint: {
       required: false,
       type: [String],
-      default: null
+      default: null,
+      '@default': 'config.endpoints.trix.endpoint',
     },
     onError: {
       required: false,

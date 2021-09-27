@@ -12447,7 +12447,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onDeselect: {
         required: 'false',
@@ -12455,7 +12455,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onSearchChange: {
         required: 'false',
@@ -12463,7 +12463,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onOpen: {
         required: 'false',
@@ -12471,7 +12471,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onClose: {
         required: 'false',
@@ -12479,7 +12479,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onClear: {
         required: 'false',
@@ -23070,7 +23070,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onDeselect: {
         required: 'false',
@@ -23078,7 +23078,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onSearchChange: {
         required: 'false',
@@ -23086,7 +23086,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onOpen: {
         required: 'false',
@@ -23094,7 +23094,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onClose: {
         required: 'false',
@@ -23102,7 +23102,7 @@ module.exports = {
         types: [
           'function',
         ],
-        private: false,
+        private: true,
       },
       onTag: {
         required: 'false',
@@ -27707,7 +27707,7 @@ module.exports = {
       },
       endpoint: {
         required: 'false',
-        default: 'null',
+        default: 'config.endpoints.trix.endpoint',
         types: [
           'string',
         ],

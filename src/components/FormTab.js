@@ -48,12 +48,14 @@ export default {
       type: [Function],
       required: false,
       default: null,
+      private: true,
     },
 
     onInactive: {
       type: [Function],
       required: false,
       default: null,
+      private: true,
     },
   },
   setup(props, context)

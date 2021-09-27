@@ -100,27 +100,33 @@ export default {
       required: false,
       type: [Function],
       default: null,
+      private: true,
     },
     onDeselect: {
       required: false,
       type: [Function],
       default: null,
+      private: true,
     },
     onSearchChange: {
       required: false,
       type: [Function],
       default: null,
+      private: true,
     },
     onOpen: {
       required: false,
       type: [Function],
       default: null,
+      private: true,
     },
     onClose: {
       required: false,
       type: [Function],
       default: null,
-    },onClear: {
+      private: true,
+    },
+    onClear: {
       required: false,
       type: [Function],
       default: null,

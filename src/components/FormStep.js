@@ -57,24 +57,28 @@ export default {
       type: [Function],
       required: false,
       default: null,
+      private: true,
     },
 
     onInactive: {
       type: [Function],
       required: false,
       default: null,
+      private: true,
     },
 
     onDisable: {
       type: [Function],
       required: false,
       default: null,
+      private: true,
     },
 
     onEnable: {
       type: [Function],
       required: false,
       default: null,
+      private: true,
     },
   },
   setup(props, context)
