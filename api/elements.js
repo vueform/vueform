@@ -1120,6 +1120,7 @@ export default {
       "fieldId",
       "form$",
       "genericName",
+      "handleAlert",
       "handleError",
       "handleInput",
       "input",

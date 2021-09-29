@@ -76,11 +76,6 @@ export default {
       type: [String],
       default: null
     },
-    readonly: {
-      required: false,
-      type: [Boolean],
-      default: false
-    },
     onSelect: {
       required: false,
       type: [Function],
@@ -239,6 +234,12 @@ export default {
       native: false,
     },
     resolveOnLoad: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false,
+    },
+    filterResults: {
       type: [Boolean],
       required: false,
       default: true,

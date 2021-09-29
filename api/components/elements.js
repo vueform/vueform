@@ -12399,45 +12399,11 @@ module.exports = {
         ],
         private: false,
       },
-      items: {
-        required: 'false',
-        default: '{}',
-        types: [
-          'object',
-          'array',
-          'function',
-        ],
-        private: false,
-      },
-      options: {
-        required: 'false',
-        default: '{}',
-        types: [
-          'object',
-        ],
-        private: false,
-      },
       placeholder: {
         required: 'false',
         default: 'null',
         types: [
           'string',
-        ],
-        private: false,
-      },
-      readonly: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
-        ],
-        private: false,
-      },
-      native: {
-        required: 'false',
-        default: 'true',
-        types: [
-          'boolean',
         ],
         private: false,
       },
@@ -12497,17 +12463,29 @@ module.exports = {
         ],
         private: true,
       },
+      native: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      items: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+          'array',
+          'function',
+        ],
+        private: false,
+      },
       labelProp: {
         required: 'false',
         default: 'label',
         types: [
-        ],
-        private: false,
-      },
-      trackBy: {
-        required: 'false',
-        default: 'label',
-        types: [
+          'string',
         ],
         private: false,
       },
@@ -12515,6 +12493,7 @@ module.exports = {
         required: 'false',
         default: 'value',
         types: [
+          'string',
         ],
         private: false,
       },
@@ -12526,122 +12505,11 @@ module.exports = {
         ],
         private: false,
       },
-      limit: {
+      trackBy: {
         required: 'false',
-        default: '-1',
+        default: 'label',
         types: [
-        ],
-        private: false,
-      },
-      noOptionsText: {
-        required: 'false',
-        default: 'The list is empty',
-        types: [
-        ],
-        private: false,
-      },
-      noResultsText: {
-        required: 'false',
-        default: 'No results found',
-        types: [
-        ],
-        private: false,
-      },
-      caret: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      loading: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
-      object: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
-      delay: {
-        required: 'false',
-        default: '-1',
-        types: [
-        ],
-        private: false,
-      },
-      minChars: {
-        required: 'false',
-        default: '0',
-        types: [
-        ],
-        private: false,
-      },
-      resolveOnLoad: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      filterResults: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      clearOnSearch: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
-      clearOnSelect: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      canDeselect: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      canClear: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      max: {
-        required: 'false',
-        default: '-1',
-        types: [
-        ],
-        private: false,
-      },
-      showOptions: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      openDirection: {
-        required: 'false',
-        default: 'bottom',
-        types: [
+          'string',
         ],
         private: false,
       },
@@ -12649,62 +12517,7 @@ module.exports = {
         required: 'false',
         default: 'true',
         types: [
-        ],
-        private: false,
-      },
-      closeOnSelect: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      autocomplete: {
-        required: 'false',
-        default: 'undefined',
-        types: [
-        ],
-        private: false,
-      },
-      groups: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
-      groupLabel: {
-        required: 'false',
-        default: 'label',
-        types: [
-        ],
-        private: false,
-      },
-      groupOptions: {
-        required: 'false',
-        default: 'options',
-        types: [
-        ],
-        private: false,
-      },
-      groupHideEmpty: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
-      groupSelect: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      inputType: {
-        required: 'false',
-        default: 'text',
-        types: [
+          'boolean',
         ],
         private: false,
       },
@@ -12712,6 +12525,143 @@ module.exports = {
         required: 'false',
         default: 'undefined',
         types: [
+          'function',
+        ],
+        private: false,
+      },
+      object: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      limit: {
+        required: 'false',
+        default: '-1',
+        types: [
+          'number',
+        ],
+        private: false,
+      },
+      max: {
+        required: 'false',
+        default: '-1',
+        types: [
+          'number',
+        ],
+        private: false,
+      },
+      groups: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      groupLabel: {
+        required: 'false',
+        default: 'label',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      groupOptions: {
+        required: 'false',
+        default: 'items',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      groupHideEmpty: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      groupSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      openDirection: {
+        required: 'false',
+        default: 'bottom',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      canClear: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      clearOnSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      closeOnSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      delay: {
+        required: 'false',
+        default: '-1',
+        types: [
+          'number',
+        ],
+        private: false,
+      },
+      minChars: {
+        required: 'false',
+        default: '0',
+        types: [
+          'number',
+        ],
+        private: false,
+      },
+      resolveOnLoad: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      filterResults: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      clearOnSearch: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
         ],
         private: false,
       },
@@ -12719,6 +12669,63 @@ module.exports = {
         required: 'false',
         default: 'true',
         types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      caret: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      loading: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      noOptionsText: {
+        required: 'false',
+        default: 'locale.multiselect.noOptions',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      noResultsText: {
+        required: 'false',
+        default: 'locale.multiselect.noResults',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      autocomplete: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      inputType: {
+        required: 'false',
+        default: 'text',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      options: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
         ],
         private: false,
       },
@@ -15738,14 +15745,6 @@ module.exports = {
         ],
         private: false,
       },
-      disables: {
-        required: 'false',
-        default: '[]',
-        types: [
-          'array',
-        ],
-        private: false,
-      },
       disabled: {
         required: 'false',
         default: 'false',
@@ -15767,6 +15766,14 @@ module.exports = {
         default: '{}',
         types: [
           'object',
+          'array',
+        ],
+        private: false,
+      },
+      disables: {
+        required: 'false',
+        default: '[]',
+        types: [
           'array',
         ],
         private: false,
@@ -16714,45 +16721,11 @@ module.exports = {
         ],
         private: false,
       },
-      items: {
-        required: 'false',
-        default: '{}',
-        types: [
-          'object',
-          'array',
-          'function',
-        ],
-        private: false,
-      },
-      native: {
-        required: 'false',
-        default: 'true',
-        types: [
-          'boolean',
-        ],
-        private: false,
-      },
-      options: {
-        required: 'false',
-        default: '{}',
-        types: [
-          'object',
-        ],
-        private: false,
-      },
       placeholder: {
         required: 'false',
         default: 'null',
         types: [
           'string',
-        ],
-        private: false,
-      },
-      readonly: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
         ],
         private: false,
       },
@@ -16812,17 +16785,29 @@ module.exports = {
         ],
         private: true,
       },
+      native: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      items: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+          'array',
+          'function',
+        ],
+        private: false,
+      },
       labelProp: {
         required: 'false',
         default: 'label',
         types: [
-        ],
-        private: false,
-      },
-      trackBy: {
-        required: 'false',
-        default: 'label',
-        types: [
+          'string',
         ],
         private: false,
       },
@@ -16830,6 +16815,7 @@ module.exports = {
         required: 'false',
         default: 'value',
         types: [
+          'string',
         ],
         private: false,
       },
@@ -16841,122 +16827,11 @@ module.exports = {
         ],
         private: false,
       },
-      limit: {
+      trackBy: {
         required: 'false',
-        default: '-1',
+        default: 'label',
         types: [
-        ],
-        private: false,
-      },
-      noOptionsText: {
-        required: 'false',
-        default: 'The list is empty',
-        types: [
-        ],
-        private: false,
-      },
-      noResultsText: {
-        required: 'false',
-        default: 'No results found',
-        types: [
-        ],
-        private: false,
-      },
-      caret: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      loading: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
-      object: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
-      delay: {
-        required: 'false',
-        default: '-1',
-        types: [
-        ],
-        private: false,
-      },
-      minChars: {
-        required: 'false',
-        default: '0',
-        types: [
-        ],
-        private: false,
-      },
-      resolveOnLoad: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      filterResults: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      clearOnSearch: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
-      clearOnSelect: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      canDeselect: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      canClear: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      max: {
-        required: 'false',
-        default: '-1',
-        types: [
-        ],
-        private: false,
-      },
-      showOptions: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      openDirection: {
-        required: 'false',
-        default: 'bottom',
-        types: [
+          'string',
         ],
         private: false,
       },
@@ -16964,20 +16839,23 @@ module.exports = {
         required: 'false',
         default: 'true',
         types: [
+          'boolean',
         ],
         private: false,
       },
-      closeOnSelect: {
+      object: {
         required: 'false',
-        default: 'true',
+        default: 'false',
         types: [
+          'boolean',
         ],
         private: false,
       },
-      autocomplete: {
+      limit: {
         required: 'false',
-        default: 'undefined',
+        default: '-1',
         types: [
+          'number',
         ],
         private: false,
       },
@@ -16985,6 +16863,7 @@ module.exports = {
         required: 'false',
         default: 'false',
         types: [
+          'boolean',
         ],
         private: false,
       },
@@ -16992,13 +16871,15 @@ module.exports = {
         required: 'false',
         default: 'label',
         types: [
+          'string',
         ],
         private: false,
       },
       groupOptions: {
         required: 'false',
-        default: 'options',
+        default: 'items',
         types: [
+          'string',
         ],
         private: false,
       },
@@ -17006,13 +16887,119 @@ module.exports = {
         required: 'false',
         default: 'false',
         types: [
+          'boolean',
         ],
         private: false,
       },
-      groupSelect: {
+      openDirection: {
+        required: 'false',
+        default: 'bottom',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      canDeselect: {
         required: 'false',
         default: 'true',
         types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      canClear: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      closeOnSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      delay: {
+        required: 'false',
+        default: '-1',
+        types: [
+          'number',
+        ],
+        private: false,
+      },
+      minChars: {
+        required: 'false',
+        default: '0',
+        types: [
+          'number',
+        ],
+        private: false,
+      },
+      resolveOnLoad: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      filterResults: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      clearOnSearch: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      caret: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      loading: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      noOptionsText: {
+        required: 'false',
+        default: 'locale.multiselect.noOptions',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      noResultsText: {
+        required: 'false',
+        default: 'locale.multiselect.noResults',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      autocomplete: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         private: false,
       },
@@ -17020,6 +17007,15 @@ module.exports = {
         required: 'false',
         default: 'text',
         types: [
+          'string',
+        ],
+        private: false,
+      },
+      options: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
         ],
         private: false,
       },
@@ -21940,7 +21936,7 @@ module.exports = {
       },
       type: {
         required: 'false',
-        default: 'tTrix',
+        default: 't-trix',
         types: [
           'string',
         ],
@@ -22529,6 +22525,20 @@ module.exports = {
         },
         private: false,
       },
+      handleAlert: {
+        description: 'Handles `alert` event.',
+        returns: 'void',
+        params: {
+          message: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'alert message',
+          },
+        },
+        private: true,
+      },
       handleError: {
         description: 'Handles `error` event.',
         returns: 'void',
@@ -23030,37 +23040,11 @@ module.exports = {
         ],
         private: false,
       },
-      items: {
-        required: 'false',
-        default: '{}',
-        types: [
-          'object',
-          'array',
-          'function',
-        ],
-        private: false,
-      },
-      options: {
-        required: 'false',
-        default: '{}',
-        types: [
-          'object',
-        ],
-        private: false,
-      },
       placeholder: {
         required: 'false',
         default: 'null',
         types: [
           'string',
-        ],
-        private: false,
-      },
-      readonly: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
         ],
         private: false,
       },
@@ -23128,17 +23112,29 @@ module.exports = {
         ],
         private: true,
       },
+      native: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      items: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+          'array',
+          'function',
+        ],
+        private: false,
+      },
       labelProp: {
         required: 'false',
         default: 'label',
         types: [
-        ],
-        private: false,
-      },
-      trackBy: {
-        required: 'false',
-        default: 'label',
-        types: [
+          'string',
         ],
         private: false,
       },
@@ -23146,194 +23142,29 @@ module.exports = {
         required: 'false',
         default: 'value',
         types: [
-        ],
-        private: false,
-      },
-      limit: {
-        required: 'false',
-        default: '-1',
-        types: [
-        ],
-        private: false,
-      },
-      noOptionsText: {
-        required: 'false',
-        default: 'The list is empty',
-        types: [
-        ],
-        private: false,
-      },
-      noResultsText: {
-        required: 'false',
-        default: 'No results found',
-        types: [
-        ],
-        private: false,
-      },
-      caret: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      loading: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
-      object: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
-      delay: {
-        required: 'false',
-        default: '-1',
-        types: [
-        ],
-        private: false,
-      },
-      minChars: {
-        required: 'false',
-        default: '0',
-        types: [
-        ],
-        private: false,
-      },
-      resolveOnLoad: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      filterResults: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      clearOnSearch: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
-      clearOnSelect: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      canDeselect: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      canClear: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      max: {
-        required: 'false',
-        default: '-1',
-        types: [
-        ],
-        private: false,
-      },
-      showOptions: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      openDirection: {
-        required: 'false',
-        default: 'bottom',
-        types: [
-        ],
-        private: false,
-      },
-      strict: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      closeOnSelect: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      autocomplete: {
-        required: 'false',
-        default: 'undefined',
-        types: [
-        ],
-        private: false,
-      },
-      groups: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
-      groupLabel: {
-        required: 'false',
-        default: 'label',
-        types: [
-        ],
-        private: false,
-      },
-      groupOptions: {
-        required: 'false',
-        default: 'options',
-        types: [
-        ],
-        private: false,
-      },
-      groupHideEmpty: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
-      groupSelect: {
-        required: 'false',
-        default: 'true',
-        types: [
-        ],
-        private: false,
-      },
-      inputType: {
-        required: 'false',
-        default: 'text',
-        types: [
+          'string',
         ],
         private: false,
       },
       search: {
         required: 'false',
         default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      trackBy: {
+        required: 'false',
+        default: 'label',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      strict: {
+        required: 'false',
+        default: 'true',
         types: [
           'boolean',
         ],
@@ -23347,17 +23178,11 @@ module.exports = {
         ],
         private: false,
       },
-      createTag: {
-        required: 'false',
-        default: 'false',
-        types: [
-        ],
-        private: false,
-      },
       appendNewTag: {
         required: 'false',
         default: 'true',
         types: [
+          'boolean',
         ],
         private: false,
       },
@@ -23365,6 +23190,143 @@ module.exports = {
         required: 'false',
         default: '["enter"]',
         types: [
+          'array',
+        ],
+        private: false,
+      },
+      object: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      limit: {
+        required: 'false',
+        default: '-1',
+        types: [
+          'number',
+        ],
+        private: false,
+      },
+      max: {
+        required: 'false',
+        default: '-1',
+        types: [
+          'number',
+        ],
+        private: false,
+      },
+      groups: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      groupLabel: {
+        required: 'false',
+        default: 'label',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      groupOptions: {
+        required: 'false',
+        default: 'items',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      groupHideEmpty: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      groupSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      openDirection: {
+        required: 'false',
+        default: 'bottom',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      canClear: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      clearOnSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      closeOnSelect: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      delay: {
+        required: 'false',
+        default: '-1',
+        types: [
+          'number',
+        ],
+        private: false,
+      },
+      minChars: {
+        required: 'false',
+        default: '0',
+        types: [
+          'number',
+        ],
+        private: false,
+      },
+      resolveOnLoad: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      filterResults: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      clearOnSearch: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
         ],
         private: false,
       },
@@ -23372,6 +23334,71 @@ module.exports = {
         required: 'false',
         default: 'true',
         types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      showOptions: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      caret: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      loading: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      noOptionsText: {
+        required: 'false',
+        default: 'locale.multiselect.noOptions',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      noResultsText: {
+        required: 'false',
+        default: 'locale.multiselect.noResults',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      autocomplete: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      inputType: {
+        required: 'false',
+        default: 'text',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      options: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
         ],
         private: false,
       },
@@ -26646,26 +26673,6 @@ module.exports = {
         ],
         private: false,
       },
-      trueValue: {
-        required: 'false',
-        default: 'true',
-        types: [
-          'boolean',
-          'string',
-          'number',
-        ],
-        private: false,
-      },
-      falseValue: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
-          'string',
-          'number',
-        ],
-        private: false,
-      },
       debounce: {
         required: 'false',
         default: 'null',
@@ -26690,6 +26697,14 @@ module.exports = {
         ],
         private: false,
       },
+      text: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
       labels: {
         required: 'false',
         default: '{}',
@@ -26698,19 +26713,31 @@ module.exports = {
         ],
         private: false,
       },
+      trueValue: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+          'string',
+          'number',
+        ],
+        private: false,
+      },
+      falseValue: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+          'string',
+          'number',
+        ],
+        private: false,
+      },
       options: {
         required: 'false',
         default: '{}',
         types: [
           'object',
-        ],
-        private: false,
-      },
-      text: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'string',
         ],
         private: false,
       },

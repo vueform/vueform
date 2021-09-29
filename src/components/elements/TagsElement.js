@@ -72,25 +72,10 @@ export default {
       type: [String],
       default: null
     },
-    items: {
-      required: false,
-      type: [Object, Array, Function],
-      default: () => ({})
-    },
-    options: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
     placeholder: {
       required: false,
       type: [String],
       default: null
-    },
-    readonly: {
-      required: false,
-      type: [Boolean],
-      default: false
     },
     onSelect: {
       required: false,
@@ -140,152 +125,43 @@ export default {
       default: null,
       private: true,
     },
+
+    items: {
+      required: false,
+      type: [Object, Array, Function],
+      default: () => ({})
+    },
     labelProp: {
       type: [String],
       required: false,
       default: 'label',
-    },
-    trackBy: {
-      type: [String],
-      required: false,
-      default: 'label',
+      native: false,
     },
     valueProp: {
       type: [String],
       required: false,
       default: 'value',
+      native: false,
     },
     search: {
       required: false,
       type: [Boolean],
       default: false,
+      native: false,
     },
-    limit: {
-      type: [Number],
-      required: false,
-      default: -1,
-    },
-    noOptionsText: {
+    trackBy: {
       type: [String],
       required: false,
-      default: 'The list is empty',
-      '@default': 'locale.multiselect.noOptions',
-    },
-    noResultsText: {
-      type: [String],
-      required: false,
-      default: 'No results found',
-      '@default': 'locale.multiselect.noResults',
-    },
-    caret: {
-      type: [Boolean],
-      required: false,
-      default: true,
-    },
-    loading: {
-      type: [Boolean],
-      required: false,
-      default: false,
-    },
-    object: {
-      type: [Boolean],
-      required: false,
-      default: false,
-    },
-    delay: {
-      type: [Number],
-      required: false,
-      default: -1,
-    },
-    minChars: {
-      type: [Number],
-      required: false,
-      default: 0,
-    },
-    resolveOnLoad: {
-      type: [Boolean],
-      required: false,
-      default: true,
-    },
-    filterResults: {
-      type: [Boolean],
-      required: false,
-      default: true,
-    },
-    clearOnSearch: {
-      type: [Boolean],
-      required: false,
-      default: false,
-    },
-    clearOnSelect: {
-      type: [Boolean],
-      required: false,
-      default: true,
-    },
-    canClear: {
-      type: [Boolean],
-      required: false,
-      default: true,
-    },
-    max: {
-      type: [Number],
-      required: false,
-      default: -1,
-    },
-    showOptions: {
-      type: [Boolean],
-      required: false,
-      default: true,
-    },
-    openDirection: {
-      type: [String],
-      required: false,
-      default: 'bottom',
+      default: 'label',
+      native: false,
     },
     strict: {
       type: [Boolean],
       required: false,
       default: true,
+      native: false,
     },
-    closeOnSelect: {
-      type: [Boolean],
-      required: false,
-      default: true,
-    },
-    autocomplete: {
-      type: [String],
-      required: false,
-    },
-    groups: {
-      type: [Boolean],
-      required: false,
-      default: false,
-    },
-    groupLabel: {
-      type: [String],
-      required: false,
-      default: 'label',
-    },
-    groupOptions: {
-      type: [String],
-      required: false,
-      default: 'items',
-    },
-    groupHideEmpty: {
-      type: [Boolean],
-      required: false,
-      default: false,
-    },
-    groupSelect: {
-      type: [Boolean],
-      required: false,
-      default: true,
-    },
-    inputType: {
-      type: [String],
-      required: false,
-      default: 'text',
-    },
+
     create: {
       required: false,
       type: [Boolean],
@@ -301,10 +177,166 @@ export default {
       required: false,
       default: () => (['enter']),
     },
+
+    object: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false,
+    },
+    limit: {
+      type: [Number],
+      required: false,
+      default: -1,
+      native: false,
+    },
+    max: {
+      type: [Number],
+      required: false,
+      default: -1,
+      native: false,
+    },
+
+    groups: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false,
+    },
+    groupLabel: {
+      type: [String],
+      required: false,
+      default: 'label',
+      native: false,
+    },
+    groupOptions: {
+      type: [String],
+      required: false,
+      default: 'items',
+      native: false,
+    },
+    groupHideEmpty: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false,
+    },
+    groupSelect: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false,
+    },
+    
+    openDirection: {
+      type: [String],
+      required: false,
+      default: 'bottom',
+      native: false,
+    },
+    canClear: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false,
+    },
+    clearOnSelect: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false,
+    },
+    closeOnSelect: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false,
+    },
+
+    delay: {
+      type: [Number],
+      required: false,
+      default: -1,
+      native: false,
+    },
+    minChars: {
+      type: [Number],
+      required: false,
+      default: 0,
+      native: false,
+    },
+    resolveOnLoad: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false,
+    },
+    filterResults: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false,
+    },
+    clearOnSearch: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false,
+    },
     hideSelected: {
       type: [Boolean],
       required: false,
       default: true,
+      native: false,
+    },
+    showOptions: {
+      type: [Boolean],
+      required: false,
+      default: true,
+    },
+
+    caret: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false,
+    },
+    loading: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false,
+    },
+    noOptionsText: {
+      type: [String],
+      required: false,
+      default: 'The list is empty',
+      '@default': 'locale.multiselect.noOptions',
+      native: false,
+    },
+    noResultsText: {
+      type: [String],
+      required: false,
+      default: 'No results found',
+      '@default': 'locale.multiselect.noResults',
+      native: false,
+    },
+
+    autocomplete: {
+      type: [String],
+      required: false,
+      native: false,
+    },
+    inputType: {
+      type: [String],
+      required: false,
+      default: 'text',
+      native: false,
+    },
+    options: {
+      required: false,
+      type: [Object],
+      default: () => ({})
     },
   },
   setup(props, context) {

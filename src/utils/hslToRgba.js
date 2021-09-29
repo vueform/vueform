@@ -12,7 +12,7 @@
 module.exports = function hstToRgba (hsl, alpha) {
   var matches = hsl.match(/hsl\(([0-9\.]+),\s?([0-9\.]+)%,\s?([0-9\.]+)%\)/)
 
-  var h = matches[1]
+  var h = matches[1] / 360
   var s = matches[2] / 100
   var l = matches[3] / 100
 
@@ -38,5 +38,5 @@ module.exports = function hstToRgba (hsl, alpha) {
     b = hue2rgb(p, q, h - 1/3);
   }
 
-  return `rgba(${r*255},${g*255},${b*255},${alpha})`;
+  return `rgba(${Math.round(r*255)},${Math.round(g*255)},${Math.round(b*255)},${alpha})`;
 }

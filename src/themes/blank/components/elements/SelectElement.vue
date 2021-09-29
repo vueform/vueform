@@ -25,7 +25,7 @@
             {{ option.label }}
           </option>
         </select>
-        <span v-if="placeholder && empty && !isDisabled" :class="classes.inputPlaceholder">{{ placeholder }}</span>
+        <span v-if="placeholder && empty && !isDisabled && type == 'select'" :class="classes.inputPlaceholder">{{ placeholder }}</span>
       </div>
 
       <!-- @vueform/multiselect copmonent -->
