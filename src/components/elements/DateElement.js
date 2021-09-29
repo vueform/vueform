@@ -79,17 +79,20 @@ export default {
     displayFormat: {
       required: false,
       type: [String],
-      default: null
+      default: null,
+      '@default': 'locale.laraform.dateFormats.*',
     },
     valueFormat: {
       required: false,
       type: [String, Boolean],
-      default: null
+      default: null,
+      '@default': 'locale.laraform.dateFormats.*',
     },
     loadFormat: {
       required: false,
       type: [String],
-      default: null
+      default: null,
+      '@default': 'locale.laraform.dateFormats.*',
     },
     date: {
       required: false,

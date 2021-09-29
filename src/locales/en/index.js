@@ -54,13 +54,13 @@ export default {
     },
     dateFormats: {
       datetimeSeconds24: 'YYYY-MM-DD HH:mm:ss',
-      datetimeSeconds24: 'YYYY-MM-DD HH:mm:ss a',
+      datetimeSeconds12: 'YYYY-MM-DD hh:mm:ss a',
       datetime24: 'YYYY-MM-DD HH:mm',
-      datetime12: 'YYYY-MM-DD HH:mm a',
+      datetime12: 'YYYY-MM-DD hh:mm a',
       timeSeconds24: 'HH:mm:ss',
-      timeSeconds12: 'HH:mm:ss a',
+      timeSeconds12: 'hh:mm:ss a',
       time24: 'HH:mm',
-      time12: 'HH:mm a',
+      time12: 'hh:mm a',
       date: 'YYYY-MM-DD',
     },
     multiselect: {

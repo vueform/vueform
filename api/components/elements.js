@@ -3910,7 +3910,7 @@ module.exports = {
       },
       displayFormat: {
         required: 'false',
-        default: 'null',
+        default: 'locale.laraform.dateFormats.*',
         types: [
           'string',
         ],
@@ -3918,7 +3918,7 @@ module.exports = {
       },
       valueFormat: {
         required: 'false',
-        default: 'null',
+        default: 'locale.laraform.dateFormats.*',
         types: [
           'string',
           'boolean',
@@ -3927,7 +3927,7 @@ module.exports = {
       },
       loadFormat: {
         required: 'false',
-        default: 'null',
+        default: 'locale.laraform.dateFormats.*',
         types: [
           'string',
         ],
@@ -5009,14 +5009,6 @@ module.exports = {
         default: 'null',
         types: [
           'string',
-        ],
-        private: false,
-      },
-      range: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
         ],
         private: false,
       },
@@ -23111,14 +23103,6 @@ module.exports = {
           'function',
         ],
         private: true,
-      },
-      native: {
-        required: 'false',
-        default: 'true',
-        types: [
-          'boolean',
-        ],
-        private: false,
       },
       items: {
         required: 'false',

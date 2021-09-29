@@ -545,6 +545,8 @@ const slider = function (props, context, dependencies)
     orientation,
     direction,
     options,
+    showTooltip,
+    tooltipPosition,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -570,6 +572,8 @@ const slider = function (props, context, dependencies)
       orientation: orientation.value,
       direction: direction.value,
       disabled: isDisabled.value,
+      showTooltip: showTooltip.value,
+      tooltipPosition: tooltipPosition.value,
     }
   })
 

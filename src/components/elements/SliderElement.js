@@ -83,6 +83,16 @@ export default {
       type: [Boolean],
       default: true
     },
+    showTooltip: {
+      required: false,
+      type: [String],
+      default: 'always'
+    },
+    tooltipPosition: {
+      required: false,
+      type: [String],
+      default: null
+    },
     merge: {
       required: false,
       type: [Number],
@@ -107,11 +117,6 @@ export default {
       required: false,
       type: [Object],
       default: () => ({})
-    },
-    readonly: {
-      required: false,
-      type: [Boolean],
-      default: false
     },
   },
   setup(props, context) {
