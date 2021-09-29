@@ -18,6 +18,7 @@ module.exports = {
   StaticElement: 'static content',
   TagsElement: 'tags input',
   TextareaElement: 'textarea',
+  ToggleElement: 'toggle',
   TrixElement: 'trix editor',
   TTextareaElement: 'textarea',
   TTrixElement: 'trix editor',

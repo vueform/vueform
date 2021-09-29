@@ -16,6 +16,9 @@
     <slot/>
     <ElementInfo><slot name="info"/></ElementInfo>
   </label>
+
+  <!-- If labels are forced but has no value -->
+  <label v-else :class="classes.container" :for="name" />
 </template>
 
 <script>

@@ -86,6 +86,14 @@ const addProps = (final, Component) => {
     Prop.types = types.map(t => t.prototype.constructor.name.toLowerCase())
   }
 
+  const addNative = (prop, Prop) => {
+    if (prop.native === undefined) {
+      return
+    }
+
+    Prop.native = prop.native
+  }
+
   _.forEach(props, (v,k) => {
     if (skipPrivate && v.private) {
       return
@@ -97,6 +105,7 @@ const addProps = (final, Component) => {
 
     addDefault(v, Prop)
     addTypes(v, Prop)
+    addNative(v, Prop)
 
     final.props[k] = Prop
   })

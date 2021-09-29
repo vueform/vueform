@@ -1,11 +1,11 @@
 const checkbox = {
-  input: 'appearance-none transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox form-rounded form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-check-white checked:border-0',
+  input: 'appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox form-rounded form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-check-white checked:border-0',
   input_enabled: 'checked:form-bg-primary',
   input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
 }
 
 const radio = {
-  input: 'appearance-none transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox rounded-full form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-radio-white checked:border-0',
+  input: 'appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox rounded-full form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-radio-white checked:border-0',
   input_enabled: 'checked:form-bg-primary',
   input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
 }
@@ -39,7 +39,7 @@ const select = {
   groupLabelPointable: 'cursor-pointer',
   groupLabelPointed: 'bg-gray-300 text-gray-700',
   groupLabelSelected: 'form-bg-primary-darker text-white',
-  groupLabelDisabled: 'bg-gray-100 text-gray-300 cursor-not-allowed',
+  groupLabelDisabled: 'bg-gray-100 text-gray-400 cursor-not-allowed',
   groupLabelSelectedPointed: 'form-bg-primary-darker text-white opacity-90',
   groupLabelSelectedDisabled: 'text-white form-bg-primary-darker bg-opacity-50 cursor-not-allowed',
   groupOptions: 'p-0 m-0',

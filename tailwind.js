@@ -32,6 +32,18 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
         '&:focus': {
           outline: 'none',
         },
+        '&::-webkit-search-decoration': {
+          '-webkit-appearance': 'none',
+        },
+        '&::-webkit-search-cancel-button': {
+          '-webkit-appearance': 'none',
+        },
+        '&::-webkit-search-results-button': {
+          '-webkit-appearance': 'none',
+        },
+        '&::-webkit-search-results-decoration': {
+          '-webkit-appearance': 'none',
+        },
       }
     },
     {

@@ -49,16 +49,6 @@ export default {
       type: [String, Number, Boolean],
       default: undefined // falseValue
     },
-    trueValue: {
-      required: false,
-      type: [Boolean, String, Number],
-      default: true
-    },
-    falseValue: {
-      required: false,
-      type: [Boolean, String, Number],
-      default: false
-    },
     debounce: {
       required: false,
       type: [Number],
@@ -74,20 +64,30 @@ export default {
       type: [String],
       default: null
     },
+    text: {
+      required: false,
+      type: [String],
+      default: null
+    },
     labels: {
       required: false,
       type: [Object],
       default: () => ({})
     },
+    trueValue: {
+      required: false,
+      type: [Boolean, String, Number],
+      default: true
+    },
+    falseValue: {
+      required: false,
+      type: [Boolean, String, Number],
+      default: false
+    },
     options: {
       required: false,
       type: [Object],
       default: () => ({})
-    },
-    text: {
-      required: false,
-      type: [String],
-      default: null
     },
   },
   setup(props, context) {

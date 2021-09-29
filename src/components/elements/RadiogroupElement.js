@@ -50,11 +50,6 @@ export default {
       type: [Number],
       default: null
     },
-    disables: {
-      required: false,
-      type: [Array],
-      default: () => ([])
-    },
     disabled: {
       required: false,
       type: [Boolean],
@@ -69,6 +64,11 @@ export default {
       required: false,
       type: [Object, Array],
       default: () => ({})
+    },
+    disables: {
+      required: false,
+      type: [Array],
+      default: () => ([])
     },
   },
   setup(props, context) {
