@@ -6002,22 +6002,6 @@ module.exports = {
         ],
         private: true,
       },
-      image: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
-        ],
-        private: false,
-      },
-      view: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'string',
-        ],
-        private: false,
-      },
       debounce: {
         required: 'false',
         default: 'null',
@@ -6031,6 +6015,46 @@ module.exports = {
         default: 'false',
         types: [
           'boolean',
+        ],
+        private: false,
+      },
+      id: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      onRemove: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        private: true,
+      },
+      onError: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        private: true,
+      },
+      image: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
         ],
         private: false,
       },
@@ -6059,6 +6083,14 @@ module.exports = {
         ],
         private: false,
       },
+      url: {
+        required: 'false',
+        default: '/',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
       auto: {
         required: 'false',
         default: 'true',
@@ -6067,7 +6099,7 @@ module.exports = {
         ],
         private: false,
       },
-      methods: {
+      endpoints: {
         required: 'false',
         default: '{}',
         types: [
@@ -6075,7 +6107,7 @@ module.exports = {
         ],
         private: false,
       },
-      endpoints: {
+      methods: {
         required: 'false',
         default: '{}',
         types: [
@@ -6098,38 +6130,6 @@ module.exports = {
           'boolean',
         ],
         private: false,
-      },
-      url: {
-        required: 'false',
-        default: '/',
-        types: [
-          'string',
-        ],
-        private: false,
-      },
-      id: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'string',
-        ],
-        private: false,
-      },
-      onRemove: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'function',
-        ],
-        private: true,
-      },
-      onError: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'function',
-        ],
-        private: true,
       },
     },
     data: {
@@ -18278,6 +18278,22 @@ module.exports = {
         ],
         private: false,
       },
+      showTooltip: {
+        required: 'false',
+        default: 'always',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      tooltipPosition: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
       merge: {
         required: 'false',
         default: '-1',
@@ -18316,14 +18332,6 @@ module.exports = {
         default: '{}',
         types: [
           'object',
-        ],
-        private: false,
-      },
-      readonly: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
         ],
         private: false,
       },

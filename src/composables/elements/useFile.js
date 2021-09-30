@@ -285,12 +285,12 @@ const base = function (props, context, dependencies)
     catch (error) {
       progress.value = 0
 
-      if (!axios.value.isCancel(e)) {
+      if (!axios.value.isCancel(error)) {
         hasUploadError.value = true
         handleError('upload', error)
       }
 
-      throw new Error(e)
+      throw new Error(error)
     }
     finally {
       request.value = null

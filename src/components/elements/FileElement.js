@@ -58,16 +58,6 @@ export default {
       default: false,
       private: true,
     },
-    image: {
-      type: [Boolean],
-      required: false,
-      default: false
-    },
-    view: {
-      type: [String],
-      required: false,
-      default: null,
-    },
     debounce: {
       required: false,
       type: [Number],
@@ -77,51 +67,6 @@ export default {
       required: false,
       type: [Boolean],
       default: false
-    },
-    drop: {
-      required: false,
-      type: [Boolean],
-      default: false
-    },
-    accept: {
-      required: false,
-      type: [String, Array],
-      default: null
-    },
-    clickable: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    auto: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    methods: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    endpoints: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    params: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    softRemove: {
-      required: false,
-      type: [Boolean],
-      default: false
-    },
-    url: {
-      required: false,
-      type: [String],
-      default: '/'
     },
     id: {
       required: false,
@@ -139,6 +84,61 @@ export default {
       type: [Function],
       default: null,
       private: true,
+    },
+    image: {
+      type: [Boolean],
+      required: false,
+      default: false
+    },
+    view: {
+      type: [String],
+      required: false,
+      default: null,
+    },
+    drop: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    accept: {
+      required: false,
+      type: [String, Array],
+      default: null
+    },
+    clickable: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    url: {
+      required: false,
+      type: [String],
+      default: '/'
+    },
+    auto: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    endpoints: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    methods: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    params: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    softRemove: {
+      required: false,
+      type: [Boolean],
+      default: false
     },
   },
   setup(props, context) {

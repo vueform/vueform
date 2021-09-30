@@ -13,5 +13,17 @@ export default function checkFileType (file, accept) {
     })
   }
 
-  return accept.indexOf(file.type) !== -1 || accept.indexOf(file.name.split('.').pop()) !== -1
+  return _.some(accept, (a) => {
+    let universal = a.match(/^([^\/]+)\/\*$/)
+
+    if (universal) {
+      return !!(new RegExp(`^${universal[1]}\/`)).exec(file.type)
+    } else if (a == file.type) {
+      return true
+    } else if (a == `.${file.name.split('.').pop()}`) {
+      return true
+    }
+
+    return false
+  })
 }

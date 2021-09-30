@@ -300,7 +300,7 @@ export default {
     container_active: 'form-border-primary form-bg-primary bg-opacity-20',
     container_enabled: '',
     container_disabled: 'opacity-50 bg-gray-50 cursor-not-allowed',
-    icon: 'inline-block w-9 h-8 mask-bg mask-form-inbox-in form-bg-primary',
+    icon: 'inline-block w-9 h-8 mask-bg mask-form-inbox-in form-bg-primary bg-opacity-100',
     title: 'font-semibold mt-3',
     description: '',
   },
