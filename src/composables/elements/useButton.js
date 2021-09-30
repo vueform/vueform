@@ -85,11 +85,12 @@ const base = function (props, context, dependencies)
    * @private
    */
   const handleClick = (e) => {
-    if (href.value.length > 0) {
+    if (!href.value) {
       e.preventDefault()
     }
 
     if (isDisabled.value || isLoading.value) {
+      e.preventDefault()
       return
     }
 

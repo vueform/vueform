@@ -11,7 +11,7 @@
 <style lang="scss">
   // Google
   .pac-item {
-    @apply py-3 px-3 border-gray-200 flex items-center;
+    @apply py-1.5 px-3 border-gray-200 flex items-center;
 
    & > span:last-of-type {
      @apply text-xs;

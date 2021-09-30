@@ -29,15 +29,15 @@ export default {
       default: 'static',
       private: true,
     },
-    wrap: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
     content: {
       required: false,
       type: [String, Object],
       default: ''
+    },
+    wrap: {
+      required: false,
+      type: [Boolean],
+      default: true
     },
   },
   setup(props, context) {

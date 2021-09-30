@@ -16,7 +16,7 @@
        />
 
         <input
-          type="text"
+          type="search"
           :name="name"
           :id="fieldId"
           :class="classes.input"

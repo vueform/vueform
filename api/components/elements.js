@@ -9952,14 +9952,6 @@ module.exports = {
         ],
         private: false,
       },
-      addons: {
-        required: 'false',
-        default: '{}',
-        types: [
-          'object',
-        ],
-        private: false,
-      },
       debounce: {
         required: 'false',
         default: 'null',
@@ -9973,14 +9965,6 @@ module.exports = {
         default: 'false',
         types: [
           'boolean',
-        ],
-        private: false,
-      },
-      displayKey: {
-        required: 'false',
-        default: 'formatted_address',
-        types: [
-          'string',
         ],
         private: false,
       },
@@ -10000,22 +9984,6 @@ module.exports = {
         ],
         private: false,
       },
-      provider: {
-        required: 'false',
-        default: 'google',
-        types: [
-          'string',
-        ],
-        private: false,
-      },
-      options: {
-        required: 'false',
-        default: '{}',
-        types: [
-          'object',
-        ],
-        private: false,
-      },
       placeholder: {
         required: 'false',
         default: 'null',
@@ -10029,6 +9997,38 @@ module.exports = {
         default: 'false',
         types: [
           'boolean',
+        ],
+        private: false,
+      },
+      addons: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        private: false,
+      },
+      provider: {
+        required: 'false',
+        default: 'google',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      displayKey: {
+        required: 'false',
+        default: 'formatted_address',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      options: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
         ],
         private: false,
       },

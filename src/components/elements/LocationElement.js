@@ -60,11 +60,6 @@ export default {
         lng: null
       })
     },
-    addons: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
     debounce: {
       required: false,
       type: [Number],
@@ -74,11 +69,6 @@ export default {
       required: false,
       type: [Boolean],
       default: false
-    },
-    displayKey: {
-      required: false,
-      type: [String],
-      default: 'formatted_address'
     },
     floating: {
       required: false,
@@ -90,16 +80,6 @@ export default {
       type: [String],
       default: null
     },
-    provider: {
-      required: false,
-      type: [String],
-      default: 'google'
-    },
-    options: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
     placeholder: {
       required: false,
       type: [String],
@@ -109,6 +89,26 @@ export default {
       required: false,
       type: [Boolean],
       default: false
+    },
+    addons: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    provider: {
+      required: false,
+      type: [String],
+      default: 'google'
+    },
+    displayKey: {
+      required: false,
+      type: [String],
+      default: 'formatted_address'
+    },
+    options: {
+      required: false,
+      type: [Object],
+      default: () => ({})
     },
   },
   setup(props, context) {
