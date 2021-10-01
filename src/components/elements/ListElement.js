@@ -52,11 +52,6 @@ export default {
       type: [Array],
       default: undefined,
     },
-    initial: {
-      required: false,
-      type: [Number],
-      default: 1
-    },
     debounce: {
       required: false,
       type: [Number],
@@ -67,40 +62,39 @@ export default {
       type: [Boolean],
       default: false
     },
-    /**
-     * This goes for initial ordering, when data is loaded, nothing else.
-     * 
-     * @private
-     */
-    order: {
+    onAdd: {
       required: false,
-      type: [String],
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onRemove: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onSort: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+
+    element: {
+      required: false,
+      type: [Object],
       default: null
     },
-    /**
-     * Same here.
-     * 
-     * @private
-     */
-    orderBy: {
+    object: {
       required: false,
-      type: [String],
+      type: [Object],
       default: null
     },
-    /**
-     * If provided it will automatically be filled with order, and refreshed upon add / removal. If order is 'DESC', this will be desc too.
-     * 
-     * @private
-     */
-    storeOrder: {
+    initial: {
       required: false,
-      type: [String],
-      default: null
-    },
-    sort: {
-      required: false,
-      type: [Boolean],
-      default: false
+      type: [Number],
+      default: 1
     },
     min: {
       required: false,
@@ -112,6 +106,11 @@ export default {
       type: [Number],
       default: -1,
     },
+    sort: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
     controls: {
       required: false,
       type: [Object],
@@ -121,30 +120,20 @@ export default {
         sort: true,
       })
     },
-    object: {
+    storeOrder: {
       required: false,
-      type: [Object],
+      type: [String],
       default: null
     },
-    element: {
+    order: {
       required: false,
-      type: [Object],
+      type: [String],
       default: null
     },
-    onAdd: {
+    orderBy: {
       required: false,
-      type: [Function],
-      default: null,
-    },
-    onRemove: {
-      required: false,
-      type: [Function],
-      default: null,
-    },
-    onSort: {
-      required: false,
-      type: [Function],
-      default: null,
+      type: [String],
+      default: null
     },
   },
   setup(props, context) {

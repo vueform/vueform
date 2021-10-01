@@ -46,7 +46,7 @@ export default {
     },
     schema: {
       required: false,
-      type: [Object, Array],
+      type: [Object],
       default: () => ({})
     },
     embed: {

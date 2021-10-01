@@ -78,7 +78,7 @@ const multifile = function(props, context, dependencies, options = {})
   })
 
   const isObject = computed(() => {
-    return !!object.value || !!storeFileName.value || !!storeOrder.value || !!_.keys(fields.value).length
+    return !!object.value || !!storeOrder.value || !!_.keys(fields.value).length
   })
 
   const prototype = computed(() => {

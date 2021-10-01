@@ -56,7 +56,6 @@ export default {
       type: [Boolean],
       required: false,
       default: false,
-      private: true,
     },
     debounce: {
       required: false,
@@ -85,6 +84,7 @@ export default {
       default: null,
       private: true,
     },
+    
     image: {
       type: [Boolean],
       required: false,

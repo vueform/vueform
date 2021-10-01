@@ -6000,7 +6000,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        private: true,
+        private: false,
       },
       debounce: {
         required: 'false',
@@ -7295,7 +7295,6 @@ module.exports = {
         default: '{}',
         types: [
           'object',
-          'array',
         ],
         private: false,
       },
@@ -8680,14 +8679,6 @@ module.exports = {
         ],
         private: false,
       },
-      initial: {
-        required: 'false',
-        default: '1',
-        types: [
-          'number',
-        ],
-        private: false,
-      },
       debounce: {
         required: 'false',
         default: 'null',
@@ -8704,35 +8695,51 @@ module.exports = {
         ],
         private: false,
       },
-      order: {
+      onAdd: {
         required: 'false',
         default: 'null',
         types: [
-          'string',
+          'function',
         ],
-        private: false,
+        private: true,
       },
-      orderBy: {
+      onRemove: {
         required: 'false',
         default: 'null',
         types: [
-          'string',
+          'function',
         ],
-        private: false,
+        private: true,
       },
-      storeOrder: {
+      onSort: {
         required: 'false',
         default: 'null',
         types: [
-          'string',
+          'function',
+        ],
+        private: true,
+      },
+      element: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
         ],
         private: false,
       },
-      sort: {
+      object: {
         required: 'false',
-        default: 'false',
+        default: 'null',
         types: [
-          'boolean',
+          'object',
+        ],
+        private: false,
+      },
+      initial: {
+        required: 'false',
+        default: '1',
+        types: [
+          'number',
         ],
         private: false,
       },
@@ -8752,6 +8759,14 @@ module.exports = {
         ],
         private: false,
       },
+      sort: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
       controls: {
         required: 'false',
         default: '{"add":true,"remove":true,"sort":true}',
@@ -8760,43 +8775,27 @@ module.exports = {
         ],
         private: false,
       },
-      object: {
+      storeOrder: {
         required: 'false',
         default: 'null',
         types: [
-          'object',
+          'string',
         ],
         private: false,
       },
-      element: {
+      order: {
         required: 'false',
         default: 'null',
         types: [
-          'object',
+          'string',
         ],
         private: false,
       },
-      onAdd: {
+      orderBy: {
         required: 'false',
         default: 'null',
         types: [
-          'function',
-        ],
-        private: false,
-      },
-      onRemove: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'function',
-        ],
-        private: false,
-      },
-      onSort: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'function',
+          'string',
         ],
         private: false,
       },
@@ -11014,22 +11013,6 @@ module.exports = {
         ],
         private: false,
       },
-      image: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
-        ],
-        private: false,
-      },
-      view: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'string',
-        ],
-        private: false,
-      },
       debounce: {
         required: 'false',
         default: 'null',
@@ -11044,100 +11027,11 @@ module.exports = {
         types: [
           'number',
         ],
-        private: false,
+        private: true,
       },
       disabled: {
         required: 'false',
         default: 'false',
-        types: [
-          'boolean',
-        ],
-        private: false,
-      },
-      drop: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
-        ],
-        private: false,
-      },
-      accept: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'string',
-          'array',
-        ],
-        private: false,
-      },
-      order: {
-        required: 'false',
-        default: 'ASC',
-        types: [
-          'string',
-        ],
-        private: false,
-      },
-      orderBy: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'string',
-        ],
-        private: false,
-      },
-      auto: {
-        required: 'false',
-        default: 'true',
-        types: [
-          'boolean',
-        ],
-        private: false,
-      },
-      file: {
-        required: 'false',
-        default: '{}',
-        types: [
-          'object',
-        ],
-        private: false,
-      },
-      storeFile: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'string',
-        ],
-        private: false,
-      },
-      fields: {
-        required: 'false',
-        default: '{}',
-        types: [
-          'object',
-        ],
-        private: false,
-      },
-      sort: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
-        ],
-        private: false,
-      },
-      storeOrder: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'string',
-        ],
-        private: false,
-      },
-      object: {
-        required: 'false',
-        default: 'null',
         types: [
           'boolean',
         ],
@@ -11166,6 +11060,111 @@ module.exports = {
           'function',
         ],
         private: true,
+      },
+      image: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      drop: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      accept: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+          'array',
+        ],
+        private: false,
+      },
+      auto: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      file: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        private: false,
+      },
+      sort: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      object: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
+      fields: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        private: false,
+      },
+      storeFile: {
+        required: 'false',
+        default: 'file',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      storeOrder: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      order: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+        ],
+        private: false,
+      },
+      orderBy: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+        ],
+        private: false,
       },
     },
     data: {
@@ -13888,7 +13887,6 @@ module.exports = {
         default: '{}',
         types: [
           'object',
-          'array',
         ],
         private: false,
       },
@@ -19198,20 +19196,20 @@ module.exports = {
         ],
         private: true,
       },
-      wrap: {
-        required: 'false',
-        default: 'true',
-        types: [
-          'boolean',
-        ],
-        private: false,
-      },
       content: {
         required: 'false',
         default: '',
         types: [
           'string',
           'object',
+        ],
+        private: false,
+      },
+      wrap: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
         ],
         private: false,
       },

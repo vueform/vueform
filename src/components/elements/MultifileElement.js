@@ -54,16 +54,6 @@ export default {
       type: [Array],
       default: () => ([])
     },
-    image: {
-      type: [Boolean],
-      required: false,
-      default: false
-    },
-    view: {
-      type: [String],
-      required: false,
-      default: null,
-    },
     debounce: {
       required: false,
       type: [Number],
@@ -72,67 +62,13 @@ export default {
     initial: {
       required: false,
       type: [Number],
-      default: 1
+      default: 1,
+      private: true,
     },
     disabled: {
       required: false,
       type: [Boolean],
       default: false
-    },
-    drop: {
-      required: false,
-      type: [Boolean],
-      default: false
-    },
-    accept: {
-      required: false,
-      type: [String, Array],
-      default: null
-    },
-    order: {
-      required: false,
-      type: [String],
-      default: 'ASC'
-    },
-    orderBy: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    auto: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    file: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    storeFile: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    fields: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    sort: {
-      required: false,
-      type: [Boolean],
-      default: false
-    },
-    storeOrder: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    object: {
-      required: false,
-      type: [Boolean],
-      default: null
     },
     onAdd: {
       required: false,
@@ -151,6 +87,72 @@ export default {
       type: [Function],
       default: null,
       private: true,
+    },
+
+    image: {
+      type: [Boolean],
+      required: false,
+      default: false
+    },
+    view: {
+      type: [String],
+      required: false,
+      default: null,
+    },
+    drop: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    accept: {
+      required: false,
+      type: [String, Array],
+      default: null
+    },
+    auto: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    file: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    sort: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    object: {
+      required: false,
+      type: [Boolean],
+      default: null
+    },
+    storeFile: {
+      required: false,
+      type: [String],
+      default: 'file',
+    },
+    fields: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    storeOrder: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    order: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    orderBy: {
+      required: false,
+      type: [String],
+      default: null
     },
   },
   setup(props, context) {
