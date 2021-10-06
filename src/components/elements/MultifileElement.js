@@ -54,11 +54,6 @@ export default {
       type: [Array],
       default: () => ([])
     },
-    debounce: {
-      required: false,
-      type: [Number],
-      default: null
-    },
     initial: {
       required: false,
       type: [Number],

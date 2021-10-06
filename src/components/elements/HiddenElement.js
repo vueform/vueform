@@ -38,11 +38,6 @@ export default {
       type: [String, Number],
       default: null
     },
-    debounce: {
-      required: false,
-      type: [Number],
-      default: null
-    },
     id: {
       required: false,
       type: [String],

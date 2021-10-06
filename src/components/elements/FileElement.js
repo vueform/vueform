@@ -57,11 +57,6 @@ export default {
       required: false,
       default: false,
     },
-    debounce: {
-      required: false,
-      type: [Number],
-      default: null
-    },
     disabled: {
       required: false,
       type: [Boolean],

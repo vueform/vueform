@@ -66,11 +66,6 @@ export default {
       type: [Array],
       default: () => ([])
     },
-    debounce: {
-      required: false,
-      type: [Number],
-      default: null
-    },
   },
   setup(props, context) {
     const form$ = useForm$(props, context)

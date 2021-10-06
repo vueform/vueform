@@ -62,11 +62,6 @@ export default {
       type: [Boolean],
       default: false
     },
-    debounce: {
-      required: false,
-      type: [Number],
-      default: null
-    },
     trueValue: {
       required: false,
       type: [Boolean, String, Number],

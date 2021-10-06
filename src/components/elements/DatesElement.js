@@ -46,11 +46,6 @@ export default {
       default: 'dates',
       private: true,
     },
-    debounce: {
-      required: false,
-      type: [Number],
-      default: null
-    },
     default: {
       required: false,
       type: [Array],

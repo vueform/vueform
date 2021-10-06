@@ -25,7 +25,7 @@ const elementFeatures = require('./../../features/elements').default
 const commonFeatures = require('./../../features/common').default
 
 const ignore = []
-const include = []
+const include = ['GroupElement']
 
 const output = __dirname + '/../../components/elements.js'
 

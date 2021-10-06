@@ -94,6 +94,14 @@ const addProps = (final, Component) => {
     Prop.native = prop.native
   }
 
+  const addPrivate = (prop, Prop) => {
+    if (prop.private === undefined) {
+      return
+    }
+
+    Prop.private = prop.private
+  }
+
   _.forEach(props, (v,k) => {
     if (skipPrivate && v.private) {
       return

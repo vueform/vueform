@@ -52,11 +52,6 @@ export default {
       type: [Array],
       default: () => ([])
     },
-    debounce: {
-      required: false,
-      type: [Number],
-      default: null
-    },
     disabled: {
       required: false,
       type: [Boolean],

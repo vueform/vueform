@@ -48,11 +48,6 @@ export default {
       type: [Number, Array],
       default: 0
     },
-    debounce: {
-      required: false,
-      type: [Number],
-      default: null
-    },
     disabled: {
       required: false,
       type: [Boolean],

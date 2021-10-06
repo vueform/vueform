@@ -56,11 +56,6 @@ export default {
       type: [Object],
       default: () => ({})
     },
-    debounce: {
-      required: false,
-      type: [Number],
-      default: null
-    },
     disabled: {
       required: false,
       type: [Boolean],

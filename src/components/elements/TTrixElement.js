@@ -72,6 +72,12 @@ export default {
       type: [String],
       default: null
     },
+    onError: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
     accept: {
       required: false,
       type: [Array],
@@ -86,11 +92,6 @@ export default {
       required: false,
       type: [String],
       default: null
-    },
-    onError: {
-      required: false,
-      type: [Function],
-      default: null,
     },
   },
   setup(props, context) {
