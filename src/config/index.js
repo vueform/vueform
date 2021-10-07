@@ -30,7 +30,7 @@ const config = {
 
   columns: {
     element: 12,
-    label: 2,
+    label: 3,
     field: 12,
   },
 

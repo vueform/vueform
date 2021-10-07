@@ -17,7 +17,6 @@
 
         <FlatpickrWrapper
           :value="model"
-          :modelValue="model"
           :options="fieldOptions"
           :id="fieldId"
           :class="classes.input"

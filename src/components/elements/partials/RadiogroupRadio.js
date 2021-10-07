@@ -5,11 +5,11 @@ export default {
   name: 'RadiogroupRadio',
   props: {
     item: {
-      type: [Object, String, Number, Array],
+      type: [Object, String],
       required: true
     },
     value: {
-      type: [Object, String, Number, Array],
+      type: [String, Number],
       required: true
     },
   },

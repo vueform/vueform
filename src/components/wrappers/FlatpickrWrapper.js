@@ -11,9 +11,6 @@ export default {
     value: {
       required: true,
     },
-    modelValue: {
-      required: true,
-    },
     options: {
       type: [Object],
       required: true
@@ -32,8 +29,7 @@ export default {
     const {
       id,
       options,
-      value: v,
-      modelValue: mv,
+      value,
     } = toRefs(props)
 
     // ============ DEPENDENCIES ============
@@ -64,9 +60,6 @@ export default {
      * @type {HTMLElement}
      */
     const input = ref(null)
-
-    /* istanbul ignore next */
-    const value = context.expose !== undefined ? mv : v
 
     // ============== COMPITED ==============
 

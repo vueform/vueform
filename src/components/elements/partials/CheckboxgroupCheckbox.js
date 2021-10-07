@@ -5,9 +5,11 @@ export default {
   name: 'CheckboxgroupCheckbox',
   props: {
     item: {
+      type: [Object, String],
       required: true
     },
     value: {
+      type: [String, Number],
       required: true
     },
   },
