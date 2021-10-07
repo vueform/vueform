@@ -114,6 +114,7 @@ const addProps = (final, Component) => {
     addDefault(v, Prop)
     addTypes(v, Prop)
     addNative(v, Prop)
+    addPrivate(v, Prop)
 
     final.props[k] = Prop
   })

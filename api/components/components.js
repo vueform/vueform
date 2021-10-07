@@ -1762,28 +1762,32 @@ module.exports = {
         "default": null,
         "types": [
           "function"
-        ]
+        ],
+        "private": true
       },
       "onInactive": {
         "required": false,
         "default": null,
         "types": [
           "function"
-        ]
+        ],
+        "private": true
       },
       "onDisable": {
         "required": false,
         "default": null,
         "types": [
           "function"
-        ]
+        ],
+        "private": true
       },
       "onEnable": {
         "required": false,
         "default": null,
         "types": [
           "function"
-        ]
+        ],
+        "private": true
       }
     },
     "events": {
@@ -2697,14 +2701,16 @@ module.exports = {
         "default": null,
         "types": [
           "function"
-        ]
+        ],
+        "private": true
       },
       "onInactive": {
         "required": false,
         "default": null,
         "types": [
           "function"
-        ]
+        ],
+        "private": true
       }
     },
     "events": {
@@ -3999,12 +4005,6 @@ module.exports = {
           "any"
         ]
       },
-      "modelValue": {
-        "required": true,
-        "types": [
-          "any"
-        ]
-      },
       "options": {
         "required": true,
         "types": [
@@ -4315,13 +4315,15 @@ module.exports = {
       "item": {
         "required": true,
         "types": [
-          "any"
+          "object",
+          "string"
         ]
       },
       "value": {
         "required": true,
         "types": [
-          "any"
+          "string",
+          "number"
         ]
       }
     },
@@ -4892,18 +4894,14 @@ module.exports = {
         "required": true,
         "types": [
           "object",
-          "string",
-          "number",
-          "array"
+          "string"
         ]
       },
       "value": {
         "required": true,
         "types": [
-          "object",
           "string",
-          "number",
-          "array"
+          "number"
         ]
       }
     },

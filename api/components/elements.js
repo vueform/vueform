@@ -1922,14 +1922,6 @@ module.exports = {
         ],
         private: false,
       },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
-        ],
-        private: false,
-      },
       trueValue: {
         required: 'false',
         default: 'true',
@@ -2911,14 +2903,6 @@ module.exports = {
         ],
         private: false,
       },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
-        ],
-        private: false,
-      },
     },
     data: {
       defaultClasses: {
@@ -3873,14 +3857,6 @@ module.exports = {
         default: '{}',
         types: [
           'object',
-        ],
-        private: false,
-      },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
         ],
         private: false,
       },
@@ -4964,14 +4940,6 @@ module.exports = {
         ],
         private: true,
       },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
-        ],
-        private: false,
-      },
       default: {
         required: 'false',
         default: '[]',
@@ -5999,14 +5967,6 @@ module.exports = {
         default: 'false',
         types: [
           'boolean',
-        ],
-        private: false,
-      },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
         ],
         private: false,
       },
@@ -7915,14 +7875,6 @@ module.exports = {
         ],
         private: false,
       },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
-        ],
-        private: false,
-      },
       id: {
         required: 'false',
         default: 'null',
@@ -8676,14 +8628,6 @@ module.exports = {
         default: 'undefined',
         types: [
           'array',
-        ],
-        private: false,
-      },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
         ],
         private: false,
       },
@@ -11013,14 +10957,6 @@ module.exports = {
         ],
         private: false,
       },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
-        ],
-        private: false,
-      },
       initial: {
         required: 'false',
         default: '1',
@@ -11126,19 +11062,19 @@ module.exports = {
         ],
         private: false,
       },
-      fields: {
-        required: 'false',
-        default: '{}',
-        types: [
-          'object',
-        ],
-        private: false,
-      },
       storeFile: {
         required: 'false',
         default: 'file',
         types: [
           'string',
+        ],
+        private: false,
+      },
+      fields: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
         ],
         private: false,
       },
@@ -12358,14 +12294,6 @@ module.exports = {
         ],
         private: false,
       },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
-        ],
-        private: false,
-      },
       disabled: {
         required: 'false',
         default: 'false',
@@ -12396,6 +12324,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       onSelect: {
@@ -12478,6 +12407,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       valueProp: {
@@ -12486,6 +12416,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       search: {
@@ -12494,6 +12425,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       trackBy: {
@@ -12502,6 +12434,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       strict: {
@@ -12510,6 +12443,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       multipleLabel: {
@@ -12518,6 +12452,7 @@ module.exports = {
         types: [
           'function',
         ],
+        native: false,
         private: false,
       },
       object: {
@@ -12526,6 +12461,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       limit: {
@@ -12534,6 +12470,7 @@ module.exports = {
         types: [
           'number',
         ],
+        native: false,
         private: false,
       },
       max: {
@@ -12542,6 +12479,7 @@ module.exports = {
         types: [
           'number',
         ],
+        native: false,
         private: false,
       },
       groups: {
@@ -12550,6 +12488,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       groupLabel: {
@@ -12558,6 +12497,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       groupOptions: {
@@ -12566,6 +12506,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       groupHideEmpty: {
@@ -12574,6 +12515,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       groupSelect: {
@@ -12582,6 +12524,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       openDirection: {
@@ -12590,6 +12533,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       canClear: {
@@ -12598,6 +12542,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       clearOnSelect: {
@@ -12606,6 +12551,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       closeOnSelect: {
@@ -12614,6 +12560,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       delay: {
@@ -12622,6 +12569,7 @@ module.exports = {
         types: [
           'number',
         ],
+        native: false,
         private: false,
       },
       minChars: {
@@ -12630,6 +12578,7 @@ module.exports = {
         types: [
           'number',
         ],
+        native: false,
         private: false,
       },
       resolveOnLoad: {
@@ -12638,6 +12587,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       filterResults: {
@@ -12646,6 +12596,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       clearOnSearch: {
@@ -12654,6 +12605,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       hideSelected: {
@@ -12662,6 +12614,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       caret: {
@@ -12670,6 +12623,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       loading: {
@@ -12678,6 +12632,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       noOptionsText: {
@@ -12686,6 +12641,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       noResultsText: {
@@ -12694,6 +12650,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       autocomplete: {
@@ -12702,6 +12659,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       inputType: {
@@ -12710,6 +12668,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       options: {
@@ -14748,14 +14707,6 @@ module.exports = {
         ],
         private: false,
       },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
-        ],
-        private: false,
-      },
       disabled: {
         required: 'false',
         default: 'false',
@@ -15727,14 +15678,6 @@ module.exports = {
         ],
         private: false,
       },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
-        ],
-        private: false,
-      },
       disabled: {
         required: 'false',
         default: 'false',
@@ -16679,14 +16622,6 @@ module.exports = {
         ],
         private: false,
       },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
-        ],
-        private: false,
-      },
       disabled: {
         required: 'false',
         default: 'false',
@@ -16799,6 +16734,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       valueProp: {
@@ -16807,6 +16743,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       search: {
@@ -16815,6 +16752,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       trackBy: {
@@ -16823,6 +16761,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       strict: {
@@ -16831,6 +16770,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       object: {
@@ -16839,6 +16779,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       limit: {
@@ -16847,6 +16788,7 @@ module.exports = {
         types: [
           'number',
         ],
+        native: false,
         private: false,
       },
       groups: {
@@ -16855,6 +16797,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       groupLabel: {
@@ -16863,6 +16806,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       groupOptions: {
@@ -16871,6 +16815,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       groupHideEmpty: {
@@ -16879,6 +16824,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       openDirection: {
@@ -16887,6 +16833,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       canDeselect: {
@@ -16895,6 +16842,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       canClear: {
@@ -16903,6 +16851,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       closeOnSelect: {
@@ -16911,6 +16860,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       delay: {
@@ -16919,6 +16869,7 @@ module.exports = {
         types: [
           'number',
         ],
+        native: false,
         private: false,
       },
       minChars: {
@@ -16927,6 +16878,7 @@ module.exports = {
         types: [
           'number',
         ],
+        native: false,
         private: false,
       },
       resolveOnLoad: {
@@ -16935,6 +16887,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       filterResults: {
@@ -16943,6 +16896,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       clearOnSearch: {
@@ -16951,6 +16905,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       caret: {
@@ -16959,6 +16914,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       loading: {
@@ -16967,6 +16923,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       noOptionsText: {
@@ -16975,6 +16932,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       noResultsText: {
@@ -16983,6 +16941,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       autocomplete: {
@@ -16991,6 +16950,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       inputType: {
@@ -16999,6 +16959,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       options: {
@@ -18217,14 +18178,6 @@ module.exports = {
         types: [
           'number',
           'array',
-        ],
-        private: false,
-      },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
         ],
         private: false,
       },
@@ -21982,6 +21935,14 @@ module.exports = {
         ],
         private: false,
       },
+      onError: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        private: true,
+      },
       accept: {
         required: 'false',
         default: 'null',
@@ -22003,14 +21964,6 @@ module.exports = {
         default: 'null',
         types: [
           'string',
-        ],
-        private: false,
-      },
-      onError: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'function',
         ],
         private: false,
       },
@@ -23006,14 +22959,6 @@ module.exports = {
         ],
         private: false,
       },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
-        ],
-        private: false,
-      },
       disabled: {
         required: 'false',
         default: 'false',
@@ -23126,6 +23071,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       valueProp: {
@@ -23134,6 +23080,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       search: {
@@ -23142,6 +23089,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       trackBy: {
@@ -23150,6 +23098,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       strict: {
@@ -23158,6 +23107,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       create: {
@@ -23190,6 +23140,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       limit: {
@@ -23198,6 +23149,7 @@ module.exports = {
         types: [
           'number',
         ],
+        native: false,
         private: false,
       },
       max: {
@@ -23206,6 +23158,7 @@ module.exports = {
         types: [
           'number',
         ],
+        native: false,
         private: false,
       },
       groups: {
@@ -23214,6 +23167,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       groupLabel: {
@@ -23222,6 +23176,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       groupOptions: {
@@ -23230,6 +23185,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       groupHideEmpty: {
@@ -23238,6 +23194,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       groupSelect: {
@@ -23246,6 +23203,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       openDirection: {
@@ -23254,6 +23212,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       canClear: {
@@ -23262,6 +23221,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       clearOnSelect: {
@@ -23270,6 +23230,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       closeOnSelect: {
@@ -23278,6 +23239,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       delay: {
@@ -23286,6 +23248,7 @@ module.exports = {
         types: [
           'number',
         ],
+        native: false,
         private: false,
       },
       minChars: {
@@ -23294,6 +23257,7 @@ module.exports = {
         types: [
           'number',
         ],
+        native: false,
         private: false,
       },
       resolveOnLoad: {
@@ -23302,6 +23266,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       filterResults: {
@@ -23310,6 +23275,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       clearOnSearch: {
@@ -23318,6 +23284,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       hideSelected: {
@@ -23326,6 +23293,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       showOptions: {
@@ -23342,6 +23310,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       loading: {
@@ -23350,6 +23319,7 @@ module.exports = {
         types: [
           'boolean',
         ],
+        native: false,
         private: false,
       },
       noOptionsText: {
@@ -23358,6 +23328,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       noResultsText: {
@@ -23366,6 +23337,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       autocomplete: {
@@ -23374,6 +23346,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       inputType: {
@@ -23382,6 +23355,7 @@ module.exports = {
         types: [
           'string',
         ],
+        native: false,
         private: false,
       },
       options: {
@@ -26660,14 +26634,6 @@ module.exports = {
           'string',
           'number',
           'boolean',
-        ],
-        private: false,
-      },
-      debounce: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'number',
         ],
         private: false,
       },

@@ -25,7 +25,7 @@ const elementFeatures = require('./../../features/elements').default
 const commonFeatures = require('./../../features/common').default
 
 const ignore = []
-const include = ['GroupElement']
+const include = []
 
 const output = __dirname + '/../../components/elements.js'
 
@@ -200,6 +200,16 @@ const addProps = (contents, element) => {
     contents += `        ],\n`
   }
 
+  const addNative = (prop) => {
+    if (prop.native === undefined) {
+      return
+    }
+
+    let native = prop.native
+
+    contents += `        native: ${native},\n`
+  }
+
   contents += `    props: {\n`
 
   _.forEach(props, (v,k) => {
@@ -211,6 +221,7 @@ const addProps = (contents, element) => {
     contents += `        required: '${v.required}',\n`
     addDefault(v)
     addTypes(v)
+    addNative(v)
 
     if (!skipPrivate) {
       contents += `        private: ${!!v.private},\n`
