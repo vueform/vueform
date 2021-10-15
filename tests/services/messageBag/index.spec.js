@@ -301,7 +301,7 @@ describe('Message Bag Service', () => {
     expect(a.vm.messageBag.messages.length).toBe(0)
   })
 
-  it('should `clearBefore` all', () => {
+  it('should `clearPrepended` all', () => {
      let form = createForm({
       schema: {
         a: {
@@ -319,13 +319,13 @@ describe('Message Bag Service', () => {
     expect(a.vm.messageBag.prepends.errors.length).toBe(1)
     expect(a.vm.messageBag.prepends.messages.length).toBe(1)
 
-    a.vm.messageBag.clearBefore()
+    a.vm.messageBag.clearPrepended()
 
     expect(a.vm.messageBag.prepends.errors.length).toBe(0)
     expect(a.vm.messageBag.prepends.messages.length).toBe(0)
   })
 
-  it('should `clearBefore` errors', () => {
+  it('should `clearPrepended` errors', () => {
      let form = createForm({
       schema: {
         a: {
@@ -343,13 +343,13 @@ describe('Message Bag Service', () => {
     expect(a.vm.messageBag.prepends.errors.length).toBe(1)
     expect(a.vm.messageBag.prepends.messages.length).toBe(1)
 
-    a.vm.messageBag.clearBefore('errors')
+    a.vm.messageBag.clearPrepended('errors')
 
     expect(a.vm.messageBag.prepends.errors.length).toBe(0)
     expect(a.vm.messageBag.prepends.messages.length).toBe(1)
   })
 
-  it('should `clearBefore` messages', () => {
+  it('should `clearPrepended` messages', () => {
      let form = createForm({
       schema: {
         a: {
@@ -367,13 +367,13 @@ describe('Message Bag Service', () => {
     expect(a.vm.messageBag.prepends.errors.length).toBe(1)
     expect(a.vm.messageBag.prepends.messages.length).toBe(1)
 
-    a.vm.messageBag.clearBefore('messages')
+    a.vm.messageBag.clearPrepended('messages')
 
     expect(a.vm.messageBag.prepends.errors.length).toBe(1)
     expect(a.vm.messageBag.prepends.messages.length).toBe(0)
   })
 
-  it('should `clearAfter` all', () => {
+  it('should `clearAppended` all', () => {
      let form = createForm({
       schema: {
         a: {
@@ -391,13 +391,13 @@ describe('Message Bag Service', () => {
     expect(a.vm.messageBag.appends.errors.length).toBe(1)
     expect(a.vm.messageBag.appends.messages.length).toBe(1)
 
-    a.vm.messageBag.clearAfter()
+    a.vm.messageBag.clearAppended()
 
     expect(a.vm.messageBag.appends.errors.length).toBe(0)
     expect(a.vm.messageBag.appends.messages.length).toBe(0)
   })
 
-  it('should `clearAfter` errors', () => {
+  it('should `clearAppended` errors', () => {
      let form = createForm({
       schema: {
         a: {
@@ -415,13 +415,13 @@ describe('Message Bag Service', () => {
     expect(a.vm.messageBag.appends.errors.length).toBe(1)
     expect(a.vm.messageBag.appends.messages.length).toBe(1)
 
-    a.vm.messageBag.clearAfter('errors')
+    a.vm.messageBag.clearAppended('errors')
 
     expect(a.vm.messageBag.appends.errors.length).toBe(0)
     expect(a.vm.messageBag.appends.messages.length).toBe(1)
   })
 
-  it('should `clearAfter` messages', () => {
+  it('should `clearAppended` messages', () => {
      let form = createForm({
       schema: {
         a: {
@@ -439,13 +439,13 @@ describe('Message Bag Service', () => {
     expect(a.vm.messageBag.appends.errors.length).toBe(1)
     expect(a.vm.messageBag.appends.messages.length).toBe(1)
 
-    a.vm.messageBag.clearAfter('errors')
+    a.vm.messageBag.clearAppended('errors')
 
     expect(a.vm.messageBag.appends.errors.length).toBe(0)
     expect(a.vm.messageBag.appends.messages.length).toBe(1)
   })
 
-  it('should `clearAfter` errors', () => {
+  it('should `clearAppended` errors', () => {
      let form = createForm({
       schema: {
         a: {
@@ -463,7 +463,7 @@ describe('Message Bag Service', () => {
     expect(a.vm.messageBag.appends.errors.length).toBe(1)
     expect(a.vm.messageBag.appends.messages.length).toBe(1)
 
-    a.vm.messageBag.clearAfter('messages')
+    a.vm.messageBag.clearAppended('messages')
 
     expect(a.vm.messageBag.appends.errors.length).toBe(1)
     expect(a.vm.messageBag.appends.messages.length).toBe(0)

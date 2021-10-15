@@ -24,6 +24,7 @@ import useEvents from './../../composables/useEvents'
 import useHandleInput from './../../composables/elements/useHandleInput'
 import useEmpty from './../../composables/elements/useEmpty'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useLoading from './../../composables/elements/useLoading'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -95,6 +96,11 @@ export default {
       type: [String, Number],
       default: null
     },
+    loading: {
+      type: [Boolean],
+      required: false,
+      default: false,
+    },
   },
   setup(props, context) {
     const form$ = useForm$(props, context)
@@ -136,6 +142,10 @@ export default {
     const validation = useValidation(props, context, {
       form$: form$.form$,
       path: path.path,
+    })
+
+    const loading = useLoading(props, context, {
+      pending: validation.pending,
     })
 
     const value = useValue(props, context, {
@@ -237,6 +247,7 @@ export default {
       ...value,
       ...conditions,
       ...validation,
+      ...loading,
       ...label,
       ...classes,
       ...columns,

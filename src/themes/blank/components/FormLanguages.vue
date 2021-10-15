@@ -1,12 +1,14 @@
 <template>
   <ul :class="classes.container">
-    <FormLanguage
-      v-for="(lang, code, key) in languages"
-      :language="lang"
-      :code="code"
-      :key="key"
-      @select="handleSelect"
-   />
+    <slot>
+      <FormLanguage
+        v-for="(lang, code, key) in languages"
+        :language="lang"
+        :code="code"
+        :key="key"
+        @select="handleSelect"
+      />
+    </slot>
   </ul>
 </template>
 <script>

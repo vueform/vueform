@@ -10,5 +10,9 @@ export default {
       type: [Object],
       default: () => ({})
     },
+    fieldName: {
+      required: false,
+      type: String,
+    }
   }
 }

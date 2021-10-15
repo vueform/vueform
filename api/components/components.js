@@ -3760,7 +3760,7 @@ module.exports = {
       },
       "stepsControls": {
         "required": false,
-        "default": null,
+        "default": true,
         "types": [
           "boolean"
         ]

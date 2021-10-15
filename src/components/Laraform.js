@@ -288,7 +288,8 @@ export default {
     stepsControls: {
       type: Boolean,
       required: false,
-      default: null
+      default: null,
+      '@default': true,
     },
     displayErrors: {
       type: Boolean,

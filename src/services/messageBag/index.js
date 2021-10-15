@@ -119,7 +119,7 @@ export default class messageBag {
     }
   }
 
-  clearBefore(type) {
+  clearPrepended(type) {
     if (type === undefined) {
       type = 'all'
     }
@@ -134,7 +134,7 @@ export default class messageBag {
     }
   }
 
-  clearAfter(type) {
+  clearAppended(type) {
     if (type === undefined) {
       type = 'all'
     }

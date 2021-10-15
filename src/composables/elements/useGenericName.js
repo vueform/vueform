@@ -7,6 +7,7 @@ const base = function(props, context, dependencies)
     name,
     floating,
     label,
+    fieldName,
   } = toRefs(props)
 
   // ============== COMPUTED ==============
@@ -18,12 +19,14 @@ const base = function(props, context, dependencies)
    * @private.
    */
   const genericName = computed(() => {
-    if (label && label.value) {
+    if (fieldName.value) {
+      return fieldName.value
+    } else if (label && label.value) {
       return label.value
     } else if (floating && floating.value) {
       return floating.value
     } else {
-      return _.upperFirst(name.value)
+      return _.upperFirst(name.value).replace(/_|-/g, ' ')
     }
   })
 
@@ -37,7 +40,8 @@ const file = function(props, context, dependencies)
   const {
     name,
     embed,
-    label
+    label,
+    fieldName,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -56,12 +60,14 @@ const file = function(props, context, dependencies)
   const genericName = computed(() => {
     if (embed.value && filename.value) {
       return filename.value
+    } else if (fieldName.value) {
+      return fieldName.value
     } else if (label.value) {
       return label.value
     } else {
       return /^\d+$/.test(name.value)
         ? form$.value.__('laraform.elements.file.defaultName')
-        : _.upperFirst(name.value)
+        : _.upperFirst(name.value).replace(/_|-/g, ' ')
     }
   })
 

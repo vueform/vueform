@@ -5,7 +5,7 @@
         <ElementAddon v-if="hasAddonBefore" type="before"><slot name="addon-before"/></ElementAddon>
         <ElementAddon v-if="hasAddonAfter" type="after"><slot name="addon-after"/></ElementAddon>
         <ElementLabelFloating v-if="floating" :visible="!empty"/>
-        <ElementLabelFloating v-show="pending"/>
+        <ElementLoader v-show="isLoading"/>
         <input
           :value="model"
           :type="inputType"
