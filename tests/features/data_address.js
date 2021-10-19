@@ -23,8 +23,8 @@ export const data = function (elementType, elementName) {
   })
 }
 
-export const output = function(elementType, elementName) {
-  it('should have `output` equal to available children data values', async () => {
+export const requestData = function(elementType, elementName) {
+  it('should have `requestData` equal to available children data values', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -35,7 +35,7 @@ export const output = function(elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.output).toStrictEqual({
+    expect(el.requestData).toStrictEqual({
       el: {
         address: null,
         address2: null,
@@ -48,7 +48,7 @@ export const output = function(elementType, elementName) {
     // destroy(form) // teardown
   })
 
-  it('should have empty object as `output` if not available', async () => {
+  it('should have empty object as `requestData` if not available', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -65,7 +65,7 @@ export const output = function(elementType, elementName) {
 
     let el = form.vm.el$('el')
 
-    expect(el.output).toStrictEqual({})
+    expect(el.requestData).toStrictEqual({})
     
     // destroy(form) // teardown
 

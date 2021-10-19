@@ -1,7 +1,7 @@
 import { createForm, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
 
-export { data, output, clear } from './data'
+export { data, requestData, clear } from './data'
 
 export const load = function (elementType, elementName, options) {
   it('should set string value on `load` according to loadFormat', async () => {

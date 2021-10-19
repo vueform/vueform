@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { computed, toRefs, ref } from 'composition-api'
+import { computed, toRefs, ref, getCurrentInstance } from 'composition-api'
 import useForm$ from './useForm$'
 import useEl$ from './useEl$'
 import useTheme from './useTheme'
@@ -8,7 +8,6 @@ import { mergeComponentClasses } from './../utils/mergeClasses'
 const base = function(props, context, dependencies, options = {})
 {
   const componentName = context.name
-  const { defaultClasses: _defaultClasses } = toRefs(context.data)
 
   // =============== INJECT ===============
 
@@ -24,6 +23,8 @@ const base = function(props, context, dependencies, options = {})
     theme
   } = useTheme(props, context)
   
+  const component = el$.value.components[componentName.value]
+  
   // ================ DATA =================
 
   /**
@@ -32,7 +33,7 @@ const base = function(props, context, dependencies, options = {})
   * @type {object}
   * @private
   */
-  const defaultClasses = ref(_defaultClasses.value)
+  const defaultClasses = ref(component.data ? component.data().defaultClasses : {})
 
   // ============== COMPUTED ===============
 
@@ -51,7 +52,7 @@ const base = function(props, context, dependencies, options = {})
       theme.value.classes[componentName.value] || {},
 
       // Element level overwrites
-      el$.value.overrideClasses[componentName.value] || {}
+      el$.value.replaceClasses[componentName.value] || {}
     )
 
     // Add classes defined by specific components
@@ -65,13 +66,13 @@ const base = function(props, context, dependencies, options = {})
       })
     }
 
-    // Add form's addClasses
-    if (form$.value.options.addClasses[componentName.value] !== undefined) {
-      classes = mergeComponentClasses(classes, form$.value.options.addClasses[componentName.value] || null)
+    // Add form's extendClasses
+    if (form$.value.options.extendClasses[componentName.value] !== undefined) {
+      classes = mergeComponentClasses(classes, form$.value.options.extendClasses[componentName.value] || null)
     }
 
-    // Add element's addClasses options
-    classes = mergeComponentClasses(classes, el$.value.addClasses[componentName.value] || null)
+    // Add element's extendClasses options
+    classes = mergeComponentClasses(classes, el$.value.extendClasses[componentName.value] || null)
 
     return classes
   })

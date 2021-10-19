@@ -1,13 +1,13 @@
 import { createForm } from 'test-helpers'
 
 export default function (data, options, name) {
-  it(`should set addClasses with ${name}`, async () => {
+  it(`should set extendClasses with ${name}`, async () => {
     let form = createForm(data, options || {})
 
-    expect(form.vm.options.addClasses).toStrictEqual({ TextElement: { container: 'text' } })
+    expect(form.vm.options.extendClasses).toStrictEqual({ TextElement: { container: 'text' } })
 
-    form.vm.options.addClasses = { TextElement: { container: 'not-text' } }
+    form.vm.options.extendClasses = { TextElement: { container: 'not-text' } }
 
-    expect(form.vm.options.addClasses).toStrictEqual({ TextElement: { container: 'not-text' } })
+    expect(form.vm.options.extendClasses).toStrictEqual({ TextElement: { container: 'not-text' } })
   })
 }

@@ -140,6 +140,7 @@ export default {
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
+      components: components.components,
     })
 
     const columns = useColumns(props, context, {

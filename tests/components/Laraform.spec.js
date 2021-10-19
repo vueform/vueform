@@ -273,8 +273,8 @@ describe('Laraform', () => {
     validateOn: [config.validateOn, 'submit', 'step'],
     displayErrors: [config.displayErrors, false, true],
     labels: [config.labels, true, false],
-    overrideClasses: [{}, { TextElement: { container: 'text' } }, { TextareaElement: { container: 'textarea' } }],
-    addClasses: [{}, { TextElement: { container: 'text' } }, { TextareaElement: { container: 'textarea' } }],
+    replaceClasses: [{}, { TextElement: { container: 'text' } }, { TextareaElement: { container: 'textarea' } }],
+    extendClasses: [{}, { TextElement: { container: 'text' } }, { TextareaElement: { container: 'textarea' } }],
     components: [{}, { FormButton: {} }, { FormButton: {name:'NotFormButton'} }],
     elements: [{}, { TextElement: {} }, { TextElement: {name:'NotTextElement'} }],
     messages: [{}, { required: 'Required' }, { required: 'Not required' }],
@@ -645,7 +645,7 @@ describe('Laraform', () => {
         }
       })
       
-      expect(form.vm.output).toStrictEqual({el:'value'})
+      expect(form.vm.requestData).toStrictEqual({el:'value'})
     })
   })
 
@@ -1132,14 +1132,14 @@ describe('Laraform', () => {
       }
 
       let form = createForm({
-        overrideClasses: {
+        replaceClasses: {
           Laraform: overwriteClasses1
         }
       })
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
-      form.vm.laraform.overrideClasses.Laraform = overwriteClasses2
+      form.vm.laraform.replaceClasses.Laraform = overwriteClasses2
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     })
@@ -1156,7 +1156,7 @@ describe('Laraform', () => {
         setup() {
           return {
             laraform: {
-              overrideClasses: ref({
+              replaceClasses: ref({
                 Laraform: overwriteClasses1
               })
             }
@@ -1168,7 +1168,7 @@ describe('Laraform', () => {
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
-      form.vm.options.overrideClasses.Laraform = overwriteClasses2
+      form.vm.options.replaceClasses.Laraform = overwriteClasses2
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     })
@@ -1183,7 +1183,7 @@ describe('Laraform', () => {
 
       let form = createForm({}, {
         propsData: {
-          overrideClasses: {
+          replaceClasses: {
             Laraform: overwriteClasses1
           }
         }
@@ -1191,7 +1191,7 @@ describe('Laraform', () => {
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
-      form.vm.options.overrideClasses.Laraform = overwriteClasses2
+      form.vm.options.replaceClasses.Laraform = overwriteClasses2
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     })
@@ -1205,7 +1205,7 @@ describe('Laraform', () => {
       }
 
       let form = createForm({
-        overrideClasses: {
+        replaceClasses: {
           Laraform: overwriteClasses1
         }
       }, {
@@ -1222,37 +1222,37 @@ describe('Laraform', () => {
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
 
-      form.vm.options.overrideClasses.Laraform = overwriteClasses2
+      form.vm.options.replaceClasses.Laraform = overwriteClasses2
 
       expect(form.vm.extendedClasses).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     })
 
-    it('should have addClasses in form add classes, even when changes using Options API', async () => {
-      let addClasses1 = {
+    it('should have extendClasses in form add classes, even when changes using Options API', async () => {
+      let extendClasses1 = {
         [mainClass]: 'form-add-class'
       }
-      let addClasses2 = {
+      let extendClasses2 = {
         [mainClass]: 'form-add-class2'
       }
 
       let form = createForm({
-        addClasses: {
-          Laraform: addClasses1
+        extendClasses: {
+          Laraform: extendClasses1
         }
       })
 
-      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], addClasses1[mainClass]))
+      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], extendClasses1[mainClass]))
 
-      form.vm.options.addClasses.Laraform = addClasses2
+      form.vm.options.extendClasses.Laraform = extendClasses2
 
-      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], addClasses2[mainClass]))
+      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], extendClasses2[mainClass]))
     })
 
-    it('should have addClasses in form add classes, even when changes using Composition API', async () => {
-      let addClasses1 = {
+    it('should have extendClasses in form add classes, even when changes using Composition API', async () => {
+      let extendClasses1 = {
         [mainClass]: 'form-add-class'
       }
-      let addClasses2 = {
+      let extendClasses2 = {
         [mainClass]: 'form-add-class2'
       }
 
@@ -1260,42 +1260,42 @@ describe('Laraform', () => {
         setup() {
           return {
             laraform: {
-              addClasses: ref({
-                Laraform: addClasses1
+              extendClasses: ref({
+                Laraform: extendClasses1
               })
             }
           }
         }
       })
 
-      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], addClasses1[mainClass]))
+      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], extendClasses1[mainClass]))
 
-      form.vm.options.addClasses.Laraform = addClasses2
+      form.vm.options.extendClasses.Laraform = extendClasses2
 
-      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], addClasses2[mainClass]))
+      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], extendClasses2[mainClass]))
     })
 
-    it('should have addClasses in form add classes, even when changes using :form prop', async () => {
-      let addClasses1 = {
+    it('should have extendClasses in form add classes, even when changes using :form prop', async () => {
+      let extendClasses1 = {
         [mainClass]: 'form-add-class'
       }
-      let addClasses2 = {
+      let extendClasses2 = {
         [mainClass]: 'form-add-class2'
       }
 
       let form = createForm({}, {
         propsData: {
-          addClasses: {
-            Laraform: addClasses1
+          extendClasses: {
+            Laraform: extendClasses1
           }
         }
       })
 
-      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], addClasses1[mainClass]))
+      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], extendClasses1[mainClass]))
 
-      form.vm.options.addClasses.Laraform = addClasses2
+      form.vm.options.extendClasses.Laraform = extendClasses2
 
-      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], addClasses2[mainClass]))
+      expect(form.vm.extendedClasses[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], extendClasses2[mainClass]))
     })
 
     it('should have class add classes, even when changes', async () => {
@@ -1359,13 +1359,13 @@ describe('Laraform', () => {
       }
 
       let form = createForm({
-        overrideClasses: {
+        replaceClasses: {
           Laraform: {
             [mainClass]: 'form-classes'
           }
         },
         addClass: 'form-class',
-        addClasses: {
+        extendClasses: {
           Laraform: {
             [mainClass]: 'form-add-classes'
           }
@@ -1516,7 +1516,7 @@ describe('Laraform', () => {
 
     it('should merge deep theme classes with local classes', async () => {
       let form = createForm({
-        overrideClasses: {
+        replaceClasses: {
           Laraform: {
             form: 'form-form',
             buttons: 'form-button',

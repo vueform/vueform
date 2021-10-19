@@ -69,7 +69,7 @@ describe('FormStep', () => {
             type: 'text',
           },
         },
-        overrideClasses: {
+        replaceClasses: {
           FormStep: {
             active: 'active',
             inactive: 'inactive',
@@ -116,7 +116,7 @@ describe('FormStep', () => {
             type: 'text',
           },
         },
-        overrideClasses: {
+        replaceClasses: {
           FormStep: {
             container_disabled: 'disabled',
             container_enabled: 'enabled',
@@ -163,7 +163,7 @@ describe('FormStep', () => {
             type: 'text',
           },
         },
-        overrideClasses: {
+        replaceClasses: {
           FormStep: {
             container_completed: 'completed',
             container_incompleted: 'incompleted',
@@ -209,7 +209,7 @@ describe('FormStep', () => {
             type: 'text',
           },
         },
-        overrideClasses: {
+        replaceClasses: {
           FormStep: {
             container_valid: 'valid',
             container_invalid: 'invalid',

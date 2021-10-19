@@ -115,9 +115,15 @@ export default {
       path: path.path,
     })
 
+    const components = useComponents(props, context, {
+      theme: theme.theme,
+      form$: form$.form$
+    })
+
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
+      components: components.components,
     })
 
     const columns = useColumns(props, context, {
@@ -129,11 +135,6 @@ export default {
     const view = useView(props, context, {
       available: conditions.available,
       active: baseElement.active,
-    })
-
-    const components = useComponents(props, context, {
-      theme: theme.theme,
-      form$: form$.form$
     })
 
     const slots = useSlots(props, context, {

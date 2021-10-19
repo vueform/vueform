@@ -1,13 +1,13 @@
 import _ from 'lodash'
-import { computed, toRefs } from 'composition-api'
+import { computed, toRefs, ref } from 'composition-api'
 import { mergeComponentClasses } from './../../utils/mergeClasses'
 
 const base = function(props, context, dependencies, options = {})
 {
   const {
-    addClasses,
-    overrideClasses,
-    addClass
+    extendClasses,
+    replaceClasses,
+    addClass,
   } = toRefs(props)
   
   const componentName = context.name
@@ -16,6 +16,9 @@ const base = function(props, context, dependencies, options = {})
 
   const form$ = dependencies.form$
   const theme = dependencies.theme
+  const components = dependencies.components
+
+  const component = components.value[componentName.value]
 
   // ================ DATA ================
 
@@ -25,7 +28,7 @@ const base = function(props, context, dependencies, options = {})
   * @type {object}
   * @private
   */
-  const defaultClasses = toRefs(context.data).defaultClasses
+  const defaultClasses = ref(component.data ? component.data().defaultClasses : {})
 
   // ============== COMPUTED ==============
   
@@ -53,7 +56,7 @@ const base = function(props, context, dependencies, options = {})
       theme.value.classes[componentName.value] || {},
 
       // Element level overwrites
-      overrideClasses.value[componentName.value] || {}
+      replaceClasses.value[componentName.value] || {}
     )
 
     // Add classes defined by specific elements
@@ -67,13 +70,13 @@ const base = function(props, context, dependencies, options = {})
       })
     }
 
-    // Add form's addClasses
-    if (form$.value.options.addClasses[componentName.value] !== undefined) {
-      classes = mergeComponentClasses(classes, form$.value.options.addClasses[componentName.value] || null)
+    // Add form's extendClasses
+    if (form$.value.options.extendClasses[componentName.value] !== undefined) {
+      classes = mergeComponentClasses(classes, form$.value.options.extendClasses[componentName.value] || null)
     }
     
-    // Add element's addClasses options
-    classes = mergeComponentClasses(classes, addClasses.value[componentName.value] || null)
+    // Add element's extendClasses options
+    classes = mergeComponentClasses(classes, extendClasses.value[componentName.value] || null)
     
     // Add element's class to main class
     if (addClass.value) {

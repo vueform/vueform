@@ -22,8 +22,8 @@ export const data = function (elementType, elementName, options) {
   })
 }
 
-export const output = function (elementType, elementName, options) {
-  it('should have `output` equal to `data` if there are no conditions', () => {
+export const requestData = function (elementType, elementName, options) {
+  it('should have `requestData` equal to `data` if there are no conditions', () => {
     let form = createForm({
       schema: {
         el: {
@@ -35,12 +35,12 @@ export const output = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.output).toStrictEqual(el.data)
+    expect(el.requestData).toStrictEqual(el.data)
     
     // destroy(form) // teardown
   })
 
-  it('should have `output` equal to `data` if there are met conditions', () => {
+  it('should have `requestData` equal to `data` if there are met conditions', () => {
     let form = createForm({
       schema: {
         el: {
@@ -59,12 +59,12 @@ export const output = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.output).toStrictEqual(el.data)
+    expect(el.requestData).toStrictEqual(el.data)
     
     // destroy(form) // teardown
   })
 
-  it('should have empty object for `output` if there are unmet conditions', () => {
+  it('should have empty object for `requestData` if there are unmet conditions', () => {
     let form = createForm({
       schema: {
         el: {
@@ -82,7 +82,7 @@ export const output = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.output).toStrictEqual({})
+    expect(el.requestData).toStrictEqual({})
 
     // destroy() // teardown
   })

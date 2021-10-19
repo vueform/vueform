@@ -4,10 +4,10 @@ import asyncForEach from './../../src/utils/asyncForEach'
 
 export { data, add, remove, load, update, clear, reset, } from './data_list'
 
-export const output = function (elementType, elementName, options) {
+export const requestData = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  it('should "output" containe output of children if prototype is a single element', async () => {
+  it('should "requestData" containe requestData of children if prototype is a single element', async () => {
     let form = createForm(listSchema(options, 0, {
       type: elementType,
       initial: 0,
@@ -36,11 +36,11 @@ export const output = function (elementType, elementName, options) {
     let el2 = form.vm.el$('el2')
     let el3 = form.vm.el$('el3')
 
-    expect(el.output).toStrictEqual({})
+    expect(el.requestData).toStrictEqual({})
 
     el3.update('value3')
 
-    expect(el.output).toStrictEqual({
+    expect(el.requestData).toStrictEqual({
       el: []
     })
 
@@ -51,14 +51,14 @@ export const output = function (elementType, elementName, options) {
 
     el2.update('value2')
 
-    expect(el.output).toStrictEqual({
+    expect(el.requestData).toStrictEqual({
       el: [listChildValue(options, 0, 0), listChildValue(options, 0, 1)]
     })    
     
     // destroy(form) // teardown
   })
 
-  it('should "output" containe output of children prototype is an object', async () => {
+  it('should "requestData" containe requestData of children prototype is an object', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -86,7 +86,7 @@ export const output = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.output).toStrictEqual({
+    expect(el.requestData).toStrictEqual({
       el: [
         {
           file: null,
@@ -96,7 +96,7 @@ export const output = function (elementType, elementName, options) {
 
     el2.load('value2')
 
-    expect(el.output).toStrictEqual({
+    expect(el.requestData).toStrictEqual({
       el: [
         {
           file: null,
@@ -108,7 +108,7 @@ export const output = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should have "output" according to `formatData` if it is set', async () => {
+  it('should have "requestData" according to `formatData` if it is set', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm({
         schema: {
@@ -128,7 +128,7 @@ export const output = function (elementType, elementName, options) {
 
       let el = form.vm.el$('el')
 
-      expect(el.output).toStrictEqual({
+      expect(el.requestData).toStrictEqual({
         custom: {
           el: el.value
         }

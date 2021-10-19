@@ -254,6 +254,7 @@ export default {
       theme: theme.theme,
       isDisabled: disabled.isDisabled,
       sorting: sorting.sorting,
+      components: components.components,
     })
 
     const sort = useSort(props, context, {

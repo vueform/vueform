@@ -34,10 +34,10 @@ export const data = function (elementType, elementName, options) {
   })
 }
 
-export const output = function (elementType, elementName, options) {
+export const requestData = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  it('should "output" contain output of children if prototype is a single element', () => {
+  it('should "requestData" contain requestData of children if prototype is a single element', () => {
     let form = createForm({
       schema: {
         el: {
@@ -67,30 +67,30 @@ export const output = function (elementType, elementName, options) {
     let el3 = form.vm.el$('el3')
     let child0_1 = form.vm.el$('el.0')
 
-    expect(el.output).toStrictEqual({})
+    expect(el.requestData).toStrictEqual({})
 
     el3.update('value3')
 
-    expect(el.output).toStrictEqual({
+    expect(el.requestData).toStrictEqual({
       el: []
     })
 
     el2.update('value2')
 
-    expect(el.output).toStrictEqual({
+    expect(el.requestData).toStrictEqual({
       el: [null, null]
     })
 
     child0_1.update('child1-value')
 
-    expect(el.output).toStrictEqual({
+    expect(el.requestData).toStrictEqual({
       el: ['child1-value', null]
     })    
     
     // destroy(form) // teardown
   })
 
-  it('should "output" containe output of children prototype is an object', () => {
+  it('should "requestData" containe requestData of children prototype is an object', () => {
     let form = createForm({
       schema: {
         el: {
@@ -139,23 +139,23 @@ export const output = function (elementType, elementName, options) {
     let el4 = form.vm.el$('el4')
     let child0_1 = form.vm.el$('el.0.child1')
 
-    expect(el.output).toStrictEqual({})
+    expect(el.requestData).toStrictEqual({})
 
     el4.update('value4')
 
-    expect(el.output).toStrictEqual({
+    expect(el.requestData).toStrictEqual({
       el: []
     })
 
     el2.update('value2')
 
-    expect(el.output).toStrictEqual({
+    expect(el.requestData).toStrictEqual({
       el: [{}, {}]
     })
 
     el3.update('value3')
 
-    expect(el.output).toStrictEqual({
+    expect(el.requestData).toStrictEqual({
       el: [
         {
           child1: 'child1-value',
@@ -168,7 +168,7 @@ export const output = function (elementType, elementName, options) {
 
     child0_1.update('child1-value2')
 
-    expect(el.output).toStrictEqual({
+    expect(el.requestData).toStrictEqual({
       el: [
         {
           child1: 'child1-value2',
@@ -183,7 +183,7 @@ export const output = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should have "output" according to `formatData` if it is set', async () => {
+  it('should have "requestData" according to `formatData` if it is set', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm(listSchema(options, i, {
         initial: 1,
@@ -200,7 +200,7 @@ export const output = function (elementType, elementName, options) {
 
       let el = form.vm.el$('el')
 
-      expect(el.output).toStrictEqual({
+      expect(el.requestData).toStrictEqual({
         custom: {
           el: el.value
         }

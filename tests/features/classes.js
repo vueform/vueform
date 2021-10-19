@@ -81,7 +81,7 @@ export const classes = function (elementType, elementName, options) {
   })
 
   // Form classes
-  it('should overrideClasses in form overwrite defaultClasses in `classes`, even when changes', () => {
+  it('should replaceClasses in form overwrite defaultClasses in `classes`, even when changes', () => {
     let overwriteClasses1 = {
       [mainClass]: 'form-overwrite-class'
     }
@@ -95,7 +95,7 @@ export const classes = function (elementType, elementName, options) {
           type: elementType,
         }
       },
-      overrideClasses: {
+      replaceClasses: {
         [elementName]: overwriteClasses1
       }
     })
@@ -104,14 +104,14 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-    el.form$.options.overrideClasses[elementName] = overwriteClasses2
+    el.form$.options.replaceClasses[elementName] = overwriteClasses2
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))    
     
     // destroy(form) // teardown
   })
 
-  it('should overrideClasses in form overwrite theme classes in `classes`, even when changes', () => {
+  it('should replaceClasses in form overwrite theme classes in `classes`, even when changes', () => {
     let overwriteClasses1 = {
       [mainClass]: 'form-overwrite-class'
     }
@@ -125,7 +125,7 @@ export const classes = function (elementType, elementName, options) {
           type: elementType,
         }
       },
-      overrideClasses: {
+      replaceClasses: {
         [elementName]: overwriteClasses1
       }
     }, {
@@ -144,18 +144,18 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-    el.form$.options.overrideClasses[elementName] = overwriteClasses2
+    el.form$.options.replaceClasses[elementName] = overwriteClasses2
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))    
     
     // destroy(form) // teardown
   })
 
-  it('should `addClasses` in form add classes in `classes`, even when changes', () => {
-    let addClasses1 = {
+  it('should `extendClasses` in form add classes in `classes`, even when changes', () => {
+    let extendClasses1 = {
       [mainClass]: 'form-add-class'
     }
-    let addClasses2 = {
+    let extendClasses2 = {
       [mainClass]: 'form-add-class2'
     }
 
@@ -165,24 +165,24 @@ export const classes = function (elementType, elementName, options) {
           type: elementType,
         }
       },
-      addClasses: {
-        [elementName]: addClasses1
+      extendClasses: {
+        [elementName]: extendClasses1
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses1[mainClass])))
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses1[mainClass])))
 
-    el.form$.options.addClasses[elementName] = addClasses2
+    el.form$.options.extendClasses[elementName] = extendClasses2
 
-    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses2[mainClass])))
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses2[mainClass])))
     
     // destroy(form) // teardown
   })
 
   // Element classes
-  it('should overrideClasses in element overwrite defaultClasses in `classes`, even when changes', async () => {
+  it('should replaceClasses in element overwrite defaultClasses in `classes`, even when changes', async () => {
     let overwriteClasses1 = {
       [mainClass]: 'element-overwrite-class'
     }
@@ -194,7 +194,7 @@ export const classes = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          overrideClasses: {
+          replaceClasses: {
             [elementName]: overwriteClasses1
           }
         }
@@ -205,7 +205,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-    form.vm.$set(form.vm.laraform.schema.el.overrideClasses, elementName, overwriteClasses2)
+    form.vm.$set(form.vm.laraform.schema.el.replaceClasses, elementName, overwriteClasses2)
     await nextTick()
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))    
@@ -213,7 +213,7 @@ export const classes = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should overrideClasses in element overwrite theme classes in `classes`, even when changes', async () => {
+  it('should replaceClasses in element overwrite theme classes in `classes`, even when changes', async () => {
     let overwriteClasses1 = {
       [mainClass]: 'element-overwrite-class'
     }
@@ -225,7 +225,7 @@ export const classes = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          overrideClasses: {
+          replaceClasses: {
             [elementName]: overwriteClasses1
           }
         }
@@ -246,7 +246,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-    form.vm.$set(form.vm.laraform.schema.el.overrideClasses, elementName, overwriteClasses2)
+    form.vm.$set(form.vm.laraform.schema.el.replaceClasses, elementName, overwriteClasses2)
     await nextTick()
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))    
@@ -254,7 +254,7 @@ export const classes = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should overrideClasses in element overwrite form classes in `classes`, even when changes', async () => {
+  it('should replaceClasses in element overwrite form classes in `classes`, even when changes', async () => {
     let overwriteClasses1 = {
       [mainClass]: 'element-overwrite-class'
     }
@@ -266,12 +266,12 @@ export const classes = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          overrideClasses: {
+          replaceClasses: {
             [elementName]: overwriteClasses1
           }
         }
       },
-      overrideClasses: {
+      replaceClasses: {
         [elementName]: {
           [mainClass]: 'form-overwrite-class'
         }
@@ -282,7 +282,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-    form.vm.$set(form.vm.laraform.schema.el.overrideClasses, elementName, overwriteClasses2)
+    form.vm.$set(form.vm.laraform.schema.el.replaceClasses, elementName, overwriteClasses2)
     await nextTick()
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))    
@@ -290,11 +290,11 @@ export const classes = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should addClasses in element add classes in `classes`, even when changes', async () => {
-    let addClasses1 = {
+  it('should extendClasses in element add classes in `classes`, even when changes', async () => {
+    let extendClasses1 = {
       [mainClass]: 'element-add-class'
     }
-    let addClasses2 = {
+    let extendClasses2 = {
       [mainClass]: 'element-add-class2'
     }
 
@@ -302,8 +302,8 @@ export const classes = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          addClasses: {
-            [elementName]: addClasses1
+          extendClasses: {
+            [elementName]: extendClasses1
           },
         }
       },
@@ -311,27 +311,27 @@ export const classes = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses1[mainClass])))
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses1[mainClass])))
 
-    form.vm.$set(form.vm.laraform.schema.el.addClasses, elementName, addClasses2)
+    form.vm.$set(form.vm.laraform.schema.el.extendClasses, elementName, extendClasses2)
     await nextTick()
 
-    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses2[mainClass])))
+    expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses2[mainClass])))
     
     // destroy(form) // teardown
   })
 
-  it('should addClasses in both form and element add classes in `classes`, even when changes', () => {
-    let addClassesElement1 = {
+  it('should extendClasses in both form and element add classes in `classes`, even when changes', () => {
+    let extendClassesElement1 = {
       [mainClass]: 'element-add-class'
     }
-    let addClassesElement2 = {
+    let extendClassesElement2 = {
       [mainClass]: 'element-add-class2'
     }
-    let addClassesForm1 = {
+    let extendClassesForm1 = {
       [mainClass]: 'form-add-class'
     }
-    let addClassesForm2 = {
+    let extendClassesForm2 = {
       [mainClass]: 'form-add-class2'
     }
 
@@ -339,29 +339,29 @@ export const classes = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          addClasses: {
-            [elementName]: addClassesElement1
+          extendClasses: {
+            [elementName]: extendClassesElement1
           },
         }
       },
-      addClasses: {
-        [elementName]: addClassesForm1
+      extendClasses: {
+        [elementName]: extendClassesForm1
       }
     })
 
     let el = form.vm.el$('el')
 
     expect(el.classes[mainClass]).toStrictEqual(mergeClass(
-      defaultClasses[mainClass], mergeClass(mergeWith[mainClass], mergeClass(addClassesForm1[mainClass], addClassesElement1[mainClass]))
+      defaultClasses[mainClass], mergeClass(mergeWith[mainClass], mergeClass(extendClassesForm1[mainClass], extendClassesElement1[mainClass]))
     ))
 
-    el.form$.options.addClasses[elementName] = addClassesForm2
-    el.addClasses[elementName] = addClassesElement2
+    el.form$.options.extendClasses[elementName] = extendClassesForm2
+    el.extendClasses[elementName] = extendClassesElement2
 
 
 
     expect(el.classes[mainClass]).toStrictEqual(mergeClass(
-      defaultClasses[mainClass], mergeClass(mergeWith[mainClass], mergeClass(addClassesForm2[mainClass], addClassesElement2[mainClass]))
+      defaultClasses[mainClass], mergeClass(mergeWith[mainClass], mergeClass(extendClassesForm2[mainClass], extendClassesElement2[mainClass]))
     ))
     
     // destroy(form) // teardown
@@ -391,7 +391,7 @@ export const rendering = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should `addClass` in element add classes to the outer-most DOM even if form `overrideClasses` is defined, even when changes', async () => {
+  it('should `addClass` in element add classes to the outer-most DOM even if form `replaceClasses` is defined, even when changes', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -399,7 +399,7 @@ export const rendering = function (elementType, elementName, options) {
           addClass: 'element-add-class'
         }
       },
-      overrideClasses: {
+      replaceClasses: {
         [elementName]: {
           [mainClass]: 'form-add-class'
         }
@@ -412,7 +412,7 @@ export const rendering = function (elementType, elementName, options) {
     expect(elWrapper.classes('element-add-class')).toBe(true)
     expect(elWrapper.classes('form-add-class')).toBe(true)
 
-    form.vm.$set(form.vm.options.overrideClasses[elementName], mainClass, 'form-add-class2')
+    form.vm.$set(form.vm.options.replaceClasses[elementName], mainClass, 'form-add-class2')
 
     await nextTick()
 
@@ -421,13 +421,13 @@ export const rendering = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should `addClass` in element add classes to the outer-most DOM even if element `overrideClasses` is defined, even when changes', async () => {
+  it('should `addClass` in element add classes to the outer-most DOM even if element `replaceClasses` is defined, even when changes', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           addClass: 'element-add-class',
-          overrideClasses: {
+          replaceClasses: {
             [elementName]: {
               [mainClass]: 'element-add-classes'
             }
@@ -442,7 +442,7 @@ export const rendering = function (elementType, elementName, options) {
     expect(elWrapper.classes('element-add-class')).toBe(true)
     expect(elWrapper.classes('element-add-classes')).toBe(true)
 
-    form.vm.$set(form.vm.laraform.schema.el.overrideClasses[elementName], mainClass, 'element-add-classes2')
+    form.vm.$set(form.vm.laraform.schema.el.replaceClasses[elementName], mainClass, 'element-add-classes2')
 
     await nextTick()
 
@@ -451,7 +451,7 @@ export const rendering = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should `addClass` in element add classes to the outer-most DOM even if form `addClasses` is defined, even when changes', async () => {
+  it('should `addClass` in element add classes to the outer-most DOM even if form `extendClasses` is defined, even when changes', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -459,7 +459,7 @@ export const rendering = function (elementType, elementName, options) {
           addClass: 'element-add-class'
         }
       },
-      addClasses: {
+      extendClasses: {
         [elementName]: {
           [mainClass]: 'form-add-class'
         }
@@ -472,7 +472,7 @@ export const rendering = function (elementType, elementName, options) {
     expect(elWrapper.classes('element-add-class')).toBe(true)
     expect(elWrapper.classes('form-add-class')).toBe(true)
 
-    form.vm.options.addClasses[elementName][mainClass] = 'form-add-class2'
+    form.vm.options.extendClasses[elementName][mainClass] = 'form-add-class2'
 
     await nextTick()
 
@@ -481,13 +481,13 @@ export const rendering = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should `addClass` in element add classes to the outer-most DOM even if element `addClasses` is defined, even when changes', async () => {
+  it('should `addClass` in element add classes to the outer-most DOM even if element `extendClasses` is defined, even when changes', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           addClass: 'element-add-class',
-          addClasses: {
+          extendClasses: {
             [elementName]: {
               [mainClass]: 'element-add-classes'
             }
@@ -502,7 +502,7 @@ export const rendering = function (elementType, elementName, options) {
     expect(elWrapper.classes('element-add-class')).toBe(true)
     expect(elWrapper.classes('element-add-classes')).toBe(true)
 
-    form.vm.$set(form.vm.laraform.schema.el.addClasses[elementName], mainClass, 'element-add-classes2')
+    form.vm.$set(form.vm.laraform.schema.el.extendClasses[elementName], mainClass, 'element-add-classes2')
 
     await nextTick()
 
@@ -511,20 +511,20 @@ export const rendering = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should `addClass` in element add classes to the outer-most DOM even if both form and element `addClasses` are defined, even when changes', async () => {
+  it('should `addClass` in element add classes to the outer-most DOM even if both form and element `extendClasses` are defined, even when changes', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           addClass: 'element-add-class',
-          addClasses: {
+          extendClasses: {
             [elementName]: {
               [mainClass]: 'element-add-classes'
             }
           }
         }
       },
-      addClasses: {
+      extendClasses: {
         [elementName]: {
           [mainClass]: 'form-add-classes'
         }
@@ -538,11 +538,11 @@ export const rendering = function (elementType, elementName, options) {
     expect(elWrapper.classes('element-add-classes')).toBe(true)
     expect(elWrapper.classes('form-add-classes')).toBe(true)
 
-    el.addClasses[elementName] = {
+    el.extendClasses[elementName] = {
       [mainClass]: 'element-add-classes2'
     }
 
-    form.vm.options.addClasses[elementName] = {
+    form.vm.options.extendClasses[elementName] = {
       [mainClass]: 'form-add-classes2'
     }
 

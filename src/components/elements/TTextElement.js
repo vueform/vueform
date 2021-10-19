@@ -190,6 +190,7 @@ export default {
       form$: form$.form$,
       theme: theme.theme,
       isDisabled: disabled.isDisabled,
+      components: components.components,
     })
 
     const columns = useColumns(props, context, {

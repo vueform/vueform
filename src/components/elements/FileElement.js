@@ -260,6 +260,7 @@ export default {
       removing: removing.removing,
       isDisabled: disabled.isDisabled,
       preparing: file.preparing,
+      components: components.components,
     })
 
     const columns = useColumns(props, context, {

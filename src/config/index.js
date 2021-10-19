@@ -1,8 +1,6 @@
 const config = {
   vue: 3,
 
-  theme: 'default',
-
   languages: {
     en: {
       label: 'English',
@@ -15,7 +13,7 @@ const config = {
   },
 
   formData(form$) {
-    return form$.output
+    return form$.requestData
   },
 
   floatPlaceholder: true,

@@ -55,7 +55,7 @@ const base = function(props, context, dependencies, options = {})
    * 
    * @type {object}
    */
-  const output = computed(() => {
+  const requestData = computed(() => {
     if (!available.value || !submit.value) {
       return {}
     }
@@ -115,7 +115,7 @@ const base = function(props, context, dependencies, options = {})
 
   return {
     data,
-    output,
+    requestData,
     load,
     update,
     clear,
@@ -146,22 +146,22 @@ const object = function(props, context, dependencies)
 
   // ============== COMPUTED ===============
   
-  const output = computed(() => {
+  const requestData = computed(() => {
     if (!available.value || !submit.value) {
       return {}
     }
     
-    let output = {}
+    let requestData = {}
 
     _.each(children$.value, (element$) => {
       if (element$.isStatic) {
         return
       }
 
-      output = Object.assign({}, output, element$.output)
+      requestData = Object.assign({}, requestData, element$.requestData)
     })
 
-    return formatData.value ? formatData.value(name.value, output, form$.value) : {[name.value]: output}
+    return formatData.value ? formatData.value(name.value, requestData, form$.value) : {[name.value]: requestData}
   })
 
   // =============== METHODS ===============
@@ -219,7 +219,7 @@ const object = function(props, context, dependencies)
 
   return {
     data,
-    output,
+    requestData,
     load,
     update,
     clear,
@@ -257,27 +257,27 @@ const group = function(props, context, dependencies)
     return value.value
   })
 
-  const output = computed(() => {
+  const requestData = computed(() => {
     if (!available.value || !submit.value) {
       return {}
     }
     
-    let output = {}
+    let requestData = {}
 
     _.each(children$.value, (element$) => {
       if (element$.isStatic) {
         return
       }
 
-      output = Object.assign({}, output, element$.output)
+      requestData = Object.assign({}, requestData, element$.requestData)
     })
 
-    return formatData.value ? formatData.value(name.value, output, form$.value) : output
+    return formatData.value ? formatData.value(name.value, requestData, form$.value) : requestData
   })
 
   return {
     data,
-    output,
+    requestData,
     load,
     update,
     clear,
@@ -338,22 +338,22 @@ const list = function(props, context, dependencies, options)
     return parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
   })
   
-  const output = computed(() => {
+  const requestData = computed(() => {
     if (!available.value || !submit.value) {
       return {}
     }
     
-    let output = []
+    let requestData = []
 
     _.each(children$.value, (element$) => {
-      let val = element$.output[element$.name]
+      let val = element$.requestData[element$.name]
 
       if (val !== undefined) {
-        output.push(val)
+        requestData.push(val)
       }
     })
 
-    return formatData.value ? formatData.value(name.value, output, form$.value) : {[name.value]: output}
+    return formatData.value ? formatData.value(name.value, requestData, form$.value) : {[name.value]: requestData}
   })
 
   // =============== METHODS ===============
@@ -481,7 +481,7 @@ const list = function(props, context, dependencies, options)
   }
 
   return {
-    output,
+    requestData,
     data,
     add,
     remove,
@@ -503,7 +503,7 @@ const date = function(props, context, dependencies)
 
   const {
     data,
-    output,
+    requestData,
     update,
     clear,
     reset,
@@ -528,7 +528,7 @@ const date = function(props, context, dependencies)
 
   return {
     data,
-    output,
+    requestData,
     load,
     update,
     clear,
@@ -545,7 +545,7 @@ const dates = function(props, context, dependencies)
 
   const {
     data,
-    output,
+    requestData,
     update,
     clear,
     reset,
@@ -572,7 +572,7 @@ const dates = function(props, context, dependencies)
 
   return {
     data,
-    output,
+    requestData,
     load,
     update,
     clear,
@@ -589,7 +589,7 @@ const multilingual = function(props, context, dependencies, options = {})
 
   const {
     data,
-    output,
+    requestData,
     clear,
     reset,
     prepare,
@@ -638,7 +638,7 @@ const multilingual = function(props, context, dependencies, options = {})
 
   return {
     data,
-    output,
+    requestData,
     load,
     update,
     clear,
@@ -651,7 +651,7 @@ const trix = function(props, context, dependencies)
 {
   const {
     data,
-    output,
+    requestData,
     load,
     update,
     clear,
@@ -674,7 +674,7 @@ const trix = function(props, context, dependencies)
 
   return {
     data,
-    output,
+    requestData,
     load,
     update,
     clear,
@@ -687,7 +687,7 @@ const ttrix = function(props, context, dependencies)
 {
   const {
     data,
-    output,
+    requestData,
     load,
     update,
     clear,
@@ -718,7 +718,7 @@ const ttrix = function(props, context, dependencies)
 
   return {
     data,
-    output,
+    requestData,
     load,
     update,
     clear,

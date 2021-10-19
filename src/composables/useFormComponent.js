@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { computed, toRefs, ref } from 'composition-api'
+import { computed, toRefs, ref, getCurrentInstance } from 'composition-api'
 import useForm$ from './useForm$'
 import useTheme from './useTheme'
 import { mergeComponentClasses } from './../utils/mergeClasses'
@@ -7,7 +7,6 @@ import { mergeComponentClasses } from './../utils/mergeClasses'
 const base = function(props, context, dependencies, options = {})
 {
   const componentName = context.name
-  const { defaultClasses: _defaultClasses } = toRefs(context.data)
 
   // =============== INJECT ===============
 
@@ -18,6 +17,8 @@ const base = function(props, context, dependencies, options = {})
   const {
     theme
   } = useTheme(props, context)
+
+  const component = theme.value.components[componentName.value]
   
   // ================ DATA =================
 
@@ -27,7 +28,7 @@ const base = function(props, context, dependencies, options = {})
   * @type {object}
   * @private
   */
-  const defaultClasses = ref(_defaultClasses.value)
+  const defaultClasses = ref(component.data ? component.data().defaultClasses : {})
   
   // ============== COMPUTED ===============
 
@@ -57,8 +58,8 @@ const base = function(props, context, dependencies, options = {})
       })
     }
 
-    // Add form's addClasses
-    classes = mergeComponentClasses(classes, form$.value.options.addClasses[componentName.value] || null)
+    // Add form's extendClasses
+    classes = mergeComponentClasses(classes, form$.value.options.extendClasses[componentName.value] || null)
 
     return classes
   })

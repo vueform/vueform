@@ -13,16 +13,14 @@ const base = function(props, context, dependencies = {})
     schema,
     tabs,
     steps,
-    overrideClasses,
-    addClasses,
-    components,
-    elements,
+    replaceClasses,
+    extendClasses,
+    replaceTemplates,
     messages,
     columns,
     languages,
     addClass,
     formKey,
-    theme,
     endpoint,
     method,
     formData,
@@ -190,7 +188,7 @@ const base = function(props, context, dependencies = {})
 
     const override = {
       columns, languages, language, theme, endpoint, method, validateOn,
-      overrideClasses, addClasses, components, elements, messages, addClass,
+      replaceClasses, extendClasses, replaceTemplates, messages, addClass,
       formKey, multilingual, formatLoad, formatData, prepare, default: default_ ,
       formData,
     }
@@ -211,10 +209,9 @@ const base = function(props, context, dependencies = {})
       displayMessages: baseConfig.value.config.displayMessages,
       labels: baseConfig.value.config.labels,
       formData: baseConfig.value.config.formData,
-      overrideClasses: {},
-      addClasses: {},
-      components: {},
-      elements: {},
+      replaceClasses: {},
+      extendClasses: {},
+      replaceTemplates: {},
       messages: {},
       default: {},
       addClass: null,
@@ -332,18 +329,18 @@ const base = function(props, context, dependencies = {})
    * 
    * @type {object}
    */
-  const output = computed(() => {
-    var output = {}
+  const requestData = computed(() => {
+    var requestData = {}
 
     _.each(elements$.value, (e$) => {
       if (e$.isStatic) {
         return
       }
       
-      output = Object.assign({}, output, e$.output)
+      requestData = Object.assign({}, requestData, e$.requestData)
     })
 
-    return formatData.value ? formatData.value(output) : output
+    return formatData.value ? formatData.value(requestData) : requestData
   })
 
   /**
@@ -620,7 +617,7 @@ const base = function(props, context, dependencies = {})
       extendedTheme.value.classes.Laraform
     )
 
-    classes = mergeComponentClasses(classes, options.value.addClasses.Laraform || null)
+    classes = mergeComponentClasses(classes, options.value.extendClasses.Laraform || null)
 
     if (options.value.addClass !== null) {
       classes = mergeComponentClasses(classes, {
@@ -636,8 +633,8 @@ const base = function(props, context, dependencies = {})
   * 
   * @type {object}
   */
-  const extendedComponents = computed(() => {
-    return Object.assign({}, extendedTheme.value.components, extendedTheme.value.elements)
+  const components = computed(() => {
+    return extendedTheme.value.components
   })
 
   /**
@@ -646,8 +643,8 @@ const base = function(props, context, dependencies = {})
    * @type {object}
    * @private
    */
-  const selectedTheme = computed(() => {
-    return baseConfig.value.themes[options.value.theme]
+  const theme = computed(() => {
+    return baseConfig.value.theme
   })
 
   /**
@@ -656,25 +653,18 @@ const base = function(props, context, dependencies = {})
    * @type {object}
    */
   const extendedTheme = computed(() => {
-    return Object.assign({}, selectedTheme.value, {
-      // Add registered elements to theme elements (or overwrite)
-      elements: Object.assign({},
-        selectedTheme.value.elements,
-        baseConfig.value.elements,
-        options.value.elements || {},
-      ),
-
+    return Object.assign({}, theme.value, {
       // Add registered component to theme (or overwrite)
       components: Object.assign({},
-        selectedTheme.value.components,
+        theme.value.components,
         baseConfig.value.components,
-        options.value.components || {},
+        options.value.replceComponents || {},
       ),
       
       // Ovewrite theme classes with form's classes definition
       classes: _.merge({},
-        selectedTheme.value.classes,
-        options.value.overrideClasses,
+        theme.value.classes,
+        options.value.replaceClasses,
       ),
     })
   })
@@ -1089,7 +1079,7 @@ const base = function(props, context, dependencies = {})
     listeners,
     internalData,
     data,
-    output,
+    requestData,
     dirty,
     invalid,
     debouncing,
@@ -1116,8 +1106,7 @@ const base = function(props, context, dependencies = {})
     mainClass,
     defaultClasses,
     extendedClasses,
-    extendedComponents,
-    selectedTheme,
+    components,
     extendedTheme,
     form$,
     model,

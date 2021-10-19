@@ -89,7 +89,7 @@ const Factory = class {
     let value = condition.length == 3 ? condition[2] : condition[1]
 
     return () => {
-      var actual = _.get(this.form$.output, field)
+      var actual = _.get(this.form$.requestData, field)
       var expected = value
 
       if (_.isArray(expected)) {

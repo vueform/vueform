@@ -193,6 +193,7 @@ export default {
       theme: theme.theme,
       isDisabled: disabled.isDisabled,
       focused: trix.focused,
+      components: components.components,
     })
 
     const columns = useColumns(props, context, {

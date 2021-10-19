@@ -20,8 +20,8 @@ export const components = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should return theme components merged with local components if `overrideComponents` is defined', () => {
-    let overrideComponents = {
+  it('should return theme components merged with local components if `replaceTemplates` is defined', () => {
+    let replaceTemplates = {
       ElementError: markRaw({
         name: 'CustomElementError',
         render(h) {
@@ -34,14 +34,14 @@ export const components = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          overrideComponents,
+          replaceTemplates,
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.components).toStrictEqual(Object.assign({}, el.theme.components, overrideComponents))
+    expect(el.components).toStrictEqual(Object.assign({}, el.theme.components, replaceTemplates))
     
     // destroy(form) // teardown
 
@@ -50,8 +50,8 @@ export const components = function (elementType, elementName, options) {
 }
 
 export const rendering = function (elementType, elementName, options) {
-  it('should replace component in template when `overrideComponents` is defined', () => {
-    let overrideComponents = {
+  it('should replace component in template when `replaceTemplates` is defined', () => {
+    let replaceTemplates = {
       ElementLabel: markRaw({
         name: 'CustomElementLabel',
         render(h) {
@@ -65,7 +65,7 @@ export const rendering = function (elementType, elementName, options) {
         el: {
           type: elementType,
           label: 'Element Label',
-          overrideComponents,
+          replaceTemplates,
         }
       }
     })

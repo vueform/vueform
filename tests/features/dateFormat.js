@@ -1,7 +1,7 @@
 import { testPropDefault, createForm, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 
-const testDefinition = (elementType, inputFormat, outputFormat) => {
+const testDefinition = (elementType, inputFormat, requestDataFormat) => {
   it('should equal to displayFormat if defined', () => {
     let form = createForm({
       schema: {
@@ -14,11 +14,11 @@ const testDefinition = (elementType, inputFormat, outputFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[outputFormat]).toBe('DD-MM-YYYY')
+    expect(el[requestDataFormat]).toBe('DD-MM-YYYY')
   })
 }
 
-const testDefaults = (elementType, inputFormat, outputFormat) => {
+const testDefaults = (elementType, inputFormat, requestDataFormat) => {
   it('should equal to displayFormat if defined', () => {
     let form = createForm({
       schema: {
@@ -31,7 +31,7 @@ const testDefaults = (elementType, inputFormat, outputFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[outputFormat]).toBe('DD-MM-YYYY')
+    expect(el[requestDataFormat]).toBe('DD-MM-YYYY')
     
     // destroy(form) // teardown
   })
@@ -51,7 +51,7 @@ const testDefaults = (elementType, inputFormat, outputFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[outputFormat]).toBe(el.__('laraform.dateFormats.datetimeSeconds24'))
+    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.datetimeSeconds24'))
     
     // destroy(form) // teardown
   })
@@ -71,7 +71,7 @@ const testDefaults = (elementType, inputFormat, outputFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[outputFormat]).toBe(el.__('laraform.dateFormats.datetimeSeconds12'))
+    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.datetimeSeconds12'))
     
     // destroy(form) // teardown
   })
@@ -91,7 +91,7 @@ const testDefaults = (elementType, inputFormat, outputFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[outputFormat]).toBe(el.__('laraform.dateFormats.datetime24'))
+    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.datetime24'))
     
     // destroy(form) // teardown
   })
@@ -111,7 +111,7 @@ const testDefaults = (elementType, inputFormat, outputFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[outputFormat]).toBe(el.__('laraform.dateFormats.datetime12'))
+    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.datetime12'))
     
     // destroy(form) // teardown
   })
@@ -131,7 +131,7 @@ const testDefaults = (elementType, inputFormat, outputFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[outputFormat]).toBe(el.__('laraform.dateFormats.timeSeconds24'))
+    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.timeSeconds24'))
     
     // destroy(form) // teardown
   })
@@ -151,7 +151,7 @@ const testDefaults = (elementType, inputFormat, outputFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[outputFormat]).toBe(el.__('laraform.dateFormats.timeSeconds12'))
+    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.timeSeconds12'))
     
     // destroy(form) // teardown
   })
@@ -171,7 +171,7 @@ const testDefaults = (elementType, inputFormat, outputFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[outputFormat]).toBe(el.__('laraform.dateFormats.time24'))
+    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.time24'))
     
     // destroy(form) // teardown
   })
@@ -191,7 +191,7 @@ const testDefaults = (elementType, inputFormat, outputFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[outputFormat]).toBe(el.__('laraform.dateFormats.time12'))
+    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.time12'))
     
     // destroy(form) // teardown
   })
@@ -211,7 +211,7 @@ const testDefaults = (elementType, inputFormat, outputFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[outputFormat]).toBe(el.__('laraform.dateFormats.date'))
+    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.date'))
 
     // destroy() // teardown
   })

@@ -125,6 +125,7 @@ export default {
       theme: theme.theme,
       isLoading: button.isLoading,
       isDisabled: disabled.isDisabled,
+      components: components.components,
     })
 
     const columns = useColumns(props, context, {

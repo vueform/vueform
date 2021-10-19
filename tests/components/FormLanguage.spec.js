@@ -29,7 +29,7 @@ describe('FormLanguage', () => {
           de: { label: 'German', code: 'de' },
         },
         language: 'en',
-        overrideClasses: {
+        replaceClasses: {
           FormLanguage: {
             inactive: 'inactive'
           }

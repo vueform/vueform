@@ -209,7 +209,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
             type: elementType
           }, schema)
         },
-        overrideClasses: {
+        replaceClasses: {
           [componentName]: overwriteClasses1
         }
       })
@@ -226,7 +226,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.form$.options.overrideClasses[componentName] = overwriteClasses2
+      el.form$.options.replaceClasses[componentName] = overwriteClasses2
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
@@ -245,7 +245,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
             type: elementType
           }, schema)
         },
-        overrideClasses: {
+        replaceClasses: {
           [componentName]: overwriteClasses1
         }
       }, {
@@ -272,16 +272,16 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.form$.options.overrideClasses[componentName] = overwriteClasses2
+      el.form$.options.replaceClasses[componentName] = overwriteClasses2
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
 
-    it('should `addClasses` in form add classes in `classes`, even when changes', async () => {
-      let addClasses1 = {
+    it('should `extendClasses` in form add classes in `classes`, even when changes', async () => {
+      let extendClasses1 = {
         [mainClass]: 'form-add-class'
       }
-      let addClasses2 = {
+      let extendClasses2 = {
         [mainClass]: 'form-add-class2'
       }
 
@@ -291,8 +291,8 @@ export default function (elementType, componentName, schema = {}, options = {}) 
             type: elementType
           }, schema)
         },
-        addClasses: {
-          [componentName]: addClasses1
+        extendClasses: {
+          [componentName]: extendClasses1
         }
       })
 
@@ -306,11 +306,11 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses1[mainClass])))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses1[mainClass])))
 
-      el.form$.options.addClasses[componentName] = addClasses2
+      el.form$.options.extendClasses[componentName] = extendClasses2
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses2[mainClass])))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses2[mainClass])))
     })
 
     // Element classes
@@ -326,7 +326,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            overrideClasses: {
+            replaceClasses: {
               [componentName]: overwriteClasses1
             }
           }, schema)
@@ -345,7 +345,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      form.vm.$set(form.vm.laraform.schema.el.overrideClasses, componentName, overwriteClasses2)
+      form.vm.$set(form.vm.laraform.schema.el.replaceClasses, componentName, overwriteClasses2)
       await nextTick()
       await nextTick()
 
@@ -366,7 +366,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            overrideClasses: {
+            replaceClasses: {
               [componentName]: overwriteClasses1
             }
           }, schema)
@@ -395,7 +395,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      form.vm.$set(form.vm.laraform.schema.el.overrideClasses, componentName, overwriteClasses2)
+      form.vm.$set(form.vm.laraform.schema.el.replaceClasses, componentName, overwriteClasses2)
       await nextTick()
 
       Component = findAllComponents(form, { name: componentName }).at(0)
@@ -415,12 +415,12 @@ export default function (elementType, componentName, schema = {}, options = {}) 
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            overrideClasses: {
+            replaceClasses: {
               [componentName]: overwriteClasses1
             }
           }, schema)
         },
-        overrideClasses: {
+        replaceClasses: {
           [componentName]: {
             [mainClass]: 'form-overwrite-class'
           }
@@ -439,7 +439,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      form.vm.$set(form.vm.laraform.schema.el.overrideClasses, componentName, overwriteClasses2)
+      form.vm.$set(form.vm.laraform.schema.el.replaceClasses, componentName, overwriteClasses2)
       await nextTick()
 
       Component = findAllComponents(form, { name: componentName }).at(0)
@@ -447,11 +447,11 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
 
-    it('should addClasses in element add classes in `classes`, even when changes', async () => {
-      let addClasses1 = {
+    it('should extendClasses in element add classes in `classes`, even when changes', async () => {
+      let extendClasses1 = {
         [mainClass]: 'element-add-class'
       }
-      let addClasses2 = {
+      let extendClasses2 = {
         [mainClass]: 'element-add-class2'
       }
 
@@ -459,8 +459,8 @@ export default function (elementType, componentName, schema = {}, options = {}) 
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            addClasses: {
-              [componentName]: addClasses1
+            extendClasses: {
+              [componentName]: extendClasses1
             },
           }, schema)
         },
@@ -476,27 +476,27 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses1[mainClass])))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses1[mainClass])))
 
-      form.vm.$set(form.vm.laraform.schema.el.addClasses, componentName, addClasses2)
+      form.vm.$set(form.vm.laraform.schema.el.extendClasses, componentName, extendClasses2)
       await nextTick()
 
       Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses2[mainClass])))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses2[mainClass])))
     })
 
-    it('should addClasses in both form and element add classes in `classes`, even when changes', async () => {
-      let addClassesElement1 = {
+    it('should extendClasses in both form and element add classes in `classes`, even when changes', async () => {
+      let extendClassesElement1 = {
         [mainClass]: 'element-add-class'
       }
-      let addClassesElement2 = {
+      let extendClassesElement2 = {
         [mainClass]: 'element-add-class2'
       }
-      let addClassesForm1 = {
+      let extendClassesForm1 = {
         [mainClass]: 'form-add-class'
       }
-      let addClassesForm2 = {
+      let extendClassesForm2 = {
         [mainClass]: 'form-add-class2'
       }
 
@@ -504,13 +504,13 @@ export default function (elementType, componentName, schema = {}, options = {}) 
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            addClasses: {
-              [componentName]: addClassesElement1
+            extendClasses: {
+              [componentName]: extendClassesElement1
             },
           }, schema)
         },
-        addClasses: {
-          [componentName]: addClassesForm1
+        extendClasses: {
+          [componentName]: extendClassesForm1
         }
       })
 
@@ -525,14 +525,14 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
       expect(Component.vm.classes[mainClass]).toStrictEqual(
-        mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], [addClassesForm1[mainClass], addClassesElement1[mainClass]]))
+        mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], [extendClassesForm1[mainClass], extendClassesElement1[mainClass]]))
       )
 
-      el.form$.options.addClasses[componentName] = addClassesForm2
-      el.addClasses[componentName] = addClassesElement2
+      el.form$.options.extendClasses[componentName] = extendClassesForm2
+      el.extendClasses[componentName] = extendClassesElement2
 
       expect(Component.vm.classes[mainClass]).toStrictEqual(
-        mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], [addClassesForm2[mainClass], addClassesElement2[mainClass]]))
+        mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], [extendClassesForm2[mainClass], extendClassesElement2[mainClass]]))
       )
     })
 
@@ -548,24 +548,24 @@ export default function (elementType, componentName, schema = {}, options = {}) 
         schema: {
           el: Object.assign({}, {
             type: elementType,
-            overrideClasses: {
+            replaceClasses: {
               [componentName]: {
                 [mainClass]: 'element-classes'
               }
             },
-            addClasses: {
+            extendClasses: {
               [componentName]: {
                 [mainClass]: 'element-add-classes'
               }
             },
           }, schema)
         },
-        overrideClasses: {
+        replaceClasses: {
           [componentName]: {
             [mainClass]: 'form-classes'
           }
         },
-        addClasses: {
+        extendClasses: {
           [componentName]: {
             [mainClass]: 'form-add-classes'
           }

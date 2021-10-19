@@ -144,7 +144,7 @@ export default function (schema, componentName, options = {}) {
       }
 
       let form = createForm(Object.assign({}, schema, {
-        overrideClasses: {
+        replaceClasses: {
           [componentName]: overwriteClasses1
         }
       }))
@@ -161,7 +161,7 @@ export default function (schema, componentName, options = {}) {
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.form$.options.overrideClasses[componentName] = overwriteClasses2
+      el.form$.options.replaceClasses[componentName] = overwriteClasses2
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
@@ -175,7 +175,7 @@ export default function (schema, componentName, options = {}) {
       }
 
       let form = createForm(Object.assign({}, schema, {
-        overrideClasses: {
+        replaceClasses: {
           [componentName]: overwriteClasses1
         }
       }), {
@@ -202,22 +202,22 @@ export default function (schema, componentName, options = {}) {
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      el.form$.options.overrideClasses[componentName] = overwriteClasses2
+      el.form$.options.replaceClasses[componentName] = overwriteClasses2
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
     })
 
-    it('should `addClasses` in form add classes in `classes`, even when changes', async () => {
-      let addClasses1 = {
+    it('should `extendClasses` in form add classes in `classes`, even when changes', async () => {
+      let extendClasses1 = {
         [mainClass]: 'form-add-class'
       }
-      let addClasses2 = {
+      let extendClasses2 = {
         [mainClass]: 'form-add-class2'
       }
 
       let form = createForm(Object.assign({}, schema, {
-        addClasses: {
-          [componentName]: addClasses1
+        extendClasses: {
+          [componentName]: extendClasses1
         }
       }))
 
@@ -231,11 +231,11 @@ export default function (schema, componentName, options = {}) {
       
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses1[mainClass])))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses1[mainClass])))
 
-      el.form$.options.addClasses[componentName] = addClasses2
+      el.form$.options.extendClasses[componentName] = extendClasses2
 
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], addClasses2[mainClass])))
+      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses2[mainClass])))
     })
 
     // Rendering
@@ -247,12 +247,12 @@ export default function (schema, componentName, options = {}) {
       }
 
       let form = createForm(Object.assign({}, schema, {
-        overrideClasses: {
+        replaceClasses: {
           [componentName]: {
             [mainClass]: 'form-classes'
           }
         },
-        addClasses: {
+        extendClasses: {
           [componentName]: {
             [mainClass]: 'form-add-classes'
           }

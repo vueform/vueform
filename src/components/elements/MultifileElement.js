@@ -293,6 +293,7 @@ export default {
       isDisabled: disabled.isDisabled,
       sorting: sorting.sorting,
       preparing: multifile.preparing,
+      components: components.components,
     })
 
     const sort = useSort(props, context, {

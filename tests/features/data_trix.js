@@ -2,7 +2,7 @@ import { createForm, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 
-export { data, output, } from './data'
+export { data, requestData, } from './data'
 
 export const load = function (elementType, elementName, options) {
   it('should set value on `load`', async () => {

@@ -15,12 +15,12 @@ export default {
       type: [String, Array, Object],
       default: null
     },
-    overrideClasses: {
+    replaceClasses: {
       required: false,
       type: [Object],
       default: () => ({})
     },
-    addClasses: {
+    extendClasses: {
       required: false,
       type: [Object],
       default: () => ({})
@@ -30,7 +30,7 @@ export default {
       type: [Object, String, Number],
       default: null
     },
-    overrideComponents: {
+    replaceTemplates: {
       required: false,
       type: [Object],
       default: () => ({})

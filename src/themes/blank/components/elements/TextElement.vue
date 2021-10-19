@@ -35,7 +35,7 @@
         defaultClasses: {
           container: '',
           inputContainer: '',
-          input: '',
+          input: 'bg-black text-white',
           input_enabled: '',
           input_disabled: '',
         }

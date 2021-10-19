@@ -1,6 +1,6 @@
 import { createForm, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
-export { data, output, clear, reset } from './data'
+export { data, requestData, clear, reset } from './data'
 
 export const load = function(elementType, elementName) {
   it('should throw an error if provided value is not object on `load`', async () => {

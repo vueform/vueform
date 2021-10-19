@@ -1,13 +1,13 @@
 import { createForm } from 'test-helpers'
 
 export default function (data, options, name) {
-  it(`should set overrideClasses with ${name}`, async () => {
+  it(`should set replaceClasses with ${name}`, async () => {
     let form = createForm(data, options || {})
 
-    expect(form.vm.options.overrideClasses).toStrictEqual({ TextElement: { container: 'text' } })
+    expect(form.vm.options.replaceClasses).toStrictEqual({ TextElement: { container: 'text' } })
 
-    form.vm.options.overrideClasses = { TextElement: { container: 'not-text' } }
+    form.vm.options.replaceClasses = { TextElement: { container: 'not-text' } }
 
-    expect(form.vm.options.overrideClasses).toStrictEqual({ TextElement: { container: 'not-text' } })
+    expect(form.vm.options.replaceClasses).toStrictEqual({ TextElement: { container: 'not-text' } })
   })
 }

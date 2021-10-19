@@ -311,7 +311,6 @@ export default {
     wrapper: '',
   },
   ElementDescription: {
-    container: 'text-sm text-gray-500 mt-1',
   },
   ElementError: {
     container: 'text-sm text-red-500 block mt-1',

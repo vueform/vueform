@@ -72,36 +72,6 @@ import ImagePreview from './components/elements/partials/ImagePreview'
 import GalleryPreview from './components/elements/partials/GalleryPreview'
 import RadiogroupRadio from './components/elements/partials/RadiogroupRadio'
 
-const elements = {
-  AddressElement,
-  ButtonElement,
-  CheckboxElement,
-  CheckboxgroupElement,
-  DateElement,
-  DatesElement,
-  FileElement,
-  GroupElement,
-  HiddenElement,
-  ListElement,
-  LocationElement,
-  MultifileElement,
-  MultiselectElement,
-  ObjectElement,
-  RadioElement,
-  RadiogroupElement,
-  SelectElement,
-  SliderElement,
-  StaticElement,
-  TagsElement,
-  TextareaElement,
-  TextElement,
-  ToggleElement,
-  TrixElement,
-  TTextareaElement,
-  TTextElement,
-  TTrixElement,
-}
-
 const components = {
   Laraform,
   FormErrors,
@@ -136,18 +106,45 @@ const components = {
   ImagePreview,
   GalleryPreview,
   RadiogroupRadio,
+
+  AddressElement,
+  ButtonElement,
+  CheckboxElement,
+  CheckboxgroupElement,
+  DateElement,
+  DatesElement,
+  FileElement,
+  GroupElement,
+  HiddenElement,
+  ListElement,
+  LocationElement,
+  MultifileElement,
+  MultiselectElement,
+  ObjectElement,
+  RadioElement,
+  RadiogroupElement,
+  SelectElement,
+  SliderElement,
+  StaticElement,
+  TagsElement,
+  TextareaElement,
+  TextElement,
+  ToggleElement,
+  TrixElement,
+  TTextareaElement,
+  TTextElement,
+  TTrixElement,
 }
 
 export default function(config) {
   const Laraform = class {
     constructor() {
       this.options = {
-        config: _.omit(config, ['extensions', 'themes', 'elements', 'components', 'rules']),
+        config: _.omit(config, ['extensions', 'elements', 'components', 'rules', 'theme']),
         extensions: config.extensions || [],
-        themes: config.themes || {},
-        elements: config.elements || {},
         components: config.components || {},
         rules: config.rules || {},
+        theme: config.theme || {},
         services: {
           validation,
           axios,
@@ -163,7 +160,7 @@ export default function(config) {
     config(config) {
       // merge
       _.each([
-        'extensions', 'themes', 'elements', 'components', 'rules',
+        'extensions', 'elements', 'components', 'rules', 'theme',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options[attr] = Object.assign({}, this.options[attr], config[attr])
@@ -190,7 +187,7 @@ export default function(config) {
       
       // replace
       _.each([
-        'theme', 'locale', 'language', 'labels',
+        'locale', 'language', 'labels',
         'columns', 'validateOn', 'method', 'vue',
         'beforeSend',
       ], (attr) => {
@@ -205,27 +202,26 @@ export default function(config) {
     }
 
     registerComponents(appOrVue, componenList = components) {
-      const theme = this.options.themes[this.options.config.theme]
+      const theme = this.options.theme
 
       _.each(componenList, (component, name) => {
+        let template = theme.components[name]
+
         let componentSetup = component.setup
-        let template = theme.components[name] || theme.elements[name]
 
         component.setup = (props, context) => {
           context = Object.assign({}, context, {
-            name: ref(template.name),
-            data: reactive(template.data ? template.data() : {}),
+            name: ref(name),
           })
 
           return componentSetup(props, context)
         }
 
-        component.components = template.components
-
         component.render = function() {
           let renderer
+
           try {
-            renderer = name === 'Laraform' ? this.extendedComponents[this.$options.name] : this.components[this.$options.name] || this.theme.elements[this.$options.name]
+            renderer = this.components[name]
           } catch (e) {
             throw new Error(e)
           }
@@ -242,12 +238,10 @@ export default function(config) {
           return renderer.render.apply(this, arguments)
         }
 
+        component.components = template.components
+
         appOrVue.component(name, component)
       })
-    }
-
-    registerElements(appOrVue) {
-      this.registerComponents(appOrVue, elements)
     }
 
     initAxios() {
@@ -307,7 +301,6 @@ export default function(config) {
       this.initI18n()
 
       this.registerComponents(appOrVue)
-      this.registerElements(appOrVue)
 
       switch (this.options.config.vue) {
         case 2:
@@ -329,12 +322,12 @@ export default function(config) {
               if (!this.$laraform) {
                 this.$laraform = {
                   config: appOrVue.observable($laraform.config),
-                  themes: $laraform.themes,
                   elements: $laraform.elements,
                   components: $laraform.components,
                   extensions: $laraform.extensions,
                   rules: $laraform.rules,
                   services: $laraform.services,
+                  theme: $laraform.theme,
                 }
               }
             }

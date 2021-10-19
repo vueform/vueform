@@ -1,11 +1,22 @@
-import { computed } from 'composition-api'
+import { computed, h } from 'composition-api'
 import useLaraform from './../composables/useLaraform'
 
 export default {
   name: 'Laraform',
   emits: ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'language'],
   slots: ['default', 'empty'],
+  render() {
+    let renderer = this.extendedComponents.Laraform
+
+    if (!this.$options?.staticRenderFns && renderer.staticRenderFns) {
+      this.$options.staticRenderFns = renderer.staticRenderFns
+    }
+    
+    return renderer.render.apply(this, arguments)
+  },
   setup: (props, context) => {
+    return useLaraform(props, context)
+
     const {
       tabs$,
       steps$,
@@ -20,7 +31,7 @@ export default {
       listeners,
       internalData,
       data,
-      output,
+      requestData,
       dirty,
       invalid,
       debouncing,
@@ -47,8 +58,7 @@ export default {
       mainClass,
       defaultClasses,
       extendedClasses,
-      extendedComponents,
-      selectedTheme,
+      components,
       extendedTheme,
       form$,
       model,
@@ -92,7 +102,7 @@ export default {
       listeners,
       internalData,
       data,
-      output,
+      requestData,
       dirty,
       invalid,
       debouncing,
@@ -119,10 +129,8 @@ export default {
       mainClass,
       defaultClasses,
       extendedClasses,
-      extendedComponents,
-      selectedTheme,
+      components,
       extendedTheme,
-      options,
       form$,
       model,
       intermediaryValue,
@@ -200,22 +208,17 @@ export default {
       required: false,
       default: null
     },
-    overrideClasses: {
+    replaceClasses: {
       type: Object,
       required: false,
       default: null
     },
-    addClasses: {
+    extendClasses: {
       type: Object,
       required: false,
       default: null
     },
-    components: {
-      type: Object,
-      required: false,
-      default: null
-    },
-    elements: {
+    replaceTemplates: {
       type: Object,
       required: false,
       default: null
