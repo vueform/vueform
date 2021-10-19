@@ -19,7 +19,7 @@ const base = function(props, context, dependencies)
    * @type {boolean}
    */
   const hasFloating = computed(() => {
-    return !!floating.value || (placeholder.value && form$.value.$laraform.config.floatPlaceholders)
+    return !!floating.value || (placeholder.value && form$.value.options.floatPlaceholders)
   })
 
   return {

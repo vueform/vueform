@@ -3,6 +3,7 @@ const config = {
   /**
    * Theme & layout
    */
+  theme: {},
   components: {},
   classes: {},
   columns: {
@@ -11,8 +12,8 @@ const config = {
     field: 12,
   },
   forceLabels: false,
-  displayErrors: true,
   floatPlaceholders: true,
+  displayErrors: true,
   displayMessages: true,
 
   /**
@@ -20,12 +21,11 @@ const config = {
    */
   languages: {
     en: 'English',
-    fr: 'French'
   },
   language: 'en',
   locales: {},
-  fallbackLocale: 'en',
   locale: null,
+  fallbackLocale: 'en',
 
   /**
    * Sorting
@@ -35,6 +35,7 @@ const config = {
   /**
    * Validation
    */
+  rules: {},
   validateOn: 'change|step',
 
   /**
@@ -86,8 +87,8 @@ const config = {
   locationProvider: 'google',
   services: {
     algolia: {
-      app_id: 'plD1GPOB1JIC',
-      api_key: '1f70532b07910d801387a12ea998f035',
+      app_id: '',
+      api_key: '',
     }
   },
 }

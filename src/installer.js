@@ -140,11 +140,12 @@ export default function(config) {
   const Laraform = class {
     constructor() {
       this.options = {
-        config: _.omit(config, ['extensions', 'elements', 'components', 'rules', 'theme']),
-        extensions: config.extensions || [],
+        config: _.omit(config, ['theme', 'components', 'classes', 'locales', 'rules']),
         components: config.components || {},
-        rules: config.rules || {},
+        classes: config.classes || {},
         theme: config.theme || {},
+        rules: config.rules || {},
+        locales: config.locales || {},
         services: {
           validation,
           axios,
@@ -160,7 +161,7 @@ export default function(config) {
     config(config) {
       // merge
       _.each([
-        'extensions', 'elements', 'components', 'rules', 'theme',
+         'theme', 'components', 'classes', 'locales', 'rules',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options[attr] = Object.assign({}, this.options[attr], config[attr])
@@ -169,7 +170,7 @@ export default function(config) {
 
       // merge
       _.each([
-        'locales', 'languages', 'services',
+        'languages', 'services',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = Object.assign({}, this.options.config[attr], config[attr])
@@ -178,7 +179,7 @@ export default function(config) {
 
       // deep merge
       _.each([
-        'methods', 'endpoints', 'axios'
+        'endpoints',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = _.merge({}, this.options.config[attr], config[attr])
@@ -187,18 +188,14 @@ export default function(config) {
       
       // replace
       _.each([
-        'locale', 'language', 'forceLabels',
-        'columns', 'validateOn', 'method', 'vue',
-        'beforeSend',
+        'columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages',
+        'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'axios',
+        'locationProvider'
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = config[attr]
           }
       })
-    }
-
-    locale(locale) {
-      this.options.locale = locale
     }
 
     registerComponents(appOrVue, componenList = components) {
@@ -290,7 +287,11 @@ export default function(config) {
     }
 
     initI18n() {
-      this.options.i18n = this.options.i18n || new i18n(this.options.config)
+      this.options.i18n = new i18n({
+        locales: this.options.locales,
+        locale: this.options.config.locale,
+        fallbackLocale: this.options.config.fallbackLocale,
+      })
     }
 
     install(appOrVue, options) {
@@ -302,7 +303,6 @@ export default function(config) {
 
       this.initAxios()
       this.initI18n()
-
       this.registerComponents(appOrVue)
 
       switch (version) {
@@ -325,7 +325,7 @@ export default function(config) {
               if (!this.$laraform) {
                 this.$laraform = {
                   config: appOrVue.observable($laraform.config),
-                  elements: $laraform.elements,
+                  classes: $laraform.classes,
                   components: $laraform.components,
                   extensions: $laraform.extensions,
                   rules: $laraform.rules,

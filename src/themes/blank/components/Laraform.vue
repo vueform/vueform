@@ -1,6 +1,6 @@
 <template>
   <form
-    :class="extendedClasses.form"
+    :class="classes.form"
     @submit.prevent="submit"
   >
     <slot name="empty">

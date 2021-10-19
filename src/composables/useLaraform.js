@@ -30,6 +30,7 @@ const base = function(props, context, dependencies = {})
     language,
     validateOn,
     forceLabels,
+    floatPlaceholders,
     multilingual,
     stepsControls,
     displayErrors,
@@ -216,6 +217,7 @@ const base = function(props, context, dependencies = {})
 
     const ifNotUndefined = {
       stepsControls, displayErrors, displayMessages, forceLabels, disabled, loading,
+      floatPlaceholders,
       onChange: _onChange.value,
       onReset: _onReset.value,
       onClear: _onClear.value,
@@ -242,6 +244,7 @@ const base = function(props, context, dependencies = {})
       displayErrors: baseConfig.value.config.displayErrors,
       displayMessages: baseConfig.value.config.displayMessages,
       forceLabels: baseConfig.value.config.forceLabels,
+      floatPlaceholders: baseConfig.value.config.floatPlaceholders,
       formData: baseConfig.value.config.formData,
       replaceClasses: {},
       extendClasses: {},
@@ -621,6 +624,48 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
+   * The theme object of the selected theme.
+   * 
+   * @type {object}
+   * @private
+   */
+  const theme = computed(() => {
+    return baseConfig.value.theme
+  })
+
+  /**
+   * The selected theme, extended by local overrides. Normally we use `theme` property for this, but as Vueform component needs to have an actual [`:theme`](#theme) prop so we use this naming instead.
+   * 
+   * @type {object}
+   */
+  const extendedTheme = computed(() => {
+    return Object.assign({}, theme.value, {
+      // Add registered component to theme (or overwrite)
+      components: Object.assign({},
+        theme.value.components,
+        baseConfig.value.components,
+        options.value.replaceComponents || {},
+      ),
+      
+      // Ovewrite theme classes with form's classes definition
+      classes: _.merge({},
+        theme.value.classes,
+        baseConfig.value.classes,
+        options.value.replaceClasses,
+      ),
+    })
+  })
+
+  /**
+  * The selected theme's components, extended by local overrides. Normally we use `components` property for this, but as Vueform component needs to have an actual [`:components`](#components) prop so we use this naming instead.
+  * 
+  * @type {object}
+  */
+  const components = computed(() => {
+    return extendedTheme.value.components
+  })
+
+  /**
   * The class name of the form's outermost DOM.
   * 
   * @type {string}
@@ -645,10 +690,10 @@ const base = function(props, context, dependencies = {})
    * 
    * @type {object}
    */
-  const extendedClasses = computed(() => {
+  const classes = computed(() => {
     let classes = Object.assign({},
       defaultClasses.value,
-      extendedTheme.value.classes.Laraform
+      extendedTheme.value.classes.Laraform,
     )
 
     classes = mergeComponentClasses(classes, options.value.extendClasses.Laraform || null)
@@ -660,47 +705,6 @@ const base = function(props, context, dependencies = {})
     }
 
     return classes
-  })
-
-  /**
-  * The selected theme's components, extended by local overrides. Normally we use `components` property for this, but as Vueform component needs to have an actual [`:components`](#components) prop so we use this naming instead.
-  * 
-  * @type {object}
-  */
-  const components = computed(() => {
-    return extendedTheme.value.components
-  })
-
-  /**
-   * The theme object of the selected theme.
-   * 
-   * @type {object}
-   * @private
-   */
-  const theme = computed(() => {
-    return baseConfig.value.theme
-  })
-
-  /**
-   * The selected theme, extended by local overrides. Normally we use `theme` property for this, but as Vueform component needs to have an actual [`:theme`](#theme) prop so we use this naming instead.
-   * 
-   * @type {object}
-   */
-  const extendedTheme = computed(() => {
-    return Object.assign({}, theme.value, {
-      // Add registered component to theme (or overwrite)
-      components: Object.assign({},
-        theme.value.components,
-        baseConfig.value.components,
-        options.value.replceComponents || {},
-      ),
-      
-      // Ovewrite theme classes with form's classes definition
-      classes: _.merge({},
-        theme.value.classes,
-        options.value.replaceClasses,
-      ),
-    })
   })
 
   // =============== METHODS ==============
@@ -1158,7 +1162,7 @@ const base = function(props, context, dependencies = {})
     showStepsControls,
     mainClass,
     defaultClasses,
-    extendedClasses,
+    classes,
     components,
     extendedTheme,
     form$,
@@ -1187,6 +1191,7 @@ const base = function(props, context, dependencies = {})
     fire,
     on,
     off,
+    baseConfig,
   }
 }
 

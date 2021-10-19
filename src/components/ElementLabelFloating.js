@@ -38,7 +38,7 @@ export default {
      * @type {string}
      */
     const floating = computed(() => {
-      return el$.value.floating
+      return el$.value.floating || (form$.value.options.floatPlaceholders ? el$.value.placeholder : null)
     })
     
     return {

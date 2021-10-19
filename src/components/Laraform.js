@@ -6,6 +6,8 @@ export default {
   emits: ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   slots: ['default', 'empty'],
   setup: (props, context) => {
+
+    return useLaraform(props, context)
     const {
       tabs$,
       steps$,
@@ -46,7 +48,7 @@ export default {
       showStepsControls,
       mainClass,
       defaultClasses,
-      extendedClasses,
+      classes,
       components,
       extendedTheme,
       form$,
@@ -117,7 +119,7 @@ export default {
       showStepsControls,
       mainClass,
       defaultClasses,
-      extendedClasses,
+      classes,
       components,
       extendedTheme,
       form$,
@@ -265,6 +267,11 @@ export default {
       default: null
     },
     forceLabels: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    floatPlaceholders: {
       type: Boolean,
       required: false,
       default: null
