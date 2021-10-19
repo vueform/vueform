@@ -91,25 +91,69 @@ const base = function (props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * An object containing `temp`, `remove` and `removeTemp` methods.
+   * The url where the temp file should be submitted.
    * 
    * @type {object}
-   * @default config.methods.file
+   * @default config.endpoints.uploadTempFile.url
    * @private
    */
-  const fileMethods = computed(() => {
-    return Object.assign({}, form$.value.$laraform.config.methods.file, methods.value || {})
+  const uploadTempFileEndpoint = computed(() => {
+    return methods.value.uploadTempFile || form$.value.$laraform.config.endpoints.uploadTempFile.url
   })
 
   /**
-   * An object containing `temp`, `remove` and `removeTemp` endpoints.
+   * The url where the remove temp file request should be submitted.
    * 
    * @type {object}
-   * @default config.endpoints.file
+   * @default config.endpoints.removeTempFile.url
    * @private
    */
-  const fileEndpoints = computed(() => {
-    return Object.assign({}, form$.value.$laraform.config.endpoints.file, endpoints.value || {})
+  const removeTempFileEndpoint = computed(() => {
+    return methods.value.removeTempFile || form$.value.$laraform.config.endpoints.removeTempFile.url
+  })
+
+  /**
+   * The url where the remove file request should be submitted.
+   * 
+   * @type {object}
+   * @default config.endpoints.removeFile.url
+   * @private
+   */
+  const removeFileEndpoint = computed(() => {
+    return methods.value.removeFile || form$.value.$laraform.config.endpoints.removeFile.url
+  })
+
+  /**
+   * The method where the temp file should be submitted.
+   * 
+   * @type {object}
+   * @default config.endpoints.uploadTempFile.method
+   * @private
+   */
+  const uploadTempFileMethod = computed(() => {
+    return methods.value.uploadTempFile || form$.value.$laraform.config.endpoints.uploadTempFile.method
+  })
+
+  /**
+   * The method where the remove temp file request should be submitted.
+   * 
+   * @type {object}
+   * @default config.endpoints.removeTempFile.method
+   * @private
+   */
+  const removeTempFileMethod = computed(() => {
+    return methods.value.removeTempFile || form$.value.$laraform.config.endpoints.removeTempFile.method
+  })
+
+  /**
+   * The method where the remove file request should be submitted.
+   * 
+   * @type {object}
+   * @default config.endpoints.removeFile.method
+   * @private
+   */
+  const removeFileMethod = computed(() => {
+    return methods.value.removeFile || form$.value.$laraform.config.endpoints.removeFile.method
   })
 
   /**
@@ -273,7 +317,7 @@ const base = function (props, context, dependencies)
 
       hasUploadError.value = false
 
-      let response = await axios.value[fileMethods.value.temp](fileEndpoints.value.temp, data, {
+      let response = await axios.value[uploadTempFileMethod.value](uploadTempFileEndpoint.value, data, {
         onUploadProgress: (e) => {
           progress.value = Math.round((e.loaded * 100) / e.total)
         },
@@ -312,7 +356,7 @@ const base = function (props, context, dependencies)
           return false
         }
 
-        await axios.value[fileMethods.value.remove](fileEndpoints.value.remove,
+        await axios.value[removeFileMethod.value](removeFileEndpoint.value,
           Object.assign({}, params.value, {
             file: value.value,
             formKey: form$.value.options.formKey,
@@ -322,7 +366,7 @@ const base = function (props, context, dependencies)
       }
 
       else if (stage.value === 2 && !softRemove.value) {
-        await axios.value[fileMethods.value.removeTemp](fileEndpoints.value.removeTemp,
+        await axios.value[removeTempFileMethod.value](removeTempFileEndpoint.value,
           Object.assign({}, params.value, {
             file: value.value.tmp,
             formKey: form$.value.options.formKey,
@@ -497,8 +541,12 @@ const base = function (props, context, dependencies)
     progress,
     preparing,
     previewLoaded,
-    fileMethods,
-    fileEndpoints,
+    uploadTempFileEndpoint,
+    removeTempFileEndpoint,
+    removeFileEndpoint,
+    uploadTempFileMethod,
+    removeTempFileMethod,
+    removeFileMethod,
     fileUrl,
     stage,
     filename,

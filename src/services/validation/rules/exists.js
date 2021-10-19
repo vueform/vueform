@@ -31,10 +31,11 @@ export default class exists extends Validator {
   
   async check(value) {
     const name = this.element$.name
-    const method = this.form$.$laraform.config.methods.validators.exists
+    const endpoint = this.form$.$laraform.config.endpoints.exists
+    const method = endpoint.method
 
     const res = await this.form$.$laraform.services.axios.request({
-      url: this.form$.$laraform.config.endpoints.validators.exists,
+      url: endpoint.url,
       method,
       [method.toLowerCase() === 'get' ? 'params' : 'data']: {
         params: this.requestParams,

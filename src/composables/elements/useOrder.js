@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { toRefs, computed } from 'composition-api'
+import { toRefs, ref, computed } from 'composition-api'
 
 const base = function(props, context, dependencies, options)
 {
@@ -8,6 +8,14 @@ const base = function(props, context, dependencies, options)
     orderBy,
     order,
   } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
+
+  // ================= DATA ===============
+
+  const orderFrom = ref(form$.value.$laraform.config.orderFrom)
 
   // =============== METHODS ==============
 
@@ -23,8 +31,8 @@ const base = function(props, context, dependencies, options)
         
       _.each(value, (val, index) => {
         val[storeOrder.value] = order.value && order.value.toUpperCase() === 'DESC'
-          ? value.length - index
-          : parseInt(index) + 1
+          ? value.length - index - (orderFrom.value == 0 ? 1 : 0)
+          : parseInt(index) + orderFrom.value
       })
     }
 

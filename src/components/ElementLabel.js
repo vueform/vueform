@@ -44,7 +44,7 @@ export default {
     })
 
     /**
-     * Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed.
+     * Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component's [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.
      * 
      * @type {boolean}
      * 

@@ -8,6 +8,7 @@
         :accept="accept"
         :accept-mimes="acceptMimes"
         :endpoint="trixEndpoint"
+        :method="trixMethod"
         :disabled="isDisabled"
         :class="classes.input"
         @input="handleInput"

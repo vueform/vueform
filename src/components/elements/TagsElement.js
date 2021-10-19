@@ -344,6 +344,10 @@ export default {
     const disabled = useDisabled(props, context)
     const nullValue = useNullValue(props, context)
 
+    const floating = useFloating(props, context, {
+      form$: form$.form$,
+    })
+
     const events = useEvents(props, context, {}, {
       events: context.emits,
     })
@@ -513,6 +517,7 @@ export default {
       ...handleSelectEvents,
       ...select,
       ...handleTag,
+      ...floating,
     }
   } 
 }

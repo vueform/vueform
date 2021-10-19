@@ -39,6 +39,11 @@ export default {
       type: String,
       default: null
     },
+    method: {
+      required: false,
+      type: String,
+      default: 'post'
+    },
     disabled: {
       required: false,
       type: Boolean,
@@ -178,7 +183,7 @@ export default {
       data.append('Content-Type', e.attachment.file.type)
       data.append('file', e.attachment.file)
 
-      el$.value.$laraform.services.axios.post(endpoint.value, data, {
+      el$.value.$laraform.services.axios[method.value](endpoint.value, data, {
         onUploadProgress: (progress) => {
           e.attachment.setUploadProgress(
             Math.round((progress.loaded * 100) / progress.total)

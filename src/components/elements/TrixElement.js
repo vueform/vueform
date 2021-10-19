@@ -85,7 +85,13 @@ export default {
       required: false,
       type: [String],
       default: null,
-      '@default': 'config.endpoints.trix.endpoint',
+      '@default': 'config.endpoints.attachment.url',
+    },
+    method: {
+      required: false,
+      type: [String],
+      default: null,
+      '@default': 'config.endpoints.attachment.method',
     },
     onError: {
       required: false,

@@ -106,6 +106,10 @@ export default {
     const path = usePath(props, context)
     const disabled = useDisabled(props, context)
 
+    const floating = useFloating(props, context, {
+      form$: form$.form$,
+    })
+
     const events = useEvents(props, context, {}, {
       events: context.emits,
     })
@@ -269,6 +273,7 @@ export default {
       ...handleInput,
       ...autogrow,
       ...languages,
+      ...floating,
     }
   } 
 }

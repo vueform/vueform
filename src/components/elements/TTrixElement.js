@@ -91,7 +91,14 @@ export default {
     endpoint: {
       required: false,
       type: [String],
-      default: null
+      default: null,
+      '@default': 'config.endpoints.attachment.url',
+    },
+    method: {
+      required: false,
+      type: [String],
+      default: null,
+      '@default': 'config.endpoints.attachment.method',
     },
   },
   setup(props, context) {

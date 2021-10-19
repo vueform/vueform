@@ -6,7 +6,7 @@ export default {
   emits: ['select'],
   props: {
     language: {
-      type: Object,
+      type: String,
       required: true,
     },
     code: {

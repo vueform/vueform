@@ -5,7 +5,7 @@
       :class="classes.wrapper"
       @click.prevent="select"
     >
-      {{ language.label }}
+      {{ language }}
     </a>
   </li>
 </template>

@@ -40,6 +40,10 @@ const base = function (props, context, dependencies, options_ = {})
 
   // ============== COMPUTED ==============
 
+  const locationProvider = computed(() => {
+    return provider.value || form$.value.$laraform.config.locationProvider
+  })
+
   /**
   * Default options for flatpickr.
   * 
@@ -59,7 +63,7 @@ const base = function (props, context, dependencies, options_ = {})
       }
     }
 
-    return providers[provider.value]
+    return providers[locationProvider.value]
   })
 
   /**
@@ -111,13 +115,13 @@ const base = function (props, context, dependencies, options_ = {})
    * @returns {void}
    */
   const initLocationService = () => {
-    locationService.value = new form$.value.$laraform.services.location[provider.value]
+    locationService.value = new form$.value.$laraform.services.location[locationProvider.value]
     locationService.value.init(inputElement(), handleAddressChange, providerOptions.value)
   }
 
   // ============== WATCHERS ==============
 
-  watch([provider, providerOptions], () => {
+  watch([locationProvider, providerOptions], () => {
     locationService.value.destroy()
     initLocationService()
   }, { deep: true, immediate: false })

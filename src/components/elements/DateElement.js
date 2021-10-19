@@ -23,6 +23,7 @@ import useDateFormat from './../../composables/elements/useDateFormat'
 import useHandleChange from './../../composables/elements/useHandleChange'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useDefault from './../../composables/elements/useDefault'
+import useFloating from './../../composables/elements/useFloating'
 
 import { date as useData } from './../../composables/elements/useData'
 import { date as useValue } from './../../composables/elements/useValue'
@@ -149,6 +150,10 @@ export default {
     const path = usePath(props, context)
     const disabled = useDisabled(props, context)
     const nullValue = useNullValue(props, context)
+
+    const floating = useFloating(props, context, {
+      form$: form$.form$,
+    })
 
     const events = useEvents(props, context, {}, {
       events: context.emits,
@@ -306,6 +311,7 @@ export default {
       ...options,
       ...dateFormat,
       ...handleChange,
+      ...floating,
     }
   } 
 }

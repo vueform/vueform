@@ -25,6 +25,7 @@ import useHandleInput from './../../composables/elements/useHandleInput'
 import useEmpty from './../../composables/elements/useEmpty'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useLoading from './../../composables/elements/useLoading'
+import useFloating from './../../composables/elements/useFloating'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -111,6 +112,10 @@ export default {
     const path = usePath(props, context)
     const disabled = useDisabled(props, context)
     const nullValue = useNullValue(props, context)
+
+    const floating = useFloating(props, context, {
+      form$: form$.form$,
+    })
 
     const events = useEvents(props, context, {}, {
       events: context.emits,
@@ -257,6 +262,7 @@ export default {
       ...data,
       ...empty,
       ...handleInput,
+      ...floating,
     }
   }
 }

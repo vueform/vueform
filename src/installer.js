@@ -187,7 +187,7 @@ export default function(config) {
       
       // replace
       _.each([
-        'locale', 'language', 'labels',
+        'locale', 'language', 'forceLabels',
         'columns', 'validateOn', 'method', 'vue',
         'beforeSend',
       ], (attr) => {
@@ -294,6 +294,8 @@ export default function(config) {
     }
 
     install(appOrVue, options) {
+      const version = parseInt(appOrVue.version.split('.')[0])
+
       if (options) {
         this.config(options)
       }
@@ -303,7 +305,7 @@ export default function(config) {
 
       this.registerComponents(appOrVue)
 
-      switch (this.options.config.vue) {
+      switch (version) {
         case 2:
           appOrVue.config.ignoredElements = ['trix-editor']
 

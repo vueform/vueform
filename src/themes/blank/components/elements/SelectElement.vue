@@ -2,7 +2,7 @@
   <component :is="elementLayout">
     <template #field>
       <ElementLabelFloating
-        v-if="floating"
+        v-if="hasFloating"
         :visible="!empty"
      />
 

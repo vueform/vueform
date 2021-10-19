@@ -500,7 +500,7 @@ const multilingual = function(props, context, dependencies)
       return ruleList
     }
 
-    _.each(languages.value, (lang) => {
+    _.each(languages.value, (label, lang) => {
       ruleList[lang] = _.isPlainObject(rules.value)
         ? (rules.value[lang] || null)
         : rules.value
@@ -611,8 +611,8 @@ const multilingual = function(props, context, dependencies)
    * @returns {void}
    */
   const validate = async () => {
-    _.each(languages.value, (language) => {
-      validateLanguage(language)
+    _.each(languages.value, (label, lang) => {
+      validateLanguage(lang)
     })
   }
 
@@ -639,13 +639,13 @@ const multilingual = function(props, context, dependencies)
   }
 
   const resetValidators = () => {
-    _.each(languages.value, (language) => {
-      _.each(Validators.value[language], (Validator) => {
+    _.each(languages.value, (label, lang) => {
+      _.each(Validators.value[lang], (Validator) => {
         Validator.reset()
       })
 
-      _.each(validationRules.value, (r, language) => {
-        state.value.validated[language] = r.length > 0 ? false : true
+      _.each(validationRules.value, (r, lang) => {
+        state.value.validated[lang] = r.length > 0 ? false : true
       })
     })
   }
@@ -668,12 +668,12 @@ const multilingual = function(props, context, dependencies)
     var dirty = {}
     var validated = {}
 
-    _.each(languages.value, (language) => {
-      dirty[language] = false
+    _.each(languages.value, (label, lang) => {
+      dirty[lang] = false
     })
 
-    _.each(languages.value, (language) => {
-      validated[language] = true
+    _.each(languages.value, (label, lang) => {
+      validated[lang] = true
     })
 
     state.value = {

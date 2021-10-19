@@ -4,6 +4,7 @@ const base = function (props, context, dependencies)
 {
   const {
     endpoint,
+    method,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -26,11 +27,22 @@ const base = function (props, context, dependencies)
   * The endpoint that uploads attachment. Can be changed by setting [`endpoint`](#endpoint) option.
   * 
   * @type {string}
-  * @default `config.endpoints.elements`
+  * @default `config.endpoints.attachment.url`
   * @private
   */
   const trixEndpoint = computed(() => {
-    return endpoint.value || form$.value.$laraform.config.endpoints.elements.trix.attachment
+    return endpoint.value || form$.value.$laraform.config.endpoints.attachment.url
+  })
+
+  /**
+  * The method to use to upload attachment. Can be changed by setting [`method`](#method) option.
+  * 
+  * @type {string}
+  * @default `config.endpoints.attachment.method`
+  * @private
+  */
+  const trixMethod = computed(() => {
+    return method.value || form$.value.$laraform.config.endpoints.attachment.method
   })
 
 
@@ -48,6 +60,7 @@ const base = function (props, context, dependencies)
 
   return {
     trixEndpoint,
+    trixMethod,
     focused,
   }
 }

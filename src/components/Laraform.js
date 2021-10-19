@@ -264,7 +264,7 @@ export default {
       required: false,
       default: null
     },
-    labels: {
+    forceLabels: {
       type: Boolean,
       required: false,
       default: null

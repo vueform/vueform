@@ -139,7 +139,7 @@ const multilingual = function(props, context, dependencies)
   const nullValue = computed(() => {
     var value = {}
 
-    _.each(languages.value, (code) => {
+    _.each(languages.value, (label, code) => {
       value[code] = null
     })
 

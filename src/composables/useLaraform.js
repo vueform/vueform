@@ -29,7 +29,7 @@ const base = function(props, context, dependencies = {})
     formData,
     language,
     validateOn,
-    labels,
+    forceLabels,
     multilingual,
     stepsControls,
     displayErrors,
@@ -215,7 +215,7 @@ const base = function(props, context, dependencies = {})
     }
 
     const ifNotUndefined = {
-      stepsControls, displayErrors, displayMessages, labels, disabled, loading,
+      stepsControls, displayErrors, displayMessages, forceLabels, disabled, loading,
       onChange: _onChange.value,
       onReset: _onReset.value,
       onClear: _onClear.value,
@@ -236,12 +236,12 @@ const base = function(props, context, dependencies = {})
       languages: baseConfig.value.config.languages,
       language: baseConfig.value.config.language,
       theme: baseConfig.value.config.theme,
-      endpoint: baseConfig.value.config.endpoints.process,
-      method: baseConfig.value.config.methods.process,
+      endpoint: baseConfig.value.config.endpoints.submit.url,
+      method: baseConfig.value.config.endpoints.submit.method,
       validateOn: baseConfig.value.config.validateOn,
       displayErrors: baseConfig.value.config.displayErrors,
       displayMessages: baseConfig.value.config.displayMessages,
-      labels: baseConfig.value.config.labels,
+      forceLabels: baseConfig.value.config.forceLabels,
       formData: baseConfig.value.config.formData,
       replaceClasses: {},
       extendClasses: {},

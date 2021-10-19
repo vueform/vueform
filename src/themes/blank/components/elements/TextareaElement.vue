@@ -11,7 +11,7 @@
         </ElementAddon>
 
         <ElementLabelFloating
-          v-if="floating"
+          v-if="hasFloating"
           :visible="!empty"
        />
 
