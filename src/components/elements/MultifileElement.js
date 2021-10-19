@@ -41,7 +41,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'MultifileElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'add', 'remove', 'sort'],
+  emits: ['change', 'add', 'remove', 'sort', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -165,16 +165,13 @@ export default {
       isDisabled: disabled.isDisabled,
     })
 
-    const baseElement = useBaseElement(props, context, {
-      form$: form$.form$,
+    const events = useEvents(props, context, {}, {
+      events: context.emits,
     })
 
-    const events = useEvents(props, context, {
+    const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
-    }, {
-      events: [
-        'change', 'add', 'remove', 'sort'
-      ]
+      fire: events.fire,
     })
 
     const default_ = useDefault(props, context, {

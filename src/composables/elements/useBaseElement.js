@@ -7,8 +7,6 @@ import useParentAssign from './../useParentAssign'
 
 const base = function(props, context, dependencies)
 {
-  const propRefs = toRefs(props)
-
   const instantHooks = [
     'onBeforeCreate',
     'onCreated',
@@ -28,6 +26,7 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
+  const fire = dependencies.fire
   
   const {
     assignToParent,
@@ -150,17 +149,13 @@ const base = function(props, context, dependencies)
   })
 
   Object.values(instantHooks).forEach((hook) => {
-    if (propRefs[hook].value) {
-      propRefs[hook].value(currentInstance.proxy)
-    }
+    fire(_.lowerFirst(hook.replace('on', '')), el$.value)
   })
 
   Object.keys(hooks).forEach((hook) => {
-    if (propRefs[hook].value) {
-      hooks[hook](() => {
-        propRefs[hook].value(currentInstance.proxy)
-      })
-    }
+    hooks[hook](() => {
+      fire(_.lowerFirst(hook.replace('on', '')), el$.value)
+    })
   })
 
   return {

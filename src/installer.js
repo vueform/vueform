@@ -212,6 +212,7 @@ export default function(config) {
         component.setup = (props, context) => {
           context = Object.assign({}, context, {
             name: ref(name),
+            emits: component.emits,
           })
 
           return componentSetup(props, context)

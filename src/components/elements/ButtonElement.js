@@ -10,6 +10,7 @@ import useComponents from './../../composables/elements/useComponents'
 import useSlots from './../../composables/elements/useSlots'
 import useButton from './../../composables/elements/useButton'
 import useLayout from './../../composables/elements/useLayout'
+import useEvents from './../../composables/useEvents'
 
 import { button as useDisabled } from './../../composables/elements/useDisabled'
 import { button as useClasses } from './../../composables/elements/useClasses'
@@ -21,6 +22,7 @@ import HasView from './../../mixins/HasView'
 export default {
   name: 'ButtonElement',
   mixins: [BaseElement, HasView],
+  emits: ['beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -86,8 +88,13 @@ export default {
     const layout = useLayout(props, context)
     const path = usePath(props, context)
 
+    const events = useEvents(props, context, {}, {
+      events: context.emits,
+    })
+
     const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
+      fire: events.fire,
     })
     
     const disabled = useDisabled(props, context, {
@@ -166,6 +173,7 @@ export default {
       ...slots,
       ...button,
       ...disabled,
+      ...events,
     }
   }
 }

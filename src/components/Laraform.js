@@ -3,20 +3,9 @@ import useLaraform from './../composables/useLaraform'
 
 export default {
   name: 'Laraform',
-  emits: ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'language'],
+  emits: ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   slots: ['default', 'empty'],
-  render() {
-    let renderer = this.extendedComponents.Laraform
-
-    if (!this.$options?.staticRenderFns && renderer.staticRenderFns) {
-      this.$options.staticRenderFns = renderer.staticRenderFns
-    }
-    
-    return renderer.render.apply(this, arguments)
-  },
   setup: (props, context) => {
-    return useLaraform(props, context)
-
     const {
       tabs$,
       steps$,
@@ -158,9 +147,6 @@ export default {
       on,
       off,
     }
-  },
-  render() {
-    return this.extendedTheme.components.Laraform.render.apply(this, arguments)
   },
   props: {
     value: {
@@ -318,6 +304,85 @@ export default {
       type: Function,
       required: false,
       default: null
+    },
+
+    onChange: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onReset: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onClear: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onSubmit: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onSuccess: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onError: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onLanguage: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onBeforeMount: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onMounted: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onBeforeUpdate: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onUpdated: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onBeforeUnmount: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onUnmounted: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
     },
   },
 }

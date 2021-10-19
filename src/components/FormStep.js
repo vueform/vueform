@@ -9,7 +9,7 @@ import normalize from './../utils/normalize'
 
 export default {
   name: 'FormStep',
-  emits: ['active', 'inactive', 'enable', 'disable', 'complete'],
+  emits: ['activate', 'inactivate', 'enable', 'disable', 'complete'],
   slots: ['default'],
   props: {
     name: {
@@ -336,7 +336,7 @@ export default {
 
       active.value = true
 
-     fire('active')
+     fire('activate')
     }
 
     /**
@@ -351,7 +351,7 @@ export default {
 
       active.value = false
 
-      fire('inactive')
+      fire('inactivate')
     }
 
     /**

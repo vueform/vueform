@@ -25,7 +25,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'HiddenElement',
   mixins: [BaseElement, HasChange, HasData, HasValidation],
-  emits: ['change'],
+  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -63,16 +63,13 @@ export default {
       form$: form$.form$
     })
 
-    const baseElement = useBaseElement(props, context, {
-      form$: form$.form$,
+    const events = useEvents(props, context, {}, {
+      events: context.emits,
     })
 
-    const events = useEvents(props, context, {
+    const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
-    }, {
-      events: [
-        'change'
-      ],
+      fire: events.fire,
     })
 
     const default_ = useDefault(props, context, {

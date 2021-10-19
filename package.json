@@ -20,7 +20,7 @@
     "main": "dist/laraform.js",
     "types": "types/laraform.d.ts",
     "_moduleAliases": {
-      "composition-api"  : "node_modules/vue-prev-composition-api"
+        "composition-api": "node_modules/vue-prev-composition-api"
     },
     "scripts": {
         "dev": "cross-env node_modules/webpack/bin/webpack.js --progress --config webpack.config.js --watch",

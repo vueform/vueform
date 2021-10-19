@@ -37,7 +37,7 @@ import { input as useClasses } from './../../composables/elements/useClasses'
 export default {
   name: 'TextElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change'],
+  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -112,20 +112,17 @@ export default {
     const disabled = useDisabled(props, context)
     const nullValue = useNullValue(props, context)
 
+    const events = useEvents(props, context, {}, {
+      events: context.emits,
+    })
+
     const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
+      fire: events.fire,
     })
     
     const addons = useAddons(props, context, {
       el$: baseElement.el$,
-    })
-
-    const events = useEvents(props, context, {
-      form$: form$.form$,
-    }, {
-      events: [
-        'change'
-      ],
     })
 
     const default_ = useDefault(props, context, {

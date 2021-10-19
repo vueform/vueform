@@ -1,5 +1,8 @@
 import _ from 'lodash'
-import { computed, ref, toRefs, inject, markRaw, getCurrentInstance, onMounted, onBeforeMount, provide, watch, nextTick, reactive } from 'composition-api'
+import {
+  computed, ref, toRefs, getCurrentInstance, onBeforeMount, onMounted, onBeforeUpdate,
+  onUpdated, onBeforeUnmount, onUnmounted, provide, watch
+} from 'composition-api'
 import { mergeComponentClasses } from './../utils/mergeClasses'
 import convertFormDataUtil from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'
@@ -37,7 +40,28 @@ const base = function(props, context, dependencies = {})
     default: default_,
     disabled,
     loading,
+    onChange: _onChange,
+    onReset: _onReset,
+    onClear: _onClear,
+    onSubmit: _onSubmit,
+    onSuccess: _onSuccess,
+    onError: _onError,
+    onLanguage: _onLanguage,
+    onBeforeMount: _onBeforeMount,
+    onMounted: _onMounted,
+    onBeforeUpdate: _onBeforeUpdate,
+    onUpdated: _onUpdated,
+    onBeforeUnmount: _onBeforeUnmount,
+    onUnmounted: _onUnmounted,
   } = toRefs(props)
+
+  const evts = [
+    'change', 'reset', 'clear', 'submit',
+    'success', 'error', 'language',
+    'beforeCreate', 'created', 'beforeMount',
+    'mounted', 'beforeUpdate', 'updated',
+    'beforeUnmount', 'unmounted',
+  ]
 
   const $this = getCurrentInstance().proxy
 
@@ -50,10 +74,7 @@ const base = function(props, context, dependencies = {})
     on,
     off
   } = useEvents(props, context, { form$: $this }, {
-    events: [
-      'change', 'reset', 'clear', 'submit',
-      'success', 'error', 'language',
-    ]
+    events: evts,
   })
 
   const {
@@ -195,6 +216,19 @@ const base = function(props, context, dependencies = {})
 
     const ifNotUndefined = {
       stepsControls, displayErrors, displayMessages, labels, disabled, loading,
+      onChange: _onChange.value,
+      onReset: _onReset.value,
+      onClear: _onClear.value,
+      onSubmit: _onSubmit.value,
+      onSuccess: _onSuccess.value,
+      onError: _onError.value,
+      onLanguage: _onLanguage.value,
+      onBeforeMount: _onBeforeMount.value,
+      onMounted: _onMounted.value,
+      onBeforeUpdate: _onBeforeUpdate.value,
+      onUpdated: _onUpdated.value,
+      onBeforeUnmount: _onBeforeUnmount.value,
+      onUnmounted: _onUnmounted.value,
     }
 
     const defaults = {
@@ -852,8 +886,9 @@ const base = function(props, context, dependencies = {})
         await $this.$laraform.config.beforeSend(form$.value)
       }
     } catch (error) {
-      fire('error', { type: 'prepare' }, error)
-      console.error(e)
+      fire('error', error, { type: 'prepare' })
+      console.error(error)
+      return
     } finally {
       preparing.value = false
     }
@@ -893,7 +928,7 @@ const base = function(props, context, dependencies = {})
       fire('success', response)
     }
     catch (error) {
-      fire('error', { type: 'submit' }, error)
+      fire('error', error, { type: 'submit' })
       console.error(error)
     }
     finally {
@@ -1041,6 +1076,17 @@ const base = function(props, context, dependencies = {})
 
   onBeforeMount(() => {
     userConfig.value = $this.laraform || {}
+
+    // Manually subscribe to events defined in options object
+    _.each(evts, (evt) => {
+      let callback = options.value['on' + _.upperFirst(evt)]
+
+      if (callback) {
+        on(evt, callback)
+      }
+    })
+
+    fire('beforeMount', $this)
   })
 
   onMounted(() => {
@@ -1063,7 +1109,14 @@ const base = function(props, context, dependencies = {})
       context.emit('input', data.value)
       context.emit('update:modelValue', data.value)
     }
+
+    fire('mounted', $this)
   })
+
+  onBeforeUpdate(() => fire('beforeUpdate', $this))
+  onUpdated(() => fire('updated', $this))
+  onBeforeUnmount(() => fire('beforeUnmount', $this))
+  onUnmounted(() => fire('unmounted', $this))
 
   return {
     tabs$,

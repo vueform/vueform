@@ -22,6 +22,7 @@ import HasView from './../../mixins/HasView'
 export default {
   name: 'StaticElement',
   mixins: [BaseElement, HasView],
+  emits: ['beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -47,19 +48,18 @@ export default {
     const path = usePath(props, context)
     const static_ = useStatic(props, context)
 
+    const events = useEvents(props, context, {}, {
+      events: context.emits,
+    })
+
     const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
+      fire: events.fire,
     })
 
     const conditions = useConditions(props, context, {
       form$: form$.form$,
       path: path.path,
-    })
-
-    const events = useEvents(props, context, {
-      form$: form$.form$,
-    }, {
-      events: [],
     })
 
     const label = useLabel(props, context, {

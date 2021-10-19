@@ -33,6 +33,7 @@ import HasData from './../../mixins/HasData'
 const element = {
   name: 'AddressElement',
   mixins: [BaseElement, HasView, HasChange, HasData],
+  emits: ['beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: true,
@@ -84,16 +85,13 @@ const element = {
     const disabled = useDisabled(props, context)
     const nullValue = useNullValue(props, context)
     
-    const baseElement = useBaseElement(props, context, {
-      form$: form$.form$,
+    const events = useEvents(props, context, {}, {
+      events: context.emits,
     })
 
-    const events = useEvents(props, context, {
+    const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
-    }, {
-      events: [
-        'change'
-      ]
+      fire: events.fire,
     })
 
     const default_ = useDefault(props, context, {

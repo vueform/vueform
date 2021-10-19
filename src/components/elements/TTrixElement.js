@@ -39,7 +39,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'TTrixElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'alert', 'error'],
+  emits: ['change', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -103,16 +103,13 @@ export default {
     const path = usePath(props, context)
     const disabled = useDisabled(props, context)
 
-    const baseElement = useBaseElement(props, context, {
-      form$: form$.form$,
+    const events = useEvents(props, context, {}, {
+      events: context.emits,
     })
 
-    const events = useEvents(props, context, {
+    const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
-    }, {
-      events: [
-        'change', 'error'
-      ],
+      fire: events.fire,
     })
 
     const languages = useLanguages(props, context, {

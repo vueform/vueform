@@ -9,7 +9,7 @@ import normalize from './../utils/normalize'
 
 export default {
   name: 'FormTab',
-  emits: ['active', 'inactive'],
+  emits: ['activate', 'inactivate'],
   slots: ['default'],
   props: {
     /**
@@ -226,7 +226,7 @@ export default {
         element$.activate()
       })
 
-      fire('active')
+      fire('activate')
     }
 
     /**
@@ -245,7 +245,7 @@ export default {
         element$.deactivate()
       })
 
-      fire('inactive')
+      fire('inactivate')
     }
 
     /**

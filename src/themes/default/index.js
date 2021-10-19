@@ -99,9 +99,7 @@ const components = {
   ImagePreview,
   GalleryPreview,
   RadiogroupRadio,
-}
-
-const elements = {
+  
   AddressElement,
   ButtonElement,
   CheckboxElement,
@@ -133,19 +131,16 @@ const elements = {
 
 export default {
   components,
-  elements,
   classes,
   columns,
 }
 
 export const core = {
   components,
-  elements: {},
   classes,
   columns,
 }
 
 export {
   components,
-  elements,
 }

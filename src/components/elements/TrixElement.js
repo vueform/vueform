@@ -38,7 +38,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'TrixElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'alert', 'error'],
+  emits: ['change', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -104,16 +104,13 @@ export default {
     const disabled = useDisabled(props, context)
     const nullValue = useNullValue(props, context)
 
-    const baseElement = useBaseElement(props, context, {
-      form$: form$.form$,
+    const events = useEvents(props, context, {}, {
+      events: context.emits,
     })
 
-    const events = useEvents(props, context, {
+    const baseElement = useBaseElement(props, context, {
       form$: form$.form$,
-    }, {
-      events: [
-        'change', 'error'
-      ],
+      fire: events.fire,
     })
 
     const default_ = useDefault(props, context, {

@@ -7,10 +7,6 @@ const base = function(props, context, dependencies, options = {})
     throw new Error('`events` option is required for useEvents')
   }
 
-  // ============ DEPENDENCIES =============
-
-  const form$ = dependencies.form$
-
   // ================ DATA ================
 
   /**
@@ -69,7 +65,7 @@ const base = function(props, context, dependencies, options = {})
     let args = [].slice.call(arguments).splice(1)
 
     _.each(listeners.value[evt], (callback) => {
-      callback.apply(form$.value, args)
+      callback(...args)
     })
 
     if (!listeners.value[evt] || !listeners.value[evt].length) {
