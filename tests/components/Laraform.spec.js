@@ -264,7 +264,7 @@ describe('Laraform', () => {
   let config = form.vm.$laraform.config
 
   const overrides = {
-    columns: [config.columns, { element: 9, label: 3, field: 9 }, { element: 12, label: 12, field: 12 }],
+    columns: [config.columns, { container: 9, label: 3, wrapper: 9 }, { container: 12, label: 12, wrapper: 12 }],
     languages: [config.languages, { en: { code: 'en', label: 'English' }, de: { code: 'de', label: 'German' } }, { it: { code: 'it', label: 'Italian' } }],
     language: [config.language, 'de', 'it'],
     theme: [config.theme, 'bootstrap', 'default'],
