@@ -1,6 +1,6 @@
 <template>
   <component :is="elementLayout">
-    <template #field>
+    <template #element>
       <div :class="classes.wrapper">
         <!-- @vueform/toggle component -->
         <Toggle

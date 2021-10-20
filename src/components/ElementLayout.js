@@ -27,10 +27,10 @@ export default {
       defaultClasses,
     } = useElementComponent(props, context, {}, {
       addClasses: [
-        ['container', computed(() => el$.value.columnsClasses.element), ref(true)],
+        ['container', computed(() => el$.value.columnsClasses.container), ref(true)],
         ['container', computed(() => el$.value.classes.container), ref(true)],
         ['container', 'container_error', computed(() => !el$.value.isStatic && el$.value.errors && !!el$.value.errors.length)],
-        ['fieldWrapper', computed(() => el$.value.columnsClasses.field), ref(true)],
+        ['innerWrapper', computed(() => el$.value.columnsClasses.wrapper), ref(true)],
         ['outerWrapper', 'outerWrapper_single', computed(() => !multiple.value)],
         ['outerWrapper', 'outerWrapper_multiple', computed(() => multiple.value)],
       ]

@@ -1,6 +1,6 @@
 <template>
   <component :is="elementLayout" :multiple="true">
-    <template #field>
+    <template #element>
       <div :class="classes.wrapper">
         <slot>
           <component :is="component(element)"

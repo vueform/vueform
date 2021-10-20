@@ -15,24 +15,24 @@ export default class Columns
 
   get classes () {
     return {
-      element: this.getClasses('element'),
+      container: this.getClasses('container'),
       label: this.getClasses('label'),
-      field: this.getClasses('field'),
+      wrapper: this.getClasses('wrapper'),
     }
   }
 
   serialize(columns) {
     // columns: 8
     if (['number', 'string'].indexOf(typeof columns) !== -1) {
-      return { [this.defaultBreakpoint]: { element: columns } }
+      return { [this.defaultBreakpoint]: { container: columns } }
     }
 
-    // columns: { element: 8, element: { default: 8, lg: 8 } }
-    if (typeof columns === 'object' && ['element', 'label', 'field'].indexOf(Object.keys(columns)[0]) !== -1) {
+    // columns: { container: 8, container: { default: 8, lg: 8 } }
+    if (typeof columns === 'object' && ['container', 'label', 'wrapper'].indexOf(Object.keys(columns)[0]) !== -1) {
       let serialized = {}
 
       _.each(columns, (size, type) => {
-        // columns: { element: 8 }
+        // columns: { container: 8 }
         if (['number', 'string'].indexOf(typeof size) !== -1) {
           if (serialized[this.defaultBreakpoint] === undefined) {
             serialized[this.defaultBreakpoint] = {}
@@ -41,7 +41,7 @@ export default class Columns
           serialized[this.defaultBreakpoint][type] = size
         }
 
-        // columns: { element: { default: 8, lg: 8 } }
+        // columns: { container: { default: 8, lg: 8 } }
         else {
           _.each(size, (s, breakpoint) => {
             if (serialized[breakpoint] === undefined) {
@@ -56,7 +56,7 @@ export default class Columns
       return serialized
     }
 
-    // columns: { lg: 8, lg: { element: 8 } }
+    // columns: { lg: 8, lg: { container: 8 } }
     else {
       let serialized = {}
 
@@ -67,10 +67,10 @@ export default class Columns
             serialized[breakpoint] = {}
           }
           
-          serialized[breakpoint].element = size
+          serialized[breakpoint].container = size
         }
         
-        // columns: { lg: { element: 8 } }
+        // columns: { lg: { container: 8 } }
         else {
           serialized[breakpoint] = size
         }
@@ -94,7 +94,7 @@ export default class Columns
         size = 0
       }
 
-      if (type === 'field' && !this.hasLabel) {
+      if (type === 'wrapper' && !this.hasLabel) {
         size += this.cols[breakpoint].label || 0
 
         if (size > 12) {
@@ -112,7 +112,7 @@ export default class Columns
 
   getCols() {
     return _.merge({},
-      { [this.defaultBreakpoint]: { element: 12, label: 12, field: 12 } },
+      { [this.defaultBreakpoint]: { container: 12, label: 12, wrapper: 12 } },
       this.configColumns || {},
       this.formColumns || {},
       this.columns || {}

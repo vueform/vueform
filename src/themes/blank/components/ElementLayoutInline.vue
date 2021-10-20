@@ -2,7 +2,7 @@
   <span :class="classes.container" v-show="visible">
     <ElementLabel><slot name="label"/></ElementLabel>
     <ElementText type="before"><slot name="before"/></ElementText>
-    <slot name="field"/>
+    <slot name="element"/>
     <ElementText type="between"><slot name="between"/></ElementText>
     <ElementDescription><slot name="description"/></ElementDescription>
     <ElementError/>

@@ -1,6 +1,6 @@
 <template>
   <component :is="elementLayout">
-    <template #field>
+    <template #element>
       <!-- Drag n drop -->
       <DragAndDrop
         v-if="drop && canDrop && canSelect"

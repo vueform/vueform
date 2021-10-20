@@ -1,6 +1,6 @@
 <template>
   <component :is="elementLayout">
-    <template #field>
+    <template #element>
       <TrixWrapper
         :value="model"
         :placeholder="placeholder"

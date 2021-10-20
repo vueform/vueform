@@ -1,6 +1,6 @@
 <template>
   <component :is="elementLayout">
-    <template #field>
+    <template #element>
       <!-- Use `button` tag -->
       <template v-if="buttonType === 'button'">
         <!-- Use it as a component -->

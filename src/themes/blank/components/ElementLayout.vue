@@ -6,14 +6,14 @@
         <template #info><slot name="info"/></template>
       </ElementLabel>
 
-      <div :class="classes.fieldContainer">
-        <div :class="classes.fieldWrapperBefore">
+      <div :class="classes.innerContainer">
+        <div :class="classes.innerWrapperBefore">
           <ElementText type="before"><slot name="before"/></ElementText>
         </div>
-        <div :class="classes.fieldWrapper">
-          <slot name="field"/>
+        <div :class="classes.innerWrapper">
+          <slot name="element"/>
         </div>
-        <div :class="classes.fieldWrapperAfter">
+        <div :class="classes.innerWrapperAfter">
           <ElementText type="between"><slot name="between"/></ElementText>
           <ElementDescription><slot name="description"/></ElementDescription>
           <ElementError/>
@@ -36,10 +36,10 @@
           outerWrapper: '',
           outerWrapper_single: '',
           outerWrapper_multiple: '',
-          fieldContainer: '',
-          fieldWrapperBefore: '',
-          fieldWrapper: '',
-          fieldWrapperAfter: '',
+          innerContainer: '',
+          innerWrapperBefore: '',
+          innerWrapper: '',
+          innerWrapperAfter: '',
         },
       }
     },

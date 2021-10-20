@@ -1,6 +1,6 @@
 <template>
   <component :is="elementLayout">
-    <template #field>
+    <template #element>
       <!-- Sorting container -->
       <div :class="classes.list" ref="list">
         <div v-for="(val, i) in value" :key="i" :class="classes.listItem">

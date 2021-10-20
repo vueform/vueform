@@ -12,10 +12,10 @@
           outerWrapper: 'vf-row',
           outerWrapper_single: 'vf-group',
           outerWrapper_multiple: '',
-          fieldContainer: 'vf-field-container',
-          fieldWrapperBefore: 'vf-field-wrapper-before',
-          fieldWrapper: '',
-          fieldWrapperAfter: 'vf-field-wrapper-after',
+          innerContainer: 'vf-layout-inner-container',
+          innerWrapperBefore: 'vf-layout-inner-wrapper-before',
+          innerWrapper: '',
+          innerWrapperAfter: 'vf-layout-inner-wrapper-after',
         }
       }
     }
@@ -25,12 +25,12 @@
 <style lang="scss">
   // Some styles are contained in Laraform.vue
 
-  .vf-field-container {
+  .vf-layout-inner-container {
     flex: 1 1 auto;
   }
 
-  .vf-field-wrapper-before,
-  .vf-field-wrapper-after {
+  .vf-layout-inner-wrapper-before,
+  .vf-layout-inner-wrapper-after {
     width: 100%;
     padding-left: var(--vf-gutter);
     padding-right: var(--vf-gutter);

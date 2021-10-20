@@ -1,6 +1,6 @@
 <template>
   <component :is="elementLayout">
-    <template #field>
+    <template #element>
       <div :class="classes.inputContainer">
         <ElementAddon v-if="hasAddonBefore" type="before">
           <slot name="addon-before"/>

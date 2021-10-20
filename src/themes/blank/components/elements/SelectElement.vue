@@ -1,6 +1,6 @@
 <template>
   <component :is="elementLayout">
-    <template #field>
+    <template #element>
       <ElementLabelFloating
         v-if="hasFloating"
         :visible="!empty"

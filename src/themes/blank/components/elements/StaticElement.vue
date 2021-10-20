@@ -1,7 +1,7 @@
 <template>
   <!-- If wrapped in layout -->
   <component v-if="wrap" :is="elementLayout">
-    <template #field>
+    <template #element>
       <!-- If content is HTML -->
       <div v-if="content && isHtml" :class="classes.content" v-html="content"></div>
 

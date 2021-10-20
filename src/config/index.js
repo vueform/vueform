@@ -7,9 +7,9 @@ const config = {
   components: {},
   classes: {},
   columns: {
-    element: 12,
+    container: 12,
     label: 3,
-    field: 12,
+    wrapper: 12,
   },
   forceLabels: false,
   floatPlaceholders: true,
