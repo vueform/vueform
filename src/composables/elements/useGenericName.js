@@ -19,7 +19,7 @@ const base = function(props, context, dependencies)
    * @private.
    */
   const genericName = computed(() => {
-    if (fieldName.value) {
+    if (fieldName && fieldName.value) {
       return fieldName.value
     } else if (label && label.value) {
       return label.value
@@ -60,7 +60,7 @@ const file = function(props, context, dependencies)
   const genericName = computed(() => {
     if (embed.value && filename.value) {
       return filename.value
-    } else if (fieldName.value) {
+    } else if (fieldName && fieldName.value) {
       return fieldName.value
     } else if (label.value) {
       return label.value

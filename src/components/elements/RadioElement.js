@@ -57,7 +57,7 @@ export default {
       type: [String],
       default: null
     },
-    fieldName: {
+    radioName: {
       required: false,
       type: [String],
       default: null
