@@ -243,6 +243,7 @@ export default {
     const order = useOrder(props, context, {
       isObject: prototype.isObject,
       children$: children.children$,
+      form$: form$.form$,
     })
 
     const data = useData(props, context, {

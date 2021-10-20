@@ -140,8 +140,11 @@ export default {
     const nullValue = useNullValue(props, context)
     const prototype = usePrototype(props, context)
     const children = useChildren(props, context)
-    const order = useOrder(props, context)
     const sorting = useSorting(props, context)
+    
+    const order = useOrder(props, context, {
+      form$: form$.form$,
+    })
 
     const events = useEvents(props, context, {}, {
       events: context.emits,
