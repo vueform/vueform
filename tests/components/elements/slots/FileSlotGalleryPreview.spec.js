@@ -12,7 +12,7 @@ const getCanvasBlob = (canvas) => {
 }
 
 describe('FileSlotGalleryPreview', () => {
-  useElementComponent('file', 'FileSlotGalleryPreview', { auto: false, image: true, view: 'gallery' }, {
+  useElementComponent('file', 'FileSlotGalleryPreview', { auto: false, view: 'gallery' }, {
     execute: async (el) => {
       const canvas = document.createElement('canvas')
 
@@ -39,7 +39,6 @@ describe('FileSlotGalleryPreview', () => {
           el: {
             type: 'file',
             auto: false,
-            image: true,
             view: 'gallery',
           }
         }
@@ -62,7 +61,6 @@ describe('FileSlotGalleryPreview', () => {
           el: {
             type: 'file',
             auto: false,
-            image: true,
             default: 'filename.jpg',
             clickable: true,
             url: 'http://domain.com/',

@@ -50,7 +50,7 @@ export const preview = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          image: true,
+          view: 'image',
           slots: {
             preview: markRaw({
               props: ['previewOptions'],
@@ -78,7 +78,7 @@ export const preview = function (elementType, elementName, options) {
         el: {
           type: elementType,
           auto: false,
-          image: true,
+          view: 'image',
           slots: {
             preview: markRaw({
               props: ['previewOptions'],

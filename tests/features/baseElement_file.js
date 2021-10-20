@@ -23,12 +23,29 @@ export const isFileType = function (elementType, elementName, options) {
 }
 
 export const isImageType = function (elementType, elementName, options) {
-  it('should return `isImageType` true if image', () => {
+  it('should return `isImageType` true if view is `image`', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          image: true
+          view: 'image'
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.isImageType).toBe(true)    
+    
+    // destroy(form) // teardown
+  })
+  
+  it('should return `isImageType` true if view is `gallery`', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          view: 'gallery'
         }
       }
     })
