@@ -192,8 +192,8 @@ const dynamicsTesting = (options) => {
         expect(findAllComponents(form, { name: controls }).at(0).vm.visible).toBe(true)
         expect(findAllComponents(form, { name: controls }).at(1).vm.visible).toBe(false)
         expect(findAllComponents(form, { name: controls }).at(2).vm.visible).toBe(true)
-        expect(findAllComponents(form, { name: controls }).at(0).vm.disabled).toBe(true)
-        expect(findAllComponents(form, { name: controls }).at(2).vm.disabled).toBe(false)
+        expect(findAllComponents(form, { name: controls }).at(0).vm.isDisabled).toBe(true)
+        expect(findAllComponents(form, { name: controls }).at(2).vm.isDisabled).toBe(false)
       }
     })
 

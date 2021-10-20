@@ -1,6 +1,6 @@
 <template>
   <li :class="classes.container" v-show="visible">
-    <slot :classes="classes" :select="select" :disabled="disabled">
+    <slot :classes="classes" :select="select" :disabled="isDisabled">
       <!-- If label is a component -->
       <a
         v-if="isLabelComponent"

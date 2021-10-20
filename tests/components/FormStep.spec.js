@@ -599,7 +599,7 @@ describe('FormStep', () => {
       let second = findAllComponents(form, { name: 'FormStep' }).at(1)
       expect(second.vm.name).toBe('second')
 
-      expect(second.vm.disabled).toBe(true)
+      expect(second.vm.isDisabled).toBe(true)
 
       await nextTick()
 
@@ -635,7 +635,7 @@ describe('FormStep', () => {
       let second = findAllComponents(form, { name: 'FormStep' }).at(1)
       expect(second.vm.name).toBe('second')
 
-      expect(second.vm.disabled).toBe(true)
+      expect(second.vm.isDisabled).toBe(true)
 
       second.vm.enable()
 

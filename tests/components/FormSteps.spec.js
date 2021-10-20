@@ -542,7 +542,7 @@ describe('FormSteps', () => {
       let a = findAllComponents(form, { name: 'TextElement' }).at(0)
       expect(a.vm.name).toBe('a')
 
-      expect(second.vm.disabled).toBe(true)
+      expect(second.vm.isDisabled).toBe(true)
 
       steps.vm.goTo('third')
 
@@ -550,7 +550,7 @@ describe('FormSteps', () => {
       a.vm.update(1)
 
       await nextTick()
-      expect(second.vm.disabled).toBe(false)
+      expect(second.vm.isDisabled).toBe(false)
     })
   })
 
@@ -653,8 +653,8 @@ describe('FormSteps', () => {
       await nextTick()
       steps.vm.enableAllSteps()
 
-      expect(first.vm.disabled).toBe(false)
-      expect(second.vm.disabled).toBe(false)
+      expect(first.vm.isDisabled).toBe(false)
+      expect(second.vm.isDisabled).toBe(false)
     })
 
     it('should enable all steps when data is loaded', async () => {
@@ -688,8 +688,8 @@ describe('FormSteps', () => {
       })
 
       await nextTick()
-      expect(first.vm.disabled).toBe(false)
-      expect(second.vm.disabled).toBe(false)
+      expect(first.vm.isDisabled).toBe(false)
+      expect(second.vm.isDisabled).toBe(false)
     })
 
     it('should go to first step and disable all others when form is resetted', async () => {
@@ -727,25 +727,25 @@ describe('FormSteps', () => {
       let third = findAllComponents(form, { name: 'FormStep' }).at(2)
 
       await nextTick()
-      expect(first.vm.disabled).toBe(false)
-      expect(second.vm.disabled).toBe(true)
-      expect(third.vm.disabled).toBe(true)
+      expect(first.vm.isDisabled).toBe(false)
+      expect(second.vm.isDisabled).toBe(true)
+      expect(third.vm.isDisabled).toBe(true)
 
       steps.vm.goTo('third', true)
 
       await nextTick()
       expect(steps.vm.current$.name).toBe('third')
-      expect(first.vm.disabled).toBe(false)
-      expect(second.vm.disabled).toBe(false)
-      expect(third.vm.disabled).toBe(false)
+      expect(first.vm.isDisabled).toBe(false)
+      expect(second.vm.isDisabled).toBe(false)
+      expect(third.vm.isDisabled).toBe(false)
 
       form.vm.reset()
       
       await nextTick()
       expect(steps.vm.current$.name).toBe('first')
-      expect(first.vm.disabled).toBe(false)
-      expect(second.vm.disabled).toBe(true)
-      expect(third.vm.disabled).toBe(true)
+      expect(first.vm.isDisabled).toBe(false)
+      expect(second.vm.isDisabled).toBe(true)
+      expect(third.vm.isDisabled).toBe(true)
     })
 
     it('should go to first step and disable all others when form is cleared', async () => {
@@ -783,24 +783,24 @@ describe('FormSteps', () => {
       let third = findAllComponents(form, { name: 'FormStep' }).at(2)
 
       await nextTick()
-      expect(first.vm.disabled).toBe(false)
-      expect(second.vm.disabled).toBe(true)
-      expect(third.vm.disabled).toBe(true)
+      expect(first.vm.isDisabled).toBe(false)
+      expect(second.vm.isDisabled).toBe(true)
+      expect(third.vm.isDisabled).toBe(true)
 
       steps.vm.goTo('third', true)
 
       await nextTick()
       expect(steps.vm.current$.name).toBe('third')
-      expect(first.vm.disabled).toBe(false)
-      expect(second.vm.disabled).toBe(false)
-      expect(third.vm.disabled).toBe(false)
+      expect(first.vm.isDisabled).toBe(false)
+      expect(second.vm.isDisabled).toBe(false)
+      expect(third.vm.isDisabled).toBe(false)
 
       form.vm.clear()
       
       await nextTick()
       expect(steps.vm.current$.name).toBe('first')
-      expect(first.vm.disabled).toBe(false)
-      expect(second.vm.disabled).toBe(true)
+      expect(first.vm.isDisabled).toBe(false)
+      expect(second.vm.isDisabled).toBe(true)
     })
 
     it('should find step by name', () => {
@@ -865,9 +865,9 @@ describe('FormSteps', () => {
       steps.vm.reset()
 
       expect(steps.vm.current$.name).toBe('first')
-      expect(steps.vm.current$.disabled).toBe(false)
+      expect(steps.vm.current$.isDisabled).toBe(false)
       expect(steps.vm.current$.completed).toBe(false)
-      expect(steps.vm.next$.disabled).toBe(true)
+      expect(steps.vm.next$.isDisabled).toBe(true)
       expect(steps.vm.next$.completed).toBe(false)
     })
   })

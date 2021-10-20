@@ -106,8 +106,8 @@ export default {
       addClasses: [
         ['container', 'container_active', computed(() => active.value)],
         ['container', 'container_inactive', computed(() => !active.value)],
-        ['container', 'container_disabled', computed(() => disabled.value)],
-        ['container', 'container_enabled', computed(() => !disabled.value)],
+        ['container', 'container_disabled', computed(() => isDisabled.value)],
+        ['container', 'container_enabled', computed(() => !isDisabled.value)],
         ['container', 'container_completed', computed(() => completed.value)],
         ['container', 'container_incompleted', computed(() => !completed.value)],
         ['container', 'container_valid', computed(() => !invalid.value)],
@@ -162,7 +162,7 @@ export default {
      * @type {boolean}
      * @default true
      */
-    const disabled = ref(true)
+    const isDisabled = ref(true)
 
     /**
      * Whether the step is completed.
@@ -360,11 +360,11 @@ export default {
      * @returns {void}
      */
     const enable = () => {
-      if (!disabled.value) {
+      if (!isDisabled.value) {
         return
       }
 
-      disabled.value = false
+      isDisabled.value = false
 
       fire('enable')
     }
@@ -375,11 +375,11 @@ export default {
      * @returns {void}
      */
     const disable = () => {
-      if (disabled.value) {
+      if (isDisabled.value) {
         return
       }
       
-      disabled.value = true
+      isDisabled.value = true
 
       fire('disable')
     }
@@ -414,7 +414,7 @@ export default {
      * @returns {void}
      */
     const select = () => {
-      if (disabled.value) {
+      if (isDisabled.value) {
         return
       }
 
@@ -523,7 +523,7 @@ export default {
       steps$,
       elements$,
       active,
-      disabled,
+      isDisabled,
       completed,
       events,
       listeners,

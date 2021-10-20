@@ -940,7 +940,7 @@ describe('Laraform', () => {
     })
   })
 
-  describe('disabled', () => {
+  describe('isDisabled', () => {
     it('should be disabled invalid and should validate on change', async () => {
       let form = createForm({
         validateOn: 'submit|change',
@@ -955,7 +955,7 @@ describe('Laraform', () => {
 
       await flushPromises()
 
-      expect(form.vm.disabled).toBe(true)
+      expect(form.vm.isDisabled).toBe(true)
     })
 
     it('should not be disabled invalid and should not validate on change', async () => {
@@ -972,7 +972,7 @@ describe('Laraform', () => {
 
       await flushPromises()
 
-      expect(form.vm.disabled).toBe(false)
+      expect(form.vm.isDisabled).toBe(false)
     })
 
     it('should not be disabled when busy', async () => {
@@ -984,11 +984,11 @@ describe('Laraform', () => {
 
       form.vm.submitting = true
 
-      expect(form.vm.disabled).toBe(true)
+      expect(form.vm.isDisabled).toBe(true)
 
       form.vm.submitting = false
 
-      expect(form.vm.disabled).toBe(false)
+      expect(form.vm.isDisabled).toBe(false)
     })
   })
 
@@ -1764,8 +1764,8 @@ describe('Laraform', () => {
 
       await nextTick()
 
-      expect(form.vm.steps$.steps$.first.disabled).toBe(false)
-      expect(form.vm.steps$.steps$.second.disabled).toBe(false)
+      expect(form.vm.steps$.steps$.first.isDisabled).toBe(false)
+      expect(form.vm.steps$.steps$.second.isDisabled).toBe(false)
     })
   })
 
@@ -1816,15 +1816,15 @@ describe('Laraform', () => {
 
       await nextTick()
 
-      expect(form.vm.steps$.steps$.first.disabled).toBe(false)
-      expect(form.vm.steps$.steps$.second.disabled).toBe(false)
+      expect(form.vm.steps$.steps$.first.isDisabled).toBe(false)
+      expect(form.vm.steps$.steps$.second.isDisabled).toBe(false)
 
       form.vm.reset()
 
       await nextTick()
 
-      expect(form.vm.steps$.steps$.first.disabled).toBe(false)
-      expect(form.vm.steps$.steps$.second.disabled).toBe(true)
+      expect(form.vm.steps$.steps$.first.isDisabled).toBe(false)
+      expect(form.vm.steps$.steps$.second.isDisabled).toBe(true)
     })
 
     it('should reset tabs', async () => {
@@ -1923,15 +1923,15 @@ describe('Laraform', () => {
 
       await nextTick()
 
-      expect(form.vm.steps$.steps$.first.disabled).toBe(false)
-      expect(form.vm.steps$.steps$.second.disabled).toBe(false)
+      expect(form.vm.steps$.steps$.first.isDisabled).toBe(false)
+      expect(form.vm.steps$.steps$.second.isDisabled).toBe(false)
 
       form.vm.clear()
 
       await nextTick()
 
-      expect(form.vm.steps$.steps$.first.disabled).toBe(false)
-      expect(form.vm.steps$.steps$.second.disabled).toBe(true)
+      expect(form.vm.steps$.steps$.first.isDisabled).toBe(false)
+      expect(form.vm.steps$.steps$.second.isDisabled).toBe(true)
     })
 
     it('should clear tabs', async () => {

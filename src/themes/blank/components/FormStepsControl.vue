@@ -2,7 +2,7 @@
   <!-- If label is a component -->
   <button
     v-if="visible && label && isLabelComponent"
-  	:disabled="disabled"
+  	:disabled="isDisabled"
     :class="classes.button"
   	@click.prevent="handleClick"
   >
@@ -13,7 +13,7 @@
   <button
     v-else-if="visible && label"
     v-html="label"
-  	:disabled="disabled"
+  	:disabled="isDisabled"
     :class="classes.button"
   	@click.prevent="handleClick"
   ></button>
@@ -21,7 +21,7 @@
   <!-- If label is a slot -->
   <button
     v-else-if="visible"
-  	:disabled="disabled"
+  	:disabled="isDisabled"
     :class="classes.button"
   	@click.prevent="handleClick"
   ><slot/></button>

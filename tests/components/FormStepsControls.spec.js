@@ -39,7 +39,7 @@ describe('FormStepsControls', () => {
       let previous = findAllComponents(form, { name: 'FormStepsControl' }).at(0)
 
       await nextTick()
-      expect(previous.vm.disabled).toBe(true)
+      expect(previous.vm.isDisabled).toBe(true)
     })
 
     it('should display finish button on last step instead of next', async () => {
@@ -103,13 +103,13 @@ describe('FormStepsControls', () => {
 
       await nextTick()
       expect(steps.vm.current$.name).toBe('first')
-      expect(steps.vm.next$.disabled).toBe(true)
+      expect(steps.vm.next$.isDisabled).toBe(true)
 
       findAll(next, 'button').last().trigger('click')
       await flushPromises()
 
       expect(steps.vm.current$.name).toBe('second')
-      expect(steps.vm.current$.disabled).toBe(false)
+      expect(steps.vm.current$.isDisabled).toBe(false)
     })
 
     it('should not move to next step when next button is clicked if has invalid fields', async () => {

@@ -150,12 +150,12 @@ export default async function testDynamics (options, type) {
     if (_.keys(steps).length == 1) {
       expect(findAllComponents(form, { name: variables.controlSelectors }).at(1).vm.visible).toBe(false)
       expect(findAllComponents(form, { name: variables.controlSelectors }).at(2).vm.visible).toBe(true)
-      expect(findAllComponents(form, { name: variables.controlSelectors }).at(0).vm.disabled).toBe(true)
-      expect(findAllComponents(form, { name: variables.controlSelectors }).at(2).vm.disabled).toBe(false)
+      expect(findAllComponents(form, { name: variables.controlSelectors }).at(0).vm.isDisabled).toBe(true)
+      expect(findAllComponents(form, { name: variables.controlSelectors }).at(2).vm.isDisabled).toBe(false)
     } else if (_.keys(steps).length > 1 && isAtFirstBlock(form)) {
       expect(findAllComponents(form, { name: variables.controlSelectors }).at(1).vm.visible).toBe(true)
       expect(findAllComponents(form, { name: variables.controlSelectors }).at(2).vm.visible).toBe(false)
-      expect(findAllComponents(form, { name: variables.controlSelectors }).at(0).vm.disabled).toBe(true)
+      expect(findAllComponents(form, { name: variables.controlSelectors }).at(0).vm.isDisabled).toBe(true)
     }
   }
 }

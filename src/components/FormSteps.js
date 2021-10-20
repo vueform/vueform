@@ -223,7 +223,7 @@ export default {
      * @type {component}
      */
     const lastEnabled$ = computed(() => {
-      return _.findLast(visible$.value, { disabled: false })
+      return _.findLast(visible$.value, { isDisabled: false })
     })
 
     /**

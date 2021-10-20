@@ -34,9 +34,9 @@ export default {
       defaultClasses,
     } = useFormComponent(props, context, {}, {
       addClasses: [
-        ['button', `button_${type.value}_enabled`, computed(() => !disabled.value)],
-        ['button', `button_${type.value}_disabled`, computed(() => disabled.value)],
-        ['button', `button_${type.value}_loading`, computed(() => loading.value)],
+        ['button', `button_${type.value}_enabled`, computed(() => !isDisabled.value)],
+        ['button', `button_${type.value}_disabled`, computed(() => isDisabled.value)],
+        ['button', `button_${type.value}_loading`, computed(() => isLoading.value)],
       ]
     })
 
@@ -115,7 +115,7 @@ export default {
      * 
      * @type {boolean}
      */
-    const disabled = computed(() => {
+    const isDisabled = computed(() => {
       switch (type.value) {
         case 'previous':
           return steps$.value && steps$.value.isAtFirstStep
@@ -148,7 +148,7 @@ export default {
      * 
      * @type {boolean}
      */
-    const loading = computed(() => {
+    const isLoading = computed(() => {
       return type.value === 'previous' ? false : form$.value.isLoading
     })
 
@@ -222,8 +222,8 @@ export default {
       defaultClasses,
       components,
       visible,
-      disabled,
-      loading,
+      isDisabled,
+      isLoading,
       current$,
       label,
       isLabelComponent,
