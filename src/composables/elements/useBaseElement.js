@@ -206,7 +206,7 @@ const list = function(props, context, dependencies)
 const file = function(props, context, dependencies)
 {
   const {
-    image,
+    view,
   } = toRefs(props)
 
   const {
@@ -226,7 +226,7 @@ const file = function(props, context, dependencies)
   })
 
   const isImageType = computed(() => {
-    return image.value
+    return ['gallery', 'image'].indexOf(view.value) !== -1
   })
 
   return {

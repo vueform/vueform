@@ -80,15 +80,10 @@ export default {
       private: true,
     },
     
-    image: {
-      type: [Boolean],
-      required: false,
-      default: false
-    },
     view: {
       type: [String],
       required: false,
-      default: null,
+      default: 'file',
     },
     drop: {
       required: false,
@@ -137,8 +132,6 @@ export default {
     },
   },
   setup(props, context) {
-    const { image } = toRefs(props)
-
     const form$ = useForm$(props, context)
     const fieldId = useFieldId(props, context)
     const theme = useTheme(props, context)

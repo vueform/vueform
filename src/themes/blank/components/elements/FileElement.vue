@@ -32,8 +32,8 @@
 
       <!-- Preview -->
       <slot name="preview">
-        <GalleryPreview v-if="image && view === 'gallery'"/>
-        <ImagePreview v-else-if="image"/>
+        <GalleryPreview v-if="view === 'gallery'"/>
+        <ImagePreview v-else-if="view === 'image'"/>
         <FilePreview v-else/>
       </slot>
     </template>

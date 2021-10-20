@@ -84,15 +84,10 @@ export default {
       private: true,
     },
 
-    image: {
-      type: [Boolean],
-      required: false,
-      default: false
-    },
     view: {
       type: [String],
       required: false,
-      default: null,
+      default: 'file',
     },
     drop: {
       required: false,

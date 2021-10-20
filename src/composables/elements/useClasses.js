@@ -148,7 +148,6 @@ const multifile = function(props, context, dependencies)
 {
   const {
     view,
-    image,
   } = toRefs(props)
 
   const {
@@ -157,20 +156,20 @@ const multifile = function(props, context, dependencies)
     defaultClasses,
   } = base(props, context, dependencies, {
     addClasses: [
-      ['list', 'list_file', computed(() => !image.value)],
-      ['list', 'list_image', computed(() => image.value && view.value !== 'gallery')],
-      ['list', 'list_gallery', computed(() => image.value && view.value === 'gallery')],
+      ['list', 'list_file', computed(() => view.value === 'file')],
+      ['list', 'list_image', computed(() => view.value === 'image')],
+      ['list', 'list_gallery', computed(() => view.value === 'gallery')],
       ['list', 'list_sorting', computed(() => sorting.value)],
       ['list', 'list_disabled', computed(() => isDisabled.value)],
-      ['listItem', 'listItem_file', computed(() => !image.value)],
-      ['listItem', 'listItem_image', computed(() => image.value && view.value !== 'gallery')],
-      ['listItem', 'listItem_gallery', computed(() => image.value && view.value === 'gallery')],
-      ['handle', 'handle_file', computed(() => !image.value)],
-      ['handle', 'handle_image', computed(() => image.value && view.value !== 'gallery')],
-      ['handle', 'handle_gallery', computed(() => image.value && view.value === 'gallery')],
-      ['handleIcon', 'handleIcon_file', computed(() => !image.value)],
-      ['handleIcon', 'handleIcon_image', computed(() => image.value && view.value !== 'gallery')],
-      ['handleIcon', 'handleIcon_gallery', computed(() => image.value && view.value === 'gallery')],
+      ['listItem', 'listItem_file', computed(() => view.value === 'file')],
+      ['listItem', 'listItem_image', computed(() => view.value === 'image')],
+      ['listItem', 'listItem_gallery', computed(() => view.value === 'gallery')],
+      ['handle', 'handle_file', computed(() => view.value === 'file')],
+      ['handle', 'handle_image', computed(() => view.value === 'image')],
+      ['handle', 'handle_gallery', computed(() => view.value === 'gallery')],
+      ['handleIcon', 'handleIcon_file', computed(() => view.value === 'file')],
+      ['handleIcon', 'handleIcon_image', computed(() => view.value === 'image')],
+      ['handleIcon', 'handleIcon_gallery', computed(() => view.value === 'gallery')],
       ['button', 'button_enabled', computed(() => !isDisabled.value && !preparing.value)],
       ['button', 'button_disabled', computed(() => isDisabled.value || preparing.value)],
     ]

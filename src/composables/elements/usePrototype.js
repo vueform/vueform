@@ -47,7 +47,6 @@ const multifile = function(props, context, dependencies, options = {})
     fields,
     storeFile,
     storeOrder,
-    image,
     view,
    } = toRefs(props)
 
@@ -86,7 +85,6 @@ const multifile = function(props, context, dependencies, options = {})
       return Object.assign({}, {
         type: type.value,
         auto: auto.value,
-        image: image.value,
         view: view.value,
         layout: view.value === 'gallery' ? 'ElementLayoutInline' : 'ElementLayout',
         disabled: isDisabled.value,
@@ -100,7 +98,6 @@ const multifile = function(props, context, dependencies, options = {})
         {[storeFileName.value]: Object.assign({}, {
           type: type.value,
           auto: auto.value,
-          image: image.value,
           view: view.value,
           layout: view.value === 'gallery' ? 'ElementLayoutInline' : 'ElementLayout',
           embed: true,

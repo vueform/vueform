@@ -12,7 +12,6 @@ const base = function (props, context, dependencies)
     methods,
     endpoints,
     url,
-    image,
     params,
     softRemove,
     view,
@@ -56,7 +55,7 @@ const base = function (props, context, dependencies)
   const hasUploadError = ref(false)
 
   /**
-   * The `base64` format of the file when [`:image`](#image) is `true` and file only has been selected, but hasn't been uploaded yet.
+   * The `base64` format of the file when [`:view`](#view) is `image` or `gallery` and file only has been selected, but hasn't been uploaded yet.
    * 
    * @type {string}
    * @default null
@@ -240,12 +239,12 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * The preview of the file when [`image`](#image) is `true`. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded.
+   * The preview of the file when [`view`](#view) is `image` or `gallery`. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded.
    * 
    * @type {string}
    */
   const preview = computed(() => {
-    if (!image.value) {
+    if (view.value === 'file') {
       return null
     }
 
