@@ -3,14 +3,14 @@
     <template #element>
       <div :class="classes.wrapper"> 
         <RadiogroupRadio
-          v-for="(item, value, key) in items"
+          v-for="(item, i, key) in resolvedItems"
           :item="item"
-          :value="value"
+          :value="item.value"
           :key="key"
         >
           <template #default="scope">
-            <slot name="radio" :item="item" :value="value" v-bind="scope">
-              <component :is="fieldSlots.radio" :item="item" :value="value" v-bind="scope"/>
+            <slot name="radio" v-bind="scope" :el$="el$">
+              <component :is="fieldSlots.radio" v-bind="scope" :el$="el$"/>
             </slot>
           </template>
         </RadiogroupRadio>

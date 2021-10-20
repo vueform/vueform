@@ -93,6 +93,12 @@ const base = function(props, context, dependencies)
     })
   }
 
+  /**
+   * Resolves items.
+   * 
+   * @return {void}
+   * @private
+   */
   const resolveItems = () => {
     if (typeof items.value !== 'function') {
       resolvedItems.value = items.value
@@ -126,8 +132,122 @@ const tags = function(props, context, dependencies) {
   }
 }
 
+const checkboxgroup = function(props, context, dependencies) {
+  const {
+    items,
+  } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const disableAll = dependencies.disableAll
+  const enableAll = dependencies.enableAll
+  const el$ = dependencies.el$
+
+  // ================ DATA ================
+
+  /**
+   * Contains the fetched items when using async `items`.
+   * 
+   * @type {array|object}
+   * @default null
+   * @private
+   */
+  const resolvedItemList = ref(null)
+
+  // ============== COMPUTED ==============
+  
+  /**
+   * Contains available items. 
+   * 
+   * @type {array}
+   */
+  const resolvedItems = computed(() => {
+    let resolvedItems = []
+    
+    _.each(resolvedItemList.value, (item, key) => {
+      if (Array.isArray(resolvedItemList.value) && typeof item === 'object') {
+        if (item.value === undefined) {
+          throw new Error('You must define `value` property for each item when using an array of objects options')
+        }
+
+        if (item.label === undefined) {
+          throw new Error('You must define `label` property for each item when using an array of objects options')
+        }
+
+        resolvedItems.push({
+          value: item.value,
+          label: item.label
+        })
+      } else if (Array.isArray(resolvedItemList.value)) {
+        resolvedItems.push({
+          value: item,
+          label: item,
+        })
+      } else {
+        resolvedItems.push({
+          value: key,
+          label: item,
+        })
+      }
+    })
+
+    return resolvedItems
+  })
+
+  // =============== METHODS ==============
+
+  /**
+   * Fetches & updates select options when using `async` items. Receives [`el$`](#property-el) as first param.
+   * 
+   * @param {boolean} shouldDisable* whether the input field should be disabled while fetching options
+   * @returns {void} 
+   */
+  const updateItems = (shouldDisable = true) => {
+    if (shouldDisable) {
+      disableAll()
+    }
+
+    items.value(el$.value).then((response) => {
+      resolvedItemList.value = response
+      
+      if (shouldDisable) {
+        enableAll()
+      }
+    })
+  }
+
+  /**
+   * Resolves items.
+   * 
+   * @return {void}
+   * @private
+   */
+  const resolveItems = () => {
+    if (typeof items.value !== 'function') {
+      resolvedItemList.value = items.value
+    } else {
+      updateItems()
+    }
+  }
+
+  // ================ HOOKS ===============
+
+  resolveItems()
+
+  watch(items, resolveItems)
+
+  return {
+    resolvedItems,
+    updateItems,
+  }
+}
+
+const radiogroup = checkboxgroup
+
 export {
   tags,
+  checkboxgroup,
+  radiogroup,
 }
 
 export default base

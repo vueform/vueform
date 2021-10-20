@@ -1,6 +1,6 @@
 <template>
   <div :class="classes.container">
-    <slot :classes="classes" :is-disabled="isDisabled" :name="el$.name" :id="`${el$.fieldId}-${value}`">
+    <slot :classes="classes" :is-disabled="isDisabled" :name="el$.name" :id="`${el$.fieldId}-${value}`" :item="item" :value="value">
       <input
         type="radio"
         v-model="el$.value"
@@ -14,7 +14,7 @@
       <label 
         :class="classes.label"
         :for="`${el$.fieldId}-${value}`"
-        v-html="item"
+        v-html="item.label"
       ></label>
     </slot>
   </div>

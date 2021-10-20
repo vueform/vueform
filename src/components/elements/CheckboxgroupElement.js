@@ -23,6 +23,7 @@ import useSlots from './../../composables/elements/useSlots'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { checkboxgroup as useDisabled } from './../../composables/elements/useDisabled'
 import { checkboxgroup as useBaseElement } from './../../composables/elements/useBaseElement'
+import { checkboxgroup as useAsyncItems } from './../../composables/elements/useAsyncItems'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -86,6 +87,12 @@ export default {
 
     const disabled = useDisabled(props, context, {
       form$: form$.form$,
+    })
+
+    const asyncItems = useAsyncItems(props, context, {
+      disableAll: disabled.disableAll,
+      enableAll: disabled.enableAll,
+      el$: baseElement.el$,
     })
 
     const default_ = useDefault(props, context, {
@@ -206,6 +213,7 @@ export default {
       ...default_,
       ...nullValue,
       ...check,
+      ...asyncItems,
     }
   } 
 }

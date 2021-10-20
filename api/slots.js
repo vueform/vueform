@@ -142,6 +142,14 @@ export default {
           description: 'the element\'s component',
           types: ['component'],
         },
+        item: {
+          description: 'the checkbox item',
+          types: ['object'],
+        },
+        value: {
+          description: 'the checkbox value',
+          types: ['string|number'],
+        },
         id: {
           description: 'the `id` attribute of the checkbox field used by the default template',
           types: ['string'],
@@ -168,6 +176,14 @@ export default {
         el$: {
           description: 'the element\'s component',
           types: ['component'],
+        },
+        item: {
+          description: 'the radio item',
+          types: ['object'],
+        },
+        value: {
+          description: 'the radio value',
+          types: ['string|number'],
         },
         id: {
           description: 'the `id` attribute of the radio field used by the default template',

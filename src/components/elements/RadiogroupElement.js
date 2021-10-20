@@ -22,6 +22,7 @@ import useFieldId from './../../composables/elements/useFieldId'
 import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { radiogroup as useDisabled } from './../../composables/elements/useDisabled'
+import { radiogroup as useAsyncItems } from './../../composables/elements/useAsyncItems'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -85,6 +86,12 @@ export default {
 
     const disabled = useDisabled(props, context, {
       form$: form$.form$,
+    })
+
+    const asyncItems = useAsyncItems(props, context, {
+      disableAll: disabled.disableAll,
+      enableAll: disabled.enableAll,
+      el$: baseElement.el$,
     })
 
     const default_ = useDefault(props, context, {
@@ -201,6 +208,7 @@ export default {
       ...data,
       ...default_,
       ...nullValue,
+      ...asyncItems,
     }
   } 
 }
