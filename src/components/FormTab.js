@@ -38,7 +38,7 @@ export default {
       default: () => ([])
     },
 
-    tabClass: {
+    addClass: {
       type: [String, Array, Object],
       required: false,
       default: null,
@@ -65,7 +65,7 @@ export default {
       label,
       elements,
       conditions,
-      tabClass,
+      addClass,
     } = toRefs(props)
 
     const $this = getCurrentInstance().proxy
@@ -81,7 +81,7 @@ export default {
       defaultClasses,
     } = useFormComponent(props, context, {}, {
       addClasses: [
-        ['container', computed(() => tabClass.value || null), ref(true)],
+        ['container', computed(() => addClass.value || null), ref(true)],
         ['wrapper', 'wrapper_active', computed(() => active.value)],
         ['wrapper', 'wrapper_inactive', computed(() => !active.value)],
         ['wrapper', 'wrapper_valid', computed(() => !invalid.value)],

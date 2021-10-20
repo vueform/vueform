@@ -43,7 +43,7 @@ describe('FormStep', () => {
 
   mergeWith.container.push('step-class')
 
-  useFormComponent({steps:{a:{label:'a',elements:['el'],stepClass:'step-class'}},schema:{el:{type:'text'}}}, 'FormStep', {
+  useFormComponent({steps:{a:{label:'a',elements:['el'],addClass:'step-class'}},schema:{el:{type:'text'}}}, 'FormStep', {
     execute() {},
     mergeWith,
   })
@@ -392,7 +392,7 @@ describe('FormStep', () => {
         steps: {
           first: {
             label: 'First',
-            stepClass: 'class-a',
+            addClass: 'class-a',
             elements: ['a']
           },
           second: {

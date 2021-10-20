@@ -33,7 +33,7 @@ describe('FormTab', () => {
     mergeWith.wrapper.push(FormTab.vm.classes.wrapper_valid)
   }
 
-  useFormComponent({tabs:{a:{label:'a',elements:['el'],tabClass:'tab-class'}},schema:{el:{type:'text'}}}, 'FormTab', {
+  useFormComponent({tabs:{a:{label:'a',elements:['el'],addClass:'tab-class'}},schema:{el:{type:'text'}}}, 'FormTab', {
     execute() {},
     mergeWith,
   })
@@ -156,7 +156,7 @@ describe('FormTab', () => {
         tabs: {
           first: {
             label: 'First',
-            tabClass: 'class-a',
+            addClass: 'class-a',
             elements: ['a']
           },
           second: {

@@ -47,7 +47,7 @@ export default {
       default: () => ([])
     },
 
-    stepClass: {
+    addClass: {
       type: [String, Array, Object],
       required: false,
       default: null,
@@ -88,7 +88,7 @@ export default {
       label,
       elements,
       conditions,
-      stepClass,
+      addClass,
     } = toRefs(props)
 
     const $this = getCurrentInstance().proxy
@@ -113,7 +113,7 @@ export default {
         ['container', 'container_valid', computed(() => !invalid.value)],
         ['container', 'container_invalid', computed(() => invalid.value)],
         ['container', 'container_pending', computed(() => pending.value)],
-        ['container', computed(() => stepClass.value || null), ref(true)],
+        ['container', computed(() => addClass.value || null), ref(true)],
       ]
     })
 
