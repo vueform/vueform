@@ -108,7 +108,7 @@ export default {
       type: [String],
       default: 'ltr'
     },
-    options: {
+    extendOptions: {
       required: false,
       type: [Object],
       default: () => ({})

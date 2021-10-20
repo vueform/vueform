@@ -4,7 +4,7 @@ const base = function (props, context, dependencies, options_ = {})
 {
   const { 
     provider,
-    options,
+    extendOptions,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -74,7 +74,7 @@ const base = function (props, context, dependencies, options_ = {})
   * @option
   */
   const providerOptions = computed(() => {
-    return Object.assign({}, defaultOptions.value, options.value || {})
+    return Object.assign({}, defaultOptions.value, extendOptions.value || {})
   })
 
   // =============== METHODS ==============

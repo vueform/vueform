@@ -107,7 +107,7 @@ export default {
       type: [Array],
       default: () => ([])
     },
-    options: {
+    extendOptions: {
       required: false,
       type: [Object],
       default: () => ({})

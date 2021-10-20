@@ -105,7 +105,7 @@ export default {
       type: [String],
       default: 'formatted_address'
     },
-    options: {
+    extendOptions: {
       required: false,
       type: [Object],
       default: () => ({})

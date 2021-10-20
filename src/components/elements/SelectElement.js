@@ -24,6 +24,7 @@ import useHandleSelectEvents from './../../composables/elements/useHandleSelectE
 import useAsyncItems from './../../composables/elements/useAsyncItems'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useFloating from './../../composables/elements/useFloating'
 
 import { select as useOptions } from './../../composables/elements/useOptions'
 import { input as useClasses } from './../../composables/elements/useClasses'
@@ -284,7 +285,7 @@ export default {
       default: 'text',
       native: false,
     },
-    options: {
+    extendOptions: {
       required: false,
       type: [Object],
       default: () => ({})
@@ -329,6 +330,7 @@ export default {
       input: input.input,
       disable: disabled.disable,
       enable: disabled.enable,
+      el$: baseElement.el$,
     })
 
     const validation = useValidation(props, context, {

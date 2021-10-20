@@ -19,6 +19,7 @@ import useEvents from './../../composables/useEvents'
 import useHandleInput from './../../composables/elements/useHandleInput'
 import useLanguages from './../../composables/elements/useLanguages'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useFloating from './../../composables/elements/useFloating'
 
 import { input as useClasses } from './../../composables/elements/useClasses'
 import { multilingual as useValue } from './../../composables/elements/useValue'

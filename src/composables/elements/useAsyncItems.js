@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { toRefs, ref, computed } from 'composition-api'
+import { toRefs, ref, computed, watch } from 'composition-api'
 
 const base = function(props, context, dependencies)
 {
@@ -13,6 +13,7 @@ const base = function(props, context, dependencies)
   const disable = dependencies.disable
   const enable = dependencies.enable
   const input = dependencies.input
+  const el$ = dependencies.el$
 
   // ================ DATA ================
 
@@ -36,18 +37,23 @@ const base = function(props, context, dependencies)
     let nativeItems = []
     
     _.each(resolvedItems.value, (item, key) => {
-      if (typeof item == 'object') {
+      if (Array.isArray(resolvedItems.value) && typeof item === 'object') {
         if (item.value === undefined) {
-          throw new Error('You must define `value` property when using an array of objects options for select element')
+          throw new Error('You must define `value` property for each option when using an array of objects options for select element')
         }
 
         if (item.label === undefined) {
-          throw new Error('You must define `label` property when using an array of objects options for select element')
+          throw new Error('You must define `label` property for each option when using an array of objects options for select element')
         }
 
         nativeItems.push({
           value: item.value,
           label: item.label
+        })
+      } else if (Array.isArray(resolvedItems.value)) {
+        nativeItems.push({
+          value: item,
+          label: item,
         })
       } else {
         nativeItems.push({
@@ -63,7 +69,7 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Fetches & updates select options when using `async` options.
+   * Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.
    * 
    * @param {boolean} shouldDisable* whether the input field should be disabled while fetching options
    * @returns {void} 
@@ -78,7 +84,7 @@ const base = function(props, context, dependencies)
       disable()
     }
 
-    items.value().then((response) => {
+    items.value(el$.value).then((response) => {
       resolvedItems.value = response
       
       if (shouldDisable) {
@@ -87,9 +93,7 @@ const base = function(props, context, dependencies)
     })
   }
 
-  // ================ HOOKS ===============
-
-  if (isNative.value) {
+  const resolveItems = () => {
     if (typeof items.value !== 'function') {
       resolvedItems.value = items.value
     } else {
@@ -97,10 +101,33 @@ const base = function(props, context, dependencies)
     }
   }
 
+  // ================ HOOKS ===============
+
+  if (isNative.value) {
+    resolveItems()
+
+    watch(items, resolveItems)
+  }
+
+
   return {
     nativeItems,
     updateItems,
   }
+}
+
+const tags = function(props, context, dependencies) {
+  const {
+    updateItems
+  } = base(props, context, dependencies)
+
+  return {
+    updateItems,
+  }
+}
+
+export {
+  tags,
 }
 
 export default base

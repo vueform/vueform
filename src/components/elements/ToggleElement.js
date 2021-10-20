@@ -79,7 +79,7 @@ export default {
       type: [Boolean, String, Number],
       default: false
     },
-    options: {
+    extendOptions: {
       required: false,
       type: [Object],
       default: () => ({})

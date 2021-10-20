@@ -25,6 +25,7 @@ import useHandleInput from './../../composables/elements/useHandleInput'
 import useEmpty from './../../composables/elements/useEmpty'
 import useAutogrow from './../../composables/elements/useAutogrow'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useFloating from './../../composables/elements/useFloating'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'

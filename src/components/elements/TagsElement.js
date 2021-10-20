@@ -21,14 +21,15 @@ import useEvents from './../../composables/useEvents'
 import useHandleSelectEvents from './../../composables/elements/useHandleSelectEvents'
 import useHandleTag from './../../composables/elements/useHandleTag'
 import useSelect from './../../composables/elements/useSelect'
-import useAsyncItems from './../../composables/elements/useAsyncItems'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useFloating from './../../composables/elements/useFloating'
 
-import { tags as useOptions } from './../../composables/elements/useOptions'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
+import { tags as useOptions } from './../../composables/elements/useOptions'
 import { tags as useBaseElement } from './../../composables/elements/useBaseElement'
+import { tags as useAsyncItems } from './../../composables/elements/useAsyncItems'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -328,7 +329,7 @@ export default {
       default: 'text',
       native: false,
     },
-    options: {
+    extendOptions: {
       required: false,
       type: [Object],
       default: () => ({})
@@ -371,8 +372,6 @@ export default {
     const asyncItems = useAsyncItems(props, context, {
       isNative: options.isNative,
       input: input.input,
-      disable: disabled.disable,
-      enable: disabled.enable,
     })
 
     const validation = useValidation(props, context, {

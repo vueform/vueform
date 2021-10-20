@@ -56,7 +56,7 @@ const element = {
       type: [String],
       default: 'google'
     },
-    options: {
+    extendOptions: {
       required: false,
       type: [Object],
       default: () => ({})
