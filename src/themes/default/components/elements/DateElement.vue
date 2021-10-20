@@ -19,5 +19,5 @@
 </script>
 
 <style lang="scss">
-  // Some styles are contained in Laraform.vue & FlatpickrWrapper.vue
+  // Some styles are contained in Laraform.vue & DatepickerWrapper.vue
 </style>

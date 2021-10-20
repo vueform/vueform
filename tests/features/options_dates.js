@@ -47,7 +47,7 @@ export const fieldOptions = function (elementType, elementName, options) {
     })
   })
   
-  it('should bind `fieldOptions` to Flatpickr', () => {
+  it('should bind `fieldOptions` to Datepicker', () => {
     let form = createForm({
       schema: {
         el: {
@@ -58,9 +58,9 @@ export const fieldOptions = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let Flatpickr = findAllComponents(elWrapper, { name: 'FlatpickrWrapper' }).at(0)
+    let Datepicker = findAllComponents(elWrapper, { name: 'DatepickerWrapper' }).at(0)
     
-    expect(Flatpickr.props('options')).toStrictEqual(el.fieldOptions)
+    expect(Datepicker.props('options')).toStrictEqual(el.fieldOptions)
 
     // destroy() // teardown
   })

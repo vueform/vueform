@@ -20,6 +20,7 @@ import useEmpty from './../../composables/elements/useEmpty'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useDefault from './../../composables/elements/useDefault'
 import useHandleChange from './../../composables/elements/useHandleChange'
+import useFloating from './../../composables/elements/useFloating'
 
 import { dates as useValue } from './../../composables/elements/useValue'
 import { dates as useData } from './../../composables/elements/useData'

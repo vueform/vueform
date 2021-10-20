@@ -45,7 +45,7 @@ const base = function (props, context, dependencies, options_ = {})
   })
 
   /**
-  * Default options for flatpickr.
+  * Default options for location provider.
   * 
   * @type {object} 
   * @default {}

@@ -5,7 +5,7 @@ import useElementComponent from '../../composables/useElementComponent'
 import flatpickr from 'flatpickr'
 
 export default {
-  name: 'FlatpickrWrapper',
+  name: 'DatepickerWrapper',
   emits: ['change'],
   props: {
     value: {
@@ -52,7 +52,7 @@ export default {
      * @type {object}
      * @default null
      */
-    const flatpickr$ = ref(null)
+    const datepicker$ = ref(null)
 
     /**
      * The date input DOM element.
@@ -111,35 +111,35 @@ export default {
     }
 
     /**
-     * Sets's the flatpickr input parent's `id` attribute.
+     * Sets's the datepicker input parent's `id` attribute.
      * 
      * @returns {void}
      * @private
      */
-    const setFlatpickrId = () => {
-      flatpickr$.value.input.parentElement.id = 'flatpickr-' + id.value
+    const setDatepickerId = () => {
+      datepicker$.value.input.parentElement.id = 'datepicker-' + id.value
     }
 
     // ============== WATCHERS ==============
 
     watch(value, (n,o) => {
-      flatpickr$.value.setDate(n, false)
+      datepicker$.value.setDate(n, false)
     })
 
     watch(id, (n,o) => {
-      setFlatpickrId()
+      setDatepickerId()
     }, { immediate: false })
 
     watch(options, (n,o) => {
       _.each(config.value, (val, option) => {
-        flatpickr$.value.set(option, val)
+        datepicker$.value.set(option, val)
       })
     }, { deep: true })
 
     // ================ HOOKS ===============
 
     onMounted(() => {
-      flatpickr$.value = flatpickr(input.value, Object.assign({}, config.value, {
+      datepicker$.value = flatpickr(input.value, Object.assign({}, config.value, {
         onChange: (val) => {
           update(val)
         },
@@ -158,24 +158,24 @@ export default {
         }
       }))
 
-      if (flatpickr$.value.calendarContainer) {
+      if (datepicker$.value.calendarContainer) {
         if (typeof classes.value.calendarContainer !== 'string' || classes.value.calendarContainer.length > 0)
-        flatpickr$.value.calendarContainer.classList.add(classes.value.calendarContainer)
+        datepicker$.value.calendarContainer.classList.add(classes.value.calendarContainer)
       }
 
-      setFlatpickrId()
+      setDatepickerId()
 
       if (value.value !== null) {
-        flatpickr$.value.setDate(value.value, false)
+        datepicker$.value.setDate(value.value, false)
       }
     })
 
     // // Required because if static == true the picker does
     // // not close properly when clicking outside of it.
     // document.addEventListener('click', () => {
-    //   if(clickedOutsideElement('flatpickr-' + this.id)) {
-    //     if (this.flatpickr$.isOpen) {
-    //       this.flatpickr$.close()
+    //   if(clickedOutsideElement('datepicker-' + this.id)) {
+    //     if (this.datepicker$.isOpen) {
+    //       this.datepicker$.close()
     //     }
     //   }
     // })
@@ -188,7 +188,7 @@ export default {
       defaultClasses,
       mainClass,
       components,
-      flatpickr$,
+      datepicker$,
       input,
       config,
       mode,

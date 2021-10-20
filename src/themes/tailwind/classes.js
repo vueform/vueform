@@ -285,8 +285,8 @@ export default {
   },
 
   // Wrappers
-  FlatpickrWrapper: {
-    flatpickr: '',
+  DatepickerWrapper: {
+    datepicker: '',
     calendarContainer: ''
   },
   EditorWrapper: {

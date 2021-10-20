@@ -63,7 +63,7 @@ import ElementText from './components/ElementText'
 import DragAndDrop from './components/DragAndDrop'
 import ElementAddon from './components/ElementAddon'
 
-import FlatpickrWrapper from './components/wrappers/FlatpickrWrapper'
+import DatepickerWrapper from './components/wrappers/DatepickerWrapper'
 import EditorWrapper from './components/wrappers/EditorWrapper'
 
 import CheckboxgroupCheckbox from './components/elements/partials/CheckboxgroupCheckbox'
@@ -98,7 +98,7 @@ const components = {
   DragAndDrop,
   ElementAddon,
 
-  FlatpickrWrapper,
+  DatepickerWrapper,
   EditorWrapper,
 
   CheckboxgroupCheckbox,

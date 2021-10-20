@@ -23,7 +23,7 @@ import ElementText from './components/ElementText'
 import DragAndDrop from './components/DragAndDrop'
 import ElementAddon from './components/ElementAddon'
 
-import FlatpickrWrapper from './components/wrappers/FlatpickrWrapper'
+import DatepickerWrapper from './components/wrappers/DatepickerWrapper'
 import EditorWrapper from './components/wrappers/EditorWrapper'
 
 import AddressElement from './components/elements/AddressElement'
@@ -90,7 +90,7 @@ const components = {
   ElementAddon,
 
   // Wrappers
-  FlatpickrWrapper,
+  DatepickerWrapper,
   EditorWrapper,
 
   // Element partials

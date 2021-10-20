@@ -15,7 +15,7 @@
           :visible="!empty"
        />
 
-        <FlatpickrWrapper
+        <DatepickerWrapper
           :value="model"
           :options="fieldOptions"
           :id="fieldId"

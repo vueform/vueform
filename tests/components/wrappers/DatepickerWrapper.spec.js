@@ -2,11 +2,11 @@ import { createForm, findAllComponents, findAll } from 'test-helpers'
 import useElementComponent from './../../composables/useElementComponent'
 import { nextTick } from 'composition-api'
 
-describe('FlatpickrWrapper', () => {
-  useElementComponent('date', 'FlatpickrWrapper')
+describe('DatepickerWrapper', () => {
+  useElementComponent('date', 'DatepickerWrapper')
 
-  describe('flatpickr$', () => {
-    it('should be equal to flatpickr instance', async () => {
+  describe('datepicker$', () => {
+    it('should be equal to datepicker instance', async () => {
       let form = createForm({
         schema: {
           el: {
@@ -16,9 +16,9 @@ describe('FlatpickrWrapper', () => {
       })
 
       let el = form.vm.el$('el')
-      let FlatpickrWrapper = el.input
+      let DatepickerWrapper = el.input
 
-      expect(FlatpickrWrapper.flatpickr$.calendarContainer).not.toBe(undefined)
+      expect(DatepickerWrapper.datepicker$.calendarContainer).not.toBe(undefined)
     })
   })
 
@@ -33,9 +33,9 @@ describe('FlatpickrWrapper', () => {
       })
 
       let el = form.vm.el$('el')
-      let FlatpickrWrapper = el.input
+      let DatepickerWrapper = el.input
 
-      expect(FlatpickrWrapper.$el).toStrictEqual(findAll(form, 'input').at(0).element)
+      expect(DatepickerWrapper.$el).toStrictEqual(findAll(form, 'input').at(0).element)
     })
   })
 
@@ -50,9 +50,9 @@ describe('FlatpickrWrapper', () => {
       })
 
       let el = form.vm.el$('el')
-      let FlatpickrWrapper = el.input
+      let DatepickerWrapper = el.input
 
-      expect(FlatpickrWrapper.mode).toBe('single')
+      expect(DatepickerWrapper.mode).toBe('single')
     })
 
     it('should be range if range', async () => {
@@ -66,9 +66,9 @@ describe('FlatpickrWrapper', () => {
       })
 
       let el = form.vm.el$('el')
-      let FlatpickrWrapper = el.input
+      let DatepickerWrapper = el.input
 
-      expect(FlatpickrWrapper.mode).toBe('range')
+      expect(DatepickerWrapper.mode).toBe('range')
     })
   })
 
@@ -83,9 +83,9 @@ describe('FlatpickrWrapper', () => {
       })
 
       let el = form.vm.el$('el')
-      let FlatpickrWrapper = el.input
+      let DatepickerWrapper = el.input
 
-      expect(FlatpickrWrapper.config).toStrictEqual({
+      expect(DatepickerWrapper.config).toStrictEqual({
         dateFormat: el.fieldOptions.dateFormat,
         disable: [],
         clickOpens: true,
@@ -109,13 +109,13 @@ describe('FlatpickrWrapper', () => {
       })
 
       let el = form.vm.el$('el')
-      let FlatpickrWrapper = findAllComponents(form, { name: 'FlatpickrWrapper' }).at(0)
+      let DatepickerWrapper = findAllComponents(form, { name: 'DatepickerWrapper' }).at(0)
       
-      FlatpickrWrapper.vm.update([1,2])
-      expect(FlatpickrWrapper.emitted('change')[0][0]).toBe(1)
+      DatepickerWrapper.vm.update([1,2])
+      expect(DatepickerWrapper.emitted('change')[0][0]).toBe(1)
       
-      FlatpickrWrapper.vm.update([])
-      expect(FlatpickrWrapper.emitted('change')[1][0]).toBe(null)
+      DatepickerWrapper.vm.update([])
+      expect(DatepickerWrapper.emitted('change')[1][0]).toBe(null)
     })
 
     it('should emit value or if not single', async () => {
@@ -128,15 +128,15 @@ describe('FlatpickrWrapper', () => {
       })
 
       let el = form.vm.el$('el')
-      let FlatpickrWrapper = findAllComponents(form, { name: 'FlatpickrWrapper' }).at(0)
+      let DatepickerWrapper = findAllComponents(form, { name: 'DatepickerWrapper' }).at(0)
       
-      FlatpickrWrapper.vm.update([1,2])
-      expect(FlatpickrWrapper.emitted('change')[0][0]).toStrictEqual([1,2])
+      DatepickerWrapper.vm.update([1,2])
+      expect(DatepickerWrapper.emitted('change')[0][0]).toStrictEqual([1,2])
     })
   })
 
   describe('watchers', () => {
-    it('should set date to flatpickr when value changes', async () => {
+    it('should set date to datepicker when value changes', async () => {
       let form = createForm({
         schema: {
           el: {
@@ -147,16 +147,16 @@ describe('FlatpickrWrapper', () => {
 
       let el = form.vm.el$('el')
 
-      expect(el.input.flatpickr$.selectedDates.length).toBe(0)
+      expect(el.input.datepicker$.selectedDates.length).toBe(0)
 
       el.update('2020-11-20')
 
       await nextTick()
 
-      expect(el.input.flatpickr$.selectedDates[0]).toStrictEqual(moment('2020-11-20').toDate())
+      expect(el.input.datepicker$.selectedDates[0]).toStrictEqual(moment('2020-11-20').toDate())
     })
 
-    it('should set flatpickr id when id changes', async () => {
+    it('should set datepicker id when id changes', async () => {
       let form = createForm({
         schema: {
           el: {
@@ -168,16 +168,16 @@ describe('FlatpickrWrapper', () => {
 
       let el = form.vm.el$('el')
 
-      expect(el.input.flatpickr$.input.parentElement.id).toBe('flatpickr-el')
+      expect(el.input.datepicker$.input.parentElement.id).toBe('datepicker-el')
 
       form.vm.laraform.schema.el.id = 'not-el'
 
       await nextTick()
 
-      expect(el.input.flatpickr$.input.parentElement.id).toBe('flatpickr-not-el')
+      expect(el.input.datepicker$.input.parentElement.id).toBe('datepicker-not-el')
     })
 
-    it('should update flatpickr options when options change', async () => {
+    it('should update datepicker options when options change', async () => {
       let form = createForm({
         schema: {
           el: {
@@ -190,18 +190,18 @@ describe('FlatpickrWrapper', () => {
       let el = form.vm.el$('el')
 
 
-      expect(el.input.flatpickr$.config.mode).toBe('multiple')
+      expect(el.input.datepicker$.config.mode).toBe('multiple')
 
       form.vm.laraform.schema.el.mode = 'range'
 
       await nextTick()
 
-      expect(el.input.flatpickr$.config.mode).toBe('range')
+      expect(el.input.datepicker$.config.mode).toBe('range')
     })
   })
   
   describe('onMounted', () => {
-    it('should set flatpickr id', async () => {
+    it('should set datepicker id', async () => {
       let form = createForm({
         schema: {
           el: {
@@ -212,10 +212,10 @@ describe('FlatpickrWrapper', () => {
 
       let el = form.vm.el$('el')
 
-      expect(el.input.flatpickr$.input.parentElement.id).toBe('flatpickr-el')
+      expect(el.input.datepicker$.input.parentElement.id).toBe('datepicker-el')
     })
 
-    it('should set date flatpickr date if has value', async () => {
+    it('should set date datepicker date if has value', async () => {
       let form = createForm({
         schema: {
           el: {
@@ -227,10 +227,10 @@ describe('FlatpickrWrapper', () => {
 
       let el = form.vm.el$('el')
 
-      expect(el.input.flatpickr$.selectedDates[0]).toStrictEqual(moment('2020-11-20').toDate())
+      expect(el.input.datepicker$.selectedDates[0]).toStrictEqual(moment('2020-11-20').toDate())
     })
 
-    it('should add calendarContainer class to flatpickr$ calendarContainer', async () => {
+    it('should add calendarContainer class to datepicker$ calendarContainer', async () => {
       let form = createForm({
         schema: {
           el: {
@@ -240,12 +240,12 @@ describe('FlatpickrWrapper', () => {
       })
 
       let el = form.vm.el$('el')
-      let FlatpickrWrapper = findAllComponents(form, { name: 'FlatpickrWrapper' }).at(0)
+      let DatepickerWrapper = findAllComponents(form, { name: 'DatepickerWrapper' }).at(0)
 
-      expect(el.input.flatpickr$.calendarContainer.className).toContain(FlatpickrWrapper.vm.defaultClasses.calendarContainer)
+      expect(el.input.datepicker$.calendarContainer.className).toContain(DatepickerWrapper.vm.defaultClasses.calendarContainer)
     })
 
-    it('should update value if flatpickr value changes', async () => {
+    it('should update value if datepicker value changes', async () => {
       let form = createForm({
         schema: {
           el: {
@@ -255,9 +255,9 @@ describe('FlatpickrWrapper', () => {
       })
 
       let el = form.vm.el$('el')
-      let FlatpickrWrapper = findAllComponents(form, { name: 'FlatpickrWrapper' }).at(0)
+      let DatepickerWrapper = findAllComponents(form, { name: 'DatepickerWrapper' }).at(0)
 
-      el.input.flatpickr$.setDate('2020-11-20', true)
+      el.input.datepicker$.setDate('2020-11-20', true)
 
       await nextTick()
 
@@ -274,11 +274,11 @@ describe('FlatpickrWrapper', () => {
       })
 
       let el = form.vm.el$('el')
-      let FlatpickrWrapper = findAllComponents(form, { name: 'FlatpickrWrapper' }).at(0)
+      let DatepickerWrapper = findAllComponents(form, { name: 'DatepickerWrapper' }).at(0)
 
-      el.input.flatpickr$.open()
-      el.input.flatpickr$.setDate('2020-11-20')
-      el.input.flatpickr$.close()
+      el.input.datepicker$.open()
+      el.input.datepicker$.setDate('2020-11-20')
+      el.input.datepicker$.close()
 
       await nextTick()
 
@@ -296,19 +296,19 @@ describe('FlatpickrWrapper', () => {
       })
 
       let el = form.vm.el$('el')
-      let FlatpickrWrapper = findAllComponents(form, { name: 'FlatpickrWrapper' }).at(0)
+      let DatepickerWrapper = findAllComponents(form, { name: 'DatepickerWrapper' }).at(0)
 
-      el.input.flatpickr$.open()
-      el.input.flatpickr$.setDate(['2020-11-20'])
-      el.input.flatpickr$.close()
+      el.input.datepicker$.open()
+      el.input.datepicker$.setDate(['2020-11-20'])
+      el.input.datepicker$.close()
 
       await nextTick()
 
       expect(el.value).toStrictEqual([])
 
-      el.input.flatpickr$.open()
-      el.input.flatpickr$.setDate(['2020-11-20', '2020-11-22'])
-      el.input.flatpickr$.close()
+      el.input.datepicker$.open()
+      el.input.datepicker$.setDate(['2020-11-20', '2020-11-22'])
+      el.input.datepicker$.close()
 
       await nextTick()
 

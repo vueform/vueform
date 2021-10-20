@@ -1,7 +1,7 @@
 <template>
   <input
     type="text"
-    :class="classes.flatpickr"
+    :class="classes.datepicker"
     :id="id"
     :placeholder="placeholder"
     ref="input"
@@ -10,11 +10,11 @@
 
 <script>
   export default {
-    name: 'FlatpickrWrapper',
+    name: 'DatepickerWrapper',
     data() {
       return {
         defaultClasses: {
-          flatpickr: '',
+          datepicker: '',
           calendarContainer: ''
         }
       }
