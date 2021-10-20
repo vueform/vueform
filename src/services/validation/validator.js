@@ -200,6 +200,10 @@ const Validator = class {
     if (this.debounce && this.filled(value)) {
       await this._validateWithDebounce(value)
     } else {
+      if (this.debounce) {
+        clearTimeout(this.debouncer)
+      }
+      
       await this._validate(value)
     }
   }
@@ -208,7 +212,17 @@ const Validator = class {
     this.invalid = false
   }
 
-  watch(variable) {
+  watch(variables) {
+    if (!Array.isArray(variables)) {
+      variables = [variables] 
+    }
+
+    variables.forEach((variable) => {
+      this.addWatcher(variable)
+    })
+  }
+
+  addWatcher(variable) {
     if (this.watchers[variable]) {
       return
     }
@@ -313,6 +327,7 @@ const Validator = class {
       }
 
       this.debouncer = setTimeout(async () => {
+        console.log('debouncer kicks in', value)
         await this._validate(value)
         this.debouncer = null
         resolve()
