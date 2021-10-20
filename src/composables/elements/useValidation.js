@@ -373,9 +373,9 @@ const list = function(props, context, dependencies)
    * 
    * @returns {void}
    */
-  const validate = () => {
-    validateValidators()
-    validateChildren()
+  const validate = async () => {
+    await validateValidators()
+    await validateChildren()
   }
   
   /**
@@ -383,13 +383,13 @@ const list = function(props, context, dependencies)
    * 
    * @returns {void}
    */
-  const validateValidators = () => {
+  const validateValidators = async () => {
     if (form$.value.validation === false) {
       return
     }
 
-    _.each(Validators.value, (Validator) => {
-      Validator.validate()
+    await asyncForEach(Validators.value, async (Validator) => {
+      await Validator.validate()
     })
 
     state.value.validated = true
@@ -400,13 +400,13 @@ const list = function(props, context, dependencies)
    * 
    * @returns {void}
    */
-  const validateChildren = () => {
+  const validateChildren = async () => {
     if (form$.value.validation === false) {
       return
     }
 
-    _.each(children$.value, (element$) => {
-      element$.validate()
+    await asyncForEach(children$.value, async (element$) => {
+      await element$.validate()
     })
   }
 
@@ -611,8 +611,8 @@ const multilingual = function(props, context, dependencies)
    * @returns {void}
    */
   const validate = async () => {
-    _.each(languages.value, (label, lang) => {
-      validateLanguage(lang)
+    await asyncForEach(languages.value, async (label, lang) => {
+      await validateLanguage(lang)
     })
   }
 
@@ -622,7 +622,7 @@ const multilingual = function(props, context, dependencies)
    * @param {string} lang the langauage to check (defaults to currently selected language)
    * @returns {void}
    */
-  const validateLanguage = (lang = language.value) => {
+  const validateLanguage = async (lang = language.value) => {
     if (form$.value.validation === false) {
       return
     }
@@ -631,8 +631,8 @@ const multilingual = function(props, context, dependencies)
       return
     }
 
-    _.each(Validators.value[lang], (Validator) => {
-      Validator.validate(value.value[lang])
+    await asyncForEach(Validators.value[lang], async (Validator) => {
+      await Validator.validate(value.value[lang])
     })
 
     state.value.validated[lang] = true
@@ -808,13 +808,13 @@ const object = function(props, context, dependencies)
 
   // =============== METHODS ==============
 
-  const validate = () => {
-    _.each(children$.value, (element$) => {
+  const validate = async () => {
+    await asyncForEach(children$.value, async (element$) => {
       if (!element$.available || element$.isStatic) {
         return
       }
 
-      element$.validate()
+      await element$.validate()
     })
   }
 
