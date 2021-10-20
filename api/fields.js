@@ -4429,7 +4429,7 @@ toggle: {
     },
   },
 },
-trix: {
+editor: {
   emits: ['change', 'error'],
   slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {
@@ -4440,7 +4440,7 @@ trix: {
     type: {
       required: false,
       type: [String],
-      default: 'trix'
+      default: 'editor'
     },
     addClass: {
       required: false,
@@ -4889,7 +4889,7 @@ tText: {
     },
   },
 },
-tTrix: {
+tEditor: {
   events: ['change', 'error'],
   slots: ['label', 'info', 'description', 'error', 'message', 'before', 'between', 'after'],
   props: {
@@ -4900,7 +4900,7 @@ tTrix: {
     type: {
       required: false,
       type: [String],
-      default: 'tTrix'
+      default: 'tEditor'
     },
     addClass: {
       required: false,

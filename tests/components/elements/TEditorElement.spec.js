@@ -1,8 +1,8 @@
 import { runElementTests } from 'test-helpers'
 
-export default runElementTests('tTrix', {
+export default runElementTests('tEditor', {
   default: {
-    fieldType: 'trix',
+    fieldType: 'editor',
     default: {en:'<div>default-en</div>',fr:'<div>default-fr</div>'},
     default2: {en:'<div>default2-en</div>',fr:'<div>default2-fr</div>'},
     value: {en:'<div>value-en</div>',fr:'<div>value-fr</div>'},

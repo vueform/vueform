@@ -21626,7 +21626,7 @@ module.exports = {
       },
     },
   },
-  TTrixElement: {
+  TEditorElement: {
     props: {
       name: {
         required: 'true',
@@ -21887,7 +21887,7 @@ module.exports = {
       },
       type: {
         required: 'false',
-        default: 't-trix',
+        default: 't-editor',
         types: [
           'string',
         ],
@@ -22261,7 +22261,7 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      trixEndpoint: {
+      editorEndpoint: {
         types: [
           'string',
         ],
@@ -27364,7 +27364,7 @@ module.exports = {
       },
     },
   },
-  TrixElement: {
+  EditorElement: {
     props: {
       name: {
         required: 'true',
@@ -27625,7 +27625,7 @@ module.exports = {
       },
       type: {
         required: 'false',
-        default: 'trix',
+        default: 'editor',
         types: [
           'string',
         ],
@@ -27690,7 +27690,7 @@ module.exports = {
       },
       endpoint: {
         required: 'false',
-        default: 'config.endpoints.trix.endpoint',
+        default: 'config.endpoints.editor.endpoint',
         types: [
           'string',
         ],
@@ -27998,7 +27998,7 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      trixEndpoint: {
+      editorEndpoint: {
         types: [
           'string',
         ],

@@ -4041,7 +4041,7 @@ module.exports = {
     },
     "slots": {}
   },
-  "TrixWrapper": {
+  "EditorWrapper": {
     "inject": {
       "el$": {
         "public": true,
@@ -4082,20 +4082,20 @@ module.exports = {
       }
     },
     "data": {
-      "trix$": {
+      "editor$": {
         "public": true,
         "default": "null",
         "types": [
           "HTMLElement"
         ],
-        "description": "The [`Trix`](https://github.com/basecamp/trix) DOM instance."
+        "description": "The [`Trix`](https://github.com/basecamp/editor) DOM instance."
       }
     },
     "methods": {
       "update": {
         "public": true,
         "returns": "void",
-        "description": "Updates the value of Trix editor.",
+        "description": "Updates the value of Editor editor.",
         "params": {
           "value": {
             "types": [
@@ -4109,7 +4109,7 @@ module.exports = {
       "setOption": {
         "public": true,
         "returns": "void",
-        "description": "Sets an option for Trix editor.",
+        "description": "Sets an option for Editor editor.",
         "params": {
           "key": {
             "types": [

@@ -728,7 +728,7 @@ export default {
         }
       }
     },
-    "trix": {
+    "editor": {
       "computed": {
         "classes": {
           "public": true,
@@ -1354,7 +1354,7 @@ export default {
         }
       }
     },
-    "trix": {
+    "editor": {
       "computed": {
         "data": {
           "public": true,
@@ -1425,7 +1425,7 @@ export default {
         }
       }
     },
-    "ttrix": {
+    "teditor": {
       "computed": {
         "data": {
           "public": true,
@@ -2916,10 +2916,10 @@ export default {
       }
     }
   },
-  "trix": {
+  "editor": {
     "base": {
       "computed": {
-        "trixEndpoint": {
+        "editorEndpoint": {
           "public": false,
           "default": "`config.endpoints.elements`",
           "types": [

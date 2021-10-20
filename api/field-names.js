@@ -19,7 +19,7 @@ module.exports = {
   TagsElement: 'tags input',
   TextareaElement: 'textarea',
   ToggleElement: 'toggle',
-  TrixElement: 'trix editor',
+  EditorElement: 'editor',
   TTextareaElement: 'textarea',
-  TTrixElement: 'trix editor',
+  TEditorElement: 'editor',
 }

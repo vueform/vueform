@@ -1,15 +1,15 @@
 <template>
   <div :class="classes.container">
-    <input :id="`trix-input-${id}`" :value="value" type="hidden">
+    <input :id="`editor-input-${id}`" :value="value" type="hidden">
     <trix-editor
       :placeholder="placeholder"
       :disabled="disabled"
       :id="id"
-      :input="`trix-input-${id}`"
+      :input="`editor-input-${id}`"
       @trix-change="handleChange"
       @trix-file-accept="handleFileAccept"
       @trix-attachment-add="handleAttachmentAdd"
-      ref="trix$"
+      ref="editor$"
     ></trix-editor>
   </div>
 </template>
@@ -18,7 +18,7 @@
   import Trix from 'trix'
 
   export default {
-    name: 'TrixWrapper',
+    name: 'EditorWrapper',
     data() {
       return {
         defaultClasses: {

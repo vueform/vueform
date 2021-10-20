@@ -18,12 +18,12 @@ import useEvents from './../../composables/useEvents'
 import useHandleInput from './../../composables/elements/useHandleInput'
 import useHandleError from './../../composables/elements/useHandleError'
 import useLanguages from './../../composables/elements/useLanguages'
-import useTrix from './../../composables/elements/useTrix'
+import useEditor from './../../composables/elements/useEditor'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useHandleAlert from './../../composables/elements/useHandleAlert'
 
-import { ttrix as useData } from './../../composables/elements/useData'
-import { trix as useClasses } from './../../composables/elements/useClasses'
+import { teditor as useData } from './../../composables/elements/useData'
+import { editor as useClasses } from './../../composables/elements/useClasses'
 import { multilingual as useNullValue } from './../../composables/elements/useNullValue'
 import { multilingual as useValue } from './../../composables/elements/useValue'
 import { multilingual as useDefault } from './../../composables/elements/useDefault'
@@ -37,14 +37,14 @@ import HasData from './../../mixins/HasData'
 import HasValidation from './../../mixins/HasValidation'
 
 export default {
-  name: 'TTrixElement',
+  name: 'TEditorElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
       type: [String],
-      default: 't-trix',
+      default: 't-editor',
       private: true,
     },
     default: {
@@ -187,7 +187,7 @@ export default {
       form$: form$.form$
     })
 
-    const trix = useTrix(props, context, {
+    const editor = useEditor(props, context, {
       form$: form$.form$,
       input: input.input,
     })
@@ -196,7 +196,7 @@ export default {
       form$: form$.form$,
       theme: theme.theme,
       isDisabled: disabled.isDisabled,
-      focused: trix.focused,
+      focused: editor.focused,
       components: components.components,
     })
 
@@ -281,7 +281,7 @@ export default {
       ...handleInput,
       ...handleError,
       ...handleAlert,
-      ...trix,
+      ...editor,
       ...languages,
     }
   } 

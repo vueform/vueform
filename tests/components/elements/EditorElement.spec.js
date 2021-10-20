@@ -1,8 +1,8 @@
 import { runElementTests } from 'test-helpers'
 
-export default runElementTests('trix', {
+export default runElementTests('editor', {
   default: {
-    fieldType: 'trix',
+    fieldType: 'editor',
     default: '<div>default</div>',
     default2: '<div>default2</div>',
     value: '<div>value</div>',

@@ -647,7 +647,7 @@ const multilingual = function(props, context, dependencies, options = {})
   }
 }
 
-const trix = function(props, context, dependencies)
+const editor = function(props, context, dependencies)
 {
   const {
     data,
@@ -683,7 +683,7 @@ const trix = function(props, context, dependencies)
   }
 }
 
-const ttrix = function(props, context, dependencies)
+const teditor = function(props, context, dependencies)
 {
   const {
     data,
@@ -734,8 +734,8 @@ export {
   group,
   list,
   multilingual,
-  trix,
-  ttrix,
+  editor,
+  teditor,
 }
 
 export default base

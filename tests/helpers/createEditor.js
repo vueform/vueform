@@ -1,4 +1,4 @@
-export default function createTrix (details) {
+export default function createEditor (details) {
   const originalConsoleError = console.error
 
   console.error = (e) => { if (!e.toString().includes('Unknown custom element: <trix-editor>')) throw new Error(e) }

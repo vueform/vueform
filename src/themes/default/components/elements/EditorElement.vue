@@ -1,14 +1,14 @@
 <script>
-  import TrixElement from './../../../blank/components/elements/TrixElement'
+  import EditorElement from './../../../blank/components/elements/EditorElement'
 
   export default {
-    name: 'TrixElement',
-    render: TrixElement.render,
+    name: 'EditorElement',
+    render: EditorElement.render,
     data() {
       return {
         defaultClasses: {
           container: '',
-          input: 'vf-trix',
+          input: 'vf-editor',
           input_enabled: '',
           input_disabled: 'is-disabled',
           input_focused: 'is-focused',
@@ -19,7 +19,7 @@
 </script>
 
 <style lang="scss">
-  .vf-trix {
+  .vf-editor {
     border: var(--vf-border-width) solid var(--vf-border-color);
     border-radius: var(--vf-border-radius);
 

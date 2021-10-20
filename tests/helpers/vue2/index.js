@@ -1,7 +1,7 @@
 import change from './../change'
 import check from './../check'
 import confirmSelectOptions from './../confirmSelectOptions'
-import createTrix from './../createTrix'
+import createEditor from './../createEditor'
 import listChild from './../listChild'
 import listChildValue from './../listChildValue'
 import listSchema from './../listSchema'
@@ -51,7 +51,7 @@ export {
   createForm,
   createInlineForm,
   createLaraformInstaller,
-  createTrix,
+  createEditor,
   destroy,
   listChild,
   listChildValue,

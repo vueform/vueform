@@ -5,7 +5,7 @@ import createElement from './createElement'
 import createForm from './createForm'
 import createInlineForm from './createInlineForm'
 import createLaraformInstaller from './createLaraformInstaller'
-import createTrix from './createTrix'
+import createEditor from './createEditor'
 import destroy from './destroy'
 import listChild from './listChild'
 import listChildValue from './listChildValue'
@@ -50,7 +50,7 @@ export {
   createForm,
   createInlineForm,
   createLaraformInstaller,
-  createTrix,
+  createEditor,
   destroy,
   listChild,
   listChildValue,

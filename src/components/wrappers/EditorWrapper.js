@@ -2,7 +2,7 @@ import { ref, watch, onMounted, toRefs } from 'composition-api'
 import useElementComponent from './../../composables/useElementComponent'
 
 export default {
-  name: 'TrixWrapper',
+  name: 'EditorWrapper',
   emits: ['input', 'alert', 'error'],
   props: {
     value: {
@@ -73,17 +73,17 @@ export default {
     // ================ DATA ================
 
     /**
-     * The [`Trix`](https://github.com/basecamp/trix) DOM instance.
+     * The [`Editor`](https://github.com/basecamp/trix) DOM instance.
      * 
      * @type {HTMLElement}
      * @default null
      */
-    const trix$ = ref(null)
+    const editor$ = ref(null)
 
     // =============== METHODS ==============
 
     /**
-     * Updates the value of Trix editor.
+     * Updates the value of editor.
      * 
      * @param {string} value* the value to update with
      * @returns {void}
@@ -93,18 +93,18 @@ export default {
         val = String(val)
       }
 
-      trix$.value.editor.loadHTML(val)
+      editor$.value.editor.loadHTML(val)
     }
 
     /**
-     * Sets an option for Trix editor.
+     * Sets an option for editor.
      * 
      * @param {string} key* the option key
      * @param {string} value* the option value
      * @returns {void}
      */
     const setOption = (key, val) => {
-      trix$.value[key] = val
+      editor$.value[key] = val
     }
 
     /**
@@ -118,11 +118,11 @@ export default {
       // method (which implies an external call) we should
       // not emit any events because that would duplicate the
       // effects of the value change.
-      if (trix$.value.value == value.value || (!trix$.value.value && !value.value)) {
+      if (editor$.value.value == value.value || (!editor$.value.value && !value.value)) {
         return
       }
 
-      context.emit('input', { target: { value: trix$.value.value }})
+      context.emit('input', { target: { value: editor$.value.value }})
     }
 
     /**
@@ -146,7 +146,7 @@ export default {
       if (acceptMimes.value.length && acceptMimes.value.indexOf(e.file.type) === -1) {
         e.preventDefault()
 
-        context.emit('alert', form$.value.__('laraform.trix.acceptedMimesError', {
+        context.emit('alert', form$.value.__('laraform.editor.acceptedMimesError', {
           mimes:acceptMimes.value.join(', ')
         }))
       }
@@ -156,7 +156,7 @@ export default {
       if (accept.value.length && accept.value.indexOf(extension) === -1) {
         e.preventDefault()
 
-        context.emit('alert', form$.value.__('laraform.trix.acceptedExtensionsError', {
+        context.emit('alert', form$.value.__('laraform.editor.acceptedExtensionsError', {
           extensions:accept.value.join(', ')
         }))
       }
@@ -204,14 +204,14 @@ export default {
     // ============== WATCHERS ==============
 
     watch(disabled, (val) => {
-      trix$.value.contentEditable = !val
+      editor$.value.contentEditable = !val
     })
 
     // ================ HOOKS ===============
 
     onMounted(() => {
       if (disabled.value) {
-        trix$.value.contentEditable = false
+        editor$.value.contentEditable = false
       }
     })
 
@@ -221,7 +221,7 @@ export default {
       theme,
       classes,
       components,
-      trix$,
+      editor$,
       update,
       setOption,
       handleChange,

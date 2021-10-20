@@ -30,7 +30,7 @@ const base = function (props, context, dependencies)
   * @default `config.endpoints.attachment.url`
   * @private
   */
-  const trixEndpoint = computed(() => {
+  const editorEndpoint = computed(() => {
     return endpoint.value || form$.value.$laraform.config.endpoints.attachment.url
   })
 
@@ -41,7 +41,7 @@ const base = function (props, context, dependencies)
   * @default `config.endpoints.attachment.method`
   * @private
   */
-  const trixMethod = computed(() => {
+  const editorMethod = computed(() => {
     return method.value || form$.value.$laraform.config.endpoints.attachment.method
   })
 
@@ -49,18 +49,18 @@ const base = function (props, context, dependencies)
   // =============== HOOKS ================
 
   onMounted(() => {
-    input.value.trix$.addEventListener('focus', () => {
+    input.value.editor$.addEventListener('focus', () => {
       focused.value = true
     })
 
-    input.value.trix$.addEventListener('blur', () => {
+    input.value.editor$.addEventListener('blur', () => {
       focused.value = false
     })
   })
 
   return {
-    trixEndpoint,
-    trixMethod,
+    editorEndpoint,
+    editorMethod,
     focused,
   }
 }

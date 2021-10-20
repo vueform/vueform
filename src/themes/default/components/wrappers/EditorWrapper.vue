@@ -1,10 +1,10 @@
 <script>
-  import TrixWrapper from './../../../blank/components/wrappers/TrixWrapper'
+  import EditorWrapper from './../../../blank/components/wrappers/EditorWrapper'
   import Trix from 'trix'
 
   export default {
-    name: 'TrixWrapper',
-    render: TrixWrapper.render,
+    name: 'EditorWrapper',
+    render: EditorWrapper.render,
     data() {
       return {
         defaultClasses: {

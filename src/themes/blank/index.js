@@ -24,7 +24,7 @@ import DragAndDrop from './components/DragAndDrop'
 import ElementAddon from './components/ElementAddon'
 
 import FlatpickrWrapper from './components/wrappers/FlatpickrWrapper'
-import TrixWrapper from './components/wrappers/TrixWrapper'
+import EditorWrapper from './components/wrappers/EditorWrapper'
 
 import AddressElement from './components/elements/AddressElement'
 import ButtonElement from './components/elements/ButtonElement'
@@ -49,10 +49,10 @@ import TagsElement from './components/elements/TagsElement'
 import TextareaElement from './components/elements/TextareaElement'
 import TextElement from './components/elements/TextElement'
 import ToggleElement from './components/elements/ToggleElement'
-import TrixElement from './components/elements/TrixElement'
+import EditorElement from './components/elements/EditorElement'
 import TTextareaElement from './components/elements/TTextareaElement'
 import TTextElement from './components/elements/TTextElement'
-import TTrixElement from './components/elements/TTrixElement'
+import TEditorElement from './components/elements/TEditorElement'
 
 import CheckboxgroupCheckbox from './components/elements/partials/CheckboxgroupCheckbox'
 import FilePreview from './components/elements/partials/FilePreview'
@@ -91,7 +91,7 @@ const components = {
 
   // Wrappers
   FlatpickrWrapper,
-  TrixWrapper,
+  EditorWrapper,
 
   // Element partials
   CheckboxgroupCheckbox,
@@ -123,10 +123,10 @@ const components = {
   TextareaElement,
   TextElement,
   ToggleElement,
-  TrixElement,
+  EditorElement,
   TTextareaElement,
   TTextElement,
-  TTrixElement,
+  TEditorElement,
 }
 
 export default {

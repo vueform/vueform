@@ -26,10 +26,10 @@ const elements = [
   'textarea',
   'text',
   'toggle',
-  'trix',
+  'editor',
   'tTextarea',
   'tText',
-  'tTrix',
+  'tEditor',
 ]
 const overrides = {
   key: 'hidden',

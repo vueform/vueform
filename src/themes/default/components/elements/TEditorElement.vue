@@ -1,14 +1,14 @@
 <script>
-  import TTrixElement from './../../../blank/components/elements/TTrixElement'
+  import TEditorElement from './../../../blank/components/elements/TEditorElement'
 
   export default {
-    name: 'TTrixElement',
-    render: TTrixElement.render,
+    name: 'TEditorElement',
+    render: TEditorElement.render,
     data() {
       return {
         defaultClasses: {
           container: '',
-          input: 'vf-trix',
+          input: 'vf-editor',
           input_enabled: '',
           input_disabled: 'is-disabled',
           input_focused: 'is-focused',
@@ -19,5 +19,5 @@
 </script>
 
 <style lang="scss">
-  // Some styles are contained in TrixElement.vue
+  // Some styles are contained in EditorElement.vue
 </style>

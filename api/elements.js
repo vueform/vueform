@@ -972,14 +972,14 @@ export default {
       "change"
     ]
   },
-  "trix": {
+  "editor": {
     "features": [
       "baseElement",
-      "classes_trix",
+      "classes_editor",
       "columns",
       "components",
       "conditions",
-      "data_trix",
+      "data_editor",
       "default",
       "disabled",
       "empty",
@@ -997,7 +997,7 @@ export default {
       "path",
       "slots",
       "theme",
-      "trix",
+      "editor",
       "validation",
       "value",
       "view",
@@ -1105,14 +1105,14 @@ export default {
       "change"
     ]
   },
-  "tTrix": {
+  "tEditor": {
     "features": [
       "baseElement",
-      "classes_trix",
+      "classes_editor",
       "columns",
       "components",
       "conditions",
-      "data_ttrix",
+      "data_teditor",
       "default_multilingual",
       "disabled",
       "empty_multilingual",
@@ -1131,7 +1131,7 @@ export default {
       "path",
       "slots",
       "theme",
-      "trix",
+      "editor",
       "validation_multilingual",
       "value_multilingual",
       "view",

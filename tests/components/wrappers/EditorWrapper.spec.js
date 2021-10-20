@@ -1,17 +1,17 @@
 import { createLocalVue, mount } from '@vue/test-utils'
 import { createForm, findAllComponents, installLaraform, createElement } from 'test-helpers'
 import { markRaw, nextTick } from 'composition-api'
-import TrixEditor from './../../mocks/TrixEditor'
+import EditorEditor from './../../mocks/EditorEditor'
 import flushPromises from 'flush-promises'
 import defaultTheme from './../../../src/themes/default'
 
-const createTrix = (details) => {
+const createEditor = (details) => {
   const originalConsoleError = console.error
 
   console.error = (e) => { if (!e.toString().includes('Unknown custom element: <trix-editor>')) throw new Error(e) }
 
-  defaultTheme.components.TrixWrapper.components = {
-    TrixEditor: markRaw(TrixEditor)
+  defaultTheme.components.EditorWrapper.components = {
+    EditorEditor: markRaw(EditorEditor)
   }
 
   let form = createForm(details, {
@@ -27,110 +27,110 @@ const createTrix = (details) => {
   return form
 }
 
-describe('Trix Element Rendering', () => {
+describe('Editor Element Rendering', () => {
   it('should set `contentEditable` false when `disabled`', async () => {
-    let form = createTrix({
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
           disabled: true
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     await nextTick()
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
-    expect(trixEditor$.contentEditable).toBe(false)
+    expect(editorInstnace$.contentEditable).toBe(false)
   })
 
   it('should update `contentEditable` when `disabled` changes', async () => {
-    let form = createTrix({
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     await nextTick()
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
-    expect(trixEditor$.contentEditable).toBe(true)
+    expect(editorInstnace$.contentEditable).toBe(true)
 
     a.vm.disable()
 
     await nextTick()
 
-    expect(trixEditor$.contentEditable).toBe(false)
+    expect(editorInstnace$.contentEditable).toBe(false)
   })
 
-  it('should `update` trix value', async () => {
-    let form = createTrix({
+  it('should `update` editor value', async () => {
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     await nextTick()
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
-    expect(trixEditor$.value).toBe(null)
+    expect(editorInstnace$.value).toBe(null)
 
     a.vm.update('<div>aaa</div>')
     await nextTick()
-    expect(trixEditor$.value).toBe('<div>aaa</div>')
+    expect(editorInstnace$.value).toBe('<div>aaa</div>')
   })
 
-  it('should set trix options with `setOption`', async () => {
-    let form = createTrix({
+  it('should set editor options with `setOption`', async () => {
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
-    trix$.setOption('option', 'value')
-    expect(trixEditor$.option).toBe('value')
+    editor$.setOption('option', 'value')
+    expect(editorInstnace$.option).toBe('value')
   })
 
   it('should update element value with `handleChange`', async () => {
-    let form = createTrix({
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     await nextTick()
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
     expect(a.vm.value).toBe(null)
-    expect(trixEditor$.value).toBe(null)
+    expect(editorInstnace$.value).toBe(null)
 
-    trixEditor$.value = '<div>aaa</div>'
-    trix$.handleChange()
+    editorInstnace$.value = '<div>aaa</div>'
+    editor$.handleChange()
 
     expect(a.vm.value).toBe('<div>aaa</div>')
   })
@@ -138,25 +138,25 @@ describe('Trix Element Rendering', () => {
   it('should trigger element\'s `change` event on `handleChange`', async () => {
     let onChangeMock = jest.fn()
 
-    let form = createTrix({
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
           onChange: onChangeMock
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     await nextTick()
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
     expect(onChangeMock.mock.calls.length).toBe(0)
 
-    trixEditor$.value = '<div>aaa</div>'
-    trix$.handleChange()
+    editorInstnace$.value = '<div>aaa</div>'
+    editor$.handleChange()
 
     await nextTick()
 
@@ -168,21 +168,21 @@ describe('Trix Element Rendering', () => {
   it('should not trigger `error` event when mime type is allowed', async () => {
     let onErrorMock = jest.fn()
 
-    let form = createTrix({
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
           onError: onErrorMock,
           acceptMimes: ['image/jpeg', 'image/png']
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     await nextTick()
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
     expect(onErrorMock.mock.calls.length).toBe(0)
 
@@ -193,7 +193,7 @@ describe('Trix Element Rendering', () => {
 
     let preventMock = jest.fn()
 
-    trix$.handleFileAccept({
+    editor$.handleFileAccept({
       file: fileMock,
       preventDefault: preventMock
     })
@@ -207,22 +207,22 @@ describe('Trix Element Rendering', () => {
   it('should trigger `error` event when mime type is not allowed', async () => {
     let onErrorMock = jest.fn()
 
-    let form = createTrix({
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
           onError: onErrorMock,
           acceptMimes: ['image/jpeg', 'image/png']
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     await nextTick()
 
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
     expect(onErrorMock.mock.calls.length).toBe(0)
 
@@ -233,7 +233,7 @@ describe('Trix Element Rendering', () => {
 
     let preventMock = jest.fn()
 
-    trix$.handleFileAccept({
+    editor$.handleFileAccept({
       file: fileMock,
       preventDefault: preventMock
     })
@@ -249,21 +249,21 @@ describe('Trix Element Rendering', () => {
   it('should not trigger `error` event when extension is allowed', async () => {
     let onErrorMock = jest.fn()
 
-    let form = createTrix({
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
           onError: onErrorMock,
           accept: ['jpg', 'png']
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     await nextTick()
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
     expect(onErrorMock.mock.calls.length).toBe(0)
 
@@ -274,7 +274,7 @@ describe('Trix Element Rendering', () => {
 
     let preventMock = jest.fn()
 
-    trix$.handleFileAccept({
+    editor$.handleFileAccept({
       file: fileMock,
       preventDefault: preventMock
     })
@@ -287,21 +287,21 @@ describe('Trix Element Rendering', () => {
   it('should trigger `error` event when mime type is not allowed', async () => {
     let onErrorMock = jest.fn()
 
-    let form = createTrix({
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
           onError: onErrorMock,
           accept: ['jpg', 'png']
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     await nextTick()
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
     expect(onErrorMock.mock.calls.length).toBe(0)
 
@@ -312,7 +312,7 @@ describe('Trix Element Rendering', () => {
 
     let preventMock = jest.fn()
 
-    trix$.handleFileAccept({
+    editor$.handleFileAccept({
       file: fileMock,
       preventDefault: preventMock
     })
@@ -327,26 +327,26 @@ describe('Trix Element Rendering', () => {
   it('should prevent file accept if disabled', async () => {
     let onErrorMock = jest.fn()
 
-    let form = createTrix({
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
           disabled: true
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     await nextTick()
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
     expect(onErrorMock.mock.calls.length).toBe(0)
 
     let preventMock = jest.fn()
 
-    trix$.handleFileAccept({
+    editor$.handleFileAccept({
       preventDefault: preventMock
     })
     await nextTick()
@@ -357,25 +357,25 @@ describe('Trix Element Rendering', () => {
   it('should prevent file accept if file does not exist', async () => {
     let onErrorMock = jest.fn()
 
-    let form = createTrix({
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     await nextTick()
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
     expect(onErrorMock.mock.calls.length).toBe(0)
 
     let preventMock = jest.fn()
 
-    trix$.handleFileAccept({
+    editor$.handleFileAccept({
       preventDefault: preventMock
     })
     await nextTick()
@@ -390,24 +390,24 @@ describe('Trix Element Rendering', () => {
       post: axiosPostMock,
     }
 
-    let form = createTrix({
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
         }
       }
     })
 
     form.vm.$laraform.services.axios = axiosMock
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     await nextTick()
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
 
-    trix$.handleAttachmentAdd({
+    editor$.handleAttachmentAdd({
       attachment: {}
     })
     await nextTick()
@@ -422,30 +422,30 @@ describe('Trix Element Rendering', () => {
       post: axiosPostMock,
     }
 
-    let form = createTrix({
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
         }
       }
     })
 
     form.vm.$laraform.services.axios = axiosMock
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     form.vm.$set(form.vm.laraform.schema.a, 'endpoint', null)
 
     await nextTick()
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
     expect(() => {
       const originalConsoleError = console.error
 
       console.error = (e) => {  }
 
-      trix$.handleAttachmentAdd({
+      editor$.handleAttachmentAdd({
         attachment: {
           file: {}
         }
@@ -473,23 +473,23 @@ describe('Trix Element Rendering', () => {
       post: axiosPostMock,
     }
 
-    let form = createTrix({
+    let form = createEditor({
       schema: {
         a: {
-          type: 'trix',
+          type: 'editor',
         }
       }
     })
 
-    let a = findAllComponents(form, { name: 'TrixElement' }).at(0)
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
     a.vm.$laraform.services.axios = axiosMock
 
     await nextTick()
-    let trix$ = a.vm.input
-    let trixEditor$ = a.vm.input.$refs.trix$
+    let editor$ = a.vm.input
+    let editorInstnace$ = a.vm.input.$refs.editor$
 
-    trix$.handleAttachmentAdd({
+    editor$.handleAttachmentAdd({
       attachment: {
         file: {},
         setUploadProgress: jest.fn()

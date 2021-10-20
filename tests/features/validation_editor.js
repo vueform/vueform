@@ -17,7 +17,7 @@ export const invalid = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.input.trix$ = { value: 'value' }
+    el.input.editor$ = { value: 'value' }
     el.input.handleChange()
 
     el.validate()
@@ -39,7 +39,7 @@ export const invalid = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     
-    el.input.trix$ = { value: 'value' }
+    el.input.editor$ = { value: 'value' }
     el.input.handleChange()
 
     el.validate()

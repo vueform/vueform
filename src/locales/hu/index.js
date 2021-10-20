@@ -64,7 +64,7 @@ export default {
       next: 'Next',
       previous: 'Previous',
     },
-    trix: {
+    editor: {
       acceptedMimes: 'Accepted mimes are: :mimes',
       acceptedExtensions: 'Accepted extenions are: :extensions',
     },

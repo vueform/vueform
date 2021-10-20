@@ -18,7 +18,7 @@ export default {
     default: {
       description: '',
     },
-    TrixElement: {
+    EditorElement: {
       description: 'Triggered when the user select a file/mime type that is not allowed. If the event does not have a listener the alert message will be displayed by `alert()`.',
       params: {
         message: {
@@ -32,7 +32,7 @@ export default {
     default: {
       description: '',
     },
-    TrixElement: {
+    EditorElement: {
       description: 'Triggered when file upload throws an error.',
       params: {
         error: {

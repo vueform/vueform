@@ -7,7 +7,7 @@ export { mainClass, rendering } from './classes'
 export const classes = function (elementType, elementName, options) {
   baseClasses(elementType, elementName, options)
 
-  it('should add disabled class to trix when disabled', async () => {
+  it('should add disabled class to editor when disabled', async () => {
     let form = createForm({
       schema: {
         el: {

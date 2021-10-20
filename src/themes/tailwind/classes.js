@@ -259,7 +259,7 @@ export default {
       label: 'text-center w-8 border-box whitespace-nowrap select-none',
     }
   },
-  TrixElement: {
+  EditorElement: {
     container: '',
     input: 'form-border form-border-color form-rounded',
     input_enabled: '',
@@ -276,7 +276,7 @@ export default {
     inputContainer: 'w-full flex',
     ...text,
   },
-  TTrixElement: {
+  TEditorElement: {
     container: '',
     input: 'form-border form-border-color form-rounded',
     input_enabled: '',
@@ -289,7 +289,7 @@ export default {
     flatpickr: '',
     calendarContainer: ''
   },
-  TrixWrapper: {
+  EditorWrapper: {
     container: 'bg-white',
   },
 

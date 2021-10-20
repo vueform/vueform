@@ -1,14 +1,14 @@
 <template>
   <component :is="elementLayout">
     <template #element>
-      <TrixWrapper
+      <EditorWrapper
         :value="model"
         :placeholder="placeholder"
         :id="fieldId"
         :accept="accept"
         :accept-mimes="acceptMimes"
-        :endpoint="trixEndpoint"
-        :method="trixMethod"
+        :endpoint="editorEndpoint"
+        :method="editorMethod"
         :disabled="isDisabled"
         :class="classes.input"
         @input="handleInput"
@@ -25,7 +25,7 @@
 
 <script>
   export default {
-    name: 'TrixElement',
+    name: 'EditorElement',
     data() {
       return {
         defaultClasses: {

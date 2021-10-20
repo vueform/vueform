@@ -246,7 +246,7 @@ const button = function(props, context, dependencies)
   }
 }
 
-const trix = function(props, context, dependencies)
+const editor = function(props, context, dependencies)
 {
   const {
     mainClass,
@@ -278,7 +278,7 @@ export {
   file,
   button,
   multifile,
-  trix,
+  editor,
 }
 
 export default base

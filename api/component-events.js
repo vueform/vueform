@@ -13,7 +13,7 @@ export default {
       }
     },
   },
-  TrixWrapper: {
+  EditorWrapper: {
     input: {
       description: 'Triggered when the editor\'s value is changed.',
       params: {

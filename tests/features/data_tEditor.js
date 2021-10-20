@@ -39,7 +39,7 @@ export const load = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.input.trix$.value).toBe('<div>value-en</div>')
+    expect(el.input.editor$.value).toBe('<div>value-en</div>')
 
     el.load({
       en: 'value-en-2',
@@ -53,7 +53,7 @@ export const load = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.input.trix$.value).toBe('<div>value-en-2</div>')
+    expect(el.input.editor$.value).toBe('<div>value-en-2</div>')
     
     // destroy(form) // teardown
   })
@@ -103,7 +103,7 @@ export const load = function (elementType, elementName, options) {
 export const update = function (elementType, elementName, options) {
   baseUpdate(elementType, elementName, options)
 
-  it('should update trix value on `update`', async () => {
+  it('should update editor value on `update`', async () => {
     let form = createForm({
       languages: {
         en: {
@@ -128,7 +128,7 @@ export const update = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.input.trix$.value).toBe('<div>value</div>')
+    expect(el.input.editor$.value).toBe('<div>value</div>')
 
     // destroy() // teardown
   })
@@ -137,7 +137,7 @@ export const update = function (elementType, elementName, options) {
 export const reset = function (elementType, elementName, options) {
   baseUpdate(elementType, elementName, options)
 
-  it('should update trix value on `reset`', async () => {
+  it('should update editor value on `reset`', async () => {
     let form = createForm({
       languages: {
         en: {
@@ -162,13 +162,13 @@ export const reset = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.input.trix$.value).toBe('<div>value</div>')
+    expect(el.input.editor$.value).toBe('<div>value</div>')
 
     el.reset()
 
     await nextTick()
 
-    expect(el.input.trix$.value).toBe('')
+    expect(el.input.editor$.value).toBe('')
 
     // destroy() // teardown
   })
@@ -177,7 +177,7 @@ export const reset = function (elementType, elementName, options) {
 export const clear = function (elementType, elementName, options) {
   baseUpdate(elementType, elementName, options)
 
-  it('should update trix value on `clear`', async () => {
+  it('should update editor value on `clear`', async () => {
     let form = createForm({
       languages: {
         en: {
@@ -203,7 +203,7 @@ export const clear = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.input.trix$.value).toBe('')
+    expect(el.input.editor$.value).toBe('')
 
     // destroy() // teardown
   })

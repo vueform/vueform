@@ -21,7 +21,7 @@ export const load = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.input.trix$.value).toBe('<div>value</div>')
+    expect(el.input.editor$.value).toBe('<div>value</div>')
     
     // destroy(form) // teardown
   })
@@ -69,7 +69,7 @@ export const update = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.input.trix$.value).toBe(options.value)
+    expect(el.input.editor$.value).toBe(options.value)
 
     // destroy() // teardown
   })
@@ -94,7 +94,7 @@ export const clear = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.input.trix$.value).toBe('')
+    expect(el.input.editor$.value).toBe('')
 
     // destroy() // teardown
   })
@@ -121,7 +121,7 @@ export const reset = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(el.input.trix$.value).toBe(options.default)
+    expect(el.input.editor$.value).toBe(options.default)
     
     // destroy(form) // teardown
   })

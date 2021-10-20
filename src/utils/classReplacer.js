@@ -68,7 +68,7 @@ export default function (map, classes) {
         if (!mapped) elMap[entry] = [];
 
         (mapped ? elMap[entry] : document.querySelectorAll(map[entry])).forEach((el) => {
-          el.className.split(' ').filter(c => ['trix-active'].indexOf(c) === -1).forEach((c) => {
+          el.className.split(' ').filter(c => ['editor-active'].indexOf(c) === -1).forEach((c) => {
             if (c.length) el.classList.remove(c);
           })
 

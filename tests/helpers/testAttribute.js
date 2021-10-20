@@ -23,8 +23,8 @@ export default function testAttribute (el, fieldType, attribute, expectedValue) 
       expect(expectedValue.indexOf(el.find('textarea').attributes(attribute)) !== -1).toBeTruthy()
       break
 
-    case 'trix':
-      expect(expectedValue.indexOf(findAllComponents(el, { name: 'TrixWrapper' }).at(0).props(attribute)) !== -1).toBeTruthy()
+    case 'editor':
+      expect(expectedValue.indexOf(findAllComponents(el, { name: 'EditorWrapper' }).at(0).props(attribute)) !== -1).toBeTruthy()
       break
   }
 } 

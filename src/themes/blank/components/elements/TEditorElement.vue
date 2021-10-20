@@ -1,9 +1,9 @@
 <script>
-  import TrixElement from './TrixElement'
+  import EditorElement from './EditorElement'
 
   export default {
-    name: 'TTrixElement',
-    render: TrixElement.render,
+    name: 'TEditorElement',
+    render: EditorElement.render,
     data() {
       return {
         defaultClasses: {
