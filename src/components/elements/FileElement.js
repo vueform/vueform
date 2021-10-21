@@ -105,6 +105,11 @@ export default {
       type: [String],
       default: '/'
     },
+    previewUrl: {
+      required: false,
+      type: [String],
+      default: undefined
+    },
     auto: {
       required: false,
       type: [Boolean],

@@ -12,6 +12,7 @@ const base = function (props, context, dependencies)
     methods,
     endpoints,
     url,
+    previewUrl,
     params,
     softRemove,
     view,
@@ -163,6 +164,30 @@ const base = function (props, context, dependencies)
   })
 
   /**
+   * URL to file preview image using the [`:previewUrl`](#options-preview-url) option without including the filename. If `previewUrl` is not defined it will default to [`url`](#options-url).
+   * 
+   * @type {string}
+   * @private
+   */
+  const filePreviewUrl = computed(() => {
+    if (previewUrl.value === undefined) {
+      return fileUrl.value
+    }
+
+    let filePreviewUrl = previewUrl.value
+
+    if (!filePreviewUrl.match(/\/$/)) {
+      filePreviewUrl += '/'
+    }
+
+    if (!filePreviewUrl.match(/^http/) && !filePreviewUrl.match(/^\//)) {
+      filePreviewUrl = '/' + filePreviewUrl
+    }
+
+    return filePreviewUrl
+  })
+
+  /**
    * The stage the file is at:<br>* `0`: file not selected<br>* `1`: file selected<br>* `2`: temp file uploaded<br>* `3`: file uploaded
    * 
    * @type {number}
@@ -222,6 +247,19 @@ const base = function (props, context, dependencies)
   })
 
   /**
+   * The link to an uploaded file preview.
+   * 
+   * @type {string}
+   */
+  const previewLink = computed(() => {
+    if (!uploaded.value) {
+      return
+    }
+
+    return filePreviewUrl.value + filename.value
+  })
+
+  /**
    * The preview of the file when [`view`](#view) is `image` or `gallery`. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded.
    * 
    * @type {string}
@@ -231,7 +269,7 @@ const base = function (props, context, dependencies)
       return null
     }
 
-    return uploaded.value ? link.value : base64.value
+    return uploaded.value ? previewLink.value : base64.value
   })
 
   /**
