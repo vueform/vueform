@@ -19,18 +19,18 @@ import useOrder from './../../composables/elements/useOrder'
 import usePath from './../../composables/elements/usePath'
 import useInput from './../../composables/elements/useInput'
 import useMultifile from './../../composables/elements/useMultifile'
-import useWatchValue from './../../composables/elements/useWatchValue'
 import useChildren from './../../composables/elements/useChildren'
 import useValue from './../../composables/elements/useValue'
 
-import { multifile as usePrototype } from './../../composables/elements/usePrototype'
-import { multifile as useDrop } from './../../composables/elements/useDrop'
-import { multifile as useClasses } from './../../composables/elements/useClasses'
+import { array as useNullValue } from './../../composables/elements/useNullValue'
+import { array as useEmpty } from './../../composables/elements/useEmpty'
 import { list as useData } from './../../composables/elements/useData'
 import { list as useValidation } from './../../composables/elements/useValidation'
 import { list as useBaseElement } from './../../composables/elements/useBaseElement'
-import { array as useNullValue } from './../../composables/elements/useNullValue'
-import { array as useEmpty } from './../../composables/elements/useEmpty'
+import { multifile as usePrototype } from './../../composables/elements/usePrototype'
+import { multifile as useDrop } from './../../composables/elements/useDrop'
+import { multifile as useClasses } from './../../composables/elements/useClasses'
+import { multifile as useWatchValue } from './../../composables/elements/useWatchValue'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -303,7 +303,7 @@ export default {
       value: value.value,
       fire: events.fire,
       dirt: validation.dirt,
-      validate: validation.validate,
+      validateValidators: validation.validateValidators,
     })
 
     onMounted(() => {

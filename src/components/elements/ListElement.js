@@ -17,7 +17,6 @@ import useSorting from './../../composables/elements/useSorting'
 import useOrder from './../../composables/elements/useOrder'
 import usePrototype from './../../composables/elements/usePrototype'
 import usePath from './../../composables/elements/usePath'
-import useWatchValue from './../../composables/elements/useWatchValue'
 import useChildren from './../../composables/elements/useChildren'
 import useDefault from './../../composables/elements/useDefault'
 import useValue from './../../composables/elements/useValue'
@@ -29,6 +28,7 @@ import { list as useValidation } from './../../composables/elements/useValidatio
 import { list as useBaseElement } from './../../composables/elements/useBaseElement'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
+import { list as useWatchValue } from './../../composables/elements/useWatchValue'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -271,7 +271,7 @@ export default {
       value: value.value,
       fire: events.fire,
       dirt: validation.dirt,
-      validate: validation.validate,
+      validateValidators: validation.validateValidators,
     })
 
     onMounted(() => {

@@ -32,6 +32,37 @@ const base = function(props, context, dependencies, options = {})
   })
 }
 
+const list = function(props, context, dependencies, options = {})
+{
+  // ============ DEPENDENCIES =============
+
+  const form$ = dependencies.form$
+  const fire = dependencies.fire
+  const dirt = dependencies.dirt
+  const validateValidators = dependencies.validateValidators
+  const value = dependencies.value
+
+  // ============== WATCHERS ===============
+
+  onMounted(() => {
+    watch(value, (n, o) => {
+      if (dataEquals(n,o)) {
+        return
+      }
+
+      fire('change', n, o)
+
+      if (dirt) {
+        dirt()
+      }
+
+      if (validateValidators && form$.value.shouldValidateOnChange) {
+        validateValidators()
+      }
+    }, { immediate: false, deep: true })
+  })
+}
+
 const location = function(props, context, dependencies, options = {})
 {
   const { displayKey } = toRefs(props)
@@ -66,7 +97,11 @@ const location = function(props, context, dependencies, options = {})
   })
 }
 
+const multifile = list
+
 export {
+  list,
+  multifile,
   location,
 }
 
