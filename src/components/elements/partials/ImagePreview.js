@@ -51,16 +51,6 @@ export default {
       return el$.value.preview
     })
 
-    /**
-     * Whether the preview file has been loaded by the browser when the file has already been uploaded or has only been selected.
-     * 
-     * @type {boolean}
-     * @private
-     */
-    const previewLoaded = computed(() => {
-      return el$.value.previewLoaded
-    })
-
     return {
       el$,
       form$,
@@ -76,7 +66,6 @@ export default {
       filename,
       clickable,
       preview,
-      previewLoaded,
       uploaded,
       uploading,
       progress,
@@ -84,7 +73,6 @@ export default {
       canUploadTemp,
       uploadText,
       preview,
-      previewLoaded,
       upload,
       remove,
     }

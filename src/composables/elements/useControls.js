@@ -50,4 +50,56 @@ const base = function(props, context, dependencies)
   }
 }
 
+const multifile = function(props, context, dependencies)
+{
+  const {
+    controls,
+    sort,
+  } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const isDisabled = dependencies.isDisabled
+  const hasUploading = dependencies.hasUploading
+
+  // ================ DATA ================
+
+  /**
+   * Whether adding new items is allowed. Will return `false` if the element is `:disabled`. Can be disabled manually by setting [`:controls.add`](#controls) to `false`.
+   * 
+   * @type {boolean}
+   */
+  const hasAdd = computed(() => {
+    return !isDisabled.value && (controls.value.add || controls.value.add === undefined)
+  })
+
+  /**
+   * Whether remove items is allowed. Will return `false` if the element is `:disabled` or a temporary file upload is in progress. Can be disabled manually by setting [`:controls.remove`](#controls) to `false`.
+   * 
+   * @type {boolean}
+   */
+  const hasRemove = computed(() => {
+    return !isDisabled.value && (controls.value.remove || controls.value.remove === undefined) && !hasUploading.value
+  })
+
+  /**
+   * Whether list items should be sortable. Can be enabled by setting [`:sort`](#sort) to `true`, but will return `false` if the element is `:disabled` or a temporary file upload is in progress.
+   * 
+   * @type {boolean}
+   */
+  const hasSort = computed(() => {
+    return !isDisabled.value && (controls.value.sort || controls.value.sort === undefined) && sort.value && !hasUploading.value
+  })
+
+  return {
+    hasAdd,
+    hasRemove,
+    hasSort,
+  }
+}
+
+export {
+  multifile,
+}
+
 export default base

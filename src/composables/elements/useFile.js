@@ -39,14 +39,6 @@ const base = function (props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * This equals to:<br>* the `File` object when a file is selected, but not uploaded yet<br>* an object containing temp file name and original name when it has only been temporarily uploaded<br>* the filename when the file has already been uploaded
-   * 
-   * @type {File|object|string}
-   * @default null
-   */
-  const file = ref(null)
-
-  /**
    * Whether the file uploader has any errors.
    * 
    * @type {boolean}
@@ -77,15 +69,6 @@ const base = function (props, context, dependencies)
    * @default false
    */
   const preparing = ref(false)
-
-  /**
-   * Whether the preview file has been loaded by the browser when the file has already been uploaded or has only been selected.
-   * 
-   * @type {boolean}
-   * @default false
-   * @private
-   */
-  const previewLoaded = ref(false)
 
   // ============== COMPUTED ==============
 
@@ -330,7 +313,7 @@ const base = function (props, context, dependencies)
 
       if (!axios.value.isCancel(error)) {
         hasUploadError.value = true
-        handleError('upload', error)
+        handleError(error)
       }
 
       throw new Error(error)
@@ -374,7 +357,7 @@ const base = function (props, context, dependencies)
         )
       }
     } catch (error) {
-      handleError('remove', error)
+      handleError(error)
       return
     } finally {
       removing.value = false
@@ -408,29 +391,6 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * Helper method that sets the value of `previewLoaded` when an the preview img's `src` has been loaded by the browser.
-   *
-   * @returns {void}
-   * @private
-   */
-  const loadPreview = () => {
-    // previewLoaded.value = false
-
-    // let img = el$.value.$el.querySelector('img')
-    
-    // let listener = () => {
-    //   loadImg()
-    // }
-    
-    // img.onload = listener
-
-    // let loadImg = () => {
-    //   previewLoaded.value = true
-    //   img.onload = null
-    // }
-  }
-
-  /**
    * Handles `change` event.
    * 
    * @param {Event} e* 
@@ -441,6 +401,10 @@ const base = function (props, context, dependencies)
     let file = e.target.files[0]
 
     update(file || null)
+
+    if (auto.value) {
+      uploadTemp()
+    }
 
     input.value.value = ''
 
@@ -499,17 +463,15 @@ const base = function (props, context, dependencies)
 
   // ============== WATCHERS ==============
   
-  watch(file, (val) => {
+  watch(value, (val) => {
     if (!val) {
       base64.value = null
       return
     }
 
-    if (!isImageType.value || !(file.value instanceof File) || view.value === 'file') {
+    if (!isImageType.value || !(value.value instanceof File) || view.value === 'file') {
       return
     }
-    
-    loadPreview()
 
     let reader = new FileReader()
   
@@ -517,29 +479,18 @@ const base = function (props, context, dependencies)
       base64.value = e.target.result
     }
 
-    reader.readAsDataURL(file.value)
-  })
-
-  watch(value, (val) => {
-    if (val instanceof File) {
-      file.value = val
-
-      if (auto.value) {
-        uploadTemp()
-      }
-    }
-    else if (val === null) {
-      file.value = null
-    }
+    reader.readAsDataURL(value.value)
   }, { immediate: true })
 
+  if (value.value instanceof File && auto.value) {
+    uploadTemp()
+  }
+
   return {
-    file,
     hasUploadError,
     base64,
     progress,
     preparing,
-    previewLoaded,
     uploadTempFileEndpoint,
     removeTempFileEndpoint,
     removeFileEndpoint,
@@ -558,7 +509,6 @@ const base = function (props, context, dependencies)
     uploadTemp,
     remove,
     prepare,
-    loadPreview,
     handleChange,
     handleClick,
     handleUploadTemp,

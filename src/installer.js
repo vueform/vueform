@@ -215,6 +215,8 @@ export default function(config) {
           return componentSetup(props, context)
         }
 
+        component.components = template.components
+
         component.render = function() {
           let renderer
 
@@ -235,8 +237,6 @@ export default function(config) {
           
           return renderer.render.apply(this, arguments)
         }
-
-        component.components = template.components
 
         appOrVue.component(name, component)
       })

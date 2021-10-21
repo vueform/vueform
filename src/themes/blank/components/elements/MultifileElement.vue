@@ -3,7 +3,7 @@
     <template #element>
       <!-- Drag n drop -->
       <DragAndDrop
-        v-if="drop && canDrop"
+        v-if="drop && canDrop && hasAdd"
         :title="__(`laraform.elements.${type}.dndTitle`)"
         :description="__(`laraform.elements.${type}.dndDescription`)"
         :disabled="isDisabled"
@@ -14,7 +14,7 @@
 
       <!-- Upload button -->
       <a
-        v-else
+        v-else-if="hasAdd"
         href=""
         :class="classes.button"
         @click.prevent="handleClick"
@@ -37,11 +37,13 @@
             :is="component(prototype)"
             v-if="prototype.type"
             v-bind="prototype"
+            :disabled="!hasRemove"
             :embed="true"
             :name="i"
             @remove="remove(i)"
          />
-          <span v-if="!isDisabled && sort" :class="classes.handle" data-handle>
+          <!-- Sort handle -->
+          <span v-if="hasSort" :class="classes.handle" data-handle>
             <span :class="classes.handleIcon"></span>
           </span>
         </div>

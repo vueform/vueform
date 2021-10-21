@@ -31,6 +31,7 @@ import { multifile as usePrototype } from './../../composables/elements/useProto
 import { multifile as useDrop } from './../../composables/elements/useDrop'
 import { multifile as useClasses } from './../../composables/elements/useClasses'
 import { multifile as useWatchValue } from './../../composables/elements/useWatchValue'
+import { multifile as useControls } from './../../composables/elements/useControls'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -113,6 +114,15 @@ export default {
       required: false,
       type: [Boolean],
       default: false
+    },
+    controls: {
+      required: false,
+      type: [Object],
+      default: () => ({
+        add: true,
+        remove: true,
+        sort: true,
+      })
     },
     object: {
       required: false,
@@ -272,6 +282,11 @@ export default {
       children$: children.children$,
     })
 
+    const controls = useControls(props, context, {
+      isDisabled: disabled.isDisabled,
+      hasUploading: multifile.hasUploading,
+    })
+
     const drop = useDrop(props, context, {
       add: data.add,
       isDisabled: disabled.isDisabled,
@@ -346,6 +361,7 @@ export default {
       ...input,
       ...drop,
       ...empty,
+      ...controls,
     }
   } 
 }

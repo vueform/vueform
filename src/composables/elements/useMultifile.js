@@ -23,6 +23,15 @@ const base = function (props, context, dependencies)
     return _.some(children$.value, { available: true, perparing: true })
   })
 
+  /**
+   * Whether any file is currently uploading.
+   * 
+   * @type {boolean}
+   */
+  const hasUploading = computed(() => {
+    return _.some(children$.value, { uploading: true })
+  })
+
   // =============== METHODS ==============
 
   /**
@@ -62,6 +71,7 @@ const base = function (props, context, dependencies)
 
   return {
     preparing,
+    hasUploading,
     handleChange,
     handleClick,
   }

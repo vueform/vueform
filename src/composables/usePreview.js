@@ -94,7 +94,7 @@ const base = function(props, context, dependencies)
    * @type {boolean}
    */
   const canRemove = computed(() => {
-    return el$.value.canRemove || el$.value.uploading
+    return (el$.value.canRemove || el$.value.uploading) && !el$.value.isDisabled
   })
 
   /**

@@ -51,6 +51,7 @@ const base = function(props, context, dependencies)
     }
 
     update(file || null)
+    file.value = null
   }
 
   return {
