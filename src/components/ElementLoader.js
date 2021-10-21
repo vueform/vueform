@@ -11,7 +11,7 @@ export default {
       form$,
       classes,
       mainClass,
-      components,
+      templates,
       theme,
       defaultClasses,
     } = useElementComponent(props, context)
@@ -23,7 +23,7 @@ export default {
       classes,
       mainClass,
       defaultClasses,
-      components,
+      templates,
     }
   },
 }

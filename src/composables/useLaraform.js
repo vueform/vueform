@@ -641,9 +641,9 @@ const base = function(props, context, dependencies = {})
   const extendedTheme = computed(() => {
     return Object.assign({}, theme.value, {
       // Add registered component to theme (or overwrite)
-      components: Object.assign({},
-        theme.value.components,
-        baseConfig.value.components,
+      templates: Object.assign({},
+        theme.value.templates,
+        baseConfig.value.templates,
         options.value.replaceComponents || {},
       ),
       
@@ -657,12 +657,12 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-  * The selected theme's components, extended by local overrides. Normally we use `components` property for this, but as Vueform component needs to have an actual [`:components`](#components) prop so we use this naming instead.
+  * The selected theme's templates, extended by local overrides. Normally we use `components` property for this, but as Vueform component needs to have an actual [`:components`](#components) prop so we use this naming instead.
   * 
   * @type {object}
   */
-  const components = computed(() => {
-    return extendedTheme.value.components
+  const templates = computed(() => {
+    return extendedTheme.value.templates
   })
 
   /**
@@ -682,7 +682,7 @@ const base = function(props, context, dependencies = {})
   * @private
   */
   const defaultClasses = computed(() => {
-    return extendedTheme.value.components.Laraform.data().defaultClasses
+    return extendedTheme.value.templates.Laraform.data().defaultClasses
   })
 
   /**
@@ -1163,7 +1163,7 @@ const base = function(props, context, dependencies = {})
     mainClass,
     defaultClasses,
     classes,
-    components,
+    templates,
     extendedTheme,
     form$,
     model,

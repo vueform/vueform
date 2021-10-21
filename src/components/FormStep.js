@@ -100,7 +100,7 @@ export default {
       theme,
       classes,
       mainClass,
-      components,
+      templates,
       defaultClasses,
     } = useFormComponent(props, context, {}, {
       addClasses: [
@@ -534,7 +534,7 @@ export default {
       classes,
       mainClass,
       defaultClasses,
-      components,
+      templates,
       available,
       baseLabel,
       debouncing,

@@ -12,7 +12,7 @@ export default {
       classes,
       mainClass,
       defaultClasses,
-      components,
+      templates,
       theme,
     } = useElementComponent(props, context, {}, {
       addClasses: [
@@ -57,7 +57,7 @@ export default {
       classes,
       mainClass,
       defaultClasses,
-      components,
+      templates,
       theme,
       visible,
       hasLink,

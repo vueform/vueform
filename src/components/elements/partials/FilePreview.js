@@ -11,7 +11,7 @@ export default {
       classes,
       mainClass,
       defaultClasses,
-      components,
+      templates,
       theme,
     } = useElementComponent(props, context)
 
@@ -40,7 +40,7 @@ export default {
       classes,
       mainClass,
       defaultClasses,
-      components,
+      templates,
       theme,
       visible,
       hasLink,

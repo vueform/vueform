@@ -140,8 +140,8 @@ export default function(config) {
   const Laraform = class {
     constructor() {
       this.options = {
-        config: _.omit(config, ['theme', 'components', 'classes', 'locales', 'rules']),
-        components: config.components || {},
+        config: _.omit(config, ['theme', 'templates', 'classes', 'locales', 'rules']),
+        templates: config.templates || {},
         classes: config.classes || {},
         theme: config.theme || {},
         rules: config.rules || {},
@@ -161,7 +161,7 @@ export default function(config) {
     config(config) {
       // merge
       _.each([
-         'theme', 'components', 'classes', 'locales', 'rules',
+         'theme', 'templates', 'classes', 'locales', 'rules',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options[attr] = Object.assign({}, this.options[attr], config[attr])
@@ -202,7 +202,7 @@ export default function(config) {
       const theme = this.options.theme
 
       _.each(componenList, (component, name) => {
-        let template = theme.components[name]
+        let template = theme.templates[name]
 
         let componentSetup = component.setup
 
@@ -221,7 +221,7 @@ export default function(config) {
           let renderer
 
           try {
-            renderer = this.components[name]
+            renderer = this.templates[name]
           } catch (e) {
             throw new Error(e)
           }
@@ -326,7 +326,7 @@ export default function(config) {
                 this.$laraform = {
                   config: appOrVue.observable($laraform.config),
                   classes: $laraform.classes,
-                  components: $laraform.components,
+                  templates: $laraform.templates,
                   extensions: $laraform.extensions,
                   rules: $laraform.rules,
                   services: $laraform.services,

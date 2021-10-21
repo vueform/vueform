@@ -16,9 +16,9 @@ const base = function(props, context, dependencies, options = {})
 
   const form$ = dependencies.form$
   const theme = dependencies.theme
-  const components = dependencies.components
+  const templates = dependencies.templates
 
-  const component = components.value[componentName.value]
+  const template = templates.value[componentName.value]
 
   // ================ DATA ================
 
@@ -28,7 +28,7 @@ const base = function(props, context, dependencies, options = {})
   * @type {object}
   * @private
   */
-  const defaultClasses = ref(component.data ? component.data().defaultClasses : {})
+  const defaultClasses = ref(template.data ? template.data().defaultClasses : {})
 
   // ============== COMPUTED ==============
   

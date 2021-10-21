@@ -76,7 +76,7 @@ export default {
       form$,
       theme,
       classes,
-      components,
+      templates,
       mainClass,
       defaultClasses,
     } = useFormComponent(props, context, {}, {
@@ -334,7 +334,7 @@ export default {
       classes,
       mainClass,
       defaultClasses,
-      components,
+      templates,
       available,
       isLabelComponent,
       tabLabel,

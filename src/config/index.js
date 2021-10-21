@@ -4,7 +4,7 @@ const config = {
    * Theme & layout
    */
   theme: {},
-  components: {},
+  templates: {},
   classes: {},
   columns: {
     container: 12,

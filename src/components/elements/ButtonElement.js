@@ -6,7 +6,7 @@ import useLabel from './../../composables/elements/useLabel'
 import useColumns from './../../composables/elements/useColumns'
 import useGenericName from './../../composables/elements/useGenericName'
 import useView from './../../composables/elements/useView'
-import useComponents from './../../composables/elements/useComponents'
+import useTemplates from './../../composables/elements/useTemplates'
 import useSlots from './../../composables/elements/useSlots'
 import useButton from './../../composables/elements/useButton'
 import useLayout from './../../composables/elements/useLayout'
@@ -116,7 +116,7 @@ export default {
       label: label.label,
     })
     
-    const components = useComponents(props, context, {
+    const templates = useTemplates(props, context, {
       theme: theme.theme,
       form$: form$.form$
     })
@@ -132,7 +132,7 @@ export default {
       theme: theme.theme,
       isLoading: button.isLoading,
       isDisabled: disabled.isDisabled,
-      components: components.components,
+      templates: templates.templates,
     })
 
     const columns = useColumns(props, context, {
@@ -149,7 +149,7 @@ export default {
     const slots = useSlots(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
-      components: components.components,
+      templates: templates.templates,
     }, {
       slots: [
         'label',  'info', 'description',
@@ -169,7 +169,7 @@ export default {
       ...baseElement,
       ...genericName,
       ...view,
-      ...components,
+      ...templates,
       ...slots,
       ...button,
       ...disabled,

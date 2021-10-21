@@ -18,7 +18,7 @@ const base = function(props, context, dependencies, options = {})
     theme
   } = useTheme(props, context)
 
-  const component = theme.value.components[componentName.value]
+  const template = theme.value.templates[componentName.value]
   
   // ================ DATA =================
 
@@ -28,7 +28,7 @@ const base = function(props, context, dependencies, options = {})
   * @type {object}
   * @private
   */
-  const defaultClasses = ref(component.data ? component.data().defaultClasses : {})
+  const defaultClasses = ref(template.data ? template.data().defaultClasses : {})
   
   // ============== COMPUTED ===============
 
@@ -84,8 +84,8 @@ const base = function(props, context, dependencies, options = {})
    * 
    * @type {object}
    */
-  const components = computed(() => {
-    return theme.value.components
+  const templates = computed(() => {
+    return theme.value.templates
   })
 
   /**
@@ -102,7 +102,7 @@ const base = function(props, context, dependencies, options = {})
     form$,
     theme,
     classes,
-    components,
+    templates,
     mainClass,
     defaultClasses,
   }

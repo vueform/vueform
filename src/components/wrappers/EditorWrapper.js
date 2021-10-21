@@ -66,7 +66,7 @@ export default {
       el$,
       form$,
       classes,
-      components,
+      templates,
       theme
     } = useElementComponent(props, context)
 
@@ -220,7 +220,7 @@ export default {
       form$,
       theme,
       classes,
-      components,
+      templates,
       editor$,
       update,
       setOption,

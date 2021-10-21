@@ -14,7 +14,7 @@ import useBaseElement from './../../composables/elements/useBaseElement'
 import useGenericName from './../../composables/elements/useGenericName'
 import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
-import useComponents from './../../composables/elements/useComponents'
+import useTemplates from './../../composables/elements/useTemplates'
 import useWatchValue from './../../composables/elements/useWatchValue'
 
 import BaseElement from './../../mixins/BaseElement'
@@ -61,7 +61,7 @@ export default {
       path: path.path,
     })
     
-    const components = useComponents(props, context, {
+    const templates = useTemplates(props, context, {
       theme: theme.theme,
       form$: form$.form$
     })
@@ -146,7 +146,7 @@ export default {
       ...empty,
       ...baseElement,
       ...genericName,
-      ...components,
+      ...templates,
     }
   } 
 }

@@ -22,7 +22,7 @@ export default {
       el$,
       classes,
       mainClass,
-      components,
+      templates,
       theme,
       defaultClasses,
     } = useElementComponent(props, context, {}, {
@@ -90,7 +90,7 @@ export default {
       el$,
       form$,
       theme,
-      components,
+      templates,
       classes,
       mainClass,
       defaultClasses,

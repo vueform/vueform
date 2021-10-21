@@ -1,28 +1,28 @@
-import { components } from './../blank'
+import { templates } from './../blank'
 
-import LocationElement from './components/elements/LocationElement'
-import DatepickerWrapper from './components/wrappers/DatepickerWrapper'
-import EditorWrapper from './components/wrappers/EditorWrapper'
+import LocationElement from './templates/elements/LocationElement'
+import DatepickerWrapper from './templates/wrappers/DatepickerWrapper'
+import EditorWrapper from './templates/wrappers/EditorWrapper'
 
 import columns from './columns'
 import classes from './classes'
 
-components.DatepickerWrapper = DatepickerWrapper
-components.EditorWrapper = EditorWrapper
-components.LocationElement = LocationElement
+templates.DatepickerWrapper = DatepickerWrapper
+templates.EditorWrapper = EditorWrapper
+templates.LocationElement = LocationElement
 
 export default {
-  components,
+  templates,
   classes,
   columns,
 }
 
 export const core = {
-  components,
+  templates,
   classes,
   columns,
 }
 
 export {
-  components,
+  templates,
 }

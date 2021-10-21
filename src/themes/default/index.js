@@ -1,69 +1,69 @@
-import Laraform from './components/Laraform'
-import FormErrors from './components/FormErrors'
-import FormMessages from './components/FormMessages'
-import FormLanguages from './components/FormLanguages'
-import FormLanguage from './components/FormLanguage'
-import FormTabs from './components/FormTabs'
-import FormTab from './components/FormTab'
-import FormSteps from './components/FormSteps'
-import FormStepsControls from './components/FormStepsControls'
-import FormStepsControl from './components/FormStepsControl'
-import FormStep from './components/FormStep'
-import FormElements from './components/FormElements'
-import ElementLayout from './components/ElementLayout'
-import ElementLayoutInline from './components/ElementLayoutInline'
-import ElementLoader from './components/ElementLoader'
-import ElementLabelFloating from './components/ElementLabelFloating'
-import ElementLabel from './components/ElementLabel'
-import ElementInfo from './components/ElementInfo'
-import ElementDescription from './components/ElementDescription'
-import ElementError from './components/ElementError'
-import ElementMessage from './components/ElementMessage'
-import ElementText from './components/ElementText'
-import DragAndDrop from './components/DragAndDrop'
-import ElementAddon from './components/ElementAddon'
+import Laraform from './templates/Laraform'
+import FormErrors from './templates/FormErrors'
+import FormMessages from './templates/FormMessages'
+import FormLanguages from './templates/FormLanguages'
+import FormLanguage from './templates/FormLanguage'
+import FormTabs from './templates/FormTabs'
+import FormTab from './templates/FormTab'
+import FormSteps from './templates/FormSteps'
+import FormStepsControls from './templates/FormStepsControls'
+import FormStepsControl from './templates/FormStepsControl'
+import FormStep from './templates/FormStep'
+import FormElements from './templates/FormElements'
+import ElementLayout from './templates/ElementLayout'
+import ElementLayoutInline from './templates/ElementLayoutInline'
+import ElementLoader from './templates/ElementLoader'
+import ElementLabelFloating from './templates/ElementLabelFloating'
+import ElementLabel from './templates/ElementLabel'
+import ElementInfo from './templates/ElementInfo'
+import ElementDescription from './templates/ElementDescription'
+import ElementError from './templates/ElementError'
+import ElementMessage from './templates/ElementMessage'
+import ElementText from './templates/ElementText'
+import DragAndDrop from './templates/DragAndDrop'
+import ElementAddon from './templates/ElementAddon'
 
-import DatepickerWrapper from './components/wrappers/DatepickerWrapper'
-import EditorWrapper from './components/wrappers/EditorWrapper'
+import DatepickerWrapper from './templates/wrappers/DatepickerWrapper'
+import EditorWrapper from './templates/wrappers/EditorWrapper'
 
-import AddressElement from './components/elements/AddressElement'
-import ButtonElement from './components/elements/ButtonElement'
-import CheckboxElement from './components/elements/CheckboxElement'
-import CheckboxgroupElement from './components/elements/CheckboxgroupElement'
-import DateElement from './components/elements/DateElement'
-import DatesElement from './components/elements/DatesElement'
-import FileElement from './components/elements/FileElement'
-import GroupElement from './components/elements/GroupElement'
-import HiddenElement from './components/elements/HiddenElement'
-import ListElement from './components/elements/ListElement'
-import LocationElement from './components/elements/LocationElement'
-import MultifileElement from './components/elements/MultifileElement'
-import MultiselectElement from './components/elements/MultiselectElement'
-import ObjectElement from './components/elements/ObjectElement'
-import RadioElement from './components/elements/RadioElement'
-import RadiogroupElement from './components/elements/RadiogroupElement'
-import SelectElement from './components/elements/SelectElement'
-import SliderElement from './components/elements/SliderElement'
-import StaticElement from './components/elements/StaticElement'
-import TagsElement from './components/elements/TagsElement'
-import TextareaElement from './components/elements/TextareaElement'
-import TextElement from './components/elements/TextElement'
-import ToggleElement from './components/elements/ToggleElement'
-import EditorElement from './components/elements/EditorElement'
-import TTextareaElement from './components/elements/TTextareaElement'
-import TTextElement from './components/elements/TTextElement'
-import TEditorElement from './components/elements/TEditorElement'
+import AddressElement from './templates/elements/AddressElement'
+import ButtonElement from './templates/elements/ButtonElement'
+import CheckboxElement from './templates/elements/CheckboxElement'
+import CheckboxgroupElement from './templates/elements/CheckboxgroupElement'
+import DateElement from './templates/elements/DateElement'
+import DatesElement from './templates/elements/DatesElement'
+import FileElement from './templates/elements/FileElement'
+import GroupElement from './templates/elements/GroupElement'
+import HiddenElement from './templates/elements/HiddenElement'
+import ListElement from './templates/elements/ListElement'
+import LocationElement from './templates/elements/LocationElement'
+import MultifileElement from './templates/elements/MultifileElement'
+import MultiselectElement from './templates/elements/MultiselectElement'
+import ObjectElement from './templates/elements/ObjectElement'
+import RadioElement from './templates/elements/RadioElement'
+import RadiogroupElement from './templates/elements/RadiogroupElement'
+import SelectElement from './templates/elements/SelectElement'
+import SliderElement from './templates/elements/SliderElement'
+import StaticElement from './templates/elements/StaticElement'
+import TagsElement from './templates/elements/TagsElement'
+import TextareaElement from './templates/elements/TextareaElement'
+import TextElement from './templates/elements/TextElement'
+import ToggleElement from './templates/elements/ToggleElement'
+import EditorElement from './templates/elements/EditorElement'
+import TTextareaElement from './templates/elements/TTextareaElement'
+import TTextElement from './templates/elements/TTextElement'
+import TEditorElement from './templates/elements/TEditorElement'
 
-import CheckboxgroupCheckbox from './components/elements/partials/CheckboxgroupCheckbox'
-import FilePreview from './components/elements/partials/FilePreview'
-import ImagePreview from './components/elements/partials/ImagePreview'
-import GalleryPreview from './components/elements/partials/GalleryPreview'
-import RadiogroupRadio from './components/elements/partials/RadiogroupRadio'
+import CheckboxgroupCheckbox from './templates/elements/partials/CheckboxgroupCheckbox'
+import FilePreview from './templates/elements/partials/FilePreview'
+import ImagePreview from './templates/elements/partials/ImagePreview'
+import GalleryPreview from './templates/elements/partials/GalleryPreview'
+import RadiogroupRadio from './templates/elements/partials/RadiogroupRadio'
 
 import columns from './columns'
 import classes from './classes'
 
-const components = {
+const templates = {
   Laraform,
   FormErrors,
   FormMessages,
@@ -130,17 +130,17 @@ const components = {
 }
 
 export default {
-  components,
+  templates,
   classes,
   columns,
 }
 
 export const core = {
-  components,
+  templates,
   classes,
   columns,
 }
 
 export {
-  components,
+  templates,
 }

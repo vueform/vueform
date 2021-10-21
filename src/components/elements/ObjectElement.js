@@ -10,7 +10,7 @@ import useColumns from './../../composables/elements/useColumns'
 import useBaseElement from './../../composables/elements/useBaseElement'
 import useGenericName from './../../composables/elements/useGenericName'
 import useView from './../../composables/elements/useView'
-import useComponents from './../../composables/elements/useComponents'
+import useTemplates from './../../composables/elements/useTemplates'
 import useSlots from './../../composables/elements/useSlots'
 import useElements from './../../composables/useElements'
 import useEvents from './../../composables/useEvents'
@@ -111,7 +111,7 @@ export default {
       path: path.path,
     })
 
-    const components = useComponents(props, context, {
+    const templates = useTemplates(props, context, {
       theme: theme.theme,
       form$: form$.form$
     })
@@ -119,7 +119,7 @@ export default {
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
-      components: components.components,
+      templates: templates.templates,
     })
 
     const columns = useColumns(props, context, {
@@ -136,7 +136,7 @@ export default {
     const slots = useSlots(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
-      components: components.components,
+      templates: templates.templates,
     }, {
       slots: [
         'label', 'info', 'description',
@@ -171,7 +171,7 @@ export default {
       ...baseElement,
       ...genericName,
       ...view,
-      ...components,
+      ...templates,
       ...slots,
       ...data,
       ...children,

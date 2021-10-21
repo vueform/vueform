@@ -1,0 +1,26 @@
+<script>
+  import RadiogroupElement from './../../../blank/templates/elements/RadiogroupElement'
+
+  export default {
+    name: 'RadiogroupElement',
+    render: RadiogroupElement.render,
+    data() {
+      return {
+        defaultClasses: {
+          container: '',
+          wrapper: 'vf-radiogroup-wrapper',
+        }
+      }
+    }
+  }
+</script>
+
+<style lang="scss">
+  .vf-radiogroup-wrapper {
+    padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
+
+    .vf-radio-container {
+      padding-top: 0;
+    }
+  }
+</style>

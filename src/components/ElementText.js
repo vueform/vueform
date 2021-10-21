@@ -20,7 +20,7 @@ export default {
       el$,
       form$,
       classes,
-      components,
+      templates,
       mainClass,
       theme,
       defaultClasses,
@@ -61,7 +61,7 @@ export default {
       classes,
       mainClass,
       defaultClasses,
-      components,
+      templates,
       content,
       isSlot,
     }
