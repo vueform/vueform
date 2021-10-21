@@ -1,12 +1,12 @@
 <template>
   <component :is="elementLayout">
     <template #element>
-      <div :class="classes.wrapper">
+      <label :class="classes.wrapper">
         <input
           type="checkbox"
           v-model="value"
           :class="classes.input"
-          :name="name"
+          :name="path"
           :id="fieldId"
           :true-value="trueValue"
           :false-value="falseValue"
@@ -15,20 +15,18 @@
         />
 
         <!-- If label is HTML -->
-        <label
+        <span
           v-if="text"
-          :class="classes.label"
-          :for="name"
+          :class="classes.text"
           v-html="text"
-        ></label>
+        />
 
         <!-- If label is slot -->
-        <label
+        <span
           v-else
-          :class="classes.label"
-          :for="name"
-        ><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></label>
-      </div>
+          :class="classes.text"
+        ><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></span>
+      </label>
     </template>
 
     <!-- Default element slots -->
@@ -47,7 +45,7 @@
           input: '',
           input_enabled: '',
           input_disabled: '',
-          label: '',
+          text: '',
         }
       }
     }

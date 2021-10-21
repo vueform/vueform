@@ -133,7 +133,6 @@ export default {
   },
   setup(props, context) {
     const form$ = useForm$(props, context)
-    const fieldId = useFieldId(props, context)
     const theme = useTheme(props, context)
     const layout = useLayout(props, context)
     const input = useInput(props, context)
@@ -141,6 +140,10 @@ export default {
     const disabled = useDisabled(props, context)
     const nullValue = useNullValue(props, context)
     const removing = useRemoving(props, context)
+
+    const fieldId = useFieldId(props, context, {
+      path: path.path,
+    })
 
     const events = useEvents(props, context, {}, {
       events: context.emits,

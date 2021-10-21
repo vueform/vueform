@@ -1,24 +1,22 @@
 <template>
-  <div :class="classes.container">
-    <slot :classes="classes" :is-disabled="isDisabled" :name="`${el$.name}-${value}`" :id="`${el$.fieldId}-${value}`" :item="item" :value="value">
+  <label :class="classes.container">
+    <slot :classes="classes" :is-disabled="isDisabled" :name="`${el$.path}-${value}`" :id="`${el$.fieldId}-${value}`" :item="item" :value="value">
       <input
         type="checkbox"
         v-model="el$.model"
         :value="value"
         :class="classes.input"
-        :name="`${el$.name}-${value}`"
+        :name="`${el$.path}-${value}`"
         :id="`${el$.fieldId}-${value}`"
         :disabled="isDisabled"
      />
 
-      <label 
+      <span 
         :class="classes.label"
-        :for="`${el$.fieldId}-${value}`"
         v-html="item.label"
-      >
-      </label>
+      />
     </slot>
-  </div>
+  </label>
 </template>
 
 <script>
@@ -31,7 +29,7 @@
           input: '',
           input_enabled: '',
           input_disabled: '',
-          label: '',
+          text: '',
         }
       }
     }

@@ -71,7 +71,7 @@ export default {
   CheckboxElement: {
     container: '',
     wrapper: 'flex align-start form-pt-input-border',
-    label: 'cursor-pointer',
+    text: 'cursor-pointer',
     ...checkbox,
   },
   CheckboxgroupElement: {
@@ -161,7 +161,7 @@ export default {
   RadioElement: {
     container: '',
     wrapper: 'flex align-start form-pt-input-border',
-    label: 'cursor-pointer',
+    text: 'cursor-pointer',
     ...radio,
   },
   RadiogroupElement: {
@@ -425,7 +425,7 @@ export default {
   // Slots
   CheckboxgroupCheckbox: {
     container: 'flex align-start',
-    label: 'cursor-pointer',
+    text: 'cursor-pointer',
     ...checkbox,
   },
   FilePreview: {
@@ -508,7 +508,7 @@ export default {
   },
   RadiogroupRadio: {
     container: 'flex align-start',
-    label: 'cursor-pointer',
+    text: 'cursor-pointer',
     ...radio,
   },
 }

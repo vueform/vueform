@@ -358,7 +358,7 @@
     padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
   }
 
-  .vf-checkbox-label {
+  .vf-checkbox-text {
     cursor: pointer;
   }
 
@@ -433,7 +433,7 @@
     padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
   }
 
-  .vf-radio-label {
+  .vf-radio-text {
     cursor: pointer;
   }
 

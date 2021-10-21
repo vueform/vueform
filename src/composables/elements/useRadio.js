@@ -4,7 +4,6 @@ const base = function (props, context, dependencies)
 {
   const {
     radioName,
-    name,
     radioValue,
   } = toRefs(props)
 
@@ -13,6 +12,19 @@ const base = function (props, context, dependencies)
   const update = dependencies.update
   const nullValue = dependencies.nullValue
   const fieldId = dependencies.fieldId
+  const path = dependencies.path
+
+  // ============== COMPUTED ==============
+  
+  /**
+   * The `name` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.
+   * 
+   * @type {string}
+   */
+  const inputName = computed(() => {
+    return radioName.value || path.value
+  })
+
 
   // =============== METHODS ==============
 
@@ -37,8 +49,9 @@ const base = function (props, context, dependencies)
   // =============== HOOKS ================
 
   onMounted(() => {
-    document.getElementsByName(radioName.value || name.value).forEach((element) => {
+    document.getElementsByName(inputName.value).forEach((element) => {
       element.addEventListener('change', () => {
+        console.log('changed')
         if (element.id != fieldId.value) {
           update(nullValue.value)
         }
@@ -49,6 +62,7 @@ const base = function (props, context, dependencies)
   return {
     check,
     uncheck,
+    inputName,
   }
 }
 

@@ -1,4 +1,4 @@
-import { onMounted, watch } from 'composition-api'
+import { onMounted, watch, ref } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
 import useTheme from './../../composables/useTheme'
 import useLayout from './../../composables/elements/useLayout'
@@ -312,6 +312,9 @@ export default {
       ...prototype,
       ...empty,
       ...controls,
+      log: () => {
+        console.log('log')
+      },
     }
   } 
 }

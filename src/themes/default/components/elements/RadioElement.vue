@@ -12,7 +12,7 @@
           input: 'vf-radio',
           input_enabled: '',
           input_disabled: '',
-          label: 'vf-radio-label',
+          text: 'vf-radio-text',
         }
       }
     }

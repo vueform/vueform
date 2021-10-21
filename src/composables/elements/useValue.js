@@ -63,12 +63,18 @@ const base = function(props, context, dependencies, options = {})
       if (form$.value.isSync) {
         form$.value.updateModel(dataPath.value, val)
       } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
-        parent.value.update(parent.value.value.map((v,k) => k == name.value ? val : v))
+        const newValue = parent.value.value.map((v,k) => k == name.value ? val : v)
+        console.log('object', dataPath.value, JSON.stringify(newValue))
+        parent.value.update(newValue)
       } else if (parent.value && ['object'].indexOf(parent.value.type) !== -1) {
+        console.log('checkbox', dataPath.value, JSON.stringify(Object.assign({}, parent.value.value, {
+          [name.value]: val
+        })))
         parent.value.value = Object.assign({}, parent.value.value, {
           [name.value]: val
         })
       } else {
+        console.log('list', dataPath.value, JSON.stringify(val))
         internalValue.value = val
       }
     }

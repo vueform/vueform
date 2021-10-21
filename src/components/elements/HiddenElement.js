@@ -51,12 +51,15 @@ export default {
   },
   setup(props, context) {
     const form$ = useForm$(props, context)
-    const fieldId = useFieldId(props, context)
     const theme = useTheme(props, context)
     const input = useInput(props, context)
     const path = usePath(props, context)
     const nullValue = useNullValue(props, context)
     const genericName = useGenericName(props, context)
+
+    const fieldId = useFieldId(props, context, {
+      path: path.path,
+    })
     
     const components = useComponents(props, context, {
       theme: theme.theme,

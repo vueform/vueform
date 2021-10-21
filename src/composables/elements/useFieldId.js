@@ -3,9 +3,12 @@ import { toRefs, computed } from 'composition-api'
 const base = function (props, context, dependencies)
 {
   const {
-    name,
     id,
   } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const path = dependencies.path
 
   // ============== COMPUTED ==============
   
@@ -15,7 +18,7 @@ const base = function (props, context, dependencies)
    * @type {string}
    */
   const fieldId = computed(() => {
-    return id.value || name.value
+    return id.value || path.value
   })
 
   return {

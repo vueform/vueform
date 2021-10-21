@@ -1,33 +1,31 @@
 <template>
   <component :is="elementLayout">
     <template #element>
-      <div :class="classes.wrapper">
+      <label :class="classes.wrapper">
         <input
           type="radio"
           v-model="value"
           :value="radioValue"
           :class="classes.input"
-          :name="fieldName"
+          :name="inputName"
           :id="fieldId"
           :disabled="isDisabled"
           ref="input"
         />
 
         <!-- If label is HTML -->
-        <label
+        <span
           v-if="text"
-          :class="classes.label"
-          :for="name"
+          :class="classes.text"
           v-html="text"
-        ></label>
+        />
 
         <!-- If label is slot -->
-        <label
+        <span
           v-else
-          :class="classes.label"
-          :for="name"
-        ><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></label>
-      </div>
+          :class="classes.text"
+        ><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></span>
+      </label>
     </template>
 
     <!-- Default element slots -->
@@ -46,7 +44,7 @@
           input: '',
           input_enabled: '',
           input_disabled: '',
-          label: '',
+          text: '',
         }
       }
     }

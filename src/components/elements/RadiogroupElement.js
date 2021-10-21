@@ -71,9 +71,12 @@ export default {
     const form$ = useForm$(props, context)
     const theme = useTheme(props, context)
     const layout = useLayout(props, context)
-    const fieldId = useFieldId(props, context)
     const path = usePath(props, context)
     const nullValue = useNullValue(props, context)
+
+    const fieldId = useFieldId(props, context, {
+      path: path.path,
+    })
 
     const events = useEvents(props, context, {}, {
       events: context.emits,

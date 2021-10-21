@@ -75,12 +75,15 @@ export default {
   },
   setup(props, context) {
     const form$ = useForm$(props, context)
-    const fieldId = useFieldId(props, context)
     const theme = useTheme(props, context)
     const layout = useLayout(props, context)
     const input = useInput(props, context)
     const path = usePath(props, context)
     const disabled = useDisabled(props, context)
+
+    const fieldId = useFieldId(props, context, {
+      path: path.path,
+    })
 
     const events = useEvents(props, context, {}, {
       events: context.emits,
@@ -173,6 +176,7 @@ export default {
       update: data.update,
       nullValue: nullValue.nullValue,
       fieldId: fieldId.fieldId,
+      path: path.path,
     })
 
     useWatchValue(props, context, {

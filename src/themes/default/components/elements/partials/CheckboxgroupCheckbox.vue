@@ -11,7 +11,7 @@
           input: 'vf-checkbox',
           input_enabled: '',
           input_disabled: '',
-          label: 'vf-checkbox-label',
+          text: 'vf-checkbox-text',
         }
       }
     }
