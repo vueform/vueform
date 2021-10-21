@@ -23,7 +23,14 @@ const base = function(props, context, dependencies)
   * @private
   */
   const defaultValue = computed(() => {
-    let parentDefaultValue = parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
+    let parentDefaultValue
+
+    if (parent && parent.value && !parent.value.mounted) {
+      parentDefaultValue = parent.value.defaultValue[name.value]
+    }
+    else if (!form$.value.mounted && form$.value.options.default[name.value]) {
+      parentDefaultValue = form$.value.options.default[name.value]
+    }
 
     if (parentDefaultValue !== undefined) {
       return parentDefaultValue instanceof File
@@ -35,6 +42,47 @@ const base = function(props, context, dependencies)
       return default_.value instanceof File
         ? new File([default_.value], default_.value.name, default_.value)
         : _.cloneDeep(default_.value)
+    }
+
+    return _.cloneDeep(nullValue.value)
+  })
+
+  return {
+    defaultValue,
+  }
+}
+
+const object = function(props, context, dependencies)
+{
+  const {
+    default: default_,
+    name,
+  } = toRefs(props)
+
+  // ============ DEPENDENCIES =============
+
+  const nullValue = dependencies.nullValue
+  const form$ = dependencies.form$
+  const parent = dependencies.parent
+
+  // ============== COMPUTED ===============
+
+  const defaultValue = computed(() => {
+    let parentDefaultValue
+
+    if (parent && parent.value && !parent.value.mounted) {
+      parentDefaultValue = parent.value.defaultValue[name.value]
+    }
+    else if (!form$.value.mounted && form$.value.options.default[name.value]) {
+      parentDefaultValue = form$.value.options.default[name.value]
+    }
+
+    if (parentDefaultValue !== undefined) {
+      return _.cloneDeep(_.merge({}, default_.value || nullValue.value, parentDefaultValue))
+    }
+
+    if (Object.keys(default_.value).length > 0) {
+      return _.cloneDeep(default_.value)
     }
 
     return _.cloneDeep(nullValue.value)
@@ -59,43 +107,16 @@ const group = function(props, context, dependencies)
   // ============== COMPUTED ===============
 
   const defaultValue = computed(() => {
-    let parentDefaultValue = parent.value ? parent.value.defaultValue : form$.value.options.default
+    let parentDefaultValue = {}
+
+    if (parent && parent.value && !parent.value.mounted) {
+      parentDefaultValue = parent.value.defaultValue
+    }
+    else if (!form$.value.mounted && form$.value.options.default) {
+      parentDefaultValue = form$.value.options.default
+    }
 
     return _.cloneDeep(_.merge({}, default_.value, parentDefaultValue))
-  })
-
-  return {
-    defaultValue,
-  }
-}
-
-const object = function(props, context, dependencies)
-{
-  const {
-    default: default_,
-    name,
-  } = toRefs(props)
-
-  // ============ DEPENDENCIES =============
-
-  const nullValue = dependencies.nullValue
-  const form$ = dependencies.form$
-  const parent = dependencies.parent
-
-  // ============== COMPUTED ===============
-
-  const defaultValue = computed(() => {
-    let parentDefaultValue = parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
-
-    if (parentDefaultValue !== undefined) {
-      return _.cloneDeep(_.merge({}, default_.value || nullValue.value, parentDefaultValue))
-    }
-
-    if (Object.keys(default_.value).length > 0) {
-      return _.cloneDeep(default_.value)
-    }
-
-    return _.cloneDeep(nullValue.value)
   })
 
   return {
@@ -119,7 +140,14 @@ const multilingual = function(props, context, dependencies)
   // ============== COMPUTED ===============
 
   const defaultValue = computed(() => {
-    let parentDefaultValue = parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
+    let parentDefaultValue
+
+    if (parent && parent.value && !parent.value.mounted) {
+      parentDefaultValue = parent.value.defaultValue[name.value]
+    }
+    else if (!form$.value.mounted && form$.value.options.default[name.value]) {
+      parentDefaultValue = form$.value.options.default[name.value]
+    }
 
     if (parentDefaultValue !== undefined) {
       return _.cloneDeep(Object.assign({}, _.clone(nullValue.value), parentDefaultValue))

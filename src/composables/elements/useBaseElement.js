@@ -35,7 +35,15 @@ const base = function(props, context, dependencies)
     form$,
   })
 
-  // ================ DATA ================
+  // ================= DATA ================
+
+  /**
+   * Whether the element has been already mounted.
+   * 
+   * @type {boolean}
+   * @default true
+   */
+  const mounted = ref(false)
 
   /**
    * Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.
@@ -144,6 +152,10 @@ const base = function(props, context, dependencies)
     assignToParent(currentInstance.proxy.$parent, assignToParent)
   })
 
+  onMounted(() => {
+    mounted.value = true
+  })
+
   onBeforeUnmount(() => {
     removeFromParent(currentInstance.proxy.$parent, removeFromParent)
   })
@@ -166,6 +178,7 @@ const base = function(props, context, dependencies)
     isImageType,
     isActive,
     active,
+    mounted,
     activate,
     deactivate,
   }
@@ -180,6 +193,7 @@ const list = function(props, context, dependencies)
     isImageType,
     isActive,
     active,
+    mounted,
     activate,
     deactivate,
   } = base(props, context, dependencies)
@@ -198,6 +212,7 @@ const list = function(props, context, dependencies)
     isImageType,
     isActive,
     active,
+    mounted,
     activate,
     deactivate,
   }
@@ -215,6 +230,7 @@ const file = function(props, context, dependencies)
     isArrayType,
     isActive,
     active,
+    mounted,
     activate,
     deactivate,
   } = base(props, context, dependencies)
@@ -237,6 +253,7 @@ const file = function(props, context, dependencies)
     isImageType,
     isActive,
     active,
+    mounted,
     activate,
     deactivate,
   }
@@ -251,6 +268,7 @@ const static_ = function(props, context, dependencies)
     isImageType,
     isActive,
     active,
+    mounted,
     activate,
     deactivate,
   } = base(props, context, dependencies)
@@ -269,6 +287,7 @@ const static_ = function(props, context, dependencies)
     isImageType,
     isActive,
     active,
+    mounted,
     activate,
     deactivate,
   }
