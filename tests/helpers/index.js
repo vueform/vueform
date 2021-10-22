@@ -13,6 +13,7 @@ import listSchema from './listSchema'
 import findAllComponents from './findAllComponents'
 import findAll from './findAll'
 import installLaraform from './installLaraform'
+import isVisible from './isVisible'
 import runElementTests from './runElementTests'
 import runFeatureTests from './runFeatureTests'
 import select from './select'
@@ -58,6 +59,7 @@ export {
   findAllComponents,
   findAll,
   installLaraform,
+  isVisible,
   runElementTests,
   runFeatureTests,
   select,

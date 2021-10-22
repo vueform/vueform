@@ -1090,12 +1090,12 @@ describe('Laraform', () => {
         }
       })
 
-      expect(form.vm.defaultClasses).toStrictEqual(form.vm.extendedTheme.components.Laraform.data().defaultClasses)
+      expect(form.vm.defaultClasses).toStrictEqual(form.vm.extendedTheme.templates.Laraform.data().defaultClasses)
     })
   })
 
   describe('extendedClasses', () => {
-    let defaultClasses = defaultTheme.components.Laraform.data().defaultClasses
+    let defaultClasses = defaultTheme.templates.Laraform.data().defaultClasses
     let mainClass = _.keys(defaultClasses)[0]
 
     it('should equal to defaultClasses by default', async () => {
@@ -1393,7 +1393,7 @@ describe('Laraform', () => {
         }
       })
 
-      expect(form.vm.extendedComponents).toStrictEqual(Object.assign({}, form.vm.extendedTheme.components, form.vm.extendedTheme.elements))
+      expect(form.vm.extendedComponents).toStrictEqual(Object.assign({}, form.vm.extendedTheme.templates, form.vm.extendedTheme.templates))
     })
   })
 
@@ -1489,9 +1489,9 @@ describe('Laraform', () => {
         }
       })
 
-      expect(form.vm.extendedTheme.elements.SelectElement.name).toBe('FormSelectElement')
-      expect(form.vm.extendedTheme.elements.TextareaElement.name).toBe('FormTextareaElement')
-      expect(form.vm.extendedTheme.elements.TextElement.name).toBe('ConfigTextElement')
+      expect(form.vm.extendedTheme.templates.SelectElement.name).toBe('FormSelectElement')
+      expect(form.vm.extendedTheme.templates.TextareaElement.name).toBe('FormTextareaElement')
+      expect(form.vm.extendedTheme.templates.TextElement.name).toBe('ConfigTextElement')
     })
 
     it('should merge theme components, with global components and local components', async () => {
@@ -1509,9 +1509,9 @@ describe('Laraform', () => {
         }
       })
 
-      expect(form.vm.extendedTheme.elements.FormButton.name).toBe('FormFormButton')
-      expect(form.vm.extendedTheme.elements.ElementText.name).toBe('FormElementText')
-      expect(form.vm.extendedTheme.elements.FormTab.name).toBe('ConfigFormTab')
+      expect(form.vm.extendedTheme.templates.FormButton.name).toBe('FormFormButton')
+      expect(form.vm.extendedTheme.templates.ElementText.name).toBe('FormElementText')
+      expect(form.vm.extendedTheme.templates.FormTab.name).toBe('ConfigFormTab')
     })
 
     it('should merge deep theme classes with local classes', async () => {

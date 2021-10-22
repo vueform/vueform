@@ -10,7 +10,7 @@ const createEditor = (details) => {
 
   console.error = (e) => { if (!e.toString().includes('Unknown custom element: <trix-editor>')) throw new Error(e) }
 
-  defaultTheme.components.EditorWrapper.components = {
+  defaultTheme.templates.EditorWrapper.components = {
     EditorEditor: markRaw(EditorEditor)
   }
 

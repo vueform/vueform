@@ -5,7 +5,7 @@ import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 
 export default function (elementType, componentName, schema = {}, options = {}) {
-  let defaultClasses = defaultTheme.components[componentName].data().defaultClasses
+  let defaultClasses = defaultTheme.templates[componentName].data().defaultClasses
   let mainClass = _.keys(defaultClasses)[0]
   let mergeWith = options.mergeWith || {}
   let execute = options.execute || null

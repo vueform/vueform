@@ -1,5 +1,5 @@
 export default function testThemeElements (name, expect) {
-  let components = _.keys(defaultTheme.elements)
+  let components = _.keys(defaultTheme.templates)
 
   const originalConsoleError = console.error
 

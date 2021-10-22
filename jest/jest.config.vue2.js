@@ -6,6 +6,7 @@ module.exports = {
       "vue"
   ],
   "testTimeout": 20000,
+  "testEnvironment": "jsdom",
   "transform": {
       ".*\\.(vue)$": "vue-prev-jest",
       "^.+\\.js$": "babel-jest"

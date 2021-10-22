@@ -85,7 +85,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const handleClick = (e) => {
-    if (!href.value) {
+    if (buttonType.value === 'anchor' && !href.value) {
       e.preventDefault()
     }
 

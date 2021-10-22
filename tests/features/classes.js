@@ -24,7 +24,7 @@ export const mainClass = function (elementType, elementName, options) {
 }
 
 export const classes = function (elementType, elementName, options) {
-  let defaultClasses = defaultTheme.elements[elementName].data().defaultClasses
+  let defaultClasses = defaultTheme.templates[elementName].data().defaultClasses
   let mainClass = _.keys(defaultClasses)[0]
   let mergeWith = options.mergeWith || {}
 
@@ -60,13 +60,11 @@ export const classes = function (elementType, elementName, options) {
         }
       }
     }, {
-      themes: {
-        default: Object.assign({}, defaultTheme, {
-          classes: {
-            [elementName]: overwriteClasses1
-          }
-        })
-      }
+      theme: Object.assign({}, defaultTheme, {
+        classes: {
+          [elementName]: overwriteClasses1
+        }
+      })
     })
 
     let el = form.vm.el$('el')
@@ -369,7 +367,7 @@ export const classes = function (elementType, elementName, options) {
 }
 
 export const rendering = function (elementType, elementName, options) {
-  let defaultClasses = defaultTheme.elements[elementName].data().defaultClasses
+  let defaultClasses = defaultTheme.templates[elementName].data().defaultClasses
   let mainClass = _.keys(defaultClasses)[0]
   
   // Element class

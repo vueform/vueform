@@ -13,6 +13,7 @@ import validation from './../../src/services/validation'
 import messageBag from './../../src/services/messageBag'
 import autosize from './../../src/services/autosize'
 import location from './../../src/services/location'
+import columns from './../../src/services/columns'
 
 // 3rd party
 import _ from 'lodash'
@@ -61,8 +62,14 @@ export default function createForm (data, options = {}, render = null) {
 
   let $laraform = {
     test: true,
-    extensions: config.extensions,
-    config: Object.assign({}, config, options.config || {}),
+    config: finalConfig,
+    classes: finalConfig.classes,
+    templates: finalConfig.templates,
+    rules: finalConfig.rules,
+    theme: finalConfig.theme,
+    locales: options.locales || {
+      en: en
+    },
     services: {
       condition,
       validation,
@@ -70,10 +77,8 @@ export default function createForm (data, options = {}, render = null) {
       messageBag,
       autosize,
       location,
+      columns,
     },
-    locales: options.locales || {
-      en: en
-    }
   }
 
   let $laraformMixin = {

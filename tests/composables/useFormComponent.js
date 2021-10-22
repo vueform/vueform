@@ -5,7 +5,7 @@ import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 
 export default function (schema, componentName, options = {}) {
-  let defaultClasses = defaultTheme.components[componentName].data().defaultClasses
+  let defaultClasses = defaultTheme.templates[componentName].data().defaultClasses
   let mainClass = _.keys(defaultClasses)[0]
   let mergeWith = options.mergeWith || {}
   let execute = options.execute || null
@@ -60,7 +60,7 @@ export default function (schema, componentName, options = {}) {
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.components).toStrictEqual(form.vm.extendedTheme.components)
+      expect(Component.vm.components).toStrictEqual(form.vm.extendedTheme.templates)
     })
   })
 

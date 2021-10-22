@@ -167,9 +167,6 @@ export default {
       slots: [
         'label', 'info', 'description',
         'before', 'between', 'after', 'default',
-        'beforeCreate', 'created', 'beforeMount',
-        'mounted', 'beforeUpdate', 'updated',
-        'beforeUnmount', 'unmounted',
       ]
     })
 

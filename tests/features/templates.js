@@ -2,9 +2,9 @@ import { nextTick } from 'vue'
 import { markRaw } from 'composition-api'
 import { createForm, findAllComponents, createElement, testPropDefault, destroy } from 'test-helpers'
 
-export const components = function (elementType, elementName, options) {
+export const templates = function (elementType, elementName, options) {
   // Computed Porps
-  it('should return theme components for `components` by default', () => {
+  it('should return theme templates for `templates` by default', () => {
     let form = createForm({
       schema: {
         el: {
@@ -15,12 +15,12 @@ export const components = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.components).toStrictEqual(el.theme.components)    
+    expect(el.templates).toStrictEqual(el.theme.templates)    
     
     // destroy(form) // teardown
   })
 
-  it('should return theme components merged with local components if `replaceTemplates` is defined', () => {
+  it('should return theme templates merged with local templates if `replaceTemplates` is defined', () => {
     let replaceTemplates = {
       ElementError: markRaw({
         name: 'CustomElementError',
@@ -41,7 +41,7 @@ export const components = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.components).toStrictEqual(Object.assign({}, el.theme.components, replaceTemplates))
+    expect(el.templates).toStrictEqual(Object.assign({}, el.theme.templates, replaceTemplates))
     
     // destroy(form) // teardown
 

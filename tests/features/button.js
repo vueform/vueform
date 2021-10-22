@@ -191,14 +191,16 @@ export const button = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 }
+
 export const handleClick = function (elementType, elementName, options) {
-  it('should prevent if href.length > 0', async () => {
+  it('should prevent if has no href and buttonType=anchor', async () => {
     let preventMock = jest.fn()
 
     let form = createForm({
       schema: {
         el: {
           type: elementType,
+          buttonType: 'anchor',
         }
       }
     })
@@ -206,18 +208,19 @@ export const handleClick = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     el.handleClick({ preventDefault: preventMock, })
-    expect(preventMock).not.toHaveBeenCalled()
+    expect(preventMock).toHaveBeenCalledTimes(1)
 
     el.$set(form.vm.laraform.schema.el, 'href', 'href')
     await nextTick()
     el.handleClick({ preventDefault: preventMock, })
-    expect(preventMock).toHaveBeenCalled()    
+    expect(preventMock).toHaveBeenCalledTimes(1)
     
     // destroy(form) // teardown
   })
 
   it('should return if disabled or loading and call onClick with form$ if not', async () => {
     let onClickMock = jest.fn()
+    let preventMock = jest.fn()
 
     let form = createForm({
       schema: {
@@ -232,24 +235,28 @@ export const handleClick = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.handleClick()
+    el.handleClick({ preventDefault: preventMock, })
+    expect(preventMock).toHaveBeenCalledTimes(1)
     expect(onClickMock).not.toHaveBeenCalled()
 
     el.$set(form.vm.laraform.schema.el, 'disabled', false)
     await nextTick()
-    el.handleClick()
+    el.handleClick({ preventDefault: preventMock, })
+    expect(preventMock).toHaveBeenCalledTimes(2)
     expect(onClickMock).not.toHaveBeenCalled()
 
     el.$set(form.vm.laraform.schema.el, 'loading', false)
     el.$set(form.vm.laraform.schema.el, 'disabled', true)
     await nextTick()
-    el.handleClick()
+    el.handleClick({ preventDefault: preventMock, })
+    expect(preventMock).toHaveBeenCalledTimes(3)
     expect(onClickMock).not.toHaveBeenCalled()
 
     el.$set(form.vm.laraform.schema.el, 'disabled', false)
     await nextTick()
-    el.handleClick()
-    expect(onClickMock).toHaveBeenCalledWith(el.form$)    
+    el.handleClick({ preventDefault: preventMock, })
+    expect(preventMock).toHaveBeenCalledTimes(3)
+    expect(onClickMock).toHaveBeenCalledWith(el.form$)  
     
     // destroy(form) // teardown
   })
@@ -280,7 +287,7 @@ export const handleClick = function (elementType, elementName, options) {
   })
 
   it('should submit on click if submits true', async () => {
-    let postMock = jest.fn(() => ({ data: {} }))
+    let requestMock = jest.fn(() => ({ data: {} }))
 
     let form = createForm({
       schema: {
@@ -293,13 +300,14 @@ export const handleClick = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    form.vm.$laraform.services.axios.post = postMock
+    form.vm.$laraform.services.axios.request = requestMock
 
     el.handleClick()
 
     await flushPromises()
+    await flushPromises()
 
-    expect(postMock).toHaveBeenCalled()    
+    expect(requestMock).toHaveBeenCalled()
     
     // destroy(form) // teardown
   })

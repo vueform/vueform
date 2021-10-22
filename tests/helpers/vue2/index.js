@@ -38,6 +38,7 @@ import destroy from './destroy'
 import findAll from './findAll'
 import findAllComponents from './findAllComponents'
 import installLaraform from './installLaraform'
+import isVisible from './isVisible'
 
 window.createForm = createForm
 window.findAllComponents = findAllComponents
@@ -59,6 +60,7 @@ export {
   findAll,
   findAllComponents,
   installLaraform,
+  isVisible,
   runElementTests,
   runFeatureTests,
   select,
