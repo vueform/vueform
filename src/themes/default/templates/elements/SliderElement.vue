@@ -64,21 +64,13 @@
     z-index: 1;
     top: 0;
     right: 0;
+    height: 100%;
+    width: 100%;
     -ms-transform-origin: 0 0;
     -webkit-transform-origin: 0 0;
     -webkit-transform-style: preserve-3d;
     transform-origin: 0 0;
     transform-style: flat;
-  }
-
-  .slider-connect {
-    height: 100%;
-    width: 100%;
-  }
-
-  .slider-origin {
-    height: 10%;
-    width: 10%;
   }
 
   .slider-txt-dir-rtl.slider-horizontal .slider-origin {
@@ -145,7 +137,7 @@
   .slider-vertical .slider-handle {
     width: var(--vf-slider-handle-height);
     height: var(--vf-slider-handle-width);
-    top: calc(var(--vf-slider-handle-width) / 2 * -1);
+    bottom: calc(var(--vf-slider-handle-width) / 2 * -1);
     right: calc(((var(--vf-slider-handle-height) - var(--vf-slider-height)) / 2 + 1px) * -1);
   }
 
