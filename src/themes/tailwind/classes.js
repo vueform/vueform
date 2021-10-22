@@ -335,13 +335,13 @@ export default {
     outerWrapper: 'form-row flex flex-wrap',
     outerWrapper_single: 'form-mb-gutter',
     outerWrapper_multiple: '',
-    innerContainer: 'flex-auto',
+    innerContainer: 'flex-1',
     innerWrapperBefore: 'form-col w-full',
     innerWrapper: 'form-col',
     innerWrapperAfter: 'form-col w-full',
   },
   ElementLayoutInline: {
-    container: 'inline-flex',
+    container: 'flex',
     container_error: 'has-error',
   },
   ElementLoader: {

@@ -17,6 +17,6 @@
 
 <style lang="scss">
   .vf-inline-layout {
-    display: inline-flex;
+    display: flex;
   }
 </style>

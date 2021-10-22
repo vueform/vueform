@@ -26,7 +26,7 @@
   // Some styles are contained in Laraform.vue
 
   .vf-layout-inner-container {
-    flex: 1 1 auto;
+    flex: 1 1 0%;
   }
 
   .vf-layout-inner-wrapper-before,

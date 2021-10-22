@@ -17,6 +17,7 @@ export default class Columns
     return {
       container: this.getClasses('container'),
       label: this.getClasses('label'),
+      innerContainer: this.getClasses('innerContainer'),
       wrapper: this.getClasses('wrapper'),
     }
   }
@@ -88,22 +89,29 @@ export default class Columns
     const classes = []
 
     Object.keys(this.cols).forEach((breakpoint) => {
-      let size = this.cols[breakpoint][type]
+      if (type === 'innerContainer') {
+        let size = this.cols[breakpoint].label
+        size = size >= 12 || !this.hasLabel ? 12 : 12 - size
 
-      if (type === 'label' && !this.hasLabel) {
-        size = 0
-      }
-
-      if (type === 'wrapper' && !this.hasLabel) {
-        size += this.cols[breakpoint].label || 0
-
-        if (size > 12) {
-          size = 12
-        }
-      }
-      
-      if (size !== undefined) {
         classes.push(this.getClass(breakpoint, size))
+      } else {
+        let size = this.cols[breakpoint][type]
+
+        if (type === 'label' && !this.hasLabel) {
+          size = 0
+        }
+
+        if (type === 'wrapper' && !this.hasLabel) {
+          size += this.cols[breakpoint].label || 0
+
+          if (size > 12) {
+            size = 12
+          }
+        }
+        
+        if (size !== undefined) {
+          classes.push(this.getClass(breakpoint, size))
+        }
       }
     })
 
