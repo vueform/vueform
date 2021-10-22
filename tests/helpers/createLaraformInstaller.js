@@ -3,28 +3,16 @@ import installer from './../../src/installer'
 import config from './../../src/config'
 
 // Assets
-import bootstrap from './../../src/themes/default'
 import defaultTheme from './../../src/themes/default'
 import en from './../../src/locales/en'
 
-const themes = {
-  bootstrap,
-  default: defaultTheme,
-}
-
 export default function createLaraformInstaller (options = {}) {
-  let theme = options.theme || config.theme
+  let theme = options.theme || defaultTheme
 
   let finalConfig = Object.assign({}, config, {
-    vue: 3,
-    themes: Object.assign({}, {
-      [theme]: themes[theme]
-    }, options.themes || {}),
     theme: theme,
-    elements: options.elements || {},
-    components: options.components || {},
+    templates: options.templates || {},
     rules: options.rules || {},
-    extensions: options.extensions || {},
     locales: Object.assign({}, options.locales || {
       en,
     })

@@ -327,7 +327,6 @@ export default function(config) {
                   config: appOrVue.observable($laraform.config),
                   classes: $laraform.classes,
                   templates: $laraform.templates,
-                  extensions: $laraform.extensions,
                   rules: $laraform.rules,
                   services: $laraform.services,
                   theme: $laraform.theme,

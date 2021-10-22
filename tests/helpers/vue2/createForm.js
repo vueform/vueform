@@ -60,11 +60,14 @@ export default function createForm (data, options = {}, render = null) {
 
   let $laraform = {
     test: true,
-    extensions: config.extensions,
     config: finalConfig,
-    elements: finalConfig.elements,
-    themes: finalConfig.themes,
+    classes: finalConfig.classes,
+    templates: finalConfig.templates,
     rules: finalConfig.rules,
+    theme: finalConfig.theme,
+    locales: options.locales || {
+      en: en
+    },
     services: {
       condition,
       validation,
@@ -74,9 +77,6 @@ export default function createForm (data, options = {}, render = null) {
       location,
       columns,
     },
-    locales: options.locales || {
-      en: en
-    }
   }
 
   let mountOptions = {
