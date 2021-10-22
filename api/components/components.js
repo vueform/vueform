@@ -38,7 +38,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -142,7 +142,7 @@ module.exports = {
       }
     },
     "computed": {
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -249,7 +249,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -327,7 +327,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -394,7 +394,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -472,7 +472,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -506,7 +506,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed."
+        "description": "Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component's [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed."
       },
       "isSlot": {
         "public": false,
@@ -575,7 +575,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -636,7 +636,7 @@ module.exports = {
       }
     },
     "computed": {
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -733,7 +733,7 @@ module.exports = {
       }
     },
     "computed": {
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -836,7 +836,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -896,7 +896,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -963,7 +963,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -1041,7 +1041,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -1121,7 +1121,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -1195,7 +1195,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -1222,7 +1222,7 @@ module.exports = {
       "language": {
         "required": true,
         "types": [
-          "object"
+          "string"
         ]
       },
       "code": {
@@ -1279,7 +1279,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -1376,7 +1376,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -1478,7 +1478,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -1558,7 +1558,7 @@ module.exports = {
         ],
         "description": "Whether the step is active."
       },
-      "disabled": {
+      "isDisabled": {
         "public": true,
         "default": "true",
         "types": [
@@ -1748,7 +1748,7 @@ module.exports = {
           "array"
         ]
       },
-      "stepClass": {
+      "addClass": {
         "required": false,
         "default": null,
         "types": [
@@ -1791,12 +1791,6 @@ module.exports = {
       }
     },
     "events": {
-      "active": {
-        "description": "Triggered when the step becomes active."
-      },
-      "inactive": {
-        "description": "Triggered when the step becomes inactive."
-      },
       "enable": {
         "description": "Triggered when the step becomes enabled."
       },
@@ -1879,7 +1873,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -2280,7 +2274,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -2294,14 +2288,14 @@ module.exports = {
         ],
         "description": "Whether the control should be visible."
       },
-      "disabled": {
+      "isDisabled": {
         "public": true,
         "types": [
           "boolean"
         ],
         "description": "Whether the control should be disabled."
       },
-      "loading": {
+      "isLoading": {
         "public": true,
         "types": [
           "boolean"
@@ -2413,7 +2407,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -2519,7 +2513,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -2687,7 +2681,7 @@ module.exports = {
           "array"
         ]
       },
-      "tabClass": {
+      "addClass": {
         "required": false,
         "default": null,
         "types": [
@@ -2713,14 +2707,7 @@ module.exports = {
         "private": true
       }
     },
-    "events": {
-      "active": {
-        "description": "Triggered when the tab becomes active."
-      },
-      "inactive": {
-        "description": "Triggered when the tab becomes inactive."
-      }
-    },
+    "events": {},
     "slots": {
       "default": {
         "description": "Replaces the label for the tab.",
@@ -2787,7 +2774,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -3117,7 +3104,7 @@ module.exports = {
         ],
         "description": "The form data including all the elements even if they have unmet conditions."
       },
-      "output": {
+      "requestData": {
         "public": true,
         "types": [
           "object"
@@ -3299,26 +3286,19 @@ module.exports = {
         ],
         "description": "The default classes for the form defined by theme."
       },
-      "extendedClasses": {
+      "classes": {
         "public": true,
         "types": [
           "object"
         ],
         "description": "The selected theme's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides. Normally we use `classes` property for this, but as Vueform component needs to have an actual [`:classes`](#classes) prop so we use this naming instead."
       },
-      "extendedComponents": {
+      "templates": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The selected theme's components, extended by local overrides. Normally we use `components` property for this, but as Vueform component needs to have an actual [`:components`](#components) prop so we use this naming instead."
-      },
-      "selectedTheme": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The theme object of the selected theme."
+        "description": "The selected theme's templates, extended by local overrides. Normally we use `components` property for this, but as Vueform component needs to have an actual [`:components`](#components) prop so we use this naming instead."
       },
       "extendedTheme": {
         "public": true,
@@ -3636,28 +3616,21 @@ module.exports = {
           "object"
         ]
       },
-      "overrideClasses": {
+      "replaceClasses": {
         "required": false,
         "default": null,
         "types": [
           "object"
         ]
       },
-      "addClasses": {
+      "extendClasses": {
         "required": false,
         "default": null,
         "types": [
           "object"
         ]
       },
-      "components": {
-        "required": false,
-        "default": null,
-        "types": [
-          "object"
-        ]
-      },
-      "elements": {
+      "replaceTemplates": {
         "required": false,
         "default": null,
         "types": [
@@ -3744,7 +3717,14 @@ module.exports = {
           "string"
         ]
       },
-      "labels": {
+      "forceLabels": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
+        ]
+      },
+      "floatPlaceholders": {
         "required": false,
         "default": null,
         "types": [
@@ -3799,6 +3779,110 @@ module.exports = {
         "types": [
           "function"
         ]
+      },
+      "onChange": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ],
+        "private": true
+      },
+      "onReset": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ],
+        "private": true
+      },
+      "onClear": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ],
+        "private": true
+      },
+      "onSubmit": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ],
+        "private": true
+      },
+      "onSuccess": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ],
+        "private": true
+      },
+      "onError": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ],
+        "private": true
+      },
+      "onLanguage": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ],
+        "private": true
+      },
+      "onBeforeMount": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ],
+        "private": true
+      },
+      "onMounted": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ],
+        "private": true
+      },
+      "onBeforeUpdate": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ],
+        "private": true
+      },
+      "onUpdated": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ],
+        "private": true
+      },
+      "onBeforeUnmount": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ],
+        "private": true
+      },
+      "onUnmounted": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ],
+        "private": true
       }
     },
     "events": {
@@ -3896,7 +3980,7 @@ module.exports = {
       }
     }
   },
-  "FlatpickrWrapper": {
+  "DatepickerWrapper": {
     "inject": {
       "el$": {
         "public": true,
@@ -3935,7 +4019,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -3965,7 +4049,7 @@ module.exports = {
         ],
         "description": "The default classes for the component defined by theme."
       },
-      "flatpickr$": {
+      "datepicker$": {
         "public": true,
         "default": "null",
         "types": [
@@ -4026,19 +4110,7 @@ module.exports = {
         ]
       }
     },
-    "events": {
-      "change": {
-        "description": "Triggered when then value is changed.",
-        "params": {
-          "value": {
-            "description": "the new value",
-            "types": [
-              "Date|array<Date>"
-            ]
-          }
-        }
-      }
-    },
+    "events": {},
     "slots": {}
   },
   "EditorWrapper": {
@@ -4073,7 +4145,7 @@ module.exports = {
         ],
         "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -4088,14 +4160,14 @@ module.exports = {
         "types": [
           "HTMLElement"
         ],
-        "description": "The [`Trix`](https://github.com/basecamp/editor) DOM instance."
+        "description": "The [`Editor`](https://github.com/basecamp/trix) DOM instance."
       }
     },
     "methods": {
       "update": {
         "public": true,
         "returns": "void",
-        "description": "Updates the value of Editor editor.",
+        "description": "Updates the value of editor.",
         "params": {
           "value": {
             "types": [
@@ -4109,7 +4181,7 @@ module.exports = {
       "setOption": {
         "public": true,
         "returns": "void",
-        "description": "Sets an option for Editor editor.",
+        "description": "Sets an option for editor.",
         "params": {
           "key": {
             "types": [
@@ -4214,6 +4286,13 @@ module.exports = {
           "string"
         ]
       },
+      "method": {
+        "required": false,
+        "default": "post",
+        "types": [
+          "string"
+        ]
+      },
       "disabled": {
         "required": false,
         "default": false,
@@ -4287,7 +4366,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -4369,7 +4448,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -4525,7 +4604,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -4580,13 +4659,6 @@ module.exports = {
           "string"
         ],
         "description": "The image's preview. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded."
-      },
-      "previewLoaded": {
-        "public": false,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the preview file has been loaded by the browser when the file has already been uploaded or has only been selected."
       },
       "uploaded": {
         "public": true,
@@ -4695,7 +4767,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"
@@ -4750,13 +4822,6 @@ module.exports = {
           "string"
         ],
         "description": "The image's preview. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded."
-      },
-      "previewLoaded": {
-        "public": false,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the preview file has been loaded by the browser when the file has already been uploaded or has only been selected."
       },
       "uploaded": {
         "public": true,
@@ -4865,7 +4930,7 @@ module.exports = {
         ],
         "description": "The class name of the components's outermost DOM."
       },
-      "components": {
+      "templates": {
         "public": true,
         "types": [
           "object"

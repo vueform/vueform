@@ -1,58 +1,20 @@
 export default {
-  "address": {
-    "features": [
-      "baseElement",
-      "children_address",
-      "classes",
-      "columns",
-      "components",
-      "conditions",
-      "data_object",
-      "default_object",
-      "disabled",
-      "elements",
-      "events",
-      "form$",
-      "genericName",
-      "label",
-      "layout",
-      "location_address",
-      "nullValue_address",
-      "path",
-      "slots",
-      "theme",
-      "validation_object",
-      "value_object",
-      "view",
-      "watchValue"
-    ],
-    "slots": [
-      "label",
-      "info",
-      "description",
-      "before",
-      "between",
-      "after"
-    ],
-    "events": [
-      "change"
-    ]
-  },
   "button": {
     "features": [
       "baseElement_static",
       "button",
       "classes_button",
       "columns",
-      "components",
       "conditions",
       "disabled_button",
+      "events",
       "form$",
       "genericName",
       "label",
       "layout",
       "path",
       "slots",
+      "templates",
       "theme",
       "view"
     ],
@@ -72,7 +34,6 @@ export default {
       "baseElement",
       "classes_input",
       "columns",
-      "components",
       "conditions",
       "data",
       "default",
@@ -87,6 +48,7 @@ export default {
       "nullValue_boolean",
       "path",
       "slots",
+      "templates",
       "theme",
       "toggle",
       "validation",
@@ -101,19 +63,25 @@ export default {
       "before",
       "between",
       "after",
-      "default"
+      "default",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "checkboxgroup": {
     "features": [
+      "asyncItems_checkboxgroup",
       "baseElement_checkboxgroup",
       "check",
       "classes",
       "columns",
-      "components",
       "conditions",
       "data",
       "default",
@@ -127,6 +95,7 @@ export default {
       "nullValue_array",
       "path",
       "slots",
+      "templates",
       "theme",
       "validation",
       "value",
@@ -142,9 +111,7 @@ export default {
       "after",
       "checkbox"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "date": {
     "features": [
@@ -152,7 +119,6 @@ export default {
       "baseElement",
       "classes_input",
       "columns",
-      "components",
       "conditions",
       "data_date",
       "dateFormat",
@@ -161,6 +127,7 @@ export default {
       "empty",
       "events",
       "fieldId",
+      "floating",
       "form$",
       "genericName",
       "handleChange",
@@ -171,6 +138,7 @@ export default {
       "options_date",
       "path",
       "slots",
+      "templates",
       "theme",
       "validation",
       "value_date",
@@ -187,9 +155,7 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "dates": {
     "features": [
@@ -197,7 +163,6 @@ export default {
       "baseElement_dates",
       "classes_input",
       "columns",
-      "components",
       "conditions",
       "data_dates",
       "dateFormat_dates",
@@ -206,6 +171,7 @@ export default {
       "empty",
       "events",
       "fieldId",
+      "floating",
       "form$",
       "genericName",
       "handleChange",
@@ -216,6 +182,7 @@ export default {
       "options_dates",
       "path",
       "slots",
+      "templates",
       "theme",
       "validation",
       "value_dates",
@@ -232,16 +199,13 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "file": {
     "features": [
       "baseElement_file",
       "classes_file",
       "columns",
-      "components",
       "conditions",
       "data",
       "default",
@@ -262,6 +226,7 @@ export default {
       "removing",
       "request",
       "slots",
+      "templates",
       "theme",
       "validation_file",
       "value",
@@ -276,11 +241,7 @@ export default {
       "between",
       "after"
     ],
-    "events": [
-      "change",
-      "remove",
-      "error"
-    ]
+    "events": []
   },
   "group": {
     "features": [
@@ -288,7 +249,6 @@ export default {
       "children_group",
       "classes",
       "columns",
-      "components",
       "conditions",
       "data_group",
       "default_group",
@@ -301,6 +261,7 @@ export default {
       "nullValue_object",
       "path_group",
       "slots",
+      "templates",
       "theme",
       "validation_group",
       "value_group",
@@ -314,14 +275,11 @@ export default {
       "between",
       "after"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "hidden": {
     "features": [
       "baseElement",
-      "components",
       "conditions",
       "data",
       "default",
@@ -333,15 +291,14 @@ export default {
       "input",
       "nullValue",
       "path",
+      "templates",
       "theme",
       "validation",
       "value",
       "watchValue"
     ],
     "slots": [],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "list": {
     "features": [
@@ -349,7 +306,6 @@ export default {
       "children",
       "classes_list",
       "columns",
-      "components",
       "conditions",
       "controls",
       "data_list",
@@ -369,11 +325,12 @@ export default {
       "slots",
       "sort",
       "sorting",
+      "templates",
       "theme",
       "validation_list",
       "value",
       "view",
-      "watchValue"
+      "watchValue_list"
     ],
     "slots": [
       "label",
@@ -383,12 +340,7 @@ export default {
       "between",
       "after"
     ],
-    "events": [
-      "change",
-      "add",
-      "remove",
-      "sort"
-    ]
+    "events": []
   },
   "location": {
     "features": [
@@ -396,7 +348,6 @@ export default {
       "baseElement",
       "classes_input",
       "columns",
-      "components",
       "conditions",
       "data",
       "default",
@@ -412,6 +363,7 @@ export default {
       "location",
       "path",
       "slots",
+      "templates",
       "theme",
       "validation",
       "value",
@@ -428,9 +380,7 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "multifile": {
     "features": [
@@ -438,8 +388,8 @@ export default {
       "children",
       "classes_multifile",
       "columns",
-      "components",
       "conditions",
+      "controls_multifile",
       "data_list",
       "default",
       "disabled",
@@ -460,11 +410,12 @@ export default {
       "slots",
       "sort",
       "sorting",
+      "templates",
       "theme",
       "validation_list",
       "value",
       "view",
-      "watchValue"
+      "watchValue_multifile"
     ],
     "slots": [
       "label",
@@ -474,12 +425,7 @@ export default {
       "between",
       "after"
     ],
-    "events": [
-      "change",
-      "add",
-      "remove",
-      "sort"
-    ]
+    "events": []
   },
   "multiselect": {
     "features": [
@@ -487,7 +433,6 @@ export default {
       "baseElement_multiselect",
       "classes_input",
       "columns",
-      "components",
       "conditions",
       "data",
       "default",
@@ -495,6 +440,7 @@ export default {
       "empty_array",
       "events",
       "fieldId",
+      "floating",
       "form$",
       "genericName",
       "handleSelectEvents",
@@ -506,6 +452,7 @@ export default {
       "path",
       "select",
       "slots",
+      "templates",
       "theme",
       "validation",
       "value",
@@ -531,14 +478,7 @@ export default {
       "spinner",
       "clear"
     ],
-    "events": [
-      "change",
-      "select",
-      "deselect",
-      "search-change",
-      "open",
-      "close"
-    ]
+    "events": []
   },
   "object": {
     "features": [
@@ -546,7 +486,6 @@ export default {
       "children_object",
       "classes",
       "columns",
-      "components",
       "conditions",
       "data_object",
       "default_object",
@@ -559,11 +498,11 @@ export default {
       "nullValue_object",
       "path",
       "slots",
+      "templates",
       "theme",
       "validation_object",
       "value_object",
-      "view",
-      "watchValue"
+      "view"
     ],
     "slots": [
       "label",
@@ -573,16 +512,13 @@ export default {
       "between",
       "after"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "radio": {
     "features": [
       "baseElement",
       "classes_input",
       "columns",
-      "components",
       "conditions",
       "data",
       "default",
@@ -598,6 +534,7 @@ export default {
       "path",
       "radio",
       "slots",
+      "templates",
       "theme",
       "validation",
       "value",
@@ -613,16 +550,14 @@ export default {
       "after",
       "default"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "radiogroup": {
     "features": [
+      "asyncItems_radiogroup",
       "baseElement",
       "classes",
       "columns",
-      "components",
       "conditions",
       "data",
       "default",
@@ -636,6 +571,7 @@ export default {
       "nullValue",
       "path",
       "slots",
+      "templates",
       "theme",
       "validation",
       "value",
@@ -651,9 +587,7 @@ export default {
       "after",
       "radio"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "select": {
     "features": [
@@ -661,7 +595,6 @@ export default {
       "baseElement",
       "classes_input",
       "columns",
-      "components",
       "conditions",
       "data",
       "default",
@@ -669,6 +602,7 @@ export default {
       "empty",
       "events",
       "fieldId",
+      "floating",
       "form$",
       "genericName",
       "handleSelectEvents",
@@ -679,6 +613,7 @@ export default {
       "options_select",
       "path",
       "slots",
+      "templates",
       "theme",
       "validation",
       "value",
@@ -704,21 +639,13 @@ export default {
       "spinner",
       "clear"
     ],
-    "events": [
-      "change",
-      "select",
-      "deselect",
-      "search-change",
-      "open",
-      "close"
-    ]
+    "events": []
   },
   "slider": {
     "features": [
       "baseElement",
       "classes",
       "columns",
-      "components",
       "conditions",
       "data",
       "default",
@@ -735,6 +662,7 @@ export default {
       "options_slider",
       "path",
       "slots",
+      "templates",
       "theme",
       "validation_slider",
       "value",
@@ -749,16 +677,13 @@ export default {
       "between",
       "after"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "static": {
     "features": [
       "baseElement_static",
       "classes",
       "columns",
-      "components",
       "conditions",
       "events",
       "form$",
@@ -768,6 +693,7 @@ export default {
       "path",
       "slots",
       "static",
+      "templates",
       "theme",
       "view"
     ],
@@ -784,11 +710,10 @@ export default {
   },
   "tags": {
     "features": [
-      "asyncItems",
+      "asyncItems_tags",
       "baseElement_tags",
       "classes",
       "columns",
-      "components",
       "conditions",
       "data",
       "default",
@@ -796,6 +721,7 @@ export default {
       "empty_array",
       "events",
       "fieldId",
+      "floating",
       "form$",
       "genericName",
       "handleSelectEvents",
@@ -808,6 +734,7 @@ export default {
       "path",
       "select",
       "slots",
+      "templates",
       "theme",
       "validation",
       "value",
@@ -833,15 +760,7 @@ export default {
       "spinner",
       "clear"
     ],
-    "events": [
-      "change",
-      "select",
-      "deselect",
-      "search-change",
-      "open",
-      "close",
-      "tag"
-    ]
+    "events": []
   },
   "textarea": {
     "features": [
@@ -850,7 +769,6 @@ export default {
       "baseElement",
       "classes_input",
       "columns",
-      "components",
       "conditions",
       "data",
       "default",
@@ -858,6 +776,7 @@ export default {
       "empty",
       "events",
       "fieldId",
+      "floating",
       "form$",
       "genericName",
       "handleInput",
@@ -867,6 +786,7 @@ export default {
       "nullValue",
       "path",
       "slots",
+      "templates",
       "theme",
       "validation",
       "value",
@@ -883,9 +803,7 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "text": {
     "features": [
@@ -893,7 +811,6 @@ export default {
       "baseElement",
       "classes_input",
       "columns",
-      "components",
       "conditions",
       "data",
       "default",
@@ -901,15 +818,18 @@ export default {
       "empty",
       "events",
       "fieldId",
+      "floating",
       "form$",
       "genericName",
       "handleInput",
       "input",
       "label",
       "layout",
+      "loading",
       "nullValue",
       "path",
       "slots",
+      "templates",
       "theme",
       "validation",
       "value",
@@ -926,16 +846,13 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "toggle": {
     "features": [
       "baseElement",
       "classes",
       "columns",
-      "components",
       "conditions",
       "data",
       "default",
@@ -952,6 +869,7 @@ export default {
       "options_toggle",
       "path",
       "slots",
+      "templates",
       "theme",
       "toggle",
       "validation",
@@ -968,20 +886,18 @@ export default {
       "after",
       "default"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "editor": {
     "features": [
       "baseElement",
       "classes_editor",
       "columns",
-      "components",
       "conditions",
       "data_editor",
       "default",
       "disabled",
+      "editor",
       "empty",
       "events",
       "fieldId",
@@ -996,8 +912,8 @@ export default {
       "nullValue",
       "path",
       "slots",
+      "templates",
       "theme",
-      "editor",
       "validation",
       "value",
       "view",
@@ -1011,10 +927,7 @@ export default {
       "between",
       "after"
     ],
-    "events": [
-      "change",
-      "error"
-    ]
+    "events": []
   },
   "tTextarea": {
     "features": [
@@ -1023,7 +936,6 @@ export default {
       "baseElement",
       "classes_input",
       "columns",
-      "components",
       "conditions",
       "data_multilingual",
       "default_multilingual",
@@ -1031,6 +943,7 @@ export default {
       "empty_multilingual",
       "events",
       "fieldId",
+      "floating",
       "form$",
       "genericName",
       "handleInput",
@@ -1041,6 +954,7 @@ export default {
       "nullValue_multilingual",
       "path",
       "slots",
+      "templates",
       "theme",
       "validation_multilingual",
       "value_multilingual",
@@ -1057,9 +971,7 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "tText": {
     "features": [
@@ -1067,7 +979,6 @@ export default {
       "baseElement",
       "classes_input",
       "columns",
-      "components",
       "conditions",
       "data_multilingual",
       "default_multilingual",
@@ -1075,6 +986,7 @@ export default {
       "empty_multilingual",
       "events",
       "fieldId",
+      "floating",
       "form$",
       "genericName",
       "handleInput",
@@ -1085,6 +997,7 @@ export default {
       "nullValue_multilingual",
       "path",
       "slots",
+      "templates",
       "theme",
       "validation_multilingual",
       "value_multilingual",
@@ -1101,20 +1014,18 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": [
-      "change"
-    ]
+    "events": []
   },
   "tEditor": {
     "features": [
       "baseElement",
       "classes_editor",
       "columns",
-      "components",
       "conditions",
       "data_teditor",
       "default_multilingual",
       "disabled",
+      "editor",
       "empty_multilingual",
       "events",
       "fieldId",
@@ -1130,8 +1041,8 @@ export default {
       "nullValue_multilingual",
       "path",
       "slots",
+      "templates",
       "theme",
-      "editor",
       "validation_multilingual",
       "value_multilingual",
       "view",
@@ -1145,9 +1056,6 @@ export default {
       "between",
       "after"
     ],
-    "events": [
-      "change",
-      "error"
-    ]
+    "events": []
   }
 }

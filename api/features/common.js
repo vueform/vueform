@@ -58,7 +58,7 @@ export default {
           ],
           "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
         },
-        "components": {
+        "templates": {
           "public": true,
           "types": [
             "object"
@@ -216,7 +216,7 @@ export default {
           ],
           "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
         },
-        "components": {
+        "templates": {
           "public": true,
           "types": [
             "object"
@@ -380,7 +380,7 @@ export default {
           ],
           "description": "The form data including all the elements even if they have unmet conditions."
         },
-        "output": {
+        "requestData": {
           "public": true,
           "types": [
             "object"
@@ -562,26 +562,19 @@ export default {
           ],
           "description": "The default classes for the form defined by theme."
         },
-        "extendedClasses": {
+        "classes": {
           "public": true,
           "types": [
             "object"
           ],
           "description": "The selected theme's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides. Normally we use `classes` property for this, but as Vueform component needs to have an actual [`:classes`](#classes) prop so we use this naming instead."
         },
-        "extendedComponents": {
+        "templates": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "The selected theme's components, extended by local overrides. Normally we use `components` property for this, but as Vueform component needs to have an actual [`:components`](#components) prop so we use this naming instead."
-        },
-        "selectedTheme": {
-          "public": false,
-          "types": [
-            "object"
-          ],
-          "description": "The theme object of the selected theme."
+          "description": "The selected theme's templates, extended by local overrides. Normally we use `components` property for this, but as Vueform component needs to have an actual [`:components`](#components) prop so we use this naming instead."
         },
         "extendedTheme": {
           "public": true,
@@ -610,6 +603,13 @@ export default {
             "boolean"
           ],
           "description": "Whether form data should be synced when the external value changes (when external value is used)."
+        },
+        "baseConfig": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The default configuration object."
         }
       },
       "methods": {

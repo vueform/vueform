@@ -24,7 +24,7 @@ _.each(fs.readdirSync(__dirname + '/../../../src/components/elements'), (filenam
 const elementFeatures = require('./../../features/elements').default
 const commonFeatures = require('./../../features/common').default
 
-const ignore = []
+const ignore = ['AddressElement']
 const include = []
 
 const output = __dirname + '/../../components/elements.js'
@@ -33,7 +33,7 @@ const generate = () => {
   let contents = `module.exports = {\n`
 
   _.each(elements, (element, elementName) => {
-    if (include.length > 0 && include.indexOf(elementName) === -1) {
+    if ((include.length > 0 && include.indexOf(elementName) === -1) || ignore.indexOf(elementName) !== -1) {
       return
     }
     contents += `  ${elementName}: {\n`

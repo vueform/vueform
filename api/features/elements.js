@@ -17,7 +17,52 @@ export default {
         "updateItems": {
           "public": true,
           "returns": "void",
-          "description": "Fetches & updates select options when using `async` options.",
+          "description": "Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.",
+          "params": {
+            "shouldDisable": {
+              "types": [
+                "boolean"
+              ],
+              "required": true,
+              "description": "whether the input field should be disabled while fetching options"
+            }
+          }
+        }
+      }
+    },
+    "tags": {
+      "methods": {
+        "updateItems": {
+          "public": true,
+          "returns": "void",
+          "description": "Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.",
+          "params": {
+            "shouldDisable": {
+              "types": [
+                "boolean"
+              ],
+              "required": true,
+              "description": "whether the input field should be disabled while fetching options"
+            }
+          }
+        }
+      }
+    },
+    "checkboxgroup": {
+      "computed": {
+        "resolvedItems": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "Contains available items."
+        }
+      },
+      "methods": {
+        "updateItems": {
+          "public": true,
+          "returns": "void",
+          "description": "Fetches & updates select options when using `async` items. Receives [`el$`](#property-el) as first param.",
           "params": {
             "shouldDisable": {
               "types": [
@@ -105,6 +150,14 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
         }
       },
       "methods": {
@@ -173,6 +226,14 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
         }
       },
       "methods": {
@@ -241,6 +302,14 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
         }
       },
       "methods": {
@@ -309,6 +378,14 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
         }
       },
       "methods": {
@@ -769,19 +846,6 @@ export default {
       }
     }
   },
-  "components": {
-    "base": {
-      "computed": {
-        "components": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "Returns the components to use within the element. Use [`:overrideComponents`](#override-components) to override any of the element's components."
-        }
-      }
-    }
-  },
   "controls": {
     "base": {
       "computed": {
@@ -807,6 +871,31 @@ export default {
           "description": "Whether list items should be sortable. Can be enabled by setting [`:sort`](#sort) to `true`, but will return `false` if the element is `:disabled`."
         }
       }
+    },
+    "multifile": {
+      "computed": {
+        "hasAdd": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether adding new items is allowed. Will return `false` if the element is `:disabled`. Can be disabled manually by setting [`:controls.add`](#controls) to `false`."
+        },
+        "hasRemove": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether remove items is allowed. Will return `false` if the element is `:disabled` or a temporary file upload is in progress. Can be disabled manually by setting [`:controls.remove`](#controls) to `false`."
+        },
+        "hasSort": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether list items should be sortable. Can be enabled by setting [`:sort`](#sort) to `true`, but will return `false` if the element is `:disabled` or a temporary file upload is in progress."
+        }
+      }
     }
   },
   "data": {
@@ -819,7 +908,7 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
         },
-        "output": {
+        "requestData": {
           "public": true,
           "types": [
             "object"
@@ -890,7 +979,7 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
         },
-        "output": {
+        "requestData": {
           "public": true,
           "types": [
             "object"
@@ -961,7 +1050,7 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
         },
-        "output": {
+        "requestData": {
           "public": true,
           "types": [
             "object"
@@ -1025,7 +1114,7 @@ export default {
     },
     "list": {
       "computed": {
-        "output": {
+        "requestData": {
           "public": true,
           "types": [
             "object"
@@ -1150,7 +1239,7 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
         },
-        "output": {
+        "requestData": {
           "public": true,
           "types": [
             "object"
@@ -1221,7 +1310,7 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
         },
-        "output": {
+        "requestData": {
           "public": true,
           "types": [
             "object"
@@ -1292,7 +1381,7 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
         },
-        "output": {
+        "requestData": {
           "public": true,
           "types": [
             "object"
@@ -1363,7 +1452,7 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
         },
-        "output": {
+        "requestData": {
           "public": true,
           "types": [
             "object"
@@ -1434,7 +1523,7 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
         },
-        "output": {
+        "requestData": {
           "public": true,
           "types": [
             "object"
@@ -1561,7 +1650,7 @@ export default {
         }
       }
     },
-    "group": {
+    "object": {
       "computed": {
         "defaultValue": {
           "public": false,
@@ -1572,7 +1661,7 @@ export default {
         }
       }
     },
-    "object": {
+    "group": {
       "computed": {
         "defaultValue": {
           "public": false,
@@ -1763,6 +1852,37 @@ export default {
       }
     }
   },
+  "editor": {
+    "base": {
+      "computed": {
+        "editorEndpoint": {
+          "public": false,
+          "default": "`config.endpoints.attachment.url`",
+          "types": [
+            "string"
+          ],
+          "description": "The endpoint that uploads attachment. Can be changed by setting [`endpoint`](#endpoint) option."
+        },
+        "editorMethod": {
+          "public": false,
+          "default": "`config.endpoints.attachment.method`",
+          "types": [
+            "string"
+          ],
+          "description": "The method to use to upload attachment. Can be changed by setting [`method`](#method) option."
+        }
+      },
+      "data": {
+        "focused": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the editor is focused."
+        }
+      }
+    }
+  },
   "empty": {
     "base": {
       "computed": {
@@ -1814,16 +1934,6 @@ export default {
   "file": {
     "base": {
       "data": {
-        "file": {
-          "public": true,
-          "default": "null",
-          "types": [
-            "File",
-            "object",
-            "string"
-          ],
-          "description": "This equals to:<br>* the `File` object when a file is selected, but not uploaded yet<br>* an object containing temp file name and original name when it has only been temporarily uploaded<br>* the filename when the file has already been uploaded"
-        },
         "hasUploadError": {
           "public": true,
           "default": "false",
@@ -1838,7 +1948,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `base64` format of the file when [`:image`](#image) is `true` and file only has been selected, but hasn't been uploaded yet."
+          "description": "The `base64` format of the file when [`:view`](#view) is `image` or `gallery` and file only has been selected, but hasn't been uploaded yet."
         },
         "progress": {
           "public": true,
@@ -1855,32 +1965,56 @@ export default {
             "boolean"
           ],
           "description": "If the form is submitted and a temp file hasn't been uploaded yet, the element will enter into `preparing` state by setting this to `true`. When in `preparing` state the form submission process will be halted until all async functions hasn't been completed without any errors."
-        },
-        "previewLoaded": {
-          "public": false,
-          "default": "false",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the preview file has been loaded by the browser when the file has already been uploaded or has only been selected."
         }
       },
       "computed": {
-        "fileMethods": {
+        "uploadTempFileEndpoint": {
           "public": false,
-          "default": "config.methods.file",
+          "default": "config.endpoints.uploadTempFile.url",
           "types": [
             "object"
           ],
-          "description": "An object containing `temp`, `remove` and `removeTemp` methods."
+          "description": "The url where the temp file should be submitted."
         },
-        "fileEndpoints": {
+        "removeTempFileEndpoint": {
           "public": false,
-          "default": "config.endpoints.file",
+          "default": "config.endpoints.removeTempFile.url",
           "types": [
             "object"
           ],
-          "description": "An object containing `temp`, `remove` and `removeTemp` endpoints."
+          "description": "The url where the remove temp file request should be submitted."
+        },
+        "removeFileEndpoint": {
+          "public": false,
+          "default": "config.endpoints.removeFile.url",
+          "types": [
+            "object"
+          ],
+          "description": "The url where the remove file request should be submitted."
+        },
+        "uploadTempFileMethod": {
+          "public": false,
+          "default": "config.endpoints.uploadTempFile.method",
+          "types": [
+            "object"
+          ],
+          "description": "The method where the temp file should be submitted."
+        },
+        "removeTempFileMethod": {
+          "public": false,
+          "default": "config.endpoints.removeTempFile.method",
+          "types": [
+            "object"
+          ],
+          "description": "The method where the remove temp file request should be submitted."
+        },
+        "removeFileMethod": {
+          "public": false,
+          "default": "config.endpoints.removeFile.method",
+          "types": [
+            "object"
+          ],
+          "description": "The method where the remove file request should be submitted."
         },
         "fileUrl": {
           "public": false,
@@ -1915,7 +2049,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The preview of the file when [`image`](#image) is `true`. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded."
+          "description": "The preview of the file when [`view`](#view) is `image` or `gallery`. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded."
         },
         "uploaded": {
           "public": true,
@@ -1962,11 +2096,6 @@ export default {
           "returns": "void",
           "description": "Prepare the element for submitting the form (async). It will upload temp file if it hasn't been uploaded yet and halts the submit process until its done without any errors."
         },
-        "loadPreview": {
-          "public": false,
-          "returns": "void",
-          "description": "Helper method that sets the value of `previewLoaded` when an the preview img's `src` has been loaded by the browser."
-        },
         "handleChange": {
           "public": false,
           "returns": "void",
@@ -2000,6 +2129,19 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Handles `abort` event."
+        }
+      }
+    }
+  },
+  "floating": {
+    "base": {
+      "computed": {
+        "hasFloating": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element floating label."
         }
       }
     }
@@ -2240,7 +2382,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component's [`:labels`](laraform#labels) option is `true`. Either way a label should be displayed."
+          "description": "Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component's [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed."
         }
       }
     }
@@ -2279,6 +2421,19 @@ export default {
       }
     }
   },
+  "loading": {
+    "base": {
+      "computed": {
+        "isLoading": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is in loading state."
+        }
+      }
+    }
+  },
   "location": {
     "base": {
       "data": {
@@ -2306,7 +2461,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "Default options for flatpickr."
+          "description": "Default options for location provider."
         }
       },
       "options": {
@@ -2377,7 +2532,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "Default options for flatpickr."
+          "description": "Default options for location provider."
         }
       },
       "options": {
@@ -2441,6 +2596,13 @@ export default {
             "boolean"
           ],
           "description": "Whether any of the file are preparing (being uploaded before submit)."
+        },
+        "hasUploading": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether any file is currently uploading."
         }
       },
       "methods": {
@@ -2564,7 +2726,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "Options for toggle input. Can be extended via [`:options`](#options) with [@vueform/toggle options](https://github.com/vueform/toggle#basic-props)."
+          "description": "Options for toggle input. Can be extended via [`:extend-options`](#option-extend-options) with [@vueform/toggle options](https://github.com/vueform/toggle#basic-props)."
         }
       }
     }
@@ -2721,6 +2883,15 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Unhecks the radio."
+        }
+      },
+      "computed": {
+        "inputName": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The `name` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used."
         }
       }
     }
@@ -2900,6 +3071,19 @@ export default {
       }
     }
   },
+  "templates": {
+    "base": {
+      "computed": {
+        "templates": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element's templates."
+        }
+      }
+    }
+  },
   "toggle": {
     "base": {
       "methods": {
@@ -2912,29 +3096,6 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Sets the toggle to `off` (`falseValue`)."
-        }
-      }
-    }
-  },
-  "editor": {
-    "base": {
-      "computed": {
-        "editorEndpoint": {
-          "public": false,
-          "default": "`config.endpoints.elements`",
-          "types": [
-            "string"
-          ],
-          "description": "The endpoint that uploads attachment. Can be changed by setting [`endpoint`](#endpoint) option."
-        }
-      },
-      "data": {
-        "focused": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the editor is focused."
         }
       }
     }

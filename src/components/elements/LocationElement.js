@@ -22,6 +22,7 @@ import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
 import useValue from './../../composables/elements/useValue'
 import useLocation from './../../composables/elements/useLocation'
+import useFloating from './../../composables/elements/useFloating'
 
 import { location as useWatchValue } from './../../composables/elements/useWatchValue'
 import { location as useNullValue } from './../../composables/elements/useNullValue' 
