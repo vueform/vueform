@@ -55,7 +55,10 @@ export default {
     const input = useInput(props, context)
     const path = usePath(props, context)
     const nullValue = useNullValue(props, context)
-    const genericName = useGenericName(props, context)
+    
+    const genericName = useGenericName(props, context, {
+      form$: form$.form$,
+    })
 
     const fieldId = useFieldId(props, context, {
       path: path.path,

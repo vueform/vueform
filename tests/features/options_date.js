@@ -1,5 +1,6 @@
 import { createForm, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'composition-api'
+import moment from 'moment'
 
 const value = (options) => {
   return _.isArray(options.value) ? options.value[0] : options.value
@@ -194,7 +195,7 @@ export const fieldOptions = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          options: {
+          extendOptions: {
             custom: 'option'
           }
         }

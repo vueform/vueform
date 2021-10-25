@@ -172,6 +172,7 @@ export default {
 
     const genericName = useGenericName(props, context, {
       label: label.label,
+      form$: form$.form$,
     })
     
     const templates = useTemplates(props, context, {

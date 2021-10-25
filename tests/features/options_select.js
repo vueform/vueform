@@ -53,7 +53,7 @@ export const fieldOptions = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          options: {
+          extendOptions: {
             custom: 'option'
           }
         }

@@ -36,7 +36,7 @@ export const fieldOptions = function (elementType, elementName, options) {
           labels: {
             on: 'On'
           },
-          options: {
+          extendOptions: {
             custom: 'option'
           }
         }

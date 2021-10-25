@@ -6,9 +6,14 @@ const base = function(props, context, dependencies)
   const {
     name,
     floating,
+    placeholder,
     label,
     fieldName,
   } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
 
   // ============== COMPUTED ==============
 
@@ -25,6 +30,8 @@ const base = function(props, context, dependencies)
       return label.value
     } else if (floating && floating.value) {
       return floating.value
+    } else if (placeholder && placeholder.value && form$.value.options.floatPlaceholders) {
+      return placeholder.value
     } else {
       return _.upperFirst(name.value).replace(/_|-/g, ' ')
     }

@@ -245,6 +245,7 @@ export default {
     const genericName = useGenericName(props, context, {
       form$: form$.form$,
       filename: file.filename,
+      label: label.label,
     })
     
     const templates = useTemplates(props, context, {
