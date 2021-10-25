@@ -6,7 +6,7 @@
       <div v-if="content && isHtml" :class="classes.content" v-html="content"></div>
 
       <!-- If content is component -->
-      <component v-else-if="content" :is="content"/>
+      <component v-else-if="content" :is="content" :el$="el$" />
 
       <!-- If content is a slot -->
       <slot v-else :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot>
@@ -20,7 +20,7 @@
   <div v-else-if="content && isHtml" :class="classes.content" v-html="content"></div>
 
   <!-- If not wrapped and content is component  -->
-  <component v-else-if="content" :is="content"/>
+  <component v-else-if="content" :is="content" :el$="el$" />
 
   <!-- If not wrapped and content is a slot -->
   <div v-else>

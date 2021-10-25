@@ -165,7 +165,7 @@ export const rendering = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-    expect(elWrapper.html()).not.toContain(el.classes.selectButton)
+    expect(elWrapper.html()).not.toContain(el.classes.button)
   })
   
   it('should render DragAndDrop with title and description from locale', async () => {

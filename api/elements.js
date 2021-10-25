@@ -9,7 +9,6 @@ export default {
       "disabled_button",
       "events",
       "form$",
-      "genericName",
       "label",
       "layout",
       "path",
@@ -308,7 +307,6 @@ export default {
       "elements",
       "events",
       "form$",
-      "genericName",
       "label",
       "layout",
       "nullValue_object",
@@ -318,7 +316,8 @@ export default {
       "theme",
       "validation_group",
       "value_group",
-      "view"
+      "view",
+      "watchValue"
     ],
     "slots": [
       "label",
@@ -619,7 +618,6 @@ export default {
       "elements",
       "events",
       "form$",
-      "genericName",
       "label",
       "layout",
       "nullValue_object",
@@ -872,7 +870,6 @@ export default {
       "conditions",
       "events",
       "form$",
-      "genericName",
       "label",
       "layout",
       "path",

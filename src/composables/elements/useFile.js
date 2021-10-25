@@ -10,7 +10,7 @@ const base = function (props, context, dependencies)
     clickable,
     auto,
     methods,
-    endpoints,
+    urls,
     url,
     previewUrl,
     params,
@@ -80,8 +80,8 @@ const base = function (props, context, dependencies)
    * @default config.endpoints.uploadTempFile.url
    * @private
    */
-  const uploadTempFileEndpoint = computed(() => {
-    return methods.value.uploadTempFile || form$.value.$laraform.config.endpoints.uploadTempFile.url
+  const uploadTempFileUrl = computed(() => {
+    return urls.value.uploadTempFile || form$.value.$laraform.config.endpoints.uploadTempFile.url
   })
 
   /**
@@ -91,8 +91,8 @@ const base = function (props, context, dependencies)
    * @default config.endpoints.removeTempFile.url
    * @private
    */
-  const removeTempFileEndpoint = computed(() => {
-    return methods.value.removeTempFile || form$.value.$laraform.config.endpoints.removeTempFile.url
+  const removeTempFileUrl = computed(() => {
+    return urls.value.removeTempFile || form$.value.$laraform.config.endpoints.removeTempFile.url
   })
 
   /**
@@ -102,8 +102,8 @@ const base = function (props, context, dependencies)
    * @default config.endpoints.removeFile.url
    * @private
    */
-  const removeFileEndpoint = computed(() => {
-    return methods.value.removeFile || form$.value.$laraform.config.endpoints.removeFile.url
+  const removeFileUrl = computed(() => {
+    return urls.value.removeFile || form$.value.$laraform.config.endpoints.removeFile.url
   })
 
   /**
@@ -337,7 +337,7 @@ const base = function (props, context, dependencies)
 
       hasUploadError.value = false
 
-      let response = await axios.value[uploadTempFileMethod.value](uploadTempFileEndpoint.value, data, {
+      let response = await axios.value[uploadTempFileMethod.value](uploadTempFileUrl.value, data, {
         onUploadProgress: (e) => {
           progress.value = Math.round((e.loaded * 100) / e.total)
         },
@@ -376,7 +376,7 @@ const base = function (props, context, dependencies)
           return false
         }
 
-        await axios.value[removeFileMethod.value](removeFileEndpoint.value,
+        await axios.value[removeFileMethod.value](removeFileUrl.value,
           Object.assign({}, params.value, {
             file: value.value,
             formKey: form$.value.options.formKey,
@@ -386,7 +386,7 @@ const base = function (props, context, dependencies)
       }
 
       else if (stage.value === 2 && !softRemove.value) {
-        await axios.value[removeTempFileMethod.value](removeTempFileEndpoint.value,
+        await axios.value[removeTempFileMethod.value](removeTempFileUrl.value,
           Object.assign({}, params.value, {
             file: value.value.tmp,
             formKey: form$.value.options.formKey,
@@ -529,9 +529,9 @@ const base = function (props, context, dependencies)
     base64,
     progress,
     preparing,
-    uploadTempFileEndpoint,
-    removeTempFileEndpoint,
-    removeFileEndpoint,
+    uploadTempFileUrl,
+    removeTempFileUrl,
+    removeFileUrl,
     uploadTempFileMethod,
     removeTempFileMethod,
     removeFileMethod,

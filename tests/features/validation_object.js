@@ -224,7 +224,7 @@ export const pending = function (elementType, elementName, options) {
 
     let child1 = form.vm.el$(`el.${_.keys(el.children)[0]}`)
 
-    child1.$laraform.services.axios.post = axiosPostMock
+    child1.$laraform.services.axios.request = axiosPostMock
 
     child1.validate()
 
@@ -264,8 +264,6 @@ export const debouncing = function (elementType, elementName, options) {
   })
 
   it('should be `debouncing` if any of the children is debouncing', async () => {
-    let axiosPostMock = jest.fn(() => Promise.resolve({ data: {} }))
-
     let form = createForm({
       schema: {
         el: {
@@ -274,6 +272,7 @@ export const debouncing = function (elementType, elementName, options) {
             child1: {
               type: 'text',
               rules: 'required',
+              default: 'aaa',
               debounce: 1
             },
             child2: {
@@ -288,13 +287,12 @@ export const debouncing = function (elementType, elementName, options) {
 
     let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
 
-    child1.vm.$laraform.services.axios.post = axiosPostMock
-
     child1.vm.validate()
 
     expect(el.debouncing).toBe(true)
 
     jest.advanceTimersByTime(1)
+    await flushPromises()
 
     expect(el.debouncing).toBe(false)
 
@@ -351,7 +349,7 @@ export const busy = function (elementType, elementName, options) {
 
     let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
 
-    child1.vm.$laraform.services.axios.post = axiosPostMock
+    child1.vm.$laraform.services.axios.request = axiosPostMock
 
     child1.vm.validate()
 

@@ -4,7 +4,6 @@ import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
 import useLabel from './../../composables/elements/useLabel'
 import useColumns from './../../composables/elements/useColumns'
-import useGenericName from './../../composables/elements/useGenericName'
 import useView from './../../composables/elements/useView'
 import useTemplates from './../../composables/elements/useTemplates'
 import useSlots from './../../composables/elements/useSlots'
@@ -111,11 +110,6 @@ export default {
       form$: form$.form$,
       el$: baseElement.el$,
     })
-
-    const genericName = useGenericName(props, context, {
-      label: label.label,
-      form$: form$.form$,
-    })
     
     const templates = useTemplates(props, context, {
       theme: theme.theme,
@@ -168,7 +162,6 @@ export default {
       ...classes,
       ...columns,
       ...baseElement,
-      ...genericName,
       ...view,
       ...templates,
       ...slots,

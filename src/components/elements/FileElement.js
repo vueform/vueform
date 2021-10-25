@@ -49,7 +49,7 @@ export default {
     },
     default: {
       required: false,
-      type: [String, Object],
+      type: [String, Object, File],
       default: null
     },
     embed: {
@@ -115,7 +115,7 @@ export default {
       type: [Boolean],
       default: true
     },
-    endpoints: {
+    urls: {
       required: false,
       type: [Object],
       default: () => ({})

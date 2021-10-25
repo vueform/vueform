@@ -1,4 +1,4 @@
-import { onMounted, watch } from 'composition-api'
+import { onMounted } from 'composition-api'
 import useForm$ from './../../composables/useForm$'
 import useTheme from './../../composables/useTheme'
 import useLayout from './../../composables/elements/useLayout'
@@ -8,7 +8,6 @@ import useLabel from './../../composables/elements/useLabel'
 import useClasses from './../../composables/elements/useClasses'
 import useColumns from './../../composables/elements/useColumns'
 import useBaseElement from './../../composables/elements/useBaseElement'
-import useGenericName from './../../composables/elements/useGenericName'
 import useView from './../../composables/elements/useView'
 import useTemplates from './../../composables/elements/useTemplates'
 import useSlots from './../../composables/elements/useSlots'
@@ -112,11 +111,6 @@ const element = {
       el$: baseElement.el$,
     })
 
-    const genericName = useGenericName(props, context, {
-      label: label.label,
-      form$: form$.form$,
-    })
-
     const children = useChildren(props, context, {
       form$: form$.form$,
       path: path.path,
@@ -211,7 +205,6 @@ const element = {
       ...classes,
       ...columns,
       ...baseElement,
-      ...genericName,
       ...view,
       ...templates,
       ...slots,

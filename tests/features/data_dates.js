@@ -1,5 +1,6 @@
 import { createForm, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
+import moment from 'moment'
 
 export { data, requestData, clear } from './data'
 

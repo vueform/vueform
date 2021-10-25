@@ -63,6 +63,26 @@ const list = function(props, context, dependencies, options = {})
   })
 }
 
+const object = function(props, context, dependencies, options = {})
+{
+  // ============ DEPENDENCIES =============
+
+  const fire = dependencies.fire
+  const value = dependencies.value
+
+  // ============== WATCHERS ===============
+
+  onMounted(() => {
+    watch(value, (n, o) => {
+      if (dataEquals(n,o)) {
+        return
+      }
+
+      fire('change', n, o)
+    }, { immediate: false, deep: true })
+  })
+}
+
 const location = function(props, context, dependencies, options = {})
 {
   const { displayKey } = toRefs(props)
@@ -98,11 +118,14 @@ const location = function(props, context, dependencies, options = {})
 }
 
 const multifile = list
+const group = object
 
 export {
   list,
   multifile,
   location,
+  object,
+  group,
 }
 
 export default base

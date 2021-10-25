@@ -51,8 +51,8 @@ export const preview = function (elementType, elementName, options) {
         el: {
           type: elementType,
           view: 'image',
-          slots: {
-            preview: markRaw({
+          replaceTemplates: {
+            ImagePreview: markRaw({
               props: ['previewOptions'],
               render() {
                 return '<div>Preview</div>'
@@ -79,8 +79,8 @@ export const preview = function (elementType, elementName, options) {
           type: elementType,
           auto: false,
           view: 'image',
-          slots: {
-            preview: markRaw({
+          replaceTemplates: {
+            ImagePreview: markRaw({
               props: ['previewOptions'],
               render() {
                 return '<div>Preview</div>'
@@ -102,7 +102,7 @@ export const preview = function (elementType, elementName, options) {
     destroy(form) // teardown
   })
 
-  it('should `preview` be null when not image', () => {
+  it('should `preview` be null when not image', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -117,70 +117,6 @@ export const preview = function (elementType, elementName, options) {
     el.value = 'filename.jpg'
 
     expect(el.preview).toBe(null)
-
-    // destroy() // teardown
-  })
-}
-
-export const file = function (elementType, elementName, options) {
-  it('should `file` be null by default', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.file).toBe(null)
-    
-    // destroy(form) // teardown
-  })
-
-  it('should set `file` when `value` changes to a File object', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: false,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.file).toBe(null)
-
-    el.load(new File([''], 'a'))
-
-    await nextTick()
-
-    expect(el.file).not.toBe(null)
-    
-    // destroy(form) // teardown
-  })
-
-  it('should set `file` to null when value changes to something else than a File object', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: false,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.file).toBe(null)
-
-    el.load('a.jpg')
-
-    await nextTick()
-
-    expect(el.file).toBe(null)
 
     // destroy() // teardown
   })
@@ -220,47 +156,223 @@ export const preparing = function (elementType, elementName, options) {
   })
 }
 
-export const fileMethods = function (elementType, elementName, options) {
-  it('should merge `fileMethods` with config methods', () => {
+export const uploadTempFileUrl = function (elementType, elementName, options) {
+  it('should default to config.endpoints.uploadTempFile.url', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          methods: {
-            uploadTemp: 'put'
-          }
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.fileMethods).toStrictEqual(Object.assign({}, el.$laraform.config.methods.file, {
-      uploadTemp: 'put'
-    }))
+    expect(el.uploadTempFileUrl).toBe(el.$laraform.config.endpoints.uploadTempFile.url)
+
+    // destroy() // teardown
+  })
+
+  it('should override default uploadTempFile url', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          urls: {
+            uploadTempFile: '/not',
+          },
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.uploadTempFileUrl).toBe('/not')
 
     // destroy() // teardown
   })
 }
 
-export const fileEndpoints = function (elementType, elementName, options) {
-  it('should merge `fileEndpoints` with config methods', () => {
+export const removeTempFileUrl = function (elementType, elementName, options) {
+  it('should default to config.endpoints.removeTempFile.url', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          endpoints: {
-            uploadTemp: 'upload-temp',
-          }
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.fileEndpoints).toStrictEqual(Object.assign({}, el.$laraform.config.endpoints.file, {
-      uploadTemp: 'upload-temp',
-    }))
+    expect(el.removeTempFileUrl).toBe(el.$laraform.config.endpoints.removeTempFile.url)
+
+    // destroy() // teardown
+  })
+
+  it('should override default removeTempFile url', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          urls: {
+            removeTempFile: '/not',
+          },
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.removeTempFileUrl).toBe('/not')
+
+    // destroy() // teardown
+  })
+}
+
+export const removeFileUrl = function (elementType, elementName, options) {
+  it('should default to config.endpoints.removeFile.url', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.removeFileUrl).toBe(el.$laraform.config.endpoints.removeFile.url)
+
+    // destroy() // teardown
+  })
+
+  it('should override default removeFile url', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          urls: {
+            removeFile: '/not',
+          },
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.removeFileUrl).toBe('/not')
+
+    // destroy() // teardown
+  })
+}
+
+export const uploadTempFileMethod = function (elementType, elementName, options) {
+  it('should default to config.endpoints.uploadTempFile.method', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.uploadTempFileMethod).toBe(el.$laraform.config.endpoints.uploadTempFile.method)
+
+    // destroy() // teardown
+  })
+
+  it('should override default uploadTempFile method', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          methods: {
+            uploadTempFile: 'put',
+          },
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.uploadTempFileMethod).toBe('put')
+
+    // destroy() // teardown
+  })
+}
+
+export const removeTempFileMethod = function (elementType, elementName, options) {
+  it('should default to config.endpoints.removeTempFile.method', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.removeTempFileMethod).toBe(el.$laraform.config.endpoints.removeTempFile.method)
+
+    // destroy() // teardown
+  })
+
+  it('should override default removeTempFile method', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          methods: {
+            removeTempFile: 'put',
+          },
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.removeTempFileMethod).toBe('put')
+
+    // destroy() // teardown
+  })
+}
+
+export const removeFileMethod = function (elementType, elementName, options) {
+  it('should default to config.endpoints.removeFile.method', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.removeFileMethod).toBe(el.$laraform.config.endpoints.removeFile.method)
+
+    // destroy() // teardown
+  })
+
+  it('should override default removeFile method', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          methods: {
+            removeFile: 'put',
+          },
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.removeFileMethod).toBe('put')
 
     // destroy() // teardown
   })
@@ -999,62 +1111,6 @@ export const uploadTemp = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should upload temp when `value` changes to a File object & auto is true', async () => {
-    let postMock = jest.fn(() => { return { data: 'filename' } })
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: true,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.axios.post = postMock
-
-    expect(postMock).not.toHaveBeenCalled()
-
-    el.load(new File([''], 'a'))
-
-    await nextTick()
-    await flushPromises() // because of async validate
-
-    expect(postMock).toHaveBeenCalled()
-    postMock.mockRestore()
-    
-    // destroy(form) // teardown
-  })
-
-  it('should not upload temp when `value` changes to a File object & auto is true', async () => {
-    let postMock = jest.fn(() => { return { data: 'filename' } })
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: false,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.axios.post = postMock
-
-    expect(postMock).not.toHaveBeenCalled()
-
-    el.load(new File([''], 'a'))
-
-    await nextTick()
-
-    expect(postMock).not.toHaveBeenCalled()
-    
-    // destroy(form) // teardown
-  })
-
   it('should call "updated" on successful `uploadTemp`', async () => {
     let onChangeMock = jest.fn()
 
@@ -1296,7 +1352,7 @@ export const remove = function (elementType, elementName, options) {
 
     await flushPromises()
 
-    expect(axiosMock).toHaveBeenLastCalledWith(el.fileEndpoints.removeTemp, {
+    expect(axiosMock).toHaveBeenLastCalledWith(el.removeTempFileUrl, {
       file: tmp.tmp,
       formKey: null,
       path: 'el',
@@ -1411,7 +1467,7 @@ export const remove = function (elementType, elementName, options) {
 
     el.remove()
 
-    expect(axiosMock).toHaveBeenLastCalledWith(el.fileEndpoints.remove, {
+    expect(axiosMock).toHaveBeenLastCalledWith(el.removeFileUrl, {
       file: file,
       formKey: null,
       path: 'el',
@@ -1992,7 +2048,7 @@ export const handleUploadTemp = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let FileSlotFilePreview = findAllComponents(form, { name: 'FileSlotFilePreview' }).at(0)
+    let FilePreview = findAllComponents(form, { name: 'FilePreview' }).at(0)
 
     el.$laraform.services.axios.post = jest.fn(() => ({data:{}}))
 
@@ -2000,7 +2056,7 @@ export const handleUploadTemp = function (elementType, elementName, options) {
 
     await nextTick()
 
-    let uploadTempButton = findAll(FileSlotFilePreview, `[class="${FileSlotFilePreview.vm.classes.upload}"]`).at(0)
+    let uploadTempButton = findAll(FilePreview, `[class="${FilePreview.vm.classes.upload}"]`).at(0)
 
     uploadTempButton.trigger('click')
 
@@ -2027,13 +2083,13 @@ export const handleRemove = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let FileSlotFilePreview = findAllComponents(form, { name: 'FileSlotFilePreview' }).at(0)
+    let FilePreview = findAllComponents(form, { name: 'FilePreview' }).at(0)
 
     el.load(new File([], 'filename.jpg'))
 
     await nextTick()
 
-    let removeButton = findAll(elWrapper, `[class="${FileSlotFilePreview.vm.classes.remove}"]`).at(0)
+    let removeButton = findAll(elWrapper, `[class="${FilePreview.vm.classes.remove}"]`).at(0)
 
     removeButton.trigger('click')
     
@@ -2056,7 +2112,7 @@ export const handleAbort = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let FileSlotFilePreview = findAllComponents(form, { name: 'FileSlotFilePreview' }).at(0)
+    let FilePreview = findAllComponents(form, { name: 'FilePreview' }).at(0)
 
     let cancelMock = jest.fn()
 
@@ -2068,7 +2124,7 @@ export const handleAbort = function (elementType, elementName, options) {
 
     expect(cancelMock).not.toHaveBeenCalled()
 
-    elWrapper.find(`[class="${FileSlotFilePreview.vm.classes.remove}"]`).trigger('click')
+    elWrapper.find(`[class="${FilePreview.vm.classes.remove}"]`).trigger('click')
 
     await nextTick()
 
@@ -2101,7 +2157,7 @@ export const handleAbort = function (elementType, elementName, options) {
 
     el.axios.post = axiosPostMock
 
-    form.vm.$laraform.services.axios.submit = axiosSubmitMock
+    form.vm.$laraform.services.axios.request = axiosSubmitMock
 
     let file = new File([''], 'filename')
 

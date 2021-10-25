@@ -8,7 +8,6 @@ import useLabel from './../../composables/elements/useLabel'
 import useClasses from './../../composables/elements/useClasses'
 import useColumns from './../../composables/elements/useColumns'
 import useBaseElement from './../../composables/elements/useBaseElement'
-import useGenericName from './../../composables/elements/useGenericName'
 import useView from './../../composables/elements/useView'
 import useTemplates from './../../composables/elements/useTemplates'
 import useSlots from './../../composables/elements/useSlots'
@@ -21,6 +20,7 @@ import { object as useNullValue } from './../../composables/elements/useNullValu
 import { object as useData } from './../../composables/elements/useData'
 import { object as useChildren } from './../../composables/elements/useChildren'
 import { object as useValidation } from './../../composables/elements/useValidation'
+import { object as useWatchValue } from './../../composables/elements/useWatchValue'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -88,11 +88,6 @@ export default {
       el$: baseElement.el$,
     })
 
-    const genericName = useGenericName(props, context, {
-      label: label.label,
-      form$: form$.form$,
-    })
-
     const children = useChildren(props, context, {
       form$: form$.form$,
     })
@@ -154,6 +149,11 @@ export default {
       resetValidators: validation.resetValidators,
       children$: children.children$,
     })
+
+    useWatchValue(props, context, {
+      fire: events.fire,
+      value: value.value,
+    })
     
     onMounted(() => {
       validation.initMessageBag()  
@@ -170,7 +170,6 @@ export default {
       ...classes,
       ...columns,
       ...baseElement,
-      ...genericName,
       ...view,
       ...templates,
       ...slots,

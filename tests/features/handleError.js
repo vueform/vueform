@@ -16,31 +16,10 @@ export const handleError = function (elementType, elementName, options) {
 
     expect(onErrorMock).not.toHaveBeenCalled()
 
-    el.handleError('error', 'e')
-
-    expect(onErrorMock).toHaveBeenCalledWith('error', 'e')
-    
-    // destroy(form) // teardown
-  })
-
-  it('should throw `error` in alert if error listeners is not defined', async () => {
-    let alertSpy = jest.spyOn(window, 'alert').mockImplementation(() => {})
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: false,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
     el.handleError('error')
 
-    expect(alertSpy).toHaveBeenLastCalledWith('error')
-
-    // destroy() // teardown
+    expect(onErrorMock).toHaveBeenCalledWith('error')
+    
+    // destroy(form) // teardown
   })
 }

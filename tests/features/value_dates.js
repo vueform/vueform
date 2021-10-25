@@ -1,4 +1,5 @@
 import { createForm, destroy } from 'test-helpers'
+import moment from 'moment'
 
 import { value as baseValue } from './value'
 
