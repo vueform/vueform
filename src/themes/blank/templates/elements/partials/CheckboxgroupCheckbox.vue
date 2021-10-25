@@ -1,6 +1,6 @@
 <template>
   <label :class="classes.container">
-    <slot :classes="classes" :is-disabled="isDisabled" :name="`${el$.path}-${value}`" :id="`${el$.fieldId}-${value}`" :item="item" :value="value">
+    <slot :classes="classes" v-bind="{ name: `${el$.path}-${value}` }" :is-disabled="isDisabled" :id="`${el$.fieldId}-${value}`" :item="item" :value="value">
       <input
         type="checkbox"
         v-model="el$.model"
