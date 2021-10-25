@@ -8,7 +8,7 @@ export default runElementTests('group', {
     value2: { child: 'value13', child2: 'value14', child3: 'value15', child4: 'value16',  },
     nullValue: { child: null, child2: null, child3: null, child4: null, },
   },
-  events: {
-    events: ['change']
-  },
+  // events: {
+  //   events: ['change']
+  // },
 })

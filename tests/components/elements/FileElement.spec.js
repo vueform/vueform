@@ -9,7 +9,7 @@ export default runElementTests('file', {
     value2: { tmp: 'asdf123', originalName: 'filename4.jpg' },
     nullValue: null,
   },
-  events: {
-    events: ['change', 'remove', 'error']
-  }
+  // events: {
+  //   events: ['change', 'remove', 'error']
+  // }
 })

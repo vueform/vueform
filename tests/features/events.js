@@ -1,22 +1,23 @@
 import { createForm, destroy } from 'test-helpers'
 
-export const events = function (elementType, elementName, options) {
-  it('should have "' + options.events.join('", "') + '" `events`', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
+// // Does not make sense anymore
+// export const events = function (elementType, elementName, options) {
+//   it('should have "' + options.events.join('", "') + '" `events`', () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
 
-    let el = form.vm.el$('el')
+//     let el = form.vm.el$('el')
     
-    expect(el.events).toStrictEqual(options.events)
+//     expect(el.events).toStrictEqual(options.events)
 
-    // destroy() // teardown
-  })
-}
+//     // destroy() // teardown
+//   })
+// }
 
 export const on = function (elementType, elementName, options) {
   it('should be able to subscribe for `events`', () => {

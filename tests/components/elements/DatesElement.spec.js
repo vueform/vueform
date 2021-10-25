@@ -9,7 +9,7 @@ export default runElementTests('dates', {
     default2: ['2020-12-30', '2020-12-31'],
     nullValue: [],
   },
-  events: {
-    events: ['change']
-  }
+  // events: {
+  //   events: ['change']
+  // }
 })

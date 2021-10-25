@@ -9,7 +9,7 @@ export default runElementTests('tEditor', {
     value2: {en:'<div>value2-en</div>',fr:'<div>value2-fr</div>'},
     nullValue: {en:null,fr:null},
   },
-  events: {
-    events: ['change', 'error']
-  }
+  // events: {
+  //   events: ['change', 'error']
+  // }
 })

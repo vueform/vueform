@@ -10,7 +10,7 @@ export default runElementTests('time', {
     loadFormat2: 'HHmm',
     fieldType: 'input',
   },
-  events: {
-    events: ['change']
-  }
+  // events: {
+  //   events: ['change']
+  // }
 })

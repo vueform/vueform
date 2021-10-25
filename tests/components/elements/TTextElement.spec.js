@@ -9,7 +9,7 @@ export default runElementTests('tText', {
     value2: {en:'value2-en',fr:'value2-fr'},
     nullValue: {en:null,fr:null},
   },
-  events: {
-    events: ['change']
-  }
+  // events: {
+  //   events: ['change']
+  // }
 })

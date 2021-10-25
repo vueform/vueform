@@ -33,7 +33,7 @@ export default runElementTests('multifile', {
     initial: 0,
 
   },
-  events: {
-    events: ['change', 'add', 'remove', 'sort']
-  }
+  // events: {
+  //   events: ['change', 'add', 'remove', 'sort']
+  // }
 })

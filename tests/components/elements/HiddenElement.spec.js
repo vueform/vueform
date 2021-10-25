@@ -9,7 +9,7 @@ export default runElementTests('hidden', {
     value2: 'value2',
     nullValue: null,
   },
-  events: {
-    events: ['change']
-  }
+  // events: {
+  //   events: ['change']
+  // }
 })

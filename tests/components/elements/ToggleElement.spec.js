@@ -9,7 +9,7 @@ export default runElementTests('toggle', {
     default2: false,
     nullValue: false,
   },
-  events: {
-    events: ['change'],
-  }
+  // events: {
+  //   events: ['change'],
+  // }
 })

@@ -58,7 +58,7 @@ export default {
     },
     items: {
       required: false,
-      type: [Object, Array],
+      type: [Object, Array, Function],
       default: () => ({})
     },
     disables: {

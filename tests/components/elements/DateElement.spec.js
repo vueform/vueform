@@ -9,7 +9,7 @@ export default runElementTests('date', {
     value2: '2020-12-27',
     nullValue: null,
   },
-  events: {
-    events: ['change']
-  }
+  // events: {
+  //   events: ['change']
+  // }
 })

@@ -8,7 +8,7 @@ export default runElementTests('object', {
     value2: { child: 'value7', child2: 'value8' },
     nullValue: { child: null, child2: null },
   },
-  events: {
-    events: ['change']
-  }
+  // events: {
+  //   events: ['change']
+  // }
 })

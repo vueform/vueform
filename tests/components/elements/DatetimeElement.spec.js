@@ -10,7 +10,7 @@ export default runElementTests('datetime', {
     loadFormat2: 'DD-MM-YYYY HH:mm',
     fieldType: 'input',
   },
-  events: {
-    events: ['change']
-  }
+  // events: {
+  //   events: ['change']
+  // }
 })

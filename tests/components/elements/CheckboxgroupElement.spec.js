@@ -9,7 +9,7 @@ export default runElementTests('checkboxgroup', {
     default2: [7,8],
     nullValue: [],
   },
-  events: {
-    events: ['change'],
-  }
+  // events: {
+  //   events: ['change'],
+  // }
 })

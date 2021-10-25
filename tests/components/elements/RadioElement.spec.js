@@ -9,7 +9,7 @@ export default runElementTests('radio', {
     default2: null,
     nullValue: null,
   },
-  events: {
-    events: ['change'],
-  }
+  // events: {
+  //   events: ['change'],
+  // }
 })

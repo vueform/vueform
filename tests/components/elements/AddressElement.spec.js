@@ -17,7 +17,7 @@ export default runElementTests('address', {
     },
     mockPlaces: true,
   },
-  events: {
-    events: ['change']
-  }
+  // events: {
+  //   events: ['change']
+  // }
 })

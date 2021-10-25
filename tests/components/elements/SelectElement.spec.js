@@ -10,10 +10,10 @@ export default runElementTests('select', {
     items: [1,2,3,4,5,6],
     nullValue: null,
   },
-  events: {
-    events: [
-      'change', 'select', 'deselect', 'searchChange',
-      'open', 'close',
-    ]
-  }
+  // events: {
+  //   events: [
+  //     'change', 'select', 'deselect', 'searchChange',
+  //     'open', 'close',
+  //   ]
+  // }
 })

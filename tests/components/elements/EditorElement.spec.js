@@ -9,7 +9,7 @@ export default runElementTests('editor', {
     value2: '<div>value2</div>',
     nullValue: null,
   },
-  events: {
-    events: ['change', 'error']
-  }
+  // events: {
+  //   events: ['change', 'error']
+  // }
 })

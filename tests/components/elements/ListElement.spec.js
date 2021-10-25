@@ -18,7 +18,7 @@ export default runElementTests('list', {
     childNulls: [null, { child: null }],
     childName: 'child',
   },
-  events: {
-    events: ['change', 'add', 'remove', 'sort']
-  }
+  // events: {
+  //   events: ['change', 'add', 'remove', 'sort']
+  // }
 })

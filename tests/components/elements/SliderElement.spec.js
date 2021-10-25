@@ -9,7 +9,7 @@ export default runElementTests('slider', {
     value2: 30,
     nullValue: 0,
   },
-  events: {
-    events: ['change']
-  }
+  // events: {
+  //   events: ['change']
+  // }
 })
