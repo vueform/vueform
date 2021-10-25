@@ -60,6 +60,8 @@ export default function createForm (data, options = {}, render = null) {
     render,
   } : {})
 
+  let finalConfig = Object.assign({}, config, options.config || {})
+
   let $laraform = {
     test: true,
     config: finalConfig,

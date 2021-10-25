@@ -233,7 +233,7 @@ export const debouncing = function (elementType, elementName, options) {
 
 export const busy = function (elementType, elementName, options) {
   it('should have `busy` "true" if any of the validators is pending and "false" when async validation finished', async () => {
-    let axiosPostMock = jest.fn(() => Promise.resolve({ data: {} }))
+    let axiosRequestMock = jest.fn(() => Promise.resolve({ data: {} }))
 
     let form = createForm({
       schema: {
@@ -246,7 +246,7 @@ export const busy = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.$laraform.services.axios.post = axiosPostMock
+    el.$laraform.services.axios.request = axiosRequestMock
 
     el.validate()
 

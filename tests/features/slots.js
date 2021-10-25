@@ -35,14 +35,22 @@ export const slots = function (elementType, elementName, options) {
   })
 
   const defaultSlots = findAllComponents(defaultForm, { name: elementName }).at(0).vm.elementSlots
-  const defaultSlotKeys = _.keys(defaultSlots)
+  const fieldSlots = findAllComponents(defaultForm, { name: elementName }).at(0).vm.fieldSlots
 
   // Slots
   _.each(_.keys(defaultSlots), (slot) => {
     testSchemaSlot(it, elementName, elementType, slot)
   })
 
+  _.each(_.keys(fieldSlots), (slot) => {
+    testSchemaSlot(it, elementName, elementType, slot)
+  })
+
   _.each(_.keys(defaultSlots), (slot) => {
+    testInlineSlot(it, elementName, elementType, slot)
+  })
+  
+  _.each(_.keys(fieldSlots), (slot) => {
     testInlineSlot(it, elementName, elementType, slot)
   })
 }

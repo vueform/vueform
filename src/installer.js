@@ -223,6 +223,7 @@ export default function(config) {
           try {
             renderer = this.templates[name]
           } catch (e) {
+            console.log(name)
             throw new Error(e)
           }
 
@@ -231,7 +232,6 @@ export default function(config) {
               this.$options.staticRenderFns = renderer.staticRenderFns
             }
           } catch (e) {
-            console.log(name)
             throw new Error(e)
           }
           

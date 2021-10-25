@@ -112,14 +112,8 @@ class Generator {
       let lines = this.getLines(element)
 
       lines.forEach((line, i) => {
-        if (line.match(/events:\s?\[/) && !line.match(/events:\s?\[\]/)) {
-          let l = i
-
-          while(lines[l].match(/\]/) === null) {
-            l++
-
-            events[element] = events[element].concat((lines[l].match(/([a-zA-Z-]+)/g)||[]))
-          }
+        if (line.match(/emits:\s?(\[[^\]]*\])/g)) {
+          events[element] = JSON.parse(line.match(/emits:\s?(\[[^\]]*\])/)[1].replace(/'/g, '"'))
         }
       })
     })

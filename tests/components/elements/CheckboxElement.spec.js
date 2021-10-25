@@ -10,6 +10,6 @@ export default runElementTests('checkbox', {
     nullValue: false,
   },
   events: {
-    events: ['change'],
+    events: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   }
 })

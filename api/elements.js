@@ -27,7 +27,16 @@ export default {
       "after",
       "default"
     ],
-    "events": []
+    "events": [
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "checkbox": {
     "features": [
@@ -63,7 +72,10 @@ export default {
       "before",
       "between",
       "after",
-      "default",
+      "default"
+    ],
+    "events": [
+      "change",
       "beforeCreate",
       "created",
       "beforeMount",
@@ -72,35 +84,34 @@ export default {
       "updated",
       "beforeUnmount",
       "unmounted"
-    ],
-    "events": []
+    ]
   },
   "checkboxgroup": {
     "features": [
-      "asyncItems_checkboxgroup",
+      // "asyncItems_checkboxgroup",
       "baseElement_checkboxgroup",
-      "check",
-      "classes",
-      "columns",
-      "conditions",
-      "data",
-      "default",
-      "disabled_checkboxgroup",
-      "events",
-      "fieldId",
-      "form$",
-      "genericName",
-      "label",
-      "layout",
-      "nullValue_array",
-      "path",
-      "slots",
-      "templates",
-      "theme",
-      "validation",
-      "value",
-      "view",
-      "watchValue"
+      // "check",
+      // "classes",
+      // "columns",
+      // "conditions",
+      // "data",
+      // "default",
+      // "disabled_checkboxgroup",
+      // "events",
+      // "fieldId",
+      // "form$",
+      // "genericName",
+      // "label",
+      // "layout",
+      // "nullValue_array",
+      // "path",
+      // "slots",
+      // "templates",
+      // "theme",
+      // "validation",
+      // "value",
+      // "view",
+      // "watchValue"
     ],
     "slots": [
       "label",
@@ -111,7 +122,17 @@ export default {
       "after",
       "checkbox"
     ],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "date": {
     "features": [
@@ -155,7 +176,17 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "dates": {
     "features": [
@@ -199,7 +230,17 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "file": {
     "features": [
@@ -241,7 +282,19 @@ export default {
       "between",
       "after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "remove",
+      "error",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "group": {
     "features": [
@@ -275,7 +328,17 @@ export default {
       "between",
       "after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "hidden": {
     "features": [
@@ -298,7 +361,17 @@ export default {
       "watchValue"
     ],
     "slots": [],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "list": {
     "features": [
@@ -340,7 +413,20 @@ export default {
       "between",
       "after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "add",
+      "remove",
+      "sort",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "location": {
     "features": [
@@ -355,6 +441,7 @@ export default {
       "empty",
       "events",
       "fieldId",
+      "floating",
       "form$",
       "genericName",
       "input",
@@ -380,7 +467,17 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "multifile": {
     "features": [
@@ -425,7 +522,20 @@ export default {
       "between",
       "after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "add",
+      "remove",
+      "sort",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "multiselect": {
     "features": [
@@ -478,7 +588,24 @@ export default {
       "spinner",
       "clear"
     ],
-    "events": []
+    "events": [
+      "change",
+      "select",
+      "deselect",
+      "search-change",
+      "open",
+      "close",
+      "clear",
+      "paste",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "object": {
     "features": [
@@ -512,7 +639,18 @@ export default {
       "between",
       "after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "remove",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "radio": {
     "features": [
@@ -550,7 +688,17 @@ export default {
       "after",
       "default"
     ],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "radiogroup": {
     "features": [
@@ -587,7 +735,17 @@ export default {
       "after",
       "radio"
     ],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "select": {
     "features": [
@@ -639,7 +797,24 @@ export default {
       "spinner",
       "clear"
     ],
-    "events": []
+    "events": [
+      "change",
+      "select",
+      "deselect",
+      "search-change",
+      "open",
+      "close",
+      "clear",
+      "paste",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "slider": {
     "features": [
@@ -677,7 +852,17 @@ export default {
       "between",
       "after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "static": {
     "features": [
@@ -706,7 +891,16 @@ export default {
       "after",
       "default"
     ],
-    "events": []
+    "events": [
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "tags": {
     "features": [
@@ -760,7 +954,25 @@ export default {
       "spinner",
       "clear"
     ],
-    "events": []
+    "events": [
+      "change",
+      "select",
+      "deselect",
+      "search-change",
+      "open",
+      "close",
+      "tag",
+      "clear",
+      "paste",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "textarea": {
     "features": [
@@ -803,7 +1015,17 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "text": {
     "features": [
@@ -846,7 +1068,17 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "toggle": {
     "features": [
@@ -886,7 +1118,17 @@ export default {
       "after",
       "default"
     ],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "editor": {
     "features": [
@@ -927,7 +1169,19 @@ export default {
       "between",
       "after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "alert",
+      "error",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "tTextarea": {
     "features": [
@@ -971,7 +1225,17 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "tText": {
     "features": [
@@ -1014,7 +1278,17 @@ export default {
       "addon-before",
       "addon-after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   },
   "tEditor": {
     "features": [
@@ -1056,6 +1330,18 @@ export default {
       "between",
       "after"
     ],
-    "events": []
+    "events": [
+      "change",
+      "alert",
+      "error",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
   }
 }
