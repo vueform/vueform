@@ -88,7 +88,7 @@ const multifile = function(props, context, dependencies)
       if (!checkFileType(file, accept.value)) {
         return
       }
-      
+
       add(isObject.value ? {
         [storeFileName.value]: file
       } : file)

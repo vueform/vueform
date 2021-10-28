@@ -19,7 +19,6 @@ import useHandleInput from './../../composables/elements/useHandleInput'
 import useHandleError from './../../composables/elements/useHandleError'
 import useLanguages from './../../composables/elements/useLanguages'
 import useEditor from './../../composables/elements/useEditor'
-import useWatchValue from './../../composables/elements/useWatchValue'
 import useHandleAlert from './../../composables/elements/useHandleAlert'
 
 import { teditor as useData } from './../../composables/elements/useData'
@@ -29,6 +28,7 @@ import { multilingual as useValue } from './../../composables/elements/useValue'
 import { multilingual as useDefault } from './../../composables/elements/useDefault'
 import { multilingual as useValidation } from './../../composables/elements/useValidation'
 import { multilingual as useEmpty } from './../../composables/elements/useEmpty'
+import { multilingual as useWatchValue } from './../../composables/elements/useWatchValue'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -73,6 +73,12 @@ export default {
       default: null
     },
     onError: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onAlert: {
       required: false,
       type: [Function],
       default: null,
@@ -245,7 +251,8 @@ export default {
       value: value.value,
       fire: events.fire,
       dirt: validation.dirt,
-      validate: validation.validateLanguage,
+      validateLanguage: validation.validateLanguage,
+      language: languages.language,
     })
 
     onMounted(() => {

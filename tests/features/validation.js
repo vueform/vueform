@@ -210,6 +210,7 @@ export const debouncing = function (elementType, elementName, options) {
         el: {
           type: elementType,
           rules: 'required',
+          default: options.default,
           debounce: 1,
         }
       }
@@ -224,6 +225,7 @@ export const debouncing = function (elementType, elementName, options) {
     expect(el.debouncing).toBe(true)
 
     jest.advanceTimersByTime(1)
+    await flushPromises()
 
     expect(el.debouncing).toBe(false)
 
@@ -267,6 +269,7 @@ export const busy = function (elementType, elementName, options) {
         el: {
           type: elementType,
           rules: 'required',
+          default: options.default,
           debounce: 1,
         }
       }
@@ -281,6 +284,7 @@ export const busy = function (elementType, elementName, options) {
     expect(el.busy).toBe(true)
 
     jest.advanceTimersByTime(1)
+    await flushPromises()
 
     expect(el.busy).toBe(false)
 

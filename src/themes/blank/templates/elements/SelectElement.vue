@@ -27,7 +27,6 @@
         </select>
         <span v-if="placeholder && empty && !isDisabled && type == 'select'" :class="classes.inputPlaceholder">{{ placeholder }}</span>
       </div>
-
       <!-- @vueform/multiselect copmonent -->
       <Multiselect
         v-else
@@ -49,13 +48,14 @@
         @paste="handlePaste"
         ref="input"
       >
-        <template v-for="(slot) in [
-          'no-results', 'no-options', 'before-list', 'after-list',
-          'placeholder', 'group-label', 'caret', 'clear', 'spinner',
-          'option',
-        ]" #[slot]="props">
-          <slot :name="slot" v-bind="props" :el$="el$">
-            <component :is="fieldSlots[slot]" v-bind="props" :el$="el$"/>
+        <template v-for="(slotName, slotKey) in {
+          option: 'option', noresults: 'no-results', nooptions: 'no-options',
+          afterlist: 'after-list', beforelist: 'before-list', placeholder: 'placeholder',
+          grouplabel: 'group-label', caret: 'caret', clear: 'clear', spinner: 'spinner',
+          default: 'default',
+        }" #[slotKey]="props">
+          <slot :name="slotName" v-bind="props" :el$="el$">
+            <component :is="fieldSlots[slotName]" v-bind="props" :el$="el$"/>
           </slot>
         </template>
         

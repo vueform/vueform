@@ -14,7 +14,7 @@ export const value = function (elementType, elementName, options) {
           type: elementType,
           native: true,
           items: [1,2,3],
-          default: [0],
+          default: [1],
         }
       }
     })
@@ -24,19 +24,19 @@ export const value = function (elementType, elementName, options) {
     let select = findAll(elWrapper, `select`).at(0)
 
     // Default value
-    expect(el.value).toStrictEqual([0])
-    expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
-
-    // Loaded value
-    el.load([1])
     expect(el.value).toStrictEqual([1])
-    await nextTick()
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
 
-    // Selected value
-    setMultiselectValue(select, [2])
+    // Loaded value
+    el.load([2])
     expect(el.value).toStrictEqual([2])
+    await nextTick()
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
+
+    // Selected value
+    setMultiselectValue(select, [3])
+    expect(el.value).toStrictEqual([3])
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('3')
   })
   
   it('should value be equal to selected options\' value when items are an object & native=true', async () => {
@@ -122,7 +122,7 @@ export const value = function (elementType, elementName, options) {
               resolve([1,2,3])
             })
           },
-          default: [0],
+          default: [1],
         }
       }
     })
@@ -134,19 +134,19 @@ export const value = function (elementType, elementName, options) {
     let select = findAll(elWrapper, `select`).at(0)
 
     // Default value
-    expect(el.value).toStrictEqual([0])
-    expect(findAll(select, `option:checked`).at(0).element.value).toBe('0')
-
-    // Loaded value
-    el.load([1])
     expect(el.value).toStrictEqual([1])
-    await nextTick()
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('1')
 
-    // Selected value
-    setMultiselectValue(select, [2])
+    // Loaded value
+    el.load([2])
     expect(el.value).toStrictEqual([2])
+    await nextTick()
     expect(findAll(select, `option:checked`).at(0).element.value).toBe('2')
+
+    // Selected value
+    setMultiselectValue(select, [3])
+    expect(el.value).toStrictEqual([3])
+    expect(findAll(select, `option:checked`).at(0).element.value).toBe('3')
 
     // destroy() // teardown
   })

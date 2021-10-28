@@ -69,12 +69,41 @@ export const fieldOptions = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.fieldOptions).toStrictEqual({ 
+    expect(el.fieldOptions).toStrictEqual({
       mode: 'tags',
       searchable: el.search || el.create,
       createTag: el.create,
       noOptionsText: el.form$.__('laraform.multiselect.noOptions'),
       noResultsText: el.form$.__('laraform.multiselect.noResults'),
+      label: el.labelProp,
+      trackBy: el.trackBy,
+      valueProp: el.valueProp,
+      limit: el.limit,
+      caret: el.caret,
+      loading: el.loading,
+      object: el.object,
+      delay: el.delay,
+      minChars: el.minChars,
+      resolveOnLoad: el.resolveOnLoad,
+      filterResults: el.filterResults,
+      clearOnSearch: el.clearOnSearch,
+      clearOnSelect: el.clearOnSelect,
+      canClear: el.canClear,
+      max: el.max,
+      showOptions: el.showOptions,
+      openDirection: el.openDirection,
+      strict: el.strict,
+      closeOnSelect: el.closeOnSelect,
+      autocomplete: el.autocomplete,
+      groups: el.groups,
+      groupLabel: el.groupLabel,
+      groupOptions: el.groupOptions,
+      groupHideEmpty: el.groupHideEmpty,
+      groupSelect: el.groupSelect,
+      inputType: el.inputType,
+      hideSelected: el.hideSelected,
+      appendNewTag: el.appendNewTag,
+      addTagOn: el.addTagOn,
     })
   })
   
@@ -92,12 +121,41 @@ export const fieldOptions = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.fieldOptions).toStrictEqual({ 
+    expect(el.fieldOptions).toStrictEqual({
       mode: 'tags',
       searchable: el.search || el.create,
       createTag: el.create,
       noOptionsText: el.form$.__('laraform.multiselect.noOptions'),
       noResultsText: el.form$.__('laraform.multiselect.noResults'),
+      label: el.labelProp,
+      trackBy: el.trackBy,
+      valueProp: el.valueProp,
+      limit: el.limit,
+      caret: el.caret,
+      loading: el.loading,
+      object: el.object,
+      delay: el.delay,
+      minChars: el.minChars,
+      resolveOnLoad: el.resolveOnLoad,
+      filterResults: el.filterResults,
+      clearOnSearch: el.clearOnSearch,
+      clearOnSelect: el.clearOnSelect,
+      canClear: el.canClear,
+      max: el.max,
+      showOptions: el.showOptions,
+      openDirection: el.openDirection,
+      strict: el.strict,
+      closeOnSelect: el.closeOnSelect,
+      autocomplete: el.autocomplete,
+      groups: el.groups,
+      groupLabel: el.groupLabel,
+      groupOptions: el.groupOptions,
+      groupHideEmpty: el.groupHideEmpty,
+      groupSelect: el.groupSelect,
+      inputType: el.inputType,
+      hideSelected: el.hideSelected,
+      appendNewTag: el.appendNewTag,
+      addTagOn: el.addTagOn,
       custom: 'option'
     })
   })

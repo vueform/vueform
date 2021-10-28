@@ -4,16 +4,7 @@ export const empty = function(elementType, elementName) {
   it('should have `empty` "true" if current language\'s value is empty', async () => {
     let form = createForm({
       language: 'en',
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,

@@ -3,16 +3,7 @@ import { createForm, destroy } from 'test-helpers'
 export const languages = function (elementType, elementName, options) {
   it('should return an array of language codes for `languages`', () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -29,16 +20,7 @@ export const languages = function (elementType, elementName, options) {
 
   it('should return current language for `language`', () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,

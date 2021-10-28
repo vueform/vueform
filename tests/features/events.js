@@ -89,7 +89,7 @@ export const onCreated = function (elementType, elementName, options) {
 
     el.events.forEach((event) => {
       mocks[event] = jest.fn()
-      schema.el[`on${_.upperFirst(event)}`] = mocks[event]
+      schema.el[`on${_.upperFirst(_.camelCase(event))}`] = mocks[event]
     })
 
     form = createForm({schema})

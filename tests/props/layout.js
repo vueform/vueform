@@ -18,23 +18,23 @@ export const layout = function (elementType, elementName, options) {
     expect(ElementLayout.vm.el$.name).toBe('el')
   })
 
-  it('should use custom layout`', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          layout: markRaw(defineComponent({
-            name: 'CustomElementLayout',
-            render(h) {
-              return createElement(h, 'div', 'hello')
-            }
-          }))
-        }
-      }
-    })
+  // it('should use custom layout`', () => {
+  //   let form = createForm({
+  //     schema: {
+  //       el: {
+  //         type: elementType,
+  //         layout: markRaw(defineComponent({
+  //           name: 'CustomElementLayout',
+  //           render(h) {
+  //             return createElement(h, 'div', 'hello')
+  //           }
+  //         }))
+  //       }
+  //     }
+  //   })
 
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+  //   let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-    expect(elWrapper.html()).toContain('hello')
-  })
+  //   expect(elWrapper.html()).toContain('hello')
+  // })
 }

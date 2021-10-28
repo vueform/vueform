@@ -53,6 +53,12 @@ export default {
       type: [Boolean],
       default: false,
     },
+    onRemove: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
   },
   setup(props, context) {
     const form$ = useForm$(props, context)

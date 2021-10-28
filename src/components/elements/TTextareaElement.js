@@ -18,7 +18,6 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useHandleInput from './../../composables/elements/useHandleInput'
 import useLanguages from './../../composables/elements/useLanguages'
-import useWatchValue from './../../composables/elements/useWatchValue'
 import useFloating from './../../composables/elements/useFloating'
 
 import { input as useClasses } from './../../composables/elements/useClasses'
@@ -29,6 +28,7 @@ import { multilingual as useNullValue } from './../../composables/elements/useNu
 import { multilingual as useValidation } from './../../composables/elements/useValidation'
 import { multilingual as useEmpty } from './../../composables/elements/useEmpty'
 import { multilingual as useAutogrow } from './../../composables/elements/useAutogrow'
+import { multilingual as useWatchValue } from './../../composables/elements/useWatchValue'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -237,7 +237,8 @@ export default {
       value: value.value,
       fire: events.fire,
       dirt: validation.dirt,
-      validate: validation.validateLanguage,
+      validateLanguage: validation.validateLanguage,
+      language: languages.language,
     })
 
     onMounted(() => {

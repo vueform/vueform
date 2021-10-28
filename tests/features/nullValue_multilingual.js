@@ -3,16 +3,7 @@ import { createForm, destroy } from 'test-helpers'
 export const nullValue = function (elementType, elementName, options) {
   it('should `nullValue` have "null" for each languages', () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,

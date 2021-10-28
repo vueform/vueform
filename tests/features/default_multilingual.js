@@ -5,16 +5,7 @@ import flushPromises from 'flush-promises'
 export const default_ = function(elementType, elementName) {
   it('should set `default` for each language if it is a primitive', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -35,16 +26,7 @@ export const default_ = function(elementType, elementName) {
 
   it('should set `default` if it is an object', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,

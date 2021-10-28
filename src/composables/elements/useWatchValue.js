@@ -32,6 +32,38 @@ const base = function(props, context, dependencies, options = {})
   })
 }
 
+const multilingual = function(props, context, dependencies, options = {})
+{
+  // ============ DEPENDENCIES =============
+
+  const form$ = dependencies.form$
+  const fire = dependencies.fire
+  const dirt = dependencies.dirt
+  const value = dependencies.value
+  const language = dependencies.language
+  const validateLanguage = dependencies.validateLanguage
+
+  // ============== WATCHERS ===============
+
+  onMounted(() => {
+    watch(value, (n, o) => {
+      if (dataEquals(n,o)) {
+        return
+      }
+
+      fire('change', n, o)
+
+      if (dirt) {
+        dirt()
+      }
+
+      if (form$.value.shouldValidateOnChange) {
+        validateLanguage(language.value)
+      }
+    }, { immediate: false, deep: true })
+  })
+}
+
 const list = function(props, context, dependencies, options = {})
 {
   // ============ DEPENDENCIES =============
@@ -126,6 +158,7 @@ export {
   location,
   object,
   group,
+  multilingual,
 }
 
 export default base

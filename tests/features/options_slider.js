@@ -25,6 +25,8 @@ export const fieldOptions = function (elementType, elementName, options) {
       orientation: el.orientation,
       direction: el.direction,
       disabled: el.isDisabled,
+      showTooltip: el.showTooltip,
+      tooltipPosition: el.tooltipPosition,
     })
   })
   
@@ -55,6 +57,8 @@ export const fieldOptions = function (elementType, elementName, options) {
       orientation: el.orientation,
       direction: el.direction,
       disabled: el.isDisabled,
+      showTooltip: el.showTooltip,
+      tooltipPosition: el.tooltipPosition,
       custom: 'option'
     })
   })

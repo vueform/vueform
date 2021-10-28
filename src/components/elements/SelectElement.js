@@ -25,6 +25,7 @@ import useAsyncItems from './../../composables/elements/useAsyncItems'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useFloating from './../../composables/elements/useFloating'
+import useLoading from './../../composables/elements/useLoading'
 
 import { select as useOptions } from './../../composables/elements/useOptions'
 import { input as useClasses } from './../../composables/elements/useClasses'
@@ -262,14 +263,14 @@ export default {
     noOptionsText: {
       type: [String],
       required: false,
-      default: 'The list is empty',
+      default: undefined,
       '@default': 'locale.multiselect.noOptions',
       native: false,
     },
     noResultsText: {
       type: [String],
       required: false,
-      default: 'No results found',
+      default: undefined,
       '@default': 'locale.multiselect.noResults',
       native: false,
     },
@@ -324,8 +325,18 @@ export default {
       parent: path.parent,
     })
 
+    const validation = useValidation(props, context, {
+      form$: form$.form$,
+      path: path.path,
+    })
+
+    const loading = useLoading(props, context, {
+      pending: validation.pending,
+    })
+
     const options = useOptions(props, context, {
       form$: form$.form$,
+      isLoading: loading.isLoading,
     })
 
     const asyncItems = useAsyncItems(props, context, {
@@ -334,11 +345,6 @@ export default {
       disable: disabled.disable,
       enable: disabled.enable,
       el$: baseElement.el$,
-    })
-
-    const validation = useValidation(props, context, {
-      form$: form$.form$,
-      path: path.path,
     })
 
     const value = useValue(props, context, {
@@ -470,6 +476,7 @@ export default {
       ...options,
       ...handleSelectEvents,
       ...floating,
+      ...loading,
     }
   } 
 }

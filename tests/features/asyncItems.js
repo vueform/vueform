@@ -16,11 +16,11 @@ export const nativeItems = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let options = findAll(elWrapper, `option`)
 
-    expect(options.at(0).attributes('value')).toBe('0')
+    expect(options.at(0).attributes('value')).toBe('1')
     expect(options.at(0).element.innerHTML.trim()).toBe('1')
-    expect(options.at(1).attributes('value')).toBe('1')
+    expect(options.at(1).attributes('value')).toBe('2')
     expect(options.at(1).element.innerHTML.trim()).toBe('2')
-    expect(options.at(2).attributes('value')).toBe('2')
+    expect(options.at(2).attributes('value')).toBe('3')
     expect(options.at(2).element.innerHTML.trim()).toBe('3')    
     
     // destroy(form) // teardown
@@ -102,11 +102,11 @@ export const nativeItems = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let options = findAll(elWrapper, `option`)
 
-    expect(options.at(0).attributes('value')).toBe('0')
+    expect(options.at(0).attributes('value')).toBe('1')
     expect(options.at(0).element.innerHTML.trim()).toBe('1')
-    expect(options.at(1).attributes('value')).toBe('1')
+    expect(options.at(1).attributes('value')).toBe('2')
     expect(options.at(1).element.innerHTML.trim()).toBe('2')
-    expect(options.at(2).attributes('value')).toBe('2')
+    expect(options.at(2).attributes('value')).toBe('3')
     expect(options.at(2).element.innerHTML.trim()).toBe('3')
     
     // destroy(form) // teardown
@@ -138,9 +138,9 @@ export const updateItems = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.nativeItems).toStrictEqual([
-      { value: 0, label: 1 },
-      { value: 1, label: 2 },
-      { value: 2, label: 3 }
+      { value: 1, label: 1 },
+      { value: 2, label: 2 },
+      { value: 3, label: 3 }
     ])
 
     option3 = 4
@@ -150,9 +150,9 @@ export const updateItems = function (elementType, elementName, options) {
     await flushPromises()
     
     expect(el.nativeItems).toStrictEqual([
-      { value: 0, label: 1 },
-      { value: 1, label: 2 },
-      { value: 2, label: 4 }
+      { value: 1, label: 1 },
+      { value: 2, label: 2 },
+      { value: 4, label: 4 }
     ])    
     
     // destroy(form) // teardown

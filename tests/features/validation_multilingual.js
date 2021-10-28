@@ -9,16 +9,7 @@ jest.useFakeTimers()
 export const state = function (elementType, elementName, options) {
   it('should have `state` "dirty" and "validated" for each language', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -46,16 +37,7 @@ export const state = function (elementType, elementName, options) {
 export const validationRules = function (elementType, elementName, options) {
   it('should return empty object is `rules` are not defined', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -72,16 +54,7 @@ export const validationRules = function (elementType, elementName, options) {
 
   it('should return same `rules` for each language', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -102,16 +75,7 @@ export const validationRules = function (elementType, elementName, options) {
 
   it('should return different `rules` languages if rules is defined on a language level', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -136,16 +100,7 @@ export const validationRules = function (elementType, elementName, options) {
 export const dirty = function (elementType, elementName, options) {
   it('should be dirty if any of the language values is dirty', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -168,16 +123,7 @@ export const dirty = function (elementType, elementName, options) {
 export const validated = function (elementType, elementName, options) {
   it('should be validated if all of the language values are validated', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -209,16 +155,7 @@ export const validated = function (elementType, elementName, options) {
 export const invalid = function (elementType, elementName, options) {
   it('should be invalid if any of the language values is invalid', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -246,16 +183,7 @@ export const pending = function (elementType, elementName, options) {
     let axiosPostMock = jest.fn(() => Promise.resolve({ data: {} }))
 
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -266,7 +194,7 @@ export const pending = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.$laraform.services.axios.post = axiosPostMock
+    el.$laraform.services.axios.request = axiosPostMock
 
     el.validateLanguage()
 
@@ -283,20 +211,12 @@ export const pending = function (elementType, elementName, options) {
 export const debouncing = function (elementType, elementName, options) {
   it('should be `debouncing` if any validator is debouncing', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
           debounce: 1,
+          default: options.default,
           rules: 'required',
         }
       }
@@ -308,9 +228,8 @@ export const debouncing = function (elementType, elementName, options) {
 
     expect(el.debouncing).toBe(true)
 
-    await flushPromises()
-
     jest.advanceTimersByTime(1)
+    await flushPromises()
 
     expect(el.debouncing).toBe(false)      
 
@@ -323,16 +242,7 @@ export const busy = function (elementType, elementName, options) {
     let axiosPostMock = jest.fn(() => Promise.resolve({ data: {} }))
 
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -343,7 +253,7 @@ export const busy = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.$laraform.services.axios.post = axiosPostMock
+    el.$laraform.services.axios.request = axiosPostMock
 
     el.validateLanguage()
 
@@ -358,20 +268,12 @@ export const busy = function (elementType, elementName, options) {
 
   it('should `busy` if debouncing', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
           debounce: 1,
+          default: options.default,
           rules: 'required',
         }
       }
@@ -383,9 +285,9 @@ export const busy = function (elementType, elementName, options) {
 
     expect(el.busy).toBe(true)
 
+    jest.advanceTimersByTime(1)
     await flushPromises()
 
-    jest.advanceTimersByTime(1)
     expect(el.busy).toBe(false)
 
     // destroy() // teardown
@@ -395,16 +297,7 @@ export const busy = function (elementType, elementName, options) {
 export const errors = function (elementType, elementName, options) {
   it('should collect errors from all languages with language code suffic', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -435,16 +328,7 @@ export const errors = function (elementType, elementName, options) {
 export const error = function (elementType, elementName, options) {
   it('should return the first `error` message for current language', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -470,16 +354,7 @@ export const error = function (elementType, elementName, options) {
 
   it('should return prepended `error` message for each languages', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -515,16 +390,7 @@ export const error = function (elementType, elementName, options) {
 export const validate = function (elementType, elementName, options) {
   it('should `validate` all languages', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -548,16 +414,7 @@ export const validate = function (elementType, elementName, options) {
 export const validateLanguage = function (elementType, elementName, options) {
   it('should `validateLanguage` and set "validated" to "true"', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -587,16 +444,7 @@ export const validateLanguage = function (elementType, elementName, options) {
 
   it('should not `validateLanguage` if has no "rules"', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -619,16 +467,7 @@ export const validateLanguage = function (elementType, elementName, options) {
 
   it('should not `validateLanguage` form validation is disabled', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -654,16 +493,7 @@ export const validateLanguage = function (elementType, elementName, options) {
 export const resetValidators = function (elementType, elementName, options) {
   it('should `resetValidators` and set validated to "false" in each language', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -693,16 +523,7 @@ export const resetValidators = function (elementType, elementName, options) {
 export const dirt = function (elementType, elementName, options) {
   it('should `dirt` in current language', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -723,16 +544,7 @@ export const dirt = function (elementType, elementName, options) {
 export const clean = function (elementType, elementName, options) {
   it('should `dirt` in current language', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -757,16 +569,7 @@ export const clean = function (elementType, elementName, options) {
 export const Validators = function (elementType, elementName, options) {
   it('should set "validated" "false" only for language which has "rules"', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -789,16 +592,7 @@ export const Validators = function (elementType, elementName, options) {
 
   it('should set the same validators for each language if rules is not an object', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -819,16 +613,7 @@ export const Validators = function (elementType, elementName, options) {
 
   it('should set the different validators for each language if rules is an object', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -853,16 +638,7 @@ export const Validators = function (elementType, elementName, options) {
 export const watchers = function (elementType, elementName, options) {
   it('should update Validators when rules change', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,

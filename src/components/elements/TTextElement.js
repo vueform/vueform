@@ -18,8 +18,8 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useHandleInput from './../../composables/elements/useHandleInput'
 import useLanguages from './../../composables/elements/useLanguages'
-import useWatchValue from './../../composables/elements/useWatchValue'
 import useFloating from './../../composables/elements/useFloating'
+import useLoading from './../../composables/elements/useLoading'
 
 import { input as useClasses } from './../../composables/elements/useClasses'
 import { multilingual as useValue } from './../../composables/elements/useValue'
@@ -28,6 +28,7 @@ import { multilingual as useDefault } from './../../composables/elements/useDefa
 import { multilingual as useNullValue } from './../../composables/elements/useNullValue'
 import { multilingual as useValidation } from './../../composables/elements/useValidation'
 import { multilingual as useEmpty } from './../../composables/elements/useEmpty'
+import { multilingual as useWatchValue } from './../../composables/elements/useWatchValue'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -96,6 +97,11 @@ export default {
       type: [Boolean],
       default: false
     },
+    loading: {
+      type: [Boolean],
+      required: false,
+      default: false,
+    },
   },
   setup(props, context) {
     const form$ = useForm$(props, context)
@@ -159,6 +165,10 @@ export default {
       language: languages.language,
       languages: languages.languages,
       value: value.value,
+    })
+
+    const loading = useLoading(props, context, {
+      pending: validation.pending,
     })
 
     const data = useData(props, context, {
@@ -230,7 +240,8 @@ export default {
       value: value.value,
       fire: events.fire,
       dirt: validation.dirt,
-      validate: validation.validateLanguage,
+      validateLanguage: validation.validateLanguage,
+      language: languages.language,
     })
 
     onMounted(() => {
@@ -271,6 +282,7 @@ export default {
       ...handleInput,
       ...languages,
       ...floating,
+      ...loading,
     }
   } 
 }

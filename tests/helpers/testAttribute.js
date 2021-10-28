@@ -1,4 +1,4 @@
-import { findAllComponents } from 'test-helpers'
+import { findAllComponents, findAll } from 'test-helpers'
 
 export default function testAttribute (el, fieldType, attribute, expectedValue) {
   

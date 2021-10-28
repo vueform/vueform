@@ -19,6 +19,8 @@ export const fieldOptions = function (elementType, elementName, options) {
       disabled: el.isDisabled,
       onLabel: el.labels.on,
       offLabel: '',
+      trueValue: el.trueValue,
+      falseValue: el.falseValue,
     })
   })
   
@@ -43,7 +45,9 @@ export const fieldOptions = function (elementType, elementName, options) {
       disabled: el.isDisabled,
       onLabel: el.labels.on,
       offLabel: '',
-      custom: 'option'
+      trueValue: el.trueValue,
+      falseValue: el.falseValue,
+      custom: 'option',
     })
   })
   

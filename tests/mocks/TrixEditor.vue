@@ -21,7 +21,7 @@
 
       const editor = ref({
         loadHTML: (val) => {
-          if (val === null) {
+          if (val === null || value === undefined) {
             val = ''
           }
 

@@ -19,9 +19,9 @@ const base = function(props, context, dependencies, options = {})
   ]
 
   const defaultFieldSlots = [
-    'checkbox', 'radio', 'option', 'single-label',
-    'multiple-label', 'tag', 'no-results', 'no-options',
-    'after-list', 'before-list', 'default',
+    'checkbox', 'radio', 'option', 'single-label', 'multiple-label', 'tag',
+    'no-results', 'no-options', 'after-list', 'before-list', 'placeholder',
+    'group-label', 'caret', 'clear', 'spinner', 'option', 'default',
   ]
 
   // ============== COMPUTED ==============

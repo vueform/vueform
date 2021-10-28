@@ -1,6 +1,6 @@
 <template>
-  <!-- If wrapped in layout -->
   <component v-if="wrap" :is="elementLayout">
+  <!-- If wrapped in layout -->
     <template #element>
       <!-- If content is HTML -->
       <div v-if="content && isHtml" :class="classes.content" v-html="content"></div>
@@ -26,7 +26,6 @@
   <div v-else>
     <slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot>
   </div>
-
 </template>
 
 <script>

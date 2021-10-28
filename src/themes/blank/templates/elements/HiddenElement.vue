@@ -1,12 +1,13 @@
 <template>
-  <input
-    v-if="!meta"
-    v-model="value"
-    type="hidden"
-    :name="name"
-    :id="fieldId"
-    ref="input"
- />
+  <span v-if="!meta">
+    <input
+      v-model="value"
+      type="hidden"
+      :name="name"
+      :id="fieldId"
+      ref="input"
+    />
+ </span>
 </template>
 
 <script>

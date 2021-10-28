@@ -4,8 +4,13 @@ import { createForm, destroy } from 'test-helpers'
 import { validate as baseValidate } from './validation'
 
 export { 
-  dirty, validated, invalid, pending, debouncing, 
-  busy, errors, error, resetValidators, dirt, clean, messageBag, Validators, watchers } from './validation'
+  dirty, validated, invalid, pending, errors, error, resetValidators,
+  dirt, clean, messageBag, Validators, watchers
+} from './validation'
+
+export { 
+  busy
+} from './validation_checkbox'
 
 export const validate = function (elementType, elementName, options) {
   baseValidate(elementType, elementName, options)

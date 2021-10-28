@@ -500,7 +500,7 @@ const multilingual = function(props, context, dependencies)
       return ruleList
     }
 
-    _.each(languages.value, (label, lang) => {
+    _.each(languages.value, (lang) => {
       ruleList[lang] = _.isPlainObject(rules.value)
         ? (rules.value[lang] || null)
         : rules.value
@@ -611,7 +611,7 @@ const multilingual = function(props, context, dependencies)
    * @returns {void}
    */
   const validate = async () => {
-    await asyncForEach(languages.value, async (label, lang) => {
+    await asyncForEach(languages.value, async (lang) => {
       await validateLanguage(lang)
     })
   }
@@ -627,7 +627,7 @@ const multilingual = function(props, context, dependencies)
       return
     }
 
-    if (!validationRules.value) {
+    if (!Validators.value[lang]) {
       return
     }
 
@@ -639,7 +639,7 @@ const multilingual = function(props, context, dependencies)
   }
 
   const resetValidators = () => {
-    _.each(languages.value, (label, lang) => {
+    _.each(languages.value, (lang) => {
       _.each(Validators.value[lang], (Validator) => {
         Validator.reset()
       })
@@ -668,11 +668,11 @@ const multilingual = function(props, context, dependencies)
     var dirty = {}
     var validated = {}
 
-    _.each(languages.value, (label, lang) => {
+    _.each(languages.value, (lang) => {
       dirty[lang] = false
     })
 
-    _.each(languages.value, (label, lang) => {
+    _.each(languages.value, (lang) => {
       validated[lang] = true
     })
 
@@ -1028,6 +1028,82 @@ const file = function(props, context, dependencies)
   }
 }
 
+const location = function(props, context, dependencies)
+{
+  const {
+    displayKey,
+  } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const form$ = dependencies.form$
+  const value = dependencies.value
+
+  const { 
+    state,
+    Validators,
+    messageBag,
+    dirty,
+    validated,
+    invalid,
+    pending,
+    debouncing,
+    busy,
+    errors,
+    error,
+    validationRules,
+    dirt,
+    clean,
+    resetValidators,
+    initMessageBag,
+    initValidation,
+  } = base(props, context, dependencies)
+
+  // =============== METHODS ==============
+
+  /**
+   * Checks each validation rule for the element on [`displayKey`](#options-display-key) property of the location object (async).
+   * 
+   * @returns {void}
+   */
+  const validate = async () => {
+    if (!validationRules.value) {
+      return
+    }
+
+    if (form$.value.validation === false) {
+      return
+    }
+
+    await asyncForEach(Validators.value, async (Validator) => {
+      await Validator.validate(value.value[displayKey.value])
+    })
+    
+    state.value.validated = true
+  }
+
+  return {
+    state,
+    Validators,
+    messageBag,
+    dirty,
+    validated,
+    invalid,
+    pending,
+    debouncing,
+    busy,
+    errors,
+    error,
+    validationRules,
+    validate,
+    dirt,
+    clean,
+    resetValidators,
+    initMessageBag,
+    initValidation,
+  }
+}
+
 const group = object
 
 export {
@@ -1037,6 +1113,7 @@ export {
   group,
   slider,
   file,
+  location,
 }
 
 export default base

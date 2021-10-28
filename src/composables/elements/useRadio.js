@@ -51,7 +51,6 @@ const base = function (props, context, dependencies)
   onMounted(() => {
     document.getElementsByName(inputName.value).forEach((element) => {
       element.addEventListener('change', () => {
-        console.log('changed')
         if (element.id != fieldId.value) {
           update(nullValue.value)
         }

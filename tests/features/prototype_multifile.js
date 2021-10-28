@@ -212,7 +212,7 @@ export const prototype = function (elementType, elementName, options) {
 }
 
 export const isObject = function (elementType, elementName, options) {
-  it('should have `isObject` true if "object" true or "storeFile" / "storeOrder" / "fields" exists', async () => {
+  it('should have `isObject` true if "object" true or "storeOrder" / "fields" exists', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -231,12 +231,6 @@ export const isObject = function (elementType, elementName, options) {
     expect(el.isObject).toBe(true)
 
     el.$delete(form.vm.laraform.schema.el, 'object')
-    el.$set(form.vm.laraform.schema.el, 'storeFile', 'filename')
-    await nextTick()
-    
-    expect(el.isObject).toBe(true)
-
-    el.$delete(form.vm.laraform.schema.el, 'storeFile')
     el.$set(form.vm.laraform.schema.el, 'storeOrder', 'order')
     await nextTick()
     

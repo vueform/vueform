@@ -6,16 +6,7 @@ export const autosize = function (elementType, elementName, options) {
 
   it('should `autosize` when language changes', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,

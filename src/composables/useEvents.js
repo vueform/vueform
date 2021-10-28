@@ -78,7 +78,7 @@ const base = function(props, context, dependencies, options = {})
   // If component has descriptor subscribe upfront
   // for events using `onEvent` format 
   _.each(events.value, (evt) => {
-    let callback = props['on' + _.upperFirst(evt)]
+    let callback = props['on' + _.upperFirst(_.camelCase(evt))]
 
     if (callback) {
       on(evt, callback)

@@ -2,9 +2,13 @@ import flushPromises from 'flush-promises'
 import { createForm, listSchema, listChild, listChildValue, destroy } from 'test-helpers'
 
 import {
-  dirty as baseDirty, validated as baseValidated, pending as basePending, debouncing as baseDebouncing,
-  busy as baseBusy, errors as baseErrors, error as baseError
+  dirty as baseDirty, validated as baseValidated, pending as basePending,
+  errors as baseErrors, error as baseError
 } from './validation'
+
+import {
+  busy as baseBusy
+} from './validation_checkbox'
 
 import asyncForEach from './../../src/utils/asyncForEach'
 import { nextTick } from 'vue'
@@ -219,10 +223,13 @@ export const pending = function (elementType, elementName, options) {
       let child0 = listChild(el, options, 0)
       let child1 = listChild(el, options, 1)
 
-      child0.$laraform.services.axios.post = axiosPostMock
-      child1.$laraform.services.axios.post = axiosPostMock
+      child0.$laraform.services.axios.request = axiosPostMock
+      child1.$laraform.services.axios.request = axiosPostMock
 
       el.validate()
+
+      await nextTick()
+      await nextTick()
 
       expect(el.pending).toBe(true)
 
@@ -238,13 +245,11 @@ export const pending = function (elementType, elementName, options) {
 export const debouncing = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  baseDebouncing(elementType, elementName, options)
-
   it('should be `debouncing` if any of the children is debouncing', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm(listSchema(options, i, {
         initial: 2,
-        child: { rules: 'required', debounce: 1 },
+        child: { rules: 'required', debounce: 1, default: options.childValues[0] },
       }))
 
       let el = form.vm.el$('el')
@@ -255,9 +260,13 @@ export const debouncing = function (elementType, elementName, options) {
 
       child0.validate()
 
+      await nextTick()
+      await nextTick()
+
       expect(el.debouncing).toBe(true)
 
       jest.advanceTimersByTime(1)
+      await flushPromises()
       
       expect(el.pending).toBe(false)
     })
@@ -287,10 +296,13 @@ export const busy = function (elementType, elementName, options) {
       let child0 = listChild(el, options, 0)
       let child1 = listChild(el, options, 1)
 
-      child0.$laraform.services.axios.post = axiosPostMock
-      child1.$laraform.services.axios.post = axiosPostMock
+      child0.$laraform.services.axios.request = axiosPostMock
+      child1.$laraform.services.axios.request = axiosPostMock
 
       el.validate()
+
+      await nextTick()
+      await nextTick()
 
       expect(el.busy).toBe(true)
 
@@ -306,7 +318,7 @@ export const busy = function (elementType, elementName, options) {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm(listSchema(options, i, {
         initial: 2,
-        child: { rules: 'required', debounce: 1 },
+        child: { rules: 'required', debounce: 1, default: options.childValues[0] },
       }))
 
       let el = form.vm.el$('el')
@@ -317,9 +329,13 @@ export const busy = function (elementType, elementName, options) {
 
       child0.validate()
 
+      await nextTick()
+      await nextTick()
+
       expect(el.busy).toBe(true)
       
       jest.advanceTimersByTime(1)
+      await flushPromises()
 
       expect(el.busy).toBe(false)
     })

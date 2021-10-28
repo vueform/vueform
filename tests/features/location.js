@@ -156,7 +156,7 @@ export const providerOptions = function (elementType, elementName, options, spie
       schema: {
         el: {
           type: elementType,
-          options: {
+          extendOptions: {
             custom: 'option'
           }
         }
@@ -201,7 +201,7 @@ export const providerOptions = function (elementType, elementName, options, spie
       schema: {
         el: {
           type: elementType,
-          options: {
+          extendOptions: {
             description: 'a'
           }
         }
@@ -213,7 +213,7 @@ export const providerOptions = function (elementType, elementName, options, spie
     expect(autocompleteMock.mock.calls.length).toBe(1)
     expect(googleRemoveListenerMock.mock.calls.length).toBe(0)
 
-    form.vm.$set(form.vm.laraform.schema.el.options, 'description', 'b')
+    form.vm.$set(form.vm.laraform.schema.el.extendOptions, 'description', 'b')
 
     await nextTick()
 

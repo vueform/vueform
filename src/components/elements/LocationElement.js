@@ -9,7 +9,6 @@ import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
 import useData from './../../composables/elements/useData'
 import useDefault from './../../composables/elements/useDefault'
-import useValidation from './../../composables/elements/useValidation'
 import useLabel from './../../composables/elements/useLabel'
 import useColumns from './../../composables/elements/useColumns'
 import useBaseElement from './../../composables/elements/useBaseElement'
@@ -26,6 +25,7 @@ import useFloating from './../../composables/elements/useFloating'
 
 import { location as useWatchValue } from './../../composables/elements/useWatchValue'
 import { location as useNullValue } from './../../composables/elements/useNullValue' 
+import { location as useValidation } from './../../composables/elements/useValidation'
 import { input as useClasses } from './../../composables/elements/useClasses'
 
 import BaseElement from './../../mixins/BaseElement'
@@ -151,16 +151,17 @@ export default {
       parent: path.parent,
     })
 
-    const validation = useValidation(props, context, {
-      form$: form$.form$,
-      path: path.path,
-    })
-
     const value = useValue(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
       parent: path.parent,
+    })
+
+    const validation = useValidation(props, context, {
+      form$: form$.form$,
+      path: path.path,
+      value: value.value,
     })
 
     const conditions = useConditions(props, context, {

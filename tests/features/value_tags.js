@@ -186,8 +186,8 @@ export const value = function (elementType, elementName, options) {
           type: elementType,
           native: false,
           items: [1,2,3],
-          default: [{ value: 0, label: 1 }],
-          options: {
+          default: [{ value: 1, label: 1 }],
+          extendOptions: {
             object: true
           }
         }
@@ -199,24 +199,26 @@ export const value = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let select = el.input
 
+    await nextTick()
+
     // Default value
-    expect(el.value).toStrictEqual([{ value: 0, label: 1 }])
-    expect(select.ev).toStrictEqual([{ value: 0, label: 1 }])
-    expect(select.iv).toStrictEqual([{ value: 0, label: 1 }])
+    expect(el.value).toStrictEqual([{ value: 1, label: 1 }])
+    expect(select.ev).toStrictEqual([{ value: 1, label: 1 }])
+    expect(select.iv).toStrictEqual([{ value: 1, label: 1 }])
 
     // Loaded value
-    el.load([{ value: 1, label: 2 }])
-    expect(el.value).toStrictEqual([{ value: 1, label: 2 }])
+    el.load([{ value: 2, label: 2 }])
+    expect(el.value).toStrictEqual([{ value: 2, label: 2 }])
     await nextTick()
-    expect(select.ev).toStrictEqual([{ value: 1, label: 2 }])
-    expect(select.iv).toStrictEqual([{ value: 1, label: 2 }])
+    expect(select.ev).toStrictEqual([{ value: 2, label: 2 }])
+    expect(select.iv).toStrictEqual([{ value: 2, label: 2 }])
 
     // Selected value
     select.clear()
-    select.handleOptionClick([{ value: 2, label: 3 }])
+    select.handleOptionClick([{ value: 3, label: 3 }])
     await nextTick()
-    expect(select.ev).toStrictEqual([{ value: 2, label: 3 }])
-    expect(select.iv).toStrictEqual([{ value: 2, label: 3 }])
+    expect(select.ev).toStrictEqual([{ value: 3, label: 3 }])
+    expect(select.iv).toStrictEqual([{ value: 3, label: 3 }])
 
     destroy(form)
     
@@ -231,7 +233,7 @@ export const value = function (elementType, elementName, options) {
           native: false,
           items: {0:1,1:2,2:3},
           default: [{ value: '0', label: 1 }],
-          options: {
+          extendOptions: {
             object: true
           }
         }
@@ -274,12 +276,12 @@ export const value = function (elementType, elementName, options) {
           type: elementType,
           native: false,
           items: [
-            { v: 0, label: 1 },
-            { v: 1, label: 2 },
-            { v: 2, label: 3 },
+            { v: 1, label: 1 },
+            { v: 2, label: 2 },
+            { v: 3, label: 3 },
           ],
-          default: [{ v: 0, label: 1 }],
-          options: {
+          default: [{ v: 1, label: 1 }],
+          extendOptions: {
             object: true,
             valueProp: 'v'
           }
@@ -293,16 +295,16 @@ export const value = function (elementType, elementName, options) {
     let select = el.input
 
     // Default value
-    expect(el.value).toStrictEqual([{ v: 0, label: 1 }])
-    expect(select.ev).toStrictEqual([{ v: 0, label: 1 }])
-    expect(select.iv).toStrictEqual([{ v: 0, label: 1 }])
+    expect(el.value).toStrictEqual([{ v: 1, label: 1 }])
+    expect(select.ev).toStrictEqual([{ v: 1, label: 1 }])
+    expect(select.iv).toStrictEqual([{ v: 1, label: 1 }])
 
     // Loaded value
-    el.load([{ v: 1, label: 2 }])
-    expect(el.value).toStrictEqual([{ v: 1, label: 2 }])
+    el.load([{ v: 2, label: 2 }])
+    expect(el.value).toStrictEqual([{ v: 2, label: 2 }])
     await nextTick()
-    expect(select.ev).toStrictEqual([{ v: 1, label: 2 }])
-    expect(select.iv).toStrictEqual([{ v: 1, label: 2 }])
+    expect(select.ev).toStrictEqual([{ v: 2, label: 2 }])
+    expect(select.iv).toStrictEqual([{ v: 2, label: 2 }])
 
     // Selected value
     select.clear()
@@ -327,8 +329,8 @@ export const value = function (elementType, elementName, options) {
               resolve([1,2,3])
             })
           },
-          default: [{ value: 0, label: 1 }],
-          options: {
+          default: [{ value: 1, label: 1 }],
+          extendOptions: {
             object: true,
           }
         }
@@ -343,16 +345,16 @@ export const value = function (elementType, elementName, options) {
     let select = el.input
 
     // Default value
-    expect(el.value).toStrictEqual([{ value: 0, label: 1 }])
-    expect(select.ev).toStrictEqual([{ value: 0, label: 1 }])
-    expect(select.iv).toStrictEqual([{ value: 0, label: 1 }])
+    expect(el.value).toStrictEqual([{ value: 1, label: 1 }])
+    expect(select.ev).toStrictEqual([{ value: 1, label: 1 }])
+    expect(select.iv).toStrictEqual([{ value: 1, label: 1 }])
 
     // Loaded value
-    el.load([{ value: 1, label: 2 }])
-    expect(el.value).toStrictEqual([{ value: 1, label: 2 }])
+    el.load([{ value: 2, label: 2 }])
+    expect(el.value).toStrictEqual([{ value: 2, label: 2 }])
     await nextTick()
-    expect(select.ev).toStrictEqual([{ value: 1, label: 2 }])
-    expect(select.iv).toStrictEqual([{ value: 1, label: 2 }])
+    expect(select.ev).toStrictEqual([{ value: 2, label: 2 }])
+    expect(select.iv).toStrictEqual([{ value: 2, label: 2 }])
 
     // Selected value
     select.clear()

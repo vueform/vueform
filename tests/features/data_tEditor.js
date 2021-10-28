@@ -8,16 +8,7 @@ export { data, requestData } from './data_multilingual'
 export const load = function (elementType, elementName, options) {
   it('should `load` data', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -60,16 +51,7 @@ export const load = function (elementType, elementName, options) {
 
   it('should format data if "formatLoad" is set on `load`', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -105,16 +87,7 @@ export const update = function (elementType, elementName, options) {
 
   it('should update editor value on `update`', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -139,16 +112,7 @@ export const reset = function (elementType, elementName, options) {
 
   it('should update editor value on `reset`', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -179,16 +143,7 @@ export const clear = function (elementType, elementName, options) {
 
   it('should update editor value on `clear`', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,

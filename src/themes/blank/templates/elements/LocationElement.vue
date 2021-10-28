@@ -23,6 +23,7 @@
           :placeholder="placeholder"
           :disabled="isDisabled"
           :readonly="readonly"
+          autocomplete="off"
           ref="input"
           @blur="handleLocationBlur"
        />

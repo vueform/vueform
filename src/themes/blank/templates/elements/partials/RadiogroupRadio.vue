@@ -1,12 +1,12 @@
 <template>
   <label :class="classes.container">
-    <slot :classes="classes" v-bind="{ name: el$.inputName }" :is-disabled="isDisabled" :id="`${el$.fieldId}-${value}`" :item="item" :value="value">
+    <slot :classes="classes" v-bind="{ name: el$.path }" :is-disabled="isDisabled" :id="`${el$.fieldId}-${value}`" :item="item" :value="value">
       <input
         type="radio"
         v-model="el$.value"
         :value="value"
         :class="classes.input"
-        :name="el$.inputName"
+        :name="el$.path"
         :id="`${el$.fieldId}-${value}`"
         :disabled="isDisabled"
      />

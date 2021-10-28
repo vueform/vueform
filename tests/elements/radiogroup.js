@@ -33,8 +33,6 @@ export default function (elementType, elementName, options) {
 
       expect(label.element.innerHTML).toContain('value')
       expect(label2.element.innerHTML).toContain('value2')
-      expect(label.attributes('for')).toBe('el-1')
-      expect(label2.attributes('for')).toBe('el-2')
     })
   })
 }

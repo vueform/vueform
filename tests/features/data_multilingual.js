@@ -1,4 +1,4 @@
-import { createForm, destroy } from 'test-helpers'
+import { createForm, destroym  } from 'test-helpers'
 import flushPromises from 'flush-promises'
 export { data, requestData, clear, reset } from './data'
 
@@ -24,16 +24,7 @@ export const load = function(elementType, elementName) {
 
   it('should `load` data', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -68,16 +59,7 @@ export const load = function(elementType, elementName) {
 
   it('should format data if "formatLoad" is set on `load`', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -112,16 +94,7 @@ export const update = function(elementType, elementName) {
   it('should `update` current language with a primitive value', async () => {
     let form = createForm({
       language: 'en',
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -144,16 +117,7 @@ export const update = function(elementType, elementName) {
   it('should `update` all languages when an object is provided as value', async () => {
     let form = createForm({
       language: 'en',
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,

@@ -30,7 +30,9 @@ export const genericName = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.genericName).toBe('Element label')
+    if (el.label !== undefined) {
+      expect(el.genericName).toBe('Element label')
+    }
     
     // destroy(form) // teardown
   })
@@ -47,12 +49,14 @@ export const genericName = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.genericName).toBe('Element floating')
+    if (el.floating !== undefined) {
+      expect(el.genericName).toBe('Element floating')
+    }
     
     // destroy(form) // teardown
   })
 
-  it('should return placeholder when placeholder is defined and condig.floatPlaceholders=true', () => {
+  it('should return placeholder when placeholder is defined and config.floatPlaceholders=true', () => {
     let form = createForm({
       schema: {
         el: {
@@ -67,13 +71,15 @@ export const genericName = function (elementType, elementName, options) {
     })
 
     let el = form.vm.el$('el')
-
-    expect(el.genericName).toBe('Element placeholder')
+    
+    if (el.placeholder !== undefined) {
+      expect(el.genericName).toBe('Element placeholder')
+    }
     
     // destroy(form) // teardown
   })
 
-  it('should return generic name when placeholder is defined and condig.floatPlaceholders=false', () => {
+  it('should return generic name when placeholder is defined and config.floatPlaceholders=false', () => {
     let form = createForm({
       schema: {
         el: {

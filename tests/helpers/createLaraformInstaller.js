@@ -15,7 +15,8 @@ export default function createLaraformInstaller (options = {}) {
     rules: options.rules || {},
     locales: Object.assign({}, options.locales || {
       en,
-    })
+    }),
+    languages: {en:'English',fr:'French'},
   }, options.config || {})
 
   const LaraformInstaller = installer(finalConfig)

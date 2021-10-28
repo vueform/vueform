@@ -5,16 +5,7 @@ import { nextTick } from 'composition-api'
 export const handleInput = function (elementType, elementName, options) {
   it('should set model on input', () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -34,16 +25,7 @@ export const handleInput = function (elementType, elementName, options) {
 
   it('should dirt the element if input value is different than the current', async () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -67,16 +49,7 @@ export const handleInput = function (elementType, elementName, options) {
 
   it('should not dirt the element on if input value is not different than the current', () => {
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -101,16 +74,7 @@ export const handleInput = function (elementType, elementName, options) {
     let onChangeMock = jest.fn()
 
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -134,16 +98,7 @@ export const handleInput = function (elementType, elementName, options) {
     let onChangeMock = jest.fn()
 
     let form = createForm({
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -162,19 +117,10 @@ export const handleInput = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should trigger validation on if validateOn contains "change"', async () => {
+  it('should trigger validation on change if validateOn contains "change"', async () => {
     let form = createForm({
       validateOn: 'submit',
-      languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        fr: {
-          label: 'French',
-          code: 'fr'
-        },
-      },
+      languages: {en:'English',fr:'French'},
       schema: {
         el: {
           type: elementType,
@@ -192,7 +138,7 @@ export const handleInput = function (elementType, elementName, options) {
 
     expect(el.state.validated.en).toBe(false)
 
-    form.vm.laraform.validateOn = 'submit|change'
+    form.vm.laraform.validateOn = 'change'
 
     elWrapper.get(options.fieldType).setValue('value2')
 

@@ -200,7 +200,7 @@ const Validator = class {
     if (this.debounce && this.filled(value)) {
       await this._validateWithDebounce(value)
     } else {
-      if (this.debounce) {
+      if (this.debounce && this.debouncer) {
         clearTimeout(this.debouncer)
       }
       

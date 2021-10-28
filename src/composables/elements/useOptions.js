@@ -201,7 +201,6 @@ const select = function (props, context, dependencies)
     noOptionsText,
     noResultsText,
     caret,
-    loading,
     object,
     delay,
     minChars,
@@ -224,6 +223,7 @@ const select = function (props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
+  const isLoading = dependencies.isLoading
 
 
   // ============== COMPUTED ==============
@@ -249,12 +249,12 @@ const select = function (props, context, dependencies)
       searchable: search.value,
       noOptionsText: noOptionsText.value || form$.value.__('laraform.multiselect.noOptions'),
       noResultsText: noResultsText.value || form$.value.__('laraform.multiselect.noResults'),
-      labelProp: labelProp.value,
+      label: labelProp.value,
       trackBy: trackBy.value,
       valueProp: valueProp.value,
       limit: limit.value,
       caret: caret.value,
-      loading: loading.value,
+      loading: isLoading.value,
       object: object.value,
       delay: delay.value,
       minChars: minChars.value,
@@ -303,7 +303,6 @@ const multiselect = function (props, context, dependencies)
     noOptionsText,
     noResultsText,
     caret,
-    loading,
     object,
     delay,
     minChars,
@@ -330,6 +329,7 @@ const multiselect = function (props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
+  const isLoading = dependencies.isLoading
 
 
   // ============== COMPUTED ==============
@@ -361,12 +361,12 @@ const multiselect = function (props, context, dependencies)
           : form$.value.__('laraform.multiselect.multipleLabelOne') 
       }),
 
-      labelProp: labelProp.value,
+      label: labelProp.value,
       trackBy: trackBy.value,
       valueProp: valueProp.value,
       limit: limit.value,
       caret: caret.value,
-      loading: loading.value,
+      loading: isLoading.value,
       object: object.value,
       delay: delay.value,
       minChars: minChars.value,
@@ -417,7 +417,6 @@ const tags = function (props, context, dependencies)
     noOptionsText,
     noResultsText,
     caret,
-    loading,
     object,
     delay,
     minChars,
@@ -447,6 +446,7 @@ const tags = function (props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
+  const isLoading = dependencies.isLoading
 
   // ================ DATA ================
 
@@ -484,13 +484,12 @@ const tags = function (props, context, dependencies)
       createTag: create.value,
       noOptionsText: noOptionsText.value || form$.value.__('laraform.multiselect.noOptions'),
       noResultsText: noResultsText.value || form$.value.__('laraform.multiselect.noResults'),
-
-      labelProp: labelProp.value,
+      label: labelProp.value,
       trackBy: trackBy.value,
       valueProp: valueProp.value,
       limit: limit.value,
       caret: caret.value,
-      loading: loading.value,
+      loading: isLoading.value,
       object: object.value,
       delay: delay.value,
       minChars: minChars.value,
