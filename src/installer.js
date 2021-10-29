@@ -308,6 +308,7 @@ export default function(config) {
       switch (version) {
         case 2:
           appOrVue.config.ignoredElements = ['trix-editor']
+          appOrVue.config.unwrapInjectedRef = true
 
           const $laraform = this.options
 
@@ -339,6 +340,7 @@ export default function(config) {
         case 3:
           appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
 
+          appOrVue.config.unwrapInjectedRef = true
           appOrVue.config.globalProperties.$laraform = this.options
           appOrVue.provide('$laraform', this.options)
 

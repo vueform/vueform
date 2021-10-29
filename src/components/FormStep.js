@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { toRefs, ref, computed, onMounted, nextTick, watch, onBeforeMount, onBeforeUnmount, getCurrentInstance } from 'composition-api'
+import { toRefs, ref, computed, onMounted, nextTick, watch, onBeforeMount, onBeforeUnmount, getCurrentInstance, markRaw } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useConditions from './../composables/useConditions'
 import useLabel from './../composables/useLabel'
@@ -53,14 +53,14 @@ export default {
       default: null,
     },
 
-    onActive: {
+    onActivate: {
       type: [Function],
       required: false,
       default: null,
       private: true,
     },
 
-    onInactive: {
+    onInactivate: {
       type: [Function],
       required: false,
       default: null,
@@ -133,9 +133,7 @@ export default {
       off,
       fire
     } = useEvents(props, context, { form$ }, {
-      events: [
-        'active', 'inactive', 'complete', 'enable', 'disable'
-      ]
+      events: context.emits,
     })
 
     // ================ DATA ================
@@ -146,7 +144,7 @@ export default {
      * @type {string|component}
      * @default null
      */
-    const stepLabel = ref(stepLabel_.value)
+    const stepLabel = ref(stepLabel_.value && typeof stepLabel_.value === 'object' ? markRaw(stepLabel_.value) : stepLabel_.value)
 
     /**
      * Whether the step is active.
@@ -336,7 +334,7 @@ export default {
 
       active.value = true
 
-     fire('activate')
+      fire('activate')
     }
 
     /**
@@ -497,6 +495,10 @@ export default {
         element$.activate()
       })
     }, { deep: false, lazy: true })
+
+    watch(stepLabel_, () => {
+      stepLabel.value = stepLabel_.value && typeof stepLabel_.value === 'object' ? markRaw(stepLabel_.value) : stepLabel_.value
+    })
 
     // ================ HOOKS ===============
 

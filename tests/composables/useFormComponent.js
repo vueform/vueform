@@ -1,4 +1,4 @@
-import { createForm, findAllComponents, } from 'test-helpers'
+import { createForm, findAllComponents, findAll } from 'test-helpers'
 import defaultTheme from './../../src/themes/default'
 import { mergeComponentClasses, mergeClass } from './../../src/utils/mergeClasses'
 import { nextTick } from 'composition-api'
@@ -46,8 +46,8 @@ export default function (schema, componentName, options = {}) {
     })
   })
 
-  describe('components', () => {
-    it('should equal to form components', async () => {
+  describe('templates', () => {
+    it('should equal to form templates', async () => {
       let form = createForm(Object.assign({}, schema))
 
       let el = form.vm.el$('el')
@@ -60,7 +60,7 @@ export default function (schema, componentName, options = {}) {
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.components).toStrictEqual(form.vm.extendedTheme.templates)
+      expect(Component.vm.templates).toStrictEqual(form.vm.extendedTheme.templates)
     })
   })
 
@@ -108,13 +108,11 @@ export default function (schema, componentName, options = {}) {
       }
 
       let form = createForm(Object.assign({}, schema), {
-        themes: {
-          default: Object.assign({}, defaultTheme, {
-            classes: {
-              [componentName]: overwriteClasses1
-            }
-          })
-        }
+        theme: Object.assign({}, defaultTheme, {
+          classes: {
+            [componentName]: overwriteClasses1
+          }
+        })
       })
 
       let el = form.vm.el$('el')
@@ -179,15 +177,13 @@ export default function (schema, componentName, options = {}) {
           [componentName]: overwriteClasses1
         }
       }), {
-        themes: {
-          default: Object.assign({}, defaultTheme, {
-            classes: {
-              [componentName]: {
-                [mainClass]: 'theme-overwrite-class'
-              }
+        theme: Object.assign({}, defaultTheme, {
+          classes: {
+            [componentName]: {
+              [mainClass]: 'theme-overwrite-class'
             }
-          })
-        }
+          }
+        })
       })
 
       let el = form.vm.el$('el')
@@ -239,7 +235,7 @@ export default function (schema, componentName, options = {}) {
     })
 
     // Rendering
-    it('should mainClass to the container DOM', async () => {
+    it('should add mainClass to the container DOM', async () => {
       let themeClasses = {
         [componentName]: {
           [mainClass]: 'theme-classes'
@@ -258,11 +254,9 @@ export default function (schema, componentName, options = {}) {
           }
         },
       }), {
-        themes: {
-          default: Object.assign({}, defaultTheme, {
-            classes: themeClasses
-          })
-        }
+        theme: Object.assign({}, defaultTheme, {
+          classes: themeClasses
+        })
       })
 
       let el = form.vm.el$('el')
@@ -277,6 +271,10 @@ export default function (schema, componentName, options = {}) {
       await nextTick()
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
+
+      if (Component.vm.$el.parentNode.classList.value === Component.classes().join(' ')) {
+        Component = findAll(Component, 'button').at(0)
+      }
       
       expect(Component.classes('form-classes')).toBe(true)
       expect(Component.classes('theme-classes')).toBe(false)

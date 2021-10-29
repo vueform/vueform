@@ -395,7 +395,7 @@ describe('FormTab', () => {
   })
 
   describe('events', () => {
-    it('should trigger `active` event when selected', async () => {
+    it('should trigger `activate` event when selected', async () => {
       let onActiveMock = jest.fn(() => {})
 
       let form = createForm({
@@ -407,7 +407,7 @@ describe('FormTab', () => {
           second: {
             label: 'Second',
             elements: ['b'],
-            onActive: onActiveMock
+            onActivate: onActiveMock
           },
         },
         schema: {
@@ -434,7 +434,7 @@ describe('FormTab', () => {
       expect(onActiveMock.mock.calls.length).toBe(1)
     })
 
-    it('should trigger `inactive` event when an other tab is selected', async () => {
+    it('should trigger `inactivate` event when an other tab is selected', async () => {
       let onInactiveMock = jest.fn(() => {})
 
       let form = createForm({
@@ -442,7 +442,7 @@ describe('FormTab', () => {
           first: {
             label: 'First',
             elements: ['a'],
-            onInactive: onInactiveMock
+            onInactivate: onInactiveMock
           },
           second: {
             label: 'Second',

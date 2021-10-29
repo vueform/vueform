@@ -14,7 +14,7 @@
           outerWrapper_multiple: '',
           innerContainer: 'vf-layout-inner-container',
           innerWrapperBefore: 'vf-layout-inner-wrapper-before',
-          innerWrapper: '',
+          innerWrapper: 'vf-layout-inner-wrapper',
           innerWrapperAfter: 'vf-layout-inner-wrapper-after',
         }
       }
@@ -27,6 +27,11 @@
 
   .vf-layout-inner-container {
     flex: 1 1 0%;
+  }
+
+  .vf-layout-inner-wrapper {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .vf-layout-inner-wrapper-before,

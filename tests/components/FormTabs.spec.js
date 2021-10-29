@@ -185,7 +185,7 @@ describe('FormTabs', () => {
   })
 
   describe('events', () => {
-    it('should trigger `change` event when tab is changed', () => {
+    it('should trigger `select` event when tab is changed', () => {
       let onChangeMock = jest.fn(() => {})
 
       let form = createForm({
@@ -210,7 +210,7 @@ describe('FormTabs', () => {
       })
 
       let tabs = form.findComponent({ name: 'FormTabs' })
-      tabs.vm.on('change', onChangeMock)
+      tabs.vm.on('select', onChangeMock)
 
       let second = findAllComponents(form, { name: 'FormTab' }).at(1)
 

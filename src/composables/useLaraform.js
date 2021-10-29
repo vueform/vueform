@@ -237,7 +237,6 @@ const base = function(props, context, dependencies = {})
       columns: baseConfig.value.config.columns,
       languages: baseConfig.value.config.languages,
       language: baseConfig.value.config.language,
-      theme: baseConfig.value.config.theme,
       endpoint: baseConfig.value.config.endpoints.submit.url,
       method: baseConfig.value.config.endpoints.submit.method,
       validateOn: baseConfig.value.config.validateOn,
@@ -644,7 +643,7 @@ const base = function(props, context, dependencies = {})
       templates: Object.assign({},
         theme.value.templates,
         baseConfig.value.templates,
-        options.value.replaceComponents || {},
+        options.value.replaceTemplates || {},
       ),
       
       // Ovewrite theme classes with form's classes definition

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 // @todo: check required schema (eg. `elements` property) here and everywhere
-import { computed, ref, toRefs, watch, onMounted, onBeforeMount, onBeforeUnmount, nextTick, getCurrentInstance } from 'composition-api'
+import { computed, ref, toRefs, watch, onMounted, onBeforeMount, onBeforeUnmount, nextTick, getCurrentInstance, markRaw } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useConditions from './../composables/useConditions'
 import useLabel from './../composables/useLabel'
@@ -44,14 +44,14 @@ export default {
       default: null,
     },
 
-    onActive: {
+    onActivate: {
       type: [Function],
       required: false,
       default: null,
       private: true,
     },
 
-    onInactive: {
+    onInactivate: {
       type: [Function],
       required: false,
       default: null,
@@ -105,7 +105,7 @@ export default {
       off,
       fire
     } = useEvents(props, context, { form$ }, {
-      events: ['active', 'inactive'],
+      events: context.emits,
     })
 
     // ================ DATA ================
@@ -124,7 +124,7 @@ export default {
      * @type {string|component}
      * @default null
      */
-    const tabLabel = ref(tabLabel_.value)
+    const tabLabel = ref(tabLabel_.value && typeof tabLabel_.value === 'object' ? markRaw(tabLabel_.value) : tabLabel_.value)
 
     // ============== COMPUTED ==============
 
@@ -292,6 +292,10 @@ export default {
         element$.activate()
       })
     }, { deep: false, lazy: true })
+
+    watch(tabLabel_, () => {
+      tabLabel.value = tabLabel_.value && typeof tabLabel_.value === 'object' ? markRaw(tabLabel_.value) : tabLabel_.value
+    })
 
     // ================ HOOKS ===============
 

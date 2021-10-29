@@ -64,7 +64,7 @@ describe('FormSteps', () => {
       let a = form.vm.el$('a')
       let steps = form.findComponent({ name: 'FormSteps' })
 
-      a.$laraform.services.axios.post = jest.fn(() => { return {  } })
+      a.$laraform.services.axios.request = jest.fn(() => { return {  } })
 
       await nextTick()
       steps.vm.goTo('second')
@@ -139,7 +139,8 @@ describe('FormSteps', () => {
         schema: {
           a: {
             type: 'text',
-            rules: 'required:debounce=10'
+            rules: 'required:debounce=10',
+            default: 'value'
           },
           b: {
             type: 'text'
@@ -152,9 +153,7 @@ describe('FormSteps', () => {
       let a = findAllComponents(form, { name: 'TextElement' }).at(0)
       expect(a.vm.name).toBe('a')
 
-      await nextTick()
-      findAll(a, 'input').at(0).trigger('input')
-      await nextTick()
+      a.vm.validate()
 
       expect(a.vm.debouncing).toBe(true)
       expect(steps.vm.debouncing).toBe(true)
@@ -1018,7 +1017,7 @@ describe('FormSteps', () => {
       })
 
       form.vm.$laraform.services.axios = {
-        post: () => ({data:{}})
+        request: () => ({data:{}})
       }
 
       let steps = form.findComponent({ name: 'FormSteps' })

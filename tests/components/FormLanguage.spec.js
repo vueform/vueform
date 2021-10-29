@@ -24,10 +24,7 @@ describe('FormLanguage', () => {
     it('should add inactive class but not active to wrapper when inactive', async () => {
       let form = createForm({
         multilingual: true,
-        languages: {
-          en: { label: 'English', code: 'en' },
-          de: { label: 'German', code: 'de' },
-        },
+        languages: {en: 'English', de: 'German'},
         language: 'en',
         replaceClasses: {
           FormLanguage: {
@@ -64,16 +61,7 @@ describe('FormLanguage', () => {
   describe('select', () => {
     it('should emit select event on select', () => {
       let form = createForm({
-        languages: {
-          en: {
-            label: 'English',
-            code: 'en'
-          },
-          de: {
-            label: 'German',
-            code: 'de'
-          },
-        },
+        languages: {en: 'English', de: 'German'},
         language: 'en',
         multilingual: true,
         schema: {

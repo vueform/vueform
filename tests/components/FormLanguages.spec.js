@@ -8,16 +8,7 @@ describe('FormLanguages', () => {
   describe('select', () => {
     it('should select form language by clicking tab', async () => {
       let form = createForm({
-        languages: {
-          en: {
-            label: 'English',
-            code: 'en'
-          },
-          de: {
-            label: 'German',
-            code: 'de'
-          },
-        },
+        languages: {en: 'English', de: 'German'},
         language: 'en',
         multilingual: true,
         schema: {

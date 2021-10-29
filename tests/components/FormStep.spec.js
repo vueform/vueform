@@ -499,8 +499,45 @@ describe('FormStep', () => {
 
       await nextTick()
 
-      expect(previous.html()).toBeFalsy()
-      expect(next.html()).toBeFalsy()
+      expect(previous.html().match(/Previous/)).toBe(null)
+      expect(next.html().match(/Next/)).toBe(null)
+    })
+
+    it('should not skip rendering buttons if they are true', async () => {    
+      let form = createForm({
+        steps: {
+          first: {
+            label: 'First',
+            elements: ['a'],
+            buttons: {
+              next: true,
+              previous: true,
+            }
+          },
+          second: {
+            label: 'Second',
+            elements: ['b'],
+          },
+        },
+        schema: {
+          a: {
+            type: 'text'
+          },
+          b: {
+            type: 'text'
+          },
+        }
+      })
+
+      let previous = findAllComponents(form, { name: 'FormStepsControl' }).at(0)
+      let next = findAllComponents(form, { name: 'FormStepsControl' }).at(1)
+
+      await nextTick()
+
+      await nextTick()
+
+      expect(previous.html().match(/Previous/)).not.toBe(null)
+      expect(next.html().match(/Next/)).not.toBe(null)
     })
   })
   
@@ -936,7 +973,7 @@ describe('FormStep', () => {
   })
 
   describe('events', () => {
-    it('should trigger `active` event when selected', async () => {
+    it('should trigger `activate` event when selected', async () => {
       let onActiveMock = jest.fn(() => {})
 
       let form = createForm({
@@ -948,7 +985,7 @@ describe('FormStep', () => {
           second: {
             label: 'Second',
             elements: ['b'],
-            onActive: onActiveMock
+            onActivate: onActiveMock
           },
         },
         schema: {
@@ -972,11 +1009,12 @@ describe('FormStep', () => {
 
       findAll(next, 'button').last().trigger('click')
       await flushPromises()
+      await nextTick()
 
       expect(onActiveMock.mock.calls.length).toBe(1)
     })
 
-    it('should trigger `inactive` event when an other step is selected', async () => {
+    it('should trigger `inactivate` event when an other step is selected', async () => {
       let onInactiveMock = jest.fn(() => {})
 
       let form = createForm({
@@ -984,7 +1022,7 @@ describe('FormStep', () => {
           first: {
             label: 'First',
             elements: ['a'],
-            onInactive: onInactiveMock
+            onInactivate: onInactiveMock
           },
           second: {
             label: 'Second',
@@ -1012,6 +1050,7 @@ describe('FormStep', () => {
 
       findAll(next, 'button').last().trigger('click')
       await flushPromises()
+      await nextTick()
         
       expect(onInactiveMock.mock.calls.length).toBe(1)
     })

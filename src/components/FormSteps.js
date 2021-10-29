@@ -30,7 +30,7 @@ export default {
       off,
       fire
     } = useEvents(props, context, { form$ }, {
-      events: ['select', 'next', 'previous', 'finish']
+      events: context.emits,
     })
 
     // ================ DATA ================

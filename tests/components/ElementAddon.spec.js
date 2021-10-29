@@ -109,9 +109,9 @@ describe('ElementAddon', () => {
             beforeVar: 'before var',
             addons: {
               before: markRaw({
-                props: ['el$'],
+                inject: ['el$', 'form$'],
                 render(h) {
-                  return createElement(h, 'div', this.el$.form$.laraform.schema.el.beforeVar)
+                  return createElement(h, 'div', this.form$.value ? this.form$.value.options.schema.el.beforeVar : this.form$.options.schema.el.beforeVar)
                 }
               })
             } 

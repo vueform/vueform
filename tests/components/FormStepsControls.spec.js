@@ -72,8 +72,8 @@ describe('FormStepsControls', () => {
       steps.vm.goTo('second')
 
       await nextTick()
-      expect(next.html()).toBeFalsy()
-      expect(finish.html()).toBeTruthy()
+      expect(next.html().match(/Next/)).toBe(null)
+      expect(finish.html().match(/Finish/)).not.toBe(null)
     })
 
     it('should enable and move to next step on clicking next button', async () => {
@@ -172,7 +172,7 @@ describe('FormStepsControls', () => {
         }
       })
 
-      form.vm.$laraform.services.axios.post = () => { return { data: {} } }
+      form.vm.$laraform.services.axios.request = () => { return { data: {} } }
 
       let steps = form.findComponent({ name: 'FormSteps' })
       let next = findAllComponents(form, { name: 'FormStepsControl' }).at(1)
@@ -256,7 +256,7 @@ describe('FormStepsControls', () => {
         }
       })
 
-      form.vm.$laraform.services.axios.post = () => { return { data: {} } }
+      form.vm.$laraform.services.axios.request = () => { return { data: {} } }
 
       let steps = form.findComponent({ name: 'FormSteps' })
 
@@ -300,7 +300,7 @@ describe('FormStepsControls', () => {
         }
       })
 
-      form.vm.$laraform.services.axios.post = () => { return { data: {} } }
+      form.vm.$laraform.services.axios.request = () => { return { data: {} } }
 
       let steps = form.findComponent({ name: 'FormSteps' })
 
@@ -343,7 +343,7 @@ describe('FormStepsControls', () => {
         }
       })
 
-      form.vm.$laraform.services.axios.post = () => { return { data: false } }
+      form.vm.$laraform.services.axios.request = () => { return { data: false } }
 
       let steps = form.findComponent({ name: 'FormSteps' })
 

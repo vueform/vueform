@@ -78,9 +78,9 @@ describe('ElementLabel', () => {
             type: 'text',
             labelVar: 'Name Var',
             label: markRaw({
-              props: ['el$'],
+              inject: ['form$'],
               render(h) {
-                return createElement(h, 'div', this.el$.form$.laraform.schema.name.labelVar)
+                return createElement(h, 'div', this.form$.value ? this.form$.value.options.schema.name.labelVar : this.form$.options.schema.name.labelVar)
               }
             })
           }

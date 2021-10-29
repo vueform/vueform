@@ -14,9 +14,10 @@ describe('ElementLayout', () => {
   let ElementLayout = findAllComponents(form, { name: 'ElementLayout' }).at(0).vm
 
   let mergeWith = {
-    container: [el.columnsClasses.element[0]],
+    container: [el.columnsClasses.container[0]],
     outerWrapper: [ElementLayout.classes.outerWrapper_single],
-    fieldWrapper: [el.columnsClasses.field[0]],
+    innerContainer: [el.columnsClasses.innerContainer[0]],
+    innerWrapper: [el.columnsClasses.wrapper[0]],
   }
 
   if (!_.isEmpty(el.classes.container)) {
@@ -30,7 +31,7 @@ describe('ElementLayout', () => {
   })
 
   describe('rendering', () => {
-    it('should render label if config.labels is false, but element has label', () => {
+    it('should render label if config.forceLabels is false, but element has label', () => {
       let form = createForm({
         schema: {
           name: {
@@ -40,14 +41,14 @@ describe('ElementLayout', () => {
         }
       }, {
         config: {
-          labels: false,
+          forceLabels: false,
         }
       })
 
-      expect(form.findComponent({name:'ElementLabel'}).exists()).toBe(true)
+      expect(form.findComponent({name:'ElementLabel'}).html().match(/<\/label>/) !== null).toBe(true)
     })
 
-    it('should not render label if config.labels is false and element does not have label', () => {
+    it('should not render label if config.forceLabels is false and element does not have label', () => {
       let form = createForm({
         schema: {
           name: {
@@ -56,14 +57,14 @@ describe('ElementLayout', () => {
         }
       }, {
         config: {
-          labels: false,
+          forceLabels: false,
         }
       })
 
-      expect(form.findComponent({name:'ElementLabel'}).exists()).toBe(false)
+      expect(form.findComponent({name:'ElementLabel'}).html().match(/<\/label>/) !== null).toBe(false)
     })
 
-    it('should render label if config.labels is true, but element does not have label', () => {
+    it('should render label if config.forceLabels is true, but element does not have label', () => {
       let form = createForm({
         schema: {
           name: {
@@ -72,14 +73,14 @@ describe('ElementLayout', () => {
         }
       }, {
         config: {
-          labels: true,
+          forceLabels: true,
         }
       })
       
-      expect(form.findComponent({name:'ElementLabel'}).exists()).toBe(true)
+      expect(form.findComponent({name:'ElementLabel'}).html().match(/<\/label>/) !== null).toBe(true)
     })
 
-    it('should render label if config.labels is true, but element does have label', () => {
+    it('should render label if config.forceLabels is true, but element does have label', () => {
       let form = createForm({
         schema: {
           name: {
@@ -89,11 +90,11 @@ describe('ElementLayout', () => {
         }
       }, {
         config: {
-          labels: true,
+          forceLabels: true,
         }
       })
       
-      expect(form.findComponent({name:'ElementLabel'}).exists()).toBe(true)
+      expect(form.findComponent({name:'ElementLabel'}).html().match(/<\/label>/) !== null).toBe(true)
     })
 
     it('should render decorators', () => {

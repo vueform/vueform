@@ -43,11 +43,11 @@ describe('ElementLayoutInline', () => {
         }
       }, {
         config: {
-          labels: false,
+          forceLabels: false,
         }
       })
 
-      expect(form.findComponent({name:'ElementLabel'}).exists()).toBe(true)
+      expect(form.findComponent({name:'ElementLabel'}).html().match(/<\/label>/) !== null).toBe(true)
     })
 
     it('should not render label if config.labels is false and element does not have label', () => {
@@ -60,11 +60,11 @@ describe('ElementLayoutInline', () => {
         }
       }, {
         config: {
-          labels: false,
+          forceLabels: false,
         }
       })
 
-      expect(form.findComponent({name:'ElementLabel'}).exists()).toBe(false)
+      expect(form.findComponent({name:'ElementLabel'}).html().match(/<\/label>/) !== null).toBe(false)
     })
 
     it('should render label if config.labels is true, but element does not have label', () => {
@@ -77,11 +77,11 @@ describe('ElementLayoutInline', () => {
         }
       }, {
         config: {
-          labels: true,
+          forceLabels: true,
         }
       })
       
-      expect(form.findComponent({name:'ElementLabel'}).exists()).toBe(true)
+      expect(form.findComponent({name:'ElementLabel'}).html().match(/<\/label>/) !== null).toBe(true)
     })
 
     it('should render label if config.labels is true, but element does have label', () => {
@@ -95,11 +95,11 @@ describe('ElementLayoutInline', () => {
         }
       }, {
         config: {
-          labels: true,
+          forceLabels: true,
         }
       })
       
-      expect(form.findComponent({name:'ElementLabel'}).exists()).toBe(true)
+      expect(form.findComponent({name:'ElementLabel'}).html().match(/<\/label>/) !== null).toBe(true)
     })
 
     it('should render decorators', () => {
