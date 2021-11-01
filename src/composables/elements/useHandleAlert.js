@@ -17,7 +17,7 @@ const base = function(props, context, dependencies)
   const handleAlert = (message) => {
     fire('alert', message)
 
-    if (!listeners.value.error) {
+    if (!listeners.value.alert) {
       alert(message)
     } 
   }

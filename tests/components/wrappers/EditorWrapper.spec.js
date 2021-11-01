@@ -1,7 +1,7 @@
 import { createLocalVue, mount } from '@vue/test-utils'
 import { createForm, findAllComponents, installLaraform, createElement } from 'test-helpers'
 import { markRaw, nextTick } from 'composition-api'
-import EditorEditor from './../../mocks/EditorEditor'
+import TrixEditor from './../../mocks/TrixEditor'
 import flushPromises from 'flush-promises'
 import defaultTheme from './../../../src/themes/default'
 
@@ -11,7 +11,7 @@ const createEditor = (details) => {
   console.error = (e) => { if (!e.toString().includes('Unknown custom element: <trix-editor>')) throw new Error(e) }
 
   defaultTheme.templates.EditorWrapper.components = {
-    EditorEditor: markRaw(EditorEditor)
+    TrixEditor: markRaw(TrixEditor)
   }
 
   let form = createForm(details, {
@@ -204,14 +204,14 @@ describe('Editor Element Rendering', () => {
     expect(preventMock.mock.calls.length).toBe(0)
   })
 
-  it('should trigger `error` event when mime type is not allowed', async () => {
-    let onErrorMock = jest.fn()
+  it('should trigger `alert` event when mime type is not allowed', async () => {
+    let onAlertMock = jest.fn()
 
     let form = createEditor({
       schema: {
         a: {
           type: 'editor',
-          onError: onErrorMock,
+          onAlert: onAlertMock,
           acceptMimes: ['image/jpeg', 'image/png']
         }
       }
@@ -224,7 +224,7 @@ describe('Editor Element Rendering', () => {
     let editor$ = a.vm.input
     let editorInstnace$ = a.vm.input.$refs.editor$
 
-    expect(onErrorMock.mock.calls.length).toBe(0)
+    expect(onAlertMock.mock.calls.length).toBe(0)
 
     let fileMock = {
       type: 'image/gif',
@@ -240,9 +240,9 @@ describe('Editor Element Rendering', () => {
 
     await nextTick()
 
-    expect(onErrorMock.mock.calls.length).toBe(1)
-    expect(onErrorMock.mock.calls[0][0]).toContain('image/jpeg')
-    expect(onErrorMock.mock.calls[0][0]).toContain('image/png')
+    expect(onAlertMock.mock.calls.length).toBe(1)
+    expect(onAlertMock.mock.calls[0][0]).toContain('image/jpeg')
+    expect(onAlertMock.mock.calls[0][0]).toContain('image/png')
     expect(preventMock.mock.calls.length).toBe(1)
   })
 
@@ -284,15 +284,15 @@ describe('Editor Element Rendering', () => {
     expect(preventMock.mock.calls.length).toBe(0)
   })
 
-  it('should trigger `error` event when mime type is not allowed', async () => {
-    let onErrorMock = jest.fn()
+  it('should trigger `alert` event when mime type is not allowed', async () => {
+    let onAlertMock = jest.fn()
 
     let form = createEditor({
       schema: {
         a: {
           type: 'editor',
-          onError: onErrorMock,
-          accept: ['jpg', 'png']
+          onAlert: onAlertMock,
+          accept: ['.jpg', '.png']
         }
       }
     })
@@ -303,7 +303,7 @@ describe('Editor Element Rendering', () => {
     let editor$ = a.vm.input
     let editorInstnace$ = a.vm.input.$refs.editor$
 
-    expect(onErrorMock.mock.calls.length).toBe(0)
+    expect(onAlertMock.mock.calls.length).toBe(0)
 
     let fileMock = {
       type: 'image/gif',
@@ -318,9 +318,9 @@ describe('Editor Element Rendering', () => {
     })
     await nextTick()
 
-    expect(onErrorMock.mock.calls.length).toBe(1)
-    expect(onErrorMock.mock.calls[0][0]).toContain('jpg')
-    expect(onErrorMock.mock.calls[0][0]).toContain('png')
+    expect(onAlertMock.mock.calls.length).toBe(1)
+    expect(onAlertMock.mock.calls[0][0]).toContain('jpg')
+    expect(onAlertMock.mock.calls[0][0]).toContain('png')
     expect(preventMock.mock.calls.length).toBe(1)
   })
 

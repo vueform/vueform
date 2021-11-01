@@ -57,7 +57,8 @@ export default {
       disabled,
       acceptMimes,
       accept,
-      endpoint
+      endpoint,
+      method
     } = toRefs(props)
 
     // ============ DEPENDENCIES ============

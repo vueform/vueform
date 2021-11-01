@@ -11,8 +11,8 @@ const getCanvasBlob = (canvas) => {
   })
 }
 
-describe('FileSlotImagePreview', () => {
-  useElementComponent('file', 'FileSlotImagePreview', { auto: false, view: 'image' }, {
+describe('GalleryPreview', () => {
+  useElementComponent('file', 'GalleryPreview', { auto: false, view: 'gallery' }, {
     execute: async (el) => {
       const canvas = document.createElement('canvas')
 
@@ -39,20 +39,19 @@ describe('FileSlotImagePreview', () => {
           el: {
             type: 'file',
             auto: false,
-            view: 'image',
+            view: 'gallery',
           }
         }
       })
 
       let el = findAllComponents(form, { name: 'FileElement' }).at(0)
-      let slot = findAllComponents(el, { name: 'FileSlotImagePreview' }).at(0)
+      let slot = findAllComponents(el, { name: 'GalleryPreview' }).at(0)
 
       el.vm.update(new File([file], 'filename.jpg'))
       el.vm.base64 = 'data:application/octet-stream;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAADklEQVQYlWNgGAWDEwAAAZoAARbK02kAAAAASUVORK5CYII='
 
       await flushPromises()
 
-      expect(slot.html()).toContain('filename.jpg')
       expect(findAll(slot, 'img').at(0).attributes('src')).toStrictEqual(slot.vm.preview)
     })
 
@@ -62,16 +61,16 @@ describe('FileSlotImagePreview', () => {
           el: {
             type: 'file',
             auto: false,
-            view: 'image'
             default: 'filename.jpg',
             clickable: true,
-            url: 'http://domain.com/'
+            url: 'http://domain.com/',
+            view: 'gallery',
           }
         }
       })
 
       let el = findAllComponents(form, { name: 'FileElement' }).at(0)
-      let slot = findAllComponents(el, { name: 'FileSlotImagePreview' }).at(0)
+      let slot = findAllComponents(el, { name: 'GalleryPreview' }).at(0)
 
       expect(findAll(slot, 'a').at(0).html()).toContain('filename.jpg')
       expect(findAll(slot, 'a').at(0).attributes('href')).toBe('http://domain.com/filename.jpg')

@@ -11,8 +11,8 @@ const getCanvasBlob = (canvas) => {
   })
 }
 
-describe('FileSlotGalleryPreview', () => {
-  useElementComponent('file', 'FileSlotGalleryPreview', { auto: false, view: 'gallery' }, {
+describe('ImagePreview', () => {
+  useElementComponent('file', 'ImagePreview', { auto: false, view: 'image' }, {
     execute: async (el) => {
       const canvas = document.createElement('canvas')
 
@@ -39,19 +39,20 @@ describe('FileSlotGalleryPreview', () => {
           el: {
             type: 'file',
             auto: false,
-            view: 'gallery',
+            view: 'image',
           }
         }
       })
 
       let el = findAllComponents(form, { name: 'FileElement' }).at(0)
-      let slot = findAllComponents(el, { name: 'FileSlotGalleryPreview' }).at(0)
+      let slot = findAllComponents(el, { name: 'ImagePreview' }).at(0)
 
       el.vm.update(new File([file], 'filename.jpg'))
       el.vm.base64 = 'data:application/octet-stream;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAADklEQVQYlWNgGAWDEwAAAZoAARbK02kAAAAASUVORK5CYII='
 
       await flushPromises()
 
+      expect(slot.html()).toContain('filename.jpg')
       expect(findAll(slot, 'img').at(0).attributes('src')).toStrictEqual(slot.vm.preview)
     })
 
@@ -61,16 +62,16 @@ describe('FileSlotGalleryPreview', () => {
           el: {
             type: 'file',
             auto: false,
+            view: 'image',
             default: 'filename.jpg',
             clickable: true,
-            url: 'http://domain.com/',
-            view: 'gallery',
+            url: 'http://domain.com/'
           }
         }
       })
 
       let el = findAllComponents(form, { name: 'FileElement' }).at(0)
-      let slot = findAllComponents(el, { name: 'FileSlotGalleryPreview' }).at(0)
+      let slot = findAllComponents(el, { name: 'ImagePreview' }).at(0)
 
       expect(findAll(slot, 'a').at(0).html()).toContain('filename.jpg')
       expect(findAll(slot, 'a').at(0).attributes('href')).toBe('http://domain.com/filename.jpg')
