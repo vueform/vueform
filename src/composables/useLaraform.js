@@ -19,6 +19,7 @@ const base = function(props, context, dependencies = {})
     replaceClasses,
     extendClasses,
     replaceTemplates,
+    theme,
     messages,
     columns,
     languages,
@@ -245,6 +246,7 @@ const base = function(props, context, dependencies = {})
       forceLabels: baseConfig.value.config.forceLabels,
       floatPlaceholders: baseConfig.value.config.floatPlaceholders,
       formData: baseConfig.value.config.formData,
+      theme: baseConfig.value.theme,
       replaceClasses: {},
       extendClasses: {},
       replaceTemplates: {},
@@ -623,32 +625,22 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The theme object of the selected theme.
-   * 
-   * @type {object}
-   * @private
-   */
-  const theme = computed(() => {
-    return baseConfig.value.theme
-  })
-
-  /**
    * The selected theme, extended by local overrides. Normally we use `theme` property for this, but as Vueform component needs to have an actual [`:theme`](#theme) prop so we use this naming instead.
    * 
    * @type {object}
    */
   const extendedTheme = computed(() => {
-    return Object.assign({}, theme.value, {
+    return Object.assign({}, options.value.theme, {
       // Add registered component to theme (or overwrite)
       templates: Object.assign({},
-        theme.value.templates,
+        options.value.theme.templates,
         baseConfig.value.templates,
         options.value.replaceTemplates || {},
       ),
       
       // Ovewrite theme classes with form's classes definition
       classes: _.merge({},
-        theme.value.classes,
+        options.value.theme.classes,
         baseConfig.value.classes,
         options.value.replaceClasses,
       ),
@@ -1190,7 +1182,6 @@ const base = function(props, context, dependencies = {})
     fire,
     on,
     off,
-    baseConfig,
   }
 }
 

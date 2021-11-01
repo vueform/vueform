@@ -6,8 +6,6 @@ export default {
   emits: ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'response', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   slots: ['default', 'empty'],
   setup: (props, context) => {
-
-    return useLaraform(props, context)
     const {
       tabs$,
       steps$,
