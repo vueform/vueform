@@ -275,7 +275,7 @@ const Validator = class {
   }
 
   filled(value) {
-    if (value === null || value === undefined || value === this.element$.falseValue) {
+    if (value === undefined || (value === null && value !== this.element$.trueValue) || value === this.element$.falseValue) {
       return false;
     }
     else if (_.isString(value) && _.trim(value) === '') {

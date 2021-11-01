@@ -1,9 +1,16 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, change } from 'test-helpers'
+import { nextTick } from 'composition-api'
 
 jest.mock("axios", () => ({
   get: () => Promise.resolve({ data: true }),
   post: () => Promise.resolve({ data: true }),
+  request: () => Promise.resolve({ data: true }),
+  interceptors: {
+    response: {
+      use: () => {},
+    }
+  }
 }))
 
 describe('Exists Rule', () => {
@@ -19,7 +26,7 @@ describe('Exists Rule', () => {
 
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
-    form.vm.$laraform.services.axios.post = (() => ({data: true}))
+    form.vm.$laraform.services.axios.request = (() => ({data: true}))
 
     a.vm.validate()
 
@@ -40,11 +47,12 @@ describe('Exists Rule', () => {
 
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
-    form.vm.$laraform.services.axios.post = (() => ({data: false}))
+    form.vm.$laraform.services.axios.request = (() => ({data: false}))
 
     a.vm.validate()
 
     await flushPromises()
+    await nextTick()
 
     expect(a.vm.invalid).toBe(true)
   })
@@ -68,21 +76,25 @@ describe('Exists Rule', () => {
 
     let postMock = jest.fn(() => ({data: true}))
 
-    form.vm.$laraform.services.axios.post = postMock
+    form.vm.$laraform.services.axios.request = postMock
 
     a.vm.validate()
 
     await flushPromises()
 
     expect(postMock).toHaveBeenCalledTimes(1)
-    expect(postMock).toHaveBeenLastCalledWith(a.vm.$laraform.config.endpoints.validators.exists, {
-      params: {
-        "0": 'a',
-        "1": 'bbb',
-        "2": 'c',
-      },
-      a: 'aaa',
-      laraformFieldName: 'a'
+    expect(postMock).toHaveBeenLastCalledWith({
+      url: a.vm.$laraform.config.endpoints.exists.url,
+      method: a.vm.$laraform.config.endpoints.exists.method,
+      data: {
+        params: {
+          "0": 'a',
+          "1": 'bbb',
+          "2": 'c',
+        },
+        a: 'aaa',
+        laraformFieldName: 'a'
+      }
     })
   })
 })

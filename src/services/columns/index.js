@@ -89,13 +89,13 @@ export default class Columns
     const classes = []
 
     Object.keys(this.cols).forEach((breakpoint) => {
-      if (type === 'innerContainer') {
-        let size = this.cols[breakpoint].label
-        size = size >= 12 || !this.hasLabel ? 12 : 12 - size
+      let size
 
-        classes.push(this.getClass(breakpoint, size))
+      if (type === 'innerContainer') {
+        size = this.cols[breakpoint].label
+        size = size >= 12 || !this.hasLabel ? 12 : 12 - size
       } else {
-        let size = this.cols[breakpoint][type]
+        size = this.cols[breakpoint][type]
 
         if (type === 'label' && !this.hasLabel) {
           size = 0
@@ -108,10 +108,10 @@ export default class Columns
             size = 12
           }
         }
+      }
         
-        if (size !== undefined) {
-          classes.push(this.getClass(breakpoint, size))
-        }
+      if (size !== undefined && !isNaN(size)) {
+        classes.push(this.getClass(breakpoint, size))
       }
     })
 

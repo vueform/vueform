@@ -6,10 +6,15 @@ export default class active_url extends Validator {
   }
 
   async check(value) {
-    const endpoint = this.form$.$laraform.config.endpoints.active_url
+    const endpoint = this.form$.$laraform.config.endpoints.activeUrl
+    const method = endpoint.method
 
-    var res = await this.form$.$laraform.services.axios[endpoint.method](endpoint.url, {
-      url: value
+    const res = await this.form$.$laraform.services.axios.request({
+      url: endpoint.url,
+      method,
+      [method.toLowerCase() === 'get' ? 'params' : 'data']: {
+        url: value
+      },
     })
     
     return res.data

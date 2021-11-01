@@ -18,6 +18,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-8'],
+      innerContainer: ['vf-col-12'],
       label: ['vf-col-12'],
       wrapper: ['vf-col-12'],
     })
@@ -40,6 +41,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-8', 'vf-col-lg-10'],
+      innerContainer: ['vf-col-12'],
       label: ['vf-col-12'],
       wrapper: ['vf-col-12'],
     })
@@ -64,6 +66,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-8'],
+      innerContainer: ['vf-col-12'],
       label: ['vf-col-12'],
       wrapper: ['vf-col-12'],
     })
@@ -88,6 +91,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-8', 'vf-col-lg-10'],
+      innerContainer: ['vf-col-12'],
       label: ['vf-col-12'],
       wrapper: ['vf-col-12'],
     })
@@ -113,6 +117,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-12'],
+      innerContainer: ['vf-col-8'],
       label: ['vf-col-4'],
       wrapper: ['vf-col-8'],
     })
@@ -138,6 +143,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-12'],
+      innerContainer: ['vf-col-8', 'vf-col-lg-8'],
       label: ['vf-col-4', 'vf-col-lg-4'],
       wrapper: ['vf-col-8', 'vf-col-lg-8'],
     })
@@ -163,6 +169,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-12', 'vf-col-lg-10', 'vf-col-md-8'],
+      innerContainer: ['vf-col-12'],
       label: ['vf-col-12'],
       wrapper: ['vf-col-12'],
     })
@@ -188,6 +195,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-10', 'vf-col-lg-8', 'vf-col-md-8'],
+      innerContainer: ['vf-col-12'],
       label: ['vf-col-12'],
       wrapper: ['vf-col-12'],
     })
@@ -214,6 +222,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-12', 'vf-col-md-8'],
+      innerContainer: ['vf-col-12'],
       label: ['vf-col-12'],
       wrapper: ['vf-col-12'],
     })
@@ -240,6 +249,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-12', 'vf-col-lg-10', 'vf-col-md-8'],
+      innerContainer: ['vf-col-12'],
       label: ['vf-col-12'],
       wrapper: ['vf-col-12'],
     })
@@ -267,6 +277,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-12'],
+      innerContainer: ['vf-col-12', 'vf-col-md-8'],
       label: ['vf-col-12', 'vf-col-md-4'],
       wrapper: ['vf-col-12', 'vf-col-md-8'],
     })
@@ -294,6 +305,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-12'],
+      innerContainer: ['vf-col-12', 'vf-col-lg-10', 'vf-col-md-8'],
       label: ['vf-col-12', 'vf-col-lg-2', 'vf-col-md-4'],
       wrapper: ['vf-col-12', 'vf-col-lg-10', 'vf-col-md-8'],
     })
@@ -330,6 +342,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-12', 'vf-col-md-6'],
+      innerContainer: ['vf-col-8', 'vf-col-lg-10', 'vf-col-md-9'],
       label: ['vf-col-4', 'vf-col-lg-2', 'vf-col-md-3'],
       wrapper: ['vf-col-8', 'vf-col-lg-10', 'vf-col-md-9'],
     })
@@ -366,6 +379,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-12', 'vf-col-lg-12', 'vf-col-md-6'],
+      innerContainer: ['vf-col-8', 'vf-col-lg-10', 'vf-col-md-9', 'vf-col-sm-12'],
       label: ['vf-col-4', 'vf-col-lg-2', 'vf-col-md-3', 'vf-col-sm-12'],
       wrapper: ['vf-col-8', 'vf-col-lg-10', 'vf-col-md-9', 'vf-col-sm-12'],
     })
@@ -387,6 +401,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-12'],
+      innerContainer: ['vf-col-12'],
       label: ['vf-col-12'],
       wrapper: ['vf-col-12'],
     })
@@ -413,6 +428,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-12'],
+      innerContainer: ['vf-col-10'],
       label: ['vf-col-2'],
       wrapper: ['vf-col-10'],
     })
@@ -443,6 +459,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-6', 'vf-col-lg-6', 'vf-col-md-6'],
+      innerContainer: ['vf-col-6', 'vf-col-lg-10', 'vf-col-md-6'],
       label: ['vf-col-6', 'vf-col-lg-2', 'vf-col-md-6'],
       wrapper: ['vf-col-6', 'vf-col-lg-10', 'vf-col-md-6'],
     })
@@ -472,6 +489,7 @@ describe('Bootstrap Columns Util', () => {
 
     expect(el.columnsClasses).toStrictEqual({
       container: ['vf-col-6', 'vf-col-lg-6', 'vf-col-md-6'],
+      innerContainer: ['vf-col-12', 'vf-col-lg-12', 'vf-col-md-12', 'vf-col-sm-12'],
       label: ['vf-col-0', 'vf-col-lg-0', 'vf-col-md-0', 'vf-col-sm-0'],
       wrapper: ['vf-col-12', 'vf-col-lg-12', 'vf-col-md-12', 'vf-col-sm-12'],
     })

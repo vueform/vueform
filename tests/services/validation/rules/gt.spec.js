@@ -150,7 +150,7 @@ describe('Greater Than Rule', () => {
     await flushPromises()
 
     expect(a.invalid).toBe(true)
-    expect(a.error).toContain(5)
+    expect(a.error).toContain('5')
   })
 
   it('should watch other field\'s size in error message', async () => {
@@ -174,12 +174,12 @@ describe('Greater Than Rule', () => {
     await flushPromises()
 
     expect(a.invalid).toBe(true)
-    expect(a.error).toContain(5)
+    expect(a.error).toContain('5')
 
     b.update('aaaaaaa')
     await flushPromises()
 
-    expect(a.error).toContain(7)
+    expect(a.error).toContain('7')
   })
 
   it('should check for file', async () => {

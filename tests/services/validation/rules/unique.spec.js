@@ -4,6 +4,12 @@ import { createForm, findAllComponents, change } from 'test-helpers'
 jest.mock("axios", () => ({
   get: () => Promise.resolve({ data: true }),
   post: () => Promise.resolve({ data: true }),
+  request: () => Promise.resolve({ data: true }),
+  interceptors: {
+    response: {
+      use: () => {},
+    }
+  }
 }))
 
 describe('Unique Rule', () => {
@@ -19,7 +25,7 @@ describe('Unique Rule', () => {
 
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
-    form.vm.$laraform.services.axios.post = jest.fn(() => ({data:true}))
+    form.vm.$laraform.services.axios.request = jest.fn(() => ({data:true}))
 
     a.vm.validate()
 
@@ -40,7 +46,7 @@ describe('Unique Rule', () => {
 
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
-    form.vm.$laraform.services.axios.post = jest.fn(() => ({data:false}))
+    form.vm.$laraform.services.axios.request = jest.fn(() => ({data:false}))
 
     a.vm.validate()
 
@@ -68,20 +74,24 @@ describe('Unique Rule', () => {
 
     let postMock = jest.fn(() => ({data:true}))
 
-    form.vm.$laraform.services.axios.post = postMock
+    form.vm.$laraform.services.axios.request = postMock
 
     a.vm.validate()
 
     await flushPromises()
 
     expect(postMock).toHaveBeenCalledTimes(1)
-    expect(postMock).toHaveBeenCalledWith(a.vm.$laraform.config.endpoints.validators.unique, {
-      params: {
-        "0": 'a',
-        "1": 'bbb',
-        "2": 'c',
-      },
-      value: 'aaa'
+    expect(postMock).toHaveBeenCalledWith({
+      url: a.vm.$laraform.config.endpoints.unique.url,
+      method: a.vm.$laraform.config.endpoints.unique.method,
+      data: {
+        params: {
+          "0": 'a',
+          "1": 'bbb',
+          "2": 'c',
+        },
+        value: 'aaa'
+      }
     })
   })
 })

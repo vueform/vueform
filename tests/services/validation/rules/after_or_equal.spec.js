@@ -1,5 +1,6 @@
 import { createForm, findAllComponents, change, setDate } from 'test-helpers'
 import flushPromises from 'flush-promises'
+import moment from 'moment'
 
 describe('After Or Equal Rule', () => {
   it('should work with `yesterday`', async () => {

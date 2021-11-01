@@ -166,7 +166,8 @@ describe('Between Rule', () => {
     
     setInstances(a, 1)
 
-    a.vm.validate()
+    await a.vm.validate()
+
     expect(a.vm.invalid).toBe(true)
   })
 
@@ -187,7 +188,7 @@ describe('Between Rule', () => {
     
     setInstances(a, 2)
 
-    a.vm.validate()
+    await a.vm.validate()
     expect(a.vm.invalid).toBe(false)
   })
 
@@ -208,7 +209,7 @@ describe('Between Rule', () => {
     
     setInstances(a, 3)
 
-    a.vm.validate()
+    await a.vm.validate()
     expect(a.vm.invalid).toBe(false)
   })
 
@@ -229,7 +230,7 @@ describe('Between Rule', () => {
     
     setInstances(a, 5)
 
-    a.vm.validate()
+    await a.vm.validate()
     expect(a.vm.invalid).toBe(false)
   })
 
@@ -250,7 +251,7 @@ describe('Between Rule', () => {
     
     setInstances(a, 6)
 
-    a.vm.validate()
+    await a.vm.validate()
     expect(a.vm.invalid).toBe(true)
   })
 

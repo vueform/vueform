@@ -85,11 +85,11 @@ describe('Required Rule', () => {
 
     check(a)
     await flushPromises()
-    expect(a.vm.invalid).toBe(true)
+    expect(a.vm.invalid).toBe(false)
 
     uncheck(a)
     await flushPromises()
-    expect(a.vm.invalid).toBe(false)
+    expect(a.vm.invalid).toBe(true)
   })
 
   it('should be validate if value is filled for file', async () => {

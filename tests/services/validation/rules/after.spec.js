@@ -1,6 +1,7 @@
 import flushPromises from 'flush-promises'
 import { nextTick } from 'composition-api'
 import { createForm, findAllComponents, change, setDate } from 'test-helpers'
+import moment from 'moment'
 
 describe('After Rule', () => {
   it('should work with `yesterday`', async () => {

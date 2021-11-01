@@ -9,6 +9,12 @@ jest.useFakeTimers()
 jest.mock("axios", () => ({
   get: () => Promise.resolve({ data: 'value' }),
   post: () => Promise.resolve({ data: 'value' }),
+  request: () => Promise.resolve({ data: 'value' }),
+  interceptors: {
+    response: {
+      use: () => {},
+    }
+  }
 }))
 
 let Uppercase = class extends Validator {
@@ -234,7 +240,8 @@ describe('Validation Service', () => {
         a: {
           type: 'text',
           debounce: 1,
-          rules: 'required'
+          rules: 'email',
+          default: 'value'
         },
       }
     })
@@ -246,8 +253,8 @@ describe('Validation Service', () => {
     expect(a.vm.debouncing).toBe(true)
     expect(a.vm.invalid).toBe(false)
 
-    await flushPromises()
     jest.advanceTimersByTime(1)
+    await flushPromises()
 
     expect(a.vm.debouncing).toBe(false)
     expect(a.vm.invalid).toBe(true)
@@ -258,7 +265,8 @@ describe('Validation Service', () => {
       schema: {
         a: {
           type: 'text',
-          rules: 'required:debounce=1'
+          rules: 'email:debounce=1',
+          default: 'value',
         },
       }
     })
@@ -270,8 +278,8 @@ describe('Validation Service', () => {
     expect(a.vm.debouncing).toBe(true)
     expect(a.vm.invalid).toBe(false)
 
-    await flushPromises()
     jest.advanceTimersByTime(1)
+    await flushPromises()
 
     expect(a.vm.debouncing).toBe(false)
     expect(a.vm.invalid).toBe(true)
@@ -587,14 +595,8 @@ describe('Validation Service', () => {
     let form = createForm({
       multilingual: true,
       languages: {
-        en: {
-          label: 'English',
-          code: 'en'
-        },
-        hu: {
-          label: 'Hungarian',
-          code: 'hu'
-        },
+        en: 'English',
+        hu: 'Hungarian',
       },
       schema: {
         a: {

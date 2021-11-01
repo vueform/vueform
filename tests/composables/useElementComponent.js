@@ -131,27 +131,27 @@ export default function (elementType, componentName, schema = {}, options = {}) 
   })
 
   describe('classes', () => {
-    // it('should `classes` equal to defaultClasses by default', async () => {
-    //   let form = createForm({
-    //     schema: {
-    //       el: Object.assign({}, {
-    //         type: elementType
-    //       }, schema)
-    //     }
-    //   })
+    it('should `classes` equal to defaultClasses by default', async () => {
+      let form = createForm({
+        schema: {
+          el: Object.assign({}, {
+            type: elementType
+          }, schema)
+        }
+      })
 
-    //   let el = form.vm.el$('el')
+      let el = form.vm.el$('el')
 
-    //   if (execute) {
-    //     execute(el)
-    //     await flushPromises()
-    //     await nextTick()
-    //   }
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
 
-    //   let Component = findAllComponents(form, { name: componentName }).at(0)
+      let Component = findAllComponents(form, { name: componentName }).at(0)
 
-    //   expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Component.vm.defaultClasses, mergeWith))
-    // })
+      expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Component.vm.defaultClasses, mergeWith))
+    })
 
     it('should classes in theme overwrite defaultClasses in `classes`, even when changes', async () => {
       let overwriteClasses1 = {

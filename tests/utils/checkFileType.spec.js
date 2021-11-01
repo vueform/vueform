@@ -5,9 +5,9 @@ window._ = _
 
 describe('checkFileType util', () => {
   it('should check string types', async () => {
-    expect(checkFileType(new File([''], 'filename.jpg'), 'jpg,jpeg,png')).toBe(true)
+    expect(checkFileType(new File([''], 'filename.jpg'), '.jpg,.jpeg,.png')).toBe(true)
     
-    expect(checkFileType(new File([''], 'filename.jpg'), 'jpeg,png')).toBe(false)
+    expect(checkFileType(new File([''], 'filename.jpg'), '.jpeg,.png')).toBe(false)
 
     expect(checkFileType(new File([''], 'filename.jpg', {
       type: 'image/jpg'

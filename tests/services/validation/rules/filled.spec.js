@@ -90,10 +90,10 @@ describe('Filled Rule', () => {
 
     check(a)
     await flushPromises()
-    expect(a.vm.invalid).toBe(true)
+    expect(a.vm.invalid).toBe(false)
 
     uncheck(a)
     await flushPromises()
-    expect(a.vm.invalid).toBe(false)
+    expect(a.vm.invalid).toBe(true)
   })
 })

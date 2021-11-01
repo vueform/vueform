@@ -226,7 +226,7 @@ export const rendering = function (elementType, elementName, options) {
     destroy(form) // teardown
   })
 
-  it('should not show element if `visible` is "true"', async () => {
+  it('should not show element if `visible` is "false"', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -237,14 +237,15 @@ export const rendering = function (elementType, elementName, options) {
       attach: true
     })
 
-    let el = form.vm.el$('el')
+    let el = findAllComponents(form, { name: elementName }).at(0)
 
-    el.hide()
+    el.vm.hide()
 
     await nextTick()
 
-    expect(el.visible).toBe(false)
-    expect(el.$el).not.toBeVisible()
+    expect(el.vm.visible).toBe(false)
+    
+    expect(el.vm.$el).not.toBeVisible()
 
     destroy(form) // teardown
   })

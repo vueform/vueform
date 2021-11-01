@@ -27,12 +27,15 @@
 
   .vf-layout-inner-container {
     flex: 1 1 0%;
+    
+    .vf-layout-inner-wrapper,
+    .vf-layout-inner-wrapper-before,
+    .vf-layout-inner-wrapper-after {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
-  .vf-layout-inner-wrapper {
-    padding-left: 0;
-    padding-right: 0;
-  }
 
   .vf-layout-inner-wrapper-before,
   .vf-layout-inner-wrapper-after {

@@ -493,7 +493,7 @@ describe('Condition Service', () => {
     expect(h.vm.available).toBe(false)
     expect(i.vm.available).toBe(false)
 
-    c.get('#c').setValue('ccc')
+    c.get('[id="b.c"]').setValue('ccc')
     expect(b.vm.available).toBe(true)
     expect(c.vm.available).toBe(true)
     expect(d.vm.available).toBe(true)
@@ -503,7 +503,7 @@ describe('Condition Service', () => {
     expect(h.vm.available).toBe(false)
     expect(i.vm.available).toBe(false)
 
-    d.get('#d').setValue('ddd')
+    d.get('[id="b.d"]').setValue('ddd')
     expect(b.vm.available).toBe(true)
     expect(c.vm.available).toBe(true)
     expect(d.vm.available).toBe(true)
@@ -513,7 +513,7 @@ describe('Condition Service', () => {
     expect(h.vm.available).toBe(false)
     expect(i.vm.available).toBe(false)
 
-    e.get('#e').setValue('eee')
+    e.get('[id="b.e"]').setValue('eee')
     expect(b.vm.available).toBe(true)
     expect(c.vm.available).toBe(true)
     expect(d.vm.available).toBe(true)
@@ -523,7 +523,7 @@ describe('Condition Service', () => {
     expect(h.vm.available).toBe(true)
     expect(i.vm.available).toBe(false)
 
-    h.get('#h').setValue('hhh')
+    h.get('[id="b.g.h"]').setValue('hhh')
     expect(b.vm.available).toBe(true)
     expect(c.vm.available).toBe(true)
     expect(d.vm.available).toBe(true)
@@ -577,7 +577,7 @@ describe('Condition Service', () => {
     e.get('#e').setValue('eee')
     expect(d0.vm.available).toBe(true)
 
-    b0.get('#b').setValue('bbb')
+    b0.get('[id="a.0.b"]').setValue('bbb')
     expect(c0.vm.available).toBe(true)
   })
 
