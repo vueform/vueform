@@ -43,8 +43,8 @@ describe('DragAndDrop', () => {
       expect(Drag.exists()).toBe(true)
 
       expect(Drag.find('.' + Drag.vm.defaultClasses.icon).exists()).toBe(true)
-      expect(Drag.find('.' + Drag.vm.defaultClasses.title).html()).toContain(form.vm.__('laraform.elements.file.dndTitle'))
-      expect(Drag.find('.' + Drag.vm.defaultClasses.description).html()).toContain(form.vm.__('laraform.elements.file.dndDescription'))
+      expect(Drag.find('.' + Drag.vm.defaultClasses.title).html()).toContain(form.vm.__('vueform.elements.file.dndTitle'))
+      expect(Drag.find('.' + Drag.vm.defaultClasses.description).html()).toContain(form.vm.__('vueform.elements.file.dndDescription'))
     })
   })
   

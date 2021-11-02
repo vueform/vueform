@@ -128,7 +128,7 @@ export default function (schema, componentName, options = {}) {
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
       // This also works but running tests with Vue2 fails for some reason
-      // el.$laraform.config.themes.default.classes[elementName] = overwriteClasses2
+      // el.$vueform.config.themes.default.classes[elementName] = overwriteClasses2
       // expect(Component.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     })
 

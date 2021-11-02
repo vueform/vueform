@@ -15,7 +15,7 @@ const base = function(props, context, dependencies, options)
 
   // ================= DATA ===============
 
-  const orderFrom = ref(form$.value.$laraform.config.orderFrom)
+  const orderFrom = ref(form$.value.$vueform.config.orderFrom)
 
   // =============== METHODS ==============
 

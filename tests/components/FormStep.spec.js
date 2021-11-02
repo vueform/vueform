@@ -300,7 +300,7 @@ describe('FormStep', () => {
       expect(findAllComponents(form, { name: 'FormStep' }).at(0).html()).toContain('First')
       expect(findAllComponents(form, { name: 'FormStep' }).at(1).html()).toContain('Second')
 
-      form.vm.laraform.steps.first.label = 'Not first'
+      form.vm.vueform.steps.first.label = 'Not first'
 
       await nextTick()
 
@@ -312,11 +312,11 @@ describe('FormStep', () => {
         labelVar: 'var',
         steps: {
           first: {
-            label: (form$) => { return 'First'+form$.laraform.labelVar },
+            label: (form$) => { return 'First'+form$.vueform.labelVar },
             elements: ['a'],
           },
           second: {
-            label: (form$) => { return 'Second'+form$.laraform.labelVar },
+            label: (form$) => { return 'Second'+form$.vueform.labelVar },
             elements: ['b']
           },
         },
@@ -333,7 +333,7 @@ describe('FormStep', () => {
       expect(findAllComponents(form, { name: 'FormStep' }).at(0).html()).toContain('Firstvar')
       expect(findAllComponents(form, { name: 'FormStep' }).at(1).html()).toContain('Secondvar')
 
-      form.vm.laraform.labelVar = 'notvar'
+      form.vm.vueform.labelVar = 'notvar'
 
       await nextTick()
 
@@ -348,7 +348,7 @@ describe('FormStep', () => {
             label: markRaw({
               props: ['step', 'form$'],
               render(h) {
-                return createElement(h, 'div', this.form$.laraform.steps.first.labelVar)
+                return createElement(h, 'div', this.form$.vueform.steps.first.labelVar)
               }
             }),
             labelVar: 'First',
@@ -358,7 +358,7 @@ describe('FormStep', () => {
             label: markRaw({
               props: ['step', 'form$'],
               render(h) {
-                return createElement(h, 'div', this.form$.laraform.steps.first.labelVar)
+                return createElement(h, 'div', this.form$.vueform.steps.first.labelVar)
               }
             }),
             labelVar: 'Second',
@@ -378,7 +378,7 @@ describe('FormStep', () => {
       expect(findAllComponents(form, { name: 'FormStep' }).at(0).html()).toContain('First')
       expect(findAllComponents(form, { name: 'FormStep' }).at(1).html()).toContain('Second')
 
-      form.vm.laraform.steps.first.labelVar = 'Not first'
+      form.vm.vueform.steps.first.labelVar = 'Not first'
 
       await nextTick()
 

@@ -418,7 +418,7 @@ export default {
   FormTabs: {
     container: 'flex border-b form-border-color form-mb-2gutter items-end',
   },
-  Laraform: {
+  Vueform: {
     form: '',
   },
 

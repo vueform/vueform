@@ -42,32 +42,32 @@ export const fields = function (elementType, elementName) {
     let fields = {
       address: {
         type: 'text',
-        label: el.__('laraform.elements.address.addressLabel'),
+        label: el.__('vueform.elements.address.addressLabel'),
         id: el.addressId,
         disabled: el.disabled,
         readonly: el.readonly,
       },
       address2: {
         type: 'text',
-        label: el.__('laraform.elements.address.address2Label'),
+        label: el.__('vueform.elements.address.address2Label'),
         disabled: el.disabled,
         readonly: el.readonly,
       },
       zip: {
         type: 'text',
-        label: el.__('laraform.elements.address.zipLabel'),
+        label: el.__('vueform.elements.address.zipLabel'),
         disabled: el.disabled,
         readonly: el.readonly,
       },
       city: {
         type: 'text',
-        label: el.__('laraform.elements.address.cityLabel'),
+        label: el.__('vueform.elements.address.cityLabel'),
         disabled: el.disabled,
         readonly: el.readonly,
       },
       state: {
         type: 'select',
-        label: el.__('laraform.elements.address.stateLabel'),
+        label: el.__('vueform.elements.address.stateLabel'),
         items: states,
         conditions: [[el.path + '.country', ['us', 'US']]],
         disabled: el.disabled,
@@ -76,7 +76,7 @@ export const fields = function (elementType, elementName) {
       },
       country: {
         type: 'select',
-        label: el.__('laraform.elements.address.countryLabel'),
+        label: el.__('vueform.elements.address.countryLabel'),
         items: countries,
         disabled: el.disabled,
         readonly: el.readonly,
@@ -86,7 +86,7 @@ export const fields = function (elementType, elementName) {
 
     expect(el.fields).toStrictEqual(fields)
 
-    el.$set(form.vm.laraform.schema.el, 'required', true)
+    el.$set(form.vm.vueform.schema.el, 'required', true)
 
     await nextTick()
 

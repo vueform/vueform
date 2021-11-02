@@ -43,7 +43,7 @@ describe('ElementAddon', () => {
 
       expect(component.classes.container).not.toContain(component.classes.container_after)
 
-      form.vm.$set(form.vm.laraform.schema.el, 'addons', { after: 'after' })
+      form.vm.$set(form.vm.vueform.schema.el, 'addons', { after: 'after' })
 
       await nextTick()
 
@@ -70,7 +70,7 @@ describe('ElementAddon', () => {
 
       expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('before')
 
-      form.vm.laraform.schema.el.addons.before = 'not before'
+      form.vm.vueform.schema.el.addons.before = 'not before'
 
       await nextTick()
 
@@ -85,7 +85,7 @@ describe('ElementAddon', () => {
             beforeVar: 'before var',
             addons: {
               before: (el$) => {
-                return el$.form$.laraform.schema.el.beforeVar
+                return el$.form$.vueform.schema.el.beforeVar
               }
             }
           }
@@ -94,7 +94,7 @@ describe('ElementAddon', () => {
 
       expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('before var')
 
-      form.vm.laraform.schema.el.beforeVar = 'not before var'
+      form.vm.vueform.schema.el.beforeVar = 'not before var'
 
       await nextTick()
 
@@ -121,7 +121,7 @@ describe('ElementAddon', () => {
 
       expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('before var')
 
-      form.vm.laraform.schema.el.beforeVar = 'not before var'
+      form.vm.vueform.schema.el.beforeVar = 'not before var'
 
       await nextTick()
 

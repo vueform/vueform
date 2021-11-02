@@ -224,7 +224,7 @@ export const pending = function (elementType, elementName, options) {
 
     let child1 = form.vm.el$(`el.${_.keys(el.children)[0]}`)
 
-    child1.$laraform.services.axios.request = axiosPostMock
+    child1.$vueform.services.axios.request = axiosPostMock
 
     child1.validate()
 
@@ -349,7 +349,7 @@ export const busy = function (elementType, elementName, options) {
 
     let child1 = findAllComponents(form, { name: 'TextElement' }).at(0)
 
-    child1.vm.$laraform.services.axios.request = axiosPostMock
+    child1.vm.$vueform.services.axios.request = axiosPostMock
 
     child1.vm.validate()
 
@@ -538,7 +538,7 @@ export const messageBag = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.messageBag instanceof el.$laraform.services.messageBag).toBe(true)
+    expect(el.messageBag instanceof el.$vueform.services.messageBag).toBe(true)
 
     // destroy() // teardown
   })

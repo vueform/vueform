@@ -20,7 +20,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes.button).not.toContain(el.classes.button_disabled)
 
-    form.vm.$set(form.vm.laraform.schema.el, 'disabled', true)
+    form.vm.$set(form.vm.vueform.schema.el, 'disabled', true)
 
     await nextTick()
 
@@ -42,7 +42,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes.button).not.toContain(el.classes.button_loading)
 
-    form.vm.$set(form.vm.laraform.schema.el, 'loading', true)
+    form.vm.$set(form.vm.vueform.schema.el, 'loading', true)
 
     await nextTick()
 

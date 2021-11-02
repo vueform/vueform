@@ -64,7 +64,7 @@ export const children$Array = function (elementType, elementName) {
     expect(el.children$Array[0]).toStrictEqual(form.vm.el$('el.child1'))
     expect(el.children$Array[1]).toStrictEqual(form.vm.el$('el.child2'))
 
-    form.vm.$set(form.vm.laraform.schema.el, 'schema', {
+    form.vm.$set(form.vm.vueform.schema.el, 'schema', {
       child2: {
         type: 'text'
       },

@@ -142,7 +142,7 @@ export const rendering = function (elementType, elementName, options) {
 
     expect(DragAndDrop.length).toBe(0)
 
-    el.$set(form.vm.laraform.schema.el, 'drop', true)
+    el.$set(form.vm.vueform.schema.el, 'drop', true)
 
     await nextTick()
 
@@ -181,8 +181,8 @@ export const rendering = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let DragAndDrop = findAllComponents(form, { name: 'DragAndDrop' }).at(0)
 
-    expect(DragAndDrop.props('title')).toBe(el.__(`laraform.elements.${el.type}.dndTitle`))
-    expect(DragAndDrop.props('description')).toBe(el.__(`laraform.elements.${el.type}.dndDescription`))
+    expect(DragAndDrop.props('title')).toBe(el.__(`vueform.elements.${el.type}.dndTitle`))
+    expect(DragAndDrop.props('description')).toBe(el.__(`vueform.elements.${el.type}.dndDescription`))
   })
   
   it('should click input element when DragAndDrop is clicked', async () => {

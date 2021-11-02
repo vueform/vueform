@@ -98,15 +98,15 @@ export default async function testDynamics (options, type) {
   })
 
   if (!_.isEmpty(addedElements)) {
-    form.vm.$set(form.vm.laraform, 'schema', Object.assign({}, existingElements, addedElements))
+    form.vm.$set(form.vm.vueform, 'schema', Object.assign({}, existingElements, addedElements))
   }
 
   if (!_.isEmpty(addedSteps)) {
-    form.vm.$set(form.vm.laraform, 'steps', Object.assign({}, existingSteps, addedSteps))
+    form.vm.$set(form.vm.vueform, 'steps', Object.assign({}, existingSteps, addedSteps))
   }
 
   if (!_.isEmpty(addedTabs)) {
-    form.vm.$set(form.vm.laraform, 'tabs', Object.assign({}, existingTabs, addedTabs))
+    form.vm.$set(form.vm.vueform, 'tabs', Object.assign({}, existingTabs, addedTabs))
   }
 
   await nextTick()

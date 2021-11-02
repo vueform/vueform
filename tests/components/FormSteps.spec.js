@@ -64,7 +64,7 @@ describe('FormSteps', () => {
       let a = form.vm.el$('a')
       let steps = form.findComponent({ name: 'FormSteps' })
 
-      a.$laraform.services.axios.request = jest.fn(() => { return {  } })
+      a.$vueform.services.axios.request = jest.fn(() => { return {  } })
 
       await nextTick()
       steps.vm.goTo('second')
@@ -1016,7 +1016,7 @@ describe('FormSteps', () => {
         }
       })
 
-      form.vm.$laraform.services.axios = {
+      form.vm.$vueform.services.axios = {
         request: () => ({data:{}})
       }
 

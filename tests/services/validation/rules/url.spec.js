@@ -14,31 +14,31 @@ describe('URL Rule', () => {
 
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
-    change(a, 'http://www.laraform.io')
+    change(a, 'http://www.vueform.io')
     await flushPromises()
     expect(a.vm.invalid).toBe(false)
 
-    change(a, 'http://laraform.io')
+    change(a, 'http://vueform.io')
     await flushPromises()
     expect(a.vm.invalid).toBe(false)
 
-    change(a, 'https://www.laraform.io')
+    change(a, 'https://www.vueform.io')
     await flushPromises()
     expect(a.vm.invalid).toBe(false)
 
-    change(a, 'https://laraform.io')
+    change(a, 'https://vueform.io')
     await flushPromises()
     expect(a.vm.invalid).toBe(false)
 
-    change(a, 'https://www.laraform.ioasdf')
+    change(a, 'https://www.vueform.ioasdf')
     await flushPromises()
     expect(a.vm.invalid).toBe(false)
 
-    change(a, 'laraform.io')
+    change(a, 'vueform.io')
     await flushPromises()
     expect(a.vm.invalid).toBe(true)
 
-    change(a, 'www.laraform.io')
+    change(a, 'www.vueform.io')
     await flushPromises()
     expect(a.vm.invalid).toBe(true)
   })

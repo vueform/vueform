@@ -223,8 +223,8 @@ export const pending = function (elementType, elementName, options) {
       let child0 = listChild(el, options, 0)
       let child1 = listChild(el, options, 1)
 
-      child0.$laraform.services.axios.request = axiosPostMock
-      child1.$laraform.services.axios.request = axiosPostMock
+      child0.$vueform.services.axios.request = axiosPostMock
+      child1.$vueform.services.axios.request = axiosPostMock
 
       el.validate()
 
@@ -296,8 +296,8 @@ export const busy = function (elementType, elementName, options) {
       let child0 = listChild(el, options, 0)
       let child1 = listChild(el, options, 1)
 
-      child0.$laraform.services.axios.request = axiosPostMock
-      child1.$laraform.services.axios.request = axiosPostMock
+      child0.$vueform.services.axios.request = axiosPostMock
+      child1.$vueform.services.axios.request = axiosPostMock
 
       el.validate()
 

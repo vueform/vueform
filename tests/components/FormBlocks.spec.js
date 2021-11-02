@@ -163,7 +163,7 @@ const dynamicsTesting = (options) => {
 
       await nextTick()
 
-      form.vm.$delete(form.vm.laraform.schema, 'b')
+      form.vm.$delete(form.vm.vueform.schema, 'b')
 
       await nextTick()
       await nextTick()
@@ -318,7 +318,7 @@ const dynamicsTesting = (options) => {
 
       expect(blocksComponent.vm.current$.name).toBe('first')
 
-      form.vm.$delete(form.vm.laraform[blocks], 'first')
+      form.vm.$delete(form.vm.vueform[blocks], 'first')
 
       await nextTick()
       await nextTick()
@@ -365,7 +365,7 @@ const dynamicsTesting = (options) => {
 
       expect(blocksComponent.vm.next$.name).toBe('second')
 
-      form.vm.$delete(form.vm.laraform[blocks], 'second')
+      form.vm.$delete(form.vm.vueform[blocks], 'second')
 
       await nextTick()
       await nextTick()
@@ -418,7 +418,7 @@ const dynamicsTesting = (options) => {
       
       expect(blocksComponent.vm.previous$.name).toBe('first')
 
-      form.vm.$delete(form.vm.laraform[blocks], 'first')
+      form.vm.$delete(form.vm.vueform[blocks], 'first')
 
       await nextTick()
       await nextTick()
@@ -471,7 +471,7 @@ const dynamicsTesting = (options) => {
 
       expect(blocksComponent.vm.current$.name).toBe('second')
 
-      form.vm.$delete(form.vm.laraform[blocks], 'second')
+      form.vm.$delete(form.vm.vueform[blocks], 'second')
 
       await nextTick()
       await nextTick()
@@ -525,7 +525,7 @@ const dynamicsTesting = (options) => {
 
       expect(blocksComponent.vm.next$.name).toBe('third')
 
-      form.vm.$delete(form.vm.laraform[blocks], 'third')
+      form.vm.$delete(form.vm.vueform[blocks], 'third')
 
       await nextTick()
       await nextTick()
@@ -578,7 +578,7 @@ const dynamicsTesting = (options) => {
 
       expect(blocksComponent.vm.previous$.name).toBe('second')
 
-      form.vm.$delete(form.vm.laraform[blocks], 'second')
+      form.vm.$delete(form.vm.vueform[blocks], 'second')
 
       await nextTick()
       await nextTick()
@@ -630,7 +630,7 @@ const dynamicsTesting = (options) => {
 
       expect(blocksComponent.vm.previous$.name).toBe('second')
 
-      form.vm.$delete(form.vm.laraform[blocks], 'third')
+      form.vm.$delete(form.vm.vueform[blocks], 'third')
 
       await nextTick()
       await nextTick()

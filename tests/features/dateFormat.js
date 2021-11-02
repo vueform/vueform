@@ -51,7 +51,7 @@ const testDefaults = (elementType, inputFormat, requestDataFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.datetimeSeconds24'))
+    expect(el[requestDataFormat]).toBe(el.__('vueform.dateFormats.datetimeSeconds24'))
     
     // destroy(form) // teardown
   })
@@ -71,7 +71,7 @@ const testDefaults = (elementType, inputFormat, requestDataFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.datetimeSeconds12'))
+    expect(el[requestDataFormat]).toBe(el.__('vueform.dateFormats.datetimeSeconds12'))
     
     // destroy(form) // teardown
   })
@@ -91,7 +91,7 @@ const testDefaults = (elementType, inputFormat, requestDataFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.datetime24'))
+    expect(el[requestDataFormat]).toBe(el.__('vueform.dateFormats.datetime24'))
     
     // destroy(form) // teardown
   })
@@ -111,7 +111,7 @@ const testDefaults = (elementType, inputFormat, requestDataFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.datetime12'))
+    expect(el[requestDataFormat]).toBe(el.__('vueform.dateFormats.datetime12'))
     
     // destroy(form) // teardown
   })
@@ -131,7 +131,7 @@ const testDefaults = (elementType, inputFormat, requestDataFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.timeSeconds24'))
+    expect(el[requestDataFormat]).toBe(el.__('vueform.dateFormats.timeSeconds24'))
     
     // destroy(form) // teardown
   })
@@ -151,7 +151,7 @@ const testDefaults = (elementType, inputFormat, requestDataFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.timeSeconds12'))
+    expect(el[requestDataFormat]).toBe(el.__('vueform.dateFormats.timeSeconds12'))
     
     // destroy(form) // teardown
   })
@@ -171,7 +171,7 @@ const testDefaults = (elementType, inputFormat, requestDataFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.time24'))
+    expect(el[requestDataFormat]).toBe(el.__('vueform.dateFormats.time24'))
     
     // destroy(form) // teardown
   })
@@ -191,7 +191,7 @@ const testDefaults = (elementType, inputFormat, requestDataFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.time12'))
+    expect(el[requestDataFormat]).toBe(el.__('vueform.dateFormats.time12'))
     
     // destroy(form) // teardown
   })
@@ -211,7 +211,7 @@ const testDefaults = (elementType, inputFormat, requestDataFormat) => {
 
     let el = form.vm.el$('el')
 
-    expect(el[requestDataFormat]).toBe(el.__('laraform.dateFormats.date'))
+    expect(el[requestDataFormat]).toBe(el.__('vueform.dateFormats.date'))
 
     // destroy() // teardown
   })

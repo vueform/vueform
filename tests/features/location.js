@@ -13,7 +13,7 @@ export const locationService = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.locationService).not.toStrictEqual(new el.$laraform.services.location.google)
+    expect(el.locationService).not.toStrictEqual(new el.$vueform.services.location.google)
     expect(el.locationService.options).toStrictEqual(el.providerOptions)
     
     // destroy(form) // teardown
@@ -31,7 +31,7 @@ export const locationService = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.locationService).not.toStrictEqual(new el.$laraform.services.location.algolia)
+    expect(el.locationService).not.toStrictEqual(new el.$vueform.services.location.algolia)
     expect(el.locationService.options).toStrictEqual(el.providerOptions)
 
     // destroy() // teardown
@@ -106,7 +106,7 @@ export const provider = function (elementType, elementName, options, spies) {
     expect(googleRemoveListenerMock.mock.calls.length).toBe(0)
     expect(placesMock.mock.calls.length).toBe(0)
 
-    el.$set(form.vm.laraform.schema.el, 'provider', 'algolia')
+    el.$set(form.vm.vueform.schema.el, 'provider', 'algolia')
 
     await nextTick()
 
@@ -213,7 +213,7 @@ export const providerOptions = function (elementType, elementName, options, spie
     expect(autocompleteMock.mock.calls.length).toBe(1)
     expect(googleRemoveListenerMock.mock.calls.length).toBe(0)
 
-    form.vm.$set(form.vm.laraform.schema.el.extendOptions, 'description', 'b')
+    form.vm.$set(form.vm.vueform.schema.el.extendOptions, 'description', 'b')
 
     await nextTick()
 

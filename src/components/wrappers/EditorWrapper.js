@@ -147,7 +147,7 @@ export default {
       if (acceptMimes.value.length && acceptMimes.value.indexOf(e.file.type) === -1) {
         e.preventDefault()
 
-        context.emit('alert', form$.value.__('laraform.editor.acceptedMimesError', {
+        context.emit('alert', form$.value.__('vueform.editor.acceptedMimesError', {
           mimes:acceptMimes.value.join(', ')
         }))
       }
@@ -157,7 +157,7 @@ export default {
       if (accept.value.length && accept.value.indexOf(extension) === -1) {
         e.preventDefault()
 
-        context.emit('alert', form$.value.__('laraform.editor.acceptedExtensionsError', {
+        context.emit('alert', form$.value.__('vueform.editor.acceptedExtensionsError', {
           extensions:accept.value.join(', ')
         }))
       }
@@ -184,7 +184,7 @@ export default {
       data.append('Content-Type', e.attachment.file.type)
       data.append('file', e.attachment.file)
 
-      el$.value.$laraform.services.axios[method.value](endpoint.value, data, {
+      el$.value.$vueform.services.axios[method.value](endpoint.value, data, {
         onUploadProgress: (progress) => {
           e.attachment.setUploadProgress(
             Math.round((progress.loaded * 100) / progress.total)

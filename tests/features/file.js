@@ -168,7 +168,7 @@ export const uploadTempFileUrl = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.uploadTempFileUrl).toBe(el.$laraform.config.endpoints.uploadTempFile.url)
+    expect(el.uploadTempFileUrl).toBe(el.$vueform.config.endpoints.uploadTempFile.url)
 
     // destroy() // teardown
   })
@@ -205,7 +205,7 @@ export const removeTempFileUrl = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.removeTempFileUrl).toBe(el.$laraform.config.endpoints.removeTempFile.url)
+    expect(el.removeTempFileUrl).toBe(el.$vueform.config.endpoints.removeTempFile.url)
 
     // destroy() // teardown
   })
@@ -242,7 +242,7 @@ export const removeFileUrl = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.removeFileUrl).toBe(el.$laraform.config.endpoints.removeFile.url)
+    expect(el.removeFileUrl).toBe(el.$vueform.config.endpoints.removeFile.url)
 
     // destroy() // teardown
   })
@@ -279,7 +279,7 @@ export const uploadTempFileMethod = function (elementType, elementName, options)
 
     let el = form.vm.el$('el')
 
-    expect(el.uploadTempFileMethod).toBe(el.$laraform.config.endpoints.uploadTempFile.method)
+    expect(el.uploadTempFileMethod).toBe(el.$vueform.config.endpoints.uploadTempFile.method)
 
     // destroy() // teardown
   })
@@ -316,7 +316,7 @@ export const removeTempFileMethod = function (elementType, elementName, options)
 
     let el = form.vm.el$('el')
 
-    expect(el.removeTempFileMethod).toBe(el.$laraform.config.endpoints.removeTempFile.method)
+    expect(el.removeTempFileMethod).toBe(el.$vueform.config.endpoints.removeTempFile.method)
 
     // destroy() // teardown
   })
@@ -353,7 +353,7 @@ export const removeFileMethod = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.removeFileMethod).toBe(el.$laraform.config.endpoints.removeFile.method)
+    expect(el.removeFileMethod).toBe(el.$vueform.config.endpoints.removeFile.method)
 
     // destroy() // teardown
   })
@@ -890,11 +890,11 @@ export const canUploadTemp = function (elementType, elementName, options) {
     el.request = null
     expect(el.canUploadTemp).toStrictEqual(true)
 
-    el.$set(form.vm.laraform.schema.el, 'auto', true)
+    el.$set(form.vm.vueform.schema.el, 'auto', true)
     await nextTick()
     expect(el.canUploadTemp).toStrictEqual(false)
 
-    el.$set(form.vm.laraform.schema.el, 'auto', false)
+    el.$set(form.vm.vueform.schema.el, 'auto', false)
     await nextTick()
     expect(el.canUploadTemp).toStrictEqual(true)
 
@@ -2050,7 +2050,7 @@ export const handleUploadTemp = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let FilePreview = findAllComponents(form, { name: 'FilePreview' }).at(0)
 
-    el.$laraform.services.axios.post = jest.fn(() => ({data:{}}))
+    el.$vueform.services.axios.post = jest.fn(() => ({data:{}}))
 
     el.load(new File([], 'filename.jpg'))
 
@@ -2157,7 +2157,7 @@ export const handleAbort = function (elementType, elementName, options) {
 
     el.axios.post = axiosPostMock
 
-    form.vm.$laraform.services.axios.request = axiosSubmitMock
+    form.vm.$vueform.services.axios.request = axiosSubmitMock
 
     let file = new File([''], 'filename')
 

@@ -47,7 +47,7 @@ const base = function(props, context, dependencies)
       format = 'date'
     }
 
-    return form$.value.__(`laraform.dateFormats.${format}`)
+    return form$.value.__(`vueform.dateFormats.${format}`)
   })
 
   // ============== COMPUTED ===============
@@ -104,7 +104,7 @@ const dates = function(props, context, dependencies)
   // =============== PRIVATE ===============
 
   const defaultFormat = computed(() => {
-    return form$.value.__(`laraform.dateFormats.date`)
+    return form$.value.__(`vueform.dateFormats.date`)
   })
 
   // ============== COMPUTED ===============

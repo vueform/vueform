@@ -24,7 +24,7 @@
 </script>
 
 <style lang="scss">
-  // Some styles are contained in Laraform.vue & SelectElement.vue
+  // Some styles are contained in Vueform.vue & SelectElement.vue
 
   .multiselect-multiple-label {
     display: flex;

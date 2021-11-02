@@ -16,7 +16,7 @@ export const autosize = function (elementType, elementName, options) {
 
     let updateMock = jest.fn()
 
-    el.$laraform.services.autosize.update = updateMock
+    el.$vueform.services.autosize.update = updateMock
 
     el.autosize()
 
@@ -41,7 +41,7 @@ export const autosize = function (elementType, elementName, options) {
 
     let updateMock = jest.fn()
 
-    el.$laraform.services.autosize.update = updateMock
+    el.$vueform.services.autosize.update = updateMock
 
     el.autosize()
 
@@ -66,13 +66,13 @@ export const autosize = function (elementType, elementName, options) {
 
     let autosizeMock = jest.fn()
 
-    el.$laraform.services.autosize = autosizeMock
+    el.$vueform.services.autosize = autosizeMock
 
     await nextTick()
 
     expect(autosizeMock).not.toHaveBeenCalled()
 
-    form.vm.laraform.schema.el.autogrow = true
+    form.vm.vueform.schema.el.autogrow = true
 
     await nextTick()
 
@@ -95,11 +95,11 @@ export const autosize = function (elementType, elementName, options) {
 
     let destroyMock = jest.fn()
 
-    el.$laraform.services.autosize.destroy = destroyMock
+    el.$vueform.services.autosize.destroy = destroyMock
 
     await nextTick()
 
-    form.vm.laraform.schema.el.autogrow = false
+    form.vm.vueform.schema.el.autogrow = false
 
     await nextTick()
 
@@ -122,7 +122,7 @@ export const autosize = function (elementType, elementName, options) {
 
     let autosizeMock = jest.fn()
 
-    el.$laraform.services.autosize = autosizeMock
+    el.$vueform.services.autosize = autosizeMock
 
     await nextTick()
     
@@ -145,7 +145,7 @@ export const autosize = function (elementType, elementName, options) {
 
     let autosizeMock = jest.fn()
 
-    el.$laraform.services.autosize = autosizeMock
+    el.$vueform.services.autosize = autosizeMock
 
     await nextTick()
     
@@ -168,7 +168,7 @@ export const autosize = function (elementType, elementName, options) {
 
     let updateMock = jest.fn()
 
-    el.$laraform.services.autosize.update = updateMock
+    el.$vueform.services.autosize.update = updateMock
 
     await nextTick()
 

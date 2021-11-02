@@ -225,24 +225,24 @@ export const isObject = function (elementType, elementName, options) {
 
     expect(el.isObject).toBe(false)
 
-    el.$set(form.vm.laraform.schema.el, 'object', true)
+    el.$set(form.vm.vueform.schema.el, 'object', true)
     await nextTick()
 
     expect(el.isObject).toBe(true)
 
-    el.$delete(form.vm.laraform.schema.el, 'object')
-    el.$set(form.vm.laraform.schema.el, 'storeOrder', 'order')
-    await nextTick()
-    
-    expect(el.isObject).toBe(true)
-
-    el.$delete(form.vm.laraform.schema.el, 'storeOrder')
-    el.$set(form.vm.laraform.schema.el, 'fields', { child: { type: 'text' }})
+    el.$delete(form.vm.vueform.schema.el, 'object')
+    el.$set(form.vm.vueform.schema.el, 'storeOrder', 'order')
     await nextTick()
     
     expect(el.isObject).toBe(true)
 
-    el.$set(form.vm.laraform.schema.el, 'fields', {})
+    el.$delete(form.vm.vueform.schema.el, 'storeOrder')
+    el.$set(form.vm.vueform.schema.el, 'fields', { child: { type: 'text' }})
+    await nextTick()
+    
+    expect(el.isObject).toBe(true)
+
+    el.$set(form.vm.vueform.schema.el, 'fields', {})
     await nextTick()
 
     expect(el.isObject).toBe(false)

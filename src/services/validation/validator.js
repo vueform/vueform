@@ -53,7 +53,7 @@ const Validator = class {
   }
 
   get defaultMessage() {
-    return this.form$.__('laraform.defaultMessage')
+    return this.form$.__('vueform.defaultMessage')
   }
 
   get message() {

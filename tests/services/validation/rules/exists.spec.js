@@ -26,7 +26,7 @@ describe('Exists Rule', () => {
 
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
-    form.vm.$laraform.services.axios.request = (() => ({data: true}))
+    form.vm.$vueform.services.axios.request = (() => ({data: true}))
 
     a.vm.validate()
 
@@ -47,7 +47,7 @@ describe('Exists Rule', () => {
 
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
-    form.vm.$laraform.services.axios.request = (() => ({data: false}))
+    form.vm.$vueform.services.axios.request = (() => ({data: false}))
 
     a.vm.validate()
 
@@ -76,7 +76,7 @@ describe('Exists Rule', () => {
 
     let postMock = jest.fn(() => ({data: true}))
 
-    form.vm.$laraform.services.axios.request = postMock
+    form.vm.$vueform.services.axios.request = postMock
 
     a.vm.validate()
 
@@ -84,8 +84,8 @@ describe('Exists Rule', () => {
 
     expect(postMock).toHaveBeenCalledTimes(1)
     expect(postMock).toHaveBeenLastCalledWith({
-      url: a.vm.$laraform.config.endpoints.exists.url,
-      method: a.vm.$laraform.config.endpoints.exists.method,
+      url: a.vm.$vueform.config.endpoints.exists.url,
+      method: a.vm.$vueform.config.endpoints.exists.method,
       data: {
         params: {
           "0": 'a',
@@ -93,7 +93,7 @@ describe('Exists Rule', () => {
           "2": 'c',
         },
         a: 'aaa',
-        laraformFieldName: 'a'
+        vueformFieldName: 'a'
       }
     })
   })

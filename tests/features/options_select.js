@@ -15,12 +15,12 @@ export const isNative = function (elementType, elementName, options) {
     
     expect(el.isNative).toBe(true)
 
-    el.$set(form.vm.laraform.schema.el, 'native', false)
+    el.$set(form.vm.vueform.schema.el, 'native', false)
     await nextTick()
     expect(el.isNative).toBe(false)
 
-    el.$set(form.vm.laraform.schema.el, 'native', true)
-    el.$set(form.vm.laraform.schema.el, 'search', true)
+    el.$set(form.vm.vueform.schema.el, 'native', true)
+    el.$set(form.vm.vueform.schema.el, 'search', true)
     await nextTick()
     expect(el.isNative).toBe(false)
 
@@ -43,8 +43,8 @@ export const fieldOptions = function (elementType, elementName, options) {
     expect(el.fieldOptions).toStrictEqual({
       mode: 'single',
       searchable: el.search,
-      noOptionsText: el.__('laraform.multiselect.noOptions'),
-      noResultsText: el.__('laraform.multiselect.noResults'),
+      noOptionsText: el.__('vueform.multiselect.noOptions'),
+      noResultsText: el.__('vueform.multiselect.noResults'),
       label: el.labelProp,
       trackBy: el.trackBy,
       valueProp: el.valueProp,
@@ -88,8 +88,8 @@ export const fieldOptions = function (elementType, elementName, options) {
     expect(el.fieldOptions).toStrictEqual({
       mode: 'single',
       searchable: el.search,
-      noOptionsText: el.__('laraform.multiselect.noOptions'),
-      noResultsText: el.__('laraform.multiselect.noResults'),
+      noOptionsText: el.__('vueform.multiselect.noOptions'),
+      noResultsText: el.__('vueform.multiselect.noResults'),
       label: el.labelProp,
       trackBy: el.trackBy,
       valueProp: el.valueProp,

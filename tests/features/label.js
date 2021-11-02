@@ -17,7 +17,7 @@ export const hasLabel = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(form.vm.$laraform.config.labels).toBe(false)
+    expect(form.vm.$vueform.config.labels).toBe(false)
     expect(el.hasLabel).toBe(true)
     
     // destroy(form) // teardown
@@ -38,7 +38,7 @@ export const hasLabel = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(form.vm.$laraform.config.forceLabels).toBe(true)
+    expect(form.vm.$vueform.config.forceLabels).toBe(true)
     expect(el.hasLabel).toBe(true)
     
     // destroy(form) // teardown
@@ -59,7 +59,7 @@ export const hasLabel = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(form.vm.$laraform.config.labels).toBe(false)
+    expect(form.vm.$vueform.config.labels).toBe(false)
     expect(el.hasLabel).toBe(false)
 
     // destroy() // teardown

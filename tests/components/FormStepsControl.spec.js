@@ -47,7 +47,7 @@ describe('FormStepsControl', () => {
       await nextTick()
       await nextTick()
 
-      expect(findAllComponents(form, { name: 'FormStepsControl' }).at(0).html()).toContain(form.vm.__('laraform.steps.previous'))
+      expect(findAllComponents(form, { name: 'FormStepsControl' }).at(0).html()).toContain(form.vm.__('vueform.steps.previous'))
     })
 
     it('should render Next if type next', async () => {
@@ -75,7 +75,7 @@ describe('FormStepsControl', () => {
       await nextTick()
       await nextTick()
 
-      expect(findAllComponents(form, { name: 'FormStepsControl' }).at(1).html()).toContain(form.vm.__('laraform.steps.next'))
+      expect(findAllComponents(form, { name: 'FormStepsControl' }).at(1).html()).toContain(form.vm.__('vueform.steps.next'))
     })
 
     it('should render Finish if type finish', async () => {
@@ -96,7 +96,7 @@ describe('FormStepsControl', () => {
       await nextTick()
       await nextTick()
 
-      expect(findAllComponents(form, { name: 'FormStepsControl' }).at(2).html()).toContain(form.vm.__('laraform.steps.finish'))
+      expect(findAllComponents(form, { name: 'FormStepsControl' }).at(2).html()).toContain(form.vm.__('vueform.steps.finish'))
     })
 
     it('should not render buttons.type if false', async () => {
@@ -122,11 +122,11 @@ describe('FormStepsControl', () => {
 
       let control = findAllComponents(form, { name: 'FormStepsControl' }).at(0)
 
-      expect(control.html() === undefined || !control.html().includes(form.vm.__('laraform.steps.previous'))).toBe(true)
+      expect(control.html() === undefined || !control.html().includes(form.vm.__('vueform.steps.previous'))).toBe(true)
 
-      form.vm.laraform.steps.first.buttons.previous = true
+      form.vm.vueform.steps.first.buttons.previous = true
       await nextTick()
-      expect(control.html() !== undefined || control.html().includes(form.vm.__('laraform.steps.previous'))).toBe(true)
+      expect(control.html() !== undefined || control.html().includes(form.vm.__('vueform.steps.previous'))).toBe(true)
     })
 
     it('should render string label', async () => {
@@ -152,7 +152,7 @@ describe('FormStepsControl', () => {
 
       expect(findAllComponents(form, { name: 'FormStepsControl' }).at(0).html()).toContain('Back')
 
-      form.vm.laraform.steps.first.labels.previous = 'Not back'
+      form.vm.vueform.steps.first.labels.previous = 'Not back'
 
       await nextTick()
 
@@ -166,7 +166,7 @@ describe('FormStepsControl', () => {
             elements: ['a'],
             labelVar: 'var',
             labels: {
-              previous: (form$) => { return 'Back'+form$.laraform.steps.first.labelVar },
+              previous: (form$) => { return 'Back'+form$.vueform.steps.first.labelVar },
             }
           },
         },
@@ -185,7 +185,7 @@ describe('FormStepsControl', () => {
 
       expect(findAllComponents(form, { name: 'FormStepsControl' }).at(0).html()).toContain('Backvar')
 
-      form.vm.laraform.steps.first.labelVar = 'notvar'
+      form.vm.vueform.steps.first.labelVar = 'notvar'
 
       await nextTick()
 
@@ -202,7 +202,7 @@ describe('FormStepsControl', () => {
               previous: markRaw({
                 props: ['step$'],
                 render(h) {
-                  return createElement(h, 'div', this.step$.form$.laraform.steps.first.labelVar)
+                  return createElement(h, 'div', this.step$.form$.vueform.steps.first.labelVar)
                 }
               }),
             }
@@ -223,7 +223,7 @@ describe('FormStepsControl', () => {
 
       expect(findAllComponents(form, { name: 'FormStepsControl' }).at(0).html()).toContain('Back')
 
-      form.vm.laraform.steps.first.labelVar = 'Not back'
+      form.vm.vueform.steps.first.labelVar = 'Not back'
 
       await nextTick()
 

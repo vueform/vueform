@@ -194,7 +194,7 @@ export const pending = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.$laraform.services.axios.request = axiosPostMock
+    el.$vueform.services.axios.request = axiosPostMock
 
     el.validateLanguage()
 
@@ -253,7 +253,7 @@ export const busy = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.$laraform.services.axios.request = axiosPostMock
+    el.$vueform.services.axios.request = axiosPostMock
 
     el.validateLanguage()
 
@@ -653,7 +653,7 @@ export const watchers = function (elementType, elementName, options) {
     expect(el.Validators.en[0].name).toBe('required')
     expect(el.Validators.fr[0].name).toBe('required')
 
-    form.vm.laraform.schema.el.rules = 'email|required'
+    form.vm.vueform.schema.el.rules = 'email|required'
 
     await nextTick()
 

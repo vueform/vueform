@@ -78,11 +78,11 @@ afterEach(() => {
 
     let a = findAllComponents(form, { name: 'LocationElement' }).at(0)
 
-    a.vm.$laraform.services.location.algolia.handleChange = handleChangeMock
+    a.vm.$vueform.services.location.algolia.handleChange = handleChangeMock
 
     expect(handleChangeMock.mock.calls.length).toBe(0)
 
-    a.vm.locationService.places.on('change', a.vm.$laraform.services.location.algolia.handleChange)
+    a.vm.locationService.places.on('change', a.vm.$vueform.services.location.algolia.handleChange)
 
     expect(handleChangeMock.mock.calls.length).toBe(1)
   })

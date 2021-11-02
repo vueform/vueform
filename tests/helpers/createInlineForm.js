@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import { h, resolveComponent, ref } from 'composition-api'
 
 // Core
-import { Laraform, useLaraform } from './../../src/index'
+import { Vueform, useVueform } from './../../src/index'
 
 // Assets
 import en from './../../src/locales/en'
@@ -20,13 +20,13 @@ import _ from 'lodash'
 import axios from 'axios'
 
 // Helpers
-import { installLaraform, createElement } from './index'
+import { installVueform, createElement } from './index'
 
 // Mocks
 import TrixEditor from './../mocks/TrixEditor'
 
 export default function createForm (data, options = {}, render = null) {
-  let { LaraformInstaller, config, store } = installLaraform(options)
+  let { VueformInstaller, config, store } = installVueform(options)
 
   let app = Object.assign({}, {
     setup() {
@@ -43,7 +43,7 @@ export default function createForm (data, options = {}, render = null) {
     },
     render() {
       return h('div', [
-        h(resolveComponent('Laraform'), Object.assign({}, data.props, {
+        h(resolveComponent('Vueform'), Object.assign({}, data.props, {
           ref: 'form',
         }, data.model ? {
           modelValue: this.data,
@@ -62,7 +62,7 @@ export default function createForm (data, options = {}, render = null) {
 
   let finalConfig = Object.assign({}, config, options.config || {})
 
-  let $laraform = {
+  let $vueform = {
     test: true,
     config: finalConfig,
     classes: finalConfig.classes,
@@ -83,10 +83,10 @@ export default function createForm (data, options = {}, render = null) {
     },
   }
 
-  let $laraformMixin = {
+  let $vueformMixin = {
     data() {
       return {
-        $laraform,
+        $vueform,
       }
     }
   }
@@ -94,8 +94,8 @@ export default function createForm (data, options = {}, render = null) {
   let mountOptions = {
     propsData: options.propsData || {},
     global: {
-      mixins: [$laraformMixin],
-      plugins: [LaraformInstaller],
+      mixins: [$vueformMixin],
+      plugins: [VueformInstaller],
       components: {
         TrixEditor,
       },
@@ -110,6 +110,6 @@ export default function createForm (data, options = {}, render = null) {
 
   return {
     app: wrapper,
-    form: wrapper.findComponent({ name: 'Laraform' }),
+    form: wrapper.findComponent({ name: 'Vueform' }),
   }
 }

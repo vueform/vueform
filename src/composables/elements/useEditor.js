@@ -31,7 +31,7 @@ const base = function (props, context, dependencies)
   * @private
   */
   const editorEndpoint = computed(() => {
-    return endpoint.value || form$.value.$laraform.config.endpoints.attachment.url
+    return endpoint.value || form$.value.$vueform.config.endpoints.attachment.url
   })
 
   /**
@@ -42,7 +42,7 @@ const base = function (props, context, dependencies)
   * @private
   */
   const editorMethod = computed(() => {
-    return method.value || form$.value.$laraform.config.endpoints.attachment.method
+    return method.value || form$.value.$vueform.config.endpoints.attachment.method
   })
 
 

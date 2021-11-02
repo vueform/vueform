@@ -33,11 +33,11 @@ import unselect from './../unselect'
 import createElement from './createElement'
 import createForm from './createForm'
 import createInlineForm from './createInlineForm'
-import createLaraformInstaller from './createLaraformInstaller'
+import createVueformInstaller from './createVueformInstaller'
 import destroy from './destroy'
 import findAll from './findAll'
 import findAllComponents from './findAllComponents'
-import installLaraform from './installLaraform'
+import installVueform from './installVueform'
 import isVisible from './isVisible'
 
 window.createForm = createForm
@@ -51,7 +51,7 @@ export {
   createElement,
   createForm,
   createInlineForm,
-  createLaraformInstaller,
+  createVueformInstaller,
   createEditor,
   destroy,
   listChild,
@@ -59,7 +59,7 @@ export {
   listSchema,
   findAll,
   findAllComponents,
-  installLaraform,
+  installVueform,
   isVisible,
   runElementTests,
   runFeatureTests,

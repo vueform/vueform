@@ -72,7 +72,7 @@ export const classes = function (elementType, elementName, options) {
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
     // This also works but running tests with Vue2 fails for some reason
-    // el.$laraform.config.themes.default.classes[elementName] = overwriteClasses2
+    // el.$vueform.config.themes.default.classes[elementName] = overwriteClasses2
     // expect(el.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     
     // destroy(form) // teardown
@@ -203,7 +203,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-    form.vm.$set(form.vm.laraform.schema.el.replaceClasses, elementName, overwriteClasses2)
+    form.vm.$set(form.vm.vueform.schema.el.replaceClasses, elementName, overwriteClasses2)
     await nextTick()
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))    
@@ -244,7 +244,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-    form.vm.$set(form.vm.laraform.schema.el.replaceClasses, elementName, overwriteClasses2)
+    form.vm.$set(form.vm.vueform.schema.el.replaceClasses, elementName, overwriteClasses2)
     await nextTick()
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))    
@@ -280,7 +280,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-    form.vm.$set(form.vm.laraform.schema.el.replaceClasses, elementName, overwriteClasses2)
+    form.vm.$set(form.vm.vueform.schema.el.replaceClasses, elementName, overwriteClasses2)
     await nextTick()
 
     expect(el.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))    
@@ -311,7 +311,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses1[mainClass])))
 
-    form.vm.$set(form.vm.laraform.schema.el.extendClasses, elementName, extendClasses2)
+    form.vm.$set(form.vm.vueform.schema.el.extendClasses, elementName, extendClasses2)
     await nextTick()
 
     expect(el.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses2[mainClass])))
@@ -440,7 +440,7 @@ export const rendering = function (elementType, elementName, options) {
     expect(elWrapper.classes('element-add-class')).toBe(true)
     expect(elWrapper.classes('element-add-classes')).toBe(true)
 
-    form.vm.$set(form.vm.laraform.schema.el.replaceClasses[elementName], mainClass, 'element-add-classes2')
+    form.vm.$set(form.vm.vueform.schema.el.replaceClasses[elementName], mainClass, 'element-add-classes2')
 
     await nextTick()
 
@@ -500,7 +500,7 @@ export const rendering = function (elementType, elementName, options) {
     expect(elWrapper.classes('element-add-class')).toBe(true)
     expect(elWrapper.classes('element-add-classes')).toBe(true)
 
-    form.vm.$set(form.vm.laraform.schema.el.extendClasses[elementName], mainClass, 'element-add-classes2')
+    form.vm.$set(form.vm.vueform.schema.el.extendClasses[elementName], mainClass, 'element-add-classes2')
 
     await nextTick()
 

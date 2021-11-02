@@ -188,7 +188,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
       // This also works but running tests with Vue2 fails for some reason
-      // el.$laraform.config.themes.default.classes[elementName] = overwriteClasses2
+      // el.$vueform.config.themes.default.classes[elementName] = overwriteClasses2
       // expect(Component.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
     })
 
@@ -341,7 +341,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      form.vm.$set(form.vm.laraform.schema.el.replaceClasses, componentName, overwriteClasses2)
+      form.vm.$set(form.vm.vueform.schema.el.replaceClasses, componentName, overwriteClasses2)
       await nextTick()
       await nextTick()
 
@@ -389,7 +389,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      form.vm.$set(form.vm.laraform.schema.el.replaceClasses, componentName, overwriteClasses2)
+      form.vm.$set(form.vm.vueform.schema.el.replaceClasses, componentName, overwriteClasses2)
       await nextTick()
 
       Component = findAllComponents(form, { name: componentName }).at(0)
@@ -433,7 +433,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
 
-      form.vm.$set(form.vm.laraform.schema.el.replaceClasses, componentName, overwriteClasses2)
+      form.vm.$set(form.vm.vueform.schema.el.replaceClasses, componentName, overwriteClasses2)
       await nextTick()
 
       Component = findAllComponents(form, { name: componentName }).at(0)
@@ -472,7 +472,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses1[mainClass])))
 
-      form.vm.$set(form.vm.laraform.schema.el.extendClasses, componentName, extendClasses2)
+      form.vm.$set(form.vm.vueform.schema.el.extendClasses, componentName, extendClasses2)
       await nextTick()
 
       Component = findAllComponents(form, { name: componentName }).at(0)

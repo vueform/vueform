@@ -187,7 +187,7 @@ export const pending = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.$laraform.services.axios.post = axiosPostMock
+    el.$vueform.services.axios.post = axiosPostMock
 
     el.validate()
 
@@ -218,7 +218,7 @@ export const debouncing = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.$laraform.services.axios.post = axiosPostMock
+    el.$vueform.services.axios.post = axiosPostMock
 
     el.validate()
 
@@ -248,7 +248,7 @@ export const busy = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.$laraform.services.axios.request = axiosRequestMock
+    el.$vueform.services.axios.request = axiosRequestMock
 
     el.validate()
 
@@ -277,7 +277,7 @@ export const busy = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.$laraform.services.axios.post = axiosPostMock
+    el.$vueform.services.axios.post = axiosPostMock
 
     el.validate()
 
@@ -542,7 +542,7 @@ export const messageBag = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.messageBag instanceof el.$laraform.services.messageBag).toBe(true)
+    expect(el.messageBag instanceof el.$vueform.services.messageBag).toBe(true)
 
     // destroy() // teardown
   })
@@ -589,7 +589,7 @@ export const watchers = function (elementType, elementName, options) {
     expect(el.Validators[0] instanceof Validator).toBe(true)
     expect(el.Validators[0].name).toBe('required')
 
-    form.vm.laraform.schema.el.rules = 'email|required'
+    form.vm.vueform.schema.el.rules = 'email|required'
 
     await nextTick()
 

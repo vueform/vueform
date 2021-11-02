@@ -57,11 +57,11 @@ export default {
 
       switch (type.value) {
         case 'previous':
-          return stepLabels && stepLabels.previous ? stepLabels.previous : form$.value.__('laraform.steps.previous')
+          return stepLabels && stepLabels.previous ? stepLabels.previous : form$.value.__('vueform.steps.previous')
         case 'next':
-          return stepLabels && stepLabels.next ? stepLabels.next : form$.value.__('laraform.steps.next')
+          return stepLabels && stepLabels.next ? stepLabels.next : form$.value.__('vueform.steps.next')
         case 'finish':
-          return stepLabels && stepLabels.finish ? stepLabels.finish : form$.value.__('laraform.steps.finish')
+          return stepLabels && stepLabels.finish ? stepLabels.finish : form$.value.__('vueform.steps.finish')
       }
     })
 

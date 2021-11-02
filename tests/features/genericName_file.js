@@ -45,7 +45,7 @@ export const genericName = function (elementType, elementName, options) {
 
     expect(el.genericName).toStrictEqual('File')
 
-    el.$set(form.vm.laraform.schema.el, 'embed', true)
+    el.$set(form.vm.vueform.schema.el, 'embed', true)
 
     expect(el.genericName).toStrictEqual('File')
     
@@ -65,7 +65,7 @@ export const genericName = function (elementType, elementName, options) {
 
     expect(el.genericName).toStrictEqual('El')
 
-    el.$set(form.vm.laraform.schema.el, 'embed', true)
+    el.$set(form.vm.vueform.schema.el, 'embed', true)
 
     expect(el.genericName).toStrictEqual('El')
     
@@ -83,11 +83,11 @@ export const genericName = function (elementType, elementName, options) {
 
     let el = form.vm.el$('0')
 
-    expect(el.genericName).toStrictEqual(el.__('laraform.elements.file.defaultName'))
+    expect(el.genericName).toStrictEqual(el.__('vueform.elements.file.defaultName'))
 
-    el.$set(form.vm.laraform.schema[0], 'embed', true)
+    el.$set(form.vm.vueform.schema[0], 'embed', true)
 
-    expect(el.genericName).toStrictEqual(el.__('laraform.elements.file.defaultName'))
+    expect(el.genericName).toStrictEqual(el.__('vueform.elements.file.defaultName'))
 
     // destroy() // teardown
   })

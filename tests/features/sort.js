@@ -240,7 +240,7 @@ export const watchers = function (elementType, elementName, options) {
     
     expect(el.sortable).toBe(null)
     
-    form.vm.$set(form.vm.laraform.schema.el, 'sort', true)
+    form.vm.$set(form.vm.vueform.schema.el, 'sort', true)
 
     await nextTick()
 
@@ -266,7 +266,7 @@ export const watchers = function (elementType, elementName, options) {
     
     expect(el.sortable).not.toBe(null)
     
-    form.vm.$set(form.vm.laraform.schema.el, 'sort', false)
+    form.vm.$set(form.vm.vueform.schema.el, 'sort', false)
 
     await nextTick()
 

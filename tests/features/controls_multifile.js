@@ -21,15 +21,15 @@ export const hasAdd = function (elementType, elementName, options) {
     expect(el.hasAdd).toBe(true)
 
     expect(el.hasAdd).toBe(true)
-    form.vm.$set(form.vm.laraform.schema.el.controls, 'add', false)
+    form.vm.$set(form.vm.vueform.schema.el.controls, 'add', false)
     await nextTick()
     expect(el.hasAdd).toBe(false)
 
-    form.vm.$set(form.vm.laraform.schema.el.controls, 'add', true)
+    form.vm.$set(form.vm.vueform.schema.el.controls, 'add', true)
     await nextTick()
     expect(el.hasAdd).toBe(true)
 
-    form.vm.$set(form.vm.laraform.schema.el, 'disabled', true)
+    form.vm.$set(form.vm.vueform.schema.el, 'disabled', true)
     await nextTick()
     expect(el.hasAdd).toBe(false)
   })
@@ -54,19 +54,19 @@ export const hasRemove = function (elementType, elementName, options) {
 
     expect(el.hasRemove).toBe(true)
 
-    form.vm.$set(form.vm.laraform.schema.el.controls, 'remove', false)
+    form.vm.$set(form.vm.vueform.schema.el.controls, 'remove', false)
     await nextTick()
     expect(el.hasRemove).toBe(false)
 
-    form.vm.$set(form.vm.laraform.schema.el.controls, 'remove', true)
+    form.vm.$set(form.vm.vueform.schema.el.controls, 'remove', true)
     await nextTick()
     expect(el.hasRemove).toBe(true)
 
-    form.vm.$set(form.vm.laraform.schema.el, 'disabled', true)
+    form.vm.$set(form.vm.vueform.schema.el, 'disabled', true)
     await nextTick()
     expect(el.hasRemove).toBe(false)
 
-    form.vm.$set(form.vm.laraform.schema.el, 'disabled', false)
+    form.vm.$set(form.vm.vueform.schema.el, 'disabled', false)
     await nextTick()
     expect(el.hasRemove).toBe(true)
 
@@ -99,27 +99,27 @@ export const hasSort = function (elementType, elementName, options) {
 
     expect(el.hasSort).toBe(true)
 
-    form.vm.$set(form.vm.laraform.schema.el.controls, 'sort', false)
+    form.vm.$set(form.vm.vueform.schema.el.controls, 'sort', false)
     await nextTick()
     expect(el.hasSort).toBe(false)
 
-    form.vm.$set(form.vm.laraform.schema.el.controls, 'sort', true)
+    form.vm.$set(form.vm.vueform.schema.el.controls, 'sort', true)
     await nextTick()
     expect(el.hasSort).toBe(true)
 
-    form.vm.$set(form.vm.laraform.schema.el, 'disabled', true)
+    form.vm.$set(form.vm.vueform.schema.el, 'disabled', true)
     await nextTick()
     expect(el.hasSort).toBe(false)
 
-    form.vm.$set(form.vm.laraform.schema.el, 'disabled', false)
+    form.vm.$set(form.vm.vueform.schema.el, 'disabled', false)
     await nextTick()
     expect(el.hasSort).toBe(true)
 
-    form.vm.$set(form.vm.laraform.schema.el, 'sort', false)
+    form.vm.$set(form.vm.vueform.schema.el, 'sort', false)
     await nextTick()
     expect(el.hasSort).toBe(false)
 
-    form.vm.$set(form.vm.laraform.schema.el, 'sort', true)
+    form.vm.$set(form.vm.vueform.schema.el, 'sort', true)
     await nextTick()
     expect(el.hasSort).toBe(true)
 

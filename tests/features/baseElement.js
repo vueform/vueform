@@ -208,7 +208,7 @@ export const hooks = function (elementType, elementName, options) {
       }
     })
 
-    form.vm.laraform.schema.el.type = elementType === 'text' ? 'textarea' : 'text'
+    form.vm.vueform.schema.el.type = elementType === 'text' ? 'textarea' : 'text'
 
     await nextTick()
 
@@ -229,7 +229,7 @@ export const hooks = function (elementType, elementName, options) {
       }
     })
 
-    form.vm.laraform.schema.el.type = elementType === 'text' ? 'textarea' : 'text'
+    form.vm.vueform.schema.el.type = elementType === 'text' ? 'textarea' : 'text'
 
     await nextTick()
 

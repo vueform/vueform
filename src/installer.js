@@ -38,7 +38,7 @@ import TTextareaElement from './components/elements/TTextareaElement'
 import TTextElement from './components/elements/TTextElement'
 import TEditorElement from './components/elements/TEditorElement'
 
-import Laraform from './components/Laraform'
+import Vueform from './components/Vueform'
 import FormErrors from './components/FormErrors'
 import FormMessages from './components/FormMessages'
 import FormLanguages from './components/FormLanguages'
@@ -73,7 +73,7 @@ import GalleryPreview from './components/elements/partials/GalleryPreview'
 import RadiogroupRadio from './components/elements/partials/RadiogroupRadio'
 
 const components = {
-  Laraform,
+  Vueform,
   FormErrors,
   FormMessages,
   FormLanguages,
@@ -137,7 +137,7 @@ const components = {
 }
 
 export default function(config) {
-  const Laraform = class {
+  const Vueform = class {
     constructor() {
       this.options = {
         config: _.omit(config, ['theme', 'templates', 'classes', 'locales', 'rules']),
@@ -310,12 +310,12 @@ export default function(config) {
           appOrVue.config.ignoredElements = ['trix-editor']
           appOrVue.config.unwrapInjectedRef = true
 
-          const $laraform = this.options
+          const $vueform = this.options
 
           appOrVue.mixin({
             data() {
               return {
-                $laraform: {},
+                $vueform: {},
               }
             },
             methods: {
@@ -323,14 +323,14 @@ export default function(config) {
             },
             beforeCreate() {
               // might exist as test mock
-              if (!this.$laraform) {
-                this.$laraform = {
-                  config: appOrVue.observable($laraform.config),
-                  classes: $laraform.classes,
-                  templates: $laraform.templates,
-                  rules: $laraform.rules,
-                  services: $laraform.services,
-                  theme: $laraform.theme,
+              if (!this.$vueform) {
+                this.$vueform = {
+                  config: appOrVue.observable($vueform.config),
+                  classes: $vueform.classes,
+                  templates: $vueform.templates,
+                  rules: $vueform.rules,
+                  services: $vueform.services,
+                  theme: $vueform.theme,
                 }
               }
             }
@@ -341,8 +341,8 @@ export default function(config) {
           appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
 
           appOrVue.config.unwrapInjectedRef = true
-          appOrVue.config.globalProperties.$laraform = this.options
-          appOrVue.provide('$laraform', this.options)
+          appOrVue.config.globalProperties.$vueform = this.options
+          appOrVue.provide('$vueform', this.options)
 
           appOrVue.mixin({
             methods: {
@@ -360,5 +360,5 @@ export default function(config) {
     }
   }
 
-  return new Laraform()
+  return new Vueform()
 }

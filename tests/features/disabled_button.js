@@ -45,7 +45,7 @@ export const isDisabled = function (elementType, elementName, options) {
         el: {
           type: elementType,
           disabled(form$) {
-            return form$.laraform.isTrue
+            return form$.vueform.isTrue
           }
         }
       }
@@ -55,7 +55,7 @@ export const isDisabled = function (elementType, elementName, options) {
 
     expect(el.isDisabled).toBe(true)
 
-    form.vm.laraform.isTrue = false
+    form.vm.vueform.isTrue = false
 
     expect(el.isDisabled).toBe(false)
     
@@ -81,13 +81,13 @@ export const isDisabled = function (elementType, elementName, options) {
     expect(Button.element.disabled).toBeTruthy()
 
     // label:string, disabled=true
-    form.vm.$set(form.vm.laraform.schema.el, 'disabled', false)
+    form.vm.$set(form.vm.vueform.schema.el, 'disabled', false)
     await nextTick()
     expect(Button.element.disabled).toBeFalsy()
 
     // label:component, disabled=true
-    form.vm.$set(form.vm.laraform.schema.el, 'disabled', true)
-    form.vm.$set(form.vm.laraform.schema.el, 'label', markRaw({
+    form.vm.$set(form.vm.vueform.schema.el, 'disabled', true)
+    form.vm.$set(form.vm.vueform.schema.el, 'label', markRaw({
       props: ['el$'],
       render(h) {
         return createElement(h, 'div', 'hello')
@@ -97,7 +97,7 @@ export const isDisabled = function (elementType, elementName, options) {
     expect(Button.element.disabled).toBeTruthy()
 
     // label:component, disabled=false
-    form.vm.$set(form.vm.laraform.schema.el, 'disabled', false)
+    form.vm.$set(form.vm.vueform.schema.el, 'disabled', false)
     await nextTick()
     expect(Button.element.disabled).toBeFalsy()
 

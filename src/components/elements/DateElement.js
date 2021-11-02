@@ -76,19 +76,19 @@ export default {
       required: false,
       type: [String],
       default: null,
-      '@default': 'locale.laraform.dateFormats.*',
+      '@default': 'locale.vueform.dateFormats.*',
     },
     valueFormat: {
       required: false,
       type: [String, Boolean],
       default: null,
-      '@default': 'locale.laraform.dateFormats.*',
+      '@default': 'locale.vueform.dateFormats.*',
     },
     loadFormat: {
       required: false,
       type: [String],
       default: null,
-      '@default': 'locale.laraform.dateFormats.*',
+      '@default': 'locale.vueform.dateFormats.*',
     },
     date: {
       required: false,

@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import { h, resolveComponent, ref } from 'composition-api'
 
 // Core
-import { Laraform, useLaraform } from './../../../src/index'
+import { Vueform, useVueform } from './../../../src/index'
 
 // Assets
 import en from './../../../src/locales/en'
@@ -19,19 +19,19 @@ import columns from './../../../src/services/columns'
 import axios from 'axios'
 
 // Helpers
-import { installLaraform } from './index'
+import { installVueform } from './index'
 
 // Mocks
 import TrixEditor from './../../mocks/TrixEditor'
 
 export default function createForm (data, options = {}, render = null) {
-  let { LocalVue, config, store } = installLaraform(options)
+  let { LocalVue, config, store } = installVueform(options)
 
   LocalVue.component(TrixEditor.name, TrixEditor)
 
   let app = Object.assign({}, {
     components: {
-      Laraform,
+      Vueform,
     },
     setup() {
       const form = ref(null)
@@ -47,7 +47,7 @@ export default function createForm (data, options = {}, render = null) {
     },
     render(h) {
       return h('div', [
-        h('laraform', {
+        h('vueform', {
           props: Object.assign({}, data.props, data.model ? {
             value: this.data
           } : {}),
@@ -71,7 +71,7 @@ export default function createForm (data, options = {}, render = null) {
     languages: {en:'English',fr:'French'},
   })
 
-  let $laraform = {
+  let $vueform = {
     test: true,
     config: finalConfig,
     classes: finalConfig.classes,
@@ -97,7 +97,7 @@ export default function createForm (data, options = {}, render = null) {
     store,
     propsData: options.propsData || {},
     mocks: {
-      $laraform: $laraform,
+      $vueform: $vueform,
       // $i18n: options.vueI18n ? new class VueI18n { get locale() { return options.vueI18nLocale || 'en' } } : null,
       // $t: options.vueI18n ? (str) => { return str + ' vue-i18n' } : null,
     }
@@ -111,6 +111,6 @@ export default function createForm (data, options = {}, render = null) {
 
   return {
     app: wrapper,
-    form: wrapper.findComponent({ name: 'Laraform' }),
+    form: wrapper.findComponent({ name: 'Vueform' }),
   }
 }

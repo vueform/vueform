@@ -12,7 +12,7 @@ const Factory = class {
   }
 
   get rules() {
-    return Object.assign({}, this.form$.$laraform.services.validation.rules, this.form$.$laraform.rules)
+    return Object.assign({}, this.form$.$vueform.services.validation.rules, this.form$.$vueform.rules)
   }
  
   makeAll(rules) {

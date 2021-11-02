@@ -240,7 +240,7 @@ export const handleChange = function (elementType, elementName, options) {
 
     expect(el.validated).toBe(false)
 
-    form.vm.laraform.validateOn = 'submit|change'
+    form.vm.vueform.validateOn = 'submit|change'
 
     el.input.update(15)
 

@@ -54,7 +54,7 @@ export const editorEndpoint = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.editorEndpoint).toStrictEqual(form.vm.$laraform.config.endpoints.attachment.url)
+    expect(el.editorEndpoint).toStrictEqual(form.vm.$vueform.config.endpoints.attachment.url)
   })
   
   it('should pass `endpoint` to Editor component', () => {

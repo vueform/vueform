@@ -21,10 +21,10 @@ const base = function(props, context, dependencies)
    * @private
    */
   const columnsClasses = computed(() => {
-    return (new form$.value.$laraform.services.columns(
+    return (new form$.value.$vueform.services.columns(
       columns.value,
       form$.value.options.columns,
-      form$.value.$laraform.config.columns,
+      form$.value.$vueform.config.columns,
       hasLabel.value,
       theme.value.columns,
     )).classes

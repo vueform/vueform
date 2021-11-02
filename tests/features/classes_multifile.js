@@ -90,7 +90,7 @@ export const classes = function (elementType, elementName, options) {
     expect(el.classes.handleIcon).not.toContain(el.classes.handleIcon_image)
     expect(el.classes.handleIcon).not.toContain(el.classes.handleIcon_gallery)
     
-    form.vm.$set(form.vm.laraform.schema.el, 'view', 'gallery')
+    form.vm.$set(form.vm.vueform.schema.el, 'view', 'gallery')
 
     await nextTick()
 

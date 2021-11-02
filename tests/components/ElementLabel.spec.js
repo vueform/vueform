@@ -41,7 +41,7 @@ describe('ElementLabel', () => {
             type: 'text',
             labelVar: 'Name Var',
             label: (el$) => {
-              return el$.form$.laraform.schema.name.labelVar
+              return el$.form$.vueform.schema.name.labelVar
             }
           }
         }
@@ -57,7 +57,7 @@ describe('ElementLabel', () => {
             type: 'text',
             labelVar: 'Name Var',
             label: (el$) => {
-              return el$.form$.laraform.schema.name.labelVar
+              return el$.form$.vueform.schema.name.labelVar
             }
           }
         }
@@ -65,7 +65,7 @@ describe('ElementLabel', () => {
 
       expect(form.findComponent({name: 'ElementLabel'}).html()).toContain('Name Var')
 
-      form.vm.laraform.schema.name.labelVar = 'Name Var Updated'
+      form.vm.vueform.schema.name.labelVar = 'Name Var Updated'
 
       await nextTick()
       expect(form.findComponent({name: 'ElementLabel'}).html()).toContain('Name Var Updated')

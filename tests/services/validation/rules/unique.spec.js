@@ -25,7 +25,7 @@ describe('Unique Rule', () => {
 
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
-    form.vm.$laraform.services.axios.request = jest.fn(() => ({data:true}))
+    form.vm.$vueform.services.axios.request = jest.fn(() => ({data:true}))
 
     a.vm.validate()
 
@@ -46,7 +46,7 @@ describe('Unique Rule', () => {
 
     let a = findAllComponents(form, { name: 'TextElement' }).at(0)
 
-    form.vm.$laraform.services.axios.request = jest.fn(() => ({data:false}))
+    form.vm.$vueform.services.axios.request = jest.fn(() => ({data:false}))
 
     a.vm.validate()
 
@@ -74,7 +74,7 @@ describe('Unique Rule', () => {
 
     let postMock = jest.fn(() => ({data:true}))
 
-    form.vm.$laraform.services.axios.request = postMock
+    form.vm.$vueform.services.axios.request = postMock
 
     a.vm.validate()
 
@@ -82,8 +82,8 @@ describe('Unique Rule', () => {
 
     expect(postMock).toHaveBeenCalledTimes(1)
     expect(postMock).toHaveBeenCalledWith({
-      url: a.vm.$laraform.config.endpoints.unique.url,
-      method: a.vm.$laraform.config.endpoints.unique.method,
+      url: a.vm.$vueform.config.endpoints.unique.url,
+      method: a.vm.$vueform.config.endpoints.unique.method,
       data: {
         params: {
           "0": 'a',

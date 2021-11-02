@@ -17,7 +17,7 @@ export const busy = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.$laraform.services.axios.request = axiosRequestMock
+    el.$vueform.services.axios.request = axiosRequestMock
 
     el.validate()
 

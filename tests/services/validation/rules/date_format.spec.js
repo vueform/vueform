@@ -4,7 +4,7 @@ import { nextTick } from 'composition-api'
 
 const setRule = async function (form, rule) {
   form.vm.elements$.a.Validators.splice(0)
-  form.vm.$set(form.vm.laraform.schema.a, 'rules', rule)
+  form.vm.$set(form.vm.vueform.schema.a, 'rules', rule)
   await nextTick()
   form.vm.elements$.a.initValidation()
 }

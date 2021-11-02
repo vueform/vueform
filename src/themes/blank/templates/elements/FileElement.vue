@@ -4,8 +4,8 @@
       <!-- Drag n drop -->
       <DragAndDrop
         v-if="drop && canDrop && canSelect"
-        :title="__(`laraform.elements.${type}.dndTitle`)"
-        :description="__(`laraform.elements.${type}.dndDescription`)"
+        :title="__(`vueform.elements.${type}.dndTitle`)"
+        :description="__(`vueform.elements.${type}.dndDescription`)"
         :disabled="isDisabled"
         @click="handleClick"
         @drop="handleDrop"
@@ -17,7 +17,7 @@
         href=""
         :class="classes.button"
         @click.prevent="handleClick"
-      >{{ __(`laraform.elements.${type}.select`) }}</a>
+      >{{ __(`vueform.elements.${type}.select`) }}</a>
       
       <!-- Hidden file input -->
       <input

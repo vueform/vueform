@@ -107,12 +107,12 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * The text for upload button. Can be changed at the locale file: `laraform.elements.file.upload`
+   * The text for upload button. Can be changed at the locale file: `vueform.elements.file.upload`
    * 
    * @type {string}
    */
   const uploadText = computed(() => {
-    return el$.value.__('laraform.elements.file.upload')
+    return el$.value.__('vueform.elements.file.upload')
   })
 
   // =============== METHODS ==============

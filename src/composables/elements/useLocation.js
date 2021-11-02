@@ -41,7 +41,7 @@ const base = function (props, context, dependencies, options_ = {})
   // ============== COMPUTED ==============
 
   const locationProvider = computed(() => {
-    return provider.value || form$.value.$laraform.config.locationProvider
+    return provider.value || form$.value.$vueform.config.locationProvider
   })
 
   /**
@@ -57,8 +57,8 @@ const base = function (props, context, dependencies, options_ = {})
       },
       algolia: {
         type: 'address',
-        appId: form$.value.$laraform.config.services.algolia.app_id,
-        apiKey: form$.value.$laraform.config.services.algolia.api_key,
+        appId: form$.value.$vueform.config.services.algolia.app_id,
+        apiKey: form$.value.$vueform.config.services.algolia.api_key,
         templates: options_.templates || {}
       }
     }
@@ -115,7 +115,7 @@ const base = function (props, context, dependencies, options_ = {})
    * @returns {void}
    */
   const initLocationService = () => {
-    locationService.value = new form$.value.$laraform.services.location[locationProvider.value]
+    locationService.value = new form$.value.$vueform.services.location[locationProvider.value]
     locationService.value.init(inputElement(), handleAddressChange, providerOptions.value)
   }
 

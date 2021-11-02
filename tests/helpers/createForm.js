@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import { onMounted } from 'composition-api'
 
 // Core
-import { Laraform, useLaraform } from './../../src/index'
+import { Vueform, useVueform } from './../../src/index'
 
 // Assets
 import en from './../../src/locales/en'
@@ -20,7 +20,7 @@ import _ from 'lodash'
 import axios from 'axios'
 
 // Helpers
-import { installLaraform } from './index'
+import { installVueform } from './index'
 
 // Mocks
 import TrixEditor from './../mocks/TrixEditor'
@@ -28,22 +28,22 @@ import TrixEditor from './../mocks/TrixEditor'
 window._ = _
 
 export default function createForm (data, options = {}, render = null) {
-  let { LaraformInstaller, config, store } = installLaraform(options)
+  let { VueformInstaller, config, store } = installVueform(options)
 
   let form = Object.assign({}, {
-    mixins: [Laraform],
+    mixins: [Vueform],
     setup(props, context) {
       const setup = options.setup ? options.setup(props, context) : {}
-      const laraform = useLaraform(props, context, setup)
+      const vueform = useVueform(props, context, setup)
 
       return {
-        ...laraform,
+        ...vueform,
         ...setup,
       }
     },
     data() {
       return Object.keys(data).length ? {
-        laraform: data
+        vueform: data
       } : {}
     },
     mounted() {
@@ -57,7 +57,7 @@ export default function createForm (data, options = {}, render = null) {
 
   let finalConfig = Object.assign({}, config, options.config || {})
 
-  let $laraform = {
+  let $vueform = {
     test: true,
     config: finalConfig,
     classes: finalConfig.classes,
@@ -78,10 +78,10 @@ export default function createForm (data, options = {}, render = null) {
     },
   }
 
-  let $laraformMixin = {
+  let $vueformMixin = {
     data() {
       return {
-        $laraform,
+        $vueform,
       }
     }
   }
@@ -89,8 +89,8 @@ export default function createForm (data, options = {}, render = null) {
   let mountOptions = {
     propsData: options.propsData || {},
     global: {
-      mixins: [$laraformMixin],
-      plugins: [LaraformInstaller],
+      mixins: [$vueformMixin],
+      plugins: [VueformInstaller],
       components: {
         TrixEditor
       },

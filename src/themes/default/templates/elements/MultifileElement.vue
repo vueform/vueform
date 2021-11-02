@@ -38,7 +38,7 @@
 </script>
 
 <style lang="scss">
-  // Some styles are contained in Laraform.vue
+  // Some styles are contained in Vueform.vue
 
   .vf-btn-upload {
     margin-bottom: calc(var(--vf-gutter) / 2);

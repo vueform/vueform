@@ -4,8 +4,8 @@
       <!-- Drag n drop -->
       <DragAndDrop
         v-if="drop && canDrop && hasAdd"
-        :title="__(`laraform.elements.${type}.dndTitle`)"
-        :description="__(`laraform.elements.${type}.dndDescription`)"
+        :title="__(`vueform.elements.${type}.dndTitle`)"
+        :description="__(`vueform.elements.${type}.dndDescription`)"
         :disabled="isDisabled"
         :class="classes.dnd"
         @click="handleClick"
@@ -18,7 +18,7 @@
         href=""
         :class="classes.button"
         @click.prevent="handleClick"
-      >{{ __('laraform.elements.multifile.uploadButton') }}</a>
+      >{{ __('vueform.elements.multifile.uploadButton') }}</a>
       
       <!-- Actual input field -->
       <input

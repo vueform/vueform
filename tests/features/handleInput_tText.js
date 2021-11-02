@@ -138,7 +138,7 @@ export const handleInput = function (elementType, elementName, options) {
 
     expect(el.state.validated.en).toBe(false)
 
-    form.vm.laraform.validateOn = 'change'
+    form.vm.vueform.validateOn = 'change'
 
     elWrapper.get(options.fieldType).setValue('value2')
 

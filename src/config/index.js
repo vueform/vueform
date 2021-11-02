@@ -43,19 +43,19 @@ const config = {
    */
   endpoints: {
     submit: {
-      url: '/laraform/process',
+      url: '/vueform/process',
       method: 'post',
     },
     uploadTempFile: {
-      url: '/laraform/file/upload-temp',
+      url: '/vueform/file/upload-temp',
       method: 'post',
     },
     removeTempFile: {
-      url: '/laraform/file/remove-temp',
+      url: '/vueform/file/remove-temp',
       method: 'post',
     },
     removeFile: {
-      url: '/laraform/file/remove',
+      url: '/vueform/file/remove',
       method: 'post',
     },
     attachment: {

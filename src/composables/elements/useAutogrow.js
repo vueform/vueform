@@ -24,17 +24,17 @@ const base = function(props, context, dependencies)
       return
     }
     
-    form$.value.$laraform.services.autosize.update(input.value)
+    form$.value.$vueform.services.autosize.update(input.value)
   }
 
   // ============== WATCHERS ==============
 
   watch(autogrow, (newValue) => {
     if (newValue) {
-      form$.value.$laraform.services.autosize(input.value)
+      form$.value.$vueform.services.autosize(input.value)
     }
     else {
-      form$.value.$laraform.services.autosize.destroy(input.value)
+      form$.value.$vueform.services.autosize.destroy(input.value)
     }
   })
 
@@ -47,7 +47,7 @@ const base = function(props, context, dependencies)
   onMounted(() => {
     if (autogrow.value) {
       nextTick(() => {
-        form$.value.$laraform.services.autosize(input.value)
+        form$.value.$vueform.services.autosize(input.value)
       })
     }
   })

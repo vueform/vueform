@@ -30,7 +30,7 @@ export const displayDateFormat = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.displayDateFormat).toBe(el.__('laraform.dateFormats.date'))
+    expect(el.displayDateFormat).toBe(el.__('vueform.dateFormats.date'))
 
     // destroy() // teardown
   })
@@ -65,7 +65,7 @@ export const valueDateFormat = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.valueDateFormat).toBe(el.__('laraform.dateFormats.date'))
+    expect(el.valueDateFormat).toBe(el.__('vueform.dateFormats.date'))
     
     // destroy(form) // teardown
   })
@@ -117,7 +117,7 @@ export const loadDateFormat = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.loadDateFormat).toBe(el.__('laraform.dateFormats.date'))
+    expect(el.loadDateFormat).toBe(el.__('vueform.dateFormats.date'))
     
     // destroy(form) // teardown
   })

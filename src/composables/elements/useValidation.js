@@ -217,7 +217,7 @@ const base = function(props, context, dependencies)
    * @private
    */
   const initMessageBag = () => {
-    messageBag.value = new form$.value.$laraform.services.messageBag(validatorErrors)
+    messageBag.value = new form$.value.$vueform.services.messageBag(validatorErrors)
   }
 
   /**
@@ -235,7 +235,7 @@ const base = function(props, context, dependencies)
     // qualify as validated by default
     state.value.validated = false
 
-    validatorFactory.value = new form$.value.$laraform.services.validation.factory(path.value, form$.value)
+    validatorFactory.value = new form$.value.$vueform.services.validation.factory(path.value, form$.value)
 
     Validators.value = []
 
@@ -435,7 +435,7 @@ const list = function(props, context, dependencies)
   }
 
   const initMessageBag = () => {
-    messageBag.value = new form$.value.$laraform.services.messageBag(baseErrors)
+    messageBag.value = new form$.value.$vueform.services.messageBag(baseErrors)
   }
 
   return {
@@ -683,7 +683,7 @@ const multilingual = function(props, context, dependencies)
   }
 
   const initMessageBag = () => {
-    messageBag.value = new form$.value.$laraform.services.messageBag(validatorErrors)
+    messageBag.value = new form$.value.$vueform.services.messageBag(validatorErrors)
   }
 
   const initValidation = () => {
@@ -697,7 +697,7 @@ const multilingual = function(props, context, dependencies)
       state.value.validated[lang] = r !== null && r.length > 0 ? false : true
     })
 
-    var factory = new form$.value.$laraform.services.validation.factory(path.value, form$.value)
+    var factory = new form$.value.$vueform.services.validation.factory(path.value, form$.value)
 
     Validators.value = {}
 
@@ -839,7 +839,7 @@ const object = function(props, context, dependencies)
   }
   
   const initMessageBag = (el$) => {
-    messageBag.value = new form$.value.$laraform.services.messageBag(childrenErrors)
+    messageBag.value = new form$.value.$vueform.services.messageBag(childrenErrors)
   }
 
   return {

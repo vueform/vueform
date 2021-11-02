@@ -40,7 +40,7 @@
         v-if="hasAdd"
         :class="classes.add"
         @click.prevent="handleAdd"
-        v-html="__('laraform.elements.list.add')"
+        v-html="__('vueform.elements.list.add')"
       ></a>
     </template>
 

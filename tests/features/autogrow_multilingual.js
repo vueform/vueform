@@ -19,7 +19,7 @@ export const autosize = function (elementType, elementName, options) {
 
     let updateMock = jest.fn()
 
-    el.$laraform.services.autosize.update = updateMock
+    el.$vueform.services.autosize.update = updateMock
 
     await nextTick()
 

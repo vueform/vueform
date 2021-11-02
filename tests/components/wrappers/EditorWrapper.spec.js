@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import { createForm, findAllComponents, installLaraform, createElement } from 'test-helpers'
+import { createForm, findAllComponents, installVueform, createElement } from 'test-helpers'
 import { markRaw, nextTick } from 'composition-api'
 import TrixEditor from './../../mocks/TrixEditor'
 import flushPromises from 'flush-promises'
@@ -398,7 +398,7 @@ describe('Editor Element Rendering', () => {
       }
     })
 
-    form.vm.$laraform.services.axios = axiosMock
+    form.vm.$vueform.services.axios = axiosMock
 
     let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
@@ -430,11 +430,11 @@ describe('Editor Element Rendering', () => {
       }
     })
 
-    form.vm.$laraform.services.axios = axiosMock
+    form.vm.$vueform.services.axios = axiosMock
 
     let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
-    form.vm.$set(form.vm.laraform.schema.a, 'endpoint', null)
+    form.vm.$set(form.vm.vueform.schema.a, 'endpoint', null)
 
     await nextTick()
     let editor$ = a.vm.input
@@ -483,7 +483,7 @@ describe('Editor Element Rendering', () => {
 
     let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
-    a.vm.$laraform.services.axios = axiosMock
+    a.vm.$vueform.services.axios = axiosMock
 
     await nextTick()
     let editor$ = a.vm.input

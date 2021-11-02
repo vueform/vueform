@@ -12,7 +12,7 @@ export const component = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.component(form.vm.laraform.schema.el)).toStrictEqual(`${_.upperFirst(_.camelCase(elementType))}Element`)
+    expect(el.component(form.vm.vueform.schema.el)).toStrictEqual(`${_.upperFirst(_.camelCase(elementType))}Element`)
 
     // destroy() // teardown
   })

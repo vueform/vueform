@@ -30,10 +30,10 @@ export default class unique extends Validator {
   }
   
   async check(value) {
-    const endpoint = this.form$.$laraform.config.endpoints.unique
+    const endpoint = this.form$.$vueform.config.endpoints.unique
     const method = endpoint.method
 
-    const res = await this.form$.$laraform.services.axios.request({
+    const res = await this.form$.$vueform.services.axios.request({
       url: endpoint.url,
       method,
       [method.toLowerCase() === 'get' ? 'params' : 'data']: {

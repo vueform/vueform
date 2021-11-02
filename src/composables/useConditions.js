@@ -27,7 +27,7 @@ const base = function(props, context, dependencies)
     }
 
     return !_.some(conditions.value, (condition) => {
-      return !form$.value.$laraform.services.condition.check(condition, path.value, form$.value)
+      return !form$.value.$vueform.services.condition.check(condition, path.value, form$.value)
     })
   })
 

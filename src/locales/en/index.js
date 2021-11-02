@@ -1,5 +1,5 @@
 export default {
-  laraform: {
+  vueform: {
     elements: {
       date: {
         displayFormat: 'YYYY-MM-DD',

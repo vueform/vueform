@@ -6,10 +6,10 @@ export default class active_url extends Validator {
   }
 
   async check(value) {
-    const endpoint = this.form$.$laraform.config.endpoints.activeUrl
+    const endpoint = this.form$.$vueform.config.endpoints.activeUrl
     const method = endpoint.method
 
-    const res = await this.form$.$laraform.services.axios.request({
+    const res = await this.form$.$vueform.services.axios.request({
       url: endpoint.url,
       method,
       [method.toLowerCase() === 'get' ? 'params' : 'data']: {

@@ -171,7 +171,7 @@ describe('DatepickerWrapper', () => {
 
       expect(el.input.datepicker$.input.parentElement.id).toBe('datepicker-el')
 
-      form.vm.laraform.schema.el.id = 'not-el'
+      form.vm.vueform.schema.el.id = 'not-el'
 
       await nextTick()
 
@@ -193,7 +193,7 @@ describe('DatepickerWrapper', () => {
 
       expect(el.input.datepicker$.config.mode).toBe('multiple')
 
-      form.vm.laraform.schema.el.mode = 'range'
+      form.vm.vueform.schema.el.mode = 'range'
 
       await nextTick()
 

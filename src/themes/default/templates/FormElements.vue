@@ -15,5 +15,5 @@
 </script>
 
 <style lang="scss">
-  // Some styles are contained in Laraform.vue
+  // Some styles are contained in Vueform.vue
 </style>

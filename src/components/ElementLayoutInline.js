@@ -26,7 +26,7 @@ export default {
     // ============== COMPUTED ==============
 
     // /**
-    //  * Whether the element has a [`:label`](#label) or `Laraform` component's [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.
+    //  * Whether the element has a [`:label`](#label) or `Vueform` component's [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.
     //  * 
     //  * @type {boolean}
     //  */

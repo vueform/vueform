@@ -20,7 +20,7 @@ export const classes = function (elementType, elementName, options) {
 
     expect(el.classes.input).not.toContain(el.classes.input_disabled)
 
-    form.vm.$set(form.vm.laraform.schema.el, 'disabled', true)
+    form.vm.$set(form.vm.vueform.schema.el, 'disabled', true)
 
     await nextTick()
 

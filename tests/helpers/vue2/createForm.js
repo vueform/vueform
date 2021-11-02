@@ -1,7 +1,7 @@
 import { mount, shallowMount } from '@vue/test-utils'
 
 // Core
-import { Laraform, useLaraform } from './../../../src/index'
+import { Vueform, useVueform } from './../../../src/index'
 
 // Assets
 import en from './../../../src/locales/en'
@@ -19,7 +19,7 @@ import _ from 'lodash'
 import axios from 'axios'
 
 // Helpers
-import { installLaraform } from './index'
+import { installVueform } from './index'
 
 // Mocks
 import TrixEditor from './../../mocks/TrixEditor'
@@ -27,24 +27,24 @@ import TrixEditor from './../../mocks/TrixEditor'
 window._ = _
 
 export default function createForm (data, options = {}, render = null) {
-  let { LocalVue, config, store } = installLaraform(options)
+  let { LocalVue, config, store } = installVueform(options)
 
   LocalVue.component(TrixEditor.name, TrixEditor)
 
   let form = LocalVue.extend(Object.assign({}, {
-    mixins: [Laraform],
+    mixins: [Vueform],
     setup(props, context) {
       const setup = options.setup ? options.setup(props, context) : {}
-      const laraform = useLaraform(props, context, setup)
+      const vueform = useVueform(props, context, setup)
 
       return {
-        ...laraform,
+        ...vueform,
         ...setup,
       }
     },
     data() {
       return Object.keys(data).length ? {
-        laraform: data
+        vueform: data
       } : {}
     },
     mounted() {
@@ -58,7 +58,7 @@ export default function createForm (data, options = {}, render = null) {
 
   let finalConfig = Object.assign({}, config, options.config || {})
 
-  let $laraform = {
+  let $vueform = {
     test: true,
     config: finalConfig,
     classes: finalConfig.classes,
@@ -84,7 +84,7 @@ export default function createForm (data, options = {}, render = null) {
     store,
     propsData: options.propsData || {},
     mocks: {
-      $laraform: $laraform,
+      $vueform: $vueform,
       // $i18n: options.vueI18n ? new class VueI18n { get locale() { return options.vueI18nLocale || 'en' } } : null,
       // $t: options.vueI18n ? (str) => { return str + ' vue-i18n' } : null,
     }

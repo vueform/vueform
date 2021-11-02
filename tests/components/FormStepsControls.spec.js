@@ -172,7 +172,7 @@ describe('FormStepsControls', () => {
         }
       })
 
-      form.vm.$laraform.services.axios.request = () => { return { data: {} } }
+      form.vm.$vueform.services.axios.request = () => { return { data: {} } }
 
       let steps = form.findComponent({ name: 'FormSteps' })
       let next = findAllComponents(form, { name: 'FormStepsControl' }).at(1)
@@ -256,7 +256,7 @@ describe('FormStepsControls', () => {
         }
       })
 
-      form.vm.$laraform.services.axios.request = () => { return { data: {} } }
+      form.vm.$vueform.services.axios.request = () => { return { data: {} } }
 
       let steps = form.findComponent({ name: 'FormSteps' })
 
@@ -300,7 +300,7 @@ describe('FormStepsControls', () => {
         }
       })
 
-      form.vm.$laraform.services.axios.request = () => { return { data: {} } }
+      form.vm.$vueform.services.axios.request = () => { return { data: {} } }
 
       let steps = form.findComponent({ name: 'FormSteps' })
 
@@ -343,7 +343,7 @@ describe('FormStepsControls', () => {
         }
       })
 
-      form.vm.$laraform.services.axios.request = () => { return { data: false } }
+      form.vm.$vueform.services.axios.request = () => { return { data: false } }
 
       let steps = form.findComponent({ name: 'FormSteps' })
 

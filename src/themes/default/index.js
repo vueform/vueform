@@ -1,4 +1,4 @@
-import Laraform from './templates/Laraform'
+import Vueform from './templates/Vueform'
 import FormErrors from './templates/FormErrors'
 import FormMessages from './templates/FormMessages'
 import FormLanguages from './templates/FormLanguages'
@@ -64,7 +64,7 @@ import columns from './columns'
 import classes from './classes'
 
 const templates = {
-  Laraform,
+  Vueform,
   FormErrors,
   FormMessages,
   FormLanguages,

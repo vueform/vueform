@@ -64,7 +64,7 @@ describe('FormTab', () => {
       expect(findAllComponents(form, { name: 'FormTab' }).at(0).html()).toContain('First')
       expect(findAllComponents(form, { name: 'FormTab' }).at(1).html()).toContain('Second')
 
-      form.vm.laraform.tabs.first.label = 'Not first'
+      form.vm.vueform.tabs.first.label = 'Not first'
 
       await nextTick()
 
@@ -76,11 +76,11 @@ describe('FormTab', () => {
         labelVar: 'var',
         tabs: {
           first: {
-            label: (form$) => { return 'First'+form$.laraform.labelVar },
+            label: (form$) => { return 'First'+form$.vueform.labelVar },
             elements: ['a'],
           },
           second: {
-            label: (form$) => { return 'Second'+form$.laraform.labelVar },
+            label: (form$) => { return 'Second'+form$.vueform.labelVar },
             elements: ['b']
           },
         },
@@ -97,7 +97,7 @@ describe('FormTab', () => {
       expect(findAllComponents(form, { name: 'FormTab' }).at(0).html()).toContain('Firstvar')
       expect(findAllComponents(form, { name: 'FormTab' }).at(1).html()).toContain('Secondvar')
 
-      form.vm.laraform.labelVar = 'notvar'
+      form.vm.vueform.labelVar = 'notvar'
 
       await nextTick()
 
@@ -112,7 +112,7 @@ describe('FormTab', () => {
             label: markRaw({
               props: ['tab', 'form$'],
               render(h) {
-                return createElement(h, 'div', this.form$.laraform.tabs.first.labelVar)
+                return createElement(h, 'div', this.form$.vueform.tabs.first.labelVar)
               }
             }),
             labelVar: 'First',
@@ -122,7 +122,7 @@ describe('FormTab', () => {
             label: markRaw({
               props: ['tab', 'form$'],
               render(h) {
-                return createElement(h, 'div', this.form$.laraform.tabs.first.labelVar)
+                return createElement(h, 'div', this.form$.vueform.tabs.first.labelVar)
               }
             }),
             labelVar: 'Second',
@@ -142,7 +142,7 @@ describe('FormTab', () => {
       expect(findAllComponents(form, { name: 'FormTab' }).at(0).html()).toContain('First')
       expect(findAllComponents(form, { name: 'FormTab' }).at(1).html()).toContain('Second')
 
-      form.vm.laraform.tabs.first.labelVar = 'Not first'
+      form.vm.vueform.tabs.first.labelVar = 'Not first'
 
       await nextTick()
 

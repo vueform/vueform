@@ -4,7 +4,7 @@ import confirmSelectOptions from './confirmSelectOptions'
 import createElement from './createElement'
 import createForm from './createForm'
 import createInlineForm from './createInlineForm'
-import createLaraformInstaller from './createLaraformInstaller'
+import createVueformInstaller from './createVueformInstaller'
 import createEditor from './createEditor'
 import destroy from './destroy'
 import listChild from './listChild'
@@ -12,7 +12,7 @@ import listChildValue from './listChildValue'
 import listSchema from './listSchema'
 import findAllComponents from './findAllComponents'
 import findAll from './findAll'
-import installLaraform from './installLaraform'
+import installVueform from './installVueform'
 import isVisible from './isVisible'
 import runElementTests from './runElementTests'
 import runFeatureTests from './runFeatureTests'
@@ -50,7 +50,7 @@ export {
   createElement,
   createForm,
   createInlineForm,
-  createLaraformInstaller,
+  createVueformInstaller,
   createEditor,
   destroy,
   listChild,
@@ -58,7 +58,7 @@ export {
   listSchema,
   findAllComponents,
   findAll,
-  installLaraform,
+  installVueform,
   isVisible,
   runElementTests,
   runFeatureTests,

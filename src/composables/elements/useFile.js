@@ -81,7 +81,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const uploadTempFileUrl = computed(() => {
-    return urls.value.uploadTempFile || form$.value.$laraform.config.endpoints.uploadTempFile.url
+    return urls.value.uploadTempFile || form$.value.$vueform.config.endpoints.uploadTempFile.url
   })
 
   /**
@@ -92,7 +92,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const removeTempFileUrl = computed(() => {
-    return urls.value.removeTempFile || form$.value.$laraform.config.endpoints.removeTempFile.url
+    return urls.value.removeTempFile || form$.value.$vueform.config.endpoints.removeTempFile.url
   })
 
   /**
@@ -103,7 +103,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const removeFileUrl = computed(() => {
-    return urls.value.removeFile || form$.value.$laraform.config.endpoints.removeFile.url
+    return urls.value.removeFile || form$.value.$vueform.config.endpoints.removeFile.url
   })
 
   /**
@@ -114,7 +114,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const uploadTempFileMethod = computed(() => {
-    return methods.value.uploadTempFile || form$.value.$laraform.config.endpoints.uploadTempFile.method
+    return methods.value.uploadTempFile || form$.value.$vueform.config.endpoints.uploadTempFile.method
   })
 
   /**
@@ -125,7 +125,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const removeTempFileMethod = computed(() => {
-    return methods.value.removeTempFile || form$.value.$laraform.config.endpoints.removeTempFile.method
+    return methods.value.removeTempFile || form$.value.$vueform.config.endpoints.removeTempFile.method
   })
 
   /**
@@ -136,7 +136,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const removeFileMethod = computed(() => {
-    return methods.value.removeFile || form$.value.$laraform.config.endpoints.removeFile.method
+    return methods.value.removeFile || form$.value.$vueform.config.endpoints.removeFile.method
   })
 
   /**
@@ -372,7 +372,7 @@ const base = function (props, context, dependencies)
 
     try {
       if (stage.value === 3 && !softRemove.value) {
-        if (!confirm(form$.value.__(`laraform.elements.file.removeConfirm`))) {
+        if (!confirm(form$.value.__(`vueform.elements.file.removeConfirm`))) {
           return false
         }
 
