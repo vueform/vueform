@@ -15,6 +15,8 @@
 </script>
 
 <style lang="scss">
+  @use "sass:math";
+  
   /*
    * Default variables
    *
@@ -574,8 +576,8 @@
   }
   
   @mixin make-col($size, $columns: $grid-columns) {
-    flex: 0 0 percentage($size / $columns);
-    max-width: percentage($size / $columns);
+    flex: 0 0 percentage(math.div($size, $columns));
+    max-width: percentage(math.div($size, $columns));
   }
   
   @mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
