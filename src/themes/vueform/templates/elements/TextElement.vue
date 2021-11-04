@@ -1,9 +1,9 @@
 <script>
-  import TextareaElement from './../../../blank/templates/elements/TextareaElement'
+  import TextElement from './../../../blank/templates/elements/TextElement'
 
   export default {
-    name: 'TextareaElement',
-    render: TextareaElement.render,
+    name: 'TextElement',
+    render: TextElement.render,
     data() {
       return {
         defaultClasses: {
@@ -14,7 +14,7 @@
           input_disabled: '',
         }
       }
-    }
+    },
   }
 </script>
 
