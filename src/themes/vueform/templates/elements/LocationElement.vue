@@ -1,5 +1,5 @@
 <script>
-  import LocationElement from './../../../blank/templates/elements/LocationElement'
+  import LocationElement from './../../../blank/templates/elements/LocationElement.vue'
 
   export default {
     name: 'LocationElement',

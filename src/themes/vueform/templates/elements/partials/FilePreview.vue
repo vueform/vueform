@@ -1,5 +1,5 @@
 <script>
-  import FilePreview from './../../../../blank/templates/elements/partials/FilePreview'
+  import FilePreview from './../../../../blank/templates/elements/partials/FilePreview.vue'
 
   export default {
     name: 'FilePreview',

@@ -1,6 +1,6 @@
 <script>
-  import TagsElement from './../../../blank/templates/elements/TagsElement'
-  import Multiselect from '@vueform/multiselect/src/Multiselect'
+  import TagsElement from './../../../blank/templates/elements/TagsElement.vue'
+  import Multiselect from '@vueform/multiselect/src/Multiselect.vue'
 
   export default {
     name: 'TagsElement',

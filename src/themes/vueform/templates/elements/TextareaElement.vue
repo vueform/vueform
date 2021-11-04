@@ -1,5 +1,5 @@
 <script>
-  import TextareaElement from './../../../blank/templates/elements/TextareaElement'
+  import TextareaElement from './../../../blank/templates/elements/TextareaElement.vue'
 
   export default {
     name: 'TextareaElement',

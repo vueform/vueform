@@ -1,5 +1,5 @@
 <script>
-  import DragAndDrop from './../../blank/templates/DragAndDrop'
+  import DragAndDrop from './../../blank/templates/DragAndDrop.vue'
 
   export default {
     name: 'DragAndDrop',

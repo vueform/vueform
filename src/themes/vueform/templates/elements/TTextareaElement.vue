@@ -1,5 +1,5 @@
 <script>
-  import TTextareaElement from './../../../blank/templates/elements/TTextareaElement'
+  import TTextareaElement from './../../../blank/templates/elements/TTextareaElement.vue'
 
   export default {
     name: 'TTextareaElement',

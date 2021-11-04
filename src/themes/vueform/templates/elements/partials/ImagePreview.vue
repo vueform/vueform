@@ -1,5 +1,5 @@
 <script>
-  import ImagePreview from './../../../../blank/templates/elements/partials/ImagePreview'
+  import ImagePreview from './../../../../blank/templates/elements/partials/ImagePreview.vue'
 
   export default {
     name: 'ImagePreview',

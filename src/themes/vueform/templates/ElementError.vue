@@ -1,5 +1,5 @@
 <script>
-  import ElementError from './../../blank/templates/ElementError'
+  import ElementError from './../../blank/templates/ElementError.vue'
 
   export default {
     name: 'ElementError',

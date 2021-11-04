@@ -1,5 +1,5 @@
 <script>
-  import MultifileElement from './../../../blank/templates/elements/MultifileElement'
+  import MultifileElement from './../../../blank/templates/elements/MultifileElement.vue'
 
   export default {
     name: 'MultifileElement',

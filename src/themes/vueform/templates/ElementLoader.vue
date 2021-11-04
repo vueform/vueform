@@ -1,5 +1,5 @@
 <script>
-  import ElementLoader from './../../blank/templates/ElementLoader'
+  import ElementLoader from './../../blank/templates/ElementLoader.vue'
 
   export default {
     name: 'ElementLoader',

@@ -1,5 +1,5 @@
 <script>
-  import FormLanguages from './../../blank/templates/FormLanguages'
+  import FormLanguages from './../../blank/templates/FormLanguages.vue'
 
   export default {
     name: 'FormLanguages',

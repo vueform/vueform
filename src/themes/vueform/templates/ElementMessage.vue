@@ -1,5 +1,5 @@
 <script>
-  import ElementMessage from './../../blank/templates/ElementMessage'
+  import ElementMessage from './../../blank/templates/ElementMessage.vue'
 
   export default {
     name: 'ElementMessage',

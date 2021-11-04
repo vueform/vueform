@@ -1,5 +1,5 @@
 <script>
-  import ElementDescription from './../../blank/templates/ElementDescription'
+  import ElementDescription from './../../blank/templates/ElementDescription.vue'
 
   export default {
     name: 'ElementDescription',

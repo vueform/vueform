@@ -1,6 +1,6 @@
 <script>
-  import ToggleElement from './../../../blank/templates/elements/ToggleElement'
-  import Toggle from '@vueform/toggle/src/Toggle'
+  import ToggleElement from './../../../blank/templates/elements/ToggleElement.vue'
+  import Toggle from '@vueform/toggle/src/Toggle.vue'
 
   export default {
     name: 'ToggleElement',

@@ -1,5 +1,5 @@
 <script>
-  import ElementAddon from './../../blank/templates/ElementAddon'
+  import ElementAddon from './../../blank/templates/ElementAddon.vue'
 
   export default {
     name: 'ElementAddon',

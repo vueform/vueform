@@ -1,5 +1,5 @@
 <script>
-  import ElementLayout from './../../blank/templates/ElementLayout'
+  import ElementLayout from './../../blank/templates/ElementLayout.vue'
 
   export default {
     name: 'ElementLayout',

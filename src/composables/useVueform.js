@@ -633,9 +633,7 @@ const base = function(props, context, dependencies = {})
     return Object.assign({}, options.value.theme, {
       // Add registered component to theme (or overwrite)
       templates: Object.assign({},
-        _.mapValues(options.value.theme.components, (component) => {
-          return component.template
-        }),
+        options.value.theme.templates,
         baseConfig.value.templates,
         options.value.replaceTemplates || {},
       ),
@@ -675,7 +673,7 @@ const base = function(props, context, dependencies = {})
   * @private
   */
   const defaultClasses = computed(() => {
-    return extendedTheme.value.components.Vueform.template.data().defaultClasses
+    return extendedTheme.value.templates.Vueform.data().defaultClasses
   })
 
   /**

@@ -1,6 +1,6 @@
 <script>
-  import SliderElement from './../../../blank/templates/elements/SliderElement'
-  import Slider from '@vueform/slider/src/Slider'
+  import SliderElement from './../../../blank/templates/elements/SliderElement.vue'
+  import Slider from '@vueform/slider/src/Slider.vue'
 
   export default {
     name: 'SliderElement',

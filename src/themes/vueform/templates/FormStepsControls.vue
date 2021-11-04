@@ -1,5 +1,5 @@
 <script>
-  import FormStepsControls from './../../blank/templates/FormStepsControls'
+  import FormStepsControls from './../../blank/templates/FormStepsControls.vue'
 
   export default {
     name: 'FormStepsControls',

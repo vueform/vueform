@@ -1,5 +1,5 @@
 <script>
-  import FormErrors from './../../blank/templates/FormErrors'
+  import FormErrors from './../../blank/templates/FormErrors.vue'
 
   export default {
     name: 'FormErrors',

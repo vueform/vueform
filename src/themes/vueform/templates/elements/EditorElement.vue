@@ -1,5 +1,5 @@
 <script>
-  import EditorElement from './../../../blank/templates/elements/EditorElement'
+  import EditorElement from './../../../blank/templates/elements/EditorElement.vue'
 
   export default {
     name: 'EditorElement',

@@ -1,5 +1,5 @@
 <script>
-  import ElementInfo from './../../blank/templates/ElementInfo'
+  import ElementInfo from './../../blank/templates/ElementInfo.vue'
 
   export default {
     name: 'ElementInfo',

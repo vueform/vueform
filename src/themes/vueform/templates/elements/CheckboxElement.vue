@@ -1,5 +1,5 @@
 <script>
-  import CheckboxElement from './../../../blank/templates/elements/CheckboxElement'
+  import CheckboxElement from './../../../blank/templates/elements/CheckboxElement.vue'
 
   export default {
     name: 'CheckboxElement',

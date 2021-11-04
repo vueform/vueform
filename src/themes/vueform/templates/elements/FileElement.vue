@@ -1,5 +1,5 @@
 <script>
-  import FileElement from './../../../blank/templates/elements/FileElement'
+  import FileElement from './../../../blank/templates/elements/FileElement.vue'
 
   export default {
     name: 'FileElement',

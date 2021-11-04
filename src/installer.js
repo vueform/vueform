@@ -1,16 +1,17 @@
 import _ from 'lodash'
 import flatten from 'flat'
-import axios from './services/axios'
-import validation from './services/validation'
-import messageBag from './services/messageBag'
-import autosize from './services/autosize'
-import location from './services/location'
-import condition from './services/condition'
-import i18n from './services/i18n'
-import columns from './services/columns'
+
+import axios from './services/axios/index'
+import validation from './services/validation/index'
+import messageBag from './services/messageBag/index'
+import autosize from './services/autosize/index'
+import location from './services/location/index'
+import condition from './services/condition/index'
+import i18n from './services/i18n/index'
+import columns from './services/columns/index'
 import { ref } from 'composition-api'
 
-export default function(config) {
+export default function(config, components) {
   const Vueform = class {
     constructor() {
       this.options = {
@@ -87,10 +88,8 @@ export default function(config) {
     }
 
     registerComponents(appOrVue) {
-      _.each(this.options.theme.components, (comp, name) => {
-        const component = {
-          ...comp.script,
-        }
+      _.each(components, (comp, name) => {
+        const component = {...comp}
 
         component.setup = (props, context) => {
           context = Object.assign({}, context, {
@@ -98,7 +97,7 @@ export default function(config) {
             emits: component.emits,
           })
 
-          return comp.script.setup(props, context)
+          return comp.setup(props, context)
         }
 
         component.render = function(h, context) {

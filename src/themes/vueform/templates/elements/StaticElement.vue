@@ -1,5 +1,5 @@
 <script>
-  import StaticElement from './../../../blank/templates/elements/StaticElement'
+  import StaticElement from './../../../blank/templates/elements/StaticElement.vue'
 
   export default {
     name: 'StaticElement',

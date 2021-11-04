@@ -1,5 +1,5 @@
 <script>
-  import GroupElement from './../../../blank/templates/elements/GroupElement'
+  import GroupElement from './../../../blank/templates/elements/GroupElement.vue'
 
   export default {
     name: 'GroupElement',

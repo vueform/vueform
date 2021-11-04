@@ -1,5 +1,5 @@
 <script>
-  import ButtonElement from './../../../blank/templates/elements/ButtonElement'
+  import ButtonElement from './../../../blank/templates/elements/ButtonElement.vue'
 
   export default {
     name: 'ButtonElement',

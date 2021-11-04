@@ -1,5 +1,5 @@
 <script>
-  import FormStep from './../../blank/templates/FormStep'
+  import FormStep from './../../blank/templates/FormStep.vue'
 
   export default {
     name: 'FormStep',

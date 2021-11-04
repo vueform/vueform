@@ -1,5 +1,5 @@
 <script>
-  import CheckboxgroupElement from './../../../blank/templates/elements/CheckboxgroupElement'
+  import CheckboxgroupElement from './../../../blank/templates/elements/CheckboxgroupElement.vue'
 
   export default {
     name: 'CheckboxgroupElement',

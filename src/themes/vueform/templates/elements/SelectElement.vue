@@ -1,6 +1,6 @@
 <script>
-  import SelectElement from './../../../blank/templates/elements/SelectElement'
-  import Multiselect from '@vueform/multiselect/src/Multiselect'
+  import SelectElement from './../../../blank/templates/elements/SelectElement.vue'
+  import Multiselect from '@vueform/multiselect/src/Multiselect.vue'
 
   export default {
     name: 'SelectElement',

@@ -1,5 +1,5 @@
 <script>
-  import AddressElement from './../../../blank/templates/elements/AddressElement'
+  import AddressElement from './../../../blank/templates/elements/AddressElement.vue'
 
   export default {
     name: 'AddressElement',

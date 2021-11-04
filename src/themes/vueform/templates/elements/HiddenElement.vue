@@ -1,5 +1,5 @@
 <script>
-  import HiddenElement from './../../../blank/templates/elements/HiddenElement'
+  import HiddenElement from './../../../blank/templates/elements/HiddenElement.vue'
 
   export default {
     name: 'HiddenElement',

@@ -1,5 +1,5 @@
 <script>
-  import FormElements from './../../blank/templates/FormElements'
+  import FormElements from './../../blank/templates/FormElements.vue'
 
   export default {
     name: 'FormElements',

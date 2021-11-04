@@ -1,0 +1,48 @@
+<template>
+  <component :is="elementLayout">
+    <template #element>
+      <div :class="classes.wrapper">
+        <!-- @vueform/toggle component -->
+        <Toggle
+          :value="value"
+          :modelValue="value"
+          v-bind="fieldOptions"
+          :classes="classes.toggle"
+          :name="name"
+          :id="fieldId"
+          @input="handleChange"
+          ref="input"
+       />
+        <span v-if="text" :class="classes.text" v-html="text"></span>
+        <span v-else :class="classes.text"><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></span>
+      </div>
+    </template>
+
+    <!-- Default element slots -->
+    <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
+  </component>
+</template>
+
+<script>
+  import Toggle from '@vueform/toggle/src/Toggle'
+
+  export default {
+    name: 'ToggleElement',
+    components: {
+      Toggle,
+    },
+    data() {
+      return {
+        defaultClasses: {
+          container: '',
+          wrapper: '',
+          toggle: {},
+          text: '',
+        }
+      }
+    }
+  }
+</script>
+
+<style lang="scss">
+</style>

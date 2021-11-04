@@ -1,5 +1,5 @@
 <script>
-  import ObjectElement from './../../../blank/templates/elements/ObjectElement'
+  import ObjectElement from './../../../blank/templates/elements/ObjectElement.vue'
 
   export default {
     name: 'ObjectElement',

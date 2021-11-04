@@ -1,5 +1,5 @@
 <script>
-  import ElementText from './../../blank/templates/ElementText'
+  import ElementText from './../../blank/templates/ElementText.vue'
 
   export default {
     name: 'ElementText',

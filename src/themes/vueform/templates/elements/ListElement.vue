@@ -1,5 +1,5 @@
 <script>
-  import ListElement from './../../../blank/templates/elements/ListElement'
+  import ListElement from './../../../blank/templates/elements/ListElement.vue'
 
   export default {
     name: 'ListElement',

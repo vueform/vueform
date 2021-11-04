@@ -1,5 +1,5 @@
 <script>
-  import DateElement from './../../../blank/templates/elements/DateElement'
+  import DateElement from './../../../blank/templates/elements/DateElement.vue'
 
   export default {
     name: 'DateElement',

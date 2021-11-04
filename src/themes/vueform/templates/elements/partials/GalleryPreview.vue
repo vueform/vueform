@@ -1,5 +1,5 @@
 <script>
-  import GalleryPreview from './../../../../blank/templates/elements/partials/GalleryPreview'
+  import GalleryPreview from './../../../../blank/templates/elements/partials/GalleryPreview.vue'
 
   export default {
     name: 'GalleryPreview',

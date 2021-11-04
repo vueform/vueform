@@ -1,5 +1,5 @@
 <script>
-  import TextElement from './../../../blank/templates/elements/TextElement'
+  import TextElement from './../../../blank/templates/elements/TextElement.vue'
 
   export default {
     name: 'TextElement',

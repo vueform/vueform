@@ -1,5 +1,5 @@
 <script>
-  import CheckboxgroupCheckbox from './../../../../blank/templates/elements/partials/CheckboxgroupCheckbox'
+  import CheckboxgroupCheckbox from './../../../../blank/templates/elements/partials/CheckboxgroupCheckbox.vue'
 
   export default {
     name: 'CheckboxgroupCheckbox',

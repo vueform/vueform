@@ -1,5 +1,5 @@
 <script>
-  import ElementLabel from './../../blank/templates/ElementLabel'
+  import ElementLabel from './../../blank/templates/ElementLabel.vue'
 
   export default {
     name: 'ElementLabel',

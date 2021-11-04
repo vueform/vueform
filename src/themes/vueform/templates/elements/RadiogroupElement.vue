@@ -1,5 +1,5 @@
 <script>
-  import RadiogroupElement from './../../../blank/templates/elements/RadiogroupElement'
+  import RadiogroupElement from './../../../blank/templates/elements/RadiogroupElement.vue'
 
   export default {
     name: 'RadiogroupElement',

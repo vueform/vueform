@@ -1,5 +1,5 @@
 <script>
-  import FormMessages from './../../blank/templates/FormMessages'
+  import FormMessages from './../../blank/templates/FormMessages.vue'
 
   export default {
     name: 'FormMessages',

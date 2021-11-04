@@ -1,5 +1,5 @@
 <script>
-  import RadiogroupRadio from './../../../../blank/templates/elements/partials/RadiogroupRadio'
+  import RadiogroupRadio from './../../../../blank/templates/elements/partials/RadiogroupRadio.vue'
 
   export default {
     name: 'RadiogroupRadio',

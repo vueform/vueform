@@ -1,5 +1,5 @@
 <script>
-  import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper'
+  import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue'
   import Trix from 'trix'
 
   export default {

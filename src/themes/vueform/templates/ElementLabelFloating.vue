@@ -1,5 +1,5 @@
 <script>
-  import ElementLabelFloating from './../../blank/templates/ElementLabelFloating'
+  import ElementLabelFloating from './../../blank/templates/ElementLabelFloating.vue'
 
   export default {
     name: 'ElementLabelFloating',

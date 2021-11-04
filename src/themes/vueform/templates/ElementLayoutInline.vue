@@ -1,5 +1,5 @@
 <script>
-  import ElementLayoutInline from './../../blank/templates/ElementLayoutInline'
+  import ElementLayoutInline from './../../blank/templates/ElementLayoutInline.vue'
 
   export default {
     name: 'ElementLayoutInline',

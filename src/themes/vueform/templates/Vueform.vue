@@ -1,5 +1,5 @@
 <script>
-  import Vueform from './../../blank/templates/Vueform'
+  import Vueform from './../../blank/templates/Vueform.vue'
 
   export default {
     name: 'Vueform',

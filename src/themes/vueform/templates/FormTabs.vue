@@ -1,5 +1,5 @@
 <script>
-  import FormTabs from './../../blank/templates/FormTabs'
+  import FormTabs from './../../blank/templates/FormTabs.vue'
 
   export default {
     name: 'FormTabs',

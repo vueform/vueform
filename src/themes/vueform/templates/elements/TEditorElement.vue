@@ -1,5 +1,5 @@
 <script>
-  import TEditorElement from './../../../blank/templates/elements/TEditorElement'
+  import TEditorElement from './../../../blank/templates/elements/TEditorElement.vue'
 
   export default {
     name: 'TEditorElement',

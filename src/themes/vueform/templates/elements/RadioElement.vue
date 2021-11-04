@@ -1,5 +1,5 @@
 <script>
-  import RadioElement from './../../../blank/templates/elements/RadioElement'
+  import RadioElement from './../../../blank/templates/elements/RadioElement.vue'
 
   export default {
     name: 'RadioElement',
