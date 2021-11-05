@@ -1919,6 +1919,9 @@ var Vueform = {
   emits: ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'response', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   slots: ['default', 'empty'],
   setup: function setup(props, context) {
+    context.emits = ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'response', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'];
+    context.name = ref('Vueform');
+
     var _useVueform = base$_(props, context),
         tabs$ = _useVueform.tabs$,
         steps$ = _useVueform.steps$,
@@ -2300,6 +2303,28 @@ var Vueform = {
       "default": null,
       "private": true
     }
+  },
+  render: function render() {
+    var renderer;
+
+    try {
+      renderer = this.templates.Vueform;
+    } catch (e) {
+      console.log('Vueform');
+      throw new Error(e);
+    }
+
+    try {
+      var _this$$options;
+
+      if (!((_this$$options = this.$options) !== null && _this$$options !== void 0 && _this$$options.staticRenderFns) && renderer.staticRenderFns) {
+        this.$options.staticRenderFns = renderer.staticRenderFns;
+      }
+    } catch (e) {
+      throw new Error(e);
+    }
+
+    return renderer.render.apply(this, arguments);
   }
 };
 
@@ -13666,7 +13691,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
    */
 
   var resolvedItems = computed(function () {
-    var resolvedItems = [];
+    var resolvedItems = {};
 
     _$1.each(resolvedItemList.value, function (item, key) {
       if (Array.isArray(resolvedItemList.value) && _typeof$1(item) === 'object') {
@@ -13678,20 +13703,11 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
           throw new Error('You must define `label` property for each item when using an array of objects options');
         }
 
-        resolvedItems.push({
-          value: item.value,
-          label: item.label
-        });
+        resolvedItems[item.value] = item.label;
       } else if (Array.isArray(resolvedItemList.value)) {
-        resolvedItems.push({
-          value: item,
-          label: item
-        });
+        resolvedItems[item] = item;
       } else {
-        resolvedItems.push({
-          value: key,
-          label: item
-        });
+        resolvedItems[key] = item;
       }
     });
 

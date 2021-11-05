@@ -5,7 +5,7 @@
         <CheckboxgroupCheckbox
           v-for="(item, value, key) in resolvedItems"
           :item="item"
-          :value="item.value"
+          :value="value"
           :key="key"
         >
           <template #default="scope">

@@ -13,7 +13,7 @@
 
       <span 
         :class="classes.label"
-        v-html="item.label"
+        v-html="item"
       />
     </slot>
   </label>

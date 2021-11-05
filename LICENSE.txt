@@ -1,2 +1,4 @@
 License terms can be found at:
 https://vueform.com/terms
+
+Valid for the following domains: {domains}

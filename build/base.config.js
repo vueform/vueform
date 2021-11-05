@@ -1,7 +1,7 @@
 import vue from 'rollup-plugin-vue'
 import babel from '@rollup/plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
-import obfuscator from 'rollup-plugin-obfuscator'
+// import obfuscator from 'rollup-plugin-obfuscator'
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 export default [
@@ -17,20 +17,20 @@ export default [
       commonjs(),
       babel(),
       nodeResolve(),
-      obfuscator({
-        fileOptions: {
-          // Your javascript-obfuscator options here
-          // Will be applied on each file separately. Set to `false` to disable
-          // See what's allowed: https://github.com/javascript-obfuscator/javascript-obfuscator
-        },
-        globalOptions: {
-          // Your javascript-obfuscator options here
-          // Will be applied on the whole bundle. Set to `false` to disable
-          // See what's allowed: https://github.com/javascript-obfuscator/javascript-obfuscator
-          // domainLock: ['vueform.com'],
-          // domainLockRedirectUrl: 'https://vueform.com'
-        },
-      }),
+      // obfuscator({
+      //   fileOptions: {
+      //     // Your javascript-obfuscator options here
+      //     // Will be applied on each file separately. Set to `false` to disable
+      //     // See what's allowed: https://github.com/javascript-obfuscator/javascript-obfuscator
+      //   },
+      //   globalOptions: {
+      //     // Your javascript-obfuscator options here
+      //     // Will be applied on the whole bundle. Set to `false` to disable
+      //     // See what's allowed: https://github.com/javascript-obfuscator/javascript-obfuscator
+      //     // domainLock: ['vueform.com'],
+      //     // domainLockRedirectUrl: 'https://vueform.com'
+      //   },
+      // }),
     ],
     external: ['composition-api', 'axios', 'lodash', 'moment'],
   },

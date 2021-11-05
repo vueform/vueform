@@ -100,6 +100,8 @@ export default function(config, components) {
           return comp.setup(props, context)
         }
 
+        component.components = this.options.theme.templates[name].components || {}
+
         component.render = function(h, context) {
           let renderer
 
@@ -195,29 +197,32 @@ export default function(config, components) {
 
           const $vueform = this.options
 
-          appOrVue.mixin({
-            data() {
-              return {
-                $vueform: {},
-              }
-            },
-            methods: {
-              __: (expr, data) => this.options.i18n.$t(expr, data)
-            },
-            beforeCreate() {
-              // might exist as test mock
-              if (!this.$vueform) {
-                this.$vueform = {
-                  config: appOrVue.observable($vueform.config),
-                  classes: $vueform.classes,
-                  templates: $vueform.templates,
-                  rules: $vueform.rules,
-                  services: $vueform.services,
-                  theme: $vueform.theme,
+          if (!appOrVue.__VUEFORM__) {
+            appOrVue.__VUEFORM__ = true
+            appOrVue.mixin({
+              data() {
+                return {
+                  $vueform: {},
+                }
+              },
+              methods: {
+                __: (expr, data) => this.options.i18n.$t(expr, data)
+              },
+              beforeCreate() {
+                // might exist as test mock
+                if (!this.$vueform) {
+                  this.$vueform = {
+                    config: appOrVue.observable($vueform.config),
+                    classes: $vueform.classes,
+                    templates: $vueform.templates,
+                    rules: $vueform.rules,
+                    services: $vueform.services,
+                    theme: $vueform.theme,
+                  }
                 }
               }
-            }
-          })
+            })
+          }
           break
 
         case 3:

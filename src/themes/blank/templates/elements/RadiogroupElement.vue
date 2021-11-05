@@ -3,9 +3,9 @@
     <template #element>
       <div :class="classes.wrapper"> 
         <RadiogroupRadio
-          v-for="(item, i, key) in resolvedItems"
+          v-for="(item, value, key) in resolvedItems"
           :item="item"
-          :value="item.value"
+          :value="value"
           :key="key"
         >
           <template #default="scope">

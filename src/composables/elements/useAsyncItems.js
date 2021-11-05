@@ -162,7 +162,7 @@ const checkboxgroup = function(props, context, dependencies) {
    * @type {array}
    */
   const resolvedItems = computed(() => {
-    let resolvedItems = []
+    let resolvedItems = {}
     
     _.each(resolvedItemList.value, (item, key) => {
       if (Array.isArray(resolvedItemList.value) && typeof item === 'object') {
@@ -174,20 +174,11 @@ const checkboxgroup = function(props, context, dependencies) {
           throw new Error('You must define `label` property for each item when using an array of objects options')
         }
 
-        resolvedItems.push({
-          value: item.value,
-          label: item.label
-        })
+        resolvedItems[item.value] = item.label
       } else if (Array.isArray(resolvedItemList.value)) {
-        resolvedItems.push({
-          value: item,
-          label: item,
-        })
+        resolvedItems[item] = item
       } else {
-        resolvedItems.push({
-          value: key,
-          label: item,
-        })
+        resolvedItems[key] = item
       }
     })
 

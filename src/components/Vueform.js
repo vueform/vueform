@@ -1,4 +1,4 @@
-import { computed, h } from 'composition-api'
+import { ref } from 'composition-api'
 import useVueform from './../composables/useVueform'
 
 export default {
@@ -6,6 +6,9 @@ export default {
   emits: ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'response', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   slots: ['default', 'empty'],
   setup: (props, context) => {
+    context.emits = ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'response', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted']
+    context.name = ref('Vueform')
+
     const {
       tabs$,
       steps$,
@@ -390,4 +393,24 @@ export default {
       private: true,
     },
   },
+  render() {
+    let renderer
+
+    try {
+      renderer = this.templates.Vueform
+    } catch (e) {
+      console.log('Vueform')
+      throw new Error(e)
+    }
+
+    try {
+      if (!this.$options?.staticRenderFns && renderer.staticRenderFns) {
+        this.$options.staticRenderFns = renderer.staticRenderFns
+      }
+    } catch (e) {
+      throw new Error(e)
+    }
+    
+    return renderer.render.apply(this, arguments)
+  }
 }
