@@ -102,25 +102,12 @@ export default function(config, components) {
 
         component.components = this.options.theme.templates[name].components || {}
 
-        component.render = function(h, context) {
-          let renderer
+        component.render = function() {
+          return this.templates[name].render.apply(this, arguments)
+        }
 
-          try {
-            renderer = this.templates[name]
-          } catch (e) {
-            console.log(name)
-            throw new Error(e)
-          }
-
-          try {
-            if (!this.$options?.staticRenderFns && renderer.staticRenderFns) {
-              this.$options.staticRenderFns = renderer.staticRenderFns
-            }
-          } catch (e) {
-            throw new Error(e)
-          }
-          
-          return renderer.render.apply(this, arguments)
+        component.staticRenderFns = function() {
+          return this.templates[name].staticRenderFns
         }
 
         appOrVue.component(name, component)

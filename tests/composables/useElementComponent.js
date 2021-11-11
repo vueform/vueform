@@ -1,5 +1,5 @@
 import { createForm, findAllComponents, findAll } from 'test-helpers'
-import defaultTheme from './../../src/themes/default'
+import defaultTheme from './../../src/themes/vueform'
 import { mergeComponentClasses, mergeClass } from './../../src/utils/mergeClasses'
 import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'

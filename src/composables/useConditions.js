@@ -3,13 +3,26 @@ import { computed, toRefs, ref } from 'composition-api'
 
 const base = function(props, context, dependencies)
 {
-  const { parent, conditions } = toRefs(props)
+  const {
+    parent,
+    conditions: conditionList,
+  } = toRefs(props)
 
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
   const path = dependencies.path || ref(null)
 
+  // ================ DATA ================
+
+  /**
+   * The frozen conditions of the element.
+   * 
+   * @type {array}
+   * @private
+   */
+  const conditions = ref(conditionList.value)
+  
   // ============== COMPUTED ==============
 
   /**

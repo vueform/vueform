@@ -27,7 +27,7 @@ module.exports = {
       '^vue-jest$': "<rootDir>/node_modules/vue-prev-jest"
   },
   "setupFilesAfterEnv": ["<rootDir>/jest/jest.setup.js"],
-  "collectCoverage": true,
+  "collectCoverage": false,
   "collectCoverageFrom": [
       "**/*.{js,vue}",
       "!**/node_modules/**",
@@ -44,10 +44,10 @@ module.exports = {
       "!**/src/themes/tailwind/components/**",
       "!**/src/themes/blank/components/**",
   ],
-  "reporters": [
-    'jest-progress-bar-reporter',
-    ["jest-silent-reporter", { "showWarnings": true }]
-  ],
+  // "reporters": [
+  //   'jest-progress-bar-reporter',
+  //   ["jest-silent-reporter", { "showWarnings": true }]
+  // ],
   "coverageReporters": [
       "html",
       "text-summary"

@@ -3,7 +3,7 @@ import installer from './../../../src/installer'
 import config from './../../../src/config'
 
 // Assets
-import defaultTheme from './../../../src/themes/default'
+import defaultTheme from './../../../src/themes/vueform'
 import en from './../../../src/locales/en'
 
 export default function createVueformInstaller (options = {}) {

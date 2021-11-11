@@ -1,6 +1,6 @@
 import { nextTick } from 'vue'
 import { createForm, findAllComponents, testPropDefault, destroy } from 'test-helpers'
-import defaultTheme from './../../src/themes/default'
+import defaultTheme from './../../src/themes/vueform'
 import { mergeComponentClasses, mergeClass } from './../../src/utils/mergeClasses'
 
 export const mainClass = function (elementType, elementName, options) {
