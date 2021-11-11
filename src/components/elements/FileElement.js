@@ -50,7 +50,7 @@ export default {
     default: {
       required: false,
       // @todo
-      type: [String, Object, File],
+      type: [String, Object],
       default: null
     },
     embed: {
