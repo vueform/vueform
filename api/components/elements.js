@@ -451,18 +451,11 @@ module.exports = {
         description: 'Whether the button is disabled.',
         private: false,
       },
-      genericName: {
-        types: [
-          'string',
-        ],
-        description: 'The generic name of the element constructed from label / floating or element name.',
-        private: true,
-      },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -632,6 +625,94 @@ module.exports = {
       },
     },
     events: {
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -1262,7 +1343,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -1604,6 +1685,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -1683,14 +1869,6 @@ module.exports = {
           },
         },
       },
-      'beforeCreate': {},
-      'created': {},
-      'beforeMount': {},
-      'mounted': {},
-      'beforeUpdate': {},
-      'updated': {},
-      'beforeUnmount': {},
-      'unmounted': {},
     },
   },
   CheckboxgroupElement: {
@@ -1989,6 +2167,7 @@ module.exports = {
         types: [
           'object',
           'array',
+          'function',
         ],
         private: false,
       },
@@ -2170,7 +2349,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -2580,6 +2759,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -3014,7 +3298,7 @@ module.exports = {
       },
       displayFormat: {
         required: 'false',
-        default: 'locale.laraform.dateFormats.*',
+        default: 'locale.vueform.dateFormats.*',
         types: [
           'string',
         ],
@@ -3022,7 +3306,7 @@ module.exports = {
       },
       valueFormat: {
         required: 'false',
-        default: 'locale.laraform.dateFormats.*',
+        default: 'locale.vueform.dateFormats.*',
         types: [
           'string',
           'boolean',
@@ -3031,7 +3315,7 @@ module.exports = {
       },
       loadFormat: {
         required: 'false',
-        default: 'locale.laraform.dateFormats.*',
+        default: 'locale.vueform.dateFormats.*',
         types: [
           'string',
         ],
@@ -3361,7 +3645,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -3707,6 +3991,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -4381,7 +4770,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -4717,6 +5106,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -5124,6 +5618,22 @@ module.exports = {
         ],
         private: false,
       },
+      onError: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        private: true,
+      },
+      onAlert: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        private: true,
+      },
       accept: {
         required: 'false',
         default: '[]',
@@ -5155,14 +5665,6 @@ module.exports = {
           'string',
         ],
         private: false,
-      },
-      onError: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'function',
-        ],
-        private: true,
       },
     },
     data: {
@@ -5415,7 +5917,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -5789,6 +6291,133 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'alert': {
+        description: 'Triggered when the user select a file/mime type that is not allowed. If the event does not have a listener the alert message will be displayed by `alert()`.',
+        params: {
+          message: {
+            description: 'the alert message',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'error': {
+        description: 'Triggered when file upload throws an error.',
+        params: {
+          error: {
+            description: 'the Error object',
+            types: [
+              'Error',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -6239,7 +6868,7 @@ module.exports = {
         ],
         private: false,
       },
-      endpoints: {
+      urls: {
         required: 'false',
         default: '{}',
         types: [
@@ -6548,7 +7177,7 @@ module.exports = {
         description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
-      uploadTempFileEndpoint: {
+      uploadTempFileUrl: {
         types: [
           'object',
         ],
@@ -6556,7 +7185,7 @@ module.exports = {
         default: 'config.endpoints.uploadTempFile.url',
         private: true,
       },
-      removeTempFileEndpoint: {
+      removeTempFileUrl: {
         types: [
           'object',
         ],
@@ -6564,7 +7193,7 @@ module.exports = {
         default: 'config.endpoints.removeTempFile.url',
         private: true,
       },
-      removeFileEndpoint: {
+      removeFileUrl: {
         types: [
           'object',
         ],
@@ -6670,7 +7299,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -7083,6 +7712,131 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'remove': {
+        description: 'Triggered after the file is removed.',
+      },
+      'error': {
+        description: 'Triggered when temporary upload or file remove throws an error.',
+        params: {
+          type: {
+            description: 'the type of the error, possible values: `&apos;upload|remove&apos;`',
+            types: [
+              'string',
+            ]
+          },
+          error: {
+            description: 'the Error object',
+            types: [
+              'Error',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -7560,18 +8314,11 @@ module.exports = {
         description: 'The default value of the element.',
         private: true,
       },
-      genericName: {
-        types: [
-          'string',
-        ],
-        description: 'The generic name of the element constructed from label / floating or element name.',
-        private: true,
-      },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -7806,6 +8553,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -8501,6 +9353,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
     },
@@ -9171,7 +10128,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -9646,6 +10603,162 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'add': {
+        description: 'Triggered when a new item is added to the list.',
+        params: {
+          index: {
+            description: 'the index of the added item',
+            types: [
+              'number',
+            ]
+          },
+          addedValue: {
+            description: 'the added value',
+            types: [
+              'any',
+            ]
+          },
+          newValue: {
+            description: 'the element value after the item is added',
+            types: [
+              'array',
+            ]
+          },
+       },
+      },
+      'remove': {
+        description: 'Triggered when a new item is added to the list.',
+        params: {
+          index: {
+            description: 'the index of the removed item',
+            types: [
+              'number',
+            ]
+          },
+          value: {
+            description: 'the element&apos;s value after the item is removed',
+            types: [
+              'array',
+            ]
+          },
+       },
+      },
+      'sort': {
+        description: 'Triggered when items are being sorted by the user, when [`sort: true`](#option-sort).',
+        params: {
+          value: {
+            description: 'the element&apos;s value after sorting',
+            types: [
+              'array',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -10311,6 +11424,13 @@ module.exports = {
         description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
         private: false,
       },
+      hasFloating: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element floating label.',
+        private: false,
+      },
       genericName: {
         types: [
           'string',
@@ -10322,7 +11442,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -10627,7 +11747,7 @@ module.exports = {
         private: false,
       },
       validate: {
-        description: 'Checks each validation rule for the element (async).',
+        description: 'Checks each validation rule for the element on [`displayKey`](#options-display-key) property of the location object (async).',
         returns: 'void',
         private: false,
       },
@@ -10684,6 +11804,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -11489,7 +12714,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -12018,6 +13243,162 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'add': {
+        description: 'Triggered when a new item is added to the list.',
+        params: {
+          index: {
+            description: 'the index of the added item',
+            types: [
+              'number',
+            ]
+          },
+          addedValue: {
+            description: 'the added value',
+            types: [
+              'File|object|string',
+            ]
+          },
+          value: {
+            description: 'the element&apos;s value after the item is added',
+            types: [
+              'array',
+            ]
+          },
+       },
+      },
+      'remove': {
+        description: 'Triggered when a new item is added to the list.',
+        params: {
+          index: {
+            description: 'the index of the removed item',
+            types: [
+              'number',
+            ]
+          },
+          value: {
+            description: 'the element&apos;s value after the item is removed',
+            types: [
+              'array',
+            ]
+          },
+       },
+      },
+      'sort': {
+        description: 'Triggered when items are being sorted by the user, when [`sort: true`](#option-sort).',
+        params: {
+          value: {
+            description: 'the element&apos;s value after sorting',
+            types: [
+              'array',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -12939,7 +14320,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -12949,6 +14330,13 @@ module.exports = {
         ],
         description: 'The current layout of the element.',
         private: true,
+      },
+      isLoading: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is in loading state.',
+        private: false,
       },
       nullValue: {
         types: [
@@ -13390,6 +14778,164 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'select': {
+        description: 'Triggered when an option is selected, using [`native: false`](#option-native).',
+        params: {
+          option: {
+            description: 'the selected option',
+            types: [
+              'object',
+            ]
+          },
+       },
+      },
+      'deselect': {
+        description: 'Triggered when an option is deselected, using [`native: false`](#option-native).',
+        params: {
+          option: {
+            description: 'the deselected option',
+            types: [
+              'object',
+            ]
+          },
+       },
+      },
+      'search-change': {
+        description: 'Triggered when the search query changes, using [`search: true`](#option-search).',
+        params: {
+          searchQuery: {
+            description: 'the search value',
+            types: [
+              'string|null',
+            ]
+          },
+       },
+      },
+      'open': {
+        description: 'Triggered when the dropdown list is opened, using [`native: false`](#option-native).',
+      },
+      'close': {
+        description: 'Triggered when the dropdown list is closed, using [`native: false`](#option-native).',
+      },
+      'clear': {
+        description: 'Triggered when the value is cleared, using [`native: true`](#option-native).',
+      },
+      'paste': {
+        description: 'Triggered when text is pasted to the search input, using [`search: true`](#option-search).',
+        params: {
+          event: {
+            description: 'the paste Event',
+            types: [
+              'Event',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -13884,6 +15430,14 @@ module.exports = {
         ],
         private: false,
       },
+      onRemove: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        private: true,
+      },
     },
     data: {
       active: {
@@ -14064,18 +15618,11 @@ module.exports = {
         description: 'The default value of the element.',
         private: true,
       },
-      genericName: {
-        types: [
-          'string',
-        ],
-        description: 'The generic name of the element constructed from label / floating or element name.',
-        private: true,
-      },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -14379,6 +15926,128 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'remove': {
+        description: 'Triggered when a new item is added to the list.',
+        params: {
+          index: {
+            description: 'the index of the removed item',
+            types: [
+              'number',
+            ]
+          },
+          value: {
+            description: 'the element&apos;s value after the item is removed',
+            types: [
+              'array',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -14995,7 +16664,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -15344,6 +17013,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -15730,6 +17504,7 @@ module.exports = {
         types: [
           'object',
           'array',
+          'function',
         ],
         private: false,
       },
@@ -15939,7 +17714,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -16261,6 +18036,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -17252,7 +19132,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -17262,6 +19142,13 @@ module.exports = {
         ],
         description: 'The current layout of the element.',
         private: true,
+      },
+      isLoading: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is in loading state.',
+        private: false,
       },
       nullValue: {
         types: [
@@ -17683,6 +19570,164 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'select': {
+        description: 'Triggered when an option is selected, using [`native: false`](#option-native).',
+        params: {
+          option: {
+            description: 'the selected option',
+            types: [
+              'object',
+            ]
+          },
+       },
+      },
+      'deselect': {
+        description: 'Triggered when an option is deselected, using [`native: false`](#option-native).',
+        params: {
+          option: {
+            description: 'the deselected option',
+            types: [
+              'object',
+            ]
+          },
+       },
+      },
+      'search-change': {
+        description: 'Triggered when the search query changes, using [`search: true`](#option-search).',
+        params: {
+          searchQuery: {
+            description: 'the search value',
+            types: [
+              'string|null',
+            ]
+          },
+       },
+      },
+      'open': {
+        description: 'Triggered when the dropdown list is opened, using [`native: false`](#option-native).',
+      },
+      'close': {
+        description: 'Triggered when the dropdown list is closed, using [`native: false`](#option-native).',
+      },
+      'clear': {
+        description: 'Triggered when the value is cleared, using [`native: true`](#option-native).',
+      },
+      'paste': {
+        description: 'Triggered when text is pasted to the search input, using [`search: true`](#option-search).',
+        params: {
+          event: {
+            description: 'the paste Event',
+            types: [
+              'Event',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -18513,7 +20558,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -18859,6 +20904,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -19284,18 +21434,11 @@ module.exports = {
         description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
         private: false,
       },
-      genericName: {
-        types: [
-          'string',
-        ],
-        description: 'The generic name of the element constructed from label / floating or element name.',
-        private: true,
-      },
       hasLabel: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -19458,6 +21601,94 @@ module.exports = {
       },
     },
     events: {
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -19863,6 +22094,14 @@ module.exports = {
         ],
         private: true,
       },
+      onAlert: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        private: true,
+      },
       accept: {
         required: 'false',
         default: 'null',
@@ -20132,7 +22371,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       language: {
@@ -20539,6 +22778,115 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'alert': {
+      },
+      'error': {
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -20966,6 +23314,14 @@ module.exports = {
         ],
         private: false,
       },
+      loading: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        private: false,
+      },
     },
     data: {
       active: {
@@ -21187,7 +23543,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       language: {
@@ -21211,6 +23567,13 @@ module.exports = {
         ],
         description: 'The current layout of the element.',
         private: true,
+      },
+      isLoading: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is in loading state.',
+        private: false,
       },
       nullValue: {
         types: [
@@ -21566,6 +23929,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -22235,7 +24703,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       language: {
@@ -22619,6 +25087,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -23577,7 +26150,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -23587,6 +26160,13 @@ module.exports = {
         ],
         description: 'The current layout of the element.',
         private: true,
+      },
+      isLoading: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is in loading state.',
+        private: false,
       },
       nullValue: {
         types: [
@@ -24042,6 +26622,175 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'select': {
+        description: 'Triggered when an option is selected.',
+        params: {
+          option: {
+            description: 'the selected option',
+            types: [
+              'object',
+            ]
+          },
+       },
+      },
+      'deselect': {
+        description: 'Triggered when an option is deselected.',
+        params: {
+          option: {
+            description: 'the deselected option',
+            types: [
+              'object',
+            ]
+          },
+       },
+      },
+      'search-change': {
+        description: 'Triggered when the search query changes, using [`search: true`](#option-search).',
+        params: {
+          searchQuery: {
+            description: 'the search value',
+            types: [
+              'string|null',
+            ]
+          },
+       },
+      },
+      'open': {
+        description: 'Triggered when the dropdown list is closed.',
+      },
+      'close': {
+        description: 'Triggered when the dropdown list is closed.',
+      },
+      'tag': {
+        description: 'Triggered when a new tag is created, using [`create: true`](#optons-create).',
+        params: {
+          tag: {
+            description: 'the tag value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the value is cleared.',
+      },
+      'paste': {
+        description: 'Triggered when text is pasted to the search input, using [`search: true`](#option-search).',
+        params: {
+          event: {
+            description: 'the paste Event',
+            types: [
+              'Event',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -24874,7 +27623,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -25227,6 +27976,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -25909,7 +28763,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -26260,6 +29114,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {
@@ -26917,7 +29876,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component&apos;s [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
         private: false,
       },
       elementLayout: {
@@ -27273,6 +30232,111 @@ module.exports = {
       },
     },
     events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted hook.',
+        params: {
+          el$: {
+            description: 'the element instance',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
     },
     slots: {
       'label': {

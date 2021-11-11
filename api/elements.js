@@ -317,7 +317,7 @@ export default {
       "validation_group",
       "value_group",
       "view",
-      "watchValue"
+      "watchValue_group"
     ],
     "slots": [
       "label",
@@ -451,7 +451,7 @@ export default {
       "slots",
       "templates",
       "theme",
-      "validation",
+      "validation_location",
       "value",
       "view",
       "watchValue_location"
@@ -556,6 +556,7 @@ export default {
       "input",
       "label",
       "layout",
+      "loading",
       "nullValue_array",
       "options_multiselect",
       "path",
@@ -627,7 +628,8 @@ export default {
       "theme",
       "validation_object",
       "value_object",
-      "view"
+      "view",
+      "watchValue_object"
     ],
     "slots": [
       "label",
@@ -765,6 +767,7 @@ export default {
       "input",
       "label",
       "layout",
+      "loading",
       "nullValue",
       "options_select",
       "path",
@@ -920,6 +923,7 @@ export default {
       "input",
       "label",
       "layout",
+      "loading",
       "nullValue_array",
       "options_tags",
       "path",
@@ -1210,7 +1214,7 @@ export default {
       "validation_multilingual",
       "value_multilingual",
       "view",
-      "watchValue"
+      "watchValue_multilingual"
     ],
     "slots": [
       "label",
@@ -1255,6 +1259,7 @@ export default {
       "label",
       "languages",
       "layout",
+      "loading",
       "nullValue_multilingual",
       "path",
       "slots",
@@ -1263,7 +1268,7 @@ export default {
       "validation_multilingual",
       "value_multilingual",
       "view",
-      "watchValue"
+      "watchValue_multilingual"
     ],
     "slots": [
       "label",
@@ -1317,7 +1322,7 @@ export default {
       "validation_multilingual",
       "value_multilingual",
       "view",
-      "watchValue"
+      "watchValue_multilingual"
     ],
     "slots": [
       "label",

@@ -263,7 +263,226 @@ export default {
       }
     }
   },
-  "laraform": {
+  "model": {
+    "base": {
+      "computed": {
+        "model": {
+          "public": false,
+          "types": [
+            "object"
+          ],
+          "description": "The form's model, which either comes from `externalValue` or `internalData`."
+        },
+        "isSync": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether form data should be synced when the external value changes (when external value is used)."
+        }
+      },
+      "data": {
+        "internalData": {
+          "public": false,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "The internal store for the form's model."
+        },
+        "intermediaryValue": {
+          "public": false,
+          "description": ""
+        }
+      },
+      "methods": {
+        "updateModel": {
+          "public": false,
+          "returns": "void",
+          "description": "Updates an element's data in the form model.",
+          "params": {
+            "dataPath": {
+              "types": [
+                "string"
+              ],
+              "required": false,
+              "description": "the `dataPath` property of the element to update"
+            },
+            "val": {
+              "types": [
+                "any"
+              ],
+              "required": false,
+              "description": "value to update with"
+            }
+          }
+        }
+      }
+    }
+  },
+  "parentAssign": {
+    "base": {
+      "methods": {
+        "assignToParent": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the component to the parent as if `refs` were used.",
+          "params": {
+            "$parent": {
+              "types": [
+                "component"
+              ],
+              "required": false,
+              "description": "parent component"
+            },
+            "assignToParent": {
+              "types": [
+                "function"
+              ],
+              "required": false,
+              "description": "the assignToParent function for recursion"
+            }
+          }
+        },
+        "removeFromParent": {
+          "public": false,
+          "description": "Removes the component from the parent.",
+          "params": {
+            "$parent": {
+              "types": [
+                "component"
+              ],
+              "required": false,
+              "description": "parent component"
+            },
+            "removeFromParent": {
+              "types": [
+                "function"
+              ],
+              "required": false,
+              "description": "the removeFromParent function for recursion"
+            }
+          }
+        }
+      }
+    }
+  },
+  "preview": {
+    "base": {
+      "computed": {
+        "visible": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the preview component should be visible."
+        },
+        "hasLink": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the file has link and should be clickable."
+        },
+        "hasError": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the preview has upload error."
+        },
+        "link": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The link for the file."
+        },
+        "filename": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The filename to display."
+        },
+        "clickable": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the file should be clickable if it is already uploaded."
+        },
+        "uploaded": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the temporary or final file is uploaded."
+        },
+        "uploading": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the file is currently uploading."
+        },
+        "progress": {
+          "public": true,
+          "types": [
+            "number"
+          ],
+          "description": "The percentage of progress when the file is being temporarily uploaded (0-100)."
+        },
+        "canRemove": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the file can be removed."
+        },
+        "canUploadTemp": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether temporary file can be uploaded."
+        },
+        "uploadText": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The text for upload button. Can be changed at the locale file: `vueform.elements.file.upload`"
+        }
+      },
+      "methods": {
+        "upload": {
+          "public": true,
+          "returns": "void",
+          "description": "Upload the currently selected file as temporary."
+        },
+        "remove": {
+          "public": true,
+          "returns": "void",
+          "description": "Remove the file."
+        }
+      }
+    }
+  },
+  "theme": {
+    "base": {
+      "inject": {
+        "theme": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The global theme object, which contains all the default components and classes."
+        }
+      }
+    }
+  },
+  "vueform": {
     "base": {
       "data": {
         "tabs$": {
@@ -603,13 +822,6 @@ export default {
             "boolean"
           ],
           "description": "Whether form data should be synced when the external value changes (when external value is used)."
-        },
-        "baseConfig": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "The default configuration object."
         }
       },
       "methods": {
@@ -835,225 +1047,6 @@ export default {
               "description": "name of the event to remove"
             }
           }
-        }
-      }
-    }
-  },
-  "model": {
-    "base": {
-      "computed": {
-        "model": {
-          "public": false,
-          "types": [
-            "object"
-          ],
-          "description": "The form's model, which either comes from `externalValue` or `internalData`."
-        },
-        "isSync": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether form data should be synced when the external value changes (when external value is used)."
-        }
-      },
-      "data": {
-        "internalData": {
-          "public": false,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "The internal store for the form's model."
-        },
-        "intermediaryValue": {
-          "public": false,
-          "description": ""
-        }
-      },
-      "methods": {
-        "updateModel": {
-          "public": false,
-          "returns": "void",
-          "description": "Updates an element's data in the form model.",
-          "params": {
-            "dataPath": {
-              "types": [
-                "string"
-              ],
-              "required": false,
-              "description": "the `dataPath` property of the element to update"
-            },
-            "val": {
-              "types": [
-                "any"
-              ],
-              "required": false,
-              "description": "value to update with"
-            }
-          }
-        }
-      }
-    }
-  },
-  "parentAssign": {
-    "base": {
-      "methods": {
-        "assignToParent": {
-          "public": false,
-          "returns": "void",
-          "description": "Sets the component to the parent as if `refs` were used.",
-          "params": {
-            "$parent": {
-              "types": [
-                "component"
-              ],
-              "required": false,
-              "description": "parent component"
-            },
-            "assignToParent": {
-              "types": [
-                "function"
-              ],
-              "required": false,
-              "description": "the assignToParent function for recursion"
-            }
-          }
-        },
-        "removeFromParent": {
-          "public": false,
-          "description": "Removes the component from the parent.",
-          "params": {
-            "$parent": {
-              "types": [
-                "component"
-              ],
-              "required": false,
-              "description": "parent component"
-            },
-            "removeFromParent": {
-              "types": [
-                "function"
-              ],
-              "required": false,
-              "description": "the removeFromParent function for recursion"
-            }
-          }
-        }
-      }
-    }
-  },
-  "preview": {
-    "base": {
-      "computed": {
-        "visible": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the preview component should be visible."
-        },
-        "hasLink": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the file has link and should be clickable."
-        },
-        "hasError": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the preview has upload error."
-        },
-        "link": {
-          "public": true,
-          "types": [
-            "string"
-          ],
-          "description": "The link for the file."
-        },
-        "filename": {
-          "public": true,
-          "types": [
-            "string"
-          ],
-          "description": "The filename to display."
-        },
-        "clickable": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the file should be clickable if it is already uploaded."
-        },
-        "uploaded": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the temporary or final file is uploaded."
-        },
-        "uploading": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the file is currently uploading."
-        },
-        "progress": {
-          "public": true,
-          "types": [
-            "number"
-          ],
-          "description": "The percentage of progress when the file is being temporarily uploaded (0-100)."
-        },
-        "canRemove": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the file can be removed."
-        },
-        "canUploadTemp": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether temporary file can be uploaded."
-        },
-        "uploadText": {
-          "public": true,
-          "types": [
-            "string"
-          ],
-          "description": "The text for upload button. Can be changed at the locale file: `laraform.elements.file.upload`"
-        }
-      },
-      "methods": {
-        "upload": {
-          "public": true,
-          "returns": "void",
-          "description": "Upload the currently selected file as temporary."
-        },
-        "remove": {
-          "public": true,
-          "returns": "void",
-          "description": "Remove the file."
-        }
-      }
-    }
-  },
-  "theme": {
-    "base": {
-      "inject": {
-        "theme": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "The global theme object, which contains all the default components and classes."
         }
       }
     }

@@ -1968,7 +1968,7 @@ export default {
         }
       },
       "computed": {
-        "uploadTempFileEndpoint": {
+        "uploadTempFileUrl": {
           "public": false,
           "default": "config.endpoints.uploadTempFile.url",
           "types": [
@@ -1976,7 +1976,7 @@ export default {
           ],
           "description": "The url where the temp file should be submitted."
         },
-        "removeTempFileEndpoint": {
+        "removeTempFileUrl": {
           "public": false,
           "default": "config.endpoints.removeTempFile.url",
           "types": [
@@ -1984,7 +1984,7 @@ export default {
           ],
           "description": "The url where the remove temp file request should be submitted."
         },
-        "removeFileEndpoint": {
+        "removeFileUrl": {
           "public": false,
           "default": "config.endpoints.removeFile.url",
           "types": [
@@ -2382,7 +2382,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component's [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed."
+          "description": "Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component's [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed."
         }
       }
     }
@@ -3839,6 +3839,135 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Checks each validation rule for the element (async). File element will only validate for `min`, `max`, `between`, `size`, `mimetypes`, `mimes`, `dimensions`, `file`, `image`, `gt`, `gte`, `lt` and `lte` rules and only before the temporary files are uploaded."
+        },
+        "dirt": {
+          "public": false,
+          "returns": "void",
+          "description": "Flag the element as dirty."
+        },
+        "clean": {
+          "public": true,
+          "returns": "void",
+          "description": "Removes the element's `dirty` state."
+        },
+        "resetValidators": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the validators to default state."
+        },
+        "initMessageBag": {
+          "public": false,
+          "returns": "void",
+          "description": "Initalizes MessageBag service."
+        },
+        "initValidation": {
+          "public": false,
+          "returns": "void",
+          "description": "Initalizes validators."
+        }
+      }
+    },
+    "location": {
+      "data": {
+        "state": {
+          "public": false,
+          "default": "{ dirty: false, validate: true }",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element states."
+        },
+        "Validators": {
+          "public": false,
+          "default": "[]",
+          "types": [
+            [
+              "array",
+              "Validator"
+            ]
+          ],
+          "description": "An array containing all the validators of the element."
+        },
+        "messageBag": {
+          "public": true,
+          "default": "MessageBag",
+          "types": [
+            "MessageBag"
+          ],
+          "description": "Instance of MessageBag service."
+        }
+      },
+      "computed": {
+        "dirty": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value has been modified by the user."
+        },
+        "validated": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's input has already been validated at least once."
+        },
+        "invalid": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has any failing rules."
+        },
+        "pending": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has any async rules in progress."
+        },
+        "debouncing": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has an ongoing debounce."
+        },
+        "busy": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is `pending` or `debouncing`."
+        },
+        "errors": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "All the errors of `MessageBag`."
+        },
+        "error": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The first error of `MessageBag`."
+        },
+        "validationRules": {
+          "public": false,
+          "types": [
+            "string",
+            "array"
+          ],
+          "description": "The element's validation rules."
+        }
+      },
+      "methods": {
+        "validate": {
+          "public": true,
+          "returns": "void",
+          "description": "Checks each validation rule for the element on [`displayKey`](#options-display-key) property of the location object (async)."
         },
         "dirt": {
           "public": false,

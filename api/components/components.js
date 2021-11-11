@@ -506,7 +506,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Laraform` component's [`:forceLabels`](laraform#force-labels) option is `true`. Either way a label should be displayed."
+        "description": "Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component's [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed."
       },
       "isSlot": {
         "public": false,
@@ -1757,7 +1757,7 @@ module.exports = {
           "object"
         ]
       },
-      "onActive": {
+      "onActivate": {
         "required": false,
         "default": null,
         "types": [
@@ -1765,7 +1765,7 @@ module.exports = {
         ],
         "private": true
       },
-      "onInactive": {
+      "onInactivate": {
         "required": false,
         "default": null,
         "types": [
@@ -2690,7 +2690,7 @@ module.exports = {
           "object"
         ]
       },
-      "onActive": {
+      "onActivate": {
         "required": false,
         "default": null,
         "types": [
@@ -2698,7 +2698,7 @@ module.exports = {
         ],
         "private": true
       },
-      "onInactive": {
+      "onInactivate": {
         "required": false,
         "default": null,
         "types": [
@@ -2988,7 +2988,7 @@ module.exports = {
       }
     }
   },
-  "Laraform": {
+  "Vueform": {
     "data": {
       "tabs$": {
         "public": false,
@@ -3885,100 +3885,8 @@ module.exports = {
         "private": true
       }
     },
-    "events": {
-      "input": {
-        "description": "Emitted when the form's data is changed (used by `v-model` in Vue 2).",
-        "params": {
-          "data": {
-            "description": "the form's data after the change",
-            "types": [
-              "object"
-            ]
-          }
-        }
-      },
-      "change": {
-        "description": "Triggered when the form's data is changed (intended for watching data changes).",
-        "params": {
-          "newData": {
-            "description": "the form's data after the change",
-            "types": [
-              "object"
-            ]
-          },
-          "oldData": {
-            "description": "the form's data before the change",
-            "types": [
-              "object"
-            ]
-          }
-        }
-      },
-      "reset": {
-        "description": "Triggered when the form is reseted using [`reset()`](#method-reset)."
-      },
-      "clear": {
-        "description": "Triggered when the form is cleared using [`clear()`](#method-clear)."
-      },
-      "submit": {
-        "description": "Triggered when the form is being submitted, after validation is checked and elements are prepared.",
-        "params": {
-          "form$": {
-            "description": "the form's component",
-            "types": [
-              "component"
-            ]
-          }
-        }
-      },
-      "success": {
-        "description": "Triggered when the server returns with 2XX response code after submitting the form.",
-        "params": {
-          "response": {
-            "description": "the Response object",
-            "types": [
-              "Response"
-            ]
-          }
-        }
-      },
-      "error": {
-        "description": "Triggered when an error is thrown when preparing elements or submitting the form.",
-        "params": {
-          "state": {
-            "description": "the stage the error was thrown: `\"prepare|submit\"`",
-            "types": [
-              "string"
-            ]
-          },
-          "error": {
-            "description": "the Error object",
-            "types": [
-              "Error"
-            ]
-          }
-        }
-      },
-      "language": {
-        "description": "Triggered when a language is selected",
-        "params": {
-          "language": {
-            "description": "the selected language",
-            "types": [
-              "string"
-            ]
-          }
-        }
-      }
-    },
-    "slots": {
-      "default": {
-        "description": "Renders the elements of the form in [`FormElements`](#form-elements) component, while keeping all the other form components. Should only contain elements and custom tags."
-      },
-      "empty": {
-        "description": "Renders the content of the form. Removes all other form components. Can contain elements or form components including steps, tabs and language selector."
-      }
-    }
+    "events": {},
+    "slots": {}
   },
   "DatepickerWrapper": {
     "inject": {
@@ -4395,7 +4303,8 @@ module.exports = {
         "required": true,
         "types": [
           "object",
-          "string"
+          "string",
+          "number"
         ]
       },
       "value": {
@@ -4537,7 +4446,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The text for upload button. Can be changed at the locale file: `laraform.elements.file.upload`"
+        "description": "The text for upload button. Can be changed at the locale file: `vueform.elements.file.upload`"
       }
     },
     "data": {
@@ -4700,7 +4609,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The text for upload button. Can be changed at the locale file: `laraform.elements.file.upload`"
+        "description": "The text for upload button. Can be changed at the locale file: `vueform.elements.file.upload`"
       }
     },
     "data": {
@@ -4863,7 +4772,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The text for upload button. Can be changed at the locale file: `laraform.elements.file.upload`"
+        "description": "The text for upload button. Can be changed at the locale file: `vueform.elements.file.upload`"
       }
     },
     "data": {
@@ -4959,7 +4868,8 @@ module.exports = {
         "required": true,
         "types": [
           "object",
-          "string"
+          "string",
+          "number"
         ]
       },
       "value": {

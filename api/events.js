@@ -217,6 +217,94 @@ export default {
       description: 'Triggered when the value is cleared.',
     },
   },
+  beforeCreate: {
+    default: {
+      description: 'Triggered in beforeCreate hook.',
+      params: {
+        el$: {
+          description: 'the element instance',
+          types: ['component']
+        },
+      }
+    },
+  },
+  created: {
+    default: {
+      description: 'Triggered in created hook.',
+      params: {
+        el$: {
+          description: 'the element instance',
+          types: ['component']
+        },
+      }
+    },
+  },
+  beforeMount: {
+    default: {
+      description: 'Triggered in beforeMount hook.',
+      params: {
+        el$: {
+          description: 'the element instance',
+          types: ['component']
+        },
+      }
+    },
+  },
+  mounted: {
+    default: {
+      description: 'Triggered in mounted hook.',
+      params: {
+        el$: {
+          description: 'the element instance',
+          types: ['component']
+        },
+      }
+    },
+  },
+  beforeUpdate: {
+    default: {
+      description: 'Triggered in beforeUpdate hook.',
+      params: {
+        el$: {
+          description: 'the element instance',
+          types: ['component']
+        },
+      }
+    },
+  },
+  updated: {
+    default: {
+      description: 'Triggered in updated hook.',
+      params: {
+        el$: {
+          description: 'the element instance',
+          types: ['component']
+        },
+      }
+    },
+  },
+  beforeUnmount: {
+    default: {
+      description: 'Triggered in beforeUnmount hook.',
+      params: {
+        el$: {
+          description: 'the element instance',
+          types: ['component']
+        },
+      }
+    },
+  },
+  unmounted: {
+    default: {
+      description: 'Triggered in unmounted hook.',
+      params: {
+        el$: {
+          description: 'the element instance',
+          types: ['component']
+        },
+      }
+    },
+  },
 
 
   // click: {

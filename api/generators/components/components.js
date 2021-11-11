@@ -13,10 +13,10 @@ const slotsInfo = require('./../../component-slots').default
 const Components = {}
 const skipPrivate = false
 
-const files = fs.readdirSync(filesPath).filter(f=>['.DS_Store'].indexOf(f) === -1 && f.match(/\.js$/))
+const files = fs.readdirSync(filesPath).filter(f=>['.DS_Store', 'index.js'].indexOf(f) === -1 && f.match(/\.js$/))
 
-fs.readdirSync(wrappersPath).filter(f=>['.DS_Store'].indexOf(f) === -1 && f.match(/\.js$/)).forEach(f => files.push(f))
-fs.readdirSync(partialsPath).filter(f=>['.DS_Store'].indexOf(f) === -1 && f.match(/\.js$/)).forEach(f => files.push(f))
+fs.readdirSync(wrappersPath).filter(f=>['.DS_Store', 'index.js'].indexOf(f) === -1 && f.match(/\.js$/)).forEach(f => files.push(f))
+fs.readdirSync(partialsPath).filter(f=>['.DS_Store', 'index.js'].indexOf(f) === -1 && f.match(/\.js$/)).forEach(f => files.push(f))
 
 const partials = fs.readdirSync(partialsPath).filter(f=>['.DS_Store'].indexOf(f) === -1 && f.match(/\.js$/))
 
