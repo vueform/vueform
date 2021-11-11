@@ -1,6 +1,7 @@
 // Core
 import installer from './../../src/installer'
 import config from './../../src/config'
+import components from './../../src/components'
 
 // Assets
 import defaultTheme from './../../src/themes/vueform'
@@ -19,7 +20,7 @@ export default function createVueformInstaller (options = {}) {
     languages: {en:'English',fr:'French'},
   }, options.config || {})
 
-  const VueformInstaller = installer(finalConfig)
+  const VueformInstaller = installer(finalConfig, components)
 
   return {
     VueformInstaller,
