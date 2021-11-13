@@ -193,10 +193,6 @@ export default {
       validation.initValidation()
     })
 
-    watch(validation.validationRules, () => {
-      validation.initValidation()
-    }, { deep: true })
-
     return {
       ...form$,
       ...fieldId,

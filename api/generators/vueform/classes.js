@@ -2,12 +2,12 @@ const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
 
-const vueformThemeComponentsPath = path.resolve(`${__dirname}/../../../src/themes/default/templates`)
-const vueformThemeElementsPath = path.resolve(`${__dirname}/../../../src/themes/default/templates/elements`)
-const vueformThemeWrappersPath = path.resolve(`${__dirname}/../../../src/themes/default/templates/wrappers`)
-const vueformThemePartialsPath = path.resolve(`${__dirname}/../../../src/themes/default/templates/elements/partials`)
+const vueformThemeComponentsPath = path.resolve(`${__dirname}/../../../src/themes/vueform/templates`)
+const vueformThemeElementsPath = path.resolve(`${__dirname}/../../../src/themes/vueform/templates/elements`)
+const vueformThemeWrappersPath = path.resolve(`${__dirname}/../../../src/themes/vueform/templates/wrappers`)
+const vueformThemePartialsPath = path.resolve(`${__dirname}/../../../src/themes/vueform/templates/elements/partials`)
 const tailwindClasses = require('./../../../src/themes/tailwind/classes').default
-const outputDir = path.resolve(`${__dirname}/../../../../vueform/content/reference/1.x/generated/data`)
+const outputDir = path.resolve(`${__dirname}/../../../../vueform-web/content/reference/1.x/generated/data`)
 const outputFile = path.resolve(outputDir, 'classes.js')
 
 const classes = {}
