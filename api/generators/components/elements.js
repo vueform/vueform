@@ -210,6 +210,16 @@ const addProps = (contents, element) => {
     contents += `        native: ${native},\n`
   }
 
+  const addRequired = (prop) => {
+    if (prop.required === undefined) {
+      return
+    }
+
+    let required = prop.required
+
+    contents += `        required: ${required},\n`
+  }
+
   contents += `    props: {\n`
 
   _.forEach(props, (v,k) => {
@@ -222,6 +232,7 @@ const addProps = (contents, element) => {
     addDefault(v)
     addTypes(v)
     addNative(v)
+    addRequired(v)
 
     if (!skipPrivate) {
       contents += `        private: ${!!v.private},\n`

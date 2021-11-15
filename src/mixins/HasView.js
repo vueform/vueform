@@ -8,7 +8,8 @@ export default {
     layout: {
       required: false,
       type: [String, Object, Boolean],
-      default: 'ElementLayout'
+      default: 'ElementLayout',
+      private: true,
     },
     addClass: {
       required: false,

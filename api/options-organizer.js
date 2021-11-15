@@ -9,14 +9,14 @@ module.exports = [
   'default', 'formatData', 'formatLoad', 'submit',
 
   // Validation
-  'rules', 'debounce', 'messages',
+  'rules', 'fieldName', 'debounce', 'messages',
 
   // Conditions
   'conditions',
 
   // Layout
-  'columns', 'inline', 'layout', 'overrideComponents', 'slots',
+  'columns', 'inline',
 
   // Styling
-  'addClass', 'addClasses', 'overrideClasses',
+  'addClass', 'extendClasses', 'replaceClasses', 'replaceTemplates', 'slots',
 ]

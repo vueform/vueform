@@ -12,7 +12,8 @@ export default {
     },
     fieldName: {
       required: false,
-      type: String,
+      type: [String],
+      '@default': 'name|label'
     }
   }
 }
