@@ -53,11 +53,6 @@ export default {
       type: [String, Object],
       default: null
     },
-    embed: {
-      type: [Boolean],
-      required: false,
-      default: false,
-    },
     disabled: {
       required: false,
       type: [Boolean],
@@ -135,6 +130,11 @@ export default {
       required: false,
       type: [Boolean],
       default: false
+    },
+    embed: {
+      type: [Boolean],
+      required: false,
+      default: false,
     },
   },
   setup(props, context) {

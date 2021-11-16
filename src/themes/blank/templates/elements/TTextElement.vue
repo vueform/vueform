@@ -4,6 +4,7 @@
   export default {
     name: 'TTextElement',
     render: TextElement.render,
+    staticRenderFns: TextElement.staticRenderFns,
     data() {
       return {
         defaultClasses: {

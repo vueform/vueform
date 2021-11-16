@@ -8,6 +8,7 @@
       Multiselect,
     },
     render: SelectElement.render,
+    staticRenderFns: SelectElement.staticRenderFns,
     data() {
       return {
         defaultClasses: {

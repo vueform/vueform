@@ -23,7 +23,7 @@ const select = {
   containerOpenTop: 'form-rounded-t-none',
   containerActive: 'form-ring',
   search: 'w-full absolute inset-0 outline-none appearance-none box-border border-0 text-base font-sans bg-white form-rounded form-pl-input',
-  placeholder: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input text-gray-400',
+  placeholder: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input text-gray-500',
   caret: 'mask-bg mask-form-caret bg-gray-500 w-2.5 h-4 py-px box-content form-mr-input relative z-10 flex-shrink-0 flex-grow-0 transition-transform transform pointer-events-none',
   caretOpen: 'rotate-180 pointer-events-auto',
   clear: 'form-pr-input relative z-10 opacity-40 transition duration-300 flex-shrink-0 flex-grow-0 flex hover:opacity-80',
@@ -109,7 +109,7 @@ export default {
     handleIcon: 'mask-bg mask-form-sort-handle bg-black mask-size-2.8 block w-full h-full',
     remove: 'absolute z-1 w-4 h-4 box-content p-0.5 top-px form-left-gutter bg-gray-200 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 hover:bg-gray-300 group-hover:opacity-100',
     removeIcon: 'mask-bg mask-form-remove-light bg-gray-500 mask-size-3 block w-full h-full',
-    add: 'form-bg-primary text-white px-2.5 py-1.5 text-sm form-rounded transition hover:form-bg-primary-darker',
+    add: 'inline-block form-bg-primary text-white px-2.5 py-1 text-sm form-rounded transition hover:form-bg-primary-darker',
   },
   LocationElement: {
     container: '',
@@ -174,7 +174,7 @@ export default {
     input_enabled: 'focus:form-ring',
     input_disabled: 'form-bg-disabled form-text-disabled',
     inputWrapper: 'relative',
-    inputPlaceholder: 'absolute left-0 top-0 form-pt-input form-pl-input ml-px text-gray-400 pointer-events-none',
+    inputPlaceholder: 'absolute left-0 top-0 form-pt-input form-pl-input ml-px text-gray-500 pointer-events-none',
     select: {
       ...select,
       singleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',

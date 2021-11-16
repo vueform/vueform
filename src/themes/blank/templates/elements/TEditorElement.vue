@@ -4,6 +4,7 @@
   export default {
     name: 'TEditorElement',
     render: EditorElement.render,
+    staticRenderFns: EditorElement.staticRenderFns,
     data() {
       return {
         defaultClasses: {

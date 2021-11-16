@@ -4,6 +4,7 @@
   export default {
     name: 'TTextareaElement',
     render: TextareaElement.render,
+    staticRenderFns: TextareaElement.staticRenderFns,
     data() {
       return {
         defaultClasses: {

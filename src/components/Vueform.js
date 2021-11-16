@@ -237,11 +237,6 @@ export default {
       required: false,
       default: null
     },
-    theme: {
-      type: String,
-      required: false,
-      default: null
-    },
     endpoint: {
       type: String,
       required: false,

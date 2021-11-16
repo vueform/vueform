@@ -178,6 +178,7 @@ export default {
       nullValue: nullValue.nullValue,
       fieldId: fieldId.fieldId,
       path: path.path,
+      form$: form$.form$,
     })
 
     useWatchValue(props, context, {

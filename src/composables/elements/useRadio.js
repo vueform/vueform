@@ -13,6 +13,7 @@ const base = function (props, context, dependencies)
   const nullValue = dependencies.nullValue
   const fieldId = dependencies.fieldId
   const path = dependencies.path
+  const form$ = dependencies.form$
 
   // ============== COMPUTED ==============
   
@@ -49,7 +50,7 @@ const base = function (props, context, dependencies)
   // =============== HOOKS ================
 
   onMounted(() => {
-    document.getElementsByName(inputName.value).forEach((element) => {
+    form$.value.$el.querySelectorAll(`input[name="${inputName.value}"`).forEach((element) => {
       element.addEventListener('change', () => {
         if (element.id != fieldId.value) {
           update(nullValue.value)

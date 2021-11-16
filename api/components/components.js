@@ -3675,13 +3675,6 @@ module.exports = {
           "number"
         ]
       },
-      "theme": {
-        "required": false,
-        "default": null,
-        "types": [
-          "string"
-        ]
-      },
       "endpoint": {
         "required": false,
         "default": null,

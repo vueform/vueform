@@ -7060,15 +7060,6 @@ module.exports = {
         required: false,
         private: false,
       },
-      embed: {
-        required: 'false',
-        default: 'false',
-        types: [
-          'boolean',
-        ],
-        required: false,
-        private: false,
-      },
       disabled: {
         required: 'false',
         default: 'false',
@@ -7197,6 +7188,15 @@ module.exports = {
         private: false,
       },
       softRemove: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      embed: {
         required: 'false',
         default: 'false',
         types: [

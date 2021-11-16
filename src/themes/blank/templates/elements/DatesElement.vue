@@ -4,6 +4,7 @@
   export default {
     name: 'DatesElement',
     render: DateElement.render,
+    staticRenderFns: DateElement.staticRenderFns,
     data() {
       return {
         defaultClasses: {
