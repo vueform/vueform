@@ -79,6 +79,7 @@
   }
 
   .slider-vertical .slider-origin {
+    top: -100%;
     width: 0;
   }
 
@@ -137,8 +138,8 @@
   .slider-vertical .slider-handle {
     width: var(--vf-slider-handle-height);
     height: var(--vf-slider-handle-width);
-    bottom: calc(var(--vf-slider-handle-width) / 2 * -1);
     right: calc(((var(--vf-slider-handle-height) - var(--vf-slider-height)) / 2 + 1px) * -1);
+    bottom: calc(var(--vf-slider-handle-width) / 2 * -1);
   }
 
   .slider-txt-dir-rtl.slider-horizontal .slider-handle {

@@ -197,7 +197,7 @@ export default {
       base: 'w-full h-full relative z-1 bg-gray-300 rounded',
       connects: 'w-full h-full relative overflow-hidden z-0 rounded',
       connect: 'absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-full w-full form-bg-primary cursor-pointer tap:duration-300 tap:transition-transform disabled:form-bg-disabled-darker disabled:cursor-not-allowed',
-      origin: 'slider-origin absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-full w-full h:h-0 txt-rtl-h:left-0 txt-rtl-h:right-auto v:w-0 tap:duration-300 tap:transition-transform',
+      origin: 'slider-origin absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-full w-full h:h-0 v:-top-full txt-rtl-h:left-0 txt-rtl-h:right-auto v:w-0 tap:duration-300 tap:transition-transform',
       handle: 'absolute rounded-full bg-white border-0 shadow-slider cursor-grab focus:outline-none h:w-4 h:h-4 h:-top-1.5 h:-right-2 txt-rtl-h:-left-2 txt-rtl-h:right-auto v:w-4 v:h-4 v:-bottom-2 v:-right-1.25 disabled:cursor-not-allowed focus:form-ring',
       touchArea: 'h-full w-full',
       tooltip: 'absolute block text-sm font-semibold whitespace-nowrap py-1 px-1.5 min-w-5 text-center text-white rounded border form-border-primary form-bg-primary transform h:-translate-x-1/2 h:left-1/2 v:-translate-y-1/2 v:top-1/2 disabled:form-bg-disabled-darker disabled:form-border-disabled-darker merge-h:translate-x-1/2 merge-h:left-auto merge-v:-translate-x-4 merge-v:top-auto tt-focus:hidden tt-focused:block tt-drag:hidden tt-dragging:block',
@@ -391,7 +391,7 @@ export default {
     container_pending: 'form-step-pending',
   },
   FormSteps: {
-    container: 'form-mb-2gutter flex justify-between overflow-x-auto pt-5',
+    container: 'form-mb-gutter flex justify-between overflow-x-auto pt-5',
   },
   FormStepsControl: {
     button: 'px-4 py-2 form-rounded focus:form-ring focus:outline-none disabled:pointer-events-none disabled:opacity-60 disabled:cursor-not-allowed',
@@ -416,7 +416,7 @@ export default {
     wrapper_invalid: 'text-red-500',
   },
   FormTabs: {
-    container: 'flex border-b form-border-color form-mb-2gutter items-end',
+    container: 'flex border-b form-border-color form-mb-gutter items-end',
   },
   Vueform: {
     form: '',
