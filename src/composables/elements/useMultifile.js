@@ -15,16 +15,16 @@ const base = function (props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * Whether any of the file are preparing (being uploaded before submit).
+   * Whether any of the files are currently being uploaded to the server (initiated by form submit).
    * 
    * @type {boolean}
    */
   const preparing = computed(() => {
-    return _.some(children$.value, { available: true, perparing: true })
+    return _.some(children$.value, { available: true, preparing: true })
   })
 
   /**
-   * Whether any file is currently uploading.
+   * Whether any of the files are currently being uploaded to the server (initiated by the user).
    * 
    * @type {boolean}
    */

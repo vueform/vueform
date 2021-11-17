@@ -37,7 +37,7 @@ const base = function(props, context, dependencies, options)
   // ============== COMPUTED ==============
 
   /**
-   * Whether the list is sortable. Can be enabled with `:sort="true"` option, but it will disabled if [`isDisabled`](#is-disabled) is `true`.
+   * Whether the list is sortable. Can be enabled with [`sort`](#option-sort) option, but it will disabled if [`isDisabled`](#property-is-disabled) is `true`.
    * 
    * @type {boolean}
    */

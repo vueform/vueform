@@ -45,7 +45,7 @@ const base = function (props, context, dependencies, options_ = {})
   })
 
   /**
-  * Default options for location provider.
+  * Default options for location provider. Can be extended with [`extendOptions`](#option-extend-options).
   * 
   * @type {object} 
   * @default {}
@@ -84,6 +84,7 @@ const base = function (props, context, dependencies, options_ = {})
    *
    * @param {object} data an object containing address data
    * @param {object} raw an object containing raw address data (based on provider)
+   * @private
    */
   const handleAddressChange = (data, raw) => {
     if (options_.handleAddressChange) {
@@ -110,11 +111,15 @@ const base = function (props, context, dependencies, options_ = {})
   }
 
   /**
-   * Initalizes location service.
+   * Initalizes location service. Can be used to re-initalize location service.
    *
    * @returns {void}
    */
   const initLocationService = () => {
+    if (locationService.value) {
+      locationService.value.destroy()
+    }
+
     locationService.value = new form$.value.$vueform.services.location[locationProvider.value]
     locationService.value.init(inputElement(), handleAddressChange, providerOptions.value)
   }
@@ -122,7 +127,6 @@ const base = function (props, context, dependencies, options_ = {})
   // ============== WATCHERS ==============
 
   watch([locationProvider, providerOptions], () => {
-    locationService.value.destroy()
     initLocationService()
   }, { deep: true, immediate: false })
 
@@ -130,17 +134,6 @@ const base = function (props, context, dependencies, options_ = {})
 
   onMounted(() => {
     initLocationService()
-
-    // Replacing autocomplete attribute on input
-    let attrObserver = new MutationObserver(() => {
-      attrObserver.disconnect();
-      inputElement().setAttribute('autocomplete', 'not-address')
-    });
-
-    attrObserver.observe(inputElement(), {
-      attributes: true,
-      attributeFilter: ['autocomplete']
-    });
   })
 
   return {

@@ -80,6 +80,10 @@ const addEvents = (contents, elementName) => {
       contents += `        description: '${eventInfo.description.split('').map(c=>c==='\''?'&apos;':c).join('')}',\n`
     }
 
+    if (eventInfo.private !== undefined) {
+      contents += `        private: ${eventInfo.private},\n`
+    }
+
     if (eventInfo.params) {
       contents += `        params: {\n`
 

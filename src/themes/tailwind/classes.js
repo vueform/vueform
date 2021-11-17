@@ -371,7 +371,7 @@ export default {
     wrapper_active: 'text-white form-bg-primary'
   },
   FormLanguages: {
-    container: 'flex items-center justify-between form-mb-2gutter',
+    container: 'flex items-center justify-between form-mb-gutter',
   },
   FormMessages: {
     container: 'bg-green-100 text-green-500 py-3 px-5 rounded form-mb-gutter',

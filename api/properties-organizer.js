@@ -1,4 +1,7 @@
 module.exports = [
+  'hasUploading',
+  'preparing',
+
   'value',
   'model',
   'data',
@@ -7,6 +10,17 @@ module.exports = [
 
   'path',
   'dataPath',
+
+  'children$',
+
+  'hasAdd',
+  'hasRemove',
+  'hasSort',
+
+  'sorting',
+  'isSortable',
+  
+  'orderByName',
 
   'validated',
   'invalid',
@@ -23,17 +37,19 @@ module.exports = [
   'visible',
   'isActive',
   'isDisabled',
+  'isLoading',
 
   'input',
   'fieldId',
   'hasLabel',
+  'hasFloating',
   
   'classes',
   'templates',
   'theme',
 
-  'mounted',
-
   'form$',
   'el$',
+
+  'mounted',
 ]

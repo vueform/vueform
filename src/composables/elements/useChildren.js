@@ -22,7 +22,6 @@ const base = function(props, context, dependencies)
   /**
    * Child element components.
    * 
-   * @default {[name]:component}
    * @type {object<Element>}
    */
   const children$ = computed(() => {

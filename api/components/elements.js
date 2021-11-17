@@ -501,13 +501,6 @@ module.exports = {
         description: 'The current layout of the element.',
         private: true,
       },
-      parent: {
-        types: [
-          'component',
-        ],
-        description: 'The parent component of the element.',
-        private: true,
-      },
       path: {
         types: [
           'string',
@@ -515,18 +508,18 @@ module.exports = {
         description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
-      dataPath: {
-        types: [
-          'string',
-        ],
-        description: 'The path of the element&apos;s data using dot `.` syntax.',
-        private: false,
-      },
       flat: {
         types: [
           'boolean',
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
+        private: true,
+      },
+      parent: {
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       elementSlots: {
@@ -727,7 +720,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -738,7 +731,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -1488,14 +1481,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -1843,7 +1836,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -1854,7 +1847,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -2532,14 +2525,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -2955,7 +2948,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -2966,7 +2959,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -3879,14 +3872,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -4238,7 +4231,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -4249,7 +4242,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -5052,14 +5045,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -5401,7 +5394,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -5412,7 +5405,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -6243,14 +6236,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -6652,7 +6645,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -6663,7 +6656,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -7679,14 +7672,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -8121,7 +8114,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -8132,7 +8125,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -8633,7 +8626,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        description: 'The value of child elements in object. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
@@ -8973,7 +8966,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -8984,7 +8977,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -9477,14 +9470,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -9795,7 +9788,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -9806,7 +9799,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -10436,7 +10429,6 @@ module.exports = {
           'object,Element',
         ],
         description: 'Child element components.',
-        default: '{[name]:component}',
         private: false,
       },
       classes: {
@@ -10471,21 +10463,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether adding new items is allowed. Will return `false` if the element is `:disabled` or have reached `:max` items. Can be disabled manually by setting [`:controls.add`](#controls) to `false`.',
+        description: 'Whether adding new items is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or have reached [`max`](#option-max) items. Can be disabled manually by setting [`controls.add`](#option-controls) to `false`.',
         private: false,
       },
       hasRemove: {
         types: [
           'boolean',
         ],
-        description: 'Whether remove items is allowed. Will return `false` if the element is `:disabled` or has <= `:min` items. Can be disabled manually by setting [`:controls.remove`](#controls) to `false`.',
+        description: 'Whether remove items is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or has <= [`min`](#option-min) items. Can be disabled manually by setting [`controls.remove`](#option-controls) to `false`.',
         private: false,
       },
       hasSort: {
         types: [
           'boolean',
         ],
-        description: 'Whether list items should be sortable. Can be enabled by setting [`:sort`](#sort) to `true`, but will return `false` if the element is `:disabled`.',
+        description: 'Whether list items should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled).',
         private: false,
       },
       requestData: {
@@ -10556,7 +10548,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The name of the field which we should order by.',
+        description: 'The name of the child (when using [`object`](#option-object)) by which the items should ordered.',
         private: false,
       },
       parent: {
@@ -10619,7 +10611,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the list is sortable. Can be enabled with `:sort="true"` option, but it will disabled if [`isDisabled`](#is-disabled) is `true`.',
+        description: 'Whether the list is sortable. Can be enabled with [`sort`](#option-sort) option, but it will disabled if [`isDisabled`](#property-is-disabled) is `true`.',
         private: false,
       },
       templates: {
@@ -10633,42 +10625,42 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s or any of its children&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element and all of its children was already validated at least once.',
         private: false,
       },
       invalid: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any failing rules.',
+        description: 'Whether the element or any of its children has any failing rules.',
         private: false,
       },
       pending: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any async rules in progress.',
+        description: 'Whether the element or any of its children has any async rules in progress.',
         private: false,
       },
       debouncing: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a validation rule with pending debounce.',
+        description: 'Whether the element or any of its chilren has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element or any of its children is `pending` or `debouncing`.',
         private: false,
       },
       childrenErrors: {
@@ -10735,7 +10727,7 @@ module.exports = {
       },
       add: {
         description: 'Appends a new item.',
-        returns: 'void',
+        returns: 'integer',
         params: {
           value: {
             types: [
@@ -10905,7 +10897,7 @@ module.exports = {
         private: false,
       },
       refreshOrderStore: {
-        description: 'Sets the value of `storeOrder` fields within a list of items to match the order.',
+        description: 'Sets the value of `storeOrder` field within a list of items to match the order.',
         returns: 'void',
         params: {
           value: {
@@ -11144,7 +11136,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -11155,7 +11147,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -11907,7 +11899,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Default options for location provider.',
+        description: 'Default options for location provider. Can be extended with [`extendOptions`](#option-extend-options).',
         default: '{}',
         private: false,
       },
@@ -11964,14 +11956,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -12185,14 +12177,14 @@ module.exports = {
             description: 'an object containing raw address data (based on provider)',
           },
         },
-        private: false,
+        private: true,
       },
       handleLocationBlur: {
         description: '',
         private: true,
       },
       initLocationService: {
-        description: 'Initalizes location service.',
+        description: 'Initalizes location service. Can be used to re-initalize location service.',
         returns: 'void',
         private: false,
       },
@@ -12338,7 +12330,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -12349,7 +12341,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -13111,7 +13103,6 @@ module.exports = {
           'object,Element',
         ],
         description: 'Child element components.',
-        default: '{[name]:component}',
         private: false,
       },
       classes: {
@@ -13146,21 +13137,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether adding new items is allowed. Will return `false` if the element is `:disabled`. Can be disabled manually by setting [`:controls.add`](#controls) to `false`.',
+        description: 'Whether adding new files is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled). Can be disabled manually by setting [`controls.add`](#option-controls) to `false`.',
         private: false,
       },
       hasRemove: {
         types: [
           'boolean',
         ],
-        description: 'Whether remove items is allowed. Will return `false` if the element is `:disabled` or a temporary file upload is in progress. Can be disabled manually by setting [`:controls.remove`](#controls) to `false`.',
+        description: 'Whether remove files is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or a temporary file upload is in progress. Can be disabled manually by setting [`controls.remove`](#option-controls) to `false`.',
         private: false,
       },
       hasSort: {
         types: [
           'boolean',
         ],
-        description: 'Whether list items should be sortable. Can be enabled by setting [`:sort`](#sort) to `true`, but will return `false` if the element is `:disabled` or a temporary file upload is in progress.',
+        description: 'Whether list files should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or a temporary file upload is in progress.',
         private: false,
       },
       requestData: {
@@ -13231,14 +13222,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether any of the file are preparing (being uploaded before submit).',
+        description: 'Whether any of the files are currently being uploaded to the server (initiated by form submit).',
         private: false,
       },
       hasUploading: {
         types: [
           'boolean',
         ],
-        description: 'Whether any file is currently uploading.',
+        description: 'Whether any of the files are currently being uploaded to the server (initiated by the user).',
         private: false,
       },
       nullValue: {
@@ -13252,7 +13243,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The name of the field which we should order by.',
+        description: 'The name of the field (when using [`fields`](#option-fiels)) by which the files should ordered.',
         private: false,
       },
       parent: {
@@ -13322,7 +13313,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the list is sortable. Can be enabled with `:sort="true"` option, but it will disabled if [`isDisabled`](#is-disabled) is `true`.',
+        description: 'Whether the list is sortable. Can be enabled with [`sort`](#option-sort) option, but it will disabled if [`isDisabled`](#property-is-disabled) is `true`.',
         private: false,
       },
       templates: {
@@ -13336,42 +13327,42 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s or any of its children&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element and all of its children was already validated at least once.',
         private: false,
       },
       invalid: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any failing rules.',
+        description: 'Whether the element or any of its children has any failing rules.',
         private: false,
       },
       pending: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any async rules in progress.',
+        description: 'Whether the element or any of its children has any async rules in progress.',
         private: false,
       },
       debouncing: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a validation rule with pending debounce.',
+        description: 'Whether the element or any of its chilren has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element or any of its children is `pending` or `debouncing`.',
         private: false,
       },
       childrenErrors: {
@@ -13438,7 +13429,7 @@ module.exports = {
       },
       add: {
         description: 'Appends a new item.',
-        returns: 'void',
+        returns: 'integer',
         params: {
           value: {
             types: [
@@ -13641,7 +13632,7 @@ module.exports = {
         private: true,
       },
       refreshOrderStore: {
-        description: 'Sets the value of `storeOrder` fields within a list of items to match the order.',
+        description: 'Sets the value of `storeOrder` field within a list of items to match the order.',
         returns: 'void',
         params: {
           value: {
@@ -13880,7 +13871,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -13891,7 +13882,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -14978,14 +14969,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -15495,7 +15486,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -15506,7 +15497,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -16179,7 +16170,6 @@ module.exports = {
           'object,Element',
         ],
         description: 'Child element components.',
-        default: '{[name]:component}',
         private: false,
       },
       classes: {
@@ -16306,42 +16296,42 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element has any child with modified value.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether all the children were validated at least once.',
         private: false,
       },
       invalid: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any failing rules.',
+        description: 'Whether the element has any child with failing rules.',
         private: false,
       },
       pending: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any async rules in progress.',
+        description: 'Whether the element has any child with async rules in progress.',
         private: false,
       },
       debouncing: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a validation rule with pending debounce.',
+        description: 'Whether the element has any child with validation rule with pending debounce.',
         private: false,
       },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element has any `busy` child.',
         private: false,
       },
       errors: {
@@ -16492,17 +16482,17 @@ module.exports = {
         private: false,
       },
       validate: {
-        description: 'Checks each validation rule for the element (async).',
+        description: 'Validates every child (async).',
         returns: 'void',
         private: false,
       },
       clean: {
-        description: 'Removes the element&apos;s `dirty` state.',
+        description: 'Removes every child&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Sets the validators to default state.',
+        description: 'Sets the validators of children to default state.',
         returns: 'void',
         private: false,
       },
@@ -16557,21 +16547,7 @@ module.exports = {
        },
       },
       'remove': {
-        description: 'Triggered when a new item is added to the list.',
-        params: {
-          index: {
-            description: 'the index of the removed item',
-            types: [
-              'number',
-            ]
-          },
-          value: {
-            description: 'the element&apos;s value after the item is removed',
-            types: [
-              'array',
-            ]
-          },
-       },
+        private: true,
       },
       'beforeCreate': {
         description: 'Triggered in beforeCreate hook.',
@@ -16640,7 +16616,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -16651,7 +16627,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -17394,14 +17370,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -17749,7 +17725,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -17760,7 +17736,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -18475,14 +18451,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -18810,7 +18786,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -18821,7 +18797,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -19974,14 +19950,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -20471,7 +20447,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -20482,7 +20458,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -21440,14 +21416,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -21799,7 +21775,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -21810,7 +21786,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -22287,13 +22263,6 @@ module.exports = {
         description: 'The current layout of the element.',
         private: true,
       },
-      parent: {
-        types: [
-          'component',
-        ],
-        description: 'The parent component of the element.',
-        private: true,
-      },
       path: {
         types: [
           'string',
@@ -22301,18 +22270,18 @@ module.exports = {
         description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
-      dataPath: {
-        types: [
-          'string',
-        ],
-        description: 'The path of the element&apos;s data using dot `.` syntax.',
-        private: false,
-      },
       flat: {
         types: [
           'boolean',
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
+        private: true,
+      },
+      parent: {
+        types: [
+          'component',
+        ],
+        description: 'The parent component of the element.',
         private: true,
       },
       elementSlots: {
@@ -22506,7 +22475,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -22517,7 +22486,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -23338,42 +23307,42 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value has been modified in any language.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether all the languages has already been validated at least once.',
         private: false,
       },
       invalid: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any failing rules.',
+        description: 'Whether the element has failing rules in any language.',
         private: false,
       },
       pending: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any async rules in progress.',
+        description: 'Whether the element has any async rules in progress in any language.',
         private: false,
       },
       debouncing: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a validation rule with pending debounce.',
+        description: 'Whether the element has a validation rule with pending debounce in any language.',
         private: false,
       },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending` or `debouncing` in any language.',
         private: false,
       },
       errors: {
@@ -23748,7 +23717,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -23759,7 +23728,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -24561,42 +24530,42 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value has been modified in any language.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether all the languages has already been validated at least once.',
         private: false,
       },
       invalid: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any failing rules.',
+        description: 'Whether the element has failing rules in any language.',
         private: false,
       },
       pending: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any async rules in progress.',
+        description: 'Whether the element has any async rules in progress in any language.',
         private: false,
       },
       debouncing: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a validation rule with pending debounce.',
+        description: 'Whether the element has a validation rule with pending debounce in any language.',
         private: false,
       },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending` or `debouncing` in any language.',
         private: false,
       },
       errors: {
@@ -24939,7 +24908,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -24950,7 +24919,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -25757,42 +25726,42 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value has been modified in any language.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether all the languages has already been validated at least once.',
         private: false,
       },
       invalid: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any failing rules.',
+        description: 'Whether the element has failing rules in any language.',
         private: false,
       },
       pending: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any async rules in progress.',
+        description: 'Whether the element has any async rules in progress in any language.',
         private: false,
       },
       debouncing: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a validation rule with pending debounce.',
+        description: 'Whether the element has a validation rule with pending debounce in any language.',
         private: false,
       },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending` or `debouncing` in any language.',
         private: false,
       },
       errors: {
@@ -26140,7 +26109,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -26151,7 +26120,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -27278,14 +27247,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -27820,7 +27789,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -27831,7 +27800,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -28795,14 +28764,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -29154,7 +29123,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -29165,7 +29134,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -29971,14 +29940,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -30335,7 +30304,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -30346,7 +30315,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -31125,14 +31094,14 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has already been validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
@@ -31494,7 +31463,7 @@ module.exports = {
        },
       },
       'beforeUnmount': {
-        description: 'Triggered in beforeUnmount hook.',
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -31505,7 +31474,7 @@ module.exports = {
        },
       },
       'unmounted': {
-        description: 'Triggered in unmounted hook.',
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
         params: {
           el$: {
             description: 'the element&apos;s component',

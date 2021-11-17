@@ -180,6 +180,10 @@ export default {
         },
       }
     },
+    ObjectElement: {
+      description: '',
+      private: true,
+    },
     FileElement: {
       description: 'Triggered after the file is removed.',
     },
@@ -417,7 +421,7 @@ export default {
   },
   beforeUnmount: {
     default: {
-      description: 'Triggered in beforeUnmount hook.',
+      description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
       params: {
         el$: {
           description: 'the element\'s component',
@@ -426,7 +430,7 @@ export default {
       }
     },
     Vueform: {
-      description: 'Triggered in beforeUnmount hook.',
+      description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
       params: {
         form$: {
           description: 'the form\'s component',
@@ -437,7 +441,7 @@ export default {
   },
   unmounted: {
     default: {
-      description: 'Triggered in unmounted hook.',
+      description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
       params: {
         el$: {
           description: 'the element\'s component',
@@ -446,7 +450,7 @@ export default {
       }
     },
     Vueform: {
-      description: 'Triggered in unmounted hook.',
+      description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
       params: {
         form$: {
           description: 'the form\'s component',

@@ -93,8 +93,28 @@ const group = function (props, context, dependencies)
   }
 }
 
+const static_ = function (props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+
+  const {
+    path,
+    parent,
+    flat,
+  } = base(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+
+  return {
+    path,
+    flat,
+    parent,
+  }
+}
+
 export {
   group,
+  static_,
 }
 
 export default base

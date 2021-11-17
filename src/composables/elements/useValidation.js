@@ -66,7 +66,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Whether the element's value has been modified.
+   * Whether the element's value was modified.
    * 
    * @type {boolean}
    */
@@ -75,7 +75,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Whether the element has already been validated at least once.
+   * Whether the element was already validated at least once.
    * 
    * @type {boolean}
    */
@@ -284,31 +284,61 @@ const list = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * Whether the element's or any of its children's value was modified.
+   * 
+   * @type {boolean}
+   */
   const dirty = computed(() => {
     return _.some(children$.value, { available: true, dirty: true })
       || state.value.dirty
   })
 
+  /**
+   * Whether the element and all of its children was already validated at least once.
+   * 
+   * @type {boolean}
+   */
   const validated = computed(() => {
     return !_.some(children$.value, { available: true, validated: false })
       && state.value.validated
   })
 
+  /**
+   * Whether the element or any of its children has any failing rules.
+   * 
+   * @type {boolean}
+   */
   const invalid = computed(() => {
     return _.some(children$.value, { available: true, invalid: true })
       || _.some(Validators.value, { invalid: true })
   })
 
+  /**
+   * Whether the element or any of its children has any async rules in progress.
+   * 
+   * @type {boolean}
+   */
   const pending = computed(() => {
     return _.some(children$.value, { available: true, pending: true })
       || _.some(Validators.value, { pending: true })
   })
 
+  /**
+   * Whether the element or any of its chilren has a validation rule with pending debounce.
+   * 
+   * @type {boolean}
+   */
   const debouncing = computed(() => {
     return _.some(children$.value, { available: true, debouncing: true })
       || _.some(Validators.value, { debouncing: true })
   })
 
+  /**
+   * Whether the element or any of its children is `pending` or `debouncing`.
+   * 
+   * @type {boolean}
+   */
   const busy = computed(() => {
     return _.some(children$.value, { available: true, busy: true })
       || pending.value || debouncing.value
@@ -509,18 +539,33 @@ const multilingual = function(props, context, dependencies)
     return ruleList
   })
 
+  /**
+   * Whether the element's value has been modified in any language.
+   * 
+   * @type {boolean}
+   */
   const dirty = computed(() => {
     return _.some(state.value.dirty, (val) => {
       return val === true
     })
   })
 
+  /**
+   * Whether all the languages has already been validated at least once.
+   * 
+   * @type {boolean}
+   */
   const validated = computed(() => {
     return !_.some(state.value.validated, (val) => {
       return val === false
     })
   })
 
+  /**
+   * Whether the element has failing rules in any language.
+   * 
+   * @type {boolean}
+   */
   const invalid = computed(() => {
     var invalid = false
 
@@ -533,6 +578,11 @@ const multilingual = function(props, context, dependencies)
     return invalid
   })
 
+  /**
+   * Whether the element has any async rules in progress in any language.
+   * 
+   * @type {boolean}
+   */
   const pending = computed(() => {
     var pending = false
 
@@ -545,6 +595,11 @@ const multilingual = function(props, context, dependencies)
     return pending
   })
 
+  /**
+   * Whether the element has a validation rule with pending debounce in any language.
+   * 
+   * @type {boolean}
+   */
   const debouncing = computed(() => {
     var debouncing = false
 
@@ -557,6 +612,11 @@ const multilingual = function(props, context, dependencies)
     return debouncing
   })
 
+  /**
+   * Whether the element is `pending` or `debouncing` in any language.
+   * 
+   * @type {boolean}
+   */
   const busy = computed(() => {
     return pending.value || debouncing.value
   })
@@ -755,26 +815,57 @@ const object = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+
+  /**
+   * Whether the element has any child with modified value.
+   * 
+   * @type {boolean}
+   */
   const dirty = computed(() => {
     return _.some(children$.value, { available: true, dirty: true })
   })
 
+  /**
+   * Whether all the children were validated at least once.
+   * 
+   * @type {boolean}
+   */
   const validated = computed(() => {
     return !_.some(children$.value, { available: true, validated: false })
   })
 
+  /**
+   * Whether the element has any child with failing rules.
+   * 
+   * @type {boolean}
+   */
   const invalid = computed(() => {
     return _.some(children$.value, { available: true, invalid: true })
   })
 
+  /**
+   * Whether the element has any child with async rules in progress.
+   * 
+   * @type {boolean}
+   */
   const pending = computed(() => {
     return _.some(children$.value, { available: true, pending: true })
   })
 
+  /**
+   * Whether the element has any child with validation rule with pending debounce.
+   * 
+   * @type {boolean}
+   */
   const debouncing = computed(() => {
     return _.some(children$.value, { available: true, debouncing: true })
   })
 
+  /**
+   * Whether the element has any `busy` child.
+   * 
+   * @type {boolean}
+   */
   const busy = computed(() => {
     return _.some(children$.value, { available: true, busy: true })
   })
@@ -808,6 +899,11 @@ const object = function(props, context, dependencies)
 
   // =============== METHODS ==============
 
+  /**
+   * Validates every child (async).
+   * 
+   * @returns {void}
+   */
   const validate = async () => {
     await asyncForEach(children$.value, async (element$) => {
       if (!element$.available || element$.isStatic) {
@@ -818,6 +914,11 @@ const object = function(props, context, dependencies)
     })
   }
 
+  /**
+   * Removes every child's `dirty` state.
+   * 
+   * @returns {void}
+   */
   const clean = () => {
     _.each(children$.value, (element$) => {
       if (element$.isStatic) {
@@ -828,6 +929,11 @@ const object = function(props, context, dependencies)
     })
   }
 
+  /**
+   * Sets the validators of children to default state.
+   * 
+   * @returns {void}
+   */
   const resetValidators = () => {
     _.each(children$.value, (element$) => {
       if (element$.isStatic) {

@@ -20,7 +20,7 @@ const base = function(props, context, dependencies, options)
   // =============== METHODS ==============
 
   /**
-   * Sets the value of `storeOrder` fields within a list of items to match the order.
+   * Sets the value of `storeOrder` field within a list of items to match the order.
    *
    * @param {array} value* list of items
    * @returns {void}
@@ -41,7 +41,7 @@ const base = function(props, context, dependencies, options)
   }
 
   /**
-   * The name of the field which we should order by.
+   * The name of the child (when using [`object`](#option-object)) by which the items should ordered.
    * 
    * @type {string}
    */
@@ -53,6 +53,38 @@ const base = function(props, context, dependencies, options)
     refreshOrderStore,
     orderByName,
   }
+}
+
+const multifile = function(props, context, dependencies, options)
+{
+  const {
+    storeOrder,
+    orderBy,
+  } = toRefs(props)
+
+  const {
+    refreshOrderStore,
+  } = base(props, context, dependencies, options)
+
+  // =============== METHODS ==============
+
+  /**
+   * The name of the field (when using [`fields`](#option-fiels)) by which the files should ordered.
+   * 
+   * @type {string}
+   */
+  const orderByName = computed(() => {
+    return orderBy.value || storeOrder.value
+  })
+
+  return {
+    refreshOrderStore,
+    orderByName,
+  }
+}
+
+export {
+  multifile,
 }
 
 export default base

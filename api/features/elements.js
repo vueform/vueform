@@ -517,7 +517,6 @@ export default {
               "Element"
             ]
           ],
-          "default": "{[name]:component}",
           "description": "Child element components."
         }
       }
@@ -539,7 +538,6 @@ export default {
               "Element"
             ]
           ],
-          "default": "{[name]:component}",
           "description": "Child element components."
         }
       },
@@ -587,7 +585,6 @@ export default {
               "Element"
             ]
           ],
-          "default": "{[name]:component}",
           "description": "Child element components."
         },
         "children": {
@@ -629,7 +626,6 @@ export default {
               "Element"
             ]
           ],
-          "default": "{[name]:component}",
           "description": "Child element components."
         },
         "children": {
@@ -854,21 +850,21 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether adding new items is allowed. Will return `false` if the element is `:disabled` or have reached `:max` items. Can be disabled manually by setting [`:controls.add`](#controls) to `false`."
+          "description": "Whether adding new items is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or have reached [`max`](#option-max) items. Can be disabled manually by setting [`controls.add`](#option-controls) to `false`."
         },
         "hasRemove": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether remove items is allowed. Will return `false` if the element is `:disabled` or has <= `:min` items. Can be disabled manually by setting [`:controls.remove`](#controls) to `false`."
+          "description": "Whether remove items is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or has <= [`min`](#option-min) items. Can be disabled manually by setting [`controls.remove`](#option-controls) to `false`."
         },
         "hasSort": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether list items should be sortable. Can be enabled by setting [`:sort`](#sort) to `true`, but will return `false` if the element is `:disabled`."
+          "description": "Whether list items should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled)."
         }
       }
     },
@@ -879,21 +875,21 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether adding new items is allowed. Will return `false` if the element is `:disabled`. Can be disabled manually by setting [`:controls.add`](#controls) to `false`."
+          "description": "Whether adding new files is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled). Can be disabled manually by setting [`controls.add`](#option-controls) to `false`."
         },
         "hasRemove": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether remove items is allowed. Will return `false` if the element is `:disabled` or a temporary file upload is in progress. Can be disabled manually by setting [`:controls.remove`](#controls) to `false`."
+          "description": "Whether remove files is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or a temporary file upload is in progress. Can be disabled manually by setting [`controls.remove`](#option-controls) to `false`."
         },
         "hasSort": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether list items should be sortable. Can be enabled by setting [`:sort`](#sort) to `true`, but will return `false` if the element is `:disabled` or a temporary file upload is in progress."
+          "description": "Whether list files should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or a temporary file upload is in progress."
         }
       }
     }
@@ -1048,7 +1044,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+          "description": "The value of child elements in object. This gets merged with the parent component's data."
         },
         "requestData": {
           "public": true,
@@ -1132,7 +1128,7 @@ export default {
       "methods": {
         "add": {
           "public": true,
-          "returns": "void",
+          "returns": "integer",
           "description": "Appends a new item.",
           "params": {
             "value": {
@@ -2461,7 +2457,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "Default options for location provider."
+          "description": "Default options for location provider. Can be extended with [`extendOptions`](#option-extend-options)."
         }
       },
       "options": {
@@ -2476,7 +2472,7 @@ export default {
       },
       "methods": {
         "handleAddressChange": {
-          "public": true,
+          "public": false,
           "description": "Handles location service's address change.",
           "params": {
             "data": {
@@ -2502,7 +2498,7 @@ export default {
         "initLocationService": {
           "public": true,
           "returns": "void",
-          "description": "Initalizes location service."
+          "description": "Initalizes location service. Can be used to re-initalize location service."
         }
       }
     },
@@ -2532,7 +2528,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "Default options for location provider."
+          "description": "Default options for location provider. Can be extended with [`extendOptions`](#option-extend-options)."
         }
       },
       "options": {
@@ -2582,7 +2578,7 @@ export default {
         "initLocationService": {
           "public": true,
           "returns": "void",
-          "description": "Initalizes location service."
+          "description": "Initalizes location service. Can be used to re-initalize location service."
         }
       }
     }
@@ -2595,14 +2591,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether any of the file are preparing (being uploaded before submit)."
+          "description": "Whether any of the files are currently being uploaded to the server (initiated by form submit)."
         },
         "hasUploading": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether any file is currently uploading."
+          "description": "Whether any of the files are currently being uploaded to the server (initiated by the user)."
         }
       },
       "methods": {
@@ -2737,7 +2733,7 @@ export default {
         "refreshOrderStore": {
           "public": false,
           "returns": "void",
-          "description": "Sets the value of `storeOrder` fields within a list of items to match the order.",
+          "description": "Sets the value of `storeOrder` field within a list of items to match the order.",
           "params": {
             "value": {
               "types": [
@@ -2755,7 +2751,34 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The name of the field which we should order by."
+          "description": "The name of the child (when using [`object`](#option-object)) by which the items should ordered."
+        }
+      }
+    },
+    "multifile": {
+      "methods": {
+        "refreshOrderStore": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the value of `storeOrder` field within a list of items to match the order.",
+          "params": {
+            "value": {
+              "types": [
+                "array"
+              ],
+              "required": true,
+              "description": "list of items"
+            }
+          }
+        }
+      },
+      "computed": {
+        "orderByName": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The name of the field (when using [`fields`](#option-fiels)) by which the files should ordered."
         }
       }
     }
@@ -2808,6 +2831,31 @@ export default {
             "string"
           ],
           "description": "The path of the element's data using dot `.` syntax."
+        },
+        "flat": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))"
+        },
+        "parent": {
+          "public": false,
+          "types": [
+            "component"
+          ],
+          "description": "The parent component of the element."
+        }
+      }
+    },
+    "static": {
+      "computed": {
+        "path": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The path of the element using dot `.` syntax."
         },
         "flat": {
           "public": false,
@@ -3015,7 +3063,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the list is sortable. Can be enabled with `:sort=\"true\"` option, but it will disabled if [`isDisabled`](#is-disabled) is `true`."
+          "description": "Whether the list is sortable. Can be enabled with [`sort`](#option-sort) option, but it will disabled if [`isDisabled`](#property-is-disabled) is `true`."
         }
       },
       "methods": {
@@ -3137,14 +3185,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified."
+          "description": "Whether the element's value was modified."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has already been validated at least once."
+          "description": "Whether the element was already validated at least once."
         },
         "invalid": {
           "public": true,
@@ -3266,42 +3314,42 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified."
+          "description": "Whether the element's or any of its children's value was modified."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has already been validated at least once."
+          "description": "Whether the element and all of its children was already validated at least once."
         },
         "invalid": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has any failing rules."
+          "description": "Whether the element or any of its children has any failing rules."
         },
         "pending": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has any async rules in progress."
+          "description": "Whether the element or any of its children has any async rules in progress."
         },
         "debouncing": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has a validation rule with pending debounce."
+          "description": "Whether the element or any of its chilren has a validation rule with pending debounce."
         },
         "busy": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element is `pending` or `debouncing`."
+          "description": "Whether the element or any of its children is `pending` or `debouncing`."
         },
         "childrenErrors": {
           "public": false,
@@ -3412,42 +3460,42 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified."
+          "description": "Whether the element's value has been modified in any language."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has already been validated at least once."
+          "description": "Whether all the languages has already been validated at least once."
         },
         "invalid": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has any failing rules."
+          "description": "Whether the element has failing rules in any language."
         },
         "pending": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has any async rules in progress."
+          "description": "Whether the element has any async rules in progress in any language."
         },
         "debouncing": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has a validation rule with pending debounce."
+          "description": "Whether the element has a validation rule with pending debounce in any language."
         },
         "busy": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element is `pending` or `debouncing`."
+          "description": "Whether the element is `pending` or `debouncing` in any language."
         },
         "errors": {
           "public": true,
@@ -3541,42 +3589,42 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified."
+          "description": "Whether the element has any child with modified value."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has already been validated at least once."
+          "description": "Whether all the children were validated at least once."
         },
         "invalid": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has any failing rules."
+          "description": "Whether the element has any child with failing rules."
         },
         "pending": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has any async rules in progress."
+          "description": "Whether the element has any child with async rules in progress."
         },
         "debouncing": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has a validation rule with pending debounce."
+          "description": "Whether the element has any child with validation rule with pending debounce."
         },
         "busy": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element is `pending` or `debouncing`."
+          "description": "Whether the element has any `busy` child."
         },
         "errors": {
           "public": true,
@@ -3590,17 +3638,17 @@ export default {
         "validate": {
           "public": true,
           "returns": "void",
-          "description": "Checks each validation rule for the element (async)."
+          "description": "Validates every child (async)."
         },
         "clean": {
           "public": true,
           "returns": "void",
-          "description": "Removes the element's `dirty` state."
+          "description": "Removes every child's `dirty` state."
         },
         "resetValidators": {
           "public": true,
           "returns": "void",
-          "description": "Sets the validators to default state."
+          "description": "Sets the validators of children to default state."
         },
         "initMessageBag": {
           "public": false,
@@ -3645,14 +3693,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified."
+          "description": "Whether the element's value was modified."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has already been validated at least once."
+          "description": "Whether the element was already validated at least once."
         },
         "invalid": {
           "public": true,
@@ -3774,14 +3822,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified."
+          "description": "Whether the element's value was modified."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has already been validated at least once."
+          "description": "Whether the element was already validated at least once."
         },
         "invalid": {
           "public": true,
@@ -3903,14 +3951,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified."
+          "description": "Whether the element's value was modified."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has already been validated at least once."
+          "description": "Whether the element was already validated at least once."
         },
         "invalid": {
           "public": true,

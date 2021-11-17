@@ -17,7 +17,7 @@ const base = function(props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * Whether adding new items is allowed. Will return `false` if the element is `:disabled` or have reached `:max` items. Can be disabled manually by setting [`:controls.add`](#controls) to `false`.
+   * Whether adding new items is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or have reached [`max`](#option-max) items. Can be disabled manually by setting [`controls.add`](#option-controls) to `false`.
    * 
    * @type {boolean}
    */
@@ -26,7 +26,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Whether remove items is allowed. Will return `false` if the element is `:disabled` or has <= `:min` items. Can be disabled manually by setting [`:controls.remove`](#controls) to `false`.
+   * Whether remove items is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or has <= [`min`](#option-min) items. Can be disabled manually by setting [`controls.remove`](#option-controls) to `false`.
    * 
    * @type {boolean}
    */
@@ -35,7 +35,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Whether list items should be sortable. Can be enabled by setting [`:sort`](#sort) to `true`, but will return `false` if the element is `:disabled`.
+   * Whether list items should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled).
    * 
    * @type {boolean}
    */
@@ -65,7 +65,7 @@ const multifile = function(props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * Whether adding new items is allowed. Will return `false` if the element is `:disabled`. Can be disabled manually by setting [`:controls.add`](#controls) to `false`.
+   * Whether adding new files is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled). Can be disabled manually by setting [`controls.add`](#option-controls) to `false`.
    * 
    * @type {boolean}
    */
@@ -74,7 +74,7 @@ const multifile = function(props, context, dependencies)
   })
 
   /**
-   * Whether remove items is allowed. Will return `false` if the element is `:disabled` or a temporary file upload is in progress. Can be disabled manually by setting [`:controls.remove`](#controls) to `false`.
+   * Whether remove files is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or a temporary file upload is in progress. Can be disabled manually by setting [`controls.remove`](#option-controls) to `false`.
    * 
    * @type {boolean}
    */
@@ -83,7 +83,7 @@ const multifile = function(props, context, dependencies)
   })
 
   /**
-   * Whether list items should be sortable. Can be enabled by setting [`:sort`](#sort) to `true`, but will return `false` if the element is `:disabled` or a temporary file upload is in progress.
+   * Whether list files should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or a temporary file upload is in progress.
    * 
    * @type {boolean}
    */

@@ -253,6 +253,11 @@ const group = function(props, context, dependencies)
 
   // ============== COMPUTED ===============
 
+  /**
+   * The value of child elements in object. This gets merged with the parent component's data.
+   * 
+   * @type {object}
+   */
   const data = computed(() => {
     return value.value
   })
@@ -362,7 +367,7 @@ const list = function(props, context, dependencies, options)
    * Appends a new item.
    * 
    * @param {any} value value of the appended element (optional)
-   * @returns {void}
+   * @returns {integer} the index of the appended item
    */
   const add = (val = undefined) => {
     let newValue = storeOrder.value ? Object.assign({}, val || {}, {
