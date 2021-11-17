@@ -30,7 +30,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).
+   * The path of the element using dot `.` syntax.
    * 
    * @type {string}
    */
@@ -40,7 +40,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).
+   * The path of the element's data using dot `.` syntax.
    * 
    * @type {string} 
    */

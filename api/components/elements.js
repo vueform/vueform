@@ -476,7 +476,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       isDisabled: {
@@ -512,14 +512,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -547,7 +547,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       visible: {
@@ -619,7 +619,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -648,14 +648,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -664,7 +664,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -675,7 +675,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -686,7 +686,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -697,7 +697,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -708,7 +708,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -719,7 +719,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -730,7 +730,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -741,7 +741,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -1273,7 +1273,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -1368,21 +1368,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -1403,7 +1403,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -1446,14 +1446,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -1481,21 +1481,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -1516,7 +1516,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -1582,7 +1582,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -1597,13 +1597,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -1623,7 +1623,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -1678,7 +1678,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -1747,14 +1747,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -1780,7 +1780,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -1791,7 +1791,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -1802,7 +1802,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -1813,7 +1813,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -1824,7 +1824,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -1835,7 +1835,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -1846,7 +1846,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -1857,7 +1857,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -2352,7 +2352,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -2412,21 +2412,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -2447,7 +2447,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -2490,14 +2490,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -2525,21 +2525,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -2560,7 +2560,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -2672,7 +2672,7 @@ module.exports = {
         private: false,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -2687,13 +2687,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -2713,7 +2713,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -2800,7 +2800,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -2859,14 +2859,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -2892,7 +2892,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -2903,7 +2903,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -2914,7 +2914,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -2925,7 +2925,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -2936,7 +2936,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -2947,7 +2947,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -2958,7 +2958,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -2969,7 +2969,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -3643,7 +3643,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -3724,21 +3724,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       displayDateFormat: {
@@ -3787,7 +3787,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -3837,14 +3837,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -3872,21 +3872,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -3907,7 +3907,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -3973,7 +3973,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -3988,13 +3988,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -4014,7 +4014,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -4069,7 +4069,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -4142,14 +4142,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -4175,7 +4175,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -4186,7 +4186,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -4197,7 +4197,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -4208,7 +4208,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -4219,7 +4219,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -4230,7 +4230,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -4241,7 +4241,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -4252,7 +4252,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -4858,7 +4858,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -4897,21 +4897,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       displayDateFormat: {
@@ -4960,7 +4960,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -5010,14 +5010,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -5045,21 +5045,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -5080,7 +5080,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -5136,7 +5136,7 @@ module.exports = {
     },
     methods: {
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -5151,13 +5151,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -5177,7 +5177,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -5232,7 +5232,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -5305,14 +5305,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -5338,7 +5338,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -5349,7 +5349,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -5360,7 +5360,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -5371,7 +5371,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -5382,7 +5382,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -5393,7 +5393,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -5404,7 +5404,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -5415,7 +5415,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -6005,7 +6005,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -6100,21 +6100,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -6158,7 +6158,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -6201,14 +6201,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -6236,21 +6236,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -6271,7 +6271,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -6337,7 +6337,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -6352,13 +6352,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -6378,7 +6378,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -6433,7 +6433,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -6534,14 +6534,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -6589,7 +6589,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -6600,7 +6600,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -6611,7 +6611,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -6622,7 +6622,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -6633,7 +6633,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -6644,7 +6644,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -6655,7 +6655,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -6666,7 +6666,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -7335,7 +7335,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -7430,21 +7430,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -7479,7 +7479,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       uploadTempFileUrl: {
@@ -7633,14 +7633,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -7672,21 +7672,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -7707,7 +7707,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -7773,7 +7773,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -7788,13 +7788,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -7814,7 +7814,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -7883,7 +7883,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -8005,14 +8005,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -8058,7 +8058,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8069,7 +8069,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8080,7 +8080,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8091,7 +8091,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8102,7 +8102,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8113,7 +8113,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8124,7 +8124,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8135,7 +8135,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8626,21 +8626,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -8676,14 +8676,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -8718,7 +8718,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       value: {
@@ -8748,7 +8748,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -8763,13 +8763,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -8789,7 +8789,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -8848,7 +8848,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -8877,14 +8877,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -8910,7 +8910,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8921,7 +8921,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8932,7 +8932,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8943,7 +8943,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8954,7 +8954,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8965,7 +8965,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8976,7 +8976,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -8987,7 +8987,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -9320,7 +9320,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -9386,21 +9386,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -9421,7 +9421,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -9449,14 +9449,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -9470,21 +9470,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -9505,7 +9505,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -9564,7 +9564,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -9579,13 +9579,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -9605,7 +9605,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -9650,7 +9650,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -9699,14 +9699,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -9732,7 +9732,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -9743,7 +9743,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -9754,7 +9754,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -9765,7 +9765,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -9776,7 +9776,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -9787,7 +9787,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -9798,7 +9798,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -9809,7 +9809,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -10361,7 +10361,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -10464,7 +10464,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       hasAdd: {
@@ -10492,14 +10492,14 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       defaultValue: {
@@ -10570,14 +10570,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -10626,21 +10626,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -10661,7 +10661,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -10762,7 +10762,7 @@ module.exports = {
         private: false,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -10777,13 +10777,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -10803,7 +10803,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -10891,7 +10891,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -10997,14 +10997,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -11081,7 +11081,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -11092,7 +11092,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -11103,7 +11103,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -11114,7 +11114,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -11125,7 +11125,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -11136,7 +11136,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -11147,7 +11147,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -11158,7 +11158,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -11734,7 +11734,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -11829,21 +11829,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -11871,7 +11871,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -11922,14 +11922,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -11957,21 +11957,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -11992,7 +11992,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -12058,7 +12058,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -12073,13 +12073,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -12099,7 +12099,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -12154,7 +12154,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -12242,14 +12242,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -12275,7 +12275,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -12286,7 +12286,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -12297,7 +12297,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -12308,7 +12308,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -12319,7 +12319,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -12330,7 +12330,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -12341,7 +12341,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -12352,7 +12352,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -13036,7 +13036,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -13139,7 +13139,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       hasAdd: {
@@ -13167,14 +13167,14 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       defaultValue: {
@@ -13266,14 +13266,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -13329,21 +13329,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -13364,7 +13364,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -13465,7 +13465,7 @@ module.exports = {
         private: false,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -13480,13 +13480,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -13506,7 +13506,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -13608,7 +13608,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -13733,14 +13733,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -13817,7 +13817,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -13828,7 +13828,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -13839,7 +13839,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -13850,7 +13850,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -13861,7 +13861,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -13872,7 +13872,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -13883,7 +13883,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -13894,7 +13894,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -14777,7 +14777,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -14837,21 +14837,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -14879,7 +14879,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -14936,14 +14936,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -14971,21 +14971,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -15006,7 +15006,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -15076,7 +15076,7 @@ module.exports = {
         private: false,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -15091,13 +15091,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -15117,7 +15117,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -15172,7 +15172,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -15346,14 +15346,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -15432,7 +15432,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -15443,7 +15443,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -15454,7 +15454,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -15465,7 +15465,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -15476,7 +15476,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -15487,7 +15487,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -15498,7 +15498,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -15509,7 +15509,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -16104,7 +16104,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -16207,21 +16207,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -16264,14 +16264,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -16299,21 +16299,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -16334,7 +16334,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -16378,7 +16378,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -16393,13 +16393,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -16419,7 +16419,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -16478,7 +16478,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -16527,14 +16527,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -16577,7 +16577,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -16588,7 +16588,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -16599,7 +16599,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -16610,7 +16610,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -16621,7 +16621,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -16632,7 +16632,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -16643,7 +16643,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -16654,7 +16654,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -17172,7 +17172,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -17267,21 +17267,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -17302,7 +17302,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -17345,14 +17345,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -17387,21 +17387,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -17422,7 +17422,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -17488,7 +17488,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -17503,13 +17503,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -17529,7 +17529,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -17584,7 +17584,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -17653,14 +17653,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -17686,7 +17686,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -17697,7 +17697,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -17708,7 +17708,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -17719,7 +17719,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -17730,7 +17730,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -17741,7 +17741,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -17752,7 +17752,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -17763,7 +17763,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -18267,7 +18267,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -18362,21 +18362,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -18390,7 +18390,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -18433,14 +18433,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -18468,21 +18468,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -18503,7 +18503,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -18569,7 +18569,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -18584,13 +18584,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -18610,7 +18610,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -18655,7 +18655,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -18714,14 +18714,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -18747,7 +18747,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -18758,7 +18758,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -18769,7 +18769,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -18780,7 +18780,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -18791,7 +18791,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -18802,7 +18802,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -18813,7 +18813,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -18824,7 +18824,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -19731,7 +19731,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -19833,21 +19833,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -19875,7 +19875,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -19932,14 +19932,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -19967,21 +19967,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -20002,7 +20002,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -20082,7 +20082,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -20097,13 +20097,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -20123,7 +20123,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -20178,7 +20178,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -20322,14 +20322,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -20408,7 +20408,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -20419,7 +20419,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -20430,7 +20430,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -20441,7 +20441,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -20452,7 +20452,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -20463,7 +20463,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -20474,7 +20474,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -20485,7 +20485,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -21225,7 +21225,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -21320,21 +21320,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -21355,7 +21355,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -21398,14 +21398,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -21433,21 +21433,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -21468,7 +21468,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -21534,7 +21534,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -21549,13 +21549,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -21575,7 +21575,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -21630,7 +21630,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -21703,14 +21703,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -21736,7 +21736,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -21747,7 +21747,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -21758,7 +21758,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -21769,7 +21769,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -21780,7 +21780,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -21791,7 +21791,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -21802,7 +21802,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -21813,7 +21813,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -22269,7 +22269,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       hasLabel: {
@@ -22298,14 +22298,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -22340,7 +22340,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       visible: {
@@ -22398,7 +22398,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -22427,14 +22427,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -22443,7 +22443,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -22454,7 +22454,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -22465,7 +22465,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -22476,7 +22476,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -22487,7 +22487,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -22498,7 +22498,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -22509,7 +22509,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -22520,7 +22520,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -23100,7 +23100,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -23181,21 +23181,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -23239,7 +23239,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -23296,14 +23296,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -23331,21 +23331,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -23366,7 +23366,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -23432,7 +23432,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -23447,13 +23447,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -23473,7 +23473,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -23528,7 +23528,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -23648,14 +23648,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -23685,7 +23685,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -23696,7 +23696,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -23707,7 +23707,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -23718,7 +23718,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -23729,7 +23729,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -23740,7 +23740,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -23751,7 +23751,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -23762,7 +23762,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -24325,7 +24325,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -24406,21 +24406,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -24448,7 +24448,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -24519,14 +24519,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -24554,21 +24554,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -24589,7 +24589,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -24655,7 +24655,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -24670,13 +24670,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -24696,7 +24696,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -24751,7 +24751,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -24843,14 +24843,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -24876,7 +24876,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -24887,7 +24887,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -24898,7 +24898,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -24909,7 +24909,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -24920,7 +24920,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -24931,7 +24931,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -24942,7 +24942,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -24953,7 +24953,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -25528,7 +25528,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -25609,21 +25609,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -25651,7 +25651,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -25715,14 +25715,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -25750,21 +25750,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -25785,7 +25785,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -25856,7 +25856,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -25871,13 +25871,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -25897,7 +25897,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -25952,7 +25952,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -26044,14 +26044,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -26077,7 +26077,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -26088,7 +26088,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -26099,7 +26099,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -26110,7 +26110,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -26121,7 +26121,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -26132,7 +26132,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -26143,7 +26143,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -26154,7 +26154,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -27084,7 +27084,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -27137,21 +27137,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -27179,7 +27179,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -27236,14 +27236,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -27271,21 +27271,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -27306,7 +27306,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -27376,7 +27376,7 @@ module.exports = {
         private: false,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -27391,13 +27391,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -27417,7 +27417,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -27472,7 +27472,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -27660,14 +27660,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -27757,7 +27757,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -27768,7 +27768,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -27779,7 +27779,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -27790,7 +27790,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -27801,7 +27801,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -27812,7 +27812,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -27823,7 +27823,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -27834,7 +27834,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -28559,7 +28559,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -28654,21 +28654,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -28696,7 +28696,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -28753,14 +28753,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -28788,21 +28788,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -28823,7 +28823,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -28889,7 +28889,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -28904,13 +28904,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -28930,7 +28930,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -28985,7 +28985,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -29058,14 +29058,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -29091,7 +29091,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -29102,7 +29102,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -29113,7 +29113,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -29124,7 +29124,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -29135,7 +29135,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -29146,7 +29146,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -29157,7 +29157,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -29168,7 +29168,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -29742,7 +29742,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -29837,21 +29837,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -29879,7 +29879,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -29929,14 +29929,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -29964,21 +29964,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -29999,7 +29999,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -30070,7 +30070,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -30085,13 +30085,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -30111,7 +30111,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -30166,7 +30166,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -30239,14 +30239,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -30272,7 +30272,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -30283,7 +30283,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -30294,7 +30294,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -30305,7 +30305,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -30316,7 +30316,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -30327,7 +30327,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -30338,7 +30338,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -30349,7 +30349,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -30910,7 +30910,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service.',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -31005,21 +31005,21 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has no [`:conditions`](#conditions) or they are fulfilled.',
+        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
         types: [
           'object',
         ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data, which finally results in form level data.',
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
       requestData: {
         types: [
           'object',
         ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).',
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -31040,7 +31040,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -31083,14 +31083,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).',
+        description: 'The path of the element using dot `.` syntax.',
         private: false,
       },
       dataPath: {
         types: [
           'string',
         ],
-        description: 'The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).',
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
         private: false,
       },
       flat: {
@@ -31118,21 +31118,21 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element&apos;s templates.',
+        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s value has been modified by the user.',
+        description: 'Whether the element&apos;s value has been modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s input has already been validated at least once.',
+        description: 'Whether the element has already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -31153,7 +31153,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has an ongoing debounce.',
+        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -31219,7 +31219,7 @@ module.exports = {
         private: true,
       },
       load: {
-        description: 'Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
         params: {
           value: {
@@ -31234,13 +31234,13 @@ module.exports = {
               'boolean',
             ],
             required: 'false',
-            description: 'whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
           },
         },
         private: false,
       },
       update: {
-        description: 'Updates the value of the element similarly to [`load`](#load), only that it can\&apos;t format format data.',
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
         returns: 'void',
         params: {
           value: {
@@ -31260,7 +31260,7 @@ module.exports = {
         private: false,
       },
       reset: {
-        description: 'Resets the element&apos;s value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.',
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
         returns: 'void',
         private: false,
       },
@@ -31315,7 +31315,7 @@ module.exports = {
         private: false,
       },
       fire: {
-        description: 'Fires & emits an event.',
+        description: 'Fires and emits an event.',
         returns: 'void',
         params: {
           args: {
@@ -31398,14 +31398,14 @@ module.exports = {
         types: [
           'component',
         ],
-        description: 'The root form component.',
+        description: 'The root form&apos;s component.',
         private: false,
       },
       theme: {
         types: [
           'object',
         ],
-        description: 'The global theme object, which contains all the default components and classes.',
+        description: 'The global theme object, which contains all the default templates and classes.',
         private: false,
       },
     },
@@ -31431,7 +31431,7 @@ module.exports = {
         description: 'Triggered in beforeCreate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -31442,7 +31442,7 @@ module.exports = {
         description: 'Triggered in created hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -31453,7 +31453,7 @@ module.exports = {
         description: 'Triggered in beforeMount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -31464,7 +31464,7 @@ module.exports = {
         description: 'Triggered in mounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -31475,7 +31475,7 @@ module.exports = {
         description: 'Triggered in beforeUpdate hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -31486,7 +31486,7 @@ module.exports = {
         description: 'Triggered in updated hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -31497,7 +31497,7 @@ module.exports = {
         description: 'Triggered in beforeUnmount hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]
@@ -31508,7 +31508,7 @@ module.exports = {
         description: 'Triggered in unmounted hook.',
         params: {
           el$: {
-            description: 'the element instance',
+            description: 'the element&apos;s component',
             types: [
               'component',
             ]

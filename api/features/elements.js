@@ -906,21 +906,21 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
         "requestData": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "Same as `data` property except that it only includes the element's value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled)."
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         }
       },
       "methods": {
         "load": {
           "public": true,
           "returns": "void",
-          "description": "Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
           "params": {
             "value": {
               "types": [
@@ -934,14 +934,14 @@ export default {
                 "boolean"
               ],
               "required": false,
-              "description": "whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)"
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
             }
           }
         },
         "update": {
           "public": true,
           "returns": "void",
-          "description": "Updates the value of the element similarly to [`load`](#load), only that it can\\'t format format data.",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
           "params": {
             "value": {
               "types": [
@@ -961,7 +961,7 @@ export default {
         "reset": {
           "public": true,
           "returns": "void",
-          "description": "Resets the element's value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element."
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
         },
         "prepare": {
           "public": false,
@@ -977,21 +977,21 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
         "requestData": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "Same as `data` property except that it only includes the element's value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled)."
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         }
       },
       "methods": {
         "load": {
           "public": true,
           "returns": "void",
-          "description": "Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
           "params": {
             "value": {
               "types": [
@@ -1005,14 +1005,14 @@ export default {
                 "boolean"
               ],
               "required": false,
-              "description": "whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)"
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
             }
           }
         },
         "update": {
           "public": true,
           "returns": "void",
-          "description": "Updates the value of the element similarly to [`load`](#load), only that it can\\'t format format data.",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
           "params": {
             "value": {
               "types": [
@@ -1032,7 +1032,7 @@ export default {
         "reset": {
           "public": true,
           "returns": "void",
-          "description": "Resets the element's value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element."
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
         },
         "prepare": {
           "public": false,
@@ -1048,21 +1048,21 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
         "requestData": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "Same as `data` property except that it only includes the element's value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled)."
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         }
       },
       "methods": {
         "load": {
           "public": true,
           "returns": "void",
-          "description": "Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
           "params": {
             "value": {
               "types": [
@@ -1076,14 +1076,14 @@ export default {
                 "boolean"
               ],
               "required": false,
-              "description": "whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)"
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
             }
           }
         },
         "update": {
           "public": true,
           "returns": "void",
-          "description": "Updates the value of the element similarly to [`load`](#load), only that it can\\'t format format data.",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
           "params": {
             "value": {
               "types": [
@@ -1103,7 +1103,7 @@ export default {
         "reset": {
           "public": true,
           "returns": "void",
-          "description": "Resets the element's value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element."
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
         },
         "prepare": {
           "public": false,
@@ -1119,14 +1119,14 @@ export default {
           "types": [
             "object"
           ],
-          "description": "Same as `data` property except that it only includes the element's value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled)."
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         },
         "data": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         }
       },
       "methods": {
@@ -1161,7 +1161,7 @@ export default {
         "load": {
           "public": true,
           "returns": "void",
-          "description": "Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
           "params": {
             "value": {
               "types": [
@@ -1175,14 +1175,14 @@ export default {
                 "boolean"
               ],
               "required": false,
-              "description": "whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)"
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
             }
           }
         },
         "update": {
           "public": true,
           "returns": "void",
-          "description": "Updates the value of the element similarly to [`load`](#load), only that it can\\'t format format data.",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
           "params": {
             "value": {
               "types": [
@@ -1202,7 +1202,7 @@ export default {
         "reset": {
           "public": true,
           "returns": "void",
-          "description": "Resets the element's value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element."
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
         },
         "handleAdd": {
           "public": false,
@@ -1237,21 +1237,21 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
         "requestData": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "Same as `data` property except that it only includes the element's value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled)."
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         }
       },
       "methods": {
         "load": {
           "public": true,
           "returns": "void",
-          "description": "Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
           "params": {
             "value": {
               "types": [
@@ -1265,14 +1265,14 @@ export default {
                 "boolean"
               ],
               "required": false,
-              "description": "whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)"
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
             }
           }
         },
         "update": {
           "public": true,
           "returns": "void",
-          "description": "Updates the value of the element similarly to [`load`](#load), only that it can\\'t format format data.",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
           "params": {
             "value": {
               "types": [
@@ -1292,7 +1292,7 @@ export default {
         "reset": {
           "public": true,
           "returns": "void",
-          "description": "Resets the element's value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element."
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
         },
         "prepare": {
           "public": false,
@@ -1308,21 +1308,21 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
         "requestData": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "Same as `data` property except that it only includes the element's value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled)."
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         }
       },
       "methods": {
         "load": {
           "public": true,
           "returns": "void",
-          "description": "Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
           "params": {
             "value": {
               "types": [
@@ -1336,14 +1336,14 @@ export default {
                 "boolean"
               ],
               "required": false,
-              "description": "whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)"
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
             }
           }
         },
         "update": {
           "public": true,
           "returns": "void",
-          "description": "Updates the value of the element similarly to [`load`](#load), only that it can\\'t format format data.",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
           "params": {
             "value": {
               "types": [
@@ -1363,7 +1363,7 @@ export default {
         "reset": {
           "public": true,
           "returns": "void",
-          "description": "Resets the element's value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element."
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
         },
         "prepare": {
           "public": false,
@@ -1379,21 +1379,21 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
         "requestData": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "Same as `data` property except that it only includes the element's value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled)."
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         }
       },
       "methods": {
         "load": {
           "public": true,
           "returns": "void",
-          "description": "Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
           "params": {
             "value": {
               "types": [
@@ -1407,14 +1407,14 @@ export default {
                 "boolean"
               ],
               "required": false,
-              "description": "whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)"
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
             }
           }
         },
         "update": {
           "public": true,
           "returns": "void",
-          "description": "Updates the value of the element similarly to [`load`](#load), only that it can\\'t format format data.",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
           "params": {
             "value": {
               "types": [
@@ -1434,7 +1434,7 @@ export default {
         "reset": {
           "public": true,
           "returns": "void",
-          "description": "Resets the element's value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element."
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
         },
         "prepare": {
           "public": false,
@@ -1450,21 +1450,21 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
         "requestData": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "Same as `data` property except that it only includes the element's value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled)."
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         }
       },
       "methods": {
         "load": {
           "public": true,
           "returns": "void",
-          "description": "Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
           "params": {
             "value": {
               "types": [
@@ -1478,14 +1478,14 @@ export default {
                 "boolean"
               ],
               "required": false,
-              "description": "whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)"
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
             }
           }
         },
         "update": {
           "public": true,
           "returns": "void",
-          "description": "Updates the value of the element similarly to [`load`](#load), only that it can\\'t format format data.",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
           "params": {
             "value": {
               "types": [
@@ -1505,7 +1505,7 @@ export default {
         "reset": {
           "public": true,
           "returns": "void",
-          "description": "Resets the element's value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element."
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
         },
         "prepare": {
           "public": false,
@@ -1521,21 +1521,21 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data."
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
         "requestData": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "Same as `data` property except that it only includes the element's value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled)."
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         }
       },
       "methods": {
         "load": {
           "public": true,
           "returns": "void",
-          "description": "Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
           "params": {
             "value": {
               "types": [
@@ -1549,14 +1549,14 @@ export default {
                 "boolean"
               ],
               "required": false,
-              "description": "whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)"
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
             }
           }
         },
         "update": {
           "public": true,
           "returns": "void",
-          "description": "Updates the value of the element similarly to [`load`](#load), only that it can\\'t format format data.",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
           "params": {
             "value": {
               "types": [
@@ -1576,7 +1576,7 @@ export default {
         "reset": {
           "public": true,
           "returns": "void",
-          "description": "Resets the element's value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element."
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
         },
         "prepare": {
           "public": false,
@@ -1926,7 +1926,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used."
+          "description": "The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used."
         }
       }
     }
@@ -2775,14 +2775,14 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included)."
+          "description": "The path of the element using dot `.` syntax."
         },
         "dataPath": {
           "public": true,
           "types": [
             "string"
           ],
-          "description": "The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded)."
+          "description": "The path of the element's data using dot `.` syntax."
         },
         "flat": {
           "public": false,
@@ -2800,14 +2800,14 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included)."
+          "description": "The path of the element using dot `.` syntax."
         },
         "dataPath": {
           "public": true,
           "types": [
             "string"
           ],
-          "description": "The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded)."
+          "description": "The path of the element's data using dot `.` syntax."
         },
         "flat": {
           "public": false,
@@ -3079,7 +3079,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element's templates."
+          "description": "The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme's default templates."
         }
       }
     }
@@ -3128,7 +3128,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -3137,14 +3137,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified by the user."
+          "description": "Whether the element's value has been modified."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's input has already been validated at least once."
+          "description": "Whether the element has already been validated at least once."
         },
         "invalid": {
           "public": true,
@@ -3165,7 +3165,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has an ongoing debounce."
+          "description": "Whether the element has a validation rule with pending debounce."
         },
         "busy": {
           "public": true,
@@ -3257,7 +3257,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -3266,14 +3266,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified by the user."
+          "description": "Whether the element's value has been modified."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's input has already been validated at least once."
+          "description": "Whether the element has already been validated at least once."
         },
         "invalid": {
           "public": true,
@@ -3294,7 +3294,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has an ongoing debounce."
+          "description": "Whether the element has a validation rule with pending debounce."
         },
         "busy": {
           "public": true,
@@ -3403,7 +3403,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -3412,14 +3412,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified by the user."
+          "description": "Whether the element's value has been modified."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's input has already been validated at least once."
+          "description": "Whether the element has already been validated at least once."
         },
         "invalid": {
           "public": true,
@@ -3440,7 +3440,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has an ongoing debounce."
+          "description": "Whether the element has a validation rule with pending debounce."
         },
         "busy": {
           "public": true,
@@ -3532,7 +3532,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -3541,14 +3541,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified by the user."
+          "description": "Whether the element's value has been modified."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's input has already been validated at least once."
+          "description": "Whether the element has already been validated at least once."
         },
         "invalid": {
           "public": true,
@@ -3569,7 +3569,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has an ongoing debounce."
+          "description": "Whether the element has a validation rule with pending debounce."
         },
         "busy": {
           "public": true,
@@ -3636,7 +3636,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -3645,14 +3645,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified by the user."
+          "description": "Whether the element's value has been modified."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's input has already been validated at least once."
+          "description": "Whether the element has already been validated at least once."
         },
         "invalid": {
           "public": true,
@@ -3673,7 +3673,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has an ongoing debounce."
+          "description": "Whether the element has a validation rule with pending debounce."
         },
         "busy": {
           "public": true,
@@ -3765,7 +3765,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -3774,14 +3774,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified by the user."
+          "description": "Whether the element's value has been modified."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's input has already been validated at least once."
+          "description": "Whether the element has already been validated at least once."
         },
         "invalid": {
           "public": true,
@@ -3802,7 +3802,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has an ongoing debounce."
+          "description": "Whether the element has a validation rule with pending debounce."
         },
         "busy": {
           "public": true,
@@ -3894,7 +3894,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -3903,14 +3903,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's value has been modified by the user."
+          "description": "Whether the element's value has been modified."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element's input has already been validated at least once."
+          "description": "Whether the element has already been validated at least once."
         },
         "invalid": {
           "public": true,
@@ -3931,7 +3931,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has an ongoing debounce."
+          "description": "Whether the element has a validation rule with pending debounce."
         },
         "busy": {
           "public": true,

@@ -14,7 +14,7 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element's templates.
+   * The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme's default templates.
    * 
    * @type {object}
    */

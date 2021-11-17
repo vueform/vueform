@@ -37,7 +37,7 @@ const base = function(props, context, dependencies)
   const Validators = ref([])
 
   /**
-   * Instance of MessageBag service.
+   * Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).
    * 
    * @type {MessageBag}
    * @default MessageBag
@@ -66,7 +66,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Whether the element's value has been modified by the user.
+   * Whether the element's value has been modified.
    * 
    * @type {boolean}
    */
@@ -75,7 +75,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Whether the element's input has already been validated at least once.
+   * Whether the element has already been validated at least once.
    * 
    * @type {boolean}
    */
@@ -102,7 +102,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Whether the element has an ongoing debounce.
+   * Whether the element has a validation rule with pending debounce.
    * 
    * @type {boolean}
    */

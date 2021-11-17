@@ -42,7 +42,7 @@ const base = function(props, context, dependencies, options = {})
   // ============== COMPUTED ===============
   
   /**
-   * The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data.
+   * The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data.
    * 
    * @type {object}
    */
@@ -51,7 +51,7 @@ const base = function(props, context, dependencies, options = {})
   })
   
   /**
-   * Same as `data` property except that it only includes the element's value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).
+   * Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).
    * 
    * @type {object}
    */
@@ -66,10 +66,10 @@ const base = function(props, context, dependencies, options = {})
   // =============== METHODS ===============
 
   /**
-   * Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.
+   * Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.
    * 
    * @param {string} value* the value to be loaded
-   * @param {boolean} format whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)
+   * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)
    * @returns {void}
    */
   const load = (val, format = false) => {
@@ -77,7 +77,7 @@ const base = function(props, context, dependencies, options = {})
   }
 
   /**
-   * Updates the value of the element similarly to [`load`](#load), only that it can\'t format format data. 
+   * Updates the value of the element similarly to [`load`](#method-load), only that it can\'t format data. 
    * 
    * @param {string|} value* the value to be set
    * @returns {void}
@@ -96,7 +96,7 @@ const base = function(props, context, dependencies, options = {})
   }
 
   /**
-   * Resets the element's value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.
+   * Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.
    * 
    * @returns {void}
    */

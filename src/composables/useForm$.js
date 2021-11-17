@@ -5,7 +5,7 @@ const base = function(props, context, dependencies)
   // =============== INJECT ===============
 
   /**
-  * The root form component.
+  * The root form's component.
   * 
   * @type {component}
   */

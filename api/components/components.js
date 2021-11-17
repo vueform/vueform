@@ -1594,7 +1594,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the element has no [`:conditions`](#conditions) or they are fulfilled."
+        "description": "Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled."
       },
       "baseLabel": {
         "public": false,
@@ -2593,7 +2593,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the element has no [`:conditions`](#conditions) or they are fulfilled."
+        "description": "Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled."
       },
       "isLabelComponent": {
         "public": false,

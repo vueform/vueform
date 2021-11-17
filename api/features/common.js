@@ -7,7 +7,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has no [`:conditions`](#conditions) or they are fulfilled."
+          "description": "Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled."
         }
       }
     }
@@ -40,14 +40,14 @@ export default {
           "types": [
             "component"
           ],
-          "description": "The root form component."
+          "description": "The root form's component."
         },
         "theme": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "The global theme object, which contains all the default components and classes."
+          "description": "The global theme object, which contains all the default templates and classes."
         }
       },
       "computed": {
@@ -185,7 +185,7 @@ export default {
           "types": [
             "component"
           ],
-          "description": "The root form component."
+          "description": "The root form's component."
         }
       }
     }
@@ -198,14 +198,14 @@ export default {
           "types": [
             "component"
           ],
-          "description": "The root form component."
+          "description": "The root form's component."
         },
         "theme": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "The global theme object, which contains all the default components and classes."
+          "description": "The global theme object, which contains all the default templates and classes."
         }
       },
       "computed": {
@@ -477,7 +477,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The global theme object, which contains all the default components and classes."
+          "description": "The global theme object, which contains all the default templates and classes."
         }
       }
     }

@@ -2,7 +2,7 @@ module.exports = [
   'value',
   'model',
   'data',
-  'output',
+  'requestData',
   'empty',
 
   'path',
@@ -29,8 +29,10 @@ module.exports = [
   'hasLabel',
   
   'classes',
-  'components',
+  'templates',
   'theme',
+
+  'mounted',
 
   'form$',
   'el$',

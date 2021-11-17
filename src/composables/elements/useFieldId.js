@@ -13,7 +13,7 @@ const base = function (props, context, dependencies)
   // ============== COMPUTED ==============
   
   /**
-   * The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.
+   * The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.
    * 
    * @type {string}
    */
