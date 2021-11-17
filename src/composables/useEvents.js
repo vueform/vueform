@@ -55,7 +55,7 @@ const base = function(props, context, dependencies, options = {})
   }
 
   /**
-   * Fires & emits an event.
+   * Fires and emits an event.
    *
    * @param {any} args list of arguments to pass over to the event callback 
    * @returns {void}

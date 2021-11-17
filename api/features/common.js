@@ -163,7 +163,7 @@ export default {
         "fire": {
           "public": true,
           "returns": "void",
-          "description": "Fires & emits an event.",
+          "description": "Fires and emits an event.",
           "params": {
             "args": {
               "types": [
@@ -513,7 +513,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Enables validation for the form globally."
+          "description": "Enables/disables validation for the form globally."
         },
         "messageBag": {
           "public": true,
@@ -521,7 +521,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service."
+          "description": "Instance of MessageBag service. It can be used to add [custom errors and messages](docs/1.x/validating-elements#custom-errors-and-messages)."
         },
         "selectedLanguage": {
           "public": true,
@@ -529,7 +529,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The ISO 639-1 code of the currently selected language (2 letters)."
+          "description": "The code of the currently selected language (eg. `en`)."
         },
         "submitting": {
           "public": true,
@@ -537,7 +537,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the form is currently submitting."
+          "description": "Whether the async process of submitting the form is currently in progress."
         },
         "preparing": {
           "public": true,
@@ -545,7 +545,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the form is currently preparing the elements for submit."
+          "description": "Whether the async process of preparing the elements for submit is currently in progress."
         },
         "events": {
           "public": false,
@@ -597,21 +597,21 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The form data including all the elements even if they have unmet conditions."
+          "description": "The form data including the data of all elements even the ones with `available: false` and `submit: false`."
         },
         "requestData": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "The form data excluding elements with `available: false`. This one gets submitted."
+          "description": "The form data excluding elements with `available: false` and `submit: false`. This one gets submitted by default, but can be changed with [`formData`](#option-form-data)"
         },
         "dirty": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the form has any dirty elements."
+          "description": "Whether the form has any elements which were modified."
         },
         "invalid": {
           "public": true,
@@ -625,56 +625,56 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the form has any debouncing elements."
+          "description": "Whether the form has any elements with active debounce process."
         },
         "pending": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the form has any pending elements."
+          "description": "Whether the form has any elements with pending async validation."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether each element of the form has been validated."
+          "description": "Whether each element in the form has been validated at least once."
         },
         "busy": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the form has any busy elements or [`:loading`](#loading) is `true` or in [`preparing`](#preparing) or [`submitting`](#submitting) state."
+          "description": "Whether the form has any elements with `busy: true` or the [`isLoading`](#property-is-loading), [`preparing`](#property-preparing) or [`submitting`](#property-submitting) property is `true`."
         },
         "formErrors": {
           "public": true,
           "types": [
             "array"
           ],
-          "description": "Form errors including element errors and the ones added to [`messageBag`](#messagebag) manually."
+          "description": "Form errors including element errors and the ones added to [`messageBag`](#property-message-bag) manually."
         },
         "formMessages": {
           "public": true,
           "types": [
             "array"
           ],
-          "description": "Form messages including element messages and the ones added to [`messageBag`](#messagebag) manually."
+          "description": "Form messages including element messages and the ones added to [`messageBag`](#property-message-bag) manually."
         },
         "isDisabled": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether submitting the form is disabled. Returns `true` if:<br>* the form has any invalid elements and `:validateOn` contains `'change'`<br>* the form is [`busy`](#busy)<br>* manually disabled with [`:disabled`](#disabled) prop"
+          "description": "Whether submitting the form is disabled. Returns `true` if: \n* the form has any invalid elements and [`validateOn`](#option-validate-on) contains `change` \n* the form is [`busy`](#property-busy) \n* manually disabled with [`disabled`](#option-disabled) option."
         },
         "isLoading": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether submitting the form is in loading state. Can be enabled with [`:loading`](#loading) prop."
+          "description": "Whether loading state is triggered manually via [`loading`](#option-loading) option."
         },
         "shouldValidateOnChange": {
           "public": false,
@@ -716,28 +716,28 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the form has anymessages."
+          "description": "Whether the form has any messages."
         },
         "isMultilingual": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the form is multilingual and should show [`FormLanguages`](form-languages) component."
+          "description": "Whether the form is multilingual and should show [`FormLanguages`](form-languages) component. Returns `true` if [`multilingual`](#option-multilingual) is enabled."
         },
         "showErrors": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the form should display errors above the form with [`FormErrors`](form-errors) component. Can be disabled by [`:displayErrors`](#displayerrors) or in `config.displayErrros`."
+          "description": "Whether the form should display errors above the form with [`FormErrors`](form-errors) component. Can be disabled by [`displayErrors`](#option-display-errors) or in `config.displayErrors`."
         },
         "showMessages": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`:displayMessages`](#displaymessages) or in `config.displayMessages`."
+          "description": "Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`:displayMessages`](#option-display-messages) or in `config.displayMessages`."
         },
         "showLanguages": {
           "public": true,
@@ -751,21 +751,21 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the form should show [`FormSteps`](form-steps) component. Returns `true` if [`:steps`](#steps) has a value."
+          "description": "Whether the form should show [`FormSteps`](form-steps) component. Returns `true` if [`steps`](#option-steps) has value."
         },
         "showTabs": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the form should show [`FormTabs`](form-tabs) component. Returns `true` if [`:tabs`](#tabs) has a value."
+          "description": "Whether the form should show [`FormTabs`](form-tabs) component. Returns `true` if [`tabs`](#option-tabs) has value."
         },
         "showStepsControls": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the form should display steps controls below form with [`FormStepsControls`](form-steps-control) component when it has [`:steps`](#steps). Can be disabled by [`:stepsControls`](#stepscontrols) or in `config.stepsControls`."
+          "description": "Whether the form should display steps controls below form with [`FormStepsControls`](form-steps-control) component when it has [`steps`](#option-steps). Can be disabled with [`stepsControls`](#option-steps-controls)."
         },
         "mainClass": {
           "public": false,
@@ -786,28 +786,28 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides. Normally we use `classes` property for this, but as Vueform component needs to have an actual [`:classes`](#classes) prop so we use this naming instead."
+          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
         },
         "templates": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "The selected theme's templates, extended by local overrides. Normally we use `components` property for this, but as Vueform component needs to have an actual [`:components`](#components) prop so we use this naming instead."
+          "description": "The selected theme's templates, extended by local overrides. The [`replaceTemplates`](#option-replace-templates) option can be used to override templates provided by the theme."
         },
         "extendedTheme": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "The selected theme, extended by local overrides. Normally we use `theme` property for this, but as Vueform component needs to have an actual [`:theme`](#theme) prop so we use this naming instead."
+          "description": "The selected theme, extended by local template and class overrides, using [`replaceTemplates`](#option-replace-templates), [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes)."
         },
         "form$": {
           "public": true,
           "types": [
             "component"
           ],
-          "description": "The form's component (self)."
+          "description": "The form component instance (self)."
         },
         "model": {
           "public": false,
@@ -870,7 +870,7 @@ export default {
         "load": {
           "public": true,
           "returns": "void",
-          "description": "Loads data to the form using optional [`:formatLoad`](#format-load) formatter.",
+          "description": "Loads data to the form using optional [`formatLoad`](#option-format-load) formatter.",
           "params": {
             "value": {
               "types": [
@@ -884,7 +884,7 @@ export default {
                 "boolean"
               ],
               "required": false,
-              "description": "whether the loaded value should be formatted with [`:formatLoad`](#format-load) (default: `false`)"
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) (default: `false`)"
             }
           }
         },
@@ -935,7 +935,7 @@ export default {
         "send": {
           "public": true,
           "returns": "void",
-          "description": "Sends form data to [`:endpoint`](#endpoint) with the selected [`method`](#method) (async)."
+          "description": "Sends form data to [`endpoint`](#option-endpoint) with the selected [`method`](#option-method) (async)."
         },
         "disableValidation": {
           "public": true,
@@ -950,7 +950,7 @@ export default {
         "setLanguage": {
           "public": true,
           "returns": "void",
-          "description": "Sets current language when using [`:multilingual`](#multilingual).",
+          "description": "Sets current language when using [`multilingual`](#option-multilingual).",
           "params": {
             "code": {
               "types": [
@@ -1002,7 +1002,7 @@ export default {
         "fire": {
           "public": true,
           "returns": "void",
-          "description": "Fires & emits an event.",
+          "description": "Fires and emits an event.",
           "params": {
             "args": {
               "types": [

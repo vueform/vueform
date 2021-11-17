@@ -154,7 +154,7 @@ export default {
       }
     },
   },
-  Laraform: {
+  Vueform: {
     input: {
       description: 'Emitted when the form\'s data is changed (used by `v-model` in Vue 2).',
       params: {
@@ -186,43 +186,43 @@ export default {
         },
       }
     },
-    reset: {
-      description: 'Triggered when the form is reseted using [`reset()`](#method-reset).'
-    },
-    clear: {
-      description: 'Triggered when the form is cleared using [`clear()`](#method-clear).'
-    },
-    submit: {
-      description: 'Triggered when the form is being submitted, after validation is checked and elements are prepared.',
-      params: {
-        form$: {
-          description: 'the form\'s component',
-          types: ['component'],
-        }
-      }
-    },
-    success: {
-      description: 'Triggered when the server returns with 2XX response code after submitting the form.',
-      params: {
-        response: {
-          description: 'the Response object',
-          types: ['Response']
-        }
-      }
-    },
-    error: {
-      description: 'Triggered when an error is thrown when preparing elements or submitting the form.',
-      params: {
-        state: {
-          description: 'the stage the error was thrown: `"prepare\|submit"`',
-          types: ['string']
-        },
-        error: {
-          description: 'the Error object',
-          types: ['Error']
-        },
-      }
-    },
+    // reset: {
+    //   description: 'Triggered when the form is reseted using [`reset()`](#method-reset).'
+    // },
+    // clear: {
+    //   description: 'Triggered when the form is cleared using [`clear()`](#method-clear).'
+    // },
+    // submit: {
+    //   description: 'Triggered when the form is being submitted, after validation is checked and elements are prepared.',
+    //   params: {
+    //     form$: {
+    //       description: 'the form\'s component',
+    //       types: ['component'],
+    //     }
+    //   }
+    // },
+    // success: {
+    //   description: 'Triggered when the server returns with 2XX response code after submitting the form.',
+    //   params: {
+    //     response: {
+    //       description: 'the Response object',
+    //       types: ['Response']
+    //     }
+    //   }
+    // },
+    // error: {
+    //   description: 'Triggered when an error is thrown when preparing elements or submitting the form.',
+    //   params: {
+    //     state: {
+    //       description: 'the stage the error was thrown: `"prepare\|submit"`',
+    //       types: ['string']
+    //     },
+    //     error: {
+    //       description: 'the Error object',
+    //       types: ['Error']
+    //     },
+    //   }
+    // },
     language: {
       description: 'Triggered when a language is selected',
       params: {

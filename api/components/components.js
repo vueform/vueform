@@ -101,13 +101,13 @@ module.exports = {
     },
     "events": {
       "click": {
-        "description": "Triggered when the drag and drop area is clicked."
+        "description": ""
       },
       "drop": {
-        "description": "Triggered when a file is dropped.",
+        "description": "",
         "params": {
-          "event": {
-            "description": "the drop Event",
+          "e": {
+            "description": "",
             "types": [
               "Event"
             ]
@@ -206,7 +206,7 @@ module.exports = {
     "events": {},
     "slots": {
       "default": {
-        "description": "Renders the content of the addon if the [`type`](#option-type) is not defined in the parent element's the `addons` option."
+        "description": ""
       }
     }
   },
@@ -284,7 +284,7 @@ module.exports = {
     "events": {},
     "slots": {
       "default": {
-        "description": "Renders the content of the description if the parent element has no `description`."
+        "description": ""
       }
     }
   },
@@ -429,7 +429,7 @@ module.exports = {
     "events": {},
     "slots": {
       "default": {
-        "description": "Renders the content of the info when the info icon is hovered, if the parent element has no `info`."
+        "description": ""
       }
     }
   },
@@ -529,10 +529,18 @@ module.exports = {
     "events": {},
     "slots": {
       "default": {
-        "description": "Renders the content of the label if the parent element has no `label`."
+        "description": ""
       },
       "info": {
-        "description": "Passes its content to [`ElementInfo`](element-info)'s `default` slot."
+        "props": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        },
+        "description": "Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this."
       }
     }
   },
@@ -686,25 +694,73 @@ module.exports = {
     "events": {},
     "slots": {
       "field": {
-        "description": "Replaces the layout's element field. This is the slot used by each element to render their content."
+        "description": ""
       },
       "label": {
-        "description": "Passes its content to the [`ElementLabel`](element-label)'s `default` slot."
+        "props": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        },
+        "description": "Renders a label for the element in [`ElementLabel`](element-label) component."
       },
       "info": {
-        "description": "Passes its content to the [`ElementLabel`](element-label)'s `info` slot. It will only be rendered if `label` is defined as well."
+        "props": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        },
+        "description": "Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this."
       },
       "description": {
-        "description": "Passes its content to the [`ElementDescription`](element-description)'s `default` slot."
+        "props": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        },
+        "description": "Renders description for the element in [`ElementDescription`](element-description) component"
       },
       "before": {
-        "description": "Passes its content to the [`ElementText`](element-text)'s `default` slot with `type: \"before\"`."
+        "props": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        },
+        "description": "Renders an [`ElementText`](element-text) component before the <%field%>."
       },
       "between": {
-        "description": "Passes its content to the [`ElementText`](element-text)'s `default` slot with `type: \"between\"`."
+        "props": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        },
+        "description": "Renders an [`ElementText`](element-text) component after the <%field%> and before description."
       },
       "after": {
-        "description": "Passes its content to the [`ElementText`](element-text)'s `default` slot with `type: \"after\"`."
+        "props": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        },
+        "description": "Renders an [`ElementText`](element-text) component after the description and error."
       }
     }
   },
@@ -775,25 +831,73 @@ module.exports = {
     "events": {},
     "slots": {
       "field": {
-        "description": "Replaces the layout's element field. This is the slot used by each element to render their content."
+        "description": ""
       },
       "label": {
-        "description": "Passes its content to the [`ElementLabel`](element-label)'s `default` slot."
+        "props": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        },
+        "description": "Renders a label for the element in [`ElementLabel`](element-label) component."
       },
       "info": {
-        "description": "Passes its content to the [`ElementLabel`](element-label)'s `info` slot. It will only be rendered if `label` is defined as well."
+        "props": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        },
+        "description": "Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this."
       },
       "description": {
-        "description": "Passes its content to the [`ElementDescription`](element-description)'s `default` slot."
+        "props": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        },
+        "description": "Renders description for the element in [`ElementDescription`](element-description) component"
       },
       "before": {
-        "description": "Passes its content to the [`ElementText`](element-text)'s `default` slot with `type: \"before\"`."
+        "props": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        },
+        "description": "Renders an [`ElementText`](element-text) component before the <%field%>."
       },
       "between": {
-        "description": "Passes its content to the [`ElementText`](element-text)'s `default` slot with `type: \"between\"`."
+        "props": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        },
+        "description": "Renders an [`ElementText`](element-text) component after the <%field%> and before description."
       },
       "after": {
-        "description": "Passes its content to the [`ElementText`](element-text)'s `default` slot with `type: \"after\"`."
+        "props": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        },
+        "description": "Renders an [`ElementText`](element-text) component after the description and error."
       }
     }
   },
@@ -1005,7 +1109,7 @@ module.exports = {
     "events": {},
     "slots": {
       "default": {
-        "description": "Renders the text if the parent element has no [`type`](#option-type) defined as option (`before|between|after`)."
+        "description": ""
       }
     }
   },
@@ -1085,7 +1189,7 @@ module.exports = {
     "events": {},
     "slots": {
       "default": {
-        "description": "Renders the elements."
+        "description": ""
       }
     }
   },
@@ -1234,12 +1338,12 @@ module.exports = {
     },
     "events": {
       "select": {
-        "description": "Triggered when the language is selected by the user.",
+        "description": "Triggered when an option is selected, using [`native: false`](#option-native).",
         "params": {
-          "language": {
-            "description": "the selected language",
+          "option": {
+            "description": "the selected option",
             "types": [
-              "string"
+              "object"
             ]
           }
         }
@@ -1691,7 +1795,7 @@ module.exports = {
       "fire": {
         "public": true,
         "returns": "void",
-        "description": "Fires & emits an event.",
+        "description": "Fires and emits an event.",
         "params": {
           "args": {
             "types": [
@@ -1791,39 +1895,25 @@ module.exports = {
       }
     },
     "events": {
+      "activate": {
+        "description": ""
+      },
+      "inactivate": {
+        "description": ""
+      },
       "enable": {
-        "description": "Triggered when the step becomes enabled."
+        "description": ""
       },
       "disable": {
-        "description": "Triggered when the step becomes disabled."
+        "description": ""
       },
       "complete": {
-        "description": "Triggered when the step becomes [`complete`](#property-complete)."
+        "description": ""
       }
     },
     "slots": {
       "default": {
-        "description": "Replaces the label for the step.",
-        "params": {
-          "classes": {
-            "description": "the step's [classes](#property-classes) object",
-            "types": [
-              "object"
-            ]
-          },
-          "select": {
-            "description": "selects the step if it is not [`disabled`](#property-disabled)",
-            "types": [
-              "function"
-            ]
-          },
-          "disabled": {
-            "description": "whether the step is disabled",
-            "types": [
-              "boolean"
-            ]
-          }
-        }
+        "description": ""
       }
     }
   },
@@ -2175,7 +2265,7 @@ module.exports = {
       "fire": {
         "public": true,
         "returns": "void",
-        "description": "Fires & emits an event.",
+        "description": "Fires and emits an event.",
         "params": {
           "args": {
             "types": [
@@ -2190,51 +2280,29 @@ module.exports = {
     "props": {},
     "events": {
       "select": {
-        "description": "Triggered when a step becomes active.",
+        "description": "Triggered when an option is selected, using [`native: false`](#option-native).",
         "params": {
-          "activeStep$": {
-            "description": "the active step",
+          "option": {
+            "description": "the selected option",
             "types": [
-              "component"
-            ]
-          },
-          "previousStep$": {
-            "description": "the previously active step",
-            "types": [
-              "component"
+              "object"
             ]
           }
         }
       },
       "next": {
-        "description": "Triggered when steps to the next step.",
-        "params": {
-          "activeStep$": {
-            "description": "the active step",
-            "types": [
-              "component"
-            ]
-          }
-        }
+        "description": ""
       },
       "previous": {
-        "description": "Triggered when steps to the previous step.",
-        "params": {
-          "activeStep$": {
-            "description": "the active step",
-            "types": [
-              "component"
-            ]
-          }
-        }
+        "description": ""
       },
       "finish": {
-        "description": "Triggered when the form finishes, before the last step becomes [`complete`](#property-complete) and the form's [`submit`](laraform#method-submit) method gets called."
+        "description": ""
       }
     },
     "slots": {
       "default": {
-        "description": "Renders the form steps. Must contain a [`FormStep`](#form-step) component for each step."
+        "description": ""
       }
     }
   },
@@ -2371,7 +2439,7 @@ module.exports = {
     "events": {},
     "slots": {
       "default": {
-        "description": "Renders the text of the control button."
+        "description": ""
       }
     }
   },
@@ -2436,13 +2504,13 @@ module.exports = {
     "events": {},
     "slots": {
       "previous": {
-        "description": "Renders the text of the previous button in [`FormStepsControl`](form-steps-control) component if [`labels`](#option-labels) does not contain `previous`."
+        "description": ""
       },
       "next": {
-        "description": "Renders the text of the next button in [`FormStepsControl`](form-steps-control) component if [`labels`](#option-labels) does not contain `next`."
+        "description": ""
       },
       "finish": {
-        "description": "Renders the text of the previous button in [`FormStepsControl`](form-steps-control) component if [`labels`](#option-labels) does not contain `finish`."
+        "description": ""
       }
     }
   },
@@ -2638,7 +2706,7 @@ module.exports = {
       "fire": {
         "public": true,
         "returns": "void",
-        "description": "Fires & emits an event.",
+        "description": "Fires and emits an event.",
         "params": {
           "args": {
             "types": [
@@ -2707,24 +2775,17 @@ module.exports = {
         "private": true
       }
     },
-    "events": {},
+    "events": {
+      "activate": {
+        "description": ""
+      },
+      "inactivate": {
+        "description": ""
+      }
+    },
     "slots": {
       "default": {
-        "description": "Replaces the label for the tab.",
-        "params": {
-          "classes": {
-            "description": "the tab's [classes](#property-classes) object",
-            "types": [
-              "object"
-            ]
-          },
-          "select": {
-            "description": "selects the tab",
-            "types": [
-              "function"
-            ]
-          }
-        }
+        "description": ""
       }
     }
   },
@@ -2950,7 +3011,7 @@ module.exports = {
       "fire": {
         "public": true,
         "returns": "void",
-        "description": "Fires & emits an event.",
+        "description": "Fires and emits an event.",
         "params": {
           "args": {
             "types": [
@@ -2965,18 +3026,12 @@ module.exports = {
     "props": {},
     "events": {
       "select": {
-        "description": "Triggered when a tab becomes active.",
+        "description": "Triggered when an option is selected, using [`native: false`](#option-native).",
         "params": {
-          "activeTab$": {
-            "description": "the active tab",
+          "option": {
+            "description": "the selected option",
             "types": [
-              "component"
-            ]
-          },
-          "previousTab$": {
-            "description": "the previously active tab",
-            "types": [
-              "component"
+              "object"
             ]
           }
         }
@@ -2984,7 +3039,7 @@ module.exports = {
     },
     "slots": {
       "default": {
-        "description": "Renders the form tabs. Must contain a [`FormTab`](#form-tab) component for each tab."
+        "description": ""
       }
     }
   },
@@ -3018,7 +3073,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Enables validation for the form globally."
+        "description": "Enables/disables validation for the form globally."
       },
       "messageBag": {
         "public": true,
@@ -3026,7 +3081,7 @@ module.exports = {
         "types": [
           "MessageBag"
         ],
-        "description": "Instance of MessageBag service."
+        "description": "Instance of MessageBag service. It can be used to add [custom errors and messages](docs/1.x/validating-elements#custom-errors-and-messages)."
       },
       "selectedLanguage": {
         "public": true,
@@ -3034,7 +3089,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The ISO 639-1 code of the currently selected language (2 letters)."
+        "description": "The code of the currently selected language (eg. `en`)."
       },
       "submitting": {
         "public": true,
@@ -3042,7 +3097,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the form is currently submitting."
+        "description": "Whether the async process of submitting the form is currently in progress."
       },
       "preparing": {
         "public": true,
@@ -3050,7 +3105,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the form is currently preparing the elements for submit."
+        "description": "Whether the async process of preparing the elements for submit is currently in progress."
       },
       "events": {
         "public": false,
@@ -3102,21 +3157,21 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The form data including all the elements even if they have unmet conditions."
+        "description": "The form data including the data of all elements even the ones with `available: false` and `submit: false`."
       },
       "requestData": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The form data excluding elements with `available: false`. This one gets submitted."
+        "description": "The form data excluding elements with `available: false` and `submit: false`. This one gets submitted by default, but can be changed with [`formData`](#option-form-data)"
       },
       "dirty": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has any dirty elements."
+        "description": "Whether the form has any elements which were modified."
       },
       "invalid": {
         "public": true,
@@ -3130,56 +3185,56 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has any debouncing elements."
+        "description": "Whether the form has any elements with active debounce process."
       },
       "pending": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has any pending elements."
+        "description": "Whether the form has any elements with pending async validation."
       },
       "validated": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether each element of the form has been validated."
+        "description": "Whether each element in the form has been validated at least once."
       },
       "busy": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has any busy elements or [`:loading`](#loading) is `true` or in [`preparing`](#preparing) or [`submitting`](#submitting) state."
+        "description": "Whether the form has any elements with `busy: true` or the [`isLoading`](#property-is-loading), [`preparing`](#property-preparing) or [`submitting`](#property-submitting) property is `true`."
       },
       "formErrors": {
         "public": true,
         "types": [
           "array"
         ],
-        "description": "Form errors including element errors and the ones added to [`messageBag`](#messagebag) manually."
+        "description": "Form errors including element errors and the ones added to [`messageBag`](#property-message-bag) manually."
       },
       "formMessages": {
         "public": true,
         "types": [
           "array"
         ],
-        "description": "Form messages including element messages and the ones added to [`messageBag`](#messagebag) manually."
+        "description": "Form messages including element messages and the ones added to [`messageBag`](#property-message-bag) manually."
       },
       "isDisabled": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether submitting the form is disabled. Returns `true` if:<br>* the form has any invalid elements and `:validateOn` contains `'change'`<br>* the form is [`busy`](#busy)<br>* manually disabled with [`:disabled`](#disabled) prop"
+        "description": "Whether submitting the form is disabled. Returns `true` if: \n* the form has any invalid elements and [`validateOn`](#option-validate-on) contains `change` \n* the form is [`busy`](#property-busy) \n* manually disabled with [`disabled`](#option-disabled) option."
       },
       "isLoading": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether submitting the form is in loading state. Can be enabled with [`:loading`](#loading) prop."
+        "description": "Whether loading state is triggered manually via [`loading`](#option-loading) option."
       },
       "shouldValidateOnChange": {
         "public": false,
@@ -3221,28 +3276,28 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the form has anymessages."
+        "description": "Whether the form has any messages."
       },
       "isMultilingual": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form is multilingual and should show [`FormLanguages`](form-languages) component."
+        "description": "Whether the form is multilingual and should show [`FormLanguages`](form-languages) component. Returns `true` if [`multilingual`](#option-multilingual) is enabled."
       },
       "showErrors": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form should display errors above the form with [`FormErrors`](form-errors) component. Can be disabled by [`:displayErrors`](#displayerrors) or in `config.displayErrros`."
+        "description": "Whether the form should display errors above the form with [`FormErrors`](form-errors) component. Can be disabled by [`displayErrors`](#option-display-errors) or in `config.displayErrors`."
       },
       "showMessages": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`:displayMessages`](#displaymessages) or in `config.displayMessages`."
+        "description": "Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`:displayMessages`](#option-display-messages) or in `config.displayMessages`."
       },
       "showLanguages": {
         "public": true,
@@ -3256,21 +3311,21 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the form should show [`FormSteps`](form-steps) component. Returns `true` if [`:steps`](#steps) has a value."
+        "description": "Whether the form should show [`FormSteps`](form-steps) component. Returns `true` if [`steps`](#option-steps) has value."
       },
       "showTabs": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form should show [`FormTabs`](form-tabs) component. Returns `true` if [`:tabs`](#tabs) has a value."
+        "description": "Whether the form should show [`FormTabs`](form-tabs) component. Returns `true` if [`tabs`](#option-tabs) has value."
       },
       "showStepsControls": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the form should display steps controls below form with [`FormStepsControls`](form-steps-control) component when it has [`:steps`](#steps). Can be disabled by [`:stepsControls`](#stepscontrols) or in `config.stepsControls`."
+        "description": "Whether the form should display steps controls below form with [`FormStepsControls`](form-steps-control) component when it has [`steps`](#option-steps). Can be disabled with [`stepsControls`](#option-steps-controls)."
       },
       "mainClass": {
         "public": false,
@@ -3291,28 +3346,28 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides. Normally we use `classes` property for this, but as Vueform component needs to have an actual [`:classes`](#classes) prop so we use this naming instead."
+        "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
       },
       "templates": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The selected theme's templates, extended by local overrides. Normally we use `components` property for this, but as Vueform component needs to have an actual [`:components`](#components) prop so we use this naming instead."
+        "description": "The selected theme's templates, extended by local overrides. The [`replaceTemplates`](#option-replace-templates) option can be used to override templates provided by the theme."
       },
       "extendedTheme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The selected theme, extended by local overrides. Normally we use `theme` property for this, but as Vueform component needs to have an actual [`:theme`](#theme) prop so we use this naming instead."
+        "description": "The selected theme, extended by local template and class overrides, using [`replaceTemplates`](#option-replace-templates), [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes)."
       },
       "form$": {
         "public": true,
         "types": [
           "component"
         ],
-        "description": "The form's component (self)."
+        "description": "The form component instance (self)."
       },
       "model": {
         "public": false,
@@ -3375,7 +3430,7 @@ module.exports = {
       "load": {
         "public": true,
         "returns": "void",
-        "description": "Loads data to the form using optional [`:formatLoad`](#format-load) formatter.",
+        "description": "Loads data to the form using optional [`formatLoad`](#option-format-load) formatter.",
         "params": {
           "value": {
             "types": [
@@ -3389,7 +3444,7 @@ module.exports = {
               "boolean"
             ],
             "required": false,
-            "description": "whether the loaded value should be formatted with [`:formatLoad`](#format-load) (default: `false`)"
+            "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) (default: `false`)"
           }
         }
       },
@@ -3440,7 +3495,7 @@ module.exports = {
       "send": {
         "public": true,
         "returns": "void",
-        "description": "Sends form data to [`:endpoint`](#endpoint) with the selected [`method`](#method) (async)."
+        "description": "Sends form data to [`endpoint`](#option-endpoint) with the selected [`method`](#option-method) (async)."
       },
       "disableValidation": {
         "public": true,
@@ -3455,7 +3510,7 @@ module.exports = {
       "setLanguage": {
         "public": true,
         "returns": "void",
-        "description": "Sets current language when using [`:multilingual`](#multilingual).",
+        "description": "Sets current language when using [`multilingual`](#option-multilingual).",
         "params": {
           "code": {
             "types": [
@@ -3507,7 +3562,7 @@ module.exports = {
       "fire": {
         "public": true,
         "returns": "void",
-        "description": "Fires & emits an event.",
+        "description": "Fires and emits an event.",
         "params": {
           "args": {
             "types": [
@@ -3555,6 +3610,98 @@ module.exports = {
       }
     },
     "props": {
+      "schema": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "tabs": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "steps": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "stepsControls": {
+        "required": false,
+        "default": true,
+        "types": [
+          "boolean"
+        ]
+      },
+      "validateOn": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string"
+        ]
+      },
+      "displayErrors": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
+        ]
+      },
+      "displayMessages": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
+        ]
+      },
+      "messages": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "endpoint": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string"
+        ]
+      },
+      "method": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string"
+        ]
+      },
+      "prepare": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ]
+      },
+      "formKey": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string",
+          "number"
+        ]
+      },
+      "formData": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
+        ]
+      },
       "value": {
         "required": false,
         "types": [
@@ -3581,11 +3728,18 @@ module.exports = {
           "object"
         ]
       },
-      "disabled": {
+      "formatData": {
         "required": false,
         "default": null,
         "types": [
-          "boolean"
+          "function"
+        ]
+      },
+      "formatLoad": {
+        "required": false,
+        "default": null,
+        "types": [
+          "function"
         ]
       },
       "loading": {
@@ -3595,53 +3749,11 @@ module.exports = {
           "boolean"
         ]
       },
-      "schema": {
+      "disabled": {
         "required": false,
         "default": null,
         "types": [
-          "object"
-        ]
-      },
-      "tabs": {
-        "required": false,
-        "default": null,
-        "types": [
-          "object"
-        ]
-      },
-      "steps": {
-        "required": false,
-        "default": null,
-        "types": [
-          "object"
-        ]
-      },
-      "replaceClasses": {
-        "required": false,
-        "default": null,
-        "types": [
-          "object"
-        ]
-      },
-      "extendClasses": {
-        "required": false,
-        "default": null,
-        "types": [
-          "object"
-        ]
-      },
-      "replaceTemplates": {
-        "required": false,
-        "default": null,
-        "types": [
-          "object"
-        ]
-      },
-      "messages": {
-        "required": false,
-        "default": null,
-        "types": [
-          "object"
+          "boolean"
         ]
       },
       "columns": {
@@ -3649,65 +3761,6 @@ module.exports = {
         "default": null,
         "types": [
           "object"
-        ]
-      },
-      "languages": {
-        "required": false,
-        "default": null,
-        "types": [
-          "object"
-        ]
-      },
-      "addClass": {
-        "required": false,
-        "default": null,
-        "types": [
-          "string",
-          "array",
-          "object"
-        ]
-      },
-      "formKey": {
-        "required": false,
-        "default": null,
-        "types": [
-          "string",
-          "number"
-        ]
-      },
-      "endpoint": {
-        "required": false,
-        "default": null,
-        "types": [
-          "string"
-        ]
-      },
-      "method": {
-        "required": false,
-        "default": null,
-        "types": [
-          "string"
-        ]
-      },
-      "formData": {
-        "required": false,
-        "default": null,
-        "types": [
-          "function"
-        ]
-      },
-      "language": {
-        "required": false,
-        "default": null,
-        "types": [
-          "string"
-        ]
-      },
-      "validateOn": {
-        "required": false,
-        "default": null,
-        "types": [
-          "string"
         ]
       },
       "forceLabels": {
@@ -3724,6 +3777,36 @@ module.exports = {
           "boolean"
         ]
       },
+      "addClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "extendClasses": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "replaceClasses": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "replaceTemplates": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
       "multilingual": {
         "required": false,
         "default": null,
@@ -3731,46 +3814,18 @@ module.exports = {
           "boolean"
         ]
       },
-      "stepsControls": {
-        "required": false,
-        "default": true,
-        "types": [
-          "boolean"
-        ]
-      },
-      "displayErrors": {
+      "languages": {
         "required": false,
         "default": null,
         "types": [
-          "boolean"
+          "object"
         ]
       },
-      "displayMessages": {
+      "language": {
         "required": false,
         "default": null,
         "types": [
-          "boolean"
-        ]
-      },
-      "formatLoad": {
-        "required": false,
-        "default": null,
-        "types": [
-          "function"
-        ]
-      },
-      "formatData": {
-        "required": false,
-        "default": null,
-        "types": [
-          "function"
-        ]
-      },
-      "prepare": {
-        "required": false,
-        "default": null,
-        "types": [
-          "function"
+          "string"
         ]
       },
       "onChange": {
@@ -3878,8 +3933,212 @@ module.exports = {
         "private": true
       }
     },
-    "events": {},
-    "slots": {}
+    "events": {
+      "input": {
+        "description": "Triggered when the form data is changed. (This event is used by `v-model` in Vue 2)",
+        "params": {
+          "value": {
+            "description": "the new form value",
+            "types": [
+              "object"
+            ]
+          }
+        },
+        "private": true
+      },
+      "update:modelValue": {
+        "description": "Triggered when the form data is changed. (This event is used by `v-model` in Vue 3)",
+        "params": {
+          "value": {
+            "description": "the new form value",
+            "types": [
+              "object"
+            ]
+          }
+        },
+        "private": true
+      },
+      "change": {
+        "description": "Triggered when the forms data is changed.",
+        "params": {
+          "newValue": {
+            "description": "the new value",
+            "types": [
+              "string"
+            ]
+          },
+          "oldValue": {
+            "description": "the old value",
+            "types": [
+              "string"
+            ]
+          }
+        }
+      },
+      "reset": {
+        "description": "Triggered when the form is reseted using [`reset()`](#method-reset)."
+      },
+      "clear": {
+        "description": "Triggered when the form is cleared using [`clear()`](#method-clear)."
+      },
+      "submit": {
+        "description": "Triggered when the form is being submitted, after validation is checked and elements are prepared.",
+        "params": {
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "success": {
+        "description": "Triggered when the server returns 2XX response after submitting the form.",
+        "params": {
+          "response": {
+            "description": "axios [Response](https://axios-http.com/docs/res_schema) object",
+            "types": [
+              "Response"
+            ]
+          }
+        }
+      },
+      "error": {
+        "description": "Triggered when an error is thrown when preparing elements or submitting the form.",
+        "params": {
+          "error": {
+            "description": "the Error object",
+            "types": [
+              "Error"
+            ]
+          },
+          "details": {
+            "description": "additional information for the error, including `stage` property (`\"prepare|submit\"`) which indicates when the error was thrown.",
+            "types": [
+              "object"
+            ]
+          }
+        }
+      },
+      "response": {
+        "description": "Triggered when the server returns a response after submitting the form.",
+        "params": {
+          "response": {
+            "description": "axios [Response](https://axios-http.com/docs/res_schema) object",
+            "types": [
+              "Response"
+            ]
+          }
+        }
+      },
+      "language": {
+        "description": "Triggered when a language is selected.",
+        "params": {
+          "language": {
+            "description": "the selected language",
+            "types": [
+              "string"
+            ]
+          }
+        }
+      },
+      "beforeCreate": {
+        "description": "Triggered in beforeCreate hook.",
+        "params": {
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "created": {
+        "description": "Triggered in created hook.",
+        "params": {
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "beforeMount": {
+        "description": "Triggered in beforeMount hook.",
+        "params": {
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "mounted": {
+        "description": "Triggered in mounted hook.",
+        "params": {
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "beforeUpdate": {
+        "description": "Triggered in beforeUpdate hook.",
+        "params": {
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "updated": {
+        "description": "Triggered in updated hook.",
+        "params": {
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "beforeUnmount": {
+        "description": "Triggered in beforeUnmount hook.",
+        "params": {
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "unmounted": {
+        "description": "Triggered in unmounted hook.",
+        "params": {
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      }
+    },
+    "slots": {
+      "default": {
+        "description": "@require content/reference/1.x/examples/slots/default/vueform"
+      },
+      "empty": {
+        "description": "@require content/reference/1.x/examples/slots/empty/vueform"
+      }
+    }
   },
   "DatepickerWrapper": {
     "inject": {
@@ -4011,7 +4270,25 @@ module.exports = {
         ]
       }
     },
-    "events": {},
+    "events": {
+      "change": {
+        "description": "Triggered when the element's value is changed.",
+        "params": {
+          "newValue": {
+            "description": "the new value",
+            "types": [
+              "string"
+            ]
+          },
+          "oldValue": {
+            "description": "the old value",
+            "types": [
+              "string"
+            ]
+          }
+        }
+      }
+    },
     "slots": {}
   },
   "EditorWrapper": {
@@ -4204,26 +4481,13 @@ module.exports = {
     },
     "events": {
       "input": {
-        "description": "Triggered when the editor's value is changed.",
-        "params": {
-          "value": {
-            "description": "the new value of the element contained in an object: `value.target.value`",
-            "types": [
-              "object"
-            ]
-          }
-        }
+        "description": ""
       },
       "alert": {
-        "description": "Triggered when the user select a file/mime type that is not allowed.",
-        "params": {
-          "message": {
-            "description": "the alert message",
-            "types": [
-              "string"
-            ]
-          }
-        }
+        "description": ""
+      },
+      "error": {
+        "description": ""
       }
     },
     "slots": {}

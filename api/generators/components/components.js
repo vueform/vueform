@@ -7,8 +7,8 @@ const filesPath = process.cwd() + '/src/components/'
 const wrappersPath = process.cwd() + '/src/components/wrappers/'
 const partialsPath = process.cwd() + '/src/components/elements/partials/'
 const outputPath = process.cwd() + '/api/components/components.js'
-const eventsInfo = require('./../../component-events').default
-const slotsInfo = require('./../../component-slots').default
+const eventsInfo = require('./../../events').default
+const slotsInfo = require('./../../slots').default
 
 const Components = {}
 const skipPrivate = false
@@ -126,10 +126,12 @@ const addEvents = (final, Component, componentName) => {
   final.events = {}
 
   _.each(Component.emits, (eventName) => {
-    const eventInfo = eventsInfo[componentName] ? eventsInfo[componentName][eventName] : undefined
+    let eventInfo = eventsInfo[eventName]?.[componentName] || eventsInfo[eventName]?.default || undefined
 
     if (!eventInfo) {
-      return
+      eventInfo = {
+        description: '',
+      }
     }
 
     final.events[eventName] = eventInfo
@@ -142,10 +144,12 @@ const addSlots = (final, Component, componentName) => {
   final.slots = {}
 
   _.each(Component.slots, (slotName) => {
-    const slotInfo = slotsInfo[componentName] ? slotsInfo[componentName][slotName] : undefined
+    let slotInfo = slotsInfo[slotName]?.[componentName] || slotsInfo[slotName]?.default || undefined
 
     if (!slotInfo) {
-      return
+      slotInfo = {
+        description: '',
+      }
     }
 
     final.slots[slotName] = slotInfo

@@ -6,9 +6,6 @@ export default {
   emits: ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'response', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   slots: ['default', 'empty'],
   setup: (props, context) => {
-    context.emits = ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'response', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted']
-    context.name = ref('Vueform')
-
     const {
       tabs$,
       steps$,
@@ -152,6 +149,76 @@ export default {
     }
   },
   props: {
+
+    schema: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    tabs: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    steps: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    stepsControls: {
+      type: Boolean,
+      required: false,
+      default: null,
+      '@default': true,
+    },
+
+    validateOn: {
+      type: String,
+      required: false,
+      default: null
+    },
+    displayErrors: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    displayMessages: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    messages: {
+      type: Object,
+      required: false,
+      default: null
+    },
+
+    endpoint: {
+      type: String,
+      required: false,
+      default: null
+    },
+    method: {
+      type: String,
+      required: false,
+      default: null
+    },
+    prepare: {
+      type: Function,
+      required: false,
+      default: null
+    },
+    formKey: {
+      type: [String, Number],
+      required: false,
+      default: null
+    },
+    formData: {
+      type: Function,
+      required: false,
+      default: null
+    },
+
     value: {
       type: Object,
       required: false,
@@ -172,93 +239,30 @@ export default {
       required: false,
       default: null
     },
-    disabled: {
-      type: Boolean,
+    formatData: {
+      type: Function,
       required: false,
-      default: null,
+      default: null
     },
+    formatLoad: {
+      type: Function,
+      required: false,
+      default: null
+    },
+    
     loading: {
       type: Boolean,
       required: false,
       default: null,
     },
-    schema: {
-      type: Object,
+    disabled: {
+      type: Boolean,
       required: false,
-      default: null
+      default: null,
     },
-    tabs: {
-      type: Object,
-      required: false,
-      default: null
-    },
-    steps: {
-      type: Object,
-      required: false,
-      default: null
-    },
-    replaceClasses: {
-      type: Object,
-      required: false,
-      default: null
-    },
-    extendClasses: {
-      type: Object,
-      required: false,
-      default: null
-    },
-    replaceTemplates: {
-      type: Object,
-      required: false,
-      default: null
-    },
-    messages: {
-      type: Object,
-      required: false,
-      default: null
-    },
+
     columns: {
       type: Object,
-      required: false,
-      default: null
-    },
-    languages: {
-      type: Object,
-      required: false,
-      default: null
-    },
-    addClass: {
-      type: [String, Array, Object],
-      required: false,
-      default: null
-    },
-    formKey: {
-      type: [String, Number],
-      required: false,
-      default: null
-    },
-    endpoint: {
-      type: String,
-      required: false,
-      default: null
-    },
-    method: {
-      type: String,
-      required: false,
-      default: null
-    },
-    formData: {
-      type: Function,
-      required: false,
-      default: null
-    },
-    language: {
-      type: String,
-      required: false,
-      default: null
-    },
-    validateOn: {
-      type: String,
       required: false,
       default: null
     },
@@ -272,39 +276,39 @@ export default {
       required: false,
       default: null
     },
+    addClass: {
+      type: [String, Array, Object],
+      required: false,
+      default: null
+    },
+    extendClasses: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    replaceClasses: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    replaceTemplates: {
+      type: Object,
+      required: false,
+      default: null
+    },
+
     multilingual: {
       type: Boolean,
       required: false,
       default: null
     },
-    stepsControls: {
-      type: Boolean,
-      required: false,
-      default: null,
-      '@default': true,
-    },
-    displayErrors: {
-      type: Boolean,
+    languages: {
+      type: Object,
       required: false,
       default: null
     },
-    displayMessages: {
-      type: Boolean,
-      required: false,
-      default: null
-    },
-    formatLoad: {
-      type: Function,
-      required: false,
-      default: null
-    },
-    formatData: {
-      type: Function,
-      required: false,
-      default: null
-    },
-    prepare: {
-      type: Function,
+    language: {
+      type: String,
       required: false,
       default: null
     },
@@ -388,24 +392,4 @@ export default {
       private: true,
     },
   },
-  render() {
-    let renderer
-
-    try {
-      renderer = this.templates.Vueform
-    } catch (e) {
-      console.log('Vueform')
-      throw new Error(e)
-    }
-
-    try {
-      if (!this.$options?.staticRenderFns && renderer.staticRenderFns) {
-        this.$options.staticRenderFns = renderer.staticRenderFns
-      }
-    } catch (e) {
-      throw new Error(e)
-    }
-    
-    return renderer.render.apply(this, arguments)
-  }
 }

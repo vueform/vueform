@@ -13,6 +13,68 @@ export default {
         },
       }
     },
+    Vueform: {
+      description: 'Triggered when the forms data is changed.',
+      params: {
+        newValue: {
+          description: 'the new value',
+          types: ['string']
+        },
+        oldValue: {
+          description: 'the old value',
+          types: ['string']
+        },
+      }
+    },
+  },
+  reset: {
+    Vueform: {
+      description: 'Triggered when the form is reseted using [`reset()`](#method-reset).'
+    }
+  },
+  submit: {
+    Vueform: {
+      description: 'Triggered when the form is being submitted, after validation is checked and elements are prepared.',
+      params: {
+        form$: {
+          description: 'the form\'s component',
+          types: ['component'],
+        }
+      }
+    }
+  },
+  success: {
+    Vueform: {
+      description: 'Triggered when the server returns 2XX response after submitting the form.',
+      params: {
+        response: {
+          description: 'axios [Response](https://axios-http.com/docs/res_schema) object',
+          types: ['Response']
+        }
+      }
+    }
+  },
+  response: {
+    Vueform: {
+      description: 'Triggered when the server returns a response after submitting the form.',
+      params: {
+        response: {
+          description: 'axios [Response](https://axios-http.com/docs/res_schema) object',
+          types: ['Response']
+        }
+      }
+    }
+  },
+  language: {
+    Vueform: {
+      description: 'Triggered when a language is selected.',
+      params: {
+        language: {
+          description: 'the selected language',
+          types: ['string'],
+        }
+      }
+    }
   },
   alert: {
     default: {
@@ -54,6 +116,19 @@ export default {
         },
       }
     },
+    Vueform: {
+      description: 'Triggered when an error is thrown when preparing elements or submitting the form.',
+      params: {
+        error: {
+          description: 'the Error object',
+          types: ['Error']
+        },
+        details: {
+          description: 'additional information for the error, including `stage` property (`"prepare\|submit"`) which indicates when the error was thrown.',
+          types: ['object']
+        },
+      }
+    }
   },
   add: {
     default: {
@@ -216,13 +291,25 @@ export default {
     TagsElement: {
       description: 'Triggered when the value is cleared.',
     },
+    Vueform: {
+      description: 'Triggered when the form is cleared using [`clear()`](#method-clear).',
+    }
   },
   beforeCreate: {
     default: {
       description: 'Triggered in beforeCreate hook.',
       params: {
         el$: {
-          description: 'the element instance',
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
+    Vueform: {
+      description: 'Triggered in beforeCreate hook.',
+      params: {
+        form$: {
+          description: 'the form\'s component',
           types: ['component']
         },
       }
@@ -233,7 +320,16 @@ export default {
       description: 'Triggered in created hook.',
       params: {
         el$: {
-          description: 'the element instance',
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
+    Vueform: {
+      description: 'Triggered in created hook.',
+      params: {
+        form$: {
+          description: 'the form\'s component',
           types: ['component']
         },
       }
@@ -244,7 +340,16 @@ export default {
       description: 'Triggered in beforeMount hook.',
       params: {
         el$: {
-          description: 'the element instance',
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
+    Vueform: {
+      description: 'Triggered in beforeMount hook.',
+      params: {
+        form$: {
+          description: 'the form\'s component',
           types: ['component']
         },
       }
@@ -255,7 +360,16 @@ export default {
       description: 'Triggered in mounted hook.',
       params: {
         el$: {
-          description: 'the element instance',
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
+    Vueform: {
+      description: 'Triggered in mounted hook.',
+      params: {
+        form$: {
+          description: 'the form\'s component',
           types: ['component']
         },
       }
@@ -266,7 +380,16 @@ export default {
       description: 'Triggered in beforeUpdate hook.',
       params: {
         el$: {
-          description: 'the element instance',
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
+    Vueform: {
+      description: 'Triggered in beforeUpdate hook.',
+      params: {
+        form$: {
+          description: 'the form\'s component',
           types: ['component']
         },
       }
@@ -277,7 +400,16 @@ export default {
       description: 'Triggered in updated hook.',
       params: {
         el$: {
-          description: 'the element instance',
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
+    Vueform: {
+      description: 'Triggered in updated hook.',
+      params: {
+        form$: {
+          description: 'the form\'s component',
           types: ['component']
         },
       }
@@ -288,7 +420,16 @@ export default {
       description: 'Triggered in beforeUnmount hook.',
       params: {
         el$: {
-          description: 'the element instance',
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
+    Vueform: {
+      description: 'Triggered in beforeUnmount hook.',
+      params: {
+        form$: {
+          description: 'the form\'s component',
           types: ['component']
         },
       }
@@ -299,102 +440,59 @@ export default {
       description: 'Triggered in unmounted hook.',
       params: {
         el$: {
-          description: 'the element instance',
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
+    Vueform: {
+      description: 'Triggered in unmounted hook.',
+      params: {
+        form$: {
+          description: 'the form\'s component',
           types: ['component']
         },
       }
     },
   },
-
-
-  // click: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // drop: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // changeLanguage: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // active: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // inactive: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // enable: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // disable: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // complete: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // next: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // previous: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // finish: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // input: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // 'update:modelValue': {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // language: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // submit: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // success: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // fail: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
-  // reset: {
-  //   default: {
-  //     description: '',
-  //   }
-  // },
+  input: {
+    Vueform: {
+      description: 'Triggered when the form data is changed. (This event is used by `v-model` in Vue 2)',
+      params: {
+        value: {
+          description: 'the new form value',
+          types: ['object']
+        }
+      },
+      private: true,
+    },
+  },
+  'update:modelValue': {
+    Vueform: {
+      description: 'Triggered when the form data is changed. (This event is used by `v-model` in Vue 3)',
+      params: {
+        value: {
+          description: 'the new form value',
+          types: ['object']
+        }
+      },
+      private: true,
+    }
+  },
+  click: {
+    DragAndDrop: {
+      description: '',
+    },
+  },
+  drop: {
+    DragAndDrop: {
+      description: '',
+      params: {
+        e: {
+          description: '',
+          types: ['Event'],
+        }
+      }
+    },
+  },
 }

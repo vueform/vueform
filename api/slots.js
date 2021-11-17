@@ -45,6 +45,14 @@ export default {
       },
       description: 'Renders the content of the static element.',
     },
+    Vueform: {
+      description: `@require content/reference/1.x/examples/slots/default/vueform`,
+    },
+  },
+  'empty': {
+    Vueform: {
+      description: `@require content/reference/1.x/examples/slots/empty/vueform`,
+    },
   },
   'label': {
     default: {

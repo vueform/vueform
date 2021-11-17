@@ -119,7 +119,7 @@ const base = function(props, context, dependencies = {})
   const steps$ = ref(null)
 
   /**
-   * Enables validation for the form globally.
+   * Enables/disables validation for the form globally.
    * 
    * @type {boolean}
    * @default true
@@ -127,7 +127,7 @@ const base = function(props, context, dependencies = {})
   const validation = ref(true)
 
   /**
-   * Instance of MessageBag service.
+   * Instance of MessageBag service. It can be used to add [custom errors and messages](docs/1.x/validating-elements#custom-errors-and-messages).
    * 
    * @type {MessageBag}
    * @default MessageBag
@@ -135,7 +135,7 @@ const base = function(props, context, dependencies = {})
   const messageBag = ref({})
 
   /**
-   * Whether the form is currently submitting.
+   * Whether the async process of submitting the form is currently in progress.
    * 
    * @type {boolean}
    * @default false
@@ -143,7 +143,7 @@ const base = function(props, context, dependencies = {})
   const submitting = ref(false)
 
   /**
-   * Whether the form is currently preparing the elements for submit.
+   * Whether the async process of preparing the elements for submit is currently in progress.
    * 
    * @type {boolean}
    * @default false
@@ -151,7 +151,7 @@ const base = function(props, context, dependencies = {})
   const preparing = ref(false)
 
   /**
-   * The ISO 639-1 code of the currently selected language (2 letters).
+   * The code of the currently selected language (eg. `en`).
    * 
    * @type {string}
    * @default config.language
@@ -170,7 +170,7 @@ const base = function(props, context, dependencies = {})
   // ============== COMPUTED ==============
 
   /**
-   * The form's component (self).
+   * The form component instance (self).
    * 
    * @type {component}
    */
@@ -344,7 +344,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The form data including all the elements even if they have unmet conditions.
+   * The form data including the data of all elements even the ones with `available: false` and `submit: false`.
    * 
    * @type {object}
    */
@@ -363,7 +363,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The form data excluding elements with `available: false`. This one gets submitted.
+   * The form data excluding elements with `available: false` and `submit: false`. This one gets submitted by default, but can be changed with [`formData`](#option-form-data)
    * 
    * @type {object}
    */
@@ -382,7 +382,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form has any dirty elements.
+   * Whether the form has any elements which were modified.
    * 
    * @type {boolean}
    */
@@ -404,7 +404,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form has any debouncing elements.
+   * Whether the form has any elements with active debounce process.
    * 
    * @type {boolean}
    */
@@ -415,7 +415,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form has any pending elements.
+   * Whether the form has any elements with pending async validation.
    * 
    * @type {boolean}
    */
@@ -426,7 +426,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether each element of the form has been validated.
+   * Whether each element in the form has been validated at least once.
    * 
    * @type {boolean}
    */
@@ -437,14 +437,14 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form has any busy elements or [`:loading`](#loading) is `true` or in [`preparing`](#preparing) or [`submitting`](#submitting) state.
+   * Whether the form has any elements with `busy: true` or the [`isLoading`](#property-is-loading), [`preparing`](#property-preparing) or [`submitting`](#property-submitting) property is `true`.
    * 
    * @type {boolean}
    */
   const busy = computed(() => {
     return _.some(elements$.value, (element$) => {
       return element$.isStatic === false && element$.available === true && element$.busy === true
-    }) || submitting.value || preparing.value || options.value.loading
+    }) || submitting.value || preparing.value || isLoading.value
   })
 
   // no export
@@ -467,7 +467,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Form errors including element errors and the ones added to [`messageBag`](#messagebag) manually.
+   * Form errors including element errors and the ones added to [`messageBag`](#property-message-bag) manually.
    * 
    * @type {array}
    */
@@ -485,7 +485,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form should display errors above the form with [`FormErrors`](form-errors) component. Can be disabled by [`:displayErrors`](#displayerrors) or in `config.displayErrros`.
+   * Whether the form should display errors above the form with [`FormErrors`](form-errors) component. Can be disabled by [`displayErrors`](#option-display-errors) or in `config.displayErrors`.
    * 
    * @type {boolean}
    */
@@ -494,7 +494,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Form messages including element messages and the ones added to [`messageBag`](#messagebag) manually.
+   * Form messages including element messages and the ones added to [`messageBag`](#property-message-bag) manually.
    * 
    * @type {array}
    */
@@ -503,7 +503,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form has anymessages.
+   * Whether the form has any messages.
    * 
    * @ignore
    * @type {boolean}
@@ -513,7 +513,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`:displayMessages`](#displaymessages) or in `config.displayMessages`.
+   * Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`:displayMessages`](#option-display-messages) or in `config.displayMessages`.
    * 
    * @type {boolean}
    */
@@ -522,7 +522,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form is multilingual and should show [`FormLanguages`](form-languages) component.
+   * Whether the form is multilingual and should show [`FormLanguages`](form-languages) component. Returns `true` if [`multilingual`](#option-multilingual) is enabled.
    * 
    * @type {boolean}
    */
@@ -540,7 +540,10 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether submitting the form is disabled. Returns `true` if:<br>* the form has any invalid elements and `:validateOn` contains `'change'`<br>* the form is [`busy`](#busy)<br>* manually disabled with [`:disabled`](#disabled) prop
+   * Whether submitting the form is disabled. Returns `true` if:
+   * * the form has any invalid elements and [`validateOn`](#option-validate-on) contains `change`
+   * * the form is [`busy`](#property-busy)
+   * * manually disabled with [`disabled`](#option-disabled) option.
    * 
    * @type {boolean}
    */
@@ -549,7 +552,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether submitting the form is in loading state. Can be enabled with [`:loading`](#loading) prop.
+   * Whether loading state is triggered manually via [`loading`](#option-loading) option.
    * 
    * @type {boolean}
    */
@@ -588,7 +591,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form should show [`FormSteps`](form-steps) component. Returns `true` if [`:steps`](#steps) has a value.
+   * Whether the form should show [`FormSteps`](form-steps) component. Returns `true` if [`steps`](#option-steps) has value.
    * 
    * @type {boolean}
    */
@@ -597,7 +600,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form should display steps controls below form with [`FormStepsControls`](form-steps-control) component when it has [`:steps`](#steps). Can be disabled by [`:stepsControls`](#stepscontrols) or in `config.stepsControls`.
+   * Whether the form should display steps controls below form with [`FormStepsControls`](form-steps-control) component when it has [`steps`](#option-steps). Can be disabled with [`stepsControls`](#option-steps-controls).
    * 
    * @type {boolean}
    */
@@ -616,7 +619,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form should show [`FormTabs`](form-tabs) component. Returns `true` if [`:tabs`](#tabs) has a value.
+   * Whether the form should show [`FormTabs`](form-tabs) component. Returns `true` if [`tabs`](#option-tabs) has value.
    * 
    * @type {boolean}
    */
@@ -625,7 +628,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The selected theme, extended by local overrides. Normally we use `theme` property for this, but as Vueform component needs to have an actual [`:theme`](#theme) prop so we use this naming instead.
+   * The selected theme, extended by local template and class overrides, using [`replaceTemplates`](#option-replace-templates), [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes).
    * 
    * @type {object}
    */
@@ -648,7 +651,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-  * The selected theme's templates, extended by local overrides. Normally we use `components` property for this, but as Vueform component needs to have an actual [`:components`](#components) prop so we use this naming instead.
+  * The selected theme's templates, extended by local overrides. The [`replaceTemplates`](#option-replace-templates) option can be used to override templates provided by the theme.
   * 
   * @type {object}
   */
@@ -677,7 +680,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The selected theme's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides. Normally we use `classes` property for this, but as Vueform component needs to have an actual [`:classes`](#classes) prop so we use this naming instead.
+   * The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.
    * 
    * @type {object}
    */
@@ -727,10 +730,10 @@ const base = function(props, context, dependencies = {})
   }
 
   /**
-   * Loads data to the form using optional [`:formatLoad`](#format-load) formatter.
+   * Loads data to the form using optional [`formatLoad`](#option-format-load) formatter.
    * 
    * @param {string} value* the value to be loaded
-   * @param {boolean} format whether the loaded value should be formatted with [`:formatLoad`](#format-load) (default: `false`)
+   * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) (default: `false`)
    * @returns {void}
    */
   const load = async (data, format = false) => {
@@ -898,7 +901,7 @@ const base = function(props, context, dependencies = {})
   }
 
   /**
-   * Sends form data to [`:endpoint`](#endpoint) with the selected [`method`](#method) (async).
+   * Sends form data to [`endpoint`](#option-endpoint) with the selected [`method`](#option-method) (async).
    * 
    * @returns {void}
    */
@@ -969,7 +972,7 @@ const base = function(props, context, dependencies = {})
   }
 
   /**
-  * Sets current language when using [`:multilingual`](#multilingual).
+  * Sets current language when using [`multilingual`](#option-multilingual).
   * 
   * @param {string} code* the language code to be selected
   * @returns {void}

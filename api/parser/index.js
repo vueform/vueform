@@ -171,8 +171,8 @@ const Parser = class
           let l = i
           docs.description = ''
 
-          while (this.lines[l].match(/\*\s?$/) === null) {
-            docs.description += this.lines[l].trim().replace(/^\*/, '').trim() + ' '
+          while (this.lines[l].match(/\*\s?@/) === null) {
+            docs.description += this.lines[l].trim().replace(/^\*/, '').trim() + ' \n'
             l++
           }
 
