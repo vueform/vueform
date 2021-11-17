@@ -650,7 +650,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -677,7 +677,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -704,7 +704,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -731,7 +731,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -758,7 +758,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -785,7 +785,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -812,7 +812,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -2382,7 +2382,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component's [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed."
+          "description": "Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component's [`forceLabels`](vueform#option-force-labels) option is `true`."
         }
       }
     }
@@ -3079,7 +3079,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme's default templates."
+          "description": "The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme's default templates."
         }
       }
     }
@@ -4127,7 +4127,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method."
+          "description": "Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods."
         }
       },
       "computed": {

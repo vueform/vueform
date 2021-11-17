@@ -10,7 +10,7 @@ const base = function(props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.
+   * Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.
    * 
    * @type {boolean} 
    * @default false

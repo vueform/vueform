@@ -883,13 +883,13 @@ export default {
       "view"
     ],
     "slots": [
+      "default",
       "label",
       "info",
       "description",
       "before",
       "between",
-      "after",
-      "default"
+      "after"
     ],
     "events": [
       "beforeCreate",

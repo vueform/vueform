@@ -84,7 +84,7 @@ export default {
           types: ['component'],
         }
       },
-      description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+      description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
     }
   },
   'before': {

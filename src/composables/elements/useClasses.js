@@ -43,7 +43,7 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-   * An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.
+   * The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.
    * 
    * @type {object}
    */

@@ -382,7 +382,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -455,7 +455,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -490,7 +490,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -547,7 +547,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       visible: {
@@ -773,7 +773,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -1295,7 +1295,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -1347,7 +1347,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -1417,7 +1417,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -1481,7 +1481,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -1889,7 +1889,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -2374,7 +2374,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -2391,7 +2391,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -2461,7 +2461,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -2525,7 +2525,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -3001,7 +3001,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -3651,7 +3651,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -3703,7 +3703,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -3808,7 +3808,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -3872,7 +3872,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -4284,7 +4284,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -4866,7 +4866,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -4876,7 +4876,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -4981,7 +4981,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -5045,7 +5045,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -5447,7 +5447,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -6027,7 +6027,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -6079,7 +6079,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -6172,7 +6172,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -6236,7 +6236,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -6698,7 +6698,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -7357,7 +7357,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -7409,7 +7409,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -7604,7 +7604,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -7672,7 +7672,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -8167,7 +8167,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -8553,7 +8553,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -8605,7 +8605,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -8654,7 +8654,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -8718,7 +8718,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       value: {
@@ -9019,7 +9019,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -9470,7 +9470,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -10383,7 +10383,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -10443,7 +10443,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -10534,7 +10534,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -10626,7 +10626,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -11190,7 +11190,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -11756,7 +11756,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -11808,7 +11808,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -11892,7 +11892,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -11957,7 +11957,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -12384,7 +12384,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -13058,7 +13058,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -13118,7 +13118,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -13216,7 +13216,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -13329,7 +13329,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -13926,7 +13926,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -14799,7 +14799,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -14816,7 +14816,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -14900,7 +14900,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -14971,7 +14971,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -15541,7 +15541,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -16119,7 +16119,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -16186,7 +16186,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -16235,7 +16235,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -16299,7 +16299,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -16686,7 +16686,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -17194,7 +17194,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -17246,7 +17246,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -17316,7 +17316,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -17387,7 +17387,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -17795,7 +17795,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -18289,7 +18289,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -18341,7 +18341,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -18404,7 +18404,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -18468,7 +18468,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -18856,7 +18856,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -19753,7 +19753,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -19812,7 +19812,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -19896,7 +19896,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -19967,7 +19967,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -20517,7 +20517,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -21247,7 +21247,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -21299,7 +21299,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -21369,7 +21369,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -21433,7 +21433,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -21845,7 +21845,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -22196,7 +22196,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -22248,7 +22248,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -22276,7 +22276,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -22340,7 +22340,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       visible: {
@@ -22529,6 +22529,17 @@ module.exports = {
       },
     },
     slots: {
+      'default': {
+        description: 'Renders the content of the static element.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
       'label': {
         description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
@@ -22552,7 +22563,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -22586,17 +22597,6 @@ module.exports = {
       },
       'after': {
         description: 'Renders an [`ElementText`](element-text) component after the description and error.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'default': {
-        description: 'Renders the content of the static element.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -23108,7 +23108,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -23160,7 +23160,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -23253,7 +23253,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       language: {
@@ -23331,7 +23331,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -23794,7 +23794,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -24333,7 +24333,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -24385,7 +24385,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -24469,7 +24469,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       language: {
@@ -24554,7 +24554,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -24985,7 +24985,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -25536,7 +25536,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -25588,7 +25588,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -25672,7 +25672,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       language: {
@@ -25750,7 +25750,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -26186,7 +26186,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -27106,7 +27106,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -27116,7 +27116,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -27200,7 +27200,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -27271,7 +27271,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -27866,7 +27866,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -28581,7 +28581,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -28633,7 +28633,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -28717,7 +28717,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -28788,7 +28788,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -29200,7 +29200,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -29764,7 +29764,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -29816,7 +29816,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -29900,7 +29900,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -29964,7 +29964,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -30381,7 +30381,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -30932,7 +30932,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.',
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
         default: 'false',
         private: false,
       },
@@ -30984,7 +30984,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.',
+        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
         private: false,
       },
       mainClass: {
@@ -31054,7 +31054,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.',
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
       elementLayout: {
@@ -31118,7 +31118,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use within the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       dirty: {
@@ -31540,7 +31540,7 @@ module.exports = {
         },
       },
       'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component',
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
           el$: {
             description: 'the element&apos;s component',

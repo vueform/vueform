@@ -56,7 +56,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+          "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
         },
         "templates": {
           "public": true,
@@ -214,7 +214,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+          "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
         },
         "templates": {
           "public": true,
