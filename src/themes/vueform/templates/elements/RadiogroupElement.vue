@@ -18,6 +18,7 @@
 <style lang="scss">
   .vf-radiogroup-wrapper {
     padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
+    cursor: pointer;
 
     .vf-radio-container {
       padding-top: 0;

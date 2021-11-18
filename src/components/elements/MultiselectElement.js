@@ -437,7 +437,6 @@ export default {
       templates: templates.templates,
     }, {
       slots: [
-        'label', 'info', 'description', 'before', 'between', 'after',
         'option',
         'placeholder',
         'multiple-label',
@@ -449,6 +448,7 @@ export default {
         'caret',
         'spinner',
         'clear',
+        'label', 'info', 'description', 'before', 'between', 'after',
       ]
     })
 

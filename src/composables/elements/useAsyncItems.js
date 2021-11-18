@@ -71,7 +71,7 @@ const base = function(props, context, dependencies)
   /**
    * Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.
    * 
-   * @param {boolean} shouldDisable* whether the input field should be disabled while fetching options
+   * @param {boolean} disable* whether the input field should be disabled while fetching options
    * @returns {void} 
    */
   const updateItems = (shouldDisable = true) => {
@@ -157,7 +157,7 @@ const checkboxgroup = function(props, context, dependencies) {
   // ============== COMPUTED ==============
   
   /**
-   * Contains available items. 
+   * Contains the available items. If [`items`](#option-items) are async this contains the resolved items.
    * 
    * @type {array}
    */
@@ -188,9 +188,9 @@ const checkboxgroup = function(props, context, dependencies) {
   // =============== METHODS ==============
 
   /**
-   * Fetches & updates select options when using `async` items. Receives [`el$`](#property-el) as first param.
+   * Fetches & updates items when using `async` items. Receives [`el$`](#property-el) as first param.
    * 
-   * @param {boolean} shouldDisable* whether the input field should be disabled while fetching options
+   * @param {boolean} disable* whether the input field should be disabled while fetching options
    * @returns {void} 
    */
   const updateItems = (shouldDisable = true) => {

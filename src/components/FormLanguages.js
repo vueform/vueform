@@ -19,7 +19,7 @@ export default {
     // ============== COMPUTED ==============
 
     /**
-     * The ISO 639-1 code of the currently selected language (2 letters).
+     * The language code of the currently selected language (2 letters).
      * 
      * @type {string}
      */

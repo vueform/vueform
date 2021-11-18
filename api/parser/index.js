@@ -172,11 +172,11 @@ const Parser = class
           docs.description = ''
 
           while (this.lines[l].match(/\*\s?@/) === null) {
-            docs.description += this.lines[l].trim().replace(/^\*/, '').trim() + ' \n'
+            docs.description += this.lines[l].trim().replace(/^\*/, '').trim() + '\\n'
             l++
           }
 
-          docs.description = docs.description.trim()
+          docs.description = _.trimEnd(docs.description, '\\n')
         }
       }
       

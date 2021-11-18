@@ -452,11 +452,10 @@ export default {
       templates: templates.templates,
     }, {
       slots: [
-        'label', 'info', 'description', 'before', 'between', 'after',
-        'tag',
         'option',
         'placeholder',
         'group-label', 
+        'tag',
         'before-list',
         'after-list',
         'no-results',
@@ -464,6 +463,7 @@ export default {
         'caret',
         'spinner',
         'clear',
+        'label', 'info', 'description', 'before', 'between', 'after',
       ]
     })
 

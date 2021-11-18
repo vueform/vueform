@@ -1396,7 +1396,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -1505,18 +1505,11 @@ module.exports = {
         description: 'Whether the element has any async rules in progress.',
         private: false,
       },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has a validation rule with pending debounce.',
-        private: false,
-      },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending`.',
         private: false,
       },
       errors: {
@@ -1685,12 +1678,12 @@ module.exports = {
         private: false,
       },
       check: {
-        description: 'Sets the toggle to `on` (`trueValue`).',
+        description: 'Checks the checkbox.',
         returns: 'void',
         private: false,
       },
       uncheck: {
-        description: 'Sets the toggle to `off` (`falseValue`).',
+        description: 'Unchecks the checkbox.',
         returns: 'void',
         private: false,
       },
@@ -1859,6 +1852,17 @@ module.exports = {
       },
     },
     slots: {
+      'default': {
+        description: 'Renders a label for the checkbox.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
       'label': {
         description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
@@ -1916,17 +1920,6 @@ module.exports = {
       },
       'after': {
         description: 'Renders an [`ElementText`](element-text) component after the description and error.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'default': {
-        description: 'Renders a label for the checkbox.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -2377,7 +2370,7 @@ module.exports = {
         types: [
           'array',
         ],
-        description: 'Contains available items.',
+        description: 'Contains the available items. If [`items`](#option-items) are async this contains the resolved items.',
         private: false,
       },
       classes: {
@@ -2440,7 +2433,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -2549,18 +2542,11 @@ module.exports = {
         description: 'Whether the element has any async rules in progress.',
         private: false,
       },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has a validation rule with pending debounce.',
-        private: false,
-      },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending`.',
         private: false,
       },
       errors: {
@@ -2609,10 +2595,10 @@ module.exports = {
     },
     methods: {
       updateItems: {
-        description: 'Fetches & updates select options when using `async` items. Receives [`el$`](#property-el) as first param.',
+        description: 'Fetches & updates items when using `async` items. Receives [`el$`](#property-el) as first param.',
         returns: 'void',
         params: {
-          shouldDisable: {
+          disable: {
             types: [
               'boolean',
             ],
@@ -2971,6 +2957,53 @@ module.exports = {
       },
     },
     slots: {
+      'checkbox': {
+        description: 'Replaces the template for the checkbox field. Checkboxes are rendered by the [`CheckboxgroupCheckbox`](checkboxgroup-checkbox) component which has a default checkbox template. If the this slot is defined, the default template in [`CheckboxgroupCheckbox`](checkboxgroup-checkbox) component will be overridden with the content of this slot.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          item: {
+            description: 'the checkbox item',
+            types: [
+              'object',
+            ],
+          },
+          value: {
+            description: 'the checkbox value',
+            types: [
+              'string|number',
+            ],
+          },
+          id: {
+            description: 'the `id` attribute of the checkbox field used by the default template',
+            types: [
+              'string',
+            ],
+          },
+          name: {
+            description: 'the `name` attribute of the checkbox field used by the default template',
+            types: [
+              'string',
+            ],
+          },
+          isDisabled: {
+            description: 'whether the checkbox is disabled',
+            types: [
+              'boolean',
+            ],
+          },
+          classes: {
+            description: 'an object containing the classes of [`CheckboxgroupCheckbox`](checkboxgroup-checkbox) component',
+            types: [
+              'object',
+            ],
+          },
+        },
+      },
       'label': {
         description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
@@ -3033,53 +3066,6 @@ module.exports = {
             description: 'the element&apos;s component',
             types: [
               'component',
-            ],
-          },
-        },
-      },
-      'checkbox': {
-        description: 'Replaces the template for the checkbox field. Checkboxes are rendered by the [`CheckboxgroupCheckbox`](checkboxgroup-checkbox) component which has a default checkbox template. If the this slot is defined, the default template in [`CheckboxgroupCheckbox`](checkboxgroup-checkbox) component will be overridden with the content of this slot.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-          item: {
-            description: 'the checkbox item',
-            types: [
-              'object',
-            ],
-          },
-          value: {
-            description: 'the checkbox value',
-            types: [
-              'string|number',
-            ],
-          },
-          id: {
-            description: 'the `id` attribute of the checkbox field used by the default template',
-            types: [
-              'string',
-            ],
-          },
-          name: {
-            description: 'the `name` attribute of the checkbox field used by the default template',
-            types: [
-              'string',
-            ],
-          },
-          isDisabled: {
-            description: 'whether the checkbox is disabled',
-            types: [
-              'boolean',
-            ],
-          },
-          classes: {
-            description: 'an object containing the classes of [`CheckboxgroupCheckbox`](checkboxgroup-checkbox) component',
-            types: [
-              'object',
             ],
           },
         },
@@ -3780,7 +3766,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -3896,18 +3882,11 @@ module.exports = {
         description: 'Whether the element has any async rules in progress.',
         private: false,
       },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has a validation rule with pending debounce.',
-        private: false,
-      },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending`.',
         private: false,
       },
       errors: {
@@ -4953,7 +4932,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -5069,18 +5048,11 @@ module.exports = {
         description: 'Whether the element has any async rules in progress.',
         private: false,
       },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has a validation rule with pending debounce.',
-        private: false,
-      },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending`.',
         private: false,
       },
       errors: {
@@ -6151,7 +6123,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -7260,7 +7232,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `base64` format of the file when [`:view`](#view) is `image` or `gallery` and file only has been selected, but hasn&apos;t been uploaded yet.',
+        description: 'The `base64` representation of the file when [`view`](#option-view) is `image` or `gallery` and file is only selected, but not uploaded yet.',
         default: 'null',
         private: false,
       },
@@ -7276,7 +7248,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'If the form is submitted and a temp file hasn&apos;t been uploaded yet, the element will enter into `preparing` state by setting this to `true`. When in `preparing` state the form submission process will be halted until all async functions hasn&apos;t been completed without any errors.',
+        description: 'If the form is submitted and the file is not uploaded yet, the element will enter into `preparing` state and upload the temporary file before submitting the form.',
         default: 'false',
         private: false,
       },
@@ -7472,7 +7444,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       uploadTempFileUrl: {
@@ -7534,7 +7506,7 @@ module.exports = {
         types: [
           'number',
         ],
-        description: 'The stage the file is at:<br>* `0`: file not selected<br>* `1`: file selected<br>* `2`: temp file uploaded<br>* `3`: file uploaded',
+        description: 'The stage the file is at:\n\n* `0`: file not selected\n* `1`: file selected\n* `2`: file temporarily uploaded\n* `3`: file permanently uploaded',
         private: false,
       },
       filename: {
@@ -7548,7 +7520,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The link to an uploaded file.',
+        description: 'The clickable link of the uploaded file.',
         private: false,
       },
       preview: {
@@ -7562,7 +7534,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the file has been uploaded.',
+        description: 'Whether the file is permantently uploaded.',
         private: false,
       },
       canRemove: {
@@ -7694,13 +7666,6 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has any async rules in progress.',
-        private: false,
-      },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -7895,7 +7860,7 @@ module.exports = {
         private: false,
       },
       remove: {
-        description: 'Removes file (async):<br>* in stage `1`: sets the value to null<br>* in stage `2`: submit a request to `removeTemp` endpoint and sets the value to null<br>* in stage `3`: submits a request to `remove` endpoint and sets the value to null',
+        description: 'Removes file (async):\n\n* in stage `1`: sets the value to `null`\n* in stage `2`: submits a request to `removeTemp` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`\n* in stage `3`: submits a request to `remove` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`',
         returns: 'void',
         private: false,
       },
@@ -9414,7 +9379,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -9494,18 +9459,11 @@ module.exports = {
         description: 'Whether the element has any async rules in progress.',
         private: false,
       },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has a validation rule with pending debounce.',
-        private: false,
-      },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending`.',
         private: false,
       },
       errors: {
@@ -11863,7 +11821,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -14870,7 +14828,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -14993,18 +14951,11 @@ module.exports = {
         description: 'Whether the element has any async rules in progress.',
         private: false,
       },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has a validation rule with pending debounce.',
-        private: false,
-      },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending`.',
         private: false,
       },
       errors: {
@@ -15056,7 +15007,7 @@ module.exports = {
         description: 'Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.',
         returns: 'void',
         params: {
-          shouldDisable: {
+          disable: {
             types: [
               'boolean',
             ],
@@ -15367,7 +15318,7 @@ module.exports = {
        },
       },
       'select': {
-        description: 'Triggered when an option is selected, using [`native: false`](#option-native).',
+        description: 'Triggered when an option is selected when using [`native: false`](#option-native).',
         params: {
           option: {
             description: 'the selected option',
@@ -15378,7 +15329,7 @@ module.exports = {
        },
       },
       'deselect': {
-        description: 'Triggered when an option is deselected, using [`native: false`](#option-native).',
+        description: 'Triggered when an option is deselected when using [`native: false`](#option-native).',
         params: {
           option: {
             description: 'the deselected option',
@@ -15389,7 +15340,7 @@ module.exports = {
        },
       },
       'search-change': {
-        description: 'Triggered when the search query changes, using [`search: true`](#option-search).',
+        description: 'Triggered when the search query changes when using [`search: true`](#option-search).',
         params: {
           searchQuery: {
             description: 'the search value',
@@ -15400,16 +15351,16 @@ module.exports = {
        },
       },
       'open': {
-        description: 'Triggered when the dropdown list is opened, using [`native: false`](#option-native).',
+        description: 'Triggered when the dropdown list is opened when using [`native: false`](#option-native).',
       },
       'close': {
-        description: 'Triggered when the dropdown list is closed, using [`native: false`](#option-native).',
+        description: 'Triggered when the dropdown list is closed when using [`native: false`](#option-native).',
       },
       'clear': {
-        description: 'Triggered when the value is cleared, using [`native: true`](#option-native).',
+        description: 'Triggered when the value is cleared when using [`native: true`](#option-native).',
       },
       'paste': {
-        description: 'Triggered when text is pasted to the search input, using [`search: true`](#option-search).',
+        description: 'Triggered when text is pasted to the search input when using [`search: true`](#option-search).',
         params: {
           event: {
             description: 'the paste Event',
@@ -15509,72 +15460,6 @@ module.exports = {
       },
     },
     slots: {
-      'label': {
-        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'info': {
-        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'before': {
-        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'between': {
-        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'after': {
-        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
       'option': {
         description: 'Replaces the default option template.',
         props: {
@@ -15722,6 +15607,72 @@ module.exports = {
             description: 'clears the input value',
             types: [
               'function',
+            ],
+          },
+        },
+      },
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ],
           },
         },
@@ -17278,7 +17229,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -17342,7 +17293,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `name` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.',
+        description: 'The `name` attribute of the element. If [`id`](#option-id) is not provided [`name`](#option-name) will be used.',
         private: false,
       },
       elementSlots: {
@@ -17394,18 +17345,11 @@ module.exports = {
         description: 'Whether the element has any async rules in progress.',
         private: false,
       },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has a validation rule with pending debounce.',
-        private: false,
-      },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending`.',
         private: false,
       },
       errors: {
@@ -17748,6 +17692,17 @@ module.exports = {
       },
     },
     slots: {
+      'default': {
+        description: 'Renders a label for the radio.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
       'label': {
         description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
@@ -17805,17 +17760,6 @@ module.exports = {
       },
       'after': {
         description: 'Renders an [`ElementText`](element-text) component after the description and error.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'default': {
-        description: 'Renders a label for the radio.',
         props: {
           el$: {
             description: 'the element&apos;s component',
@@ -18366,7 +18310,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -18475,18 +18419,11 @@ module.exports = {
         description: 'Whether the element has any async rules in progress.',
         private: false,
       },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has a validation rule with pending debounce.',
-        private: false,
-      },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending`.',
         private: false,
       },
       errors: {
@@ -18809,6 +18746,53 @@ module.exports = {
       },
     },
     slots: {
+      'radio': {
+        description: 'Replaces the template for the radio input. Radio inputs are rendered by the [`RadiogroupRadio`](radiogroup-radio) component which has a default radio template. If the this slot is defined, the default template in [`RadiogroupRadio`](radiogroup-radio) component will be overridden with the content of this slot.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          item: {
+            description: 'the radio item',
+            types: [
+              'object',
+            ],
+          },
+          value: {
+            description: 'the radio value',
+            types: [
+              'string|number',
+            ],
+          },
+          id: {
+            description: 'the `id` attribute of the radio field used by the default template',
+            types: [
+              'string',
+            ],
+          },
+          name: {
+            description: 'the `name` attribute of the radio field used by the default template',
+            types: [
+              'string',
+            ],
+          },
+          isDisabled: {
+            description: 'whether the radio is disabled',
+            types: [
+              'boolean',
+            ],
+          },
+          classes: {
+            description: 'an object containing the classes of [`RadiogroupRadio`](radiogroup-radio) component',
+            types: [
+              'object',
+            ],
+          },
+        },
+      },
       'label': {
         description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
@@ -18871,53 +18855,6 @@ module.exports = {
             description: 'the element&apos;s component',
             types: [
               'component',
-            ],
-          },
-        },
-      },
-      'radio': {
-        description: 'Replaces the template for the radio input. Radio inputs are rendered by the [`RadiogroupRadio`](radiogroup-radio) component which has a default radio template. If the this slot is defined, the default template in [`RadiogroupRadio`](radiogroup-radio) component will be overridden with the content of this slot.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-          item: {
-            description: 'the radio item',
-            types: [
-              'object',
-            ],
-          },
-          value: {
-            description: 'the radio value',
-            types: [
-              'string|number',
-            ],
-          },
-          id: {
-            description: 'the `id` attribute of the radio field used by the default template',
-            types: [
-              'string',
-            ],
-          },
-          name: {
-            description: 'the `name` attribute of the radio field used by the default template',
-            types: [
-              'string',
-            ],
-          },
-          isDisabled: {
-            description: 'whether the radio is disabled',
-            types: [
-              'boolean',
-            ],
-          },
-          classes: {
-            description: 'an object containing the classes of [`RadiogroupRadio`](radiogroup-radio) component',
-            types: [
-              'object',
             ],
           },
         },
@@ -19851,7 +19788,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -19974,18 +19911,11 @@ module.exports = {
         description: 'Whether the element has any async rules in progress.',
         private: false,
       },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has a validation rule with pending debounce.',
-        private: false,
-      },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending`.',
         private: false,
       },
       errors: {
@@ -20037,7 +19967,7 @@ module.exports = {
         description: 'Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.',
         returns: 'void',
         params: {
-          shouldDisable: {
+          disable: {
             types: [
               'boolean',
             ],
@@ -20328,7 +20258,7 @@ module.exports = {
        },
       },
       'select': {
-        description: 'Triggered when an option is selected, using [`native: false`](#option-native).',
+        description: 'Triggered when an option is selected when using [`native: false`](#option-native).',
         params: {
           option: {
             description: 'the selected option',
@@ -20339,7 +20269,7 @@ module.exports = {
        },
       },
       'deselect': {
-        description: 'Triggered when an option is deselected, using [`native: false`](#option-native).',
+        description: 'Triggered when an option is deselected when using [`native: false`](#option-native).',
         params: {
           option: {
             description: 'the deselected option',
@@ -20350,7 +20280,7 @@ module.exports = {
        },
       },
       'search-change': {
-        description: 'Triggered when the search query changes, using [`search: true`](#option-search).',
+        description: 'Triggered when the search query changes when using [`search: true`](#option-search).',
         params: {
           searchQuery: {
             description: 'the search value',
@@ -20361,16 +20291,16 @@ module.exports = {
        },
       },
       'open': {
-        description: 'Triggered when the dropdown list is opened, using [`native: false`](#option-native).',
+        description: 'Triggered when the dropdown list is opened when using [`native: false`](#option-native).',
       },
       'close': {
-        description: 'Triggered when the dropdown list is closed, using [`native: false`](#option-native).',
+        description: 'Triggered when the dropdown list is closed when using [`native: false`](#option-native).',
       },
       'clear': {
-        description: 'Triggered when the value is cleared, using [`native: true`](#option-native).',
+        description: 'Triggered when the value is cleared when using [`native: true`](#option-native).',
       },
       'paste': {
-        description: 'Triggered when text is pasted to the search input, using [`search: true`](#option-search).',
+        description: 'Triggered when text is pasted to the search input when using [`search: true`](#option-search).',
         params: {
           event: {
             description: 'the paste Event',
@@ -20470,72 +20400,6 @@ module.exports = {
       },
     },
     slots: {
-      'label': {
-        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'info': {
-        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'before': {
-        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'between': {
-        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'after': {
-        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
       'option': {
         description: 'Replaces the default option template.',
         props: {
@@ -20683,6 +20547,72 @@ module.exports = {
             description: 'clears the input value',
             types: [
               'function',
+            ],
+          },
+        },
+      },
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ],
           },
         },
@@ -21331,7 +21261,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -21440,18 +21370,11 @@ module.exports = {
         description: 'Whether the element has any async rules in progress.',
         private: false,
       },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has a validation rule with pending debounce.',
-        private: false,
-      },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending`.',
         private: false,
       },
       errors: {
@@ -23208,7 +23131,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -23229,7 +23152,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The ISO 639-1 code of the currently selected language (2 letters).',
+        description: 'The language code of the currently selected language (2 letters).',
         private: false,
       },
       languages: {
@@ -23314,7 +23237,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all the languages has already been validated at least once.',
+        description: 'Whether all the languages have already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -23647,8 +23570,26 @@ module.exports = {
        },
       },
       'alert': {
+        description: 'Triggered when the user select a file/mime type that is not allowed. If the event does not have a listener the alert message will be displayed by `alert()`.',
+        params: {
+          message: {
+            description: 'the alert message',
+            types: [
+              'string',
+            ]
+          },
+       },
       },
       'error': {
+        description: 'Triggered when file upload throws an error.',
+        params: {
+          error: {
+            description: 'the Error object',
+            types: [
+              'Error',
+            ]
+          },
+       },
       },
       'beforeCreate': {
         description: 'Triggered in beforeCreate hook.',
@@ -24417,7 +24358,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -24445,7 +24386,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The ISO 639-1 code of the currently selected language (2 letters).',
+        description: 'The language code of the currently selected language (2 letters).',
         private: false,
       },
       languages: {
@@ -24537,7 +24478,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all the languages has already been validated at least once.',
+        description: 'Whether all the languages have already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -25620,7 +25561,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -25648,7 +25589,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The ISO 639-1 code of the currently selected language (2 letters).',
+        description: 'The language code of the currently selected language (2 letters).',
         private: false,
       },
       languages: {
@@ -25733,7 +25674,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether all the languages has already been validated at least once.',
+        description: 'Whether all the languages have already been validated at least once.',
         private: false,
       },
       invalid: {
@@ -25810,7 +25751,7 @@ module.exports = {
     },
     methods: {
       autosize: {
-        description: 'Updates the height of the input based in its contents when `autogrow` is enabled.',
+        description: 'Updates the height of the input based in its contents when [`autogrow`](#option-autogrow) is enabled.',
         returns: 'void',
         private: false,
       },
@@ -27148,7 +27089,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -27271,18 +27212,11 @@ module.exports = {
         description: 'Whether the element has any async rules in progress.',
         private: false,
       },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has a validation rule with pending debounce.',
-        private: false,
-      },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending`.',
         private: false,
       },
       errors: {
@@ -27334,7 +27268,7 @@ module.exports = {
         description: 'Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.',
         returns: 'void',
         params: {
-          shouldDisable: {
+          disable: {
             types: [
               'boolean',
             ],
@@ -27681,7 +27615,7 @@ module.exports = {
        },
       },
       'search-change': {
-        description: 'Triggered when the search query changes, using [`search: true`](#option-search).',
+        description: 'Triggered when the search query changes when using [`search: true`](#option-search).',
         params: {
           searchQuery: {
             description: 'the search value',
@@ -27692,13 +27626,13 @@ module.exports = {
        },
       },
       'open': {
-        description: 'Triggered when the dropdown list is closed.',
+        description: 'Triggered when the dropdown list is opened.',
       },
       'close': {
         description: 'Triggered when the dropdown list is closed.',
       },
       'tag': {
-        description: 'Triggered when a new tag is created, using [`create: true`](#optons-create).',
+        description: 'Triggered when a new tag is created when using [`create: true`](#optons-create).',
         params: {
           tag: {
             description: 'the tag value',
@@ -27712,7 +27646,7 @@ module.exports = {
         description: 'Triggered when the value is cleared.',
       },
       'paste': {
-        description: 'Triggered when text is pasted to the search input, using [`search: true`](#option-search).',
+        description: 'Triggered when text is pasted to the search input when using [`search: true`](#option-search).',
         params: {
           event: {
             description: 'the paste Event',
@@ -27812,101 +27746,6 @@ module.exports = {
       },
     },
     slots: {
-      'label': {
-        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'info': {
-        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'description': {
-        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'before': {
-        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'between': {
-        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'after': {
-        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'tag': {
-        description: 'Replaces the default tag template.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-          option: {
-            description: 'the option object',
-            types: [
-              'object',
-            ],
-          },
-          disabled: {
-            description: 'whether the option is disabled',
-            types: [
-              'boolean',
-            ],
-          },
-          handleTagRemove: {
-            description: 'removes the tag from the selected options',
-            types: [
-              'function',
-            ],
-          },
-        },
-      },
       'option': {
         description: 'Replaces the default option template.',
         props: {
@@ -27954,6 +27793,35 @@ module.exports = {
             description: 'the group object',
             types: [
               'object',
+            ],
+          },
+        },
+      },
+      'tag': {
+        description: 'Replaces the default tag template.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          option: {
+            description: 'the option object',
+            types: [
+              'object',
+            ],
+          },
+          disabled: {
+            description: 'whether the option is disabled',
+            types: [
+              'boolean',
+            ],
+          },
+          handleTagRemove: {
+            description: 'removes the tag from the selected options',
+            types: [
+              'function',
             ],
           },
         },
@@ -28037,6 +27905,72 @@ module.exports = {
             description: 'clears the input value',
             types: [
               'function',
+            ],
+          },
+        },
+      },
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ],
           },
         },
@@ -28665,7 +28599,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -29848,7 +29782,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasFloating: {
@@ -30024,7 +29958,7 @@ module.exports = {
     },
     methods: {
       autosize: {
-        description: 'Updates the height of the input based in its contents when `autogrow` is enabled.',
+        description: 'Updates the height of the input based in its contents when [`autogrow`](#option-autogrow) is enabled.',
         returns: 'void',
         private: false,
       },
@@ -31009,7 +30943,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -31118,18 +31052,11 @@ module.exports = {
         description: 'Whether the element has any async rules in progress.',
         private: false,
       },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has a validation rule with pending debounce.',
-        private: false,
-      },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending`.',
         private: false,
       },
       errors: {
@@ -31312,12 +31239,12 @@ module.exports = {
         private: true,
       },
       check: {
-        description: 'Sets the toggle to `on` (`trueValue`).',
+        description: 'Sets the toggle to `on` ([`trueValue`](#option-true-value)).',
         returns: 'void',
         private: false,
       },
       uncheck: {
-        description: 'Sets the toggle to `off` (`falseValue`).',
+        description: 'Sets the toggle to `off` ([`falseValue`](#option-false-value)).',
         returns: 'void',
         private: false,
       },
@@ -31486,6 +31413,17 @@ module.exports = {
       },
     },
     slots: {
+      'default': {
+        description: 'Renders a label for the toggle.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
       'label': {
         description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
         props: {
@@ -31543,17 +31481,6 @@ module.exports = {
       },
       'after': {
         description: 'Renders an [`ElementText`](element-text) component after the description and error.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
-      'default': {
-        description: 'Renders a label for the toggle.',
         props: {
           el$: {
             description: 'the element&apos;s component',

@@ -172,8 +172,8 @@ export default {
       templates: templates.templates,
     }, {
       slots: [
-        'label', 'info', 'description', 'before',
-        'between', 'after', 'checkbox',
+        'checkbox', 'label', 'info', 'description', 'before',
+        'between', 'after',
       ]
     })
 

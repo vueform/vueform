@@ -18,7 +18,7 @@ const base = function (props, context, dependencies)
   // ============== COMPUTED ==============
   
   /**
-   * The `name` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.
+   * The `name` attribute of the element. If [`id`](#option-id) is not provided [`name`](#option-name) will be used.
    * 
    * @type {string}
    */

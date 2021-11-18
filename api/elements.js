@@ -58,20 +58,20 @@ export default {
       "slots",
       "templates",
       "theme",
-      "toggle",
+      "toggle_checkbox",
       "validation",
       "value",
       "view",
       "watchValue"
     ],
     "slots": [
+      "default",
       "label",
       "info",
       "description",
       "before",
       "between",
-      "after",
-      "default"
+      "after"
     ],
     "events": [
       "change",
@@ -113,13 +113,13 @@ export default {
       "watchValue"
     ],
     "slots": [
+      "checkbox",
       "label",
       "info",
       "description",
       "before",
       "between",
-      "after",
-      "checkbox"
+      "after"
     ],
     "events": [
       "change",
@@ -570,12 +570,6 @@ export default {
       "watchValue"
     ],
     "slots": [
-      "label",
-      "info",
-      "description",
-      "before",
-      "between",
-      "after",
       "option",
       "placeholder",
       "multiple-label",
@@ -586,7 +580,13 @@ export default {
       "no-options",
       "caret",
       "spinner",
-      "clear"
+      "clear",
+      "label",
+      "info",
+      "description",
+      "before",
+      "between",
+      "after"
     ],
     "events": [
       "change",
@@ -680,13 +680,13 @@ export default {
       "watchValue"
     ],
     "slots": [
+      "default",
       "label",
       "info",
       "description",
       "before",
       "between",
-      "after",
-      "default"
+      "after"
     ],
     "events": [
       "change",
@@ -727,13 +727,13 @@ export default {
       "watchValue"
     ],
     "slots": [
+      "radio",
       "label",
       "info",
       "description",
       "before",
       "between",
-      "after",
-      "radio"
+      "after"
     ],
     "events": [
       "change",
@@ -780,12 +780,6 @@ export default {
       "watchValue"
     ],
     "slots": [
-      "label",
-      "info",
-      "description",
-      "before",
-      "between",
-      "after",
       "option",
       "placeholder",
       "single-label",
@@ -796,7 +790,13 @@ export default {
       "no-options",
       "caret",
       "spinner",
-      "clear"
+      "clear",
+      "label",
+      "info",
+      "description",
+      "before",
+      "between",
+      "after"
     ],
     "events": [
       "change",
@@ -937,23 +937,23 @@ export default {
       "watchValue"
     ],
     "slots": [
-      "label",
-      "info",
-      "description",
-      "before",
-      "between",
-      "after",
-      "tag",
       "option",
       "placeholder",
       "group-label",
+      "tag",
       "before-list",
       "after-list",
       "no-results",
       "no-options",
       "caret",
       "spinner",
-      "clear"
+      "clear",
+      "label",
+      "info",
+      "description",
+      "before",
+      "between",
+      "after"
     ],
     "events": [
       "change",
@@ -1001,7 +1001,7 @@ export default {
       "slots",
       "templates",
       "theme",
-      "validation",
+      "validation_text",
       "value",
       "view",
       "watchValue"
@@ -1054,7 +1054,7 @@ export default {
       "slots",
       "templates",
       "theme",
-      "validation",
+      "validation_text",
       "value",
       "view",
       "watchValue"
@@ -1111,13 +1111,13 @@ export default {
       "watchValue"
     ],
     "slots": [
+      "default",
       "label",
       "info",
       "description",
       "before",
       "between",
-      "after",
-      "default"
+      "after"
     ],
     "events": [
       "change",
@@ -1157,7 +1157,7 @@ export default {
       "slots",
       "templates",
       "theme",
-      "validation",
+      "validation_text",
       "value",
       "view",
       "watchValue"

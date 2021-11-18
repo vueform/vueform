@@ -18,6 +18,7 @@
 <style lang="scss">
   .vf-checkboxgroup-wrapper {
     padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
+    cursor: pointer;
 
     .vf-checkbox-container {
       padding-top: 0;

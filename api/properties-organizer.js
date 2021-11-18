@@ -1,6 +1,38 @@
 module.exports = [
+  'steps',
+  'steps$Array',
+  'elements$',
+  'steps$',
+  'visible$',
+  'first$',
+  'current$',
+  'next$',
+  'previous$',
+  'firstInvalid$',
+  'firstNonDone$',
+  'lastEnabled$',
+  'isAtLastStep',
+  'isAtFirstStep',
+
+  'stage',
+
+  'filename',
+  'link',
+  'preview',
+  'base64',
+
+  'progress',
+  'uploaded',
+  'hasUploadError',
+
+  'removing',
+
   'hasUploading',
   'preparing',
+
+  'canRemove',
+  'canUploadTemp',
+  'canSelect',
 
   'value',
   'model',
@@ -22,6 +54,7 @@ module.exports = [
   
   'orderByName',
 
+  'done',
   'validated',
   'invalid',
   'dirty',

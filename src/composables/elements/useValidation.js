@@ -102,21 +102,12 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Whether the element has a validation rule with pending debounce.
-   * 
-   * @type {boolean}
-   */
-  const debouncing = computed(() => {
-    return _.some(Validators.value, { debouncing: true })
-  })
-
-  /**
-   * Whether the element is `pending` or `debouncing`.
+   * Whether the element is `pending`.
    * 
    * @type {boolean}
    */
   const busy = computed(() => {
-    return pending.value || debouncing.value
+    return pending.value
   })
 
   /**
@@ -243,6 +234,68 @@ const base = function(props, context, dependencies)
       Validators.value.push(Validator)
     })
   }
+
+  return {
+    state,
+    Validators,
+    messageBag,
+    dirty,
+    validated,
+    invalid,
+    pending,
+    busy,
+    errors,
+    error,
+    validationRules,
+    validate,
+    dirt,
+    clean,
+    resetValidators,
+    initMessageBag,
+    initValidation,
+  }
+}
+
+const text = function(props, context, dependencies)
+{
+  const {
+    state,
+    Validators,
+    messageBag,
+    dirty,
+    validated,
+    invalid,
+    pending,
+    errors,
+    error,
+    validationRules,
+    validate,
+    dirt,
+    clean,
+    resetValidators,
+    initMessageBag,
+    initValidation,
+  } = base(props, context, dependencies)
+
+  // ============== COMPUTED ===============
+
+  /**
+   * Whether the element has a validation rule with pending debounce.
+   * 
+   * @type {boolean}
+   */
+  const debouncing = computed(() => {
+    return _.some(Validators.value, { debouncing: true })
+  })
+
+  /**
+   * Whether the element is `pending` or `debouncing`.
+   * 
+   * @type {boolean}
+   */
+  const busy = computed(() => {
+    return pending.value || debouncing.value
+  })
 
   return {
     state,
@@ -510,7 +563,7 @@ const multilingual = function(props, context, dependencies)
 
   const {
     messageBag,
-  } = base(props, context, dependencies)
+  } = text(props, context, dependencies)
 
   // ================ DATA ================
 
@@ -551,7 +604,7 @@ const multilingual = function(props, context, dependencies)
   })
 
   /**
-   * Whether all the languages has already been validated at least once.
+   * Whether all the languages have already been validated at least once.
    * 
    * @type {boolean}
    */
@@ -978,7 +1031,6 @@ const slider = function(props, context, dependencies)
     validated,
     invalid,
     pending,
-    debouncing,
     busy,
     errors,
     error,
@@ -1027,7 +1079,6 @@ const slider = function(props, context, dependencies)
     validated,
     invalid,
     pending,
-    debouncing,
     busy,
     errors,
     error,
@@ -1163,7 +1214,7 @@ const location = function(props, context, dependencies)
     resetValidators,
     initMessageBag,
     initValidation,
-  } = base(props, context, dependencies)
+  } = text(props, context, dependencies)
 
   // =============== METHODS ==============
 
@@ -1220,6 +1271,7 @@ export {
   slider,
   file,
   location,
+  text,
 }
 
 export default base

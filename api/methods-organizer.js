@@ -1,11 +1,26 @@
 module.exports = [
+  'step$',
+  'next',
+  'previous',
+  'goTo',
+  'enableAllSteps',
+  'enableUntil',
+  'enableUntilCurrent',
+  'enableUntilLastEnabled',
+  'enableUntilLastEnabled',
+  'complete',
+  'uncomplete',
+  'submit',
+
   // General
   'load',
   'update',
   'clear',
   'reset',
   'disable',
+  'disableAll',
   'enable',
+  'enableAll',
   'on',
   'off',
   'fire',
@@ -18,6 +33,4 @@ module.exports = [
   'show',
   'activate',
   'deactivate',
-  'complete',
-  'uncomplete'
 ]

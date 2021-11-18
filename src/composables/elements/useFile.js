@@ -48,7 +48,7 @@ const base = function (props, context, dependencies)
   const hasUploadError = ref(false)
 
   /**
-   * The `base64` format of the file when [`:view`](#view) is `image` or `gallery` and file only has been selected, but hasn't been uploaded yet.
+   * The `base64` representation of the file when [`view`](#option-view) is `image` or `gallery` and file is only selected, but not uploaded yet.
    * 
    * @type {string}
    * @default null
@@ -64,7 +64,7 @@ const base = function (props, context, dependencies)
   const progress = ref(0)
 
   /**
-   * If the form is submitted and a temp file hasn't been uploaded yet, the element will enter into `preparing` state by setting this to `true`. When in `preparing` state the form submission process will be halted until all async functions hasn't been completed without any errors.
+   * If the form is submitted and the file is not uploaded yet, the element will enter into `preparing` state and upload the temporary file before submitting the form.
    * 
    * @type {boolean}
    * @default false
@@ -188,7 +188,12 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * The stage the file is at:<br>* `0`: file not selected<br>* `1`: file selected<br>* `2`: temp file uploaded<br>* `3`: file uploaded
+   * The stage the file is at:
+   * 
+   * * `0`: file not selected
+   * * `1`: file selected
+   * * `2`: file temporarily uploaded
+   * * `3`: file permanently uploaded
    * 
    * @type {number}
    */
@@ -234,7 +239,7 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * The link to an uploaded file.
+   * The clickable link of the uploaded file.
    * 
    * @type {string}
    */
@@ -247,7 +252,7 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * The link to an uploaded file preview.
+   * The preview link of the uploaded file.
    * 
    * @type {string}
    */
@@ -273,7 +278,7 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * Whether the file has been uploaded.
+   * Whether the file is permantently uploaded.
    * 
    * @type {boolean}
    */
@@ -362,7 +367,11 @@ const base = function (props, context, dependencies)
   }
 
   /**
-   * Removes file (async):<br>* in stage `1`: sets the value to null<br>* in stage `2`: submit a request to `removeTemp` endpoint and sets the value to null<br>* in stage `3`: submits a request to `remove` endpoint and sets the value to null
+   * Removes file (async):
+   * 
+   * * in stage `1`: sets the value to `null`
+   * * in stage `2`: submits a request to `removeTemp` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`
+   * * in stage `3`: submits a request to `remove` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`
    * 
    * @returns {void}
    */

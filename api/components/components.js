@@ -13,14 +13,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -29,7 +29,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -131,14 +131,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -154,7 +154,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -224,14 +224,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -240,7 +240,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -302,14 +302,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -318,7 +318,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -369,14 +369,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -385,7 +385,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -447,14 +447,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -463,7 +463,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -558,14 +558,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -574,7 +574,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -633,14 +633,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -656,7 +656,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -727,7 +727,7 @@ module.exports = {
             ]
           }
         },
-        "description": "Renders description for the element in [`ElementDescription`](element-description) component"
+        "description": "Renders description for the element in [`ElementDescription`](element-description) component."
       },
       "before": {
         "props": {
@@ -778,14 +778,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -801,7 +801,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -864,7 +864,7 @@ module.exports = {
             ]
           }
         },
-        "description": "Renders description for the element in [`ElementDescription`](element-description) component"
+        "description": "Renders description for the element in [`ElementDescription`](element-description) component."
       },
       "before": {
         "props": {
@@ -915,14 +915,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -931,7 +931,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -975,14 +975,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -991,7 +991,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -1042,14 +1042,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -1058,7 +1058,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -1120,14 +1120,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -1136,7 +1136,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
       },
       "mainClass": {
         "public": false,
@@ -1200,14 +1200,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -1216,7 +1216,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
       },
       "mainClass": {
         "public": false,
@@ -1260,14 +1260,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -1276,7 +1276,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The ISO 639-1 code of the currently selected language (2 letters)."
+        "description": "The language code of the currently selected language (2 letters)."
       },
       "selected": {
         "public": true,
@@ -1290,7 +1290,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
       },
       "mainClass": {
         "public": false,
@@ -1338,7 +1338,7 @@ module.exports = {
     },
     "events": {
       "select": {
-        "description": "Triggered when an option is selected, using [`native: false`](#option-native).",
+        "description": "Triggered when an option is selected when using [`native: false`](#option-native).",
         "params": {
           "option": {
             "description": "the selected option",
@@ -1358,14 +1358,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -1374,7 +1374,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
       },
       "mainClass": {
         "public": false,
@@ -1395,7 +1395,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The ISO 639-1 code of the currently selected language (2 letters)."
+        "description": "The language code of the currently selected language (2 letters)."
       },
       "languages": {
         "public": true,
@@ -1455,14 +1455,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -1471,7 +1471,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
       },
       "mainClass": {
         "public": false,
@@ -1515,14 +1515,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -1573,7 +1573,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
       },
       "mainClass": {
         "public": false,
@@ -1924,14 +1924,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -1940,21 +1940,21 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The form steps definition."
+        "description": "The object containing steps defined in [Vueform](vueform#option-steps)."
       },
       "elements$": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The components of highest level form elements."
+        "description": "The form elements' components."
       },
       "classes": {
         "public": false,
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
       },
       "mainClass": {
         "public": false,
@@ -1982,35 +1982,35 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether there are any steps in `pending` state."
+        "description": "Whether there are any steps in [`pending`](form-step#property-pending) state."
       },
       "debouncing": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether there are any steps in `debouncing` state."
+        "description": "Whether there are any steps in [`debouncing`](form-step#property-debouncing) state."
       },
       "invalid": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether there are any steps in `invalid` state."
+        "description": "Whether there are any steps in [`invalid`](form-step#property-invalid) state."
       },
       "done": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether all the steps are `done`."
+        "description": "Whether all the steps are [`done`](form-step#property-done)."
       },
       "busy": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether there are any steps in `busy` state."
+        "description": "Whether there are any steps in [`busys`](form-step#property-busys) state."
       },
       "visible$": {
         "public": true,
@@ -2073,14 +2073,14 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the steps is at the last step."
+        "description": "Whether is at the last step."
       },
       "isAtFirstStep": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the steps is at the first step."
+        "description": "Whether is at the first step."
       }
     },
     "data": {
@@ -2109,7 +2109,7 @@ module.exports = {
         "description": "Helper property used to store listeners for events."
       },
       "exists": {
-        "public": true,
+        "public": false,
         "types": [
           "boolean"
         ],
@@ -2141,7 +2141,7 @@ module.exports = {
               "boolean"
             ],
             "required": false,
-            "description": "whether steps should be enabled up to the selected step (default: false)"
+            "description": "whether steps should be enabled up to the selected step (default: `false`)"
           }
         }
       },
@@ -2163,7 +2163,7 @@ module.exports = {
       "step$": {
         "public": true,
         "returns": "component",
-        "description": "Returns a specific [`FormStep`](form-step) by index.",
+        "description": "Returns a specific [`FormStep`](form-step) component by index.",
         "params": {
           "index": {
             "types": [
@@ -2182,7 +2182,7 @@ module.exports = {
       "enableAllSteps": {
         "public": true,
         "returns": "void",
-        "description": "Enable all steps."
+        "description": "Enables all steps."
       },
       "submit": {
         "public": true,
@@ -2280,7 +2280,7 @@ module.exports = {
     "props": {},
     "events": {
       "select": {
-        "description": "Triggered when an option is selected, using [`native: false`](#option-native).",
+        "description": "Triggered when an option is selected when using [`native: false`](#option-native).",
         "params": {
           "option": {
             "description": "the selected option",
@@ -2291,20 +2291,32 @@ module.exports = {
         }
       },
       "next": {
-        "description": ""
+        "description": "Triggered before moved to the next step.",
+        "params": {
+          "step$": {
+            "description": "the next [`FormStep`](form-step) component",
+            "types": [
+              "component"
+            ]
+          }
+        }
       },
       "previous": {
-        "description": ""
+        "description": "Triggered before moved to the previous step.",
+        "params": {
+          "step$": {
+            "description": "the previous [`FormStep`](form-step) component",
+            "types": [
+              "component"
+            ]
+          }
+        }
       },
       "finish": {
-        "description": ""
+        "description": "Triggered when finish button is clicked, before validating and submitting the form."
       }
     },
-    "slots": {
-      "default": {
-        "description": ""
-      }
-    }
+    "slots": {}
   },
   "FormStepsControl": {
     "inject": {
@@ -2313,14 +2325,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -2333,7 +2345,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
       },
       "mainClass": {
         "public": false,
@@ -2450,14 +2462,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -2466,7 +2478,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
       },
       "mainClass": {
         "public": false,
@@ -2521,14 +2533,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -2572,7 +2584,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
       },
       "mainClass": {
         "public": false,
@@ -2796,14 +2808,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -2812,21 +2824,21 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The form tabs definition."
+        "description": "The object containing tabs defined in [Vueform](vueform#option-tabs)."
       },
       "elements$": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The components of highest level form elements."
+        "description": "The form elements' components."
       },
       "classes": {
         "public": false,
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
       },
       "mainClass": {
         "public": false,
@@ -2911,7 +2923,7 @@ module.exports = {
         "description": "Helper property used to store listeners for events."
       },
       "exists": {
-        "public": true,
+        "public": false,
         "types": [
           "boolean"
         ],
@@ -3026,7 +3038,7 @@ module.exports = {
     "props": {},
     "events": {
       "select": {
-        "description": "Triggered when an option is selected, using [`native: false`](#option-native).",
+        "description": "Triggered when an option is selected when using [`native: false`](#option-native).",
         "params": {
           "option": {
             "description": "the selected option",
@@ -3037,11 +3049,7 @@ module.exports = {
         }
       }
     },
-    "slots": {
-      "default": {
-        "description": ""
-      }
-    }
+    "slots": {}
   },
   "Vueform": {
     "data": {
@@ -3227,7 +3235,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether submitting the form is disabled. Returns `true` if: \n* the form has any invalid elements and [`validateOn`](#option-validate-on) contains `change` \n* the form is [`busy`](#property-busy) \n* manually disabled with [`disabled`](#option-disabled) option."
+        "description": "Whether submitting the form is disabled. Returns `true` if:\\n* the form has any invalid elements and [`validateOn`](#option-validate-on) contains `change`\\n* the form is [`busy`](#property-busy)\\n* manually disabled with [`disabled`](#option-disabled) option."
       },
       "isLoading": {
         "public": true,
@@ -4109,7 +4117,7 @@ module.exports = {
         }
       },
       "beforeUnmount": {
-        "description": "Triggered in beforeUnmount hook.",
+        "description": "Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.",
         "params": {
           "form$": {
             "description": "the form's component",
@@ -4120,7 +4128,7 @@ module.exports = {
         }
       },
       "unmounted": {
-        "description": "Triggered in unmounted hook.",
+        "description": "Triggered in unmounted (or destroyed in Vue 2) hook.",
         "params": {
           "form$": {
             "description": "the form's component",
@@ -4154,14 +4162,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -4170,7 +4178,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -4305,14 +4313,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -4321,7 +4329,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "templates": {
         "public": true,
@@ -4506,14 +4514,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -4522,7 +4530,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -4589,14 +4597,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -4605,7 +4613,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -4745,14 +4753,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -4761,7 +4769,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -4908,14 +4916,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -4924,7 +4932,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,
@@ -5071,14 +5079,14 @@ module.exports = {
         "types": [
           "component"
         ],
-        "description": "The root form component."
+        "description": "The root form's component."
       },
       "theme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The global theme object, which contains all the default components and classes."
+        "description": "The global theme object, which contains all the default templates and classes."
       }
     },
     "computed": {
@@ -5087,7 +5095,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
       },
       "mainClass": {
         "public": false,

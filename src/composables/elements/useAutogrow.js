@@ -15,7 +15,7 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Updates the height of the input based in its contents when `autogrow` is enabled.
+   * Updates the height of the input based in its contents when [`autogrow`](#option-autogrow) is enabled.
    * 
    * @returns {void}
    */

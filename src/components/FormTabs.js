@@ -7,7 +7,6 @@ import normalize from './../utils/normalize'
 export default {
   name: 'FormTabs',
   emits: ['select'],
-  slots: ['default'],
   setup(props, context)
   {  
     const $this = getCurrentInstance().proxy
@@ -47,13 +46,14 @@ export default {
      * Helper prop used for checking if the component exists.
      * 
      * @type {boolean}
+     * @private
      */
     const exists = ref(true)
 
     // ============== COMPUTED ==============
 
     /**
-     * The components of highest level form elements.
+     * The form elements' components.
      * 
      * @type {object}
      */
@@ -62,7 +62,7 @@ export default {
     })
 
     /**
-     * The form tabs definition.
+     * The object containing tabs defined in [Vueform](vueform#option-tabs). 
      * 
      * @type {object}
      */

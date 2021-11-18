@@ -168,8 +168,8 @@ export default {
       templates: templates.templates,
     }, {
       slots: [
-        'label', 'info', 'description', 'before',
-        'between', 'after', 'radio',
+        'radio', 'label', 'info', 'description', 'before',
+        'between', 'after',
       ]
     })
 

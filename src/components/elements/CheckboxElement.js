@@ -17,13 +17,13 @@ import useView from './../../composables/elements/useView'
 import useTemplates from './../../composables/elements/useTemplates'
 import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
-import useToggle from './../../composables/elements/useToggle'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useSlots from './../../composables/elements/useSlots'
 
 import { boolean as useNullValue } from './../../composables/elements/useNullValue'
 import { input as useClasses } from './../../composables/elements/useClasses'
+import { checkbox as useToggle } from './../../composables/elements/useToggle'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -166,8 +166,8 @@ export default {
       templates: templates.templates,
     }, {
       slots: [
-        'label', 'info', 'description',
-        'before', 'between', 'after', 'default',
+        'default', 'label', 'info', 'description',
+        'before', 'between', 'after', 
       ]
     })
 

@@ -667,7 +667,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether submitting the form is disabled. Returns `true` if: \n* the form has any invalid elements and [`validateOn`](#option-validate-on) contains `change` \n* the form is [`busy`](#property-busy) \n* manually disabled with [`disabled`](#option-disabled) option."
+          "description": "Whether submitting the form is disabled. Returns `true` if:\\n* the form has any invalid elements and [`validateOn`](#option-validate-on) contains `change`\\n* the form is [`busy`](#property-busy)\\n* manually disabled with [`disabled`](#option-disabled) option."
         },
         "isLoading": {
           "public": true,

@@ -19,7 +19,7 @@ export default {
           "returns": "void",
           "description": "Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.",
           "params": {
-            "shouldDisable": {
+            "disable": {
               "types": [
                 "boolean"
               ],
@@ -37,7 +37,7 @@ export default {
           "returns": "void",
           "description": "Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.",
           "params": {
-            "shouldDisable": {
+            "disable": {
               "types": [
                 "boolean"
               ],
@@ -55,16 +55,16 @@ export default {
           "types": [
             "array"
           ],
-          "description": "Contains available items."
+          "description": "Contains the available items. If [`items`](#option-items) are async this contains the resolved items."
         }
       },
       "methods": {
         "updateItems": {
           "public": true,
           "returns": "void",
-          "description": "Fetches & updates select options when using `async` items. Receives [`el$`](#property-el) as first param.",
+          "description": "Fetches & updates items when using `async` items. Receives [`el$`](#property-el) as first param.",
           "params": {
-            "shouldDisable": {
+            "disable": {
               "types": [
                 "boolean"
               ],
@@ -82,7 +82,7 @@ export default {
         "autosize": {
           "public": true,
           "returns": "void",
-          "description": "Updates the height of the input based in its contents when `autogrow` is enabled."
+          "description": "Updates the height of the input based in its contents when [`autogrow`](#option-autogrow) is enabled."
         }
       }
     },
@@ -91,7 +91,7 @@ export default {
         "autosize": {
           "public": true,
           "returns": "void",
-          "description": "Updates the height of the input based in its contents when `autogrow` is enabled."
+          "description": "Updates the height of the input based in its contents when [`autogrow`](#option-autogrow) is enabled."
         }
       }
     }
@@ -1922,7 +1922,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `id` attribute of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used."
+          "description": "The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used."
         }
       }
     }
@@ -1944,7 +1944,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `base64` format of the file when [`:view`](#view) is `image` or `gallery` and file only has been selected, but hasn't been uploaded yet."
+          "description": "The `base64` representation of the file when [`view`](#option-view) is `image` or `gallery` and file is only selected, but not uploaded yet."
         },
         "progress": {
           "public": true,
@@ -1960,7 +1960,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "If the form is submitted and a temp file hasn't been uploaded yet, the element will enter into `preparing` state by setting this to `true`. When in `preparing` state the form submission process will be halted until all async functions hasn't been completed without any errors."
+          "description": "If the form is submitted and the file is not uploaded yet, the element will enter into `preparing` state and upload the temporary file before submitting the form."
         }
       },
       "computed": {
@@ -2024,7 +2024,7 @@ export default {
           "types": [
             "number"
           ],
-          "description": "The stage the file is at:<br>* `0`: file not selected<br>* `1`: file selected<br>* `2`: temp file uploaded<br>* `3`: file uploaded"
+          "description": "The stage the file is at:\\n\\n* `0`: file not selected\\n* `1`: file selected\\n* `2`: file temporarily uploaded\\n* `3`: file permanently uploaded"
         },
         "filename": {
           "public": true,
@@ -2038,7 +2038,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The link to an uploaded file."
+          "description": "The clickable link of the uploaded file."
         },
         "preview": {
           "public": true,
@@ -2052,7 +2052,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the file has been uploaded."
+          "description": "Whether the file is permantently uploaded."
         },
         "canRemove": {
           "public": true,
@@ -2085,7 +2085,7 @@ export default {
         "remove": {
           "public": true,
           "returns": "void",
-          "description": "Removes file (async):<br>* in stage `1`: sets the value to null<br>* in stage `2`: submit a request to `removeTemp` endpoint and sets the value to null<br>* in stage `3`: submits a request to `remove` endpoint and sets the value to null"
+          "description": "Removes file (async):\\n\\n* in stage `1`: sets the value to `null`\\n* in stage `2`: submits a request to `removeTemp` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`\\n* in stage `3`: submits a request to `remove` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`"
         },
         "prepare": {
           "public": false,
@@ -2391,7 +2391,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The ISO 639-1 code of the currently selected language (2 letters)."
+          "description": "The language code of the currently selected language (2 letters)."
         },
         "languages": {
           "public": true,
@@ -2939,7 +2939,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `name` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used."
+          "description": "The `name` attribute of the element. If [`id`](#option-id) is not provided [`name`](#option-name) will be used."
         }
       }
     }
@@ -3138,18 +3138,154 @@ export default {
         "check": {
           "public": true,
           "returns": "void",
-          "description": "Sets the toggle to `on` (`trueValue`)."
+          "description": "Sets the toggle to `on` ([`trueValue`](#option-true-value))."
         },
         "uncheck": {
           "public": true,
           "returns": "void",
-          "description": "Sets the toggle to `off` (`falseValue`)."
+          "description": "Sets the toggle to `off` ([`falseValue`](#option-false-value))."
+        }
+      }
+    },
+    "checkbox": {
+      "methods": {
+        "check": {
+          "public": true,
+          "returns": "void",
+          "description": "Checks the checkbox."
+        },
+        "uncheck": {
+          "public": true,
+          "returns": "void",
+          "description": "Unchecks the checkbox."
         }
       }
     }
   },
   "validation": {
     "base": {
+      "data": {
+        "state": {
+          "public": false,
+          "default": "{ dirty: false, validate: true }",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element states."
+        },
+        "Validators": {
+          "public": false,
+          "default": "[]",
+          "types": [
+            [
+              "array",
+              "Validator"
+            ]
+          ],
+          "description": "An array containing all the validators of the element."
+        },
+        "messageBag": {
+          "public": true,
+          "default": "MessageBag",
+          "types": [
+            "MessageBag"
+          ],
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
+        }
+      },
+      "computed": {
+        "dirty": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value was modified."
+        },
+        "validated": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element was already validated at least once."
+        },
+        "invalid": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has any failing rules."
+        },
+        "pending": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has any async rules in progress."
+        },
+        "busy": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is `pending`."
+        },
+        "errors": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "All the errors of `MessageBag`."
+        },
+        "error": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The first error of `MessageBag`."
+        },
+        "validationRules": {
+          "public": false,
+          "types": [
+            "string",
+            "array"
+          ],
+          "description": "The element's validation rules."
+        }
+      },
+      "methods": {
+        "validate": {
+          "public": true,
+          "returns": "void",
+          "description": "Checks each validation rule for the element (async)."
+        },
+        "dirt": {
+          "public": false,
+          "returns": "void",
+          "description": "Flag the element as dirty."
+        },
+        "clean": {
+          "public": true,
+          "returns": "void",
+          "description": "Removes the element's `dirty` state."
+        },
+        "resetValidators": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the validators to default state."
+        },
+        "initMessageBag": {
+          "public": false,
+          "returns": "void",
+          "description": "Initalizes MessageBag service."
+        },
+        "initValidation": {
+          "public": false,
+          "returns": "void",
+          "description": "Initalizes validators."
+        }
+      }
+    },
+    "text": {
       "data": {
         "state": {
           "public": false,
@@ -3467,7 +3603,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether all the languages has already been validated at least once."
+          "description": "Whether all the languages have already been validated at least once."
         },
         "invalid": {
           "public": true,
@@ -3716,19 +3852,12 @@ export default {
           ],
           "description": "Whether the element has any async rules in progress."
         },
-        "debouncing": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element has a validation rule with pending debounce."
-        },
         "busy": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element is `pending` or `debouncing`."
+          "description": "Whether the element is `pending`."
         },
         "errors": {
           "public": true,
@@ -3844,13 +3973,6 @@ export default {
             "boolean"
           ],
           "description": "Whether the element has any async rules in progress."
-        },
-        "debouncing": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element has a validation rule with pending debounce."
         },
         "busy": {
           "public": true,

@@ -88,13 +88,31 @@ export default {
           types: ['string']
         },
       }
-    }
+    },
+    TEditorElement: {
+      description: 'Triggered when the user select a file/mime type that is not allowed. If the event does not have a listener the alert message will be displayed by `alert()`.',
+      params: {
+        message: {
+          description: 'the alert message',
+          types: ['string']
+        },
+      }
+    },
   },
   error: {
     default: {
       description: '',
     },
     EditorElement: {
+      description: 'Triggered when file upload throws an error.',
+      params: {
+        error: {
+          description: 'the Error object',
+          types: ['Error']
+        },
+      }
+    },
+    TEditorElement: {
       description: 'Triggered when file upload throws an error.',
       params: {
         error: {
@@ -201,7 +219,7 @@ export default {
   },
   select: {
     default: {
-      description: 'Triggered when an option is selected, using [`native: false`](#option-native).',
+      description: 'Triggered when an option is selected when using [`native: false`](#option-native).',
       params: {
         option: {
           description: 'the selected option',
@@ -221,7 +239,7 @@ export default {
   },
   deselect: {
     default: {
-      description: 'Triggered when an option is deselected, using [`native: false`](#option-native).',
+      description: 'Triggered when an option is deselected when using [`native: false`](#option-native).',
       params: {
         option: {
           description: 'the deselected option',
@@ -241,7 +259,7 @@ export default {
   },
   'search-change': {
     default: {
-      description: 'Triggered when the search query changes, using [`search: true`](#option-search).',
+      description: 'Triggered when the search query changes when using [`search: true`](#option-search).',
       params: {
         searchQuery: {
           description: 'the search value',
@@ -252,15 +270,15 @@ export default {
   },
   open: {
     default: {
-      description: 'Triggered when the dropdown list is opened, using [`native: false`](#option-native).',
+      description: 'Triggered when the dropdown list is opened when using [`native: false`](#option-native).',
     },
     TagsElement: {
-      description: 'Triggered when the dropdown list is closed.',
+      description: 'Triggered when the dropdown list is opened.',
     },
   },
   close: {
     default: {
-      description: 'Triggered when the dropdown list is closed, using [`native: false`](#option-native).',
+      description: 'Triggered when the dropdown list is closed when using [`native: false`](#option-native).',
     },
     TagsElement: {
       description: 'Triggered when the dropdown list is closed.',
@@ -268,7 +286,7 @@ export default {
   },
   tag: {
     default: {
-      description: 'Triggered when a new tag is created, using [`create: true`](#optons-create).',
+      description: 'Triggered when a new tag is created when using [`create: true`](#optons-create).',
       params: {
         tag: {
           description: 'the tag value',
@@ -279,7 +297,7 @@ export default {
   },
   paste: {
     default: {
-      description: 'Triggered when text is pasted to the search input, using [`search: true`](#option-search).',
+      description: 'Triggered when text is pasted to the search input when using [`search: true`](#option-search).',
       params: {
         event: {
           description: 'the paste Event',
@@ -290,7 +308,7 @@ export default {
   },
   clear: {
     default: {
-      description: 'Triggered when the value is cleared, using [`native: true`](#option-native).',
+      description: 'Triggered when the value is cleared when using [`native: true`](#option-native).',
     },
     TagsElement: {
       description: 'Triggered when the value is cleared.',
@@ -498,5 +516,32 @@ export default {
         }
       }
     },
+  },
+  next: {
+    FormSteps: {
+      description: 'Triggered before moves to the next step.',
+      params: {
+        step$: {
+          description: 'the next [`FormStep`](form-step) component',
+          types: ['component'],
+        }
+      }
+    }
+  },
+  previous: {
+    FormSteps: {
+      description: 'Triggered before moves to the previous step.',
+      params: {
+        step$: {
+          description: 'the previous [`FormStep`](form-step) component',
+          types: ['component'],
+        }
+      }
+    }
+  },
+  finish: {
+    FormSteps: {
+      description: 'Triggered when finish button is clicked, before validating and submitting the form.',
+    }
   },
 }

@@ -7,7 +7,6 @@ import normalize from './../utils/normalize'
 export default {
   name: 'FormSteps',
   emits: ['select', 'next', 'previous', 'finish'],
-  slots: ['default'],
   setup(props, context)
   { 
     const $this = getCurrentInstance().proxy
@@ -55,13 +54,14 @@ export default {
      * Helper prop used for checking if the component exists.
      * 
      * @type {boolean}
+     * @private
      */
     const exists = ref(true)
 
     // ============== COMPUTED ==============
 
     /**
-     * The form steps definition.
+     * The object containing steps defined in [Vueform](vueform#option-steps). 
      * 
      * @type {object}
      */
@@ -70,7 +70,7 @@ export default {
     })
 
     /**
-     * The components of highest level form elements.
+     * The form elements' components.
      * 
      * @type {object}
      */
@@ -79,7 +79,7 @@ export default {
     })
 
     /**
-     * Whether there are any steps in `pending` state.
+     * Whether there are any steps in [`pending`](form-step#property-pending) state.
      * 
      * @type {boolean}
      */
@@ -88,7 +88,7 @@ export default {
     })
 
     /**
-     * Whether there are any steps in `debouncing` state.
+     * Whether there are any steps in [`debouncing`](form-step#property-debouncing) state.
      * 
      * @type {boolean}
      */
@@ -97,7 +97,7 @@ export default {
     })
 
     /**
-     * Whether there are any steps in `invalid` state.
+     * Whether there are any steps in [`invalid`](form-step#property-invalid) state.
      * 
      * @type {boolean}
      */
@@ -106,7 +106,7 @@ export default {
     })
 
     /**
-     * Whether all the steps are `done`.
+     * Whether all the steps are [`done`](form-step#property-done).
      * 
      * @type {boolean}
      */
@@ -115,7 +115,7 @@ export default {
     })
 
     /**
-     * Whether there are any steps in `busy` state.
+     * Whether there are any steps in [`busys`](form-step#property-busys) state.
      * 
      * @type {boolean}
      */
@@ -227,7 +227,7 @@ export default {
     })
 
     /**
-     * Whether the steps is at the last step.
+     * Whether is at the last step.
      * 
      * @type {boolean}
      */
@@ -242,7 +242,7 @@ export default {
     })
 
     /**
-     * Whether the steps is at the first step.
+     * Whether is at the first step.
      * 
      * @type {boolean}
      */
@@ -257,7 +257,7 @@ export default {
      * Go to a step and enable it. Optionally enable all steps up to it.
      *
      * @param {object} index* index of step to go to
-     * @param {boolean} enableUntil whether steps should be enabled up to the selected step (default: false)
+     * @param {boolean} enableUntil whether steps should be enabled up to the selected step (default: `false`)
      * @returns {void}
      */
     const goTo = (index, enableUntil = false) => {
@@ -308,7 +308,7 @@ export default {
     }
 
     /**
-     * Returns a specific [`FormStep`](form-step) by index.
+     * Returns a specific [`FormStep`](form-step) component by index.
      *
      * @param {object} index* index of the step
      * @returns {component}
@@ -333,7 +333,7 @@ export default {
     }
 
     /**
-     * Enable all steps.
+     * Enables all steps.
      *
      * @returns {void}
      */

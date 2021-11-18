@@ -424,7 +424,7 @@ export default {
 
   // Slots
   CheckboxgroupCheckbox: {
-    container: 'flex align-start',
+    container: 'flex align-start cursor-pointer',
     text: 'cursor-pointer',
     ...checkbox,
   },
@@ -507,8 +507,8 @@ export default {
     removeIcon: 'mask-bg mask-form-remove bg-current inline-block w-3 h-3',
   },
   RadiogroupRadio: {
-    container: 'flex align-start',
-    text: 'cursor-pointer',
+    container: 'flex align-start cursor-pointer',
+    text: '',
     ...radio,
   },
 }
