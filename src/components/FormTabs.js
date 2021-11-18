@@ -62,7 +62,7 @@ export default {
     })
 
     /**
-     * The object containing tabs defined in [Vueform](vueform#option-tabs). 
+     * The object containing tabs defined in [`Vueform`](vueform#option-tabs). 
      * 
      * @type {object}
      */

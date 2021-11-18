@@ -61,7 +61,7 @@ export default {
     // ============== COMPUTED ==============
 
     /**
-     * The object containing steps defined in [Vueform](vueform#option-steps). 
+     * The object containing steps defined in [`Vueform`](vueform#option-steps). 
      * 
      * @type {object}
      */
