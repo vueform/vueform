@@ -144,7 +144,7 @@ export default {
     })
 
     /**
-     * Whether the control should be in loading state (except for previous).
+     * Whether the control is in loading state (except for previous).
      * 
      * @type {boolean}
      */
@@ -164,7 +164,7 @@ export default {
     }
 
     /**
-     * Complete the current step and go to the next one (async). If the form's `:validateOn` prop or `config.validateOn` contains `'step'` also validate the elements within the step before moving forward (and stay if there's any error).
+     * Complete the current step and go to the next one (async). If the form's [`validateOn`](vueform#option-validate-on) prop or `config.validateOn` contains `'step'` also validates the elements within the step before moving forward (and stay if there's any error).
      * 
      * @returns {void}
      */

@@ -1,9 +1,11 @@
 export default {
   DragAndDrop: {
-    click: {
+    // click: {
+    DragAndDrop: {
       description: '',
     },
-    drop: {
+    // drop: {
+    DragAndDrop: {
       description: '',
       params: {
         e: {
@@ -14,36 +16,40 @@ export default {
     },
   },
   EditorWrapper: {
-    input: {
-      description: 'Triggered when the editor\'s value is changed.',
-      params: {
-        value: {
-          description: 'the new value of the element contained in an object: `value.target.value`',
-          types: ['object']
-        },
-      },
-    },
-    alert: {
-      description: 'Triggered when the user select a file/mime type that is not allowed.',
-      params: {
-        message: {
-          description: 'the alert message',
-          types: ['string']
-        },
-      }
-    },
-    errors: {
-      description: 'Triggered when file upload throws an error.',
-      params: {
-        error: {
-          description: 'the Error object',
-          types: ['Error']
-        },
-      }
-    }
+    // input: {
+    // EditorWrapper: {
+    //   description: 'Triggered when the editor\'s value is changed.',
+    //   params: {
+    //     value: {
+    //       description: 'the new value of the element contained in an object: `value.target.value`',
+    //       types: ['object']
+    //     },
+    //   },
+    // },
+    // alert: {
+    EditorWrapper: {
+    //   description: 'Triggered when the user select a file/mime type that is not allowed.',
+    //   params: {
+    //     message: {
+    //       description: 'the alert message',
+    //       types: ['string']
+    //     },
+    //   }
+    // },
+    // errors: {
+    // EditorWrapper: {
+    //   description: 'Triggered when file upload throws an error.',
+    //   params: {
+    //     error: {
+    //       description: 'the Error object',
+    //       types: ['Error']
+    //     },
+    //   }
+    // }
   },
   FlatpickrWrapper: {
-    change: {
+    // change: {
+    FlatpickrWrapper: {
       description: 'Triggered when then value is changed.',
       params: {
         value: {
@@ -54,10 +60,12 @@ export default {
     },
   },
   DragAndDrop: {
-    click: {
+    // click: {
+    DragAndDrop: {
       description: 'Triggered when the drag and drop area is clicked.',
     },
-    drop: {
+    // drop: {
+    DragAndDrop: {
       description: 'Triggered when a file is dropped.',
       params: {
         event: {
@@ -68,7 +76,8 @@ export default {
     },
   },
   FormLanguage: {
-    select: {
+    // select: {
+    FormLanguage: {
       description: 'Triggered when the language is selected by the user.',
       params: {
         language: {
@@ -79,24 +88,30 @@ export default {
     },
   },
   FormStep: {
-    active: {
+    // active: {
+    FormStep: {
       description: 'Triggered when the step becomes active.'
     },
-    inactive: {
+    // inactive: {
+    FormStep: {
       description: 'Triggered when the step becomes inactive.'
     },
-    enable: {
+    // enable: {
+    FormStep: {
       description: 'Triggered when the step becomes enabled.'
     },
-    disable: {
+    // disable: {
+    FormStep: {
       description: 'Triggered when the step becomes disabled.'
     },
-    complete: {
+    // complete: {
+    FormStep: {
       description: 'Triggered when the step becomes [`complete`](#property-complete).'
     },
   },
   FormSteps: {
-    select: {
+    // select: {
+    FormSteps: {
       description: 'Triggered when a step becomes active.',
       params: {
         activeStep$: {
@@ -109,7 +124,8 @@ export default {
         },
       }
     },
-    next: {
+    // next: {
+    FormSteps: {
       description: 'Triggered when steps to the next step.',
       params: {
         activeStep$: {
@@ -118,7 +134,8 @@ export default {
         },
       }
     },
-    previous: {
+    // previous: {
+    FormSteps: {
       description: 'Triggered when steps to the previous step.',
       params: {
         activeStep$: {
@@ -127,20 +144,24 @@ export default {
         },
       }
     },
-    finish: {
+    // finish: {
+    FormSteps: {
       description: 'Triggered when the form finishes, before the last step becomes [`complete`](#property-complete) and the form\'s [`submit`](laraform#method-submit) method gets called.',
     },
   },
   FormTab: {
-    active: {
+    // active: {
+    Formtab: {
       description: 'Triggered when the tab becomes active.'
     },
-    inactive: {
+    // inactive: {
+    FormTab: {
       description: 'Triggered when the tab becomes inactive.'
     },
   },
   FormTabs: {
-    select: {
+    // select: {
+    FormTabs: {
       description: 'Triggered when a tab becomes active.',
       params: {
         activeTab$: {
@@ -155,7 +176,8 @@ export default {
     },
   },
   Vueform: {
-    input: {
+    // input: {
+    Vueform: {
       description: 'Emitted when the form\'s data is changed (used by `v-model` in Vue 2).',
       params: {
         data: {
@@ -164,7 +186,8 @@ export default {
         }
       }
     },
-    'update:modelvalue': {
+    // 'update:modelvalue': {
+    Vueform: {
       description: 'Emmitted when the form\'s data is changed (used by `v-model` in Vue 3).',
       params: {
         data: {
@@ -173,7 +196,8 @@ export default {
         }
       }
     },
-    change: {
+    // change: {
+    Vueform: {
       description: 'Triggered when the form\'s data is changed (intended for watching data changes).',
       params: {
         newData: {
@@ -186,44 +210,8 @@ export default {
         },
       }
     },
-    // reset: {
-    //   description: 'Triggered when the form is reseted using [`reset()`](#method-reset).'
-    // },
-    // clear: {
-    //   description: 'Triggered when the form is cleared using [`clear()`](#method-clear).'
-    // },
-    // submit: {
-    //   description: 'Triggered when the form is being submitted, after validation is checked and elements are prepared.',
-    //   params: {
-    //     form$: {
-    //       description: 'the form\'s component',
-    //       types: ['component'],
-    //     }
-    //   }
-    // },
-    // success: {
-    //   description: 'Triggered when the server returns with 2XX response code after submitting the form.',
-    //   params: {
-    //     response: {
-    //       description: 'the Response object',
-    //       types: ['Response']
-    //     }
-    //   }
-    // },
-    // error: {
-    //   description: 'Triggered when an error is thrown when preparing elements or submitting the form.',
-    //   params: {
-    //     state: {
-    //       description: 'the stage the error was thrown: `"prepare\|submit"`',
-    //       types: ['string']
-    //     },
-    //     error: {
-    //       description: 'the Error object',
-    //       types: ['Error']
-    //     },
-    //   }
-    // },
-    language: {
+    // language: {
+    Vueform: {
       description: 'Triggered when a language is selected',
       params: {
         language: {

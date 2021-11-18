@@ -221,7 +221,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "Returns the components used by the form."
+          "description": "Returns the component templates used by the form."
         },
         "mainClass": {
           "public": false,
@@ -251,7 +251,7 @@ export default {
             "string",
             "component"
           ],
-          "description": "The label of the component. If the label is provided is a `function` this has the resolved value."
+          "description": "The label of the component. If the label is provided as a `function` this contains the resolved value."
         },
         "isLabelComponent": {
           "public": false,

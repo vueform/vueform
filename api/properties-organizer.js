@@ -1,8 +1,18 @@
 module.exports = [
+  'step$',
+  'tab$',
+  'stepLabel',
+  'tabLabel',
+  'index',
+  'active',
+
   'steps',
+  'tabs',
   'steps$Array',
+  'tabs$Array',
   'elements$',
   'steps$',
+  'tabs$',
   'visible$',
   'first$',
   'current$',
@@ -55,6 +65,7 @@ module.exports = [
   'orderByName',
 
   'done',
+  'completed',
   'validated',
   'invalid',
   'dirty',

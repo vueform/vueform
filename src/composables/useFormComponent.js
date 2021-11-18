@@ -80,7 +80,7 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-   * Returns the components used by the form.
+   * Returns the component templates used by the form.
    * 
    * @type {object}
    */
