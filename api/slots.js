@@ -122,10 +122,10 @@ export default {
       description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
     },
     ElementLayout: {
-      description: 'Passes its content to the [`ElementLabel`](element-label)\'s `default` slot.',
+      description: 'Passes its content to the `ElementLabel`\'s [`default`](element-label#slot-default) slot.',
     },
     ElementLayoutInline: {
-      description: 'Passes its content to the [`ElementLabel`](element-label)\'s `default` slot.',
+      description: 'Passes its content to the `ElementLabel`\'s [`default`](element-label#slot-default) slot.',
     },
   },
   'info': {
@@ -139,13 +139,13 @@ export default {
       description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
     },
     ElementLayout: {
-      description: 'Passes its content to the [`ElementLabel`](element-label)\'s `info` slot. It will only be rendered if `label` is defined as well.',
+      description: 'Passes its content to the `ElementLabel`\'s [`info`](element-info#slot-default) slot. It will only be rendered if `label` is defined as well.',
     },
     ElementLayoutInline: {
-      description: 'Passes its content to the [`ElementLabel`](element-label)\'s `info` slot. It will only be rendered if `label` is defined as well.',
+      description: 'Passes its content to the `ElementLabel`\'s [`info`](element-info#slot-default) slot. It will only be rendered if `label` is defined as well.',
     },
     ElementLabel: {
-      description: 'Passes its content to [`ElementInfo`](element-info)\'s `default` slot.',
+      description: 'Passes its content to `ElementInfo`\'s [`default`](element-info#slot-default) slot.',
     },
   },
   'description': {
@@ -159,10 +159,10 @@ export default {
       description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
     },
     ElementLayout: {
-      description: 'Passes its content to the [`ElementDescription`](element-description)\'s `default` slot.',
+      description: 'Passes its content to the `ElementDescription`\'s [`default`](element-description#slot-default) slot.',
     },
     ElementLayoutInline: {
-      description: 'Passes its content to the [`ElementDescription`](element-description)\'s `default` slot.',
+      description: 'Passes its content to the `ElementDescription`\'s [`default`](element-description#slot-default) slot.',
     },
   },
   'before': {
@@ -176,10 +176,10 @@ export default {
       description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
     },
     ElementLayout: {
-      description: 'Passes its content to the [`ElementText`](element-text)\'s `default` slot with `type: "before"`.',
+      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "before"`.',
     },
     ElementLayoutInline: {
-      description: 'Passes its content to the [`ElementText`](element-text)\'s `default` slot with `type: "before"`.',
+      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "before"`.',
     },
   },
   'between': {
@@ -193,10 +193,10 @@ export default {
       description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
     },
     ElementLayout: {
-      description: 'Passes its content to the [`ElementText`](element-text)\'s `default` slot with `type: "between"`.',
+      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "between"`.',
     },
     ElementLayoutInline: {
-      description: 'Passes its content to the [`ElementText`](element-text)\'s `default` slot with `type: "between"`.',
+      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "between"`.',
     },
   },
   'after': {
@@ -210,10 +210,10 @@ export default {
       description: 'Renders an [`ElementText`](element-text) component after the description and error.',
     },
     ElementLayout: {
-      description: 'Passes its content to the [`ElementText`](element-text)\'s `default` slot with `type: "after"`.',
+      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "after"`.',
     },
     ElementLayoutInline: {
-      description: 'Passes its content to the [`ElementText`](element-text)\'s `default` slot with `type: "after"`.',
+      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "after"`.',
     },
   },
   'addon-before': {

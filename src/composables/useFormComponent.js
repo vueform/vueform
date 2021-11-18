@@ -68,7 +68,6 @@ const base = function(props, context, dependencies, options = {})
    The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options.
    * 
    * @type {object}
-   * @private
    */
   const classes = computed({
     get() {

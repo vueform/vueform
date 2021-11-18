@@ -1,4 +1,5 @@
 module.exports = [
+
   'step$',
   'tab$',
   'stepLabel',
@@ -28,12 +29,18 @@ module.exports = [
 
   'filename',
   'link',
+  'hasLink',
   'preview',
+  'clickable',
   'base64',
 
+  'uploadText',
+  
+  'uploading',
   'progress',
   'uploaded',
   'hasUploadError',
+  'hasError',
 
   'removing',
 

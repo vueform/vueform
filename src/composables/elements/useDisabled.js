@@ -41,7 +41,7 @@ const base = function(props, context, dependencies)
   }
 
   /**
-   * Enables the element even if it is disabled by [`:disabled`](#disabled) option.
+   * Enables the element even if it is disabled by [`disabled`](#disabled) option.
    *
    * @returns {void}
    */

@@ -419,7 +419,7 @@ const list = function(props, context, dependencies, options)
   }
 
   /**
-   * Sorts value when `:order` and `:orderByName` is defined.
+   * Sorts value when `order` and `orderByName` is defined.
    * 
    * @param {array} value value to be sorted
    * @returns {array}

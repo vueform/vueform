@@ -16,7 +16,7 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * Whether `:drop` is enabled and browser supports dragging.
+   * Whether `drop` is enabled and browser supports dragging.
    * 
    * @type {boolean}
    * @private

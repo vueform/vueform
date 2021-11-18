@@ -73,7 +73,7 @@ export default {
     })
 
     /**
-     * The flatpickr configuration object. Can be extended via [`:options`](#options) with [flatpickr options](https://flatpickr.js.org/options/).
+     * The flatpickr configuration object. Can be extended via [`options`](#options) with [flatpickr options](https://flatpickr.js.org/options/).
      * 
      * @type {object}
      */

@@ -314,7 +314,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The form's schema merged from `:schema` prop and the component's `data.vueform.schema` object.
+   * The form's schema merged from `schema` prop and the component's `data.vueform.schema` object.
    * 
    * @type {object}
    * @private
@@ -324,7 +324,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The form's tabs merged from `:tabs` prop and the component's `data.vueform.tabs` object.
+   * The form's tabs merged from `tabs` prop and the component's `data.vueform.tabs` object.
    * 
    * @type {object}
    * @private
@@ -334,7 +334,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The form's steps merged from `:steps` prop and the component's `data.vueform.steps` object.
+   * The form's steps merged from `steps` prop and the component's `data.vueform.steps` object.
    * 
    * @type {object}
    * @private
@@ -513,7 +513,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`:displayMessages`](#option-display-messages) or in `config.displayMessages`.
+   * Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`displayMessages`](#option-display-messages) or in `config.displayMessages`.
    * 
    * @type {boolean}
    */
@@ -561,7 +561,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the `:validateOn` prop or `config.validateOn` contains `'change'`.
+   * Whether the `validateOn` prop or `config.validateOn` contains `'change'`.
    * 
    * @type {boolean}
    * @private
@@ -571,7 +571,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * Whether the `:validateOn` prop or `config.validateOn` contains `'step'`.
+   * Whether the `validateOn` prop or `config.validateOn` contains `'step'`.
    * 
    * @type {boolean}
    * @private

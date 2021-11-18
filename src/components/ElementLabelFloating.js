@@ -33,7 +33,7 @@ export default {
     // ============== COMPUTED ==============
 
     /**
-     * The floating label of the element, defined via `:floating` prop.
+     * The floating label of the element, defined via `floating` prop.
      * 
      * @type {string}
      */

@@ -81,7 +81,6 @@ const base = function(props, context, dependencies, options = {})
    * The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options.
    * 
    * @type {object}
-   * @private
    */
   const classes = computed({
     get() {
@@ -93,7 +92,7 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-   * Returns the components used by the parent element.
+   * Returns the component templates used by the parent element.
    * 
    * @type {object}
    */

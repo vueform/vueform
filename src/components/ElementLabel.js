@@ -44,7 +44,7 @@ export default {
     })
 
     /**
-     * Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component's [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.
+     * Whether the element has a `label` option, a `#label` slot or `Vueform` component's [`forceLabels`](vueform#force-labels) option is `true`.
      * 
      * @type {boolean}
      * 

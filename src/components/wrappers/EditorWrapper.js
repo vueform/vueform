@@ -74,7 +74,7 @@ export default {
     // ================ DATA ================
 
     /**
-     * The [`Editor`](https://github.com/basecamp/trix) DOM instance.
+     * The [`Trix`](https://github.com/basecamp/trix) instance.
      * 
      * @type {HTMLElement}
      * @default null

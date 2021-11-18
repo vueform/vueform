@@ -5,9 +5,9 @@ const base = function(props, context, dependencies)
   // ============== METHODS ===============
   
   /**
-  * Transforms an element `:type` into the element's component name.
+  * Transforms an element `type` into the element's component name.
   * 
-  * @param {string} element* element `:type`
+  * @param {string} element* element `type`
   * @returns {string}
   * @private
   */

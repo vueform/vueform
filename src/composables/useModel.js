@@ -13,7 +13,7 @@ export default function (props, context, dependencies)
   const $this = dependencies.$this
 
   /**
-   * Any `v-model` / `:value` / `:modelValue` prop provided for the form.
+   * Any `v-model` / `value` / `modelValue` prop provided for the form.
    * 
    * @type {object}
    * @private

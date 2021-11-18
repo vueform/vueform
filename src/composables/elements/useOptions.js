@@ -96,7 +96,7 @@ const date = function(props, context, dependencies)
   })
 
   /**
-  * Options for date selector. Can be extended via [`:extend-options`](#option-extend-options) with [flatpickr options](https://flatpickr.js.org/options/).
+  * Options for date selector. Can be extended via [`extend-options`](#option-extend-options) with [flatpickr options](https://flatpickr.js.org/options/).
   * 
   * @type {object} 
   */
@@ -276,7 +276,7 @@ const select = function (props, context, dependencies)
   })
 
   /**
-  * Options for non-native select input. Can be extended via [`:extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
+  * Options for non-native select input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
   * 
   * @type {object} 
   */
@@ -391,7 +391,7 @@ const multiselect = function (props, context, dependencies)
   })
 
   /**
-  * Options for non-native multiselect input. Can be extended via [`:extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
+  * Options for non-native multiselect input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
   * 
   * @type {object} 
   */
@@ -517,7 +517,7 @@ const tags = function (props, context, dependencies)
   })
 
   /**
-  * Options for tags input. Can be extended via [`:extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
+  * Options for tags input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
   * 
   * @type {object} 
   */
@@ -577,7 +577,7 @@ const slider = function (props, context, dependencies)
   })
 
   /**
-  * Options for slider input. Can be extended via [`:extend-options`](#option-extend-options) with [@vueform/slider options](https://github.com/vueform/slider#basic-props).
+  * Options for slider input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/slider options](https://github.com/vueform/slider#basic-props).
   * 
   * @type {object} 
   */
@@ -622,7 +622,7 @@ const toggle = function(props, context, dependencies)
   })
 
   /**
-  * Options for toggle input. Can be extended via [`:extend-options`](#option-extend-options) with [@vueform/toggle options](https://github.com/vueform/toggle#basic-props).
+  * Options for toggle input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/toggle options](https://github.com/vueform/toggle#basic-props).
   * 
   * @type {object} 
   */

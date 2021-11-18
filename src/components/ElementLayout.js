@@ -39,60 +39,6 @@ export default {
 
     // ============== COMPUTED ==============
 
-    // /**
-    //  * Whether the element has a [`:label`](#label) or `Vueform` component's [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.
-    //  * 
-    //  * @type {boolean}
-    //  */
-    // const hasLabel = computed(() => {
-    //   return el$.value.hasLabel
-    // })
-
-    // /**
-    //  * The info for the element, defined via `:info` prop.
-    //  * 
-    //  * @type {string}
-    //  */
-    // const info = computed(() => {
-    //   return el$.value.info
-    // })
-
-    // /**
-    //  * The before content for the element, defined via `:before` prop.
-    //  * 
-    //  * @type {string}
-    //  */
-    // const before = computed(() => {
-    //   return el$.value.before
-    // })
-
-    // /**
-    //  * The between content for the element, defined via `:between` prop.
-    //  * 
-    //  * @type {string}
-    //  */
-    // const between = computed(() => {
-    //   return el$.value.between
-    // })
-
-    // /**
-    //  * The after content for the element, defined via `:after` prop.
-    //  * 
-    //  * @type {string}
-    //  */
-    // const after = computed(() => {
-    //   return el$.value.after
-    // })
-
-    // /**
-    //  * The description for the element, defined via `:description` prop.
-    //  * 
-    //  * @type {string}
-    //  */
-    // const description = computed(() => {
-    //   return el$.value.description
-    // })
-
     /**
      * Whether the element should be visible.
      * 

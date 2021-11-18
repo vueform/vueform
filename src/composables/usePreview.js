@@ -53,7 +53,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Whether the file should be clickable if it is already uploaded.
+   * Whether the file should be clickable if it is already permantently uploaded.
    * 
    * @type {boolean}
    */
@@ -62,7 +62,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Whether the temporary or final file is uploaded.
+   * Whether the temporary or permanent file is uploaded.
    * 
    * @type {boolean}
    */
@@ -107,7 +107,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * The text for upload button. Can be changed at the locale file: `vueform.elements.file.upload`
+   * The text for upload button. Can be also changed in the locale file: `vueform.elements.file.upload`
    * 
    * @type {string}
    */
