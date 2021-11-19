@@ -1109,7 +1109,6 @@ const file = function(props, context, dependencies)
     validated,
     invalid,
     pending,
-    debouncing,
     errors,
     error,
     validationRules,
@@ -1128,7 +1127,7 @@ const file = function(props, context, dependencies)
    * @type {boolean}
    */
   const busy = computed(() => {
-    return pending.value || debouncing.value || uploading.value || removing.value
+    return pending.value || uploading.value || removing.value
   })
 
   // =============== METHODS ==============
@@ -1171,7 +1170,6 @@ const file = function(props, context, dependencies)
     validated,
     invalid,
     pending,
-    debouncing,
     busy,
     errors,
     error,

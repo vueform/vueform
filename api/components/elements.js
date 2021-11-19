@@ -2978,6 +2978,18 @@ module.exports = {
               'string|number',
             ],
           },
+          items: {
+            description: 'the checkbox items',
+            types: [
+              'array',
+            ],
+          },
+          index: {
+            description: 'the index of current checkbox',
+            types: [
+              'number',
+            ],
+          },
           id: {
             description: 'the `id` attribute of the checkbox field used by the default template',
             types: [
@@ -15483,17 +15495,6 @@ module.exports = {
           },
         },
       },
-      'placeholder': {
-        description: 'Replaces the default template for the input&apos;s [`placeholder`](#option-placeholder).',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
       'multiple-label': {
         description: 'Replaces the input&apos;s inner label that is displayed when at least one option is selected.',
         props: {
@@ -15507,6 +15508,17 @@ module.exports = {
             description: 'the list of selected options',
             types: [
               'array<object>',
+            ],
+          },
+        },
+      },
+      'placeholder': {
+        description: 'Replaces the default template for the input&apos;s [`placeholder`](#option-placeholder).',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ],
           },
         },
@@ -18767,6 +18779,18 @@ module.exports = {
               'string|number',
             ],
           },
+          items: {
+            description: 'the radio items',
+            types: [
+              'array',
+            ],
+          },
+          index: {
+            description: 'the index of current radio',
+            types: [
+              'number',
+            ],
+          },
           id: {
             description: 'the `id` attribute of the radio field used by the default template',
             types: [
@@ -20423,17 +20447,6 @@ module.exports = {
           },
         },
       },
-      'placeholder': {
-        description: 'Replaces the default template for the input&apos;s [`placeholder`](#option-placeholder).',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
       'single-label': {
         description: 'Replaces the input&apos;s inner label that is displayed when an option is selected.',
         props: {
@@ -20447,6 +20460,17 @@ module.exports = {
             description: 'the selected option',
             types: [
               'object',
+            ],
+          },
+        },
+      },
+      'placeholder': {
+        description: 'Replaces the default template for the input&apos;s [`placeholder`](#option-placeholder).',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ],
           },
         },
@@ -27746,6 +27770,35 @@ module.exports = {
       },
     },
     slots: {
+      'tag': {
+        description: 'Replaces the default tag template.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          option: {
+            description: 'the option object',
+            types: [
+              'object',
+            ],
+          },
+          disabled: {
+            description: 'whether the option is disabled',
+            types: [
+              'boolean',
+            ],
+          },
+          handleTagRemove: {
+            description: 'removes the tag from the selected options',
+            types: [
+              'function',
+            ],
+          },
+        },
+      },
       'option': {
         description: 'Replaces the default option template.',
         props: {
@@ -27793,35 +27846,6 @@ module.exports = {
             description: 'the group object',
             types: [
               'object',
-            ],
-          },
-        },
-      },
-      'tag': {
-        description: 'Replaces the default tag template.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-          option: {
-            description: 'the option object',
-            types: [
-              'object',
-            ],
-          },
-          disabled: {
-            description: 'whether the option is disabled',
-            types: [
-              'boolean',
-            ],
-          },
-          handleTagRemove: {
-            description: 'removes the tag from the selected options',
-            types: [
-              'function',
             ],
           },
         },

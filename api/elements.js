@@ -571,8 +571,8 @@ export default {
     ],
     "slots": [
       "option",
-      "placeholder",
       "multiple-label",
+      "placeholder",
       "group-label",
       "before-list",
       "after-list",
@@ -781,8 +781,8 @@ export default {
     ],
     "slots": [
       "option",
-      "placeholder",
       "single-label",
+      "placeholder",
       "group-label",
       "before-list",
       "after-list",
@@ -937,10 +937,10 @@ export default {
       "watchValue"
     ],
     "slots": [
+      "tag",
       "option",
       "placeholder",
       "group-label",
-      "tag",
       "before-list",
       "after-list",
       "no-results",

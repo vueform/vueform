@@ -413,8 +413,8 @@ export default {
     }, {
       slots: [
         'option',
-        'placeholder',
         'single-label',
+        'placeholder',
         'group-label', 
         'before-list',
         'after-list',

@@ -4,6 +4,8 @@
       <div :class="classes.wrapper">
         <CheckboxgroupCheckbox
           v-for="(item, value, key) in resolvedItems"
+          :items="resolvedItems"
+          :index="key"
           :item="item"
           :value="value"
           :key="key"

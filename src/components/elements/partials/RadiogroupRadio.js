@@ -12,6 +12,14 @@ export default {
       type: [String, Number],
       required: true
     },
+    items: {
+      type: [Object],
+      required: true
+    },
+    index: {
+      type: [Number],
+      required: true
+    },
   },
   setup(props, context)
   {

@@ -42,10 +42,6 @@ const base = function(props, context, dependencies)
           throw new Error('You must define `value` property for each option when using an array of objects options for select element')
         }
 
-        if (item.label === undefined) {
-          throw new Error('You must define `label` property for each option when using an array of objects options for select element')
-        }
-
         nativeItems.push({
           value: item.value,
           label: item.label
@@ -170,15 +166,11 @@ const checkboxgroup = function(props, context, dependencies) {
           throw new Error('You must define `value` property for each item when using an array of objects options')
         }
 
-        if (item.label === undefined) {
-          throw new Error('You must define `label` property for each item when using an array of objects options')
-        }
-
-        resolvedItems[item.value] = item.label
+        resolvedItems[item.value] = item
       } else if (Array.isArray(resolvedItemList.value)) {
-        resolvedItems[item] = item
+        resolvedItems[item] = typeof item === 'object' ? item : { label: item }
       } else {
-        resolvedItems[key] = item
+        resolvedItems[key] = typeof item === 'object' ? item : { label: item }
       }
     })
 

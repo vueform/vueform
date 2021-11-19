@@ -230,6 +230,14 @@ export default {
           description: 'the checkbox value',
           types: ['string|number'],
         },
+        items: {
+          description: 'the checkbox items',
+          types: ['object'],
+        },
+        index: {
+          description: 'the index of current checkbox',
+          types: ['number'],
+        },
         id: {
           description: 'the `id` attribute of the checkbox field used by the default template',
           types: ['string'],
@@ -264,6 +272,14 @@ export default {
         value: {
           description: 'the radio value',
           types: ['string|number'],
+        },
+        items: {
+          description: 'the radio items',
+          types: ['object'],
+        },
+        index: {
+          description: 'the index of current radio',
+          types: ['number'],
         },
         id: {
           description: 'the `id` attribute of the radio field used by the default template',
