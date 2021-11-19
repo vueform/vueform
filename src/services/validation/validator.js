@@ -11,7 +11,7 @@ const Validator = class {
     this.dependent = rule.dependent || null
 
     this.element$ = props.element$
-    this.form$ = props.element$.form$
+    this.form$ = props.element$?.form$ || {}
     this.numeric = props.numeric || false
 
     this.invalid = false

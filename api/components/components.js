@@ -4510,6 +4510,18 @@ module.exports = {
           "string",
           "number"
         ]
+      },
+      "items": {
+        "required": true,
+        "types": [
+          "object"
+        ]
+      },
+      "index": {
+        "required": true,
+        "types": [
+          "number"
+        ]
       }
     },
     "events": {},
@@ -5073,6 +5085,18 @@ module.exports = {
         "required": true,
         "types": [
           "string",
+          "number"
+        ]
+      },
+      "items": {
+        "required": true,
+        "types": [
+          "object"
+        ]
+      },
+      "index": {
+        "required": true,
+        "types": [
           "number"
         ]
       }

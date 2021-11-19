@@ -74,6 +74,33 @@ export default {
           }
         }
       }
+    },
+    "radiogroup": {
+      "computed": {
+        "resolvedItems": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "Contains the available items. If [`items`](#option-items) are async this contains the resolved items."
+        }
+      },
+      "methods": {
+        "updateItems": {
+          "public": true,
+          "returns": "void",
+          "description": "Fetches & updates items when using `async` items. Receives [`el$`](#property-el) as first param.",
+          "params": {
+            "disable": {
+              "types": [
+                "boolean"
+              ],
+              "required": true,
+              "description": "whether the input field should be disabled while fetching options"
+            }
+          }
+        }
+      }
     }
   },
   "autogrow": {
@@ -400,6 +427,310 @@ export default {
           "description": "Sets the `active` property of the element to `false`."
         }
       }
+    },
+    "checkboxgroup": {
+      "computed": {
+        "el$": {
+          "public": true,
+          "types": [
+            "component"
+          ],
+          "description": "The element's component."
+        },
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
+    },
+    "dates": {
+      "computed": {
+        "el$": {
+          "public": true,
+          "types": [
+            "component"
+          ],
+          "description": "The element's component."
+        },
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
+    },
+    "multiselect": {
+      "computed": {
+        "el$": {
+          "public": true,
+          "types": [
+            "component"
+          ],
+          "description": "The element's component."
+        },
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
+    },
+    "tags": {
+      "computed": {
+        "el$": {
+          "public": true,
+          "types": [
+            "component"
+          ],
+          "description": "The element's component."
+        },
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
     }
   },
   "button": {
@@ -634,6 +965,40 @@ export default {
             "object"
           ],
           "description": "Schema of child elements."
+        }
+      }
+    },
+    "group": {
+      "computed": {
+        "children": {
+          "public": false,
+          "types": [
+            "object"
+          ],
+          "description": "Schema of child elements."
+        },
+        "children$": {
+          "public": true,
+          "types": [
+            [
+              "object",
+              "Element"
+            ]
+          ],
+          "description": "Child element components."
+        }
+      },
+      "data": {
+        "children$Array": {
+          "public": false,
+          "default": "[children<component>]",
+          "types": [
+            [
+              "array",
+              "component"
+            ]
+          ],
+          "description": "List of child element components."
         }
       }
     }
@@ -1788,6 +2153,71 @@ export default {
             "boolean"
           ],
           "description": "Whether the button is disabled."
+        }
+      }
+    },
+    "radiogroup": {
+      "data": {
+        "disabledItems": {
+          "public": false,
+          "default": "[]",
+          "types": [
+            "array"
+          ],
+          "description": "List of option keys to be disabled."
+        }
+      },
+      "computed": {
+        "isDisabled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is disabled."
+        }
+      },
+      "methods": {
+        "disableAll": {
+          "public": true,
+          "returns": "void",
+          "description": "Disables all items."
+        },
+        "enableAll": {
+          "public": true,
+          "returns": "void",
+          "description": "Enables all items."
+        },
+        "disable": {
+          "public": true,
+          "returns": "void",
+          "description": "Disables one item or more items.",
+          "params": {
+            "values": {
+              "types": [
+                "array",
+                "string",
+                "number"
+              ],
+              "required": true,
+              "description": "value(s) to disable"
+            }
+          }
+        },
+        "enable": {
+          "public": true,
+          "returns": "void",
+          "description": "Disables one item or more disabled items.",
+          "params": {
+            "values": {
+              "types": [
+                "array",
+                "string",
+                "number"
+              ],
+              "required": true,
+              "description": "value(s) to enable"
+            }
+          }
         }
       }
     }
@@ -4163,6 +4593,91 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Initalizes validators."
+        }
+      }
+    },
+    "group": {
+      "data": {
+        "messageBag": {
+          "public": true,
+          "default": "MessageBag",
+          "types": [
+            "MessageBag"
+          ],
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
+        }
+      },
+      "computed": {
+        "dirty": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has any child with modified value."
+        },
+        "validated": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether all the children were validated at least once."
+        },
+        "invalid": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has any child with failing rules."
+        },
+        "pending": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has any child with async rules in progress."
+        },
+        "debouncing": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has any child with validation rule with pending debounce."
+        },
+        "busy": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has any `busy` child."
+        },
+        "errors": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "All the errors of `MessageBag`."
+        }
+      },
+      "methods": {
+        "validate": {
+          "public": true,
+          "returns": "void",
+          "description": "Validates every child (async)."
+        },
+        "clean": {
+          "public": true,
+          "returns": "void",
+          "description": "Removes every child's `dirty` state."
+        },
+        "resetValidators": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the validators of children to default state."
+        },
+        "initMessageBag": {
+          "public": false,
+          "returns": "void",
+          "description": "Initalizes MessageBag service."
         }
       }
     }

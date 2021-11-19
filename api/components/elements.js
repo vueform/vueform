@@ -2287,6 +2287,22 @@ module.exports = {
       },
     },
     data: {
+      active: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        default: 'true',
+        private: true,
+      },
+      mounted: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been already mounted.',
+        default: 'true',
+        private: false,
+      },
       defaultClasses: {
         types: [
           'object',
@@ -2372,6 +2388,48 @@ module.exports = {
         ],
         description: 'Contains the available items. If [`items`](#option-items) are async this contains the resolved items.',
         private: false,
+      },
+      el$: {
+        types: [
+          'component',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
+      isStatic: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is static (does not have any data or validation).',
+        private: true,
+      },
+      isFileType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is a file.',
+        private: true,
+      },
+      isArrayType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an array.',
+        private: true,
+      },
+      isImageType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
+        private: true,
       },
       classes: {
         types: [
@@ -2607,6 +2665,16 @@ module.exports = {
           },
         },
         private: false,
+      },
+      activate: {
+        description: 'Sets the `active` property of the element to `true`.',
+        returns: 'void',
+        private: true,
+      },
+      deactivate: {
+        description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
       },
       check: {
         description: 'Checks one or more checkboxes.',
@@ -2981,7 +3049,7 @@ module.exports = {
           items: {
             description: 'the checkbox items',
             types: [
-              'array',
+              'object',
             ],
           },
           index: {
@@ -4783,6 +4851,22 @@ module.exports = {
       },
     },
     data: {
+      active: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        default: 'true',
+        private: true,
+      },
+      mounted: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been already mounted.',
+        default: 'true',
+        private: false,
+      },
       defaultClasses: {
         types: [
           'object',
@@ -4856,6 +4940,48 @@ module.exports = {
       },
     },
     computed: {
+      el$: {
+        types: [
+          'component',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
+      isStatic: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is static (does not have any data or validation).',
+        private: true,
+      },
+      isFileType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is a file.',
+        private: true,
+      },
+      isArrayType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an array.',
+        private: true,
+      },
+      isImageType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
+        private: true,
+      },
       classes: {
         types: [
           'object',
@@ -5112,6 +5238,16 @@ module.exports = {
       },
     },
     methods: {
+      activate: {
+        description: 'Sets the `active` property of the element to `true`.',
+        returns: 'void',
+        private: true,
+      },
+      deactivate: {
+        description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
@@ -8496,6 +8632,14 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      children$Array: {
+        types: [
+          'array,component',
+        ],
+        description: 'List of child element components.',
+        default: '[children<component>]',
+        private: true,
+      },
       defaultClasses: {
         types: [
           'object',
@@ -8518,6 +8662,14 @@ module.exports = {
         description: 'Helper property used to store listeners for events.',
         default: '{}',
         private: true,
+      },
+      messageBag: {
+        types: [
+          'MessageBag',
+        ],
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        default: 'MessageBag',
+        private: false,
       },
       hidden: {
         types: [
@@ -8570,6 +8722,20 @@ module.exports = {
         ],
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: true,
+      },
+      children: {
+        types: [
+          'object',
+        ],
+        description: 'Schema of child elements.',
+        private: true,
+      },
+      children$: {
+        types: [
+          'object,Element',
+        ],
+        description: 'Child element components.',
+        private: false,
       },
       classes: {
         types: [
@@ -8689,6 +8855,55 @@ module.exports = {
           'object',
         ],
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        private: false,
+      },
+      dirty: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any child with modified value.',
+        private: false,
+      },
+      validated: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether all the children were validated at least once.',
+        private: false,
+      },
+      invalid: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any child with failing rules.',
+        private: false,
+      },
+      pending: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any child with async rules in progress.',
+        private: false,
+      },
+      debouncing: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any child with validation rule with pending debounce.',
+        private: false,
+      },
+      busy: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any `busy` child.',
+        private: false,
+      },
+      errors: {
+        types: [
+          'array',
+        ],
+        description: 'All the errors of `MessageBag`.',
         private: false,
       },
       value: {
@@ -8830,6 +9045,26 @@ module.exports = {
           },
         },
         private: false,
+      },
+      validate: {
+        description: 'Validates every child (async).',
+        returns: 'void',
+        private: false,
+      },
+      clean: {
+        description: 'Removes every child&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      resetValidators: {
+        description: 'Sets the validators of children to default state.',
+        returns: 'void',
+        private: false,
+      },
+      initMessageBag: {
+        description: 'Initalizes MessageBag service.',
+        returns: 'void',
+        private: true,
       },
       hide: {
         description: 'Hides the element.',
@@ -14679,6 +14914,22 @@ module.exports = {
       },
     },
     data: {
+      active: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        default: 'true',
+        private: true,
+      },
+      mounted: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been already mounted.',
+        default: 'true',
+        private: false,
+      },
       defaultClasses: {
         types: [
           'object',
@@ -14772,6 +15023,48 @@ module.exports = {
         ],
         description: 'Contains select options for native select.',
         private: false,
+      },
+      el$: {
+        types: [
+          'component',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
+      isStatic: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is static (does not have any data or validation).',
+        private: true,
+      },
+      isFileType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is a file.',
+        private: true,
+      },
+      isArrayType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an array.',
+        private: true,
+      },
+      isImageType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
+        private: true,
       },
       classes: {
         types: [
@@ -15028,6 +15321,16 @@ module.exports = {
           },
         },
         private: false,
+      },
+      activate: {
+        description: 'Sets the `active` property of the element to `true`.',
+        returns: 'void',
+        private: true,
+      },
+      deactivate: {
+        description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
       },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
@@ -18163,6 +18466,14 @@ module.exports = {
         description: 'The default classes for the element defined by theme.',
         private: true,
       },
+      disabledItems: {
+        types: [
+          'array',
+        ],
+        description: 'List of option keys to be disabled.',
+        default: '[]',
+        private: true,
+      },
       events: {
         types: [
           'array',
@@ -18227,6 +18538,13 @@ module.exports = {
       },
     },
     computed: {
+      resolvedItems: {
+        types: [
+          'array',
+        ],
+        description: 'Contains the available items. If [`items`](#option-items) are async this contains the resolved items.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -18317,6 +18635,13 @@ module.exports = {
         ],
         description: 'The default value of the element.',
         private: true,
+      },
+      isDisabled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is disabled.',
+        private: false,
       },
       fieldId: {
         types: [
@@ -18483,6 +18808,20 @@ module.exports = {
       },
     },
     methods: {
+      updateItems: {
+        description: 'Fetches & updates items when using `async` items. Receives [`el$`](#property-el) as first param.',
+        returns: 'void',
+        params: {
+          disable: {
+            types: [
+              'boolean',
+            ],
+            required: 'true',
+            description: 'whether the input field should be disabled while fetching options',
+          },
+        },
+        private: false,
+      },
       activate: {
         description: 'Sets the `active` property of the element to `true`.',
         returns: 'void',
@@ -18543,6 +18882,48 @@ module.exports = {
         description: 'Prepares the element.',
         returns: 'void',
         private: true,
+      },
+      disableAll: {
+        description: 'Disables all items.',
+        returns: 'void',
+        private: false,
+      },
+      enableAll: {
+        description: 'Enables all items.',
+        returns: 'void',
+        private: false,
+      },
+      disable: {
+        description: 'Disables one item or more items.',
+        returns: 'void',
+        params: {
+          values: {
+            types: [
+              'array',
+              'string',
+              'number',
+            ],
+            required: 'true',
+            description: 'value(s) to disable',
+          },
+        },
+        private: false,
+      },
+      enable: {
+        description: 'Disables one item or more disabled items.',
+        returns: 'void',
+        params: {
+          values: {
+            types: [
+              'array',
+              'string',
+              'number',
+            ],
+            required: 'true',
+            description: 'value(s) to enable',
+          },
+        },
+        private: false,
       },
       on: {
         description: 'Adds a listener for an event.',
@@ -18782,7 +19163,7 @@ module.exports = {
           items: {
             description: 'the radio items',
             types: [
-              'array',
+              'object',
             ],
           },
           index: {
@@ -26959,6 +27340,22 @@ module.exports = {
       },
     },
     data: {
+      active: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        default: 'true',
+        private: true,
+      },
+      mounted: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been already mounted.',
+        default: 'true',
+        private: false,
+      },
       defaultClasses: {
         types: [
           'object',
@@ -27046,6 +27443,48 @@ module.exports = {
       },
     },
     computed: {
+      el$: {
+        types: [
+          'component',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
+      isStatic: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is static (does not have any data or validation).',
+        private: true,
+      },
+      isFileType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is a file.',
+        private: true,
+      },
+      isArrayType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an array.',
+        private: true,
+      },
+      isImageType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
+        private: true,
+      },
       classes: {
         types: [
           'object',
@@ -27301,6 +27740,16 @@ module.exports = {
           },
         },
         private: false,
+      },
+      activate: {
+        description: 'Sets the `active` property of the element to `true`.',
+        returns: 'void',
+        private: true,
+      },
+      deactivate: {
+        description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
       },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
