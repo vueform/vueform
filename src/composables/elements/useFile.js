@@ -530,7 +530,9 @@ const base = function (props, context, dependencies)
   }, { immediate: true })
 
   if (value.value instanceof File && auto.value) {
-    uploadTemp()
+    nextTick(() => {
+      uploadTemp()
+    })
   }
 
   return {

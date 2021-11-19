@@ -14,6 +14,7 @@ export default {
       type: [Boolean],
       required: false,
       default: true,
+      private: true,
     },
   },
   setup(props, context)

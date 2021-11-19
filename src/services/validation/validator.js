@@ -77,7 +77,7 @@ const Validator = class {
 
     // replace :params
     _.each(_.map(message.match(/:\w+/g),p=>p.replace(':','')), (param) => {
-      message = message.replace(`${param}`, this.messageParams[param])
+      message = message.replace(`:${param}`, this.messageParams[param])
     })
 
     // replace {params}

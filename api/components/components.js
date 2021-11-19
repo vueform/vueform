@@ -2347,7 +2347,8 @@ module.exports = {
         "default": true,
         "types": [
           "boolean"
-        ]
+        ],
+        "private": true
       }
     },
     "events": {},
