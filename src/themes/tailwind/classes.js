@@ -1,11 +1,11 @@
 const checkbox = {
-  input: 'appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox form-rounded form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-check-white checked:border-0',
+  input: 'flex-shrink-0 appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox form-rounded form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-check-white checked:border-0',
   input_enabled: 'checked:form-bg-primary',
   input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
 }
 
 const radio = {
-  input: 'appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox rounded-full form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-radio-white checked:border-0',
+  input: 'flex-shrink-0 appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox rounded-full form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-radio-white checked:border-0',
   input_enabled: 'checked:form-bg-primary',
   input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
 }
@@ -425,7 +425,7 @@ export default {
   // Slots
   CheckboxgroupCheckbox: {
     container: 'flex align-start cursor-pointer',
-    text: 'cursor-pointer',
+    text: '',
     ...checkbox,
   },
   FilePreview: {

@@ -12,7 +12,7 @@
      />
 
       <span 
-        :class="classes.label"
+        :class="classes.text"
         v-html="item"
       />
     </slot>

@@ -68,20 +68,6 @@ export default {
     },
     FormStep: {
       description: 'Renders the label for the step.',
-      props: {
-        classes: {
-          description: 'the step\'s [`classes`](#property-classes) object',
-          types: ['object'],
-        },
-        select: {
-          description: 'selects the step if not [`isDisabled`](#property-is-disabled)',
-          types: ['function'],
-        },
-        disabled: {
-          description: 'whether the step is disabled',
-          types: ['boolean'],
-        },
-      }
     },
     FormSteps: {
       description: 'Renders the form steps. Must contain a [`FormStep`](#form-step) component for each step.'
@@ -91,16 +77,6 @@ export default {
     },
     FormTab: {
       description: 'Renders the label for the tab.',
-      props: {
-        classes: {
-          description: 'the tab\'s [`classes`](#property-classes) object',
-          types: ['object'],
-        },
-        select: {
-          description: 'selects the tab',
-          types: ['function'],
-        },
-      }
     },
     FormTabs: {
       description: 'Renders the form tabs. Must contain a [`FormTab`](#form-tab) component for each tab.'

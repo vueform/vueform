@@ -7,7 +7,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled."
+          "description": "Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled."
         }
       }
     }

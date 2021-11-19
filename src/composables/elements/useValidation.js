@@ -1219,7 +1219,7 @@ const location = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Checks each validation rule for the element on [`displayKey`](#options-display-key) property of the location object (async).
+   * Checks each validation rule for the element on [`displayKey`](#option-display-key) property of the location object (async).
    * 
    * @returns {void}
    */

@@ -1711,7 +1711,7 @@ export default {
         "enable": {
           "public": true,
           "returns": "void",
-          "description": "Enables the element even if it is disabled by [`:disabled`](#disabled) option."
+          "description": "Enables the element even if it is disabled by [`disabled`](#disabled) option."
         }
       }
     },
@@ -1800,7 +1800,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether `:drop` is enabled and browser supports dragging."
+          "description": "Whether `drop` is enabled and browser supports dragging."
         }
       },
       "methods": {
@@ -1827,7 +1827,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether `:drop` is enabled and browser supports dragging."
+          "description": "Whether `drop` is enabled and browser supports dragging."
         }
       },
       "methods": {
@@ -2017,7 +2017,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "URL to file using the [`:url`](#url) option without including the filename. If `url` is not defined it will default to `'/'`."
+          "description": "URL to file using the [`url`](#url) option without including the filename. If `url` is not defined it will default to `'/'`."
         },
         "stage": {
           "public": true,
@@ -2722,7 +2722,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "Options for toggle input. Can be extended via [`:extend-options`](#option-extend-options) with [@vueform/toggle options](https://github.com/vueform/toggle#basic-props)."
+          "description": "Options for toggle input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/toggle options](https://github.com/vueform/toggle#basic-props)."
         }
       }
     }
@@ -4137,7 +4137,7 @@ export default {
         "validate": {
           "public": true,
           "returns": "void",
-          "description": "Checks each validation rule for the element on [`displayKey`](#options-display-key) property of the location object (async)."
+          "description": "Checks each validation rule for the element on [`displayKey`](#option-display-key) property of the location object (async)."
         },
         "dirt": {
           "public": false,

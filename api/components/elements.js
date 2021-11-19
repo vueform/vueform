@@ -476,7 +476,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       isDisabled: {
@@ -1361,7 +1361,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -1624,7 +1624,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -2398,7 +2398,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -3703,7 +3703,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -4001,7 +4001,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -4869,7 +4869,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -5157,7 +5157,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -6065,7 +6065,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -6358,7 +6358,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -7395,7 +7395,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -7430,7 +7430,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether `:drop` is enabled and browser supports dragging.',
+        description: 'Whether `drop` is enabled and browser supports dragging.',
         private: true,
       },
       empty: {
@@ -7499,7 +7499,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'URL to file using the [`:url`](#url) option without including the filename. If `url` is not defined it will default to `&apos;/&apos;`.',
+        description: 'URL to file using the [`url`](#url) option without including the filename. If `url` is not defined it will default to `&apos;/&apos;`.',
         private: true,
       },
       stage: {
@@ -7787,7 +7787,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -8584,7 +8584,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -8757,7 +8757,7 @@ module.exports = {
         private: true,
       },
       component: {
-        description: 'Transforms an element `:type` into the element&apos;s component name.',
+        description: 'Transforms an element `type` into the element&apos;s component name.',
         returns: 'string',
         params: {
           element: {
@@ -8765,7 +8765,7 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'element `:type`',
+            description: 'element `type`',
           },
         },
         private: true,
@@ -9344,7 +9344,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -10414,7 +10414,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       hasAdd: {
@@ -10787,12 +10787,12 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
       component: {
-        description: 'Transforms an element `:type` into the element&apos;s component name.',
+        description: 'Transforms an element `type` into the element&apos;s component name.',
         returns: 'string',
         params: {
           element: {
@@ -10800,7 +10800,7 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'element `:type`',
+            description: 'element `type`',
           },
         },
         private: true,
@@ -11779,7 +11779,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -12064,7 +12064,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -12147,7 +12147,7 @@ module.exports = {
         private: false,
       },
       validate: {
-        description: 'Checks each validation rule for the element on [`displayKey`](#options-display-key) property of the location object (async).',
+        description: 'Checks each validation rule for the element on [`displayKey`](#option-display-key) property of the location object (async).',
         returns: 'void',
         private: false,
       },
@@ -13088,7 +13088,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       hasAdd: {
@@ -13144,7 +13144,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether `:drop` is enabled and browser supports dragging.',
+        description: 'Whether `drop` is enabled and browser supports dragging.',
         private: true,
       },
       empty: {
@@ -13489,7 +13489,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -13508,7 +13508,7 @@ module.exports = {
         private: true,
       },
       component: {
-        description: 'Transforms an element `:type` into the element&apos;s component name.',
+        description: 'Transforms an element `type` into the element&apos;s component name.',
         returns: 'string',
         params: {
           element: {
@@ -13516,7 +13516,7 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'element `:type`',
+            description: 'element `type`',
           },
         },
         private: true,
@@ -14786,7 +14786,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -15074,7 +15074,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -16148,7 +16148,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -16370,7 +16370,7 @@ module.exports = {
         private: true,
       },
       component: {
-        description: 'Transforms an element `:type` into the element&apos;s component name.',
+        description: 'Transforms an element `type` into the element&apos;s component name.',
         returns: 'string',
         params: {
           element: {
@@ -16378,7 +16378,7 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'element `:type`',
+            description: 'element `type`',
           },
         },
         private: true,
@@ -17194,7 +17194,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -17464,7 +17464,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -18282,7 +18282,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -19746,7 +19746,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -20044,7 +20044,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -21226,7 +21226,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -21489,7 +21489,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -22168,7 +22168,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       hasLabel: {
@@ -23073,7 +23073,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -23380,7 +23380,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -24316,7 +24316,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -24621,7 +24621,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -25519,7 +25519,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -25822,7 +25822,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -27047,7 +27047,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -27335,7 +27335,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -28557,7 +28557,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -28848,7 +28848,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -29740,7 +29740,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -30029,7 +30029,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -30908,7 +30908,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -31171,7 +31171,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },

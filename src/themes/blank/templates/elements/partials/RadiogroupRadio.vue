@@ -12,7 +12,7 @@
      />
 
       <span 
-        :class="classes.label"
+        :class="classes.text"
         v-html="item"
       />
     </slot>
@@ -29,7 +29,7 @@
           input: '',
           input_enabled: '',
           input_disabled: '',
-          label: '',
+          text: '',
         }
       }
     }

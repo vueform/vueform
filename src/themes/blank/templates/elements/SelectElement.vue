@@ -13,7 +13,6 @@
           :class="classes.input"
           :name="name"
           :id="fieldId"
-          :multiple="fieldOptions.mode === 'multiple'"
           :disabled="isDisabled"
           ref="input"
         >
@@ -62,18 +61,6 @@
         <template v-if="fieldOptions.mode == 'single'" #singlelabel="{ value }">
           <slot name="single-label" :value="value" :el$="el$">
             <component :is="fieldSlots['single-label']" :value="value" :el$="el$"/>
-          </slot>
-        </template>
-        
-        <template v-if="fieldOptions.mode == 'multiple'" #multiplelabel="{ values }">
-          <slot name="multiple-label" :values="values" :el$="el$">
-            <component :is="fieldSlots['multiple-label']" :values="values" :el$="el$"/>
-          </slot>
-        </template>
-
-        <template v-if="fieldOptions.mode == 'tags'" #tag="{ option, handleTagRemove, disabled }">
-          <slot name="tag" :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled" :el$="el$">
-            <component :is="fieldSlots.tag" :option="option" :handleTagRemove="handleTagRemove" :disabled="disabled" :el$="el$"/>
           </slot>
         </template>
       </Multiselect>

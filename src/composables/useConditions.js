@@ -26,7 +26,7 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.
+   * Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.
    * 
    * @type {boolean}
    */

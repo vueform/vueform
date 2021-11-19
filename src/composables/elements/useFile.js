@@ -164,7 +164,7 @@ const base = function (props, context, dependencies)
   })
 
   /**
-   * URL to file preview image using the [`previewUrl`](#options-preview-url) option without including the filename. If `previewUrl` is not defined it will default to [`url`](#options-url).
+   * URL to file preview image using the [`previewUrl`](#option-preview-url) option without including the filename. If `previewUrl` is not defined it will default to [`url`](#option-url).
    * 
    * @type {string}
    * @private

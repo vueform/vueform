@@ -1490,7 +1490,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled."
+        "description": "Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled."
       },
       "baseLabel": {
         "public": false,
@@ -1809,27 +1809,7 @@ module.exports = {
     },
     "slots": {
       "default": {
-        "description": "Renders the label for the step.",
-        "props": {
-          "classes": {
-            "description": "the step's [`classes`](#property-classes) object",
-            "types": [
-              "object"
-            ]
-          },
-          "select": {
-            "description": "selects the step if not [`isDisabled`](#property-is-disabled)",
-            "types": [
-              "function"
-            ]
-          },
-          "disabled": {
-            "description": "whether the step is disabled",
-            "types": [
-              "boolean"
-            ]
-          }
-        }
+        "description": "Renders the label for the step."
       }
     }
   },
@@ -2527,7 +2507,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled."
+        "description": "Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled."
       },
       "isLabelComponent": {
         "public": false,
@@ -2719,21 +2699,7 @@ module.exports = {
     },
     "slots": {
       "default": {
-        "description": "Renders the label for the tab.",
-        "props": {
-          "classes": {
-            "description": "the tab's [`classes`](#property-classes) object",
-            "types": [
-              "object"
-            ]
-          },
-          "select": {
-            "description": "selects the tab",
-            "types": [
-              "function"
-            ]
-          }
-        }
+        "description": "Renders the label for the tab."
       }
     }
   },
