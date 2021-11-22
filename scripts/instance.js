@@ -21,16 +21,22 @@ const args = argv.option([
     short: 'v',
     type: 'string'
   },
+  {
+    name: 'apiPath',
+    short: 'a',
+    type: 'string'
+  },
 ]).run()
 
 const key = args.options.key
 const version = args.options.version
 const domains = args.options.domains
+const apiPath = args.options.apiPath
 
 // package.json
 
 async function createInstance () {
-  await exec(`npm run build:instance --prefix ${path.resolve(__dirname, '../')} -- --configKey=${key} --configDomains=${domains.join(',')} --configVersion=${version}`)
+ await exec(`npm run build:instance --prefix ${path.resolve(__dirname, '../')} -- --configKey=${key} --configDomains=${domains.join(',')} --configVersion=${version} --apiPath=${apiPath}`)
 }
 
 function copyFile(source, target, cb) {
@@ -76,13 +82,13 @@ function createLicense() {
   })
 
 
-  fs.writeFileSync(path.resolve(__dirname, './../../vueform-api/storage/app/instances/'+key+'/'+version+'/vueform/LICENSE.txt'), license)
+  fs.writeFileSync(path.resolve(__dirname, apiPath +'/storage/app/instances/'+key+'/'+version+'/vueform/LICENSE.txt'), license)
 }
 
 function createPackageJson() {
   let packageJson = fs.readFileSync(path.resolve(__dirname, './../package.json.template'), 'UTF-8')
 
-  fs.writeFileSync(path.resolve(__dirname, './../../vueform-api/storage/app/instances/'+key+'/'+version+'/vueform/package.json'), packageJson)
+  fs.writeFileSync(path.resolve(__dirname, apiPath +'/storage/app/instances/'+key+'/'+version+'/vueform/package.json'), packageJson)
 }
 
 async function run () {
@@ -92,20 +98,20 @@ async function run () {
     // console.log('installer.js was copied to destination')
 
     files.forEach((file) => {
-      copyFile(path.resolve(__dirname, './../' + file), path.resolve(__dirname, './../../vueform-api/storage/app/instances/'+key+'/'+version+'/vueform/' + file), (err) => {
+      copyFile(path.resolve(__dirname, './../' + file), path.resolve(__dirname, apiPath +'/storage/app/instances/'+key+'/'+version+'/vueform/' + file), (err) => {
         if (err) throw err;
         // console.log(file + ' was copied to destination');
       });
     })
 
-    ncp(path.resolve(__dirname, './../src/themes'), path.resolve(__dirname, './../../vueform-api/storage/app/instances/'+key+'/'+version+'/vueform/themes'), function (err) {
+    ncp(path.resolve(__dirname, './../src/themes'), path.resolve(__dirname, apiPath +'/storage/app/instances/'+key+'/'+version+'/vueform/themes'), function (err) {
       if (err) {
         return console.error(err);
       }
       // console.log('themes was copied to destination');
     });
 
-    ncp(path.resolve(__dirname, './../src/locales'), path.resolve(__dirname, './../../vueform-api/storage/app/instances/'+key+'/'+version+'/vueform/locales'), function (err) {
+    ncp(path.resolve(__dirname, './../src/locales'), path.resolve(__dirname, apiPath +'/storage/app/instances/'+key+'/'+version+'/vueform/locales'), function (err) {
       if (err) {
         return console.error(err);
       }

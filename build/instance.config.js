@@ -5,12 +5,13 @@ export default (commandLineArgs) => {
   const key = commandLineArgs.configKey
   const version = commandLineArgs.configVersion
   const domains = commandLineArgs.configDomains.split(',')
+  const apiPath = commandLineArgs.apiPath
 
   return [
     {
       input: 'dist/partials/installer.js',
       output: {
-        file: `./../vueform-api/storage/app/instances/${key}/${version}/vueform/dist/partials/installer.js`,
+        file: `${apiPath}/storage/app/instances/${key}/${version}/vueform/dist/partials/installer.js`,
         format: 'esm',
         sourcemap: false,
       },
