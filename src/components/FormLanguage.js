@@ -57,7 +57,7 @@ export default {
     // =============== METHODS ==============
 
     /**
-     * Select language.
+     * Select the language.
      * 
      * @return {void}
      */

@@ -25,7 +25,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -43,7 +43,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       }
     },
     "data": {
@@ -101,13 +101,13 @@ module.exports = {
     },
     "events": {
       "click": {
-        "description": ""
+        "description": "Triggered when the drag and drop area is clicked."
       },
       "drop": {
-        "description": "",
+        "description": "Triggered when a file is dropped.",
         "params": {
-          "e": {
-            "description": "",
+          "event": {
+            "description": "the drop Event",
             "types": [
               "Event"
             ]
@@ -147,10 +147,10 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -169,7 +169,7 @@ module.exports = {
           "string",
           "component"
         ],
-        "description": "The addon. If the addon is provided is a `function` this has the resolved value."
+        "description": "The content of the addon. If the addon is provided ss a `function` this contains the resolved value."
       },
       "isAddonComponent": {
         "public": false,
@@ -206,7 +206,7 @@ module.exports = {
     "events": {},
     "slots": {
       "default": {
-        "description": ""
+        "description": "Renders the content of the addon if the [`type`](#option-type) is not defined in the parent element's the `addons` option."
       }
     }
   },
@@ -236,7 +236,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -254,14 +254,14 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "description": {
         "public": true,
         "types": [
           "string"
         ],
-        "description": "The element's description, defined via `:description` prop."
+        "description": "The element's description, defined via the element's `description` option."
       },
       "isSlot": {
         "public": false,
@@ -284,7 +284,7 @@ module.exports = {
     "events": {},
     "slots": {
       "default": {
-        "description": ""
+        "description": "Renders the content of the description if the parent element has no `description`."
       }
     }
   },
@@ -314,7 +314,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -332,7 +332,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "error": {
         "public": true,
@@ -381,7 +381,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -399,14 +399,14 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "info": {
         "public": true,
         "types": [
           "string"
         ],
-        "description": "The info for the element, defined via `:info` prop."
+        "description": "The info for the element, defined via the element's `info` prop."
       },
       "isSlot": {
         "public": false,
@@ -429,7 +429,7 @@ module.exports = {
     "events": {},
     "slots": {
       "default": {
-        "description": ""
+        "description": "Renders the content of the info when the info icon is hovered, if the parent element has no `info`."
       }
     }
   },
@@ -459,7 +459,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -477,7 +477,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "label": {
         "public": true,
@@ -485,7 +485,7 @@ module.exports = {
           "string",
           "component"
         ],
-        "description": "The label of the component. If the label is provided is a `function` this has the resolved value."
+        "description": "The label of the component. If the label is provided as a `function` this contains the resolved value."
       },
       "isLabelComponent": {
         "public": false,
@@ -506,7 +506,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component's [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed."
+        "description": "Whether the element has a `label` option, a `#label` slot or `Vueform` component's [`forceLabels`](vueform#force-labels) option is `true`."
       },
       "isSlot": {
         "public": false,
@@ -529,18 +529,10 @@ module.exports = {
     "events": {},
     "slots": {
       "default": {
-        "description": ""
+        "description": "Renders the content of the label if the parent element has no `label`."
       },
       "info": {
-        "props": {
-          "el$": {
-            "description": "the element's component",
-            "types": [
-              "component"
-            ]
-          }
-        },
-        "description": "Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this."
+        "description": "Passes its content to `ElementInfo`'s [`default`](element-info#slot-default) slot."
       }
     }
   },
@@ -570,7 +562,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -588,14 +580,14 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "floating": {
         "public": true,
         "types": [
           "string"
         ],
-        "description": "The floating label of the element, defined via `:floating` prop."
+        "description": "The floating label of the element, defined via `floating` prop."
       }
     },
     "data": {
@@ -649,10 +641,10 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -694,73 +686,25 @@ module.exports = {
     "events": {},
     "slots": {
       "field": {
-        "description": ""
+        "description": "Replaces the layout's element field. This is the slot used by each element to render their content."
       },
       "label": {
-        "props": {
-          "el$": {
-            "description": "the element's component",
-            "types": [
-              "component"
-            ]
-          }
-        },
-        "description": "Renders a label for the element in [`ElementLabel`](element-label) component."
+        "description": "Passes its content to the `ElementLabel`'s [`default`](element-label#slot-default) slot."
       },
       "info": {
-        "props": {
-          "el$": {
-            "description": "the element's component",
-            "types": [
-              "component"
-            ]
-          }
-        },
-        "description": "Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this."
+        "description": "Passes its content to the `ElementLabel`'s [`info`](element-info#slot-default) slot. It will only be rendered if `label` is defined as well."
       },
       "description": {
-        "props": {
-          "el$": {
-            "description": "the element's component",
-            "types": [
-              "component"
-            ]
-          }
-        },
-        "description": "Renders description for the element in [`ElementDescription`](element-description) component."
+        "description": "Passes its content to the `ElementDescription`'s [`default`](element-description#slot-default) slot."
       },
       "before": {
-        "props": {
-          "el$": {
-            "description": "the element's component",
-            "types": [
-              "component"
-            ]
-          }
-        },
-        "description": "Renders an [`ElementText`](element-text) component before the <%field%>."
+        "description": "Passes its content to the `ElementText`'s [`default`]](element-text#slot-default) slot with `type: \"before\"`."
       },
       "between": {
-        "props": {
-          "el$": {
-            "description": "the element's component",
-            "types": [
-              "component"
-            ]
-          }
-        },
-        "description": "Renders an [`ElementText`](element-text) component after the <%field%> and before description."
+        "description": "Passes its content to the `ElementText`'s [`default`]](element-text#slot-default) slot with `type: \"between\"`."
       },
       "after": {
-        "props": {
-          "el$": {
-            "description": "the element's component",
-            "types": [
-              "component"
-            ]
-          }
-        },
-        "description": "Renders an [`ElementText`](element-text) component after the description and error."
+        "description": "Passes its content to the `ElementText`'s [`default`]](element-text#slot-default) slot with `type: \"after\"`."
       }
     }
   },
@@ -794,10 +738,10 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -831,73 +775,25 @@ module.exports = {
     "events": {},
     "slots": {
       "field": {
-        "description": ""
+        "description": "Replaces the layout's element field. This is the slot used by each element to render their content."
       },
       "label": {
-        "props": {
-          "el$": {
-            "description": "the element's component",
-            "types": [
-              "component"
-            ]
-          }
-        },
-        "description": "Renders a label for the element in [`ElementLabel`](element-label) component."
+        "description": "Passes its content to the `ElementLabel`'s [`default`](element-label#slot-default) slot."
       },
       "info": {
-        "props": {
-          "el$": {
-            "description": "the element's component",
-            "types": [
-              "component"
-            ]
-          }
-        },
-        "description": "Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this."
+        "description": "Passes its content to the `ElementLabel`'s [`info`](element-info#slot-default) slot. It will only be rendered if `label` is defined as well."
       },
       "description": {
-        "props": {
-          "el$": {
-            "description": "the element's component",
-            "types": [
-              "component"
-            ]
-          }
-        },
-        "description": "Renders description for the element in [`ElementDescription`](element-description) component."
+        "description": "Passes its content to the `ElementDescription`'s [`default`](element-description#slot-default) slot."
       },
       "before": {
-        "props": {
-          "el$": {
-            "description": "the element's component",
-            "types": [
-              "component"
-            ]
-          }
-        },
-        "description": "Renders an [`ElementText`](element-text) component before the <%field%>."
+        "description": "Passes its content to the `ElementText`'s [`default`]](element-text#slot-default) slot with `type: \"before\"`."
       },
       "between": {
-        "props": {
-          "el$": {
-            "description": "the element's component",
-            "types": [
-              "component"
-            ]
-          }
-        },
-        "description": "Renders an [`ElementText`](element-text) component after the <%field%> and before description."
+        "description": "Passes its content to the `ElementText`'s [`default`]](element-text#slot-default) slot with `type: \"between\"`."
       },
       "after": {
-        "props": {
-          "el$": {
-            "description": "the element's component",
-            "types": [
-              "component"
-            ]
-          }
-        },
-        "description": "Renders an [`ElementText`](element-text) component after the description and error."
+        "description": "Passes its content to the `ElementText`'s [`default`]](element-text#slot-default) slot with `type: \"after\"`."
       }
     }
   },
@@ -927,7 +823,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -945,7 +841,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       }
     },
     "data": {
@@ -987,7 +883,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -1005,7 +901,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "message": {
         "public": true,
@@ -1054,7 +950,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -1072,7 +968,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "content": {
         "public": false,
@@ -1109,7 +1005,7 @@ module.exports = {
     "events": {},
     "slots": {
       "default": {
-        "description": ""
+        "description": "Renders the text if the parent element has no [`type`](#option-type) defined as option (`before|between|after`)."
       }
     }
   },
@@ -1132,7 +1028,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -1150,7 +1046,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the form."
+        "description": "Returns the component templates used by the form."
       },
       "schema": {
         "public": false,
@@ -1173,14 +1069,14 @@ module.exports = {
       "component": {
         "public": false,
         "returns": "string",
-        "description": "Transforms an element `:type` into the element's component name.",
+        "description": "Transforms an element `type` into the element's component name.",
         "params": {
           "element": {
             "types": [
               "string"
             ],
             "required": true,
-            "description": "element `:type`"
+            "description": "element `type`"
           }
         }
       }
@@ -1189,7 +1085,7 @@ module.exports = {
     "events": {},
     "slots": {
       "default": {
-        "description": ""
+        "description": "Renders the elements."
       }
     }
   },
@@ -1212,7 +1108,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -1230,7 +1126,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the form."
+        "description": "Returns the component templates used by the form."
       },
       "errors": {
         "public": true,
@@ -1286,7 +1182,7 @@ module.exports = {
         "description": "Whether the current language is the selected one."
       },
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -1304,7 +1200,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the form."
+        "description": "Returns the component templates used by the form."
       }
     },
     "data": {
@@ -1319,7 +1215,7 @@ module.exports = {
     "methods": {
       "select": {
         "public": true,
-        "description": "Select language."
+        "description": "Select the language."
       }
     },
     "props": {
@@ -1338,12 +1234,12 @@ module.exports = {
     },
     "events": {
       "select": {
-        "description": "Triggered when an option is selected when using [`native: false`](#option-native).",
+        "description": "Triggered when the language is selected by the user.",
         "params": {
-          "option": {
-            "description": "the selected option",
+          "language": {
+            "description": "the selected language",
             "types": [
-              "object"
+              "string"
             ]
           }
         }
@@ -1370,7 +1266,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -1388,7 +1284,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the form."
+        "description": "Returns the component templates used by the form."
       },
       "language": {
         "public": true,
@@ -1418,7 +1314,7 @@ module.exports = {
       "select": {
         "public": true,
         "returns": "void",
-        "description": "Select a language.",
+        "description": "Selects a language.",
         "params": {
           "code": {
             "types": [
@@ -1467,7 +1363,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -1485,7 +1381,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the form."
+        "description": "Returns the component templates used by the form."
       },
       "messages": {
         "public": true,
@@ -1538,14 +1434,14 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The components of highest level form elements."
+        "description": "The form elements' components."
       },
       "children$": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The components of form elements within the step."
+        "description": "The elements' components in the step."
       },
       "visible": {
         "public": true,
@@ -1569,7 +1465,7 @@ module.exports = {
         "description": "Whether the step has any pending elements."
       },
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -1587,14 +1483,14 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the form."
+        "description": "Returns the component templates used by the form."
       },
       "available": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled."
+        "description": "Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled."
       },
       "baseLabel": {
         "public": false,
@@ -1615,7 +1511,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether all the elements in the step has been validated."
+        "description": "Whether all the elements in the step were already validated at least once."
       },
       "busy": {
         "public": true,
@@ -1896,24 +1792,24 @@ module.exports = {
     },
     "events": {
       "activate": {
-        "description": ""
+        "description": "Triggered when the step becomes active."
       },
       "inactivate": {
-        "description": ""
+        "description": "Triggered when the step becomes inactive."
       },
       "enable": {
-        "description": ""
+        "description": "Triggered when the step becomes enabled."
       },
       "disable": {
-        "description": ""
+        "description": "Triggered when the step becomes disabled."
       },
       "complete": {
-        "description": ""
+        "description": "Triggered when the step becomes [`completed`](#property-completed)."
       }
     },
     "slots": {
       "default": {
-        "description": ""
+        "description": "Renders the label for the step."
       }
     }
   },
@@ -1940,7 +1836,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The object containing steps defined in [Vueform](vueform#option-steps)."
+        "description": "The object containing steps defined in [`Vueform`](vueform#option-steps)."
       },
       "elements$": {
         "public": true,
@@ -1950,7 +1846,7 @@ module.exports = {
         "description": "The form elements' components."
       },
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -1968,7 +1864,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the form."
+        "description": "Returns the component templates used by the form."
       },
       "steps$": {
         "public": true,
@@ -2280,18 +2176,24 @@ module.exports = {
     "props": {},
     "events": {
       "select": {
-        "description": "Triggered when an option is selected when using [`native: false`](#option-native).",
+        "description": "Triggered when a step becomes active.",
         "params": {
-          "option": {
-            "description": "the selected option",
+          "activeStep$": {
+            "description": "the active step",
             "types": [
-              "object"
+              "component"
+            ]
+          },
+          "previousStep$": {
+            "description": "the previously active step",
+            "types": [
+              "component"
             ]
           }
         }
       },
       "next": {
-        "description": "Triggered before moved to the next step.",
+        "description": "Triggered before moves to the next step.",
         "params": {
           "step$": {
             "description": "the next [`FormStep`](form-step) component",
@@ -2302,7 +2204,7 @@ module.exports = {
         }
       },
       "previous": {
-        "description": "Triggered before moved to the previous step.",
+        "description": "Triggered before moves to the previous step.",
         "params": {
           "step$": {
             "description": "the previous [`FormStep`](form-step) component",
@@ -2341,7 +2243,7 @@ module.exports = {
         "description": "The [`FormSteps`](form-steps) component."
       },
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -2359,7 +2261,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the form."
+        "description": "Returns the component templates used by the form."
       },
       "visible": {
         "public": true,
@@ -2380,7 +2282,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the control should be in loading state (except for previous)."
+        "description": "Whether the control is in loading state (except for previous)."
       },
       "current$": {
         "public": false,
@@ -2392,7 +2294,7 @@ module.exports = {
           "string",
           "component"
         ],
-        "description": "The label of the component. If the label is provided is a `function` this has the resolved value."
+        "description": "The label of the component. If the label is provided as a `function` this contains the resolved value."
       },
       "isLabelComponent": {
         "public": false,
@@ -2420,7 +2322,7 @@ module.exports = {
       "next": {
         "public": true,
         "returns": "void",
-        "description": "Complete the current step and go to the next one (async). If the form's `:validateOn` prop or `config.validateOn` contains `'step'` also validate the elements within the step before moving forward (and stay if there's any error)."
+        "description": "Complete the current step and go to the next one (async). If the form's [`validateOn`](vueform#option-validate-on) prop or `config.validateOn` contains `'step'` also validates the elements within the step before moving forward (and stay if there's any error)."
       },
       "finish": {
         "public": true,
@@ -2445,13 +2347,14 @@ module.exports = {
         "default": true,
         "types": [
           "boolean"
-        ]
+        ],
+        "private": true
       }
     },
     "events": {},
     "slots": {
       "default": {
-        "description": ""
+        "description": "Renders the text of the control button."
       }
     }
   },
@@ -2474,7 +2377,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -2492,7 +2395,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the form."
+        "description": "Returns the component templates used by the form."
       }
     },
     "data": {
@@ -2516,13 +2419,13 @@ module.exports = {
     "events": {},
     "slots": {
       "previous": {
-        "description": ""
+        "description": "Renders the text of the previous button in [`FormStepsControl`](form-steps-control) component if the current `FormStep`'s [`labels`](form-step#option-labels) does not contain `previous`. `FormStepsControls` need to have [`labels: false`](#option-labels) in order to use this slot."
       },
       "next": {
-        "description": ""
+        "description": "Renders the text of the next button in [`FormStepsControl`](form-steps-control) component if the current `FormStep`'s [`labels`](form-step#option-labels) does not contain `next`. `FormStepsControls` need to have [`labels: false`](#option-labels) in order to use this slot."
       },
       "finish": {
-        "description": ""
+        "description": "Renders the text of the previous button in [`FormStepsControl`](form-steps-control) component if the current `FormStep`'s [`labels`](form-step#option-labels) does not contain `finish`. `FormStepsControls` need to have [`labels: false`](#option-labels) in order to use this slot."
       }
     }
   },
@@ -2580,7 +2483,7 @@ module.exports = {
         "description": "Whether the tab has any invalid elements."
       },
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -2598,14 +2501,14 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the form."
+        "description": "Returns the component templates used by the form."
       },
       "available": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled."
+        "description": "Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled."
       },
       "isLabelComponent": {
         "public": false,
@@ -2789,15 +2692,15 @@ module.exports = {
     },
     "events": {
       "activate": {
-        "description": ""
+        "description": "Triggered when the tab becomes active."
       },
       "inactivate": {
-        "description": ""
+        "description": "Triggered when the tab becomes inactive."
       }
     },
     "slots": {
       "default": {
-        "description": ""
+        "description": "Renders the label for the tab."
       }
     }
   },
@@ -2824,7 +2727,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The object containing tabs defined in [Vueform](vueform#option-tabs)."
+        "description": "The object containing tabs defined in [`Vueform`](vueform#option-tabs)."
       },
       "elements$": {
         "public": true,
@@ -2834,7 +2737,7 @@ module.exports = {
         "description": "The form elements' components."
       },
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -2852,7 +2755,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the form."
+        "description": "Returns the component templates used by the form."
       },
       "tabs$": {
         "public": true,
@@ -3038,12 +2941,18 @@ module.exports = {
     "props": {},
     "events": {
       "select": {
-        "description": "Triggered when an option is selected when using [`native: false`](#option-native).",
+        "description": "Triggered when a tab becomes active.",
         "params": {
-          "option": {
-            "description": "the selected option",
+          "activeTab$": {
+            "description": "the active tab",
             "types": [
-              "object"
+              "component"
+            ]
+          },
+          "previousTab$": {
+            "description": "the previously active tab",
+            "types": [
+              "component"
             ]
           }
         }
@@ -3249,14 +3158,14 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the `:validateOn` prop or `config.validateOn` contains `'change'`."
+        "description": "Whether the `validateOn` prop or `config.validateOn` contains `'change'`."
       },
       "shouldValidateOnStep": {
         "public": false,
         "types": [
           "boolean"
         ],
-        "description": "Whether the `:validateOn` prop or `config.validateOn` contains `'step'`."
+        "description": "Whether the `validateOn` prop or `config.validateOn` contains `'step'`."
       },
       "hasSteps": {
         "public": false,
@@ -3305,7 +3214,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`:displayMessages`](#option-display-messages) or in `config.displayMessages`."
+        "description": "Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`displayMessages`](#option-display-messages) or in `config.displayMessages`."
       },
       "showLanguages": {
         "public": true,
@@ -4174,7 +4083,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -4192,14 +4101,14 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "config": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The flatpickr configuration object. Can be extended via [`:options`](#options) with [flatpickr options](https://flatpickr.js.org/options/)."
+        "description": "The flatpickr configuration object. Can be extended via [`options`](#options) with [flatpickr options](https://flatpickr.js.org/options/)."
       },
       "mode": {
         "public": true,
@@ -4325,7 +4234,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -4336,7 +4245,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       }
     },
     "data": {
@@ -4346,7 +4255,7 @@ module.exports = {
         "types": [
           "HTMLElement"
         ],
-        "description": "The [`Editor`](https://github.com/basecamp/trix) DOM instance."
+        "description": "The [`Trix`](https://github.com/basecamp/trix) instance."
       }
     },
     "methods": {
@@ -4489,13 +4398,37 @@ module.exports = {
     },
     "events": {
       "input": {
-        "description": ""
+        "description": "Triggered when the editor's value is changed.",
+        "params": {
+          "value": {
+            "description": "the new value of the element contained in an object: `value.target.value`",
+            "types": [
+              "object"
+            ]
+          }
+        }
       },
       "alert": {
-        "description": ""
+        "description": "Triggered when the user select a file/mime type that is not allowed.",
+        "params": {
+          "message": {
+            "description": "the alert message",
+            "types": [
+              "string"
+            ]
+          }
+        }
       },
       "error": {
-        "description": ""
+        "description": "Triggered when file upload throws an error.",
+        "params": {
+          "error": {
+            "description": "the Error object",
+            "types": [
+              "Error"
+            ]
+          }
+        }
       }
     },
     "slots": {}
@@ -4526,7 +4459,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -4544,7 +4477,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "isDisabled": {
         "public": true,
@@ -4578,6 +4511,18 @@ module.exports = {
           "string",
           "number"
         ]
+      },
+      "items": {
+        "required": true,
+        "types": [
+          "object"
+        ]
+      },
+      "index": {
+        "required": true,
+        "types": [
+          "number"
+        ]
       }
     },
     "events": {},
@@ -4609,7 +4554,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -4627,7 +4572,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "visible": {
         "public": true,
@@ -4669,14 +4614,14 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the file should be clickable if it is already uploaded."
+        "description": "Whether the file should be clickable if it is already permantently uploaded."
       },
       "uploaded": {
         "public": true,
         "types": [
           "boolean"
         ],
-        "description": "Whether the temporary or final file is uploaded."
+        "description": "Whether the temporary or permanent file is uploaded."
       },
       "uploading": {
         "public": true,
@@ -4711,7 +4656,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The text for upload button. Can be changed at the locale file: `vueform.elements.file.upload`"
+        "description": "The text for upload button. Can be also changed in the locale file: `vueform.elements.file.upload`"
       }
     },
     "data": {
@@ -4765,7 +4710,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -4783,7 +4728,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "visible": {
         "public": true,
@@ -4825,7 +4770,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the file should be clickable if it is already uploaded."
+        "description": "Whether the file should be clickable if it is already permantently uploaded."
       },
       "preview": {
         "public": true,
@@ -4839,7 +4784,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the temporary or final file is uploaded."
+        "description": "Whether the temporary or permanent file is uploaded."
       },
       "uploading": {
         "public": true,
@@ -4874,7 +4819,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The text for upload button. Can be changed at the locale file: `vueform.elements.file.upload`"
+        "description": "The text for upload button. Can be also changed in the locale file: `vueform.elements.file.upload`"
       }
     },
     "data": {
@@ -4928,7 +4873,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -4946,7 +4891,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "visible": {
         "public": true,
@@ -4988,7 +4933,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the file should be clickable if it is already uploaded."
+        "description": "Whether the file should be clickable if it is already permantently uploaded."
       },
       "preview": {
         "public": true,
@@ -5002,7 +4947,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the temporary or final file is uploaded."
+        "description": "Whether the temporary or permanent file is uploaded."
       },
       "uploading": {
         "public": true,
@@ -5037,7 +4982,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The text for upload button. Can be changed at the locale file: `vueform.elements.file.upload`"
+        "description": "The text for upload button. Can be also changed in the locale file: `vueform.elements.file.upload`"
       }
     },
     "data": {
@@ -5091,7 +5036,7 @@ module.exports = {
     },
     "computed": {
       "classes": {
-        "public": false,
+        "public": true,
         "types": [
           "object"
         ],
@@ -5109,7 +5054,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "Returns the components used by the parent element."
+        "description": "Returns the component templates used by the parent element."
       },
       "isDisabled": {
         "public": true,
@@ -5141,6 +5086,18 @@ module.exports = {
         "required": true,
         "types": [
           "string",
+          "number"
+        ]
+      },
+      "items": {
+        "required": true,
+        "types": [
+          "object"
+        ]
+      },
+      "index": {
+        "required": true,
+        "types": [
           "number"
         ]
       }

@@ -476,7 +476,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       isDisabled: {
@@ -1361,7 +1361,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -1624,7 +1624,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -2287,6 +2287,22 @@ module.exports = {
       },
     },
     data: {
+      active: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        default: 'true',
+        private: true,
+      },
+      mounted: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been already mounted.',
+        default: 'true',
+        private: false,
+      },
       defaultClasses: {
         types: [
           'object',
@@ -2373,6 +2389,48 @@ module.exports = {
         description: 'Contains the available items. If [`items`](#option-items) are async this contains the resolved items.',
         private: false,
       },
+      el$: {
+        types: [
+          'component',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
+      isStatic: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is static (does not have any data or validation).',
+        private: true,
+      },
+      isFileType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is a file.',
+        private: true,
+      },
+      isArrayType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an array.',
+        private: true,
+      },
+      isImageType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
+        private: true,
+      },
       classes: {
         types: [
           'object',
@@ -2398,7 +2456,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -2607,6 +2665,16 @@ module.exports = {
           },
         },
         private: false,
+      },
+      activate: {
+        description: 'Sets the `active` property of the element to `true`.',
+        returns: 'void',
+        private: true,
+      },
+      deactivate: {
+        description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
       },
       check: {
         description: 'Checks one or more checkboxes.',
@@ -2976,6 +3044,18 @@ module.exports = {
             description: 'the checkbox value',
             types: [
               'string|number',
+            ],
+          },
+          items: {
+            description: 'the checkbox items',
+            types: [
+              'object',
+            ],
+          },
+          index: {
+            description: 'the index of current checkbox',
+            types: [
+              'number',
             ],
           },
           id: {
@@ -3703,7 +3783,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -4001,7 +4081,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -4771,6 +4851,22 @@ module.exports = {
       },
     },
     data: {
+      active: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        default: 'true',
+        private: true,
+      },
+      mounted: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been already mounted.',
+        default: 'true',
+        private: false,
+      },
       defaultClasses: {
         types: [
           'object',
@@ -4844,6 +4940,48 @@ module.exports = {
       },
     },
     computed: {
+      el$: {
+        types: [
+          'component',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
+      isStatic: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is static (does not have any data or validation).',
+        private: true,
+      },
+      isFileType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is a file.',
+        private: true,
+      },
+      isArrayType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an array.',
+        private: true,
+      },
+      isImageType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
+        private: true,
+      },
       classes: {
         types: [
           'object',
@@ -4869,7 +5007,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -5100,6 +5238,16 @@ module.exports = {
       },
     },
     methods: {
+      activate: {
+        description: 'Sets the `active` property of the element to `true`.',
+        returns: 'void',
+        private: true,
+      },
+      deactivate: {
+        description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
@@ -5157,7 +5305,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -6065,7 +6213,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -6358,7 +6506,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -7395,7 +7543,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -7430,7 +7578,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether `:drop` is enabled and browser supports dragging.',
+        description: 'Whether `drop` is enabled and browser supports dragging.',
         private: true,
       },
       empty: {
@@ -7499,7 +7647,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'URL to file using the [`:url`](#url) option without including the filename. If `url` is not defined it will default to `&apos;/&apos;`.',
+        description: 'URL to file using the [`url`](#url) option without including the filename. If `url` is not defined it will default to `&apos;/&apos;`.',
         private: true,
       },
       stage: {
@@ -7787,7 +7935,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -8484,6 +8632,14 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      children$Array: {
+        types: [
+          'array,component',
+        ],
+        description: 'List of child element components.',
+        default: '[children<component>]',
+        private: true,
+      },
       defaultClasses: {
         types: [
           'object',
@@ -8506,6 +8662,14 @@ module.exports = {
         description: 'Helper property used to store listeners for events.',
         default: '{}',
         private: true,
+      },
+      messageBag: {
+        types: [
+          'MessageBag',
+        ],
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        default: 'MessageBag',
+        private: false,
       },
       hidden: {
         types: [
@@ -8559,6 +8723,20 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: true,
       },
+      children: {
+        types: [
+          'object',
+        ],
+        description: 'Schema of child elements.',
+        private: true,
+      },
+      children$: {
+        types: [
+          'object,Element',
+        ],
+        description: 'Child element components.',
+        private: false,
+      },
       classes: {
         types: [
           'object',
@@ -8584,7 +8762,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -8679,6 +8857,55 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      dirty: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any child with modified value.',
+        private: false,
+      },
+      validated: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether all the children were validated at least once.',
+        private: false,
+      },
+      invalid: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any child with failing rules.',
+        private: false,
+      },
+      pending: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any child with async rules in progress.',
+        private: false,
+      },
+      debouncing: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any child with validation rule with pending debounce.',
+        private: false,
+      },
+      busy: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any `busy` child.',
+        private: false,
+      },
+      errors: {
+        types: [
+          'array',
+        ],
+        description: 'All the errors of `MessageBag`.',
+        private: false,
+      },
       value: {
         types: [
           'any',
@@ -8757,7 +8984,7 @@ module.exports = {
         private: true,
       },
       component: {
-        description: 'Transforms an element `:type` into the element&apos;s component name.',
+        description: 'Transforms an element `type` into the element&apos;s component name.',
         returns: 'string',
         params: {
           element: {
@@ -8765,7 +8992,7 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'element `:type`',
+            description: 'element `type`',
           },
         },
         private: true,
@@ -8818,6 +9045,26 @@ module.exports = {
           },
         },
         private: false,
+      },
+      validate: {
+        description: 'Validates every child (async).',
+        returns: 'void',
+        private: false,
+      },
+      clean: {
+        description: 'Removes every child&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      resetValidators: {
+        description: 'Sets the validators of children to default state.',
+        returns: 'void',
+        private: false,
+      },
+      initMessageBag: {
+        description: 'Initalizes MessageBag service.',
+        returns: 'void',
+        private: true,
       },
       hide: {
         description: 'Hides the element.',
@@ -9344,7 +9591,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -10414,7 +10661,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       hasAdd: {
@@ -10787,12 +11034,12 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
       component: {
-        description: 'Transforms an element `:type` into the element&apos;s component name.',
+        description: 'Transforms an element `type` into the element&apos;s component name.',
         returns: 'string',
         params: {
           element: {
@@ -10800,7 +11047,7 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'element `:type`',
+            description: 'element `type`',
           },
         },
         private: true,
@@ -11779,7 +12026,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -12064,7 +12311,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -12147,7 +12394,7 @@ module.exports = {
         private: false,
       },
       validate: {
-        description: 'Checks each validation rule for the element on [`displayKey`](#options-display-key) property of the location object (async).',
+        description: 'Checks each validation rule for the element on [`displayKey`](#option-display-key) property of the location object (async).',
         returns: 'void',
         private: false,
       },
@@ -13088,7 +13335,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       hasAdd: {
@@ -13144,7 +13391,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether `:drop` is enabled and browser supports dragging.',
+        description: 'Whether `drop` is enabled and browser supports dragging.',
         private: true,
       },
       empty: {
@@ -13489,7 +13736,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -13508,7 +13755,7 @@ module.exports = {
         private: true,
       },
       component: {
-        description: 'Transforms an element `:type` into the element&apos;s component name.',
+        description: 'Transforms an element `type` into the element&apos;s component name.',
         returns: 'string',
         params: {
           element: {
@@ -13516,7 +13763,7 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'element `:type`',
+            description: 'element `type`',
           },
         },
         private: true,
@@ -14667,6 +14914,22 @@ module.exports = {
       },
     },
     data: {
+      active: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        default: 'true',
+        private: true,
+      },
+      mounted: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been already mounted.',
+        default: 'true',
+        private: false,
+      },
       defaultClasses: {
         types: [
           'object',
@@ -14761,6 +15024,48 @@ module.exports = {
         description: 'Contains select options for native select.',
         private: false,
       },
+      el$: {
+        types: [
+          'component',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
+      isStatic: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is static (does not have any data or validation).',
+        private: true,
+      },
+      isFileType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is a file.',
+        private: true,
+      },
+      isArrayType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an array.',
+        private: true,
+      },
+      isImageType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
+        private: true,
+      },
       classes: {
         types: [
           'object',
@@ -14786,7 +15091,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -15017,6 +15322,16 @@ module.exports = {
         },
         private: false,
       },
+      activate: {
+        description: 'Sets the `active` property of the element to `true`.',
+        returns: 'void',
+        private: true,
+      },
+      deactivate: {
+        description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
@@ -15074,7 +15389,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -15483,17 +15798,6 @@ module.exports = {
           },
         },
       },
-      'placeholder': {
-        description: 'Replaces the default template for the input&apos;s [`placeholder`](#option-placeholder).',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
       'multiple-label': {
         description: 'Replaces the input&apos;s inner label that is displayed when at least one option is selected.',
         props: {
@@ -15507,6 +15811,17 @@ module.exports = {
             description: 'the list of selected options',
             types: [
               'array<object>',
+            ],
+          },
+        },
+      },
+      'placeholder': {
+        description: 'Replaces the default template for the input&apos;s [`placeholder`](#option-placeholder).',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ],
           },
         },
@@ -16148,7 +16463,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -16370,7 +16685,7 @@ module.exports = {
         private: true,
       },
       component: {
-        description: 'Transforms an element `:type` into the element&apos;s component name.',
+        description: 'Transforms an element `type` into the element&apos;s component name.',
         returns: 'string',
         params: {
           element: {
@@ -16378,7 +16693,7 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'element `:type`',
+            description: 'element `type`',
           },
         },
         private: true,
@@ -17194,7 +17509,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -17464,7 +17779,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -18151,6 +18466,14 @@ module.exports = {
         description: 'The default classes for the element defined by theme.',
         private: true,
       },
+      disabledItems: {
+        types: [
+          'array',
+        ],
+        description: 'List of option keys to be disabled.',
+        default: '[]',
+        private: true,
+      },
       events: {
         types: [
           'array',
@@ -18215,6 +18538,13 @@ module.exports = {
       },
     },
     computed: {
+      resolvedItems: {
+        types: [
+          'array',
+        ],
+        description: 'Contains the available items. If [`items`](#option-items) are async this contains the resolved items.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -18282,7 +18612,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -18305,6 +18635,13 @@ module.exports = {
         ],
         description: 'The default value of the element.',
         private: true,
+      },
+      isDisabled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is disabled.',
+        private: false,
       },
       fieldId: {
         types: [
@@ -18471,6 +18808,20 @@ module.exports = {
       },
     },
     methods: {
+      updateItems: {
+        description: 'Fetches & updates items when using `async` items. Receives [`el$`](#property-el) as first param.',
+        returns: 'void',
+        params: {
+          disable: {
+            types: [
+              'boolean',
+            ],
+            required: 'true',
+            description: 'whether the input field should be disabled while fetching options',
+          },
+        },
+        private: false,
+      },
       activate: {
         description: 'Sets the `active` property of the element to `true`.',
         returns: 'void',
@@ -18531,6 +18882,48 @@ module.exports = {
         description: 'Prepares the element.',
         returns: 'void',
         private: true,
+      },
+      disableAll: {
+        description: 'Disables all items.',
+        returns: 'void',
+        private: false,
+      },
+      enableAll: {
+        description: 'Enables all items.',
+        returns: 'void',
+        private: false,
+      },
+      disable: {
+        description: 'Disables one item or more items.',
+        returns: 'void',
+        params: {
+          values: {
+            types: [
+              'array',
+              'string',
+              'number',
+            ],
+            required: 'true',
+            description: 'value(s) to disable',
+          },
+        },
+        private: false,
+      },
+      enable: {
+        description: 'Disables one item or more disabled items.',
+        returns: 'void',
+        params: {
+          values: {
+            types: [
+              'array',
+              'string',
+              'number',
+            ],
+            required: 'true',
+            description: 'value(s) to enable',
+          },
+        },
+        private: false,
       },
       on: {
         description: 'Adds a listener for an event.',
@@ -18765,6 +19158,18 @@ module.exports = {
             description: 'the radio value',
             types: [
               'string|number',
+            ],
+          },
+          items: {
+            description: 'the radio items',
+            types: [
+              'object',
+            ],
+          },
+          index: {
+            description: 'the index of current radio',
+            types: [
+              'number',
             ],
           },
           id: {
@@ -19746,7 +20151,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -20044,7 +20449,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -20423,17 +20828,6 @@ module.exports = {
           },
         },
       },
-      'placeholder': {
-        description: 'Replaces the default template for the input&apos;s [`placeholder`](#option-placeholder).',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-        },
-      },
       'single-label': {
         description: 'Replaces the input&apos;s inner label that is displayed when an option is selected.',
         props: {
@@ -20447,6 +20841,17 @@ module.exports = {
             description: 'the selected option',
             types: [
               'object',
+            ],
+          },
+        },
+      },
+      'placeholder': {
+        description: 'Replaces the default template for the input&apos;s [`placeholder`](#option-placeholder).',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ],
           },
         },
@@ -21226,7 +21631,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -21489,7 +21894,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -22168,7 +22573,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       hasLabel: {
@@ -23073,7 +23478,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -23380,7 +23785,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -24316,7 +24721,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -24621,7 +25026,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -25519,7 +25924,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -25822,7 +26227,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -26935,6 +27340,22 @@ module.exports = {
       },
     },
     data: {
+      active: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        default: 'true',
+        private: true,
+      },
+      mounted: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been already mounted.',
+        default: 'true',
+        private: false,
+      },
       defaultClasses: {
         types: [
           'object',
@@ -27022,6 +27443,48 @@ module.exports = {
       },
     },
     computed: {
+      el$: {
+        types: [
+          'component',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
+      isStatic: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is static (does not have any data or validation).',
+        private: true,
+      },
+      isFileType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is a file.',
+        private: true,
+      },
+      isArrayType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an array.',
+        private: true,
+      },
+      isImageType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
+        private: true,
+      },
       classes: {
         types: [
           'object',
@@ -27047,7 +27510,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -27278,6 +27741,16 @@ module.exports = {
         },
         private: false,
       },
+      activate: {
+        description: 'Sets the `active` property of the element to `true`.',
+        returns: 'void',
+        private: true,
+      },
+      deactivate: {
+        description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
@@ -27335,7 +27808,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -27746,6 +28219,35 @@ module.exports = {
       },
     },
     slots: {
+      'tag': {
+        description: 'Replaces the default tag template.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+          option: {
+            description: 'the option object',
+            types: [
+              'object',
+            ],
+          },
+          disabled: {
+            description: 'whether the option is disabled',
+            types: [
+              'boolean',
+            ],
+          },
+          handleTagRemove: {
+            description: 'removes the tag from the selected options',
+            types: [
+              'function',
+            ],
+          },
+        },
+      },
       'option': {
         description: 'Replaces the default option template.',
         props: {
@@ -27793,35 +28295,6 @@ module.exports = {
             description: 'the group object',
             types: [
               'object',
-            ],
-          },
-        },
-      },
-      'tag': {
-        description: 'Replaces the default tag template.',
-        props: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ],
-          },
-          option: {
-            description: 'the option object',
-            types: [
-              'object',
-            ],
-          },
-          disabled: {
-            description: 'whether the option is disabled',
-            types: [
-              'boolean',
-            ],
-          },
-          handleTagRemove: {
-            description: 'removes the tag from the selected options',
-            types: [
-              'function',
             ],
           },
         },
@@ -28557,7 +29030,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -28848,7 +29321,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -29740,7 +30213,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -30029,7 +30502,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },
@@ -30908,7 +31381,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled.',
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
       data: {
@@ -31171,7 +31644,7 @@ module.exports = {
         private: false,
       },
       enable: {
-        description: 'Enables the element even if it is disabled by [`:disabled`](#disabled) option.',
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
         returns: 'void',
         private: false,
       },

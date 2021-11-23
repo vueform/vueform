@@ -438,8 +438,8 @@ export default {
     }, {
       slots: [
         'option',
-        'placeholder',
         'multiple-label',
+        'placeholder',
         'group-label', 
         'before-list',
         'after-list',

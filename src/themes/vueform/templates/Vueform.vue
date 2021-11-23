@@ -309,6 +309,7 @@
     outline: none;
     margin: 0 0.375rem 0 0;
     position: relative;
+    flex-shrink: 0;
 
     &:focus {
       box-shadow: inset 0 0 0 0 var(--vf-primary), 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
@@ -355,7 +356,7 @@
 
   .vf-checkbox-wrapper {
     display: flex;
-    align-items: center;
+    align-items: start;
     width: 100%;
     padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
   }
@@ -377,6 +378,7 @@
     outline: none;
     border-radius: 50%;
     margin: 0 0.375rem 0 0;
+    flex-shrink: 0;
 
     &:focus {
       box-shadow: inset 0 0 0 0 var(--vf-primary), 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
@@ -430,7 +432,7 @@
 
   .vf-radio-wrapper {
     display: flex;
-    align-items: center;
+    align-items: start;
     width: 100%;
     padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
   }

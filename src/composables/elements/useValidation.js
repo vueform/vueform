@@ -1109,7 +1109,6 @@ const file = function(props, context, dependencies)
     validated,
     invalid,
     pending,
-    debouncing,
     errors,
     error,
     validationRules,
@@ -1128,7 +1127,7 @@ const file = function(props, context, dependencies)
    * @type {boolean}
    */
   const busy = computed(() => {
-    return pending.value || debouncing.value || uploading.value || removing.value
+    return pending.value || uploading.value || removing.value
   })
 
   // =============== METHODS ==============
@@ -1171,7 +1170,6 @@ const file = function(props, context, dependencies)
     validated,
     invalid,
     pending,
-    debouncing,
     busy,
     errors,
     error,
@@ -1219,7 +1217,7 @@ const location = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Checks each validation rule for the element on [`displayKey`](#options-display-key) property of the location object (async).
+   * Checks each validation rule for the element on [`displayKey`](#option-display-key) property of the location object (async).
    * 
    * @returns {void}
    */

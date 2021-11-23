@@ -36,6 +36,7 @@ const Parser = class
     this.beforeInit()
 
     this.setVariations()
+    this.setClones()
     this.setReturns()
     this.setUseImports()
     this.setUses()

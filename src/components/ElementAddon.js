@@ -46,7 +46,7 @@ export default {
     })
 
     /**
-     * The addon. If the addon is provided is a `function` this has the resolved value.
+     * The content of the addon. If the addon is provided ss a `function` this contains the resolved value.
      * 
      * @type {string|component}
      */

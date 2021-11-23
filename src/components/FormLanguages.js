@@ -39,7 +39,7 @@ export default {
     // =============== METHODS ==============
 
     /**
-     * Select a language.
+     * Selects a language.
      * 
      * @param {string} code* the language code to be selected
      * @returns {void}

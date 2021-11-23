@@ -1,8 +1,19 @@
 module.exports = [
+
+  'step$',
+  'tab$',
+  'stepLabel',
+  'tabLabel',
+  'index',
+  'active',
+
   'steps',
+  'tabs',
   'steps$Array',
+  'tabs$Array',
   'elements$',
   'steps$',
+  'tabs$',
   'visible$',
   'first$',
   'current$',
@@ -18,12 +29,18 @@ module.exports = [
 
   'filename',
   'link',
+  'hasLink',
   'preview',
+  'clickable',
   'base64',
 
+  'uploadText',
+  
+  'uploading',
   'progress',
   'uploaded',
   'hasUploadError',
+  'hasError',
 
   'removing',
 
@@ -55,6 +72,7 @@ module.exports = [
   'orderByName',
 
   'done',
+  'completed',
   'validated',
   'invalid',
   'dirty',

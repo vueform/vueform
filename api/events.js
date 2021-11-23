@@ -26,6 +26,15 @@ export default {
         },
       }
     },
+    FlatpickrWrapper: {
+      description: 'Triggered when then value is changed.',
+      params: {
+        value: {
+          description: 'the new value',
+          types: ['Date|array<Date>']
+        }
+      }
+    },
   },
   reset: {
     Vueform: {
@@ -98,6 +107,15 @@ export default {
         },
       }
     },
+    EditorWrapper: {
+      description: 'Triggered when the user select a file/mime type that is not allowed.',
+      params: {
+        message: {
+          description: 'the alert message',
+          types: ['string']
+        },
+      }
+    },
   },
   error: {
     default: {
@@ -144,6 +162,15 @@ export default {
         details: {
           description: 'additional information for the error, including `stage` property (`"prepare\|submit"`) which indicates when the error was thrown.',
           types: ['object']
+        },
+      }
+    },
+    EditorWrapper: {
+      description: 'Triggered when file upload throws an error.',
+      params: {
+        error: {
+          description: 'the Error object',
+          types: ['Error']
         },
       }
     }
@@ -234,6 +261,41 @@ export default {
           description: 'the selected option',
           types: ['object'],
         }
+      }
+    },
+    FormLanguage: {
+      description: 'Triggered when the language is selected by the user.',
+      params: {
+        language: {
+          description: 'the selected language',
+          types: ['string'],
+        }
+      }
+    },
+    FormSteps: {
+      description: 'Triggered when a step becomes active.',
+      params: {
+        activeStep$: {
+          description: 'the active step',
+          types: ['component'],
+        },
+        previousStep$: {
+          description: 'the previously active step',
+          types: ['component'],
+        },
+      }
+    },
+    FormTabs: {
+      description: 'Triggered when a tab becomes active.',
+      params: {
+        activeTab$: {
+          description: 'the active tab',
+          types: ['component'],
+        },
+        previousTab$: {
+          description: 'the previously active tab',
+          types: ['component'],
+        },
       }
     },
   },
@@ -488,6 +550,15 @@ export default {
       },
       private: true,
     },
+    EditorWrapper: {
+      description: 'Triggered when the editor\'s value is changed.',
+      params: {
+        value: {
+          description: 'the new value of the element contained in an object: `value.target.value`',
+          types: ['object']
+        },
+      },
+    },
   },
   'update:modelValue': {
     Vueform: {
@@ -503,15 +574,15 @@ export default {
   },
   click: {
     DragAndDrop: {
-      description: '',
+      description: 'Triggered when the drag and drop area is clicked.',
     },
   },
   drop: {
     DragAndDrop: {
-      description: '',
+      description: 'Triggered when a file is dropped.',
       params: {
-        e: {
-          description: '',
+        event: {
+          description: 'the drop Event',
           types: ['Event'],
         }
       }
@@ -526,7 +597,8 @@ export default {
           types: ['component'],
         }
       }
-    }
+    },
+    
   },
   previous: {
     FormSteps: {
@@ -544,4 +616,35 @@ export default {
       description: 'Triggered when finish button is clicked, before validating and submitting the form.',
     }
   },
+  activate: {
+    FormStep: {
+      description: 'Triggered when the step becomes active.'
+    },
+    FormTab: {
+      description: 'Triggered when the tab becomes active.'
+    },
+  },
+  inactivate: {
+    FormStep: {
+      description: 'Triggered when the step becomes inactive.'
+    },
+    FormTab: {
+      description: 'Triggered when the tab becomes inactive.'
+    },
+  },
+  enable: {
+    FormStep: {
+      description: 'Triggered when the step becomes enabled.'
+    },
+  },
+  disable: {
+    FormStep: {
+      description: 'Triggered when the step becomes disabled.'
+    },
+  },
+  complete: {
+    FormStep: {
+      description: 'Triggered when the step becomes [`completed`](#property-completed).'
+    },
+  }
 }

@@ -173,7 +173,7 @@ export default {
     // ============== COMPUTED ==============
     
     /**
-     * The components of highest level form elements.
+     * The form elements' components.
      * 
      * @type {object}
      */
@@ -214,7 +214,7 @@ export default {
     })
 
     /**
-     * The components of form elements within the step.
+     * The elements' components in the step.
      * 
      * @type {object}
      */
@@ -261,7 +261,7 @@ export default {
     })
 
     /**
-      * Whether all the elements in the step has been validated.
+      * Whether all the elements in the step were already validated at least once.
       * 
       * @type {boolean}
       */

@@ -1,6 +1,15 @@
 <template>
   <label :class="classes.container">
-    <slot :classes="classes" v-bind="{ name: `${el$.path}-${value}` }" :is-disabled="isDisabled" :id="`${el$.fieldId}-${value}`" :item="item" :value="value">
+    <slot
+      v-bind="{ name: `${el$.path}-${value}` }"
+      :classes="classes"
+      :is-disabled="isDisabled"
+      :id="`${el$.fieldId}-${value}`"
+      :item="item"
+      :value="value"
+      :items="items"
+      :index="index"
+    >
       <input
         type="checkbox"
         v-model="el$.model"
@@ -12,8 +21,8 @@
      />
 
       <span 
-        :class="classes.label"
-        v-html="item"
+        :class="classes.text"
+        v-html="item.label"
       />
     </slot>
   </label>

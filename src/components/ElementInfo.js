@@ -21,7 +21,7 @@ export default {
     // ============== COMPUTED ==============
 
     /**
-     * The info for the element, defined via `:info` prop.
+     * The info for the element, defined via the element's `info` prop.
      * 
      * @type {string}
      */

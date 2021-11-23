@@ -7,7 +7,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether no [`conditions`](#options-conditions) are defined or they are all fulfilled."
+          "description": "Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled."
         }
       }
     }
@@ -52,7 +52,7 @@ export default {
       },
       "computed": {
         "classes": {
-          "public": false,
+          "public": true,
           "types": [
             "object"
           ],
@@ -63,7 +63,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "Returns the components used by the parent element."
+          "description": "Returns the component templates used by the parent element."
         },
         "mainClass": {
           "public": false,
@@ -90,14 +90,14 @@ export default {
         "component": {
           "public": false,
           "returns": "string",
-          "description": "Transforms an element `:type` into the element's component name.",
+          "description": "Transforms an element `type` into the element's component name.",
           "params": {
             "element": {
               "types": [
                 "string"
               ],
               "required": true,
-              "description": "element `:type`"
+              "description": "element `type`"
             }
           }
         }
@@ -210,7 +210,7 @@ export default {
       },
       "computed": {
         "classes": {
-          "public": false,
+          "public": true,
           "types": [
             "object"
           ],
@@ -221,7 +221,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "Returns the components used by the form."
+          "description": "Returns the component templates used by the form."
         },
         "mainClass": {
           "public": false,
@@ -251,7 +251,7 @@ export default {
             "string",
             "component"
           ],
-          "description": "The label of the component. If the label is provided is a `function` this has the resolved value."
+          "description": "The label of the component. If the label is provided as a `function` this contains the resolved value."
         },
         "isLabelComponent": {
           "public": false,
@@ -410,14 +410,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the file should be clickable if it is already uploaded."
+          "description": "Whether the file should be clickable if it is already permantently uploaded."
         },
         "uploaded": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the temporary or final file is uploaded."
+          "description": "Whether the temporary or permanent file is uploaded."
         },
         "uploading": {
           "public": true,
@@ -452,7 +452,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The text for upload button. Can be changed at the locale file: `vueform.elements.file.upload`"
+          "description": "The text for upload button. Can be also changed in the locale file: `vueform.elements.file.upload`"
         }
       },
       "methods": {
@@ -681,14 +681,14 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the `:validateOn` prop or `config.validateOn` contains `'change'`."
+          "description": "Whether the `validateOn` prop or `config.validateOn` contains `'change'`."
         },
         "shouldValidateOnStep": {
           "public": false,
           "types": [
             "boolean"
           ],
-          "description": "Whether the `:validateOn` prop or `config.validateOn` contains `'step'`."
+          "description": "Whether the `validateOn` prop or `config.validateOn` contains `'step'`."
         },
         "hasSteps": {
           "public": false,
@@ -737,7 +737,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`:displayMessages`](#option-display-messages) or in `config.displayMessages`."
+          "description": "Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`displayMessages`](#option-display-messages) or in `config.displayMessages`."
         },
         "showLanguages": {
           "public": true,

@@ -452,10 +452,10 @@ export default {
       templates: templates.templates,
     }, {
       slots: [
+        'tag',
         'option',
         'placeholder',
         'group-label', 
-        'tag',
         'before-list',
         'after-list',
         'no-results',

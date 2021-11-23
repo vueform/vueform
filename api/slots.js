@@ -48,6 +48,39 @@ export default {
     Vueform: {
       description: `@require content/reference/1.x/examples/slots/default/vueform`,
     },
+    ElementAddon: {
+      description: 'Renders the content of the addon if the [`type`](#option-type) is not defined in the parent element\'s the `addons` option.',
+    },
+    ElementDescription: {
+      description: 'Renders the content of the description if the parent element has no `description`.',
+    },
+    ElementInfo: {
+      description: 'Renders the content of the info when the info icon is hovered, if the parent element has no `info`.',
+    },
+    ElementLabel: {
+      description: 'Renders the content of the label if the parent element has no `label`.',
+    },
+    ElementText: {
+      description: 'Renders the text if the parent element has no [`type`](#option-type) defined as option (`before|between|after`).',
+    },
+    FormElements: {
+      description: 'Renders the elements.'
+    },
+    FormStep: {
+      description: 'Renders the label for the step.',
+    },
+    FormSteps: {
+      description: 'Renders the form steps. Must contain a [`FormStep`](#form-step) component for each step.'
+    },
+    FormStepsControl: {
+      description: 'Renders the text of the control button.'
+    },
+    FormTab: {
+      description: 'Renders the label for the tab.',
+    },
+    FormTabs: {
+      description: 'Renders the form tabs. Must contain a [`FormTab`](#form-tab) component for each tab.'
+    },
   },
   'empty': {
     Vueform: {
@@ -63,7 +96,13 @@ export default {
         }
       },
       description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
-    }
+    },
+    ElementLayout: {
+      description: 'Passes its content to the `ElementLabel`\'s [`default`](element-label#slot-default) slot.',
+    },
+    ElementLayoutInline: {
+      description: 'Passes its content to the `ElementLabel`\'s [`default`](element-label#slot-default) slot.',
+    },
   },
   'info': {
     default: {
@@ -74,7 +113,16 @@ export default {
         }
       },
       description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
-    }
+    },
+    ElementLayout: {
+      description: 'Passes its content to the `ElementLabel`\'s [`info`](element-info#slot-default) slot. It will only be rendered if `label` is defined as well.',
+    },
+    ElementLayoutInline: {
+      description: 'Passes its content to the `ElementLabel`\'s [`info`](element-info#slot-default) slot. It will only be rendered if `label` is defined as well.',
+    },
+    ElementLabel: {
+      description: 'Passes its content to `ElementInfo`\'s [`default`](element-info#slot-default) slot.',
+    },
   },
   'description': {
     default: {
@@ -85,7 +133,13 @@ export default {
         }
       },
       description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
-    }
+    },
+    ElementLayout: {
+      description: 'Passes its content to the `ElementDescription`\'s [`default`](element-description#slot-default) slot.',
+    },
+    ElementLayoutInline: {
+      description: 'Passes its content to the `ElementDescription`\'s [`default`](element-description#slot-default) slot.',
+    },
   },
   'before': {
     default: {
@@ -96,7 +150,13 @@ export default {
         }
       },
       description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
-    }
+    },
+    ElementLayout: {
+      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "before"`.',
+    },
+    ElementLayoutInline: {
+      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "before"`.',
+    },
   },
   'between': {
     default: {
@@ -107,7 +167,13 @@ export default {
         }
       },
       description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
-    }
+    },
+    ElementLayout: {
+      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "between"`.',
+    },
+    ElementLayoutInline: {
+      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "between"`.',
+    },
   },
   'after': {
     default: {
@@ -118,7 +184,13 @@ export default {
         }
       },
       description: 'Renders an [`ElementText`](element-text) component after the description and error.',
-    }
+    },
+    ElementLayout: {
+      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "after"`.',
+    },
+    ElementLayoutInline: {
+      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "after"`.',
+    },
   },
   'addon-before': {
     default: {
@@ -158,6 +230,14 @@ export default {
           description: 'the checkbox value',
           types: ['string|number'],
         },
+        items: {
+          description: 'the checkbox items',
+          types: ['object'],
+        },
+        index: {
+          description: 'the index of current checkbox',
+          types: ['number'],
+        },
         id: {
           description: 'the `id` attribute of the checkbox field used by the default template',
           types: ['string'],
@@ -192,6 +272,14 @@ export default {
         value: {
           description: 'the radio value',
           types: ['string|number'],
+        },
+        items: {
+          description: 'the radio items',
+          types: ['object'],
+        },
+        index: {
+          description: 'the index of current radio',
+          types: ['number'],
         },
         id: {
           description: 'the `id` attribute of the radio field used by the default template',
@@ -389,6 +477,26 @@ export default {
           types: ['component'],
         },
       },
+    },
+  },
+  'previous': {
+    FormStepsControls: {
+      description: 'Renders the text of the previous button in [`FormStepsControl`](form-steps-control) component if the current `FormStep`\'s [`labels`](form-step#option-labels) does not contain `previous`. `FormStepsControls` need to have [`labels: false`](#option-labels) in order to use this slot.'
+    },
+  },
+  'next': {
+    FormStepsControls: {
+      description: 'Renders the text of the next button in [`FormStepsControl`](form-steps-control) component if the current `FormStep`\'s [`labels`](form-step#option-labels) does not contain `next`. `FormStepsControls` need to have [`labels: false`](#option-labels) in order to use this slot.'
+    },
+  },
+  'finish': {
+    FormStepsControls: {
+      description: 'Renders the text of the previous button in [`FormStepsControl`](form-steps-control) component if the current `FormStep`\'s [`labels`](form-step#option-labels) does not contain `finish`. `FormStepsControls` need to have [`labels: false`](#option-labels) in order to use this slot.'
+    },
+  },
+  'field': {
+    default: {
+      description: 'Replaces the layout\'s element field. This is the slot used by each element to render their content.',
     },
   },
 }
