@@ -152,10 +152,10 @@ export default {
       description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
     },
     ElementLayout: {
-      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "before"`.',
+      description: 'Passes its content to the `ElementText`\'s [`default`](element-text#slot-default) slot with `type: "before"`.',
     },
     ElementLayoutInline: {
-      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "before"`.',
+      description: 'Passes its content to the `ElementText`\'s [`default`](element-text#slot-default) slot with `type: "before"`.',
     },
   },
   'between': {
@@ -169,10 +169,10 @@ export default {
       description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
     },
     ElementLayout: {
-      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "between"`.',
+      description: 'Passes its content to the `ElementText`\'s [`default`](element-text#slot-default) slot with `type: "between"`.',
     },
     ElementLayoutInline: {
-      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "between"`.',
+      description: 'Passes its content to the `ElementText`\'s [`default`](element-text#slot-default) slot with `type: "between"`.',
     },
   },
   'after': {
@@ -186,10 +186,10 @@ export default {
       description: 'Renders an [`ElementText`](element-text) component after the description and error.',
     },
     ElementLayout: {
-      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "after"`.',
+      description: 'Passes its content to the `ElementText`\'s [`default`](element-text#slot-default) slot with `type: "after"`.',
     },
     ElementLayoutInline: {
-      description: 'Passes its content to the `ElementText`\'s [`default`]](element-text#slot-default) slot with `type: "after"`.',
+      description: 'Passes its content to the `ElementText`\'s [`default`](element-text#slot-default) slot with `type: "after"`.',
     },
   },
   'addon-before': {

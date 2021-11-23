@@ -7,7 +7,6 @@ const base = function (props, context, dependencies)
   const {
     type,
     embed,
-    clickable,
     auto,
     methods,
     urls,

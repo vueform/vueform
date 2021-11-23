@@ -698,13 +698,13 @@ module.exports = {
         "description": "Passes its content to the `ElementDescription`'s [`default`](element-description#slot-default) slot."
       },
       "before": {
-        "description": "Passes its content to the `ElementText`'s [`default`]](element-text#slot-default) slot with `type: \"before\"`."
+        "description": "Passes its content to the `ElementText`'s [`default`](element-text#slot-default) slot with `type: \"before\"`."
       },
       "between": {
-        "description": "Passes its content to the `ElementText`'s [`default`]](element-text#slot-default) slot with `type: \"between\"`."
+        "description": "Passes its content to the `ElementText`'s [`default`](element-text#slot-default) slot with `type: \"between\"`."
       },
       "after": {
-        "description": "Passes its content to the `ElementText`'s [`default`]](element-text#slot-default) slot with `type: \"after\"`."
+        "description": "Passes its content to the `ElementText`'s [`default`](element-text#slot-default) slot with `type: \"after\"`."
       }
     }
   },
@@ -787,13 +787,13 @@ module.exports = {
         "description": "Passes its content to the `ElementDescription`'s [`default`](element-description#slot-default) slot."
       },
       "before": {
-        "description": "Passes its content to the `ElementText`'s [`default`]](element-text#slot-default) slot with `type: \"before\"`."
+        "description": "Passes its content to the `ElementText`'s [`default`](element-text#slot-default) slot with `type: \"before\"`."
       },
       "between": {
-        "description": "Passes its content to the `ElementText`'s [`default`]](element-text#slot-default) slot with `type: \"between\"`."
+        "description": "Passes its content to the `ElementText`'s [`default`](element-text#slot-default) slot with `type: \"between\"`."
       },
       "after": {
-        "description": "Passes its content to the `ElementText`'s [`default`]](element-text#slot-default) slot with `type: \"after\"`."
+        "description": "Passes its content to the `ElementText`'s [`default`](element-text#slot-default) slot with `type: \"after\"`."
       }
     }
   },
