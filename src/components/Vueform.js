@@ -396,23 +396,9 @@ export default {
     },
   },
   render() {
-    let renderer
-
-    try {
-      renderer = this.templates.Vueform
-    } catch (e) {
-      console.log('Vueform')
-      throw new Error(e)
-    }
-
-    try {
-      if (!this.$options?.staticRenderFns && renderer.staticRenderFns) {
-        this.$options.staticRenderFns = renderer.staticRenderFns
-      }
-    } catch (e) {
-      throw new Error(e)
-    }
-    
-    return renderer.render.apply(this, arguments)
+    return this.templates.Vueform.render.apply(this, arguments)
+  },
+  staticRenderFns: () => {
+    return this.templates.Vueform.staticRenderFns
   }
 }

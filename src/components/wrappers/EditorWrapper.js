@@ -144,7 +144,7 @@ export default {
         return
       }
 
-      if (acceptMimes.value.length && acceptMimes.value.indexOf(e.file.type) === -1) {
+      if (acceptMimes.value && acceptMimes.value.length && acceptMimes.value.indexOf(e.file.type) === -1) {
         e.preventDefault()
 
         context.emit('alert', form$.value.__('vueform.editor.acceptedMimesError', {
@@ -154,7 +154,7 @@ export default {
 
       var extension = e.file.name.split('.').pop()
 
-      if (accept.value.length && accept.value.indexOf(extension) === -1) {
+      if (accept.value && accept.value.length && accept.value.indexOf(extension) === -1) {
         e.preventDefault()
 
         context.emit('alert', form$.value.__('vueform.editor.acceptedExtensionsError', {

@@ -8,7 +8,7 @@ const config = {
   classes: {},
   columns: {
     container: 12,
-    label: 3,
+    label: 12,
     wrapper: 12,
   },
   forceLabels: false,
@@ -59,19 +59,19 @@ const config = {
       method: 'post',
     },
     attachment: {
-      url: '/editor/attachment',
+      url: '/vueform/editor/attachment',
       method: 'post',
     },
     activeUrl: {
-      url: '/validators/active_url',
+      url: '/vueform/validators/active_url',
       method: 'post',
     },
     unique: {
-      url: '/validators/unique',
+      url: '/vueform/validators/unique',
       method: 'post',
     },
     exists: {
-      url: '/validators/exists',
+      url: '/vueform/validators/exists',
       method: 'post',
     },
   },
