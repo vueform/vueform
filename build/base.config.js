@@ -6,9 +6,9 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 export default [
   {
-    input: 'src/components/Vueform.js',
+    input: 'src/components/VueformBlank.js',
     output: {
-      file: 'dist/partials/Vueform.js',
+      file: 'dist/partials/VueformBlank.js',
       format: 'esm',
       sourcemap: false,
     },

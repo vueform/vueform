@@ -285,6 +285,7 @@
     border: var(--vf-border-width) solid var(--vf-border-color);
     outline: none;
     border-radius: var(--vf-border-radius);
+    min-height: var(--vf-input-min-height);
 
     &:focus {
       box-shadow: 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);

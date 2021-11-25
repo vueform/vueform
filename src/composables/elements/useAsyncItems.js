@@ -37,6 +37,10 @@ const base = function(props, context, dependencies)
     let nativeItems = []
     
     _.each(resolvedItems.value, (item, key) => {
+      if ([null, undefined].indexOf(item) !== -1) {
+        return
+      }
+      
       if (Array.isArray(resolvedItems.value) && typeof item === 'object') {
         if (item.value === undefined) {
           throw new Error('You must define `value` property for each option when using an array of objects options for select element')
@@ -161,6 +165,10 @@ const checkboxgroup = function(props, context, dependencies) {
     let resolvedItems = {}
     
     _.each(resolvedItemList.value, (item, key) => {
+      if ([null, undefined].indexOf(item) !== -1) {
+        return
+      }
+
       if (Array.isArray(resolvedItemList.value) && typeof item === 'object') {
         if (item.value === undefined) {
           throw new Error('You must define `value` property for each item when using an array of objects options')
