@@ -25,16 +25,6 @@
   :root {
     --vf-primary: #10B981;
 
-    --vf-primary-100: #D1FAE5;
-    --vf-primary-200: #A7F3D0;
-    --vf-primary-300: #6EE7B7;
-    --vf-primary-400: #34D399;
-    --vf-primary-500: #10B981;
-    --vf-primary-600: #059669;
-    --vf-primary-700: #047857;
-    --vf-primary-800: #065F46;
-    --vf-primary-900: #064E3B;
-
     --vf-error-bg: #FEE2E2;
     --vf-error-color: #EF4444;
     --vf-success-bg: #D1FAE5;
@@ -53,12 +43,6 @@
     --vf-gutter: 1rem;
     --vf-input-min-height: 2.375rem;
 
-    --vf-bg-disabled: var(--vf-gray-200);
-    --vf-color-disabled: var(--vf-gray-400);
-
-    --vf-placeholder-color: var(--vf-gray-400);
-    --vf-placeholder-opacity: 1;
-
     --vf-border-width: 1px;
     --vf-border-color: var(--vf-gray-300);
     --vf-border-radius: 0.25rem;
@@ -71,15 +55,21 @@
     --vf-button-py: 0.4375rem;
     --vf-button-px: 1rem;
     
-    --vf-addon-bg: var(--vf-gray-100);
-    --vf-addon-color: inherit;
-    
     --vf-element-text-font-size: 0.875rem;
     --vf-element-text-line-height: 1.25rem;
-    --vf-element-description-color: var(--vf-gray-500);
 
     --vf-checkbox-size: 1rem;
     --vf-gallery-size: 6rem;
+    --vf-bg-disabled: var(--vf-gray-200);
+    --vf-color-disabled: var(--vf-gray-400);
+
+    --vf-placeholder-color: var(--vf-gray-400);
+    --vf-placeholder-opacity: 1;
+
+    --vf-element-description-color: var(--vf-gray-500);
+      
+    --vf-addon-bg: var(--vf-gray-100);
+    --vf-addon-color: inherit;
 
     --vf-date-head-bg: var(--vf-gray-100);
     --vf-date-head-color: var(--vf-gray-700);
@@ -181,8 +171,8 @@
     --vf-select-dropdown-border-width: var(--vf-border-width);
     --vf-select-dropdown-radius: var(--vf-border-radius);
 
-    --vf-select-group-label-py: inherit;
-    --vf-select-group-label-px: inherit;
+    --vf-select-group-label-py: 0.3rem;
+    --vf-select-group-label-px: 0.75rem;
     --vf-select-group-label-line-height: 1.375;
     --vf-select-group-label-bg: var(--vf-gray-200);
     --vf-select-group-label-color: var(--vf-gray-700);
@@ -190,12 +180,12 @@
     --vf-select-group-label-color-pointed: var(--vf-gray-700);
     --vf-select-group-label-bg-disabled: var(--vf-gray-100);
     --vf-select-group-label-color-disabled: var(--vf-gray-300);
-    --vf-select-group-label-bg-selected: var(--vf-primary-600);
+    --vf-select-group-label-bg-selected: var(--vf-primary);
     --vf-select-group-label-color-selected: #FFFFFF;
-    --vf-select-group-label-bg-selected-pointed: var(--vf-primary-600);
+    --vf-select-group-label-bg-selected-pointed: var(--vf-primary);
     --vf-select-group-label-color-selected-pointed: #FFFFFF;
     --vf-select-group-label-opacity-selected-pointed: 0.85;
-    --vf-select-group-label-bg-selected-disabled: var(--vf-primary-600);
+    --vf-select-group-label-bg-selected-disabled: var(--vf-primary);
     --vf-select-group-label-color-selected-disabled: #FFFFFF;
     --vf-select-group-label-opacity-selected-disabled: 0.5;
 
@@ -207,12 +197,12 @@
     --vf-select-option-color-selected: #FFFFFF;
     --vf-select-option-bg-disabled: #FFFFFF;
     --vf-select-option-color-disabled: var(--vf-gray-300);
-    --vf-select-option-bg-selected-pointed: #var(--vf-primary);
+    --vf-select-option-bg-selected-pointed: var(--vf-primary);
     --vf-select-option-color-selected-pointed: #FFFFFF;
-    --vf-select-select-option-opacity-selected-pointed: 0.85;
+    --vf-select-option-opacity-selected-pointed: 0.85;
     --vf-select-option-bg-selected-disabled: var(--vf-primary);
     --vf-select-option-color-selected-disabled: #FFFFFF;
-    --vf-select-select-option-opacity-selected-disabled: 0.5;
+    --vf-select-option-opacity-selected-disabled: 0.5;
     --vf-select-option-py: calc(var(--vf-input-py) + var(--vf-border-width));
     --vf-select-option-px: var(--vf-input-px);
 
@@ -285,6 +275,7 @@
     border: var(--vf-border-width) solid var(--vf-border-color);
     outline: none;
     border-radius: var(--vf-border-radius);
+    min-height: var(--vf-input-min-height);
 
     &:focus {
       box-shadow: 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
@@ -307,7 +298,7 @@
     border-radius: var(--vf-border-radius);
     border: 1px solid var(--vf-border-color);
     outline: none;
-    margin: 0 0.375rem 0 0;
+    margin: 0.25rem 0.375rem 0 0;
     position: relative;
     flex-shrink: 0;
 
@@ -356,7 +347,7 @@
 
   .vf-checkbox-wrapper {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     width: 100%;
     padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
   }
@@ -377,7 +368,7 @@
     border: 1px solid var(--vf-border-color);
     outline: none;
     border-radius: 50%;
-    margin: 0 0.375rem 0 0;
+    margin: 0.25rem 0.375rem 0 0;
     flex-shrink: 0;
 
     &:focus {
@@ -432,7 +423,7 @@
 
   .vf-radio-wrapper {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     width: 100%;
     padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
   }

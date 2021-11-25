@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'vf-radio-container',
+          container: 'vf-radio-wrapper',
           input: 'vf-radio',
           input_enabled: '',
           input_disabled: '',

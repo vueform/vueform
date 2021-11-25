@@ -2,7 +2,7 @@ import installer from './partials/installer'
 import config from './partials/config'
 import components from './partials/components'
 import useVueform from './partials/useVueform'
-import Vueform from './partials/Vueform'
+import Vueform from './partials/VueformBlank'
 
 export default installer(config, components)
 

@@ -18,7 +18,7 @@
 
 <style lang="scss">
   .vf-element-info {
-    margin-left: 0.5rem;
+    margin-left: 0.25rem;
     position: relative;
     top: 1px;
     cursor: pointer;

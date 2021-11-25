@@ -7,7 +7,7 @@
     data() {
       return {
         defaultClasses: {
-          container: 'vf-checkbox-container',
+          container: 'vf-checkbox-wrapper',
           input: 'vf-checkbox',
           input_enabled: '',
           input_disabled: '',
