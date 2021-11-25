@@ -31,8 +31,7 @@
         "generate:e": "npm run generate:elements ; npm run generate:features:elements ; npm run generate:features:common ; npm run generate:components:elements",
         "generate:c": "npm run generate:features:common ; npm run generate:components:components",
         "generate:all": "npm run generate:elements ; npm run generate:features:elements ; npm run generate:features:common ; npm run generate:components:elements ; npm run generate:components:components",
-        "build": "rollup --config build/base.config.js",
-        "build:instance": "rollup --config build/instance.config.js"
+        "build": "rollup --config build/base.config.js"
     },
     "devDependencies": {
         "@babel/core": "^7.2.2",
