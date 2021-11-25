@@ -40,7 +40,7 @@
     font-weight: var(--vf-select-tag-font-weight);
     padding: var(--vf-select-tag-py) 0 var(--vf-select-tag-py) var(--vf-select-tag-px);
     border-radius: var(--vf-select-tag-radius);
-    margin-right: var(--vf-select-tag-mxx);
+    margin-right: var(--vf-select-tag-mx);
     margin-bottom: var(--vf-select-tag-my);
     display: flex;
     align-items: center;
