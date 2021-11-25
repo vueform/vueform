@@ -341,7 +341,7 @@ var base$$ = function base(props, context, dependencies) {
     delete listeners.value[evt];
   };
   /**
-   * Fires & emits an event.
+   * Fires and emits an event.
    *
    * @param {any} args list of arguments to pass over to the event callback 
    * @returns {void}
@@ -389,7 +389,7 @@ function useModel (props, context, dependencies) {
 
   var $this = dependencies.$this;
   /**
-   * Any `v-model` / `:value` / `:modelValue` prop provided for the form.
+   * Any `v-model` / `value` / `modelValue` prop provided for the form.
    * 
    * @type {object}
    * @private
@@ -615,7 +615,7 @@ var base$_ = function base(props, context) {
 
   var steps$ = ref(null);
   /**
-   * Enables validation for the form globally.
+   * Enables/disables validation for the form globally.
    * 
    * @type {boolean}
    * @default true
@@ -623,7 +623,7 @@ var base$_ = function base(props, context) {
 
   var validation = ref(true);
   /**
-   * Instance of MessageBag service.
+   * Instance of MessageBag service. It can be used to add [custom errors and messages](docs/1.x/validating-elements#custom-errors-and-messages).
    * 
    * @type {MessageBag}
    * @default MessageBag
@@ -631,7 +631,7 @@ var base$_ = function base(props, context) {
 
   var messageBag = ref({});
   /**
-   * Whether the form is currently submitting.
+   * Whether the async process of submitting the form is currently in progress.
    * 
    * @type {boolean}
    * @default false
@@ -639,7 +639,7 @@ var base$_ = function base(props, context) {
 
   var submitting = ref(false);
   /**
-   * Whether the form is currently preparing the elements for submit.
+   * Whether the async process of preparing the elements for submit is currently in progress.
    * 
    * @type {boolean}
    * @default false
@@ -647,7 +647,7 @@ var base$_ = function base(props, context) {
 
   var preparing = ref(false);
   /**
-   * The ISO 639-1 code of the currently selected language (2 letters).
+   * The code of the currently selected language (eg. `en`).
    * 
    * @type {string}
    * @default config.language
@@ -665,7 +665,7 @@ var base$_ = function base(props, context) {
   var userConfig = ref({}); // ============== COMPUTED ==============
 
   /**
-   * The form's component (self).
+   * The form component instance (self).
    * 
    * @type {component}
    */
@@ -826,7 +826,7 @@ var base$_ = function base(props, context) {
     return orderedSchema;
   });
   /**
-   * The form's schema merged from `:schema` prop and the component's `data.vueform.schema` object.
+   * The form's schema merged from `schema` prop and the component's `data.vueform.schema` object.
    * 
    * @type {object}
    * @private
@@ -836,7 +836,7 @@ var base$_ = function base(props, context) {
     return _$1.merge({}, schema && schema.value ? schema.value : {}, userConfig.value.schema || {});
   });
   /**
-   * The form's tabs merged from `:tabs` prop and the component's `data.vueform.tabs` object.
+   * The form's tabs merged from `tabs` prop and the component's `data.vueform.tabs` object.
    * 
    * @type {object}
    * @private
@@ -846,7 +846,7 @@ var base$_ = function base(props, context) {
     return _$1.merge({}, tabs && tabs.value ? tabs.value : {}, userConfig.value.tabs || {});
   });
   /**
-   * The form's steps merged from `:steps` prop and the component's `data.vueform.steps` object.
+   * The form's steps merged from `steps` prop and the component's `data.vueform.steps` object.
    * 
    * @type {object}
    * @private
@@ -856,7 +856,7 @@ var base$_ = function base(props, context) {
     return _$1.merge({}, steps && steps.value ? steps.value : {}, userConfig.value.steps || {});
   });
   /**
-   * The form data including all the elements even if they have unmet conditions.
+   * The form data including the data of all elements even the ones with `available: false` and `submit: false`.
    * 
    * @type {object}
    */
@@ -875,7 +875,7 @@ var base$_ = function base(props, context) {
     return data;
   });
   /**
-   * The form data excluding elements with `available: false`. This one gets submitted.
+   * The form data excluding elements with `available: false` and `submit: false`. This one gets submitted by default, but can be changed with [`formData`](#option-form-data)
    * 
    * @type {object}
    */
@@ -894,7 +894,7 @@ var base$_ = function base(props, context) {
     return formatData.value ? formatData.value(requestData) : requestData;
   });
   /**
-   * Whether the form has any dirty elements.
+   * Whether the form has any elements which were modified.
    * 
    * @type {boolean}
    */
@@ -916,7 +916,7 @@ var base$_ = function base(props, context) {
     });
   });
   /**
-   * Whether the form has any debouncing elements.
+   * Whether the form has any elements with active debounce process.
    * 
    * @type {boolean}
    */
@@ -927,7 +927,7 @@ var base$_ = function base(props, context) {
     });
   });
   /**
-   * Whether the form has any pending elements.
+   * Whether the form has any elements with pending async validation.
    * 
    * @type {boolean}
    */
@@ -938,7 +938,7 @@ var base$_ = function base(props, context) {
     });
   });
   /**
-   * Whether each element of the form has been validated.
+   * Whether each element in the form has been validated at least once.
    * 
    * @type {boolean}
    */
@@ -949,7 +949,7 @@ var base$_ = function base(props, context) {
     });
   });
   /**
-   * Whether the form has any busy elements or [`:loading`](#loading) is `true` or in [`preparing`](#preparing) or [`submitting`](#submitting) state.
+   * Whether the form has any elements with `busy: true` or the [`isLoading`](#property-is-loading), [`preparing`](#property-preparing) or [`submitting`](#property-submitting) property is `true`.
    * 
    * @type {boolean}
    */
@@ -957,7 +957,7 @@ var base$_ = function base(props, context) {
   var busy = computed(function () {
     return _$1.some(elements$.value, function (element$) {
       return element$.isStatic === false && element$.available === true && element$.busy === true;
-    }) || submitting.value || preparing.value || options.value.loading;
+    }) || submitting.value || preparing.value || isLoading.value;
   }); // no export
 
   /**
@@ -982,7 +982,7 @@ var base$_ = function base(props, context) {
     return errors;
   });
   /**
-   * Form errors including element errors and the ones added to [`messageBag`](#messagebag) manually.
+   * Form errors including element errors and the ones added to [`messageBag`](#property-message-bag) manually.
    * 
    * @type {array}
    */
@@ -1000,7 +1000,7 @@ var base$_ = function base(props, context) {
     return formErrors.value.length > 0;
   });
   /**
-   * Whether the form should display errors above the form with [`FormErrors`](form-errors) component. Can be disabled by [`:displayErrors`](#displayerrors) or in `config.displayErrros`.
+   * Whether the form should display errors above the form with [`FormErrors`](form-errors) component. Can be disabled by [`displayErrors`](#option-display-errors) or in `config.displayErrors`.
    * 
    * @type {boolean}
    */
@@ -1009,7 +1009,7 @@ var base$_ = function base(props, context) {
     return hasErrors.value && options.value.displayErrors;
   });
   /**
-   * Form messages including element messages and the ones added to [`messageBag`](#messagebag) manually.
+   * Form messages including element messages and the ones added to [`messageBag`](#property-message-bag) manually.
    * 
    * @type {array}
    */
@@ -1018,7 +1018,7 @@ var base$_ = function base(props, context) {
     return messageBag.value.messages;
   });
   /**
-   * Whether the form has anymessages.
+   * Whether the form has any messages.
    * 
    * @ignore
    * @type {boolean}
@@ -1028,7 +1028,7 @@ var base$_ = function base(props, context) {
     return formMessages.value.length > 0;
   });
   /**
-   * Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`:displayMessages`](#displaymessages) or in `config.displayMessages`.
+   * Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`displayMessages`](#option-display-messages) or in `config.displayMessages`.
    * 
    * @type {boolean}
    */
@@ -1037,7 +1037,7 @@ var base$_ = function base(props, context) {
     return hasMessages.value && options.value.displayMessages;
   });
   /**
-   * Whether the form is multilingual and should show [`FormLanguages`](form-languages) component.
+   * Whether the form is multilingual and should show [`FormLanguages`](form-languages) component. Returns `true` if [`multilingual`](#option-multilingual) is enabled.
    * 
    * @type {boolean}
    */
@@ -1055,7 +1055,10 @@ var base$_ = function base(props, context) {
     return isMultilingual.value;
   });
   /**
-   * Whether submitting the form is disabled. Returns `true` if:<br>* the form has any invalid elements and `:validateOn` contains `'change'`<br>* the form is [`busy`](#busy)<br>* manually disabled with [`:disabled`](#disabled) prop
+   * Whether submitting the form is disabled. Returns `true` if:
+   * * the form has any invalid elements and [`validateOn`](#option-validate-on) contains `change`
+   * * the form is [`busy`](#property-busy)
+   * * manually disabled with [`disabled`](#option-disabled) option.
    * 
    * @type {boolean}
    */
@@ -1064,7 +1067,7 @@ var base$_ = function base(props, context) {
     return invalid.value && shouldValidateOnChange.value || busy.value || options.value.disabled;
   });
   /**
-   * Whether submitting the form is in loading state. Can be enabled with [`:loading`](#loading) prop.
+   * Whether loading state is triggered manually via [`loading`](#option-loading) option.
    * 
    * @type {boolean}
    */
@@ -1073,7 +1076,7 @@ var base$_ = function base(props, context) {
     return options.value.loading;
   });
   /**
-   * Whether the `:validateOn` prop or `config.validateOn` contains `'change'`.
+   * Whether the `validateOn` prop or `config.validateOn` contains `'change'`.
    * 
    * @type {boolean}
    * @private
@@ -1083,7 +1086,7 @@ var base$_ = function base(props, context) {
     return options.value.validateOn.split('|').indexOf('change') !== -1;
   });
   /**
-   * Whether the `:validateOn` prop or `config.validateOn` contains `'step'`.
+   * Whether the `validateOn` prop or `config.validateOn` contains `'step'`.
    * 
    * @type {boolean}
    * @private
@@ -1103,7 +1106,7 @@ var base$_ = function base(props, context) {
     return !_$1.isEmpty(options.value.steps);
   });
   /**
-   * Whether the form should show [`FormSteps`](form-steps) component. Returns `true` if [`:steps`](#steps) has a value.
+   * Whether the form should show [`FormSteps`](form-steps) component. Returns `true` if [`steps`](#option-steps) has value.
    * 
    * @type {boolean}
    */
@@ -1112,7 +1115,7 @@ var base$_ = function base(props, context) {
     return hasSteps.value;
   });
   /**
-   * Whether the form should display steps controls below form with [`FormStepsControls`](form-steps-control) component when it has [`:steps`](#steps). Can be disabled by [`:stepsControls`](#stepscontrols) or in `config.stepsControls`.
+   * Whether the form should display steps controls below form with [`FormStepsControls`](form-steps-control) component when it has [`steps`](#option-steps). Can be disabled with [`stepsControls`](#option-steps-controls).
    * 
    * @type {boolean}
    */
@@ -1131,7 +1134,7 @@ var base$_ = function base(props, context) {
     return !_$1.isEmpty(options.value.tabs);
   });
   /**
-   * Whether the form should show [`FormTabs`](form-tabs) component. Returns `true` if [`:tabs`](#tabs) has a value.
+   * Whether the form should show [`FormTabs`](form-tabs) component. Returns `true` if [`tabs`](#option-tabs) has value.
    * 
    * @type {boolean}
    */
@@ -1140,7 +1143,7 @@ var base$_ = function base(props, context) {
     return hasTabs.value;
   });
   /**
-   * The selected theme, extended by local overrides. Normally we use `theme` property for this, but as Vueform component needs to have an actual [`:theme`](#theme) prop so we use this naming instead.
+   * The selected theme, extended by local template and class overrides, using [`replaceTemplates`](#option-replace-templates), [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes).
    * 
    * @type {object}
    */
@@ -1154,7 +1157,7 @@ var base$_ = function base(props, context) {
     });
   });
   /**
-  * The selected theme's templates, extended by local overrides. Normally we use `components` property for this, but as Vueform component needs to have an actual [`:components`](#components) prop so we use this naming instead.
+  * The selected theme's templates, extended by local overrides. The [`replaceTemplates`](#option-replace-templates) option can be used to override templates provided by the theme.
   * 
   * @type {object}
   */
@@ -1183,7 +1186,7 @@ var base$_ = function base(props, context) {
     return extendedTheme.value.templates.Vueform.data().defaultClasses;
   });
   /**
-   * The selected theme's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides. Normally we use `classes` property for this, but as Vueform component needs to have an actual [`:classes`](#classes) prop so we use this naming instead.
+   * The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.
    * 
    * @type {object}
    */
@@ -1228,10 +1231,10 @@ var base$_ = function base(props, context) {
     });
   };
   /**
-   * Loads data to the form using optional [`:formatLoad`](#format-load) formatter.
+   * Loads data to the form using optional [`formatLoad`](#option-format-load) formatter.
    * 
    * @param {string} value* the value to be loaded
-   * @param {boolean} format whether the loaded value should be formatted with [`:formatLoad`](#format-load) (default: `false`)
+   * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) (default: `false`)
    * @returns {void}
    */
 
@@ -1548,7 +1551,7 @@ var base$_ = function base(props, context) {
     };
   }();
   /**
-   * Sends form data to [`:endpoint`](#endpoint) with the selected [`method`](#method) (async).
+   * Sends form data to [`endpoint`](#option-endpoint) with the selected [`method`](#option-method) (async).
    * 
    * @returns {void}
    */
@@ -1694,7 +1697,7 @@ var base$_ = function base(props, context) {
     validation.value = true;
   };
   /**
-  * Sets current language when using [`:multilingual`](#multilingual).
+  * Sets current language when using [`multilingual`](#option-multilingual).
   * 
   * @param {string} code* the language code to be selected
   * @returns {void}
@@ -1914,6 +1917,7 @@ var base$_ = function base(props, context) {
   };
 };
 
+var _this = undefined;
 var Vueform = {
   name: 'Vueform',
   emits: ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'response', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
@@ -2064,6 +2068,72 @@ var Vueform = {
     };
   },
   props: {
+    schema: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    tabs: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    steps: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    stepsControls: {
+      type: Boolean,
+      required: false,
+      "default": null,
+      '@default': true
+    },
+    validateOn: {
+      type: String,
+      required: false,
+      "default": null
+    },
+    displayErrors: {
+      type: Boolean,
+      required: false,
+      "default": null
+    },
+    displayMessages: {
+      type: Boolean,
+      required: false,
+      "default": null
+    },
+    messages: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    endpoint: {
+      type: String,
+      required: false,
+      "default": null
+    },
+    method: {
+      type: String,
+      required: false,
+      "default": null
+    },
+    prepare: {
+      type: Function,
+      required: false,
+      "default": null
+    },
+    formKey: {
+      type: [String, Number],
+      required: false,
+      "default": null
+    },
+    formData: {
+      type: Function,
+      required: false,
+      "default": null
+    },
     value: {
       type: Object,
       required: false,
@@ -2084,8 +2154,13 @@ var Vueform = {
       required: false,
       "default": null
     },
-    disabled: {
-      type: Boolean,
+    formatData: {
+      type: Function,
+      required: false,
+      "default": null
+    },
+    formatLoad: {
+      type: Function,
       required: false,
       "default": null
     },
@@ -2094,88 +2169,13 @@ var Vueform = {
       required: false,
       "default": null
     },
-    schema: {
-      type: Object,
-      required: false,
-      "default": null
-    },
-    tabs: {
-      type: Object,
-      required: false,
-      "default": null
-    },
-    steps: {
-      type: Object,
-      required: false,
-      "default": null
-    },
-    replaceClasses: {
-      type: Object,
-      required: false,
-      "default": null
-    },
-    extendClasses: {
-      type: Object,
-      required: false,
-      "default": null
-    },
-    replaceTemplates: {
-      type: Object,
-      required: false,
-      "default": null
-    },
-    messages: {
-      type: Object,
+    disabled: {
+      type: Boolean,
       required: false,
       "default": null
     },
     columns: {
       type: Object,
-      required: false,
-      "default": null
-    },
-    languages: {
-      type: Object,
-      required: false,
-      "default": null
-    },
-    addClass: {
-      type: [String, Array, Object],
-      required: false,
-      "default": null
-    },
-    formKey: {
-      type: [String, Number],
-      required: false,
-      "default": null
-    },
-    theme: {
-      type: String,
-      required: false,
-      "default": null
-    },
-    endpoint: {
-      type: String,
-      required: false,
-      "default": null
-    },
-    method: {
-      type: String,
-      required: false,
-      "default": null
-    },
-    formData: {
-      type: Function,
-      required: false,
-      "default": null
-    },
-    language: {
-      type: String,
-      required: false,
-      "default": null
-    },
-    validateOn: {
-      type: String,
       required: false,
       "default": null
     },
@@ -2189,39 +2189,38 @@ var Vueform = {
       required: false,
       "default": null
     },
+    addClass: {
+      type: [String, Array, Object],
+      required: false,
+      "default": null
+    },
+    extendClasses: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    replaceClasses: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    replaceTemplates: {
+      type: Object,
+      required: false,
+      "default": null
+    },
     multilingual: {
       type: Boolean,
       required: false,
       "default": null
     },
-    stepsControls: {
-      type: Boolean,
-      required: false,
-      "default": null,
-      '@default': true
-    },
-    displayErrors: {
-      type: Boolean,
+    languages: {
+      type: Object,
       required: false,
       "default": null
     },
-    displayMessages: {
-      type: Boolean,
-      required: false,
-      "default": null
-    },
-    formatLoad: {
-      type: Function,
-      required: false,
-      "default": null
-    },
-    formatData: {
-      type: Function,
-      required: false,
-      "default": null
-    },
-    prepare: {
-      type: Function,
+    language: {
+      type: String,
       required: false,
       "default": null
     },
@@ -2305,26 +2304,10 @@ var Vueform = {
     }
   },
   render: function render() {
-    var renderer;
-
-    try {
-      renderer = this.templates.Vueform;
-    } catch (e) {
-      console.log('Vueform');
-      throw new Error(e);
-    }
-
-    try {
-      var _this$$options;
-
-      if (!((_this$$options = this.$options) !== null && _this$$options !== void 0 && _this$$options.staticRenderFns) && renderer.staticRenderFns) {
-        this.$options.staticRenderFns = renderer.staticRenderFns;
-      }
-    } catch (e) {
-      throw new Error(e);
-    }
-
-    return renderer.render.apply(this, arguments);
+    return this.templates.Vueform.render.apply(this, arguments);
+  },
+  staticRenderFns: function staticRenderFns() {
+    return _this.templates.Vueform.staticRenderFns;
   }
 };
 
@@ -2332,7 +2315,7 @@ var base$Z = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
-  * The root form component.
+  * The root form's component.
   * 
   * @type {component}
   */
@@ -2346,7 +2329,7 @@ var base$Y = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
-  * The global theme object, which contains all the default components and classes.
+  * The global theme object, which contains all the default templates and classes.
   * 
   * @type {object}
   */
@@ -2403,10 +2386,9 @@ var base$X = function base(props, context, dependencies) {
     return classes;
   });
   /**
-   * An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.
+   The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options.
    * 
    * @type {object}
-   * @private
    */
 
   var classes = computed({
@@ -2418,7 +2400,7 @@ var base$X = function base(props, context, dependencies) {
     }
   });
   /**
-   * Returns the components used by the form.
+   * Returns the component templates used by the form.
    * 
    * @type {object}
    */
@@ -2527,7 +2509,7 @@ var FormLanguages = {
         defaultClasses = _useFormComponent.defaultClasses; // ============== COMPUTED ==============
 
     /**
-     * The ISO 639-1 code of the currently selected language (2 letters).
+     * The language code of the currently selected language (2 letters).
      * 
      * @type {string}
      */
@@ -2547,7 +2529,7 @@ var FormLanguages = {
     }); // =============== METHODS ==============
 
     /**
-     * Select a language.
+     * Selects a language.
      * 
      * @param {string} code* the language code to be selected
      * @returns {void}
@@ -2617,7 +2599,7 @@ var FormLanguage = {
         defaultClasses = _useFormComponent.defaultClasses; // ============== COMPUTED ==============
 
     /**
-     * The ISO 639-1 code of the currently selected language (2 letters).
+     * The language code of the currently selected language (2 letters).
      * 
      * @type {string}
      */
@@ -2637,7 +2619,7 @@ var FormLanguage = {
     }); // =============== METHODS ==============
 
     /**
-     * Select language.
+     * Select the language.
      * 
      * @return {void}
      */
@@ -2678,7 +2660,6 @@ function normalize (value) {
 var FormTabs = {
   name: 'FormTabs',
   emits: ['select'],
-  slots: ['default'],
   setup: function setup(props, context) {
     var $this = getCurrentInstance().proxy; // ============ DEPENDENCIES ============
 
@@ -2714,12 +2695,13 @@ var FormTabs = {
      * Helper prop used for checking if the component exists.
      * 
      * @type {boolean}
+     * @private
      */
 
     var exists = ref(true); // ============== COMPUTED ==============
 
     /**
-     * The components of highest level form elements.
+     * The form elements' components.
      * 
      * @type {object}
      */
@@ -2728,7 +2710,7 @@ var FormTabs = {
       return form$.value.elements$;
     });
     /**
-     * The form tabs definition.
+     * The object containing tabs defined in [`Vueform`](vueform#option-tabs). 
      * 
      * @type {object}
      */
@@ -3007,14 +2989,23 @@ var FormTabs = {
 var base$W = function base(props, context, dependencies) {
   var _toRefs = toRefs(props),
       parent = _toRefs.parent,
-      conditions = _toRefs.conditions; // ============ DEPENDENCIES ============
+      conditionList = _toRefs.conditions; // ============ DEPENDENCIES ============
 
 
   var form$ = dependencies.form$;
-  var path = dependencies.path || ref(null); // ============== COMPUTED ==============
+  var path = dependencies.path || ref(null); // ================ DATA ================
 
   /**
-   * Whether the element has no [`:conditions`](#conditions) or they are fulfilled.
+   * The frozen conditions of the element.
+   * 
+   * @type {array}
+   * @private
+   */
+
+  var conditions = ref(conditionList.value); // ============== COMPUTED ==============
+
+  /**
+   * Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.
    * 
    * @type {boolean}
    */
@@ -3136,7 +3127,7 @@ var base$V = function base(props, context, dependencies) {
     return isVueComponent(baseLabel.value);
   });
   /**
-  * The label of the component. If the label is provided is a `function` this has the resolved value.
+  * The label of the component. If the label is provided as a `function` this contains the resolved value.
   * 
   * @type {string|component}
   */
@@ -3500,7 +3491,6 @@ var FormTab = {
 var FormSteps = {
   name: 'FormSteps',
   emits: ['select', 'next', 'previous', 'finish'],
-  slots: ['default'],
   setup: function setup(props, context) {
     var $this = getCurrentInstance().proxy; // ============ DEPENDENCIES ============
 
@@ -3544,12 +3534,13 @@ var FormSteps = {
      * Helper prop used for checking if the component exists.
      * 
      * @type {boolean}
+     * @private
      */
 
     var exists = ref(true); // ============== COMPUTED ==============
 
     /**
-     * The form steps definition.
+     * The object containing steps defined in [`Vueform`](vueform#option-steps). 
      * 
      * @type {object}
      */
@@ -3558,7 +3549,7 @@ var FormSteps = {
       return form$.value.options.steps;
     });
     /**
-     * The components of highest level form elements.
+     * The form elements' components.
      * 
      * @type {object}
      */
@@ -3567,7 +3558,7 @@ var FormSteps = {
       return form$.value.elements$;
     });
     /**
-     * Whether there are any steps in `pending` state.
+     * Whether there are any steps in [`pending`](form-step#property-pending) state.
      * 
      * @type {boolean}
      */
@@ -3578,7 +3569,7 @@ var FormSteps = {
       });
     });
     /**
-     * Whether there are any steps in `debouncing` state.
+     * Whether there are any steps in [`debouncing`](form-step#property-debouncing) state.
      * 
      * @type {boolean}
      */
@@ -3589,7 +3580,7 @@ var FormSteps = {
       });
     });
     /**
-     * Whether there are any steps in `invalid` state.
+     * Whether there are any steps in [`invalid`](form-step#property-invalid) state.
      * 
      * @type {boolean}
      */
@@ -3600,7 +3591,7 @@ var FormSteps = {
       });
     });
     /**
-     * Whether all the steps are `done`.
+     * Whether all the steps are [`done`](form-step#property-done).
      * 
      * @type {boolean}
      */
@@ -3611,7 +3602,7 @@ var FormSteps = {
       });
     });
     /**
-     * Whether there are any steps in `busy` state.
+     * Whether there are any steps in [`busys`](form-step#property-busys) state.
      * 
      * @type {boolean}
      */
@@ -3731,7 +3722,7 @@ var FormSteps = {
       });
     });
     /**
-     * Whether the steps is at the last step.
+     * Whether is at the last step.
      * 
      * @type {boolean}
      */
@@ -3748,7 +3739,7 @@ var FormSteps = {
       return last.index === current$.value.index;
     });
     /**
-     * Whether the steps is at the first step.
+     * Whether is at the first step.
      * 
      * @type {boolean}
      */
@@ -3761,7 +3752,7 @@ var FormSteps = {
      * Go to a step and enable it. Optionally enable all steps up to it.
      *
      * @param {object} index* index of step to go to
-     * @param {boolean} enableUntil whether steps should be enabled up to the selected step (default: false)
+     * @param {boolean} enableUntil whether steps should be enabled up to the selected step (default: `false`)
      * @returns {void}
      */
 
@@ -3813,7 +3804,7 @@ var FormSteps = {
       });
     };
     /**
-     * Returns a specific [`FormStep`](form-step) by index.
+     * Returns a specific [`FormStep`](form-step) component by index.
      *
      * @param {object} index* index of the step
      * @returns {component}
@@ -3842,7 +3833,7 @@ var FormSteps = {
       first$.value.select();
     };
     /**
-     * Enable all steps.
+     * Enables all steps.
      *
      * @returns {void}
      */
@@ -4129,7 +4120,8 @@ var FormStepsControl = {
     labels: {
       type: [Boolean],
       required: false,
-      "default": true
+      "default": true,
+      "private": true
     }
   },
   setup: function setup(props, context) {
@@ -4256,7 +4248,7 @@ var FormStepsControl = {
       }
     });
     /**
-     * Whether the control should be in loading state (except for previous).
+     * Whether the control is in loading state (except for previous).
      * 
      * @type {boolean}
      */
@@ -4275,7 +4267,7 @@ var FormStepsControl = {
       steps$.value.previous();
     };
     /**
-     * Complete the current step and go to the next one (async). If the form's `:validateOn` prop or `config.validateOn` contains `'step'` also validate the elements within the step before moving forward (and stay if there's any error).
+     * Complete the current step and go to the next one (async). If the form's [`validateOn`](vueform#option-validate-on) prop or `config.validateOn` contains `'step'` also validates the elements within the step before moving forward (and stay if there's any error).
      * 
      * @returns {void}
      */
@@ -4564,7 +4556,7 @@ var FormStep = {
     var completed = ref(false); // ============== COMPUTED ==============
 
     /**
-     * The components of highest level form elements.
+     * The form elements' components.
      * 
      * @type {object}
      */
@@ -4605,7 +4597,7 @@ var FormStep = {
       return Object.keys(steps$.value.steps$).indexOf(name.value);
     });
     /**
-     * The components of form elements within the step.
+     * The elements' components in the step.
      * 
      * @type {object}
      */
@@ -4661,7 +4653,7 @@ var FormStep = {
       });
     });
     /**
-      * Whether all the elements in the step has been validated.
+      * Whether all the elements in the step were already validated at least once.
       * 
       * @type {boolean}
       */
@@ -5006,9 +4998,9 @@ var base$U = function base(props, context, dependencies) {
   // ============== METHODS ===============
 
   /**
-  * Transforms an element `:type` into the element's component name.
+  * Transforms an element `type` into the element's component name.
   * 
-  * @param {string} element* element `:type`
+  * @param {string} element* element `type`
   * @returns {string}
   * @private
   */
@@ -5131,10 +5123,9 @@ var base$S = function base(props, context, dependencies) {
     return classes;
   });
   /**
-   * An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.
+   * The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options.
    * 
    * @type {object}
-   * @private
    */
 
   var classes = computed({
@@ -5146,7 +5137,7 @@ var base$S = function base(props, context, dependencies) {
     }
   });
   /**
-   * Returns the components used by the parent element.
+   * Returns the component templates used by the parent element.
    * 
    * @type {object}
    */
@@ -5214,54 +5205,6 @@ var ElementLayout = {
         mainClass = _useElementComponent.mainClass,
         theme = _useElementComponent.theme,
         defaultClasses = _useElementComponent.defaultClasses; // ============== COMPUTED ==============
-    // /**
-    //  * Whether the element has a [`:label`](#label) or `Vueform` component's [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.
-    //  * 
-    //  * @type {boolean}
-    //  */
-    // const hasLabel = computed(() => {
-    //   return el$.value.hasLabel
-    // })
-    // /**
-    //  * The info for the element, defined via `:info` prop.
-    //  * 
-    //  * @type {string}
-    //  */
-    // const info = computed(() => {
-    //   return el$.value.info
-    // })
-    // /**
-    //  * The before content for the element, defined via `:before` prop.
-    //  * 
-    //  * @type {string}
-    //  */
-    // const before = computed(() => {
-    //   return el$.value.before
-    // })
-    // /**
-    //  * The between content for the element, defined via `:between` prop.
-    //  * 
-    //  * @type {string}
-    //  */
-    // const between = computed(() => {
-    //   return el$.value.between
-    // })
-    // /**
-    //  * The after content for the element, defined via `:after` prop.
-    //  * 
-    //  * @type {string}
-    //  */
-    // const after = computed(() => {
-    //   return el$.value.after
-    // })
-    // /**
-    //  * The description for the element, defined via `:description` prop.
-    //  * 
-    //  * @type {string}
-    //  */
-    // const description = computed(() => {
-    //   return el$.value.description
-    // })
 
     /**
      * Whether the element should be visible.
@@ -5311,14 +5254,6 @@ var ElementLayoutInline = {
         mainClass = _useElementComponent.mainClass,
         theme = _useElementComponent.theme,
         defaultClasses = _useElementComponent.defaultClasses; // ============== COMPUTED ==============
-    // /**
-    //  * Whether the element has a [`:label`](#label) or `Vueform` component's [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.
-    //  * 
-    //  * @type {boolean}
-    //  */
-    // const hasLabel = computed(() => {
-    //   return el$.value.hasLabel
-    // })
 
     /**
      * Whether the element should be visible.
@@ -5398,7 +5333,7 @@ var ElementLabelFloating = {
         defaultClasses = _useElementComponent.defaultClasses; // ============== COMPUTED ==============
 
     /**
-     * The floating label of the element, defined via `:floating` prop.
+     * The floating label of the element, defined via `floating` prop.
      * 
      * @type {string}
      */
@@ -5461,7 +5396,7 @@ var ElementLabel = {
       return el$.value.name;
     });
     /**
-     * Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component's [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.
+     * Whether the element has a `label` option, a `#label` slot or `Vueform` component's [`forceLabels`](vueform#force-labels) option is `true`.
      * 
      * @type {boolean}
      * 
@@ -5514,7 +5449,7 @@ var ElementInfo = {
         defaultClasses = _useElementComponent.defaultClasses; // ============== COMPUTED ==============
 
     /**
-     * The info for the element, defined via `:info` prop.
+     * The info for the element, defined via the element's `info` prop.
      * 
      * @type {string}
      */
@@ -5564,7 +5499,7 @@ var ElementDescription = {
         defaultClasses = _useElementComponent.defaultClasses; // ============== COMPUTED ==============
 
     /**
-     * The element's description, defined via `:description` prop.
+     * The element's description, defined via the element's `description` option.
      * 
      * @type {string}
      */
@@ -5910,7 +5845,7 @@ var ElementAddon = {
       return el$.value.addons[type.value];
     });
     /**
-     * The addon. If the addon is provided is a `function` this has the resolved value.
+     * The content of the addon. If the addon is provided ss a `function` this contains the resolved value.
      * 
      * @type {string|component}
      */
@@ -8437,7 +8372,7 @@ var DatepickerWrapper = {
       return options.value.mode || 'single';
     });
     /**
-     * The flatpickr configuration object. Can be extended via [`:options`](#options) with [flatpickr options](https://flatpickr.js.org/options/).
+     * The flatpickr configuration object. Can be extended via [`options`](#options) with [flatpickr options](https://flatpickr.js.org/options/).
      * 
      * @type {object}
      */
@@ -8626,7 +8561,7 @@ var EditorWrapper = {
         theme = _useElementComponent.theme; // ================ DATA ================
 
     /**
-     * The [`Editor`](https://github.com/basecamp/trix) DOM instance.
+     * The [`Trix`](https://github.com/basecamp/trix) instance.
      * 
      * @type {HTMLElement}
      * @default null
@@ -8704,7 +8639,7 @@ var EditorWrapper = {
         return;
       }
 
-      if (acceptMimes.value.length && acceptMimes.value.indexOf(e.file.type) === -1) {
+      if (acceptMimes.value && acceptMimes.value.length && acceptMimes.value.indexOf(e.file.type) === -1) {
         e.preventDefault();
         context.emit('alert', form$.value.__('vueform.editor.acceptedMimesError', {
           mimes: acceptMimes.value.join(', ')
@@ -8713,7 +8648,7 @@ var EditorWrapper = {
 
       var extension = e.file.name.split('.').pop();
 
-      if (accept.value.length && accept.value.indexOf(extension) === -1) {
+      if (accept.value && accept.value.length && accept.value.indexOf(extension) === -1) {
         e.preventDefault();
         context.emit('alert', form$.value.__('vueform.editor.acceptedExtensionsError', {
           extensions: accept.value.join(', ')
@@ -8783,89 +8718,6 @@ var EditorWrapper = {
 
 var base$R = function base(props, context, dependencies) {
   var _toRefs = toRefs(props),
-      name = _toRefs.name;
-
-  var currentInstance = getCurrentInstance(); // ============== COMPUTED ==============
-
-  /**
-   * The parent component of the element.
-   * 
-   * @type {component}
-   * @private
-   */
-
-  var parent = computed(function () {
-    var getParent = function getParent(parent, _getParent) {
-      if (parent && (context.expose !== undefined && parent.$options.name && parent.$options.name.match(/^[a-zA-Z\-]*Element$/) || context.expose === undefined && parent.hasOwnProperty('el$') && typeof parent.el$ !== 'function')) {
-        return parent.el$;
-      } else if (parent.$parent) {
-        return _getParent(parent.$parent, _getParent);
-      } else {
-        return null;
-      }
-    };
-
-    return getParent(currentInstance.parent.proxy, getParent);
-  });
-  /**
-   * The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path included).
-   * 
-   * @type {string}
-   */
-
-  var path = computed(function () {
-    return parent.value && parent.value.path ? parent.value.path + '.' + name.value : name.value;
-  });
-  /**
-   * The path of the element using dot `.` syntax (parent [`GroupElement`](group-element) path excluded).
-   * 
-   * @type {string} 
-   */
-
-  var dataPath = computed(function () {
-    return parent.value && parent.value.dataPath ? parent.value.dataPath + '.' + name.value : name.value;
-  });
-  /**
-   * Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))
-   * 
-   * @type {boolean}
-   * @private
-   */
-
-  var flat = computed(function () {
-    return false;
-  });
-  return {
-    parent: parent,
-    path: path,
-    dataPath: dataPath,
-    flat: flat
-  };
-};
-
-var group$6 = function group(props, context, dependencies) {
-  // ============ DEPENDENCIES ============
-  var _base = base$R(props, context),
-      path = _base.path,
-      parent = _base.parent; // ============== COMPUTED ==============
-
-
-  var dataPath = computed(function () {
-    return parent.value && parent.value.dataPath ? parent.value.dataPath : null;
-  });
-  var flat = computed(function () {
-    return true;
-  });
-  return {
-    path: path,
-    dataPath: dataPath,
-    flat: flat,
-    parent: parent
-  };
-};
-
-var base$Q = function base(props, context, dependencies) {
-  var _toRefs = toRefs(props),
       label = _toRefs.label; // ============ DEPENDENCIES ============
 
 
@@ -8873,7 +8725,7 @@ var base$Q = function base(props, context, dependencies) {
   var el$ = dependencies.el$; // ============== COMPUTED ==============
 
   /**
-   * Whether the element has a [`:label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component's [`:forceLabels`](vueform#force-labels) option is `true`. Either way a label should be displayed.
+   * Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component's [`forceLabels`](vueform#option-force-labels) option is `true`.
    * 
    * @type {boolean}
    * 
@@ -8889,7 +8741,7 @@ var base$Q = function base(props, context, dependencies) {
   };
 };
 
-var base$P = function base(props, context, dependencies) {
+var base$Q = function base(props, context, dependencies) {
   var _toRefs = toRefs(props),
       columns = _toRefs.columns; // ============ DEPENDENCIES ============
 
@@ -8913,13 +8765,13 @@ var base$P = function base(props, context, dependencies) {
   };
 };
 
-var base$O = function base(props, context, dependencies) {
+var base$P = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
   var available = dependencies.available;
   var active = dependencies.active; // ================ DATA ================
 
   /**
-   * Whether the element was hidden programmatically with [`show()`](#show) or [`hide()`](#hide) method.
+   * Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.
    * 
    * @type {boolean} 
    * @default false
@@ -8965,7 +8817,7 @@ var base$O = function base(props, context, dependencies) {
   };
 };
 
-var base$N = function base(props, context, dependencies) {
+var base$O = function base(props, context, dependencies) {
   var _toRefs = toRefs(props),
       replaceTemplates = _toRefs.replaceTemplates; // ============ DEPENDENCIES ============
 
@@ -8973,7 +8825,7 @@ var base$N = function base(props, context, dependencies) {
   var theme = dependencies.theme; // ============== COMPUTED ==============
 
   /**
-   * Returns the template to use within the element. Use [`:replaceTemplates`](#replace-templates) to override any of the element's templates.
+   * The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme's default templates.
    * 
    * @type {object}
    */
@@ -8986,7 +8838,7 @@ var base$N = function base(props, context, dependencies) {
   };
 };
 
-var base$M = function base(props, context, dependencies) {
+var base$N = function base(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
   var _toRefs = toRefs(props);
@@ -9057,7 +8909,7 @@ var base$M = function base(props, context, dependencies) {
   };
 };
 
-var base$L = function base(props, context, dependencies) {
+var base$M = function base(props, context, dependencies) {
   var _toRefs = toRefs(props),
       buttonLabel = _toRefs.buttonLabel,
       buttonType = _toRefs.buttonType,
@@ -9167,7 +9019,7 @@ var base$L = function base(props, context, dependencies) {
   };
 };
 
-var base$K = function base(props, context, dependencies) {
+var base$L = function base(props, context, dependencies) {
   var _toRefs = toRefs(props),
       layout = _toRefs.layout,
       inline = _toRefs.inline; // ============== COMPUTED ==============
@@ -9188,7 +9040,7 @@ var base$K = function base(props, context, dependencies) {
   };
 };
 
-var base$J = function base(props, context, dependencies) {
+var base$K = function base(props, context, dependencies) {
   var _toRefs = toRefs(props),
       disabled = _toRefs.disabled; // ================ DATA ================
 
@@ -9223,7 +9075,7 @@ var base$J = function base(props, context, dependencies) {
     localDisabled.value = true;
   };
   /**
-   * Enables the element even if it is disabled by [`:disabled`](#disabled) option.
+   * Enables the element even if it is disabled by [`disabled`](#disabled) option.
    *
    * @returns {void}
    */
@@ -9245,7 +9097,7 @@ var checkboxgroup$2 = function checkboxgroup(props, context, dependencies) {
   var _toRefs2 = toRefs(props),
       disables = _toRefs2.disables;
 
-  var _base = base$J(props),
+  var _base = base$K(props),
       localDisabled = _base.localDisabled,
       isDisabled = _base.isDisabled; // ================ DATA ================
 
@@ -9379,7 +9231,7 @@ var button$1 = function button(props, context, dependencies) {
 
 var radiogroup$1 = checkboxgroup$2;
 
-var base$I = function base(props, context, dependencies) {
+var base$J = function base(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
   var _toRefs = toRefs(props),
@@ -9414,7 +9266,7 @@ var base$I = function base(props, context, dependencies) {
     return _$1.keys(defaultClasses.value)[0];
   });
   /**
-   * An object containaing all the elements classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.
+   * The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.
    * 
    * @type {object}
    */
@@ -9456,7 +9308,7 @@ var base$I = function base(props, context, dependencies) {
 };
 
 var input = function input(props, context, dependencies) {
-  var _base = base$I(props, context, dependencies, {
+  var _base = base$J(props, context, dependencies, {
     addClasses: [['input', 'input_enabled', computed(function () {
       return !isDisabled.value;
     })], ['input', 'input_disabled', computed(function () {
@@ -9477,7 +9329,7 @@ var input = function input(props, context, dependencies) {
 };
 
 var list$4 = function list(props, context, dependencies) {
-  var _base2 = base$I(props, context, dependencies, {
+  var _base2 = base$J(props, context, dependencies, {
     addClasses: [['list', 'list_disabled', computed(function () {
       return isDisabled.value;
     })], ['list', 'list_sorting', computed(function () {
@@ -9498,11 +9350,11 @@ var list$4 = function list(props, context, dependencies) {
   };
 };
 
-var multifile$4 = function multifile(props, context, dependencies) {
+var multifile$5 = function multifile(props, context, dependencies) {
   var _toRefs2 = toRefs(props),
       view = _toRefs2.view;
 
-  var _base3 = base$I(props, context, dependencies, {
+  var _base3 = base$J(props, context, dependencies, {
     addClasses: [['list', 'list_file', computed(function () {
       return view.value === 'file';
     })], ['list', 'list_image', computed(function () {
@@ -9553,7 +9405,7 @@ var multifile$4 = function multifile(props, context, dependencies) {
 };
 
 var file$3 = function file(props, context, dependencies) {
-  var _base4 = base$I(props, context, dependencies, {
+  var _base4 = base$J(props, context, dependencies, {
     addClasses: [['container', 'container_removing', computed(function () {
       return removing.value;
     })], ['button', 'button_enabled', computed(function () {
@@ -9581,7 +9433,7 @@ var button = function button(props, context, dependencies) {
   var _toRefs3 = toRefs(props),
       buttonClass = _toRefs3.buttonClass;
 
-  var _base5 = base$I(props, context, dependencies, {
+  var _base5 = base$J(props, context, dependencies, {
     addClasses: [['button', 'button_loading', computed(function () {
       return isLoading.value;
     })], ['button', 'button_enabled', computed(function () {
@@ -9605,7 +9457,7 @@ var button = function button(props, context, dependencies) {
 };
 
 var editor$1 = function editor(props, context, dependencies) {
-  var _base6 = base$I(props, context, dependencies, {
+  var _base6 = base$J(props, context, dependencies, {
     addClasses: [['input', 'input_enabled', computed(function () {
       return !isDisabled.value;
     })], ['input', 'input_disabled', computed(function () {
@@ -9628,7 +9480,7 @@ var editor$1 = function editor(props, context, dependencies) {
   };
 };
 
-var base$H = function base(props, context, dependencies) {
+var base$I = function base(props, context, dependencies) {
 
   var _toRefs = toRefs(props),
       name = _toRefs.name;
@@ -9682,7 +9534,7 @@ var base$H = function base(props, context, dependencies) {
   };
 };
 
-var base$G = function base(props, context, dependencies) {
+var base$H = function base(props, context, dependencies) {
   var instantHooks = ['onBeforeCreate', 'onCreated'];
   var hooks = {
     onBeforeMount: onBeforeMount,
@@ -9697,7 +9549,7 @@ var base$G = function base(props, context, dependencies) {
   var form$ = dependencies.form$;
   var fire = dependencies.fire;
 
-  var _useParentAssign = base$H(props, context, {
+  var _useParentAssign = base$I(props, context, {
     form$: form$
   }),
       assignToParent = _useParentAssign.assignToParent,
@@ -9845,7 +9697,7 @@ var base$G = function base(props, context, dependencies) {
 };
 
 var list$3 = function list(props, context, dependencies) {
-  var _base = base$G(props, context, dependencies),
+  var _base = base$H(props, context, dependencies),
       el$ = _base.el$,
       isStatic = _base.isStatic,
       isFileType = _base.isFileType,
@@ -9878,7 +9730,7 @@ var file$2 = function file(props, context, dependencies) {
   var _toRefs = toRefs(props),
       view = _toRefs.view;
 
-  var _base2 = base$G(props, context, dependencies),
+  var _base2 = base$H(props, context, dependencies),
       el$ = _base2.el$,
       isStatic = _base2.isStatic,
       isArrayType = _base2.isArrayType,
@@ -9909,8 +9761,8 @@ var file$2 = function file(props, context, dependencies) {
   };
 };
 
-var static_ = function static_(props, context, dependencies) {
-  var _base3 = base$G(props, context, dependencies),
+var static_$1 = function static_(props, context, dependencies) {
+  var _base3 = base$H(props, context, dependencies),
       el$ = _base3.el$,
       isArrayType = _base3.isArrayType,
       isFileType = _base3.isFileType,
@@ -9943,6 +9795,104 @@ var checkboxgroup$1 = list$3;
 var dates$4 = list$3;
 var multiselect$1 = list$3;
 var tags$2 = list$3;
+
+var base$G = function base(props, context, dependencies) {
+  var _toRefs = toRefs(props),
+      name = _toRefs.name;
+
+  var currentInstance = getCurrentInstance(); // ============== COMPUTED ==============
+
+  /**
+   * The parent component of the element.
+   * 
+   * @type {component}
+   * @private
+   */
+
+  var parent = computed(function () {
+    var getParent = function getParent(parent, _getParent) {
+      if (parent && (context.expose !== undefined && parent.$options.name && parent.$options.name.match(/^[a-zA-Z\-]*Element$/) || context.expose === undefined && parent.hasOwnProperty('el$') && typeof parent.el$ !== 'function')) {
+        return parent.el$;
+      } else if (parent.$parent) {
+        return _getParent(parent.$parent, _getParent);
+      } else {
+        return null;
+      }
+    };
+
+    return getParent(currentInstance.parent.proxy, getParent);
+  });
+  /**
+   * The path of the element using dot `.` syntax.
+   * 
+   * @type {string}
+   */
+
+  var path = computed(function () {
+    return parent.value && parent.value.path ? parent.value.path + '.' + name.value : name.value;
+  });
+  /**
+   * The path of the element's data using dot `.` syntax.
+   * 
+   * @type {string} 
+   */
+
+  var dataPath = computed(function () {
+    return parent.value && parent.value.dataPath ? parent.value.dataPath + '.' + name.value : name.value;
+  });
+  /**
+   * Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))
+   * 
+   * @type {boolean}
+   * @private
+   */
+
+  var flat = computed(function () {
+    return false;
+  });
+  return {
+    parent: parent,
+    path: path,
+    dataPath: dataPath,
+    flat: flat
+  };
+};
+
+var group$6 = function group(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+  var _base = base$G(props, context),
+      path = _base.path,
+      parent = _base.parent; // ============== COMPUTED ==============
+
+
+  var dataPath = computed(function () {
+    return parent.value && parent.value.dataPath ? parent.value.dataPath : null;
+  });
+  var flat = computed(function () {
+    return true;
+  });
+  return {
+    path: path,
+    dataPath: dataPath,
+    flat: flat,
+    parent: parent
+  };
+};
+
+var static_ = function static_(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+  var _base2 = base$G(props, context),
+      path = _base2.path,
+      parent = _base2.parent,
+      flat = _base2.flat; // ============== COMPUTED ==============
+
+
+  return {
+    path: path,
+    flat: flat,
+    parent: parent
+  };
+};
 
 var BaseElement = {
   props: {
@@ -10018,7 +9968,8 @@ var HasView = {
     layout: {
       required: false,
       type: [String, Object, Boolean],
-      "default": 'ElementLayout'
+      "default": 'ElementLayout',
+      "private": true
     },
     addClass: {
       required: false,
@@ -10158,12 +10109,12 @@ var ButtonElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
-    var path = base$R(props, context);
+    var layout = base$L(props);
+    var path = static_(props, context);
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = static_(props, context, {
+    var baseElement = static_$1(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -10175,15 +10126,15 @@ var ButtonElement = {
       form$: form$.form$,
       path: path.path
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
-    var button$2 = base$L(props, context, {
+    var button$2 = base$M(props, context, {
       form$: form$.form$,
       isDisabled: disabled.isDisabled,
       el$: baseElement.el$
@@ -10195,16 +10146,16 @@ var ButtonElement = {
       isDisabled: disabled.isDisabled,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -10223,7 +10174,7 @@ var base$F = function base(props, context, dependencies) {
   var path = dependencies.path; // ============== COMPUTED ==============
 
   /**
-   * The `id` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.
+   * The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.
    * 
    * @type {string}
    */
@@ -10291,7 +10242,7 @@ var base$D = function base(props, context, dependencies) {
   }; // ============== COMPUTED ===============
 
   /**
-   * The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data, which finally results in form level data.
+   * The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data.
    * 
    * @type {object}
    */
@@ -10301,7 +10252,7 @@ var base$D = function base(props, context, dependencies) {
     return _defineProperty$1({}, name.value, value.value);
   });
   /**
-   * Same as `data` property except that it only includes the element's value if [`:submit`](#submit) is not disabled and [`available`](#available) is `true` (has no [`:conditions`](#conditions) or they are fulfilled).
+   * Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).
    * 
    * @type {object}
    */
@@ -10315,10 +10266,10 @@ var base$D = function base(props, context, dependencies) {
   }); // =============== METHODS ===============
 
   /**
-   * Loads value to the element using optional [`:formatLoad`](#format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.
+   * Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.
    * 
    * @param {string} value* the value to be loaded
-   * @param {boolean} format whether the loaded value should be formatted with [`:formatLoad`](#format-load) before setting the value of the element (default: `false`)
+   * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)
    * @returns {void}
    */
 
@@ -10327,7 +10278,7 @@ var base$D = function base(props, context, dependencies) {
     setValue(format && formatLoad.value ? formatLoad.value(val, form$.value) : val);
   };
   /**
-   * Updates the value of the element similarly to [`load`](#load), only that it can\'t format format data. 
+   * Updates the value of the element similarly to [`load`](#method-load), only that it can\'t format data. 
    * 
    * @param {string|} value* the value to be set
    * @returns {void}
@@ -10348,7 +10299,7 @@ var base$D = function base(props, context, dependencies) {
     setValue(_$1.cloneDeep(nullValue.value));
   };
   /**
-   * Resets the element's value to [`:default`](#default) (or empty if `:default` is not provided). Also resets all the validation state for the element.
+   * Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.
    * 
    * @returns {void}
    */
@@ -10511,6 +10462,12 @@ var group$5 = function group(props, context, dependencies) {
   var available = dependencies.available;
   var value = dependencies.value; // ============== COMPUTED ===============
 
+  /**
+   * The value of child elements in object. This gets merged with the parent component's data.
+   * 
+   * @type {object}
+   */
+
   var data = computed(function () {
     return value.value;
   });
@@ -10608,7 +10565,7 @@ var list$2 = function list(props, context, dependencies, options) {
    * Appends a new item.
    * 
    * @param {any} value value of the appended element (optional)
-   * @returns {void}
+   * @returns {integer} the index of the appended item
    */
 
   var add = function add() {
@@ -10679,7 +10636,7 @@ var list$2 = function list(props, context, dependencies, options) {
     };
   }();
   /**
-   * Sorts value when `:order` and `:orderByName` is defined.
+   * Sorts value when `order` and `orderByName` is defined.
    * 
    * @param {array} value value to be sorted
    * @returns {array}
@@ -11137,7 +11094,7 @@ var base$B = function base(props, context, dependencies) {
 
   var Validators = ref([]);
   /**
-   * Instance of MessageBag service.
+   * Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).
    * 
    * @type {MessageBag}
    * @default MessageBag
@@ -11165,7 +11122,7 @@ var base$B = function base(props, context, dependencies) {
     return rules.value;
   });
   /**
-   * Whether the element's value has been modified by the user.
+   * Whether the element's value was modified.
    * 
    * @type {boolean}
    */
@@ -11174,7 +11131,7 @@ var base$B = function base(props, context, dependencies) {
     return state.value.dirty;
   });
   /**
-   * Whether the element's input has already been validated at least once.
+   * Whether the element was already validated at least once.
    * 
    * @type {boolean}
    */
@@ -11205,24 +11162,13 @@ var base$B = function base(props, context, dependencies) {
     });
   });
   /**
-   * Whether the element has an ongoing debounce.
-   * 
-   * @type {boolean}
-   */
-
-  var debouncing = computed(function () {
-    return _$1.some(Validators.value, {
-      debouncing: true
-    });
-  });
-  /**
-   * Whether the element is `pending` or `debouncing`.
+   * Whether the element is `pending`.
    * 
    * @type {boolean}
    */
 
   var busy = computed(function () {
-    return pending.value || debouncing.value;
+    return pending.value;
   });
   /**
    * The list of errors of failing rules.
@@ -11405,6 +11351,67 @@ var base$B = function base(props, context, dependencies) {
     validated: validated,
     invalid: invalid,
     pending: pending,
+    busy: busy,
+    errors: errors,
+    error: error,
+    validationRules: validationRules,
+    validate: validate,
+    dirt: dirt,
+    clean: clean,
+    resetValidators: resetValidators,
+    initMessageBag: initMessageBag,
+    initValidation: initValidation
+  };
+};
+
+var text = function text(props, context, dependencies) {
+  var _base = base$B(props, context, dependencies),
+      state = _base.state,
+      Validators = _base.Validators,
+      messageBag = _base.messageBag,
+      dirty = _base.dirty,
+      validated = _base.validated,
+      invalid = _base.invalid,
+      pending = _base.pending,
+      errors = _base.errors,
+      error = _base.error,
+      validationRules = _base.validationRules,
+      validate = _base.validate,
+      dirt = _base.dirt,
+      clean = _base.clean,
+      resetValidators = _base.resetValidators,
+      initMessageBag = _base.initMessageBag,
+      initValidation = _base.initValidation; // ============== COMPUTED ===============
+
+  /**
+   * Whether the element has a validation rule with pending debounce.
+   * 
+   * @type {boolean}
+   */
+
+
+  var debouncing = computed(function () {
+    return _$1.some(Validators.value, {
+      debouncing: true
+    });
+  });
+  /**
+   * Whether the element is `pending` or `debouncing`.
+   * 
+   * @type {boolean}
+   */
+
+  var busy = computed(function () {
+    return pending.value || debouncing.value;
+  });
+  return {
+    state: state,
+    Validators: Validators,
+    messageBag: messageBag,
+    dirty: dirty,
+    validated: validated,
+    invalid: invalid,
+    pending: pending,
     debouncing: debouncing,
     busy: busy,
     errors: errors,
@@ -11421,16 +11428,22 @@ var base$B = function base(props, context, dependencies) {
 
 var list$1 = function list(props, context, dependencies) {
   // ============ DEPENDENCIES ============
-  var _base = base$B(props, context, dependencies),
-      state = _base.state,
-      Validators = _base.Validators,
-      messageBag = _base.messageBag,
-      validationRules = _base.validationRules,
-      dirt = _base.dirt,
-      initValidation = _base.initValidation;
+  var _base2 = base$B(props, context, dependencies),
+      state = _base2.state,
+      Validators = _base2.Validators,
+      messageBag = _base2.messageBag,
+      validationRules = _base2.validationRules,
+      dirt = _base2.dirt,
+      initValidation = _base2.initValidation;
 
   var form$ = dependencies.form$;
   var children$ = dependencies.children$; // ============== COMPUTED ==============
+
+  /**
+   * Whether the element's or any of its children's value was modified.
+   * 
+   * @type {boolean}
+   */
 
   var dirty = computed(function () {
     return _$1.some(children$.value, {
@@ -11438,12 +11451,24 @@ var list$1 = function list(props, context, dependencies) {
       dirty: true
     }) || state.value.dirty;
   });
+  /**
+   * Whether the element and all of its children was already validated at least once.
+   * 
+   * @type {boolean}
+   */
+
   var validated = computed(function () {
     return !_$1.some(children$.value, {
       available: true,
       validated: false
     }) && state.value.validated;
   });
+  /**
+   * Whether the element or any of its children has any failing rules.
+   * 
+   * @type {boolean}
+   */
+
   var invalid = computed(function () {
     return _$1.some(children$.value, {
       available: true,
@@ -11452,6 +11477,12 @@ var list$1 = function list(props, context, dependencies) {
       invalid: true
     });
   });
+  /**
+   * Whether the element or any of its children has any async rules in progress.
+   * 
+   * @type {boolean}
+   */
+
   var pending = computed(function () {
     return _$1.some(children$.value, {
       available: true,
@@ -11460,6 +11491,12 @@ var list$1 = function list(props, context, dependencies) {
       pending: true
     });
   });
+  /**
+   * Whether the element or any of its chilren has a validation rule with pending debounce.
+   * 
+   * @type {boolean}
+   */
+
   var debouncing = computed(function () {
     return _$1.some(children$.value, {
       available: true,
@@ -11468,6 +11505,12 @@ var list$1 = function list(props, context, dependencies) {
       debouncing: true
     });
   });
+  /**
+   * Whether the element or any of its children is `pending` or `debouncing`.
+   * 
+   * @type {boolean}
+   */
+
   var busy = computed(function () {
     return _$1.some(children$.value, {
       available: true,
@@ -11736,8 +11779,8 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
   var language = dependencies.language;
   var value = dependencies.value;
 
-  var _base2 = base$B(props, context, dependencies),
-      messageBag = _base2.messageBag; // ================ DATA ================
+  var _text = text(props, context, dependencies),
+      messageBag = _text.messageBag; // ================ DATA ================
 
 
   var state = ref({
@@ -11759,16 +11802,34 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
     return ruleList;
   });
+  /**
+   * Whether the element's value has been modified in any language.
+   * 
+   * @type {boolean}
+   */
+
   var dirty = computed(function () {
     return _$1.some(state.value.dirty, function (val) {
       return val === true;
     });
   });
+  /**
+   * Whether all the languages have already been validated at least once.
+   * 
+   * @type {boolean}
+   */
+
   var validated = computed(function () {
     return !_$1.some(state.value.validated, function (val) {
       return val === false;
     });
   });
+  /**
+   * Whether the element has failing rules in any language.
+   * 
+   * @type {boolean}
+   */
+
   var invalid = computed(function () {
     var invalid = false;
 
@@ -11782,6 +11843,12 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
     return invalid;
   });
+  /**
+   * Whether the element has any async rules in progress in any language.
+   * 
+   * @type {boolean}
+   */
+
   var pending = computed(function () {
     var pending = false;
 
@@ -11795,6 +11862,12 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
     return pending;
   });
+  /**
+   * Whether the element has a validation rule with pending debounce in any language.
+   * 
+   * @type {boolean}
+   */
+
   var debouncing = computed(function () {
     var debouncing = false;
 
@@ -11808,6 +11881,12 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
     return debouncing;
   });
+  /**
+   * Whether the element is `pending` or `debouncing` in any language.
+   * 
+   * @type {boolean}
+   */
+
   var busy = computed(function () {
     return pending.value || debouncing.value;
   });
@@ -12080,36 +12159,72 @@ var object$4 = function object(props, context, dependencies) {
   var children$ = dependencies.children$;
   var form$ = dependencies.form$; // ============== COMPUTED ==============
 
+  /**
+   * Whether the element has any child with modified value.
+   * 
+   * @type {boolean}
+   */
+
   var dirty = computed(function () {
     return _$1.some(children$.value, {
       available: true,
       dirty: true
     });
   });
+  /**
+   * Whether all the children were validated at least once.
+   * 
+   * @type {boolean}
+   */
+
   var validated = computed(function () {
     return !_$1.some(children$.value, {
       available: true,
       validated: false
     });
   });
+  /**
+   * Whether the element has any child with failing rules.
+   * 
+   * @type {boolean}
+   */
+
   var invalid = computed(function () {
     return _$1.some(children$.value, {
       available: true,
       invalid: true
     });
   });
+  /**
+   * Whether the element has any child with async rules in progress.
+   * 
+   * @type {boolean}
+   */
+
   var pending = computed(function () {
     return _$1.some(children$.value, {
       available: true,
       pending: true
     });
   });
+  /**
+   * Whether the element has any child with validation rule with pending debounce.
+   * 
+   * @type {boolean}
+   */
+
   var debouncing = computed(function () {
     return _$1.some(children$.value, {
       available: true,
       debouncing: true
     });
   });
+  /**
+   * Whether the element has any `busy` child.
+   * 
+   * @type {boolean}
+   */
+
   var busy = computed(function () {
     return _$1.some(children$.value, {
       available: true,
@@ -12141,6 +12256,12 @@ var object$4 = function object(props, context, dependencies) {
   var errors = computed(function () {
     return messageBag.value.errors;
   }); // =============== METHODS ==============
+
+  /**
+   * Validates every child (async).
+   * 
+   * @returns {void}
+   */
 
   var validate = /*#__PURE__*/function () {
     var _ref12 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
@@ -12191,6 +12312,12 @@ var object$4 = function object(props, context, dependencies) {
       return _ref12.apply(this, arguments);
     };
   }();
+  /**
+   * Removes every child's `dirty` state.
+   * 
+   * @returns {void}
+   */
+
 
   var clean = function clean() {
     _$1.each(children$.value, function (element$) {
@@ -12201,6 +12328,12 @@ var object$4 = function object(props, context, dependencies) {
       element$.clean();
     });
   };
+  /**
+   * Sets the validators of children to default state.
+   * 
+   * @returns {void}
+   */
+
 
   var resetValidators = function resetValidators() {
     _$1.each(children$.value, function (element$) {
@@ -12244,7 +12377,6 @@ var slider$1 = function slider(props, context, dependencies) {
       validated = _base4.validated,
       invalid = _base4.invalid,
       pending = _base4.pending,
-      debouncing = _base4.debouncing,
       busy = _base4.busy,
       errors = _base4.errors,
       error = _base4.error,
@@ -12378,7 +12510,6 @@ var slider$1 = function slider(props, context, dependencies) {
     validated: validated,
     invalid: invalid,
     pending: pending,
-    debouncing: debouncing,
     busy: busy,
     errors: errors,
     error: error,
@@ -12407,7 +12538,6 @@ var file$1 = function file(props, context, dependencies) {
       validated = _base5.validated,
       invalid = _base5.invalid,
       pending = _base5.pending,
-      debouncing = _base5.debouncing,
       errors = _base5.errors,
       error = _base5.error,
       validationRules = _base5.validationRules,
@@ -12425,7 +12555,7 @@ var file$1 = function file(props, context, dependencies) {
 
 
   var busy = computed(function () {
-    return pending.value || debouncing.value || uploading.value || removing.value;
+    return pending.value || uploading.value || removing.value;
   }); // =============== METHODS ==============
 
   /**
@@ -12513,7 +12643,6 @@ var file$1 = function file(props, context, dependencies) {
     validated: validated,
     invalid: invalid,
     pending: pending,
-    debouncing: debouncing,
     busy: busy,
     errors: errors,
     error: error,
@@ -12535,27 +12664,27 @@ var location$2 = function location(props, context, dependencies) {
   var form$ = dependencies.form$;
   var value = dependencies.value;
 
-  var _base6 = base$B(props, context, dependencies),
-      state = _base6.state,
-      Validators = _base6.Validators,
-      messageBag = _base6.messageBag,
-      dirty = _base6.dirty,
-      validated = _base6.validated,
-      invalid = _base6.invalid,
-      pending = _base6.pending,
-      debouncing = _base6.debouncing,
-      busy = _base6.busy,
-      errors = _base6.errors,
-      error = _base6.error,
-      validationRules = _base6.validationRules,
-      dirt = _base6.dirt,
-      clean = _base6.clean,
-      resetValidators = _base6.resetValidators,
-      initMessageBag = _base6.initMessageBag,
-      initValidation = _base6.initValidation; // =============== METHODS ==============
+  var _text2 = text(props, context, dependencies),
+      state = _text2.state,
+      Validators = _text2.Validators,
+      messageBag = _text2.messageBag,
+      dirty = _text2.dirty,
+      validated = _text2.validated,
+      invalid = _text2.invalid,
+      pending = _text2.pending,
+      debouncing = _text2.debouncing,
+      busy = _text2.busy,
+      errors = _text2.errors,
+      error = _text2.error,
+      validationRules = _text2.validationRules,
+      dirt = _text2.dirt,
+      clean = _text2.clean,
+      resetValidators = _text2.resetValidators,
+      initMessageBag = _text2.initMessageBag,
+      initValidation = _text2.initValidation; // =============== METHODS ==============
 
   /**
-   * Checks each validation rule for the element on [`displayKey`](#options-display-key) property of the location object (async).
+   * Checks each validation rule for the element on [`displayKey`](#option-display-key) property of the location object (async).
    * 
    * @returns {void}
    */
@@ -12717,40 +12846,6 @@ var file = function file(props, context, dependencies) {
 };
 
 var base$z = function base(props, context, dependencies) {
-  var _toRefs = toRefs(props),
-      trueValue = _toRefs.trueValue,
-      falseValue = _toRefs.falseValue; // ============ DEPENDENCIES ============
-
-
-  var update = dependencies.update; // =============== METHODS ==============
-
-  /**
-   * Sets the toggle to `on` (`trueValue`).
-   *
-   * @returns {void}
-   */
-
-  var check = function check() {
-    update(trueValue.value);
-  };
-  /**
-   * Sets the toggle to `off` (`falseValue`).
-   *
-   * @returns {void}
-   */
-
-
-  var uncheck = function uncheck() {
-    update(falseValue.value);
-  };
-
-  return {
-    check: check,
-    uncheck: uncheck
-  };
-};
-
-var base$y = function base(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
   var _toRefs = toRefs(props),
@@ -12854,7 +12949,7 @@ var base$y = function base(props, context, dependencies) {
 var object$3 = function object(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
-  var _base = base$y(props, context, dependencies, {
+  var _base = base$z(props, context, dependencies, {
     init: false
   }),
       initialValue = _base.initialValue,
@@ -12913,7 +13008,7 @@ var group$2 = function group(props, context, dependencies) {
 };
 
 var multilingual$4 = function multilingual(props, context, dependencies) {
-  var _base2 = base$y(props, context, dependencies),
+  var _base2 = base$z(props, context, dependencies),
       value = _base2.value; // ============ DEPENDENCIES =============
 
 
@@ -12939,7 +13034,7 @@ var date$1 = function date(props, context, dependencies) {
   var dataPath = dependencies.dataPath;
   var form$ = dependencies.form$;
 
-  var _base3 = base$y(props, context, dependencies, {
+  var _base3 = base$z(props, context, dependencies, {
     value: {
       get: function get() {
         return _$1.get(form$.value.model, dataPath.value);
@@ -12972,7 +13067,7 @@ var dates$2 = function dates(props, context, dependencies) {
   var dataPath = dependencies.dataPath;
   var form$ = dependencies.form$;
 
-  var _base4 = base$y(props, context, dependencies, {
+  var _base4 = base$z(props, context, dependencies, {
     value: {
       get: function get() {
         return _$1.get(form$.value.model, dataPath.value);
@@ -13006,7 +13101,7 @@ var dates$2 = function dates(props, context, dependencies) {
   };
 };
 
-var base$x = function base(props, context, dependencies) {
+var base$y = function base(props, context, dependencies) {
   // ============ DEPENDENCIES =============
   var form$ = dependencies.form$;
   var fire = dependencies.fire;
@@ -13149,10 +13244,10 @@ var location$1 = function location(props, context, dependencies) {
   });
 };
 
-var multifile$3 = list;
+var multifile$4 = list;
 var group$1 = object$2;
 
-var base$w = function base(props, context, dependencies) {
+var base$x = function base(props, context, dependencies) {
   // ============== COMPUTED ===============
 
   /**
@@ -13257,6 +13352,74 @@ var multilingual$2 = function multilingual(props, context, dependencies) {
   };
 };
 
+var base$w = function base(props, context, dependencies) {
+  var _toRefs = toRefs(props),
+      trueValue = _toRefs.trueValue,
+      falseValue = _toRefs.falseValue; // ============ DEPENDENCIES ============
+
+
+  var update = dependencies.update; // =============== METHODS ==============
+
+  /**
+   * Sets the toggle to `on` ([`trueValue`](#option-true-value)).
+   *
+   * @returns {void}
+   */
+
+  var check = function check() {
+    update(trueValue.value);
+  };
+  /**
+   * Sets the toggle to `off` ([`falseValue`](#option-false-value)).
+   *
+   * @returns {void}
+   */
+
+
+  var uncheck = function uncheck() {
+    update(falseValue.value);
+  };
+
+  return {
+    check: check,
+    uncheck: uncheck
+  };
+};
+
+var checkbox = function checkbox(props, context, dependencies) {
+  var _toRefs2 = toRefs(props),
+      trueValue = _toRefs2.trueValue,
+      falseValue = _toRefs2.falseValue; // ============ DEPENDENCIES ============
+
+
+  var update = dependencies.update; // =============== METHODS ==============
+
+  /**
+   * Checks the checkbox.
+   *
+   * @returns {void}
+   */
+
+  var check = function check() {
+    update(trueValue.value);
+  };
+  /**
+   * Unchecks the checkbox.
+   *
+   * @returns {void}
+   */
+
+
+  var uncheck = function uncheck() {
+    update(falseValue.value);
+  };
+
+  return {
+    check: check,
+    uncheck: uncheck
+  };
+};
+
 var HasChange = {
   props: {
     onChange: {
@@ -13304,7 +13467,8 @@ var HasValidation = {
     },
     fieldName: {
       required: false,
-      type: String
+      type: [String],
+      '@default': 'name|label'
     }
   }
 };
@@ -13355,10 +13519,10 @@ var CheckboxElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input$1 = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
+    var path = base$G(props, context);
+    var disabled = base$K(props);
     var nullValue = _boolean(props);
     var fieldId = base$F(props, context, {
       path: path.path
@@ -13366,7 +13530,7 @@ var CheckboxElement = {
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -13383,7 +13547,7 @@ var CheckboxElement = {
       form$: form$.form$,
       path: path.path
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -13397,7 +13561,7 @@ var CheckboxElement = {
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -13405,7 +13569,7 @@ var CheckboxElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -13415,26 +13579,26 @@ var CheckboxElement = {
       isDisabled: disabled.isDisabled,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
     }, {
-      slots: ['label', 'info', 'description', 'before', 'between', 'after', 'default']
+      slots: ['default', 'label', 'info', 'description', 'before', 'between', 'after']
     });
-    var toggle = base$z(props, context, {
+    var toggle = checkbox(props, context, {
       update: data.update
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -13444,11 +13608,6 @@ var CheckboxElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input$1), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), default_), nullValue), toggle);
   }
@@ -13572,13 +13731,13 @@ var base$u = function base(props, context, dependencies) {
     var nativeItems = [];
 
     _$1.each(resolvedItems.value, function (item, key) {
+      if ([null, undefined].indexOf(item) !== -1) {
+        return;
+      }
+
       if (Array.isArray(resolvedItems.value) && _typeof$1(item) === 'object') {
         if (item.value === undefined) {
           throw new Error('You must define `value` property for each option when using an array of objects options for select element');
-        }
-
-        if (item.label === undefined) {
-          throw new Error('You must define `label` property for each option when using an array of objects options for select element');
         }
 
         nativeItems.push({
@@ -13604,7 +13763,7 @@ var base$u = function base(props, context, dependencies) {
   /**
    * Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.
    * 
-   * @param {boolean} shouldDisable* whether the input field should be disabled while fetching options
+   * @param {boolean} disable* whether the input field should be disabled while fetching options
    * @returns {void} 
    */
 
@@ -13685,7 +13844,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
   var resolvedItemList = ref(null); // ============== COMPUTED ==============
 
   /**
-   * Contains available items. 
+   * Contains the available items. If [`items`](#option-items) are async this contains the resolved items.
    * 
    * @type {array}
    */
@@ -13694,20 +13853,24 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
     var resolvedItems = {};
 
     _$1.each(resolvedItemList.value, function (item, key) {
+      if ([null, undefined].indexOf(item) !== -1) {
+        return;
+      }
+
       if (Array.isArray(resolvedItemList.value) && _typeof$1(item) === 'object') {
         if (item.value === undefined) {
           throw new Error('You must define `value` property for each item when using an array of objects options');
         }
 
-        if (item.label === undefined) {
-          throw new Error('You must define `label` property for each item when using an array of objects options');
-        }
-
-        resolvedItems[item.value] = item.label;
+        resolvedItems[item.value] = item;
       } else if (Array.isArray(resolvedItemList.value)) {
-        resolvedItems[item] = item;
+        resolvedItems[item] = _typeof$1(item) === 'object' ? item : {
+          label: item
+        };
       } else {
-        resolvedItems[key] = item;
+        resolvedItems[key] = _typeof$1(item) === 'object' ? item : {
+          label: item
+        };
       }
     });
 
@@ -13715,9 +13878,9 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
   }); // =============== METHODS ==============
 
   /**
-   * Fetches & updates select options when using `async` items. Receives [`el$`](#property-el) as first param.
+   * Fetches & updates items when using `async` items. Receives [`el$`](#property-el) as first param.
    * 
-   * @param {boolean} shouldDisable* whether the input field should be disabled while fetching options
+   * @param {boolean} disable* whether the input field should be disabled while fetching options
    * @returns {void} 
    */
 
@@ -13809,8 +13972,8 @@ var CheckboxgroupElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
-    var path = base$R(props, context);
+    var layout = base$L(props);
+    var path = base$G(props, context);
     var nullValue = array$1();
     var fieldId = base$F(props, context, {
       path: path.path
@@ -13843,7 +14006,7 @@ var CheckboxgroupElement = {
       form$: form$.form$,
       path: path.path
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -13860,7 +14023,7 @@ var CheckboxgroupElement = {
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -13868,32 +14031,32 @@ var CheckboxgroupElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
-    var classes = base$I(props, context, {
+    var classes = base$J(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
     }, {
-      slots: ['label', 'info', 'description', 'before', 'between', 'after', 'checkbox']
+      slots: ['checkbox', 'label', 'info', 'description', 'before', 'between', 'after']
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -13903,11 +14066,6 @@ var CheckboxgroupElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), theme), layout), fieldId), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), default_), nullValue), check), asyncItems);
   }
@@ -14222,7 +14380,7 @@ var date = function date(props, context, dependencies) {
     };
   });
   /**
-  * Options for date selector. Can be extended via [`:extend-options`](#option-extend-options) with [flatpickr options](https://flatpickr.js.org/options/).
+  * Options for date selector. Can be extended via [`extend-options`](#option-extend-options) with [flatpickr options](https://flatpickr.js.org/options/).
   * 
   * @type {object} 
   */
@@ -14386,7 +14544,7 @@ var select = function select(props, context, dependencies) {
     };
   });
   /**
-  * Options for non-native select input. Can be extended via [`:extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
+  * Options for non-native select input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
   * 
   * @type {object} 
   */
@@ -14494,7 +14652,7 @@ var multiselect = function multiselect(props, context, dependencies) {
     };
   });
   /**
-  * Options for non-native multiselect input. Can be extended via [`:extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
+  * Options for non-native multiselect input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
   * 
   * @type {object} 
   */
@@ -14615,7 +14773,7 @@ var tags = function tags(props, context, dependencies) {
     };
   });
   /**
-  * Options for tags input. Can be extended via [`:extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
+  * Options for tags input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
   * 
   * @type {object} 
   */
@@ -14670,7 +14828,7 @@ var slider = function slider(props, context, dependencies) {
     };
   });
   /**
-  * Options for slider input. Can be extended via [`:extend-options`](#option-extend-options) with [@vueform/slider options](https://github.com/vueform/slider#basic-props).
+  * Options for slider input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/slider options](https://github.com/vueform/slider#basic-props).
   * 
   * @type {object} 
   */
@@ -14710,7 +14868,7 @@ var toggle = function toggle(props, context, dependencies) {
     };
   });
   /**
-  * Options for toggle input. Can be extended via [`:extend-options`](#option-extend-options) with [@vueform/toggle options](https://github.com/vueform/toggle#basic-props).
+  * Options for toggle input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/toggle options](https://github.com/vueform/toggle#basic-props).
   * 
   * @type {object} 
   */
@@ -14837,11 +14995,11 @@ var DateElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input$1 = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
-    var nullValue = base$w();
+    var path = base$G(props, context);
+    var disabled = base$K(props);
+    var nullValue = base$x();
     var fieldId = base$F(props, context, {
       path: path.path
     });
@@ -14851,7 +15009,7 @@ var DateElement = {
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -14901,7 +15059,7 @@ var DateElement = {
       value: value.value,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -14909,7 +15067,7 @@ var DateElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -14919,16 +15077,16 @@ var DateElement = {
       isDisabled: disabled.isDisabled,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -14938,7 +15096,7 @@ var DateElement = {
     var handleChange = base$q(props, context, {
       value: value.value
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -14948,11 +15106,6 @@ var DateElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input$1), addons), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), empty), default_), nullValue), options), dateFormat), handleChange), floating);
   }
@@ -15056,10 +15209,10 @@ var DatesElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input$1 = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
+    var path = base$G(props, context);
+    var disabled = base$K(props);
     var nullValue = array$1();
     var fieldId = base$F(props, context, {
       path: path.path
@@ -15120,7 +15273,7 @@ var DatesElement = {
       value: value.value,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -15128,7 +15281,7 @@ var DatesElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -15138,16 +15291,16 @@ var DatesElement = {
       isDisabled: disabled.isDisabled,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -15157,7 +15310,7 @@ var DatesElement = {
     var handleChange = base$q(props, context, {
       value: value.value
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -15168,11 +15321,6 @@ var DatesElement = {
       validation.initMessageBag();
       validation.initValidation();
     });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
-    });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input$1), addons), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), empty), default_), nullValue), handleChange), options), dateFormat), floating);
   }
 };
@@ -15180,9 +15328,8 @@ var DatesElement = {
 var base$o = function base(props, context, dependencies) {
   var _toRefs = toRefs(props);
       _toRefs.type;
-      var embed = _toRefs.embed;
-      _toRefs.clickable;
-      var auto = _toRefs.auto,
+      var embed = _toRefs.embed,
+      auto = _toRefs.auto,
       methods = _toRefs.methods,
       urls = _toRefs.urls,
       url = _toRefs.url,
@@ -15218,7 +15365,7 @@ var base$o = function base(props, context, dependencies) {
 
   var hasUploadError = ref(false);
   /**
-   * The `base64` format of the file when [`:view`](#view) is `image` or `gallery` and file only has been selected, but hasn't been uploaded yet.
+   * The `base64` representation of the file when [`view`](#option-view) is `image` or `gallery` and file is only selected, but not uploaded yet.
    * 
    * @type {string}
    * @default null
@@ -15234,7 +15381,7 @@ var base$o = function base(props, context, dependencies) {
 
   var progress = ref(0);
   /**
-   * If the form is submitted and a temp file hasn't been uploaded yet, the element will enter into `preparing` state by setting this to `true`. When in `preparing` state the form submission process will be halted until all async functions hasn't been completed without any errors.
+   * If the form is submitted and the file is not uploaded yet, the element will enter into `preparing` state and upload the temporary file before submitting the form.
    * 
    * @type {boolean}
    * @default false
@@ -15309,7 +15456,7 @@ var base$o = function base(props, context, dependencies) {
     return methods.value.removeFile || form$.value.$vueform.config.endpoints.removeFile.method;
   });
   /**
-   * URL to file using the [`:url`](#url) option without including the filename. If `url` is not defined it will default to `'/'`.
+   * URL to file using the [`url`](#url) option without including the filename. If `url` is not defined it will default to `'/'`.
    * 
    * @type {string}
    * @private
@@ -15333,7 +15480,7 @@ var base$o = function base(props, context, dependencies) {
     return fileUrl;
   });
   /**
-   * URL to file preview image using the [`:previewUrl`](#options-preview-url) option without including the filename. If `previewUrl` is not defined it will default to [`url`](#options-url).
+   * URL to file preview image using the [`previewUrl`](#option-preview-url) option without including the filename. If `previewUrl` is not defined it will default to [`url`](#option-url).
    * 
    * @type {string}
    * @private
@@ -15357,7 +15504,12 @@ var base$o = function base(props, context, dependencies) {
     return filePreviewUrl;
   });
   /**
-   * The stage the file is at:<br>* `0`: file not selected<br>* `1`: file selected<br>* `2`: temp file uploaded<br>* `3`: file uploaded
+   * The stage the file is at:
+   * 
+   * * `0`: file not selected
+   * * `1`: file selected
+   * * `2`: file temporarily uploaded
+   * * `3`: file permanently uploaded
    * 
    * @type {number}
    */
@@ -15403,7 +15555,7 @@ var base$o = function base(props, context, dependencies) {
     }
   });
   /**
-   * The link to an uploaded file.
+   * The clickable link of the uploaded file.
    * 
    * @type {string}
    */
@@ -15416,7 +15568,7 @@ var base$o = function base(props, context, dependencies) {
     return fileUrl.value + filename.value;
   });
   /**
-   * The link to an uploaded file preview.
+   * The preview link of the uploaded file.
    * 
    * @type {string}
    */
@@ -15442,7 +15594,7 @@ var base$o = function base(props, context, dependencies) {
     return uploaded.value ? previewLink.value : base64.value;
   });
   /**
-   * Whether the file has been uploaded.
+   * Whether the file is permantently uploaded.
    * 
    * @type {boolean}
    */
@@ -15563,7 +15715,11 @@ var base$o = function base(props, context, dependencies) {
     };
   }();
   /**
-   * Removes file (async):<br>* in stage `1`: sets the value to null<br>* in stage `2`: submit a request to `removeTemp` endpoint and sets the value to null<br>* in stage `3`: submits a request to `remove` endpoint and sets the value to null
+   * Removes file (async):
+   * 
+   * * in stage `1`: sets the value to `null`
+   * * in stage `2`: submits a request to `removeTemp` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`
+   * * in stage `3`: submits a request to `remove` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`
    * 
    * @returns {void}
    */
@@ -15788,7 +15944,9 @@ var base$o = function base(props, context, dependencies) {
   });
 
   if (value.value instanceof File && auto.value) {
-    uploadTemp();
+    nextTick(function () {
+      uploadTemp();
+    });
   }
 
   return {
@@ -15900,7 +16058,7 @@ var base$m = function base(props, context, dependencies) {
   var isDisabled = dependencies.isDisabled; // ============== COMPUTED ==============
 
   /**
-   * Whether `:drop` is enabled and browser supports dragging.
+   * Whether `drop` is enabled and browser supports dragging.
    * 
    * @type {boolean}
    * @private
@@ -15940,7 +16098,7 @@ var base$m = function base(props, context, dependencies) {
   };
 };
 
-var multifile$2 = function multifile(props, context, dependencies) {
+var multifile$3 = function multifile(props, context, dependencies) {
   var _toRefs2 = toRefs(props),
       accept = _toRefs2.accept;
 
@@ -16026,11 +16184,6 @@ var FileElement = {
       type: [String, Object],
       "default": null
     },
-    embed: {
-      type: [Boolean],
-      required: false,
-      "default": false
-    },
     disabled: {
       required: false,
       type: [Boolean],
@@ -16113,16 +16266,21 @@ var FileElement = {
       required: false,
       type: [Boolean],
       "default": false
+    },
+    embed: {
+      type: [Boolean],
+      required: false,
+      "default": false
     }
   },
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
-    var nullValue = base$w();
+    var path = base$G(props, context);
+    var disabled = base$K(props);
+    var nullValue = base$x();
     var removing = base$l();
     var fieldId = base$F(props, context, {
       path: path.path
@@ -16147,7 +16305,7 @@ var FileElement = {
       form$: form$.form$,
       path: path.path
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -16202,7 +16360,7 @@ var FileElement = {
       value: value.value,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -16211,7 +16369,7 @@ var FileElement = {
       filename: file$4.filename,
       label: label.label
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -16223,23 +16381,23 @@ var FileElement = {
       preparing: file$4.preparing,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
     }, {
       slots: ['label', 'info', 'description', 'before', 'between', 'after']
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -16249,11 +16407,6 @@ var FileElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input), path), conditions), value), validation), label), classes), columns), baseElement), genericName), genericName), view), templates), slots), disabled), events), data), empty), default_), nullValue), file$4), request), drop), removing), handleError);
   }
@@ -16274,7 +16427,6 @@ var base$j = function base(props, context, dependencies) {
   /**
    * Child element components.
    * 
-   * @default {[name]:component}
    * @type {object<Element>}
    */
 
@@ -16371,13 +16523,13 @@ var GroupElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var path = group$6(props, context);
     var nullValue = object$1();
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -16388,7 +16540,7 @@ var GroupElement = {
       form$: form$.form$,
       parent: path.parent
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -16410,25 +16562,25 @@ var GroupElement = {
       form$: form$.form$,
       path: path.path
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
-    var classes = base$I(props, context, {
+    var classes = base$J(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -16486,22 +16638,22 @@ var HiddenElement = {
     var form$ = base$Z();
     var theme = base$Y();
     var input = base$E();
-    var path = base$R(props, context);
-    var nullValue = base$w();
+    var path = base$G(props, context);
+    var nullValue = base$x();
     var genericName = base$A(props, context, {
       form$: form$.form$
     });
     var fieldId = base$F(props, context, {
       path: path.path
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -16519,7 +16671,7 @@ var HiddenElement = {
       form$: form$.form$,
       path: path.path
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -16537,7 +16689,7 @@ var HiddenElement = {
       value: value.value,
       nullValue: nullValue.nullValue
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -16547,11 +16699,6 @@ var HiddenElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), input), path), nullValue), default_), value), conditions), validation), events), data), empty), baseElement), genericName), templates);
   }
@@ -19594,7 +19741,7 @@ var base$i = function base(props, context, dependencies, options) {
   var sortable = ref(null); // ============== COMPUTED ==============
 
   /**
-   * Whether the list is sortable. Can be enabled with `:sort="true"` option, but it will disabled if [`isDisabled`](#is-disabled) is `true`.
+   * Whether the list is sortable. Can be enabled with [`sort`](#option-sort) option, but it will disabled if [`isDisabled`](#property-is-disabled) is `true`.
    * 
    * @type {boolean}
    */
@@ -19712,7 +19859,7 @@ var base$g = function base(props, context, dependencies, options) {
   var orderFrom = ref(form$.value.$vueform.config.orderFrom); // =============== METHODS ==============
 
   /**
-   * Sets the value of `storeOrder` fields within a list of items to match the order.
+   * Sets the value of `storeOrder` field within a list of items to match the order.
    *
    * @param {array} value* list of items
    * @returns {void}
@@ -19729,7 +19876,31 @@ var base$g = function base(props, context, dependencies, options) {
     return value;
   };
   /**
-   * The name of the field which we should order by.
+   * The name of the child (when using [`object`](#option-object)) by which the items should ordered.
+   * 
+   * @type {string}
+   */
+
+
+  var orderByName = computed(function () {
+    return orderBy.value || storeOrder.value;
+  });
+  return {
+    refreshOrderStore: refreshOrderStore,
+    orderByName: orderByName
+  };
+};
+
+var multifile$2 = function multifile(props, context, dependencies, options) {
+  var _toRefs2 = toRefs(props),
+      storeOrder = _toRefs2.storeOrder,
+      orderBy = _toRefs2.orderBy;
+
+  var _base = base$g(props, context, dependencies),
+      refreshOrderStore = _base.refreshOrderStore; // =============== METHODS ==============
+
+  /**
+   * The name of the field (when using [`fields`](#option-fiels)) by which the files should ordered.
    * 
    * @type {string}
    */
@@ -19862,7 +20033,7 @@ var base$e = function base(props, context, dependencies) {
   var value = dependencies.value; // ================ DATA ================
 
   /**
-   * Whether adding new items is allowed. Will return `false` if the element is `:disabled` or have reached `:max` items. Can be disabled manually by setting [`:controls.add`](#controls) to `false`.
+   * Whether adding new items is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or have reached [`max`](#option-max) items. Can be disabled manually by setting [`controls.add`](#option-controls) to `false`.
    * 
    * @type {boolean}
    */
@@ -19871,7 +20042,7 @@ var base$e = function base(props, context, dependencies) {
     return !isDisabled.value && (controls.value.add || controls.value.add === undefined) && (max.value === -1 || max.value > value.value.length);
   });
   /**
-   * Whether remove items is allowed. Will return `false` if the element is `:disabled` or has <= `:min` items. Can be disabled manually by setting [`:controls.remove`](#controls) to `false`.
+   * Whether remove items is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or has <= [`min`](#option-min) items. Can be disabled manually by setting [`controls.remove`](#option-controls) to `false`.
    * 
    * @type {boolean}
    */
@@ -19880,7 +20051,7 @@ var base$e = function base(props, context, dependencies) {
     return !isDisabled.value && (controls.value.remove || controls.value.remove === undefined) && (min.value === -1 || min.value < value.value.length);
   });
   /**
-   * Whether list items should be sortable. Can be enabled by setting [`:sort`](#sort) to `true`, but will return `false` if the element is `:disabled`.
+   * Whether list items should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled).
    * 
    * @type {boolean}
    */
@@ -19905,7 +20076,7 @@ var multifile = function multifile(props, context, dependencies) {
   var hasUploading = dependencies.hasUploading; // ================ DATA ================
 
   /**
-   * Whether adding new items is allowed. Will return `false` if the element is `:disabled`. Can be disabled manually by setting [`:controls.add`](#controls) to `false`.
+   * Whether adding new files is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled). Can be disabled manually by setting [`controls.add`](#option-controls) to `false`.
    * 
    * @type {boolean}
    */
@@ -19914,7 +20085,7 @@ var multifile = function multifile(props, context, dependencies) {
     return !isDisabled.value && (controls.value.add || controls.value.add === undefined);
   });
   /**
-   * Whether remove items is allowed. Will return `false` if the element is `:disabled` or a temporary file upload is in progress. Can be disabled manually by setting [`:controls.remove`](#controls) to `false`.
+   * Whether remove files is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or a temporary file upload is in progress. Can be disabled manually by setting [`controls.remove`](#option-controls) to `false`.
    * 
    * @type {boolean}
    */
@@ -19923,7 +20094,7 @@ var multifile = function multifile(props, context, dependencies) {
     return !isDisabled.value && (controls.value.remove || controls.value.remove === undefined) && !hasUploading.value;
   });
   /**
-   * Whether list items should be sortable. Can be enabled by setting [`:sort`](#sort) to `true`, but will return `false` if the element is `:disabled` or a temporary file upload is in progress.
+   * Whether list files should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or a temporary file upload is in progress.
    * 
    * @type {boolean}
    */
@@ -20039,9 +20210,9 @@ var ListElement = {
 
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
-    var path = base$R(props, context);
-    var disabled = base$J(props);
+    var layout = base$L(props);
+    var path = base$G(props, context);
+    var disabled = base$K(props);
     var nullValue = array$1();
     var prototype = base$f(props);
     var children = base$j();
@@ -20062,7 +20233,7 @@ var ListElement = {
       dataPath: path.dataPath,
       parent: path.parent
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -20081,7 +20252,7 @@ var ListElement = {
       form$: form$.form$,
       children$: children.children$
     }, _defineProperty$1(_useValidation, "form$", form$.form$), _defineProperty$1(_useValidation, "path", path.path), _useValidation));
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -20097,20 +20268,20 @@ var ListElement = {
       value: value.value,
       nullValue: nullValue.nullValue
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -20156,11 +20327,6 @@ var ListElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), theme), layout), path), disabled), nullValue), label), baseElement), genericName), children), value), elements), conditions), validation), classes), columns), view), templates), slots), data), events), sort), sorting), default_), order), prototype), empty), controls), {}, {
       log: function log() {
@@ -20208,7 +20374,7 @@ var base$d = function base(props, context, dependencies) {
     return provider.value || form$.value.$vueform.config.locationProvider;
   });
   /**
-  * Default options for location provider.
+  * Default options for location provider. Can be extended with [`extendOptions`](#option-extend-options).
   * 
   * @type {object} 
   * @default {}
@@ -20245,6 +20411,7 @@ var base$d = function base(props, context, dependencies) {
    *
    * @param {object} data an object containing address data
    * @param {object} raw an object containing raw address data (based on provider)
+   * @private
    */
 
   var handleAddressChange = function handleAddressChange(data, raw) {
@@ -20273,20 +20440,23 @@ var base$d = function base(props, context, dependencies) {
     }
   };
   /**
-   * Initalizes location service.
+   * Initalizes location service. Can be used to re-initalize location service.
    *
    * @returns {void}
    */
 
 
   var initLocationService = function initLocationService() {
+    if (locationService.value) {
+      locationService.value.destroy();
+    }
+
     locationService.value = new form$.value.$vueform.services.location[locationProvider.value]();
     locationService.value.init(inputElement(), handleAddressChange, providerOptions.value);
   }; // ============== WATCHERS ==============
 
 
   watch([locationProvider, providerOptions], function () {
-    locationService.value.destroy();
     initLocationService();
   }, {
     deep: true,
@@ -20294,16 +20464,7 @@ var base$d = function base(props, context, dependencies) {
   }); // =============== HOOKS ================
 
   onMounted(function () {
-    initLocationService(); // Replacing autocomplete attribute on input
-
-    var attrObserver = new MutationObserver(function () {
-      attrObserver.disconnect();
-      inputElement().setAttribute('autocomplete', 'not-address');
-    });
-    attrObserver.observe(inputElement(), {
-      attributes: true,
-      attributeFilter: ['autocomplete']
-    });
+    initLocationService();
   });
   return {
     locationService: locationService,
@@ -20406,10 +20567,10 @@ var LocationElement = {
 
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input$1 = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
+    var path = base$G(props, context);
+    var disabled = base$K(props);
     var nullValue = location();
     var fieldId = base$F(props, context, {
       path: path.path
@@ -20420,7 +20581,7 @@ var LocationElement = {
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -20433,7 +20594,7 @@ var LocationElement = {
       dataPath: path.dataPath,
       parent: path.parent
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -20468,7 +20629,7 @@ var LocationElement = {
       value: value.value,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -20476,7 +20637,7 @@ var LocationElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -20486,16 +20647,16 @@ var LocationElement = {
       isDisabled: disabled.isDisabled,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -20519,11 +20680,6 @@ var LocationElement = {
       validation.initMessageBag();
       validation.initValidation();
     });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
-    });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input$1), addons), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), empty), default_), nullValue), location$3), floating);
   }
 };
@@ -20538,7 +20694,7 @@ var base$c = function base(props, context, dependencies) {
   var children$ = dependencies.children$; // ============== COMPUTED ==============
 
   /**
-   * Whether any of the file are preparing (being uploaded before submit).
+   * Whether any of the files are currently being uploaded to the server (initiated by form submit).
    * 
    * @type {boolean}
    */
@@ -20546,11 +20702,11 @@ var base$c = function base(props, context, dependencies) {
   var preparing = computed(function () {
     return _$1.some(children$.value, {
       available: true,
-      perparing: true
+      preparing: true
     });
   });
   /**
-   * Whether any file is currently uploading.
+   * Whether any of the files are currently being uploaded to the server (initiated by the user).
    * 
    * @type {boolean}
    */
@@ -20732,9 +20888,9 @@ var MultifileElement = {
 
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
-    var path = base$R(props, context);
-    var disabled = base$J(props);
+    var layout = base$L(props);
+    var path = base$G(props, context);
+    var disabled = base$K(props);
     var nullValue = array$1();
     var children = base$j();
     var input = base$E();
@@ -20755,7 +20911,7 @@ var MultifileElement = {
       dataPath: path.dataPath,
       parent: path.parent
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -20767,7 +20923,7 @@ var MultifileElement = {
       form$: form$.form$,
       children$: children.children$
     }, _defineProperty$1(_useValidation, "form$", form$.form$), _defineProperty$1(_useValidation, "path", path.path), _useValidation));
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -20786,27 +20942,27 @@ var MultifileElement = {
       form$: form$.form$,
       path: path.path
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
     }, {
       slots: ['label', 'info', 'description', 'before', 'between', 'after']
     });
-    var order = base$g(props, context, {
+    var order = multifile$2(props, context, {
       isObject: prototype.isObject,
       children$: children.children$,
       form$: form$.form$
@@ -20824,7 +20980,7 @@ var MultifileElement = {
       refreshOrderStore: order.refreshOrderStore,
       dataPath: path.dataPath
     }, _defineProperty$1(_useData, "nullValue", nullValue.nullValue), _defineProperty$1(_useData, "defaultValue", default_.defaultValue), _defineProperty$1(_useData, "fire", events.fire), _useData));
-    var multifile$5 = base$c(props, context, {
+    var multifile$6 = base$c(props, context, {
       isDisabled: disabled.isDisabled,
       input: input.input,
       add: data.add,
@@ -20834,21 +20990,21 @@ var MultifileElement = {
     });
     var controls = multifile(props, context, {
       isDisabled: disabled.isDisabled,
-      hasUploading: multifile$5.hasUploading
+      hasUploading: multifile$6.hasUploading
     });
-    var drop = multifile$2(props, context, {
+    var drop = multifile$3(props, context, {
       add: data.add,
       isDisabled: disabled.isDisabled,
       isObject: prototype.isObject,
       storeFileName: prototype.storeFileName,
-      accept: multifile$5.accept
+      accept: multifile$6.accept
     });
-    var classes = multifile$4(props, context, {
+    var classes = multifile$5(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       isDisabled: disabled.isDisabled,
       sorting: sorting.sorting,
-      preparing: multifile$5.preparing,
+      preparing: multifile$6.preparing,
       templates: templates.templates
     });
     var sort = base$i(props, context, {
@@ -20859,7 +21015,7 @@ var MultifileElement = {
       sorting: sorting.sorting,
       classes: classes.classes
     });
-    multifile$3(props, context, {
+    multifile$4(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -20870,12 +21026,7 @@ var MultifileElement = {
       validation.initMessageBag();
       validation.initValidation();
     });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
-    });
-    return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), theme), layout), path), disabled), nullValue), label), baseElement), genericName), children), value), elements), conditions), validation), classes), columns), view), templates), slots), data), events), sort), sorting), default_), order), prototype), multifile$5), input), drop), empty), controls);
+    return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), theme), layout), path), disabled), nullValue), label), baseElement), genericName), children), value), elements), conditions), validation), classes), columns), view), templates), slots), data), events), sort), sorting), default_), order), prototype), multifile$6), input), drop), empty), controls);
   }
 };
 
@@ -21380,10 +21531,10 @@ var MultiselectElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input$1 = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
+    var path = base$G(props, context);
+    var disabled = base$K(props);
     var nullValue = array$1();
     var fieldId = base$F(props, context, {
       path: path.path
@@ -21422,7 +21573,7 @@ var MultiselectElement = {
       enable: disabled.enable,
       el$: baseElement.el$
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -21444,7 +21595,7 @@ var MultiselectElement = {
       value: value.value,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -21452,7 +21603,7 @@ var MultiselectElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -21462,21 +21613,21 @@ var MultiselectElement = {
       isDisabled: disabled.isDisabled,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
     }, {
-      slots: ['label', 'info', 'description', 'before', 'between', 'after', 'option', 'placeholder', 'multiple-label', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear']
+      slots: ['option', 'multiple-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after']
     });
     var handleSelectEvents = base$b(props, context, {
       fire: events.fire
@@ -21484,7 +21635,7 @@ var MultiselectElement = {
     var select = base$a(props, context, {
       value: value.value
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -21494,11 +21645,6 @@ var MultiselectElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input$1), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), empty), default_), nullValue), asyncItems), options), handleSelectEvents), select), floating), loading);
   }
@@ -21544,13 +21690,13 @@ var ObjectElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
-    var path = base$R(props, context);
+    var layout = base$L(props);
+    var path = base$G(props, context);
     var nullValue = object$1();
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -21565,7 +21711,7 @@ var ObjectElement = {
       form$: form$.form$,
       parent: path.parent
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -21584,25 +21730,25 @@ var ObjectElement = {
       children$: children.children$,
       path: path.path
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
-    var classes = base$I(props, context, {
+    var classes = base$J(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -21638,10 +21784,11 @@ var base$8 = function base(props, context, dependencies) {
   var update = dependencies.update;
   var nullValue = dependencies.nullValue;
   var fieldId = dependencies.fieldId;
-  var path = dependencies.path; // ============== COMPUTED ==============
+  var path = dependencies.path;
+  var form$ = dependencies.form$; // ============== COMPUTED ==============
 
   /**
-   * The `name` attribute of the element. If [`:id`](#id) is not provided [`:name`](#name) will be used.
+   * The `name` attribute of the element. If [`id`](#option-id) is not provided [`name`](#option-name) will be used.
    * 
    * @type {string}
    */
@@ -21672,7 +21819,7 @@ var base$8 = function base(props, context, dependencies) {
 
 
   onMounted(function () {
-    document.getElementsByName(inputName.value).forEach(function (element) {
+    form$.value.$el.querySelectorAll("input[name=\"".concat(inputName.value, "\"")).forEach(function (element) {
       element.addEventListener('change', function () {
         if (element.id != fieldId.value) {
           update(nullValue.value);
@@ -21732,21 +21879,21 @@ var RadioElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input$1 = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
+    var path = base$G(props, context);
+    var disabled = base$K(props);
     var fieldId = base$F(props, context, {
       path: path.path
     });
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
-    var nullValue = base$w();
+    var nullValue = base$x();
     var default_ = base$C(props, context, {
       nullValue: nullValue.nullValue,
       form$: form$.form$,
@@ -21761,7 +21908,7 @@ var RadioElement = {
       form$: form$.form$,
       path: path.path
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -21775,7 +21922,7 @@ var RadioElement = {
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -21783,7 +21930,7 @@ var RadioElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -21793,29 +21940,30 @@ var RadioElement = {
       isDisabled: disabled.isDisabled,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
     }, {
-      slots: ['label', 'info', 'description', 'before', 'between', 'after', 'default']
+      slots: ['default', 'label', 'info', 'description', 'before', 'between', 'after']
     });
     var radio = base$8(props, context, {
       update: data.update,
       nullValue: nullValue.nullValue,
       fieldId: fieldId.fieldId,
-      path: path.path
+      path: path.path,
+      form$: form$.form$
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -21825,11 +21973,6 @@ var RadioElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input$1), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), default_), nullValue), radio);
   }
@@ -21879,16 +22022,16 @@ var RadiogroupElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
-    var path = base$R(props, context);
-    var nullValue = base$w();
+    var layout = base$L(props);
+    var path = base$G(props, context);
+    var nullValue = base$x();
     var fieldId = base$F(props, context, {
       path: path.path
     });
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -21914,7 +22057,7 @@ var RadiogroupElement = {
       form$: form$.form$,
       path: path.path
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -21928,7 +22071,7 @@ var RadiogroupElement = {
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -21936,32 +22079,32 @@ var RadiogroupElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
-    var classes = base$I(props, context, {
+    var classes = base$J(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
     }, {
-      slots: ['label', 'info', 'description', 'before', 'between', 'after', 'radio']
+      slots: ['radio', 'label', 'info', 'description', 'before', 'between', 'after']
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -21971,11 +22114,6 @@ var RadiogroupElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), theme), layout), fieldId), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), default_), nullValue), asyncItems);
   }
@@ -22239,11 +22377,11 @@ var SelectElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input$1 = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
-    var nullValue = base$w();
+    var path = base$G(props, context);
+    var disabled = base$K(props);
+    var nullValue = base$x();
     var fieldId = base$F(props, context, {
       path: path.path
     });
@@ -22253,7 +22391,7 @@ var SelectElement = {
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -22281,7 +22419,7 @@ var SelectElement = {
       enable: disabled.enable,
       el$: baseElement.el$
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -22303,7 +22441,7 @@ var SelectElement = {
       value: value.value,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -22311,7 +22449,7 @@ var SelectElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -22321,26 +22459,26 @@ var SelectElement = {
       isDisabled: disabled.isDisabled,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
     }, {
-      slots: ['label', 'info', 'description', 'before', 'between', 'after', 'option', 'placeholder', 'single-label', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear']
+      slots: ['option', 'single-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after']
     });
     var handleSelectEvents = base$b(props, context, {
       fire: events.fire
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -22350,11 +22488,6 @@ var SelectElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input$1), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), empty), default_), nullValue), asyncItems), options), handleSelectEvents), floating), loading);
   }
@@ -22447,10 +22580,10 @@ var SliderElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
+    var path = base$G(props, context);
+    var disabled = base$K(props);
     var nullValue = min(props);
     var fieldId = base$F(props, context, {
       path: path.path
@@ -22458,7 +22591,7 @@ var SliderElement = {
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -22472,7 +22605,7 @@ var SliderElement = {
       dataPath: path.dataPath,
       parent: path.parent
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -22495,7 +22628,7 @@ var SliderElement = {
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -22503,25 +22636,25 @@ var SliderElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
-    var classes = base$I(props, context, {
+    var classes = base$J(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -22531,7 +22664,7 @@ var SliderElement = {
     var handleChange = base$q(props, context, {
       value: value.value
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -22541,11 +22674,6 @@ var SliderElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), default_), nullValue), options), handleChange);
   }
@@ -22596,13 +22724,13 @@ var StaticElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
-    var path = base$R(props, context);
-    var static_$1 = base$7(props);
+    var layout = base$L(props);
+    var path = static_(props, context);
+    var static_$2 = base$7(props);
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = static_(props, context, {
+    var baseElement = static_$1(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -22610,36 +22738,36 @@ var StaticElement = {
       form$: form$.form$,
       path: path.path
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
-    var classes = base$I(props, context, {
+    var classes = base$J(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
     }, {
-      slots: ['label', 'info', 'description', 'before', 'between', 'after', 'default']
+      slots: ['default', 'label', 'info', 'description', 'before', 'between', 'after']
     });
-    return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), theme), layout), path), conditions), label), classes), columns), baseElement), view), templates), slots), events), static_$1);
+    return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), theme), layout), path), conditions), label), classes), columns), baseElement), view), templates), slots), events), static_$2);
   }
 };
 
@@ -22964,10 +23092,10 @@ var TagsElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
+    var path = base$G(props, context);
+    var disabled = base$K(props);
     var nullValue = array$1();
     var fieldId = base$F(props, context, {
       path: path.path
@@ -23003,7 +23131,7 @@ var TagsElement = {
       isNative: options.isNative,
       input: input.input
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -23025,7 +23153,7 @@ var TagsElement = {
       value: value.value,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -23033,30 +23161,30 @@ var TagsElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
-    var classes = base$I(props, context, {
+    var classes = base$J(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
     }, {
-      slots: ['label', 'info', 'description', 'before', 'between', 'after', 'tag', 'option', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear']
+      slots: ['tag', 'option', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after']
     });
     var handleSelectEvents = base$b(props, context, {
       fire: events.fire
@@ -23068,7 +23196,7 @@ var TagsElement = {
       value: value.value,
       updated: data.updated
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -23078,11 +23206,6 @@ var TagsElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), empty), default_), nullValue), asyncItems), options), handleSelectEvents), select), handleTag), floating), loading);
   }
@@ -23119,7 +23242,7 @@ var base$4 = function base(props, context, dependencies) {
   var value = dependencies.value; // =============== METHODS ==============
 
   /**
-   * Updates the height of the input based in its contents when `autogrow` is enabled.
+   * Updates the height of the input based in its contents when [`autogrow`](#option-autogrow) is enabled.
    * 
    * @returns {void}
    */
@@ -23240,11 +23363,11 @@ var TextareaElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input$1 = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
-    var nullValue = base$w();
+    var path = base$G(props, context);
+    var disabled = base$K(props);
+    var nullValue = base$x();
     var fieldId = base$F(props, context, {
       path: path.path
     });
@@ -23254,7 +23377,7 @@ var TextareaElement = {
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -23271,11 +23394,11 @@ var TextareaElement = {
       form$: form$.form$,
       path: path.path
     });
-    var validation = base$B(props, context, {
+    var validation = text(props, context, {
       form$: form$.form$,
       path: path.path
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -23293,7 +23416,7 @@ var TextareaElement = {
       value: value.value,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -23301,7 +23424,7 @@ var TextareaElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -23311,16 +23434,16 @@ var TextareaElement = {
       isDisabled: disabled.isDisabled,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -23335,7 +23458,7 @@ var TextareaElement = {
       input: input$1.input,
       value: value.value
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -23345,11 +23468,6 @@ var TextareaElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input$1), addons), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), empty), default_), nullValue), handleInput), autogrow), floating);
   }
@@ -23427,11 +23545,11 @@ var TextElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input$1 = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
-    var nullValue = base$w();
+    var path = base$G(props, context);
+    var disabled = base$K(props);
+    var nullValue = base$x();
     var fieldId = base$F(props, context, {
       path: path.path
     });
@@ -23441,7 +23559,7 @@ var TextElement = {
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -23457,14 +23575,14 @@ var TextElement = {
       form$: form$.form$,
       path: path.path
     });
-    var validation = base$B(props, context, {
+    var validation = text(props, context, {
       form$: form$.form$,
       path: path.path
     });
     var loading = base$9(props, context, {
       pending: validation.pending
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -23482,7 +23600,7 @@ var TextElement = {
       value: value.value,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -23490,7 +23608,7 @@ var TextElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -23500,16 +23618,16 @@ var TextElement = {
       isDisabled: disabled.isDisabled,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -23519,7 +23637,7 @@ var TextElement = {
     var handleInput = base$5(props, context, {
       model: value.model
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -23529,11 +23647,6 @@ var TextElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input$1), addons), path), disabled), nullValue), baseElement), default_), value), conditions), validation), loading), label), classes), columns), genericName), view), templates), slots), events), data), empty), handleInput), floating);
   }
@@ -23599,10 +23712,10 @@ var ToggleElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
+    var path = base$G(props, context);
+    var disabled = base$K(props);
     var nullValue = _boolean(props);
     var fieldId = base$F(props, context, {
       path: path.path
@@ -23610,7 +23723,7 @@ var ToggleElement = {
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -23632,7 +23745,7 @@ var ToggleElement = {
       form$: form$.form$,
       path: path.path
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -23646,7 +23759,7 @@ var ToggleElement = {
       defaultValue: default_.defaultValue,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -23654,38 +23767,38 @@ var ToggleElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
-    var classes = base$I(props, context, {
+    var classes = base$J(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
     }, {
-      slots: ['label', 'info', 'description', 'before', 'between', 'after', 'default']
+      slots: ['default', 'label', 'info', 'description', 'before', 'between', 'after']
     });
     var handleChange = base$q(props, context, {
       value: value.value
     });
-    var toggle$1 = base$z(props, context, {
+    var toggle$1 = base$w(props, context, {
       update: data.update
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -23695,11 +23808,6 @@ var ToggleElement = {
     onMounted(function () {
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), default_), nullValue), handleChange), toggle$1), options);
   }
@@ -23864,18 +23972,18 @@ var EditorElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
-    var nullValue = base$w();
+    var path = base$G(props, context);
+    var disabled = base$K(props);
+    var nullValue = base$x();
     var fieldId = base$F(props, context, {
       path: path.path
     });
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -23889,11 +23997,11 @@ var EditorElement = {
       form$: form$.form$,
       path: path.path
     });
-    var validation = base$B(props, context, {
+    var validation = text(props, context, {
       form$: form$.form$,
       path: path.path
     });
-    var value = base$y(props, context, {
+    var value = base$z(props, context, {
       defaultValue: default_.defaultValue,
       dataPath: path.dataPath,
       form$: form$.form$,
@@ -23912,7 +24020,7 @@ var EditorElement = {
       value: value.value,
       nullValue: nullValue.nullValue
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -23920,7 +24028,7 @@ var EditorElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -23935,16 +24043,16 @@ var EditorElement = {
       focused: editor$2.focused,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -23962,7 +24070,7 @@ var EditorElement = {
       fire: events.fire,
       listeners: events.listeners
     });
-    base$x(props, context, {
+    base$y(props, context, {
       form$: form$.form$,
       value: value.value,
       fire: events.fire,
@@ -23973,11 +24081,6 @@ var EditorElement = {
       validation.initMessageBag();
       validation.initValidation();
     });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
-    });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), empty), default_), nullValue), handleInput), handleAlert), handleError), editor$2);
   }
 };
@@ -23987,7 +24090,7 @@ var base$1 = function base(props, context, dependencies) {
   var form$ = dependencies.form$; // ============== COMPUTED ===============
 
   /**
-   * The ISO 639-1 code of the currently selected language (2 letters).
+   * The language code of the currently selected language (2 letters).
    * 
    * @type {string}
    */
@@ -24077,10 +24180,10 @@ var TTextareaElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input$1 = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
+    var path = base$G(props, context);
+    var disabled = base$K(props);
     var fieldId = base$F(props, context, {
       path: path.path
     });
@@ -24090,7 +24193,7 @@ var TTextareaElement = {
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -24140,7 +24243,7 @@ var TTextareaElement = {
       nullValue: nullValue.nullValue,
       language: languages.language
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -24148,7 +24251,7 @@ var TTextareaElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -24158,16 +24261,16 @@ var TTextareaElement = {
       isDisabled: disabled.isDisabled,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -24194,11 +24297,6 @@ var TTextareaElement = {
       validation.initState();
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input$1), addons), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), empty), default_), nullValue), handleInput), autogrow), languages), floating);
   }
@@ -24276,10 +24374,10 @@ var TTextElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input$1 = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
+    var path = base$G(props, context);
+    var disabled = base$K(props);
     var fieldId = base$F(props, context, {
       path: path.path
     });
@@ -24289,7 +24387,7 @@ var TTextElement = {
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -24342,7 +24440,7 @@ var TTextElement = {
       nullValue: nullValue.nullValue,
       language: languages.language
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -24350,7 +24448,7 @@ var TTextElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -24360,16 +24458,16 @@ var TTextElement = {
       isDisabled: disabled.isDisabled,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -24391,11 +24489,6 @@ var TTextElement = {
       validation.initState();
       validation.initMessageBag();
       validation.initValidation();
-    });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
     });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input$1), addons), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), empty), default_), nullValue), handleInput), languages), floating), loading);
   }
@@ -24475,17 +24568,17 @@ var TEditorElement = {
   setup: function setup(props, context) {
     var form$ = base$Z();
     var theme = base$Y();
-    var layout = base$K(props);
+    var layout = base$L(props);
     var input = base$E();
-    var path = base$R(props, context);
-    var disabled = base$J(props);
+    var path = base$G(props, context);
+    var disabled = base$K(props);
     var fieldId = base$F(props, context, {
       path: path.path
     });
     var events = base$$(props, context, {}, {
       events: context.emits
     });
-    var baseElement = base$G(props, context, {
+    var baseElement = base$H(props, context, {
       form$: form$.form$,
       fire: events.fire
     });
@@ -24535,7 +24628,7 @@ var TEditorElement = {
       nullValue: nullValue.nullValue,
       language: languages.language
     });
-    var label = base$Q(props, context, {
+    var label = base$R(props, context, {
       form$: form$.form$,
       el$: baseElement.el$
     });
@@ -24543,7 +24636,7 @@ var TEditorElement = {
       label: label.label,
       form$: form$.form$
     });
-    var templates = base$N(props, context, {
+    var templates = base$O(props, context, {
       theme: theme.theme,
       form$: form$.form$
     });
@@ -24558,16 +24651,16 @@ var TEditorElement = {
       focused: editor.focused,
       templates: templates.templates
     });
-    var columns = base$P(props, context, {
+    var columns = base$Q(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel
     });
-    var view = base$O(props, context, {
+    var view = base$P(props, context, {
       available: conditions.available,
       active: baseElement.active
     });
-    var slots = base$M(props, context, {
+    var slots = base$N(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
       templates: templates.templates
@@ -24598,11 +24691,6 @@ var TEditorElement = {
       validation.initMessageBag();
       validation.initValidation();
     });
-    watch(validation.validationRules, function () {
-      validation.initValidation();
-    }, {
-      deep: true
-    });
     return _objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, form$), fieldId), theme), layout), input), path), conditions), value), validation), label), classes), columns), baseElement), genericName), view), templates), slots), disabled), events), data), empty), default_), nullValue), handleInput), handleError), handleAlert), editor), languages);
   }
 };
@@ -24611,11 +24699,19 @@ var CheckboxgroupCheckbox = {
   name: 'CheckboxgroupCheckbox',
   props: {
     item: {
-      type: [Object, String],
+      type: [Object, String, Number],
       required: true
     },
     value: {
       type: [String, Number],
+      required: true
+    },
+    items: {
+      type: [Object],
+      required: true
+    },
+    index: {
+      type: [Number],
       required: true
     }
   },
@@ -24712,7 +24808,7 @@ var base = function base(props, context, dependencies) {
     return el$.value.filename;
   });
   /**
-   * Whether the file should be clickable if it is already uploaded.
+   * Whether the file should be clickable if it is already permantently uploaded.
    * 
    * @type {boolean}
    */
@@ -24721,7 +24817,7 @@ var base = function base(props, context, dependencies) {
     return el$.value.clickable;
   });
   /**
-   * Whether the temporary or final file is uploaded.
+   * Whether the temporary or permanent file is uploaded.
    * 
    * @type {boolean}
    */
@@ -24766,7 +24862,7 @@ var base = function base(props, context, dependencies) {
     return el$.value.canUploadTemp;
   });
   /**
-   * The text for upload button. Can be changed at the locale file: `vueform.elements.file.upload`
+   * The text for upload button. Can be also changed in the locale file: `vueform.elements.file.upload`
    * 
    * @type {string}
    */
@@ -25017,11 +25113,19 @@ var RadiogroupRadio = {
   name: 'RadiogroupRadio',
   props: {
     item: {
-      type: [Object, String],
+      type: [Object, String, Number],
       required: true
     },
     value: {
       type: [String, Number],
+      required: true
+    },
+    items: {
+      type: [Object],
+      required: true
+    },
+    index: {
+      type: [Number],
       required: true
     }
   },

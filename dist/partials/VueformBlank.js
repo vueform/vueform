@@ -1,5 +1,43 @@
-import _ from 'lodash';
 import { ref, toRefs, computed, watch, getCurrentInstance, provide, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'composition-api';
+import _ from 'lodash';
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+
+    if (enumerableOnly) {
+      symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+    }
+
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
 
 function _typeof(obj) {
   "@babel/helpers - typeof";
@@ -1878,4 +1916,402 @@ var base = function base(props, context) {
   };
 };
 
-export { base as default };
+var _this = undefined;
+var Vueform = {
+  name: 'Vueform',
+  emits: ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'response', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  slots: ['default', 'empty'],
+  setup: function setup(props, context) {
+    context.emits = ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'response', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'];
+    context.name = ref('Vueform');
+
+    var _useVueform = base(props, context),
+        tabs$ = _useVueform.tabs$,
+        steps$ = _useVueform.steps$,
+        elements$ = _useVueform.elements$,
+        options = _useVueform.options,
+        validation = _useVueform.validation,
+        messageBag = _useVueform.messageBag,
+        selectedLanguage = _useVueform.selectedLanguage,
+        submitting = _useVueform.submitting,
+        preparing = _useVueform.preparing,
+        events = _useVueform.events,
+        listeners = _useVueform.listeners,
+        internalData = _useVueform.internalData,
+        data = _useVueform.data,
+        requestData = _useVueform.requestData,
+        dirty = _useVueform.dirty,
+        invalid = _useVueform.invalid,
+        debouncing = _useVueform.debouncing,
+        pending = _useVueform.pending,
+        validated = _useVueform.validated,
+        busy = _useVueform.busy,
+        formErrors = _useVueform.formErrors,
+        formMessages = _useVueform.formMessages,
+        isDisabled = _useVueform.isDisabled,
+        isLoading = _useVueform.isLoading,
+        shouldValidateOnChange = _useVueform.shouldValidateOnChange,
+        shouldValidateOnStep = _useVueform.shouldValidateOnStep,
+        hasSteps = _useVueform.hasSteps,
+        hasTabs = _useVueform.hasTabs,
+        hasErrors = _useVueform.hasErrors,
+        hasMessages = _useVueform.hasMessages,
+        isMultilingual = _useVueform.isMultilingual,
+        showErrors = _useVueform.showErrors,
+        showMessages = _useVueform.showMessages,
+        showLanguages = _useVueform.showLanguages,
+        showSteps = _useVueform.showSteps,
+        showTabs = _useVueform.showTabs,
+        showStepsControls = _useVueform.showStepsControls,
+        mainClass = _useVueform.mainClass,
+        defaultClasses = _useVueform.defaultClasses,
+        classes = _useVueform.classes,
+        templates = _useVueform.templates,
+        extendedTheme = _useVueform.extendedTheme,
+        form$ = _useVueform.form$,
+        model = _useVueform.model,
+        intermediaryValue = _useVueform.intermediaryValue,
+        userConfig = _useVueform.userConfig,
+        isSync = _useVueform.isSync,
+        updateModel = _useVueform.updateModel,
+        update = _useVueform.update,
+        load = _useVueform.load,
+        reset = _useVueform.reset,
+        clear = _useVueform.clear,
+        clean = _useVueform.clean,
+        validate = _useVueform.validate,
+        resetValidators = _useVueform.resetValidators,
+        convertFormData = _useVueform.convertFormData,
+        submit = _useVueform.submit,
+        send = _useVueform.send,
+        disableValidation = _useVueform.disableValidation,
+        enableValidation = _useVueform.enableValidation,
+        setLanguage = _useVueform.setLanguage,
+        handleSubmit = _useVueform.handleSubmit,
+        el$ = _useVueform.el$,
+        siblings$ = _useVueform.siblings$,
+        initMessageBag = _useVueform.initMessageBag,
+        fire = _useVueform.fire,
+        on = _useVueform.on,
+        off = _useVueform.off;
+
+    return {
+      tabs$: tabs$,
+      steps$: steps$,
+      elements$: elements$,
+      options: options,
+      validation: validation,
+      messageBag: messageBag,
+      selectedLanguage: selectedLanguage,
+      submitting: submitting,
+      preparing: preparing,
+      events: events,
+      listeners: listeners,
+      internalData: internalData,
+      data: data,
+      requestData: requestData,
+      dirty: dirty,
+      invalid: invalid,
+      debouncing: debouncing,
+      pending: pending,
+      validated: validated,
+      busy: busy,
+      formErrors: formErrors,
+      formMessages: formMessages,
+      isDisabled: isDisabled,
+      isLoading: isLoading,
+      shouldValidateOnChange: shouldValidateOnChange,
+      shouldValidateOnStep: shouldValidateOnStep,
+      hasSteps: hasSteps,
+      hasTabs: hasTabs,
+      hasErrors: hasErrors,
+      hasMessages: hasMessages,
+      isMultilingual: isMultilingual,
+      showErrors: showErrors,
+      showMessages: showMessages,
+      showLanguages: showLanguages,
+      showSteps: showSteps,
+      showTabs: showTabs,
+      showStepsControls: showStepsControls,
+      mainClass: mainClass,
+      defaultClasses: defaultClasses,
+      classes: classes,
+      templates: templates,
+      extendedTheme: extendedTheme,
+      form$: form$,
+      model: model,
+      intermediaryValue: intermediaryValue,
+      userConfig: userConfig,
+      isSync: isSync,
+      updateModel: updateModel,
+      update: update,
+      load: load,
+      reset: reset,
+      clear: clear,
+      clean: clean,
+      validate: validate,
+      resetValidators: resetValidators,
+      convertFormData: convertFormData,
+      submit: submit,
+      send: send,
+      disableValidation: disableValidation,
+      enableValidation: enableValidation,
+      setLanguage: setLanguage,
+      handleSubmit: handleSubmit,
+      el$: el$,
+      siblings$: siblings$,
+      initMessageBag: initMessageBag,
+      fire: fire,
+      on: on,
+      off: off
+    };
+  },
+  props: {
+    schema: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    tabs: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    steps: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    stepsControls: {
+      type: Boolean,
+      required: false,
+      "default": null,
+      '@default': true
+    },
+    validateOn: {
+      type: String,
+      required: false,
+      "default": null
+    },
+    displayErrors: {
+      type: Boolean,
+      required: false,
+      "default": null
+    },
+    displayMessages: {
+      type: Boolean,
+      required: false,
+      "default": null
+    },
+    messages: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    endpoint: {
+      type: String,
+      required: false,
+      "default": null
+    },
+    method: {
+      type: String,
+      required: false,
+      "default": null
+    },
+    prepare: {
+      type: Function,
+      required: false,
+      "default": null
+    },
+    formKey: {
+      type: [String, Number],
+      required: false,
+      "default": null
+    },
+    formData: {
+      type: Function,
+      required: false,
+      "default": null
+    },
+    value: {
+      type: Object,
+      required: false,
+      "default": undefined
+    },
+    modelValue: {
+      type: Object,
+      required: false,
+      "default": undefined
+    },
+    sync: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    "default": {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    formatData: {
+      type: Function,
+      required: false,
+      "default": null
+    },
+    formatLoad: {
+      type: Function,
+      required: false,
+      "default": null
+    },
+    loading: {
+      type: Boolean,
+      required: false,
+      "default": null
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      "default": null
+    },
+    columns: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    forceLabels: {
+      type: Boolean,
+      required: false,
+      "default": null
+    },
+    floatPlaceholders: {
+      type: Boolean,
+      required: false,
+      "default": null
+    },
+    addClass: {
+      type: [String, Array, Object],
+      required: false,
+      "default": null
+    },
+    extendClasses: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    replaceClasses: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    replaceTemplates: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    multilingual: {
+      type: Boolean,
+      required: false,
+      "default": null
+    },
+    languages: {
+      type: Object,
+      required: false,
+      "default": null
+    },
+    language: {
+      type: String,
+      required: false,
+      "default": null
+    },
+    onChange: {
+      required: false,
+      type: [Function],
+      "default": null,
+      "private": true
+    },
+    onReset: {
+      required: false,
+      type: [Function],
+      "default": null,
+      "private": true
+    },
+    onClear: {
+      required: false,
+      type: [Function],
+      "default": null,
+      "private": true
+    },
+    onSubmit: {
+      required: false,
+      type: [Function],
+      "default": null,
+      "private": true
+    },
+    onSuccess: {
+      required: false,
+      type: [Function],
+      "default": null,
+      "private": true
+    },
+    onError: {
+      required: false,
+      type: [Function],
+      "default": null,
+      "private": true
+    },
+    onLanguage: {
+      required: false,
+      type: [Function],
+      "default": null,
+      "private": true
+    },
+    onBeforeMount: {
+      required: false,
+      type: [Function],
+      "default": null,
+      "private": true
+    },
+    onMounted: {
+      required: false,
+      type: [Function],
+      "default": null,
+      "private": true
+    },
+    onBeforeUpdate: {
+      required: false,
+      type: [Function],
+      "default": null,
+      "private": true
+    },
+    onUpdated: {
+      required: false,
+      type: [Function],
+      "default": null,
+      "private": true
+    },
+    onBeforeUnmount: {
+      required: false,
+      type: [Function],
+      "default": null,
+      "private": true
+    },
+    onUnmounted: {
+      required: false,
+      type: [Function],
+      "default": null,
+      "private": true
+    }
+  },
+  render: function render() {
+    return this.templates.Vueform.render.apply(this, arguments);
+  },
+  staticRenderFns: function staticRenderFns() {
+    return _this.templates.Vueform.staticRenderFns;
+  }
+};
+
+var VueformBlank = Object.assign(_objectSpread2(_objectSpread2({}, Vueform), {}, {
+  setup: null
+}));
+
+export { VueformBlank as default };
