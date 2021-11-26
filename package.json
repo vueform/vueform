@@ -30,7 +30,7 @@
         "generate:components:components": "npx babel-node api/generators/components/components.js --presets @babel/preset-env",
         "generate:e": "npm run generate:elements ; npm run generate:features:elements ; npm run generate:features:common ; npm run generate:components:elements",
         "generate:c": "npm run generate:features:common ; npm run generate:components:components",
-        "generate:all": "npm run generate:elements ; npm run generate:features:elements ; npm run generate:features:common ; npm run generate:components:elements ; npm run generate:components:components",
+        "generate:all": "npm run generate:elements ; npm run generate:features:elements ; npm run generate:features:common ; npm run generate:components:elements ; npm run generate:components:components ; npm run generate:classes",
         "build": "rollup --config build/base.config.js",
         "build:instance": "rollup --config build/instance.config.js"
     },
