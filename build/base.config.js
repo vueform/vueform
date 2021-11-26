@@ -37,12 +37,19 @@ const files = [
   },
 ]
 
-const copy = {
-  'src/dist.js': 'dist/index.js',
-  'src/dist.js': 'dist/vue2/index.js',
-}
+const copy = [
+  {
+    from: 'src/dist.js',
+    to: 'dist/index.js',
+  },
+  {
+    from: 'src/dist.js',
+    to: 'dist/vue2/index.js',
+  },
+]
 
 const dirs = [
+  path.resolve(__dirname, '../dist'),
   path.resolve(__dirname, '../dist/vue2'),
 ]
 
@@ -52,8 +59,8 @@ _.each(dirs, (dir) => {
   }
 })
 
-_.each(copy, (to, from) => {
-  ncp(path.resolve(__dirname, '../', from), path.resolve(__dirname, '../', to), function (err) {
+_.each(copy, (file) => {
+  ncp(path.resolve(__dirname, '../', file.from), path.resolve(__dirname, '../', file.to), function (err) {
     if (err) {
       return console.error(err);
     }
@@ -77,11 +84,6 @@ _.each(files, (file) => {
         babelHelpers: 'bundled',
       }) : null,
       nodeResolve(),
-      alias({
-        entries: [
-          { find: 'composition-api', replacement: file.vue === 2 ? '@vue/composition-api' : 'vue' },
-        ]
-      }),
       terser(),
     ],
     external: ['@vue/composition-api', 'vue', 'axios', 'lodash', 'moment'],
