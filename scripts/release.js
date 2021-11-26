@@ -22,6 +22,7 @@ const files = {
   'locales': 'locales',
   'LICENSE.txt': 'LICENSE.txt',
   'README.md': 'README.md',
+  'tailwind.js': 'tailwind.js',
 }
 
 const copyPackageJson = function() {

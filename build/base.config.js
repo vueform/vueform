@@ -21,7 +21,7 @@ const files = [
     vue: 2,
     input: 'src/installer.js',
     output: 'dist/vue2/installer.js',
-    babel: false,
+    babel: true,
   },
   {
     vue: 3,
@@ -33,7 +33,7 @@ const files = [
     vue: 3,
     input: 'src/installer.js',
     output: 'dist/installer.js',
-    babel: false,
+    babel: true,
   },
 ]
 
@@ -82,7 +82,7 @@ _.each(files, (file) => {
           { find: 'composition-api', replacement: file.vue === 2 ? '@vue/composition-api' : 'vue' },
         ]
       }),
-      // terser(),
+      terser(),
     ],
     external: ['@vue/composition-api', 'vue', 'axios', 'lodash', 'moment'],
   })
