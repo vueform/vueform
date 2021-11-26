@@ -1,7 +1,7 @@
 {
     "name": "@vueform/vueform",
     "version": "1.0.0",
-    "description": "Vue.js form framework",
+    "description": "Form builder for Vue.js",
     "homepage": "https://vueform.com",
     "bugs": {
         "url": "https://github.com/vueform/issues/issues"
@@ -31,7 +31,8 @@
         "generate:e": "npm run generate:elements ; npm run generate:features:elements ; npm run generate:features:common ; npm run generate:components:elements",
         "generate:c": "npm run generate:features:common ; npm run generate:components:components",
         "generate:all": "npm run generate:elements ; npm run generate:features:elements ; npm run generate:features:common ; npm run generate:components:elements ; npm run generate:components:components",
-        "build": "rollup --config build/base.config.js"
+        "build": "rollup --config build/base.config.js",
+        "build:instance": "rollup --config build/instance.config.js"
     },
     "devDependencies": {
         "@babel/core": "^7.2.2",
@@ -70,7 +71,6 @@
         "mutationobserver-shim": "^0.3.7",
         "ncp": "^2.0.0",
         "node-sass": "^4.11.0",
-        "rollup": "^2.59.0",
         "rollup-plugin-commonjs": "^10.1.0",
         "rollup-plugin-javascript-obfuscator": "^1.0.4",
         "rollup-plugin-obfuscator": "^0.2.1",
@@ -87,10 +87,12 @@
         "vue-loader": "^15.9.4",
         "vue-next": "npm:vue@^3.2.20",
         "vue-next-jest": "npm:@vue/vue3-jest@^27.0.0-alpha.1",
+        "vue-next-rollup-plugin-vue": "npm:rollup-plugin-vue@^6.0.0",
         "vue-next-test-utils": "npm:@vue/test-utils@2.0.0-rc.16",
         "vue-prev": "npm:vue@^2.6.14",
         "vue-prev-composition-api": "npm:@vue/composition-api@^1.2.4",
         "vue-prev-jest": "npm:@vue/vue2-jest@^27.0.0-alpha.2",
+        "vue-prev-rollup-plugin-vue": "npm:rollup-plugin-vue@^5.1.9",
         "vue-prev-test-utils": "npm:@vue/test-utils@1.2.2",
         "vue-template-compiler": "^2.6.14",
         "vuex": "^3.6.2",

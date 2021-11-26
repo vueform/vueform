@@ -214,6 +214,7 @@ export default function(config, components) {
 
         case 3:
           appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
+          appOrVue.config.compilerOptions.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
 
           appOrVue.config.unwrapInjectedRef = true
           appOrVue.config.globalProperties.$vueform = this.options
