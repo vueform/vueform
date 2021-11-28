@@ -326,7 +326,7 @@ export default {
   },
   ElementLabelFloating: {
     container: 'relative',
-    label: 'absolute z-10 left-2.5 -top-1 leading-none form-text-0.5xs text-gray-500 bg-white px-px transition whitespace-nowrap',
+    label: 'absolute z-10 left-2.5 leading-px leading-none form-text-0.5xs text-gray-500 bg-white px-px transition whitespace-nowrap',
     label_invisible: 'opacity-0 invisible',
     label_visible: 'opacity-100 visible',
   },

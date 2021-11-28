@@ -26,11 +26,10 @@
     position: absolute;
     z-index: 5;
     left: 0.625rem;
-    top: -0.4375rem;
     font-size: 70%;
     background: #FFFFFF;
     padding: 0 1px;
-    line-height: 0.9;
+    line-height: 1px;
     transition: .3s;
     opacity: 0;
     visibility: hidden;

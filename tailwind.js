@@ -1012,6 +1012,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
         slider: '0.5px 0.5px 2px 1px rgba(0,0,0,.32)',
         'slider-active': '0.5px 0.5px 2px 1px rgba(0,0,0,.42)',
       },
+      lineHeight: {
+        px: '1px',
+      },
       maskImage: (theme) => ({
         'form-radio': `url("${svgToDataUri(
           `<svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3"/></svg>`,

@@ -3,7 +3,7 @@ import vueNext from 'vue-next-rollup-plugin-vue'
 import vuePrev from 'vue-prev-rollup-plugin-vue'
 import babel from '@rollup/plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
-import alias from '@rollup/plugin-alias'
+// import alias from '@rollup/plugin-alias'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 import path from 'path'
@@ -86,7 +86,7 @@ _.each(files, (file) => {
       nodeResolve(),
       terser(),
     ],
-    external: ['@vue/composition-api', 'vue', 'axios', 'lodash', 'moment'],
+    external: ['composition-api', 'vue', 'axios', 'lodash', 'moment'],
   })
 })
 

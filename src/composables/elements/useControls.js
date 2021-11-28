@@ -7,6 +7,7 @@ const base = function(props, context, dependencies)
     sort,
     min,
     max,
+    addText,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -43,10 +44,20 @@ const base = function(props, context, dependencies)
     return !isDisabled.value && (controls.value.sort || controls.value.sort === undefined) && sort.value
   })
 
+  /**
+   * The label of add button.
+   * 
+   * @type {string}
+   */
+  const addLabel = computed(() => {
+    return addText.value || form$.value.__('vueform.elements.list.add')
+  })
+
   return {
     hasAdd,
     hasRemove,
     hasSort,
+    addLabel,
   }
 }
 

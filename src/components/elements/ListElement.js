@@ -101,6 +101,12 @@ export default {
       type: [Number],
       default: -1,
     },
+    addText: {
+      required: false,
+      type: [String],
+      default: null,
+      '@default': 'locale.elements.list.add',
+    },
     sort: {
       required: false,
       type: [Boolean],

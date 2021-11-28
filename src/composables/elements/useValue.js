@@ -1,11 +1,11 @@
 import _ from 'lodash'
 import moment from 'moment'
-import { computed, ref, toRefs, onUpdated } from 'composition-api'
+import { computed, ref, toRefs, watch, onUpdated } from 'composition-api'
 import checkDateFormat from '../../utils/checkDateFormat'
 
 const base = function(props, context, dependencies, options = {})
 {
-  const { name } = toRefs(props)
+  const { name, type } = toRefs(props)
 
   // ============ DEPENDENCIES =============
 
@@ -95,6 +95,10 @@ const base = function(props, context, dependencies, options = {})
       value.value = defaultValue.value
     }
   }
+
+  watch(type, () => {
+    value.value = defaultValue.value
+  })
 
   return {
     initialValue,
