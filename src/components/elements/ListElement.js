@@ -204,6 +204,7 @@ export default {
     const controls = useControls(props, context, {
       isDisabled: disabled.isDisabled,
       value: value.value,
+      form$: form$.form$,
     })
 
     const empty = useEmpty(props, context, {

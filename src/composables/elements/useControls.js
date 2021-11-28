@@ -14,6 +14,7 @@ const base = function(props, context, dependencies)
 
   const isDisabled = dependencies.isDisabled
   const value = dependencies.value
+  const form$ = dependencies.form$
 
   // ================ DATA ================
 
