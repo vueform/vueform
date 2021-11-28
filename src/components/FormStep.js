@@ -316,7 +316,7 @@ export default {
       }
 
       await asyncForEach(children$.value, async (element$) => {
-        if ((!element$.validated || element$.invalid || !form$.value.shouldValidateOnChange) && element$.available) {
+        if ((!element$.validated || element$.invalid || !form$.value.shouldValidateOnChange) && element$.available && !element$.isStatic) {
           await element$.validate()
         }
       })
