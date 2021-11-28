@@ -32,7 +32,9 @@
         "generate:c": "npm run generate:features:common ; npm run generate:components:components",
         "generate:all": "npm run generate:elements ; npm run generate:features:elements ; npm run generate:features:common ; npm run generate:components:elements ; npm run generate:components:components ; npm run generate:classes",
         "build": "rollup --config build/base.config.js",
-        "build:instance": "rollup --config build/instance.config.js"
+        "release": "npm run build ; node scripts/release.js",
+        "to:web": "node scripts/toVueformWeb.js ; rollup --config build/instance.config.js --configDomains=vueform.loc",
+        "to:web:ob": "rollup --config build/instance.config.js"
     },
     "devDependencies": {
         "@babel/core": "^7.2.2",

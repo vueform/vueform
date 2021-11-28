@@ -398,7 +398,7 @@ export default {
   render() {
     return this.templates.Vueform.render.apply(this, arguments)
   },
-  staticRenderFns: () => {
-    return this.templates.Vueform.staticRenderFns
-  }
+  // staticRenderFns() {
+  //   return this.templates.Vueform.staticRenderFns
+  // }
 }

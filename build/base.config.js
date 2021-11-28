@@ -1,9 +1,6 @@
 import ncp from 'ncp'
-import vueNext from 'vue-next-rollup-plugin-vue'
-import vuePrev from 'vue-prev-rollup-plugin-vue'
 import babel from '@rollup/plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
-// import alias from '@rollup/plugin-alias'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 import path from 'path'
@@ -15,25 +12,21 @@ const files = [
     vue: 2,
     input: 'src/core.js',
     output: 'dist/vue2/core.js',
-    babel: true,
   },
   {
     vue: 2,
     input: 'src/installer.js',
     output: 'dist/vue2/installer.js',
-    babel: true,
   },
   {
     vue: 3,
     input: 'src/core.js',
     output: 'dist/core.js',
-    babel: true,
   },
   {
     vue: 3,
     input: 'src/installer.js',
     output: 'dist/installer.js',
-    babel: true,
   },
 ]
 
@@ -78,11 +71,10 @@ _.each(files, (file) => {
       sourcemap: false,
     },
     plugins: [
-      file.vue === 2 ? vuePrev() : vueNext(),
       commonjs(),
-      file.babel ? babel({
+      babel({
         babelHelpers: 'bundled',
-      }) : null,
+      }),
       nodeResolve(),
       terser(),
     ],
