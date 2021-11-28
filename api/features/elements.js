@@ -1230,6 +1230,13 @@ export default {
             "boolean"
           ],
           "description": "Whether list items should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled)."
+        },
+        "addLabel": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The label of add button."
         }
       }
     },

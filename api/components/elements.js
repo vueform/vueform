@@ -10415,6 +10415,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      addText: {
+        required: 'false',
+        default: 'locale.elements.list.add',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       sort: {
         required: 'false',
         default: 'false',
@@ -10683,6 +10692,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether list items should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled).',
+        private: false,
+      },
+      addLabel: {
+        types: [
+          'string',
+        ],
+        description: 'The label of add button.',
         private: false,
       },
       requestData: {

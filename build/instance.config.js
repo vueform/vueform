@@ -28,7 +28,7 @@ export default (commandLineArgs) => {
           fileOptions: false,
           globalOptions: {
             identifierNamesGenerator: 'mangled-shuffled',
-            domainLock: ['vueform.com', 'www.vueform.com'],
+            domainLock: ['vueform.com', 'www.vueform.com', 'new.vueform.com'],
             domainLockRedirectUrl: 'https://vueform.com/not-allowed'
           },
         }),
