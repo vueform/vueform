@@ -29,7 +29,7 @@ export default (commandLineArgs) => {
           globalOptions: {
             identifierNamesGenerator: 'mangled-shuffled',
             domainLock: ['vueform.com', 'www.vueform.com', 'new.vueform.com'],
-            domainLockRedirectUrl: 'https://vueform.com/not-allowed'
+            domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=vueform'
           },
         }),
       ],
