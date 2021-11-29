@@ -38,7 +38,6 @@
     &.is-visible {
       opacity: 1;
       visibility: visible;
-      top: -0.25rem;
     }
   }
 </style>
