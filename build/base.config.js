@@ -10,34 +10,34 @@ import _ from 'lodash'
 const files = [
   {
     vue: 2,
-    input: 'src/core.js',
-    output: 'dist/vue2/core.js',
+    input: 'src/bundle/dist/index.js',
+    output: 'dist/vue2/index.js',
   },
   {
     vue: 2,
-    input: 'src/installer.js',
+    input: 'src/bundle/dist/installer.js',
     output: 'dist/vue2/installer.js',
   },
   {
     vue: 3,
-    input: 'src/core.js',
-    output: 'dist/core.js',
+    input: 'src/bundle/dist/index.js',
+    output: 'dist/index.js',
   },
   {
     vue: 3,
-    input: 'src/installer.js',
+    input: 'src/bundle/dist/installer.js',
     output: 'dist/installer.js',
   },
 ]
 
 const copy = [
   {
-    from: 'src/dist.js',
-    to: 'dist/index.js',
+    from: 'src/bundle/dist/plugin.js',
+    to: 'dist/vue2/plugin.js',
   },
   {
-    from: 'src/dist.js',
-    to: 'dist/vue2/index.js',
+    from: 'src/bundle/dist/plugin.js',
+    to: 'dist/plugin.js',
   },
 ]
 

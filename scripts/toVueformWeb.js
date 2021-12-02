@@ -12,7 +12,7 @@ const args = argv.option([
   },
 ]).run()
 
-const version = args.options.version || '1.0.0'
+const version = args.options.version || '1.0.1'
 
 const outputDir = path.resolve(__dirname, '../../vueform-web/packages/vueform-production')
 
