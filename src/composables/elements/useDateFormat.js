@@ -19,7 +19,7 @@ const base = function(props, context, dependencies)
   // =============== PRIVATE ===============
 
   /**
-   * The default date format for display, value & load.
+   * The default date format type.
    * 
    * @type {string}
    * @private
@@ -47,7 +47,39 @@ const base = function(props, context, dependencies)
       format = 'date'
     }
 
-    return form$.value.__(`vueform.dateFormats.${format}`)
+    return format
+  })
+
+  /**
+   * The default date format for display.
+   * 
+   * @type {string}
+   * @private
+   */
+  const defaultDisplayFormat = computed(() => {
+    return form$.value.__(`vueform.dateFormats.${defaultFormat.value}`)
+  })
+
+  /**
+   * The default date format for value & load.
+   * 
+   * @type {string}
+   * @private
+   */
+  const defaultDataFormat = computed(() => {
+    const dataDateFormats = {
+      datetimeSeconds24: 'YYYY-MM-DD HH:mm:ss',
+      datetimeSeconds12: 'YYYY-MM-DD hh:mm:ss a',
+      datetime24: 'YYYY-MM-DD HH:mm',
+      datetime12: 'YYYY-MM-DD hh:mm a',
+      timeSeconds24: 'HH:mm:ss',
+      timeSeconds12: 'hh:mm:ss a',
+      time24: 'HH:mm',
+      time12: 'hh:mm a',
+      date: 'YYYY-MM-DD',
+    }
+
+    return dataDateFormats[defaultFormat.value]
   })
 
   // ============== COMPUTED ===============
@@ -59,7 +91,7 @@ const base = function(props, context, dependencies)
    * @private
    */
   const displayDateFormat = computed(() => {
-    return displayFormat.value !== null ? displayFormat.value : defaultFormat.value
+    return displayFormat.value !== null ? displayFormat.value : defaultDisplayFormat.value
   })
 
   /**
@@ -69,7 +101,7 @@ const base = function(props, context, dependencies)
    * @private
    */
   const valueDateFormat = computed(() => {
-    return valueFormat.value !== null || valueFormat.value === false ? valueFormat.value : defaultFormat.value
+    return valueFormat.value !== null || valueFormat.value === false ? valueFormat.value : defaultDataFormat.value
   })
 
   /**
@@ -79,7 +111,7 @@ const base = function(props, context, dependencies)
    * @private
    */
   const loadDateFormat = computed(() => {
-    return loadFormat.value !== null ? loadFormat.value : defaultFormat.value
+    return loadFormat.value !== null ? loadFormat.value : defaultDataFormat.value
   })
 
   return {
