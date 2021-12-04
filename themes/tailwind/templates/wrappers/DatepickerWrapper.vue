@@ -231,38 +231,14 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
 
   .flatpickr-months .flatpickr-prev-month.flatpickr-prev-month,
   .flatpickr-months .flatpickr-next-month.flatpickr-prev-month {
-  /*
-        /*rtl:begin:ignore*/
-  /*
-        */
     left: 0;
-  /*
-        /*rtl:end:ignore*/
-  /*
-        */
   }
 
-  /*
-        /*rtl:begin:ignore*/
-  /*
-        /*rtl:end:ignore*/
   .flatpickr-months .flatpickr-prev-month.flatpickr-next-month,
   .flatpickr-months .flatpickr-next-month.flatpickr-next-month {
-  /*
-        /*rtl:begin:ignore*/
-  /*
-        */
     right: 0;
-  /*
-        /*rtl:end:ignore*/
-  /*
-        */
   }
-
-  /*
-        /*rtl:begin:ignore*/
-  /*
-        /*rtl:end:ignore*/
+  
   .flatpickr-months .flatpickr-prev-month:hover,
   .flatpickr-months .flatpickr-next-month:hover {
     color: theme('form.dateHeadColor');
