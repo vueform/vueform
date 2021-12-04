@@ -17,7 +17,7 @@ const version = args.options.version
 const outputDir = path.resolve(__dirname, '../../vueform-releases', version)
 
 const files = {
-  'dist': 'dist',
+  'dist': '',
   'themes': 'themes',
   'locales': 'locales',
   'LICENSE.txt': 'LICENSE.txt',

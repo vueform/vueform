@@ -11,8 +11,8 @@
             "email": "adam@vueform.com"
         }
     ],
-    "main": "dist/index.js",
-    "module": "dist/index.js",
+    "main": "index.js",
+    "module": "index.js",
     "dependencies": {
         "@vueform/multiselect": "^2.2.1",
         "@vueform/slider": "^2.0.0",

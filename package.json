@@ -13,7 +13,7 @@
             "email": "adam@vueform.comr"
         }
     ],
-    "main": "dist/vueform.js",
+    "main": "src/index.js",
     "_moduleAliases": {
         "composition-api": "node_modules/vue-prev-composition-api"
     },

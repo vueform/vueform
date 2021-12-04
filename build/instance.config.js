@@ -5,13 +5,8 @@ export default (commandLineArgs) => {
   const files = [
     {
       vue: 2,
-      input: path.resolve(__dirname, '../dist/vue2/installer.js'),
-      output: path.resolve(__dirname, '../../vueform-web/packages/vueform-production/dist/vue2/installer.js'),
-    },
-    {
-      vue: 3,
       input: path.resolve(__dirname, '../dist/installer.js'),
-      output: path.resolve(__dirname, '../../vueform-web/packages/vueform-production/dist/installer.js'),
+      output: path.resolve(__dirname, '../../vueform-web/packages/vueform-production/dist//installer.js'),
     },
   ]
 

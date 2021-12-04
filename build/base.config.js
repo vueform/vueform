@@ -9,22 +9,10 @@ import _ from 'lodash'
 
 const files = [
   {
-    vue: 2,
-    input: 'src/bundle/dist/index.js',
-    output: 'dist/vue2/index.js',
-  },
-  {
-    vue: 2,
-    input: 'src/bundle/dist/installer.js',
-    output: 'dist/vue2/installer.js',
-  },
-  {
-    vue: 3,
     input: 'src/bundle/dist/index.js',
     output: 'dist/index.js',
   },
   {
-    vue: 3,
     input: 'src/bundle/dist/installer.js',
     output: 'dist/installer.js',
   },
@@ -33,17 +21,12 @@ const files = [
 const copy = [
   {
     from: 'src/bundle/dist/plugin.js',
-    to: 'dist/vue2/plugin.js',
-  },
-  {
-    from: 'src/bundle/dist/plugin.js',
     to: 'dist/plugin.js',
   },
 ]
 
 const dirs = [
   path.resolve(__dirname, '../dist'),
-  path.resolve(__dirname, '../dist/vue2'),
 ]
 
 _.each(dirs, (dir) => {
