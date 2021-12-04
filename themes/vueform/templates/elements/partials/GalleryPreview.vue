@@ -14,7 +14,6 @@
           img: 'vf-file-preview-gallery-img',
           overlay: 'vf-file-preview-gallery-overlay',
           upload: 'vf-file-preview-gallery-upload',
-          remove: 'vf-file-preview-gallery-remove',
           progressBar: 'vf-file-preview-gallery-progress-bar',
           progress: 'vf-file-preview-gallery-progress',
           warning: 'vf-file-preview-gallery-warning',

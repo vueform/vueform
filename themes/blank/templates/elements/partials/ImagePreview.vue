@@ -62,7 +62,6 @@
           actions: '',
           percent: '',
           upload: '',
-          remove: '',
           progressBar: '',
           progress: '',
           warning: '',
