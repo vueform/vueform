@@ -1,25 +1,6 @@
 export default {
   vueform: {
     elements: {
-      date: {
-        displayFormat: 'YYYY-MM-DD',
-      },
-      time: {
-        displayFormat: 'HH:mm',
-        secondsDisplayFormat: 'HH:mm:ss',
-      },
-      datetime: {
-        displayFormat: 'YYYY-MM-DD HH:mm',
-        secondsDisplayFormat: 'YYYY-MM-DD HH:mm:ss',
-      },
-      address: {
-        addressLabel: 'Address',
-        address2Label: 'Address 2',
-        zipLabel: 'Zip',
-        cityLabel: 'City',
-        stateLabel: 'State',
-        countryLabel: 'Country',
-      },
       list: {
         add: '+ Add',
         remove: '&times;',
