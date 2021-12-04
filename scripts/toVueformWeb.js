@@ -17,7 +17,7 @@ const version = args.options.version || '1.0.1'
 const outputDir = path.resolve(__dirname, '../../vueform-web/packages/vueform-production')
 
 const files = {
-  'dist': 'dist',
+  'dist': '',
   'themes': 'themes',
   'locales': 'locales',
   'LICENSE.txt': 'LICENSE.txt',
