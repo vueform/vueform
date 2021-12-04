@@ -1,5 +1,5 @@
 <script>
-  import ObjectElement from './ObjectElement'
+import ObjectElement from './ObjectElement.vue'
 
   export default {
     name: 'AddressElement',

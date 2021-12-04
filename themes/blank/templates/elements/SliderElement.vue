@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import Slider from '@vueform/slider/src/Slider'
+import Slider from '@vueform/slider/src/Slider.vue'
   
   export default {
     name: 'SliderElement',

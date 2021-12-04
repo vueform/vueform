@@ -1,5 +1,5 @@
 <script>
-  import TextElement from './TextElement'
+import TextElement from './TextElement.vue'
 
   export default {
     name: 'TTextElement',

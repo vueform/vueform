@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  import Toggle from '@vueform/toggle/src/Toggle'
+import Toggle from '@vueform/toggle/src/Toggle.vue'
 
   export default {
     name: 'ToggleElement',

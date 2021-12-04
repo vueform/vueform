@@ -1,5 +1,5 @@
 <script>
-  import TextareaElement from './TextareaElement'
+import TextareaElement from './TextareaElement.vue'
 
   export default {
     name: 'TTextareaElement',

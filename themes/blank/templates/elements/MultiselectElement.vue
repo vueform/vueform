@@ -73,7 +73,7 @@
 </template>
 
 <script>
-  import Multiselect from '@vueform/multiselect/src/Multiselect'
+import Multiselect from '@vueform/multiselect/src/Multiselect.vue'
 
   export default {
     name: 'MultiselectElement',

@@ -1,5 +1,5 @@
 <script>
-  import EditorElement from './EditorElement'
+import EditorElement from './EditorElement.vue'
 
   export default {
     name: 'TEditorElement',
