@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime'
 import _ from 'lodash'
 import flatten from 'flat'
 

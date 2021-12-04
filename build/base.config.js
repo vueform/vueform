@@ -74,11 +74,12 @@ _.each(files, (file) => {
       commonjs(),
       babel({
         babelHelpers: 'bundled',
+        exclude: /^(.+\/)?node_modules\/.+$/,
       }),
       nodeResolve(),
       terser(),
     ],
-    external: ['composition-api', 'vue', 'axios', 'lodash', 'moment'],
+    external: ['composition-api', 'vue', 'axios', 'lodash', 'moment']
   })
 })
 
