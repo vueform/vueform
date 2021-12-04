@@ -1,6 +1,6 @@
 {
     "name": "@vueform/vueform",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "Form builder for Vue.js",
     "homepage": "https://vueform.com",
     "bugs": {
