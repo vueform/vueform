@@ -4,7 +4,7 @@ import { mount, shallowMount } from '@vue/test-utils'
 import { Vueform, useVueform } from './../../../src/index'
 
 // Assets
-import en from './../../../src/locales/en'
+import en from './../../../locales/en'
 
 // Services
 import condition from './../../../src/services/condition'

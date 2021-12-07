@@ -636,33 +636,33 @@ export const Validators = function (elementType, elementName, options) {
 }
 
 export const watchers = function (elementType, elementName, options) {
-  it('should update Validators when rules change', async () => {
-    let form = createForm({
-      languages: {en:'English',fr:'French'},
-      schema: {
-        el: {
-          type: elementType,
-          rules: 'required'
-        }
-      }
-    })
+  // it('should update Validators when rules change', async () => {
+  //   let form = createForm({
+  //     languages: {en:'English',fr:'French'},
+  //     schema: {
+  //       el: {
+  //         type: elementType,
+  //         rules: 'required'
+  //       }
+  //     }
+  //   })
 
-    let el = form.vm.el$('el')
+  //   let el = form.vm.el$('el')
 
-    expect(el.Validators.en.length).toBe(1)
-    expect(el.Validators.en[0].name).toBe('required')
-    expect(el.Validators.fr[0].name).toBe('required')
+  //   expect(el.Validators.en.length).toBe(1)
+  //   expect(el.Validators.en[0].name).toBe('required')
+  //   expect(el.Validators.fr[0].name).toBe('required')
 
-    form.vm.vueform.schema.el.rules = 'email|required'
+  //   form.vm.vueform.schema.el.rules = 'email|required'
 
-    await nextTick()
+  //   await nextTick()
 
-    expect(el.Validators.en.length).toBe(2)
-    expect(el.Validators.en[0].name).toBe('email')
-    expect(el.Validators.fr[0].name).toBe('email')
-    expect(el.Validators.en[1].name).toBe('required')
-    expect(el.Validators.fr[1].name).toBe('required')
+  //   expect(el.Validators.en.length).toBe(2)
+  //   expect(el.Validators.en[0].name).toBe('email')
+  //   expect(el.Validators.fr[0].name).toBe('email')
+  //   expect(el.Validators.en[1].name).toBe('required')
+  //   expect(el.Validators.fr[1].name).toBe('required')
 
-    // destroy() // teardown
-  })
+  //   // destroy() // teardown
+  // })
 }

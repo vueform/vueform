@@ -5,7 +5,7 @@ import { h, resolveComponent, ref } from 'composition-api'
 import { Vueform, useVueform } from './../../../src/index'
 
 // Assets
-import en from './../../../src/locales/en'
+import en from './../../../locales/en'
 
 // Services
 import condition from './../../../src/services/condition'
@@ -30,9 +30,6 @@ export default function createForm (data, options = {}, render = null) {
   LocalVue.component(TrixEditor.name, TrixEditor)
 
   let app = Object.assign({}, {
-    components: {
-      Vueform,
-    },
     setup() {
       const form = ref(null)
 

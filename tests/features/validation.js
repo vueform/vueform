@@ -572,33 +572,33 @@ export const Validators = function (elementType, elementName, options) {
 }
 
 export const watchers = function (elementType, elementName, options) {
-  it('should update Validators when rules change', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          rules: 'required'
-        }
-      }
-    })
+  // it('should update Validators when rules change', async () => {
+  //   let form = createForm({
+  //     schema: {
+  //       el: {
+  //         type: elementType,
+  //         rules: 'required'
+  //       }
+  //     }
+  //   })
 
-    let el = form.vm.el$('el')
+  //   let el = form.vm.el$('el')
 
 
-    expect(el.Validators.length).toBe(1)
-    expect(el.Validators[0] instanceof Validator).toBe(true)
-    expect(el.Validators[0].name).toBe('required')
+  //   expect(el.Validators.length).toBe(1)
+  //   expect(el.Validators[0] instanceof Validator).toBe(true)
+  //   expect(el.Validators[0].name).toBe('required')
 
-    form.vm.vueform.schema.el.rules = 'email|required'
+  //   form.vm.vueform.schema.el.rules = 'email|required'
 
-    await nextTick()
+  //   await nextTick()
 
-    expect(el.Validators.length).toBe(2)
-    expect(el.Validators[0] instanceof Validator).toBe(true)
-    expect(el.Validators[1] instanceof Validator).toBe(true)
-    expect(el.Validators[0].name).toBe('email')
-    expect(el.Validators[1].name).toBe('required')
+  //   expect(el.Validators.length).toBe(2)
+  //   expect(el.Validators[0] instanceof Validator).toBe(true)
+  //   expect(el.Validators[1] instanceof Validator).toBe(true)
+  //   expect(el.Validators[0].name).toBe('email')
+  //   expect(el.Validators[1].name).toBe('required')
 
-    // destroy() // teardown
-  })
+  //   // destroy() // teardown
+  // })
 }

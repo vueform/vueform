@@ -3,7 +3,7 @@ import { createForm, findAllComponents, installVueform, createElement } from 'te
 import { markRaw, nextTick } from 'composition-api'
 import TrixEditor from './../../mocks/TrixEditor'
 import flushPromises from 'flush-promises'
-import defaultTheme from './../../../src/themes/vueform'
+import defaultTheme from './../../../themes/vueform'
 
 const createEditor = (details) => {
   const originalConsoleError = console.error

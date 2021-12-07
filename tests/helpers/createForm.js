@@ -5,7 +5,7 @@ import { onMounted } from 'composition-api'
 import { Vueform, useVueform } from './../../src/index'
 
 // Assets
-import en from './../../src/locales/en'
+import en from './../../locales/en'
 
 // Services
 import condition from './../../src/services/condition'

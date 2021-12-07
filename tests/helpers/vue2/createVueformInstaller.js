@@ -4,8 +4,8 @@ import config from './../../../src/config'
 import components from './../../../src/components'
 
 // Assets
-import defaultTheme from './../../../src/themes/vueform'
-import en from './../../../src/locales/en'
+import defaultTheme from './../../../themes/vueform'
+import en from './../../../locales/en'
 
 export default function createVueformInstaller (options = {}) {
   let theme = options.theme || defaultTheme
