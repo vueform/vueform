@@ -10,6 +10,7 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const value = dependencies.value
+  const resolvedItems = dependencies.resolvedItems
 
   // =============== METHODS ==============
 
@@ -69,7 +70,7 @@ const base = function(props, context, dependencies)
    * @returns {void}
    */
   const checkAll = () => {
-    check(_.keys(items.value))
+    check(_.keys(resolvedItems.value))
   }
 
   /**
@@ -78,7 +79,7 @@ const base = function(props, context, dependencies)
    * @returns {void}
    */
   const uncheckAll = () => {
-    uncheck(_.keys(items.value))
+    uncheck(_.keys(resolvedItems.value))
   }
 
   return {

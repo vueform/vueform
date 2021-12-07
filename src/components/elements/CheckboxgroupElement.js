@@ -123,6 +123,7 @@ export default {
 
     const check = useCheck(props, context, {
       value: value.value,
+      resolvedItems: asyncItems.resolvedItems,
     })
 
     const data = useData(props, context, {

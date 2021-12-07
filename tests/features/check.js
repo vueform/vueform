@@ -50,7 +50,7 @@ export const uncheck = function (elementType, elementName, options) {
 }
 
 export const checkAll = function (elementType, elementName, options) {
-  it('should `checkAll`', () => {
+  it('should `checkAll` when plain object', () => {
     let form = createForm({
       schema: {
         el: {
@@ -60,6 +60,52 @@ export const checkAll = function (elementType, elementName, options) {
             2: 'value2',
             3: 'value3'
           }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.checkAll()
+    
+    expect(el.value).toStrictEqual(['1','2','3'])
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
+  })
+
+  it('should `checkAll` when array', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          items: [1,2,3]
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.checkAll()
+    
+    expect(el.value).toStrictEqual(['1','2','3'])
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
+  })
+
+  it('should `checkAll` when array of objects', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          items: [
+            { value: 1, label: 'value', },
+            { value: 2, label: 'value2', },
+            { value: 3, label: 'value3', },
+          ]
         }
       }
     })
@@ -101,5 +147,59 @@ export const uncheckAll = function (elementType, elementName, options) {
     expect(el.value).toStrictEqual([])
     
     // destroy(form) // teardown
+  })
+
+  it('should `uncheckAll` when array', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          items: [1,2,3]
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.checkAll()
+    
+    expect(el.value).toStrictEqual(['1','2','3'])
+
+    el.uncheckAll()
+
+    expect(el.value).toStrictEqual([])
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
+  })
+
+  it('should `uncheckAll` when array of objects', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          items: [
+            { value: 1, label: 'value', },
+            { value: 2, label: 'value2', },
+            { value: 3, label: 'value3', },
+          ]
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.checkAll()
+    
+    expect(el.value).toStrictEqual(['1','2','3'])
+
+    el.uncheckAll()
+
+    expect(el.value).toStrictEqual([])
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
   })
 }
