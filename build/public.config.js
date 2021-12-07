@@ -12,8 +12,8 @@ import obfuscator from 'rollup-plugin-obfuscator'
 
 const files = [
   {
-    input: 'src/public5.js',
-    output: 'public/vueform5.js',
+    input: 'bundles/public/vueform.js',
+    output: 'public/vueform.js',
   },
 ]
 

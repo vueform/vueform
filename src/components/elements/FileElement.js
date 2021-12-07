@@ -49,8 +49,7 @@ export default {
     },
     default: {
       required: false,
-      // @todo
-      type: [String, Object],
+      type: [String, Object, File],
       default: null
     },
     disabled: {

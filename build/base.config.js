@@ -9,18 +9,18 @@ import _ from 'lodash'
 
 const files = [
   {
-    input: 'src/bundle/dist/index.js',
+    input: 'bundles/dist/index.js',
     output: 'dist/index.js',
   },
   {
-    input: 'src/bundle/dist/installer.js',
+    input: 'bundles/dist/installer.js',
     output: 'dist/installer.js',
   },
 ]
 
 const copy = [
   {
-    from: 'src/bundle/dist/plugin.js',
+    from: 'bundles/dist/plugin.js',
     to: 'dist/plugin.js',
   },
 ]
