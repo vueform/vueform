@@ -3,7 +3,7 @@ import { computed, toRefs, ref, getCurrentInstance } from 'composition-api'
 import useForm$ from './useForm$'
 import useEl$ from './useEl$'
 import useTheme from './useTheme'
-import { mergeComponentClasses } from './../utils/mergeClasses'
+import { mergeComponentClasses, addClassHelpers } from './../utils/mergeClasses'
 
 const base = function(props, context, dependencies, options = {})
 {
@@ -73,6 +73,8 @@ const base = function(props, context, dependencies, options = {})
 
     // Add element's extendClasses options
     classes = mergeComponentClasses(classes, el$.value.extendClasses[componentName.value] || null)
+
+    classes = addClassHelpers(form$.value, componentName.value, classes)
 
     return classes
   })

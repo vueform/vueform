@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { computed, toRefs, ref, getCurrentInstance } from 'composition-api'
 import useForm$ from './useForm$'
 import useTheme from './useTheme'
-import { mergeComponentClasses } from './../utils/mergeClasses'
+import { mergeComponentClasses, addClassHelpers } from './../utils/mergeClasses'
 
 const base = function(props, context, dependencies, options = {})
 {
@@ -60,6 +60,8 @@ const base = function(props, context, dependencies, options = {})
 
     // Add form's extendClasses
     classes = mergeComponentClasses(classes, form$.value.options.extendClasses[componentName.value] || null)
+
+    classes = addClassHelpers(form$.value, componentName.value, classes)
 
     return classes
   })

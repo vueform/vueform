@@ -1,11 +1,17 @@
 
 const config = {
   /**
+   * General
+   */
+  env: 'development',
+
+  /**
    * Theme & layout
    */
   theme: {},
   templates: {},
   classes: {},
+  classHelpers: true,
   columns: {
     container: 12,
     label: 12,

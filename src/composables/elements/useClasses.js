@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { computed, toRefs, ref } from 'composition-api'
-import { mergeComponentClasses } from './../../utils/mergeClasses'
+import { mergeComponentClasses, addClassHelpers } from './../../utils/mergeClasses'
 
 const base = function(props, context, dependencies, options = {})
 {
@@ -84,6 +84,8 @@ const base = function(props, context, dependencies, options = {})
         [mainClass.value]: addClass.value
       })
     }
+
+    classes = addClassHelpers(form$.value, componentName.value, classes)
 
     return classes
   })

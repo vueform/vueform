@@ -77,9 +77,28 @@ const mergeClass = function (base, add) {
   return classes
 }
 
+const addClassHelpers = function (form$, componentName, classes) {
+  const config = form$.$vueform.config
+
+  if (config.env !== 'development' || !config.classHelpers) {
+    return classes
+  }
+
+  let addons = {}
+
+  Object.keys(classes).forEach((classname) => {
+    addons[classname] = `__${componentName}-${classname}__`
+  })
+
+  classes = mergeComponentClasses(classes, addons)
+
+  return classes
+}
+
 export default mergeClasses
 
 export {
   mergeClass,
   mergeComponentClasses,
+  addClassHelpers,
 }

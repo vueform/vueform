@@ -66,7 +66,7 @@ export default function(config, components) {
       _.each([
         'columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages',
         'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'axios',
-        'locationProvider'
+        'locationProvider', 'classHelpers', 'env'
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = config[attr]
@@ -194,7 +194,7 @@ export default function(config, components) {
                 }
               },
               methods: {
-                __: (expr, data) => this.options.i18n.$t(expr, data)
+                __: (expr, data) => this.options.i18n.$t(expr, data),
               },
               beforeCreate() {
                 // might exist as test mock
