@@ -177,7 +177,8 @@ export default {
     inputPlaceholder: 'absolute left-0 top-0 form-pt-input form-pl-input ml-px text-gray-500 pointer-events-none',
     select: {
       ...select,
-      singleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
+      singleLabel: 'flex items-center h-full max-w-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input pr-16 box-border',
+      singleLabelText: 'overflow-ellipsis overflow-hidden block whitespace-nowrap max-w-full',
     }
   },
   SliderElement: {
