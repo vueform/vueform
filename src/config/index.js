@@ -11,6 +11,33 @@ const config = {
   theme: {},
   templates: {},
   classes: {},
+  presets: {
+    first: {
+      add: {
+        TextElement: {
+          input: 'add-text'
+        }
+      },
+      replace: {
+        TextElement: {
+          input: {
+            'w-full': 'w-1/2'
+          }
+        }
+      },
+      remove: {
+        TextElement: {
+          input: ['form-p-input']
+        }
+      },
+      override: {
+        TextElement: {
+          inputContainer: 'not-w-full not-flex'
+        }
+      }
+    }
+  },
+  preset: [],
   classHelpers: true,
   columns: {
     container: 12,

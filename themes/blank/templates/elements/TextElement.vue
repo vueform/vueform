@@ -38,7 +38,8 @@
           input: '',
           input_enabled: '',
           input_disabled: '',
-        }
+        },
+        mergeDefaultClasses: 'after',
       }
     },
   }

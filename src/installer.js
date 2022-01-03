@@ -37,7 +37,7 @@ export default function(config, components) {
     config(config) {
       // merge
       _.each([
-         'theme', 'templates', 'classes', 'locales', 'rules',
+         'theme', 'templates', 'classes', 'locales', 'rules', 'presets',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options[attr] = Object.assign({}, this.options[attr], config[attr])

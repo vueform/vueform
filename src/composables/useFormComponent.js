@@ -58,8 +58,8 @@ const base = function(props, context, dependencies, options = {})
       })
     }
 
-    // Add form's extendClasses
-    classes = mergeComponentClasses(classes, form$.value.options.extendClasses[componentName.value] || null)
+    // Add form's addClasses
+    classes = mergeComponentClasses(classes, form$.value.options.addClasses[componentName.value] || null)
 
     classes = addClassHelpers(form$.value, componentName.value, classes)
 
@@ -67,7 +67,7 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-   The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options.
+   The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options.
    * 
    * @type {object}
    */

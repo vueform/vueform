@@ -1,26 +1,55 @@
 import _ from 'lodash'
 
-const mergeClasses = function (base, add) {
+/**
+ * Merge two list of components, eg:
+ * base = {
+ *  ElementLayout: { container: 'a' },
+ *  TextElement: { container: 'aa' },
+ * },
+ * add = {
+ *  ElementLayout: { container: 'b' },
+ *  TextElement: { container: 'bb' },
+ * }
+ * -> {
+ *  ElementLayout: { container: ['a', 'b'] },
+ *  TextElement: { container: ['aa', 'bb'] },
+ * }
+ */
+const mergeClasses = function (base, add, strategy = 'extend') {
   let components = _.cloneDeep(base)
 
   _.each(add, (classes, component) => {
-    components[component] = mergeComponentClasses(base[component] || {}, classes)
+    components[component] = mergeComponentClasses(base[component] || {}, classes, strategy)
   })
 
   return components
 }
 
-const mergeComponentClasses = function (base, add) {
+/**
+ * Merge two list of classes, eg:
+ * base = { container: 'a', innerContainer: 'aa' }
+ * add = { container: 'b', innerContainer: 'bb' }
+ * -> { container: ['a', 'b'], innerContainer: ['aa', 'bb'] }
+ */
+const mergeComponentClasses = function (base, add, strategy = 'extend') {
   let classes = _.cloneDeep(base)
 
   _.each(add, (classes_, key) => {
-    classes[key] = mergeClass(base[key] || null, classes_)
+    classes[key] = strategy === 'extend'
+      ? extendClasses(base[key] || null, classes_)
+      : overrideClasses(classes_)
   })
 
   return classes
 }
 
-const mergeClass = function (base, add) {
+/**
+ * Merge two list of classes, eg:
+ * base = 'a'
+ * add = 'b'
+ * -> ['a', 'b']
+ */
+const extendClasses = function (base, add) {
   if (add === null || _.isEmpty(add)) {
     return base
   }
@@ -33,48 +62,33 @@ const mergeClass = function (base, add) {
 
   if (typeof base === 'string') {
     base = base.split(' ')
+  } else if (_.isPlainObject(base)) {
+    base = [base]
   }
 
-  if (_.isPlainObject(base)) {
-    // { class: true } + { class2: true } => { class: true, class2: true }
-    if (_.isPlainObject(add)) {
-      classes = Object.assign({}, base, add)
-    }
-
-    // { class: true } + ['class2'] => [{ class: true }, 'class2']
-    else if (_.isArray(add)) {
-      classes = _.concat([base], add)
-    } else {
-
-    // { class: true } + 'class2' => [ class: true, class2: true]
-      classes = Object.assign({}, base, {
-        [add]: true
-      })
-    }
+  if (typeof add === 'string') {
+    add = add.split(' ')
+  } else if (_.isPlainObject(add)) {
+    add = [add]
   }
-  else {
-    // ['class'] + { class2: true } => ['class', { class2: true }]
-    if (_.isPlainObject(add)) {
-      classes = _.concat(base, [add])
-    }
 
-    // ['class'] + ['class2'] => ['class', 'class2']
-    else if (_.isArray(add) ) {
-      classes = base
-
-      _.each(add, (a) => {
-        if (classes.indexOf(a) === -1) {
-          classes = _.concat(classes, [a])
-        }
-      })
-
-    // ['class'] + 'class2' => ['class', 'class2']
-    } else {
-      classes = _.concat(base, [add])
-    }
-  }
+  classes = base.concat(add)
 
   return classes
+}
+
+/**
+ * Override classes, eg:
+ * base = 'a'
+ * override = 'b'
+ * -> ['b']
+ */
+const overrideClasses = function (override) {
+  if (override === null || _.isEmpty(override)) {
+    return []
+  }
+
+  return Array.isArray(override) ? override : [override]
 }
 
 const addClassHelpers = function (form$, componentName, classes) {
@@ -98,7 +112,8 @@ const addClassHelpers = function (form$, componentName, classes) {
 export default mergeClasses
 
 export {
-  mergeClass,
+  extendClasses,
+  overrideClasses,
   mergeComponentClasses,
   addClassHelpers,
 }

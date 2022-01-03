@@ -16,12 +16,37 @@ export default {
       type: [String, Array, Object],
       default: null
     },
+    replaceClass: {
+      required: false,
+      type: [Object],
+      default: null
+    },
+    removeClass: {
+      required: false,
+      type: [String, Object],
+      default: null
+    },
+    overrideClass: {
+      required: false,
+      type: [String, Array, Object],
+      default: null
+    },
+    addClasses: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
     replaceClasses: {
       required: false,
       type: [Object],
       default: () => ({})
     },
-    extendClasses: {
+    removeClasses: {
+      required: false,
+      type: [Array],
+      default: () => ({})
+    },
+    overrideClasses: {
       required: false,
       type: [Object],
       default: () => ({})

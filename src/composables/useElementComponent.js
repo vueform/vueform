@@ -52,7 +52,7 @@ const base = function(props, context, dependencies, options = {})
       theme.value.classes[componentName.value] || {},
 
       // Element level overwrites
-      el$.value.replaceClasses[componentName.value] || {}
+      el$.value.overrideClasses[componentName.value] || {}
     )
 
     // Add classes defined by specific components
@@ -66,13 +66,13 @@ const base = function(props, context, dependencies, options = {})
       })
     }
 
-    // Add form's extendClasses
-    if (form$.value.options.extendClasses[componentName.value] !== undefined) {
-      classes = mergeComponentClasses(classes, form$.value.options.extendClasses[componentName.value] || null)
+    // Add form's addClasses
+    if (form$.value.options.addClasses[componentName.value] !== undefined) {
+      classes = mergeComponentClasses(classes, form$.value.options.addClasses[componentName.value] || null)
     }
 
-    // Add element's extendClasses options
-    classes = mergeComponentClasses(classes, el$.value.extendClasses[componentName.value] || null)
+    // Add element's addClasses options
+    classes = mergeComponentClasses(classes, el$.value.addClasses[componentName.value] || null)
 
     classes = addClassHelpers(form$.value, componentName.value, classes)
 
@@ -80,7 +80,7 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-   * The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options.
+   * The selected theme's classes merged with element's `addClasses` and `overrideClasses` options.
    * 
    * @type {object}
    */

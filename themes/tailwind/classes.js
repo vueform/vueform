@@ -11,9 +11,11 @@ const radio = {
 }
 
 const text = {
-  input: 'w-full form-p-input form-border form-border-color form-rounded z-1 addon-before:form-rounded-l-none addon-before:form-border-l-none outline-none addon-after:form-rounded-r-none addon-after:form-border-r-none',
-  input_enabled: 'focus:form-ring',
-  input_disabled: 'form-bg-disabled form-text-disabled',
+  input: (el$) => ([
+    'w-full form-p-input form-border form-border-color form-rounded z-1 addon-before:form-rounded-l-none addon-before:form-border-l-none outline-none addon-after:form-rounded-r-none addon-after:form-border-r-none',
+    { 'focus:form-ring': !el$.isDisabled },
+    { 'form-bg-disabled form-text-disabled': el$.isDisabled },
+  ])
 }
 
 const select = {

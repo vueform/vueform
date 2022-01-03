@@ -17,7 +17,7 @@ const base = function(props, context, dependencies = {})
     tabs,
     steps,
     replaceClasses,
-    extendClasses,
+    addClasses,
     replaceTemplates,
     theme,
     messages,
@@ -211,7 +211,7 @@ const base = function(props, context, dependencies = {})
 
     const override = {
       columns, languages, language, theme, endpoint, method, validateOn,
-      replaceClasses, extendClasses, replaceTemplates, messages, addClass,
+      replaceClasses, addClasses, replaceTemplates, messages, addClass,
       formKey, multilingual, formatLoad, formatData, prepare, default: default_ ,
       formData,
     }
@@ -248,7 +248,7 @@ const base = function(props, context, dependencies = {})
       formData: baseConfig.value.config.formData,
       theme: baseConfig.value.theme,
       replaceClasses: {},
-      extendClasses: {},
+      addClasses: {},
       replaceTemplates: {},
       messages: {},
       default: {},
@@ -628,7 +628,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The selected theme, extended by local template and class overrides, using [`replaceTemplates`](#option-replace-templates), [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes).
+   * The selected theme, extended by local template and class overrides, using [`replaceTemplates`](#option-replace-templates), [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes).
    * 
    * @type {object}
    */
@@ -642,11 +642,7 @@ const base = function(props, context, dependencies = {})
       ),
       
       // Ovewrite theme classes with form's classes definition
-      classes: _.merge({},
-        options.value.theme.classes,
-        baseConfig.value.classes,
-        options.value.replaceClasses,
-      ),
+      classes: _.merge({}, options.value.theme.classes ),
     })
   })
 
@@ -680,7 +676,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.
+   * The selected theme's classes merged with [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes) options.
    * 
    * @type {object}
    */
@@ -690,7 +686,7 @@ const base = function(props, context, dependencies = {})
       extendedTheme.value.classes.Vueform,
     )
 
-    classes = mergeComponentClasses(classes, options.value.extendClasses.Vueform || null)
+    classes = mergeComponentClasses(classes, options.value.addClasses.Vueform || null)
 
     if (options.value.addClass !== null) {
       classes = mergeComponentClasses(classes, {

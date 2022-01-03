@@ -1,12 +1,12 @@
 import _ from 'lodash'
 import { computed, toRefs, ref } from 'composition-api'
-import { mergeComponentClasses, addClassHelpers } from './../../utils/mergeClasses'
+import { mergeClasses, addClassHelpers } from './../../utils/mergeClasses'
 
 const base = function(props, context, dependencies, options = {})
 {
   const {
-    extendClasses,
-    replaceClasses,
+    addClasses,
+    overrideClasses,
     addClass,
   } = toRefs(props)
   
@@ -29,6 +29,7 @@ const base = function(props, context, dependencies, options = {})
   * @private
   */
   const defaultClasses = ref(template.data ? template.data().defaultClasses : {})
+  const mergeDefaultClasses = ref(template.data ? template.data().mergeDefaultClasses : 'before')
 
   // ============== COMPUTED ==============
   
@@ -43,21 +44,22 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-   * The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.
+   * The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.
    * 
    * @type {object}
    */
   const classes = computed(() => {
-    let classes = _.merge({},
-      // Default component classes
-      defaultClasses.value,
+    let themeClasses = theme.value.classes[componentName.value] || {}
+    let componentClasses = defaultClasses.value
+    let configClasses = form$.value.$vueform.config.classes || {}
 
-      // Theme / form level overwrites
-      theme.value.classes[componentName.value] || {},
+    // Merge theme classes with component default classes
+    let classes = mergeDefaultClasses.value == 'after'
+      ? mergeClasses(themeClasses, componentClasses, 'override')
+      : mergeClasses(componentClasses, themeClasses, 'override')
 
-      // Element level overwrites
-      replaceClasses.value[componentName.value] || {}
-    )
+    // Merge base classes with config classes
+    classes = mergeClasses(classes, configClasses)
 
     // Add classes defined by specific elements
     if (options.addClasses) {
@@ -70,20 +72,54 @@ const base = function(props, context, dependencies, options = {})
       })
     }
 
-    // Add form's extendClasses
-    if (form$.value.options.extendClasses[componentName.value] !== undefined) {
-      classes = mergeComponentClasses(classes, form$.value.options.extendClasses[componentName.value] || null)
-    }
-    
-    // Add element's extendClasses options
-    classes = mergeComponentClasses(classes, extendClasses.value[componentName.value] || null)
-    
-    // Add element's class to main class
-    if (addClass.value) {
-      classes = mergeComponentClasses(classes, {
-        [mainClass.value]: addClass.value
+    _.each(classes, (classList, componentName) => {
+      _.each(classList, (c, className) => {
+        if (typeof c === 'string') {
+          classes[componentName][className] = c.split(' ')
+        } else if (_.isPlainObject(c)) {
+          classes[componentName][className] = [c] 
+        }
       })
-    }
+    })
+
+    // _.each(form$.value.config.preset, (preset) => {
+    //   _.each(preset.override, (overrides, componentName) => {
+    //     _.each(overrides, (override, className) => {
+    //       classes[componentName][className] = override
+    //     })
+    //   })
+
+    //   _.each(preset.remove, (removes, componentName) => {
+    //     _.each(removes, (remove, className) => {
+    //       _.each(remove, (r) => {
+    //         classes[componentName][className] = classes[componentName][className].filter((c) => {
+    //           if (typeof c === 'string') {
+    //             return c !== r
+    //           } else if (_.isPlainObject(c)) {
+    //             return c[r] === undefined ? true : false
+    //           }
+    //         })
+    //       })
+    //     })
+    //   })
+    // })
+
+    
+
+    // // Add form's addClasses
+    // if (form$.value.options.addClasses[componentName.value] !== undefined) {
+    //   classes = mergeComponentClasses(classes, form$.value.options.addClasses[componentName.value] || null)
+    // }
+    
+    // // Add element's addClasses options
+    // classes = mergeComponentClasses(classes, addClasses.value[componentName.value] || null)
+    
+    // // Add element's class to main class
+    // if (addClass.value) {
+    //   classes = mergeComponentClasses(classes, {
+    //     [mainClass.value]: addClass.value
+    //   })
+    // }
 
     classes = addClassHelpers(form$.value, componentName.value, classes)
 

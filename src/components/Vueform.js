@@ -280,19 +280,44 @@ export default {
       default: null
     },
     addClass: {
-      type: [String, Array, Object],
       required: false,
+      type: [String, Array, Object],
       default: null
     },
-    extendClasses: {
-      type: Object,
+    replaceClass: {
       required: false,
+      type: [Object],
       default: null
+    },
+    removeClass: {
+      required: false,
+      type: [String, Object],
+      default: null
+    },
+    overrideClass: {
+      required: false,
+      type: [String, Array, Object],
+      default: null
+    },
+    addClasses: {
+      required: false,
+      type: [Object],
+      default: () => ({})
     },
     replaceClasses: {
-      type: Object,
       required: false,
-      default: null
+      type: [Object],
+      default: () => ({})
+    },
+    removeClasses: {
+      required: false,
+      type: [Array],
+      default: () => ({})
+    },
+    overrideClasses: {
+      required: false,
+      type: [Object],
+      default: () => ({})
     },
     replaceTemplates: {
       type: Object,
