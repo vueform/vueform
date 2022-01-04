@@ -1,5 +1,5 @@
 <script>
-import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue'
+import EditorWrapper from '@vueform/vueform/themes/blank/templates/wrappers/EditorWrapper.vue'
 
   export default {
     name: 'EditorWrapper',
@@ -10,277 +10,480 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
 
 <style lang="scss">
   trix-toolbar {
-    @apply py-2 px-1.5 rounded flex-wrap md:flex-nowrap;
+    padding: 0.5rem 0.375rem;
+    border-radius: 0.25rem;
+    flex-wrap: wrap;
+
+    @media (min-width: 768px) {
+      flex-wrap: nowrap;
+    }
 
     .trix-button-row {
-      @apply block md:flex -mb-1 md:mb-0 flex-nowrap justify-between overflow-x-auto;
+      display: block;
+      margin-bottom: -0.25rem;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      overflow-x: auto;
+
+      @media (min-width: 768px) {
+        display: flex;
+        margin-bottom: 0;
+      }
     }
 
     .trix-button-group {
-      @apply inline md:flex;
+      display: inline;
+
+      @media (min-width: 768px) {
+        display: flex;
+      }
     }
 
     .trix-button-group-spacer {
-      @apply hidden md:block flex-grow;
+      display: hidden;
+      flex-grow: 1;
+
+      @media (min-width: 768px) {
+        display: block;
+      }
     }
 
     .trix-button {
-      @apply relative mb-1 md:mb-0 text-gray-700 px-2 outline-none rounded whitespace-nowrap float-left;
+      position: relative;
+      margin-bottom: 0.25rem;
+      color: theme('colors.gray.700');
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      outline: none;
+      border-radius: 0.25rem;
+      white-space: nowrap;
+      float: left;
+
+      @media (min-width: 768px) {
+        margin-bottom: 0;
+      }
 
       &.trix-active {
-        @apply bg-gray-200;
+        background-color: theme('colors.gray.200');
       }
 
       &:not(.trix-active):hover {
-        @apply bg-gray-100;
+        background-color: theme('colors.gray.100');
 
         .is-disabled & {
-          @apply bg-transparent cursor-default;
+          background: transparent;
+          cursor: default;
         }
       }
 
       &:not(:disabled) {
-        @apply cursor-pointer;
+        cursor: pointer;
       }
 
       .is-disabled & {
-        @apply cursor-default pointer-events-none;
+        cursor: default;
+        pointer-events: none;
       }
     }
 
     .trix-button--icon {
-      @apply w-10 h-6 text-xs indent-out;
+      width: 2.5rem;
+      height: 1.5rem;
+      font-size: 0.75rem;
+      line-height: 1rem;
+      text-indent: -9999px;
 
       &::before {
-        @apply absolute inset-0 inline-block opacity-60 bg-center bg-no-repeat bg-contain content-empty;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        display: inline-block;
+        opacity: 0.6;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: "";
+        mask-repeat: no-repeat;
+        mask-position: center center;
+        mask-size: contain;
+        background-color: theme('colors.gray.900');
+        top: 0.125rem;
+        bottom: 0.125rem;
+        margin-top: 0.125rem;
+        margin-bottom: 0.125rem;
       }
 
       &.trix-active::before {
-        @apply opacity-100;
+        opacity: 1;
       }
 
       &:disabled::before {
-        @apply opacity-10;
+        opacity: 0.1;
       }
     }
 
     .trix-button--icon-attach::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-attach top-0.5 bottom-0.5 my-0.5;
+      mask-image: theme('maskImage.form-trix-attach');
     }
 
     .trix-button--icon-bold::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-bold top-0.5 bottom-0.5 my-0.5;
+      mask-image: theme('maskImage.form-trix-bold');
     }
 
     .trix-button--icon-italic::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-italic top-0.5 bottom-0.5 my-0.5;
+      mask-image: theme('maskImage.form-trix-italic');
     }
 
     .trix-button--icon-link::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-link top-0.5 bottom-0.5 my-0.5;
+      mask-image: theme('maskImage.form-trix-link');
     }
 
     .trix-button--icon-strike::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-strike top-0.5 bottom-0.5 my-0.5;
+      mask-image: theme('maskImage.form-trix-strike');
     }
 
     .trix-button--icon-quote::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-quote top-1 bottom-1 my-px;
+      mask-image: theme('maskImage.form-trix-quote');
+      top: 0.25rem;
+      bottom: 0.25rem;
+      margin-top: 1px;
+      margin-bottom: 1px;
     }
 
     .trix-button--icon-heading-1::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-heading top-0.5 bottom-0.5 my-0.5;
+      mask-image: theme('maskImage.form-trix-heading');
     }
 
     .trix-button--icon-code::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-code top-1.5 bottom-1.5 my-px;
+      mask-image: theme('maskImage.form-trix-code');
+      top: 0.375rem;
+      bottom: 0.375rem;
+      margin-top: 1px;
+      margin-bottom: 1px;
     }
 
     .trix-button--icon-bullet-list::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-ul top-0.5 bottom-0.5 my-px;
+      mask-image: theme('maskImage.form-trix-ul');
+      margin-top: 1px;
+      margin-bottom: 1px;
     }
 
     .trix-button--icon-number-list::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-ol top-0.5 bottom-0.5 my-px;
+      mask-image: theme('maskImage.form-trix-ol');
+      margin-top: 1px;
+      margin-bottom: 1px;
     }
 
     .trix-button--icon-undo::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-undo top-1 bottom-1;
+      mask-image: theme('maskImage.form-trix-undo');
+      top: 0.25rem;
+      bottom: 0.25rem;
     }
 
     .trix-button--icon-redo::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-redo top-1 bottom-1;
+      mask-image: theme('maskImage.form-trix-redo');
+      top: 0.25rem;
+      bottom: 0.25rem;
     }
 
     .trix-button--icon-decrease-nesting-level::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-decrease-indent top-0.5 bottom-0.5 mt-0.5;
+      mask-image: theme('maskImage.form-trix-decrease-indent');
+      margin-bottom: 0;
     }
 
     .trix-button--icon-increase-nesting-level::before {
-      @apply mask-bg bg-gray-900 mask-form-trix-increase-indent top-0.5 bottom-0.5 my-px;
+      mask-image: theme('maskImage.form-trix-increase-indent');
+      margin-top: 1px;
+      margin-bottom: 1px;
     }
 
     .trix-dialogs {
-      @apply relative;
+      position: relative;
     }
 
     .trix-dialog {
-      @apply absolute top-0 left-0 right-0 text-xs py-4 px-2.5 bg-white shadow-lg border-t-2 border-gray-300 rounded z-10;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      font-size: 0.75rem;
+      line-height: 1rem;
+      padding: 1rem 0.625rem;
+      background-color: white;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      border-top-width: 2px;
+      border-color: theme('colors.gray.300');
+      border-radius: 0.25rem;
+      z-index: 10;
     }
 
     .trix-input--dialog {
-      @apply py-1.5 px-3 border-gray-300 rounded focus:form-ring mr-2 text-xs;
+      padding: 0.375rem 0.75rem;
+      border: 1px solid theme('colors.gray.300');
+      border-radius: 0.25rem;
+      margin-right: 0.5rem;
+      font-size: 0.75rem;
+      line-height: 1rem;
+
+      &:focus {
+        box-shadow: var(--vf-ring-shadow);
+        border-color: var(--vf-ring-border-color);
+      }
 
       &.validate:invalid {
-        @apply border-red-500;
+        border-color: theme('colors.red.500');
       }
     }
 
     .trix-button--dialog {
-      @apply p-2 border-l border-gray-300 bg-transparent rounded-none;
+      padding: 0.5rem;
+      border-left-width: 1px;
+      border-color: theme('colors.gray.300');
+      background-color: transparent;
+      border-radius: 0;
 
       &:not(.trix-active):hover {
-        @apply bg-transparent;
+        background-color: transparent;
       }
 
       &:first-of-type {
-        @apply border-0;
+        border: 0;
       }
     }
 
     .trix-dialog--link {
-      @apply max-w-xl;
+      max-width: 36rem;
     }
 
     .trix-dialog__link-fields {
-      @apply flex items-center w-full;
+      display: flex;
+      align-items: center;
+      width: 100%;
 
       .trix-input {
-        @apply flex-1;
+        flex: 1 1 0%;
       }
 
       .trix-button-group {
-        @apply flex-grow-0 flex-shrink-0;
+        flex-grow: 0;
+        flex-shrink: 0;
       }
     }
   }
 
   trix-editor {
-    @apply px-3 pb-1.5 rounded outline-none min-h-24;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.375rem;
+    border-radius: 0.25rem;
+    outline: none;
+    min-height: 6rem;
 
     [data-trix-mutable]:not(.attachment__caption-editor) {
-      @apply user-select-none;
+      user-select: none;
     }
 
     [data-trix-mutable]::-moz-selection,
     [data-trix-cursor-target]::-moz-selection,
     [data-trix-mutable] ::-moz-selection {
-      @apply bg-none;
+      background-image: none;
     }
 
     [data-trix-mutable]::selection,
     [data-trix-cursor-target]::selection,
     [data-trix-mutable] ::selection {
-      @apply bg-none;
+      background-image: none;
     }
 
     [data-trix-mutable].attachment__caption-editor:focus::-moz-selection {
-      @apply bg-highlight;
+      background: highlight;
     }
 
     [data-trix-mutable].attachment__caption-editor:focus::selection {
-      @apply bg-highlight;
+      background: highlight;
     }
 
     [data-trix-mutable].attachment.attachment--file {
-      @apply bg-gray-100;
+      background-color: theme('colors.gray.100');
     }
 
     [data-trix-mutable].attachment img {
-      @apply shadow;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     }
 
     .attachment {
-      @apply relative;
+      position: relative;
     }
 
     .attachment:hover {
-      @apply cursor-default;
+      cursor: default;
     }
 
     .attachment--preview .attachment__caption:hover {
-      @apply cursor-text;
+      cursor: text;
     }
 
     .attachment__progress {
-      @apply absolute z-10 h-5 top-1/2 left-0 transform -translate-y-2.5 w-full px-4 opacity-90 transition-opacity;
+      position: absolute;
+      z-index: 10;
+      height: 1.25rem;
+      top: 50%;
+      left: 0;
+      transform: translateY(-0.625rem);
+      width: 100%;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      opacity: 0.9;
+      transition-property: opacity;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
     }
 
     .attachment__progress[value="100"] {
-      @apply opacity-0;
+      opacity: 0;
     }
 
     .attachment__caption-editor {
-      @apply inline-block w-full m-0 p-0 text-center align-top border-0 outline-none appearance-none text-sm focus:border-gray-200 focus:shadow-none;
+      display: inline-block;
+      padding: 0;
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      text-align: center;
+      vertical-align: top;
+      width: 100%;
+      border-width: 0;
+      appearance: none;
+      outline: 0;
+
+      &:focus {
+        border-color: theme('colors.gray.200');
+        box-shadow: none;
+      }
     }
 
     .attachment__toolbar {
-      @apply absolute z-10 top-0 transform -translate-y-1/2 left-0 w-full text-center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      transform: translateY(-50%);
+      text-align: center;
+      width: 100%;
     }
 
     .trix-button-group {
-      @apply inline-flex;
+      display: inline-flex;
     }
 
     .trix-button {
-      @apply relative text-gray-500 whitespace-nowrap text-sm py-0 px-3 m-0 outline-none border-0 rounded-none bg-transparent;
+      position: relative;
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+      margin: 0;
+      background-color: transparent;
+      color: theme('colors.gray.500');
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      white-space: nowrap;
+      border-radius: 0;
+      border-width: 0;
+      outline: 0;
 
       &.trix-active {
-        @apply text-black bg-gray-200;
+        color: theme('colors.black');
+        background-color: theme('colors.gray.200')
       }
 
       &:not(.trix-active):hover {
-        @apply bg-gray-100;
+        background-color: theme('colors.gray.100')
       }
 
       &:not(:disabled) {
-        @apply cursor-pointer;
+        cursor: pointer;
       }
     }
 
     .trix-button--remove {
-      @apply inline-block p-0 outline-none w-7 h-7 leading-7 rounded-full bg-white border border-solid border-gray-400 overflow-x-hidden indent-out;
+      display: inline-block;
+      overflow-x: hidden;
+      padding: 0;
+      background-color: theme('colors.white');
+      line-height: 1.75rem;
+      border-radius: 9999px;
+      border-width: 1px;
+      border-color: theme('colors.gray.400');
+      border-style: solid;
+      outline: 0;
+      text-indent: -9999px;
 
       &:not(.trix-active):hover {
-       @apply bg-gray-100; 
+        background-color: theme('colors.gray.100');
       }
 
       &::before {
-        @apply inline-block absolute top-1 bottom-1 left-1 right-1 bg-opacity-70 bg-center bg-no-repeat content-empty mask-bg bg-gray-900 mask-form-remove-light;
+        content: "";
+        display: inline-block;
+        position: absolute;
+        top: 0.25rem;
+        right: 0.25rem;
+        bottom: 0.25rem;
+        left: 0.25rem;
+        background-color: theme('colors.gray.900');
+        opacity: 0.7;
+        background-position: center;
+        background-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        mask-position: center center;
+        mask-size: contain;
+        mask-image: theme('maskImage.form-remove-light');
 
         &:hover {
-          @apply border-gray-700;
+          border-color: theme('colors.gray.700');
 
           &::before {
-            @apply opacity-100;
+            opacity: 1;
           }
         }
       }
     }
 
     .attachment__metadata-container {
-      @apply relative;
+      position: relative;
     }
 
     .attachment__metadata {
-      @apply absolute left-1/2 top-4 transform -translate-x-1/2 py-0.5 px-2 text-sm text-white bg-black bg-opacity-70 rounded;
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      padding-top: 0.125rem;
+      padding-bottom: 0.125rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      background-color: theme('colors.black');
+      opacity: 0.7;
+      transform: translateX(-50%);
+      color: theme('colors.white');
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      border-radius: 0.25rem;
 
       .attachment__name {
-        @apply inline-block max-w-full align-bottom overflow-hidden overflow-ellipsis whitespace-nowrap;
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: bottom;
+        white-space: nowrap;
+        max-width: 100%;
       }
 
       .attachment__size {
-        @apply ml-1 whitespace-nowrap;
+        margin-left: 0.25rem;
+        white-space: nowrap;
       }
     }
   }
@@ -288,95 +491,144 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
   .trix-content,
   trix-editor {
     h1 {
-      @apply text-3xl font-bold leading-tight;
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+      font-weight: 700;
+      line-height: 1.25;
     }
 
     a {
-      @apply form-text-primary;
+      color: theme('form.primary')
     }
 
     ul {
-      @apply list-disc pl-10;
+      padding-left: 2.5rem;
+      list-style-type: disc;
     }
 
     [dir=rtl] ul {
-      @apply list-disc pr-10;
+      padding-right: 2.5rem;
+      list-style-type: disc;
     }
 
     ol {
-      @apply list-decimal pl-10;
+      padding-left: 2.5rem;
+      list-style-type: decimal;
     }
 
     [dir=rtl] ol {
-      @apply list-decimal pr-10;
+      padding-right: 2.5rem;
+      list-style-type: decimal;
     }
 
     blockquote {
-      @apply border-l-4 border-gray-300 pl-2.5;
+      padding-left: 0.625rem;
+      border-left-width: 4px;
+      border-color: theme('colors.gray.300');
     }
 
     [dir=rtl] blockquote,
     blockquote[dir=rtl] {
-      @apply border-r-4 border-gray-300 pr-2.5;
+      padding-left: 0.625rem;
+      border-left-width: 4px;
+      border-color: theme('colors.gray.300');
     }
 
     pre {
-      @apply inline-block w-full align-top font-mono text-sm p-2 whitespace-pre bg-gray-50 overscroll-x-auto;
+      display: inline-block;
+      overscroll-behavior-x: auto;
+      padding: 0.5rem;
+      background-color: theme('colors.gray.50');
+      font-family: theme('fontFamily.mono');
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      vertical-align: top;
+      white-space: pre;
+      width: 100%;
     }
 
     img {
-      @apply max-w-full h-auto;
+      max-width: 100%;
+      height: auto;
     }
 
     .attachment__caption {
-      @apply text-center text-sm;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      text-align: center;
 
       .attachment__name+.attachment__size::before {
-        @apply content-spaced-dot;
+        content: " · ";
       }
     }
   }
 
   .trix-content {
     * {
-      @apply box-border m-0 p-0;
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
     }
 
     .attachment {
-      @apply inline-block relative max-w-full;
+      display: inline-block;
+      position: relative;
+      max-width: 100%;
 
       a {
-        @apply no-underline;
+        text-decoration: none;
       }
     }
 
     .attachment--preview {
-      @apply w-full text-center;
+      text-align: center;
+      width: 100%;
       
       .attachment__caption {
-        @apply text-gray-500 text-sm;
+        color: theme('colors.gray.500');
+        font-size: 0.875rem;
+        line-height: 1.25rem;
       }
     }
 
     .attachment--file {
-      @apply text-gray-700 leading-none m-0.5 mt-0 py-1.5 px-4 border border-gray-300 rounded;
+      padding-top: 0.375rem;
+      padding-bottom: 0.375rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      margin: 0.125rem;
+      margin-top: 0;
+      color: theme('colors.gray.700');
+      line-height: 1;
+      border-radius: 0.25rem;
+      border-width: 1px;
+      border-color: theme('colors.gray.300');
     }
 
     .attachment-gallery {
-      @apply flex flex-wrap relative;
+      display: flex;
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
 
       .attachment {
-        @apply w-1/3 py-0 px-2 flex-grow flex-shrink-0;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        flex-grow: 1;
+        flex-shrink: 0;
+        width: 33.333333%;
       }
 
       &.attachment-gallery--2 .attachment,
       &.attachment-gallery--4 .attachment {
-        @apply w-1/2;
+        width: 50%;
       }
     }
 
     .attachment__progress {
-      @apply hidden;
+      display: none;
     }
   }
 </style>

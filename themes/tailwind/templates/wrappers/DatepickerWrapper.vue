@@ -1,5 +1,5 @@
 <script>
-import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWrapper.vue'
+import DatepickerWrapper from '@vueform/vueform/themes/blank/templates/wrappers/DatepickerWrapper.vue'
 
   export default {
     name: 'DatepickerWrapper',
