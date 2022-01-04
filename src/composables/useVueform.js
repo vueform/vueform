@@ -210,15 +210,15 @@ const base = function(props, context, dependencies = {})
     }
 
     const override = {
-      columns, languages, language, theme, endpoint, method, validateOn,
+      columns, languages, language, theme, method, validateOn, formData,
       replaceClasses, extendClasses, replaceTemplates, messages, addClass,
       formKey, multilingual, formatLoad, formatData, prepare, default: default_ ,
-      formData,
+      
     }
 
     const ifNotUndefined = {
       stepsControls, displayErrors, displayMessages, forceLabels, disabled, loading,
-      floatPlaceholders,
+      floatPlaceholders, endpoint,
       onChange: _onChange.value,
       onReset: _onReset.value,
       onClear: _onClear.value,
