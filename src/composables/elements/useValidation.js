@@ -37,7 +37,7 @@ const base = function(props, context, dependencies)
   const Validators = ref([])
 
   /**
-   * Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).
+   * Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).
    * 
    * @type {MessageBag}
    * @default MessageBag

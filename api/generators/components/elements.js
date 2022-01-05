@@ -9,6 +9,8 @@ const slotsInfo = require('./../../slots').default
 const elements = {}
 const skipPrivate = false
 
+global.File = function File() {}
+
 _.each(fs.readdirSync(__dirname + '/../../../src/components/elements'), (filename) => {
   if (!filename.match(/\.js$/)) {
     return
@@ -198,7 +200,13 @@ const addProps = (contents, element) => {
     contents += `        types: [\n`
 
     _.forEach(types, (v,k) => {
-      contents += `          '${v.prototype.constructor.name.toLowerCase()}',\n`
+      let type = v.prototype.constructor.name
+
+      if (type !== 'File') {
+        type = type.toLowerCase()
+      }
+
+      contents += `          '${type}',\n`
     })
 
     contents += `        ],\n`

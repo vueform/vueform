@@ -1266,7 +1266,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -2354,7 +2354,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -3702,7 +3702,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -4926,7 +4926,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -6118,7 +6118,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -7169,6 +7169,7 @@ module.exports = {
         types: [
           'string',
           'object',
+          'File',
         ],
         required: false,
         private: false,
@@ -7448,7 +7449,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -8667,7 +8668,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -9525,7 +9526,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -10568,7 +10569,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -11947,7 +11948,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -13249,7 +13250,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -15005,7 +15006,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -16377,7 +16378,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -17430,7 +17431,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -18526,7 +18527,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -20065,7 +20066,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -21552,7 +21553,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -23413,7 +23414,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -24656,7 +24657,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -25859,7 +25860,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -27431,7 +27432,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -28951,7 +28952,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -30134,7 +30135,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
@@ -31302,7 +31303,7 @@ module.exports = {
         types: [
           'MessageBag',
         ],
-        description: 'Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages).',
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
       },
