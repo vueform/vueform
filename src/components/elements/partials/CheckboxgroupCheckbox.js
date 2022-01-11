@@ -23,7 +23,7 @@ export default {
   },
   setup(props, context)
   {
-    const { value } = toRefs(props)
+    const { value, view } = toRefs(props)
 
     const {
       el$,

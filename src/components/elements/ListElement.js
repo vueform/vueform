@@ -263,6 +263,7 @@ export default {
       isDisabled: disabled.isDisabled,
       sorting: sorting.sorting,
       templates: templates.templates,
+      el$: baseElement.el$,
     })
 
     const sort = useSort(props, context, {

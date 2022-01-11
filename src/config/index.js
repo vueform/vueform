@@ -10,34 +10,12 @@ const config = {
    */
   theme: {},
   templates: {},
-  classes: {},
-  presets: {
-    first: {
-      add: {
-        TextElement: {
-          input: 'add-text'
-        }
-      },
-      replace: {
-        TextElement: {
-          input: {
-            'w-full': 'w-1/2'
-          }
-        }
-      },
-      remove: {
-        TextElement: {
-          input: ['form-p-input']
-        }
-      },
-      override: {
-        TextElement: {
-          inputContainer: 'not-w-full not-flex'
-        }
-      }
-    }
-  },
-  preset: [],
+  addClasses: {},
+  overrideClasses: {},
+  removeClasses: {},
+  replaceClasses: {},
+  presets: {},
+  usePresets: [],
   classHelpers: true,
   columns: {
     container: 12,

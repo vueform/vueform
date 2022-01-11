@@ -56,6 +56,7 @@ import TTextElement from './../blank/templates/elements/TTextElement.vue'
 import TEditorElement from './../blank/templates/elements/TEditorElement.vue'
 
 import CheckboxgroupCheckbox from './../blank/templates/elements/partials/CheckboxgroupCheckbox.vue'
+import CheckboxgroupCheckbox_tabs from './../blank/templates/elements/partials/CheckboxgroupCheckbox_tabs.vue'
 import FilePreview from './../blank/templates/elements/partials/FilePreview.vue'
 import ImagePreview from './../blank/templates/elements/partials/ImagePreview.vue'
 import GalleryPreview from './../blank/templates/elements/partials/GalleryPreview.vue'
@@ -122,6 +123,7 @@ export default {
     TEditorElement,
 
     CheckboxgroupCheckbox,
+    CheckboxgroupCheckbox_tabs,
     FilePreview,
     ImagePreview,
     GalleryPreview,

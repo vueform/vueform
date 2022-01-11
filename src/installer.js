@@ -16,9 +16,10 @@ export default function(config, components) {
   const Vueform = class {
     constructor() {
       this.options = {
-        config: _.omit(config, ['theme', 'templates', 'classes', 'locales', 'rules']),
+        config: _.omit(config, [
+          'theme', 'templates', 'locales', 'rules',
+        ]),
         templates: config.templates || {},
-        classes: config.classes || {},
         theme: config.theme || {},
         rules: config.rules || {},
         locales: config.locales || {},
@@ -37,16 +38,17 @@ export default function(config, components) {
     config(config) {
       // merge
       _.each([
-         'theme', 'templates', 'classes', 'locales', 'rules', 'presets',
+        'theme', 'templates', 'locales', 'rules',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options[attr] = Object.assign({}, this.options[attr], config[attr])
           }
       })
 
-      // merge
+      // merge (config)
       _.each([
-        'languages', 'services',
+        'languages', 'services', 'addClasses', 'removeClasses',
+        'replaceClasses', 'overrideClasses', 'presets',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = Object.assign({}, this.options.config[attr], config[attr])
@@ -66,7 +68,7 @@ export default function(config, components) {
       _.each([
         'columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages',
         'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'axios',
-        'locationProvider', 'classHelpers', 'env'
+        'locationProvider', 'classHelpers', 'env', 'usePresets',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = config[attr]
@@ -104,11 +106,15 @@ export default function(config, components) {
         component.components = this.options.theme.templates[name].components || {}
 
         component.render = function() {
-          return this.templates[name].render.apply(this, arguments)
+          return this.view && this.templates[`${name}_${this.view}`]
+            ? this.templates[`${name}_${this.view}`].render.apply(this, arguments)
+            : this.templates[name].render.apply(this, arguments)
         }
 
         component.staticRenderFns = function() {
-          return this.templates[name].staticRenderFns
+          return this.view && this.templates[`${name}_${this.view}`]
+            ? this.templates[`${name}_${this.view}`].staticRenderFns
+            : this.templates[name].staticRenderFns
         }
 
         appOrVue.component(name, component)
@@ -201,7 +207,6 @@ export default function(config, components) {
                 if (!this.$vueform) {
                   this.$vueform = {
                     config: appOrVue.observable($vueform.config),
-                    classes: $vueform.classes,
                     templates: $vueform.templates,
                     rules: $vueform.rules,
                     services: $vueform.services,

@@ -3,12 +3,13 @@ import {
   computed, ref, toRefs, getCurrentInstance, onBeforeMount, onMounted, onBeforeUpdate,
   onUpdated, onBeforeUnmount, onUnmounted, provide, watch
 } from 'composition-api'
-import { mergeComponentClasses } from './../utils/mergeClasses'
+import MergeFormClasses from './../utils/mergeFormClasses'
 import convertFormDataUtil from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'
 import dataEquals from './../utils/dataEquals'
 import useEvents from './useEvents'
 import useModel from './useModel'
+import MergeComponentClasses from '../utils/mergeComponentClasses'
 
 const base = function(props, context, dependencies = {})
 {
@@ -18,12 +19,14 @@ const base = function(props, context, dependencies = {})
     steps,
     replaceClasses,
     addClasses,
+    overrideClasses,
+    removeClasses,
+    presets,
     replaceTemplates,
     theme,
     messages,
     columns,
     languages,
-    addClass,
     formKey,
     endpoint,
     method,
@@ -249,10 +252,12 @@ const base = function(props, context, dependencies = {})
       theme: baseConfig.value.theme,
       replaceClasses: {},
       addClasses: {},
+      overrideClasses: {},
+      removeClasses: {},
+      presets: {},
       replaceTemplates: {},
       messages: {},
       default: {},
-      addClass: null,
       formKey: null,
       formatLoad: null,
       formatData: null,
@@ -642,7 +647,11 @@ const base = function(props, context, dependencies = {})
       ),
       
       // Ovewrite theme classes with form's classes definition
-      classes: _.merge({}, options.value.theme.classes ),
+      classes: (new MergeFormClasses({
+        theme: options.value.theme.classes,
+        config: baseConfig.value,
+        form: options.value,
+      })).classes
     })
   })
 
@@ -681,20 +690,9 @@ const base = function(props, context, dependencies = {})
    * @type {object}
    */
   const classes = computed(() => {
-    let classes = Object.assign({},
-      defaultClasses.value,
-      extendedTheme.value.classes.Vueform,
-    )
+    let classes = new MergeComponentClasses(defaultClasses.value, extendedTheme.value.classes.Vueform, form$)
 
-    classes = mergeComponentClasses(classes, options.value.addClasses.Vueform || null)
-
-    if (options.value.addClass !== null) {
-      classes = mergeComponentClasses(classes, {
-        [mainClass.value]: options.value.addClass
-      })
-    }
-
-    return classes
+    return classes.classes
   })
 
   // =============== METHODS ==============

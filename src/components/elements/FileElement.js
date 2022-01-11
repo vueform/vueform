@@ -260,6 +260,7 @@ export default {
       isDisabled: disabled.isDisabled,
       preparing: file.preparing,
       templates: templates.templates,
+      el$: baseElement.el$,
     })
 
     const columns = useColumns(props, context, {

@@ -208,6 +208,7 @@ export default {
       isDisabled: disabled.isDisabled,
       focused: editor.focused,
       templates: templates.templates,
+      el$: baseElement.el$,
     })
 
     const columns = useColumns(props, context, {

@@ -140,6 +140,7 @@ const element = {
       form$: form$.form$,
       theme: theme.theme,
       templates: templates.templates,
+      el$: baseElement.el$,
     })
 
     const columns = useColumns(props, context, {

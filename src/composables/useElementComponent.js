@@ -3,10 +3,14 @@ import { computed, toRefs, ref, getCurrentInstance } from 'composition-api'
 import useForm$ from './useForm$'
 import useEl$ from './useEl$'
 import useTheme from './useTheme'
-import { mergeComponentClasses, addClassHelpers } from './../utils/mergeClasses'
+import MergeComponentClasses from './../utils/mergeComponentClasses'
 
 const base = function(props, context, dependencies, options = {})
 {
+  const {
+    view,
+  } = toRefs(props)
+
   const componentName = context.name
 
   // =============== INJECT ===============
@@ -34,6 +38,7 @@ const base = function(props, context, dependencies, options = {})
   * @private
   */
   const defaultClasses = ref(template.data ? template.data().defaultClasses : {})
+  const mergeDefaultClasses = ref(template.data ? template.data().mergeDefaultClasses : 'before')
 
   // ============== COMPUTED ===============
 
@@ -44,39 +49,29 @@ const base = function(props, context, dependencies, options = {})
    * @private
    */
   const mergedClasses = computed(() => {
-    let classes = _.merge({},
-      // Default component classes
-      defaultClasses.value,
-
-      // Theme / form level overwrites
-      theme.value.classes[componentName.value] || {},
-
-      // Element level overwrites
-      el$.value.overrideClasses[componentName.value] || {}
+    let classes = new MergeComponentClasses(
+      mergeDefaultClasses.value == 'after' ? theme.value.classes[componentName.value] : defaultClasses.value,
+      componentName.value,
+      ref(null),
+      ref(view ? view.value : null),
+      el$,
     )
 
-    // Add classes defined by specific components
-    if (options.addClasses) {
-      options.addClasses.forEach((add) => {
-        if (add[2].value) {
-          classes = mergeComponentClasses(classes, {
-            [add[0]]: typeof add[1] == 'object' ? add[1].value : classes[add[1]],
-          })
-        }
-      })
-    }
+    classes.merge({
+      overrideClasses: {
+        [componentName.value]: mergeDefaultClasses.value == 'after'
+          ? defaultClasses.value
+          : theme.value.classes[componentName.value],
+      }
+    })
 
-    // Add form's addClasses
-    if (form$.value.options.addClasses[componentName.value] !== undefined) {
-      classes = mergeComponentClasses(classes, form$.value.options.addClasses[componentName.value] || null)
-    }
+    classes.merge(form$.value.$vueform.config)
 
-    // Add element's addClasses options
-    classes = mergeComponentClasses(classes, el$.value.addClasses[componentName.value] || null)
+    form$.value.$vueform.config.usePresets.forEach((presetName) => {
+      classes.merge(form$.value.$vueform.config.presets[presetName])
+    })
 
-    classes = addClassHelpers(form$.value, componentName.value, classes)
-
-    return classes
+    return classes.classes
   })
 
   /**

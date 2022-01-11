@@ -31,14 +31,32 @@ const mergeClasses = function (base, add, strategy = 'extend') {
  * add = { container: 'b', innerContainer: 'bb' }
  * -> { container: ['a', 'b'], innerContainer: ['aa', 'bb'] }
  */
-const mergeComponentClasses = function (base, add, strategy = 'extend') {
+const mergeComponentClasses = function (base, merge) {
   let classes = _.cloneDeep(base)
 
-  _.each(add, (classes_, key) => {
-    classes[key] = strategy === 'extend'
-      ? extendClasses(base[key] || null, classes_)
-      : overrideClasses(classes_)
-  })
+  // _.each(merge, (classes_, key) => {
+  //   let mergedClasses = []
+
+  //   switch (strategy) {
+  //     case 'extend':
+  //       mergedClasses = extendClasses(base[key], classes_)
+  //       break
+
+  //     case 'override':
+  //       mergedClasses = overrideClasses(classes_)
+  //       break
+
+  //     case 'remove':
+  //       mergedClasses = removeClasses(base[key], classes_)
+  //       break
+
+  //     case 'replace':
+  //       mergedClasses = replaceClasses(base[key], classes_)
+  //       break
+  //   }
+
+  //   classes[key] = mergedClasses
+  // })
 
   return classes
 }
@@ -50,24 +68,24 @@ const mergeComponentClasses = function (base, add, strategy = 'extend') {
  * -> ['a', 'b']
  */
 const extendClasses = function (base, add) {
-  if (add === null || _.isEmpty(add)) {
+  if (add === null || add === undefined || _.isEmpty(add)) {
     return base
   }
 
-  if (base === null || _.isEmpty(base)) {
+  if (base === null || base === undefined || _.isEmpty(base)) {
     return add
   }
 
   let classes
 
   if (typeof base === 'string') {
-    base = base.split(' ')
+    base = base.length > 0 ? base.split(' ') : []
   } else if (_.isPlainObject(base)) {
     base = [base]
   }
 
   if (typeof add === 'string') {
-    add = add.split(' ')
+    add = add.length > 0 ? add.split(' ') : []
   } else if (_.isPlainObject(add)) {
     add = [add]
   }
@@ -84,11 +102,39 @@ const extendClasses = function (base, add) {
  * -> ['b']
  */
 const overrideClasses = function (override) {
-  if (override === null || _.isEmpty(override)) {
-    return []
-  }
+  return override === null || _.isEmpty(override)
+    ? []
+    : override
+}
 
-  return Array.isArray(override) ? override : [override]
+/**
+ * Remove classes, eg:
+ * base = ['a', 'b']
+ * remove = ['b']
+ * -> ['a']
+ */
+const removeClasses = function (base, remove) {
+  return base.filter((c) => {
+    if (typeof c === 'string') {
+      return remove.indexOf(c) === -1
+    }
+  })
+}
+
+/**
+ * Replace classes, eg:
+ * base = ['a', 'b']
+ * replace = { b: c }
+ * -> ['a', 'c']
+ */
+const replaceClasses = function (base, replace) {
+  return base.map((c) => {
+    if (typeof c === 'string') {
+      return Object.keys(replace).indexOf(c) !== -1
+        ? replace[c]
+        : c
+    }
+  })
 }
 
 const addClassHelpers = function (form$, componentName, classes) {
@@ -109,11 +155,31 @@ const addClassHelpers = function (form$, componentName, classes) {
   return classes
 }
 
+const componentClassesToArray = function (componentClasses) {
+  let arrayClasses = {}
+
+  _.each(componentClasses, (c, className) => {
+    let arrayClass = c
+
+    if (_.isPlainObject(c)) {
+      arrayClass = [c]
+    } else if (typeof c === 'string') {
+      arrayClass = c.length > 0 ? c.split(' ') : []
+    }
+
+    arrayClasses[className] = arrayClass
+  })
+
+  return arrayClasses
+}
+
 export default mergeClasses
 
 export {
+  mergeClasses,
   extendClasses,
   overrideClasses,
   mergeComponentClasses,
   addClassHelpers,
+  componentClassesToArray,
 }

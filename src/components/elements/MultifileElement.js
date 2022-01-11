@@ -303,6 +303,7 @@ export default {
       sorting: sorting.sorting,
       preparing: multifile.preparing,
       templates: templates.templates,
+      el$: baseElement.el$,
     })
 
     const sort = useSort(props, context, {

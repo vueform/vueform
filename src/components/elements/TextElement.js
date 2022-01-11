@@ -194,6 +194,7 @@ export default {
       theme: theme.theme,
       isDisabled: disabled.isDisabled,
       templates: templates.templates,
+      el$: baseElement.el$,
     })
 
     const columns = useColumns(props, context, {

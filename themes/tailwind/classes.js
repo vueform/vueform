@@ -2,20 +2,33 @@ const checkbox = {
   input: 'flex-shrink-0 appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox form-rounded form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-check-white checked:border-0',
   input_enabled: 'checked:form-bg-primary',
   input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
+  $input: (classes, el$) => ([
+    classes.input,
+    { [classes.input_enabled]: !el$.isDisabled },
+    { [classes.input_disabled]: el$.isDisabled },
+  ]),
 }
 
 const radio = {
   input: 'flex-shrink-0 appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox rounded-full form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-radio-white checked:border-0',
   input_enabled: 'checked:form-bg-primary',
   input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
+  $input: (classes, el$) => ([
+    classes.input,
+    { [classes.input_enabled]: !el$.isDisabled },
+    { [classes.input_disabled]: el$.isDisabled },
+  ]),
 }
 
 const text = {
-  input: (el$) => ([
-    'w-full form-p-input form-border form-border-color form-rounded z-1 addon-before:form-rounded-l-none addon-before:form-border-l-none outline-none addon-after:form-rounded-r-none addon-after:form-border-r-none',
-    { 'focus:form-ring': !el$.isDisabled },
-    { 'form-bg-disabled form-text-disabled': el$.isDisabled },
-  ])
+  input: 'w-full form-border form-border-color form-rounded z-1 transition-all addon-before:form-rounded-l-none addon-before:form-border-l-none outline-none addon-after:form-rounded-r-none addon-after:form-border-r-none',
+  input_enabled: 'focus:form-ring',
+  input_disabled: 'form-bg-disabled form-text-disabled',
+  $input: (classes, el$) => ([
+    classes.input,
+    { [classes.input_enabled]: !el$.isDisabled },
+    { [classes.input_disabled]: el$.isDisabled },
+  ]),
 }
 
 const select = {
@@ -243,6 +256,11 @@ export default {
     inputContainer: 'w-full flex',
     ...text,
   },
+  TextElement: {
+    container: '',
+    inputContainer: 'w-full flex',
+    ...text,
+  },
   ToggleElement: {
     container: '',
     wrapper: 'form-pt-input-border flex items-center',
@@ -428,9 +446,9 @@ export default {
 
   // Slots
   CheckboxgroupCheckbox: {
+    ...checkbox,
     container: 'flex align-start cursor-pointer',
     text: '',
-    ...checkbox,
   },
   FilePreview: {
     container: 'form-py-input flex justify-start flex-row group relative',

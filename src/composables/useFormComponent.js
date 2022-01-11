@@ -47,21 +47,21 @@ const base = function(props, context, dependencies, options = {})
       theme.value.classes[componentName.value] || {}
     )
 
-    // Add classes defined by specific components
-    if (options.addClasses) {
-      options.addClasses.forEach((add) => {
-        if (add[2].value) {
-          classes = mergeComponentClasses(classes, {
-            [add[0]]: typeof add[1] == 'object' ? add[1].value : classes[add[1]],
-          })
-        }
-      })
-    }
+    // // Add classes defined by specific components
+    // if (options.addClasses) {
+    //   options.addClasses.forEach((add) => {
+    //     if (add[2].value) {
+    //       classes = mergeComponentClasses(classes, {
+    //         [add[0]]: typeof add[1] == 'object' ? add[1].value : classes[add[1]],
+    //       })
+    //     }
+    //   })
+    // }
 
-    // Add form's addClasses
-    classes = mergeComponentClasses(classes, form$.value.options.addClasses[componentName.value] || null)
+    // // Add form's addClasses
+    // classes = mergeComponentClasses(classes, form$.value.options.addClasses[componentName.value] || null)
 
-    classes = addClassHelpers(form$.value, componentName.value, classes)
+    // classes = addClassHelpers(form$.value, componentName.value, classes)
 
     return classes
   })
