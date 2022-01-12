@@ -106,12 +106,14 @@ export default function(config, components) {
         component.components = this.options.theme.templates[name].components || {}
 
         component.render = function() {
+          return this.templates[name].render.apply(this, arguments)
           return this.view && this.templates[`${name}_${this.view}`]
             ? this.templates[`${name}_${this.view}`].render.apply(this, arguments)
             : this.templates[name].render.apply(this, arguments)
         }
 
         component.staticRenderFns = function() {
+          return this.templates[name].staticRenderFns
           return this.view && this.templates[`${name}_${this.view}`]
             ? this.templates[`${name}_${this.view}`].staticRenderFns
             : this.templates[name].staticRenderFns

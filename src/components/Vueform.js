@@ -284,14 +284,14 @@ export default {
       type: [Object],
       default: () => ({})
     },
-    replaceClasses: {
+    removeClasses: {
       required: false,
       type: [Object],
       default: () => ({})
     },
-    removeClasses: {
+    replaceClasses: {
       required: false,
-      type: [Array],
+      type: [Object],
       default: () => ({})
     },
     overrideClasses: {

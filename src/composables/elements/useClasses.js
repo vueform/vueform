@@ -47,9 +47,7 @@ const base = function(props, context, dependencies, options = {})
    * @type {object}
    */
   const classes = computed(() => {
-    let classes = new MergeComponentClasses(defaultClasses.value, theme.value[componentName.value], el$)
-
-    return classes.classes
+    return theme.value.classes[componentName.value]
   })
 
   return {

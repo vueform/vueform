@@ -38,7 +38,6 @@ const base = function(props, context, dependencies, options = {})
   * @private
   */
   const defaultClasses = ref(template.data ? template.data().defaultClasses : {})
-  const mergeDefaultClasses = ref(template.data ? template.data().mergeDefaultClasses : 'before')
 
   // ============== COMPUTED ===============
 
@@ -49,29 +48,7 @@ const base = function(props, context, dependencies, options = {})
    * @private
    */
   const mergedClasses = computed(() => {
-    let classes = new MergeComponentClasses(
-      mergeDefaultClasses.value == 'after' ? theme.value.classes[componentName.value] : defaultClasses.value,
-      componentName.value,
-      ref(null),
-      ref(view ? view.value : null),
-      el$,
-    )
-
-    classes.merge({
-      overrideClasses: {
-        [componentName.value]: mergeDefaultClasses.value == 'after'
-          ? defaultClasses.value
-          : theme.value.classes[componentName.value],
-      }
-    })
-
-    classes.merge(form$.value.$vueform.config)
-
-    form$.value.$vueform.config.usePresets.forEach((presetName) => {
-      classes.merge(form$.value.$vueform.config.presets[presetName])
-    })
-
-    return classes.classes
+    return theme.value.classes[componentName.value]
   })
 
   /**

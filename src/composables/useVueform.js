@@ -17,10 +17,10 @@ const base = function(props, context, dependencies = {})
     schema,
     tabs,
     steps,
-    replaceClasses,
     addClasses,
-    overrideClasses,
     removeClasses,
+    replaceClasses,
+    overrideClasses,
     presets,
     replaceTemplates,
     theme,
@@ -214,9 +214,8 @@ const base = function(props, context, dependencies = {})
 
     const override = {
       columns, languages, language, theme, endpoint, method, validateOn,
-      replaceClasses, addClasses, replaceTemplates, messages, addClass,
-      formKey, multilingual, formatLoad, formatData, prepare, default: default_ ,
-      formData,
+      messages, formKey, multilingual, formatLoad, formatData, prepare, default: default_, formData, replaceTemplates,
+      addClasses, removeClasses, replaceClasses, overrideClasses, presets,
     }
 
     const ifNotUndefined = {
@@ -250,11 +249,11 @@ const base = function(props, context, dependencies = {})
       floatPlaceholders: baseConfig.value.config.floatPlaceholders,
       formData: baseConfig.value.config.formData,
       theme: baseConfig.value.theme,
-      replaceClasses: {},
       addClasses: {},
-      overrideClasses: {},
       removeClasses: {},
-      presets: {},
+      replaceClasses: {},
+      overrideClasses: {},
+      presets: [],
       replaceTemplates: {},
       messages: {},
       default: {},
@@ -651,6 +650,7 @@ const base = function(props, context, dependencies = {})
         theme: options.value.theme.classes,
         config: baseConfig.value,
         form: options.value,
+        presets: baseConfig.value.config.presets,
       })).classes
     })
   })
@@ -690,9 +690,7 @@ const base = function(props, context, dependencies = {})
    * @type {object}
    */
   const classes = computed(() => {
-    let classes = new MergeComponentClasses(defaultClasses.value, extendedTheme.value.classes.Vueform, form$)
-
-    return classes.classes
+    return extendedTheme.value.classes.Vueform
   })
 
   // =============== METHODS ==============

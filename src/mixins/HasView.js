@@ -23,7 +23,7 @@ export default {
     },
     removeClasses: {
       required: false,
-      type: [Array],
+      type: [Object],
       default: () => ({})
     },
     overrideClasses: {

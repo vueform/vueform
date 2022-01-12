@@ -1,16 +1,21 @@
 import _ from 'lodash'
 
-const KEYS = ['addClasses', 'removeClasses', 'replaceClasses', 'overrideClasses']
+const KEYS = ['presets', 'usePresets', 'addClasses', 'removeClasses', 'replaceClasses', 'overrideClasses']
 
 export default class MergeFormClasses
 {
   theme = {}
+  presets = {}
 
-  constructor(options) {
+  constructor(options = {}) {
     this.theme = _.cloneDeep(this.toArray(options.theme))
 
-    if (options.config) {
-      this.merge(options.config)
+    if (options.presets) {
+      this.presets = options.presets
+    }
+
+    if (options?.config?.config) {
+      this.merge(options.config.config)
     }
 
     if (options.form) {
@@ -26,18 +31,33 @@ export default class MergeFormClasses
     _.each(_.pick(merge, KEYS), (components, key) => {
       switch (key) {
         case 'addClasses':
-          this.addThemeClasses(components)
+        case 'overrideClasses':
+          this.mergeThemeClasses(this.toArray(components), key)
+          break
+
+        case 'removeClasses':
+        case 'replaceClasses':
+          this.mergeThemeClasses(components, key)
+          break
+
+        case 'presets':
+        case 'usePresets':
+          if (!Array.isArray(components)) {
+            return
+          }
+
+          _.each(components, (presetName) => {
+            this.merge(this.presets[presetName])
+          })
           break
       }
     })
   }
   
-  addThemeClasses(components) {
-    components = this.toArray(components)
-
+  mergeThemeClasses(components, key) {
     _.each(components, (componentClasses, componentName) => {
       _.each(componentClasses, (classes, className) => {
-        this.addClasses(classes, [componentName, className])
+        this[key](classes, [componentName, className])
       })
     })
   }
@@ -54,6 +74,48 @@ export default class MergeFormClasses
         base,
         add
       ))
+    }
+  }
+
+  removeClasses(remove, levels) {
+    let base = _.get(this.theme, levels.join('.'))
+
+    if (_.isPlainObject(base)) {
+      _.each(remove, (subclasses, subclassName) => {
+        this.removeClasses(subclasses, levels.concat(subclassName))
+      })
+    } else if (Array.isArray(base)) {
+      _.set(this.theme, levels.join('.'), base.filter((c) => {
+        return typeof c !== 'string' || remove.indexOf(c) === -1
+      }))
+    }
+  }
+
+  replaceClasses(replace, levels) {
+    let base = _.get(this.theme, levels.join('.'))
+
+    if (_.isPlainObject(base)) {
+      _.each(replace, (subclasses, subclassName) => {
+        this.replaceClasses(subclasses, levels.concat(subclassName))
+      })
+    } else if (Array.isArray(base)) {
+      _.set(this.theme, levels.join('.'), base.map((c) => {
+        return typeof c !== 'string' || Object.keys(replace).indexOf(c) === -1
+          ? c
+          : replace[c]
+      }))
+    }
+  }
+
+  overrideClasses(override, levels) {
+    let base = _.get(this.theme, levels.join('.'))
+
+    if (_.isPlainObject(base)) {
+      _.each(override, (subclasses, subclassName) => {
+        this.overrideClasses(subclasses, levels.concat(subclassName))
+      })
+    } else {
+      _.set(this.theme, levels.join('.'), override)
     }
   }
 
