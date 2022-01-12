@@ -4,10 +4,10 @@ const KEYS = ['addClasses', 'removeClasses', 'replaceClasses', 'overrideClasses'
 
 export default class MergeFormClasses
 {
-  mergedClasses = {}
+  theme = {}
 
   constructor(options) {
-    this.mergedClasses = _.cloneDeep(this.toArray(options.theme))
+    this.theme = _.cloneDeep(this.toArray(options.theme))
 
     if (options.config) {
       this.merge(options.config)
@@ -19,40 +19,40 @@ export default class MergeFormClasses
   }
 
   get classes () {
-    return this.mergedClasses
+    return this.theme
   }
 
   merge(merge) {
     _.each(_.pick(merge, KEYS), (components, key) => {
       switch (key) {
         case 'addClasses':
-          this[key](components)
+          this.addThemeClasses(components)
           break
       }
     })
   }
   
-  addClasses(components) {
+  addThemeClasses(components) {
     components = this.toArray(components)
 
     _.each(components, (componentClasses, componentName) => {
       _.each(componentClasses, (classes, className) => {
-        this.addComponentClasses(classes, [componentName, className])
+        this.addClasses(classes, [componentName, className])
       })
     })
   }
 
-  addComponentClasses(classes, levels) {
-    let mergedClasses = _.get(this.mergedClasses, levels.join('.'))
+  addClasses(add, levels) {
+    let base = _.get(this.theme, levels.join('.'))
 
-    if (_.isPlainObject(mergedClasses)) {
-      _.each(classes, (subclasses, subclassName) => {
-        this.addComponentClasses(subclasses, levels.concat(subclassName))
+    if (_.isPlainObject(base)) {
+      _.each(add, (subclasses, subclassName) => {
+        this.addClasses(subclasses, levels.concat(subclassName))
       })
     } else {
-      _.set(this.mergedClasses, levels.join('.'), _.union(
-        mergedClasses,
-        classes
+      _.set(this.theme, levels.join('.'), _.union(
+        base,
+        add
       ))
     }
   }
@@ -64,25 +64,36 @@ export default class MergeFormClasses
       arrayClasses[componentName] = {}
 
       _.each(componentClasses, (classes, className) => {
-        arrayClasses[componentName][className] = this.classesToArray(classes)
+        arrayClasses[componentName][className] = this.classesToArray(classes, [componentName, className])
       })
     })
 
     return arrayClasses
   }
 
-  classesToArray(classes) {
+  classesToArray(classes, path) {
     let arrayClasses = classes
+    let base = path ? _.get(this.theme, path.join('.')) : undefined
 
     if (typeof classes === 'string') {
       arrayClasses = classes.length > 0 ? classes.split(' ') : []
     } else if (_.isPlainObject(classes)) {
-      arrayClasses = {}
 
-      _.each(classes, (subclasses, subclassName) => {
-        arrayClasses[subclassName] = this.classesToArray(subclasses)
-      })
+      if (base && Array.isArray(base)) {
+        arrayClasses = [classes]
+      } else if (!base || _.isPlainObject(base)) {
+        arrayClasses = {}
+
+        _.each(classes, (subclasses, subclassName) => {
+          arrayClasses[subclassName] = this.classesToArray(subclasses, path.concat([subclassName]))
+        })
+      }
+    } else if (typeof classes === 'boolean' || (typeof classes === 'object' && [
+      'ComputedRefImpl', 'RefImpl'
+    ].indexOf(classes?.constructor?.name) !== -1)) {
+      throw Error(`Cannot add conditional class to ${path.join('.')}`)
     }
+
 
     return arrayClasses
   }
