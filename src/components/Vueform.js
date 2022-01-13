@@ -279,6 +279,26 @@ export default {
       required: false,
       default: null
     },
+    addClass: {
+      required: false,
+      type: [Array, Object, String],
+      default: null,
+    },
+    removeClass: {
+      required: false,
+      type: [Array, Object],
+      default: null,
+    },
+    replaceClass: {
+      required: false,
+      type: [Object],
+      default: null
+    },
+    overrideClass: {
+      required: false,
+      type: [Array, Object, String],
+      default: null
+    },
     addClasses: {
       required: false,
       type: [Object],

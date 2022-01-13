@@ -1,4 +1,4 @@
-import { computed, toRefs, ref } from 'composition-api'
+import { computed } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
 
 export default {
@@ -13,8 +13,6 @@ export default {
   },
   setup(props, context)
   {
-    const { multiple } = toRefs(props)
-
     // ============ DEPENDENCIES ============
 
     const {
@@ -25,17 +23,7 @@ export default {
       mainClass,
       theme,
       defaultClasses,
-    } = useElementComponent(props, context, {}, {
-      addClasses: [
-        ['container', computed(() => el$.value.columnsClasses.container), ref(true)],
-        ['container', computed(() => el$.value.classes.container), ref(true)],
-        ['container', 'container_error', computed(() => !el$.value.isStatic && el$.value.errors && !!el$.value.errors.length)],
-        ['innerContainer', computed(() => el$.value.columnsClasses.innerContainer), ref(true)],
-        ['innerWrapper', computed(() => el$.value.columnsClasses.wrapper), ref(true)],
-        ['outerWrapper', 'outerWrapper_single', computed(() => !multiple.value)],
-        ['outerWrapper', 'outerWrapper_multiple', computed(() => multiple.value)],
-      ]
-    })
+    } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
 
@@ -57,12 +45,6 @@ export default {
       mainClass,
       defaultClasses,
       visible,
-      // hasLabel,
-      // info,
-      // before,
-      // between,
-      // after,
-      // description,
     }
   },
 }

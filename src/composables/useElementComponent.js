@@ -7,9 +7,11 @@ import MergeFormClasses from './../utils/mergeFormClasses'
 
 const base = function(props, context, dependencies, options = {})
 {
+  const propRefs = toRefs(props)
+
   const {
     view,
-  } = toRefs(props)
+  } = propRefs
 
   const componentName = context.name
 
@@ -50,6 +52,8 @@ const base = function(props, context, dependencies, options = {})
   const mergedClasses = computed(() => {
     return (new MergeFormClasses({
       component: componentName.value,
+      component$: el$,
+      props: propRefs,
       theme: theme.value,
       config: form$.value.$vueform.config,
       templates: templates.value,

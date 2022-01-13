@@ -13,10 +13,16 @@ import MergeComponentClasses from '../utils/mergeComponentClasses'
 
 const base = function(props, context, dependencies = {})
 {
+  const propRefs = toRefs(props)
+
   const {
     schema,
     tabs,
     steps,
+    addClass,
+    removeClass,
+    replaceClass,
+    overrideClass,
     addClasses,
     removeClasses,
     replaceClasses,
@@ -58,7 +64,7 @@ const base = function(props, context, dependencies = {})
     onUpdated: _onUpdated,
     onBeforeUnmount: _onBeforeUnmount,
     onUnmounted: _onUnmounted,
-  } = toRefs(props)
+  } = propRefs
 
   const evts = [
     'change', 'reset', 'clear', 'submit',
@@ -215,6 +221,7 @@ const base = function(props, context, dependencies = {})
     const override = {
       columns, languages, language, theme, endpoint, method, validateOn,
       messages, formKey, multilingual, formatLoad, formatData, prepare, default: default_, formData, replaceTemplates,
+      addClass, removeClass, replaceClass, overrideClass,
       addClasses, removeClasses, replaceClasses, overrideClasses, presets,
     }
 
@@ -249,6 +256,10 @@ const base = function(props, context, dependencies = {})
       floatPlaceholders: baseConfig.value.config.floatPlaceholders,
       formData: baseConfig.value.config.formData,
       theme: baseConfig.value.theme,
+      addClass: null,
+      removeClass: null,
+      replaceClass: null,
+      overrideClass: null,
       addClasses: {},
       removeClasses: {},
       replaceClasses: {},
@@ -684,12 +695,16 @@ const base = function(props, context, dependencies = {})
   const classes = computed(() => {
     return (new MergeFormClasses({
       component: 'Vueform',
+      component$: form$,
       theme: extendedTheme.value,
       config: baseConfig.value.config,
       templates: templates.value,
       merge: [
         options.value,
       ],
+      locals: [
+        options.value,
+      ]
     })).classes
   })
 

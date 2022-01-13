@@ -4,8 +4,7 @@ const checkbox = {
   input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
   $input: (classes, el$) => ([
     classes.input,
-    { [classes.input_enabled]: !el$.isDisabled },
-    { [classes.input_disabled]: el$.isDisabled },
+    el$.isDisabled ? classes.input_disabled : classes.input_enabled
   ]),
 }
 
@@ -15,19 +14,17 @@ const radio = {
   input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
   $input: (classes, el$) => ([
     classes.input,
-    { [classes.input_enabled]: !el$.isDisabled },
-    { [classes.input_disabled]: el$.isDisabled },
+    el$.isDisabled ? classes.input_disabled : classes.input_enabled
   ]),
 }
 
 const text = {
-  input: 'w-full form-border form-border-color form-rounded form-p-input z-1 transition-all addon-before:form-rounded-l-none addon-before:form-border-l-none outline-none addon-after:form-rounded-r-none addon-after:form-border-r-none',
+  input: 'w-full form-border form-border-color form-rounded form-p-input z-1 transition-shadow addon-before:form-rounded-l-none addon-before:form-border-l-none outline-none addon-after:form-rounded-r-none addon-after:form-border-r-none',
   input_enabled: 'focus:form-ring',
   input_disabled: 'form-bg-disabled form-text-disabled',
   $input: (classes, el$) => ([
     classes.input,
-    { [classes.input_enabled]: !el$.isDisabled },
-    { [classes.input_disabled]: el$.isDisabled },
+    el$.isDisabled ? classes.input_disabled : classes.input_enabled
   ]),
 }
 
@@ -361,6 +358,24 @@ export default {
     innerWrapperBefore: 'form-col w-full',
     innerWrapper: 'form-col',
     innerWrapperAfter: 'form-col w-full',
+    $container: (classes, el$) => ([
+      classes.container,
+      el$.columnsClasses.container,
+      el$.classes.container,
+      !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null
+    ]),
+    $innerContainer:  (classes, el$) => ([
+      classes.innerContainer,
+      el$.columnsClasses.innerContainer,
+    ]),
+    $innerWrapper:  (classes, el$) => ([
+      classes.innerWrapper,
+      el$.columnsClasses.wrapper,
+    ]),
+    $outerWrapper:  (classes, el$, props) => ([
+      classes.outerWrapper,
+      props.multiple.value ? classes.outerWrapper_multiple : classes.outerWrapper_single,
+    ]),
   },
   ElementLayoutInline: {
     container: 'flex',

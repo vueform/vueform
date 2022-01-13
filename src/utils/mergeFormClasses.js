@@ -1,15 +1,27 @@
 import _ from 'lodash'
 
-const KEYS = ['presets', 'usePresets', 'addClasses', 'removeClasses', 'replaceClasses', 'overrideClasses']
+const MERGE_KEYS = [
+  'presets', 'usePresets', 'addClasses', 'prependClasses', 'removeClasses',
+   'replaceClasses', 'overrideClasses'
+]
+
+const LOCALS_KEYS = [
+  'addClass', 'removeClass', 'replaceClass', 'overrideClass'
+]
 
 export default class MergeFormClasses
 {
   component = null
+  component$ = {}
   componentClasses = {}
   presets = {}
+  template = {}
 
   constructor(options = {}) {
     this.component = options.component
+    this.component$ = options.component$
+    this.props = options.props
+    this.template = options.templates[this.component]
 
     let templateData = options.templates[this.component].data()
     let themeClasses = _.cloneDeep(this.toArray(options.theme.classes[this.component]))
@@ -26,34 +38,91 @@ export default class MergeFormClasses
     _.each(options.merge, (merge) => {
       this.merge(merge)
     })
+
+    if (options.locals) {
+      _.each(options.locals, (merge) => {
+        this.merge(merge, true)
+      })
+    }
+
+    if (options.config.classHelpers) {
+      let classHelpers = {}
+
+      _.each(this.componentClasses, (classes, className) => {
+        if (className.match(/[$]/)) {
+          return
+        }
+
+        if (_.isPlainObject(classes)) {
+          
+        } else {
+          classHelpers[className] = [`__${this.component}.${className}__`]
+        }
+      })
+
+      this.merge({
+        prependClasses: {
+          [this.component]: classHelpers
+        }
+      })
+    }
   }
 
   get classes () {
-    return this.componentClasses
+    return new Proxy(this.componentClasses, {
+      get: (target, prop) => {
+        return typeof prop === 'string' && target[`$${prop}`] ? target[`$${prop}`](target, this.component$.value, this.props) : target[prop]
+      }
+    })
   }
 
-  merge(merge) {
-    _.each(_.pick(merge, KEYS), (components, key) => {
-      let componentClasses = components[this.component]
+  get mainClass () {
+    return Object.keys(this.template.data().defaultClasses)[0]
+  }
 
+  merge(merge, locals = false) {
+    _.each(_.pick(merge, locals ? LOCALS_KEYS : MERGE_KEYS), (mergables, key) => {
       switch (key) {
         case 'addClasses':
+        case 'prependClasses':
         case 'overrideClasses':
-          this.mergeComponentClasses(this.toArray(componentClasses), key)
+          this.mergeComponentClasses(this.toArray(mergables[this.component]), key)
           break
 
         case 'removeClasses':
         case 'replaceClasses':
-          this.mergeComponentClasses(componentClasses, key)
+          this.mergeComponentClasses(mergables[this.component], key)
+          break
+
+        case 'addClass':
+        case 'removeClass':
+        case 'replaceClass':
+        case 'overrideClass':
+          if (!mergables) {
+            return
+          } 
+
+          if (typeof mergables === 'string' || Array.isArray(mergables)) {
+            if (!Array.isArray(mergables)) {
+              mergables = mergables.length > 0 ? mergables.split(' ') : []
+            }
+
+            this.mergeComponentClasses({
+              [this.mainClass]: mergables
+            }, `${key}es`)
+          } else if (_.isPlainObject(mergables)) {
+            this.mergeComponentClasses(mergables, `${key}es`)
+          } else {
+          }
           break
 
         case 'presets':
         case 'usePresets':
-          if (!Array.isArray(components)) {
+          if (!Array.isArray(mergables)) {
             return
           }
 
-          _.each(components, (presetName) => {
+          _.each(mergables, (presetName) => {
             this.merge(this.presets[presetName])
           })
           break
@@ -70,6 +139,10 @@ export default class MergeFormClasses
   addClasses(add, levels) {
     let base = _.get(this.componentClasses, levels.join('.'))
 
+    if (add.length == 1 && !add[0]) {
+      return
+    }
+
     if (_.isPlainObject(base)) {
       _.each(add, (subclasses, subclassName) => {
         this.addClasses(subclasses, levels.concat(subclassName))
@@ -78,6 +151,25 @@ export default class MergeFormClasses
       _.set(this.componentClasses, levels.join('.'), _.union(
         base,
         add
+      ))
+    }
+  }
+
+  prependClasses(prepend, levels) {
+    let base = _.get(this.componentClasses, levels.join('.'))
+
+    if (prepend.length == 1 && !prepend[0]) {
+      return
+    }
+
+    if (_.isPlainObject(base)) {
+      _.each(prepend, (subclasses, subclassName) => {
+        this.addClasses(subclasses, levels.concat(subclassName))
+      })
+    } else {
+      _.set(this.componentClasses, levels.join('.'), _.union(
+        prepend,
+        base
       ))
     }
   }
