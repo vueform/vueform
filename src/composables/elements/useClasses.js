@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { computed, toRefs, ref } from 'composition-api'
-import MergeComponentClasses from './../../utils/mergeComponentClasses'
+import MergeFormClasses from './../../utils/mergeFormClasses'
 
 const base = function(props, context, dependencies, options = {})
 {
@@ -47,7 +47,16 @@ const base = function(props, context, dependencies, options = {})
    * @type {object}
    */
   const classes = computed(() => {
-    return theme.value.classes[componentName.value]
+    return (new MergeFormClasses({
+      component: componentName.value,
+      theme: theme.value,
+      config: form$.value.$vueform.config,
+      templates: templates.value,
+      merge: [
+        form$.value,
+        el$.value,
+      ],
+    })).classes
   })
 
   return {

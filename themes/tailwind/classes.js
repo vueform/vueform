@@ -21,7 +21,7 @@ const radio = {
 }
 
 const text = {
-  input: 'w-full form-border form-border-color form-rounded z-1 transition-all addon-before:form-rounded-l-none addon-before:form-border-l-none outline-none addon-after:form-rounded-r-none addon-after:form-border-r-none',
+  input: 'w-full form-border form-border-color form-rounded form-p-input z-1 transition-all addon-before:form-rounded-l-none addon-before:form-border-l-none outline-none addon-after:form-rounded-r-none addon-after:form-border-r-none',
   input_enabled: 'focus:form-ring',
   input_disabled: 'form-bg-disabled form-text-disabled',
   $input: (classes, el$) => ([
@@ -81,7 +81,7 @@ export default {
     button: 'inline-block form-p-button leading-snug form-rounded transition form-bg-primary text-white focus:outline-none',
     button_enabled: 'cursor-pointer hover:form-bg-primary-darker focus:form-ring',
     button_disabled: 'opacity-60 cursor-not-allowed',
-    button_loading: 'form-bg-primary text-white form-bg-spinner-white opacity-60 cursor-not-allowed'
+    button_loading: 'form-bg-primary text-white form-bg-spinner-white opacity-60 cursor-not-allowed',
   },
   CheckboxElement: {
     container: '',

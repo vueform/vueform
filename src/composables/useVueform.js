@@ -644,14 +644,6 @@ const base = function(props, context, dependencies = {})
         baseConfig.value.templates,
         options.value.replaceTemplates || {},
       ),
-      
-      // Ovewrite theme classes with form's classes definition
-      classes: (new MergeFormClasses({
-        theme: options.value.theme.classes,
-        config: baseConfig.value,
-        form: options.value,
-        presets: baseConfig.value.config.presets,
-      })).classes
     })
   })
 
@@ -690,7 +682,15 @@ const base = function(props, context, dependencies = {})
    * @type {object}
    */
   const classes = computed(() => {
-    return extendedTheme.value.classes.Vueform
+    return (new MergeFormClasses({
+      component: 'Vueform',
+      theme: extendedTheme.value,
+      config: baseConfig.value.config,
+      templates: templates.value,
+      merge: [
+        options.value,
+      ],
+    })).classes
   })
 
   // =============== METHODS ==============

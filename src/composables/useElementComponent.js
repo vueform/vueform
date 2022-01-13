@@ -3,7 +3,7 @@ import { computed, toRefs, ref, getCurrentInstance } from 'composition-api'
 import useForm$ from './useForm$'
 import useEl$ from './useEl$'
 import useTheme from './useTheme'
-import MergeComponentClasses from './../utils/mergeComponentClasses'
+import MergeFormClasses from './../utils/mergeFormClasses'
 
 const base = function(props, context, dependencies, options = {})
 {
@@ -48,7 +48,16 @@ const base = function(props, context, dependencies, options = {})
    * @private
    */
   const mergedClasses = computed(() => {
-    return theme.value.classes[componentName.value]
+    return (new MergeFormClasses({
+      component: componentName.value,
+      theme: theme.value,
+      config: form$.value.$vueform.config,
+      templates: templates.value,
+      merge: [
+        form$.value,
+        el$.value,
+      ],
+    })).classes
   })
 
   /**
