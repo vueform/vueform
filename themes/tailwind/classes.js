@@ -79,6 +79,13 @@ export default {
     button_enabled: 'cursor-pointer hover:form-bg-primary-darker focus:form-ring',
     button_disabled: 'opacity-60 cursor-not-allowed',
     button_loading: 'form-bg-primary text-white form-bg-spinner-white opacity-60 cursor-not-allowed',
+    $button: (classes, el$, props) => ([
+      classes.button,
+      el$.isDisabled ? classes.input_disabled : null,
+      !el$.isDisabled && !el$.isLoading ? classes.button_enabled : null,
+      el$.isLoading ? classes.button_loading : null,
+      props.buttonClass.value,
+    ]),
   },
   CheckboxElement: {
     container: '',
@@ -100,12 +107,33 @@ export default {
     inputContainer: 'w-full flex',
     ...text,
   },
+  EditorElement: {
+    container: '',
+    input: 'form-border form-border-color form-rounded',
+    input_enabled: '',
+    input_disabled: 'is-disabled form-bg-disabled form-text-disabled',
+    input_focused: 'form-ring',
+    $input: (classes, el$) => ([
+      classes.input,
+      el$.isDisabled ? classes.input_disabled : classes.input_enabled,
+      el$.focused ? classes.input_focused : null,
+    ]),
+  },
   FileElement: {
     container: '',
     container_removing: 'opacity-50',
     button: 'inline-block form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
     button_enabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
     button_disabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
+    $container: (classes, el$, props) => ([
+      classes.container,
+      el$.removing ? classes.container_removing : null,
+    ]),
+    $button: (classes, el$, props) => ([
+      classes.button,
+      !el$.isDisabled && !el$.preparing ? classes.button_enabled : null,
+      el$.isDisabled || el$.preparing ? classes.button_disabled : null,
+    ]),
   },
   GroupElement: {
     container: '',
@@ -122,6 +150,11 @@ export default {
     remove: 'absolute z-1 w-4 h-4 box-content p-0.5 top-px form-left-gutter bg-gray-200 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 hover:bg-gray-300 group-hover:opacity-100',
     removeIcon: 'mask-bg mask-form-remove-light bg-gray-500 mask-size-3 block w-full h-full',
     add: 'inline-block form-bg-primary text-white px-2.5 py-1 text-sm form-rounded transition hover:form-bg-primary-darker',
+    list$: (classes, el$, props) => ([
+      classes.list,
+      el$.isDisabled ? classes.list_disabled : null,
+      el$.sorting ? classes.list_sorting : null,
+    ]),
   },
   LocationElement: {
     container: '',
@@ -154,6 +187,29 @@ export default {
     button: 'inline-block form-mb-0.5gutter form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
     button_enabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
     button_disabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
+    $list: (classes, el$, props) => ([
+      classes.list,
+      el$.isDisabled ? classes.list_disabled : null,
+      el$.sorting ? classes.list_sorting : null,
+      classes['list_' + props.view.value],
+    ]),
+    $listItem: (classes, el$, props) => ([
+      classes.listItem,
+      classes['listItem_' + props.view.value],
+    ]),
+    $handle: (classes, el$, props) => ([
+      classes.handle,
+      classes['handle_' + props.view.value],
+    ]),
+    $handleIcon: (classes, el$, props) => ([
+      classes.handleIcon,
+      classes['handleIcon_' + props.view.value],
+    ]),
+    $button: (classes, el$, props) => ([
+      classes.button,
+      !el$.isDisabled && !el$.preparing ? classes.button_enabled : null,
+      el$.isDisabled || el$.preparing ? classes.button_disabled : null,
+    ]),
   },
   MultiselectElement: {
     container: '',
@@ -163,7 +219,7 @@ export default {
     inputWrapper: '',
     select: {
       ...select,
-    multipleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
+      multipleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
     }
   },
   ObjectElement: {
@@ -277,13 +333,6 @@ export default {
       label: 'text-center w-8 border-box whitespace-nowrap select-none',
     }
   },
-  EditorElement: {
-    container: '',
-    input: 'form-border form-border-color form-rounded',
-    input_enabled: '',
-    input_disabled: 'is-disabled form-bg-disabled form-text-disabled',
-    input_focused: 'form-ring',
-  },
   TTextareaElement: {
     container: '',
     inputContainer: 'w-full flex',
@@ -300,6 +349,11 @@ export default {
     input_enabled: '',
     input_disabled: 'is-disabled form-bg-disabled form-text-disabled',
     input_focused: 'form-ring',
+    $input: (classes, el$, props) => ([
+      classes.input,
+      el$.isDisabled ? classes.input_disabled : classes.input_enabled,
+      el$.focused ? classes.input_focused : null,
+    ]),
   },
 
   // Wrappers
@@ -321,12 +375,21 @@ export default {
     icon: 'inline-block w-9 h-8 mask-bg mask-form-inbox-in form-bg-primary bg-opacity-100',
     title: 'font-semibold mt-3',
     description: '',
+    $container: (classes, el$, props) => ([
+      classes.container,
+      el$.dragging ? classes.container_active : classes.container_inactive,
+      el$.disabled ? classes.container_disabled : classes.container_enabled,
+    ]),
   },
   ElementAddon: {
     container: 'form-p-input form-border form-border-color bg-gray-100 flex items-center',
     container_before: 'form-addon-before !form-border-r-0 form-rounded-l',
     container_after: 'form-addon-after !form-border-l-0 form-rounded-r order-2',
     wrapper: '',
+    $container: (classes, el$, props) => ([
+      classes.container,
+      classes['container_' + props.type.value]
+    ]),
   },
   ElementDescription: {
     container: 'text-gray-500 text-sm mt-1',
@@ -340,13 +403,21 @@ export default {
     content: 'bg-black bg-opacity-90 text-white rounded-md text-sm py-1 px-2.5 not-italic inline-block relative',
   },
   ElementLabel: {
-    container: 'form-col form-py-input-border pr-4'
+    container: 'form-col form-py-input-border pr-4',
+    $container: (classes, el$) => ([
+      classes.container,
+      !el$.inline ? el$.columnsClasses.label : null,
+    ]),
   },
   ElementLabelFloating: {
     container: 'relative',
     label: 'absolute z-10 left-2.5 leading-px leading-none form-text-0.5xs text-gray-500 bg-white px-px transition whitespace-nowrap',
     label_invisible: 'opacity-0 invisible',
     label_visible: 'opacity-100 visible',
+    $label: (classes, el$, props) => ([
+      classes.label,
+      el$.visible ? classes.label_visible : classes.label_invisible
+    ]),
   },
   ElementLayout: {
     container: 'form-col',
@@ -380,6 +451,10 @@ export default {
   ElementLayoutInline: {
     container: 'flex',
     container_error: 'has-error',
+    $container: (classes, el$, props) => ([
+      classes.container,
+      !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null
+    ]),
   },
   ElementLoader: {
     container: 'relative z-10 order-1',
@@ -393,6 +468,10 @@ export default {
     container_before: '',
     container_between: '',
     container_after: '',
+    $container: (classes, el$, props) => ([
+      classes.container,
+      classes['container_' + props.type.value]
+    ]),
   },
   FormElements: {
     container: 'form-row flex flex-wrap'
@@ -405,7 +484,11 @@ export default {
     container: 'flex-grow flex-shrink w-full',
     wrapper: 'form-rounded text-center py-2 px-4 block',
     wrapper_inactive: 'form-text-primary',
-    wrapper_active: 'text-white form-bg-primary'
+    wrapper_active: 'text-white form-bg-primary',
+    $wrapper: (classes, form$, props) => ([
+      classes.wrapper,
+      form$.selected ? classes.wrapper_active : classes.wrapper_inactive
+    ]),
   },
   FormLanguages: {
     container: 'flex items-center justify-between form-mb-gutter',
@@ -426,6 +509,15 @@ export default {
     container_completed: 'form-step-completed',
     container_incompleted: '',
     container_pending: 'form-step-pending',
+    $container: (classes, form$, props) => ([
+      classes.container,
+      form$.active ? classes.container_active : classes.container_inactive,
+      form$.isDisabled ? classes.container_disabled : classes.container_enabled,
+      form$.completed ? classes.container_completed : classes.container_incompleted,
+      form$.invalid ? classes.container_invalid : classes.container_valid,
+      form$.pending ? classes.container_pending : null,
+      // props.addClass.value, // @todo: step roar
+    ]),
   },
   FormSteps: {
     container: 'form-mb-gutter flex justify-between overflow-x-auto pt-5',
@@ -440,6 +532,11 @@ export default {
     button_finish_enabled: 'form-bg-primary text-white transition hover:form-bg-primary-darker',
     button_finish_disabled: 'form-bg-primary text-white opacity-60 pointer-events-none cursor-not-allowed',
     button_finish_loading: 'form-bg-primary text-white form-bg-spinner-white',
+    $button: (classes, form$, props) => ([
+      classes.button,
+      form$.isDisabled ? classes[`button_${props.type.value}_disabled`] : classes[`button_${props.type.value}_enabled`],
+      form$.isLoading ? classes[`button_${props.type.value}_loading`] : null,
+    ]),
   },
   FormStepsControls: {
     container: 'flex justify-between form-mt-gutter'
@@ -451,6 +548,15 @@ export default {
     wrapper_inactive: 'border border-white form-border-b-color',
     wrapper_valid: '',
     wrapper_invalid: 'text-red-500',
+    $container: (classes, form$, props) => ([
+      classes.container,
+      // props.addClass.value, // @todo: tab roar
+    ]),
+    $wrapper: (classes, form$, props) => ([
+      classes.wrapper,
+      form$.active ? classes.wrapper_active : classes.wrapper_inactive,
+      form$.invalid ? classes.wrapper_invalid : classes.wrapper_valid,
+    ]),
   },
   FormTabs: {
     container: 'flex border-b form-border-color form-mb-gutter items-end',
@@ -521,27 +627,10 @@ export default {
     uploadedIcon: 'mask-bg mask-form-check-solid bg-green-500 mask-size-2.5 block w-full h-full',
     remove: 'flex w-4 h-4 items-center justify-center bg-gray-200 rounded-full transition hover:bg-gray-300 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light bg-black mask-size-3 block w-full h-full',
-  },
-  MultiselectMultipleLabel: {
-    container: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
-  },
-  MultiselectNoOptions: {
-    container: 'text-base leading-normal form-p-input text-gray-600 bg-white',
-  },
-  MultiselectNoResults: {
-    container: 'text-base leading-normal form-p-input text-gray-600 bg-white',
-  },
-  MultiselectOption: {
-    container: '',
-  },
-  MultiselectSingleLabel: {
-    container: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
-  },
-  MultiselectTag: {
-    container: 'form-bg-primary text-white text-sm font-semibold py-px pl-2 rounded mr-1 mb-1 flex items-center whitespace-nowrap',
-    container_disabled: 'pr-2 !form-bg-disabled-darker text-white',
-    remove: 'flex items-center justify-center p-1 mx-0.5 rounded-sm hover:bg-black hover:bg-opacity-10 group',
-    removeIcon: 'mask-bg mask-form-remove bg-current inline-block w-3 h-3',
+    $image: (classes, el$, props) => ([
+      classes.image,
+      el$.hasLink ? classes.image_link : classes.image_static
+    ]),
   },
   RadiogroupRadio: {
     container: 'flex align-start cursor-pointer',

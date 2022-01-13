@@ -46,23 +46,9 @@ export default class MergeFormClasses
     }
 
     if (options.config.classHelpers) {
-      let classHelpers = {}
-
-      _.each(this.componentClasses, (classes, className) => {
-        if (className.match(/[$]/)) {
-          return
-        }
-
-        if (_.isPlainObject(classes)) {
-          
-        } else {
-          classHelpers[className] = [`__${this.component}.${className}__`]
-        }
-      })
-
       this.merge({
         prependClasses: {
-          [this.component]: classHelpers
+          [this.component]: this.getClassHelpers(this.componentClasses, [this.component])
         }
       })
     }
@@ -164,7 +150,7 @@ export default class MergeFormClasses
 
     if (_.isPlainObject(base)) {
       _.each(prepend, (subclasses, subclassName) => {
-        this.addClasses(subclasses, levels.concat(subclassName))
+        this.prependClasses(subclasses, levels.concat(subclassName))
       })
     } else {
       _.set(this.componentClasses, levels.join('.'), _.union(
@@ -250,5 +236,25 @@ export default class MergeFormClasses
     }
 
     return arrayClasses
+  }
+
+  getClassHelpers (componentClasses, path) {
+    let classHelpers = {}
+
+    _.each(componentClasses, (classes, className) => {
+      if (className.match(/[$]/)) {
+        return
+      }
+
+      let name = componentClasses[`$${className}`] !== undefined ? `$${className}` : className
+
+      if (_.isPlainObject(classes)) {
+        classHelpers[className] = this.getClassHelpers(componentClasses[className], path.concat([className]))
+      } else {
+        classHelpers[className] = [`==${path.join('.')}.${name}==>`]
+      }
+    })
+
+    return classHelpers
   }
 }
