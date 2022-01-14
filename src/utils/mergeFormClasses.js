@@ -20,7 +20,6 @@ export default class MergeFormClasses
   constructor(options = {}) {
     this.component = options.component
     this.component$ = options.component$
-    this.props = options.props
     this.template = options.templates[this.component]
 
     let templateData = options.templates[this.component].data()
@@ -39,11 +38,7 @@ export default class MergeFormClasses
       this.merge(merge)
     })
 
-    if (options.locals) {
-      _.each(options.locals, (merge) => {
-        this.merge(merge, true)
-      })
-    }
+    this.merge(this.component$.value, true)
 
     if (options.config.classHelpers) {
       this.merge({
@@ -57,7 +52,7 @@ export default class MergeFormClasses
   get classes () {
     return new Proxy(this.componentClasses, {
       get: (target, prop) => {
-        return typeof prop === 'string' && target[`$${prop}`] ? target[`$${prop}`](target, this.component$.value, this.props) : target[prop]
+        return typeof prop === 'string' && target[`$${prop}`] ? target[`$${prop}`](target, this.component$.value) : target[prop]
       }
     })
   }
@@ -97,7 +92,7 @@ export default class MergeFormClasses
               [this.mainClass]: mergables
             }, `${key}es`)
           } else if (_.isPlainObject(mergables)) {
-            this.mergeComponentClasses(mergables, `${key}es`)
+            this.mergeComponentClasses(this.toArray(mergables), `${key}es`)
           } else {
           }
           break

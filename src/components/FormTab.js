@@ -37,11 +37,26 @@ export default {
       required: false,
       default: () => ([])
     },
-
+    
     addClass: {
-      type: [String, Array, Object],
       required: false,
+      type: [Array, Object, String],
       default: null,
+    },
+    removeClass: {
+      required: false,
+      type: [Array, Object],
+      default: null,
+    },
+    replaceClass: {
+      required: false,
+      type: [Object],
+      default: null
+    },
+    overrideClass: {
+      required: false,
+      type: [Array, Object, String],
+      default: null
     },
 
     onActivate: {

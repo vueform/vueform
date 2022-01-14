@@ -2,9 +2,9 @@ const checkbox = {
   input: 'flex-shrink-0 appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox form-rounded form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-check-white checked:border-0',
   input_enabled: 'checked:form-bg-primary',
   input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
-  $input: (classes, el$) => ([
+  $input: (classes, { isDisabled }) => ([
     classes.input,
-    el$.isDisabled ? classes.input_disabled : classes.input_enabled
+    isDisabled ? classes.input_disabled : classes.input_enabled
   ]),
 }
 
@@ -12,9 +12,9 @@ const radio = {
   input: 'flex-shrink-0 appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox rounded-full form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-radio-white checked:border-0',
   input_enabled: 'checked:form-bg-primary',
   input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
-  $input: (classes, el$) => ([
+  $input: (classes, { isDisabled }) => ([
     classes.input,
-    el$.isDisabled ? classes.input_disabled : classes.input_enabled
+    isDisabled ? classes.input_disabled : classes.input_enabled
   ]),
 }
 
@@ -22,9 +22,9 @@ const text = {
   input: 'w-full form-border form-border-color form-rounded form-p-input z-1 transition-shadow addon-before:form-rounded-l-none addon-before:form-border-l-none outline-none addon-after:form-rounded-r-none addon-after:form-border-r-none',
   input_enabled: 'focus:form-ring',
   input_disabled: 'form-bg-disabled form-text-disabled',
-  $input: (classes, el$) => ([
+  $input: (classes, { isDisabled }) => ([
     classes.input,
-    el$.isDisabled ? classes.input_disabled : classes.input_enabled
+    isDisabled ? classes.input_disabled : classes.input_enabled
   ]),
 }
 
@@ -79,12 +79,12 @@ export default {
     button_enabled: 'cursor-pointer hover:form-bg-primary-darker focus:form-ring',
     button_disabled: 'opacity-60 cursor-not-allowed',
     button_loading: 'form-bg-primary text-white form-bg-spinner-white opacity-60 cursor-not-allowed',
-    $button: (classes, el$, props) => ([
+    $button: (classes, { isDisabled, isLoading, buttonClass }) => ([
       classes.button,
-      el$.isDisabled ? classes.input_disabled : null,
-      !el$.isDisabled && !el$.isLoading ? classes.button_enabled : null,
-      el$.isLoading ? classes.button_loading : null,
-      props.buttonClass.value,
+      isDisabled ? classes.input_disabled : null,
+      !isDisabled && !isLoading ? classes.button_enabled : null,
+      isLoading ? classes.button_loading : null,
+      buttonClass,
     ]),
   },
   CheckboxElement: {
@@ -113,10 +113,10 @@ export default {
     input_enabled: '',
     input_disabled: 'is-disabled form-bg-disabled form-text-disabled',
     input_focused: 'form-ring',
-    $input: (classes, el$) => ([
+    $input: (classes, { isDisabled, focused }) => ([
       classes.input,
-      el$.isDisabled ? classes.input_disabled : classes.input_enabled,
-      el$.focused ? classes.input_focused : null,
+      isDisabled ? classes.input_disabled : classes.input_enabled,
+      focused ? classes.input_focused : null,
     ]),
   },
   FileElement: {
@@ -125,14 +125,14 @@ export default {
     button: 'inline-block form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
     button_enabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
     button_disabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
-    $container: (classes, el$, props) => ([
+    $container: (classes, { removing }) => ([
       classes.container,
-      el$.removing ? classes.container_removing : null,
+      removing ? classes.container_removing : null,
     ]),
-    $button: (classes, el$, props) => ([
+    $button: (classes, { isDisabled, preparing }) => ([
       classes.button,
-      !el$.isDisabled && !el$.preparing ? classes.button_enabled : null,
-      el$.isDisabled || el$.preparing ? classes.button_disabled : null,
+      !isDisabled && !preparing ? classes.button_enabled : null,
+      isDisabled || preparing ? classes.button_disabled : null,
     ]),
   },
   GroupElement: {
@@ -150,10 +150,10 @@ export default {
     remove: 'absolute z-1 w-4 h-4 box-content p-0.5 top-px form-left-gutter bg-gray-200 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 hover:bg-gray-300 group-hover:opacity-100',
     removeIcon: 'mask-bg mask-form-remove-light bg-gray-500 mask-size-3 block w-full h-full',
     add: 'inline-block form-bg-primary text-white px-2.5 py-1 text-sm form-rounded transition hover:form-bg-primary-darker',
-    list$: (classes, el$, props) => ([
+    list$: (classes, { isDisabled, sorting }) => ([
       classes.list,
-      el$.isDisabled ? classes.list_disabled : null,
-      el$.sorting ? classes.list_sorting : null,
+      isDisabled ? classes.list_disabled : null,
+      sorting ? classes.list_sorting : null,
     ]),
   },
   LocationElement: {
@@ -187,28 +187,28 @@ export default {
     button: 'inline-block form-mb-0.5gutter form-p-button leading-snug form-rounded transition focus:form-ring focus:outline-none',
     button_enabled: 'bg-gray-100 cursor-pointer hover:bg-gray-200',
     button_disabled: 'opacity-50 bg-gray-100 cursor-not-allowed',
-    $list: (classes, el$, props) => ([
+    $list: (classes, { isDisabled, sorting, view }) => ([
       classes.list,
-      el$.isDisabled ? classes.list_disabled : null,
-      el$.sorting ? classes.list_sorting : null,
-      classes['list_' + props.view.value],
+      isDisabled ? classes.list_disabled : null,
+      sorting ? classes.list_sorting : null,
+      classes[`list_${view}`],
     ]),
-    $listItem: (classes, el$, props) => ([
+    $listItem: (classes, { view }) => ([
       classes.listItem,
-      classes['listItem_' + props.view.value],
+      classes[`listItem_${view}`],
     ]),
-    $handle: (classes, el$, props) => ([
+    $handle: (classes, { view }) => ([
       classes.handle,
-      classes['handle_' + props.view.value],
+      classes[`handle_${view}`],
     ]),
-    $handleIcon: (classes, el$, props) => ([
+    $handleIcon: (classes, { view }) => ([
       classes.handleIcon,
-      classes['handleIcon_' + props.view.value],
+      classes[`handleIcon_${view}`],
     ]),
-    $button: (classes, el$, props) => ([
+    $button: (classes, { isDisabled, preparing }) => ([
       classes.button,
-      !el$.isDisabled && !el$.preparing ? classes.button_enabled : null,
-      el$.isDisabled || el$.preparing ? classes.button_disabled : null,
+      !isDisabled && !preparing ? classes.button_enabled : null,
+      isDisabled || preparing ? classes.button_disabled : null,
     ]),
   },
   MultiselectElement: {
@@ -220,7 +220,11 @@ export default {
     select: {
       ...select,
       multipleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
-    }
+    },
+    $input: (classes, { isDisabled }) => ([
+      classes.input,
+      isDisabled ? classes.input_disabled : classes.input_enabled,
+    ]),
   },
   ObjectElement: {
     container: '',
@@ -247,7 +251,11 @@ export default {
       ...select,
       singleLabel: 'flex items-center h-full max-w-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input pr-16 box-border',
       singleLabelText: 'overflow-ellipsis overflow-hidden block whitespace-nowrap max-w-full',
-    }
+    },
+    $input: (classes, { isDisabled }) => ([
+      classes.input,
+      isDisabled ? classes.input_disabled : classes.input_enabled,
+    ]),
   },
   SliderElement: {
     container: '',
@@ -349,10 +357,10 @@ export default {
     input_enabled: '',
     input_disabled: 'is-disabled form-bg-disabled form-text-disabled',
     input_focused: 'form-ring',
-    $input: (classes, el$, props) => ([
+    $input: (classes, { isDisabled, focused }) => ([
       classes.input,
-      el$.isDisabled ? classes.input_disabled : classes.input_enabled,
-      el$.focused ? classes.input_focused : null,
+      isDisabled ? classes.input_disabled : classes.input_enabled,
+      focused ? classes.input_focused : null,
     ]),
   },
 
@@ -375,10 +383,10 @@ export default {
     icon: 'inline-block w-9 h-8 mask-bg mask-form-inbox-in form-bg-primary bg-opacity-100',
     title: 'font-semibold mt-3',
     description: '',
-    $container: (classes, el$, props) => ([
+    $container: (classes, { dragging, disabled }) => ([
       classes.container,
-      el$.dragging ? classes.container_active : classes.container_inactive,
-      el$.disabled ? classes.container_disabled : classes.container_enabled,
+      dragging ? classes.container_active : classes.container_inactive,
+      disabled ? classes.container_disabled : classes.container_enabled,
     ]),
   },
   ElementAddon: {
@@ -386,9 +394,9 @@ export default {
     container_before: 'form-addon-before !form-border-r-0 form-rounded-l',
     container_after: 'form-addon-after !form-border-l-0 form-rounded-r order-2',
     wrapper: '',
-    $container: (classes, el$, props) => ([
+    $container: (classes, { type }) => ([
       classes.container,
-      classes['container_' + props.type.value]
+      classes[`container_${type}`]
     ]),
   },
   ElementDescription: {
@@ -404,7 +412,7 @@ export default {
   },
   ElementLabel: {
     container: 'form-col form-py-input-border pr-4',
-    $container: (classes, el$) => ([
+    $container: (classes, { el$ }) => ([
       classes.container,
       !el$.inline ? el$.columnsClasses.label : null,
     ]),
@@ -414,9 +422,9 @@ export default {
     label: 'absolute z-10 left-2.5 leading-px leading-none form-text-0.5xs text-gray-500 bg-white px-px transition whitespace-nowrap',
     label_invisible: 'opacity-0 invisible',
     label_visible: 'opacity-100 visible',
-    $label: (classes, el$, props) => ([
+    $label: (classes, { visible }) => ([
       classes.label,
-      el$.visible ? classes.label_visible : classes.label_invisible
+      visible ? classes.label_visible : classes.label_invisible
     ]),
   },
   ElementLayout: {
@@ -429,29 +437,29 @@ export default {
     innerWrapperBefore: 'form-col w-full',
     innerWrapper: 'form-col',
     innerWrapperAfter: 'form-col w-full',
-    $container: (classes, el$) => ([
+    $container: (classes, { el$ }) => ([
       classes.container,
       el$.columnsClasses.container,
       el$.classes.container,
       !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null
     ]),
-    $innerContainer:  (classes, el$) => ([
+    $innerContainer:  (classes, { el$ }) => ([
       classes.innerContainer,
       el$.columnsClasses.innerContainer,
     ]),
-    $innerWrapper:  (classes, el$) => ([
+    $innerWrapper:  (classes, { el$ }) => ([
       classes.innerWrapper,
       el$.columnsClasses.wrapper,
     ]),
-    $outerWrapper:  (classes, el$, props) => ([
+    $outerWrapper:  (classes, { multiple }) => ([
       classes.outerWrapper,
-      props.multiple.value ? classes.outerWrapper_multiple : classes.outerWrapper_single,
+      multiple.value ? classes.outerWrapper_multiple : classes.outerWrapper_single,
     ]),
   },
   ElementLayoutInline: {
     container: 'flex',
     container_error: 'has-error',
-    $container: (classes, el$, props) => ([
+    $container: (classes, { el$ }) => ([
       classes.container,
       !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null
     ]),
@@ -468,9 +476,9 @@ export default {
     container_before: '',
     container_between: '',
     container_after: '',
-    $container: (classes, el$, props) => ([
+    $container: (classes, { type }) => ([
       classes.container,
-      classes['container_' + props.type.value]
+      classes[`container_${type}`]
     ]),
   },
   FormElements: {
@@ -485,9 +493,9 @@ export default {
     wrapper: 'form-rounded text-center py-2 px-4 block',
     wrapper_inactive: 'form-text-primary',
     wrapper_active: 'text-white form-bg-primary',
-    $wrapper: (classes, form$, props) => ([
+    $wrapper: (classes, { selected }) => ([
       classes.wrapper,
-      form$.selected ? classes.wrapper_active : classes.wrapper_inactive
+      selected ? classes.wrapper_active : classes.wrapper_inactive
     ]),
   },
   FormLanguages: {
@@ -509,13 +517,13 @@ export default {
     container_completed: 'form-step-completed',
     container_incompleted: '',
     container_pending: 'form-step-pending',
-    $container: (classes, form$, props) => ([
+    $container: (classes, { active, isDisabled, completed, invalid, pending }) => ([
       classes.container,
-      form$.active ? classes.container_active : classes.container_inactive,
-      form$.isDisabled ? classes.container_disabled : classes.container_enabled,
-      form$.completed ? classes.container_completed : classes.container_incompleted,
-      form$.invalid ? classes.container_invalid : classes.container_valid,
-      form$.pending ? classes.container_pending : null,
+      active ? classes.container_active : classes.container_inactive,
+      isDisabled ? classes.container_disabled : classes.container_enabled,
+      completed ? classes.container_completed : classes.container_incompleted,
+      invalid ? classes.container_invalid : classes.container_valid,
+      pending ? classes.container_pending : null,
       // props.addClass.value, // @todo: step roar
     ]),
   },
@@ -532,10 +540,10 @@ export default {
     button_finish_enabled: 'form-bg-primary text-white transition hover:form-bg-primary-darker',
     button_finish_disabled: 'form-bg-primary text-white opacity-60 pointer-events-none cursor-not-allowed',
     button_finish_loading: 'form-bg-primary text-white form-bg-spinner-white',
-    $button: (classes, form$, props) => ([
+    $button: (classes, { isDisabled, isLoading, type }) => ([
       classes.button,
-      form$.isDisabled ? classes[`button_${props.type.value}_disabled`] : classes[`button_${props.type.value}_enabled`],
-      form$.isLoading ? classes[`button_${props.type.value}_loading`] : null,
+      isDisabled ? classes[`button_${type}_disabled`] : classes[`button_${type}_enabled`],
+      isLoading ? classes[`button_${type}_loading`] : null,
     ]),
   },
   FormStepsControls: {
@@ -548,14 +556,14 @@ export default {
     wrapper_inactive: 'border border-white form-border-b-color',
     wrapper_valid: '',
     wrapper_invalid: 'text-red-500',
-    $container: (classes, form$, props) => ([
+    $container: (classes, {}) => ([
       classes.container,
       // props.addClass.value, // @todo: tab roar
     ]),
-    $wrapper: (classes, form$, props) => ([
+    $wrapper: (classes, { active, invalid }) => ([
       classes.wrapper,
-      form$.active ? classes.wrapper_active : classes.wrapper_inactive,
-      form$.invalid ? classes.wrapper_invalid : classes.wrapper_valid,
+      active ? classes.wrapper_active : classes.wrapper_inactive,
+      invalid ? classes.wrapper_invalid : classes.wrapper_valid,
     ]),
   },
   FormTabs: {
@@ -570,6 +578,10 @@ export default {
     ...checkbox,
     container: 'flex align-start cursor-pointer',
     text: '',
+    $input: (classes, { isDisabled }) => ([
+      classes.input,
+      isDisabled ? classes.input_disabled : classes.input_enabled
+    ]),
   },
   FilePreview: {
     container: 'form-py-input flex justify-start flex-row group relative',
@@ -627,14 +639,18 @@ export default {
     uploadedIcon: 'mask-bg mask-form-check-solid bg-green-500 mask-size-2.5 block w-full h-full',
     remove: 'flex w-4 h-4 items-center justify-center bg-gray-200 rounded-full transition hover:bg-gray-300 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light bg-black mask-size-3 block w-full h-full',
-    $image: (classes, el$, props) => ([
+    $image: (classes, { hasLink }) => ([
       classes.image,
-      el$.hasLink ? classes.image_link : classes.image_static
+      hasLink ? classes.image_link : classes.image_static
     ]),
   },
   RadiogroupRadio: {
     container: 'flex align-start cursor-pointer',
     text: '',
     ...radio,
+    $input: (classes, { isDisabled }) => ([
+      classes.input,
+      isDisabled ? classes.input_disabled : classes.input_enabled
+    ]),
   },
 }

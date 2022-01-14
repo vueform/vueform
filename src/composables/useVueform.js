@@ -13,8 +13,6 @@ import MergeComponentClasses from '../utils/mergeComponentClasses'
 
 const base = function(props, context, dependencies = {})
 {
-  const propRefs = toRefs(props)
-
   const {
     schema,
     tabs,
@@ -64,7 +62,7 @@ const base = function(props, context, dependencies = {})
     onUpdated: _onUpdated,
     onBeforeUnmount: _onBeforeUnmount,
     onUnmounted: _onUnmounted,
-  } = propRefs
+  } = toRefs(props)
 
   const evts = [
     'change', 'reset', 'clear', 'submit',
@@ -702,9 +700,6 @@ const base = function(props, context, dependencies = {})
       merge: [
         options.value,
       ],
-      locals: [
-        options.value,
-      ]
     })).classes
   })
 

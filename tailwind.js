@@ -119,6 +119,17 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
         'color-adjust': 'unset',
       },
     },
+    {
+      base: [':root'],
+      styles: {
+        '--vf-ring-shadow': theme('form.ring')
+          ? `0px 0px 0px ${theme('form.ringWidth')} ${Color(theme('form.primary')).alpha(theme('form.ringOpacity')).toString()}`
+          : 'none',
+        '--vf-ring-border-color': theme('form.ring')
+          ? theme('form.primary')
+          : theme('form.borderColor') + ' !important'
+      }
+    }
   ]
   
   addBase(rules.map((rule) => {
@@ -694,13 +705,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
   })
 
   const focusable = {
-    '.form-ring': Object.assign({}, {
-      boxShadow: theme('form.ring')
-        ? `0px 0px 0px ${theme('form.ringWidth')} ${Color(theme('form.primary')).alpha(theme('form.ringOpacity')).toString()}`
-        : 'none',
-    }, theme('form.ring') ? {
-      borderColor: theme('form.primary'),
-    } : {}),
+    '.form-ring': {
+      boxShadow: 'var(--vf-ring-shadow)',
+      borderColor: 'var(--vf-ring-border-color)',
+    },
   }
 
   const checkable = {
@@ -818,8 +826,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
   addUtilities(plain)
   addUtilities(hoverable, ['hover'])
   addUtilities(groupHoverable, ['group-hover'])
-  addUtilities(focusable, ['focus'])
   addUtilities(checkable, ['checked'])
+  addUtilities(focusable, ['focus'])
   addUtilities(activable, ['active'])
   addUtilities(disableable, ['disabled'])
   addUtilities(important, ['important'])

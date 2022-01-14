@@ -6,8 +6,6 @@ import MergeFormClasses from './../utils/mergeFormClasses'
 
 const base = function(props, context, dependencies, options = {})
 {
-  const propRefs = toRefs(props)
-
   const componentName = context.name
 
   // =============== INJECT ===============
@@ -35,6 +33,15 @@ const base = function(props, context, dependencies, options = {})
   // ============== COMPUTED ===============
 
   /**
+   * The component instance (self).
+   * 
+   * @type {component}
+   */
+  const component$ = computed(() => {
+    return getCurrentInstance().proxy
+  })
+
+  /**
    * An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.
    * 
    * @type {object}
@@ -43,8 +50,7 @@ const base = function(props, context, dependencies, options = {})
   const mergedClasses = computed(() => {
     return (new MergeFormClasses({
       component: componentName.value,
-      component$: form$,
-      props: propRefs,
+      component$: component$,
       theme: theme.value,
       config: form$.value.$vueform.config,
       templates: templates.value,
