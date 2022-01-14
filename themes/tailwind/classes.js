@@ -524,7 +524,6 @@ export default {
       completed ? classes.container_completed : classes.container_incompleted,
       invalid ? classes.container_invalid : classes.container_valid,
       pending ? classes.container_pending : null,
-      // props.addClass.value, // @todo: step roar
     ]),
   },
   FormSteps: {
@@ -558,7 +557,6 @@ export default {
     wrapper_invalid: 'text-red-500',
     $container: (classes, {}) => ([
       classes.container,
-      // props.addClass.value, // @todo: tab roar
     ]),
     $wrapper: (classes, { active, invalid }) => ([
       classes.wrapper,
