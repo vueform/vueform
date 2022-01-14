@@ -45,7 +45,7 @@ const hslToRgba = function (hsl, alpha) {
   return `rgba(${Math.round(r*255)},${Math.round(g*255)},${Math.round(b*255)},${alpha})`;
 }
 
-const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
+const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix }) => {
   const rules = [
     {
       base: [
@@ -704,13 +704,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
     }
   })
 
-  const focusable = {
-    '.form-ring': {
-      boxShadow: 'var(--vf-ring-shadow)',
-      borderColor: 'var(--vf-ring-border-color)',
-    },
-  }
-
   const checkable = {
     '.form-bg-primary': {
       backgroundColor: `rgba(${Color(theme('form.primary')).red()},${Color(theme('form.primary')).green()},${Color(theme('form.primary')).blue()},var(--tw-bg-opacity, 1))`
@@ -749,6 +742,13 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
     },
     '.form-border-color': {
       borderColor: `${theme('form.borderColor')}`
+    },
+  }
+
+  const focusable = {
+    '.form-ring': {
+      boxShadow: 'var(--vf-ring-shadow)',
+      borderColor: 'var(--vf-ring-border-color)',
     },
   }
 
@@ -836,37 +836,37 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
 
   addVariant('h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-horizontal .${e(`h${separator}${className}`)}`
+      return `${prefix('.slider-horizontal')} .${e(`h${separator}${className}`)}`
     })
   })
 
   addVariant('v', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-vertical .${e(`v${separator}${className}`)}`
+      return `${prefix('.slider-vertical')} .${e(`v${separator}${className}`)}`
     })
   })
 
   addVariant('merge-h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-horizontal .slider-origin > .${e(`merge-h${separator}${className}`)}`
+      return `${prefix('.slider-horizontal')} ${prefix('.slider-origin')} > .${e(`merge-h${separator}${className}`)}`
     })
   })
 
   addVariant('merge-v', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-vertical .slider-origin > .${e(`merge-v${separator}${className}`)}`
+      return `${prefix('.slider-vertical')} ${prefix('.slider-origin')} > .${e(`merge-v${separator}${className}`)}`
     })
   })
 
   addVariant('h-txt-rtl', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-horizontal.slider-txt-rtl .${e(`h-txt-rtl${separator}${className}`)}`
+      return `${prefix('.slider-horizontal')}${prefix('.slider-txt-rtl')} .${e(`h-txt-rtl${separator}${className}`)}`
     })
   })
 
   addVariant('tap', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.slider-state-tap .${e(`tap${separator}${className}`)}`
+      return `${prefix('.slider-state-tap')} .${e(`tap${separator}${className}`)}`
     })
   })
 
@@ -884,7 +884,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
 
   addVariant('tt-focus', ({ container, separator }) => {
     container.walkRules(rule => {
-      rule.selector = `.slider-tooltip-focus:not(.slider-focused) .${e(`tt-focus${separator}${rule.selector.slice(1)}`)}`
+      rule.selector = `${prefix('.slider-tooltip-focus')}:not(${prefix('.slider-focused')}) .${e(`tt-focus${separator}${rule.selector.slice(1)}`)}`
       rule.walkDecls(decl => {
         decl.important = true
       })
@@ -893,7 +893,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
 
   addVariant('tt-focused', ({ container, separator }) => {
     container.walkRules(rule => {
-      rule.selector = `.slider-tooltip-focus.slider-focused .${e(`tt-focused${separator}${rule.selector.slice(1)}:not(.slider-tooltip-hidden)`)}`
+      rule.selector = `${prefix('.slider-tooltip-focus')}${prefix('.slider-focused ')}.${e(`tt-focused${separator}${rule.selector.slice(1)}:not(${prefix('_____')}.slider-tooltip-hidden)`)}`
       rule.walkDecls(decl => {
         decl.important = true
       })
@@ -902,7 +902,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
 
   addVariant('tt-drag', ({ container, separator }) => {
     container.walkRules(rule => {
-      rule.selector = `.slider-tooltip-drag:not(.slider-state-drag) .${e(`tt-drag${separator}${rule.selector.slice(1)}`)}`
+      rule.selector = `${prefix('.slider-tooltip-drag')}:not(${prefix('.slider-state-drag')}) .${e(`tt-drag${separator}${rule.selector.slice(1)}`)}`
       rule.walkDecls(decl => {
         decl.important = true
       })
@@ -911,8 +911,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
 
   addVariant('tt-dragging', ({ container, separator }) => {
     container.walkRules(rule => {
-      rule.selector = `.slider-tooltip-drag.slider-state-drag .${e(`tt-dragging${separator}${rule.selector.slice(1)}:not(.slider-tooltip-hidden)`)},
-                        .slider-tooltip-drag .slider-active .${e(`tt-dragging${separator}${rule.selector.slice(1)}`)}`
+      rule.selector = `${prefix('.slider-tooltip-drag')}${prefix('.slider-state-drag')} .${e(`tt-dragging${separator}${rule.selector.slice(1)}:not(${prefix('_____')}.slider-tooltip-hidden)`)},
+                        ${prefix('.slider-tooltip-drag')} ${prefix('.slider-active')} .${e(`tt-dragging${separator}${rule.selector.slice(1)}`)}`
       rule.walkDecls(decl => {
         decl.important = true
       })
@@ -930,23 +930,23 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e }) => {
 
   addVariant('addon-before', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.form-addon-before ~ .${e(`addon-before${separator}${className}`)},
-              .form-addon-before ~ div .${e(`addon-before${separator}${className}`)},
-              .form-addon-before ~ span .${e(`addon-before${separator}${className}`)}`
+      return `${prefix('.form-addon-before')} ~ .${e(`addon-before${separator}${className}`)},
+              ${prefix('.form-addon-before')} ~ div .${e(`addon-before${separator}${className}`)},
+              ${prefix('.form-addon-before')} ~ span .${e(`addon-before${separator}${className}`)}`
     })
   })
 
   addVariant('addon-after', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.form-addon-after ~ .${e(`addon-after${separator}${className}`)},
-              .form-addon-after ~ div .${e(`addon-after${separator}${className}`)},
-              .form-addon-after ~ span .${e(`addon-after${separator}${className}`)}`
+      return `${prefix('.form-addon-after')} ~ .${e(`addon-after${separator}${className}`)},
+              ${prefix('.form-addon-after')} ~ div .${e(`addon-after${separator}${className}`)},
+              ${prefix('.form-addon-after')} ~ span .${e(`addon-after${separator}${className}`)}`
     })
   })
 
   addVariant('ghost', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.sortable-ghost.${e(`ghost${separator}${className}`)}`
+      return `${prefix('.sortable-ghost')}.${e(`ghost${separator}${className}`)}`
     })
   })
 }, {

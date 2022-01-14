@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 /**
  * =========
  * Templates
@@ -68,7 +70,7 @@ import EditorWrapper from './templates/wrappers/EditorWrapper.vue'
 import columns from './columns.js'
 import classes from './classes.js'
 
-export default {
+const theme = {
   templates: {
     Vueform,
     FormErrors,
@@ -134,4 +136,41 @@ export default {
   },
   classes,
   columns,
+}
+
+export default theme
+
+export function prefix (prefix) {
+  let prefixedClasses = {}
+
+  const prefixClass = (class_) => {
+    return class_.split(' ').map((c) => {
+      return c.match(/:/)
+        ? c.replace(':', `:${prefix}`)
+        : (c.length ? `${prefix}${c}` : c)
+    }).join(' ')
+  } 
+
+  _.each(classes, (classList, componentName) => {
+    prefixedClasses[componentName] = {}
+
+    _.each(classList, (class_, className) => {
+      if (_.isPlainObject(class_)) {
+        prefixedClasses[componentName][className] = {}
+        
+        _.each(class_, (subclass, subclassName) => {
+          prefixedClasses[componentName][className][subclassName] = prefixClass(subclass)
+        })
+      } else {
+        prefixedClasses[componentName][className] = prefixClass(class_)
+      }
+    })
+  })
+
+  return Object.assign({}, theme, {
+    classes: prefixedClasses,
+    columns: (breakpoint, size) => {
+      return columns(breakpoint, size, prefix)
+    }
+  })
 }

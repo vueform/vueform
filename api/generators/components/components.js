@@ -3,6 +3,8 @@ import _ from 'lodash'
 import fs from 'fs'
 import Parser from './../../parser/single'
 
+global.File = function File() {}
+
 const filesPath = process.cwd() + '/src/components/'
 const wrappersPath = process.cwd() + '/src/components/wrappers/'
 const partialsPath = process.cwd() + '/src/components/elements/partials/'

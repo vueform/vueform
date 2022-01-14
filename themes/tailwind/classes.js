@@ -1,3 +1,5 @@
+// prefix
+
 const checkbox = {
   input: 'flex-shrink-0 appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox form-rounded form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-check-white checked:border-0',
   input_enabled: 'checked:form-bg-primary',

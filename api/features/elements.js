@@ -3627,7 +3627,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -3749,7 +3749,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -3878,7 +3878,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -4024,7 +4024,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -4153,7 +4153,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -4257,7 +4257,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -4379,7 +4379,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -4501,7 +4501,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {
@@ -4611,7 +4611,7 @@ export default {
           "types": [
             "MessageBag"
           ],
-          "description": "Instance of MessageBag service. Custom errors and messages [can be added](docs/1.x/validating-elements#custom-errors-and-messages)."
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages)."
         }
       },
       "computed": {

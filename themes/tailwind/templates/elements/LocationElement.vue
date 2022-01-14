@@ -1,5 +1,5 @@
 <script>
-import LocationElement from './../../../blank/templates/elements/LocationElement.vue'
+import LocationElement from '@vueform/vueform/themes/blank/templates/elements/LocationElement.vue'
 
   export default {
     name: 'LocationElement',
@@ -11,77 +11,121 @@ import LocationElement from './../../../blank/templates/elements/LocationElement
 <style lang="scss">
   // Google
   .pac-item {
-    @apply py-1.5 px-3 border-gray-200 flex items-center;
+    display: flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    border-color: theme('colors.gray.200');
 
    & > span:last-of-type {
-     @apply text-xs;
+     font-size: 0.75rem;
    } 
   }
 
   .pac-item-query {
-    @apply text-sm leading-none mr-1 pr-1;
+    font-size: 0.875rem;
+    line-height: 1;
+    margin-right: 0.25rem;
+    padding-right: 0.25rem;
   }
 
   .pac-icon-marker {
-    @apply mask-bg mask-form-map-marker bg-gray-400 w-4 h-4 mr-3 mt-0 py-px box-content flex-shrink-0;
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    mask-size: contain;
+    mask-image: theme('maskImage.form-map-marker');
+    background: theme('colors.gray.400');
+    width: 1rem;
+    width: 1rem;
+    margin-right: 0.75rem;
+    margin-top: 0;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    box-sizing: content-box;
+    flex-shrink: 0;
   }
 
   .pac-logo {
     &:after {
-      @apply mx-2.5 mb-2.5;
+      margin-left: 0.625rem;
+      margin-right: 0.625rem;
+      margin-bottom: 0.625rem;
     }
   }
 
   .pac-icon, .hdpi .pac-icon {
-    @apply bg-none;
+    background-image: none;
   }
 
   // Algolia
   .ap-input {
-    @apply h-auto;
+    height: auto;
   }
 
   .ap-input-icon {
-    @apply z-1;
+    z-index: 1;
   }
 
   .ap-icon-pin {
-    @apply hidden;
+    display: none;
   }
 
   .ap-footer {
-    @apply flex items-center justify-end;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 
   .ap-footer-algolia {
-    @apply mx-1;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
   }
 
   .ap-footer-osm {
-    @apply ml-1 flex;
+    margin-left: 0.25rem;
+    display: flex;
 
     svg {
-      @apply mr-1;
+      margin-right: 0.25rem;
     }
   }
 
   .ap-suggestion {
-    @apply py-3 px-3 border-b border-gray-200 flex items-center text-sm leading-none h-auto;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid theme('colors.gray.200');
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    line-height: 1;
+    height: auto;
 
     svg {
-      @apply hidden;
+      display: none;
     }
 
     &:last-of-type {
-      @apply border-0;
+      border: 0;
     }
   }
 
   .ap-suggestion-icon {
-    @apply mask-bg mask-form-map-marker bg-gray-400 w-4 h-4 mr-3 mt-0 py-px box-content;
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    mask-size: contain;
+    mask-image: theme('maskImage.form-map-marker');
+    background: theme('colors.gray.400');
+    width: 1rem;
+    width: 1rem;
+    margin-right: 0.75rem;
+    margin-top: 0;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    box-sizing: content-box;
   }
 
   .ap-address {
-    @apply text-xs ml-2 leading-none;
+    font-size: 0.75rem;
+    line-height: 1;
+    margin-left: 0.5rem;
   }
 </style>

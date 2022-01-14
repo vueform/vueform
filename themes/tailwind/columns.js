@@ -1,4 +1,6 @@
-export default function (breakpoint, size) {
+// prefix
+
+export default function (breakpoint, size, prefix = '') {
   const safelist = [
     'w-1/12',
     'w-2/12',
@@ -17,9 +19,9 @@ export default function (breakpoint, size) {
   
   switch (breakpoint) {
     case 'default':
-      return size == 12 ? 'w-full' : `w-${size}/12`
+      return size == 12 ? `${prefix}w-full` : `${prefix}w-${size}/12`
 
     default:
-      return size == 12 ? `${breakpoint}:w-full` : `${breakpoint}:w-${size}/12`
+      return size == 12 ? `${breakpoint}:${prefix}w-full` : `${breakpoint}:${prefix}w-${size}/12`
   }
 }

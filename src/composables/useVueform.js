@@ -134,7 +134,7 @@ const base = function(props, context, dependencies = {})
   const validation = ref(true)
 
   /**
-   * Instance of MessageBag service. It can be used to add [custom errors and messages](docs/1.x/validating-elements#custom-errors-and-messages).
+   * Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/1.x/validating-elements#custom-errors-and-messages).
    * 
    * @type {MessageBag}
    * @default MessageBag
@@ -217,7 +217,7 @@ const base = function(props, context, dependencies = {})
     }
 
     const override = {
-      columns, languages, language, theme, endpoint, method, validateOn,
+      columns, languages, language, theme, method, validateOn,
       messages, formKey, multilingual, formatLoad, formatData, prepare, default: default_, formData, replaceTemplates,
       addClass, removeClass, replaceClass, overrideClass,
       addClasses, removeClasses, replaceClasses, overrideClasses, presets,
@@ -225,7 +225,7 @@ const base = function(props, context, dependencies = {})
 
     const ifNotUndefined = {
       stepsControls, displayErrors, displayMessages, forceLabels, disabled, loading,
-      floatPlaceholders,
+      floatPlaceholders, endpoint,
       onChange: _onChange.value,
       onReset: _onReset.value,
       onClear: _onClear.value,

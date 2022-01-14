@@ -23,6 +23,7 @@ const files = {
   'LICENSE.txt': 'LICENSE.txt',
   'README.md': 'README.md',
   'tailwind.js': 'tailwind.js',
+  'tailwind-prefixer.js': 'tailwind-prefixer.js',
 }
 
 const copyPackageJson = function() {
@@ -38,7 +39,13 @@ if (!fs.existsSync(outputDir)){
 }
 
 _.each(files, (to, from) => {
-  ncp(path.resolve(__dirname, '../', from), path.resolve(outputDir, to), function (err) {
+  const fromPath = path.resolve(__dirname, '../', from)
+  
+  if (!fs.existsSync(fromPath)) {
+    return
+  }
+
+  ncp(fromPath, path.resolve(outputDir, to), function (err) {
     if (err) {
       return console.error(err);
     }
