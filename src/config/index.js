@@ -9,6 +9,7 @@ const config = {
    * Theme & layout
    */
   theme: {},
+  size: 'md',
   templates: {},
   addClasses: {},
   overrideClasses: {},

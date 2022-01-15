@@ -161,6 +161,8 @@ export default {
     const view = useView(props, context, {
       available: conditions.available,
       active: baseElement.active,
+      form$: form$.form$,
+      parent: path.parent,
     })
 
     const slots = useSlots(props, context, {

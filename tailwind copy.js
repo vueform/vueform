@@ -45,10 +45,6 @@ const hslToRgba = function (hsl, alpha) {
   return `rgba(${Math.round(r*255)},${Math.round(g*255)},${Math.round(b*255)},${alpha})`;
 }
 
-const upperFirst = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
 const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix }) => {
   const rules = [
     {
@@ -140,7 +136,16 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     return { [rule.base]: rule.styles }
   }))
 
-  const pms = [
+  const formRow = {}
+  const formRowGroup = {}
+  const formCol = {}
+  const formRounded = {}
+  const formRoundedT = {}
+  const formRoundedR = {}
+  const formRoundedB = {}
+  const formRoundedL = {}
+
+  const s = [
     'p', 'py', 'px', 'pl', 'pr', 'pt', 'pb',
     'm', 'my', 'mx', 'ml', 'mr', 'mt', 'mb',
   ]
@@ -153,7 +158,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     let suffix = s?'-'+s:''
     let size = s.toUpperCase()
 
-    // grid
     plain[`.form-row${suffix}`] = {
       marginLeft: `calc(${theme(`form.gutter${size}`)} * -1)`,
       marginRight: `calc(${theme(`form.gutter${size}`)} * -1)`,
@@ -173,182 +177,32 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       paddingRight: theme(`form.gutter${size}`),
     }
 
-    // border radius
     plain[`.form-rounded${suffix}`] = {
       borderRadius: theme(`form.borderRadius${size}`),
     }
 
-    plain[`.form-rounded-t${suffix}`] = {
-      borderTopLeftRadius: theme(`form.borderRadius${size}`),
-      borderTopRightRadius: theme(`form.borderRadius${size}`),
-    }
-
-    plain[`.form-rounded-r${suffix}`] = {
-      borderTopRightRadius: theme(`form.borderRadius${size}`),
-      borderBottomRightRadius: theme(`form.borderRadius${size}`),
-    }
-
-    plain[`.form-rounded-b${suffix}`] = {
-      borderBottomLeftRadius: theme(`form.borderRadius${size}`),
-      borderBottomRightRadius: theme(`form.borderRadius${size}`),
-    }
-
-    plain[`.form-rounded-l${suffix}`] = {
-      borderTopLeftRadius: theme(`form.borderRadius${size}`),
-      borderBottomLeftRadius: theme(`form.borderRadius${size}`),
-    }
-
-    // paddings, margins
-    pms.forEach((pm) => {
-      let type = pm.match(/m/) ? 'margin' : 'padding'
-      let sides = ['top', 'right', 'bottom', 'left']
-
-      if (pm.match(/y/)) {
-        sides = ['top', 'bottom']
-      } else if (pm.match(/x/)) {
-        sides = ['left', 'right']
-      } else if (pm.match(/l/)) {
-        sides = ['left']
-      } else if (pm.match(/r/)) {
-        sides = ['right']
-      } else if (pm.match(/t/)) {
-        sides = ['top']
-      } else if (pm.match(/b/)) {
-        sides = ['bottom']
-      }
-
-      let Y = `${theme(`form.pyInput${size}`)}`
-      let X = `${theme(`form.pxInput${size}`)}`
-      let YBorder = `calc(${theme('form.borderWidth')} + ${theme(`form.pyInput${size}`)})`
-      let XBorder = `calc(${theme('form.borderWidth')} + ${theme(`form.pxInput${size}`)})`
-      let key = `.form-${pm}-input${suffix}`
-      let keyBorder = `.form-${pm}-input-border${suffix}`
-
-      plain[key] = {}
-      plain[keyBorder] = {}
-
-      if (sides.length === 4) {
-        plain[key][type] = `${Y} ${X}`
-        plain[keyBorder][type] = `${YBorder} ${XBorder}`
-      } else {
-        sides.forEach((side) => {
-          plain[key][`${type}${upperFirst(side)}`] = ['top', 'bottom'].indexOf(side) !== -1 ? Y : X
-          plain[keyBorder][`${type}${upperFirst(side)}`] = ['top', 'bottom'].indexOf(side) !== -1 ? YBorder : XBorder
-        })
-      }
-    })
-
-    plain[`.-form-mb-input${suffix}`] = {
-      marginBottom: `-${theme(`form.pyInput${size}`)}`,
-    }
-
-    // top, right, bottom, left
-    let sides = ['top', 'right', 'bottom', 'left']
-    sides.forEach((side) => {
-      plain[`.form-${side}-input${suffix}`] = {
-        [side]: ['top', 'bottom'].indexOf(side) !== -1
-          ? theme(`form.pyInput${size}`)
-          : theme(`form.pxInput${size}`)
-      }
-    })
-
-    plain[`.form-p-button${suffix}`] = {
-      padding: `${theme(`form.pyButton${size}`)} ${theme(`form.pxButton${size}`)}`
-    }
-
-    plain[`.form-pl-input-y${suffix}`] = {
-      paddingLeft: theme(`form.pyInput${size}`)
-    }
-
-    let gutters = ['', '0.5', '2']
-    sides = [
-      'mt', 'mr', 'mb', 'ml',
-      'top', 'right', 'bottom', 'left'
-    ]
-
-    sides.forEach((side) => {
-      gutters.forEach((gutterSize) => {
-        let attr = {
-          mt: 'marginTop',
-          mr: 'marginRight',
-          mb: 'marginBottom',
-          ml: 'marginLeft',
-          top: 'top',
-          right: 'right',
-          bottom: 'bottom',
-          left: 'left',
-        }
-
-        plain[`.${e(`form-${side}-${gutterSize}gutter`)}`] = {
-          [`${attr[side]}`]: `calc(${theme(`form.gutter${size}`)} * ${gutterSize||1})`
-        }
-        
-        plain[`.${e(`-form-${side}-${gutterSize}gutter`)}`] = {
-          [`${attr[side]}`]: `calc(${theme(`form.gutter${size}`)} * (-${gutterSize||1}))`
-        }
-      })
-    })
-
-    plain[`.form-w-checkbox${suffix}`] = {
-      width: theme(`form.checkboxSize${size}`),
-    }
-
-    plain[`.form-w-gallery${suffix}`] = {
-      width: theme(`form.gallerySize${size}`),
-    }
-
-    plain[`.form-w-input-height${suffix}`] = {
-      width: theme(`form.inputMinHeight${size}`),
-    }
-
-    plain[`.form-h-checkbox${suffix}`] = {
-      height: theme(`form.checkboxSize${size}`),
-    }
-
-    plain[`.form-h-gallery${suffix}`] = {
-      height: theme(`form.gallerySize${size}`),
-    }
-
-    plain[`.form-h-input-height${suffix}`] = {
-      height: theme(`form.inputMinHeight${size}`),
-    }
-
-    plain[`.form-h-input-height-inner${suffix}`] = {
-      height: `calc(${theme(`form.inputMinHeight${size}`)} - (${theme('form.borderWidth')} * 2))`,
-    }
-
-    plain[`.form-min-h-input-height${suffix}`] = {
-      minHeight: theme(`form.inputMinHeight${size}`),
-    }
-
-    plain[`.form-left-input-height${suffix}`] = {
-      left: theme(`form.inputMinHeight${size}`),
-    }
-
-    plain[`.form-bg-spinner-white${suffix}`] = {
-      position: 'relative',
-      color: 'transparent',
-      '&::after': {
-        content: '""',
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-        display: 'inline-block',
-        width: `calc(${theme(`form.inputMinHeight${size}`)} * 0.4)`,
-        height: `calc(${theme(`form.inputMinHeight${size}`)} * 0.4)`,
-        marginLeft: `calc(${theme(`form.inputMinHeight${size}`)} * (-0.2))`,
-        marginTop: `calc(${theme(`form.inputMinHeight${size}`)} * (-0.2))`,
-        animation: 'spin 1s linear infinite',
-        maskImage: theme('maskImage.form-spinner'),
-        maskPosition: 'center center',
-        maskSize: 'contain',
-        maskRepeat: 'no-repeat',
-        backgroundColor: '#FFFFFF'
-      }
+    plain[`.form-rounded${suffix}`] = {
+      borderRadius: theme(`form.borderRadius${size}`),
     }
   })
 
   plain = Object.assign({}, plain, {
+    // '.form-row': { // *
+    //   marginLeft: `calc(${theme('form.gutter')} * -1)`,
+    //   marginRight: `calc(${theme('form.gutter')} * -1)`,
+    // },
+    // '.form-row-group': { // *
+    //   marginLeft: `calc(${theme('form.gutter')} * -0.5)`,
+    //   marginRight: `calc(${theme('form.gutter')} * -0.5)`,
+    //   '& > .form-col': {
+    //     paddingLeft: `calc(${theme('form.gutter')} * 0.5)`,
+    //     paddingRight: `calc(${theme('form.gutter')} * 0.5)`,
+    //   }
+    // },
+    // '.form-col': { // *
+    //   paddingLeft: theme('form.gutter'),
+    //   paddingRight: theme('form.gutter'),
+    // },
     '.form-bg-disabled': {
       backgroundColor: theme('form.bgDisabled'),
     },
@@ -358,23 +212,210 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     '.form-border-primary': {
       borderColor: `${theme('form.primary')}`
     },
+    '.form-rounded': {  // *
+      borderRadius: theme('form.borderRadius'),
+    },
+    '.form-rounded-t': {  // *
+      borderTopLeftRadius: theme('form.borderRadius'),
+      borderTopRightRadius: theme('form.borderRadius'),
+    },
+    '.form-rounded-r': {  // *
+      borderTopRightRadius: theme('form.borderRadius'),
+      borderBottomRightRadius: theme('form.borderRadius'),
+    },
+    '.form-rounded-b': {  // *
+      borderBottomLeftRadius: theme('form.borderRadius'),
+      borderBottomRightRadius: theme('form.borderRadius'),
+    },
+    '.form-rounded-l': {  // *
+      borderTopLeftRadius: theme('form.borderRadius'),
+      borderBottomLeftRadius: theme('form.borderRadius'),
+    },
+    '.form-rounded-t-none': { 
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+    },
+    '.form-rounded-b-none': { 
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
+    },
     [`.${e('form-text-0.5xs')}`]: {
       fontSize: '0.6875rem',
     },
+    '.form-p-input': { // *
+      padding: `${theme('form.pyInput')} ${theme('form.pxInput')}`
+    },
+    '.form-p-input-border': { // *
+      padding: `calc(${theme('form.borderWidth')} + ${theme('form.pyInput')}) calc(${theme('form.borderWidth')} + ${theme('form.pxInput')})`
+    },
+    '.form-py-input': { // *
+      paddingTop: theme('form.pyInput'),
+      paddingBottom: theme('form.pyInput'),
+    },
+    '.form-py-input-border': { // *
+      paddingTop: `calc(${theme('form.borderWidth')} + ${theme('form.pyInput')})`,
+      paddingBottom: `calc(${theme('form.borderWidth')} + ${theme('form.pyInput')})`,
+    },
+    '.form-px-input': { // *
+      paddingLeft: theme('form.pxInput'),
+      paddingRight: theme('form.pxInput'),
+    },
+    '.form-pt-input': { // *
+      paddingTop: theme('form.pyInput'),
+    },
+    '.form-pt-input-border': { // *
+      paddingTop: `calc(${theme('form.borderWidth')} + ${theme('form.pyInput')})`,
+    },
+    '.form-pr-input': { // *
+      paddingRight: theme('form.pxInput'),
+    },
+    '.form-pl-input': { // *
+      paddingLeft: theme('form.pxInput'),
+    },
+    '.form-mt-input': { // *
+      marginTop: theme('form.pyInput'),
+    },
+    '.form-mr-input': { // *
+      marginRight: theme('form.pxInput'),
+    },
+    '.form-top-input': { // *
+      top: theme('form.pyInput'),
+    },
+    '.form-p-button': { // *
+      padding: `${theme('form.pyButton')} ${theme('form.pxButton')}`
+    },
+    '.form-pl-input-y': { // *
+      paddingLeft: theme('form.pyInput'),
+    },
+    '.form-mt-gutter': { // *
+      marginTop: theme('form.gutter'),
+    },
+    [`.${e('form-mt-0.5gutter')}`]: { // *
+      marginTop: `calc(${theme('form.gutter')} * 0.5)`,
+    },
+
+    '.form-mr-gutter': { // *
+      marginRight: theme('form.gutter'),
+    },
+    [`.${e('form-mr-0.5gutter')}`]: { // *
+      marginRight: `calc(${theme('form.gutter')} * 0.5)`,
+    },
+    '.form-mb-gutter': { // *
+      marginBottom: theme('form.gutter'),
+    },
+    [`.${e('-form-mb-gutter')}`]: { // *
+      marginBottom: `calc(${theme('form.gutter')} * -1)`,
+    },
+    '.form-mb-2gutter': { // *
+      marginBottom: `calc(${theme('form.gutter')} * 2)`,
+    },
+    [`.${e('-form-mb-0.5gutter')}`]: { // *
+      marginBottom: `calc(${theme('form.gutter')} * -0.5)`,
+    },
+    [`.${e('form-mb-0.5gutter')}`]: { // *
+      marginBottom: `calc(${theme('form.gutter')} * 0.5)`,
+    },
+    '.-form-mb-input': { // *
+      marginBottom: `-${theme('form.pyInput')}`,
+    },
+    '.form-ml-gutter': { // *
+      marginLeft: theme('form.gutter'),
+    },
+    '.form-left-gutter': { // *
+      left: theme('form.gutter'),
+    },
+
     '.form-text-primary': {
       color: theme('form.primary'),
     },
     '.form-text-disabled': {
       color: theme('form.colorDisabled'),
     },
+    '.form-w-checkbox': { // *
+      width: theme('form.checkboxSize'),
+    },
+    '.form-w-gallery': { // *
+      width: theme('form.gallerySize'),
+    },
+    '.form-w-30': {
+      width: '7.5rem',
+    },
+    '.form-w-input': { // *
+      width: theme('form.inputMinHeight'),
+    },
+    '.form-h-checkbox': { // *
+      height: theme('form.checkboxSize'),
+    },
+    '.form-h-gallery': { // *
+      height: theme('form.gallerySize'),
+    },
+    '.form-h-input': { // *
+      height: theme('form.inputMinHeight'),
+    },
+    '.form-h-input-inner': { // *
+      height: `calc(${theme('form.inputMinHeight')} - (${theme('form.borderWidth')} * 2))`,
+    },
+    '.form-h-30': {
+      height: '7.5rem',
+    },
+    '.form-max-w-30': {
+      maxWidth: '7.5rem',
+    },
+    '.form-max-h-30': {
+      maxHeight: '7.5rem',
+    },
+    '.form-min-h-input': { // *
+      minHeight: theme('form.inputMinHeight'),
+    },
+    '.form-left-input': { // *
+      left: theme('form.inputMinHeight'),
+    },
+    [`.${e('form-bg-size-2.5')}`]: {
+      backgroundSize: '0.625rem 0.625rem'
+    },
+    [`.${e('form-bg-size-2.75')}`]: {
+      backgroundSize: '0.6875rem 0.6875rem'
+    },
+    [`.${e('form-bg-size-3')}`]: {
+      backgroundSize: '0.75rem 0.75rem'
+    },
+    [`.${e('form-p-0.5px')}`]: {
+      padding: '0.5px',
+    },
+    [`.${e('form-border-3')}`]: {
+      borderWidth: '3px',
+    },
+    [`.${e('form-border-3.5')}`]: {
+      borderWidth: '3.5px',
+    },
+
     '.form-hide-empty-img': {
       '&[src=""], &[src="data:"], &:not([src])': {
         opacity: 0,
       }
     },
-
-    // Info
-    '.form-bg-info': {
+    '.form-bg-spinner-white': { // *
+      position: 'relative',
+      color: 'transparent',
+      '&::after': {
+        content: '""',
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        display: 'inline-block',
+        width: '1rem',
+        height: '1rem',
+        marginLeft: '-0.5rem',
+        marginTop: '-0.5rem',
+        animation: 'spin 1s linear infinite',
+        maskImage: theme('maskImage.form-spinner'),
+        maskPosition: 'center center',
+        maskSize: 'contain',
+        maskRepeat: 'no-repeat',
+        backgroundColor: '#FFFFFF'
+      }
+    },
+    '.form-bg-info': { // *
       '&::before': {
         content: '""',
         maskImage: theme('maskImage.form-info'),
@@ -387,8 +428,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         display: 'inline-block',
       }
     },
-
-    // Steps
     '.form-step': {
       display: 'block',
       position: 'relative',
@@ -584,11 +623,29 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     '.cursor-grab': {
       cursor: 'grab',
     },
+    '.content-empty': {
+      content: '""',
+    },
+    '.content-spaced-dot': {
+      content: ' · ',
+    },
+    '.indent-out': {
+      textIndent: '-9999px',
+    },
+    '.bg-highlight': {
+      background: 'highlight',
+    },
     '.user-select-none': {
       userSelect: 'none',
     },
+    '.min-h-24': {
+      minHeight: '6rem',
+    },
 
     // Slider
+    '.cursor-grabbing': {
+      cursor: 'grabbing',
+    },
     '.touch-none': {
       touchAction: 'none',
     },
@@ -663,6 +720,18 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     },
 
     // Mask things
+    '.mask-no-repeat': {
+      maskRepeat: 'no-repeat',
+    },
+    '.mask-center': {
+      maskPosition: 'center center',
+    },
+    '.mask-cover': {
+      maskSize: 'cover',
+    },
+    '.mask-contain': {
+      maskSize: 'contain',
+    },
     '.mask-bg': {
       maskRepeat: 'no-repeat',
       maskPosition: 'center center',
@@ -691,14 +760,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     '.form-bg-primary': {
       backgroundColor: `rgba(${Color(theme('form.primary')).red()},${Color(theme('form.primary')).green()},${Color(theme('form.primary')).blue()},var(--tw-bg-opacity, 1))`
     },
-    '.form-border': {
-      border: `${theme('form.borderWidth')} solid`
-    },
     '.border-0': {
       border: theme('borderWidth.0')
-    },
-    '.form-border-color': {
-      borderColor: `${theme('form.borderColor')}`
     },
     '.form-bg-check-white': {
       '&::after': {
@@ -725,6 +788,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         width: '100%',
         height: '100%',
       }
+    },
+    '.form-border': {
+      border: `${theme('form.borderWidth')} solid`
+    },
+    '.form-border-color': {
+      borderColor: `${theme('form.borderColor')}`
     },
   }
 
@@ -774,6 +843,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
   const important = {
     '.form-bg-disabled-darker': {
       backgroundColor: Color(theme('form.bgDisabled')).darken(0.3).toString(),
+    },
+    '.form-border-l-0': {
+      borderLeft: 0,
+    },
+    '.form-border-r-0': {
+      borderRight: 0,
     },
     '.form-border-b-white': {
       borderBottomColor: '#ffffff',
@@ -941,8 +1016,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       display: ['tt-focus', 'tt-focused', 'tt-drag', 'tt-dragging'],
       opacity: ['ghost', 'disabled'],
       pointerEvents: ['disabled'],
-      borderRadius: ['important'],
-      borderWidth: ['important'],
     }
   },
   theme: {
@@ -975,7 +1048,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       pyInput: theme('padding')['1.5'],
       pxInput: theme('padding.3'),
       pyInputSM: theme('padding')['1'],
-      pxInputSM: theme('padding')['2.5'],
+      pxInputSM: theme('padding.2.5'),
       pyInputLG: theme('padding')['2.5'],
       pxInputLG: theme('padding')['3.5'],
       pyButton: theme('padding.2'),

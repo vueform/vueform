@@ -35,7 +35,6 @@ const base = function(props, context, dependencies)
    * @type {string}
    */
   const path = computed(() => {
-
     return parent.value && parent.value.path ? parent.value.path + '.' + name.value : name.value
   })
 

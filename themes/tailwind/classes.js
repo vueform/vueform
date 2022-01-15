@@ -21,11 +21,15 @@ const radio = {
 }
 
 const text = {
-  input: 'w-full form-border form-border-color form-rounded form-p-input z-1 transition-shadow addon-before:form-rounded-l-none addon-before:form-border-l-none outline-none addon-after:form-rounded-r-none addon-after:form-border-r-none',
+  input: 'w-full form-border form-border-color z-1 transition-shadow addon-before:form-rounded-l-none addon-before:form-border-l-none outline-none addon-after:form-rounded-r-none addon-after:form-border-r-none',
   input_enabled: 'focus:form-ring',
   input_disabled: 'form-bg-disabled form-text-disabled',
-  $input: (classes, { isDisabled }) => ([
+  input_sm: 'form-p-input-sm rounded',
+  input_md: 'form-p-input rounded',
+  input_lg: 'form-p-input-lg rounded',
+  $input: (classes, { isDisabled, $size }) => ([
     classes.input,
+    classes[`input_${$size}`],
     isDisabled ? classes.input_disabled : classes.input_enabled
   ]),
 }
@@ -33,8 +37,8 @@ const text = {
 const select = {
   container: 'relative mx-auto w-full flex items-center justify-end box-border cursor-pointer form-border form-border-color form-rounded bg-white text-base leading-snug outline-none',
   containerDisabled: 'cursor-default form-bg-disabled text-gray-400',
-  containerOpen: 'form-rounded-b-none',
-  containerOpenTop: 'form-rounded-t-none',
+  containerOpen: '!rounded-b-none',
+  containerOpenTop: '!rounded-t-none',
   containerActive: 'form-ring',
   search: 'w-full absolute inset-0 outline-none appearance-none box-border border-0 text-base font-sans bg-white form-rounded form-pl-input',
   placeholder: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input text-gray-500',
@@ -44,7 +48,7 @@ const select = {
   clearIcon: 'mask-bg mask-form-remove bg-black w-2.5 h-4 py-px box-content inline-block',
   spinner: 'mask-bg mask-form-spinner form-bg-primary w-4 h-4 z-10 form-mr-input animate-spin flex-shrink-0 flex-grow-0',
   dropdown: 'max-h-60 absolute -left-px -right-px bottom-0 transform translate-y-full form-border form-border-color form-rounded-b -mt-px overflow-y-scroll z-50 bg-white flex flex-col',
-  dropdownTop: '-translate-y-full top-px bottom-auto flex-col-reverse form-rounded-b-none form-rounded-t',
+  dropdownTop: '-translate-y-full top-px bottom-auto flex-col-reverse !rounded-b-none form-rounded-t',
   dropdownHidden: 'hidden',
   options: 'flex flex-col p-0 m-0 list-none',
   optionsTop: 'flex-col-reverse',
@@ -64,17 +68,13 @@ const select = {
   optionSelectedPointed: 'text-white form-bg-primary opacity-90',
   optionSelectedDisabled: 'text-white form-bg-primary bg-opacity-50 cursor-not-allowed',
   fakeInput: 'bg-transparent absolute left-0 right-0 -bottom-px w-full h-px border-0 p-0 appearance-none outline-none text-transparent',
-  spacer: 'form-h-input-inner box-content',
+  spacer: 'form-h-input-height-inner box-content',
   noOptions: 'text-base leading-normal form-p-input text-gray-600 bg-white',
   noResults: 'text-base leading-normal form-p-input text-gray-600 bg-white',
 }
 
 export default {
   // Elements
-  AddressElement: {
-    container: '',
-    childrenContainer: 'form-row-group flex flex-wrap',
-  },
   ButtonElement: {
     container: '',
     button: 'inline-block form-p-button leading-snug form-rounded transition form-bg-primary text-white focus:outline-none',
@@ -147,7 +147,7 @@ export default {
     list_disabled: '',
     list_sorting: '',
     listItem: 'form-row relative group ghost:opacity-60',
-    handle: 'absolute form-w-input form-h-input left-4 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
+    handle: 'absolute form-w-input-height form-h-input-height left-4 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
     handleIcon: 'mask-bg mask-form-sort-handle bg-black mask-size-2.8 block w-full h-full',
     remove: 'absolute z-1 w-4 h-4 box-content p-0.5 top-px form-left-gutter bg-gray-200 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 hover:bg-gray-300 group-hover:opacity-100',
     removeIcon: 'mask-bg mask-form-remove-light bg-gray-500 mask-size-3 block w-full h-full',
@@ -178,8 +178,8 @@ export default {
     listItem_image: 'form-row -form-mt-0.5gutter',
     listItem_gallery: 'form-mr-0.5gutter form-mb-0.5gutter',
     handle: '',
-    handle_file: 'absolute form-w-input form-h-input left-4 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
-    handle_image: 'absolute form-w-input form-h-input left-4 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
+    handle_file: 'absolute form-w-input-height form-h-input-height left-4 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
+    handle_image: 'absolute form-w-input-height form-h-input-height left-4 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
     handle_gallery: 'absolute w-4 h-4 box-content top-0.5 left-0.5 mt-px ml-px bg-gray-200 bg-center bg-no-repeat rounded-full transition opacity-0 group-hover:opacity-100 cursor-grab active:cursor-grabbing hover:bg-gray-300',
     handleIcon: '',
     handleIcon_file: 'mask-bg mask-form-sort-handle bg-black mask-size-2.8 block w-full h-full',
@@ -393,8 +393,8 @@ export default {
   },
   ElementAddon: {
     container: 'form-p-input form-border form-border-color bg-gray-100 flex items-center',
-    container_before: 'form-addon-before !form-border-r-0 form-rounded-l',
-    container_after: 'form-addon-after !form-border-l-0 form-rounded-r order-2',
+    container_before: 'form-addon-before !border-r-0 form-rounded-l',
+    container_after: 'form-addon-after !border-l-0 form-rounded-r order-2',
     wrapper: '',
     $container: (classes, { type }) => ([
       classes.container,
@@ -624,7 +624,7 @@ export default {
     image: 'flex items-center bg-gray-100 form-rounded flex-grow-0 flex-shrink-0',
     image_link: '',
     image_static: '',
-    img: 'form-w-input form-h-input form-rounded form-hide-empty-img object-cover',
+    img: 'form-w-input-height form-h-input-height form-rounded form-hide-empty-img object-cover',
     file: 'flex items-center flex-grow flex-shrink ml-2.5',
     filenameLink: 'hover:underline',
     filenameStatic: '',

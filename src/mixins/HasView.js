@@ -56,6 +56,11 @@ export default {
       type: [Array],
       default: () => ([])
     },
+    size: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
     columns: {
       required: false,
       type: [Object, String, Number],

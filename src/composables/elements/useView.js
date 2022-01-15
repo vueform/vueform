@@ -1,11 +1,17 @@
-import { computed, ref } from 'composition-api'
+import { computed, ref, toRefs } from 'composition-api'
 
 const base = function(props, context, dependencies)
 {
+  const {
+    size,
+  } = toRefs(props)
+
   // ============ DEPENDENCIES ============
 
   const available = dependencies.available
   const active = dependencies.active
+  const form$ = dependencies.form$
+  const parent = dependencies.parent
 
   // ================ DATA ================
 
@@ -29,6 +35,23 @@ const base = function(props, context, dependencies)
     return available.value && !hidden.value && active.value
   })
 
+  /**
+   * The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent's size will be used, which can be either the [`Vueform`](vueform) component or a nested element. 
+   *
+   * @returns {string}
+   */
+  const $size = computed(() => {
+    if (size.value) {
+      return size.value
+    }
+
+    if (parent.value) {
+      return parent.value.$size
+    }
+
+    return form$.value.$size
+  })
+
   // =============== METHODS ==============
 
   /**
@@ -41,7 +64,7 @@ const base = function(props, context, dependencies)
   }
 
   /**
-   * Shows the element if it was hidden with [`hide()`](#hide) method.
+   * Shows the element if it was hidden with [`hide()`](#method-hide) method.
    *
    * @returns {void}
    */
@@ -52,6 +75,7 @@ const base = function(props, context, dependencies)
   return {
     hidden,
     visible,
+    $size,
     hide,
     show,
   }

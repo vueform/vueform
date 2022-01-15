@@ -52,6 +52,7 @@ export default {
       classes,
       templates,
       extendedTheme,
+      $size,
       form$,
       model,
       intermediaryValue,
@@ -123,6 +124,7 @@ export default {
       classes,
       templates,
       extendedTheme,
+      $size,
       form$,
       model,
       intermediaryValue,
@@ -278,6 +280,11 @@ export default {
       type: Boolean,
       required: false,
       default: null
+    },
+    size: {
+      required: false,
+      type: [String],
+      default: undefined,
     },
     addClass: {
       required: false,

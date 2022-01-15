@@ -17,6 +17,7 @@ const base = function(props, context, dependencies = {})
     schema,
     tabs,
     steps,
+    size,
     addClass,
     removeClass,
     replaceClass,
@@ -225,7 +226,7 @@ const base = function(props, context, dependencies = {})
 
     const ifNotUndefined = {
       stepsControls, displayErrors, displayMessages, forceLabels, disabled, loading,
-      floatPlaceholders, endpoint,
+      floatPlaceholders, endpoint, size,
       onChange: _onChange.value,
       onReset: _onReset.value,
       onClear: _onClear.value,
@@ -254,6 +255,7 @@ const base = function(props, context, dependencies = {})
       floatPlaceholders: baseConfig.value.config.floatPlaceholders,
       formData: baseConfig.value.config.formData,
       theme: baseConfig.value.theme,
+      size: baseConfig.value.config.size,
       addClass: null,
       removeClass: null,
       replaceClass: null,
@@ -701,6 +703,15 @@ const base = function(props, context, dependencies = {})
         options.value,
       ],
     })).classes
+  })
+
+  /**
+   * The calculated size of the form. If [`size`](#option-size) is not defined `config.size` will be used. 
+   *
+   * @returns {string}
+   */
+  const $size = computed(() => {
+    return options.value.size
   })
 
   // =============== METHODS ==============
@@ -1161,6 +1172,7 @@ const base = function(props, context, dependencies = {})
     classes,
     templates,
     extendedTheme,
+    $size,
     form$,
     model,
     intermediaryValue,
