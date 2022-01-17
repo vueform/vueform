@@ -222,11 +222,12 @@ const base = function(props, context, dependencies = {})
       messages, formKey, multilingual, formatLoad, formatData, prepare, default: default_, formData, replaceTemplates,
       addClass, removeClass, replaceClass, overrideClass,
       addClasses, removeClasses, replaceClasses, overrideClasses, presets,
+      size,
     }
 
     const ifNotUndefined = {
       stepsControls, displayErrors, displayMessages, forceLabels, disabled, loading,
-      floatPlaceholders, endpoint, size,
+      floatPlaceholders, endpoint,
       onChange: _onChange.value,
       onReset: _onReset.value,
       onClear: _onClear.value,
@@ -1079,6 +1080,7 @@ const base = function(props, context, dependencies = {})
 
   provide('form$', form$)
   provide('theme', extendedTheme)
+  provide('$size', $size)
 
   // ================ HOOKS ===============
 

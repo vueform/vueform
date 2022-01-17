@@ -266,7 +266,7 @@ export default class MergeFormClasses
       if (_.isPlainObject(classes)) {
         classHelpers[className] = this.getClassHelpers(componentClasses[className], path.concat([className]))
       } else {
-        classHelpers[className] = [`==${path.join('.')}.${className}==>`]
+        classHelpers[className] = [`${path.join('.')}.${className}-->`]
       }
     })
 

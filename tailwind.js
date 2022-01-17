@@ -1015,14 +1015,14 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       pyButtonSM: theme('padding')['1.75'],
       pxButtonSM: theme('padding')['3'],
       pyButtonLG: theme('padding')['2.75'],
-      pxButtonLG: theme('padding.6'),
+      pxButtonLG: theme('padding.5'),
 
       checkboxSize: theme('width.4'),
       checkboxSizeSM: theme('width')['3.5'],
       checkboxSizeLG: theme('width.4'),
       gallerySize: theme('width.24'),
-      gallerySizeSM: theme('width.16'),
-      gallerySizeLG: theme('width.32'),
+      gallerySizeSM: theme('width.20'),
+      gallerySizeLG: theme('width.28'),
 
       dateHeadBg: theme('colors.gray.100'),
       dateHeadColor: theme('colors.gray.700'),
@@ -1041,10 +1041,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       },
       width: {
         '3.5': '0.875rem',
+        '4.5': '1.125rem',
         '1\/10': '10%',
       },
       height: {
         '3.5': '0.875rem',
+        '4.5': '1.125rem',
         '8.5': '2.125rem',
         '9.5': '2.375rem',
         '11.5': '2.875rem',

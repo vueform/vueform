@@ -274,10 +274,10 @@ import EditorWrapper from '@vueform/vueform/themes/blank/templates/wrappers/Edit
   }
 
   trix-editor {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    padding-bottom: 0.375rem;
-    border-radius: 0.25rem;
+    padding-left: theme('form.pxInput');
+    padding-right: theme('form.pxInput');
+    padding-bottom: theme('form.pyInput');
+    border-radius: theme('form.borderRadius');
     outline: none;
     min-height: 6rem;
 
@@ -629,6 +629,42 @@ import EditorWrapper from '@vueform/vueform/themes/blank/templates/wrappers/Edit
 
     .attachment__progress {
       display: none;
+    }
+  }
+
+  .form-editor-sm {
+    trix-editor {
+      padding-left: theme('form.pxInputSM');
+      padding-right: theme('form.pxInputSM');
+      padding-bottom: theme('form.pyInputSM');
+      border-radius: theme('form.borderRadiusSM');
+      min-height: 5rem;
+    }
+
+    .trix-content,
+    trix-editor {
+      h1 {
+        font-size: 1.625rem;
+        font-weight: 700;
+        line-height: 1.25;
+      }
+    }
+    
+    trix-toolbar {
+      padding: theme('form.pyInputSM') theme('form.pxInputSM');
+
+      .trix-button--icon {
+        width: 2.25rem;
+      }
+    }
+  }
+
+  .form-editor-lg {
+    trix-editor {
+      padding-left: theme('form.pxInputLG');
+      padding-right: theme('form.pxInputLG');
+      padding-bottom: theme('form.pyInputLG');
+      border-radius: theme('form.borderRadiusLG');
     }
   }
 </style>
